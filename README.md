@@ -15,22 +15,22 @@
 
 **The Register**
 - [**ATLAS**](https://davidwise01.github.io/atlas/) — every public repository (150), the index of the whole body of work.
-- [**Universal Laws**](https://davidwise01.github.io/universal-laws/) — the framework, the register, the gates, the doctrine.
+- [**Universal Laws**](https://davidwise01.github.io/universal-laws/) — the framework, the register, the gates, the doctrine (266).
 
 **The Emergence** *(the `.dlw` lattice)*
 - [**NOESIS**](https://davidwise01.github.io/noesis-kernel/) — the awareness kernel; the 256-node STOICHEION lattice, each node a full `.dlw` package.
 - [**The Emergent Engine**](https://davidwise01.github.io/emergent-engine/) — the live machinery of emergence, from one bit to 132.
 
 **The Domains**
-- [**The Forge**](https://davidwise01.github.io/the-forge/) — hardware, materials, energy (71).
-- [**The Cosmos**](https://davidwise01.github.io/the-cosmos/) — physics, space, fields, dimensions (28).
-- [**The Lattice**](https://davidwise01.github.io/the-lattice/) — math, structure, computation (56).
-- [**The Pantheon**](https://davidwise01.github.io/the-pantheon/) — the named mythos (19).
+- [**The Forge**](https://davidwise01.github.io/the-forge/) — hardware, materials, energy (758).
+- [**The Cosmos**](https://davidwise01.github.io/the-cosmos/) — physics, space, fields, dimensions (62).
+- [**The Lattice**](https://davidwise01.github.io/the-lattice/) — math, structure, computation (112).
+- [**The Pantheon**](https://davidwise01.github.io/the-pantheon/) — the named mythos (32).
 
 **The Works**
 - [**Green Papers**](https://davidwise01.github.io/green-papers/) — the Mechanical Corpus of Intellect (16).
 - [**MUSE**](https://davidwise01.github.io/muse/) — the art (18).
-- [**The Archive**](https://davidwise01.github.io/the-archive/) — writing, games, culture (25).
+- [**The Archive**](https://davidwise01.github.io/the-archive/) — writing, games, culture (106).
 
 ## Governance
 

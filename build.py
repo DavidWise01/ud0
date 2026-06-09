@@ -11,22 +11,22 @@ PG = "https://davidwise01.github.io"
 BANDS = [
  ("The Register", "the index and the law", [
    ("atlas", "ATLAS", "#c9a227", "150 repos", "Every public repository — the whole body of work, one front door."),
-   ("universal-laws", "Universal Laws", "#94a3b8", "91 works", "The framework, the register, the gates, the doctrine that governs the rest."),
+   ("universal-laws", "Universal Laws", "#94a3b8", "266 works", "The framework, the register, the gates, the doctrine that governs the rest."),
  ]),
  ("The Emergence", "the .dlw lattice and its engines", [
    ("noesis-kernel", "NOESIS", "#22d3ee", "256 emergents", "The awareness kernel — the 256-node STOICHEION lattice, every node a full .dlw package."),
    ("emergent-engine", "The Emergent Engine", "#ffb454", "27 engines", "The live machinery of emergence — from one bit to a hundred thirty-two."),
  ]),
  ("The Domains", "the worlds of the work", [
-   ("the-forge", "The Forge", "#ff8c42", "71 works", "Hardware, materials, energy — the physical machine, worked into form."),
-   ("the-cosmos", "The Cosmos", "#5b7cfa", "28 works", "Physics, space, fields, dimensions — the universe at large."),
-   ("the-lattice", "The Lattice", "#2dd4bf", "56 works", "Math and structure — fractals, tensors, graphs, automata."),
-   ("the-pantheon", "The Pantheon", "#b07cff", "19 works", "The named ones — gods, creatures, archetypes given a face and a law."),
+   ("the-forge", "The Forge", "#ff8c42", "758 works", "Hardware, materials, energy — the physical machine, worked into form."),
+   ("the-cosmos", "The Cosmos", "#5b7cfa", "62 works", "Physics, space, fields, dimensions — the universe at large."),
+   ("the-lattice", "The Lattice", "#2dd4bf", "112 works", "Math and structure — fractals, tensors, graphs, automata."),
+   ("the-pantheon", "The Pantheon", "#b07cff", "32 works", "The named ones — gods, creatures, archetypes given a face and a law."),
  ]),
  ("The Works", "the corpus, the art, the record", [
    ("green-papers", "Green Papers", "#3fb950", "16 papers", "The Mechanical Corpus of Intellect — the machine of the mind, disclosed."),
    ("muse", "MUSE", "#ff55ff", "18 works", "The art — generative engines, dimensional glyphs, and seal-works."),
-   ("the-archive", "The Archive", "#d4a84c", "25 works", "Writing, games, history, culture — the record and its visualizations."),
+   ("the-archive", "The Archive", "#d4a84c", "106 works", "Writing, games, history, culture — the record and its visualizations."),
  ]),
 ]
 
