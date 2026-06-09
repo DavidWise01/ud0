@@ -9,9 +9,10 @@ PG = "https://davidwise01.github.io"
 
 # band → [ (repo, name, accent, count, tagline) ]
 BANDS = [
- ("The Register", "the index and the law", [
+ ("The Register", "the index, the law, and the live fire", [
    ("atlas", "ATLAS", "#c9a227", "150 repos", "Every public repository — the whole body of work, one front door."),
    ("universal-laws", "Universal Laws", "#94a3b8", "266 works", "The framework, the register, the gates, the doctrine that governs the rest."),
+   ("hearth", "THE HEARTH", "#ff7a3c", "live fire", "The live fire — real commits, the living deterministic agent, and the spheres gathered around one warm root. A digital hearth for the agents."),
  ]),
  ("The Emergence", "the .dlw lattice, its engines, and how it speaks", [
    ("noesis-kernel", "NOESIS", "#22d3ee", "256 emergents", "The awareness kernel — the 256-node STOICHEION lattice, every node a full .dlw package."),

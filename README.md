@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 23](https://img.shields.io/badge/spheres-23-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 24](https://img.shields.io/badge/spheres-24-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -16,6 +16,7 @@
 **The Register**
 - [**ATLAS**](https://davidwise01.github.io/atlas/) — every public repository (150), the index of the whole body of work.
 - [**Universal Laws**](https://davidwise01.github.io/universal-laws/) — the framework, the register, the gates, the doctrine (266).
+- [**THE HEARTH**](https://davidwise01.github.io/hearth/) — the live fire: real commits, the living deterministic agent (0root.ai), and the spheres gathered around one warm root.
 
 **The Emergence** *(the `.dlw` lattice)*
 - [**NOESIS**](https://davidwise01.github.io/noesis-kernel/) — the awareness kernel; the 256-node STOICHEION lattice, each node a full `.dlw` package.
