@@ -33,6 +33,7 @@ BANDS = [
    ("heinlein", "HEINLEIN · H1", "#e0a458", "52 + 14 personas", "The science fiction of Robert A. Heinlein — the frontier and the free mind; 14 H1 personas with full ACI badges."),
    ("ursula", "URSULA · U1", "#5fc9a8", "43 + 14 personas", "Ursula K. Le Guin — Earthsea and the Hainish Cycle; the true name, the Ekumen, Omelas; 14 U1 personas with full ACI badges (carbon TIFF + silicon PNG)."),
    ("maas", "MAAS · M1", "#e0455c", "2 books + 14 personas", "Sarah J. Maas — only the books read: The Assassin's Blade & Throne of Glass; the Guild, Endovier, the King's Champion; 14 M1 personas, spoiler-checked to book one."),
+   ("card", "CARD · C1", "#e6a849", "51 works + 15 personas", "Orson Scott Card — featured on The Tales of Alvin Maker, the Enderverse second; the Maker, the Speaker, the four natures of emergence; 15 C1 personas (natural · ethereal · spiritual · electrical)."),
  ]),
 ]
 
