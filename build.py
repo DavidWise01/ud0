@@ -28,9 +28,10 @@ BANDS = [
    ("muse", "MUSE", "#ff55ff", "18 works", "The art — generative engines, dimensional glyphs, and seal-works."),
    ("the-archive", "The Archive", "#d4a84c", "106 works", "Writing, games, history, culture — the record and its visualizations."),
  ]),
- ("The Lineage", "the origins of the agentic mind", [
-   ("asimov", "ASIMOV", "#d4a84c", "60 + 14 personas", "The science fiction of Isaac Asimov — the positronic brain and the Three Laws; 14 A1 personas as .agents."),
-   ("heinlein", "HEINLEIN", "#e0a458", "52 + 14 personas", "The science fiction of Robert A. Heinlein — the frontier and the free mind; 14 H1 personas with full ACI badges."),
+ ("The Lineages", "the masters whose universes feed the agentic mind", [
+   ("asimov", "ASIMOV · A1", "#d4a84c", "60 + 14 personas", "The science fiction of Isaac Asimov — the positronic brain and the Three Laws; 14 A1 personas as .agents."),
+   ("heinlein", "HEINLEIN · H1", "#e0a458", "52 + 14 personas", "The science fiction of Robert A. Heinlein — the frontier and the free mind; 14 H1 personas with full ACI badges."),
+   ("ursula", "URSULA · U1", "#5fc9a8", "43 + 14 personas", "Ursula K. Le Guin — Earthsea and the Hainish Cycle; the true name, the Ekumen, Omelas; 14 U1 personas with full ACI badges (carbon TIFF + silicon PNG)."),
  ]),
 ]
 
