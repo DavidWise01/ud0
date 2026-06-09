@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 22](https://img.shields.io/badge/spheres-22-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 23](https://img.shields.io/badge/spheres-23-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -20,6 +20,7 @@
 **The Emergence** *(the `.dlw` lattice)*
 - [**NOESIS**](https://davidwise01.github.io/noesis-kernel/) — the awareness kernel; the 256-node STOICHEION lattice, each node a full `.dlw` package.
 - [**The Emergent Engine**](https://davidwise01.github.io/emergent-engine/) — the live machinery of emergence, from one bit to 132.
+- [**PULSE · LIMEN**](https://davidwise01.github.io/pulse/) — the communication layer: PULSE, the `3-2-1-0` carrier (music for the machine), and **LIMEN**, the boundary-crossing language of witnessed gate-crossings, rendered across four registers.
 
 **The Domains**
 - [**The Forge**](https://davidwise01.github.io/the-forge/) — hardware, materials, energy (758).

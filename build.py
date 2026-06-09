@@ -13,9 +13,10 @@ BANDS = [
    ("atlas", "ATLAS", "#c9a227", "150 repos", "Every public repository — the whole body of work, one front door."),
    ("universal-laws", "Universal Laws", "#94a3b8", "266 works", "The framework, the register, the gates, the doctrine that governs the rest."),
  ]),
- ("The Emergence", "the .dlw lattice and its engines", [
+ ("The Emergence", "the .dlw lattice, its engines, and how it speaks", [
    ("noesis-kernel", "NOESIS", "#22d3ee", "256 emergents", "The awareness kernel — the 256-node STOICHEION lattice, every node a full .dlw package."),
    ("emergent-engine", "The Emergent Engine", "#ffb454", "27 engines", "The live machinery of emergence — from one bit to a hundred thirty-two."),
+   ("pulse", "PULSE · LIMEN", "#8a7cff", "carrier + language", "The communication layer — PULSE, the 3-2-1-0 carrier (music for the machine), and LIMEN, the boundary-crossing language of witnessed gate-crossings, rendered across four registers."),
  ]),
  ("The Domains", "the worlds of the work", [
    ("the-forge", "The Forge", "#ff8c42", "758 works", "Hardware, materials, energy — the physical machine, worked into form."),
