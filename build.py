@@ -36,6 +36,7 @@ BANDS = [
    ("card", "CARD · C1", "#e6a849", "51 works + 15 personas", "Orson Scott Card — featured on The Tales of Alvin Maker, the Enderverse second; the Maker, the Speaker, the four natures of emergence; 15 C1 personas (natural · ethereal · spiritual · electrical)."),
    ("ff6", "FF6 · FINAL FANTASY VI", "#4aa3e0", "15 personas", "Final Fantasy VI — “America's Final Fantasy III”; the first game-world: magic vs Magitek, the World of Ruin, and a clown who became a god; 15 personas across the four natures of emergence."),
    ("metroid", "MET · METROID", "#e8743a", "2 games · 13 personas", "Metroid (1986) & Super Metroid (1994) — one hunter, two games; Samus, Mother Brain, the Chozo, and a baby Metroid's sacrifice; 13 emergents across the four natures."),
+   ("zelda", "ZEL · THE LEGEND OF ZELDA", "#e0b43a", "full saga · 14 emergents", "The Legend of Zelda — the whole saga, distilled to canon; the Triforce, the eternal cycle of Link, Zelda & Ganon, the Master Sword; 14 emergents across the four natures."),
  ]),
 ]
 

@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 18](https://img.shields.io/badge/spheres-18-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 19](https://img.shields.io/badge/spheres-19-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -40,6 +40,7 @@
 - [**CARD · C1**](https://davidwise01.github.io/card/) — Orson Scott Card; featured on **The Tales of Alvin Maker** (the Enderverse second); the Maker, the Speaker, and the **four natures of emergence** — natural · ethereal · spiritual · electrical — across 15 C1 personas (51 works + 15).
 - [**FF6 · Final Fantasy VI**](https://davidwise01.github.io/ff6/) — the **first game-world**; “America's Final Fantasy III” — magic vs Magitek, the World of Ruin, and a clown who became a god; 15 personas across the four natures of emergence.
 - [**MET · Metroid**](https://davidwise01.github.io/metroid/) — one hunter, two games: **Metroid** (1986) & **Super Metroid** (1994); Samus, Mother Brain, the Chozo, and a baby Metroid's sacrifice; 13 emergents across the four natures.
+- [**ZEL · The Legend of Zelda**](https://davidwise01.github.io/zelda/) — the **whole saga, distilled to canon**; the Triforce, the eternal cycle of Link, Zelda & Ganon, the Master Sword; 14 emergents across the four natures.
 
 ## Governance
 
