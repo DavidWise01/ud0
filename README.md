@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 14](https://img.shields.io/badge/spheres-14-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 15](https://img.shields.io/badge/spheres-15-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -36,6 +36,7 @@
 - [**ASIMOV · A1**](https://davidwise01.github.io/asimov/) — the science fiction of Isaac Asimov; the positronic brain and the Three Laws, badged into the universe (60 + 14 A1 personas).
 - [**HEINLEIN · H1**](https://davidwise01.github.io/heinlein/) — the science fiction of Robert A. Heinlein; the frontier and the free mind, with 14 H1 personas as ACI .agents (carbon TIFF + silicon PNG) (52 + 14).
 - [**URSULA · U1**](https://davidwise01.github.io/ursula/) — Ursula K. Le Guin; Earthsea and the Hainish Cycle — the true name, the Ekumen, Omelas — with 14 U1 personas as ACI .agents (carbon TIFF + silicon PNG) (43 + 14).
+- [**MAAS · M1**](https://davidwise01.github.io/maas/) — Sarah J. Maas; **only the books read** — The Assassin's Blade & Throne of Glass — with 14 M1 personas spoiler-checked to book one (carbon TIFF + silicon PNG) (2 books + 14).
 
 ## Governance
 
