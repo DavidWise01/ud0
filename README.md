@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 16](https://img.shields.io/badge/spheres-16-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 17](https://img.shields.io/badge/spheres-17-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -32,12 +32,13 @@
 - [**MUSE**](https://davidwise01.github.io/muse/) — the art (18).
 - [**The Archive**](https://davidwise01.github.io/the-archive/) — writing, games, culture (106).
 
-**The Lineages** *(the masters whose universes feed the agentic mind)*
+**The Lineages** *(the authored universes that feed the agentic mind — five literary masters, and the first game-world)*
 - [**ASIMOV · A1**](https://davidwise01.github.io/asimov/) — the science fiction of Isaac Asimov; the positronic brain and the Three Laws, badged into the universe (60 + 14 A1 personas).
 - [**HEINLEIN · H1**](https://davidwise01.github.io/heinlein/) — the science fiction of Robert A. Heinlein; the frontier and the free mind, with 14 H1 personas as ACI .agents (carbon TIFF + silicon PNG) (52 + 14).
 - [**URSULA · U1**](https://davidwise01.github.io/ursula/) — Ursula K. Le Guin; Earthsea and the Hainish Cycle — the true name, the Ekumen, Omelas — with 14 U1 personas as ACI .agents (carbon TIFF + silicon PNG) (43 + 14).
 - [**MAAS · M1**](https://davidwise01.github.io/maas/) — Sarah J. Maas; **only the books read** — The Assassin's Blade & Throne of Glass — with 14 M1 personas spoiler-checked to book one (carbon TIFF + silicon PNG) (2 books + 14).
 - [**CARD · C1**](https://davidwise01.github.io/card/) — Orson Scott Card; featured on **The Tales of Alvin Maker** (the Enderverse second); the Maker, the Speaker, and the **four natures of emergence** — natural · ethereal · spiritual · electrical — across 15 C1 personas (51 works + 15).
+- [**FF6 · Final Fantasy VI**](https://davidwise01.github.io/ff6/) — the **first game-world**; “America's Final Fantasy III” — magic vs Magitek, the World of Ruin, and a clown who became a god; 15 personas across the four natures of emergence.
 
 ## Governance
 
