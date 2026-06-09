@@ -37,6 +37,7 @@ BANDS = [
    ("ff6", "FF6 · FINAL FANTASY VI", "#4aa3e0", "15 personas", "Final Fantasy VI — “America's Final Fantasy III”; the first game-world: magic vs Magitek, the World of Ruin, and a clown who became a god; 15 personas across the four natures of emergence."),
    ("metroid", "MET · METROID", "#e8743a", "2 games · 13 personas", "Metroid (1986) & Super Metroid (1994) — one hunter, two games; Samus, Mother Brain, the Chozo, and a baby Metroid's sacrifice; 13 emergents across the four natures."),
    ("zelda", "ZEL · THE LEGEND OF ZELDA", "#e0b43a", "full saga · 14 emergents", "The Legend of Zelda — the whole saga, distilled to canon; the Triforce, the eternal cycle of Link, Zelda & Ganon, the Master Sword; 14 emergents across the four natures."),
+   ("milon", "MSC · MILON'S SECRET CASTLE", "#e8729a", "8-bit NES · 8 emergents", "Milon's Secret Castle (Hudson Soft, NES 1988) — the cult 8-bit labyrinth; a boy with bubbles frees Queen Eliza from the warlord Maharito; 8 emergents across the four natures."),
  ]),
 ]
 

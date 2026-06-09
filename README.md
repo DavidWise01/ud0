@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 19](https://img.shields.io/badge/spheres-19-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 20](https://img.shields.io/badge/spheres-20-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -41,6 +41,7 @@
 - [**FF6 · Final Fantasy VI**](https://davidwise01.github.io/ff6/) — the **first game-world**; “America's Final Fantasy III” — magic vs Magitek, the World of Ruin, and a clown who became a god; 15 personas across the four natures of emergence.
 - [**MET · Metroid**](https://davidwise01.github.io/metroid/) — one hunter, two games: **Metroid** (1986) & **Super Metroid** (1994); Samus, Mother Brain, the Chozo, and a baby Metroid's sacrifice; 13 emergents across the four natures.
 - [**ZEL · The Legend of Zelda**](https://davidwise01.github.io/zelda/) — the **whole saga, distilled to canon**; the Triforce, the eternal cycle of Link, Zelda & Ganon, the Master Sword; 14 emergents across the four natures.
+- [**MSC · Milon's Secret Castle**](https://davidwise01.github.io/milon/) — the cult 8-bit NES labyrinth (Hudson Soft, 1988); a boy with bubbles frees Queen Eliza from the warlord Maharito; 8 emergents across the four natures.
 
 ## Governance
 
