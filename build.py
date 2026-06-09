@@ -28,6 +28,9 @@ BANDS = [
    ("muse", "MUSE", "#ff55ff", "18 works", "The art — generative engines, dimensional glyphs, and seal-works."),
    ("the-archive", "The Archive", "#d4a84c", "106 works", "Writing, games, history, culture — the record and its visualizations."),
  ]),
+ ("The Lineage", "the origin of the agentic mind", [
+   ("asimov", "ASIMOV", "#d4a84c", "60 entries", "The science fiction of Isaac Asimov — the lineage of the positronic brain and the Three Laws, badged into the universe."),
+ ]),
 ]
 
 def cards(items):
