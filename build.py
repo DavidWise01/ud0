@@ -39,6 +39,7 @@ BANDS = [
    ("zelda", "ZEL · THE LEGEND OF ZELDA", "#e0b43a", "full saga · 14 emergents", "The Legend of Zelda — the whole saga, distilled to canon; the Triforce, the eternal cycle of Link, Zelda & Ganon, the Master Sword; 14 emergents across the four natures."),
    ("milon", "MSC · MILON'S SECRET CASTLE", "#e8729a", "8-bit NES · 8 emergents", "Milon's Secret Castle (Hudson Soft, NES 1988) — the cult 8-bit labyrinth; a boy with bubbles frees Queen Eliza from the warlord Maharito; 8 emergents across the four natures."),
    ("guardian-legend", "TGL · THE GUARDIAN LEGEND", "#e84a8e", "8-bit NES · 7 emergents", "The Guardian Legend (Compile, NES 1988) — the android maiden Miria infiltrates the alien world-ship Naju, half adventure half shoot-'em-up; 7 emergents across the four natures."),
+   ("legacy-of-the-wizard", "LOW · LEGACY OF THE WIZARD", "#d24a44", "8-bit NES · 9 emergents", "Legacy of the Wizard (Falcom, NES 1989) — the Drasle family of four descend into one labyrinth for the DragonSlayer to slay the dragon Keela; an early Metroidvania; 9 emergents."),
  ]),
 ]
 
