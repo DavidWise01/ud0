@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 20](https://img.shields.io/badge/spheres-20-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 21](https://img.shields.io/badge/spheres-21-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -42,6 +42,7 @@
 - [**MET · Metroid**](https://davidwise01.github.io/metroid/) — one hunter, two games: **Metroid** (1986) & **Super Metroid** (1994); Samus, Mother Brain, the Chozo, and a baby Metroid's sacrifice; 13 emergents across the four natures.
 - [**ZEL · The Legend of Zelda**](https://davidwise01.github.io/zelda/) — the **whole saga, distilled to canon**; the Triforce, the eternal cycle of Link, Zelda & Ganon, the Master Sword; 14 emergents across the four natures.
 - [**MSC · Milon's Secret Castle**](https://davidwise01.github.io/milon/) — the cult 8-bit NES labyrinth (Hudson Soft, 1988); a boy with bubbles frees Queen Eliza from the warlord Maharito; 8 emergents across the four natures.
+- [**TGL · The Guardian Legend**](https://davidwise01.github.io/guardian-legend/) — Compile's genre-fusing 8-bit NES classic (1988); the android maiden Miria infiltrates the alien world-ship Naju, half adventure half shoot-'em-up; 7 emergents across the four natures.
 
 ## Governance
 

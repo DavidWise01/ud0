@@ -38,6 +38,7 @@ BANDS = [
    ("metroid", "MET · METROID", "#e8743a", "2 games · 13 personas", "Metroid (1986) & Super Metroid (1994) — one hunter, two games; Samus, Mother Brain, the Chozo, and a baby Metroid's sacrifice; 13 emergents across the four natures."),
    ("zelda", "ZEL · THE LEGEND OF ZELDA", "#e0b43a", "full saga · 14 emergents", "The Legend of Zelda — the whole saga, distilled to canon; the Triforce, the eternal cycle of Link, Zelda & Ganon, the Master Sword; 14 emergents across the four natures."),
    ("milon", "MSC · MILON'S SECRET CASTLE", "#e8729a", "8-bit NES · 8 emergents", "Milon's Secret Castle (Hudson Soft, NES 1988) — the cult 8-bit labyrinth; a boy with bubbles frees Queen Eliza from the warlord Maharito; 8 emergents across the four natures."),
+   ("guardian-legend", "TGL · THE GUARDIAN LEGEND", "#e84a8e", "8-bit NES · 7 emergents", "The Guardian Legend (Compile, NES 1988) — the android maiden Miria infiltrates the alien world-ship Naju, half adventure half shoot-'em-up; 7 emergents across the four natures."),
  ]),
 ]
 
