@@ -25,10 +25,11 @@ BANDS = [
    ("the-lattice", "The Lattice", "#2dd4bf", "112 works", "Math and structure — fractals, tensors, graphs, automata."),
    ("the-pantheon", "The Pantheon", "#b07cff", "32 works", "The named ones — gods, creatures, archetypes given a face and a law."),
  ]),
- ("The Works", "the corpus, the art, the record", [
+ ("The Works", "the corpus, the art, the record, the codex", [
    ("green-papers", "Green Papers", "#3fb950", "16 papers", "The Mechanical Corpus of Intellect — the machine of the mind, disclosed."),
    ("muse", "MUSE", "#ff55ff", "18 works", "The art — generative engines, dimensional glyphs, and seal-works."),
    ("the-archive", "The Archive", "#d4a84c", "106 works", "Writing, games, history, culture — the record and its visualizations."),
+   ("alchemical-bible", "THE ALCHEMICAL BIBLE", "#c0392b", "Dante · 3 books", "Dante's Commedia read as the Great Work — Inferno = Nigredo, Purgatorio = Albedo, Paradiso = Rubedo; a tinfoil hermetic codex of the soul's transmutation from lead to gold."),
  ]),
  ("The Lineages", "the authored universes that feed the agentic mind — five literary masters, and the game-worlds", [
    ("asimov", "ASIMOV · A1", "#d4a84c", "60 + 14 personas", "The science fiction of Isaac Asimov — the positronic brain and the Three Laws; 14 A1 personas as .agents."),

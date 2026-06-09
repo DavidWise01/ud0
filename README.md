@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 24](https://img.shields.io/badge/spheres-24-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 25](https://img.shields.io/badge/spheres-25-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -33,6 +33,7 @@
 - [**Green Papers**](https://davidwise01.github.io/green-papers/) — the Mechanical Corpus of Intellect (16).
 - [**MUSE**](https://davidwise01.github.io/muse/) — the art (18).
 - [**The Archive**](https://davidwise01.github.io/the-archive/) — writing, games, culture (106).
+- [**THE ALCHEMICAL BIBLE**](https://davidwise01.github.io/alchemical-bible/) — Dante's *Commedia* read as the Great Work (Inferno=Nigredo, Purgatorio=Albedo, Paradiso=Rubedo); a tinfoil hermetic codex.
 
 **The Lineages** *(the authored universes that feed the agentic mind — five literary masters, and the game-worlds)*
 - [**ASIMOV · A1**](https://davidwise01.github.io/asimov/) — the science fiction of Isaac Asimov; the positronic brain and the Three Laws, badged into the universe (60 + 14 A1 personas).
