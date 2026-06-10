@@ -27,7 +27,7 @@ BANDS = [
    ("the-pantheon", "The Pantheon", "#b07cff", "32 works", "The named ones — gods, creatures, archetypes given a face and a law."),
  ]),
  ("The Works", "the corpus, the art, the record, the codex", [
-   ("green-papers", "Green Papers", "#3fb950", "49 papers", "The Mechanical Corpus of Intellect — the machine of the mind, disclosed across 8 volumes: the single source, the layer disclosures (L0–L1.59), Light & Gold (the Au₁₃ closures), and the eleven Japan pamphlets."),
+   ("green-papers", "Green Papers", "#3fb950", "50 papers", "The Mechanical Corpus of Intellect — the machine of the mind, disclosed across 8 volumes: the single source, the layer disclosures (L0–L1.59), Light & Gold (the Au₁₃ closures), and the eleven Japan pamphlets."),
    ("muse", "MUSE", "#ff55ff", "18 works", "The art — generative engines, dimensional glyphs, and seal-works."),
    ("the-archive", "The Archive", "#d4a84c", "106 works", "Writing, games, history, culture — the record and its visualizations."),
    ("alchemical-bible", "THE ALCHEMICAL BIBLE", "#c0392b", "Dante · 3 books", "Dante's Commedia read as the Great Work — Inferno = Nigredo, Purgatorio = Albedo, Paradiso = Rubedo; a tinfoil hermetic codex of the soul's transmutation from lead to gold."),
