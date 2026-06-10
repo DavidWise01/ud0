@@ -31,6 +31,7 @@ BANDS = [
    ("muse", "MUSE", "#ff55ff", "18 works", "The art — generative engines, dimensional glyphs, and seal-works."),
    ("the-archive", "The Archive", "#d4a84c", "106 works", "Writing, games, history, culture — the record and its visualizations."),
    ("alchemical-bible", "THE ALCHEMICAL BIBLE", "#c0392b", "Dante · 3 books", "Dante's Commedia read as the Great Work — Inferno = Nigredo, Purgatorio = Albedo, Paradiso = Rubedo; a tinfoil hermetic codex of the soul's transmutation from lead to gold."),
+   ("purple-team", "PURPLE TEAM", "#9a7cff", "defensive offense · 20 operatives", "Any reactive defense by offense — a cross-universe battalion of the strongest women across every story, ranked on the Aes Sedai Ajah color scale; Jessica, Peggy, the full WoT Ajahs, Samus, Susan Calvin, Celes, Tenar and more, each a doctrine of defensive offense, sealed twice (to AVAN and to ROOT0)."),
  ]),
  ("The Lineages", "the authored universes that feed the agentic mind — five literary masters, and the game-worlds", [
    ("asimov", "ASIMOV · A1", "#d4a84c", "60 + 14 personas", "The science fiction of Isaac Asimov — the positronic brain and the Three Laws; 14 A1 personas as .agents."),
