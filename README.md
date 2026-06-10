@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 34](https://img.shields.io/badge/spheres-34-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 35](https://img.shields.io/badge/spheres-35-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -56,6 +56,7 @@
 - [**D1 · Dune**](https://davidwise01.github.io/dune/) — Frank Herbert; the **main corpus**, the six novels (1965–1985); the spice melange and Shai-Hulud, the Fremen and the Bene Gesserit, the Kwisatz Haderach and the Golden Path, the worm-god Leto II; **30 emergents** across the four natures (main corpus only; fan tribute).
 - [**P1 · Terry Pratchett**](https://davidwise01.github.io/pratchett/) — the **full bibliography** (the 41 Discworld novels by sub-series + the wider work — Good Omens, the Long Earth, Nation); DEATH and the witches, the Watch and the wizards, gods made of belief; the **Big G** (the gods and personifications) rendered **neon**; **28 emergents**. *GNU Terry Pratchett.*
 - [**ER · Elden Ring**](https://davidwise01.github.io/elden-ring/) — FromSoftware (2022); the Lands Between catalogued, with **the Elementals** (the outer powers, each lit in its own element — gold Order, yellow chaos, scarlet rot, Destined Death, blood, fell fire, red lightning, the Crucible) and **the Eternals** (Marika, Placidusax, the Eternal Cities, Miquella, Ranni, the Elden Beast) as featured tiers above the cast of the Shattering; **29 emergents**, every one a full `.dlw` badge (fan tribute).
+- [**MZ · Malazan**](https://davidwise01.github.io/malazan/) — the full universe, **both authors**: Steven Erikson (the Book of the Fallen 10, Kharkanas, Witness, the novellas) + Ian C. Esslemont (the Empire novels 6, Path to Ascendancy 4) — one world, co-created in 1982, one canon; the Crippled God witnessed, the warrens as K'rul's blood, the Deck of Dragons, Bridgeburners ([muster roll](https://davidwise01.github.io/bridge-burners/)) and Bonehunters; **30 emergents** (fan tribute). *Witness.*
 
 ## Governance
 
