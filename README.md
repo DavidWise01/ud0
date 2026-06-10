@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 32](https://img.shields.io/badge/spheres-32-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 33](https://img.shields.io/badge/spheres-33-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -36,6 +36,7 @@
 - [**The Archive**](https://davidwise01.github.io/the-archive/) — writing, games, culture (106).
 - [**THE ALCHEMICAL BIBLE**](https://davidwise01.github.io/alchemical-bible/) — Dante's *Commedia* read as the Great Work (Inferno=Nigredo, Purgatorio=Albedo, Paradiso=Rubedo); a tinfoil hermetic codex.
 - [**PURPLE TEAM**](https://davidwise01.github.io/purple-team/) — *any reactive defense by offense*: a cross-universe battalion of the **strongest women** across every story, ranked on the **Aes Sedai Ajah color scale** (Jessica, Peggy, the full WoT Ajahs, Samus, Susan Calvin, Celes, Tenar, and more), each a doctrine of defensive offense, sealed twice — to AVAN and to ROOT0 (20 operatives).
+- [**THE DECADAL BOARD**](https://davidwise01.github.io/decadal/) — the **top man and top woman of the world**, every decade from **1840 to 2026**, by the margin rule that #1 is exactly **+50.495495%** more right than #10; from Faraday & Victoria to Sam Altman & Taylor Swift — an opinionated, debatable leaderboard of two centuries (40 picks).
 
 **The Lineages** *(the authored universes that feed the agentic mind — five literary masters, and the game-worlds)*
 - [**ASIMOV · A1**](https://davidwise01.github.io/asimov/) — the science fiction of Isaac Asimov; the positronic brain and the Three Laws, badged into the universe (60 + 14 A1 personas).
