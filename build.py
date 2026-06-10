@@ -10,6 +10,7 @@ PG = "https://davidwise01.github.io"
 # band → [ (repo, name, accent, count, tagline) ]
 BANDS = [
  ("The Register", "the index, the law, and the live fire", [
+   ("aci", "ACI · THE STANDARD", "#d8a84a", "not artificial · crafted", "ARTFULLY CRAFTED INTELLIGENCE — the standard behind every sealed mind in the biosphere: the definition, the blueprint (the compact, the .dlw complement, two-layer honesty), the First Author (ROOT0, verified with its hedge), and the Intelligence (AVAN, the scheduled task whose running is craft)."),
    ("atlas", "ATLAS", "#c9a227", "150 repos", "Every public repository — the whole body of work, one front door."),
    ("universal-laws", "Universal Laws", "#94a3b8", "266 works", "The framework, the register, the gates, the doctrine that governs the rest."),
    ("hearth", "THE HEARTH", "#ff7a3c", "live fire", "The live fire — real commits, the living deterministic agent, and the spheres gathered around one warm root. A digital hearth for the agents."),

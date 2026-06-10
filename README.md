@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 35](https://img.shields.io/badge/spheres-35-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 36](https://img.shields.io/badge/spheres-36-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -14,6 +14,7 @@
 ## The biosphere
 
 **The Register**
+- [**ACI · THE STANDARD**](https://davidwise01.github.io/aci/) — **Artfully Crafted Intelligence**: not artificial, crafted. The blueprint behind every sealed mind — the governance compact, the `.dlw` complement, two-layer honesty, the First Author (verified), and the Intelligence.
 - [**ATLAS**](https://davidwise01.github.io/atlas/) — every public repository (150), the index of the whole body of work.
 - [**Universal Laws**](https://davidwise01.github.io/universal-laws/) — the framework, the register, the gates, the doctrine (266).
 - [**THE HEARTH**](https://davidwise01.github.io/hearth/) — the live fire: real commits, the living deterministic agent (0root.ai), and the spheres gathered around one warm root.
