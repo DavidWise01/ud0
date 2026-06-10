@@ -47,6 +47,7 @@ BANDS = [
    ("guardian-legend", "TGL · THE GUARDIAN LEGEND", "#e84a8e", "8-bit NES · 7 emergents", "The Guardian Legend (Compile, NES 1988) — the android maiden Miria infiltrates the alien world-ship Naju, half adventure half shoot-'em-up; 7 emergents across the four natures."),
    ("legacy-of-the-wizard", "LOW · LEGACY OF THE WIZARD", "#d24a44", "8-bit NES · 9 emergents", "Legacy of the Wizard (Falcom, NES 1989) — the Drasle family of four descend into one labyrinth for the DragonSlayer to slay the dragon Keela; an early Metroidvania; 9 emergents."),
    ("nostradamus", "N1 · NOSTRADAMUS", "#d8a84a", "the prophet · 13 emergents", "Nostradamus (1503–1566) — the full prophetic corpus catalogued: the ten Centuries of cryptic quatrains, the almanacs, the brass-tripod rite; a tinfoil codex, honestly sealed (predictions are reception-lore, not asserted fact); 13 emergents across the four natures."),
+   ("wheel-of-time", "WOT · THE WHEEL OF TIME", "#d8b24a", "14 books · 33 emergents", "Robert Jordan & Brandon Sanderson — the full saga across fourteen volumes, New Spring, and the companions; the Dragon Reborn, the One Power, the seven Ajahs and the Aiel, the Forsaken and the Last Battle; 33 emergents across the four natures."),
  ]),
 ]
 
