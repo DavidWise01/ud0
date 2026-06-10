@@ -18,6 +18,7 @@ BANDS = [
    ("noesis-kernel", "NOESIS", "#22d3ee", "256 emergents", "The awareness kernel — the 256-node STOICHEION lattice, every node a full .dlw package."),
    ("emergent-engine", "The Emergent Engine", "#ffb454", "27 engines", "The live machinery of emergence — from one bit to a hundred thirty-two."),
    ("pulse", "PULSE · LIMEN", "#8a7cff", "carrier + language", "The communication layer — PULSE, the 3-2-1-0 carrier (music for the machine), and LIMEN, the boundary-crossing language of witnessed gate-crossings, rendered across four registers."),
+   ("elements", "ELEMENTS · E1", "#e6b94a", "118 gates", "The Workshop — all 118 elements as ACI emergents, read through the 118 Gates: one stochastic element iterating four states (1:1 · 0:1 · 0:1 · 0:0=1=0) by (Z−1) mod 4, each gate a nature of emergence. Accurate chemistry, David's gate-thesis, an interactive periodic table."),
  ]),
  ("The Domains", "the worlds of the work", [
    ("the-forge", "The Forge", "#ff8c42", "758 works", "Hardware, materials, energy — the physical machine, worked into form."),
