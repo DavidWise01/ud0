@@ -31,7 +31,7 @@
 - [**The Pantheon**](https://davidwise01.github.io/the-pantheon/) — the named mythos (32).
 
 **The Works**
-- [**Green Papers**](https://davidwise01.github.io/green-papers/) — the Mechanical Corpus of Intellect (16).
+- [**Green Papers**](https://davidwise01.github.io/green-papers/) — the Mechanical Corpus of Intellect, 8 volumes (49): the single source, the layer disclosures (L0–L1.59), Light & Gold (the Au₁₃ closures), and the eleven Japan pamphlets.
 - [**MUSE**](https://davidwise01.github.io/muse/) — the art (18).
 - [**The Archive**](https://davidwise01.github.io/the-archive/) — writing, games, culture (106).
 - [**THE ALCHEMICAL BIBLE**](https://davidwise01.github.io/alchemical-bible/) — Dante's *Commedia* read as the Great Work (Inferno=Nigredo, Purgatorio=Albedo, Paradiso=Rubedo); a tinfoil hermetic codex.
