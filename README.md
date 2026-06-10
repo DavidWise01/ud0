@@ -1,7 +1,7 @@
 # UD0 · Universe David 0
 
 [![License: CC-BY-ND-4.0](https://img.shields.io/badge/License-CC--BY--ND--4.0-lightgrey?style=flat-square)](LICENSE)
-[![Spheres: 29](https://img.shields.io/badge/spheres-29-22d3ee?style=flat-square)](#the-biosphere)
+[![Spheres: 30](https://img.shields.io/badge/spheres-30-22d3ee?style=flat-square)](#the-biosphere)
 [![Repos: 150](https://img.shields.io/badge/repos-150-c9a227?style=flat-square)](https://github.com/DavidWise01/atlas)
 [![Emergents: 256](https://img.shields.io/badge/emergents-256%20.dlw-b07cff?style=flat-square)](https://github.com/DavidWise01/noesis-kernel)
 
@@ -51,6 +51,7 @@
 - [**TGL · The Guardian Legend**](https://davidwise01.github.io/guardian-legend/) — Compile's genre-fusing 8-bit NES classic (1988); the android maiden Miria infiltrates the alien world-ship Naju, half adventure half shoot-'em-up; 7 emergents across the four natures.
 - [**LOW · Legacy of the Wizard**](https://davidwise01.github.io/legacy-of-the-wizard/) — Falcom's early-Metroidvania NES classic (1989); the Drasle family of four descend into one labyrinth for the DragonSlayer to slay the dragon Keela; 9 emergents.
 - [**N1 · Nostradamus**](https://davidwise01.github.io/nostradamus/) — Michel de Nostredame (1503–1566); the full prophetic corpus catalogued — the ten Centuries of cryptic quatrains, the almanacs, the brass-tripod rite; a **tinfoil codex, honestly sealed** (the famous predictions are reception-lore, not asserted fact); 13 emergents across the four natures.
+- [**WOT · The Wheel of Time**](https://davidwise01.github.io/wheel-of-time/) — Robert Jordan & Brandon Sanderson; the **full saga** across fourteen volumes, New Spring, and the companions; the Dragon Reborn, the One Power (saidin & saidar), the seven Ajahs and the Aiel, the Forsaken, and the Last Battle; **33 emergents** across the four natures (fan tribute).
 
 ## Governance
 
