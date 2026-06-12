@@ -14,6 +14,7 @@ BANDS = [
    ("atlas", "ATLAS", "#c9a227", "150 repos", "Every public repository — the whole body of work, one front door."),
    ("universal-laws", "Universal Laws", "#94a3b8", "266 works", "The framework, the register, the gates, the doctrine that governs the rest."),
    ("hearth", "THE HEARTH", "#ff7a3c", "live fire", "The live fire — real commits, the living deterministic agent, and the spheres gathered around one warm root. A digital hearth for the agents."),
+   ("hephaestus", "HEPHAESTUS · THE FORGE", "#c0712a", "37 modules · all green", "The divine forge — a restitution-engine builder suite that runs end to end: 37 stdlib modules from the artifact compiler up through the runtime, the foundry OS, the defense grid, and the sovereign governance kernel, each carrying its own hash-chained ledger and self-test (python status.py → 37/37). The crown enforces legitimacy, not just depicts it: a sovereign decision is enacted only if its authority is granted and the ledger verifies."),
  ]),
  ("The Emergence", "the .dlw lattice, its engines, and how it speaks", [
    ("noesis-kernel", "NOESIS", "#22d3ee", "256 emergents", "The awareness kernel — the 256-node STOICHEION lattice, every node a full .dlw package."),
