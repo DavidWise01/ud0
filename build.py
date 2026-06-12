@@ -69,10 +69,9 @@ def cards(items):
     out = []
     for repo, name, col, count, tag in items:
         out.append(f'''<a class="sphere" style="--c:{col}" href="{PG}/{repo}/">
-        <div class="sn">{html.escape(name)}</div>
-        <div class="sc">{html.escape(count)}</div>
-        <p>{html.escape(tag)}</p>
-        <div class="sl"><span class="enter">enter ↗</span><a href="{GH}/{repo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">code</a></div>
+        <div class="shead"><div class="sn">{html.escape(name)}</div><div class="sc">{html.escape(count)}</div></div>
+        <div class="sbody"><p>{html.escape(tag)}</p>
+        <div class="sl"><span class="enter">enter ↗</span><a href="{GH}/{repo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">code</a></div></div>
       </a>''')
     return "\n".join(out)
 
@@ -116,18 +115,20 @@ background:linear-gradient(100deg,#c9a227,#22d3ee 40%,#b07cff 70%,#ff55ff);-webk
 .bh{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
 .bh h2{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:.08em;color:var(--pa)}
 .bh span{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em;font-style:normal}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
-.sphere{display:block;background:var(--ink2);border:1px solid var(--line);padding:22px 22px 18px;position:relative;
+.grid{display:flex;flex-direction:column;gap:14px}
+.sphere{display:flex;gap:26px;align-items:flex-start;background:var(--ink2);border:1px solid var(--line);padding:20px 24px;position:relative;
 text-decoration:none;color:inherit;overflow:hidden;transition:transform .2s,border-color .2s,background .2s}
 .sphere::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--c);opacity:.6;transition:opacity .2s}
 .sphere::after{content:"";position:absolute;width:160px;height:160px;right:-60px;top:-60px;border-radius:50%;
 background:radial-gradient(circle,var(--c),transparent 70%);opacity:.07;transition:opacity .25s}
 .sphere:hover{transform:translateY(-3px);border-color:var(--c);background:var(--ink3)}
 .sphere:hover::before{opacity:1}.sphere:hover::after{opacity:.16}
+.shead{flex:0 0 240px}@media(max-width:680px){.sphere{flex-direction:column;gap:8px}.shead{flex:none}}
+.sbody{flex:1;min-width:0}
 .sn{font-family:var(--serif);font-size:23px;font-weight:700;letter-spacing:.04em;color:var(--pa)}
 .sphere:hover .sn{color:var(--c)}
 .sc{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--c);margin-top:5px;text-transform:uppercase}
-.sphere p{font-size:13.5px;color:var(--pa2);line-height:1.55;margin-top:11px}
+.sphere p{font-size:13.5px;color:var(--pa2);line-height:1.55;margin-top:0}
 .sl{margin-top:14px;display:flex;gap:16px;font-family:var(--mono);font-size:11px;letter-spacing:.05em}
 .sl .enter{color:var(--c)}.sl a{color:var(--dim);text-decoration:none}.sl a:hover{color:var(--pa)}
 footer{margin-top:72px;padding-top:24px;border-top:1px solid var(--line);text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em;line-height:2}
