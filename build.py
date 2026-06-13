@@ -34,7 +34,7 @@ BANDS = [
    ("the-pantheon", "The Pantheon", "#b07cff", "32 works", "The named ones — gods, creatures, archetypes given a face and a law."),
  ]),
  ("The Works", "the corpus, the art, the record, the codex", [
-   ("green-papers", "Green Papers", "#3fb950", "52 papers", "The Mechanical Corpus of Intellect — the machine of the mind, disclosed across 8 volumes: the single source, the layer disclosures (L0–L1.59), Light & Gold (the Au₁₃ closures), and the eleven Japan pamphlets."),
+   ("green-papers", "Green Papers", "#3fb950", "64 papers", "The Mechanical Corpus of Intellect — the machine of the mind, disclosed across 8 volumes: the single source, the layer disclosures (L0–L1.59), Light & Gold (the Au₁₃ closures), and the eleven Japan pamphlets."),
    ("phonetikos", "PHŌNĒTIKOS", "#cf4636", "the word-press", "φωνητικός, ‘of the voice’ — a universe where each WORD is an emergent and each entry is an honestly-sourced etymological green paper: cognate sets, sound laws, dated attestations, and a hard line on folk etymology. FOUNDATIONS — The Idiolect Stack: how a voice is made (culture × location, rooted 1.0 or 0.5/0.5 hybrid · nurture/micro-location · the generational cultural-globe), real sociolinguistics with a live voice-composer. №1 — the full lineage of ‘fuck’: Germanic to the bone, the acronym myths debunked, the 1310/1475 evidence, the 170-year dictionary exile, and a Real-or-Fluff on every claim."),
    ("muse", "MUSE", "#ff55ff", "18 works", "The art — generative engines, dimensional glyphs, and seal-works."),
    ("the-archive", "The Archive", "#d4a84c", "106 works", "Writing, games, history, culture — the record and its visualizations."),
