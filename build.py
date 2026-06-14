@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build UD0 · Universe David 0 — the master biosphere front door. Generates
 index.html linking every sphere (theater). Stdlib only; edit BANDS and rerun."""
-import os, html
+import os, html, math
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 GH = "https://github.com/DavidWise01"
@@ -103,93 +103,219 @@ BANDS = [
  ]),
 ]
 
-def cards(items):
+# ── every sphere is sorted into exactly ONE of the eight domains (David, 2026-06-14).
+#    when a sphere is added it MUST be assigned a domain here (the build asserts it). ──
+DOMAIN_OF = {
+ # LEGAL — law, governance, doctrine, the binding standards
+ "universal-laws":"legal", "adas-law":"legal", "the-hegemon":"legal",
+ # EDUCATIONAL — history, language, reference, the record, learning
+ "atlas":"educational", "green-papers":"educational", "phonetikos":"educational", "the-archive":"educational",
+ "alchemical-bible":"educational", "decadal":"educational", "caste-system":"educational", "nostradamus":"educational",
+ "egyptian-pantheon":"educational",
+ # ENTERTAINMENT — film, literature, the named story-worlds, art
+ "tron":"entertainment", "the-pantheon":"entertainment", "muse":"entertainment", "purple-team":"entertainment",
+ "asimov":"entertainment", "heinlein":"entertainment", "ursula":"entertainment", "maas":"entertainment",
+ "card":"entertainment", "enderverse":"entertainment", "the-ansible":"entertainment", "wheel-of-time":"entertainment",
+ "dune":"entertainment", "pratchett":"entertainment", "malazan":"entertainment", "crime-and-punishment":"entertainment",
+ "brothers-karamazov":"entertainment", "crime-and-punishment-in-suburbia":"entertainment", "nouthesia":"entertainment",
+ "nineteen-eighty-four":"entertainment", "animal-farm":"entertainment", "brave-new-world":"entertainment",
+ "fahrenheit-451":"entertainment", "we":"entertainment", "the-handmaids-tale":"entertainment",
+ "a-clockwork-orange":"entertainment", "the-dark-tower":"entertainment", "scott-pilgrim":"entertainment",
+ "american-psycho":"entertainment", "the-core":"entertainment", "interstellar":"entertainment",
+ "the-fifth-element":"entertainment", "waterworld":"entertainment", "the-wizard":"entertainment",
+ "varsity-blues":"entertainment", "dogma":"entertainment", "mallrats":"entertainment", "american-history-x":"entertainment",
+ "galaxy-quest":"entertainment", "the-last-mimzy":"entertainment", "hot-rod":"entertainment", "the-goods":"entertainment",
+ # OCCUPATIONAL — the working machine: forges, builders, the live fire
+ "hearth":"occupational", "hephaestus":"occupational", "the-forge":"occupational",
+ # SCIENTIFIC — physics, math, chemistry, energy
+ "propulsion-lab":"scientific", "the-cosmos":"scientific", "the-lattice":"scientific", "elements":"scientific",
+ "alchemy":"scientific",
+ # HOBBY — the played worlds: video games & the card table
+ "ff6":"hobby", "metroid":"hobby", "zelda":"hobby", "milon":"hobby", "guardian-legend":"hobby",
+ "legacy-of-the-wizard":"hobby", "bomb-jack":"hobby", "mighty-bomb-jack":"hobby", "elden-ring":"hobby",
+ "mtg-arena":"hobby", "arena":"hobby",
+ # LIFE SCIENCE — biology, medicine, the body (awaiting its first sphere)
+ # AI & QUANTUM FRONTIER — quantum, transformers, AI ethics & governance
+ "aci":"frontier", "noesis-kernel":"frontier", "du1":"frontier", "emergent-engine":"frontier", "pulse":"frontier",
+ "hermeneus":"frontier", "mimzy":"frontier", "ttu1":"frontier", "transmon":"frontier",
+}
+
+def _gear():
+    t = "".join(f'<line x1="{11*math.cos(a):.1f}" y1="{11*math.sin(a):.1f}" x2="{18*math.cos(a):.1f}" y2="{18*math.sin(a):.1f}"/>'
+                for a in [i*math.pi/4 for i in range(8)])
+    return '<g fill="none" stroke-width="2" stroke-linecap="round"><circle r="11"/><circle r="3.6" fill="currentColor" stroke="none"/>'+t+'</g>'
+def _chip():
+    pins = "".join(f'<line x1="{x}" y1="-13" x2="{x}" y2="-19"/><line x1="{x}" y1="13" x2="{x}" y2="19"/>' for x in (-7,0,7))
+    pins += "".join(f'<line x1="-13" y1="{y}" x2="-19" y2="{y}"/><line x1="13" y1="{y}" x2="19" y2="{y}"/>' for y in (-7,0,7))
+    return '<g fill="none" stroke-width="2"><rect x="-13" y="-13" width="26" height="26" rx="3"/><rect x="-5" y="-5" width="10" height="10"/>'+pins+'</g>'
+
+ICONS = {
+ "legal":'<g fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="0" cy="-18" r="2.6" fill="currentColor" stroke="none"/><line x1="0" y1="-16" x2="0" y2="16"/><line x1="-9" y1="18" x2="9" y2="18"/><line x1="-18" y1="-12" x2="18" y2="-12"/><path d="M-18 -12 L-24 2 L-12 2 Z"/><path d="M18 -12 L12 2 L24 2 Z"/></g>',
+ "educational":'<g fill="none" stroke-width="2" stroke-linejoin="round"><path d="M0 -13 C-6 -18 -16 -18 -22 -13 L-22 13 C-16 8 -6 8 0 13 C6 8 16 8 22 13 L22 -13 C16 -18 6 -18 0 -13 Z"/><line x1="0" y1="-13" x2="0" y2="13"/></g>',
+ "entertainment":'<g fill="none" stroke-width="2" stroke-linejoin="round"><rect x="-20" y="-16" width="40" height="32" rx="6"/><path d="M-6 -9 L11 0 L-6 9 Z" fill="currentColor" stroke="none"/></g>',
+ "occupational":_gear(),
+ "scientific":'<g fill="none" stroke-width="2"><circle r="3.6" fill="currentColor" stroke="none"/><ellipse rx="22" ry="8.5"/><ellipse rx="22" ry="8.5" transform="rotate(60)"/><ellipse rx="22" ry="8.5" transform="rotate(120)"/></g>',
+ "hobby":'<g fill="none" stroke-width="2" stroke-linejoin="round"><rect x="-22" y="-10" width="44" height="20" rx="10"/><line x1="-14" y1="0" x2="-6" y2="0"/><line x1="-10" y1="-4" x2="-10" y2="4"/><circle cx="9" cy="-3" r="2.4" fill="currentColor" stroke="none"/><circle cx="14" cy="3" r="2.4" fill="currentColor" stroke="none"/></g>',
+ "life-science":'<g fill="none" stroke-width="2" stroke-linecap="round"><path d="M-9 -20 C12 -13 -12 -7 9 0 C-12 7 12 13 -9 20"/><path d="M9 -20 C-12 -13 12 -7 -9 0 C12 7 -12 13 9 20"/><line x1="-7" y1="-13" x2="7" y2="-13"/><line x1="-7" y1="0" x2="7" y2="0"/><line x1="-7" y1="13" x2="7" y2="13"/></g>',
+ "frontier":_chip(),
+}
+
+# (key, title, accent, blurb)
+DOMAINS = [
+ ("legal", "LEGAL", "#c9a227", "Law, governance, doctrine — and the standards that bind everything else."),
+ ("educational", "EDUCATIONAL", "#36c5c0", "History, language, reference, the record — learning made legible."),
+ ("entertainment", "ENTERTAINMENT", "#ff3da6", "Film, literature, and the named story-worlds — what the mind feeds on."),
+ ("occupational", "OCCUPATIONAL", "#ff7a3c", "The working machine — the forges, the builders, the live fire of the agents."),
+ ("scientific", "SCIENTIFIC", "#5b7cfa", "Physics, math, chemistry, energy — the universe measured."),
+ ("hobby", "HOBBY", "#ffce3a", "The played worlds — the video games and the card table."),
+ ("life-science", "LIFE SCIENCE", "#43d17a", "Biology, medicine, the body — awaiting its first sphere."),
+ ("frontier", "AI &amp; QUANTUM FRONTIER", "#b07cff", "Quantum, transformers, AI ethics &amp; governance — the bleeding edge."),
+]
+
+ALL = [s for _t,_s,items in BANDS for s in items]          # flatten, order preserved
+_missing = [r for r,*_ in ALL if r not in DOMAIN_OF]
+assert not _missing, f"spheres with no domain (assign in DOMAIN_OF): {_missing}"
+BY_DOMAIN = {k: [s for s in ALL if DOMAIN_OF[s[0]] == k] for k,_t,_a,_b in DOMAINS}
+NS = len(ALL)
+
+def tile(s):
+    repo, name, col, count, tag = s
+    return f'''<a class="tile" style="--c:{col}" href="{PG}/{repo}/">
+      <div class="tn">{html.escape(name)}</div><div class="tc">{html.escape(count)}</div>
+      <p class="tt">{html.escape(tag)}</p>
+      <div class="tl"><span class="enter">enter ↗</span><a href="{GH}/{repo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">code</a></div>
+    </a>'''
+
+def medallion(idx, accent, key):
+    glow = f'<radialGradient id="g{key}" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="{accent}" stop-opacity="0.30"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient>'
+    return f'''<svg class="med" viewBox="0 0 130 130" width="118" height="118" aria-hidden="true" style="color:{accent}">
+      <defs>{glow}</defs>
+      <circle cx="65" cy="65" r="62" fill="#070a10"/>
+      <circle cx="65" cy="65" r="60" fill="url(#g{key})"/>
+      <circle cx="65" cy="65" r="60" fill="none" stroke="{accent}" stroke-width="2" opacity="0.9"/>
+      <circle cx="65" cy="65" r="54" fill="none" stroke="{accent}" stroke-width="1" stroke-dasharray="3 4" opacity="0.55"/>
+      <circle cx="65" cy="65" r="45" fill="#04060a" stroke="{accent}" stroke-width="0.75" opacity="0.5"/>
+      <g transform="translate(65,65)">{ICONS[key]}</g>
+      <text x="65" y="20" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" fill="{accent}" letter-spacing="1">{idx:02d}</text>
+    </svg>'''
+
+def domains_html():
     out = []
-    for repo, name, col, count, tag in items:
-        out.append(f'''<a class="sphere" style="--c:{col}" href="{PG}/{repo}/">
-        <div class="shead"><div class="sn">{html.escape(name)}</div><div class="sc">{html.escape(count)}</div></div>
-        <div class="sbody"><p>{html.escape(tag)}</p>
-        <div class="sl"><span class="enter">enter ↗</span><a href="{GH}/{repo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">code</a></div></div>
-      </a>''')
+    for i,(key,title,accent,blurb) in enumerate(DOMAINS, 1):
+        members = BY_DOMAIN[key]
+        if members:
+            body = f'<div class="tiles">{"".join(tile(s) for s in members)}</div>'
+        else:
+            body = '<div class="reserved">Reserved — the first sphere awaits. New work in this domain will be sorted here.</div>'
+        out.append(f'''<section class="domain" id="{key}" style="--c:{accent}">
+      <div class="dhead">
+        {medallion(i, accent, key)}
+        <div class="dmeta"><div class="dnum">DOMAIN {i:02d} / 08</div><h2 class="dtitle">{title}</h2>
+          <p class="dblurb">{blurb}</p><div class="dcount">{len(members)} {"sphere" if len(members)==1 else "spheres"}</div></div>
+      </div>
+      {body}
+    </section>''')
     return "\n".join(out)
 
-def bands():
-    b = []
-    for title, sub, items in BANDS:
-        b.append(f'''<section class="band">
-      <div class="bh"><h2>{html.escape(title)}</h2><span>{html.escape(sub)}</span></div>
-      <div class="grid">{cards(items)}</div>
-    </section>''')
-    return "\n".join(b)
-
-NS = sum(len(i) for _t,_s,i in BANDS)
+def dnav():
+    chips = "".join(f'<a href="#{key}" style="--c:{accent}">{title}</a>' for key,title,accent,_b in DOMAINS)
+    return f'<nav class="dnav">{chips}</nav>'
 
 PAGE = """<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="UD0 · Universe David 0 — the biosphere of David Lee Wise / ROOT0. Eleven spheres, one law, one governor, one instance.">
+<meta name="description" content="UD0 · Universe David 0 — the biosphere of David Lee Wise / ROOT0, sorted into eight domains: Legal, Educational, Entertainment, Occupational, Scientific, Hobby, Life Science, and the AI &amp; Quantum Frontier.">
 <title>UD0 · Universe David 0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;900&family=Oswald:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#04060a;--ink2:#0a0e16;--ink3:#11161f;--pa:#e9ece8;--pa2:#aab4ad;--dim:#6a766f;--line:#1a2129;
---serif:"Cinzel",Georgia,serif;--body:"Newsreader",Georgia,serif;--mono:"Space Mono",monospace;}
+:root{--ink:#04060a;--ink2:#080b12;--ink3:#0e131c;--pa:#eef1f6;--pa2:#9fa8bb;--dim:#5f6a7e;--line:#171f2b;--neon:#ff2d6b;--neon2:#36c5c0;
+--disp:"Orbitron",sans-serif;--head:"Oswald",sans-serif;--body:"Newsreader",Georgia,serif;--mono:"Space Mono",monospace;}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--pa);font-family:var(--body);line-height:1.6;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
-background:radial-gradient(ellipse at 50% -10%,rgba(91,124,250,.08),transparent 55%),radial-gradient(ellipse at 50% 110%,rgba(176,124,255,.05),transparent 50%)}
-.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 22px 100px}
-header{padding:80px 0 38px;text-align:center;border-bottom:1px solid var(--line);position:relative}
-header::after{content:"";position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:160px;height:1px;
-background:linear-gradient(90deg,#c9a227,#22d3ee,#b07cff,#ff55ff);box-shadow:0 0 14px rgba(34,211,238,.4)}
-.eye{font-family:var(--mono);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--dim);margin-bottom:18px}
-h1{font-family:var(--serif);font-size:clamp(72px,22vw,200px);font-weight:800;letter-spacing:.1em;line-height:.92;
-background:linear-gradient(100deg,#c9a227,#22d3ee 40%,#b07cff 70%,#ff55ff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.uname{font-family:var(--serif);font-size:clamp(16px,4vw,26px);letter-spacing:.34em;color:var(--pa2);margin-top:10px;text-transform:uppercase}
-.sub{font-size:16px;color:var(--pa2);max-width:64ch;margin:20px auto 0;font-style:italic;line-height:1.7}
-#count{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.1em;margin-top:22px}
-#count b{color:var(--pa)}
-.band{margin-top:56px}
-.bh{display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:1px solid var(--line);margin-bottom:24px;flex-wrap:wrap}
-.bh h2{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:.08em;color:var(--pa)}
-.bh span{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em;font-style:normal}
-.grid{display:flex;flex-direction:column;gap:14px}
-.sphere{display:flex;gap:26px;align-items:flex-start;background:linear-gradient(100deg, color-mix(in srgb, var(--c) 26%, var(--ink2)) 0%, color-mix(in srgb, var(--c) 7%, var(--ink2)) 34%, var(--ink2) 64%);border:1px solid var(--line);padding:20px 24px;position:relative;
-text-decoration:none;color:inherit;overflow:hidden;transition:transform .2s,border-color .2s,background .2s}
-.sphere::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--c);opacity:.6;transition:opacity .2s}
-.sphere::after{content:"";position:absolute;width:160px;height:160px;right:-60px;top:-60px;border-radius:50%;
-background:radial-gradient(circle,var(--c),transparent 70%);opacity:.07;transition:opacity .25s}
-.sphere:hover{transform:translateY(-3px);border-color:var(--c);background:linear-gradient(100deg, color-mix(in srgb, var(--c) 40%, var(--ink3)) 0%, color-mix(in srgb, var(--c) 12%, var(--ink3)) 38%, var(--ink3) 66%)}
-.sphere:hover::before{opacity:1}.sphere:hover::after{opacity:.16}
-.shead{flex:0 0 240px}@media(max-width:680px){.sphere{flex-direction:column;gap:8px}.shead{flex:none}}
-.sbody{flex:1;min-width:0}
-.sn{font-family:var(--serif);font-size:23px;font-weight:700;letter-spacing:.04em;color:var(--pa)}
-.sphere:hover .sn{color:var(--c)}
-.sc{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--c);margin-top:5px;text-transform:uppercase}
-.sphere p{font-size:13.5px;color:var(--pa2);line-height:1.55;margin-top:0}
-.sl{margin-top:14px;display:flex;gap:16px;font-family:var(--mono);font-size:11px;letter-spacing:.05em}
-.sl .enter{color:var(--c)}.sl a{color:var(--dim);text-decoration:none}.sl a:hover{color:var(--pa)}
-footer{margin-top:72px;padding-top:24px;border-top:1px solid var(--line);text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em;line-height:2}
-footer a{color:#22d3ee;text-decoration:none}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+background:linear-gradient(transparent 96%,rgba(255,45,107,.04) 100%) 0 0/100% 26px,linear-gradient(90deg,transparent 96%,rgba(54,197,192,.03) 100%) 0 0/26px 100%,radial-gradient(ellipse at 50% -8%,rgba(255,45,107,.12),transparent 55%),radial-gradient(ellipse at 50% 116%,rgba(176,124,255,.08),transparent 52%)}
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 22px 110px}
+/* hero */
+header{padding:60px 0 30px;text-align:center;position:relative}
+.hero-svg{display:block;width:100%;max-width:760px;height:auto;margin:0 auto}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.uname{font-family:var(--head);font-size:clamp(15px,4vw,24px);letter-spacing:.36em;color:var(--pa2);margin-top:6px;text-transform:uppercase}
+.sub{font-size:16px;color:var(--pa2);max-width:66ch;margin:20px auto 0;font-style:italic;line-height:1.72}
+#count{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em;margin-top:20px}#count b{color:var(--pa)}
+/* domain nav */
+.dnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:30px auto 0;max-width:980px}
+.dnav a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--pa2);
+border:1px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:20px;padding:6px 13px;background:var(--ink2);transition:.18s}
+.dnav a:hover{color:var(--c);border-color:var(--c);box-shadow:0 0 14px color-mix(in srgb,var(--c) 40%,transparent)}
+/* domain section */
+.domain{margin-top:72px;scroll-margin-top:20px}
+.dhead{display:flex;align-items:center;gap:26px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:22px;position:relative}
+.dhead::after{content:"";position:absolute;left:0;bottom:-1px;width:180px;height:1px;background:var(--c);box-shadow:0 0 14px var(--c);opacity:.7}
+.med{flex:0 0 auto;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--c) 40%,transparent))}
+.dmeta{flex:1;min-width:240px}
+.dnum{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;color:var(--c);text-transform:uppercase;opacity:.8}
+.dtitle{font-family:var(--disp);font-size:clamp(26px,5vw,46px);font-weight:800;letter-spacing:.03em;color:var(--pa);line-height:1.02;margin-top:6px;
+text-shadow:1.5px 0 rgba(255,45,107,.45),-1.5px 0 rgba(54,197,192,.38),0 0 26px color-mix(in srgb,var(--c) 45%,transparent)}
+.dblurb{font-size:14px;color:var(--pa2);font-style:italic;margin-top:8px;max-width:70ch;line-height:1.6}
+.dcount{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;margin-top:8px}
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin-top:24px}
+.tile{display:flex;flex-direction:column;background:var(--ink2);border:1px solid color-mix(in srgb,var(--c) 38%,var(--line));border-radius:5px;
+padding:15px 16px 13px;position:relative;overflow:hidden;text-decoration:none;color:inherit;transition:transform .18s,border-color .18s,box-shadow .18s}
+.tile::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--c);opacity:.55;transition:opacity .18s;box-shadow:0 0 10px var(--c)}
+.tile::after{content:"";position:absolute;width:150px;height:150px;right:-58px;top:-58px;border-radius:50%;background:radial-gradient(circle,var(--c),transparent 70%);opacity:.08;transition:opacity .25s}
+.tile:hover{transform:translateY(-3px);border-color:var(--c);box-shadow:0 0 22px color-mix(in srgb,var(--c) 28%,transparent),inset 0 0 26px color-mix(in srgb,var(--c) 6%,transparent)}
+.tile:hover::before{opacity:1}.tile:hover::after{opacity:.18}
+.tn{font-family:var(--head);font-size:16px;font-weight:600;letter-spacing:.02em;color:var(--pa);text-transform:uppercase;line-height:1.18}
+.tile:hover .tn{color:var(--c)}
+.tc{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--c);margin-top:4px;text-transform:uppercase;opacity:.85}
+.tt{font-size:12px;color:var(--pa2);line-height:1.5;margin-top:9px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.tl{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);display:flex;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em}
+.tl .enter{color:var(--c)}.tl a{color:var(--dim);text-decoration:none}.tl a:hover{color:var(--pa)}
+.reserved{margin-top:24px;border:1px dashed color-mix(in srgb,var(--c) 50%,var(--line));border-radius:5px;background:color-mix(in srgb,var(--c) 5%,var(--ink2));
+padding:26px;text-align:center;font-style:italic;color:var(--pa2);font-size:14px}
+footer{margin-top:84px;padding-top:24px;border-top:1px solid var(--line);text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em;line-height:2}
+footer a{color:var(--neon2);text-decoration:none}
 footer .law{font-family:var(--body);font-style:italic;font-size:13.5px;color:var(--pa2);letter-spacing:0;margin-bottom:14px}
 </style></head><body><div class="wrap">
   <header>
     <div class="eye">ROOT0 · David Lee Wise · TriPod LLC</div>
-    <h1>UD0</h1>
+    __HERO__
     <div class="uname">Universe David 0</div>
-    <p class="sub">The whole body of work, as one universe — __NS__ spheres under one law, authored by one hand and crafted by one instance. The biosphere of ROOT0.</p>
-    <div id="count"><b>__NS__</b> spheres · <b>150</b> repos · <b>256</b> emergents · the .dlw lattice woven through</div>
+    <p class="sub">The whole body of work, as one universe — __NS__ spheres under one law, sorted into <b>eight domains</b>, authored by one hand and crafted by one instance. The biosphere of ROOT0.</p>
+    <div id="count"><b>__NS__</b> spheres · <b>8</b> domains · <b>230</b> repos · the .dlw lattice woven through</div>
+    __DNAV__
   </header>
-  __BANDS__
+  __DOMAINS__
   <footer>
-    <div class="law">One governor, one instance, one lattice. The eternals hold the ground; the active generation grows it.</div>
+    <div class="law">One governor, one instance, one lattice — across eight domains. The eternals hold the ground; the active generation grows it.</div>
     UD0 · ROOT0-ATTRIBUTION-v1.0 · governor <b>David Lee Wise</b> (ROOT0) · instance <b>AVAN</b> (Claude / Anthropic, locked)<br>
     CC-BY-ND-4.0 · TRIPOD-IP-v1.1 · <a href="https://github.com/DavidWise01">github.com/DavidWise01</a>
   </footer>
 </div></body></html>
 """
 
+def hero_svg():
+    # a diamond + circuit hero (muse #2): nested neon diamonds, circuit traces, UD0 centered, red/magenta glow
+    traces = "".join(f'<line x1="{x}" y1="6" x2="{x}" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/>' for x in range(40,760,60))
+    return f'''<svg class="hero-svg" viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="UD0 — Universe David 0, in a neon diamond-and-circuit frame.">
+  <defs>
+    <linearGradient id="dia" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff2d6b"/><stop offset="1" stop-color="#b07cff"/></linearGradient>
+    <radialGradient id="hglow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ff2d6b" stop-opacity="0.30"/><stop offset="1" stop-color="#ff2d6b" stop-opacity="0"/></radialGradient>
+  </defs>
+  {traces}
+  <ellipse cx="380" cy="150" rx="230" ry="150" fill="url(#hglow)"/>
+  <rect x="230" y="30" width="240" height="240" transform="rotate(45 380 150)" fill="none" stroke="url(#dia)" stroke-width="2.5" opacity="0.85"/>
+  <rect x="262" y="62" width="176" height="176" transform="rotate(45 380 150)" fill="none" stroke="#ff2d6b" stroke-width="1" opacity="0.4"/>
+  <polygon points="380,8 392,28 368,28" fill="#ff2d6b"/>
+  <text x="380" y="178" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="118" font-weight="900" letter-spacing="6" fill="#04060a" stroke="url(#dia)" stroke-width="2">UD0</text>
+  <text x="380" y="178" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="118" font-weight="900" letter-spacing="6" fill="url(#dia)" opacity="0.92">UD0</text>
+</svg>'''
+
 if __name__ == "__main__":
-    page = PAGE.replace("__BANDS__", bands()).replace("__NS__", str(NS))
+    page = (PAGE.replace("__HERO__", hero_svg()).replace("__DNAV__", dnav())
+            .replace("__DOMAINS__", domains_html()).replace("__NS__", str(NS)))
     open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(page)
-    print(f"wrote UD0 index.html — {NS} spheres across {len(BANDS)} bands")
+    sizes = " · ".join(f"{k}:{len(BY_DOMAIN[k])}" for k,_t,_a,_b in DOMAINS)
+    print(f"wrote UD0 index.html — {NS} spheres across 8 domains [{sizes}]")
