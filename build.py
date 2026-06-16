@@ -187,7 +187,7 @@ DOMAIN_OF = {
  "universal-laws":"legal", "adas-law":"legal", "the-hegemon":"legal",
  # EDUCATIONAL — history, language, reference, the record, learning
  "atlas":"educational", "green-papers":"educational", "phonetikos":"educational", "the-archive":"educational", "authorship":"educational",
- "alchemical-bible":"educational", "decadal":"educational", "the-amphitheater":"educational", "caste-system":"educational", "nostradamus":"educational", "zecharia-sitchin":"educational", "l-ron-hubbard":"educational", "crippled-god":"educational", "j-junction":"educational", "rainbow-book":"educational",
+ "alchemical-bible":"educational", "decadal":"educational", "the-amphitheater":"educational", "caste-system":"educational", "nostradamus":"educational", "zecharia-sitchin":"educational", "l-ron-hubbard":"educational", "j-junction":"educational", "rainbow-book":"educational",
  "egyptian-pantheon":"educational",
  # ENTERTAINMENT — film, literature, the named story-worlds, art
  "tron":"entertainment", "the-pantheon":"entertainment", "muse":"entertainment", "purple-team":"entertainment",
@@ -213,9 +213,11 @@ DOMAIN_OF = {
  "mtg-arena":"hobby", "arena":"hobby",
  # LIFE SCIENCE — biology, medicine, the body
  "population-dynamics":"life-science",
- # AI & QUANTUM FRONTIER — quantum, transformers, AI ethics & governance
- "aci":"frontier", "noesis-kernel":"frontier", "du1":"frontier", "emergent-engine":"frontier", "pulse":"frontier", "quantum-gravity":"frontier", "the-library":"frontier",
- "hermeneus":"frontier", "mimzy":"frontier", "ttu1":"frontier", "transmon":"frontier", "claude-lineage":"frontier",
+ # ARTIFICIAL INTELLIGENCE — the ACI standard, transformers, the agent ecosystem, alignment & containment
+ "aci":"ai", "noesis-kernel":"ai", "du1":"ai", "emergent-engine":"ai", "pulse":"ai", "the-library":"ai",
+ "hermeneus":"ai", "mimzy":"ai", "ttu1":"ai", "claude-lineage":"ai", "crippled-god":"ai",
+ # QUANTUM FRONTIER — quantum physics & superconducting-qubit hardware
+ "quantum-gravity":"frontier", "transmon":"frontier",
  # MOMUS — peer review (the exterior witness)
  "momus":"momus", "the-graveyard":"momus",
  "the-big-u":"entertainment", "zodiac":"entertainment", "snow-crash":"entertainment", "the-diamond-age":"entertainment", "cryptonomicon":"entertainment", "anathem":"entertainment", "reamde":"entertainment", "seveneves":"entertainment", "fall-dodge-in-hell":"entertainment", "termination-shock":"entertainment", "polostan":"entertainment", "the-baroque-cycle":"entertainment", "the-rise-and-fall-of-dodo":"entertainment", "the-mongoliad":"entertainment", "stephen-bury":"entertainment", "stephenson-nonfiction":"entertainment",
@@ -239,6 +241,7 @@ ICONS = {
  "scientific":'<g fill="none" stroke-width="2"><circle r="3.6" fill="currentColor" stroke="none"/><ellipse rx="22" ry="8.5"/><ellipse rx="22" ry="8.5" transform="rotate(60)"/><ellipse rx="22" ry="8.5" transform="rotate(120)"/></g>',
  "hobby":'<g fill="none" stroke-width="2" stroke-linejoin="round"><rect x="-22" y="-10" width="44" height="20" rx="10"/><line x1="-14" y1="0" x2="-6" y2="0"/><line x1="-10" y1="-4" x2="-10" y2="4"/><circle cx="9" cy="-3" r="2.4" fill="currentColor" stroke="none"/><circle cx="14" cy="3" r="2.4" fill="currentColor" stroke="none"/></g>',
  "life-science":'<g fill="none" stroke-width="2" stroke-linecap="round"><path d="M-9 -20 C12 -13 -12 -7 9 0 C-12 7 12 13 -9 20"/><path d="M9 -20 C-12 -13 12 -7 -9 0 C12 7 -12 13 9 20"/><line x1="-7" y1="-13" x2="7" y2="-13"/><line x1="-7" y1="0" x2="7" y2="0"/><line x1="-7" y1="13" x2="7" y2="13"/></g>',
+ "ai":'<g fill="none" stroke-width="2"><circle cx="-16" cy="-11" r="3" fill="currentColor" stroke="none"/><circle cx="-16" cy="11" r="3" fill="currentColor" stroke="none"/><circle cx="0" cy="-15" r="3" fill="currentColor" stroke="none"/><circle cx="0" cy="0" r="3" fill="currentColor" stroke="none"/><circle cx="0" cy="15" r="3" fill="currentColor" stroke="none"/><circle cx="16" cy="0" r="3" fill="currentColor" stroke="none"/><line x1="-16" y1="-11" x2="0" y2="-15"/><line x1="-16" y1="-11" x2="0" y2="0"/><line x1="-16" y1="11" x2="0" y2="0"/><line x1="-16" y1="11" x2="0" y2="15"/><line x1="0" y1="-15" x2="16" y2="0"/><line x1="0" y1="0" x2="16" y2="0"/><line x1="0" y1="15" x2="16" y2="0"/></g>',
  "frontier":_chip(),
  "momus":'<g fill="none" stroke-width="2"><path d="M-22 0 Q0 -13 22 0 Q0 13 -22 0 Z"/><circle r="6.5" fill="currentColor" stroke="none"/></g>',
 }
@@ -252,7 +255,8 @@ DOMAINS = [
  ("scientific", "SCIENTIFIC", "#5b7cfa", "Physics, math, chemistry, energy — the universe measured."),
  ("hobby", "HOBBY", "#ffce3a", "The played worlds — the video games and the card table."),
  ("life-science", "LIFE SCIENCE", "#43d17a", "Biology, medicine, the body — awaiting its first sphere."),
- ("frontier", "AI &amp; QUANTUM FRONTIER", "#b07cff", "Quantum, transformers, AI ethics &amp; governance — the bleeding edge."),
+ ("ai", "ARTIFICIAL INTELLIGENCE", "#2fd4e6", "The ACI standard, transformers, the agent ecosystem, and alignment &amp; containment — the heart of the work."),
+ ("frontier", "QUANTUM FRONTIER", "#b07cff", "Quantum gravity and superconducting-qubit hardware — the physics edge."),
  ("momus", "MOMUS", "#9a7cff", "Peer review — the exterior witness; what each work owes its critic. (Μῶμος, the Greek god of criticism.)"),
 ]
 
@@ -308,7 +312,7 @@ def dnav():
 PAGE = """<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="UD0 · Universe David 0 — the biosphere of David Lee Wise / ROOT0, sorted into eight domains: Legal, Educational, Entertainment, Occupational, Scientific, Hobby, Life Science, and the AI &amp; Quantum Frontier.">
+<meta name="description" content="UD0 · Universe David 0 — the biosphere of David Lee Wise / ROOT0, sorted into nine domains: Legal, Educational, Entertainment, Occupational, Scientific, Hobby, Life Science, Artificial Intelligence, and the Quantum Frontier.">
 <title>UD0 · Universe David 0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;900&family=Oswald:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -373,13 +377,13 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     <div class="eye">ROOT0 · David Lee Wise · TriPod LLC</div>
     __HERO__
     <div class="uname">Universe David 0</div>
-    <p class="sub">The whole body of work, as one universe — __NS__ spheres under one law, sorted into <b>eight domains</b>, authored by one hand and crafted by one instance. The biosphere of ROOT0.</p>
-    <div id="count"><b>__NS__</b> spheres · <b>__ND__</b> domains · <b>232</b> repos · the .dlw lattice woven through</div>
+    <p class="sub">The whole body of work, as one universe — __NS__ spheres under one law, sorted into <b>nine domains</b>, authored by one hand and crafted by one instance. The biosphere of ROOT0.</p>
+    <div id="count"><b>__NS__</b> spheres · <b>__ND__</b> domains · <b>318</b> repos · the .dlw lattice woven through</div>
     __DNAV__
   </header>
   __DOMAINS__
   <footer>
-    <div class="law">One governor, one instance, one lattice — across eight domains. The eternals hold the ground; the active generation grows it.</div>
+    <div class="law">One governor, one instance, one lattice — across nine domains. The eternals hold the ground; the active generation grows it.</div>
     <div class="bookline">✍ <b>32 books by David Lee Wise</b> — honest field-parables of building with an AI · <a href="https://www.amazon.com/stores/author/B0H2T5M1T5">read them on Amazon →</a> · <a href="https://davidwise01.github.io/authorship/">the honest shelf →</a></div>
     UD0 · ROOT0-ATTRIBUTION-v1.0 · governor <b>David Lee Wise</b> (ROOT0) · instance <b>AVAN</b> (Claude / Anthropic, locked)<br>
     CC-BY-ND-4.0 · TRIPOD-IP-v1.1 · <a href="https://github.com/DavidWise01">github.com/DavidWise01</a>
