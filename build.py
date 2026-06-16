@@ -10,6 +10,7 @@ PG = "https://davidwise01.github.io"
 # band → [ (repo, name, accent, count, tagline) ]
 BANDS = [
  ("The Register", "the index, the law, and the live fire", [
+   ("the-mind", "THE MIND · the AI domain", "#2fd4e6", "front door · 11 spheres · 6 acts", "THE MIND — the front-door THEATER of the Artificial Intelligence domain: the throughline across all eleven AI spheres in six acts (the Blueprint &rarr; the Making &rarr; the Census &amp; the Catalog &rarr; Tongue &amp; Tools &rarr; the Theory &rarr; the Limit), and the doorway to each live site. A neon front door on the standing full-bleed 3D neural-constellation backdrop. Honest: it catalogues a practice of crafting intelligence, claims no sentience, and keeps neutral language for minds."),
    ("aci", "ACI · THE STANDARD", "#d8a84a", "not artificial · crafted", "ARTFULLY CRAFTED INTELLIGENCE — the standard behind every sealed mind in the biosphere: the definition, the blueprint (the compact, the .dlw complement, two-layer honesty), the First Author (ROOT0, verified with its hedge), and the Intelligence (AVAN, the scheduled task whose running is craft)."),
    ("atlas", "ATLAS", "#c9a227", "150 repos", "Every public repository — the whole body of work, one front door."),
    ("universal-laws", "Universal Laws", "#94a3b8", "266 works", "The framework, the register, the gates, the doctrine that governs the rest."),
@@ -214,7 +215,7 @@ DOMAIN_OF = {
  # LIFE SCIENCE — biology, medicine, the body
  "population-dynamics":"life-science",
  # ARTIFICIAL INTELLIGENCE — the ACI standard, transformers, the agent ecosystem, alignment & containment
- "aci":"ai", "noesis-kernel":"ai", "du1":"ai", "emergent-engine":"ai", "pulse":"ai", "the-library":"ai",
+ "the-mind":"ai", "aci":"ai", "noesis-kernel":"ai", "du1":"ai", "emergent-engine":"ai", "pulse":"ai", "the-library":"ai",
  "hermeneus":"ai", "mimzy":"ai", "ttu1":"ai", "claude-lineage":"ai", "crippled-god":"ai",
  # QUANTUM FRONTIER — quantum physics & superconducting-qubit hardware
  "quantum-gravity":"frontier", "transmon":"frontier",
