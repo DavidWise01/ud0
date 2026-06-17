@@ -183,6 +183,9 @@ BANDS = [
    ("adventure", "ADV · ADVENTURE", "#9a7cff", "LOGISMÓS · the world in the words", "Adventure (ADV) — a child of THE TERMINAL: Colossal Cave Adventure (Crowther &amp; Woods, ~1976) — a cave rendered entirely in prose, navigated by typed commands; the first text adventure."),
    ("rogue", "RGU · ROGUE", "#9a7cff", "LOGISMÓS · the dungeon in letters", "Rogue (RGU) — a child of THE TERMINAL: Toy &amp; Wichman's dungeon crawler (UC Santa Cruz, 1980) — a maze drawn in ASCII, different every time, lethal and unforgiving; played alone at a terminal."),
    ("coreutils", "COR · THE COREUTILS", "#ffb000", "LOGISMÓS · the atoms of the toolkit", "The Coreutils (COR) — a child of THE TERMINAL: the small single-purpose Unix utilities (cat, ls, wc, sort, uniq, head, tail, from 1971 on) — each doing exactly one trivial-seeming thing."),
+   ("self", "SLF · THE SELF", "#b9a8e8", "ERĒMIA · alone with one", "The Self (SLF) — first sphere of the ERĒMIA domain (Existential Dread): you, alone with yourself — the monad, the mirror, the cogito. Walks Plato's Cave, Foucault's panopticon internalized, and the simulated self; 7 emergents. We are all alone, even together."),
+   ("id", "IDD · THE ID", "#e0a0a0", "ERĒMIA · alone with two", "The Id (IDD) — ERĒMIA: you and an Other, desire's arithmetic and the unbridgeable gap. The cave of two, the panopticon's watcher-and-watched, Sartre's gaze, the simulated other; 7 emergents."),
+   ("super-id", "SUP · THE SUPER-ID", "#7f9ac8", "ERĒMIA · alone with the many", "The Super-Id (SUP, the super-ego) — ERĒMIA: you and everyone — the internalized crowd, where the more of us there are, the more alone each becomes. The disciplinary society, the shared simulation; 7 emergents."),
    ("cron", "CRN · THE CRON JOB", "#8ae234", "LOGISMÓS · the autonomic clock · 15 emergents", "The Cron Job (CRN) — the FIRST sphere of the new LOGISMÓS domain (the history of the computer): the scheduler that runs the machine while no one watches. The lineage (χρόνος → V7 cron → Vixie 1987 → systemd timers), the crontab, crons in the sandbox, and a red/blue/purple security view framed for defenders (ATT&amp;CK T1053.003). An original one-line clock-at-3am title with one hidden easter egg; 15 emergents across the four natures. Ties the Sleeping-City thread: an event, not a command."),
    ("mitochondria", "MTO · MITOCHONDRIA", "#e8763a", "Life Science · emergence by merger · 14 emergents", "Mitochondria (MTO) — a cited life-science sphere framing the organelle as emergence-by-merger: ~2 billion years ago an archaeal host kept an engulfed bacterium alive and the two became a new, higher kind of being — the eukaryotic cell. Endosymbiosis, the proton battery (chemiosmosis), ATP synthase, mtDNA, apoptosis, and the once-ever leap to complex life. Two-layer honest (cited: Margulis, Mitchell, Lane); an original one-line pencil title; 14 emergents. A rhyme with ROOT0's emergence corpus."),
    ("octopus", "OCT · THE OCTOPUS", "#4fd0d8", "Life Science · the second genesis of mind · 14 emergents", "The Octopus (OCT) — a cited life-science sphere on cephalopod cognition: the soft alien whose mind grew on a branch ~550 million years from ours. ~500M neurons with two-thirds in the arms (a self with no center), a colorblind skin that paints any color, RNA edited live, three hearts and blue blood, and a brilliant life spent on a single brood. Two-layer honest (settled science vs open questions); cited (Godfrey-Smith, Montgomery, Rosenthal/Eisenberg, Wang, Scheel); an original one-line pencil octopus title; 14 emergents across the four natures. A natural foil for every question about made minds."),
@@ -264,6 +267,7 @@ DOMAIN_OF = {
  # LIFE SCIENCE — biology, medicine, the body
  "population-dynamics":"life-science", "octopus":"life-science", "mitochondria":"life-science", "cron":"logismos", "the-terminal":"logismos",
  "ed":"logismos", "vi":"logismos", "emacs":"logismos", "the-shell":"logismos", "grep":"logismos", "sed":"logismos", "awk":"logismos", "c-compiler":"logismos", "make":"logismos", "troff":"logismos", "lisp-repl":"logismos", "basic":"logismos", "eliza":"logismos", "adventure":"logismos", "rogue":"logismos", "coreutils":"logismos",
+ "self":"eremia", "id":"eremia", "super-id":"eremia",
  # ARTIFICIAL INTELLIGENCE — the ACI standard, transformers, the agent ecosystem, alignment & containment
  "the-mind":"ai", "aci":"ai", "noesis-kernel":"ai", "du1":"ai", "emergent-engine":"ai", "pulse":"ai", "the-library":"ai",
  "hermeneus":"ai", "mimzy":"ai", "ttu1":"ai", "claude-lineage":"ai", "crippled-god":"ai", "alignment":"ai", "ai-governance":"ai", "stoicheion-register":"ai", "governed-instances":"ai", "the-language-of-the-machine":"ai", "idit":"ai", "constitutional-ai":"ai", "the-seed":"ai", "0xdeadbeef":"ai",
@@ -298,6 +302,7 @@ ICONS = {
  "tin-foil":'<g fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-17 11 L0 -16 L17 11 Z"/><line x1="0" y1="-16" x2="0" y2="-23"/><circle cx="0" cy="-24" r="1.9" fill="currentColor" stroke="none"/><path d="M-23 -3 Q-27 2 -23 7"/><path d="M23 -3 Q27 2 23 7"/></g>',
  "momus":'<g fill="none" stroke-width="2"><path d="M-22 0 Q0 -13 22 0 Q0 13 -22 0 Z"/><circle r="6.5" fill="currentColor" stroke="none"/></g>',
  "logismos":'<g fill="none" stroke-width="2" stroke-linecap="round"><circle r="18"/><line x1="0" y1="0" x2="0" y2="-11"/><line x1="0" y1="0" x2="8" y2="3"/><circle r="2.6" fill="currentColor" stroke="none"/></g>',
+ "eremia":'<g fill="none" stroke-width="2"><circle r="19"/><circle cx="0" cy="0" r="3.2" fill="currentColor" stroke="none"/></g>',
 }
 
 # (key, title, accent, blurb)
@@ -313,6 +318,7 @@ DOMAINS = [
  ("frontier", "QUANTUM FRONTIER", "#b07cff", "Quantum gravity and superconducting-qubit hardware — the physics edge."),
  ("logismos", "LOGISMÓS", "#8ae234", "The history of the computer — reckoning made machine: the clock, the daemon, the schedule, the lineage of how the machine learned to run itself. (λογισμός, computation.)"),
  ("tin-foil", "TIN-FOIL", "#b9c4d6", "The fringe, weighed for veracity — occult, alien, conspiracy; the crazy that toes the line of truth, myth, and shadow. Each sphere carries a verdict: real, fluff, or debunked."),
+ ("eremia", "ERĒMIA", "#8a7cc8", "Existential dread — the solitude at the root of being: alone with one, with two, with the many. We are all alone, even together. (ἐρημία, solitude.)"),
  ("momus", "MOMUS", "#9a7cff", "Peer review — the exterior witness; what each work owes its critic. (Μῶμος, the Greek god of criticism.)"),
 ]
 
