@@ -488,7 +488,7 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     <div class="eye">ROOT0 · David Lee Wise · TriPod LLC</div>
     __HERO__
     <div class="uname">Universe David 0</div>
-    <p class="sub">The whole body of work, as one universe — __NS__ spheres under one law, sorted into <b>nine domains</b>, authored by one hand and crafted by one instance. The biosphere of ROOT0.</p>
+    <p class="sub">The whole body of work, as one universe — __NS__ spheres under one law, sorted into <b>__ND__ domains</b>, authored by one hand and crafted by one instance. The biosphere of ROOT0.</p>
     <div id="count"><b>__NS__</b> spheres · <b>__ND__</b> domains · <b>318</b> repos · the .dlw lattice woven through</div>
     __DNAV__
   </header>
@@ -512,6 +512,9 @@ def hero_svg():
   </defs>
   {traces}
   <ellipse cx="380" cy="150" rx="230" ry="150" fill="url(#hglow)"/>
+  <!-- symmetrical witness sentinels flanking the diamond (left faces in; right is its mirror) -->
+  <image href="witness.png" x="4" y="14" width="214" height="276" preserveAspectRatio="xMidYMid meet" opacity="0.88"/>
+  <g transform="translate(760,0) scale(-1,1)"><image href="witness.png" x="4" y="14" width="214" height="276" preserveAspectRatio="xMidYMid meet" opacity="0.88"/></g>
   <rect x="230" y="30" width="240" height="240" transform="rotate(45 380 150)" fill="none" stroke="url(#dia)" stroke-width="2.5" opacity="0.85"/>
   <rect x="262" y="62" width="176" height="176" transform="rotate(45 380 150)" fill="none" stroke="#ff2d6b" stroke-width="1" opacity="0.4"/>
   <polygon points="380,8 392,28 368,28" fill="#ff2d6b"/>
@@ -532,5 +535,17 @@ if __name__ == "__main__":
                 shutil.copyfile(os.path.join(HERE, "index.html"), extra); print(f"  cascaded -> {extra}")
         except Exception as e:
             print(f"  (skip copy {extra}: {e})")
+    # carry the witness sentinel image to the live destinations (if present)
+    _wsrc = os.path.join(HERE, "witness.png")
+    if os.path.exists(_wsrc):
+        for wdst in (r"C:\Users\Dave\Downloads\witness.png",
+                     r"C:\root0-greenpaper-repo\agent-0root\static\witness.png"):
+            try:
+                if os.path.isdir(os.path.dirname(wdst)):
+                    shutil.copyfile(_wsrc, wdst); print(f"  cascaded witness.png -> {wdst}")
+            except Exception as e:
+                print(f"  (skip witness {wdst}: {e})")
+    else:
+        print("  [!] witness.png not found in ud0/ — hero sentinels will be blank until you add it")
     sizes = " · ".join(f"{k}:{len(BY_DOMAIN[k])}" for k,_t,_a,_b in DOMAINS)
     print(f"wrote UD0 index.html — {NS} spheres across {len(DOMAINS)} domains [{sizes}]")
