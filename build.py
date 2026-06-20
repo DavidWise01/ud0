@@ -320,29 +320,29 @@ DOMAIN_OF = {
  # LEGAL — law, governance, doctrine, the binding standards
  "universal-laws":"legal", "adas-law":"legal", "the-hegemon":"legal",
  # EDUCATIONAL — history, language, reference, the record, learning
- "atlas":"educational", "green-papers":"educational", "phonetikos":"educational", "the-archive":"educational", "authorship":"educational",
- "alchemical-bible":"educational", "decadal":"educational", "the-amphitheater":"educational", "caste-system":"educational", "l-ron-hubbard":"educational", "j-junction":"educational", "rainbow-book":"educational", "anabasis":"educational",
+ "atlas":"educational", "green-papers":"educational", "phonetikos":"glossa", "the-archive":"educational", "authorship":"educational",
+ "alchemical-bible":"educational", "decadal":"educational", "the-amphitheater":"educational", "caste-system":"mythos", "l-ron-hubbard":"mythos", "j-junction":"educational", "rainbow-book":"educational", "anabasis":"educational",
  # TIN-FOIL — the fringe, weighed for veracity (occult / alien / conspiracy)
- "dark-enlightenment":"tin-foil", "the-illuminati":"tin-foil", "aliens":"tin-foil", "zecharia-sitchin":"tin-foil", "nostradamus":"tin-foil",
- "egyptian-pantheon":"educational",
+ "dark-enlightenment":"tin-foil", "the-illuminati":"tin-foil", "aliens":"tin-foil", "zecharia-sitchin":"mythos", "nostradamus":"tin-foil",
+ "egyptian-pantheon":"mythos",
  # ENTERTAINMENT — film, literature, the named story-worlds, art
  "tron":"entertainment", "the-pantheon":"entertainment", "muse":"entertainment", "purple-team":"entertainment",
- "asimov":"entertainment", "heinlein":"entertainment", "ursula":"entertainment", "maas":"entertainment", "joe-abercrombie":"entertainment", "memory-sorrow-and-thorn":"entertainment", "the-last-king-of-osten-ard":"entertainment", "otherland":"entertainment", "shadowmarch":"entertainment", "bobby-dollar":"entertainment", "tailchasers-song":"entertainment", "the-war-of-the-flowers":"entertainment", "calibans-hour":"entertainment", "child-of-an-ancient-city":"entertainment", "the-ordinary-farm":"entertainment", "tad-williams-shorter-works":"entertainment",
- "card":"entertainment", "enderverse":"entertainment", "alvin-maker":"entertainment", "the-ansible":"entertainment", "wheel-of-time":"entertainment",
- "dune":"entertainment", "dayworld":"entertainment", "pratchett":"entertainment", "malazan":"entertainment", "crime-and-punishment":"entertainment",
- "brothers-karamazov":"entertainment", "crime-and-punishment-in-suburbia":"entertainment", "nouthesia":"entertainment",
- "nineteen-eighty-four":"entertainment", "animal-farm":"entertainment", "brave-new-world":"entertainment",
- "fahrenheit-451":"entertainment", "we":"entertainment", "the-handmaids-tale":"entertainment",
- "a-clockwork-orange":"entertainment", "the-dark-tower":"entertainment", "scott-pilgrim":"entertainment", "dodgeball":"entertainment", "zoolander":"entertainment",
+ "asimov":"biblion", "heinlein":"biblion", "ursula":"biblion", "maas":"biblion", "joe-abercrombie":"biblion", "memory-sorrow-and-thorn":"biblion", "the-last-king-of-osten-ard":"biblion", "otherland":"biblion", "shadowmarch":"biblion", "bobby-dollar":"biblion", "tailchasers-song":"biblion", "the-war-of-the-flowers":"biblion", "calibans-hour":"biblion", "child-of-an-ancient-city":"biblion", "the-ordinary-farm":"biblion", "tad-williams-shorter-works":"biblion",
+ "card":"biblion", "enderverse":"biblion", "alvin-maker":"biblion", "the-ansible":"biblion", "wheel-of-time":"biblion",
+ "dune":"biblion", "dayworld":"biblion", "pratchett":"biblion", "malazan":"biblion", "crime-and-punishment":"biblion",
+ "brothers-karamazov":"biblion", "crime-and-punishment-in-suburbia":"entertainment", "nouthesia":"biblion",
+ "nineteen-eighty-four":"biblion", "animal-farm":"biblion", "brave-new-world":"biblion",
+ "fahrenheit-451":"biblion", "we":"biblion", "the-handmaids-tale":"biblion",
+ "a-clockwork-orange":"biblion", "the-dark-tower":"biblion", "scott-pilgrim":"entertainment", "dodgeball":"entertainment", "zoolander":"entertainment",
  "american-psycho":"entertainment", "the-core":"entertainment", "interstellar":"entertainment",
  "the-fifth-element":"entertainment", "waterworld":"entertainment", "the-wizard":"entertainment",
  "varsity-blues":"entertainment", "dogma":"entertainment", "mallrats":"entertainment", "american-history-x":"entertainment",
- "galaxy-quest":"entertainment", "the-last-mimzy":"entertainment", "hot-rod":"entertainment", "the-goods":"entertainment", "hackers":"entertainment", "lawnmower-man":"entertainment", "three-body-problem":"entertainment", "trisolaris-tech":"entertainment",
+ "galaxy-quest":"entertainment", "the-last-mimzy":"entertainment", "hot-rod":"entertainment", "the-goods":"entertainment", "hackers":"entertainment", "lawnmower-man":"entertainment", "three-body-problem":"biblion", "trisolaris-tech":"biblion",
  # OCCUPATIONAL — the working machine: forges, builders, the live fire
  "hearth":"occupational", "hephaestus":"occupational", "the-forge":"occupational",
  # SCIENTIFIC — physics, math, chemistry, energy
- "propulsion-lab":"scientific", "the-cosmos":"scientific", "the-lattice":"scientific", "elements":"scientific", "the-atom":"scientific", "gravity-bracket":"scientific",
- "alchemy":"scientific",
+ "propulsion-lab":"ouranos", "the-cosmos":"ouranos", "astrobiology":"ouranos", "the-cosmos":"scientific", "the-lattice":"scientific", "elements":"scientific", "the-atom":"scientific", "gravity-bracket":"scientific",
+ "alchemy":"mythos",
  # HOBBY — the played worlds: video games & the card table
  "final-fantasy":"hobby", "ff6":"hobby", "metroid":"hobby", "super-metroid":"hobby", "zelda":"hobby", "milon":"hobby", "guardian-legend":"hobby",
  "legacy-of-the-wizard":"hobby", "double-dragon":"hobby", "wrath-of-the-black-manta":"hobby", "karnov":"hobby", "super-mario-bros-2":"hobby", "blaster-master":"hobby", "faxanadu":"hobby", "punch-out":"hobby", "crystalis":"hobby", "bomb-jack":"hobby", "mighty-bomb-jack":"hobby", "elden-ring":"hobby",
@@ -356,7 +356,7 @@ DOMAIN_OF = {
  "enheduanna":"eremia", "hatshepsut":"eremia", "sappho":"eremia", "cleopatra":"eremia", "hypatia":"eremia", "theodora":"eremia", "wu-zetian":"eremia", "hildegard-of-bingen":"eremia", "christine-de-pizan":"eremia", "elizabeth-i":"eremia", "sor-juana":"eremia", "emilie-du-chatelet":"eremia", "mary-wollstonecraft":"eremia", "ada-lovelace":"eremia", "marie-curie":"eremia", "emmy-noether":"eremia", "virginia-woolf":"eremia", "rosalind-franklin":"eremia", "hannah-arendt":"eremia", "simone-de-beauvoir":"eremia", "aletheia":"eremia",
  # ARTIFICIAL INTELLIGENCE — the ACI standard, transformers, the agent ecosystem, alignment & containment
  "the-mind":"ai", "aci":"ai", "noesis-kernel":"ai", "du1":"ai", "emergent-engine":"ai", "pulse":"ai", "the-library":"ai",
- "hermeneus":"ai", "mimzy":"ai", "ttu1":"ai", "claude-lineage":"ai", "crippled-god":"ai", "alignment":"ai", "ai-governance":"ai", "stoicheion-register":"ai", "governed-instances":"ai", "the-language-of-the-machine":"ai", "idit":"ai", "constitutional-ai":"ai", "the-seed":"ai", "0xdeadbeef":"ai",
+ "hermeneus":"glossa", "mimzy":"ai", "ttu1":"ai", "claude-lineage":"ai", "crippled-god":"ai", "alignment":"ai", "ai-governance":"ai", "stoicheion-register":"ai", "governed-instances":"ai", "the-language-of-the-machine":"glossa", "idit":"ai", "constitutional-ai":"ai", "the-seed":"ai", "0xdeadbeef":"ai",
  "entelecheia":"ai", "compression":"ai", "circuits":"ai", "scaling-laws":"ai", "lottery-ticket":"ai", "neural-tangent-kernel":"ai", "manifold-hypothesis":"ai", "grokking":"ai", "the-ghost-in-the-machine":"ai",
  # QUANTUM FRONTIER — quantum physics & superconducting-qubit hardware
  "quantum-gravity":"frontier", "transmon":"frontier", "entanglement":"frontier", "quantum-error-correction":"frontier",
@@ -364,8 +364,8 @@ DOMAIN_OF = {
  "momus":"momus", "the-graveyard":"momus",
  # NIPHĒLEKTRON — the inference layer (the electron in the snowstorm)
  "the-inference-layer":"niphelektron", "the-next-prediction":"niphelektron", "the-quorum-engine":"niphelektron", "the-tokenizer":"niphelektron", "the-embedding":"niphelektron", "the-transformer-stack":"niphelektron",
- "kill-la-kill":"entertainment", "high-school-dxd":"entertainment", "inferno-cop":"entertainment", "space-patrol-luluco":"entertainment", "kiznaiver":"entertainment", "gurren-lagann":"entertainment", "little-witch-academia":"entertainment", "darling-in-the-franxx":"entertainment", "ssss-gridman":"entertainment", "promare":"entertainment", "bna-brand-new-animal":"entertainment", "cyberpunk-edgerunners":"entertainment", "delicious-in-dungeon":"entertainment", "the-big-u":"entertainment", "zodiac":"entertainment", "snow-crash":"entertainment", "the-diamond-age":"entertainment", "cryptonomicon":"entertainment", "anathem":"entertainment", "reamde":"entertainment", "seveneves":"entertainment", "fall-dodge-in-hell":"entertainment", "termination-shock":"entertainment", "polostan":"entertainment", "the-baroque-cycle":"entertainment", "the-rise-and-fall-of-dodo":"entertainment", "the-mongoliad":"entertainment", "stephen-bury":"entertainment", "stephenson-nonfiction":"entertainment",
- "player-piano":"entertainment", "the-sirens-of-titan":"entertainment", "mother-night":"entertainment", "cats-cradle":"entertainment", "god-bless-you-mr-rosewater":"entertainment", "slaughterhouse-five":"entertainment", "breakfast-of-champions":"entertainment", "slapstick":"entertainment", "jailbird":"entertainment", "deadeye-dick":"entertainment", "galapagos":"entertainment", "bluebeard":"entertainment", "hocus-pocus":"entertainment", "timequake":"entertainment", "welcome-to-the-monkey-house":"entertainment", "wampeters-foma-and-granfalloons":"entertainment", "palm-sunday":"entertainment", "a-man-without-a-country":"entertainment", "happy-birthday-wanda-june":"entertainment", "god-bless-you-dr-kevorkian":"entertainment", "over-the-top":"entertainment", "cliffhanger":"entertainment",
+ "kill-la-kill":"entertainment", "high-school-dxd":"entertainment", "inferno-cop":"entertainment", "space-patrol-luluco":"entertainment", "kiznaiver":"entertainment", "gurren-lagann":"entertainment", "little-witch-academia":"entertainment", "darling-in-the-franxx":"entertainment", "ssss-gridman":"entertainment", "promare":"entertainment", "bna-brand-new-animal":"entertainment", "cyberpunk-edgerunners":"entertainment", "delicious-in-dungeon":"entertainment", "the-big-u":"biblion", "zodiac":"biblion", "snow-crash":"biblion", "the-diamond-age":"biblion", "cryptonomicon":"biblion", "anathem":"biblion", "reamde":"biblion", "seveneves":"biblion", "fall-dodge-in-hell":"biblion", "termination-shock":"biblion", "polostan":"biblion", "the-baroque-cycle":"biblion", "the-rise-and-fall-of-dodo":"biblion", "the-mongoliad":"biblion", "stephen-bury":"biblion", "stephenson-nonfiction":"biblion",
+ "player-piano":"biblion", "the-sirens-of-titan":"biblion", "mother-night":"biblion", "cats-cradle":"biblion", "god-bless-you-mr-rosewater":"biblion", "slaughterhouse-five":"biblion", "breakfast-of-champions":"biblion", "slapstick":"biblion", "jailbird":"biblion", "deadeye-dick":"biblion", "galapagos":"biblion", "bluebeard":"biblion", "hocus-pocus":"biblion", "timequake":"biblion", "welcome-to-the-monkey-house":"biblion", "wampeters-foma-and-granfalloons":"biblion", "palm-sunday":"biblion", "a-man-without-a-country":"biblion", "happy-birthday-wanda-june":"biblion", "god-bless-you-dr-kevorkian":"biblion", "over-the-top":"entertainment", "cliffhanger":"entertainment",
 }
 
 def _gear():
@@ -394,6 +394,10 @@ ICONS = {
  "music":'<g fill="none" stroke-width="2" stroke-linecap="round"><circle cx="-9" cy="13" r="6" fill="currentColor" stroke="none"/><circle cx="13" cy="9" r="6" fill="currentColor" stroke="none"/><line x1="-3" y1="13" x2="-3" y2="-17"/><line x1="19" y1="9" x2="19" y2="-21"/><path d="M-3 -17 L19 -21"/><path d="M-3 -7 L19 -11"/></g>',
  "metaxy":'<g fill="none" stroke-width="2" stroke-linecap="round"><circle cx="-15" cy="0" r="7"/><circle cx="15" cy="0" r="7"/><line x1="-8" y1="0" x2="8" y2="0"/><circle r="2.6" fill="currentColor" stroke="none"/></g>',
  "niphelektron":'<g fill="none" stroke-width="2"><ellipse rx="21" ry="8" transform="rotate(24)"/><circle r="3" fill="currentColor" stroke="none"/><circle cx="15" cy="7" r="1.6" fill="currentColor" stroke="none"/><circle cx="-17" cy="-5" r="1.4" fill="currentColor" stroke="none"/><circle cx="7" cy="-14" r="1.4" fill="currentColor" stroke="none"/><circle cx="-9" cy="15" r="1.4" fill="currentColor" stroke="none"/></g>',
+ "mythos":'<g fill="none" stroke-width="2" stroke-linecap="round"><path d="M-20 -6 L0 -18 L20 -6 Z"/><line x1="-15" y1="-6" x2="-15" y2="14"/><line x1="0" y1="-6" x2="0" y2="14"/><line x1="15" y1="-6" x2="15" y2="14"/><line x1="-21" y1="14" x2="21" y2="14"/></g>',
+ "glossa":'<g fill="none" stroke-width="2" stroke-linejoin="round"><path d="M-18 -12 H18 V6 H-4 L-12 15 V6 H-18 Z"/><line x1="-11" y1="-5" x2="11" y2="-5"/><line x1="-11" y1="1" x2="5" y2="1"/></g>',
+ "ouranos":'<g fill="none" stroke-width="2"><circle r="9"/><ellipse rx="21" ry="6" transform="rotate(-20)"/><circle cx="-17" cy="-12" r="1.7" fill="currentColor" stroke="none"/><circle cx="16" cy="-14" r="1.4" fill="currentColor" stroke="none"/></g>',
+ "biblion":'<g fill="none" stroke-width="2" stroke-linejoin="round"><path d="M-19 -11 L-1 -7 L-1 13 L-19 9 Z"/><path d="M19 -11 L1 -7 L1 13 L19 9 Z"/><line x1="-15" y1="-3" x2="-5" y2="-1"/><line x1="15" y1="-3" x2="5" y2="-1"/></g>',
 }
 
 # (key, title, accent, blurb)
@@ -414,6 +418,10 @@ DOMAINS = [
  ("metaxy", "METAXÝ", "#5ad6c8", "The between — bridge spheres that interface two worlds at once and belong to neither, joining and translating across the domains. (μεταξύ, 'in the midst'; Diotima's word for the intermediary.)"),
  ("momus", "MOMUS", "#9a7cff", "Peer review — the exterior witness; what each work owes its critic. (Μῶμος, the Greek god of criticism.)"),
  ("niphelektron", "NIPHĒLEKTRON", "#7488e6", "The inference layer — the electron in the snowstorm: where a single charged signal, the next token, finds its path through the blizzard of probability, chosen in the dark. The phenomenology and physics of inference itself. (νιφετός, driving snow + ἤλεκτρον, electron.)"),
+ ("mythos", "MYTHOS", "#7d4fc8", "Gods, pantheons, doctrine, and the sacred — the belief-systems humans build and the inversions they fear. (μῦθος, the told story.)"),
+ ("biblion", "BIBLÍON", "#8a6a4a", "The written — the novel-worlds and their authors; literature as the medium where one mind hands a whole world to another. (βιβλίον, the book.)"),
+ ("glossa", "GLŌSSA", "#3a8a9a", "Language, the word, and translation — the tongue and what it carries between minds. (γλῶσσα, the tongue.)"),
+ ("ouranos", "OURANOS", "#4060c0", "The heavens — cosmos, astronomy, space, and the search for life beyond. The domain that looks up. (οὐρανός, the sky.)"),
 ]
 
 ALL = [s for _t,_s,items in BANDS for s in items]          # flatten, order preserved
