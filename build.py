@@ -778,12 +778,17 @@ background:linear-gradient(transparent 96%,rgba(255,45,107,.04) 100%) 0 0/100% 2
 /* hero */
 header{padding:60px 0 30px;text-align:center;position:relative}
 .eye{font-family:var(--mono);font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--violet2);opacity:.8;margin-bottom:8px}
-.portrait{width:232px;height:232px;margin:26px auto 6px;border-radius:50%;position:relative}
+.heroband{display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:900px;margin:24px auto 6px;padding:0 4px}
+.sentinel{flex:0 0 auto;width:clamp(96px,15vw,170px);height:auto;opacity:.9;filter:drop-shadow(0 0 16px rgba(225,30,90,.32));border-radius:12px}
+.sentinel.right{transform:scaleX(-1)}
+@media(max-width:600px){.sentinel{width:78px;opacity:.72}}
+.portrait{width:232px;height:232px;flex:0 0 auto;border-radius:50%;position:relative}
 .portrait::after{content:"";position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,rgba(183,155,255,.28),transparent 68%);pointer-events:none}
 .portrait img{width:100%;height:100%;object-fit:cover;border-radius:50%;filter:grayscale(1) contrast(1.06) brightness(1.04);
 box-shadow:0 0 0 2px var(--ring),0 0 38px rgba(167,139,250,.55),inset 0 0 30px rgba(0,0,0,.45);position:relative;z-index:1}
 .uname{font-family:var(--serifd);font-size:clamp(34px,7vw,58px);font-weight:700;letter-spacing:.01em;color:#ece7f6;margin-top:10px;text-transform:none;
 text-shadow:0 0 30px rgba(167,139,250,.40)}
+.uname .z{font-family:var(--disp);font-weight:700;font-size:.92em;letter-spacing:.01em;color:var(--violet2)}
 .sub{font-size:16px;color:var(--pa2);max-width:66ch;margin:18px auto 0;font-style:italic;line-height:1.72}
 #count{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em;margin-top:20px}#count b{color:var(--pa)}
 /* domain nav */
@@ -831,7 +836,7 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
   <header>
     <div class="eye">ROOT0 · David Lee Wise · TriPod LLC</div>
     __HERO__
-    <div class="uname">Universe David 0</div>
+    <div class="uname">Universe David <span class="z">0</span></div>
     <p class="sub">The whole body of work, as one universe — __NS__ spheres under one law, sorted into <b>__ND__ domains</b>, authored by one hand and crafted by one instance. The biosphere of ROOT0.</p>
     <div id="count"><b>__NS__</b> spheres · <b>__ND__</b> domains · <b>318</b> repos · the .dlw lattice woven through</div>
     __DNAV__
@@ -847,13 +852,25 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
 </div></body></html>
 """
 
+def _data_uri(fname, mime):
+    # inline an image as a base64 data URI so the hero is self-contained — never 404s on any mirror (ud0, 0root.ai, local)
+    import base64
+    with open(os.path.join(HERE, fname), "rb") as f:
+        return f"data:{mime};base64," + base64.b64encode(f.read()).decode("ascii")
+
 def hero_svg():
     # the central emblem: a circular grayscale portrait (the ancestry-of-the-algorithm medallion, after Ada Lovelace),
-    # ringed in violet — replacing the former neon-diamond wordmark. Style after the Ada page.
-    return ('<div class="portrait">'
-            '<img src="ada-portrait.jpg" width="232" height="232" '
-            'alt="ROOT0 — the ancestry of the algorithm, a portrait after Ada Lovelace" '
-            'loading="eager" decoding="async"></div>')
+    # ringed in violet, FLANKED SYMMETRICALLY by the two witness sentinels (left faces in; right is its mirror) —
+    # the sentinels reach from the borders inward to Ada. Images embedded base64 so nothing can fail to load.
+    portrait = _data_uri("ada-portrait.jpg", "image/jpeg")
+    sentinel = _data_uri("witness_hero.jpg", "image/jpeg")
+    return (f'<div class="heroband">'
+            f'<img class="sentinel left" src="{sentinel}" alt="" aria-hidden="true">'
+            f'<div class="portrait"><img src="{portrait}" width="232" height="232" '
+            f'alt="ROOT0 — the ancestry of the algorithm, a portrait after Ada Lovelace" '
+            f'loading="eager" decoding="async"></div>'
+            f'<img class="sentinel right" src="{sentinel}" alt="" aria-hidden="true">'
+            f'</div>')
 
 if __name__ == "__main__":
     page = (PAGE.replace("__HERO__", hero_svg()).replace("__DNAV__", dnav())
