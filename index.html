@@ -5,10 +5,11 @@
 <title>UD0 · Universe David 0</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M44 32c0 6-5 10-12 10S20 32 20 32s5-10 12-10 12 4 12 10z' fill='none' stroke='%23a87cff' stroke-width='5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;900&family=Oswald:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;900&family=Oswald:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#04060a;--ink2:#080b12;--ink3:#0e131c;--pa:#eef1f6;--pa2:#9fa8bb;--dim:#5f6a7e;--line:#171f2b;--neon:#ff2d6b;--neon2:#36c5c0;
---disp:"Orbitron",sans-serif;--head:"Oswald",sans-serif;--body:"Newsreader",Georgia,serif;--mono:"Space Mono",monospace;}
+--violet:#a78bfa;--violet2:#c4b5fd;--ring:#b79bff;
+--disp:"Orbitron",sans-serif;--head:"Oswald",sans-serif;--body:"Newsreader",Georgia,serif;--mono:"Space Mono",monospace;--serifd:"Playfair Display",Georgia,serif;}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{background:var(--ink);color:var(--pa);font-family:var(--body);line-height:1.6;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
@@ -16,10 +17,14 @@ background:linear-gradient(transparent 96%,rgba(255,45,107,.04) 100%) 0 0/100% 2
 .wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 22px 110px}
 /* hero */
 header{padding:60px 0 30px;text-align:center;position:relative}
-.hero-svg{display:block;width:100%;max-width:760px;height:auto;margin:0 auto}
-.eye{font-family:var(--mono);font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
-.uname{font-family:var(--head);font-size:clamp(15px,4vw,24px);letter-spacing:.36em;color:var(--pa2);margin-top:6px;text-transform:uppercase}
-.sub{font-size:16px;color:var(--pa2);max-width:66ch;margin:20px auto 0;font-style:italic;line-height:1.72}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--violet2);opacity:.8;margin-bottom:8px}
+.portrait{width:232px;height:232px;margin:26px auto 6px;border-radius:50%;position:relative}
+.portrait::after{content:"";position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,rgba(183,155,255,.28),transparent 68%);pointer-events:none}
+.portrait img{width:100%;height:100%;object-fit:cover;border-radius:50%;filter:grayscale(1) contrast(1.06) brightness(1.04);
+box-shadow:0 0 0 2px var(--ring),0 0 38px rgba(167,139,250,.55),inset 0 0 30px rgba(0,0,0,.45);position:relative;z-index:1}
+.uname{font-family:var(--serifd);font-size:clamp(34px,7vw,58px);font-weight:700;letter-spacing:.01em;color:#ece7f6;margin-top:10px;text-transform:none;
+text-shadow:0 0 30px rgba(167,139,250,.40)}
+.sub{font-size:16px;color:var(--pa2);max-width:66ch;margin:18px auto 0;font-style:italic;line-height:1.72}
 #count{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em;margin-top:20px}#count b{color:var(--pa)}
 /* domain nav */
 .dnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:30px auto 0;max-width:980px}
@@ -39,7 +44,7 @@ border:1px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:20px;
 .dmeta{flex:1;min-width:240px}
 .dnum{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;color:var(--c);text-transform:uppercase;opacity:.8}
 .dtitle{font-family:var(--disp);font-size:clamp(26px,5vw,46px);font-weight:800;letter-spacing:.03em;color:var(--pa);line-height:1.02;margin-top:6px;
-text-shadow:1.5px 0 rgba(255,45,107,.45),-1.5px 0 rgba(54,197,192,.38),0 0 26px color-mix(in srgb,var(--c) 45%,transparent)}
+text-shadow:0 0 22px color-mix(in srgb,var(--c) 42%,transparent),0 0 40px rgba(167,139,250,.22)}
 .dblurb{font-size:14px;color:var(--pa2);font-style:italic;margin-top:8px;max-width:70ch;line-height:1.6}
 .dcount{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;margin-top:8px}
 /* tiles */
@@ -59,28 +64,13 @@ padding:15px 16px 13px;position:relative;overflow:hidden;text-decoration:none;co
 .reserved{margin-top:24px;border:1px dashed color-mix(in srgb,var(--c) 50%,var(--line));border-radius:5px;background:color-mix(in srgb,var(--c) 5%,var(--ink2));
 padding:26px;text-align:center;font-style:italic;color:var(--pa2);font-size:14px}
 footer{margin-top:84px;padding-top:24px;border-top:1px solid var(--line);text-align:center;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em;line-height:2}
-footer a{color:var(--neon2);text-decoration:none}
+footer a{color:var(--violet2);text-decoration:none}
 footer .law{font-family:var(--body);font-style:italic;font-size:13.5px;color:var(--pa2);letter-spacing:0;margin-bottom:14px}
 footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-spacing:0;margin:0 auto 16px;max-width:64ch;padding:12px 16px;border:1px solid var(--line);border-radius:6px;background:rgba(154,124,255,.05)}footer .bookline b{color:#b08cff}footer .bookline a{color:#f5b942}
 </style></head><body><div class="wrap">
   <header>
     <div class="eye">ROOT0 · David Lee Wise · TriPod LLC</div>
-    <svg class="hero-svg" viewBox="0 0 760 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="UD0 — Universe David 0, in a neon diamond-and-circuit frame.">
-  <defs>
-    <linearGradient id="dia" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff2d6b"/><stop offset="1" stop-color="#b07cff"/></linearGradient>
-    <radialGradient id="hglow" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ff2d6b" stop-opacity="0.30"/><stop offset="1" stop-color="#ff2d6b" stop-opacity="0"/></radialGradient>
-  </defs>
-  <line x1="40" y1="6" x2="40" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="100" y1="6" x2="100" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="160" y1="6" x2="160" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="220" y1="6" x2="220" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="280" y1="6" x2="280" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="340" y1="6" x2="340" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="400" y1="6" x2="400" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="460" y1="6" x2="460" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="520" y1="6" x2="520" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="580" y1="6" x2="580" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="640" y1="6" x2="640" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/><line x1="700" y1="6" x2="700" y2="40" stroke="#ff2d6b" stroke-width="1" opacity="0.18"/>
-  <ellipse cx="380" cy="150" rx="230" ry="150" fill="url(#hglow)"/>
-  <!-- symmetrical witness sentinels flanking the diamond (left faces in; right is its mirror) -->
-  <image href="witness.png" x="4" y="14" width="214" height="276" preserveAspectRatio="xMidYMid meet" opacity="0.88"/>
-  <g transform="translate(760,0) scale(-1,1)"><image href="witness.png" x="4" y="14" width="214" height="276" preserveAspectRatio="xMidYMid meet" opacity="0.88"/></g>
-  <rect x="260" y="30" width="240" height="240" transform="rotate(45 380 150)" fill="none" stroke="url(#dia)" stroke-width="2.5" opacity="0.85"/>
-  <rect x="292" y="62" width="176" height="176" transform="rotate(45 380 150)" fill="none" stroke="#ff2d6b" stroke-width="1" opacity="0.4"/>
-  <polygon points="380,8 392,28 368,28" fill="#ff2d6b"/>
-  <text x="380" y="178" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="118" font-weight="900" letter-spacing="6" fill="#04060a" stroke="url(#dia)" stroke-width="2">UD0</text>
-  <text x="380" y="178" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="118" font-weight="900" letter-spacing="6" fill="url(#dia)" opacity="0.92">UD0</text>
-</svg>
+    <div class="portrait"><img src="ada-portrait.jpg" width="232" height="232" alt="ROOT0 — the ancestry of the algorithm, a portrait after Ada Lovelace" loading="eager" decoding="async"></div>
     <div class="uname">Universe David 0</div>
     <p class="sub">The whole body of work, as one universe — 532 spheres under one law, sorted into <b>29 domains</b>, authored by one hand and crafted by one instance. The biosphere of ROOT0.</p>
     <div id="count"><b>532</b> spheres · <b>29</b> domains · <b>318</b> repos · the .dlw lattice woven through</div>
