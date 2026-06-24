@@ -724,14 +724,16 @@ def tile(s):
     </a>'''
 
 def medallion(idx, accent, key):
-    glow = f'<radialGradient id="g{key}" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="{accent}" stop-opacity="0.30"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient>'
+    glow = f'<radialGradient id="g{key}" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="{accent}" stop-opacity="0.46"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient>'
+    nf = f'<filter id="nf{key}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
     return f'''<svg class="med" viewBox="0 0 130 130" width="118" height="118" aria-hidden="true" style="color:{accent}">
-      <defs>{glow}</defs>
-      <circle cx="65" cy="65" r="62" fill="#070a10"/>
+      <defs>{glow}{nf}</defs>
+      <circle cx="65" cy="65" r="62" fill="#140b29"/>
       <circle cx="65" cy="65" r="60" fill="url(#g{key})"/>
-      <circle cx="65" cy="65" r="60" fill="none" stroke="{accent}" stroke-width="2" opacity="0.9"/>
-      <circle class="stitch" cx="65" cy="65" r="54" fill="none" stroke="{accent}" stroke-width="1" stroke-dasharray="3 4" opacity="0.55"/>
-      <circle cx="65" cy="65" r="45" fill="#04060a" stroke="{accent}" stroke-width="0.75" opacity="0.5"/>
+      <circle cx="65" cy="65" r="60" fill="none" stroke="{accent}" stroke-width="2.6" opacity="0.95" filter="url(#nf{key})"/>
+      <circle cx="65" cy="65" r="60" fill="none" stroke="{accent}" stroke-width="1" opacity="1"/>
+      <circle class="stitch" cx="65" cy="65" r="54" fill="none" stroke="{accent}" stroke-width="1.1" stroke-dasharray="3 4" opacity="0.78"/>
+      <circle cx="65" cy="65" r="45" fill="#0f0825" stroke="{accent}" stroke-width="1" opacity="0.7"/>
       <g transform="translate(65,65)">{ICONS[key]}</g>
       <text x="65" y="20" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" fill="{accent}" letter-spacing="1">{idx:02d}</text>
     </svg>'''
@@ -767,13 +769,13 @@ PAGE = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;900&family=Oswald:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#04060a;--ink2:#080b12;--ink3:#0e131c;--pa:#eef1f6;--pa2:#9fa8bb;--dim:#5f6a7e;--line:#171f2b;--neon:#ff2d6b;--neon2:#36c5c0;
+:root{--ink:#150b2c;--ink2:#170e30;--ink3:#1f1440;--pa:#eef1f6;--pa2:#a9a2c4;--dim:#7a6fa0;--line:#2c2150;--neon:#ff2d6b;--neon2:#36c5c0;
 --violet:#a78bfa;--violet2:#c4b5fd;--ring:#b79bff;
 --disp:"Orbitron",sans-serif;--head:"Oswald",sans-serif;--body:"Newsreader",Georgia,serif;--mono:"Space Mono",monospace;--serifd:"Playfair Display",Georgia,serif;}
 *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{background:var(--ink);color:var(--pa);font-family:var(--body);line-height:1.6;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
-background:linear-gradient(transparent 96%,rgba(255,45,107,.04) 100%) 0 0/100% 26px,linear-gradient(90deg,transparent 96%,rgba(54,197,192,.03) 100%) 0 0/26px 100%,radial-gradient(ellipse at 50% -8%,rgba(255,45,107,.12),transparent 55%),radial-gradient(ellipse at 50% 116%,rgba(176,124,255,.08),transparent 52%)}
+body{background:var(--ink);background-image:radial-gradient(ellipse 1300px 760px at 50% -6%,#3a2363 0%,#23154a 42%,#140b29 100%);background-repeat:no-repeat;color:var(--pa);font-family:var(--body);line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.6;
+background:linear-gradient(transparent 96%,rgba(167,139,250,.05) 100%) 0 0/100% 26px,linear-gradient(90deg,transparent 96%,rgba(167,139,250,.04) 100%) 0 0/26px 100%,radial-gradient(ellipse at 50% -8%,rgba(183,155,255,.18),transparent 55%),radial-gradient(ellipse at 50% 116%,rgba(150,100,235,.12),transparent 52%)}
 .wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 22px 110px}
 /* hero */
 header{padding:60px 0 30px;text-align:center;position:relative}
@@ -799,17 +801,17 @@ border:1px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:20px;
 /* domain section */
 .domain{margin-top:72px;scroll-margin-top:20px}
 .dhead{display:flex;align-items:center;gap:26px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:22px;position:relative}
-.dhead::after{content:"";position:absolute;left:0;bottom:-1px;width:180px;height:1px;background:var(--c);box-shadow:0 0 14px var(--c);opacity:.7}
+.dhead::after{content:"";position:absolute;left:0;bottom:-1px;width:230px;height:2px;background:var(--c);box-shadow:0 0 20px var(--c),0 0 7px var(--c);opacity:.92;border-radius:2px}
 .med{flex:0 0 auto;animation:medpulse 3.8s ease-in-out infinite}
-@keyframes medpulse{0%,100%{filter:drop-shadow(0 0 8px color-mix(in srgb,var(--c) 32%,transparent))}50%{filter:drop-shadow(0 0 18px color-mix(in srgb,var(--c) 60%,transparent))}}
+@keyframes medpulse{0%,100%{filter:drop-shadow(0 0 10px color-mix(in srgb,var(--c) 45%,transparent))}50%{filter:drop-shadow(0 0 24px color-mix(in srgb,var(--c) 78%,transparent))}}
 @media(prefers-reduced-motion:reduce){.med{animation:none;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--c) 40%,transparent))}}
 .med .stitch{transform-box:fill-box;transform-origin:center;transition:opacity .2s}
 .dhead:hover .med .stitch{animation:stitchspin 9s linear infinite;opacity:.85}
 @keyframes stitchspin{to{transform:rotate(360deg)}}
 .dmeta{flex:1;min-width:240px}
-.dnum{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;color:var(--c);text-transform:uppercase;opacity:.8}
+.dnum{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;color:var(--c);text-transform:uppercase;opacity:1;text-shadow:0 0 12px color-mix(in srgb,var(--c) 55%,transparent)}
 .dtitle{font-family:var(--disp);font-size:clamp(26px,5vw,46px);font-weight:800;letter-spacing:.03em;color:var(--pa);line-height:1.02;margin-top:6px;
-text-shadow:0 0 22px color-mix(in srgb,var(--c) 42%,transparent),0 0 40px rgba(167,139,250,.22)}
+text-shadow:0 0 9px color-mix(in srgb,var(--c) 60%,transparent),0 0 24px color-mix(in srgb,var(--c) 48%,transparent),0 0 50px rgba(167,139,250,.30)}
 .dblurb{font-size:14px;color:var(--pa2);font-style:italic;margin-top:8px;max-width:70ch;line-height:1.6}
 .dcount{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;margin-top:8px}
 /* tiles */
