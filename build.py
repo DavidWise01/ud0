@@ -847,7 +847,7 @@ def tile(s):
       <div class="tl"><span class="enter">enter ↗</span><a href="{GH}/{repo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">code</a></div>
     </a>'''
 
-DOMAIN_IMG = {"aci": ("aci-medallion.png", "image/png")}   # picture-medallions
+DOMAIN_IMG = {k: (f"{k}-medallion.png", "image/png") for k,_t,_a,_b in DOMAINS}   # picture-medallions: auto-use ud0/<key>-medallion.png when present (else SVG icon)
 def _domain_img(key):
     if key in DOMAIN_IMG:
         fn, mime = DOMAIN_IMG[key]
