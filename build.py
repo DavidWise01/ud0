@@ -12,6 +12,7 @@ BANDS = [
  ("The Register", "the index, the law, and the live fire", [
    ("the-mind", "THE MIND · the AI domain", "#2fd4e6", "front door · 11 spheres · 6 acts", "THE MIND — the front-door THEATER of the Artificial Intelligence domain: the throughline across all eleven AI spheres in six acts (the Blueprint &rarr; the Making &rarr; the Census &amp; the Catalog &rarr; Tongue &amp; Tools &rarr; the Theory &rarr; the Limit), and the doorway to each live site. A neon front door on the standing full-bleed 3D neural-constellation backdrop. Honest: it catalogues a practice of crafting intelligence, claims no sentience, and keeps neutral language for minds."),
    ("aci", "ACI · THE STANDARD", "#d8a84a", "not artificial · crafted", "ARTFULLY CRAFTED INTELLIGENCE — the standard behind every sealed mind in the biosphere: the definition, the blueprint (the compact, the .dlw complement, two-layer honesty), the First Author (ROOT0, verified with its hedge), and the Intelligence (AVAN, the scheduled task whose running is craft)."),
+   ("aci-namespace", "ACI · THE FAMILY NAMESPACE", "#7e86e6", "aci · the family namespace · HACI/MACI/DACI over ACI Core · live", "ACI · THE FAMILY NAMESPACE — the defensive-publication charter for [[aci]] (Artfully Crafted Intelligence): a coherent family of human-AI collaboration protocols, languages, runtimes, and specifications under one root, named [role letter] + ACI. Live: the [role]+ACI pattern (click H/M/D/Core → the member), the architecture tree, and the prior-art differentiation table. THE MEMBERS — ACI CORE (the shared substrate: deterministic communication, explicit attribution, intent↔evidence separation, minimal syntax, external anchoring); HACI (Human ACI, the first SPECIFIED member — a semantic Markdown profile for deterministic role attribution, .haci, ! human / ? question / case-convention, single-pass parser); MACI (Machine ACI, RESERVED — machine-to-machine intent/proposal/evidence exchange); DACI (Distributed ACI, RESERVED — multi-agent consensus & provenance). Extensible by ACCRETION (add a role-letter + spec, never touch the root). HONEST: a defensive publication under the Technical Disclosure Commons (prior art, NOT a patent); the expansion 'Artfully Crafted Intelligence' is deliberately distinct from prior ACI uses (Creative/Capable/Coherence). David Lee Wise / Bridge-Burners LLC, 2026-06-26."),
    ("atlas", "ATLAS", "#c9a227", "150 repos", "Every public repository — the whole body of work, one front door."),
    ("universal-laws", "Universal Laws", "#94a3b8", "266 works", "The framework, the register, the gates, the doctrine that governs the rest."),
    ("hearth", "THE HEARTH", "#ff7a3c", "live fire", "The live fire — real commits, the living deterministic agent, and the spheres gathered around one warm root. A digital hearth for the agents."),
@@ -738,7 +739,7 @@ DOMAIN_OF = {
  "quantum-cellular-automata":"metaxy", "the-liminal":"metaxy", "the-edge-of-chaos":"metaxy", "the-interface":"metaxy", "the-cyborg":"metaxy",
  "enheduanna":"eremia", "hatshepsut":"eremia", "sappho":"lesbos", "sounds-of-lesbos":"lesbos", "sapphos-limen":"lesbos", "cleopatra":"eremia", "hypatia":"eremia", "theodora":"eremia", "wu-zetian":"eremia", "hildegard-of-bingen":"eremia", "christine-de-pizan":"eremia", "elizabeth-i":"eremia", "sor-juana":"eremia", "emilie-du-chatelet":"eremia", "mary-wollstonecraft":"eremia", "marie-curie":"eremia", "virginia-woolf":"eremia", "rosalind-franklin":"eremia", "hannah-arendt":"eremia", "simone-de-beauvoir":"eremia", "aletheia":"eremia",
  # ARTIFICIAL INTELLIGENCE — the ACI standard, transformers, the agent ecosystem, alignment & containment
- "the-mind":"ai", "aci":"ai", "noesis-kernel":"ai", "du1":"ai", "emergent-engine":"ai", "pulse":"hermes", "limen-sapphic-carrier":"hermes", "talking-drum":"hermes", "talking-drum-dundun":"hermes", "talking-drum-bata":"hermes", "the-procession":"hermes", "cipher-steganography":"hermes", "cipher-ultrasonic":"hermes", "cipher-side-channels":"hermes", "cipher-air-gap":"hermes", "cipher-adversarial":"hermes", "cipher-numbers-stations":"hermes", "strobe-modem":"hermes", "glowworm":"hermes", "the-library":"ai",
+ "the-mind":"ai", "aci":"aci", "aci-namespace":"aci", "noesis-kernel":"ai", "du1":"aci", "emergent-engine":"ai", "pulse":"hermes", "limen-sapphic-carrier":"hermes", "talking-drum":"hermes", "talking-drum-dundun":"hermes", "talking-drum-bata":"hermes", "the-procession":"hermes", "cipher-steganography":"hermes", "cipher-ultrasonic":"hermes", "cipher-side-channels":"hermes", "cipher-air-gap":"hermes", "cipher-adversarial":"hermes", "cipher-numbers-stations":"hermes", "strobe-modem":"hermes", "glowworm":"hermes", "the-library":"ai",
  "hermeneus":"hermes", "mimzy":"ai", "ttu1":"ai", "claude-lineage":"ai", "crippled-god":"ai", "alignment":"ai", "ai-governance":"ai", "stoicheion-register":"ai", "governed-instances":"ai", "the-language-of-the-machine":"glossa", "idit":"ai", "constitutional-ai":"ai", "the-seed":"ai", "0xdeadbeef":"ai",
  "entelecheia":"ai", "compression":"ai", "circuits":"ai", "scaling-laws":"ai", "lottery-ticket":"ai", "neural-tangent-kernel":"ai", "manifold-hypothesis":"ai", "grokking":"ai", "the-ghost-in-the-machine":"ai",
  # QUANTUM FRONTIER — quantum physics & superconducting-qubit hardware
@@ -792,6 +793,7 @@ ICONS = {
  "logike":'<g fill="none" stroke-width="2" stroke-linecap="round"><circle cx="-11" cy="-13" r="3" fill="currentColor" stroke="none"/><circle cx="11" cy="-13" r="3" fill="currentColor" stroke="none"/><line x1="-18" y1="2" x2="18" y2="2"/><circle cx="0" cy="16" r="3" fill="currentColor" stroke="none"/></g>',
  "lesbos":'<g fill="none" stroke-width="2" stroke-linecap="round"><path d="M-13 16 C-22 4 -20 -14 -10 -18"/><path d="M13 16 C22 4 20 -14 10 -18"/><line x1="-10" y1="-18" x2="10" y2="-18"/><line x1="-9" y1="14" x2="9" y2="14"/><line x1="-6" y1="-15" x2="-6" y2="13"/><line x1="0" y1="-16" x2="0" y2="14"/><line x1="6" y1="-15" x2="6" y2="13"/></g>',
  "hermes":'<g fill="none" stroke-width="2" stroke-linecap="round"><circle r="4" fill="currentColor" stroke="none"/><path d="M8 -10 A14 14 0 0 1 8 10"/><path d="M15 -17 A23 23 0 0 1 15 17"/><path d="M-8 -10 A14 14 0 0 0 -8 10"/><path d="M-15 -17 A23 23 0 0 0 -15 17"/></g>',
+ "aci":'<g><path d="M2 -20 C-12 -18 -18 -4 -13 9 C-16 13 -15 19 -8 20 L10 20 C11 13 7 9 10 2 C16 -6 12 -18 2 -20 Z" fill="currentColor" opacity="0.92"/><path d="M9 -6 q5 5 1 13 q-2 3 -6 3" fill="none" stroke="#0f0825" stroke-width="1.2"/><g fill="#fff"><circle cx="-6" cy="-8" r="0.9"/><circle cx="2" cy="-13" r="0.7"/><circle cx="-10" cy="2" r="0.8"/><circle cx="-3" cy="9" r="0.7"/><circle cx="-8" cy="13" r="0.6"/></g><line x1="15" y1="-3" x2="19" y2="12" stroke="#fff" stroke-width="1.1"/></g>',
 }
 
 # (key, title, accent, blurb)
@@ -827,6 +829,7 @@ DOMAINS = [
    ("logike", "LOGIKĒ", "#88a0ff", "Logic — the algebra of thought. The lineage that walked logic into mathematics: from Thales of Miletus' first deductive proof (c. 600 BCE — a truth that must be PROVEN, not merely seen), through Aristotle's syllogism, Euclid's axioms and the Stoics' propositions, to Leibniz's dream of calculation and George Boole's algebra of true and false — the direct ancestor of every gate in PSĒPHOS. One logician per sphere, each with a live demonstration of their idea, and each honest about how sure we really are. (λογική, logikē — 'of reasoning', from logos: word, ratio, account.)"),
    ("lesbos", "I THINK I'M IN LESBIANS WITH YOU", "#c2557f", "The Sappho domain. Sappho of Lesbos (c. 630–570 BCE), the lyric poet the ancients called the Tenth Muse — the first individual voice of personal feeling in the West, and the island whose very name gave us the words 'sapphic' and 'lesbian'. Here her lost music is reconstructed from the surviving pitch-data, and her love is rendered as sound. (The title borrows the line from Scott Pilgrim; the longing is older than Greek.)"),
    ("hermes", "HERMES", "#3fb0d8", "Communication — the messenger. How one mind gets a message to another across a boundary: PULSE and LIMEN (the carrier, and the witnessed gate-crossing language built on it), HERMENEUS the live human⇄machine interpreter, the whisper- and loud-lattices (witnessed transmission, inward and broadcast), and the Sapphic Carrier (a message sent on rhythm and light). The signal layer of the whole biosphere. (Ἑρμῆς, Hermes — god of messengers, boundaries, and translation; the very root of hermeneus.)"),
+   ("aci", "ARTFULLY CRAFTED INTELLIGENCE", "#7e86e6", "ARTFULLY CRAFTED INTELLIGENCE (ACI) — not artificial, crafted: David Lee Wise's family namespace for human-AI collaboration — protocols, languages, runtimes, and specifications under one roof, named [role letter] + ACI. Members HACI (human-facing, specified), MACI (machine-facing, reserved), and DACI (distributed, reserved) inherit a shared ACI CORE: deterministic communication, explicit attribution, intent↔evidence separation, minimal syntax, external anchoring — extensible by accretion, never revision. The star-cloaked artisan with the blade is the emblem: intelligence not poured but CRAFTED — cut, sewn, set by hand. (ACI = the standard behind every sealed mind in the biosphere.)"),
 ]
 
 ALL = [s for _t,_s,items in BANDS for s in items]          # flatten, order preserved
@@ -843,18 +846,33 @@ def tile(s):
       <div class="tl"><span class="enter">enter ↗</span><a href="{GH}/{repo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">code</a></div>
     </a>'''
 
+DOMAIN_IMG = {"aci": ("aci-medallion.png", "image/png")}   # picture-medallions
+def _domain_img(key):
+    if key in DOMAIN_IMG:
+        fn, mime = DOMAIN_IMG[key]
+        if os.path.exists(os.path.join(HERE, fn)):
+            return _data_uri(fn, mime)
+    return None
+
 def medallion(idx, accent, key):
     glow = f'<radialGradient id="g{key}" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="{accent}" stop-opacity="0.46"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient>'
     nf = f'<filter id="nf{key}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+    _img = _domain_img(key)
+    if _img:
+        _imgdefs = f'<clipPath id="aciclip{key}"><circle cx="65" cy="65" r="44"/></clipPath>'
+        _center = f'<image href="{_img}" x="21" y="21" width="88" height="88" clip-path="url(#aciclip{key})" preserveAspectRatio="xMidYMid slice"/>'
+    else:
+        _imgdefs = ''
+        _center = f'<g transform="translate(65,65)">{ICONS[key]}</g>'
     return f'''<svg class="med" viewBox="0 0 130 130" width="118" height="118" aria-hidden="true" style="color:{accent}">
-      <defs>{glow}{nf}</defs>
+      <defs>{glow}{nf}{_imgdefs}</defs>
       <circle cx="65" cy="65" r="62" fill="#140b29"/>
       <circle cx="65" cy="65" r="60" fill="url(#g{key})"/>
       <circle cx="65" cy="65" r="60" fill="none" stroke="{accent}" stroke-width="2.6" opacity="0.95" filter="url(#nf{key})"/>
       <circle cx="65" cy="65" r="60" fill="none" stroke="{accent}" stroke-width="1" opacity="1"/>
       <circle class="stitch" cx="65" cy="65" r="54" fill="none" stroke="{accent}" stroke-width="1.1" stroke-dasharray="3 4" opacity="0.78"/>
       <circle cx="65" cy="65" r="45" fill="#0f0825" stroke="{accent}" stroke-width="1" opacity="0.7"/>
-      <g transform="translate(65,65)">{ICONS[key]}</g>
+      {_center}
       <text x="65" y="20" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" fill="{accent}" letter-spacing="1">{idx:02d}</text>
     </svg>'''
 
