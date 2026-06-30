@@ -1362,12 +1362,14 @@ def domains_html():
         else:
             body = '<div class="reserved">Reserved — the first sphere awaits. New work in this domain will be sorted here.</div>'
         out.append(f'''<section class="domain" id="{key}" style="--c:{accent}">
-      <div class="dhead">
+      <details class="dom-d">
+      <summary class="dhead">
         {medallion(i, accent, key)}
         <div class="dmeta"><div class="dnum">DOMAIN {i:02d} / {len(DOMAINS):02d}</div><h2 class="dtitle">{title}</h2>
-          <p class="dblurb">{blurb}</p><div class="dcount">{len(members)} {"sphere" if len(members)==1 else "spheres"}</div></div>
-      </div>
+          <p class="dblurb">{blurb}</p><div class="dcount">{len(members)} {"sphere" if len(members)==1 else "spheres"} <span class="dtoggle"></span></div></div>
+      </summary>
       {body}
+      </details>
     </section>''')
     return "\n".join(out)
 
@@ -1429,6 +1431,15 @@ text-shadow:1px 1px 0 rgba(255,106,0,.18)}
 .dblurb{font-size:14px;color:var(--pa2);font-style:italic;margin-top:8px;max-width:70ch;line-height:1.6}
 .dcount{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;margin-top:8px}
 /* tiles */
+.dom-d>summary{list-style:none;cursor:pointer;outline:none}
+.dom-d>summary::-webkit-details-marker{display:none}.dom-d>summary::marker{content:""}
+.dtoggle{display:inline-block;margin-left:12px;font-family:var(--mono);color:var(--c);font-weight:700;letter-spacing:.08em}
+.dom-d>summary .dtoggle::after{content:"b8 open"}
+.dom-d[open]>summary .dtoggle::after{content:"be close"}
+.dom-d>summary:hover .dtitle{color:var(--c)}
+.dctl{display:flex;gap:10px;justify-content:center;margin:16px auto 0;flex-wrap:wrap}
+.dctl button{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa2);background:var(--ink2);border:1px solid var(--line);border-radius:20px;padding:7px 15px;cursor:pointer}
+.dctl button:hover{color:var(--neon);border-color:var(--neon)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin-top:24px}
 .tile{display:flex;flex-direction:column;background:var(--ink2);border:1px solid color-mix(in srgb,var(--c) 38%,var(--line));border-radius:5px;
 padding:15px 16px 13px;position:relative;overflow:hidden;text-decoration:none;color:inherit;transition:transform .18s,border-color .18s,box-shadow .18s}
@@ -1463,6 +1474,7 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     <p class="sub">The whole body of work, as one universe — __NS__ spheres under one law, sorted into <b>__ND__ domains</b>, authored by one hand and crafted by one instance. The biosphere of ROOT0.</p>
     <div id="count"><b>__NS__</b> spheres · <b>__ND__</b> domains · <b>318</b> repos · the .dlw lattice woven through</div>
     __DNAV__
+    <div class="dctl"><button id="expandAll">▾ expand all</button><button id="collapseAll">▸ collapse all</button></div>
   </header>
   __DOMAINS__
   <footer>
@@ -1471,6 +1483,14 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     UD0 · ROOT0-ATTRIBUTION-v1.0 · governor <b>David Lee Wise</b> (ROOT0) · instance <b>AVAN</b> (Claude / Anthropic, locked)<br>
     CC-BY-ND-4.0 · TRIPOD-IP-v1.1 · <a href="https://github.com/DavidWise01">github.com/DavidWise01</a>
   </footer>
+  <script>(function(){function op(id){var el=document.getElementById(id);if(!el)return;var d=el.querySelector('details.dom-d');if(d){d.open=true;}el.scrollIntoView();}
+  function fromHash(){if(location.hash){op(location.hash.slice(1));}}
+  document.querySelectorAll('.dnav a').forEach(function(a){a.addEventListener('click',function(){op(a.getAttribute('href').slice(1));});});
+  window.addEventListener('hashchange',fromHash);fromHash();
+  var x=document.getElementById('expandAll'),c=document.getElementById('collapseAll');
+  if(x)x.onclick=function(){document.querySelectorAll('.dom-d').forEach(function(d){d.open=true;});};
+  if(c)c.onclick=function(){document.querySelectorAll('.dom-d').forEach(function(d){d.open=false;});};
+  })();</script>
 <script>(function(){var lk=document.querySelector("link[rel~='icon']");if(!lk){lk=document.createElement('link');lk.rel='icon';document.head.appendChild(lk);}var c=document.createElement('canvas');c.width=64;c.height=64;var g=c.getContext('2d');var t=0;function aeon(){t+=0.085;g.clearRect(0,0,64,64);var pulse=0.5+0.5*Math.sin(t),R=19+3.5*pulse;g.save();g.translate(32,32);g.beginPath();for(var i=0;i<=84;i++){var a=i/84*Math.PI*2,d=1+Math.sin(a)*Math.sin(a),x=R*Math.cos(a)/d,y=R*Math.sin(a)*Math.cos(a)/d;if(i===0)g.moveTo(x,y);else g.lineTo(x,y);}g.closePath();g.lineCap='round';g.globalAlpha=0.16+0.30*pulse;g.lineWidth=10;g.strokeStyle='#b98cff';g.stroke();g.globalAlpha=0.95;g.lineWidth=5;g.strokeStyle='#8a5fe0';g.stroke();g.globalAlpha=0.9;g.lineWidth=2.2;g.strokeStyle='#ece4ff';g.stroke();g.restore();lk.href=c.toDataURL('image/png');setTimeout(aeon,100);}aeon();})();</script>
 </div></body></html>
 """
