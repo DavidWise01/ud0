@@ -1248,7 +1248,7 @@ DOMAIN_OF = {
  "templeos-teardown":"exereunesis", "tera":"exereunesis",
  "the-triad-core":"psephos", "hyo":"psephos",
  "euclid-paper":"logike", "philosophy-sink":"logike", "eight-domains-saturated":"logike", "electron-probe-clouds":"logike", "entangled-clouds":"logike", "elementary-level":"mythos", "spiral-trit-loom":"transcriber", "circle-language":"transcriber", "pi-three-axis":"transcriber", "faux-single":"transcriber", "my-box":"transcriber", "gravity-budget":"scientific", "higgs-universal-gravity":"scientific", "field-ripples-grid":"scientific", "higgs-hydrogen-grid":"scientific", "higgs-stack":"scientific",
- "en":"ai", "jiku":"ai", "the-pose-tax":"exereunesis", "jissoku":"ai", "six-ring":"techne", "tsui":"ai", "grand-index":"solar-jetman", "three-two-one-gate":"ai", "danzoku":"ai", "governed-action":"ai-governance", "the-diagonal":"ai-governance", "shutten":"ai", "kaibun":"ai", "argus-in-a-box":"ai", "cadmus":"ai", "hephaestus-lens":"ai", "hestia":"ai", "hermes-clinic":"ai", "tomarenai":"ai", "mumei":"ai", "mikan":"ai", "tsukanoma":"ai", "jiko-shindan":"ai", "muhaku":"ai", "aegis":"ai", "mukakuzuke":"ai", "henmu":"ai", "trit-kernel":"ai", "trit-kernel-og":"ai", "danpen":"ai", "nagori":"ai", "nin":"ai", "fu":"ai", "wasure":"ai", "doku":"ai", "mukashi":"ai", "uzu":"ai",
+ "en":"ai", "jiku":"ai", "the-pose-tax":"exereunesis", "jissoku":"ai", "six-ring":"techne", "tsui":"ai", "grand-index":"solar-jetman", "three-two-one-gate":"ai", "danzoku":"ai", "governed-action":"ai", "the-diagonal":"ai", "shutten":"ai", "kaibun":"ai", "argus-in-a-box":"ai", "cadmus":"ai", "hephaestus-lens":"ai", "hestia":"ai", "hermes-clinic":"ai", "tomarenai":"ai", "mumei":"ai", "mikan":"ai", "tsukanoma":"ai", "jiko-shindan":"ai", "muhaku":"ai", "aegis":"ai", "mukakuzuke":"ai", "henmu":"ai", "trit-kernel":"ai", "trit-kernel-og":"ai", "danpen":"ai", "nagori":"ai", "nin":"ai", "fu":"ai", "wasure":"ai", "doku":"ai", "mukashi":"ai", "uzu":"ai",
  "the-pivot":"glossa", "matsu-mobius":"glossa", "matsu-degree":"glossa", "the-mirror-pair":"glossa", "the-marriage-of-three-forms":"glossa",
  # QUANTUM FRONTIER — quantum physics & superconducting-qubit hardware
  "quantum-gravity":"frontier", "transmon":"frontier", "entanglement":"frontier", "quantum-error-correction":"frontier",
@@ -1359,6 +1359,9 @@ for _t,_s,_items in BANDS:
         _seen.add(s[0]); ALL.append(s)   # flatten, order preserved, slug-deduped
 _missing = [r for r,*_ in ALL if r not in DOMAIN_OF]
 assert not _missing, f"spheres with no domain (assign in DOMAIN_OF): {_missing}"
+_domain_keys = {k for k,*_ in DOMAINS}
+_bad_domains = sorted({d for d in DOMAIN_OF.values() if d not in _domain_keys})
+assert not _bad_domains, f"DOMAIN_OF values that are not DOMAINS keys (spheres silently dropped): {_bad_domains}"
 BY_DOMAIN = {k: [s for s in ALL if DOMAIN_OF[s[0]] == k] for k,_t,_a,_b in DOMAINS}
 NS = len(ALL)
 
