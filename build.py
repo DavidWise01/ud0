@@ -1375,10 +1375,13 @@ NS = len(ALL)
 
 def tile(s):
     repo, name, col, count, tag = s
+    # some stored names/tags already carry entities (&amp;, &#x27;) — unescape first so
+    # html.escape doesn't double-encode them into visible '&AMP;' artifacts
+    name, count, tag = html.unescape(name), html.unescape(count), html.unescape(tag)
     return f'''<a class="tile" style="--c:{col}" href="{PG}/{repo}/">
       <div class="tn">{html.escape(name)}</div><div class="tc">{html.escape(count)}</div>
       <p class="tt">{html.escape(tag)}</p>
-      <div class="tl"><span class="enter">enter ↗</span><a href="{GH}/{repo}" target="_blank" rel="noopener" onclick="event.stopPropagation()">code</a></div>
+      <div class="tl"><span class="enter">enter ↗</span><button class="codebtn" onclick="event.preventDefault();event.stopPropagation();window.open('{GH}/{repo}','_blank','noopener')">code</button></div>
     </a>'''
 
 DOMAIN_IMG = {k: (f"{k}-medallion.png", "image/png") for k,_t,_a,_b in DOMAINS}   # picture-medallions: auto-use ud0/<key>-medallion.png when present (else SVG icon)
@@ -1423,9 +1426,10 @@ def cluster_tile(fam, items):
     chips=[]
     for r,name,c,cnt,tg in items:
         lab=r[len(fam):].lstrip('-') or r
-        chips.append(f'<a class="cm" href="{PG}/{r}/" title="{html.escape(name)}">{html.escape(lab)}</a>')
+        chips.append(f'<a class="cm" href="{PG}/{r}/" title="{html.escape(html.unescape(name))}">{html.escape(lab)}</a>')
     return f'<div class="cluster" style="--c:{col}"><div class="ch"><div class="cln">{html.escape(disp)}</div><div class="clc">{n} parts · merged lineage</div></div><div class="clset">{"".join(chips)}</div></div>'
 def render_members(members):
+    members = sorted(members, key=lambda s: _re.sub(r'^the-', '', s[0]))   # alphabetized within the domain (leading 'the-' ignored); families stay contiguous by shared prefix
     order=[]; groups={}
     for s in members:
         f=_fam(s[0])
@@ -1535,24 +1539,28 @@ text-shadow:1px 1px 0 rgba(255,106,0,.18)}
 .dctl button{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa2);background:var(--ink2);border:1px solid var(--line);border-radius:20px;padding:7px 15px;cursor:pointer}
 .dctl button:hover{color:var(--neon);border-color:var(--neon)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin-top:24px}
-.tile{display:flex;flex-direction:column;background:var(--ink2);border:1px solid color-mix(in srgb,var(--c) 38%,var(--line));border-radius:5px;
-padding:15px 16px 13px;position:relative;overflow:hidden;text-decoration:none;color:inherit;transition:transform .18s,border-color .18s,box-shadow .18s}
-.tile::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--c);opacity:.55;transition:opacity .18s;box-shadow:0 0 10px var(--c)}
+.tile{display:flex;flex-direction:column;background:var(--ink2);border:1px solid color-mix(in srgb,var(--c) 60%,var(--line));border-radius:5px;
+padding:15px 16px 13px;position:relative;overflow:hidden;text-decoration:none;color:inherit;transition:transform .18s,border-color .18s,box-shadow .18s;
+box-shadow:0 0 9px color-mix(in srgb,var(--c) 26%,transparent),0 0 26px color-mix(in srgb,var(--c) 10%,transparent),inset 0 0 16px color-mix(in srgb,var(--c) 8%,transparent)}
+.tile::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--c);opacity:.85;transition:opacity .18s;box-shadow:0 0 12px var(--c),0 0 4px var(--c)}
 .tile::after{content:"";position:absolute;width:150px;height:150px;right:-58px;top:-58px;border-radius:50%;background:radial-gradient(circle,var(--c),transparent 70%);opacity:.08;transition:opacity .25s}
-.tile:hover{transform:translateY(-3px);border-color:var(--c);box-shadow:0 0 22px color-mix(in srgb,var(--c) 28%,transparent),inset 0 0 26px color-mix(in srgb,var(--c) 6%,transparent)}
+.tile:hover{transform:translateY(-3px);border-color:var(--c);box-shadow:0 0 14px color-mix(in srgb,var(--c) 55%,transparent),0 0 40px color-mix(in srgb,var(--c) 26%,transparent),inset 0 0 30px color-mix(in srgb,var(--c) 12%,transparent)}
 .tile:hover::before{opacity:1}.tile:hover::after{opacity:.18}
-.tn{font-family:var(--head);font-size:16px;font-weight:600;letter-spacing:.02em;color:var(--pa);text-transform:uppercase;line-height:1.18}
+.tn{font-family:var(--head);font-size:16px;font-weight:600;letter-spacing:.02em;color:var(--pa);text-transform:uppercase;line-height:1.18;text-shadow:0 0 9px color-mix(in srgb,var(--c) 42%,transparent)}
 .tile:hover .tn{color:var(--c)}
-.tc{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--c);margin-top:4px;text-transform:uppercase;opacity:.85}
+.tc{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--c);margin-top:4px;text-transform:uppercase;opacity:.95;text-shadow:0 0 7px color-mix(in srgb,var(--c) 65%,transparent)}
 .tt{font-size:12px;color:var(--pa2);line-height:1.5;margin-top:9px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .tl{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);display:flex;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em}
+.tl .codebtn{font-family:var(--mono);font-size:10px;letter-spacing:.05em;background:none;border:none;padding:0;cursor:pointer;color:inherit;text-decoration:underline;text-underline-offset:2px}
+.tl .codebtn:hover{color:var(--c)}
 .tl .enter{color:var(--c)}.tl a{color:var(--dim);text-decoration:none}.tl a:hover{color:var(--pa)}
-.cluster{grid-column:1/-1;background:var(--ink2);border:1px solid color-mix(in srgb,var(--c) 38%,var(--line));border-left:4px solid var(--c);border-radius:5px;padding:13px 16px}
+.cluster{grid-column:1/-1;background:var(--ink2);border:1px solid color-mix(in srgb,var(--c) 60%,var(--line));border-left:4px solid var(--c);border-radius:5px;padding:13px 16px;box-shadow:0 0 9px color-mix(in srgb,var(--c) 24%,transparent),inset 0 0 16px color-mix(in srgb,var(--c) 7%,transparent)}
 .cluster .ch{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
 .cluster .cln{font-family:var(--head);font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--c);text-transform:uppercase}
 .cluster .clc{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase}
 .cluster .clset{display:flex;flex-wrap:wrap;gap:6px}
-.cluster .cm{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--pa2);text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:4px 8px;background:color-mix(in srgb,var(--c) 6%,var(--ink2));white-space:nowrap;max-width:240px;overflow:hidden;text-overflow:ellipsis}
+.cluster .cm{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--pa2);text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:4px 8px;background:color-mix(in srgb,var(--c) 6%,var(--ink2));white-space:nowrap;max-width:240px;overflow:hidden;text-overflow:ellipsis;transition:box-shadow .15s,border-color .15s}
+.cluster .cm:hover{border-color:var(--c);box-shadow:0 0 10px color-mix(in srgb,var(--c) 55%,transparent);color:var(--c)}
 .cluster .cm:hover{color:var(--c);border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,var(--ink2))}
 .reserved{margin-top:24px;border:1px dashed color-mix(in srgb,var(--c) 50%,var(--line));border-radius:5px;background:color-mix(in srgb,var(--c) 5%,var(--ink2));
 padding:26px;text-align:center;font-style:italic;color:var(--pa2);font-size:14px}
