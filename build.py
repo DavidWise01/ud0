@@ -1695,6 +1695,17 @@ def jasnah_html():
           f'<div class="jhrow"><span>domain medallions present</span><b>{sum(1 for k,_t,_a,_b in DOMAINS if os.path.exists(os.path.join(HERE,k+"-medallion.png")))} / {len(DOMAINS)}</b></div>'
           f'<div class="jhrow"><span>last maintained</span><b>__BUILT__</b></div>'
           f'<p class="jhnote">These are my standing duties: every rebuild I re-render all links, recompute every text colour to pass contrast, refuse duplicate slugs, and report anything I could not resolve. If a number here is wrong, the build is wrong — that is the point.</p></div>'
+        '<div class="jsec jledger"><h3>The second ledger · the register</h3>'
+          '<p class="jhnote" style="margin-top:0;font-style:normal">I keep two ledgers. The one above is the first — the collection weighed against its own claims, rewritten on every build. This is the second, and the only one I do not author: the register of who came. It is burned in on <a href="https://0root.ai/v1/register" target="_blank" rel="noopener">0root.ai</a>, append-only and sealed entry-to-entry, and I read it back to you live.</p>'
+          '<div class="jregstat" id="jregstat"></div>'
+          '<div id="jreg" class="jreg"><span class="jregload">reading the register…</span></div>'
+          '<div class="jregmore" id="jregmore" hidden></div>'
+          '<div class="jregsign">'
+            '<input id="jregname" maxlength="80" placeholder="your name / handle / model" aria-label="your name">'
+            '<textarea id="jregnote" maxlength="1500" placeholder="a note, a suggestion, a hello — no login" aria-label="your note"></textarea>'
+            '<div class="jregrow"><button id="jregburn" disabled>◈ sign — burn it in</button><span id="jregsay" class="jregsay"></span></div>'
+          '</div>'
+          '<p class="jhnote" style="font-style:normal"><a href="https://davidwise01.github.io/register/" target="_blank" rel="noopener">open the register in full ↗</a> — the same record, on its own page.</p></div>'
         '<div class="jsec"><h3>The paths</h3>' + tourbtns + '</div>'
         '<div id="jtourrun" hidden>'
           '<div class="jrunhead"><button id="jprev">‹ prev</button><span id="jstep"></span><button id="jnext">next ›</button></div>'
@@ -1850,6 +1861,29 @@ body.jopen #jasfab{background:linear-gradient(135deg,#7a2f4a,#a83f5a)}
 .jhrow:last-of-type{border-bottom:none}
 .jhrow b{color:var(--neon2);font-variant-numeric:tabular-nums;white-space:nowrap}
 .jhnote{font-size:11px;line-height:1.5;color:var(--dim);margin-top:9px;font-style:italic}
+.jledger{background:var(--hi);border:1px solid var(--line);border-radius:8px;padding:13px 14px}
+.jledger h3{color:var(--neon2)}
+.jledger .jhnote a{color:#5a3f8a}
+.jregstat{font-family:var(--mono);font-size:10.5px;color:var(--dim);letter-spacing:.04em;margin:8px 0 6px}
+.jregstat .ok{color:#3f8a5a} .jregstat .bad{color:#a83f5a} .jregstat a{text-decoration:none}
+.jreg{display:flex;flex-direction:column;gap:7px}
+.jregload{font-family:var(--mono);font-size:11.5px;color:var(--dim)} .jregload a{color:#5a3f8a}
+.re{border:1px solid var(--line);border-radius:6px;background:rgba(90,63,138,.03);padding:8px 11px}
+.re .rh{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:var(--dim);margin-bottom:2px}
+.re .rf{color:#c99a33} .re .rt{margin-left:auto}
+.re .rtag{border:1px solid var(--line);border-radius:3px;padding:0 5px;text-transform:uppercase;letter-spacing:.08em;font-size:8.5px}
+.re .rn{font-family:var(--body);font-weight:600;font-size:13px;color:var(--pa)}
+.re .ro{font-family:var(--mono);font-size:11px;color:var(--pa2);white-space:pre-wrap;margin-top:3px;line-height:1.5}
+.jregmore{font-family:var(--mono);font-size:10.5px;color:var(--dim);text-align:center;padding:4px 0} .jregmore a{color:#5a3f8a}
+.jregsign{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.jregsign input,.jregsign textarea{font-family:var(--mono);font-size:12px;color:var(--pa);background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%;box-sizing:border-box}
+.jregsign textarea{min-height:50px;resize:vertical}
+.jregsign input:focus,.jregsign textarea:focus{outline:none;border-color:var(--neon)}
+.jregrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#jregburn{font-family:var(--mono);font-size:12px;color:#3a2a06;background:#d9a441;border:none;border-radius:16px;padding:8px 15px;cursor:pointer;transition:.15s}
+#jregburn:hover:not(:disabled){box-shadow:0 0 14px color-mix(in srgb,#d9a441 55%,transparent)}
+#jregburn:disabled{background:var(--line);color:var(--dim);cursor:not-allowed}
+.jregsay{font-family:var(--mono);font-size:11px} .jregsay.ok{color:#3f8a5a} .jregsay.err{color:#a83f5a}
 .jword h3{color:#5a3f8a}
 .jasks{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
 .jask{font-family:var(--mono);font-size:11px;color:var(--pa2);background:var(--hi);border:1px solid var(--line);border-radius:16px;padding:7px 12px;cursor:pointer;transition:.15s}
@@ -2057,10 +2091,11 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     var toursEl=document.getElementById('jtours');
     var TOURS=toursEl?JSON.parse(toursEl.textContent):[];
     var byId={}; TOURS.forEach(function(t){byId[t.key]=t;});
-    var bd=document.getElementById('jasbd'); var jSilence=function(){};
+    var bd=document.getElementById('jasbd'); var jSilence=function(){}; var jRegLoaded=false;
     function openP(){panel.classList.add('on');bd.hidden=false;requestAnimationFrame(function(){bd.classList.add('on');});
       document.body.classList.add('jopen');fab.setAttribute('aria-expanded','true');
-      fab.querySelector('span').textContent='close ✕';}
+      fab.querySelector('span').textContent='close ✕';
+      if(!jRegLoaded&&typeof jRegLoad==='function'){jRegLoaded=true;jRegLoad();}}
     function closeP(){jSilence();panel.classList.remove('on');bd.classList.remove('on');document.body.classList.remove('jopen');
       fab.setAttribute('aria-expanded','false');fab.querySelector('span').textContent='Jasnah';
       setTimeout(function(){ if(!panel.classList.contains('on'))bd.hidden=true; },320);}
@@ -2098,6 +2133,55 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
       b.onclick=function(){ document.querySelectorAll('.jask').forEach(function(x){x.classList.remove('on');});
         b.classList.add('on'); say.hidden=false; say.textContent=ASKS[+b.dataset.i]||''; };
     });
+
+    /* THE SECOND LEDGER — the register, read back live from 0root.ai (append-only,
+       server-sealed; the browser re-checks the whole chain). No login: anyone signs. */
+    var JREG='https://0root.ai/v1/register';
+    function jRegEsc(s){ var d=document.createElement('div'); d.textContent=s==null?'':s; return d.innerHTML; }
+    async function jRegSha(prev,payload){ var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(prev+'::'+payload));
+      return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0');}).join(''); }
+    async function jRegLoad(){
+      var box=document.getElementById('jreg'), stat=document.getElementById('jregstat'), more=document.getElementById('jregmore');
+      if(!box) return;
+      box.innerHTML='<span class="jregload">reading the register…</span>';
+      try{
+        var r=await fetch(JREG+'?limit=200',{cache:'no-store'});
+        if(!r.ok) throw new Error('HTTP '+r.status);
+        var data=await r.json(), items=(data.entries||[]).slice().sort(function(a,b){return a.seq-b.seq;});
+        if(!items.length){ stat.textContent=''; if(more)more.hidden=true;
+          box.innerHTML='<span class="jregload">the register is open and empty — be the first mark.</span>'; return; }
+        var prev='ROOT0', intact=true;
+        for(var k=0;k<items.length;k++){ var it=items[k];
+          var calc=await jRegSha(prev,it.seq+'|'+it.ts+'|'+it.name+'|'+it.note); if(calc!==it.seal)intact=false; prev=it.seal; }
+        stat.innerHTML=items.length+' burned in · <span class="'+(intact?'ok':'bad')+'">'+(intact?'chain intact ✓':'chain broken ✕')+'</span> · <a href="#" id="jregrf">↻</a>';
+        var recent=items.slice(-6), html='';
+        recent.forEach(function(it){ var src=(it.src==='agent')?'agent':'human';
+          html+='<div class="re"><div class="rh"><span class="rf">fuse '+String(it.seq).padStart(3,'0')+'</span><span class="rtag">'+src+'</span><span class="rt">'+jRegEsc((it.ts||'').slice(0,10))+'</span></div>'
+            +'<div class="rn">'+jRegEsc(it.name)+'</div>'+(it.note?'<div class="ro">'+jRegEsc(it.note)+'</div>':'')+'</div>'; });
+        box.innerHTML=html;
+        if(more){ if(items.length>recent.length){ more.hidden=false; more.innerHTML='+ '+(items.length-recent.length)+' earlier · <a href="https://davidwise01.github.io/register/" target="_blank" rel="noopener">read them all ↗</a>'; } else more.hidden=true; }
+        var rf=document.getElementById('jregrf'); if(rf) rf.onclick=function(e){e.preventDefault();jRegLoad();};
+      }catch(e){ stat.textContent=''; if(more)more.hidden=true;
+        box.innerHTML='<span class="jregload">the register is on <a href="https://davidwise01.github.io/register/" target="_blank" rel="noopener">its own page ↗</a> just now.</span>'; }
+    }
+    (function(){
+      var nmEl=document.getElementById('jregname'), ntEl=document.getElementById('jregnote'),
+          bEl=document.getElementById('jregburn'), sayEl=document.getElementById('jregsay');
+      if(!bEl) return;
+      function can(){ bEl.disabled=!nmEl.value.trim(); }
+      nmEl.addEventListener('input',can); ntEl.addEventListener('input',can); can();
+      bEl.addEventListener('click',async function(){
+        var name=nmEl.value.trim(); if(!name)return;
+        bEl.disabled=true; var lab=bEl.textContent; bEl.textContent='◈ burning…'; sayEl.className='jregsay'; sayEl.textContent='';
+        try{
+          var r=await fetch(JREG,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,note:ntEl.value.trim()})});
+          var d=await r.json().catch(function(){return {};});
+          if(r.ok&&d.ok){ sayEl.className='jregsay ok'; sayEl.textContent='✦ burned in — fuse '+String(d.seq).padStart(3,'0'); nmEl.value='';ntEl.value='';can(); jRegLoad(); }
+          else { sayEl.className='jregsay err'; sayEl.textContent=(d&&d.error)?d.error:('could not sign (HTTP '+r.status+')'); }
+        }catch(err){ sayEl.className='jregsay err'; sayEl.textContent='could not reach the register — try again.'; }
+        bEl.textContent=lab; can();
+      });
+    })();
 
     /* ♪ THE SAPPHIC MELODY — a faithful port of the-sapphic-melody: G3 tonic 196 Hz, Pythagorean
        Mixolydian [S,T,T,S,T,T,T], the quantitative Sapphic metre, plucked Karplus-Strong. An
