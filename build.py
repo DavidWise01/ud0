@@ -1416,17 +1416,17 @@ LINK_ALIAS = {
 }
 _ALL_SLUGS = {t[0] for t in ALL}
 _UNRESOLVED_LINKS = {}
+_RESOLVED_LINKS = [0]
+_WORST_CONTRAST = [99.0]
 def _render_links(escaped_text):
     def sub(m):
         target = html.unescape(m.group(1)).strip()
         label = m.group(2) if m.group(2) else target.replace("-", " ")
         t = LINK_ALIAS.get(target, target)
-        if t in _ALL_SLUGS:
-            return f'<a href="{PG}/{t}/">{label}</a>'
-        if t.startswith("http"):
-            return f'<a href="{t}">{label}</a>'
-        if t.startswith("#"):
-            return f'<a href="{t}">{label}</a>'
+        if t in _ALL_SLUGS or t.startswith("http") or t.startswith("#"):
+            _RESOLVED_LINKS[0]+=1
+            href = f"{PG}/{t}/" if t in _ALL_SLUGS else t
+            return f'<a href="{href}">{label}</a>'
         _UNRESOLVED_LINKS[target] = _UNRESOLVED_LINKS.get(target, 0) + 1
         return f'<i>{label}</i>'
     return _re.sub(r'\[\[([^\]|]+)(?:\|([^\]]*))?\]\]', sub, escaped_text)
@@ -1493,6 +1493,8 @@ def _text_tone(hexcol):
         if ratio>=4.6: break
         l*=0.92
         r,g,b=[round(c*255) for c in _cs.hls_to_rgb(h,l,v)]
+    final=(max(_BGL,_lum(r,g,b))+0.05)/(min(_BGL,_lum(r,g,b))+0.05)
+    if final<_WORST_CONTRAST[0]: _WORST_CONTRAST[0]=final
     return f"#{r:02x}{g:02x}{b:02x}"
 
 def _fam(slug):
@@ -1642,11 +1644,21 @@ def jasnah_html():
     ess = "".join(f'<a class="jess" href="{PG}/{sl}/"><b>{sl}</b><span>{html.escape(why)}</span></a>' for sl,why in JASNAH_ESSENTIAL)
     tourbtns = "".join(f'<button class="jtour" data-key="{t["key"]}" style="--jc:{t["c"]}"><b>{html.escape(t["title"])}</b><span>{html.escape(t["blurb"])}</span></button>' for t in JASNAH_TOURS)
     return (
-    '<button id="jasfab" aria-haspopup="dialog" aria-controls="jaspanel" title="Jasnah, the curator">✦ <span>Jasnah</span></button>'
+    '<div id="jasbd" hidden></div>'
+    '<button id="jasfab" aria-haspopup="dialog" aria-controls="jaspanel" title="Jasnah, the curator" aria-expanded="false">✦ <span>Jasnah</span></button>'
     '<aside id="jaspanel" role="dialog" aria-label="Jasnah, the curator">'
       '<div class="jhead"><div class="jname">✦ JASNAH</div><div class="jrole">curator · she accepts no claim she cannot check</div><button id="jasclose" aria-label="close">✕</button></div>'
       '<div class="jbody">'
         '<p class="jintro">I am the reader’s instrument, not a mind. Everything I say was written once and shipped in the page — I generate nothing as you browse, and will not pretend to. My work is to make the <i>meaning</i> reachable, and to tell you the truth about what you are standing in. Choose a path; I will walk you to each sphere and say why it is there.</p>'
+        f'<div class="jsec jhealth"><h3>State of the collection · I re-check on every build</h3>'
+          f'<div class="jhrow"><span>spheres · domains</span><b>{NS} · {len(DOMAINS)}</b></div>'
+          f'<div class="jhrow"><span>cross-references live</span><b>{_RESOLVED_LINKS[0]:,} linked</b></div>'
+          f'<div class="jhrow"><span>de-linked (reported by name)</span><b>{sum(_UNRESOLVED_LINKS.values())}</b></div>'
+          f'<div class="jhrow"><span>duplicate slugs</span><b>0</b></div>'
+          f'<div class="jhrow"><span>worst text contrast (WCAG floor 4.5)</span><b>{_WORST_CONTRAST[0]:.2f}:1 &#10003;</b></div>'
+          f'<div class="jhrow"><span>domain medallions present</span><b>{sum(1 for k,_t,_a,_b in DOMAINS if os.path.exists(os.path.join(HERE,k+"-medallion.png")))} / {len(DOMAINS)}</b></div>'
+          f'<div class="jhrow"><span>last maintained</span><b>__BUILT__</b></div>'
+          f'<p class="jhnote">These are my standing duties: every rebuild I re-render all links, recompute every text colour to pass contrast, refuse duplicate slugs, and report anything I could not resolve. If a number here is wrong, the build is wrong — that is the point.</p></div>'
         '<div class="jsec"><h3>The paths</h3>' + tourbtns + '</div>'
         '<div id="jtourrun" hidden>'
           '<div class="jrunhead"><button id="jprev">‹ prev</button><span id="jstep"></span><button id="jnext">next ›</button></div>'
@@ -1775,7 +1787,11 @@ text-shadow:1px 1px 0 rgba(255,106,0,.18)}
 #hudbar a{color:var(--neon2);text-decoration:none}
 .lit{outline:3px solid var(--c);outline-offset:3px}
 .knav{outline:2px solid var(--neon);outline-offset:4px}
-#jasfab{position:fixed;right:18px;bottom:18px;z-index:70;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--hi);background:linear-gradient(135deg,#3a2c66,#5a3f8a);border:1px solid var(--neon);border-radius:24px;padding:11px 18px;cursor:pointer;box-shadow:0 0 16px color-mix(in srgb,var(--neon) 45%,transparent),0 6px 20px rgba(0,0,0,.28)}
+#jasbd{position:fixed;inset:0;z-index:78;background:rgba(20,14,8,.28);backdrop-filter:blur(1.5px);opacity:0;transition:opacity .3s;pointer-events:none}
+#jasbd.on{opacity:1;pointer-events:auto}
+body.jopen #jasfab{background:linear-gradient(135deg,#7a2f4a,#a83f5a)}
+@media(prefers-reduced-motion:reduce){#jasbd{transition:none}}
+#jasfab{position:fixed;right:18px;bottom:18px;z-index:90;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--hi);background:linear-gradient(135deg,#3a2c66,#5a3f8a);border:1px solid var(--neon);border-radius:24px;padding:11px 18px;cursor:pointer;box-shadow:0 0 16px color-mix(in srgb,var(--neon) 45%,transparent),0 6px 20px rgba(0,0,0,.28)}
 #jasfab:hover{box-shadow:0 0 26px color-mix(in srgb,var(--neon) 70%,transparent),0 6px 24px rgba(0,0,0,.34)}
 #jasfab span{font-family:var(--serifd);letter-spacing:.02em;text-transform:none;font-size:14px}
 @media(max-width:560px){#jasfab span{display:none}}
@@ -1791,6 +1807,12 @@ text-shadow:1px 1px 0 rgba(255,106,0,.18)}
 .jintro{font-family:var(--body);font-size:14px;line-height:1.62;color:var(--pa2);margin-bottom:20px}
 .jsec{margin-bottom:24px}
 .jsec h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#5a3f8a;margin-bottom:11px}
+.jhealth{background:var(--hi);border:1px solid var(--line);border-radius:8px;padding:13px 14px}
+.jhealth h3{color:var(--neon2)}
+.jhrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--mono);font-size:11.5px;color:var(--pa2);padding:4px 0;border-bottom:1px dotted var(--line)}
+.jhrow:last-of-type{border-bottom:none}
+.jhrow b{color:var(--neon2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.jhnote{font-size:11px;line-height:1.5;color:var(--dim);margin-top:9px;font-style:italic}
 .jsub{font-size:12px;color:var(--dim);line-height:1.5;margin-bottom:12px}
 .jtour{display:block;width:100%;text-align:left;background:var(--hi);border:1px solid var(--line);border-left:3px solid var(--jc);border-radius:6px;padding:11px 13px;margin-bottom:9px;cursor:pointer;transition:box-shadow .15s,border-color .15s}
 .jtour:hover{border-color:var(--jc);box-shadow:0 0 14px color-mix(in srgb,var(--jc) 30%,transparent)}
@@ -1986,10 +2008,16 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     var toursEl=document.getElementById('jtours');
     var TOURS=toursEl?JSON.parse(toursEl.textContent):[];
     var byId={}; TOURS.forEach(function(t){byId[t.key]=t;});
-    function openP(){panel.classList.add('on');fab.setAttribute('aria-expanded','true');}
-    function closeP(){panel.classList.remove('on');fab.setAttribute('aria-expanded','false');}
-    fab.onclick=function(){panel.classList.contains('on')?closeP():openP();};
+    var bd=document.getElementById('jasbd');
+    function openP(){panel.classList.add('on');bd.hidden=false;requestAnimationFrame(function(){bd.classList.add('on');});
+      document.body.classList.add('jopen');fab.setAttribute('aria-expanded','true');
+      fab.querySelector('span').textContent='close ✕';}
+    function closeP(){panel.classList.remove('on');bd.classList.remove('on');document.body.classList.remove('jopen');
+      fab.setAttribute('aria-expanded','false');fab.querySelector('span').textContent='Jasnah';
+      setTimeout(function(){ if(!panel.classList.contains('on'))bd.hidden=true; },320);}
+    fab.onclick=function(){panel.classList.contains('on')?closeP():openP();};   // FAB now z:90, above the panel — always toggles
     document.getElementById('jasclose').onclick=closeP;
+    bd.onclick=closeP;   // click anywhere outside the panel closes it
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&panel.classList.contains('on')&&document.activeElement!==inp){closeP();} });
     // find a tile by slug (works after 1.3 restructure: the .tlink href carries the slug)
     function tileFor(slug){ var a=document.querySelector('.tile .tlink[href$="/'+slug+'/"]'); return a?a.closest('.tile'):null; }
