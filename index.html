@@ -203,6 +203,32 @@ body.jopen #jasfab{background:linear-gradient(135deg,#7a2f4a,#a83f5a)}
 #orrery{display:none;margin:16px auto 0;max-width:1000px;border:1px solid var(--line);border-radius:12px;background:var(--hi);overflow:hidden;box-shadow:inset 0 0 46px rgba(255,106,0,.035)}
 #orr{width:100%;height:clamp(160px,26vw,250px);display:block;cursor:default}
 .orrcap{font-family:var(--mono);color:var(--dim);font-size:11.5px;letter-spacing:.02em;padding:6px 13px 9px;min-height:1.4em;border-top:1px solid var(--line);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.orrtabs{display:flex;gap:2px;padding:7px 10px 0}
+.ot{font-family:var(--mono);font-size:11px;color:var(--dim);background:transparent;border:none;border-bottom:2px solid transparent;padding:6px 12px;cursor:pointer;letter-spacing:.04em}
+.ot:hover{color:var(--pa2)} .ot.on{color:var(--neon);border-bottom-color:var(--neon)}
+.orrpane{height:clamp(160px,26vw,250px);overflow-y:auto;padding:10px 13px}
+.cbar{display:flex;align-items:center;gap:9px;width:100%;background:transparent;border:none;cursor:pointer;padding:3px 3px;font-family:var(--mono);text-align:left}
+.cbar:hover{background:rgba(255,106,0,.05);border-radius:5px}
+.cbar .cn{flex:0 0 150px;color:var(--pa2);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cbar .ctrack{flex:1;height:9px;border-radius:5px;background:rgba(122,102,80,.13);overflow:hidden}
+.cbar .cfill{display:block;height:100%;border-radius:5px;min-width:2px}
+.cbar .cc{flex:0 0 42px;text-align:right;color:var(--dim);font-size:10.5px}
+.benchhint{font-family:var(--mono);font-size:11px;color:var(--dim);margin-bottom:9px;line-height:1.5}
+.benchchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}
+.pchip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-radius:14px;padding:4px 7px 4px 11px;background:var(--ink2)}
+.pchip .pn{cursor:pointer;color:var(--pa2)} .pchip .pn:hover{color:var(--neon)}
+.pchip .px{cursor:pointer;color:var(--dim);font-size:13px;line-height:1} .pchip .px:hover{color:var(--neon2)}
+.benchrow{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.benchrow input{flex:1;min-width:150px;font-family:var(--mono);font-size:11px;color:var(--pa);background:var(--hi);border:1px solid var(--line);border-radius:7px;padding:7px 10px}
+.benchrow input:focus{outline:none;border-color:var(--neon)}
+.benchbtn{font-family:var(--mono);font-size:10.5px;color:var(--dim);background:var(--ink2);border:1px solid var(--line);border-radius:7px;padding:7px 10px;cursor:pointer}
+.benchbtn:hover{border-color:var(--neon);color:var(--neon2)}
+.benchres{display:flex;flex-direction:column;gap:3px;max-height:118px;overflow-y:auto;margin-bottom:8px}
+.benchres button{font-family:var(--mono);font-size:11px;color:var(--pa2);background:transparent;border:1px solid var(--line);border-radius:7px;padding:6px 9px;cursor:pointer;text-align:left}
+.benchres button:hover{border-color:var(--neon);color:var(--neon)}
+.benchnote{width:100%;min-height:46px;font-family:var(--mono);font-size:11px;color:var(--pa2);background:var(--hi);border:1px solid var(--line);border-radius:8px;padding:8px 10px;resize:vertical;margin-top:2px}
+.benchnote:focus{outline:none;border-color:var(--neon)}
+#benchn{color:var(--neon2)}
 .dctl button{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa2);background:var(--ink2);border:1px solid var(--line);border-radius:20px;padding:7px 15px;cursor:pointer}
 .dctl button:hover{color:var(--neon);border-color:var(--neon)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(290px,100%),1fr));gap:14px;margin-top:24px}
@@ -254,7 +280,13 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     <div id="count"><b>1109</b> spheres · <b>38</b> domains · built 2026-07-05 · the .dlw lattice woven through</div>
     <nav class="dnav" aria-label="Domains" id="domains-start"><a href="#agora" style="--c:#2f9e6a;--ct:#1f6846">AGORA</a><a href="#arena" style="--c:#c9a23a;--ct:#68541d">ARENA</a><a href="#aci" style="--c:#7e86e6;--ct:#3c48d9">ARTFULLY CRAFTED INTELLIGENCE</a><a href="#ai" style="--c:#2fd4e6;--ct:#0d626b">ARTIFICIAL INTELLIGENCE</a><a href="#atelier" style="--c:#cc785c;--ct:#89422b">THE ATELIER</a><a href="#biblion" style="--c:#8a6a4a;--ct:#6b533a">BIBLÍON</a><a href="#educational" style="--c:#36c5c0;--ct:#1c6563">EDUCATIONAL</a><a href="#entertainment" style="--c:#ff3da6;--ct:#b0005f">ENTERTAINMENT</a><a href="#eremia" style="--c:#8a7cc8;--ct:#5e4bb2">ERĒMIA</a><a href="#eskimo" style="--c:#6fd0ea;--ct:#126378">ESKIMO BROTHERS</a><a href="#exereunesis" style="--c:#2f9ec0;--ct:#1c6074">EXEREÚNESIS</a><a href="#glossa" style="--c:#3a8a9a;--ct:#2a636e">GLŌSSA</a><a href="#gurutva" style="--c:#3f6fc8;--ct:#2e559f">GURUTVA</a><a href="#hermes" style="--c:#3fb0d8;--ct:#185e77">HERMES</a><a href="#heurema" style="--c:#b5733a;--ct:#774c26">HEÚREMA</a><a href="#hobby" style="--c:#ffce3a;--ct:#735600">HOBBY</a><a href="#lesbos" style="--c:#c2557f;--ct:#933559">I THINK I'M IN LESBIANS WITH YOU</a><a href="#idios" style="--c:#c0962e;--ct:#6b541a">IDIOS</a><a href="#legal" style="--c:#c9a227;--ct:#675314">LEGAL</a><a href="#life-science" style="--c:#43d17a;--ct:#1a6938">LIFE SCIENCE</a><a href="#lillith" style="--c:#c0392b;--ct:#a33024">LILLITH · LADY JUSTICE</a><a href="#logike" style="--c:#88a0ff;--ct:#0336ff">LOGIKĒ</a><a href="#logismos" style="--c:#8ae234;--ct:#37610e">LOGISMÓS</a><a href="#metaxy" style="--c:#5ad6c8;--ct:#186159">METAXÝ</a><a href="#momus" style="--c:#9a7cff;--ct:#4711ff">MOMUS</a><a href="#mythos" style="--c:#7d4fc8;--ct:#6738b4">MYTHOS</a><a href="#niphelektron" style="--c:#7488e6;--ct:#2644d2">NIPHĒLEKTRON</a><a href="#occupational" style="--c:#ff7a3c;--ct:#a23300">OCCUPATIONAL</a><a href="#ouranos" style="--c:#4060c0;--ct:#3651a3">OURANOS</a><a href="#polemos" style="--c:#b0405a;--ct:#95364c">POLEMOS</a><a href="#psephos" style="--c:#2fc6c0;--ct:#186663">PSĒPHOS</a><a href="#frontier" style="--c:#b07cff;--ct:#6300fa">QUANTUM FRONTIER</a><a href="#scientific" style="--c:#5b7cfa;--ct:#1242f8">SCIENTIFIC</a><a href="#solar-jetman" style="--c:#d9a441;--ct:#6f5016">SOLAR JETMAN</a><a href="#techne" style="--c:#6a4fb0;--ct:#6249a2">TECHNĒ</a><a href="#music" style="--c:#e85aa0;--ct:#ab1861">THIS ONE TIME AT BAND CAMP</a><a href="#tin-foil" style="--c:#b9c4d6;--ct:#465877">TIN-FOIL</a><a href="#transcriber" style="--c:#9d7cd8;--ct:#6738bc">THE TRANSCRIBER</a></nav>
     <div class="dctl"><button id="expandAll">▾ expand all</button><button id="collapseAll">▸ collapse all</button></div>
-    <section id="orrery" aria-hidden="true"><canvas id="orr"></canvas><div id="orrcap" class="orrcap">◈ the orrery — hover a spark to name it, click to fly there · 1109 spheres in 38 constellations</div></section>
+    <section id="orrery" aria-hidden="true">
+      <div class="orrtabs" role="tablist"><button class="ot on" data-t="map">◈ map</button><button class="ot" data-t="census">▦ census</button><button class="ot" data-t="bench">⊹ bench <span id="benchn"></span></button></div>
+      <canvas id="orr"></canvas>
+      <div id="census" class="orrpane" hidden></div>
+      <div id="benchtray" class="orrpane" hidden></div>
+      <div id="orrcap" class="orrcap">◈ the orrery — hover to name · click to fly · shift-click to pin · 1109 spheres in 38 constellations</div>
+    </section>
   </header>
   <main>
   <section class="domain" id="agora" style="--c:#2f9e6a;--ct:#1f6846">
@@ -6314,73 +6346,103 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
 <script>
 (function(){
   "use strict";
-  var el=document.getElementById('orrery'), cv=document.getElementById('orr'), cap=document.getElementById('orrcap');
+  var el=document.getElementById('orrery'), cv=document.getElementById('orr'),
+      cap=document.getElementById('orrcap'), censusEl=document.getElementById('census'),
+      trayEl=document.getElementById('benchtray');
   if(!el||!cv) return;
   var ctx; try{ ctx=cv.getContext('2d'); }catch(e){ return; } if(!ctx) return;
   var DATA; try{ DATA=JSON.parse(document.getElementById('corpus').textContent); }catch(e){ return; }
   var doms=DATA.d||[], spheres=DATA.p||[]; if(!doms.length||!spheres.length) return;
   el.style.display='block'; el.setAttribute('aria-hidden','false');
-  var domByK={}; doms.forEach(function(d){ domByK[d.k]=d; });
-  var DFLT='◈ the orrery — hover a spark to name it, click to fly there · '+spheres.length+' spheres in '+doms.length+' constellations';
-  cap.textContent=DFLT;
-  var W=0,H=0,dpr=1,pts=[],hover=-1,dimq='';
+  var domByK={}, slugMap={}; doms.forEach(function(d){ domByK[d.k]=d; }); spheres.forEach(function(p){ slugMap[p.s]=p; });
+  function esc(s){ return (s+'').replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  var MAPCAP='◈ the orrery — hover to name · click to fly · shift-click to pin · '+spheres.length+' spheres in '+doms.length+' constellations';
+  cap.textContent=MAPCAP;
+  var tab='map', W=0,H=0,dpr=1,pts=[],hover=-1,dimq='';
   function fnv(s){ var h=2166136261; for(var i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; }
   function rng(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
   function hexA(hex,al){ hex=(hex||'#8a8a8a').replace('#',''); if(hex.length===3) hex=hex.replace(/(.)/g,'$1$1');
     var r=parseInt(hex.slice(0,2),16), g=parseInt(hex.slice(2,4),16), b=parseInt(hex.slice(4,6),16);
     if(isNaN(r))r=138; if(isNaN(g))g=138; if(isNaN(b))b=138; return 'rgba('+r+','+g+','+b+','+al+')'; }
-  function layout(){
-    var cx=W/2, cy=H/2, GA=2.399963229, maxR=Math.min(W,H*1.9)*0.44, unit=Math.min(W,H)*0.011;
+  function layout(){ var cx=W/2, cy=H/2, GA=2.399963229, maxR=Math.min(W,H*1.9)*0.44, unit=Math.min(W,H)*0.011;
     doms.forEach(function(d,i){ var t=(i+0.6)/doms.length, r=Math.sqrt(t)*maxR, a=i*GA;
-      d.x=Math.max(28,Math.min(W-28, cx+Math.cos(a)*r*1.34));
-      d.y=Math.max(18,Math.min(H-22, cy+Math.sin(a)*r*0.82));
-      d.r=5+Math.sqrt(d.n)*unit; });
-    pts=[];
-    spheres.forEach(function(p){ var d=domByK[p.d]; if(!d) return;
-      var rr=rng(fnv(p.s)), ang=rr()*6.2832, rad=Math.sqrt(rr())*d.r;
-      pts.push({x:d.x+Math.cos(ang)*rad, y:d.y+Math.sin(ang)*rad, s:p.s, n:p.n, dk:p.d, c:p.c}); });
-  }
-  function fit(){ dpr=Math.min(window.devicePixelRatio||1,2);
-    var r=cv.getBoundingClientRect(); W=Math.max(280,r.width); H=Math.max(120,r.height);
+      d.x=Math.max(28,Math.min(W-28, cx+Math.cos(a)*r*1.34)); d.y=Math.max(18,Math.min(H-22, cy+Math.sin(a)*r*0.82)); d.r=5+Math.sqrt(d.n)*unit; });
+    pts=[]; spheres.forEach(function(p){ var d=domByK[p.d]; if(!d) return; var rr=rng(fnv(p.s)), ang=rr()*6.2832, rad=Math.sqrt(rr())*d.r;
+      pts.push({x:d.x+Math.cos(ang)*rad, y:d.y+Math.sin(ang)*rad, s:p.s, n:p.n, dk:p.d, c:p.c}); }); }
+  function fit(){ dpr=Math.min(window.devicePixelRatio||1,2); var r=cv.getBoundingClientRect(); W=Math.max(280,r.width); H=Math.max(120,r.height);
     cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0); layout(); draw(); }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    doms.forEach(function(d){ var g=ctx.createRadialGradient(d.x,d.y,0,d.x,d.y,d.r*1.9);
-      g.addColorStop(0,hexA(d.a,0.13)); g.addColorStop(1,hexA(d.a,0));
+  function draw(){ ctx.clearRect(0,0,W,H);
+    doms.forEach(function(d){ var g=ctx.createRadialGradient(d.x,d.y,0,d.x,d.y,d.r*1.9); g.addColorStop(0,hexA(d.a,0.13)); g.addColorStop(1,hexA(d.a,0));
       ctx.fillStyle=g; ctx.beginPath(); ctx.arc(d.x,d.y,d.r*1.9,0,6.2832); ctx.fill(); });
-    for(var i=0;i<pts.length;i++){ var p=pts[i], on=(i===hover);
-      var dm=domByK[p.dk], dim=dimq && p.n.toLowerCase().indexOf(dimq)<0 && (dm? dm.t.toLowerCase().indexOf(dimq)<0 : true);
-      ctx.globalAlpha= dim?0.07 : (on?1:0.8);
-      ctx.fillStyle=p.c||'#8a7a55'; ctx.beginPath(); ctx.arc(p.x,p.y, on?3.4:1.55, 0,6.2832); ctx.fill(); }
+    for(var i=0;i<pts.length;i++){ var p=pts[i], on=(i===hover), dm=domByK[p.dk], dim=dimq && p.n.toLowerCase().indexOf(dimq)<0 && (dm? dm.t.toLowerCase().indexOf(dimq)<0 : true);
+      ctx.globalAlpha= dim?0.07 : (on?1:0.8); ctx.fillStyle=p.c||'#8a7a55'; ctx.beginPath(); ctx.arc(p.x,p.y, on?3.4:1.55, 0,6.2832); ctx.fill(); }
     ctx.globalAlpha=1;
-    if(hover>=0){ var h=pts[hover]; ctx.beginPath(); ctx.arc(h.x,h.y,6.5,0,6.2832);
-      ctx.strokeStyle=h.c||'#8a7a55'; ctx.lineWidth=1.1; ctx.globalAlpha=0.7; ctx.stroke(); ctx.globalAlpha=1; }
+    if(hover>=0){ var h=pts[hover]; ctx.beginPath(); ctx.arc(h.x,h.y,6.5,0,6.2832); ctx.strokeStyle=h.c||'#8a7a55'; ctx.lineWidth=1.1; ctx.globalAlpha=0.7; ctx.stroke(); ctx.globalAlpha=1; }
     ctx.font='9px ui-monospace,Menlo,Consolas,monospace'; ctx.textAlign='center';
-    doms.forEach(function(d){ ctx.fillStyle=hexA(d.a,0.6); var lab=d.t.length>13?d.t.slice(0,12)+'…':d.t;
-      ctx.fillText(lab, d.x, d.y - d.r*1.9 - 3); });
-  }
+    doms.forEach(function(d){ ctx.fillStyle=hexA(d.a,0.6); var lab=d.t.length>13?d.t.slice(0,12)+'…':d.t; ctx.fillText(lab, d.x, d.y - d.r*1.9 - 3); }); }
   function nearest(mx,my){ var best=-1, bd=13*13; for(var i=0;i<pts.length;i++){ var dx=pts[i].x-mx, dy=pts[i].y-my, dd=dx*dx+dy*dy; if(dd<bd){ bd=dd; best=i; } } return best; }
   var pend=false;
-  cv.addEventListener('mousemove',function(e){ var r=cv.getBoundingClientRect(), idx=nearest(e.clientX-r.left,e.clientY-r.top);
-    if(idx!==hover){ hover=idx;
-      if(idx>=0){ var p=pts[idx], dt=domByK[p.dk]?domByK[p.dk].t:p.dk; cap.textContent='◈ '+p.n+'   ·   '+dt; cv.style.cursor='pointer'; }
-      else { cap.textContent=DFLT; cv.style.cursor='default'; }
-      if(!pend){ pend=true; requestAnimationFrame(function(){ pend=false; draw(); }); } } });
-  cv.addEventListener('mouseleave',function(){ if(hover!==-1){ hover=-1; cap.textContent=DFLT; cv.style.cursor='default'; draw(); } });
+  cv.addEventListener('mousemove',function(e){ if(tab!=='map')return; var r=cv.getBoundingClientRect(), idx=nearest(e.clientX-r.left,e.clientY-r.top);
+    if(idx!==hover){ hover=idx; if(idx>=0){ var p=pts[idx], dt=domByK[p.dk]?domByK[p.dk].t:p.dk; cap.textContent='◈ '+p.n+'   ·   '+dt; cv.style.cursor='pointer'; }
+      else { cap.textContent=MAPCAP; cv.style.cursor='default'; } if(!pend){ pend=true; requestAnimationFrame(function(){ pend=false; draw(); }); } } });
+  cv.addEventListener('mouseleave',function(){ if(hover!==-1){ hover=-1; cap.textContent=MAPCAP; cv.style.cursor='default'; draw(); } });
   cv.addEventListener('click',function(e){ var r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top, idx=nearest(mx,my);
-    if(idx>=0){ flyToSlug(pts[idx].s); return; }
-    var bd=1e9, dk=null; doms.forEach(function(d){ var dx=d.x-mx, dy=d.y-my, dd=dx*dx+dy*dy; if(dd<bd){ bd=dd; dk=d.k; } });
-    if(dk && bd<160*160) openDomain(dk); });
+    if(idx>=0){ if(e.shiftKey){ pin(pts[idx].s); cap.textContent='‹ pinned '+pts[idx].n+' ›'; return; } flyToSlug(pts[idx].s); return; }
+    var bd=1e9, dk=null; doms.forEach(function(d){ var dx=d.x-mx, dy=d.y-my, dd=dx*dx+dy*dy; if(dd<bd){ bd=dd; dk=d.k; } }); if(dk && bd<160*160) openDomain(dk); });
   function flyToSlug(slug){ var a=document.querySelector('.tile .tlink[href$="/'+slug+'/"]')||document.querySelector('.clset a.cm[href$="/'+slug+'/"]');
-    if(!a){ for(var i=0;i<spheres.length;i++) if(spheres[i].s===slug){ openDomain(spheres[i].d); break; } return; }
-    var det=a.closest('details'); if(det) det.open=true;
-    var tile=a.closest('.tile')||a; tile.scrollIntoView({block:'center'});
+    if(!a){ if(slugMap[slug]) openDomain(slugMap[slug].d); return; }
+    var det=a.closest('details'); if(det) det.open=true; var tile=a.closest('.tile')||a; tile.scrollIntoView({block:'center'});
     tile.classList.add('lit'); setTimeout(function(){ tile.classList.remove('lit'); },1600); }
-  function openDomain(key){ var sec=document.getElementById(key); if(!sec) return;
-    var det=sec.querySelector('details.dom-d'); if(det) det.open=true; sec.scrollIntoView({block:'start'}); }
-  var qt=0; (function wireQ(){ var q=document.getElementById('q'); if(!q){ if(qt++<30) setTimeout(wireQ,400); return; }
-    q.addEventListener('input',function(){ dimq=(q.value||'').trim().toLowerCase(); draw(); }); })();
-  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(fit,160); });
+  function openDomain(key){ var sec=document.getElementById(key); if(!sec) return; var det=sec.querySelector('details.dom-d'); if(det) det.open=true; sec.scrollIntoView({block:'start'}); }
+  function hrefFor(sl){ var a=document.querySelector('.tile .tlink[href$="/'+sl+'/"]')||document.querySelector('.clset a.cm[href$="/'+sl+'/"]'); return a?a.getAttribute('href'):null; }
+
+  /* tabs */
+  function setTab(t){ tab=t; var o=document.querySelectorAll('.ot'); for(var i=0;i<o.length;i++) o[i].classList.toggle('on',o[i].getAttribute('data-t')===t);
+    cv.style.display=(t==='map')?'block':'none'; censusEl.hidden=(t!=='census'); trayEl.hidden=(t!=='bench');
+    if(t==='map'){ fit(); cap.textContent=MAPCAP; }
+    else if(t==='census'){ renderCensus(); cap.textContent='▦ census — every domain by weight · click a bar to open it'; }
+    else { renderBench(); cap.textContent='‹ bench — your pinned spheres, kept in this browser across visits'; } }
+  var otb=document.querySelectorAll('.ot'); for(var oi=0;oi<otb.length;oi++){ (function(b){ b.onclick=function(){ setTab(b.getAttribute('data-t')); }; })(otb[oi]); }
+
+  /* census (the readout) */
+  var byCount=doms.slice().sort(function(a,b){ return b.n-a.n; }), maxN=((byCount[0]||{}).n)||1, censusBuilt=false;
+  function renderCensus(){ if(censusBuilt) return; censusBuilt=true;
+    censusEl.innerHTML=byCount.map(function(d){ return '<button class="cbar" data-k="'+esc(d.k)+'" title="'+esc(d.t)+' · '+d.n+' spheres"><span class="cn">'+esc(d.t)+'</span><span class="ctrack"><i class="cfill" style="width:'+(d.n/maxN*100).toFixed(1)+'%;background:'+esc(d.a)+'"></i></span><span class="cc">'+d.n+'</span></button>'; }).join('');
+    var bs=censusEl.querySelectorAll('.cbar'); for(var i=0;i<bs.length;i++){ (function(b){ b.onclick=function(){ openDomain(b.getAttribute('data-k')); }; })(bs[i]); } }
+
+  /* bench (pins + notes + share) */
+  var LS='ud0:bench', pins=[], note='';
+  function loadBench(){ try{ var o=JSON.parse(localStorage.getItem(LS)||'{}'); if(o.pins) pins=o.pins.filter(function(sl){ return slugMap[sl]; }); if(typeof o.note==='string') note=o.note; }catch(e){}
+    try{ var m=/[?&]pins=([^&]+)/.exec(location.search); if(m){ decodeURIComponent(m[1]).split(',').forEach(function(sl){ if(sl&&slugMap[sl]&&pins.indexOf(sl)<0) pins.push(sl); }); } }catch(e){} }
+  function saveBench(){ try{ localStorage.setItem(LS, JSON.stringify({pins:pins,note:note})); }catch(e){} badge(); }
+  function badge(){ var b=document.getElementById('benchn'); if(b) b.textContent=pins.length?('· '+pins.length):''; }
+  function pin(sl){ if(slugMap[sl] && pins.indexOf(sl)<0){ pins.push(sl); saveBench(); if(tab==='bench') renderBench(); } }
+  function unpin(sl){ var i=pins.indexOf(sl); if(i>=0){ pins.splice(i,1); saveBench(); renderBench(); } }
+  function renderBench(){
+    var chips = pins.length ? pins.map(function(sl){ var p=slugMap[sl]; return '<span class="pchip"><span class="pn" data-s="'+esc(sl)+'">'+esc(p?p.n:sl)+'</span><span class="px" data-s="'+esc(sl)+'" title="unpin">×</span></span>'; }).join('')
+      : '<span class="benchhint">no pins yet — shift-click a spark in the map, or search below.</span>';
+    trayEl.innerHTML='<div class="benchhint">Your bench — pin spheres to keep them at hand (saved in this browser).</div>'
+      +'<div class="benchchips">'+chips+'</div>'
+      +'<div class="benchrow"><input id="benchq" placeholder="pin a sphere by name…" autocomplete="off"><button class="benchbtn" id="benchopen">open all ↗</button><button class="benchbtn" id="benchshare">copy link</button><button class="benchbtn" id="benchclear">clear</button></div>'
+      +'<div class="benchres" id="benchres"></div>'
+      +'<textarea class="benchnote" id="benchnote" placeholder="scratch notes — saved in this browser…"></textarea>';
+    var pn=trayEl.querySelectorAll('.pchip .pn'); for(var i=0;i<pn.length;i++){ (function(x){ x.onclick=function(){ flyToSlug(x.getAttribute('data-s')); }; })(pn[i]); }
+    var px=trayEl.querySelectorAll('.pchip .px'); for(var j=0;j<px.length;j++){ (function(x){ x.onclick=function(){ unpin(x.getAttribute('data-s')); }; })(px[j]); }
+    var q=document.getElementById('benchq'), res=document.getElementById('benchres');
+    q.oninput=function(){ var v=q.value.trim().toLowerCase(); if(!v){ res.innerHTML=''; return; }
+      var m=spheres.filter(function(p){ return p.n.toLowerCase().indexOf(v)>=0 || p.s.indexOf(v)>=0; }).slice(0,8);
+      res.innerHTML=m.map(function(p){ return '<button data-s="'+esc(p.s)+'">'+esc(p.n)+' <span style="color:var(--dim)">'+esc(p.s)+'</span></button>'; }).join('');
+      var rb=res.querySelectorAll('button'); for(var k=0;k<rb.length;k++){ (function(b){ b.onclick=function(){ pin(b.getAttribute('data-s')); q.value=''; res.innerHTML=''; }; })(rb[k]); } };
+    document.getElementById('benchopen').onclick=function(){ if(!pins.length){ cap.textContent='‹ nothing pinned yet ›'; return; } pins.forEach(function(sl){ var h=hrefFor(sl); if(h) window.open(h,'_blank','noopener'); }); };
+    document.getElementById('benchshare').onclick=function(){ var u=location.origin+location.pathname+'?pins='+encodeURIComponent(pins.join(',')); if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(u).then(function(){ cap.textContent='‹ link copied — '+pins.length+' pins ›'; },function(){ prompt('share link:',u); }); } else { prompt('share link:',u); } };
+    document.getElementById('benchclear').onclick=function(){ pins=[]; saveBench(); renderBench(); };
+    var nt=document.getElementById('benchnote'); nt.value=note; nt.oninput=function(){ note=nt.value; saveBench(); };
+  }
+
+  loadBench(); badge();
+  var rt; window.addEventListener('resize',function(){ if(tab==='map'){ clearTimeout(rt); rt=setTimeout(fit,160); } });
+  (function wireQ(){ var q=document.getElementById('q'); if(!q){ wireQ.t=(wireQ.t||0)+1; if(wireQ.t<30) setTimeout(wireQ,400); return; }
+    q.addEventListener('input',function(){ dimq=(q.value||'').trim().toLowerCase(); if(tab==='map') draw(); }); })();
   fit();
 })();
 </script>
