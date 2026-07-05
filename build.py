@@ -1397,11 +1397,13 @@ def medallion(idx, accent, key):
     nf = f'<filter id="nf{key}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
     _img = _domain_img(key)
     if _img:
+        # clip on the OUTER group so the window stays fixed while the picture (the knife) dances
+        # inside it; image oversized 96x96 vs the r=44 window so the +-2.5px bob never shows edge
         _imgdefs = f'<clipPath id="aciclip{key}"><circle cx="65" cy="65" r="44"/></clipPath>'
-        _center = f'<image href="{_img}" x="21" y="21" width="88" height="88" clip-path="url(#aciclip{key})" preserveAspectRatio="xMidYMid slice"/>'
+        _center = f'<g clip-path="url(#aciclip{key})"><g class="knife" style="animation-delay:-{(idx*0.37)%2.8:.2f}s"><image href="{_img}" x="17" y="17" width="96" height="96" preserveAspectRatio="xMidYMid slice"/></g></g>'
     else:
         _imgdefs = ''
-        _center = f'<g transform="translate(65,65)">{ICONS[key]}</g>'
+        _center = f'<g transform="translate(65,65)"><g class="knife" style="animation-delay:-{(idx*0.37)%2.8:.2f}s">{ICONS[key]}</g></g>'
     return f'''<svg class="med" viewBox="0 0 130 130" width="118" height="118" aria-hidden="true" style="color:{accent}">
       <defs>{glow}{nf}{_imgdefs}</defs>
       <circle cx="65" cy="65" r="62" fill="#241a10"/>
@@ -1451,9 +1453,17 @@ def render_members(members):
             out.extend(tile(s) for s in items)
     return "".join(out)
 
+import unicodedata as _ud
+def _alpha_key(title):
+    t=_ud.normalize('NFD', title)
+    t=''.join(c for c in t if not _ud.combining(c)).upper()
+    if t.startswith('THE '): t=t[4:]
+    return t
+# alphabetical DISPLAY order; the enumerate index (the domain's number) travels with it
+DOMAINS_ALPHA = sorted(enumerate(DOMAINS, 1), key=lambda t: _alpha_key(t[1][1]))
 def domains_html():
     out = []
-    for i,(key,title,accent,blurb) in enumerate(DOMAINS, 1):
+    for i,(key,title,accent,blurb) in DOMAINS_ALPHA:
         members = BY_DOMAIN[key]
         if members:
             body = f'<div class="tiles">{render_members(members)}</div>'
@@ -1472,7 +1482,7 @@ def domains_html():
     return "\n".join(out)
 
 def dnav():
-    chips = "".join(f'<a href="#{key}" style="--c:{accent}">{title}</a>' for key,title,accent,_b in DOMAINS)
+    chips = "".join(f'<a href="#{key}" style="--c:{accent}">{title}</a>' for _i,(key,title,accent,_b) in DOMAINS_ALPHA)
     return f'<nav class="dnav">{chips}</nav>'
 
 PAGE = """<!DOCTYPE html>
@@ -1520,6 +1530,9 @@ border:1px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:20px;
 @keyframes medpulse{0%,100%{filter:drop-shadow(0 0 10px color-mix(in srgb,var(--c) 45%,transparent))}50%{filter:drop-shadow(0 0 24px color-mix(in srgb,var(--c) 78%,transparent))}}
 @media(prefers-reduced-motion:reduce){.med{animation:none;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--c) 40%,transparent))}}
 .med .stitch{transform-box:fill-box;transform-origin:center;transition:opacity .2s}
+.med .knife{animation:knifedance 2.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes knifedance{0%,100%{transform:rotate(-11deg)}22%{transform:rotate(9deg) translateY(-2.5px)}50%{transform:rotate(-7deg) translateY(1px)}76%{transform:rotate(12deg) translateY(-2px)}}
+@media(prefers-reduced-motion:reduce){.med .knife{animation:none}}
 .dhead:hover .med .stitch{animation:stitchspin 9s linear infinite;opacity:.85}
 @keyframes stitchspin{to{transform:rotate(360deg)}}
 .dmeta{flex:1;min-width:240px}
