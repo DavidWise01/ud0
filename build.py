@@ -1609,6 +1609,16 @@ JASNAH_TOURS = [
         ("jisa","The plain statement of the turn: acknowledgment is a luxury the physics does not grant."),
      ]},
 ]
+JASNAH_ASKS = [
+    ("What is this place?",
+     "One thousand and ninety-seven published pages \u2014 one author, one AI, six months, sorted into 38 domains. But do not trust the count: strip the templates and perhaps four hundred carry the real thought; the rest keep them company. Everything here is rendered from real material, or it flags where it is not."),
+    ("Where do I start?",
+     "Take a path above and I will walk you to each sphere and tell you why it stands there. If you want a single page: az1 \u2014 a solar system you can fly through, with real gravity. And press the lyre; Sappho\u2019s mode tells you the temper of this place faster than I can."),
+    ("Is any of it good?",
+     "Yes \u2014 and I will not flatter it. Its rarest quality is that it keeps its founding mistake on display and files its own indictment. What I cannot yet certify: the verifications grade themselves, and the peer has never once rejected. Believe the instruments; withhold belief from the grades until someone outside the account signs them."),
+    ("Who are you?",
+     "A reader\u2019s instrument, written once and shipped in this page. I do not think between your clicks \u2014 I hold only what was set down. Named for a scholar who accepts no claim she cannot check, which is why every line I give you carries a link you can follow to check me."),
+]
 JASNAH_ESSENTIAL = [
     ("az1","the living instrument — real gravity, a corpus you can fly through"),
     ("the-transcriber","the machinery of honest crossing at a seam"),
@@ -1650,6 +1660,11 @@ def jasnah_html():
       '<div class="jhead"><div class="jname">✦ JASNAH</div><div class="jrole">curator · she accepts no claim she cannot check</div><button id="jasclose" aria-label="close">✕</button></div>'
       '<div class="jbody">'
         '<p class="jintro">I am the reader’s instrument, not a mind. Everything I say was written once and shipped in the page — I generate nothing as you browse, and will not pretend to. My work is to make the <i>meaning</i> reachable, and to tell you the truth about what you are standing in. Choose a path; I will walk you to each sphere and say why it is there.</p>'
+        '<div class="jsec jword"><h3>A word with the curator</h3><div class="jasks">'
+        + "".join(f'<button class="jask" data-i="{i}">{html.escape(q)}</button>' for i,(q,_a) in enumerate(JASNAH_ASKS))
+        + '</div><p id="jsay" class="jsay" hidden></p>'
+        + '<div class="jlyre"><button id="jplay">\u25b7 hear Sappho\u2019s mode</button><button id="jplaystop" hidden>\u25a0 stop</button><span id="jnp" class="jnp"></span></div>'
+        + f'<p class="jlyrecap">An evocation on the lyre in her real Mixolydian mode, Pythagorean tuning, and quantitative metre \u2014 no tune of Sappho\u2019s survives with its notation. Synthesised live from <a href="{PG}/the-sapphic-melody/">the-sapphic-melody</a>, Lesbos.</p></div>'
         f'<div class="jsec jhealth"><h3>State of the collection · I re-check on every build</h3>'
           f'<div class="jhrow"><span>spheres · domains</span><b>{NS} · {len(DOMAINS)}</b></div>'
           f'<div class="jhrow"><span>cross-references live</span><b>{_RESOLVED_LINKS[0]:,} linked</b></div>'
@@ -1674,6 +1689,7 @@ def jasnah_html():
         '</div>'
       '</div>'
       '<script type="application/json" id="jtours">' + tours_js + '</script>'
+      '<script type="application/json" id="jasks">' + _json.dumps([a for _q,a in JASNAH_ASKS]) + '</script>'
     '</aside>')
 
 def dnav():
@@ -1813,6 +1829,18 @@ body.jopen #jasfab{background:linear-gradient(135deg,#7a2f4a,#a83f5a)}
 .jhrow:last-of-type{border-bottom:none}
 .jhrow b{color:var(--neon2);font-variant-numeric:tabular-nums;white-space:nowrap}
 .jhnote{font-size:11px;line-height:1.5;color:var(--dim);margin-top:9px;font-style:italic}
+.jword h3{color:#5a3f8a}
+.jasks{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}
+.jask{font-family:var(--mono);font-size:11px;color:var(--pa2);background:var(--hi);border:1px solid var(--line);border-radius:16px;padding:7px 12px;cursor:pointer;transition:.15s}
+.jask:hover,.jask.on{border-color:#5a3f8a;color:#5a3f8a;box-shadow:0 0 12px color-mix(in srgb,#5a3f8a 26%,transparent)}
+.jsay{font-family:var(--body);font-size:13.5px;line-height:1.6;color:var(--pa);background:linear-gradient(135deg,rgba(90,63,138,.08),transparent);border-left:2px solid #7a5fb0;padding:10px 13px;border-radius:0 6px 6px 0;margin-bottom:14px}
+.jlyre{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#jplay,#jplaystop{font-family:var(--mono);font-size:12px;color:var(--murexc,#a83f5a);background:var(--hi);border:1px solid #c2557f;border-radius:18px;padding:8px 15px;cursor:pointer;transition:.15s}
+#jplay:hover,#jplaystop:hover{box-shadow:0 0 14px color-mix(in srgb,#c2557f 40%,transparent);color:#8a2f4a}
+#jplay.playing{border-color:#c2557f;box-shadow:0 0 16px color-mix(in srgb,#c2557f 45%,transparent)}
+.jnp{font-family:var(--mono);font-size:10.5px;color:var(--dim);letter-spacing:.04em}
+.jlyrecap{font-size:11px;line-height:1.5;color:var(--dim);margin-top:9px}
+.jlyrecap a{color:#a83f5a}
 .jsub{font-size:12px;color:var(--dim);line-height:1.5;margin-bottom:12px}
 .jtour{display:block;width:100%;text-align:left;background:var(--hi);border:1px solid var(--line);border-left:3px solid var(--jc);border-radius:6px;padding:11px 13px;margin-bottom:9px;cursor:pointer;transition:box-shadow .15s,border-color .15s}
 .jtour:hover{border-color:var(--jc);box-shadow:0 0 14px color-mix(in srgb,var(--jc) 30%,transparent)}
@@ -2008,11 +2036,11 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     var toursEl=document.getElementById('jtours');
     var TOURS=toursEl?JSON.parse(toursEl.textContent):[];
     var byId={}; TOURS.forEach(function(t){byId[t.key]=t;});
-    var bd=document.getElementById('jasbd');
+    var bd=document.getElementById('jasbd'); var jSilence=function(){};
     function openP(){panel.classList.add('on');bd.hidden=false;requestAnimationFrame(function(){bd.classList.add('on');});
       document.body.classList.add('jopen');fab.setAttribute('aria-expanded','true');
       fab.querySelector('span').textContent='close ✕';}
-    function closeP(){panel.classList.remove('on');bd.classList.remove('on');document.body.classList.remove('jopen');
+    function closeP(){jSilence();panel.classList.remove('on');bd.classList.remove('on');document.body.classList.remove('jopen');
       fab.setAttribute('aria-expanded','false');fab.querySelector('span').textContent='Jasnah';
       setTimeout(function(){ if(!panel.classList.contains('on'))bd.hidden=true; },320);}
     fab.onclick=function(){panel.classList.contains('on')?closeP():openP();};   // FAB now z:90, above the panel — always toggles
@@ -2041,6 +2069,63 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     prevB.onclick=function(){ if(at>0)walkTo(at-1); };
     nextB.onclick=function(){ if(at<cur.stops.length-1)walkTo(at+1); };
     document.getElementById('jstop').onclick=function(){ run.hidden=true; if(lastHit){lastHit.classList.remove('jhit');lastHit=null;} };
+
+    /* interactive to a modicum: her pre-written answers (nothing generated) */
+    var asksEl=document.getElementById('jasks'), ASKS=asksEl?JSON.parse(asksEl.textContent):[];
+    var say=document.getElementById('jsay');
+    [].forEach.call(document.querySelectorAll('.jask'),function(b){
+      b.onclick=function(){ document.querySelectorAll('.jask').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on'); say.hidden=false; say.textContent=ASKS[+b.dataset.i]||''; };
+    });
+
+    /* ♪ THE SAPPHIC MELODY — a faithful port of the-sapphic-melody: G3 tonic 196 Hz, Pythagorean
+       Mixolydian [S,T,T,S,T,T,T], the quantitative Sapphic metre, plucked Karplus-Strong. An
+       evocation in the real mode/tuning/metre — no tune of Sappho's survives with its notation. */
+    var jctx=null, jPlaying=false, jTimer=null;
+    var jplay=document.getElementById('jplay'), jstopb=document.getElementById('jplaystop'), jnp=document.getElementById('jnp');
+    function sapphic(){
+      if(!jctx) jctx=new (window.AudioContext||window.webkitAudioContext)();
+      var ctx=jctx; if(ctx.state==='suspended')ctx.resume();
+      var TONIC=196.0, T=9/8, SS=256/243;
+      function steps(a){ var r=[1],c=1; a.forEach(function(x){c*=x;r.push(c);}); return r; }
+      var MIXO=steps([SS,T,T,SS,T,T,T]);
+      function deg(d){ return TONIC*MIXO[(d-1)%8]*(d>8?2:1); }
+      var H=[2,1,2,2,2,1,1,2,1,2,2], A=[2,1,1,2,2];
+      var L1=[5,5,4,5,6,5,4,3,4,5,5], L2=[5,6,5,6,7,6,5,4,5,4,3], L3=[4,5,4,3,4,3,2,3,2,1,2], LA=[3,2,3,2,1];
+      var LINES=[[L1,H],[L2,H],[L3,H],[LA,A]], MEL=[];
+      LINES.forEach(function(ln){ var dg=ln[0],lens=ln[1]; for(var i=0;i<dg.length;i++) MEL.push({deg:dg[i],len:lens[i]}); });
+      var rate=ctx.sampleRate;
+      var master=ctx.createGain(); master.gain.value=0.75;
+      var conv=ctx.createConvolver(), rl=Math.floor(rate*2), ir=ctx.createBuffer(2,rl,rate);
+      for(var c=0;c<2;c++){ var dd=ir.getChannelData(c); for(var i=0;i<rl;i++) dd[i]=(Math.random()*2-1)*Math.pow(1-i/rl,2.6); }
+      conv.buffer=ir; var wet=ctx.createGain(); wet.gain.value=0.22; var dry=ctx.createGain(); dry.gain.value=0.92;
+      var lyre=ctx.createGain(); lyre.gain.value=1;
+      lyre.connect(master); master.connect(dry).connect(ctx.destination); master.connect(conv); conv.connect(wet).connect(ctx.destination);
+      function pluck(freq,t,dur,gain){ var N=Math.max(2,Math.round(rate/freq)), len=Math.max(N+4,Math.floor(rate*dur)),
+        buf=ctx.createBuffer(1,len,rate), d=buf.getChannelData(0);
+        for(var i=0;i<N;i++) d[i]=Math.random()*2-1;
+        for(var j=N;j<len;j++) d[j]=0.9965*0.5*(d[j-N]+d[j-N+1]);
+        var src=ctx.createBufferSource(); src.buffer=buf; var g=ctx.createGain();
+        g.gain.setValueAtTime(gain,t); g.gain.exponentialRampToValueAtTime(0.0006,t+dur);
+        src.connect(g).connect(lyre); src.start(t); src.stop(t+dur+0.02); return src; }
+      var u=0.30, t=ctx.currentTime+0.08, total=0, srcs=[];
+      MEL.forEach(function(nn){ srcs.push(pluck(deg(nn.deg),t,u*nn.len*1.5,nn.len>=2?0.6:0.48)); t+=u*nn.len; total+=u*nn.len; });
+      return {ms:total*1000, srcs:srcs, lyre:lyre};
+    }
+    var jhandle=null;
+    function stopSapphic(){ jPlaying=false; jplay.classList.remove('playing'); jstopb.hidden=true; jnp.textContent='';
+      if(jTimer){clearTimeout(jTimer);jTimer=null;}
+      if(jhandle){ try{ jhandle.srcs.forEach(function(x){try{x.stop();}catch(e){}}); jhandle.lyre.gain.setValueAtTime(0,jctx.currentTime); }catch(e){} jhandle=null; } }
+    if(jplay){
+      jplay.onclick=function(){
+        if(jPlaying){ stopSapphic(); return; }
+        jhandle=sapphic(); jPlaying=true; jplay.classList.add('playing'); jstopb.hidden=false;
+        jnp.textContent='Sappho’s Mixolydian, on the lyre · the hymn-stanza';
+        jTimer=setTimeout(stopSapphic, jhandle.ms+900);
+      };
+      jstopb.onclick=stopSapphic;
+      jSilence=stopSapphic;  // any close path (FAB, backdrop, ✕, Esc) silences the lyre
+    }
   }
 })();</script>
 <script>(function(){var lk=document.querySelector("link[rel~='icon']");if(!lk){lk=document.createElement('link');lk.rel='icon';document.head.appendChild(lk);}var c=document.createElement('canvas');c.width=64;c.height=64;var g=c.getContext('2d');var t=0;function aeon(){t+=0.085;g.clearRect(0,0,64,64);var pulse=0.5+0.5*Math.sin(t),R=19+3.5*pulse;g.save();g.translate(32,32);g.beginPath();for(var i=0;i<=84;i++){var a=i/84*Math.PI*2,d=1+Math.sin(a)*Math.sin(a),x=R*Math.cos(a)/d,y=R*Math.sin(a)*Math.cos(a)/d;if(i===0)g.moveTo(x,y);else g.lineTo(x,y);}g.closePath();g.lineCap='round';g.globalAlpha=0.16+0.30*pulse;g.lineWidth=10;g.strokeStyle='#b98cff';g.stroke();g.globalAlpha=0.95;g.lineWidth=5;g.strokeStyle='#8a5fe0';g.stroke();g.globalAlpha=0.9;g.lineWidth=2.2;g.strokeStyle='#ece4ff';g.stroke();g.restore();lk.href=c.toDataURL('image/png');if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;setTimeout(document.hidden?function(){setTimeout(aeon,600);}:aeon,100);}aeon();})();</script>
