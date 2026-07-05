@@ -1582,6 +1582,13 @@ text-shadow:1px 1px 0 rgba(255,106,0,.18)}
 .dblurb{font-size:14px;color:var(--pa2);font-style:italic;margin-top:8px;max-width:70ch;line-height:1.6}
 .dcount{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;margin-top:8px}
 @media(max-width:640px){.dnav{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch}}
+.dnav a{position:relative}
+.dnav a::before{content:"";position:absolute;inset:-3px;border-radius:999px;opacity:0;pointer-events:none;
+  background:conic-gradient(from 0deg,transparent 0 70%,color-mix(in srgb,var(--c) 90%,transparent) 88%,transparent 100%);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px));
+          mask:radial-gradient(farthest-side,transparent calc(100% - 4px),#000 calc(100% - 3px))}
+.dnav a:hover::before{opacity:1;animation:halospin 2.4s linear infinite}
+@media(prefers-reduced-motion:reduce){.dnav a:hover::before{animation:none;opacity:.6}}
 #count,.dcount,.clc{font-variant-numeric:tabular-nums}
 #q{font-family:var(--mono);font-size:12px;color:var(--pa);background:var(--hi);border:1px solid var(--line);border-radius:4px;padding:9px 12px;min-width:min(300px,72vw)}
 #q:focus{border-color:var(--neon)}
@@ -1733,18 +1740,29 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
   var count=document.getElementById('count');
   if(count&&'IntersectionObserver' in window){
     var bar=document.createElement('div'); bar.id='hudbar';
-    bar.innerHTML=count.innerHTML+' <a href="#domains-start">↑ top</a>';
-    document.body.appendChild(bar);
-    new IntersectionObserver(function(en){ bar.classList.toggle('on',!en[0].isIntersecting); },{rootMargin:'-10px'}).observe(count);
+    var barTxt=document.createElement('span'); barTxt.innerHTML=count.innerHTML+' <a href="#domains-start">↑ top</a> ';
+    bar.appendChild(barTxt); document.body.appendChild(bar);
+    var home=inp.parentNode, homeNext=inp.nextSibling;
+    new IntersectionObserver(function(en){
+      var on=!en[0].isIntersecting; bar.classList.toggle('on',on);
+      /* dock the search into the bar when the header scrolls away — so filtering never scrolls out
+         of reach. Guarded: never reparent while the user is typing in it. */
+      if(document.activeElement===inp) return;
+      if(on&&inp.parentNode!==bar){bar.appendChild(inp);}
+      else if(!on&&inp.parentNode===bar){home.insertBefore(inp,homeNext);}
+    },{rootMargin:'-10px'}).observe(count);
   }
 })();</script>
 <script>(function(){var lk=document.querySelector("link[rel~='icon']");if(!lk){lk=document.createElement('link');lk.rel='icon';document.head.appendChild(lk);}var c=document.createElement('canvas');c.width=64;c.height=64;var g=c.getContext('2d');var t=0;function aeon(){t+=0.085;g.clearRect(0,0,64,64);var pulse=0.5+0.5*Math.sin(t),R=19+3.5*pulse;g.save();g.translate(32,32);g.beginPath();for(var i=0;i<=84;i++){var a=i/84*Math.PI*2,d=1+Math.sin(a)*Math.sin(a),x=R*Math.cos(a)/d,y=R*Math.sin(a)*Math.cos(a)/d;if(i===0)g.moveTo(x,y);else g.lineTo(x,y);}g.closePath();g.lineCap='round';g.globalAlpha=0.16+0.30*pulse;g.lineWidth=10;g.strokeStyle='#b98cff';g.stroke();g.globalAlpha=0.95;g.lineWidth=5;g.strokeStyle='#8a5fe0';g.stroke();g.globalAlpha=0.9;g.lineWidth=2.2;g.strokeStyle='#ece4ff';g.stroke();g.restore();lk.href=c.toDataURL('image/png');if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;setTimeout(document.hidden?function(){setTimeout(aeon,600);}:aeon,100);}aeon();})();</script>
 </div></body></html>
 """
 
+_URI_CACHE={}
 def _data_uri(fname, mime):
     # inline an image as a base64 data URI so the hero is self-contained — never 404s on any mirror (ud0, 0root.ai, local).
     # PNGs are re-encoded to WebP q80 (measured: the 38 medallions drop 1.98 MB -> ~0.11 MB, page gzip -67%).
+    # Memoized: the same file inlined twice costs bytes once.
+    if fname in _URI_CACHE: return _URI_CACHE[fname]
     import base64
     path=os.path.join(HERE, fname)
     if mime=="image/png":
@@ -1753,11 +1771,13 @@ def _data_uri(fname, mime):
             import io as _io
             buf=_io.BytesIO()
             Image.open(path).convert("RGB").save(buf,"WEBP",quality=80)
-            return "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
+            _URI_CACHE[fname] = "data:image/webp;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
+            return _URI_CACHE[fname]
         except Exception:
             pass   # PIL missing/odd file -> fall through to raw
     with open(path, "rb") as f:
-        return f"data:{mime};base64," + base64.b64encode(f.read()).decode("ascii")
+        _URI_CACHE[fname] = f"data:{mime};base64," + base64.b64encode(f.read()).decode("ascii")
+    return _URI_CACHE[fname]
 
 def hero_svg():
     # the central emblem: a circular grayscale portrait (the ancestry-of-the-algorithm medallion, after Ada Lovelace),
