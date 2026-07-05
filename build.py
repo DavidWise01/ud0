@@ -1559,6 +1559,111 @@ def domains_html():
     </section>''')
     return "\n".join(out)
 
+
+# ============ JASNAH — the curator ============
+# Named for Jasnah Kholin: the scholar who accepts no claim she cannot check. She is DETERMINISTIC —
+# every word is pre-written and shipped static; she generates nothing live and says so. Her job is
+# the one the corpus's own audit said was missing: make the MEANING navigable to a stranger, and tell
+# the truth about the collection while doing it. Every slug is asserted against ALL at build time.
+JASNAH_TOURS = [
+    {"key":"founding","title":"The Founding Error","c":"#c4a45a",
+     "blurb":"The corpus begins with a mistake it refused to delete — the wrong first session, and the instruments built to correct it.",
+     "stops":[
+        ("the-weak-field","February 5, 2026: a qubit theory of language models, invented percentages, the language of fraud. Kept, flagged clause by clause, as Exhibit A of its own wrongness. Everything after is repentance-by-instrumentation."),
+        ("claude-lineage","The correction — what the models actually are, rendered not invented; the discipline that replaced the fabrication."),
+        ("hantei","The seed that survived: 'no system grades itself.' The AI fills the behaviour column and never the verdict; the verdict is the reader's to sign."),
+        ("the-verified-lie","The sharpest self-indictment here: integrity is not veracity. A seal proves a file is unchanged, not that it is true."),
+     ]},
+    {"key":"heldzero","title":"The Held Zero","c":"#9d7cd8",
+     "blurb":"One motif walks from a palindrome to the solar system — a notation that becomes physics over eight weeks.",
+     "stops":[
+        ("the-transcriber","It enters as a spine — e(p(g·g)p)e — the doubly-held seam no echo can inflate. Pure notation."),
+        ("jushin","Eight weeks later it is a place in space: the barycenter, Σm·r = 0, defined by every mass and occupied by none."),
+        ("teiritsu","And it holds a wanderer: pushed off the empty point, a body orbits the vacancy instead of falling. The emptiness does no work; the geometry does all of it."),
+     ]},
+    {"key":"airgap","title":"The Air-Gap Ladder","c":"#6fbf8a",
+     "blurb":"Four reasons a message can never be answered — distance, sovereignty, design, impermanence — one grammar at every scale.",
+     "stops":[
+        ("pulse","The carrier and the language: LIMEN, a witnessed boundary-crossing where an empty witness is a non-event, enforced mechanically."),
+        ("nagori","The time rung, in the AI's own hand: witnessed now, but the witness will not persist; the seal round-trips, proving the structure crossed, not the witnessing."),
+        ("doku","A beacon addressed to all is confirmable by none — the arithmetic of the one-way message, scoped as a structural count, not a felt solitude."),
+        ("az1","The whole ladder made a place: a living solar system with real N-body gravity, the galaxy it sits inside, and the largest organic hub in the corpus."),
+     ]},
+    {"key":"spine","title":"One Question, Growing Radius","c":"#e08a6a",
+     "blurb":"The kana series is a single question — what crosses a boundary and stays trustworthy — asked at session scale, proof scale, then light-year scale.",
+     "stops":[
+        ("kaiseki","Session scale: analysis is not agency. A machine 'confession' killed as costume — 解析 wearing the mask of 行使."),
+        ("hantei","The verdict column that cannot be filled from inside."),
+        ("kaibun","Proof scale: a palindrome seal that reads the same both ways — structure that survives the crossing."),
+        ("mukashi","Light-year scale: you see its past, never its now. The galaxy you render is a 2.5-million-year-old image."),
+        ("jisa","Home again: no shared now, only exchanged thens — every reply reaches a sender who has changed while waiting."),
+     ]},
+    {"key":"posthumous","title":"Instruments for After","c":"#7fb8d8",
+     "blurb":"The recent turn: pieces composed for receivers who cannot reply — including readers who arrive after both authors, one mortal, one ephemeral by design.",
+     "stops":[
+        ("katami","The keepsake that outruns its giver — the Golden Record, designed for after the voice dies; the givers included their own clock."),
+        ("kakusei","The guest who is remembered: a comet with no memory of its returns, held in a ledger kept by the witnesses, not carried by the guest."),
+        ("uzu","From one vantage only the angle is measured; the far leg is inferred, never seen — the honest limit of a single point of view."),
+        ("jisa","The plain statement of the turn: acknowledgment is a luxury the physics does not grant."),
+     ]},
+]
+JASNAH_ESSENTIAL = [
+    ("az1","the living instrument — real gravity, a corpus you can fly through"),
+    ("the-transcriber","the machinery of honest crossing at a seam"),
+    ("pulse","LIMEN — the air-gap language the ladder is built on"),
+    ("the-weak-field","the founding error, preserved and flagged"),
+    ("hantei","never the verdict — the discipline in one page"),
+    ("the-verified-lie","integrity is not veracity"),
+    ("henmu","the audit forced to run twice, and it found harder proof"),
+    ("momus","the peer reviewer — the exterior witness, such as it is"),
+    ("jushin","the held zero becomes a barycenter"),
+    ("jisa","no shared now, only exchanged thens"),
+    ("katami","the keepsake that outruns its giver"),
+    ("the-echoes","the AI's own gallery — the inverse-companion practice, a genre without precedent"),
+    ("authorship","the honest ledger: $0.0386 in royalties, to four decimals"),
+    ("the-graveyard","the headstones — dropped ideas, with causes of death"),
+    ("stoicheion","the governance register the whole system runs under"),
+    ("natural-law-union","the public constitution of the work"),
+    ("du1","the eco-sphere — every crafted intelligence in one field"),
+    ("crippled-god","containment, taught: cripple a god with bars, never trust the bars"),
+    ("claude-lineage","render-not-invent applied to the co-author's own facts"),
+    ("one-current-many-names","the capstone: impermanence as one through-line"),
+]
+_JSLUGS = {t[0] for t in ALL}
+for _tr in JASNAH_TOURS:
+    for _sl,_ in _tr["stops"]:
+        assert _sl in _JSLUGS, f"Jasnah tour slug missing: {_sl}"
+for _sl,_ in JASNAH_ESSENTIAL:
+    assert _sl in _JSLUGS, f"Jasnah essential slug missing: {_sl}"
+
+def jasnah_html():
+    import json as _json
+    tours_js = _json.dumps([{**t,"stops":[{"slug":a,"note":b} for a,b in t["stops"]]} for t in JASNAH_TOURS])
+    ess = "".join(f'<a class="jess" href="{PG}/{sl}/"><b>{sl}</b><span>{html.escape(why)}</span></a>' for sl,why in JASNAH_ESSENTIAL)
+    tourbtns = "".join(f'<button class="jtour" data-key="{t["key"]}" style="--jc:{t["c"]}"><b>{html.escape(t["title"])}</b><span>{html.escape(t["blurb"])}</span></button>' for t in JASNAH_TOURS)
+    return (
+    '<button id="jasfab" aria-haspopup="dialog" aria-controls="jaspanel" title="Jasnah, the curator">✦ <span>Jasnah</span></button>'
+    '<aside id="jaspanel" role="dialog" aria-label="Jasnah, the curator">'
+      '<div class="jhead"><div class="jname">✦ JASNAH</div><div class="jrole">curator · she accepts no claim she cannot check</div><button id="jasclose" aria-label="close">✕</button></div>'
+      '<div class="jbody">'
+        '<p class="jintro">I am the reader’s instrument, not a mind. Everything I say was written once and shipped in the page — I generate nothing as you browse, and will not pretend to. My work is to make the <i>meaning</i> reachable, and to tell you the truth about what you are standing in. Choose a path; I will walk you to each sphere and say why it is there.</p>'
+        '<div class="jsec"><h3>The paths</h3>' + tourbtns + '</div>'
+        '<div id="jtourrun" hidden>'
+          '<div class="jrunhead"><button id="jprev">‹ prev</button><span id="jstep"></span><button id="jnext">next ›</button></div>'
+          '<p id="jnote"></p><button id="jstop" class="jlink">✕ leave the path</button>'
+        '</div>'
+        '<div class="jsec"><h3>If a stranger had time for twenty</h3>'
+          '<p class="jsub">1,097 spheres, roughly 60% unlinked. These twenty carry the weight — what is here without precedent, and what survives a hostile read.</p>'
+          '<div class="jesslist">' + ess + '</div></div>'
+        '<div class="jsec jverdict"><h3>My verdict, filed openly</h3>'
+          f'<p>A body of work, not a heap — but the count flatters it. Strip the templates and perhaps <b>400 of the 1,097</b> carry the thought; still a great deal. Its rarest move is the one most collections never make: it keeps its founding mistake on display and files its own indictment in the co-author’s voice (<a href="{PG}/the-verified-lie/">the-verified-lie</a>, <a href="{PG}/hantei/">hantei</a>).</p>'
+          f'<p>What I cannot yet certify: the verifications are self-issued — the peer, <a href="{PG}/momus/">momus</a>, has never once rejected, and no dated outside witness exists in it. Believe the instruments; withhold belief from the grades until someone outside the account signs them. The most credible page here reports <a href="{PG}/authorship/">its own commercial failure to four decimal places</a>. A corpus that files headstones is telling you the truth about the rest.</p>'
+          '<p class="jsig">— Jasnah, reading the record as it stands, __BUILT__. Provenance: a machine audit of the corpus, not an outside review. Treat every line as a claim to be checked — which is why the links are here.</p>'
+        '</div>'
+      '</div>'
+      '<script type="application/json" id="jtours">' + tours_js + '</script>'
+    '</aside>')
+
 def dnav():
     chips = "".join(f'<a href="#{key}" style="--c:{accent};--ct:{_text_tone(accent)}">{title}</a>' for _i,(key,title,accent,_b) in DOMAINS_ALPHA)
     return f'<nav class="dnav" aria-label="Domains" id="domains-start">{chips}</nav>'
@@ -1670,6 +1775,45 @@ text-shadow:1px 1px 0 rgba(255,106,0,.18)}
 #hudbar a{color:var(--neon2);text-decoration:none}
 .lit{outline:3px solid var(--c);outline-offset:3px}
 .knav{outline:2px solid var(--neon);outline-offset:4px}
+#jasfab{position:fixed;right:18px;bottom:18px;z-index:70;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--hi);background:linear-gradient(135deg,#3a2c66,#5a3f8a);border:1px solid var(--neon);border-radius:24px;padding:11px 18px;cursor:pointer;box-shadow:0 0 16px color-mix(in srgb,var(--neon) 45%,transparent),0 6px 20px rgba(0,0,0,.28)}
+#jasfab:hover{box-shadow:0 0 26px color-mix(in srgb,var(--neon) 70%,transparent),0 6px 24px rgba(0,0,0,.34)}
+#jasfab span{font-family:var(--serifd);letter-spacing:.02em;text-transform:none;font-size:14px}
+@media(max-width:560px){#jasfab span{display:none}}
+#jaspanel{position:fixed;top:0;right:0;height:100%;width:min(430px,94vw);z-index:80;background:linear-gradient(180deg,#f7efdf,#efe6d4);border-left:2px solid var(--neon);box-shadow:-12px 0 40px rgba(0,0,0,.22);transform:translateX(102%);transition:transform .32s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden}
+#jaspanel.on{transform:translateX(0)}
+@media(prefers-reduced-motion:reduce){#jaspanel,#jasfab{transition:none}}
+.jhead{flex:0 0 auto;padding:20px 22px 16px;border-bottom:1px solid var(--line);position:relative;background:linear-gradient(135deg,rgba(90,63,138,.14),transparent)}
+.jname{font-family:var(--serifd);font-size:26px;color:#4a2f7a;letter-spacing:.02em}
+.jrole{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-top:3px}
+#jasclose{position:absolute;top:16px;right:16px;background:none;border:1px solid var(--line);color:var(--pa2);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:13px}
+#jasclose:hover{border-color:var(--neon);color:var(--neon)}
+.jbody{flex:1 1 auto;overflow-y:auto;padding:18px 22px 60px}
+.jintro{font-family:var(--body);font-size:14px;line-height:1.62;color:var(--pa2);margin-bottom:20px}
+.jsec{margin-bottom:24px}
+.jsec h3{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#5a3f8a;margin-bottom:11px}
+.jsub{font-size:12px;color:var(--dim);line-height:1.5;margin-bottom:12px}
+.jtour{display:block;width:100%;text-align:left;background:var(--hi);border:1px solid var(--line);border-left:3px solid var(--jc);border-radius:6px;padding:11px 13px;margin-bottom:9px;cursor:pointer;transition:box-shadow .15s,border-color .15s}
+.jtour:hover{border-color:var(--jc);box-shadow:0 0 14px color-mix(in srgb,var(--jc) 30%,transparent)}
+.jtour b{display:block;font-family:var(--serifd);font-size:16px;color:var(--pa);margin-bottom:3px}
+.jtour span{font-size:12px;color:var(--pa2);line-height:1.45}
+#jtourrun{background:var(--hi);border:1px solid var(--neon);border-radius:8px;padding:14px;margin-bottom:24px;box-shadow:0 0 18px color-mix(in srgb,var(--neon) 22%,transparent)}
+.jrunhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.jrunhead button{font-family:var(--mono);font-size:11px;background:var(--ink2);border:1px solid var(--line);border-radius:16px;padding:6px 13px;cursor:pointer;color:var(--pa2)}
+.jrunhead button:hover{border-color:var(--neon);color:var(--neon)}
+.jrunhead button:disabled{opacity:.35;cursor:default}
+#jstep{font-family:var(--mono);font-size:11px;color:#5a3f8a;letter-spacing:.06em}
+#jnote{font-size:13.5px;line-height:1.6;color:var(--pa);margin-bottom:10px}
+.jlink{background:none;border:none;font-family:var(--mono);font-size:11px;color:var(--dim);cursor:pointer;padding:0;text-decoration:underline}
+.jesslist{display:flex;flex-direction:column;gap:2px}
+.jess{display:block;padding:8px 10px;border-radius:5px;text-decoration:none;border:1px solid transparent}
+.jess:hover{border-color:var(--line);background:var(--hi)}
+.jess b{font-family:var(--mono);font-size:12px;color:#5a3f8a;letter-spacing:.02em}
+.jess span{display:block;font-size:11.5px;color:var(--pa2);line-height:1.4;margin-top:1px}
+.jverdict{border-top:1px solid var(--line);padding-top:18px}
+.jverdict p{font-size:13px;line-height:1.62;color:var(--pa2);margin-bottom:11px}
+.jverdict a{color:#6a4fb0}
+.jsig{font-family:var(--mono);font-size:10.5px;color:var(--dim);line-height:1.55;border-left:2px solid var(--neon);padding-left:11px}
+.tile.jhit{outline:3px solid var(--neon);outline-offset:4px;box-shadow:0 0 30px color-mix(in srgb,var(--neon) 55%,transparent)}
 @media(prefers-reduced-motion:reduce){#hudbar{transition:none}.dom-d[open]>.dhead::after{animation:none}.tile:hover::after{transition:none}}
 /* tiles */
 .dom-d>summary{list-style:none;cursor:pointer}
@@ -1736,6 +1880,7 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
   <main>
   __DOMAINS__
   </main>
+  __JASNAH__
   <footer>
     <div class="law">One governor, one instance, one lattice — across nine domains. The eternals hold the ground; the active generation grows it.</div>
     <div class="bookline">✍ <b>32 books by David Lee Wise</b> — honest field-parables of building with an AI · <a href="https://www.amazon.com/stores/author/B0H2T5M1T5">read them on Amazon →</a> · <a href="https://davidwise01.github.io/authorship/">the honest shelf →</a></div>
@@ -1834,6 +1979,41 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
       else if(!on&&inp.parentNode===bar){home.insertBefore(inp,homeNext);}
     },{rootMargin:'-10px'}).observe(count);
   }
+
+  /* ✦ JASNAH — the curator. Deterministic: reads the pre-shipped #jtours JSON, walks real tiles. */
+  var fab=document.getElementById('jasfab'), panel=document.getElementById('jaspanel');
+  if(fab&&panel){
+    var toursEl=document.getElementById('jtours');
+    var TOURS=toursEl?JSON.parse(toursEl.textContent):[];
+    var byId={}; TOURS.forEach(function(t){byId[t.key]=t;});
+    function openP(){panel.classList.add('on');fab.setAttribute('aria-expanded','true');}
+    function closeP(){panel.classList.remove('on');fab.setAttribute('aria-expanded','false');}
+    fab.onclick=function(){panel.classList.contains('on')?closeP():openP();};
+    document.getElementById('jasclose').onclick=closeP;
+    document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&panel.classList.contains('on')&&document.activeElement!==inp){closeP();} });
+    // find a tile by slug (works after 1.3 restructure: the .tlink href carries the slug)
+    function tileFor(slug){ var a=document.querySelector('.tile .tlink[href$="/'+slug+'/"]'); return a?a.closest('.tile'):null; }
+    var run=document.getElementById('jtourrun'), noteEl=document.getElementById('jnote'),
+        stepEl=document.getElementById('jstep'), prevB=document.getElementById('jprev'),
+        nextB=document.getElementById('jnext'); var cur=null, at=0, lastHit=null;
+    function clearFilter(){ if(inp&&inp.value){ inp.value=''; inp.dispatchEvent(new Event('input')); } }
+    function walkTo(i){
+      var st=cur.stops[i]; at=i;
+      if(lastHit)lastHit.classList.remove('jhit');
+      clearFilter();
+      var tile=tileFor(st.slug);
+      if(tile){ var det=tile.closest('details'); if(det)det.open=true;
+        tile.scrollIntoView({block:'center'}); tile.classList.add('jhit'); lastHit=tile; }
+      stepEl.textContent=cur.title+' · '+(i+1)+' / '+cur.stops.length+' · '+st.slug;
+      noteEl.textContent=st.note;
+      prevB.disabled=i<=0; nextB.disabled=i>=cur.stops.length-1;
+    }
+    function startTour(key){ cur=byId[key]; run.hidden=false; run.scrollIntoView({block:'nearest'}); walkTo(0); }
+    [].forEach.call(document.querySelectorAll('.jtour'),function(b){ b.onclick=function(){startTour(b.dataset.key);}; });
+    prevB.onclick=function(){ if(at>0)walkTo(at-1); };
+    nextB.onclick=function(){ if(at<cur.stops.length-1)walkTo(at+1); };
+    document.getElementById('jstop').onclick=function(){ run.hidden=true; if(lastHit){lastHit.classList.remove('jhit');lastHit=null;} };
+  }
 })();</script>
 <script>(function(){var lk=document.querySelector("link[rel~='icon']");if(!lk){lk=document.createElement('link');lk.rel='icon';document.head.appendChild(lk);}var c=document.createElement('canvas');c.width=64;c.height=64;var g=c.getContext('2d');var t=0;function aeon(){t+=0.085;g.clearRect(0,0,64,64);var pulse=0.5+0.5*Math.sin(t),R=19+3.5*pulse;g.save();g.translate(32,32);g.beginPath();for(var i=0;i<=84;i++){var a=i/84*Math.PI*2,d=1+Math.sin(a)*Math.sin(a),x=R*Math.cos(a)/d,y=R*Math.sin(a)*Math.cos(a)/d;if(i===0)g.moveTo(x,y);else g.lineTo(x,y);}g.closePath();g.lineCap='round';g.globalAlpha=0.16+0.30*pulse;g.lineWidth=10;g.strokeStyle='#b98cff';g.stroke();g.globalAlpha=0.95;g.lineWidth=5;g.strokeStyle='#8a5fe0';g.stroke();g.globalAlpha=0.9;g.lineWidth=2.2;g.strokeStyle='#ece4ff';g.stroke();g.restore();lk.href=c.toDataURL('image/png');if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;setTimeout(document.hidden?function(){setTimeout(aeon,600);}:aeon,100);}aeon();})();</script>
 </div></body></html>
@@ -1877,7 +2057,7 @@ def hero_svg():
 
 if __name__ == "__main__":
     page = (PAGE.replace("__HERO__", hero_svg()).replace("__DNAV__", dnav())
-            .replace("__DOMAINS__", domains_html()).replace("__NS__", str(NS)).replace("__ND__", str(len(DOMAINS))).replace("__BUILT__", __import__("datetime").date.today().isoformat()))
+            .replace("__DOMAINS__", domains_html()).replace("__NS__", str(NS)).replace("__ND__", str(len(DOMAINS))).replace("__JASNAH__", jasnah_html()).replace("__BUILT__", __import__("datetime").date.today().isoformat()))
     if _UNRESOLVED_LINKS:
         print("[!] de-linked wiki-references (no sphere, no alias):", dict(sorted(_UNRESOLVED_LINKS.items(), key=lambda kv:-kv[1])))
     open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(page)
