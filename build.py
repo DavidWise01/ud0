@@ -1372,14 +1372,75 @@ assert not _bad_domains, f"DOMAIN_OF values that are not DOMAINS keys (spheres s
 BY_DOMAIN = {k: [s for s in ALL if DOMAIN_OF[s[0]] == k] for k,_t,_a,_b in DOMAINS}
 NS = len(ALL)
 
+# [[wiki-links]]: the corpus's 1,100+ cross-references, finally rendered as REAL hyperlinks.
+# Resolution order: real sphere slug -> alias (the leaked memory-file names, mapped to their true
+# public spheres) -> #domain anchor / absolute URL aliases -> graceful de-link to <i>text</i>.
+# The build REPORTS every de-linked reference so new dangles can't hide.
+LINK_ALIAS = {
+    "box-thread-spheres": "the-box",
+    "gap-and-shadows": "the-seam-watch",
+    "inverse-companion-rule": "the-echoes",
+    "avan-ma-kana-style": "the-echoes",
+    "a-z-a-corpus-palindrome": "az1",
+    "lacuna-avan-planet": "az1",
+    "stoicheion-governed-instances": "stoicheion",
+    "psephos-processors-domain": "psephos",
+    "claude-lineage-cl1": "claude-lineage",
+    "duality-of-the-brain": "the-duality-of-the-brain",
+    "natural-law-union-keystone": "natural-law-union",
+    "j-junction-jj1": "j-junction",
+    "the-unshareable-clock": "https://davidwise01.github.io/pulse/pieces/the-unshareable-clock.html",
+    "transmon-universe": "transmon",
+    "du1-the-lives": "du1",
+    "the-hub-naming-the-gap": "the-hub",
+    "zoolander-zoo": "zoolander",
+    "the transcriber": "the-transcriber",
+    "transcriber-domain": "the-transcriber",
+    "the-garden": "https://davidwise01.github.io/The-Garden/",
+    "the-register-peers": "the-register",
+    "tin-foil-domain": "#tin-foil",
+    "0xdeadbeef-emergence-theory": "0xdeadbeef",
+    "entelecheia-universe": "entelecheia",
+    "heian-kokoro-kotoba": "under-one-blossoming-tree",
+    "quantum-frontier-life-batch": "#frontier",
+    "gurutva-gravity-domain": "#gurutva",
+    "mimzy-forge": "mimzy",
+    "idios-the-honest-remainder": "idios",
+    "the-mind-ai-theater": "the-mind",
+    "crippled-god-cg1": "crippled-god",
+    "fmb-topology": "anabasis",
+    "frontier": "#frontier",
+    "ai-ethics-governance-gov": "ai-governance",
+    "the-greek-mirror-amp": "enheduanna",
+    "field-guide-purple-papers": "the-purple-book",
+}
+_ALL_SLUGS = {t[0] for t in ALL}
+_UNRESOLVED_LINKS = {}
+def _render_links(escaped_text):
+    def sub(m):
+        target = html.unescape(m.group(1)).strip()
+        label = m.group(2) if m.group(2) else target.replace("-", " ")
+        t = LINK_ALIAS.get(target, target)
+        if t in _ALL_SLUGS:
+            return f'<a href="{PG}/{t}/">{label}</a>'
+        if t.startswith("http"):
+            return f'<a href="{t}">{label}</a>'
+        if t.startswith("#"):
+            return f'<a href="{t}">{label}</a>'
+        _UNRESOLVED_LINKS[target] = _UNRESOLVED_LINKS.get(target, 0) + 1
+        return f'<i>{label}</i>'
+    return _re.sub(r'\[\[([^\]|]+)(?:\|([^\]]*))?\]\]', sub, escaped_text)
+
 def tile(s):
     repo, name, col, count, tag = s
     # some stored names/tags already carry entities (&amp;, &#x27;) — unescape first so
     # html.escape doesn't double-encode them into visible '&AMP;' artifacts
     name, count, tag = html.unescape(name), html.unescape(count), html.unescape(tag)
+    _delay = -(sum(ord(c) for c in repo) % 26) / 10.0
     return f'''<div class="tile" style="--c:{col};--ct:{_text_tone(col)}">
+      <span class="corepulse" style="animation-delay:{_delay:.1f}s"></span>
       <a class="tn tlink" href="{PG}/{repo}/">{html.escape(name)}</a><div class="tc">{html.escape(count)}</div>
-      <p class="tt">{html.escape(tag)}</p>
+      <p class="tt">{_render_links(html.escape(tag))}</p>
       <div class="tl"><span class="enter">enter ↗</span><a class="codebtn" href="{GH}/{repo}" target="_blank" rel="noopener">code</a></div>
     </div>'''
 
@@ -1590,6 +1651,18 @@ text-shadow:1px 1px 0 rgba(255,106,0,.18)}
 .dnav a:hover::before{opacity:1;animation:halospin 2.4s linear infinite}
 @media(prefers-reduced-motion:reduce){.dnav a:hover::before{animation:none;opacity:.6}}
 #count,.dcount,.clc{font-variant-numeric:tabular-nums}
+/* every sphere pulses its neon FROM THE CENTER — a radial breath. Gated: the animation runs only
+   while the tile is on screen (.live via IntersectionObserver), so ~30 animate, never ~1000. */
+.corepulse{position:absolute;left:50%;top:50%;width:170px;height:170px;margin:-85px 0 0 -85px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,color-mix(in srgb,var(--c) 42%,transparent) 0%,color-mix(in srgb,var(--c) 14%,transparent) 42%,transparent 68%);
+  opacity:0;transform:scale(.45);animation:corepulse 3.2s ease-out infinite;animation-play-state:paused}
+.tile.live .corepulse{animation-play-state:running}
+@keyframes corepulse{0%{transform:scale(.45);opacity:.6}65%{opacity:.12}100%{transform:scale(1.75);opacity:0}}
+.tt{position:relative;z-index:1}
+.tt a{color:var(--ct,var(--c));text-decoration:underline dotted;text-underline-offset:2px;text-decoration-thickness:1px}
+.tt a:hover{text-shadow:0 0 8px color-mix(in srgb,var(--c) 70%,transparent);text-decoration-style:solid}
+.tt i{color:var(--pa2)}
+@media(prefers-reduced-motion:reduce){.corepulse{animation:none;opacity:.18;transform:scale(1)}}
 #q{font-family:var(--mono);font-size:12px;color:var(--pa);background:var(--hi);border:1px solid var(--line);border-radius:4px;padding:9px 12px;min-width:min(300px,72vw)}
 #q:focus{border-color:var(--neon)}
 #hudbar{position:fixed;top:0;left:0;right:0;z-index:60;background:color-mix(in srgb,var(--hi) 92%,transparent);backdrop-filter:blur(4px);border-bottom:1px solid var(--neon);font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);padding:7px 14px;transform:translateY(-110%);transition:transform .25s}
@@ -1605,22 +1678,24 @@ text-shadow:1px 1px 0 rgba(255,106,0,.18)}
 .dom-d>summary .dtoggle::after{content:"▸ open"}
 .dom-d[open]>summary .dtoggle::after{content:"▾ close"}
 .dom-d>summary:hover .dtitle{color:var(--c)}
+.dtitle{text-shadow:0 0 18px color-mix(in srgb,var(--c) 30%,transparent)}
+.dnav a{box-shadow:0 0 8px color-mix(in srgb,var(--c) 28%,transparent);color:var(--ct,var(--pa2))}
 .dctl{display:flex;gap:10px;justify-content:center;margin:16px auto 0;flex-wrap:wrap}
 .dctl button{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa2);background:var(--ink2);border:1px solid var(--line);border-radius:20px;padding:7px 15px;cursor:pointer}
 .dctl button:hover{color:var(--neon);border-color:var(--neon)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(290px,100%),1fr));gap:14px;margin-top:24px}
-.tile{display:flex;flex-direction:column;background:var(--ink2);border:1px solid color-mix(in srgb,var(--c) 60%,var(--line));border-radius:5px;
+.tile{display:flex;flex-direction:column;background:var(--ink2);border:1px solid color-mix(in srgb,var(--c) 78%,var(--line));border-radius:5px;
 padding:15px 16px 13px;position:relative;overflow:hidden;text-decoration:none;color:inherit;transition:transform .18s,border-color .18s,box-shadow .18s;
-box-shadow:0 0 9px color-mix(in srgb,var(--c) 26%,transparent),0 0 26px color-mix(in srgb,var(--c) 10%,transparent),inset 0 0 16px color-mix(in srgb,var(--c) 8%,transparent);
+box-shadow:0 0 12px color-mix(in srgb,var(--c) 38%,transparent),0 0 34px color-mix(in srgb,var(--c) 16%,transparent),inset 0 0 22px color-mix(in srgb,var(--c) 11%,transparent);
 background:radial-gradient(150px 150px at calc(100% + 58px) -58px,color-mix(in srgb,var(--c) 12%,transparent),transparent 70%),var(--ink2)}
-.tile::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--c);opacity:.85;transition:opacity .18s;box-shadow:0 0 12px var(--c),0 0 4px var(--c)}
+.tile::before{content:"";position:absolute;top:0;left:0;right:0;height:2.5px;background:var(--c);opacity:.95;transition:opacity .18s;box-shadow:0 0 16px var(--c),0 0 6px var(--c),0 0 2px var(--c)}
 .tile::after{content:"";position:absolute;top:0;bottom:0;left:0;width:55%;pointer-events:none;
   transform:translateX(-170%) skewX(-18deg);
   background:linear-gradient(100deg,transparent,color-mix(in srgb,#fff 70%,transparent) 45%,color-mix(in srgb,var(--c) 32%,transparent) 55%,transparent)}
 .tile:hover::after{transform:translateX(330%) skewX(-18deg);transition:transform .65s ease}
 .tile:hover{transform:translateY(-3px);border-color:var(--c);box-shadow:0 0 14px color-mix(in srgb,var(--c) 55%,transparent),0 0 40px color-mix(in srgb,var(--c) 26%,transparent),inset 0 0 30px color-mix(in srgb,var(--c) 12%,transparent)}
 .tile:hover::before{opacity:1}
-.tn{font-family:var(--head);font-size:16px;font-weight:600;letter-spacing:.02em;color:var(--pa);text-transform:uppercase;line-height:1.18;text-shadow:0 0 9px color-mix(in srgb,var(--c) 42%,transparent)}
+.tn{font-family:var(--head);font-size:16px;font-weight:600;letter-spacing:.02em;color:var(--pa);text-transform:uppercase;line-height:1.18;text-shadow:0 0 11px color-mix(in srgb,var(--c) 58%,transparent),0 0 26px color-mix(in srgb,var(--c) 22%,transparent)}
 .tile:hover .tn{color:var(--ct,var(--c))}
 .tc{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ct,var(--c));margin-top:4px;text-transform:uppercase;opacity:.95;text-shadow:0 0 7px color-mix(in srgb,var(--c) 65%,transparent)}
 .tt{font-size:12px;color:var(--pa2);line-height:1.5;margin-top:9px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
@@ -1737,6 +1812,13 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
       var v2=vis(); if(v2[cur]){var dd=v2[cur].querySelector('details');dd.open=!dd.open;}
     }
   });
+  /* center-pulse gate: only on-screen tiles animate */
+  if('IntersectionObserver' in window){
+    var pio=new IntersectionObserver(function(ens){
+      ens.forEach(function(en){ en.target.classList.toggle('live',en.isIntersecting); });
+    },{rootMargin:'60px'});
+    [].forEach.call(document.querySelectorAll('.tile'),function(t){ pio.observe(t); });
+  }
   var count=document.getElementById('count');
   if(count&&'IntersectionObserver' in window){
     var bar=document.createElement('div'); bar.id='hudbar';
@@ -1796,6 +1878,8 @@ def hero_svg():
 if __name__ == "__main__":
     page = (PAGE.replace("__HERO__", hero_svg()).replace("__DNAV__", dnav())
             .replace("__DOMAINS__", domains_html()).replace("__NS__", str(NS)).replace("__ND__", str(len(DOMAINS))).replace("__BUILT__", __import__("datetime").date.today().isoformat()))
+    if _UNRESOLVED_LINKS:
+        print("[!] de-linked wiki-references (no sphere, no alias):", dict(sorted(_UNRESOLVED_LINKS.items(), key=lambda kv:-kv[1])))
     open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(page)
     # ── the cascade: keep the UD0 page mirrored to its standing destinations ──
     import shutil
