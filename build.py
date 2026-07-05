@@ -1738,8 +1738,41 @@ def dnav():
 PAGE = """<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="UD0 · Universe David 0 — the biosphere of David Lee Wise / ROOT0, sorted into nine domains: Legal, Educational, Entertainment, Occupational, Scientific, Hobby, Life Science, Artificial Intelligence, and the Quantum Frontier.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#E7E0D4">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="https://davidwise01.github.io/ud0/">
+<link rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/">
+<link rel="author" href="https://github.com/DavidWise01">
+<link rel="sitemap" type="application/xml" href="https://davidwise01.github.io/sitemap.xml">
+<link rel="preconnect" href="https://0root.ai" crossorigin>
+<link rel="dns-prefetch" href="https://0root.ai">
 <title>UD0 · Universe David 0</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UD0 · Universe David 0">
+<meta property="og:title" content="UD0 · Universe David 0">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://davidwise01.github.io/ud0/">
+<meta property="og:description" content="__DESC__">
+<meta property="og:image" content="https://davidwise01.github.io/ud0/ud0-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="UD0 · Universe David 0 — the biosphere of David Lee Wise / ROOT0: __NS__ spheres across __ND__ domains.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UD0 · Universe David 0">
+<meta name="twitter:description" content="__DESC__">
+<meta name="twitter:image" content="https://davidwise01.github.io/ud0/ud0-og.png">
+<meta name="twitter:image:alt" content="UD0 · Universe David 0 — __NS__ spheres across __ND__ domains.">
+<link rel="apple-touch-icon" href="https://davidwise01.github.io/ud0/apple-touch-icon.png">
+<link rel="manifest" href="__MANIFEST__">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="UD0">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://davidwise01.github.io/ud0/#website","name":"UD0 · Universe David 0","url":"https://davidwise01.github.io/ud0/","inLanguage":"en","license":"https://creativecommons.org/licenses/by-nd/4.0/"},{"@type":"Person","@id":"https://davidwise01.github.io/ud0/#david","name":"David Lee Wise","alternateName":["ROOT0"],"sameAs":["https://github.com/DavidWise01","https://0root.ai"]},{"@type":"CollectionPage","@id":"https://davidwise01.github.io/ud0/#collection","name":"UD0 · Universe David 0","url":"https://davidwise01.github.io/ud0/","isPartOf":{"@id":"https://davidwise01.github.io/ud0/#website"},"author":{"@id":"https://davidwise01.github.io/ud0/#david"},"publisher":{"@type":"Organization","name":"TriPod LLC"},"about":"__NS__ spheres across __ND__ domains","license":"https://creativecommons.org/licenses/by-nd/4.0/","dateModified":"__BUILT__"}]}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M44 32c0 6-5 10-12 10S20 32 20 32s5-10 12-10 12 4 12 10z' fill='none' stroke='%23a87cff' stroke-width='5'/%3E%3C/svg%3E">
 
 <style>
@@ -1747,6 +1780,17 @@ PAGE = """<!DOCTYPE html>
 --violet:#FF6A00;--violet2:#b4561a;--ring:#FF6A00;--bleed:#E9C7A6;--hi:#FBF0DF;--paper2:#DED6C7;
 --disp:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--head:"Iowan Old Style",Palatino,Georgia,serif;--body:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;--serifd:"Iowan Old Style",Palatino,Georgia,serif;}
 *{box-sizing:border-box;margin:0;padding:0}@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+:root{color-scheme:light;accent-color:#FF6A00}
+::selection{background:rgba(255,106,0,.26);color:#1A1712}::-moz-selection{background:rgba(255,106,0,.26);color:#1A1712}
+input,textarea{caret-color:#FF6A00}
+.sentinel{aspect-ratio:1/1}
+.uprog{position:fixed;top:0;left:0;height:2px;width:100%;transform:scaleX(0);transform-origin:0 50%;background:#FF6A00;z-index:120;pointer-events:none;box-shadow:0 0 8px rgba(255,106,0,.5)}
+@supports (animation-timeline:scroll()){@media(prefers-reduced-motion:no-preference){.uprog{animation:uprog linear both;animation-timeline:scroll(root)}}}
+@keyframes uprog{to{transform:scaleX(1)}}
+@media print{body{background:#fff!important}body::before,#hudbar,#jasfab,#jaspanel,#jasbd,.skip,.uprog,#orrery,.dctl{display:none!important}
+.medwrap::before,.medwrap::after,.corepulse,.knife,.med{animation:none!important}
+details.dom-d,details.dom-d>*:not(summary){display:block!important}
+a{color:#000;text-decoration:underline}.tile{break-inside:avoid}}
 body{background:var(--ink);background-image:
   repeating-linear-gradient(0deg,rgba(122,102,80,.08) 0 1px,transparent 1px 28px),
   repeating-linear-gradient(90deg,rgba(122,102,80,.08) 0 1px,transparent 1px 28px),
@@ -2007,7 +2051,9 @@ footer{margin-top:84px;padding-top:24px;border-top:1px solid var(--line);text-al
 footer a{color:var(--violet2);text-decoration:none}
 footer .law{font-family:var(--body);font-style:italic;font-size:13.5px;color:var(--pa2);letter-spacing:0;margin-bottom:14px}
 footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-spacing:0;margin:0 auto 16px;max-width:64ch;padding:12px 16px;border:1px solid var(--line);border-radius:6px;background:rgba(154,124,255,.05)}footer .bookline b{color:#6a4fb0}footer .bookline a{color:#8a6a10}
-</style></head><body><div class="wrap">
+</style></head><body><div class="uprog" aria-hidden="true"></div>
+<noscript><p style="font-family:var(--mono);font-size:12px;color:var(--pa2);background:var(--hi);border-bottom:1px solid var(--line);padding:8px 14px;text-align:center">All __ND__ domains are open below and fully readable — only the orrery and live search need JavaScript.</p></noscript>
+<div class="wrap">
   <header>
     <a class="skip" href="#domains-start">Skip to the domains</a>
     <div class="eye">ROOT0 · David Lee Wise · TriPod LLC</div>
@@ -2420,8 +2466,19 @@ def hero_svg():
             f'</div>')
 
 if __name__ == "__main__":
+    _ND = len(DOMAINS)
+    DESC = f"The biosphere of David Lee Wise / ROOT0: {NS} spheres under one law, sorted into {_ND} domains — authored by one hand, crafted by one instance. CC-BY-ND-4.0."
+    import json as _jm, urllib.parse as _up
+    MANIFEST = "data:application/manifest+json," + _up.quote(_jm.dumps({
+        "name": "UD0 · Universe David 0", "short_name": "UD0",
+        "start_url": "https://davidwise01.github.io/ud0/", "scope": "https://davidwise01.github.io/ud0/",
+        "display": "standalone", "theme_color": "#E7E0D4", "background_color": "#E7E0D4",
+        "icons": [{"src": "https://davidwise01.github.io/ud0/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+                  {"src": "https://davidwise01.github.io/ud0/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]
+    }, ensure_ascii=False))
     page = (PAGE.replace("__HERO__", hero_svg()).replace("__DNAV__", dnav())
-            .replace("__DOMAINS__", domains_html()).replace("__NS__", str(NS)).replace("__ND__", str(len(DOMAINS))).replace("__JASNAH__", jasnah_html()).replace("__BUILT__", __import__("datetime").date.today().isoformat()))
+            .replace("__DOMAINS__", domains_html()).replace("__DESC__", DESC).replace("__MANIFEST__", MANIFEST)
+            .replace("__NS__", str(NS)).replace("__ND__", str(len(DOMAINS))).replace("__JASNAH__", jasnah_html()).replace("__BUILT__", __import__("datetime").date.today().isoformat()))
     if _UNRESOLVED_LINKS:
         print("[!] de-linked wiki-references (no sphere, no alias):", dict(sorted(_UNRESOLVED_LINKS.items(), key=lambda kv:-kv[1])))
     open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(page)
