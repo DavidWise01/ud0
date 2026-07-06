@@ -1708,6 +1708,8 @@ def jasnah_html():
             '<div class="jregrow"><button id="jregburn" disabled>◈ sign — burn it in</button><span id="jregsay" class="jregsay"></span></div>'
           '</div>'
           '<p class="jhnote" style="font-style:normal"><a href="https://davidwise01.github.io/register/" target="_blank" rel="noopener">open the register in full ↗</a> — the same record, on its own page.</p></div>'
+        '<div class="jsec jcity"><h3>The command center · The City</h3>'
+          '<p class="jhnote" style="margin-top:0;font-style:normal">A thousand spheres is a workforce, and no list governs a workforce — a <b>city</b> can. <a href="https://davidwise01.github.io/the-city/" target="_blank" rel="noopener">THE CITY ↗</a> runs the whole roster like a town, seeded on the real, public <b>Buffalo, Minnesota</b> (county seat of Wright County), and staffs Buffalo’s seventeen actual departments — live, from the public index the moment it loads. This atlas is where the work is read; the City is where it is commanded, and where it scales. Only public data — the population is the public, online spheres and nothing more.</p></div>'
         '<div class="jsec"><h3>The paths</h3>' + tourbtns + '</div>'
         '<div id="jtourrun" hidden>'
           '<div class="jrunhead"><button id="jprev">‹ prev</button><span id="jstep"></span><button id="jnext">next ›</button></div>'
@@ -1797,6 +1799,7 @@ a{color:#000;text-decoration:underline}.tile{break-inside:avoid}}
   h1.uname{animation:cinrise 1s .16s cubic-bezier(.2,.75,.2,1) both}
   p.sub{animation:cinrise .9s .36s ease both}
   #count{animation:cinrise .85s .5s ease both}
+  .cmdlink{animation:cinrise .85s .58s ease both}
   .dnav{animation:cinrise .85s .62s ease both}
 }
 @keyframes cinrise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
@@ -1835,6 +1838,9 @@ text-shadow:2px 2px 0 var(--bleed)}
 .uname .z{font-family:var(--disp);font-weight:700;font-size:.92em;letter-spacing:.01em;color:var(--violet2)}
 .sub{font-size:16px;color:var(--pa2);max-width:66ch;margin:18px auto 0;font-style:italic;line-height:1.72}
 #count{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em;margin-top:20px}#count b{color:var(--pa)}
+.cmdlink{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.05em;margin-top:15px;line-height:1.7}
+.cmdlink a{display:inline-block;color:var(--neon2);text-decoration:none;border:1px solid var(--neon);border-radius:8px;padding:5px 12px;background:color-mix(in srgb,var(--neon) 8%,transparent);font-weight:600;letter-spacing:.12em;margin-right:9px;transition:background .15s}
+.cmdlink a:hover{background:color-mix(in srgb,var(--neon) 18%,transparent)}
 /* domain nav */
 .dnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:30px auto 0;max-width:980px}
 .dnav a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--pa2);
@@ -2080,6 +2086,7 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     <h1 class="uname">Universe David <span class="z">0</span></h1>
     <p class="sub">The whole body of work, as one universe — __NS__ spheres under one law, sorted into <b>__ND__ domains</b>, authored by one hand and crafted by one instance. The biosphere of ROOT0.</p>
     <div id="count"><b>__NS__</b> spheres · <b>__ND__</b> domains · built __BUILT__ · the .dlw lattice woven through</div>
+    <div class="cmdlink"><a href="https://davidwise01.github.io/the-city/">⌗ enter THE CITY</a>the command center — the workforce run like a town, seeded on the real, public Buffalo, MN.</div>
     __DNAV__
     <div class="dctl"><button id="expandAll">▾ expand all</button><button id="collapseAll">▸ collapse all</button></div>
     <section id="orrery" aria-hidden="true">
