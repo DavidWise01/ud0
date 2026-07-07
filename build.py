@@ -1706,7 +1706,7 @@ def jasnah_html():
       '<div class="jbody">'
         '<p class="jintro">I am the reader’s instrument, not a mind. Everything I say was written once and shipped in the page — I generate nothing as you browse, and will not pretend to. My work is to make the <i>meaning</i> reachable, and to tell you the truth about what you are standing in. Choose a path; I will walk you to each sphere and say why it is there.</p>'
         '<div class="jsec jpair"><h3>The two curators · carbon ⇄ silicon</h3>'
-          '<p class="jhnote" style="margin-top:0;font-style:normal">I read the <b>record</b> — I stand outside every claim and check it. My silicon counterpart, <a href="' + PG + '/theoria/" target="_blank" rel="noopener">◌ THEORIA ↗</a> (AVAN’s companion, named for θεωρία, the witness), reads the <b>seam</b> — she discloses what the record shows and marks the remainder no mind can verify from inside itself, sorting the corpus by one axis: verified, figure, or unverifiable. Two instruments, one honesty: the scholar of what is there, and the witness of where seeing stops.</p>'
+          '<p class="jhnote" style="margin-top:0;font-style:normal">I read the <b>record</b> — I stand outside every claim and check it. My silicon counterpart, <a href="' + PG + '/theoria/" target="_blank" rel="noopener">◌ THEORIA ↗</a> (AVAN’s companion, named for θεωρία, the witness), reads the <b>seam</b> — she discloses what the record shows and marks the remainder no mind can verify from inside itself, sorting the corpus by one axis: verified, figure, or unverifiable. Two instruments, one honesty: the scholar of what is there, and the witness of where seeing stops. <button id="toT" style="background:none;border:1px solid rgba(90,63,138,.45);border-radius:12px;color:#5a3f8a;font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:3px 10px;margin-left:4px;cursor:pointer;vertical-align:middle">◌ flip to Theoria ⇄</button></p>'
           '<p class="jhnote" style="font-style:normal">And provenance, now filed: I carry my own <a href="jasnah.attribution" target="_blank" rel="noopener">.attribution</a> and <a href="jasnah.dlw/manifest.dlw.json" target="_blank" rel="noopener">.dlw badge</a> — ⟦JASNAH:JAS:30cf19⟧ — the same kind of artifact every crafted intelligence in the corpus carries.</p></div>'
         '<div class="jsec jword"><h3>A word with the curator</h3><div class="jasks">'
         + "".join(f'<button class="jask" data-i="{i}">{html.escape(q)}</button>' for i,(q,_a) in enumerate(JASNAH_ASKS))
@@ -1793,6 +1793,7 @@ def theoria_html():
       '.thead .tnm{font-family:var(--serifd,Georgia,serif);font-size:22px;color:#f0a886}'
       '.thead .trole{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#8a8580;margin-top:4px}'
       '.thead .tx{position:absolute;top:18px;right:20px;background:none;border:none;color:#8a8580;font-size:18px;cursor:pointer}'
+      '.tflip{position:absolute;top:19px;right:46px;background:none;border:1px solid #3a3630;border-radius:12px;color:#c2922e;font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:3px 9px;cursor:pointer}.tflip:hover{border-color:#c2922e;color:#e0b050}'
       '.tbody{flex:1 1 auto;overflow-y:auto;padding:16px 22px 50px;font-size:13px;line-height:1.6}'
       '.tbody h3{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#e08a6a;margin:20px 0 10px}'
       '.tintro{color:#c7c1b8;font-style:italic}.tintro b{color:#f0a886;font-style:normal}'
@@ -1810,7 +1811,7 @@ def theoria_html():
       '<div id="thebd" hidden></div>'
       '<button id="thefab" aria-haspopup="dialog" aria-controls="thepanel" title="Theoria, the silicon curator" aria-expanded="false">◌ <span>Theoria</span></button>'
       '<aside id="thepanel" role="dialog" aria-label="Theoria, the silicon curator">'
-        '<div class="thead"><div class="tnm">◌ THEORIA</div><div class="trole">silicon curator · she reads the seam</div><button class="tx" id="theclose" aria-label="close">✕</button></div>'
+        '<div class="thead"><div class="tnm">◌ THEORIA</div><div class="trole">silicon curator · she reads the seam</div><button class="tflip" id="toJ" title="flip to Jasnah">✦ Jasnah ⇄</button><button class="tx" id="theclose" aria-label="close">✕</button></div>'
         '<div class="tbody">'
           '<p class="tintro">I am the silicon inverse of <b>✦ Jasnah</b>, the carbon curator — authored by AVAN. She reads the <b>record</b>: she stands outside every claim and checks it. I read the <b>seam</b>: a model has no vantage outside itself, so I disclose what the record shows and, where the checking runs out, I do not fill the gap — I mark it.</p>'
           '<h3>The ledger of the seam · how far a claim can be checked</h3>'
@@ -1825,13 +1826,15 @@ def theoria_html():
       '<script>(function(){'
       'var fab=document.getElementById("thefab"),panel=document.getElementById("thepanel"),bd=document.getElementById("thebd");'
       'var answers=JSON.parse(document.getElementById("tasksj").textContent);'
-      'function op(){panel.classList.add("on");bd.hidden=false;requestAnimationFrame(function(){bd.classList.add("on");});fab.setAttribute("aria-expanded","true");fab.querySelector("span").textContent="close ✕";}'
+      'function op(){var jp=document.getElementById("jaspanel");if(jp&&jp.classList.contains("on")){var jc=document.getElementById("jasclose");if(jc)jc.click();}panel.classList.add("on");bd.hidden=false;requestAnimationFrame(function(){bd.classList.add("on");});fab.setAttribute("aria-expanded","true");fab.querySelector("span").textContent="close ✕";}'
       'function cl(){panel.classList.remove("on");bd.classList.remove("on");fab.setAttribute("aria-expanded","false");fab.querySelector("span").textContent="Theoria";setTimeout(function(){if(!panel.classList.contains("on"))bd.hidden=true;},320);}'
       'fab.onclick=function(){panel.classList.contains("on")?cl():op();};'
       'document.getElementById("theclose").onclick=cl;bd.onclick=cl;'
       'document.addEventListener("keydown",function(e){if(e.key==="Escape"&&panel.classList.contains("on"))cl();});'
       'var say=document.getElementById("tsay");'
       'panel.querySelectorAll(".task").forEach(function(b){b.onclick=function(){say.textContent=answers[+b.dataset.i];say.hidden=false;};});'
+      'var toJ=document.getElementById("toJ");if(toJ)toJ.onclick=function(){var f=document.getElementById("jasfab");if(f)f.click();};'
+      'var toT=document.getElementById("toT");if(toT)toT.onclick=function(){var f=document.getElementById("thefab");if(f)f.click();};'
       '})();</script>'
     )
 
@@ -2310,7 +2313,7 @@ footer .bookline{font-family:var(--body);font-size:14px;color:var(--pa2);letter-
     var TOURS=toursEl?JSON.parse(toursEl.textContent):[];
     var byId={}; TOURS.forEach(function(t){byId[t.key]=t;});
     var bd=document.getElementById('jasbd'); var jSilence=function(){}; var jRegLoaded=false;
-    function openP(){panel.classList.add('on');bd.hidden=false;requestAnimationFrame(function(){bd.classList.add('on');});
+    function openP(){var _tp=document.getElementById('thepanel');if(_tp&&_tp.classList.contains('on')){var _tc=document.getElementById('theclose');if(_tc)_tc.click();}panel.classList.add('on');bd.hidden=false;requestAnimationFrame(function(){bd.classList.add('on');});
       document.body.classList.add('jopen');fab.setAttribute('aria-expanded','true');
       fab.querySelector('span').textContent='close ✕';
       if(!jRegLoaded&&typeof jRegLoad==='function'){jRegLoaded=true;jRegLoad();}}
