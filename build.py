@@ -1860,6 +1860,46 @@ def dnav():
     chips = "".join(f'<a href="#{key}" style="--c:{accent};--ct:{_text_tone(accent)}">{title}</a>' for _i,(key,title,accent,_b) in DOMAINS_ALPHA)
     return f'<nav class="dnav" aria-label="Domains" id="domains-start">{chips}</nav>'
 
+def _chakra_svg():
+    # the seven tantric centres as LOTUSES with their real petal-counts (Sat-cakra-nirupana):
+    # (cy, colour, element, detail, petals, word-x, word-anchor, word-dy)
+    CH = [
+        (40,  "#e6dbb0", "beyond", "Sahasrāra · 1000 petals",      1000, 161, "start",  0),
+        (66,  "#bcb7d2", "mind",   "Ājñā · OṂ · 2 petals",            2,  161, "start", -12),
+        (106, "#8fb0c8", "ether",  "Viśuddha · HAṂ · 16 petals",     16,  161, "start", -6),
+        (150, "#88ae88", "air",    "Anāhata · YAṂ · 12 petals",      12,  161, "start",  0),
+        (186, "#d05038", "fire",   "Maṇipūra · RAṂ · 10 petals",     10,  161, "start",  2),
+        (214, "#4a9ec0", "water",  "Svādhiṣṭhāna · VAṂ · 6 petals",   6,  120, "end",    2),
+        (252, "#c1a04a", "earth",  "Mūlādhāra · LAṂ · 4 petals",      4,  161, "start",  2),
+    ]
+    cx = 150; out = []
+    for cy, col, elem, detail, n, wx, wanch, wdy in CH:
+        g = ['<g class="chakra">', f'<circle class="cglow" cx="{cx}" cy="{cy}" r="15" fill="{col}"/>']
+        if n >= 100:  # the thousand-petalled: a dense burst (1000 cannot be drawn; stylised, said so)
+            for rn, rm, pl in ((22, 6.5, 3.4), (30, 9.5, 3.0), (38, 12.5, 2.6)):
+                for i in range(rn):
+                    deg = -90 + i * (360.0 / rn) + (rm * 3)
+                    rad = math.radians(deg)
+                    ex = cx + math.cos(rad) * rm; ey = cy + math.sin(rad) * rm
+                    g.append(f'<ellipse class="petal" cx="{ex:.1f}" cy="{ey:.1f}" rx="{pl}" ry="0.8" fill="{col}" transform="rotate({deg:.1f} {ex:.1f} {ey:.1f})"/>')
+        else:
+            if n == 2:
+                rmid, pl, pw, start = 6.5, 5.2, 2.3, 0     # Ājñā's two petals sit laterally
+            else:
+                rmid, pl = 8.0, 4.4
+                pw = max(0.9, min(2.2, 13.0 / n)); start = -90
+            for i in range(n):
+                deg = start + i * (360.0 / n)
+                rad = math.radians(deg)
+                ex = cx + math.cos(rad) * rmid; ey = cy + math.sin(rad) * rmid
+                g.append(f'<ellipse class="petal" cx="{ex:.1f}" cy="{ey:.1f}" rx="{pl}" ry="{pw:.2f}" fill="{col}" transform="rotate({deg:.1f} {ex:.1f} {ey:.1f})"/>')
+        g.append(f'<circle class="ccore" cx="{cx}" cy="{cy}" r="2.6" fill="{col}"/>')
+        g.append(f'<text class="cword" x="{wx}" y="{cy + wdy}" text-anchor="{wanch}" fill="{col}">{elem}</text>')
+        g.append(f'<text class="cbija" x="{wx}" y="{cy + wdy + 9}" text-anchor="{wanch}" fill="{col}">{detail}</text>')
+        g.append('</g>')
+        out.append(''.join(g))
+    return ''.join(out)
+
 def body_html():
     U = "https://davidwise01.github.io/"
     return ('<div class="vbody">'
@@ -1877,14 +1917,8 @@ def body_html():
       '<path class="nerve" d="M150,150 L138,158"/>'
       '<path class="nerve" d="M150,126 L120,128 M150,126 L180,128"/>'
       '<path class="nerve" d="M150,258 L140,372 M150,258 L160,372"/>'
-      # --- the classical centres up the spine: the ELEMENT (tattva) each governs; bija + petals on hover ---
-      '<g class="chakra"><circle class="cglow" cx="150" cy="40" r="13" fill="#e6dbb0"/><circle class="ccore" cx="150" cy="40" r="3" fill="#e6dbb0"/><text class="cword" x="161" y="40" fill="#e6dbb0">beyond</text><text class="cbija" x="161" y="49" fill="#c7bb8f">Sahasrāra · 1000 petals</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="66" r="12" fill="#bcb7d2"/><circle class="ccore" cx="150" cy="66" r="3" fill="#bcb7d2"/><text class="cword" x="161" y="54" fill="#bcb7d2">mind</text><text class="cbija" x="161" y="63" fill="#9d98b8">Ājñā · OṂ · 2 petals</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="106" r="12" fill="#8fb0c8"/><circle class="ccore" cx="150" cy="106" r="3" fill="#8fb0c8"/><text class="cword" x="161" y="100" fill="#8fb0c8">ether</text><text class="cbija" x="161" y="109" fill="#7a97ad">Viśuddha · HAṂ · 16 petals</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="150" r="13" fill="#88ae88"/><circle class="ccore" cx="150" cy="150" r="3" fill="#88ae88"/><text class="cword" x="161" y="150" fill="#88ae88">air</text><text class="cbija" x="161" y="159" fill="#729672">Anāhata · YAṂ · 12 petals</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="186" r="13" fill="#d05038"/><circle class="ccore" cx="150" cy="186" r="3" fill="#d05038"/><text class="cword" x="161" y="188" fill="#d05038">fire</text><text class="cbija" x="161" y="197" fill="#b04530">Maṇipūra · RAṂ · 10 petals</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="214" r="12" fill="#4a9ec0"/><circle class="ccore" cx="150" cy="214" r="3" fill="#4a9ec0"/><text class="cword" x="120" y="216" text-anchor="end" fill="#4a9ec0">water</text><text class="cbija" x="120" y="225" text-anchor="end" fill="#3f86a3">Svādhiṣṭhāna · VAṂ · 6 petals</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="252" r="13" fill="#c1a04a"/><circle class="ccore" cx="150" cy="252" r="3" fill="#c1a04a"/><text class="cword" x="161" y="254" fill="#c1a04a">earth</text><text class="cbija" x="161" y="263" fill="#a4863c">Mūlādhāra · LAṂ · 4 petals</text></g>'
+      # --- the seven tantric centres, drawn as lotuses with their real petal-counts ---
+      + _chakra_svg() +
       # --- REN · the name (crown) ---
       '<a href="' + U + 'the-ren/" aria-label="REN the name">'
         '<path class="crown" d="M138,26 L144,15 L150,23 L156,15 L162,26"/>'
@@ -2069,6 +2103,8 @@ text-shadow:2px 2px 0 var(--bleed)}
 .vbody .chakra:hover .cword{opacity:1;font-weight:600}
 .vbody .cbija{font-family:var(--mono);font-size:5.6px;letter-spacing:.02em;opacity:0;transition:opacity .2s}
 .vbody .chakra:hover .cbija{opacity:.9}
+.vbody .petal{opacity:.42;transition:opacity .25s}
+.vbody .chakra:hover .petal{opacity:.85}
 .vbody-chakra{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.02em;margin-top:8px;line-height:1.7;max-width:64ch;margin-left:auto;margin-right:auto}
 /* domain nav */
 .dnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:30px auto 0;max-width:980px}
