@@ -1912,6 +1912,18 @@ def body_html():
       '<line class="limb" x1="182" y1="126" x2="218" y2="252" stroke-width="13"/>'
       '<line class="limb" x1="140" y1="258" x2="126" y2="462" stroke-width="17"/>'
       '<line class="limb" x1="160" y1="258" x2="174" y2="462" stroke-width="17"/>'
+      # --- the central channel (suṣumnā): a purple tether from the ground, up the 7 chakras, out the crown ---
+      '<g class="tether">'
+        '<line class="tglow" x1="150" y1="478" x2="150" y2="6"/>'
+        '<line class="tmid" x1="150" y1="478" x2="150" y2="6"/>'
+        '<line class="tcore" x1="150" y1="476" x2="150" y2="12"/>'
+        '<circle class="tground" cx="150" cy="478" r="6"/>'
+        '<circle class="tcrown" cx="150" cy="8" r="11"/>'
+        '<circle class="tspark" cx="150" cy="478" r="2.6">'
+          '<animate attributeName="cy" values="478;8" dur="3.6s" repeatCount="indefinite"/>'
+          '<animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.82;1" dur="3.6s" repeatCount="indefinite"/>'
+        '</circle>'
+      '</g>'
       # --- nerves: the neural web threading the organs ---
       '<path class="nerve" d="M150,66 L150,108 L150,210 L150,258"/>'
       '<path class="nerve" d="M150,150 L138,158"/>'
@@ -1969,7 +1981,7 @@ def body_html():
         'These are the actual roots: the classical six-chakra system (plus the crown) of medieval <b>tantric</b> yoga — the '
         '<i>Ṣaṭ-cakra-nirūpaṇa</i> (Pūrṇānanda, 1577), carried west by Woodroffe’s <i>Serpent Power</i> (1919) — which fixes '
         'each centre by its petals, element and bīja mantra, <b>not</b> a rainbow of colours. That colour scheme is a later, '
-        'subjective addition (Leadbeater, 1927); the tints here merely follow the five elements. Not, strictly, “Vedic” — the Vedas predate this by ~two millennia.</div>'
+        'subjective addition (Leadbeater, 1927); the tints here merely follow the five elements. Not, strictly, “Vedic” — the Vedas predate this by ~two millennia. The purple thread up the centre is the <b>suṣumnā</b>, the central channel — the path the rising energy (kuṇḍalinī) is said to climb, from the ground through the seven centres and out the crown.</div>'
       '</div>')
 
 PAGE = """<!DOCTYPE html>
@@ -2105,6 +2117,13 @@ text-shadow:2px 2px 0 var(--bleed)}
 .vbody .chakra:hover .cbija{opacity:.9}
 .vbody .petal{opacity:.42;transition:opacity .25s}
 .vbody .chakra:hover .petal{opacity:.85}
+@keyframes tpulse{0%,100%{opacity:.10}50%{opacity:.22}}
+.vbody .tether .tglow{stroke:#9a4fe0;stroke-width:9;stroke-linecap:round;animation:tpulse 3.6s ease-in-out infinite}
+.vbody .tether .tmid{stroke:#a24fd8;stroke-width:3.4;stroke-linecap:round;opacity:.32}
+.vbody .tether .tcore{stroke:#c79bf2;stroke-width:1.3;stroke-linecap:round;opacity:.85}
+.vbody .tether .tground{fill:#9a4fe0;opacity:.38}
+.vbody .tether .tcrown{fill:#b985ec;opacity:.5}
+.vbody .tether .tspark{fill:#ecd8ff}
 .vbody-chakra{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.02em;margin-top:8px;line-height:1.7;max-width:64ch;margin-left:auto;margin-right:auto}
 /* domain nav */
 .dnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:30px auto 0;max-width:980px}
