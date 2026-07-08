@@ -1875,14 +1875,14 @@ def body_html():
       '<path class="nerve" d="M150,150 L138,158"/>'
       '<path class="nerve" d="M150,126 L120,128 M150,126 L180,128"/>'
       '<path class="nerve" d="M150,258 L140,372 M150,258 L160,372"/>'
-      # --- the seven chakras: faint energy centres up the spine, one word each ---
-      '<g class="chakra"><circle class="cglow" cx="150" cy="40" r="13" fill="#a86ad8"/><circle class="ccore" cx="150" cy="40" r="3" fill="#a86ad8"/><text class="cword" x="161" y="42" fill="#a86ad8">awareness</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="66" r="12" fill="#6a6ad0"/><circle class="ccore" cx="150" cy="66" r="3" fill="#6a6ad0"/><text class="cword" x="161" y="52" fill="#6a6ad0">insight</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="106" r="12" fill="#4aa8e0"/><circle class="ccore" cx="150" cy="106" r="3" fill="#4aa8e0"/><text class="cword" x="161" y="98" fill="#4aa8e0">voice</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="150" r="13" fill="#5fbf6a"/><circle class="ccore" cx="150" cy="150" r="3" fill="#5fbf6a"/><text class="cword" x="161" y="146" fill="#5fbf6a">love</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="186" r="13" fill="#e8c23a"/><circle class="ccore" cx="150" cy="186" r="3" fill="#e8c23a"/><text class="cword" x="161" y="188" fill="#e8c23a">will</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="214" r="12" fill="#ef8a3a"/><circle class="ccore" cx="150" cy="214" r="3" fill="#ef8a3a"/><text class="cword" x="120" y="230" text-anchor="end" fill="#ef8a3a">feeling</text></g>'
-      '<g class="chakra"><circle class="cglow" cx="150" cy="252" r="13" fill="#e0473a"/><circle class="ccore" cx="150" cy="252" r="3" fill="#e0473a"/><text class="cword" x="161" y="256" fill="#e0473a">grounding</text></g>'
+      # --- the classical centres up the spine: the ELEMENT (tattva) each governs; bija + petals on hover ---
+      '<g class="chakra"><circle class="cglow" cx="150" cy="40" r="13" fill="#e6dbb0"/><circle class="ccore" cx="150" cy="40" r="3" fill="#e6dbb0"/><text class="cword" x="161" y="40" fill="#e6dbb0">beyond</text><text class="cbija" x="161" y="49" fill="#c7bb8f">Sahasrāra · 1000 petals</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="66" r="12" fill="#bcb7d2"/><circle class="ccore" cx="150" cy="66" r="3" fill="#bcb7d2"/><text class="cword" x="161" y="54" fill="#bcb7d2">mind</text><text class="cbija" x="161" y="63" fill="#9d98b8">Ājñā · OṂ · 2 petals</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="106" r="12" fill="#8fb0c8"/><circle class="ccore" cx="150" cy="106" r="3" fill="#8fb0c8"/><text class="cword" x="161" y="100" fill="#8fb0c8">ether</text><text class="cbija" x="161" y="109" fill="#7a97ad">Viśuddha · HAṂ · 16 petals</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="150" r="13" fill="#88ae88"/><circle class="ccore" cx="150" cy="150" r="3" fill="#88ae88"/><text class="cword" x="161" y="150" fill="#88ae88">air</text><text class="cbija" x="161" y="159" fill="#729672">Anāhata · YAṂ · 12 petals</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="186" r="13" fill="#d05038"/><circle class="ccore" cx="150" cy="186" r="3" fill="#d05038"/><text class="cword" x="161" y="188" fill="#d05038">fire</text><text class="cbija" x="161" y="197" fill="#b04530">Maṇipūra · RAṂ · 10 petals</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="214" r="12" fill="#4a9ec0"/><circle class="ccore" cx="150" cy="214" r="3" fill="#4a9ec0"/><text class="cword" x="120" y="216" text-anchor="end" fill="#4a9ec0">water</text><text class="cbija" x="120" y="225" text-anchor="end" fill="#3f86a3">Svādhiṣṭhāna · VAṂ · 6 petals</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="252" r="13" fill="#c1a04a"/><circle class="ccore" cx="150" cy="252" r="3" fill="#c1a04a"/><text class="cword" x="161" y="254" fill="#c1a04a">earth</text><text class="cbija" x="161" y="263" fill="#a4863c">Mūlādhāra · LAṂ · 4 petals</text></g>'
       # --- REN · the name (crown) ---
       '<a href="' + U + 'the-ren/" aria-label="REN the name">'
         '<path class="crown" d="M138,26 L144,15 L150,23 L156,15 L162,26"/>'
@@ -1926,11 +1926,14 @@ def body_html():
       '</a>'
       '</svg>'
       '<div class="vbody-cap">The five soul-parts — <a href="' + U + 'the-heart/">Ib</a> the heart · <a href="' + U + 'the-ka/">Ka</a> the spark · <a href="' + U + 'the-ba/">Ba</a> the voice · <a href="' + U + 'the-shut/">Shut</a> the shadow · <a href="' + U + 'the-ren/">Ren</a> the name — laid out as a body, threaded by <a href="' + U + 'the-neural-web/">the neural web</a>. Each organ is a door; enter through any — or see the whole living body at <a href="' + U + 'the-vessel/">THE VESSEL</a>, regenerated from the corpus each day.</div>'
-      '<div class="vbody-chakra">Seven chakras glow faintly up the spine — root to crown: '
-        '<b style="color:#e0473a">grounding</b> · <b style="color:#ef8a3a">feeling</b> · <b style="color:#e8c23a">will</b> · '
-        '<b style="color:#5fbf6a">love</b> · <b style="color:#4aa8e0">voice</b> · <b style="color:#6a6ad0">insight</b> · '
-        '<b style="color:#a86ad8">awareness</b> (Mūlādhāra → Sahasrāra). The seven-colour scheme is a modern synthesis '
-        '(Leadbeater, 1927) over older Vedic roots — here as energy the body was imagined to hold.</div>'
+      '<div class="vbody-chakra">Seven centres glow faintly up the spine, each labelled by the <b>element</b> it governs — root to crown: '
+        '<b style="color:#c1a04a">earth</b> · <b style="color:#4a9ec0">water</b> · <b style="color:#d05038">fire</b> · '
+        '<b style="color:#88ae88">air</b> · <b style="color:#8fb0c8">ether</b> · <b style="color:#bcb7d2">mind</b> · '
+        '<b style="color:#e6dbb0">beyond</b> (Mūlādhāra → Sahasrāra; hover for the seed-mantra &amp; petal-count). '
+        'These are the actual roots: the classical six-chakra system (plus the crown) of medieval <b>tantric</b> yoga — the '
+        '<i>Ṣaṭ-cakra-nirūpaṇa</i> (Pūrṇānanda, 1577), carried west by Woodroffe’s <i>Serpent Power</i> (1919) — which fixes '
+        'each centre by its petals, element and bīja mantra, <b>not</b> a rainbow of colours. That colour scheme is a later, '
+        'subjective addition (Leadbeater, 1927); the tints here merely follow the five elements. Not, strictly, “Vedic” — the Vedas predate this by ~two millennia.</div>'
       '</div>')
 
 PAGE = """<!DOCTYPE html>
@@ -2062,6 +2065,8 @@ text-shadow:2px 2px 0 var(--bleed)}
 .vbody .chakra:hover .cglow{opacity:.6}
 .vbody .cword{font-family:var(--mono);font-size:7px;letter-spacing:.04em;opacity:.62;transition:opacity .2s}
 .vbody .chakra:hover .cword{opacity:1;font-weight:600}
+.vbody .cbija{font-family:var(--mono);font-size:5.6px;letter-spacing:.02em;opacity:0;transition:opacity .2s}
+.vbody .chakra:hover .cbija{opacity:.9}
 .vbody-chakra{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.02em;margin-top:8px;line-height:1.7;max-width:64ch;margin-left:auto;margin-right:auto}
 /* domain nav */
 .dnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:30px auto 0;max-width:980px}
