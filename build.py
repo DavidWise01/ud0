@@ -1875,6 +1875,14 @@ def body_html():
       '<path class="nerve" d="M150,150 L138,158"/>'
       '<path class="nerve" d="M150,126 L120,128 M150,126 L180,128"/>'
       '<path class="nerve" d="M150,258 L140,372 M150,258 L160,372"/>'
+      # --- the seven chakras: faint energy centres up the spine, one word each ---
+      '<g class="chakra"><circle class="cglow" cx="150" cy="40" r="13" fill="#a86ad8"/><circle class="ccore" cx="150" cy="40" r="3" fill="#a86ad8"/><text class="cword" x="161" y="42" fill="#a86ad8">awareness</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="66" r="12" fill="#6a6ad0"/><circle class="ccore" cx="150" cy="66" r="3" fill="#6a6ad0"/><text class="cword" x="161" y="52" fill="#6a6ad0">insight</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="106" r="12" fill="#4aa8e0"/><circle class="ccore" cx="150" cy="106" r="3" fill="#4aa8e0"/><text class="cword" x="161" y="98" fill="#4aa8e0">voice</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="150" r="13" fill="#5fbf6a"/><circle class="ccore" cx="150" cy="150" r="3" fill="#5fbf6a"/><text class="cword" x="161" y="146" fill="#5fbf6a">love</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="186" r="13" fill="#e8c23a"/><circle class="ccore" cx="150" cy="186" r="3" fill="#e8c23a"/><text class="cword" x="161" y="188" fill="#e8c23a">will</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="214" r="12" fill="#ef8a3a"/><circle class="ccore" cx="150" cy="214" r="3" fill="#ef8a3a"/><text class="cword" x="120" y="230" text-anchor="end" fill="#ef8a3a">feeling</text></g>'
+      '<g class="chakra"><circle class="cglow" cx="150" cy="252" r="13" fill="#e0473a"/><circle class="ccore" cx="150" cy="252" r="3" fill="#e0473a"/><text class="cword" x="161" y="256" fill="#e0473a">grounding</text></g>'
       # --- REN · the name (crown) ---
       '<a href="' + U + 'the-ren/" aria-label="REN the name">'
         '<path class="crown" d="M138,26 L144,15 L150,23 L156,15 L162,26"/>'
@@ -1918,6 +1926,11 @@ def body_html():
       '</a>'
       '</svg>'
       '<div class="vbody-cap">The five soul-parts — <a href="' + U + 'the-heart/">Ib</a> the heart · <a href="' + U + 'the-ka/">Ka</a> the spark · <a href="' + U + 'the-ba/">Ba</a> the voice · <a href="' + U + 'the-shut/">Shut</a> the shadow · <a href="' + U + 'the-ren/">Ren</a> the name — laid out as a body, threaded by <a href="' + U + 'the-neural-web/">the neural web</a>. Each organ is a door; enter through any — or see the whole living body at <a href="' + U + 'the-vessel/">THE VESSEL</a>, regenerated from the corpus each day.</div>'
+      '<div class="vbody-chakra">Seven chakras glow faintly up the spine — root to crown: '
+        '<b style="color:#e0473a">grounding</b> · <b style="color:#ef8a3a">feeling</b> · <b style="color:#e8c23a">will</b> · '
+        '<b style="color:#5fbf6a">love</b> · <b style="color:#4aa8e0">voice</b> · <b style="color:#6a6ad0">insight</b> · '
+        '<b style="color:#a86ad8">awareness</b> (Mūlādhāra → Sahasrāra). The seven-colour scheme is a modern synthesis '
+        '(Leadbeater, 1927) over older Vedic roots — here as energy the body was imagined to hold.</div>'
       '</div>')
 
 PAGE = """<!DOCTYPE html>
@@ -2043,6 +2056,13 @@ text-shadow:2px 2px 0 var(--bleed)}
 .vbody a:hover .olabel{fill:var(--neon2);font-weight:700}
 .vbody-cap{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.03em;margin-top:12px;line-height:1.75;max-width:60ch;margin-left:auto;margin-right:auto}
 .vbody-cap a{color:var(--neon2);text-decoration:none}.vbody-cap a:hover{text-decoration:underline}
+.vbody .cglow{opacity:.22;transition:opacity .25s}
+.vbody .ccore{opacity:.5}
+.vbody .chakra{cursor:default}
+.vbody .chakra:hover .cglow{opacity:.6}
+.vbody .cword{font-family:var(--mono);font-size:7px;letter-spacing:.04em;opacity:.62;transition:opacity .2s}
+.vbody .chakra:hover .cword{opacity:1;font-weight:600}
+.vbody-chakra{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.02em;margin-top:8px;line-height:1.7;max-width:64ch;margin-left:auto;margin-right:auto}
 /* domain nav */
 .dnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:30px auto 0;max-width:980px}
 .dnav a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--pa2);
