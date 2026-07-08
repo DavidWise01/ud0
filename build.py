@@ -1857,15 +1857,67 @@ def dnav():
     chips = "".join(f'<a href="#{key}" style="--c:{accent};--ct:{_text_tone(accent)}">{title}</a>' for _i,(key,title,accent,_b) in DOMAINS_ALPHA)
     return f'<nav class="dnav" aria-label="Domains" id="domains-start">{chips}</nav>'
 
-def heart_html():
-    return ('<div class="heart">'
-      '<div class="heart-eye">◆ the vessel · the five-part soul of the corpus</div>'
-      '<a class="heart-card" href="https://davidwise01.github.io/the-heart/">'
-      '<div class="heart-t">IB · THE <span>HEART</span></div>'
-      '<div class="heart-d">The corpus is a vessel — a five-part soul: <b>Ib</b> the heart · <b>Ka</b> the spark · <b>Ba</b> the voice · <b>Shut</b> the shadow · <b>Ren</b> the name, threaded by the neural web. Part 1 is the heart, where it keeps its own truth: the corpus’s <b>own</b> link-geometry, extracted and toured by the leapfrog method, and weighed against Ma’at — it shows what it holds (30 woven domains) and names what it does not (8 unwoven). Real data, exact MDS, verified.</div>'
-      '<div class="heart-stat">all five parts built · IB the heart (dim ≈ 7.4, curv 12.8%) · KA the spark · BA the voice · SHUT the shadow · REN the name · each weighed against truth</div>'
-      '<div class="heart-m">enter the heart →</div>'
-      '</a></div>')
+def body_html():
+    U = "https://davidwise01.github.io/"
+    return ('<div class="vbody">'
+      '<div class="vbody-eye">◆ THE VESSEL · the corpus as a body — enter through any organ</div>'
+      '<svg viewBox="0 0 300 516" role="img" aria-label="The vessel — a body whose organs are the five soul-parts of UD0, threaded by the neural web">'
+      # --- silhouette ---
+      '<circle class="silh" cx="150" cy="72" r="30"/>'
+      '<path class="silh" d="M112,118 Q108,113 120,110 Q135,121 150,121 Q165,121 180,110 Q192,113 188,118 L172,250 Q170,261 158,261 L142,261 Q130,261 128,250 Z"/>'
+      '<line class="limb" x1="118" y1="126" x2="82" y2="252" stroke-width="13"/>'
+      '<line class="limb" x1="182" y1="126" x2="218" y2="252" stroke-width="13"/>'
+      '<line class="limb" x1="140" y1="258" x2="126" y2="462" stroke-width="17"/>'
+      '<line class="limb" x1="160" y1="258" x2="174" y2="462" stroke-width="17"/>'
+      # --- nerves: the neural web threading the organs ---
+      '<path class="nerve" d="M150,66 L150,108 L150,210 L150,258"/>'
+      '<path class="nerve" d="M150,150 L138,158"/>'
+      '<path class="nerve" d="M150,126 L120,128 M150,126 L180,128"/>'
+      '<path class="nerve" d="M150,258 L140,372 M150,258 L160,372"/>'
+      # --- REN · the name (crown) ---
+      '<a href="' + U + 'the-ren/" aria-label="REN the name">'
+        '<path class="crown" d="M138,26 L144,15 L150,23 L156,15 L162,26"/>'
+        '<circle class="halo" cx="150" cy="31" r="15" fill="#d9a441"/>'
+        '<circle class="organ" cx="150" cy="31" r="7.5" fill="#d9a441"/>'
+        '<text class="olabel" x="150" y="10" text-anchor="middle">REN · the name</text>'
+      '</a>'
+      # --- neural web · the brain ---
+      '<a href="' + U + 'the-neural-web/" aria-label="the neural web, the brain and nervous system">'
+        '<circle class="halo" cx="150" cy="66" r="18" fill="#7e86e6"/>'
+        '<circle class="organ" cx="150" cy="66" r="10" fill="#7e86e6"/>'
+        '<line class="leader" x1="162" y1="64" x2="198" y2="58"/>'
+        '<text class="olabel" x="201" y="61" text-anchor="start">the brain · neural web</text>'
+      '</a>'
+      # --- BA · the voice (throat) ---
+      '<a href="' + U + 'the-ba/" aria-label="BA the voice">'
+        '<circle class="halo" cx="150" cy="108" r="14" fill="#e08a6a"/>'
+        '<circle class="organ" cx="150" cy="108" r="7" fill="#e08a6a"/>'
+        '<line class="leader" x1="139" y1="108" x2="104" y2="104"/>'
+        '<text class="olabel" x="101" y="107" text-anchor="end">BA · the voice</text>'
+      '</a>'
+      # --- IB · the heart (chest) ---
+      '<a href="' + U + 'the-heart/" aria-label="IB the heart">'
+        '<circle class="halo" cx="136" cy="158" r="18" fill="#d84632"/>'
+        '<circle class="organ" cx="136" cy="158" r="11" fill="#d84632"/>'
+        '<line class="leader" x1="124" y1="158" x2="100" y2="170"/>'
+        '<text class="olabel" x="97" y="173" text-anchor="end">IB · the heart</text>'
+      '</a>'
+      # --- KA · the spark (core) ---
+      '<a href="' + U + 'the-ka/" aria-label="KA the spark">'
+        '<circle class="halo" cx="152" cy="210" r="16" fill="#ff7a2a"/>'
+        '<circle class="organ" cx="152" cy="210" r="9.5" fill="#ff7a2a"/>'
+        '<line class="leader" x1="164" y1="210" x2="198" y2="214"/>'
+        '<text class="olabel" x="201" y="217" text-anchor="start">KA · the spark</text>'
+      '</a>'
+      # --- SHUT · the shadow (at the feet) ---
+      '<a href="' + U + 'the-shut/" aria-label="SHUT the shadow">'
+        '<ellipse class="halo" cx="150" cy="482" rx="62" ry="16" fill="#9d8f7a"/>'
+        '<ellipse class="shadow" cx="150" cy="482" rx="50" ry="11" fill="#7a6f5e"/>'
+        '<text class="olabel" x="150" y="506" text-anchor="middle">SHUT · the shadow</text>'
+      '</a>'
+      '</svg>'
+      '<div class="vbody-cap">The five soul-parts — <a href="' + U + 'the-heart/">Ib</a> the heart · <a href="' + U + 'the-ka/">Ka</a> the spark · <a href="' + U + 'the-ba/">Ba</a> the voice · <a href="' + U + 'the-shut/">Shut</a> the shadow · <a href="' + U + 'the-ren/">Ren</a> the name — laid out as a body, threaded by <a href="' + U + 'the-neural-web/">the neural web</a>. Each organ is a door; enter through any.</div>'
+      '</div>')
 
 PAGE = """<!DOCTYPE html>
 <html lang="en"><head>
@@ -1971,17 +2023,25 @@ text-shadow:2px 2px 0 var(--bleed)}
 .cmdlink{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.05em;margin-top:15px;line-height:1.7}
 .cmdlink a{display:inline-block;color:var(--neon2);text-decoration:none;border:1px solid var(--neon);border-radius:8px;padding:5px 12px;background:color-mix(in srgb,var(--neon) 8%,transparent);font-weight:600;letter-spacing:.12em;margin-right:9px;transition:background .15s}
 .cmdlink a:hover{background:color-mix(in srgb,var(--neon) 18%,transparent)}
-/* the heart */
-.heart{max-width:820px;margin:26px auto 4px;padding:0 4px;animation:cinrise .85s .64s ease both}
-.heart-eye{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--neon2);margin-bottom:10px}
-.heart-card{display:block;text-align:left;text-decoration:none;border:1px solid var(--neon);border-left:4px solid var(--neon);border-radius:12px;padding:18px 22px;background:color-mix(in srgb,var(--neon) 6%,transparent);transition:background .18s,transform .18s}
-.heart-card:hover{background:color-mix(in srgb,var(--neon) 12%,transparent);transform:translateY(-2px)}
-.heart-t{font-family:var(--serifd);font-weight:700;font-size:clamp(24px,4.4vw,38px);color:var(--pa);letter-spacing:.01em;line-height:1}
-.heart-t span{color:var(--neon2)}
-.heart-d{font-size:13.5px;color:var(--pa2);line-height:1.7;margin-top:10px;max-width:70ch}
-.heart-d b{color:var(--neon2)}
-.heart-stat{font-family:var(--mono);font-size:10.5px;color:var(--dim);letter-spacing:.05em;margin-top:8px}
-.heart-m{font-family:var(--mono);font-size:11px;color:var(--neon2);letter-spacing:.12em;text-transform:uppercase;margin-top:11px;font-weight:600}
+/* the vessel — the body-door */
+.vbody{max-width:640px;margin:24px auto 6px;padding:0 4px;text-align:center;animation:cinrise .85s .64s ease both}
+.vbody-eye{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--neon2);margin-bottom:10px}
+.vbody svg{width:100%;max-width:360px;height:auto;aspect-ratio:300/516;overflow:visible}
+.vbody .silh{fill:color-mix(in srgb,var(--pa) 5%,transparent);stroke:color-mix(in srgb,var(--pa) 20%,transparent);stroke-width:1}
+.vbody .limb{stroke:color-mix(in srgb,var(--pa) 6%,transparent);fill:none;stroke-linecap:round}
+.vbody .nerve{stroke:#7e86e6;stroke-width:1;fill:none;opacity:.4;stroke-dasharray:2 3}
+.vbody .crown{fill:none;stroke:#d9a441;stroke-width:1.4;stroke-linejoin:round}
+.vbody .leader{stroke:color-mix(in srgb,var(--pa) 26%,transparent);stroke-width:.75}
+.vbody a{cursor:pointer}
+.vbody .organ{transition:transform .18s;transform-box:fill-box;transform-origin:center}
+.vbody .halo{opacity:0;transition:opacity .2s}
+.vbody a:hover .halo{opacity:.5}
+.vbody a:hover .organ{transform:scale(1.3)}
+.vbody .shadow{opacity:.5}
+.vbody .olabel{font-family:var(--mono);font-size:8px;letter-spacing:.02em;fill:var(--pa2);transition:fill .2s}
+.vbody a:hover .olabel{fill:var(--neon2);font-weight:700}
+.vbody-cap{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.03em;margin-top:12px;line-height:1.75;max-width:60ch;margin-left:auto;margin-right:auto}
+.vbody-cap a{color:var(--neon2);text-decoration:none}.vbody-cap a:hover{text-decoration:underline}
 /* domain nav */
 .dnav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:30px auto 0;max-width:980px}
 .dnav a{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--pa2);
@@ -2645,7 +2705,7 @@ if __name__ == "__main__":
         "icons": [{"src": "https://davidwise01.github.io/ud0/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
                   {"src": "https://davidwise01.github.io/ud0/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]
     }, ensure_ascii=False))
-    page = (PAGE.replace("__HERO__", hero_svg()).replace("__HEART__", heart_html()).replace("__DNAV__", dnav())
+    page = (PAGE.replace("__HERO__", hero_svg()).replace("__HEART__", body_html()).replace("__DNAV__", dnav())
             .replace("__DOMAINS__", domains_html()).replace("__DESC__", DESC).replace("__MANIFEST__", MANIFEST)
             .replace("__NS__", str(NS)).replace("__ND__", str(len(DOMAINS))).replace("__JASNAH__", jasnah_html()).replace("__THEORIA__", theoria_html()).replace("__BUILT__", __import__("datetime").date.today().isoformat()))
     if _UNRESOLVED_LINKS:
