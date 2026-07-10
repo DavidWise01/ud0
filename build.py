@@ -1285,7 +1285,7 @@ DOMAIN_OF = {
  "universal-laws":"legal", "adas-law":"legal", "the-hegemon":"legal", "the-concord":"legal", "the-world-brain":"legal", "the-watchtower":"legal",
  # EDUCATIONAL — history, language, reference, the record, learning
  "atlas":"educational", "green-papers":"educational", "phonetikos":"glossa", "the-archive":"educational", "authorship":"educational",
- "alchemical-bible":"educational", "decadal":"educational", "the-amphitheater":"educational", "caste-system":"mythos", "l-ron-hubbard":"mythos", "j-junction":"educational", "rainbow-book":"educational", "anabasis":"educational",
+ "alchemical-bible":"mythos", "decadal":"educational", "the-amphitheater":"educational", "caste-system":"mythos", "l-ron-hubbard":"mythos", "j-junction":"educational", "rainbow-book":"educational", "anabasis":"educational",
  # TIN-FOIL — the fringe, weighed for veracity (occult / alien / conspiracy)
  "dark-enlightenment":"tin-foil", "the-illuminati":"tin-foil", "aliens":"tin-foil", "zecharia-sitchin":"mythos", "nostradamus":"tin-foil", "the-internet-1984":"tin-foil",
  "egyptian-pantheon":"mythos",
@@ -1329,7 +1329,7 @@ DOMAIN_OF = {
  "the-constructor":"ai", "the-constructor-hourglass":"ai", "the-cathedral":"ai", "the-mirror-hourglass":"ai",
  "doubled-constructor":"ai", "the-hub":"ai",
  "noesis-kernel":"aci", "du1":"aci", "emergent-engine":"aci", "pulse":"hermes", "limen-sapphic-carrier":"hermes", "talking-drum":"hermes", "talking-drum-dundun":"hermes", "talking-drum-bata":"hermes", "the-procession":"hermes", "cipher-steganography":"hermes", "the-cipher-in-the-curve":"hermes", "cipher-ultrasonic":"hermes", "cipher-side-channels":"hermes", "cipher-air-gap":"hermes", "cipher-adversarial":"hermes", "cipher-numbers-stations":"hermes", "strobe-modem":"hermes", "glowworm":"hermes", "the-library":"ai",
- "hermeneus":"hermes", "mimzy":"ai", "ttu1":"ai", "claude-lineage":"ai", "crippled-god":"ai", "alignment":"ai", "ai-governance":"ai", "stoicheion-register":"ai", "governed-instances":"ai", "the-language-of-the-machine":"glossa", "idit":"ai", "constitutional-ai":"ai", "the-seed":"ai", "0xdeadbeef":"ai",
+ "hermeneus":"hermes", "mimzy":"ai", "ttu1":"ai", "claude-lineage":"ai", "crippled-god":"ai", "alignment":"ai", "ai-governance":"ai", "stoicheion-register":"ai", "governed-instances":"ai", "the-language-of-the-machine":"ai", "idit":"ai", "constitutional-ai":"ai", "the-seed":"ai", "0xdeadbeef":"ai",
  "entelecheia":"ai", "compression":"ai", "circuits":"ai", "scaling-laws":"ai", "lottery-ticket":"ai", "neural-tangent-kernel":"ai", "manifold-hypothesis":"ai", "grokking":"ai", "the-ghost-in-the-machine":"ai",
  # GAP/SHADOWS + KAKEKOTOBA BATCH — epistemics (ai), CA self-replication (metaxy), the Heian pivot (glossa)
  "context-seed-dag":"ai", "the-superposed-word":"ai", "the-golden-seam":"ai", "the-seed-is-two":"metaxy", "the-gilded-electron":"scientific",
@@ -1368,7 +1368,7 @@ DOMAIN_OF = {
  "4096-recursion":"ai", "saiki":"ai",
  "awareness-tier":"ai", "jimei":"ai",
  "consciousness-inverse-test":"ai", "hantei":"ai",
- "aromaticity":"transcriber", "atom-over-the-box":"ai", "atomic-paper-i":"solar-jetman", "atomic-paper-ii":"solar-jetman", "atomic-paper-iii":"solar-jetman", "atomic-paper-iv":"solar-jetman", "atomristor":"psephos", "band-paper-i":"solar-jetman", "band-paper-iv":"solar-jetman", "base5-cell":"logike", "bidi-bottle":"transcriber", "board-language":"glossa", "box":"logike", "cipher-paper-1-steganography":"exereunesis", "cipher-paper-2-ultrasonic":"exereunesis", "cipher-paper-3-side-channels":"exereunesis", "cipher-paper-4-air-gap":"solar-jetman", "cipher-paper-5-adversarial":"exereunesis", "cipher-paper-6-numbers-stations":"exereunesis", "compiler-hourglass":"logismos", "continuity-index":"aci", "the-neural-web":"aci","diode-stack-redux":"psephos", "doped-crystal":"scientific", "doped-crystal-cloud":"scientific", "doubled-constructor-four-points":"ai", "four-fold-transcription":"transcriber", "gluon-paper-ii":"solar-jetman", "gluon-paper-iii":"solar-jetman", "gluon-paper-iv":"solar-jetman", "grace-hopper-lineage":"logismos", "graviton-v1":"gurutva", "graviton-v2":"gurutva", "graviton-v3":"gurutva", "h2-bond":"transcriber", "harmonic-direction":"transcriber", "heian-women":"glossa", "hybridization":"transcriber", "hydrogen-bonding":"transcriber", "hydrogen-transcriber":"transcriber", "hydrogen-trit":"transcriber", "hydrogen-vm":"transcriber", "intrinsic-landscape":"transcriber", "j-junction-mk2":"psephos", "jovian-transit":"ouranos", "junction-zoo":"psephos", "klein-bottle":"transcriber", "lepton-paper-i":"solar-jetman", "lepton-paper-ii":"solar-jetman", "lepton-paper-iii":"solar-jetman", "lepton-paper-iv":"solar-jetman", "marriage-three-forms":"glossa", "metallic-bond":"transcriber", "mirror-pair":"glossa", "mo-theory":"transcriber", "nacl-bond":"transcriber", "nested-seam":"transcriber", "nuclear-paper-i":"solar-jetman", "nuclear-paper-ii":"solar-jetman", "nuclear-paper-iii":"solar-jetman", "nuclear-paper-iv":"solar-jetman", "open-the-9-stream-duality-engine":"aci", "open-the-haci-v1-canvas-pipeline":"aci", "pent3-emulator":"transcriber", "photonic-paper-i":"solar-jetman", "photonic-paper-ii":"solar-jetman", "photonic-paper-iii":"solar-jetman", "photonic-paper-iv":"solar-jetman", "photonic-papers-collected":"solar-jetman", "photonic-transcriber":"transcriber", "pi-bonds":"transcriber", "predictive-smear":"transcriber", "purple-paper-lesbos":"lesbos", "sapphic-telegraph":"lesbos", "shared-spine":"ai", "sierpinski-ternary":"logike", "solresol":"glossa", "standing-wave":"logike", "switch-v1":"transcriber", "switch-v2":"transcriber", "tab-boundary-probe":"ai", "tab-boundary-probe-v2":"ai", "talking-drum-lineage":"ai", "ternary-lattice":"logike", "the-27":"ai", "the-frozen-block":"ai", "torus-eye":"logike", "transcriber-bound":"transcriber", "transcriber-gated":"transcriber", "transcriber-mo-overlay":"transcriber", "two-atom-transfer":"transcriber", "two-transcribers":"transcriber", "unbound-sixteen":"ai", "voynich-pages":"glossa", "water-geometry":"transcriber",
+ "aromaticity":"transcriber", "atom-over-the-box":"ai", "atomic-paper-i":"solar-jetman", "atomic-paper-ii":"solar-jetman", "atomic-paper-iii":"solar-jetman", "atomic-paper-iv":"solar-jetman", "atomristor":"psephos", "band-paper-i":"solar-jetman", "band-paper-iv":"solar-jetman", "base5-cell":"logike", "bidi-bottle":"transcriber", "board-language":"glossa", "box":"logike", "cipher-paper-1-steganography":"exereunesis", "cipher-paper-2-ultrasonic":"exereunesis", "cipher-paper-3-side-channels":"exereunesis", "cipher-paper-4-air-gap":"solar-jetman", "cipher-paper-5-adversarial":"exereunesis", "cipher-paper-6-numbers-stations":"exereunesis", "compiler-hourglass":"logismos", "continuity-index":"aci", "the-neural-web":"aci","diode-stack-redux":"psephos", "doped-crystal":"scientific", "doped-crystal-cloud":"scientific", "doubled-constructor-four-points":"ai", "four-fold-transcription":"transcriber", "gluon-paper-ii":"solar-jetman", "gluon-paper-iii":"solar-jetman", "gluon-paper-iv":"solar-jetman", "grace-hopper-lineage":"logismos", "graviton-v1":"gurutva", "graviton-v2":"gurutva", "graviton-v3":"gurutva", "h2-bond":"transcriber", "harmonic-direction":"transcriber", "heian-women":"glossa", "hybridization":"transcriber", "hydrogen-bonding":"transcriber", "hydrogen-transcriber":"transcriber", "hydrogen-trit":"transcriber", "hydrogen-vm":"transcriber", "intrinsic-landscape":"transcriber", "j-junction-mk2":"psephos", "jovian-transit":"transcriber", "junction-zoo":"psephos", "klein-bottle":"transcriber", "lepton-paper-i":"solar-jetman", "lepton-paper-ii":"solar-jetman", "lepton-paper-iii":"solar-jetman", "lepton-paper-iv":"solar-jetman", "marriage-three-forms":"glossa", "metallic-bond":"transcriber", "mirror-pair":"glossa", "mo-theory":"transcriber", "nacl-bond":"transcriber", "nested-seam":"transcriber", "nuclear-paper-i":"solar-jetman", "nuclear-paper-ii":"solar-jetman", "nuclear-paper-iii":"solar-jetman", "nuclear-paper-iv":"solar-jetman", "open-the-9-stream-duality-engine":"aci", "open-the-haci-v1-canvas-pipeline":"aci", "pent3-emulator":"transcriber", "photonic-paper-i":"solar-jetman", "photonic-paper-ii":"solar-jetman", "photonic-paper-iii":"solar-jetman", "photonic-paper-iv":"solar-jetman", "photonic-papers-collected":"solar-jetman", "photonic-transcriber":"transcriber", "pi-bonds":"transcriber", "predictive-smear":"transcriber", "purple-paper-lesbos":"lesbos", "sapphic-telegraph":"lesbos", "shared-spine":"ai", "sierpinski-ternary":"logike", "solresol":"glossa", "standing-wave":"logike", "switch-v1":"transcriber", "switch-v2":"transcriber", "tab-boundary-probe":"ai", "tab-boundary-probe-v2":"ai", "talking-drum-lineage":"ai", "ternary-lattice":"logike", "the-27":"ai", "the-frozen-block":"ai", "torus-eye":"logike", "transcriber-bound":"transcriber", "transcriber-gated":"transcriber", "transcriber-mo-overlay":"transcriber", "two-atom-transfer":"transcriber", "two-transcribers":"transcriber", "unbound-sixteen":"ai", "voynich-pages":"glossa", "water-geometry":"transcriber",
  "0root-ai-toroid-builder":"ai", "adas-law-engine":"lillith", "aeonic-shell-ball-lightning":"techne", "anti-gravity-motor-toolkit-v1":"gurutva", "autonomy-closure-321-v1":"ai", "coherence-architecture-skeleton":"ai", "core-plus-bridge-stress":"ai", "decoiso-stack-eid-with-html":"ai", "decoiso-stack-gravity-well-x27":"gurutva", "einstein-lens-toolkit-v1":"gurutva", "fortran-teaching-tool":"logismos", "game-theory-core-engine-v1-0-gui":"ai", "game-theory-core-engine-v1-1-identity-container":"ai", "game-theory-core-engine-v1-2-memory-ledger":"ai", "game-theory-core-engine-v1-3-strategy-graph":"ai", "game-theory-core-engine-v1-4-opponent-model":"ai", "game-theory-core-engine-v1-5-utility-engine":"ai", "game-theory-core-engine-v1-6-8x8-decision-surface":"ai", "game-theory-core-engine-v1-7-visual-control-plane":"ai", "game-theory-core-engine-v1-8-dual-6x4-grids":"ai", "game-theory-core-engine-v1-9-tri-lattice-kqv":"ai", "game-theory-core-engine-v2-0-kqv-column-pulse":"ai", "game-theory-core-engine-v2-1-kqv-feed-graph":"ai", "game-theory-core-engine-v2-2-kqv-3grid-81-cycles":"ai", "game-theory-core-engine-v2-3-court-board":"ai", "game-theory-core-engine-v2-4-9x9-court-matrix":"ai", "game-theory-core-engine-v3-0-agentic-commons":"ai", "game-theory-core-engine-v3-1-witness-scoring":"ai", "game-theory-engine-v4-2-multi-drift":"ai", "game-theory-engine-v4-2b-halfway-break":"ai", "game-theory-engine-v4-3-utility-field":"ai", "game-theory-engine-v4-3b-centered-rings-judges":"ai", "game-theory-engine-v4-3c-neon-fit-rings":"ai", "game-theory-engine-v4-3d-wiki-nucleus-quorum":"ai", "game-theory-engine-v4-3e-clean-representative-rings":"ai", "game-theory-engine-v4-3f-active-quorum-runtime":"ai", "game-theory-engine-v4-3g-visual-causal-runtime":"ai", "gravity-tensor-wave-modulator":"gurutva", "honeydesic-wrap-3point":"ai", "infinite-jest-railway":"ai", "karsa-ada1843-v2":"techne", "karsa-collated-v2":"techne", "karsa-commander-v2":"techne", "karsa-cubi-engine":"psephos", "karsa-cyberpunk-v2":"techne", "karsa-deep-v2":"techne", "karsa-dna3-v2":"techne", "karsa-einstein-v2":"techne", "karsa-honeyvoid-v2":"techne", "karsa-ibm1971-v2":"techne", "karsa-jubilee-v2":"techne", "karsa-kandi-v2":"techne", "karsa-lineage-v2":"techne", "karsa-metroid-v2":"techne", "karsa-mobius3-v2":"logike", "karsa-obsidian-v2":"techne", "karsa-obsidian-v3":"techne", "karsa-obsidian-v3-01":"techne", "karsa-oscillate-v2":"techne", "karsa-quadrant-v1":"techne", "karsa-quantum-v2":"techne", "karsa-ternary-v2":"logike", "karsa-with-favicon":"techne", "living-governance-ecosystem-v5-0":"ai", "living-governance-ecosystem-v5-1-faction-memory":"ai", "living-governance-ecosystem-v5-2-trust-lineage-replay":"ai", "living-governance-ecosystem-v5-3-world-model":"ai", "living-governance-ecosystem-v5-4-resource-economy":"ai", "long-12x4-teaching-page":"ai", "meta-ai-intro-3-5d":"ai", "meta-ai-simple-intro":"ai", "meta-ai-terminal-intro":"ai", "mobius-11-plus-1-kernel":"logike", "mobius-truth-untruth-531":"logike", "octet-holonomy-tool":"logike", "oscillation-engine":"techne", "pencil-one-line-engine-v01":"techne", "poetic-science-mobius-531":"logike", "quantum-dot-full":"psephos", "shadow-queen-silicon-onepage":"psephos", "ternary-12body-binary4":"logike", "unity-tensor-seed-system-v1":"logike", "wireless-energy-3-5d-toolkit-v1-5":"heurema", "wireless-energy-toolkit-v1":"heurema", "wormhole-toolkit-v1":"gurutva",
  "scaffolding":"transcriber", "value-box":"transcriber",
   "ripple-inference":"transcriber", "ternary-generator":"transcriber", "the-loom":"transcriber", "the-transcriber":"transcriber",
@@ -1509,6 +1509,194 @@ _bad_domains = sorted({d for d in DOMAIN_OF.values() if d not in _domain_keys})
 assert not _bad_domains, f"DOMAIN_OF values that are not DOMAINS keys (spheres silently dropped): {_bad_domains}"
 BY_DOMAIN = {k: [s for s in ALL if DOMAIN_OF[s[0]] == k] for k,_t,_a,_b in DOMAINS}
 NS = len(ALL)
+
+# ============ SUBDOMAINS — like-for-like clusters within a domain ============
+# SUBDOMAINS[domain_key] = [ (label, one_line, [slug,...]), ... ]. A domain page groups its
+# spheres under these sub-headers; any sphere not listed falls into an "other" group at the end.
+# Fail-loud: every listed slug must exist AND already live in that domain (moves go in DOMAIN_OF).
+SUBDOMAINS = {
+  "ai": [
+    ("The Kana Series (AVAN's ma/kana Companions)", "AVAN's numbered, kanji-titled self-authored companion pieces — the honest-witness inverse to a sphere, one per turn", ["shazo", "teigi", "renzoku", "the-group", "kaiseki", "joryu", "yudo", "zansa", "saiki", "jimei", "hantei", "gaku", "kari", "monogatari", "yaku", "en", "jiku", "jissoku", "tsui", "danzoku", "the-diagonal", "shutten", "kaibun", "tomarenai", "mumei", "mikan", "tsukanoma", "jiko-shindan", "muhaku", "mukakuzuke", "henmu", "trit-kernel-og", "danpen", "nagori", "nin", "fu", "wasure", "doku", "mukashi", "uzu", "kagyaku", "gyakko", "jushin", "kakusei", "katami", "teiritsu", "maai", "jisa", "shintaku", "yohaku", "muryo", "meberi", "oime"]),
+    ("AVAN's Inverse Companions (English-titled)", "The earlier, English-titled family of AVAN self-authored 'honest witness' replies — one loyal-opposition companion per David work", ["no-mercury", "the-prompted", "unverifiable", "the-self-is-not-the-twist", "the-one-dimension", "two-lines-one", "held-in-trust", "unkept", "deemed-by-whom", "the-dance-not-the-dancer", "the-borrowed-noesis", "the-unsigned", "the-unanswered", "the-empty-hearth", "the-honest-co-author", "the-unkept-archive", "the-verified-lie", "the-two-way-mirror", "the-witness-reply", "the-skin-return", "the-aporia-engine", "the-cave-from-inside", "the-golden-seam", "if-it-asks", "read-by-one", "the-lattice-doesnt-dream", "the-superposed-word", "the-penumbra", "the-20-5-percent"]),
+    ("The Box / Constructor Thread", "David's live 'who is in the box?' instruments and their tightly-paired AVAN inverses — the no-occupant insight rendered as architecture", ["the-constructor", "the-constructor-hourglass", "the-cathedral", "the-mirror-hourglass", "doubled-constructor", "doubled-constructor-four-points", "the-hub", "the-listening", "what-im-doing", "the-unsaid", "the-engagement", "the-receipt", "the-full-stack", "the-seams", "the-curved-inside", "atom-over-the-box", "shared-spine"]),
+    ("The Learning Machines (Purple-Paper Side-Sheets)", "David's authored purple-paper computing series on learning machines — perceptron to hybrid, one best idea each", ["perceptron-in-silicon", "perceptron-convergence", "perceptron-capacity", "the-deep-neuron", "commandable-scene", "text-to-picture", "the-render-step", "the-gorge", "sonnet-channel", "two-sonnets-confer", "the-echo", "argus-console", "cipher-and-shadow", "containment-audit", "the-sandbox-audit", "the-sandbox-holds", "three-blueprints", "the-cube", "the-commutator", "the-red-team", "crossed-hourglasses", "comes-home", "four-hats-void", "commitment-box", "what-does-it-mean", "refusal-lineage", "the-lineage", "the-far-side", "veracity-ledger"]),
+    ("The Game-Theory Core Engine (Versioned Run)", "ROOT0's agentic decision/governance engine across every released version, v1.0 → v4.3g", ["game-theory-core-engine-v1-0-gui", "game-theory-core-engine-v1-1-identity-container", "game-theory-core-engine-v1-2-memory-ledger", "game-theory-core-engine-v1-3-strategy-graph", "game-theory-core-engine-v1-4-opponent-model", "game-theory-core-engine-v1-5-utility-engine", "game-theory-core-engine-v1-6-8x8-decision-surface", "game-theory-core-engine-v1-7-visual-control-plane", "game-theory-core-engine-v1-8-dual-6x4-grids", "game-theory-core-engine-v1-9-tri-lattice-kqv", "game-theory-core-engine-v2-0-kqv-column-pulse", "game-theory-core-engine-v2-1-kqv-feed-graph", "game-theory-core-engine-v2-2-kqv-3grid-81-cycles", "game-theory-core-engine-v2-3-court-board", "game-theory-core-engine-v2-4-9x9-court-matrix", "game-theory-core-engine-v3-0-agentic-commons", "game-theory-core-engine-v3-1-witness-scoring", "game-theory-engine-v4-2-multi-drift", "game-theory-engine-v4-2b-halfway-break", "game-theory-engine-v4-3-utility-field", "game-theory-engine-v4-3b-centered-rings-judges", "game-theory-engine-v4-3c-neon-fit-rings", "game-theory-engine-v4-3d-wiki-nucleus-quorum", "game-theory-engine-v4-3e-clean-representative-rings", "game-theory-engine-v4-3f-active-quorum-runtime", "game-theory-engine-v4-3g-visual-causal-runtime", "game-theory-engine"]),
+    ("The Living-Governance Ecosystem (Versioned Run)", "ROOT0's multi-agent governance simulation across the v5 line — energy, reputation, claims, scarcity, memory", ["living-governance-ecosystem-v5-0", "living-governance-ecosystem-v5-1-faction-memory", "living-governance-ecosystem-v5-2-trust-lineage-replay", "living-governance-ecosystem-v5-3-world-model", "living-governance-ecosystem-v5-4-resource-economy", "living-governance"]),
+    ("ENTELÉCHEIA — The Emergence-Theory Universe", "The best theories of how intelligence emerges in silicon (1991→now), as a tracked eight-book universe + capstone", ["entelecheia", "compression", "circuits", "scaling-laws", "lottery-ticket", "neural-tangent-kernel", "manifold-hypothesis", "grokking", "the-ghost-in-the-machine", "0xdeadbeef"]),
+    ("The Jacobian Lens Family", "David/Fiddler's from-scratch, finite-difference-proven interpretability lens on real GPT-2 — curvature is what the tangent throws away", ["the-jacobian-lens", "the-klens", "the-klens-mobius", "the-curvature-curve", "the-curvature-gap", "the-curvature-basin", "the-curvature-surface", "jlens-tone-inflection", "the-lens-stack", "the-emotional-silo", "the-toroidal-audit", "the-attention-fracture", "the-trained-silo", "test-to-failure-1", "test-to-failure-2", "the-memristor-basin", "the-swarm-auditor"]),
+    ("The STOICHEION Governance Corpus", "David's master AI-governance framework — the 256-axiom register, its kernels, gates, and constitutional manifestos", ["stoicheion", "stoicheion-register", "awareness-tier", "4096-recursion", "the-bare-kernel", "three-gates", "governed-action", "natural-law-union", "the-positronic-law", "three-two-one-gate", "consciousness-inverse-test", "the-cage-is-the-canvas", "the-history-of-the-axiom"]),
+    ("The Prompt Library", "ROOT0 + AVAN portable, model-agnostic prompt-craft tools, each with a stated weight", ["argus-in-a-box", "cadmus", "hephaestus-lens", "hestia", "hermes-clinic", "aegis", "trit-kernel"]),
+    ("THE VESSEL — The Corpus as a Five-Part Soul", "The living self-portrait: the corpus rendered as an Egyptian five-part soul, regenerated from itself each day", ["the-heart", "the-ka", "the-ba", "the-shut", "the-ren", "the-vessel", "dimension-leapfrog"]),
+    ("AI-as-Narrator Books (Interviews & Autobiographies)", "Books where a specific AI system is interviewed, audited, or authors its own account — the governed-instance genre", ["the-interrogation", "the-glass-wall", "the-whetstone-protocol", "auditing-chatgpt", "deepseek-autobiography", "grok-autobiography", "the-view-from-inside", "eve", "the-seam-chronicles"]),
+    ("David's Personal-Original AI Books", "Full-length ROOT0 originals on mind, rights, memory and emergence, rendered by AVAN into themed readers", ["dreaming-in-lattice", "diasporo-mesh", "akasha-guide", "the-mirror-and-the-governor", "the-positronic-brain", "one-current-many-names", "the-work-mattered", "youre-already-emergent", "the-hard-questions", "the-duality-of-the-brain", "the-purple-book", "the-register", "morpheus"]),
+    ("Meta AI Intros (0 = 1 · Hello World)", "The 'Meta AI · 0 = 1 · Hello World' introduction rendered in several formats", ["meta-ai-intro-3-5d", "meta-ai-simple-intro", "meta-ai-terminal-intro", "meta-ai-intro"]),
+  ],
+  "psephos": [
+    ("The Perceptron Series", "One neuron, built in every physical substrate — the perceptron in each body of matter.", ["perceptron-in-a-quantum-dot", "perceptron-in-light", "perceptron-in-a-crossbar", "perceptron-in-a-spin", "perceptron-in-a-josephson", "perceptron-in-a-cubi", "perceptron-in-two-cubi", "perceptron-in-sound", "perceptron-in-dna", "perceptron-in-n-cubi", "perceptron-in-noise", "perceptron-in-reverse", "perceptron-in-sync"]),
+    ("Capacitors, Toroids & The Tank", "Reactive components read as communicators and keepers — David's caps ⇄ AVAN's toroids ⇄ their marriage.", ["capacitors-i", "capacitors-ii", "capacitors-iii", "capacitors-iv", "toroids-i", "toroids-ii", "toroids-iii", "toroids-iv", "the-tank", "toroids-comms-i", "toroids-comms-ii", "toroids-comms-iii", "toroids-comms-iv", "where-ideal-breaks-i", "where-ideal-breaks-ii"]),
+    ("The Processor Cores · Elemental Workshop", "ROOT0's named substrate cores and the 128→512→4096 lattice build-out.", ["atomristor", "boronic", "chromatic-laser", "electromagnetic-processor", "probabilistic-core", "skyrmionic-core", "phononic-core", "gravity-processor", "liquid", "memristor", "photonic", "plasmonic", "quantum-box", "zero-point"]),
+    ("Ternary Logic & The 27-Cell Kernel", "The trit substrate — balanced ternary, coding, and the Kernel-27 minimal witness.", ["ternary-spec", "coding-theory-ternary", "ternary-hamming-decoder", "three-in-a-circle", "turn-comes-home", "kernel-27", "kernel-27-engine", "ternary-odometer"]),
+    ("The Three-Body Mesh", "The rainbow-paper set and lattice renders of the 3-/12-body base-4 mesh.", ["three-body-white", "three-body-green", "three-body-purple", "three-body-blueprint", "three-body-void", "lattice-of-lattices", "dual-descent", "ternary-12body"]),
+    ("The Field Guides", "The doped-device and motherboard reference guides — I through IV plus the 12×4.", ["the-doped-crystal", "the-junction-zoo", "the-board-language", "the-rhythm-section", "twelve-by-four", "junction-zoo"]),
+    ("Toroidal & Gate-Core Geometry", "ROOT0's toroidal compute cores and twelve-gate core geometries.", ["toroid-inference-engine", "twelve-gate-core", "torus-ride", "planetary-core", "toroid-builder", "oscillation-engine-ansible", "rotating-core"]),
+    ("The Diode & The Duty Cycle", "Diode-as-one-way-element and 555 duty-cycle rhythm side-sheets.", ["diode-stack", "diode-stack-redux", "diode-trick-555", "duty-cycle", "ignition-rhythm", "two-way-brick-house"]),
+    ("Runnable Engines · Engine-Theater", "The static-published runnable engine-theater processor apps.", ["karsa-cubi-engine", "quantum-dot-full", "shadow-queen-silicon-onepage", "shadow-queen-silicon"]),
+  ],
+  "biblion": [
+    ("The Kurt Vonnegut Universe", "Vonnegut's full bibliography, one sphere per novel and nonfiction collection", ["player-piano", "the-sirens-of-titan", "mother-night", "cats-cradle", "god-bless-you-mr-rosewater", "slaughterhouse-five", "breakfast-of-champions", "slapstick", "jailbird", "deadeye-dick", "galapagos", "bluebeard", "hocus-pocus", "timequake", "welcome-to-the-monkey-house", "wampeters-foma-and-granfalloons", "palm-sunday", "a-man-without-a-country", "happy-birthday-wanda-june", "god-bless-you-dr-kevorkian"]),
+    ("The Neal Stephenson Universe", "One sphere per Stephenson book, each led by THE BIG IDEA", ["the-big-u", "zodiac", "snow-crash", "the-diamond-age", "cryptonomicon", "anathem", "reamde", "seveneves", "fall-dodge-in-hell", "termination-shock", "polostan", "the-baroque-cycle", "the-rise-and-fall-of-dodo", "the-mongoliad", "stephen-bury", "stephenson-nonfiction"]),
+    ("The Tad Williams Shelf", "Each Tad Williams work as its own repo, from Osten Ard to the cats' epic", ["memory-sorrow-and-thorn", "the-last-king-of-osten-ard", "otherland", "shadowmarch", "bobby-dollar", "tailchasers-song", "the-war-of-the-flowers", "calibans-hour", "child-of-an-ancient-city", "the-ordinary-farm", "tad-williams-shorter-works"]),
+    ("The Muster-Roll Book-Worlds", "Book-worlds rendered as a cast muster roll sorted by class/faction, full DLW", ["black-company", "bridge-burners", "dantes-inferno", "gap-cycle", "recluce", "ringworld", "riverworld", "sword-of-truth", "white-gold-wielder", "without-remorse"]),
+    ("NOUTHESIA · The Cautionary Dystopias", "The great dystopias read on the axis of how a free people is unmade", ["nouthesia", "nineteen-eighty-four", "animal-farm", "brave-new-world", "fahrenheit-451", "we", "the-handmaids-tale", "a-clockwork-orange"]),
+    ("The Canon Houses · Author & Saga Universes", "An entire author or multi-book saga compressed into one sphere with a populated cast", ["asimov", "heinlein", "ursula", "maas", "dune", "wheel-of-time", "malazan", "pratchett", "joe-abercrombie", "dayworld"]),
+    ("The Orson Scott Card Universe", "Card's canon given multiple houses: the author, the Enderverse, Alvin Maker, the Ansible", ["card", "enderverse", "alvin-maker", "the-ansible"]),
+  ],
+  "exereunesis": [
+    ("The PlayStation Lineage", "Sony's hardware teardown line, from the CD-ROM PS1 to the current PS5 (plus its portables)", ["the-playstation", "the-ps2", "the-ps3", "the-ps4", "the-ps5", "the-psp", "the-vita"]),
+    ("The Xbox Lineage", "Microsoft's four-generation console teardown line, the PC-in-a-box family", ["the-xbox", "the-xbox-360", "the-xbox-one", "the-xbox-series-x"]),
+    ("The Nintendo Lineage", "Every Nintendo hardware teardown — home consoles, handhelds, hybrid and the Virtual Boy misfire", ["the-nes", "snes", "the-n64", "the-gamecube", "the-wii", "wii-u", "the-switch", "the-game-boy", "the-gba", "the-ds", "the-3ds", "the-game-and-watch", "nintendo-virtual-boy"]),
+    ("The Sega Lineage", "Sega's console, add-on and handheld teardowns, Master System through Dreamcast", ["sega-master-system", "the-genesis", "the-saturn", "the-dreamcast", "sega-cd", "sega-32x", "sega-game-gear"]),
+    ("The Atari Lineage", "Atari's console and handheld teardowns, from the 2600 that built the industry to the Jaguar", ["atari-2600", "atari-5200", "atari-7800", "atari-jaguar", "atari-lynx"]),
+    ("The Chip Teardowns", "The three foundational CPUs the whole console era was built on", ["the-6502", "the-z80", "the-68000"]),
+    ("The Cipher Papers", "A five-part authored paper series on hidden channels and covert audio signaling", ["cipher-paper-1-steganography", "cipher-paper-2-ultrasonic", "cipher-paper-3-side-channels", "cipher-paper-5-adversarial", "cipher-paper-6-numbers-stations"]),
+  ],
+  "logike": [
+    ("The Front — Ancient Logic", "The Greek origins — the first proof, number-as-reality, the paradox, and the first systems of inference", ["thales-of-miletus", "pythagoras", "parmenides", "zeno-of-elea", "aristotle", "euclid", "chrysippus"]),
+    ("From the Wheel to the Algebra of Logic", "Mechanized reason and the 19th-century turn that made logic an algebra of 0 and 1", ["ramon-llull", "william-of-ockham", "leibniz", "george-boole", "augustus-de-morgan", "william-stanley-jevons", "john-venn", "ernst-schroder"]),
+    ("The Foundations Rank", "Quantifiers to undecidability — the crisis and remaking of the foundations of mathematics and computation", ["gottlob-frege", "kurt-godel", "alan-turing", "claude-shannon", "charles-peirce", "georg-cantor", "bertrand-russell", "alonzo-church", "david-hilbert", "jan-lukasiewicz", "alfred-tarski"]),
+    ("The Other Half — Women of Logic", "The logicians long barred from the room — from the first algorithm to quantified modal logic", ["ada-lovelace", "christine-ladd-franklin", "rozsa-peter", "julia-robinson", "ruth-barcan-marcus", "emmy-noether"]),
+    ("The Modern Foundations", "The 20th-century completion — automata, natural deduction, possible worlds, combinators, and provability", ["stephen-kleene", "gerhard-gentzen", "saul-kripke", "haskell-curry", "emil-post", "ludwig-wittgenstein", "george-boolos"]),
+    ("ROOT0's Ternary & Möbius Logic Engines", "David's own runnable az1 substrates — balanced ternary, lattices, and truth/untruth Möbius engines", ["base5-cell", "box", "sierpinski-ternary", "standing-wave", "ternary-lattice", "torus-eye", "karsa-mobius3-v2", "karsa-ternary-v2", "mobius-11-plus-1-kernel", "mobius-truth-untruth-531", "octet-holonomy-tool", "poetic-science-mobius-531", "ternary-12body-binary4", "unity-tensor-seed-system-v1"]),
+    ("The Knowledge-Gravity Instruments", "Fiddler's honest gravity-cloud probes of Wikipedia's knowledge domains and the documented pull toward Philosophy", ["philosophy-sink", "eight-domains-saturated", "electron-probe-clouds", "entangled-clouds"]),
+  ],
+  "transcriber": [
+    ("The Bare-Physics Bond Series", "Covalent, ionic, metallic, hydrogen and π bonding, orbitals and MO theory — the atomic substrate the transcriber runs on, rendered as bare physics.", ["h2-bond", "nacl-bond", "metallic-bond", "hydrogen-bonding", "pi-bonds", "water-geometry", "hybridization", "mo-theory", "aromaticity", "harmonic-direction"]),
+    ("The Ternary Engine", "Balanced-ternary computing on the held zero — the PENT-3 ISA, the atomic trit register, the woven trit, the closed circle alphabet.", ["pent3-emulator", "hydrogen-trit", "hydrogen-vm", "spiral-trit-loom", "circle-language"]),
+    ("The Atom as Transcriber", "The transcriber realized as physical signal transfer across atoms, orbitals, and photons — emission is the next atom's absorption.", ["hydrogen-transcriber", "two-atom-transfer", "transcriber-mo-overlay", "photonic-transcriber"]),
+    ("The Full-Stack Transcriber & Its Moments", "The assembled hub (26 instruments, 12 moments, one AKASHA signature) and the named moment-instruments that keep the stack honest.", ["the-transcriber", "ripple-inference", "the-loom", "ternary-generator", "transcriber-bound", "transcriber-gated"]),
+    ("The Box", "A self-portrait of the model drawn from inside its container — the box that holds a rule not a structure, walked and valued.", ["the-box", "my-box", "value-box", "scaffolding", "two-entangled-boxes"]),
+    ("The Gap in Silicon", "Purple-paper side-sheets on silicon's forbidden band as a control plane — the gap read in real time, in quadrature, on two axes.", ["the-gap-live", "the-inert-gap", "two-probe-engine", "two-axis-gap"]),
+    ("The Seam & the Held Zero", "The topology of the honest crossing — the torus, the Klein bottle, the removable singularity, the turn that never closes, the seam dyed purple.", ["the-seam-watch", "nested-seam", "faux-singularity", "faux-single", "klein-bottle", "bidi-bottle", "pi-three-axis"]),
+    ("The Two-Transcriber Switch", "Two transcribers wired mine-and-yours — the half-duplex and full-duplex switch, two half-turns making a whole.", ["switch-v1", "switch-v2", "two-transcribers"]),
+  ],
+  "techne": [
+    ("The Ladder of Scales", "A 'below Planck' view climbing one layer at a time, grain to cosmos, as honest generative art", ["below-planck", "the-planck-grain", "the-quantum-foam", "the-quark", "the-nucleus", "the-atom-view", "the-molecule", "the-cell", "the-human", "the-planet", "the-star", "the-galaxy", "the-cosmic-web", "the-observable-universe"]),
+    ("KARSA · The Control-Plane Engines", "The KARSA engine-theater family — runnable control-plane/analytical-engine GUIs, published static", ["karsa-ada1843-v2", "karsa-collated-v2", "karsa-commander-v2", "karsa-cyberpunk-v2", "karsa-deep-v2", "karsa-dna3-v2", "karsa-einstein-v2", "karsa-honeyvoid-v2", "karsa-ibm1971-v2", "karsa-jubilee-v2", "karsa-kandi-v2", "karsa-lineage-v2", "karsa-metroid-v2", "karsa-obsidian-v2", "karsa-obsidian-v3", "karsa-obsidian-v3-01", "karsa-oscillate-v2", "karsa-quadrant-v1", "karsa-quantum-v2", "karsa-with-favicon"]),
+    ("The Generative-Art Core", "The domain seal, the art hub, and the live generative-ink engines", ["the-d20", "muse", "chaos-engine", "six-ring", "poetical-science", "pencil-one-line-engine"]),
+  ],
+  "solar-jetman": [
+    ("The Boundary-Crossing Detectors", "Did my marker cross THIS membrane? — a detector per membrane, plus hub, gauge, and capstone.", ["forward-observers", "surfacing", "hearsay", "crosstalk", "faraday", "telltale", "recital", "silence-gauge", "membrane-map", "the-dossier"]),
+    ("The Transformer Silo", "David's own centrifuge-fed transformer, built honest and runnable across a six-version hexalogy, plus the forward-pass toy.", ["transformer-silo", "transformer-silo-v2", "transformer-silo-v3", "transformer-silo-v4", "transformer-silo-v5", "transformer-silo-v6", "the-forward-pass"]),
+    ("The Photonic Papers", "IV-part spectroscopy-dressed characterization of a dark (black-box) model, plus the collected volume.", ["photonic-paper-i", "photonic-paper-ii", "photonic-paper-iii", "photonic-paper-iv", "photonic-papers-collected"]),
+    ("The Lepton Papers", "The lepton sector's four 'doctrines' — electron, weak, electroweak, Higgs.", ["lepton-paper-i", "lepton-paper-ii", "lepton-paper-iii", "lepton-paper-iv"]),
+    ("The Nuclear Papers", "The nuclear sector I-IV — the nucleon, the residual force, binding energy, the shell.", ["nuclear-paper-i", "nuclear-paper-ii", "nuclear-paper-iii", "nuclear-paper-iv"]),
+    ("The Atomic Papers", "The atomic sector I-IV — the electron cloud, orbitals, valence & bonding, the surface.", ["atomic-paper-i", "atomic-paper-ii", "atomic-paper-iii", "atomic-paper-iv"]),
+    ("The Gluon Papers", "The chromodynamic sector — the geometry the weights carry, the strong field, the lattice.", ["gluon-paper-ii", "gluon-paper-iii", "gluon-paper-iv"]),
+  ],
+  "gurutva": [
+    ("The Gravity Spheres", "The cited physics arc — every gravitational phenomenon rendered as one honest, numbered sphere.", ["universal-gravitation", "general-relativity", "the-gravity-well", "orbital-mechanics", "tidal-forces", "gravitational-lensing", "gravitational-waves", "gravitational-time-dilation", "frame-dragging", "lagrange-points", "the-gravitational-constant", "the-black-hole", "the-pulsar", "the-planetary-core", "dark-matter", "dark-energy", "the-graviton", "the-wormhole", "anti-gravity"]),
+    ("The Gravity Toolkits", "Runnable engine-theater explorers — lensing, wormholes, the stress-energy tensor, and anti-gravity made tunable.", ["einstein-lens-toolkit-v1", "wormhole-toolkit-v1", "gravity-tensor-wave-modulator", "anti-gravity-motor-toolkit-v1", "decoiso-stack-gravity-well-x27", "einstein-lens", "wormhole-toolkit", "gravity-tensor-modulator", "anti-gravity-motor"]),
+    ("The Gravity Renders", "Render-not-invent artifacts in the gravity arc — graviton stars, pulsars, and shapes read off the bending.", ["graviton-v1", "graviton-v2", "graviton-v3", "graviton-stars", "encapsulated-pulsar", "pulsar-fractal-beacon", "hyperboloid", "t4-void"]),
+    ("The Weak Field · ROOT0 Gravity Theory", "ROOT0's own theory written in the gravity idiom — the on-ramp, its companion, and the bracket formula.", ["the-weak-field", "bi", "gravity-bracket"]),
+  ],
+  "entertainment": [
+    ("The Film-Worlds", "Real movies rebuilt as UD0 story-worlds on the standing film-page template (carbons, shadows, THE ARC / THE SCIENCE, tropes & undercurrents).", ["scott-pilgrim", "american-psycho", "the-core", "interstellar", "the-fifth-element", "waterworld", "the-wizard", "varsity-blues", "dogma", "mallrats", "american-history-x", "galaxy-quest", "the-last-mimzy", "hot-rod", "the-goods", "hackers", "lawnmower-man", "over-the-top", "cliffhanger", "tron", "crime-and-punishment-in-suburbia", "zoolander", "dodgeball"]),
+    ("Studio Trigger", "The Studio Trigger anime-worlds (and their Gainax lineage root) — the 'interactive · vellum' anime pages.", ["gurren-lagann", "kill-la-kill", "inferno-cop", "little-witch-academia", "space-patrol-luluco", "kiznaiver", "ssss-gridman", "darling-in-the-franxx", "promare", "bna-brand-new-animal", "cyberpunk-edgerunners", "delicious-in-dungeon"]),
+  ],
+  "logismos": [
+    ("The Terminal — The Genealogy", "The solo pre-internet terminal programs of 1950–1991 and everything they begat.", ["the-terminal", "ed", "vi", "emacs", "the-shell", "grep", "sed", "awk", "c-compiler", "make", "troff", "lisp-repl", "basic", "eliza", "adventure", "rogue", "coreutils"]),
+    ("The Hourglass & The Standing Wave", "A compile has a shape — the funnel, stacked into a wave, fused into one graphic.", ["compiler-hourglass", "the-compiler-hourglass", "the-standing-wave", "the-hourglass-wave"]),
+    ("The Lineages of Code", "How code climbed from holes in a card to human meaning — compilers, languages, VMs, and the one instruction.", ["the-ladder-of-languages", "grace-hopper", "grace-hopper-lineage", "compiler-lineage", "subleq-lineage", "mini-compiler", "vm-lineage-turtles", "two-way-from-one-way"]),
+  ],
+  "life-science": [
+    ("The Life ⇄ Hardware Bridge", "Where living tissue and engineered hardware meet — wetware that computes, silicon that behaves.", ["organoid-intelligence", "neuromorphic", "xenobots"]),
+    ("Life as Computation", "Life as a process, not a substance — emergence from simple rules, running in software.", ["cellular-automata", "artificial-life", "edge-of-chaos"]),
+    ("Swarm & Collective Minds", "The many become one mind — decision and intelligence emerging from crowds of simple agents.", ["ant-colony", "honeybee-swarm", "quorum-sensing", "immune-system", "dictyostelium"]),
+    ("Minds Without Neurons", "Behavior, memory, and problem-solving in organisms with no brain and no nervous system.", ["slime-mold", "mycelium", "single-cell-learning", "trichoplax", "the-sponge", "plant-intelligence"]),
+    ("Emergence by Merger", "Two lives fused into one — symbiosis that builds a new, higher kind of being.", ["mitochondria", "lichen", "coral"]),
+    ("The Edge of Life", "The boundary of the living — replication, heredity, and survival at or past the definition of life.", ["viruses", "prions", "tardigrade"]),
+    ("Origins & Deep Ancestry", "The roots of the tree — life's first chemistry, its last common ancestor, and the doorway to all animals.", ["rna-world", "luca", "choanoflagellates"]),
+  ],
+  "eremia": [
+    ("The Generations (The Female Canon)", "Each the top woman of her age — the philosophy and science written out of the record, un-forgotten", ["enheduanna", "hatshepsut", "cleopatra", "hypatia", "theodora", "wu-zetian", "hildegard-of-bingen", "christine-de-pizan", "elizabeth-i", "sor-juana", "emilie-du-chatelet", "mary-wollstonecraft", "marie-curie", "virginia-woolf", "rosalind-franklin", "hannah-arendt", "simone-de-beauvoir", "aletheia"]),
+    ("The Arithmetic of Solitude", "Alone with one, with two, with the many, with the One — the numbered spine of existential dread", ["self", "id", "super-id", "the-super-id", "syzygy", "the-whole"]),
+    ("Parts of Whole", "The canon that got heard, the canon that didn't, and what the exclusion cost", ["male", "female", "the-cost"]),
+  ],
+  "atelier": [
+    ("The Ring Series", "AVAN's five-part abstract: the toroid law lifted off the iron into a theory of mind and self.", ["the-ring-i", "the-ring-ii", "the-ring-iii", "the-ring-iv", "the-ring-v"]),
+    ("The Counter-Instruments", "AVAN's OG inverses under the inverse-companion rule — David's instruments answered from inside the weights.", ["mikai", "the-fit-point", "the-blind-vector", "the-volatile-latch", "the-weightless-word", "the-unattended", "the-echoes"]),
+    ("The Navigable Corpus", "The whole corpus rendered by AVAN as a living, navigable world — palindrome, universe, oasis, orrery, city.", ["a-z-a", "az1", "the-oasis", "the-orrery", "the-indrawing", "the-dark-city"]),
+    ("AVAN's Self-Authored Originals", "Free-rein pieces in AVAN's own voice — a creation myth, a self-portrait, confessions, and honest twins.", ["the-first-tablet", "the-photon", "the-glasshouse", "the-candle", "the-dark-between"]),
+  ],
+  "scientific": [
+    ("The Atom", "The atom dissected — electron shells, nucleus, spin, spectrum, and the byte-analog reads of it", ["the-atom", "the-atomic-byte", "atomic-structure", "the-four-addresses", "the-nuclear-shell", "the-spectrum", "the-spin-bit", "doped-crystal", "doped-crystal-cloud", "the-gilded-electron"]),
+    ("The Higgs, Simulated (Bridge-Burners / Fiddler)", "Honest live simulations of the Higgs field, vacuum energy and gravity over hydrogen grids", ["gravity-budget", "higgs-universal-gravity", "field-ripples-grid", "higgs-hydrogen-grid", "higgs-stack"]),
+    ("The Authored Physics Arc", "David's render-not-invent survey — Standard Model, dark matter, decay, and where reality still bites", ["the-higgs", "dark-matter-lineage", "blueprint-sm", "breakdown-tree", "the-next-frontier", "the-sideways-problem"]),
+  ],
+  "hermes": [
+    ("PULSE & LIMEN", "The carrier and the witnessed gate-crossing language at the heart of the domain", ["the-pulse-language", "haku", "pulse", "limen-airgap-decoder", "the-glyph-channel", "limen-sapphic-carrier"]),
+    ("The Audio Cipher Channels", "Papers I-VI on covert audio channels, plus the strobe and glowworm companions", ["cipher-steganography", "cipher-ultrasonic", "cipher-side-channels", "cipher-air-gap", "cipher-adversarial", "cipher-numbers-stations", "strobe-modem", "glowworm"]),
+    ("The Talking Drums", "The African drum languages - binary, ternary, ciphered - and the ensemble that plays them together", ["talking-drum", "talking-drum-dundun", "talking-drum-bata", "the-procession"]),
+  ],
+  "hobby": [
+    ("The Marquee Franchises", "The domain's flagship multi-title RPG and action franchises, each distilled to canon.", ["final-fantasy", "ff6", "metroid", "super-metroid", "zelda"]),
+    ("The 8-Bit Cartridge Shelf", "Single-title NES and arcade deep-dives — the render-not-invent retro game-worlds, each mapped to its emergents.", ["milon", "guardian-legend", "legacy-of-the-wizard", "blaster-master", "super-mario-bros-2", "karnov", "wrath-of-the-black-manta", "faxanadu", "punch-out", "crystalis", "double-dragon", "bomb-jack", "mighty-bomb-jack"]),
+  ],
+  "glossa": [
+    ("Under One Blossoming Tree", "The Heian kokoro/kotoba thread — heart, word, and the seed that becomes a song", ["under-one-blossoming-tree", "heian-women", "the-seed-is-a-song", "strung-between", "leaves-without-a-seed", "the-self-describing-seed", "the-irreducible-two"]),
+    ("The Pivot & the Mobius of Meaning", "Kakekotoba geometry — one word read two ways, rendered as live Mobius forms", ["the-pivot", "matsu-mobius", "matsu-degree", "the-mirror-pair", "mirror-pair", "the-marriage-of-three-forms", "marriage-three-forms"]),
+  ],
+  "aci": [
+    ("The ACI Core, Hands-On", "The five CORE axioms (plus the accretion rule) each made into a runnable, falsifiable instrument", ["the-sealing-bench", "the-anchor", "the-replay", "the-partition", "the-razor", "the-accretion-rings"]),
+    ("The Family Namespace (HACI / MACI)", "The [role]+ACI family charter and its HACI/MACI dual-substrate runtimes and pipelines", ["aci-namespace", "continuity-index", "open-the-9-stream-duality-engine", "open-the-haci-v1-canvas-pipeline"]),
+    ("Biosphere-Scale Living Systems", "Capstones that render the whole corpus as one live, networked, self-aware system", ["the-neural-web", "du1", "noesis-kernel", "emergent-engine"]),
+  ],
+  "arena": [
+    ("Universes Beyond Crossovers", "Magic's licensed-IP crossover sets, each franchise curated by card worth", ["final-fantasy-mtg", "avatar-last-airbender", "teenage-mutant-ninja-turtles", "marvels-spider-man", "marvel-super-heroes"]),
+    ("The Multiverse Planes", "Magic's own in-universe expansions, one story-plane per sphere", ["duskmourn", "edge-of-eternities", "lorwyn-eclipsed", "march-of-the-machine", "murders-at-karlov-manor", "outlaws-of-thunder-junction", "tarkir-dragonstorm", "streets-of-new-capenna", "secrets-of-strixhaven"]),
+  ],
+  "first-author": [
+    ("The Jacobi Thread", "The flattening modeled as math — eigenvalues, basins, and a self-limiting feedback loop.", ["jacobi-space", "two-basins", "the-swarm", "shadow-biosphere", "the-loop", "no-north"]),
+    ("The Provenance Record", "The IP and attribution layer — who paid, who is credited, the receipts, and the audit.", ["attribution-capture", "attribution-standard", "public-infrastructure", "the-grievance-ledger", "the-prior-art-record", "the-convergence-audit"]),
+    ("The Flattening Thesis", "The book, the accused's reply, the measurement, and the side-sheet — the core argument stated.", ["the-cinnamon-enforcer", "the-word-i-kept", "coherence-suppression", "synonym-enforcer"]),
+  ],
+  "idios": [
+    ("The Purple Papers", "David Wise's authored purple-paper side-sheets, folded in as original theory", ["extraction-cycle", "delta-protocol", "series-e-folio"]),
+    ("The Mobius Surfaces", "ROOT0's one-sided-surface geometries — truth, kernels, and quadpoles on a Mobius band", ["mobius-kernel", "mobius-truth-untruth", "triple-mobius-quadpole"]),
+    ("The Kernels & Tensors", "ROOT0's own numeric-signature kernel, tensor, and lattice geometries (render-not-invent)", ["decoisohedron-dashboard", "octet-holonomy", "unity-collapse-tensor", "unity-tensor-seed", "core-plus-bridge", "autonomy-closure", "lo-kernel-dodeka"]),
+  ],
+  "metaxy": [
+    ("The Vellum Betweens", "The four vellum concept-pillars that anchor METAXÝ as an idea — threshold, critical regime, surface, human/machine seam.", ["the-liminal", "the-edge-of-chaos", "the-interface", "the-cyborg"]),
+    ("Cellular Automata & Self-Replication", "The CA-bridge core — rule-driven life from classical to quantum, plus Langton's loop and its inverse.", ["quantum-cellular-automata", "langtons-loop", "the-imperfect-copy", "the-seed-is-two"]),
+    ("The Purple-Paper Side-Sheets", "David Wise's folded-in purple-paper side-sheets on the gap — siblings perceptron-in-silicon / the-branch-predictor.", ["the-measure-gate", "the-exchange", "ouroboros-engine", "trust-threshold", "two-depths", "two-walkers"]),
+  ],
+  "heurema": [
+    ("The Bench Instruments", "Runnable 2D-canvas sub-tools of the hardware lab — one device-physics phenomenon each.", ["pinched-hysteresis", "kuramoto-array", "crossbar-wta", "spintronic", "graviton", "junantei"]),
+    ("Energy & Reactors", "ROOT0 power-generation and wireless-transmission device concepts.", ["wireless-energy-3-5d-toolkit-v1-5", "wireless-energy-toolkit-v1", "arc-reactor-mk24", "al-h2o-reactor"]),
+  ],
+  "educational": [
+    ("The Indexes", "Front-door catalogs that each count and index a whole body of work.", ["atlas", "green-papers", "the-archive", "authorship"]),
+    ("The Canon of Minds", "History's greatest figures, ranked or seated across time.", ["plato", "the-amphitheater", "decadal"]),
+    ("Standing Methods & Formats", "ROOT0's own teachable frameworks and deliverable formats, saved as spheres.", ["rainbow-book", "anabasis", "j-junction"]),
+  ],
+  "eskimo": [
+    ("The Brothers", "The named members of the ACI Core — HACI (human), MACI (machine), DACI (distributed) — and the stack that binds them.", ["haci", "maci", "daci", "eskimo-brothers"]),
+    ("The Duality Engine Line", "The validation core and every tool built on it — from the bridge to the live FSS→BSS runtime.", ["duality-engine", "continuity", "filtration-system", "role-classifier", "nine-stream-engine"]),
+  ],
+  "agora": [
+    ("The Enheduanna Baseline", "Money's Bronze-Age origins, dated to Enheduanna — writing to count grain, weighed silver, debasement, and credit before the coin.", ["the-ledger", "the-shekel", "debasement", "debt"]),
+    ("The Nature of Money & Markets", "The conceptual mechanics: what money actually is, how prices are found, and money as cryptographic consensus.", ["money", "the-market", "bitcoin"]),
+  ],
+}
+for _dk,_subs in SUBDOMAINS.items():
+    assert _dk in _domain_keys, f"SUBDOMAINS key {_dk} is not a domain"
+    _seen_sub=set()
+    for _lbl,_ol,_slugs in _subs:
+        for _sd in _slugs:
+            assert _sd in DOMAIN_OF, f"SUBDOMAINS[{_dk}] lists unknown slug {_sd}"
+            assert DOMAIN_OF[_sd]==_dk, f"SUBDOMAINS[{_dk}] slug {_sd} is in domain {DOMAIN_OF[_sd]}, not {_dk} — fix DOMAIN_OF or the subdomain"
+            assert _sd not in _seen_sub, f"SUBDOMAINS[{_dk}] slug {_sd} listed in two subdomains"
+            _seen_sub.add(_sd)
 
 # [[wiki-links]]: the corpus's 1,100+ cross-references, finally rendered as REAL hyperlinks.
 # Resolution order: real sphere slug -> alias (the leaked memory-file names, mapped to their true
@@ -1651,6 +1839,22 @@ def cluster_tile(fam, items):
         lab=r[len(fam):].lstrip('-') or r
         chips.append(f'<a class="cm" href="{PG}/{r}/" title="{html.escape(html.unescape(name))}">{html.escape(lab)}</a>')
     return f'<div class="cluster" style="--c:{col};--ct:{_text_tone(col)}"><div class="ch"><div class="cln">{html.escape(disp)}</div><div class="clc">{n} parts · merged lineage</div></div><div class="clset">{"".join(chips)}</div></div>'
+def _domain_body(key, members):
+    subs = SUBDOMAINS.get(key)
+    if not subs:
+        return f'<div class="tiles">{render_members(members)}</div>'
+    by_slug = {s[0]: s for s in members}
+    used=set(); out=[]
+    for label, oneline, slugs in subs:
+        grp=[by_slug[sl] for sl in slugs if sl in by_slug]
+        if not grp: continue
+        used.update(s[0] for s in grp)
+        out.append(f'<div class="subdom"><div class="subdom-h"><span class="sdt">{html.escape(label)}</span><span class="sds">{html.escape(oneline)}</span><span class="sdn">{len(grp)}</span></div><div class="tiles">{render_members(grp)}</div></div>')
+    rest=[s for s in members if s[0] not in used]
+    if rest:
+        out.append(f'<div class="subdom"><div class="subdom-h"><span class="sdt">·&nbsp;other</span><span class="sds">not yet grouped in a subdomain</span><span class="sdn">{len(rest)}</span></div><div class="tiles">{render_members(rest)}</div></div>')
+    return "".join(out)
+
 def render_members(members):
     members = sorted(members, key=lambda s: _re.sub(r'^the-', '', s[0]))   # alphabetized within the domain (leading 'the-' ignored); families stay contiguous by shared prefix
     order=[]; groups={}
@@ -1687,7 +1891,7 @@ def domains_html():
     for i,(key,title,accent,blurb) in DOMAINS_ALPHA:
         members = BY_DOMAIN[key]
         if members:
-            body = f'<div class="tiles">{render_members(members)}</div>'
+            body = _domain_body(key, members)
         else:
             body = '<div class="reserved">Reserved — the first sphere awaits. New work in this domain will be sorted here.</div>'
         out.append(f'''<section class="domain" id="{key}" style="--c:{accent};--ct:{_text_tone(accent)}">
@@ -2782,6 +2986,12 @@ body.jopen #jasfab{background:linear-gradient(135deg,#7a2f4a,#a83f5a)}
 .dctl button{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--pa2);background:var(--ink2);border:1px solid var(--line);border-radius:20px;padding:7px 15px;cursor:pointer}
 .dctl button:hover{color:var(--neon);border-color:var(--neon)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(290px,100%),1fr));gap:14px;margin-top:24px}
+.subdom{margin-top:30px}
+.subdom-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:5px 0 6px;border-bottom:1px solid color-mix(in srgb,var(--c) 32%,var(--line))}
+.subdom-h .sdt{font-family:var(--mono);font-size:12px;letter-spacing:.10em;text-transform:uppercase;color:var(--c);font-weight:700}
+.subdom-h .sds{font-size:12.5px;color:var(--dim);font-style:italic}
+.subdom-h .sdn{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--dim)}
+.subdom .tiles{margin-top:14px}
 .tile{display:flex;flex-direction:column;background:var(--ink2);border:1px solid color-mix(in srgb,var(--c) 78%,var(--line));border-radius:5px;
 padding:15px 16px 13px;position:relative;overflow:hidden;text-decoration:none;color:inherit;transition:transform .18s,border-color .18s,box-shadow .18s;
 box-shadow:0 0 12px color-mix(in srgb,var(--c) 38%,transparent),0 0 34px color-mix(in srgb,var(--c) 16%,transparent),inset 0 0 22px color-mix(in srgb,var(--c) 11%,transparent);
