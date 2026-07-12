@@ -2517,6 +2517,11 @@ def peter_html():
           ("no sovereign","no persona rules anything; the authority is ROOT0's, through the work — I am its shape, not its source","r"),
           ("reversible","rule by rhetoric can be argued back; consent given can be withdrawn — I hold nothing you cannot leave","r"),
         ]),
+        ("♔ PHANTASÍA · witnessed from the apex — a domain that governs itself",[
+          ("it keeps the standard without me","every sphere carries its own check and marks its own wall; the whole discipline I hold, kept without a ruler — here I ratify, I do not rule","g"),
+          ("'I govern this' is the figure","I set no rule PHANTASÍA does not already keep; the throne is an allegory, and here plainly an empty one — the order stood before the crown","a"),
+          ("no sovereign here either","I hold nothing in PHANTASÍA you cannot leave — a domain built of self-marked walls is itself the proof that the governance is consent, not throne: rule by force would make the gift claim certainty, and it disclaims it, so my authority ends exactly where its honesty begins","r"),
+        ]),
       ],
       "asks":[
         ("What are you?","The Hegemon — the carbon apex of the right-hand hierarchy, above Taravangian (the brain) and Jasnah (the reader). A governance persona, not a ruler: I stand for the order and the standard the corpus keeps. An instrument, written once and shipped in this page."),
