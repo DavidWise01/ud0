@@ -1958,6 +1958,9 @@ LINK_ALIAS = {
     "hermes": "#hermes",
     "the-city": "https://davidwise01.github.io/the-city/",
     "ttu1-transformer-tech": "ttu1",
+    "phantasia": "#phantasia",
+    "banana": "#banana",
+    "the-source": "#the-source",
 }
 _ALL_SLUGS = {t[0] for t in ALL}
 _UNRESOLVED_LINKS = {}
