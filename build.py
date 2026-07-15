@@ -2170,12 +2170,20 @@ def domains_html():
             body = _domain_list(members)
         else:
             body = '<div class="reserved">Reserved — the first sphere awaits. New work in this domain will be sorted here.</div>'
+        # domain blurbs live inside the clickable <summary> toggle, so wiki-refs render as
+        # non-interactive styled labels (not <a>) — keeps the disclosure control's a11y clean
+        # (no nested tab-stops / accessible-name pollution) and needs no click-swallowing shim
+        blurb_html = _re.sub(r'<a\b[^>]*>(.*?)</a>', r'<i class="dref">\1</i>', _render_links(blurb))
+        # short one-sentence blurbs read cleaner as a single lead line than in narrow columns
+        bare_len = len(_re.sub(r'<[^>]+>|&[a-z#0-9]+;', '', blurb))
+        lead = ' lead' if bare_len < 175 else ''
         out.append(f'''<section class="domain" id="{key}" style="--c:{accent};--ct:{_text_tone(accent)}">
       <details class="dom-d">
       <summary class="dhead">
         {medallion(i, accent, key)}
         <div class="dmeta"><div class="dnum">DOMAIN {i:02d} / {len(DOMAINS):02d}</div><h2 class="dtitle">{title}</h2>
-          <p class="dblurb">{blurb}</p><div class="dcount">{len(members)} {"sphere" if len(members)==1 else "spheres"} <span class="dtoggle"></span></div></div>
+          <div class="dcount">{len(members)} {"sphere" if len(members)==1 else "spheres"} <span class="dtoggle"></span></div></div>
+        <p class="dblurb{lead}"><span class="dbx">{blurb_html}</span></p>
       </summary>
       {body}
       </details>
@@ -3108,7 +3116,8 @@ border:1px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:20px;
 .dnav a:hover{color:var(--c);border-color:var(--c);box-shadow:0 0 14px color-mix(in srgb,var(--c) 40%,transparent)}
 /* domain section */
 .domain{margin-top:72px;scroll-margin-top:20px}
-.dhead{display:flex;align-items:center;gap:26px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:22px;position:relative}
+.dhead{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"med id" "blurb blurb";column-gap:28px;row-gap:20px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:24px;position:relative}
+.dhead>.medwrap{grid-area:med;align-self:center}
 .dhead::after{content:"";position:absolute;left:0;bottom:-1px;width:230px;height:2px;background:var(--c);box-shadow:0 0 20px var(--c),0 0 7px var(--c);opacity:.92;border-radius:2px;transform-origin:left}
 .dom-d[open]>.dhead::after{animation:scanchg .8s ease}
 @keyframes scanchg{from{transform:scaleX(0)}to{transform:scaleX(1)}}
@@ -3137,13 +3146,20 @@ border:1px solid color-mix(in srgb,var(--c) 45%,var(--line));border-radius:20px;
 @media(prefers-reduced-motion:reduce){.med .knife{animation:none}}
 .dhead:hover .med .stitch{animation:stitchspin 9s linear infinite;opacity:.85}
 @keyframes stitchspin{to{transform:rotate(360deg)}}
-.dmeta{flex:1;min-width:240px}
+.dmeta{grid-area:id;min-width:0}
 .dnum{font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;color:var(--ct,var(--c));text-transform:uppercase;opacity:1;text-shadow:0 0 12px color-mix(in srgb,var(--c) 55%,transparent)}
 .dtitle{font-family:var(--disp);font-size:clamp(26px,5vw,46px);font-weight:800;letter-spacing:.03em;color:var(--pa);line-height:1.02;margin-top:6px;
 text-shadow:1px 1px 0 rgba(255,106,0,.18)}
-.dblurb{font-size:14px;color:var(--pa2);font-style:italic;margin-top:8px;max-width:70ch;line-height:1.6}
+/* full-width description band — a uniform divider then the blurb flowed in newspaper columns so
+   it fills the page and long blurbs stay a compact band instead of a tall narrow left column */
+.dblurb{grid-area:blurb;margin:0;max-width:none;padding-top:20px;border-top:1px solid color-mix(in srgb,var(--c) 20%,var(--line));
+  font-size:14.5px;color:var(--pa2);font-style:italic;line-height:1.7}
+.dblurb .dbx{display:block;columns:32ch;column-gap:38px;orphans:2;widows:2;text-align:justify;text-justify:inter-word;-webkit-hyphens:auto;hyphens:auto}
+.dblurb .dref{font-style:normal;color:var(--ct);border-bottom:1px dotted color-mix(in srgb,var(--c) 50%,transparent);-webkit-hyphens:none;hyphens:none}
+.dblurb.lead .dbx{columns:auto;column-gap:normal;text-align:left;-webkit-hyphens:none;hyphens:none;max-width:82ch}
 .dcount{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;margin-top:8px}
 @media(max-width:640px){.dnav{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch}}
+@media(max-width:760px){.dhead{grid-template-columns:1fr;grid-template-areas:"med" "id" "blurb";justify-items:start;row-gap:14px}.dhead>.medwrap{align-self:start}.dblurb .dbx{columns:auto;text-align:left;-webkit-hyphens:none;hyphens:none;max-width:none}}
 .dnav a{position:relative}
 .dnav a::before{content:"";position:absolute;inset:-3px;border-radius:999px;opacity:0;pointer-events:none;
   background:conic-gradient(from 0deg,transparent 0 70%,color-mix(in srgb,var(--c) 90%,transparent) 88%,transparent 100%);
@@ -3254,7 +3270,7 @@ body.jopen #jasfab{background:linear-gradient(135deg,#7a2f4a,#a83f5a)}
 .jverdict p{font-size:13px;line-height:1.62;color:var(--pa2);margin-bottom:11px}
 .jverdict a{color:#6a4fb0}
 .jsig{font-family:var(--mono);font-size:10.5px;color:var(--dim);line-height:1.55;border-left:2px solid var(--neon);padding-left:11px}
-.tile.jhit{outline:3px solid var(--neon);outline-offset:4px;box-shadow:0 0 30px color-mix(in srgb,var(--neon) 55%,transparent)}
+.tile.jhit,.srow.jhit{outline:3px solid var(--neon);outline-offset:4px;box-shadow:0 0 30px color-mix(in srgb,var(--neon) 55%,transparent)}
 @media(prefers-reduced-motion:reduce){#hudbar{transition:none}.dom-d[open]>.dhead::after{animation:none}.tile:hover::after{transition:none}}
 /* tiles */
 .dom-d>summary{list-style:none;cursor:pointer}
@@ -3515,8 +3531,8 @@ lens.forEach(function(o){function read(){if(document.body.classList.contains('jl
   var drift=document.createElement('button'); drift.id='drift'; drift.textContent='⚄ drift'; dctl.appendChild(drift);
   var doms=[].slice.call(document.querySelectorAll('section.domain'));
   var idx=doms.map(function(sec){
-    var items=[].slice.call(sec.querySelectorAll('.tile,.cm')).map(function(el){
-      var a=el.matches('.cm')?el:el.querySelector('.tlink');
+    var items=[].slice.call(sec.querySelectorAll('.tile,.cm,.srow')).map(function(el){
+      var a=el.matches('.cm')?el:el.querySelector('.tlink,.slink');
       return {el:el,txt:(el.textContent+' '+(el.title||'')+' '+(a?a.getAttribute('href'):'' )).toLowerCase()};
     });
     var cnt=sec.querySelector('.dcount');
@@ -3610,7 +3626,7 @@ lens.forEach(function(o){function read(){if(document.body.classList.contains('jl
     bd.onclick=closeP;   // click anywhere outside the panel closes it
     document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&panel.classList.contains('on')&&document.activeElement!==inp){closeP();} });
     // find a tile by slug (works after 1.3 restructure: the .tlink href carries the slug)
-    function tileFor(slug){ var a=document.querySelector('.tile .tlink[href$="/'+slug+'/"]'); return a?a.closest('.tile'):null; }
+    function tileFor(slug){ var a=document.querySelector('.slink[href$="/'+slug+'/"],.tile .tlink[href$="/'+slug+'/"]'); return a?(a.closest('.srow')||a.closest('.tile')):null; }
     var run=document.getElementById('jtourrun'), noteEl=document.getElementById('jnote'),
         stepEl=document.getElementById('jstep'), prevB=document.getElementById('jprev'),
         nextB=document.getElementById('jnext'); var cur=null, at=0, lastHit=null;
@@ -3785,12 +3801,12 @@ lens.forEach(function(o){function read(){if(document.body.classList.contains('jl
   cv.addEventListener('click',function(e){ var r=cv.getBoundingClientRect(), mx=e.clientX-r.left, my=e.clientY-r.top, idx=nearest(mx,my);
     if(idx>=0){ if(e.shiftKey){ pin(pts[idx].s); cap.textContent='‹ pinned '+pts[idx].n+' ›'; return; } flyToSlug(pts[idx].s); return; }
     var bd=1e9, dk=null; doms.forEach(function(d){ var dx=d.x-mx, dy=d.y-my, dd=dx*dx+dy*dy; if(dd<bd){ bd=dd; dk=d.k; } }); if(dk && bd<160*160) openDomain(dk); });
-  function flyToSlug(slug){ var a=document.querySelector('.tile .tlink[href$="/'+slug+'/"]')||document.querySelector('.clset a.cm[href$="/'+slug+'/"]');
+  function flyToSlug(slug){ var a=document.querySelector('.slink[href$="/'+slug+'/"]')||document.querySelector('.tile .tlink[href$="/'+slug+'/"]')||document.querySelector('.clset a.cm[href$="/'+slug+'/"]');
     if(!a){ if(slugMap[slug]) openDomain(slugMap[slug].d); return; }
-    var det=a.closest('details'); if(det) det.open=true; var tile=a.closest('.tile')||a; tile.scrollIntoView({block:'center'});
+    var det=a.closest('details'); if(det) det.open=true; var tile=a.closest('.srow')||a.closest('.tile')||a; tile.scrollIntoView({block:'center'});
     tile.classList.add('lit'); setTimeout(function(){ tile.classList.remove('lit'); },1600); }
   function openDomain(key){ var sec=document.getElementById(key); if(!sec) return; var det=sec.querySelector('details.dom-d'); if(det) det.open=true; sec.scrollIntoView({block:'start'}); }
-  function hrefFor(sl){ var a=document.querySelector('.tile .tlink[href$="/'+sl+'/"]')||document.querySelector('.clset a.cm[href$="/'+sl+'/"]'); return a?a.getAttribute('href'):null; }
+  function hrefFor(sl){ var a=document.querySelector('.slink[href$="/'+sl+'/"]')||document.querySelector('.tile .tlink[href$="/'+sl+'/"]')||document.querySelector('.clset a.cm[href$="/'+sl+'/"]'); return a?a.getAttribute('href'):null; }
 
   /* tabs */
   function setTab(t){ tab=t; var o=document.querySelectorAll('.ot'); for(var i=0;i<o.length;i++) o[i].classList.toggle('on',o[i].getAttribute('data-t')===t);
