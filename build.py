@@ -7,6 +7,14 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 GH = "https://github.com/DavidWise01"
 PG = "https://davidwise01.github.io"
 
+# toddler.json: {slug -> one plain kid-level sentence}. Generated once; shown in each domain dropdown.
+try:
+    import json as _json_tod
+    with open(os.path.join(HERE, "toddler.json"), encoding="utf-8") as _tf:
+        TOD = _json_tod.load(_tf)
+except Exception:
+    TOD = {}
+
 # band → [ (repo, name, accent, count, tagline) ]
 BANDS = [
  ("The Register", "the index, the law, and the live fire", [
@@ -2090,6 +2098,23 @@ def cluster_tile(fam, items):
         lab=r[len(fam):].lstrip('-') or r
         chips.append(f'<a class="cm" href="{PG}/{r}/" title="{html.escape(html.unescape(name))}">{html.escape(lab)}</a>')
     return f'<div class="cluster" style="--c:{col};--ct:{_text_tone(col)}"><div class="ch"><div class="cln">{html.escape(disp)}</div><div class="clc">{n} parts · merged lineage</div></div><div class="clset">{"".join(chips)}</div></div>'
+def _domain_list(members):
+    """Flat ALPHABETICAL list of every sphere in the domain: name + a toddler-simple
+    line + a code link. Replaces the card grid inside the domain dropdown."""
+    ms = sorted(members, key=lambda s: _alpha_key(html.unescape(s[1])))
+    rows = []
+    for s in ms:
+        repo, name, col = s[0], html.unescape(s[1]), s[2]
+        tod = TOD.get(repo, "")
+        tod_html = html.escape(tod) if tod else '<span class="stod-none">a sphere in this domain</span>'
+        rows.append(
+            f'<li class="srow" style="--ct:{_text_tone(col)}">'
+            f'<a class="slink" href="{PG}/{repo}/">{html.escape(name)}</a>'
+            f'<span class="stod">{tod_html}</span>'
+            f'<a class="scode" href="{GH}/{repo}" target="_blank" rel="noopener">code</a>'
+            f'</li>')
+    return f'<ul class="slist">{"".join(rows)}</ul>'
+
 def _domain_body(key, members):
     subs = SUBDOMAINS.get(key)
     if not subs:
@@ -2142,7 +2167,7 @@ def domains_html():
     for i,(key,title,accent,blurb) in DOMAINS_ALPHA:
         members = BY_DOMAIN[key]
         if members:
-            body = _domain_body(key, members)
+            body = _domain_list(members)
         else:
             body = '<div class="reserved">Reserved — the first sphere awaits. New work in this domain will be sorted here.</div>'
         out.append(f'''<section class="domain" id="{key}" style="--c:{accent};--ct:{_text_tone(accent)}">
@@ -3279,6 +3304,17 @@ body.jopen #jasfab{background:linear-gradient(135deg,#7a2f4a,#a83f5a)}
 .subdom-h .sds{font-size:12.5px;color:var(--dim);font-style:italic}
 .subdom-h .sdn{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--dim)}
 .subdom .tiles{margin-top:14px}
+/* flat alphabetical sphere LIST inside each domain dropdown — name + a toddler-simple line + code */
+.slist{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--line)}
+.srow{display:grid;grid-template-columns:minmax(150px,258px) 1fr auto;gap:6px 20px;align-items:baseline;padding:11px 14px;border-bottom:1px solid var(--line);transition:background .14s}
+.srow:hover{background:color-mix(in srgb,var(--c) 8%,transparent)}
+.slink{font-family:var(--mono);font-size:12.5px;font-weight:700;letter-spacing:.02em;color:var(--ct);text-decoration:none;text-transform:uppercase;line-height:1.35}
+.slink:hover{text-decoration:underline;text-decoration-color:var(--c)}
+.stod{font-family:var(--body);font-size:14.5px;line-height:1.5;color:var(--pa2)}
+.stod-none{color:var(--dim);font-style:italic}
+.scode{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-decoration:none;align-self:center;white-space:nowrap}
+.scode:hover{color:var(--c)}
+@media(max-width:620px){.srow{grid-template-columns:1fr auto;gap:3px 12px}.slink{align-self:center}.stod{grid-column:1/-1}}
 .tile{display:flex;flex-direction:column;background:var(--ink2);border:1px solid color-mix(in srgb,var(--c) 78%,var(--line));border-radius:5px;
 padding:15px 16px 13px;position:relative;overflow:hidden;text-decoration:none;color:inherit;transition:transform .18s,border-color .18s,box-shadow .18s;
 box-shadow:0 0 12px color-mix(in srgb,var(--c) 38%,transparent),0 0 34px color-mix(in srgb,var(--c) 16%,transparent),inset 0 0 22px color-mix(in srgb,var(--c) 11%,transparent);
