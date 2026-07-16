@@ -3548,7 +3548,7 @@ var ST=[
  ['nf','NOISE FLOOR','the null band — what clears noise',0],
  ['ae','ATTENTION','attention as a saving engine (fractal)',0],
  ['tn','TUNNEL','leap the noise — barrier transmission',0],
- ['ap','APERTURE','softmax temperature = focus width',0],
+ ['ap','APERTURE','softmax entropy H=1.86 (recomputed, can fail)',1],
  ['st','THE STITCH','early-exit routing (modeled)',0],
  ['jt','JIT PASS','GPT-2 124M · logit-lens locks by L11',1],
  ['wa','THE WAIST','STITCH depth ladder 27→49%',1],
