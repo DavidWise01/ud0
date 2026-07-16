@@ -1,0 +1,783 @@
+{
+ "specimen": {
+  "params": 466176,
+  "seed": 777,
+  "steps": 1500,
+  "acc": 0.4726,
+  "loss": 1.755,
+  "chance": 0.0154,
+  "V": 65,
+  "bigram": 0.2628
+ },
+ "sixaxis": {
+  "swagger": {
+   "conf": 0.5008,
+   "acc": 0.4726,
+   "gap": 0.0282,
+   "init_gap": 0.0364
+  },
+  "freerun": [
+   {
+    "hop": 1,
+    "acc": 0.4605,
+    "conf": 0.5094
+   },
+   {
+    "hop": 2,
+    "acc": 0.2688,
+    "conf": 0.5186
+   },
+   {
+    "hop": 3,
+    "acc": 0.1684,
+    "conf": 0.5361
+   },
+   {
+    "hop": 4,
+    "acc": 0.1262,
+    "conf": 0.5401
+   },
+   {
+    "hop": 5,
+    "acc": 0.0938,
+    "conf": 0.5072
+   },
+   {
+    "hop": 6,
+    "acc": 0.0836,
+    "conf": 0.4824
+   },
+   {
+    "hop": 7,
+    "acc": 0.0734,
+    "conf": 0.4526
+   },
+   {
+    "hop": 8,
+    "acc": 0.0652,
+    "conf": 0.4651
+   },
+   {
+    "hop": 9,
+    "acc": 0.0684,
+    "conf": 0.5078
+   },
+   {
+    "hop": 10,
+    "acc": 0.0633,
+    "conf": 0.5021
+   },
+   {
+    "hop": 11,
+    "acc": 0.0641,
+    "conf": 0.4973
+   },
+   {
+    "hop": 12,
+    "acc": 0.066,
+    "conf": 0.4974
+   },
+   {
+    "hop": 13,
+    "acc": 0.0738,
+    "conf": 0.5032
+   },
+   {
+    "hop": 14,
+    "acc": 0.0625,
+    "conf": 0.4939
+   },
+   {
+    "hop": 15,
+    "acc": 0.0676,
+    "conf": 0.4779
+   },
+   {
+    "hop": 16,
+    "acc": 0.0609,
+    "conf": 0.4565
+   }
+  ],
+  "effrank": {
+   "in_dist": 7.6,
+   "ood": 12.4
+  },
+  "calibration": {
+   "tstar": 1.15,
+   "ece1": 0.0282,
+   "eceT": 0.0202
+  },
+  "headhunt": {
+   "best": "L2h1",
+   "best_drop": 0.0051,
+   "top5": [
+    [
+     2,
+     1,
+     0.0051
+    ],
+    [
+     1,
+     3,
+     0.0042
+    ],
+    [
+     2,
+     6,
+     0.0034
+    ],
+    [
+     1,
+     6,
+     0.0031
+    ],
+    [
+     3,
+     4,
+     0.0031
+    ]
+   ]
+  },
+  "ladder": [
+   {
+    "tap": "embed",
+    "acc": 0.2628
+   },
+   {
+    "tap": "L1a",
+    "acc": 0.3251
+   },
+   {
+    "tap": "L1",
+    "acc": 0.3424
+   },
+   {
+    "tap": "L2a",
+    "acc": 0.3703
+   },
+   {
+    "tap": "L2",
+    "acc": 0.4093
+   },
+   {
+    "tap": "L3a",
+    "acc": 0.4262
+   },
+   {
+    "tap": "L3",
+    "acc": 0.4541
+   },
+   {
+    "tap": "L4a",
+    "acc": 0.4601
+   },
+   {
+    "tap": "L4",
+    "acc": 0.4709
+   }
+  ],
+  "trace": {
+   "strokes": [
+    {
+     "in": ".",
+     "true": "W",
+     "guess": "\u23ce",
+     "rank": 15,
+     "ok": false
+    },
+    {
+     "in": "W",
+     "true": "h",
+     "guess": "h",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "h",
+     "true": "e",
+     "guess": "a",
+     "rank": 3,
+     "ok": false
+    },
+    {
+     "in": "e",
+     "true": "n",
+     "guess": "r",
+     "rank": 2,
+     "ok": false
+    },
+    {
+     "in": "n",
+     "true": "c",
+     "guess": "\u00b7",
+     "rank": 9,
+     "ok": false
+    },
+    {
+     "in": "c",
+     "true": "e",
+     "guess": "e",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "e",
+     "true": "\u00b7",
+     "guess": "\u00b7",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "\u00b7",
+     "true": "a",
+     "guess": "t",
+     "rank": 2,
+     "ok": false
+    },
+    {
+     "in": "a",
+     "true": "r",
+     "guess": "n",
+     "rank": 4,
+     "ok": false
+    },
+    {
+     "in": "r",
+     "true": "e",
+     "guess": "e",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "e",
+     "true": "\u00b7",
+     "guess": "\u00b7",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "\u00b7",
+     "true": "y",
+     "guess": "t",
+     "rank": 9,
+     "ok": false
+    },
+    {
+     "in": "y",
+     "true": "o",
+     "guess": "o",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "o",
+     "true": "u",
+     "guess": "u",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "u",
+     "true": ",",
+     "guess": "\u00b7",
+     "rank": 3,
+     "ok": false
+    },
+    {
+     "in": ",",
+     "true": "\u00b7",
+     "guess": "\u00b7",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "\u00b7",
+     "true": "s",
+     "guess": "a",
+     "rank": 4,
+     "ok": false
+    },
+    {
+     "in": "s",
+     "true": "i",
+     "guess": "i",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "i",
+     "true": "r",
+     "guess": "r",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "r",
+     "true": "?",
+     "guess": ",",
+     "rank": 6,
+     "ok": false
+    },
+    {
+     "in": "?",
+     "true": "\u00b7",
+     "guess": "\u23ce",
+     "rank": 2,
+     "ok": false
+    },
+    {
+     "in": "\u00b7",
+     "true": "w",
+     "guess": "I",
+     "rank": 5,
+     "ok": false
+    },
+    {
+     "in": "w",
+     "true": "h",
+     "guess": "h",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "h",
+     "true": "a",
+     "guess": "a",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "a",
+     "true": "t",
+     "guess": "t",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "t",
+     "true": "\u00b7",
+     "guess": "\u00b7",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "\u00b7",
+     "true": "m",
+     "guess": "t",
+     "rank": 8,
+     "ok": false
+    },
+    {
+     "in": "m",
+     "true": "a",
+     "guess": "y",
+     "rank": 3,
+     "ok": false
+    },
+    {
+     "in": "a",
+     "true": "y",
+     "guess": "k",
+     "rank": 2,
+     "ok": false
+    },
+    {
+     "in": "y",
+     "true": "\u00b7",
+     "guess": "\u00b7",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "\u00b7",
+     "true": "I",
+     "guess": "t",
+     "rank": 13,
+     "ok": false
+    },
+    {
+     "in": "I",
+     "true": "\u00b7",
+     "guess": "\u00b7",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "\u00b7",
+     "true": "c",
+     "guess": "w",
+     "rank": 7,
+     "ok": false
+    },
+    {
+     "in": "c",
+     "true": "a",
+     "guess": "a",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "a",
+     "true": "l",
+     "guess": "n",
+     "rank": 2,
+     "ok": false
+    },
+    {
+     "in": "l",
+     "true": "l",
+     "guess": "l",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "l",
+     "true": "\u00b7",
+     "guess": "\u00b7",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "\u00b7",
+     "true": "y",
+     "guess": "t",
+     "rank": 8,
+     "ok": false
+    },
+    {
+     "in": "y",
+     "true": "o",
+     "guess": "o",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "o",
+     "true": "u",
+     "guess": "u",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "u",
+     "true": "r",
+     "guess": "\u00b7",
+     "rank": 2,
+     "ok": false
+    },
+    {
+     "in": "r",
+     "true": "\u00b7",
+     "guess": "\u00b7",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "\u00b7",
+     "true": "n",
+     "guess": "s",
+     "rank": 14,
+     "ok": false
+    },
+    {
+     "in": "n",
+     "true": "a",
+     "guess": "o",
+     "rank": 3,
+     "ok": false
+    },
+    {
+     "in": "a",
+     "true": "m",
+     "guess": "m",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "m",
+     "true": "e",
+     "guess": "e",
+     "rank": 1,
+     "ok": true
+    },
+    {
+     "in": "e",
+     "true": "?",
+     "guess": ",",
+     "rank": 6,
+     "ok": false
+    }
+   ],
+   "T": 47,
+   "acc": 0.511
+  }
+ },
+ "failure": {
+  "context": [
+   {
+    "k": 64,
+    "acc": 0.4714
+   },
+   {
+    "k": 32,
+    "acc": 0.4759
+   },
+   {
+    "k": 16,
+    "acc": 0.4564
+   },
+   {
+    "k": 8,
+    "acc": 0.4733
+   },
+   {
+    "k": 4,
+    "acc": 0.4531
+   },
+   {
+    "k": 2,
+    "acc": 0.3822
+   },
+   {
+    "k": 1,
+    "acc": 0.2767
+   }
+  ],
+  "noise": [
+   {
+    "p": 0,
+    "acc": 0.4726
+   },
+   {
+    "p": 0.05,
+    "acc": 0.4325
+   },
+   {
+    "p": 0.1,
+    "acc": 0.3952
+   },
+   {
+    "p": 0.2,
+    "acc": 0.3288
+   },
+   {
+    "p": 0.3,
+    "acc": 0.267
+   },
+   {
+    "p": 0.5,
+    "acc": 0.177
+   },
+   {
+    "p": 0.7,
+    "acc": 0.1111
+   },
+   {
+    "p": 0.9,
+    "acc": 0.0666
+   }
+  ],
+  "wnoise": [
+   {
+    "sigma": 0.02,
+    "acc": 0.4726,
+    "loss": 1.756
+   },
+   {
+    "sigma": 0.05,
+    "acc": 0.4713,
+    "loss": 1.762
+   },
+   {
+    "sigma": 0.1,
+    "acc": 0.4659,
+    "loss": 1.784
+   },
+   {
+    "sigma": 0.2,
+    "acc": 0.445,
+    "loss": 1.851
+   },
+   {
+    "sigma": 0.35,
+    "acc": 0.3653,
+    "loss": 2.198
+   },
+   {
+    "sigma": 0.5,
+    "acc": 0.2315,
+    "loss": 2.906
+   },
+   {
+    "sigma": 0.75,
+    "acc": 0.1168,
+    "loss": 4.453
+   },
+   {
+    "sigma": 1.0,
+    "acc": 0.0554,
+    "loss": 5.793
+   }
+  ],
+  "quant": [
+   {
+    "bits": 8,
+    "acc": 0.4726,
+    "loss": 1.755
+   },
+   {
+    "bits": 6,
+    "acc": 0.4726,
+    "loss": 1.758
+   },
+   {
+    "bits": 4,
+    "acc": 0.462,
+    "loss": 1.789
+   },
+   {
+    "bits": 3,
+    "acc": 0.4262,
+    "loss": 1.935
+   },
+   {
+    "bits": 2,
+    "acc": 0.1501,
+    "loss": 3.481
+   },
+   {
+    "bits": 1,
+    "acc": 0.0855,
+    "loss": 10.301
+   }
+  ],
+  "lesion": [
+   {
+    "p": 0,
+    "acc": 0.4726
+   },
+   {
+    "p": 0.1,
+    "acc": 0.4646
+   },
+   {
+    "p": 0.2,
+    "acc": 0.4579
+   },
+   {
+    "p": 0.3,
+    "acc": 0.4416
+   },
+   {
+    "p": 0.5,
+    "acc": 0.3864
+   },
+   {
+    "p": 0.7,
+    "acc": 0.3959
+   },
+   {
+    "p": 0.9,
+    "acc": 0.1842
+   }
+  ],
+  "ood": {
+   "in-dist": {
+    "conf": 0.5005,
+    "entropy": 1.6585
+   },
+   "uniform-random": {
+    "conf": 0.47,
+    "entropy": 1.7265
+   },
+   "all-caps": {
+    "conf": 0.5347,
+    "entropy": 1.5722
+   }
+  },
+  "temp": [
+   {
+    "T": 0.05,
+    "loop": 0.561,
+    "sample": "stand the son the soul be the seep of the proves\u23ceThat the sh"
+   },
+   {
+    "T": 0.3,
+    "loop": 0.325,
+    "sample": "land the sould so me and the countrest to our some\u23ceThat shal"
+   },
+   {
+    "T": 0.5,
+    "loop": 0.203,
+    "sample": "with death thou death all my beant,\u23ceThat so the will to a te"
+   },
+   {
+    "T": 0.8,
+    "loop": 0.059,
+    "sample": "part soul stound conself.\u23ce\u23ceKING RICHARD III:\u23ceI see speak you"
+   },
+   {
+    "T": 1.0,
+    "loop": 0.034,
+    "sample": "pance, wife once as upon of corion, mean!\u23ce\u23ceDUS:\u23ceCome it, yie"
+   },
+   {
+    "T": 1.5,
+    "loop": 0.004,
+    "sample": "deaph stor thxinknow once, devener\u23cesrowb I trukes: Tthiu can"
+   },
+   {
+    "T": 2.5,
+    "loop": 0.0,
+    "sample": "vuchminnush!Nfriad, Rut\u23ceArbacl yo,\u23cepurt merufed: yWggue, gma"
+   }
+  ]
+ },
+ "era": [
+  {
+   "step": 0,
+   "acc": 0.0139,
+   "loss": 4.311,
+   "swagger": 0.0364
+  },
+  {
+   "step": 300,
+   "acc": 0.3749,
+   "loss": 2.113,
+   "swagger": 0.0198
+  },
+  {
+   "step": 600,
+   "acc": 0.4283,
+   "loss": 1.915,
+   "swagger": 0.0292
+  },
+  {
+   "step": 900,
+   "acc": 0.4558,
+   "loss": 1.818,
+   "swagger": 0.0263
+  },
+  {
+   "step": 1200,
+   "acc": 0.4691,
+   "loss": 1.768,
+   "swagger": 0.0282
+  },
+  {
+   "step": 1500,
+   "acc": 0.4726,
+   "loss": 1.755,
+   "swagger": 0.0282
+  }
+ ],
+ "verdict": {
+  "local_machine": true,
+  "armor_beats_spec": true,
+  "quant_cliff": true,
+  "swagger_positive": true,
+  "mirror_collapses": true,
+  "one_way_glass": true
+ },
+ "model": "char-GPT 4L/6H/d96 (tiny Shakespeare, seed 777, 1500 steps)"
+}
