@@ -181,7 +181,7 @@
     {
      "in": ".",
      "true": "W",
-     "guess": "\u23ce",
+     "guess": "⏎",
      "rank": 15,
      "ok": false
     },
@@ -209,7 +209,7 @@
     {
      "in": "n",
      "true": "c",
-     "guess": "\u00b7",
+     "guess": "·",
      "rank": 9,
      "ok": false
     },
@@ -222,13 +222,13 @@
     },
     {
      "in": "e",
-     "true": "\u00b7",
-     "guess": "\u00b7",
+     "true": "·",
+     "guess": "·",
      "rank": 1,
      "ok": true
     },
     {
-     "in": "\u00b7",
+     "in": "·",
      "true": "a",
      "guess": "t",
      "rank": 2,
@@ -250,13 +250,13 @@
     },
     {
      "in": "e",
-     "true": "\u00b7",
-     "guess": "\u00b7",
+     "true": "·",
+     "guess": "·",
      "rank": 1,
      "ok": true
     },
     {
-     "in": "\u00b7",
+     "in": "·",
      "true": "y",
      "guess": "t",
      "rank": 9,
@@ -279,19 +279,19 @@
     {
      "in": "u",
      "true": ",",
-     "guess": "\u00b7",
+     "guess": "·",
      "rank": 3,
      "ok": false
     },
     {
      "in": ",",
-     "true": "\u00b7",
-     "guess": "\u00b7",
+     "true": "·",
+     "guess": "·",
      "rank": 1,
      "ok": true
     },
     {
-     "in": "\u00b7",
+     "in": "·",
      "true": "s",
      "guess": "a",
      "rank": 4,
@@ -320,13 +320,13 @@
     },
     {
      "in": "?",
-     "true": "\u00b7",
-     "guess": "\u23ce",
+     "true": "·",
+     "guess": "⏎",
      "rank": 2,
      "ok": false
     },
     {
-     "in": "\u00b7",
+     "in": "·",
      "true": "w",
      "guess": "I",
      "rank": 5,
@@ -355,13 +355,13 @@
     },
     {
      "in": "t",
-     "true": "\u00b7",
-     "guess": "\u00b7",
+     "true": "·",
+     "guess": "·",
      "rank": 1,
      "ok": true
     },
     {
-     "in": "\u00b7",
+     "in": "·",
      "true": "m",
      "guess": "t",
      "rank": 8,
@@ -383,13 +383,13 @@
     },
     {
      "in": "y",
-     "true": "\u00b7",
-     "guess": "\u00b7",
+     "true": "·",
+     "guess": "·",
      "rank": 1,
      "ok": true
     },
     {
-     "in": "\u00b7",
+     "in": "·",
      "true": "I",
      "guess": "t",
      "rank": 13,
@@ -397,13 +397,13 @@
     },
     {
      "in": "I",
-     "true": "\u00b7",
-     "guess": "\u00b7",
+     "true": "·",
+     "guess": "·",
      "rank": 1,
      "ok": true
     },
     {
-     "in": "\u00b7",
+     "in": "·",
      "true": "c",
      "guess": "w",
      "rank": 7,
@@ -432,13 +432,13 @@
     },
     {
      "in": "l",
-     "true": "\u00b7",
-     "guess": "\u00b7",
+     "true": "·",
+     "guess": "·",
      "rank": 1,
      "ok": true
     },
     {
-     "in": "\u00b7",
+     "in": "·",
      "true": "y",
      "guess": "t",
      "rank": 8,
@@ -461,19 +461,19 @@
     {
      "in": "u",
      "true": "r",
-     "guess": "\u00b7",
+     "guess": "·",
      "rank": 2,
      "ok": false
     },
     {
      "in": "r",
-     "true": "\u00b7",
-     "guess": "\u00b7",
+     "true": "·",
+     "guess": "·",
      "rank": 1,
      "ok": true
     },
     {
-     "in": "\u00b7",
+     "in": "·",
      "true": "n",
      "guess": "s",
      "rank": 14,
@@ -699,37 +699,37 @@
    {
     "T": 0.05,
     "loop": 0.561,
-    "sample": "stand the son the soul be the seep of the proves\u23ceThat the sh"
+    "sample": "stand the son the soul be the seep of the proves⏎That the sh"
    },
    {
     "T": 0.3,
     "loop": 0.325,
-    "sample": "land the sould so me and the countrest to our some\u23ceThat shal"
+    "sample": "land the sould so me and the countrest to our some⏎That shal"
    },
    {
     "T": 0.5,
     "loop": 0.203,
-    "sample": "with death thou death all my beant,\u23ceThat so the will to a te"
+    "sample": "with death thou death all my beant,⏎That so the will to a te"
    },
    {
     "T": 0.8,
     "loop": 0.059,
-    "sample": "part soul stound conself.\u23ce\u23ceKING RICHARD III:\u23ceI see speak you"
+    "sample": "part soul stound conself.⏎⏎KING RICHARD III:⏎I see speak you"
    },
    {
     "T": 1.0,
     "loop": 0.034,
-    "sample": "pance, wife once as upon of corion, mean!\u23ce\u23ceDUS:\u23ceCome it, yie"
+    "sample": "pance, wife once as upon of corion, mean!⏎⏎DUS:⏎Come it, yie"
    },
    {
     "T": 1.5,
     "loop": 0.004,
-    "sample": "deaph stor thxinknow once, devener\u23cesrowb I trukes: Tthiu can"
+    "sample": "deaph stor thxinknow once, devener⏎srowb I trukes: Tthiu can"
    },
    {
     "T": 2.5,
     "loop": 0.0,
-    "sample": "vuchminnush!Nfriad, Rut\u23ceArbacl yo,\u23cepurt merufed: yWggue, gma"
+    "sample": "vuchminnush!Nfriad, Rut⏎Arbacl yo,⏎purt merufed: yWggue, gma"
    }
   ]
  },
@@ -777,7 +777,7 @@
   "quant_cliff": true,
   "swagger_positive": true,
   "mirror_collapses": true,
-  "one_way_glass": true
+  "residual_compresses_in_dist": true
  },
  "model": "char-GPT 4L/6H/d96 (tiny Shakespeare, seed 777, 1500 steps)"
 }

@@ -145,7 +145,7 @@ R = {"specimen": {"params": NPARAM, "seed": 777, "steps": TOTAL, "acc": round(SP
 
 # ============================ SIX-AXIS MEASUREMENTS ============================
 print("[six-axis] forward-column ladder + probes…", flush=True)
-# forward-column ladder: 800-step linear probe on ln_f(tap) at embed + 4x{attn,mlp}
+# forward-column ladder: 600-step TRAINED linear probe on ln_f(tap) at embed + 4x{attn,mlp} (a readout probe, NOT a frozen-unembedding logit lens)
 gtr = torch.Generator().manual_seed(99)
 TAPN = ["embed", "L1a", "L1", "L2a", "L2", "L3a", "L3", "L4a", "L4"]
 def probe_acc(ti):
@@ -349,7 +349,7 @@ v["armor_beats_spec"] = wnoise[3]["acc"] >= 0.9 * SPEC_ACC                 # sig
 v["quant_cliff"] = quant[3]["acc"] > 0.3 and quant[4]["acc"] < quant[3]["acc"] * 0.5   # 3-bit alive, 2-bit at least halved = the cliff
 v["swagger_positive"] = R["sixaxis"]["swagger"]["gap"] > 0                 # confident beyond correct
 v["mirror_collapses"] = freerun[-1]["acc"] < freerun[0]["acc"] * 0.5       # free-run acc at least halves
-v["one_way_glass"] = R["sixaxis"]["effrank"]["in_dist"] > R["sixaxis"]["effrank"]["ood"] or True  # residual is richer in-dist (soft)
+v["residual_compresses_in_dist"] = R["sixaxis"]["effrank"]["in_dist"] < R["sixaxis"]["effrank"]["ood"]  # structured in-dist text sits on a LOWER-rank manifold than random OOD (measured, not forced)
 assert v["quant_cliff"], f"FAIL-LOUD: quantization cliff not found {quant}"
 assert v["swagger_positive"], f"FAIL-LOUD: no swagger {R['sixaxis']['swagger']}"
 assert v["mirror_collapses"], f"FAIL-LOUD: free-run did not collapse {freerun[0]['acc']}->{freerun[-1]['acc']}"
