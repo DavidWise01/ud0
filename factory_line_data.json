@@ -1,0 +1,114 @@
+{
+ "rows": [
+  {
+   "tap": "node0",
+   "acc": 0.2641,
+   "delta": 0.0,
+   "kind": "embed"
+  },
+  {
+   "tap": "n1a",
+   "acc": 0.3233,
+   "delta": 5.92,
+   "kind": "attn"
+  },
+  {
+   "tap": "n1",
+   "acc": 0.3486,
+   "delta": 2.52,
+   "kind": "mlp"
+  },
+  {
+   "tap": "n2a",
+   "acc": 0.3827,
+   "delta": 3.41,
+   "kind": "attn"
+  },
+  {
+   "tap": "n2",
+   "acc": 0.4182,
+   "delta": 3.55,
+   "kind": "mlp"
+  },
+  {
+   "tap": "n3a",
+   "acc": 0.4341,
+   "delta": 1.6,
+   "kind": "attn"
+  },
+  {
+   "tap": "n3",
+   "acc": 0.47,
+   "delta": 3.58,
+   "kind": "mlp"
+  },
+  {
+   "tap": "n4a",
+   "acc": 0.48,
+   "delta": 1.0,
+   "kind": "attn"
+  },
+  {
+   "tap": "n4",
+   "acc": 0.4933,
+   "delta": 1.33,
+   "kind": "mlp"
+  }
+ ],
+ "shares": [
+  {
+   "block": 1,
+   "attn": 5.92,
+   "mlp": 2.52,
+   "share": 0.701
+  },
+  {
+   "block": 2,
+   "attn": 3.41,
+   "mlp": 3.55,
+   "share": 0.49
+  },
+  {
+   "block": 3,
+   "attn": 1.6,
+   "mlp": 3.58,
+   "share": 0.309
+  },
+  {
+   "block": 4,
+   "attn": 1.0,
+   "mlp": 1.33,
+   "share": 0.429
+  }
+ ],
+ "damage": [
+  {
+   "block": 1,
+   "attn": 1.036,
+   "mlp": 0.122
+  },
+  {
+   "block": 2,
+   "attn": 0.154,
+   "mlp": 0.082
+  },
+  {
+   "block": 3,
+   "attn": 0.089,
+   "mlp": 0.115
+  },
+  {
+   "block": 4,
+   "attn": 0.071,
+   "mlp": 0.117
+  }
+ ],
+ "base_loss": 1.689,
+ "model": "STITCH 4L/d96/6H char-GPT (tiny Shakespeare, seed 1337)",
+ "method": "9-tap half-ladder, 800-step linear probes on ln_f(tap); removal = zero each residual add, \u0394 val loss, matched batches",
+ "verdict": {
+  "attn_share_falls": true,
+  "l1_attn_load_bearing": true,
+  "l1_attn_vs_mlp": 8.5
+ }
+}
