@@ -3978,3 +3978,12 @@ if __name__ == "__main__":
         print("  [!] ada-portrait.jpg not found in ud0/ — the central medallion will be blank until you add it")
     sizes = " · ".join(f"{k}:{len(BY_DOMAIN[k])}" for k,_t,_a,_b in DOMAINS)
     print(f"wrote UD0 index.html — {NS} spheres across {len(DOMAINS)} domains [{sizes}]")
+    # THE UPDATE ROSTER — regenerate corpus-derived sibling repos (the-dark-city, …) from the
+    # live count so they never drift. Local regen only; push them with: python _update_roster.py --push
+    try:
+        import subprocess as _sp
+        _roster = os.path.join(os.path.dirname(HERE), "_update_roster.py")
+        if os.path.exists(_roster):
+            _sp.run(["python", _roster], check=False)
+    except Exception as _e:
+        print(f"  (update roster skipped: {_e})")
