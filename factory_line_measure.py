@@ -158,7 +158,7 @@ with torch.no_grad():
         print(f"[removal] L{b+1}  zero-attn +{da-base:.3f}   zero-mlp +{dm-base:.3f}", flush=True)
 
 # ---- the two verdicts (fail-loud) ----
-share_falls = shares[0]["share"] > shares[1]["share"] > shares[2]["share"]      # 71 > 44 > 34
+share_falls = shares[0]["share"] > shares[1]["share"] > shares[2]["share"]      # L1>L2>L3, e.g. 70 > 49 > 31 (L4 excluded — it ticks back up)
 l1_attn_wall = (damage[0]["attn"] == max(d["attn"] for d in damage)
                 and damage[0]["attn"] == max(max(d["attn"], d["mlp"]) for d in damage))
 assert share_falls, f"FAIL-LOUD: attention share did not fall L1>L2>L3: {[s['share'] for s in shares]}"
