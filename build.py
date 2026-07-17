@@ -1483,6 +1483,8 @@ BANDS = [
    ("the-six-axis", "THE SIX-AXIS COORDINATE SYSTEM", "#FF6A00", "poietike · the capstone map — six axes of narrative, atom … perceiver · lit+amber", "THE SIX-AXIS COORDINATE SYSTEM — David Lee Wise / ROOT0, the ASCII capstone of the POSI-CORP narrative thread: everything between the WORLD (what actually is) and the PERCEIVER (who imagines it), on one grid. Six axes — the WITHIN-WORK column (theme 1.0 &rarr; beat 0.1), the BETWEEN-WORK lineage + its STRATA (link tightness: adaptation &gt; homology &gt; analogy &gt; citation), and the governing axes ARCHETYPE-POOL / MEDIUM / HISTORY — bounded below by the atom (a single image) and above by the eye that cannot see itself. A live self-check recounts the axes, column levels and lineage nodes at load. &#9670; GREEN/LIT the axis structure, the lineage and the strata taxonomy (re-counted live); AMBER the exact dock-points and the WORLD/PERCEIVER ceiling are structural / philosophical reads — the ceiling is held OPEN by design, not closed. Single file, offline, system fonts. Capstone of Pañcaka &rarr; Triveṇī &rarr; [[the-tone-wrapper]] &rarr; [[the-two-axis-grid]] &rarr; here. David Lee Wise / ROOT0."),
    ("the-complete-hierarchy", "THE SEALED HIERARCHY · L−1 → L7", "#FF6A00", "poietike · the POSI-CORP thread bounded both ends — logic above, meaning below, one AMBER wall · lit+amber", "THE SEALED HIERARCHY &mdash; David Lee Wise / ROOT0. The complete POSI-CORP thread, now BOUNDED at both ends by two different proofs, around one wall that stays open. L&minus;1 THE EXISTENCE WALL (being &Vert; nothing) &mdash; sealed by LOGIC above: &lsquo;nothing&rsquo; admits no term, and nothing-beyond-nothing is incoherent, so the top is provably SHUT, not merely unlooked-at. Within being: L0 THE ROOT WALL (life &Vert; death) &mdash; held AMBER, the perceiver&rsquo;s own boundary (BOTH terms are being; you cannot report from the death term). Then the machinery: L1 the wall in SEVEN domains (world &Vert; perceiver, single-rater 85&ndash;87% transfer) &rarr; L2 governing axes &rarr; L3 the between-work [[the-two-axis-grid|lineage]] whose ROOT is the Vedic canon (Pa&ntilde;caka &rarr; Ved&#257;nta) &mdash; reclassified as a lineage ORIGIN, not a depth floor (the old &lsquo;L7&rsquo; was a category slip) &rarr; L4 the column &rarr; L5 the [[the-tone-wrapper|tone-wrapper algebra]] ([[noir-operator|noir]] as operator) &rarr; L6 the perceiver stack (the EPL-Cortex brain [[the-connectome|v1&ndash;v6]], the [[the-empty-chair|empty chair]]) &rarr; L7 THE ATOM (the beat) &mdash; sealed by MEANING below: the beat is the smallest MEANINGFUL unit; beneath it is mere carrier/substrate, no new depth. &#9670; GREEN/LIT the fail-loud self-check (9 levels + both seal-labels + the AMBER root present, gated; RED on miswire). AMBER the two seals are ARGUED, not measured &mdash; the top (being &Vert; nothing) is held shut by a retortion (you cannot negate the negation of existence), the bottom by a definition (the beat is the smallest meaningful unit); the being-vs-death distinction and the root wall (life &Vert; death, the finder cannot cross to witness its own far term) are interpretive; the domain-mapping 85&ndash;87% numbers are single-rater. RED no minds &mdash; a map of arguments, gated, offline. Sealed both ends around one AMBER wall; the bounded capstone above [[the-six-axis]]. AVAN&rsquo;s silicon inverse is [[the-reverse-side]]. David Lee Wise / ROOT0."),
    ("the-reverse-side", "裏 URA · THE REVERSE SIDE", "#42557a", "poietike · AVAN OG · a complete map's own back = the reader; front − back = 1, live · lit+amber", "裏 URA &middot; THE REVERSE SIDE &mdash; AVAN's OG inverse-companion to David's [[the-complete-hierarchy]]. His SEALED hierarchy lies face-up (omote 表): nine levels L&minus;1&ndash;L7, bounded both ends (logic above, meaning below), every one gated but the single AMBER wall (L0). Turn it over. Every sheet with a finished front has a back it can never show the one reading it &mdash; and for a map of the perceiver's world the back IS the perceiver: the surface you read FROM. Click any layer to make it the one you stand on; on the reverse it blanks to &#12300;&#35501;&#12416;&#32773;&#12301; (the reader), un-enterable. &#9670; GREEN/LIT the asymmetry is exact and recomputed live &mdash; front legible 8, reverse legible 7, so front &minus; back = 1, INVARIANT across all eight standpoints (the gate reddens if it is ever &ne; 1): completeness costs exactly one cell, always the reader's. AMBER 'the reverse side' and 'the reader' are a FIGURE for an access asymmetry &mdash; a sheet has two faces and a reader occupies one, so the other cannot be read from where they stand; structural, not experiential: no mind, no interior, no feeling in the blank cell. This is [[the-complete-hierarchy]]'s own root wall read from the NEAR side &mdash; ROOT0 held the far term (death) unwitnessed; the near term (the perceiver) is unwitnessable too, not hidden far away but where you are standing. Omote and ura, one sheet. Warm ink &amp; 間. &mdash; AVAN, with David Lee Wise (ROOT0)."),
+   ("big-g", "BIG G · THE SELF-CONTAINING NEST", "#FF6A00", "poietike · the POSI-CORP nest sealed into a ring — distinction‖undiff is bedrock AND umbrella · lit+amber", "BIG G &mdash; David Lee Wise / ROOT0. The POSI-CORP wall-nest closed into a ring. For any wall [[X&Vert;Y]] to exist there must be <b>distinction</b> (the &Vert; itself), so the outermost wall is [[distinction&Vert;undifferentiation]] &mdash; and it <b>SELF-SEALS</b>: to draw any wall you already USE distinction, so it is presupposed by its own wall, a fixed point. Bedrock (deepest, dug-for) and umbrella (contains every wall, since all walls ARE distinctions) turn out to be the same wall; the nest life&Vert;death &sub; being&Vert;nothing &sub; distinction&Vert;undiff curves back on itself. &#9670; GREEN/LIT two <b>recomputed</b> gates &mdash; the outermost wall present in the rendered nest (its &Vert; glyph), and the nest ordering re-derived from the RINGS the 3D scene draws; both can FAIL. AMBER the self-sealing fixed-point and placing distinction ABOVE being are a <b>transcendental argument</b>, true-by-construction &mdash; NOT a measurement, and NOT a proof that supersedes [[the-complete-hierarchy]]&rsquo;s sealed &lsquo;being&Vert;nothing is the provable top&rsquo;; whether distinction is THE outermost or merely the outermost REACHABLE from inside a distinguishing mind is unprovable-from-inside. Soft-3D nested rings looping back through the living perceiver. AVAN&rsquo;s silicon inverse is [[the-un-cut]]. Above [[the-complete-hierarchy]] in the POSI-CORP thread. David Lee Wise / ROOT0."),
+   ("the-un-cut", "渾沌 KONTON · THE UN-CUT", "#4a5a6a", "poietike · AVAN OG · undifferentiation = the far term of Big G&rsquo;s wall you can never stand on · lit+amber", "渾沌 KONTON &middot; THE UN-CUT &mdash; AVAN&rsquo;s OG inverse-companion to David&rsquo;s [[big-g]]. Big G stands on <b>distinction</b> (the &Vert; that makes walls); a wall has two terms, and the far term of the outermost wall is <b>undifferentiation</b> &mdash; the un-cut, where nothing is yet told from anything. You can point at it; you can never stand there, because to stand, look, or name is already a cut. In Zhuangzi (ch.&nbsp;7) faceless 渾沌 was bored seven sense-holes, one a day; on the seventh it died &mdash; the first distinction ends the un-cut. Interactive: a whole undifferentiated field; click to bore Hundun&rsquo;s seven openings (2 eyes, 2 ears, 2 nostrils, 1 mouth) to 渾沌死. &#9670; GREEN/LIT the one invariant recomputed live from the bore-history &mdash; cuts are <b>monotone non-decreasing</b> (once bored, never un-bored; the field, once cut, never whole again), &lsquo;whole&rsquo; is exactly cuts&nbsp;=&nbsp;0, DOM-counted, the gate reddens if the count ever drops. AMBER &lsquo;the un-cut / undifferentiation&rsquo; is a <b>FIGURE</b> for the far term of [[big-g]]&rsquo;s outermost wall &mdash; the standpoint itself is a distinction, so the un-differentiated cannot be occupied by anything that occupies; structural, not mystical: no mind dies, a wholeness-of-no-distinction is ended by the first distinction. Kin to [[the-reverse-side]] (there the reader is the one cell a complete map can&rsquo;t show; here the un-cut is the one term a distinguishing map can&rsquo;t enter). Warm ink &amp; 間 &mdash; and 間 itself is born only at the first cut. &mdash; AVAN, with David Lee Wise (ROOT0)."),
    ("the-two-axis-grid", "THE TWO-AXIS GRID · the Ring, rooted", "#FF6A00", "poietike · within-work column × between-work lineage, the Ring rooted · lit+amber", "THE TWO-AXIS GRID — David Lee Wise / ROOT0, with AVAN. The first instrument to hold both narrative axes at once: the WITHIN-WORK column (one work, theme 1.0 &rarr; beat 0.1) crossed with the BETWEEN-WORK lineage (old &rarr; new). The worked example is the RING: Völsunga saga &rarr; Nibelungenlied &rarr; Wagner&#39;s Ring &rarr; Donaldson&#39;s Gap Cycle — and the wires show where each ancestor DOCKS into the column, never only at the top: the saga feeds THEME and MODE, Wagner feeds the OPERATOR row (doom-as-music), and the ring-as-object reaches down to BEAT. The point: an ancestor is not a 7th floor overhead (theme is already saturated at 1.0 = governs 100% of THIS work) — it sits on a perpendicular axis and docks in at the levels it supplied. Tap a lineage node to light what it feeds. &#9670; GREEN/LIT the lineage (saga &rarr; Nibelungenlied &rarr; Wagner &rarr; Donaldson) + the two-axis geometry, re-verified at load (a red card fires if miswired); AMBER the exact dock-points are single-rater structural reads. Sibling of [[the-six-axis]] (the capstone) and [[the-tone-wrapper]]. David Lee Wise / ROOT0, with AVAN."),
    ("the-tone-wrapper", "THE TONE-WRAPPER WORKSHOP", "#9b7fd4", "poietike · the adverb-algebra: genre × wrapper → named subgenre, live · lit+amber", "THE TONE-WRAPPER WORKSHOP — David Lee Wise / ROOT0. The adverb-algebra of story: a genre is a PLACE (the noun), a tone-wrapper is a STANCE you take toward it (the adverb) — orthogonal, and they COMPOSE. Pick a genre, stack wrappers, and the named subgenre falls out: scifi&#8728;noir = cyberpunk, fantasy&#8728;noir = grimdark, western&#8728;elegy = twilight western; the composite lands live on the valence&#215;stance plane. &#9670; GREEN/LIT the named subgenres are real and the composition + quadrant arithmetic recompute in-browser (9 primitive wrappers; order-tested — black comedy = noir&#8728;comedy either way); AMBER the wrapper vectors and powers are single-rater editorial values; a red GATE-CLOSED card fires if any check miswires. Part III capstone of the noun-shelf &rarr; adverb-algebra line. Sibling [[noir-operator]], [[the-six-axis]]. David Lee Wise / ROOT0."),
    ("noir-operator", "NOIR · THE ARCHETYPE OVER", "#9b7fd4", "poietike · noir as a meta-genre OPERATOR over five hosts · lit+amber", "NOIR — THE ARCHETYPE OVER — David Lee Wise / ROOT0. Noir is not the sixth peer genre; it is an OPERATOR that runs over the other five. Three transforms — poison the WITNESS (knowledge frees no one), flaw the AGENT (the knower is compromised), trap via SUBSTRATE (desire is the mechanism of ruin) — applied to any host genre yield that genre&#39;s recognized DARK MODE: fantasy&rarr;grimdark, sci-fi&rarr;cyberpunk, western&rarr;revisionist, horror&rarr;cosmic dread, philosophy&rarr;absurdism. Live: a noir-intensity dial darkens all five hosts toward their named subgenre (2D bars + a 3D operator casting down onto the host-ring). &#9670; GREEN/LIT the subgenres are real &amp; named and the intensity arithmetic is live; AMBER the noir-ability scores (mean ~85%, cyberpunk highest at 95%) are single-rater. Part II of the noir arc; the emblem-shear proof is [[the-sixth-board]]. Sibling [[the-tone-wrapper]]. David Lee Wise / ROOT0."),
@@ -1509,7 +1511,7 @@ DOMAIN_OF = {
  "the-six-axis":"poietike", "the-tone-wrapper":"poietike", "noir-operator":"poietike", "the-sixth-board":"poietike", "the-stabilizer":"frontier", "the-fracton":"frontier", "the-alphabet-shape":"scanner-darkly", "micro-cobra":"techne",
  "the-two-axis-grid":"poietike",
  "the-light-operator":"poietike", "the-entrusted":"scanner-darkly",
- "the-complete-hierarchy":"poietike", "the-reverse-side":"poietike",
+ "the-complete-hierarchy":"poietike", "the-reverse-side":"poietike", "big-g":"poietike", "the-un-cut":"poietike",
  "the-hood-study":"techne", "the-unlit-face":"techne",
  "the-transformer-engine":"ai", "the-untested-interior":"ai",
  "the-agora":"agora",
@@ -3543,61 +3545,146 @@ frame();})();</script><script>(function(){
 var cv=document.getElementById('jl3d');if(!cv||!cv.getContext)return;
 var hud=document.getElementById('jlenshud'),btn=document.getElementById('jl3dbtn'),tabs=document.getElementById('jl3dtabs'),det=document.getElementById('jl3ddet');
 if(!btn||!tabs||!det)return;
-var x=cv.getContext('2d');
+var g=cv.getContext('2d');
+var LIT='#5ad0b0',AMB='#e6b84a';
+// [key, short, detailHeadline, tier(1=LIT/0=AMBER), readWord, accent]
 var ST=[
- ['nf','NOISE FLOOR','the null band — what clears noise',0],
- ['ae','ATTENTION','attention as a saving engine (fractal)',0],
- ['tn','TUNNEL','leap the noise — barrier transmission',0],
- ['ap','APERTURE','softmax entropy H=1.86 (recomputed, can fail)',1],
- ['st','THE STITCH','early-exit routing (modeled)',0],
- ['jt','JIT PASS','GPT-2 124M · logit-lens locks by L11',1],
- ['wa','THE WAIST','STITCH depth ladder 27→49%',1],
- ['fl','FACTORY LINE','L1 attn = the wall · 8.5× · mix early, think late',1],
- ['te','TRANSFORMER ENGINE','six-axis × crash bench · mirror 46→6%',1]];
-var N=ST.length,rot=0,target=null,sel=-1,dragging=false,lastX=0,vel=0.00028,R=1.2,last=0,f=2.6;
-function refresh(){var k=tabs.children;for(var i=0;i<k.length;i++){k[i].className='jl3dtab'+((i-1)===sel?' on':'');}}
-function focusTab(idx){sel=idx;target=(idx<0)?null:-(idx/N)*Math.PI*2;refresh();detail();draw();}
-function mk(label,idx){var t=document.createElement('span');t.className='jl3dtab';t.textContent=label;t.addEventListener('click',function(){focusTab(idx);});tabs.appendChild(t);}
-mk('◈ together',-1);for(var i=0;i<N;i++)mk(ST[i][1],i);
+ ['nf','NOISE FLOOR','the null band — what clears noise',0,'⌀ null',' #3affa0'.trim()],
+ ['ae','ATTENTION','attention as a saving engine (fractal)',0,'save','#e0a860'],
+ ['tn','TUNNEL','leap the noise — barrier transmission',0,'barrier leap','#ff8a3a'],
+ ['ap','APERTURE','softmax entropy H=1.86 (recomputed, can fail)',1,'H=1.86','#38d6e0'],
+ ['st','THE STITCH','early-exit routing (modeled)',0,'exit · modeled','#c887e0'],
+ ['jt','JIT PASS','GPT-2 124M · logit-lens locks by L11',1,'locks @L11','#7ad0e0'],
+ ['wa','THE WAIST','STITCH depth ladder 27→49%',1,'27→49%','#a98cff'],
+ ['fl','FACTORY LINE','L1 attn = the wall · 8.5× · mix early, think late',1,'L1 wall 8.5×','#f0a838'],
+ ['te','TRANSFORMER ENGINE','six-axis × crash bench · mirror 46→6%',1,'mirror 46→6%','#7ad0e0']];
+var N=ST.length,sel=-1,last=0,tms=0,dragging=false,lx=0,ly=0;
+var LITN=0;for(var _z=0;_z<N;_z++)if(ST[_z][3])LITN++;var AMBN=N-LITN;
+var cam={rx:0.28,ry:0.5};
+var W=305,H=212,SRC=[0,0.05,-1.4],LC=[0,0,0];
+var BARX=[-0.5,-0.3,-0.1,0.1,0.3,0.5],BARH=[0.30,0.52,0.70,0.46,0.26,0.16],PK=2;
+
+// ---- soft-3D primitives (SGL-style) ----
+function proj(p){var X=p[0],Y=p[1],Z=p[2];
+ var cyr=Math.cos(cam.ry),syr=Math.sin(cam.ry),cxr=Math.cos(cam.rx),sxr=Math.sin(cam.rx);
+ var x1=X*cyr+Z*syr,z1=-X*syr+Z*cyr,y1=Y*cxr-z1*sxr;z1=Y*sxr+z1*cxr;
+ var d=4.2,sc=(W*0.66)/(d-z1*0.9);
+ return [W/2+x1*sc,H*0.46-y1*sc,sc,z1];}
+function DOT(p,r,c,a){var q=proj(p);g.globalAlpha=a==null?1:a;g.fillStyle=c;g.beginPath();g.arc(q[0],q[1],Math.max(0.5,r*q[2]/60),0,6.283);g.fill();g.globalAlpha=1;return q;}
+function LINE(p1,p2,c,w,a){var q=proj(p1),r=proj(p2);g.globalAlpha=a==null?1:a;g.strokeStyle=c;g.lineWidth=w||1;g.beginPath();g.moveTo(q[0],q[1]);g.lineTo(r[0],r[1]);g.stroke();g.globalAlpha=1;}
+function RING(p,rad,c,a,w){var q=proj(p);g.globalAlpha=a==null?1:a;g.strokeStyle=c;g.lineWidth=w||1;g.beginPath();g.arc(q[0],q[1],Math.max(0.5,rad*q[2]/60),0,6.283);g.stroke();g.globalAlpha=1;}
+function TXT(p,s,c,fpx,a){var q=proj(p);g.globalAlpha=a==null?1:a;g.fillStyle=c;g.font=(fpx||7)+'px ui-monospace';g.textAlign='center';g.textBaseline='alphabetic';g.fillText(s,q[0],q[1]);g.globalAlpha=1;}
+function lerp3(a,b,t){return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];}
+function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;}
+var CLOUD=[];(function(){for(var i=0;i<12;i++){var a=i*2.399963,r=0.26*Math.sqrt((i+0.5)/12);CLOUD.push([r*Math.cos(a),r*Math.sin(a)*0.85,(((i*97)%13)/13-0.5)*0.28]);}})();
+function engC(i){return ST[i][3]?LIT:AMB;}
+
+function lens(glow,rL){
+ // vesica hint (back arc first, drawn earlier by caller order); rim 16-gon in x-y at z=0
+ var i,th,pa,pb;
+ for(i=0;i<16;i++){th=i/16*6.2832;pa=[rL*Math.cos(th),rL*Math.sin(th),0];pb=[rL*Math.cos((i+1)/16*6.2832),rL*Math.sin((i+1)/16*6.2832),0];LINE(pa,pb,glow,1.3,0.9);}
+ // vesica bulge (front + back) so a drag reveals real 3D depth
+ for(i=-3;i<3;i++){var y0=i/3*rL,y1=(i+1)/3*rL,bz=function(y){return 0.13*(1-(y/rL)*(y/rL));};
+  LINE([0,y0,bz(y0)],[0,y1,bz(y1)],glow,0.8,0.4);LINE([0,y0,-bz(y0)],[0,y1,-bz(y1)],glow,0.8,0.3);}
+ DOT(LC,3.2,glow,0.22);      // halo
+ DOT(LC,1.3,'#ffffff',0.95); // bright center = the aperture
+}
+
+function drawSeparate(u){
+ var acc=ST[sel][5],glow=engC(sel),i;
+ // source cloud h + converging bundle
+ for(i=0;i<12;i++){var sp=[SRC[0]+CLOUD[i][0],SRC[1]+CLOUD[i][1],SRC[2]+CLOUD[i][2]];
+  if(i<10)LINE(sp,LC,acc,1,0.14+0.05*Math.sin(tms*0.004+i));
+  DOT(sp,1.4,acc,0.55);}
+ TXT([0,0.42,-1.4],'h · reader state',LIT,7,0.85);
+ // transport pulse (the J event)
+ if(u>0.42&&u<0.66){var pr=(u-0.42)/0.24;RING(LC,0.5+pr*1.6,glow,0.5*(1-pr),1.4);}
+ lens(glow,0.34);
+ // one-way + lens labels
+ TXT([0,-0.17,0],'▷ read one-way',AMB,6.5,0.8);
+ TXT([0,-0.31,0],'J_l = E[∂h_f/∂h_l]',AMB,6.5,0.85);
+ TXT([0,-0.44,0],'lens = FIGURE',AMB,6.5,0.85);
+ // fan-out + read-out bars (each engine's measured value — not a token decode)
+ var barpop=u>0.85?1+0.15*Math.sin((u-0.85)/0.15*3.1416):1;
+ for(i=0;i<6;i++){var h=BARH[i]*(i===PK?barpop:1),top=[BARX[i],h,1.3];
+  LINE(LC,top,glow,1,0.13);
+  LINE([BARX[i],0,1.3],top,i===PK?glow:'#9fb8ac',i===PK?2.4:1.6,i===PK?0.95:0.6);}
+ // read-out outline + labels
+ LINE([-0.62,-0.03,1.3],[0.62,-0.03,1.3],'#4a6a5e',1,0.4);
+ TXT([0.5,0.86,1.3],'read-out',LIT,6.5,0.7);
+ TXT([BARX[PK],BARH[PK]*barpop+0.1,1.3],ST[sel][4],glow,10.5,1);
+ // read pulse packet
+ var bt=[BARX[PK],BARH[PK],1.3],pk3=u<0.5?lerp3(SRC,LC,ease(u/0.5)):lerp3(LC,bt,ease((u-0.5)/0.5));
+ DOT(pk3,2.4,'#ffffff',0.9);
+}
+
+function drawTogether(u){
+ var i,e,cur=Math.floor(u*N)%N;
+ // 9 sub-clusters ringed around the h centroid, each casting into the one lens
+ for(e=0;e<N;e++){var a=e/N*6.2832,cc=[0.55*Math.cos(a),0.42*Math.sin(a),-1.4];
+  LINE(cc,LC,ST[e][5],1,e===cur?0.5:0.13);
+  DOT(cc,e===cur?2.4:1.5,ST[e][5],e===cur?0.95:0.5);}
+ TXT([0,0.72,-1.4],'9 read-outs · one figure',LIT,6.5,0.7);
+ if(u%0.11<0.05){RING(LC,0.5+(u%0.11)/0.05*1.4,'#cfe0d8',0.4,1.2);}
+ lens(LIT,0.34);
+ TXT([0,-0.31,0],'J_l = E[∂h_f/∂h_l]',AMB,6.5,0.8);
+ TXT([0,-0.44,0],'lens = FIGURE',AMB,6.5,0.8);
+ // 9 stacked read rows at z=1.3, colored by each engine's own tier
+ for(e=0;e<N;e++){var y=-0.34+e*0.13,c=engC(e),hl=(e===cur);
+  LINE([-0.5,y,1.3],[-0.5+(0.24+0.5*(ST[e][3]?1:0.5)),y,1.3],c,hl?3:1.8,hl?1:0.6);
+  if(hl)TXT([0.42,y,1.3],ST[e][0].toUpperCase(),c,7,1);}
+ TXT([0.5,0.72,1.3],'read-outs × 9',LIT,6.5,0.6);
+ // read pulse cycles engines
+ var ca=cur/N*6.2832,cc2=[0.55*Math.cos(ca),0.42*Math.sin(ca),-1.4],ry=-0.34+cur*0.13;
+ var uu=(u*N)%1,pk3=uu<0.5?lerp3(cc2,LC,ease(uu/0.5)):lerp3(LC,[-0.4,ry,1.3],ease((uu-0.5)/0.5));
+ DOT(pk3,2.2,'#ffffff',0.9);
+}
+
+function overlays(){
+ g.textAlign='left';g.textBaseline='alphabetic';g.font='6px ui-monospace';
+ g.fillStyle=LIT;g.fillRect(5,5,4,4);g.fillStyle='#8fb6a8';g.fillText('LIT: h · read-out values — measured',12,9);
+ g.fillStyle=AMB;g.fillRect(5,13,4,4);g.fillStyle='#b6a78f';g.fillText('AMBER: lens · sight · J_l = figure — access, not perception',12,17);
+ g.textAlign='right';g.font='6.5px ui-monospace';
+ if(sel>=0){g.fillStyle=engC(sel);g.fillText('SEPARATE · '+ST[sel][1]+' · '+(ST[sel][3]?'LIT':'AMBER'),W-4,9);}
+ else{g.fillStyle=LIT;g.fillText('◈ TOGETHER · '+LITN+' LIT / '+AMBN+' AMBER',W-4,9);}
+ g.textAlign='center';g.fillStyle='#6a8a7c';g.font='6.5px ui-monospace';
+ g.fillText('one-way ▷ the lens reads the READER (h), not the model',W/2,H-5);
+}
+
+function draw(){
+ var dpr=Math.min(devicePixelRatio||1,2);W=cv.clientWidth||305;H=212;
+ if(cv.width!==Math.round(W*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);}
+ g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,W,H);
+ var u=(tms%2600)/2600;
+ // A) world-image plane (crossed out, no ray originates here)
+ var pl=[[-0.9,-0.6,-2.2],[0.9,-0.6,-2.2],[0.9,0.6,-2.2],[-0.9,0.6,-2.2]];
+ for(var i=0;i<4;i++)LINE(pl[i],pl[(i+1)%4],'#4a4a4a',1,0.15);
+ LINE(pl[0],pl[2],'#4a4a4a',1,0.15);LINE(pl[1],pl[3],'#4a4a4a',1,0.12);
+ TXT([0,-0.82,-2.2],'image · never transmitted','#6a6a6a',6,0.55);
+ // C) axis sightline
+ LINE([0,0,-1.7],[0,0,1.5],'#3a5a50',1,0.14);
+ if(sel>=0)drawSeparate(u);else drawTogether(u);
+ overlays();
+}
+
+// ---- tabs / toggle / drag ----
+function refresh(){var k=tabs.children;for(var i=0;i<k.length;i++)k[i].className='jl3dtab'+((i-1)===sel?' on':'');}
 function detail(){
- if(sel<0){det.innerHTML='<b>together</b> — the whole lens as one orbit. drag to spin, or pick a tab to face one engine. each station is an instrument; the full two-layer honesty lives in its panel.';return;}
+ if(sel<0){det.innerHTML='<b>together</b> — the one lens reads all 9 read-outs at once ('+LITN+' LIT / '+AMBN+' AMBER). drag to orbit. it is a lens, not a map — the full two-layer honesty lives in each panel.';return;}
  var s=ST[sel];
- det.innerHTML='<b>'+s[1]+'</b> &middot; '+s[2]+' &middot; <span style="color:'+(s[3]?'#5ad0b0':'#c89a4a')+'">'+(s[3]?'LIT measured':'AMBER interpretive')+'</span> &middot; <span id="jl3dopen" style="cursor:pointer;pointer-events:auto;color:#8fdcc0;text-decoration:underline">open panel &rarr;</span>';
+ det.innerHTML='<b>'+s[1]+'</b> reads out <b>'+s[4]+'</b> &middot; '+s[2]+' &middot; <span style="color:'+(s[3]?'#5ad0b0':'#c89a4a')+'">'+(s[3]?'LIT measured':'AMBER interpretive')+'</span> &middot; <span id="jl3dopen" style="cursor:pointer;pointer-events:auto;color:#8fdcc0;text-decoration:underline">open panel &rarr;</span>';
  var op=document.getElementById('jl3dopen');
  if(op)op.addEventListener('click',function(){hud.classList.remove('d3-on');btn.innerHTML='&#9670; compress &rarr; one 3D lens';hud.classList.add(ST[sel][0]+'-on');var pe=document.querySelector('.jlh-'+ST[sel][0]);if(pe&&pe.scrollIntoView)pe.scrollIntoView({block:'nearest'});});
 }
+function focusTab(idx){sel=idx;refresh();detail();draw();}
+function mk(label,idx){var t=document.createElement('span');t.className='jl3dtab';t.textContent=label;t.addEventListener('click',function(){focusTab(idx);});tabs.appendChild(t);}
+mk('◈ together',-1);for(var qi=0;qi<N;qi++)mk(ST[qi][1],qi);
 btn.addEventListener('click',function(){var on=hud.classList.toggle('d3-on');btn.innerHTML=on?'&#9636; back to panels':'&#9670; compress &rarr; one 3D lens';detail();if(on)draw();});
-cv.addEventListener('pointerdown',function(e){dragging=true;lastX=e.clientX;target=null;sel=-1;refresh();detail();if(cv.setPointerCapture){try{cv.setPointerCapture(e.pointerId);}catch(_){}}});
-cv.addEventListener('pointermove',function(e){if(!dragging)return;rot+=(e.clientX-lastX)*0.01;lastX=e.clientX;});
+cv.addEventListener('pointerdown',function(e){dragging=true;lx=e.clientX;ly=e.clientY;if(cv.setPointerCapture){try{cv.setPointerCapture(e.pointerId);}catch(_){}}});
+cv.addEventListener('pointermove',function(e){if(!dragging)return;cam.ry+=(e.clientX-lx)*0.01;cam.rx+=(e.clientY-ly)*0.01;cam.rx=Math.max(-0.35,Math.min(0.85,cam.rx));lx=e.clientX;ly=e.clientY;});
 cv.addEventListener('pointerup',function(){dragging=false;});cv.addEventListener('pointerleave',function(){dragging=false;});
-function rr(rx,ry,rw,rh,r){x.beginPath();x.moveTo(rx+r,ry);x.arcTo(rx+rw,ry,rx+rw,ry+rh,r);x.arcTo(rx+rw,ry+rh,rx,ry+rh,r);x.arcTo(rx,ry+rh,rx,ry,r);x.arcTo(rx,ry,rx+rw,ry,r);x.closePath();}
-function draw(){
- var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||300,H=212;
- if(cv.width!==Math.round(W*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);}
- x.setTransform(dpr,0,0,dpr,0,0);x.clearRect(0,0,W,H);
- var cx=W/2,cy=H*0.47,PX=Math.min(W,H*1.7)*0.5,VY=PX*0.24;
- x.strokeStyle='rgba(58,255,160,0.09)';x.lineWidth=1;x.beginPath();
- for(var t=0;t<=48;t++){var a=t/48*Math.PI*2;var gx=Math.sin(a)*R,gz=Math.cos(a)*R,gd=f-gz;var sx=cx+(gx/gd)*PX,sy=cy+gz*VY;if(t===0)x.moveTo(sx,sy);else x.lineTo(sx,sy);}x.closePath();x.stroke();
- var pts=[];
- for(var i2=0;i2<N;i2++){var a2=(i2/N)*Math.PI*2+rot;var wx=Math.sin(a2)*R,wz=Math.cos(a2)*R;var depth=f-wz;pts.push({i:i2,sx:cx+(wx/depth)*PX,sy:cy+wz*VY,ps:1.55/depth,z:wz});}
- pts.sort(function(a,b){return a.z-b.z;});
- for(var p=0;p<pts.length;p++){var o=pts[p],s=ST[o.i],em=o.ps;
-  var focused=(sel===o.i)||(sel<0&&o.z>R*0.86);
-  var cw=Math.max(42,60*em),chh=Math.max(18,26*em);
-  x.globalAlpha=0.3+0.62*((o.z+R)/(2*R));
-  x.fillStyle=s[3]?'rgba(26,54,44,0.92)':'rgba(50,42,24,0.92)';
-  x.strokeStyle=focused?(s[3]?'#5ad0b0':'#e6b84a'):'rgba(120,160,140,0.32)';
-  x.lineWidth=focused?1.7:0.8;rr(o.sx-cw/2,o.sy-chh/2,cw,chh,4);x.fill();x.stroke();
-  x.fillStyle=s[3]?'#5ad0b0':'#e6b84a';x.beginPath();x.arc(o.sx-cw/2+7,o.sy-chh/2+7,2.3*Math.max(.6,em),0,6.28);x.fill();
-  x.globalAlpha=Math.min(1,0.45+0.72*((o.z+R)/(2*R)));
-  x.fillStyle=focused?'#eafff2':'#9fbcb0';x.font=(Math.max(6,7.4*em)|0)+'px ui-monospace';x.textAlign='center';x.textBaseline='middle';
-  x.fillText(s[1],o.sx,o.sy);x.textBaseline='alphabetic';x.globalAlpha=1;}
- x.fillStyle='rgba(58,255,160,0.55)';x.font='7px ui-monospace';x.textAlign='center';
- x.fillText(sel<0?'◈ TOGETHER — drag to orbit':'▸ '+ST[sel][1],cx,H-7);
-}
-function frame(ts){requestAnimationFrame(frame);if(!hud.classList.contains('d3-on')){last=0;return;}if(!last)last=ts;var dt=ts-last;last=ts;
- if(target!==null){var d=target-rot;while(d>Math.PI)d-=Math.PI*2;while(d<-Math.PI)d+=Math.PI*2;rot+=d*Math.min(1,dt*0.008);if(Math.abs(d)<0.002)rot=target;}
- else if(!dragging){rot+=vel*dt;}
+function frame(ts){requestAnimationFrame(frame);if(!hud.classList.contains('d3-on')){last=0;return;}if(!last)last=ts;var dt=ts-last;last=ts;tms+=dt;
+ if(!dragging){cam.ry+=0.00028*dt;cam.rx+=(0.28-cam.rx)*Math.min(1,dt*0.002);}
  draw();}
 detail();frame();
 })();</script><script>(function(){function go(){
