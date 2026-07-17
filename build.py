@@ -3557,7 +3557,7 @@ var ST=[
  ['tn','TUNNEL','leap the barrier — quantum transmission T',0,'barrier leap','#ff8a3a'],
  ['ap','APERTURE','softmax entropy H=1.86 (recomputed, can fail)',1,'H=1.86','#38d6e0'],
  ['st','THE STITCH','early-exit routing (modeled)',0,'exit · modeled','#c887e0'],
- ['jt','JIT PASS','GPT-2 124M · logit-lens locks by L11',1,'locks @L11','#7ad0e0'],
+ ['jt','JIT PASS','GPT-2 124M · logit-lens · replay · locks by L11',1,'locks @L11','#7ad0e0'],
  ['wa','THE WAIST','STITCH depth ladder 27→49%',1,'27→49%','#a98cff'],
  ['fl','FACTORY LINE','L1 attn = the wall · 8.5× · mix early, think late',1,'L1 wall 8.5×','#f0a838'],
  ['te','TRANSFORMER ENGINE','six-axis × crash bench · mirror 46→6%',1,'mirror 46→6%','#7ad0e0']];
@@ -3600,7 +3600,7 @@ var FN={
  tn:{v:'LEAPING BARRIERS',r:'barrier',w:'transmission'},
  ap:{v:'FOCUSING',r:'logits',w:'a distribution'},
  st:{v:'ROUTING',r:'margin',w:'an exit'},
- jt:{v:'READING WORDS',r:'layers',w:'a locked token'},
+ jt:{v:'DECODING',r:'layers',w:'a locked token'},
  wa:{v:'CLIMBING DEPTH',r:'depth',w:'accuracy'},
  fl:{v:'ASSEMBLING',r:'attn·mlp',w:'a token'},
  te:{v:'INFERENCE',r:'context',w:'the forward pass'}};
@@ -3616,7 +3616,7 @@ function writeProduct2D(key,bx,by,bw,bh,t,col){
  else if(key==='ap'){var bars=7,peak=cx,spread=bw*0.42*(1-0.55*Math.abs(Math.sin(t*3.1416)));
    for(i=0;i<bars;i++){var xx=bx+bw*0.13+i*(bw*0.74/(bars-1)),d=(xx-peak)/spread,hh=Math.max(2,(bh*0.72)*Math.exp(-d*d));g.globalAlpha=0.9;g.fillRect(xx-1.5,by+bh*0.84-hh,3,hh);}}
  else if(key==='jt'){for(i=0;i<5;i++){var yy=by+bh*0.2+i*(bh*0.6/4);g.globalAlpha=(t*5)>i?0.9:0.28;g.beginPath();g.moveTo(bx+bw*0.14,yy);g.lineTo(bx+bw*0.58,yy);g.stroke();}
-   if(t>0.72){g.globalAlpha=1;rr2(bx+bw*0.62,by+bh*0.34,bw*0.28,bh*0.3,3);g.stroke();g.font='7px ui-monospace';g.textAlign='center';g.fillText('L11',bx+bw*0.76,by+bh*0.53);}}
+   if(t>0.72){g.globalAlpha=1;var tbx=bx+bw*0.62,tby=by+bh*0.30,tbw=bw*0.28,tbh=bh*0.24;rr2(tbx,tby,tbw,tbh,3);g.stroke();g.fillRect(tbx+tbw*0.30,tby+tbh*0.34,tbw*0.40,tbh*0.32);g.font='6px ui-monospace';g.textAlign='center';g.globalAlpha=0.85;g.fillText('lock@L11',tbx+tbw/2,tby+tbh+7);g.globalAlpha=1;}}
  else if(key==='wa'){var rn=6;for(i=0;i<rn;i++){var yy2=by+bh*0.86-i*(bh*0.7/(rn-1));g.globalAlpha=(t*rn)>i?0.9:0.22;g.beginPath();g.moveTo(bx+bw*0.32,yy2);g.lineTo(bx+bw*0.68,yy2);g.stroke();}
    g.globalAlpha=0.55;g.beginPath();g.moveTo(bx+bw*0.32,by+bh*0.86);g.lineTo(bx+bw*0.32,by+bh*0.16);g.moveTo(bx+bw*0.68,by+bh*0.86);g.lineTo(bx+bw*0.68,by+bh*0.16);g.stroke();}
  else if(key==='fl'){for(i=0;i<3;i++){var xx2=bx+bw*0.22+i*(bw*0.24);g.globalAlpha=(t*3)>i?0.9:0.3;rr2(xx2-bw*0.07,cy-bh*0.13,bw*0.14,bh*0.26,2);g.stroke();g.globalAlpha=0.6;g.beginPath();g.moveTo(xx2+bw*0.07,cy);g.lineTo(xx2+bw*0.17,cy);g.stroke();}
