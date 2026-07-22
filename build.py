@@ -2250,27 +2250,20 @@ def domains_html():
     out = []
     for i,(key,title,accent,blurb) in DOMAINS_ALPHA:
         members = BY_DOMAIN[key]
-        if members:
-            body = _domain_list(members)
-        else:
-            body = '<div class="reserved">Reserved — the first sphere awaits. New work in this domain will be sorted here.</div>'
-        # domain blurbs live inside the clickable <summary> toggle, so wiki-refs render as
-        # non-interactive styled labels (not <a>) — keeps the disclosure control's a11y clean
-        # (no nested tab-stops / accessible-name pollution) and needs no click-swallowing shim
+        # L1 is the DOMAIN DIRECTORY — no spheres. The medallion opens the keeper panel;
+        # the meta + blurb bridge to the keeper's own page (L2) at d/<key>.html.
         blurb_html = _re.sub(r'<a\b[^>]*>(.*?)</a>', r'<i class="dref">\1</i>', _render_links(blurb))
-        # short one-sentence blurbs read cleaner as a single lead line than in narrow columns
         bare_len = len(_re.sub(r'<[^>]+>|&[a-z#0-9]+;', '', blurb))
         lead = ' lead' if bare_len < 175 else ''
+        href = f'd/{key}.html'
+        cnt = f'{len(members)} {"sphere" if len(members)==1 else "spheres"}'
         out.append(f'''<section class="domain" id="{key}" style="--c:{accent};--ct:{_text_tone(accent)}">
-      <details class="dom-d">
-      <summary class="dhead">
+      <div class="dhead">
         {medallion(i, accent, key)}
-        <div class="dmeta"><div class="dnum">DOMAIN {i:02d} / {len(DOMAINS):02d}</div><h2 class="dtitle">{title}</h2>
-          <div class="dcount">{len(members)} {"sphere" if len(members)==1 else "spheres"} <span class="dtoggle"></span></div></div>
-        <p class="dblurb{lead}"><span class="dbx">{blurb_html}</span></p>
-      </summary>
-      {body}
-      </details>
+        <a class="dmeta dlink" href="{href}"><div class="dnum">DOMAIN {i:02d} / {len(DOMAINS):02d}</div><h2 class="dtitle">{title}</h2>
+          <div class="dcount">{cnt} <span class="denter">enter the domain →</span></div></a>
+        <a class="dblurb{lead} dlink" href="{href}"><span class="dbx">{blurb_html}</span></a>
+      </div>
     </section>''')
     return "\n".join(out)
 
@@ -3330,6 +3323,12 @@ text-shadow:1px 1px 0 rgba(255,106,0,.18)}
 .dblurb .dref{font-style:normal;color:var(--ct);border-bottom:1px dotted color-mix(in srgb,var(--c) 50%,transparent);-webkit-hyphens:none;hyphens:none}
 .dblurb.lead .dbx{columns:auto;column-gap:normal;text-align:left;-webkit-hyphens:none;hyphens:none;max-width:82ch}
 .dcount{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;margin-top:8px}
+/* L1 directory: the meta + blurb bridge to the keeper's own page (L2) */
+.dlink{text-decoration:none;color:inherit;display:block;cursor:pointer}
+.dlink:hover .dtitle{color:var(--c)}
+.dlink:focus-visible{outline:2px solid var(--c);outline-offset:4px;border-radius:6px}
+.denter{display:inline-block;margin-left:10px;font-size:9.5px;letter-spacing:.1em;color:var(--ct,var(--c));border:1px solid color-mix(in srgb,var(--c) 45%,transparent);border-radius:13px;padding:2px 10px;white-space:nowrap;transition:background .16s,color .16s}
+.dlink:hover .denter{background:var(--c);color:var(--ink)}
 @media(max-width:640px){.dnav{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch}}
 @media(max-width:760px){.dhead{grid-template-columns:1fr;grid-template-areas:"med" "id" "blurb";justify-items:start;row-gap:14px}.dhead>.medwrap{align-self:start}.dblurb .dbx{columns:auto;text-align:left;-webkit-hyphens:none;hyphens:none;max-width:none}}
 .dnav a{position:relative}
@@ -4304,6 +4303,138 @@ def hero_svg():
             f'<img class="sentinel right" src="{sentinel}" alt="" aria-hidden="true">'
             f'</div>')
 
+# ══════════════════════════════════════════════════════════════════════════
+# L1 / L2 — the two-layer bridge (2026-07-22). L1 (index.html) lists DOMAINS only,
+# no spheres. Each domain's "enter the domain →" bridges to its own keeper page at
+# ud0/d/<key>.html (L2), where the spheres live — listed & guided, under the keeper.
+# ══════════════════════════════════════════════════════════════════════════
+def _keeper_voice(title, blurb):
+    """The domain's own words, pulled from its registry blurb — SHARED by the L1
+    medallion keeper panel and the L2 keeper header so both say the same thing."""
+    def _cl(s):
+        s = _re.sub(r'\[\[[^\]|]*\|([^\]]+)\]\]', r'\1', s)
+        s = _re.sub(r'\[\[([^\]]+)\]\]', r'\1', s)
+        s = _re.sub(r'<[^>]+>', '', s)
+        return html.unescape(s)
+    tclean = _cl(title)
+    b = _cl(blurb)
+    m = (_re.search(r'\)\s*—\s*(.+?)(?:\.\s|\Z)', b) or _re.search(r'—\s*(.+?)(?:\.\s|\Z)', b))
+    full = (m.group(1) if m else b).strip()
+    role = full if len(full) <= 200 else full[:200].rsplit(' ', 1)[0] + '…'
+    honest = ''
+    hm = _re.search(r'◆\s*((?:Two-layer honest|HONEST|LIT)[^◆]{10,320})', b)
+    if hm:
+        honest = hm.group(1).strip()[:300].rsplit(' ', 1)[0].strip()
+    return tclean, role, honest
+
+def _l2_guided(key, members):
+    """A curated within-domain walk: any JASNAH tour whose every stop is a sphere of
+    THIS domain becomes 'the guided path' at the top of the keeper page."""
+    slugs = {m[0] for m in members}
+    name_of = {m[0]: html.unescape(m[1]) for m in members}
+    out = []
+    for tour in JASNAH_TOURS:
+        stops = tour.get('stops', [])
+        if len(stops) < 2 or not all(s[0] in slugs for s in stops):
+            continue
+        lis = []
+        for si, (slug, desc) in enumerate(stops, 1):
+            nm = name_of.get(slug, slug)
+            lis.append(f'<li><span class="gpn">{si}</span><a class="gpa" href="{PG}/{slug}/">{html.escape(nm)}</a><span class="gpd">{html.escape(desc)}</span></li>')
+        out.append(f'<section class="l2guide"><div class="l2gh">the guided path · {html.escape(_re.sub(r"<[^>]+>","",tour["title"]))}</div><p class="l2gb">{html.escape(tour["blurb"])}</p><ol class="gplist">{"".join(lis)}</ol></section>')
+    return "".join(out)
+
+def _l2_spheres(key, members):
+    """The domain's spheres, grouped by subdomain where one exists, each a guided
+    one-liner row (reuses _domain_list — the same rows the L1 dropdown used to show)."""
+    subs = SUBDOMAINS.get(key)
+    if not subs:
+        return _domain_list(members)
+    by = {s[0]: s for s in members}; used = set(); out = []
+    for label, oneline, slist in subs:
+        grp = [by[sl] for sl in slist if sl in by]
+        if not grp: continue
+        used.update(s[0] for s in grp)
+        out.append(f'<div class="subdom"><div class="subdom-h"><span class="sdt">{html.escape(label)}</span><span class="sds">{html.escape(oneline)}</span><span class="sdn">{len(grp)}</span></div>{_domain_list(grp)}</div>')
+    rest = [s for s in members if s[0] not in used]
+    if rest:
+        out.append(f'<div class="subdom"><div class="subdom-h"><span class="sdt">·&nbsp;other</span><span class="sds">not yet grouped in a subdomain</span><span class="sdn">{len(rest)}</span></div>{_domain_list(rest)}</div>')
+    return "".join(out)
+
+L2_CSS = """
+.l2b{margin:0;min-height:100vh;background:var(--ink);color:var(--pa);font-family:var(--body);line-height:1.62;overflow-x:hidden;
+  background-image:repeating-linear-gradient(0deg,rgba(122,102,80,.08) 0 1px,transparent 1px 28px),repeating-linear-gradient(90deg,rgba(122,102,80,.08) 0 1px,transparent 1px 28px),radial-gradient(130% 80% at 112% -6%,rgba(255,106,0,.20),transparent 52%)}
+.l2wrap{position:relative;z-index:1;max-width:1060px;margin:0 auto;padding:64px 22px 120px}
+.l2back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(231,224,212,.88);border:1px solid var(--line);border-radius:20px;padding:7px 15px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.l2back:hover{border-color:var(--c);color:var(--c)}
+.l2head{border-left:5px solid var(--c);padding:6px 0 20px 24px;margin:18px 0 12px;position:relative;text-align:left}
+.l2head::after{content:"";position:absolute;left:-5px;bottom:0;width:180px;height:2px;background:var(--c);box-shadow:0 0 18px var(--c);border-radius:2px}
+.l2hrow{display:flex;align-items:center;gap:18px}
+.l2ic{width:66px;height:66px;flex:0 0 auto;filter:drop-shadow(0 0 12px color-mix(in srgb,var(--c) 45%,transparent))}
+.l2head .dnum{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ct,var(--c))}
+.l2title{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7vw,4.1rem);line-height:1;letter-spacing:.02em;color:var(--pa);margin:5px 0}
+.l2count{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.l2say{font-family:var(--disp);font-size:1.28rem;font-style:italic;color:var(--pa2);margin:20px 0 12px;max-width:66ch}.l2say b{font-style:normal;color:var(--c)}
+.l2honest{border-left:3px solid var(--c);background:color-mix(in srgb,var(--c) 9%,transparent);padding:10px 15px;font-size:.96rem;color:var(--pa2);max-width:72ch;margin:12px 0}
+.l2hl{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);margin-bottom:5px}
+.l2blurb{font-size:1rem;color:var(--pa2);max-width:74ch;margin:14px 0 4px}
+.l2cur{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--dim);margin-top:14px}.l2cur b{color:var(--pa2)}
+.l2guide{border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.30);padding:17px 20px;margin:30px 0 6px}
+.l2gh{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--c);font-weight:700}
+.l2gb{font-size:.95rem;color:var(--pa2);margin:7px 0 13px;max-width:74ch;font-style:italic}
+.gplist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:0;padding:0}
+.gplist li{display:grid;grid-template-columns:26px minmax(130px,auto) 1fr;gap:12px;align-items:baseline;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.gplist li:last-child{border-bottom:none;padding-bottom:0}
+.gpn{font-family:var(--mono);color:var(--c);font-weight:700}
+.gpa{font-family:var(--disp);font-size:1.06rem;color:var(--pa);text-decoration:none;border-bottom:1px solid var(--c);white-space:nowrap}
+.gpa:hover{color:var(--c)}
+.gpd{font-size:.9rem;color:var(--dim);line-height:1.5}
+.l2spheres{margin-top:34px}
+.l2spheres .subdom{margin-top:26px}
+.l2foot{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--dim);text-align:left}
+.l2foot a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}.l2foot a:hover{color:var(--c)}
+@media(max-width:640px){.gplist li{grid-template-columns:22px 1fr}.gpd{grid-column:1/-1}.l2head{padding-left:16px}}
+"""
+
+def l2_page(i, key, title, accent, blurb, members, css_href="keeper.css"):
+    """One keeper's page: the domain speaks, then (where curated) a guided path, then
+    all its spheres. Self-contained but shares keeper.css with its 52 siblings."""
+    tclean, role, honest = _keeper_voice(title, blurb)
+    tone = _text_tone(accent)
+    ic = ICONS.get(key, '')
+    icsvg = f'<svg class="l2ic" viewBox="-65 -65 130 130" style="color:{accent}">{ic}</svg>' if ic else ''
+    honest_txt = honest or "No one-line two-layer note is filed for this domain — read the spheres and weigh each yourself; that is the whole ethic."
+    guided = _l2_guided(key, members)
+    n = len(members)
+    spheres = _l2_spheres(key, members) if members else '<div class="reserved">Reserved — the first sphere awaits. New work in this domain will be sorted here.</div>'
+    blurb_txt = _re.sub(r'<a\b[^>]*>(.*?)</a>', r'\1', _render_links(blurb))
+    desc = html.escape(_re.sub(r'<[^>]+>', '', blurb))[:180]
+    return f'''<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="light"><meta name="theme-color" content="#E7E0D4">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC">
+<title>{tclean} · a keeper of UD0</title>
+<meta name="description" content="{desc}">
+<link rel="canonical" href="{PG}/ud0/d/{key}.html">
+<link rel="stylesheet" href="{css_href}">
+<style>{L2_CSS}</style>
+</head><body class="l2b" style="--c:{accent};--ct:{tone}">
+<a class="l2back" href="../index.html">← all {len(DOMAINS)} domains</a>
+<div class="l2wrap">
+<header class="l2head">
+  <div class="l2hrow">{icsvg}<div><div class="dnum">DOMAIN {i:02d} / {len(DOMAINS):02d} · the keeper presides</div><h1 class="l2title">{title}</h1><div class="l2count">{n} {"sphere" if n==1 else "spheres"}</div></div></div>
+  <p class="l2say"><b>I am {tclean}.</b> {html.escape(role)}.</p>
+  <div class="l2honest"><span class="l2hl">the honest read</span>{html.escape(honest_txt)}</div>
+  <p class="l2blurb">{blurb_txt}</p>
+  <div class="l2cur">◆ {n} {"sphere" if n==1 else "spheres"}, sealed &amp; live · an instrument, not a mind — and I say so · under the corpus fingerprint <b>TETRASTHENĒS</b>, co-equal by construction</div>
+</header>
+{guided}
+<main class="l2spheres">{spheres}</main>
+<footer class="l2foot"><a href="../index.html">← all {len(DOMAINS)} domains</a> · <a href="https://0root.ai">0root.ai</a> · UD0 · one governor, one instance, one lattice · CC-BY-ND-4.0</footer>
+</div>
+</body></html>'''
+
+
 def keeper_system():
     """Every domain medallion becomes an AGENT: clickable → a keeper panel where the domain
     speaks (voice + honest read + sphere count), generated from each domain's own data (scales
@@ -4316,16 +4447,8 @@ def keeper_system():
         return _h.unescape(s)
     KP = {}
     for k, t, a, b in DOMAINS:
-        blurb = _clean(b)
-        m = (_re.search(r'\)\s*—\s*(.+?)(?:\.\s|\Z)', blurb)    # after ")—" — skip the leading etymology parenthetical
-             or _re.search(r'—\s*(.+?)(?:\.\s|\Z)', blurb))     # else the first em-dash
-        _full = (m.group(1) if m else blurb).strip()
-        role = _full if len(_full) <= 200 else _full[:200].rsplit(' ', 1)[0] + '…'
-        honest = ''
-        hm = _re.search(r'◆\s*((?:Two-layer honest|HONEST|LIT)[^◆]{10,320})', blurb)
-        if hm:
-            honest = hm.group(1).strip()[:300].rsplit(' ', 1)[0].strip()
-        KP[k] = {'t': _clean(t), 'c': a, 'n': len(BY_DOMAIN.get(k, [])),
+        tclean, role, honest = _keeper_voice(t, b)   # shared with the L2 keeper header
+        KP[k] = {'t': tclean, 'c': a, 'n': len(BY_DOMAIN.get(k, [])),
                  'role': role, 'honest': honest, 'ic': ICONS.get(k, '')}
     blob = '<script type="application/json" id="domkeepers">' + _json.dumps(KP, ensure_ascii=False, separators=(',', ':')) + '</script>'
     css = ('<style>'
@@ -4409,6 +4532,7 @@ def keeper_system():
           'document.getElementById("kpsay").innerHTML="<b>I am "+esc(d.t)+".</b> "+esc(d.role)+".";'
           'var hon=document.getElementById("kphon");hon.textContent=d.honest||"No two-layer note is filed for this domain in one line — read the spheres and weigh each yourself; that is the whole ethic.";'
           'document.getElementById("kpstat").innerHTML="\\u25c6 "+d.n+" spheres, sealed &amp; live \\u00b7 an instrument, not a mind \\u2014 and I say so.";'
+          'document.getElementById("kpen").setAttribute("href","d/"+k+".html");'
           'document.getElementById("kpznmsg").textContent="";znRender(k);'
           'chanKey=k;document.body.classList.add("kpp-on");'
           'var pmv=document.querySelectorAll(".kmed.kactive");for(var pj=0;pj<pmv.length;pj++)pmv[pj].classList.remove("kactive");'
@@ -4417,7 +4541,6 @@ def keeper_system():
         'function close(){pp.classList.remove("on");bd.classList.remove("on");chanKey=null;document.body.classList.remove("kpp-on");var pmv=document.querySelectorAll(".kmed.kactive");for(var pj=0;pj<pmv.length;pj++)pmv[pj].classList.remove("kactive");setTimeout(function(){if(!pp.classList.contains("on"))bd.hidden=true;},340);}'
         'document.getElementById("kpx").onclick=close;bd.onclick=close;'
         'document.addEventListener("keydown",function(e){if(e.key==="Escape"&&pp.classList.contains("on"))close();});'
-        'document.getElementById("kpen").onclick=function(e){e.preventDefault();var k=cur;close();if(k)openDom(k);};'
         'document.addEventListener("click",function(e){var m=e.target.closest&&e.target.closest(".kmed");if(m&&m.dataset.dk){e.preventDefault();e.stopPropagation();openKeeper(m.dataset.dk);}},true);'
         'document.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){var m=e.target.closest&&e.target.closest(".kmed");if(m&&m.dataset.dk){e.preventDefault();openKeeper(m.dataset.dk);}}});'
         '(function(){var last=null;setInterval(function(){var p=window.__jprobe;if(!p||!p.d||p.d===last)return;last=p.d;'
@@ -4447,8 +4570,24 @@ if __name__ == "__main__":
     if _UNRESOLVED_LINKS:
         print("[!] de-linked wiki-references (no sphere, no alias):", dict(sorted(_UNRESOLVED_LINKS.items(), key=lambda kv:-kv[1])))
     open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(page)
+    # ── L2: the keeper pages — one per domain under ud0/d/, all sharing keeper.css ──
+    import re as _rxs, shutil
+    _styles = _rxs.findall(r"<style>(.*?)</style>", page, _rxs.S)   # every style block → the shared sheet
+    _ddir = os.path.join(HERE, "d")
+    os.makedirs(_ddir, exist_ok=True)
+    open(os.path.join(_ddir, "keeper.css"), "w", encoding="utf-8").write("\n".join(_styles))
+    for _i,(_k,_t,_a,_b) in enumerate(DOMAINS, 1):
+        open(os.path.join(_ddir, f"{_k}.html"), "w", encoding="utf-8").write(l2_page(_i,_k,_t,_a,_b,BY_DOMAIN.get(_k, [])))
+    print(f"  wrote {len(DOMAINS)} L2 keeper pages + keeper.css -> ud0/d/")
+    # mirror the L2 tree to the live destination (0root.ai serves agent-0root/static/)
+    try:
+        _dstd = r"C:\root0-greenpaper-repo\agent-0root\static\d"
+        if os.path.isdir(os.path.dirname(_dstd)):
+            shutil.copytree(_ddir, _dstd, dirs_exist_ok=True)
+            print(f"  cascaded d/ -> {_dstd}")
+    except Exception as _e:
+        print(f"  (skip d/ cascade: {_e})")
     # ── the cascade: keep the UD0 page mirrored to its standing destinations ──
-    import shutil
     for extra in (r"C:\Users\Dave\Downloads\ud0.html",
                   r"C:\root0-greenpaper-repo\agent-0root\static\index.html"):
         try:
