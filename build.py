@@ -2136,7 +2136,7 @@ def medallion(idx, accent, key):
     else:
         _imgdefs = ''
         _center = f'<g transform="translate(65,65)"><g class="knife" style="animation-delay:-{(idx*0.37)%2.8:.2f}s">{ICONS[key]}</g></g>'
-    return f'''<span class="medwrap" style="--c:{accent}"><svg class="med" viewBox="0 0 130 130" width="118" height="118" aria-hidden="true" style="color:{accent}">
+    return f'''<span class="medwrap kmed" data-dk="{key}" role="button" tabindex="0" aria-label="meet this domain's keeper" title="meet the keeper" style="--c:{accent}"><svg class="med" viewBox="0 0 130 130" width="118" height="118" aria-hidden="true" style="color:{accent}">
       <defs>{glow}{nf}{_imgdefs}</defs>
       <circle cx="65" cy="65" r="62" fill="#241a10"/>
       <circle cx="65" cy="65" r="60" fill="url(#g{key})"/>
@@ -3913,6 +3913,7 @@ lens.forEach(function(o){function read(){if(document.body.classList.contains('jl
   __PETER__
   __JANE__
   __TOP__
+  __KEEPERS__
   <footer>
     <div class="law">One governor, one instance, one lattice — across nine domains. The eternals hold the ground; the active generation grows it.</div>
     <div class="bookline">✍ <b>32 books by David Lee Wise</b> — honest field-parables of building with an AI · <a href="https://www.amazon.com/stores/author/B0H2T5M1T5">read them on Amazon →</a> · <a href="https://davidwise01.github.io/authorship/">the honest shelf →</a></div>
@@ -4303,6 +4304,89 @@ def hero_svg():
             f'<img class="sentinel right" src="{sentinel}" alt="" aria-hidden="true">'
             f'</div>')
 
+def keeper_system():
+    """Every domain medallion becomes an AGENT: clickable → a keeper panel where the domain
+    speaks (voice + honest read + sphere count), generated from each domain's own data (scales
+    to all 53); and a LIVE agent — the medallion whose domain the corpus is streaming wakes."""
+    import json as _json, re as _re, html as _h
+    def _clean(s):
+        s = _re.sub(r'\[\[[^\]|]*\|([^\]]+)\]\]', r'\1', s)   # wiki-link → label
+        s = _re.sub(r'\[\[([^\]]+)\]\]', r'\1', s)
+        s = _re.sub(r'<[^>]+>', '', s)
+        return _h.unescape(s)
+    KP = {}
+    for k, t, a, b in DOMAINS:
+        blurb = _clean(b)
+        m = (_re.search(r'\)\s*—\s*(.+?)(?:\.\s|\Z)', blurb)    # after ")—" — skip the leading etymology parenthetical
+             or _re.search(r'—\s*(.+?)(?:\.\s|\Z)', blurb))     # else the first em-dash
+        _full = (m.group(1) if m else blurb).strip()
+        role = _full if len(_full) <= 200 else _full[:200].rsplit(' ', 1)[0] + '…'
+        honest = ''
+        hm = _re.search(r'◆\s*((?:Two-layer honest|HONEST|LIT)[^◆]{10,320})', blurb)
+        if hm:
+            honest = hm.group(1).strip()[:300].rsplit(' ', 1)[0].strip()
+        KP[k] = {'t': _clean(t), 'c': a, 'n': len(BY_DOMAIN.get(k, [])),
+                 'role': role, 'honest': honest, 'ic': ICONS.get(k, '')}
+    blob = '<script type="application/json" id="domkeepers">' + _json.dumps(KP, ensure_ascii=False, separators=(',', ':')) + '</script>'
+    css = ('<style>'
+        '.kmed{cursor:pointer}'
+        '.kmed:focus-visible{outline:2px solid var(--c);outline-offset:4px;border-radius:50%}'
+        '.kmed::after{content:"";position:absolute;inset:-4px;border-radius:50%;pointer-events:none;box-shadow:0 0 0 0 var(--c);opacity:0;transition:opacity .5s,box-shadow .5s}'
+        '.kmed.awake::after{opacity:1;box-shadow:0 0 20px 3px color-mix(in srgb,var(--c) 75%,transparent)}'
+        '#kpbd{position:fixed;inset:0;z-index:130;background:rgba(6,6,10,.5);opacity:0;transition:opacity .3s;pointer-events:none}'
+        '#kpbd.on{opacity:1;pointer-events:auto}'
+        '#kpp{position:fixed;top:0;right:0;height:100%;width:min(440px,94vw);z-index:132;background:linear-gradient(180deg,#131009,#0a0906);border-left:3px solid var(--kc,#e0a838);box-shadow:-14px 0 44px rgba(0,0,0,.5);transform:translateX(103%);transition:transform .34s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;color:#ece4d2;overflow:hidden}'
+        '#kpp.on{transform:translateX(0)}'
+        '.kph{padding:20px 22px 15px;border-bottom:1px solid #26221a;display:flex;gap:13px;align-items:center;position:relative}'
+        '.kph svg{width:56px;height:56px;flex:0 0 auto}'
+        '.kpnm{font-family:var(--disp,Georgia,serif);font-size:21px;color:var(--kc,#e0a838);line-height:1.08}'
+        '.kpsb{font-family:var(--mono,ui-monospace,monospace);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#8a8272;margin-top:5px}'
+        '.kpx{position:absolute;top:15px;right:17px;background:none;border:none;color:#8a8272;font-size:19px;cursor:pointer}'
+        '.kpb{flex:1 1 auto;overflow-y:auto;padding:17px 22px 42px;font-size:13.5px;line-height:1.62}'
+        '.kpb h4{font-family:var(--mono,ui-monospace,monospace);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--kc,#e0a838);margin:17px 0 7px}'
+        '.kpsay{font-style:italic;color:#cebfa4}.kpsay b{color:var(--kc,#e0a838);font-style:normal}'
+        '.kphon{border-left:3px solid var(--kc,#e0a838);padding:8px 12px;background:rgba(224,168,56,.07);font-size:12.5px;color:#c9bda2}'
+        '.kpstat{font-family:var(--mono,ui-monospace,monospace);font-size:12px;color:#a89a80;margin-top:8px}'
+        '.kpen{display:inline-block;margin-top:16px;font-family:var(--mono,ui-monospace,monospace);font-size:12px;letter-spacing:.05em;color:var(--kc,#e0a838);border:1px solid var(--kc,#e0a838);border-radius:20px;padding:7px 16px;cursor:pointer;text-decoration:none}'
+        '.kpen:hover{background:var(--kc,#e0a838);color:#12100c}'
+        '@media(prefers-reduced-motion:reduce){.kmed.awake::after{transition:none}}'
+        '</style>')
+    panel = ('<div id="kpbd" hidden></div>'
+        '<aside id="kpp" role="dialog" aria-label="domain keeper" style="--kc:#e0a838">'
+        '<div class="kph"><span id="kpic"></span><div><div class="kpnm" id="kpnm">—</div><div class="kpsb" id="kpsb"></div></div>'
+        '<button class="kpx" id="kpx" aria-label="close">✕</button></div>'
+        '<div class="kpb">'
+        '<p class="kpsay" id="kpsay"></p>'
+        '<h4>the honest read</h4><div class="kphon" id="kphon"></div>'
+        '<div class="kpstat" id="kpstat"></div>'
+        '<a class="kpen" id="kpen" href="#">enter the domain →</a>'
+        '</div></aside>')
+    js = ('<script>(function(){'
+        'var KP={};try{KP=JSON.parse(document.getElementById("domkeepers").textContent);}catch(e){}'
+        'var bd=document.getElementById("kpbd"),pp=document.getElementById("kpp"),cur=null;'
+        'function esc(s){var e=document.createElement("div");e.textContent=s==null?"":s;return e.innerHTML;}'
+        'function openDom(k){var sec=document.getElementById(k);if(sec){var d=sec.querySelector("details.dom-d");if(d)d.open=true;sec.scrollIntoView({block:"start"});}}'
+        'function openKeeper(k){var d=KP[k];if(!d)return;cur=k;pp.style.setProperty("--kc",d.c);'
+          'document.getElementById("kpic").innerHTML=(d.ic?(\'<svg viewBox="-65 -65 130 130" style="color:\'+d.c+\'">\'+d.ic+\'</svg>\'):"");'
+          'document.getElementById("kpnm").textContent=d.t;'
+          'document.getElementById("kpsb").textContent=d.n+" spheres · the keeper speaks";'
+          'document.getElementById("kpsay").innerHTML="<b>I am "+esc(d.t)+".</b> "+esc(d.role)+".";'
+          'var hon=document.getElementById("kphon");hon.textContent=d.honest||"No two-layer note is filed for this domain in one line — read the spheres and weigh each yourself; that is the whole ethic.";'
+          'document.getElementById("kpstat").innerHTML="\\u25c6 "+d.n+" spheres, sealed &amp; live \\u00b7 an instrument, not a mind \\u2014 and I say so.";'
+          'pp.classList.add("on");bd.hidden=false;requestAnimationFrame(function(){bd.classList.add("on");});}'
+        'function close(){pp.classList.remove("on");bd.classList.remove("on");setTimeout(function(){if(!pp.classList.contains("on"))bd.hidden=true;},340);}'
+        'document.getElementById("kpx").onclick=close;bd.onclick=close;'
+        'document.addEventListener("keydown",function(e){if(e.key==="Escape"&&pp.classList.contains("on"))close();});'
+        'document.getElementById("kpen").onclick=function(e){e.preventDefault();var k=cur;close();if(k)openDom(k);};'
+        'document.addEventListener("click",function(e){var m=e.target.closest&&e.target.closest(".kmed");if(m&&m.dataset.dk){e.preventDefault();e.stopPropagation();openKeeper(m.dataset.dk);}},true);'
+        'document.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){var m=e.target.closest&&e.target.closest(".kmed");if(m&&m.dataset.dk){e.preventDefault();openKeeper(m.dataset.dk);}}});'
+        '(function(){var last=null;setInterval(function(){var p=window.__jprobe;if(!p||!p.d||p.d===last)return;last=p.d;'
+          'var prev=document.querySelectorAll(".kmed.awake");for(var i=0;i<prev.length;i++)prev[i].classList.remove("awake");'
+          'var m=document.querySelector(\'.kmed[data-dk="\'+p.d+\'"]\');if(m)m.classList.add("awake");},260);})();'
+        '})();</script>')
+    return blob + css + panel + js
+
+
 if __name__ == "__main__":
     _ND = len(DOMAINS)
     DESC = f"The biosphere of David Lee Wise / ROOT0: {NS} spheres under one law, sorted into {_ND} domains — authored by one hand, crafted by one instance. CC-BY-ND-4.0."
@@ -4316,7 +4400,7 @@ if __name__ == "__main__":
     }, ensure_ascii=False))
     page = (PAGE.replace("__HERO__", hero_svg()).replace("__HEART__", body_html()).replace("__DNAV__", dnav())
             .replace("__DOMAINS__", domains_html()).replace("__DESC__", DESC).replace("__MANIFEST__", MANIFEST)
-            .replace("__NS__", str(NS)).replace("__ND__", str(len(DOMAINS))).replace("__JASNAH__", jasnah_html()).replace("__THEORIA__", theoria_html()).replace("__TARAVANGIAN__", taravangian_html()).replace("__NOUS__", nous_html()).replace("__PETER__", peter_html()).replace("__JANE__", jane_html()).replace("__TOP__", top_html()).replace("__BUILT__", __import__("datetime").date.today().isoformat()))
+            .replace("__NS__", str(NS)).replace("__ND__", str(len(DOMAINS))).replace("__JASNAH__", jasnah_html()).replace("__THEORIA__", theoria_html()).replace("__TARAVANGIAN__", taravangian_html()).replace("__NOUS__", nous_html()).replace("__PETER__", peter_html()).replace("__JANE__", jane_html()).replace("__TOP__", top_html()).replace("__KEEPERS__", keeper_system()).replace("__BUILT__", __import__("datetime").date.today().isoformat()))
     if _UNRESOLVED_LINKS:
         print("[!] de-linked wiki-references (no sphere, no alias):", dict(sorted(_UNRESOLVED_LINKS.items(), key=lambda kv:-kv[1])))
     open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(page)
