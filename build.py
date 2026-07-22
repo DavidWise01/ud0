@@ -4389,11 +4389,65 @@ L2_CSS = """
 .gpa{font-family:var(--disp);font-size:1.06rem;color:var(--pa);text-decoration:none;border-bottom:1px solid var(--c);white-space:nowrap}
 .gpa:hover{color:var(--c)}
 .gpd{font-size:.9rem;color:var(--dim);line-height:1.5}
+.puwrap{position:relative;width:100%;height:min(56vh,470px);margin:6px 0 4px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#070b12;box-shadow:0 10px 34px rgba(0,0,0,.28)}
+#pocket{display:block;width:100%;height:100%;cursor:default}
+.pubadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);background:rgba(6,10,18,.6);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:14px;padding:5px 11px;pointer-events:none}
+.puhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:#8fa0b8;pointer-events:none}
+#pockettip{position:absolute;pointer-events:none;font-family:var(--mono);font-size:12px;background:rgba(6,10,18,.85);border:1px solid rgba(255,255,255,.16);border-radius:6px;padding:4px 9px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5;color:#fff}
 .l2spheres{margin-top:34px}
 .l2spheres .subdom{margin-top:26px}
 .l2foot{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--dim);text-align:left}
 .l2foot a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}.l2foot a:hover{color:var(--c)}
 @media(max-width:640px){.gplist li{grid-template-columns:22px 1fr}.gpd{grid-column:1/-1}.l2head{padding-left:16px}}
+"""
+
+# the pocket universe: shared script for every L2 page. Reads #pocketdata (the domain's
+# spheres) + the canvas data-accent, and renders a live galaxy — each sphere a body
+# orbiting the keeper-sun; hover names it, click enters its repo. Scales to 318 bodies
+# (additive glow, no per-dot shadow).
+POCKET_JS = """
+(function(){
+var cv=document.getElementById('pocket');if(!cv||!cv.getContext)return;
+var g=cv.getContext('2d');
+var data=[];try{data=JSON.parse(document.getElementById('pocketdata').textContent);}catch(e){}
+var N=data.length;if(!N)return;
+var accent=cv.getAttribute('data-accent')||'#e0a838';
+var DPR=Math.min(window.devicePixelRatio||1,2);
+function fit(){var r=cv.getBoundingClientRect();cv.width=Math.max(1,Math.round(r.width*DPR));cv.height=Math.max(1,Math.round(r.height*DPR));}
+fit();addEventListener('resize',fit);
+function hx(h){h=(''+h).replace('#','');if(h.length<6)h='e0a838';return [parseInt(h.slice(0,2),16)||224,parseInt(h.slice(2,4),16)||168,parseInt(h.slice(4,6),16)||56];}
+var AC=hx(accent),GA=2.399963;
+var stars=[];for(var i=0;i<80;i++)stars.push({x:((i*137.0)%1000)/1000,y:((i*271.0)%1000)/1000,r:((i*7)%10)/10+0.2,a:((i*53)%40)/100+0.1});
+var rgb=[];for(var i=0;i<N;i++)rgb.push(hx(data[i].c||accent));
+var mx=-1,my=-1,hover=-1,lay=null;
+var tip=document.getElementById('pockettip');
+function frame(t){requestAnimationFrame(frame);if(document.hidden)return;
+  var rect=cv.getBoundingClientRect();if(cv.width!==Math.round(rect.width*DPR))fit();
+  var w=cv.width/DPR,h=cv.height/DPR;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,w,h);
+  var bg=g.createRadialGradient(w/2,h/2,0,w/2,h/2,Math.max(w,h)*0.62);bg.addColorStop(0,'#0c1622');bg.addColorStop(1,'#050810');g.fillStyle=bg;g.fillRect(0,0,w,h);
+  for(var s=0;s<stars.length;s++){var st=stars[s];g.fillStyle='rgba(170,198,230,'+st.a.toFixed(2)+')';g.beginPath();g.arc(st.x*w,st.y*h,st.r,0,7);g.fill();}
+  var cx=w/2,cy=h/2,Rmax=Math.min(w,h)*0.42,pts=[];
+  for(var i=0;i<N;i++){var rr=Math.sqrt((i+0.6)/N),rad=rr*Rmax,ang=i*GA+t*0.00012*(0.35+(1-rr)*1.1);pts.push({x:cx+Math.cos(ang)*rad,y:cy+Math.sin(ang)*rad*0.5,dep:(Math.sin(ang)*0.5+1)/2,i:i});}
+  lay={pts:pts};pts.sort(function(a,b){return a.dep-b.dep;});
+  hover=-1;var hd=210;
+  g.globalCompositeOperation='lighter';
+  for(var q=0;q<pts.length;q++){var pp=pts[q],c=rgb[pp.i],sz=1.4+pp.dep*2.3;
+    if(mx>=0){var dd=(pp.x-mx)*(pp.x-mx)+(pp.y-my)*(pp.y-my);if(dd<hd){hd=dd;hover=pp.i;}}
+    g.globalAlpha=0.16+pp.dep*0.22;g.fillStyle='rgb('+c[0]+','+c[1]+','+c[2]+')';g.beginPath();g.arc(pp.x,pp.y,sz*2.4,0,7);g.fill();
+    g.globalAlpha=0.6+pp.dep*0.4;g.beginPath();g.arc(pp.x,pp.y,sz,0,7);g.fill();}
+  g.globalAlpha=1;g.globalCompositeOperation='source-over';
+  var R0=Math.min(w,h)*0.055,pulse=0.5+0.5*Math.sin(t*0.003);
+  var sg=g.createRadialGradient(cx,cy,0,cx,cy,R0*2.0);sg.addColorStop(0,'rgba('+AC[0]+','+AC[1]+','+AC[2]+','+(0.5+0.2*pulse).toFixed(2)+')');sg.addColorStop(0.5,'rgba('+AC[0]+','+AC[1]+','+AC[2]+',.2)');sg.addColorStop(1,'rgba('+AC[0]+','+AC[1]+','+AC[2]+',0)');g.fillStyle=sg;g.beginPath();g.arc(cx,cy,R0*2.0,0,7);g.fill();
+  g.fillStyle='rgb('+Math.min(255,AC[0]+60)+','+Math.min(255,AC[1]+55)+','+Math.min(255,AC[2]+45)+')';g.beginPath();g.arc(cx,cy,R0*0.5+pulse*2,0,7);g.fill();
+  if(hover>=0){var hp=null;for(var q2=0;q2<lay.pts.length;q2++)if(lay.pts[q2].i===hover){hp=lay.pts[q2];break;}if(hp){g.strokeStyle='#fff';g.lineWidth=1.5;g.beginPath();g.arc(hp.x,hp.y,7,0,7);g.stroke();}cv.style.cursor='pointer';}else cv.style.cursor='default';
+  if(tip){if(hover>=0){tip.textContent=data[hover].n;tip.style.left=Math.min(mx+14,w-tip.offsetWidth-8)+'px';tip.style.top=(my+12)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(frame);
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0&&data[hover]&&data[hover].u)location.href=data[hover].u;});
+})();
 """
 
 def l2_page(i, key, title, accent, blurb, members, css_href="keeper.css"):
@@ -4409,6 +4463,15 @@ def l2_page(i, key, title, accent, blurb, members, css_href="keeper.css"):
     spheres = _l2_spheres(key, members) if members else '<div class="reserved">Reserved — the first sphere awaits. New work in this domain will be sorted here.</div>'
     blurb_txt = _re.sub(r'<a\b[^>]*>(.*?)</a>', r'\1', _render_links(blurb))
     desc = html.escape(_re.sub(r'<[^>]+>', '', blurb))[:180]
+    # the pocket universe: this domain's spheres as bodies orbiting the keeper-sun
+    import json as _pj
+    pdata = _pj.dumps([{"s": m[0], "n": html.unescape(_re.sub(r'<[^>]+>', '', m[1])), "c": m[2], "u": f"{PG}/{m[0]}/"}
+                       for m in members], ensure_ascii=False, separators=(',', ':'))
+    pocket = ((f'<div class="puwrap"><canvas id="pocket" data-accent="{accent}"></canvas>'
+               f'<div class="pubadge">POCKET UNIVERSE &middot; {n} {"sphere" if n==1 else "spheres"}</div>'
+               f'<div class="puhint">hover to name &middot; click a sphere to enter</div>'
+               f'<div id="pockettip"></div></div>'
+               f'<script type="application/json" id="pocketdata">{pdata}</script>') if members else '')
     return f'''<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="color-scheme" content="light"><meta name="theme-color" content="#E7E0D4">
@@ -4418,9 +4481,11 @@ def l2_page(i, key, title, accent, blurb, members, css_href="keeper.css"):
 <link rel="canonical" href="{PG}/ud0/d/{key}.html">
 <link rel="stylesheet" href="{css_href}">
 <style>{L2_CSS}</style>
+<script src="pocket.js" defer></script>
 </head><body class="l2b" style="--c:{accent};--ct:{tone}">
 <a class="l2back" href="../index.html">← all {len(DOMAINS)} domains</a>
 <div class="l2wrap">
+{pocket}
 <header class="l2head">
   <div class="l2hrow">{icsvg}<div><div class="dnum">DOMAIN {i:02d} / {len(DOMAINS):02d} · the keeper presides</div><h1 class="l2title">{title}</h1><div class="l2count">{n} {"sphere" if n==1 else "spheres"}</div></div></div>
   <p class="l2say"><b>I am {tclean}.</b> {html.escape(role)}.</p>
@@ -4550,7 +4615,58 @@ def keeper_system():
         'var zni=document.getElementById("kpznin");if(zni)zni.addEventListener("keydown",function(e){if(e.key==="Enter"&&cur){e.preventDefault();znSign(cur);}});'
         'chFrame();'
         '})();</script>')
-    return blob + css + panel + js
+    # ── THE ALIGNMENT RING (L1 hero): all 53 keepers orbit Top; the one Top is
+    #    streaming (__jprobe.d) glides to dead-center, syncs, and introduces itself.
+    #    Click any keeper → its pocket universe (d/<key>.html). Fades out on scroll. ──
+    ring = ('<style>'
+        '#kring{position:fixed;inset:0;width:100vw;height:100vh;z-index:6;pointer-events:none;opacity:0;transition:opacity .45s}'
+        # clean alignment stage: while the ring is up (top of page), fade the competing hero pieces
+        '.heroband,.uname,.eye,.sub{transition:opacity .5s}'
+        'body.ring-on .heroband,body.ring-on .uname,body.ring-on .eye,body.ring-on .sub{opacity:.05;pointer-events:none}'
+        '#kcap{position:fixed;left:50%;transform:translateX(-50%);z-index:7;text-align:center;pointer-events:none;opacity:0;transition:opacity .45s;font-family:var(--mono,ui-monospace,monospace);width:min(660px,92vw)}'
+        '#kcn{font-family:var(--disp,Georgia,serif);font-size:clamp(17px,2.4vw,23px);font-weight:800;line-height:1.12}'
+        '#kcr{font-size:13px;color:var(--pa2,#46362a);margin-top:6px;line-height:1.5}'
+        '#kce{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;margin-top:9px}'
+        '#kringhint{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:7;font-family:var(--mono,ui-monospace,monospace);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8a7c60;pointer-events:none;opacity:0;transition:opacity .45s}'
+        '</style>'
+        '<canvas id="kring" aria-hidden="true"></canvas>'
+        '<div id="kcap"><div id="kcn"></div><div id="kcr"></div><div id="kce"></div></div>'
+        '<div id="kringhint">the keepers align with Top &middot; click one to enter its pocket universe</div>')
+    ring_js = ('<script>(function(){'
+        'var KP={};try{KP=JSON.parse(document.getElementById("domkeepers").textContent);}catch(e){return;}'
+        'var RD=Object.keys(KP).map(function(k){var d=KP[k];return {k:k,t:d.t,c:d.c,n:d.n,role:d.role};});var N=RD.length;if(!N)return;'
+        'var cv=document.getElementById("kring"),g=(cv&&cv.getContext)?cv.getContext("2d"):null;if(!g)return;'
+        'var cap=document.getElementById("kcap"),cn=document.getElementById("kcn"),cr=document.getElementById("kcr"),ce=document.getElementById("kce"),hint=document.getElementById("kringhint");'
+        # reparent to <body> so the fixed ring layers cleanly above Top (avoid .wrap z-index:1 context)
+        '[cv,cap,hint].forEach(function(el){if(el&&el.parentNode!==document.body)document.body.appendChild(el);});'
+        'var DPR=Math.min(window.devicePixelRatio||1,2);function fit(){cv.width=Math.round(innerWidth*DPR);cv.height=Math.round(innerHeight*DPR);}fit();addEventListener("resize",fit);'
+        'function mono(t){t=(""+(t||"")).replace(/^(THE |A |AN )/,"");var w=t.split(/[\\s\\u00b7]+/).filter(Boolean);if(w.length>=2)return (w[0][0]+w[1][0]).toUpperCase();return t.slice(0,2).toUpperCase();}'
+        'function hx(h){h=(""+h).replace("#","");if(h.length<6)h="e0a838";return [parseInt(h.slice(0,2),16)||224,parseInt(h.slice(2,4),16)||168,parseInt(h.slice(4,6),16)||56];}'
+        'function sm(t){t=t<0?0:t>1?1:t;return t*t*(3-2*t);}'
+        'var active=0,prev=0,arriv=0,ringRot=0,lastT=0,idxOf={};for(var i=0;i<N;i++)idxOf[RD[i].k]=i;'
+        'function setCap(i){var d=RD[i];cn.textContent="\\u25c6 I am "+d.t+".";cn.style.color=d.c;cr.textContent=d.role;ce.textContent=d.n+" spheres \\u00b7 enter the pocket universe \\u2192";ce.style.color=d.c;}setCap(0);'
+        'function seat(i,cx,cy,R){var a=ringRot+i*(Math.PI*2/N)-Math.PI/2;return{x:cx+Math.cos(a)*R,y:cy+Math.sin(a)*R*0.72,a:a};}'
+        'function drawMed(i,x,y,sz,foc){var col=hx(RD[i].c);g.fillStyle="rgb("+col[0]+","+col[1]+","+col[2]+")";g.shadowColor=RD[i].c;g.shadowBlur=12+foc*16;g.beginPath();g.arc(x,y,sz,0,7);g.fill();g.shadowBlur=0;g.lineWidth=2;g.strokeStyle="rgba(255,255,255,"+(0.42+0.42*foc)+")";g.beginPath();g.arc(x,y,sz,0,7);g.stroke();if(sz>10){g.fillStyle="rgba(10,12,16,"+(0.55+0.4*foc)+")";g.font="700 "+(sz*0.82|0)+"px ui-monospace,monospace";g.textAlign="center";g.textBaseline="middle";g.fillText(mono(RD[i].t),x,y+1);g.textBaseline="alphabetic";}}'
+        'function frame(t){requestAnimationFrame(frame);if(!lastT)lastT=t;var dt=t-lastT;lastT=t;'
+          'var op=Math.max(0,Math.min(1,1-(scrollY/(innerHeight*0.72))));cv.style.opacity=op;cap.style.opacity=op;hint.style.opacity=op*0.85;document.body.classList.toggle("ring-on",op>0.55);'
+          'if(op<0.02){g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,cv.width,cv.height);return;}'
+          'ringRot+=dt*0.00006;'
+          'var p=window.__jprobe;if(p&&p.d&&idxOf[p.d]!==undefined&&idxOf[p.d]!==active){prev=active;active=idxOf[p.d];arriv=t;setCap(active);}'
+          'var kA=sm(Math.min(1,(t-arriv)/560));'
+          'g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,innerWidth,innerHeight);'
+          'var tp=window.__topxy||{x:innerWidth/2,y:innerHeight*0.46,r:60};var cx=tp.x,cy=tp.y,R=Math.min(innerWidth,innerHeight)*0.44;var cpt={x:cx,y:cy-R*0.02};'
+          'cap.style.top=(cy+R*0.62+16)+"px";'
+          'var ac=hx(RD[active].c);if(kA>0.3){g.save();g.globalCompositeOperation="lighter";for(var rr=0;rr<3;rr++){var rp=((t*0.0006+rr/3)%1);g.globalAlpha=(kA-0.3)*0.5*(1-rp);g.strokeStyle=RD[active].c;g.lineWidth=2;g.beginPath();g.arc(cx,cy,(tp.r||60)*0.7+rp*(tp.r||60)*2.4,0,7);g.stroke();}g.restore();g.globalAlpha=1;}'
+          'var ord=[];for(var i=0;i<N;i++)ord.push(i);ord.sort(function(a,b){return seat(a,cx,cy,R).y-seat(b,cx,cy,R).y;});'
+          'for(var q=0;q<ord.length;q++){var i=ord[q];if(i===active||i===prev)continue;var s=seat(i,cx,cy,R);var dep=(Math.sin(s.a)+1)/2;var rad=8+dep*6;var col=hx(RD[i].c);g.globalAlpha=0.3+dep*0.5;g.fillStyle="rgb("+col[0]+","+col[1]+","+col[2]+")";g.shadowColor=RD[i].c;g.shadowBlur=5+dep*7;g.beginPath();g.arc(s.x,s.y,rad,0,7);g.fill();g.shadowBlur=0;}g.globalAlpha=1;'
+          'if(prev!==active){var ps=seat(prev,cx,cy,R);drawMed(prev,cpt.x+(ps.x-cpt.x)*kA,cpt.y+(ps.y-cpt.y)*kA,10+(1-kA)*(R*0.17),1-kA);}'
+          'var as=seat(active,cx,cy,R);var axp=as.x+(cpt.x-as.x)*kA,ayp=as.y+(cpt.y-as.y)*kA;'
+          'if(kA>0.06&&kA<0.99){g.save();g.globalCompositeOperation="lighter";g.globalAlpha=0.5*kA;g.strokeStyle=RD[active].c;g.shadowColor=RD[active].c;g.shadowBlur=8;g.lineWidth=2;g.beginPath();g.moveTo(cx,cy);g.lineTo(axp,ayp);g.stroke();g.restore();g.globalAlpha=1;}'
+          'drawMed(active,axp,ayp,10+kA*(R*0.17),kA);}'
+        'requestAnimationFrame(frame);'
+        'document.addEventListener("click",function(e){var op=Math.max(0,Math.min(1,1-(scrollY/(innerHeight*0.72))));if(op<0.5)return;var tp=window.__topxy;if(!tp)return;var cx=tp.x,cy=tp.y,R=Math.min(innerWidth,innerHeight)*0.44,mx=e.clientX,my=e.clientY,best=-1,bd=1e9;for(var i=0;i<N;i++){var s=(i===active)?{x:cx,y:cy}:seat(i,cx,cy,R);var d=(s.x-mx)*(s.x-mx)+(s.y-my)*(s.y-my);if(d<bd){bd=d;best=i;}}if(best>=0&&bd<3200){e.preventDefault();location.href="d/"+RD[best].k+".html";}},true);'
+        '})();</script>')
+    return blob + css + panel + js + ring + ring_js
 
 
 if __name__ == "__main__":
@@ -4576,6 +4692,7 @@ if __name__ == "__main__":
     _ddir = os.path.join(HERE, "d")
     os.makedirs(_ddir, exist_ok=True)
     open(os.path.join(_ddir, "keeper.css"), "w", encoding="utf-8").write("\n".join(_styles))
+    open(os.path.join(_ddir, "pocket.js"), "w", encoding="utf-8").write(POCKET_JS)
     for _i,(_k,_t,_a,_b) in enumerate(DOMAINS, 1):
         open(os.path.join(_ddir, f"{_k}.html"), "w", encoding="utf-8").write(l2_page(_i,_k,_t,_a,_b,BY_DOMAIN.get(_k, [])))
     print(f"  wrote {len(DOMAINS)} L2 keeper pages + keeper.css -> ud0/d/")
