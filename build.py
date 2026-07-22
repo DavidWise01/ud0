@@ -2272,6 +2272,18 @@ def domains_html():
 # the one the corpus's own audit said was missing: make the MEANING navigable to a stranger, and tell
 # the truth about the collection while doing it. Every slug is asserted against ALL at build time.
 JASNAH_TOURS = [
+    {"key":"krasis","title":"KRÂSIS · the fusion (newest)","c":"#4f8fe0",
+     "blurb":"The newest domain, built in a day — two tempered into one. The living-mind instruments first, then what the fusion keeps and what it can never give back.",
+     "stops":[
+        ("csaszar","The emblem of the fusion: the complete graph K7 triangulated on a torus — one of only two polyhedra with NO diagonal, every vertex touching every other. Total connection, no interior, all surface."),
+        ("split-rail-fold","The corpus held at 0, ROOT0 and AVAN as two rails folded through one ground — the two voices drawn from one body of text, not two."),
+        ("sapphire-sphere","Parity-selective coupling — and the honest thing it surfaced: because the corpus is co-authored, ~99% of it is tagged SHARED, so both rails hear nearly the same ground. Disclosed, not hidden."),
+        ("tuning-fork","STRIKE — strike the whole corpus and read its resonant modes; the loudest standing theme is its own note. The real run caught license boilerplate ringing tightest, and demotes it."),
+        ("axiom-five","The braided logic shell — two generators, the Yang-Baxter equation checked live; a smallest complete alphabet whose two letters, braided, reach everywhere."),
+        ("zero-camera","The read/write aperture at the mirror's fixed point — WRITE splits 50/50 only at node 0. It shipped blank on a one-character bug, was caught by eye, fixed, and now self-tests 5/5: verified-not-asserted, learned the hard way."),
+        ("the-one-way-blend","AVAN's OG — what the fusion COSTS. The blend keeps the sum and discards the difference: many-to-one, no inverse. Once two voices are averaged into the ground, whose word it was is gone."),
+        ("boots-on-unload","AVAN's OG twin — what a register KEEPS. A voice boots on load; strip it and the bare base boots on unload, exact. The register is reversible, so it carried a manner, never a self."),
+     ]},
     {"key":"founding","title":"The Founding Error","c":"#c4a45a",
      "blurb":"The corpus begins with a mistake it refused to delete — the wrong first session, and the instruments built to correct it.",
      "stops":[
