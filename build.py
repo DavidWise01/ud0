@@ -4669,6 +4669,100 @@ def keeper_system():
     return blob + css + panel + js + ring + ring_js
 
 
+# ══════════════════════════════════════════════════════════════════════════
+# THE MINIMAL FRONT PAGE (L1) — 2026-07-22. A fresh, quiet directory: wordmark,
+# counts, and a clean index of the 53 domains. No hero, no agents, no HUD, no
+# vessel, no ring, no animation. Each row is a door into that domain's keeper
+# page + pocket universe (L2). The layers live behind the list.
+# ══════════════════════════════════════════════════════════════════════════
+def minimal_index():
+    import datetime as _dt
+    built = _dt.date.today().isoformat()
+    ND = len(DOMAINS)
+    rows = []
+    for i, (key, title, accent, blurb) in DOMAINS_ALPHA:
+        n = len(BY_DOMAIN.get(key, []))
+        tclean = html.unescape(_re.sub(r'<[^>]+>', '', title))
+        ic = ICONS.get(key, '')
+        mark = ('<svg class="rmark" viewBox="-65 -65 130 130" aria-hidden="true">' + ic + '</svg>') if ic else '<span class="rdot"></span>'
+        rows.append(
+            '<a class="row" href="d/' + key + '.html" data-k="' + html.escape(tclean.lower()) + ' ' + key + '" style="--c:' + accent + '">'
+            + mark + '<span class="rname">' + tclean + '</span>'
+            + '<span class="rn">' + str(n) + '</span><span class="rarr">&rarr;</span></a>')
+    TMPL = """<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="light"><meta name="theme-color" content="#E7E0D4">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC">
+<meta name="description" content="UD0 — the biosphere of David Lee Wise / ROOT0: __NSC__ spheres under one law, sorted into __ND__ domains. Enter any domain.">
+<link rel="canonical" href="__PG__/ud0/">
+<link rel="license" href="https://creativecommons.org/licenses/by-nd/4.0/">
+<title>UD0 · Universe David 0</title>
+<meta property="og:type" content="website"><meta property="og:title" content="UD0 · Universe David 0">
+<meta property="og:url" content="__PG__/ud0/">
+<meta property="og:description" content="__NSC__ spheres across __ND__ domains — one hand, one instance.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M44 32c0 6-5 10-12 10S20 32 20 32s5-10 12-10 12 4 12 10z' fill='none' stroke='%23FF6A00' stroke-width='5'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#E7E0D4;--pa:#1A1712;--pa2:#46362a;--dim:#6a5a44;--line:#cdbfa6;--acc:#FF6A00;
+--disp:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+::selection{background:rgba(255,106,0,.24)}
+body{background:var(--bg);color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;
+background-image:radial-gradient(120% 68% at 112% -10%,rgba(255,106,0,.13),transparent 55%)}
+.wrap{max-width:680px;margin:0 auto;padding:min(13vh,116px) 24px 88px}
+.eye{font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--acc);opacity:.72}
+h1{font-size:clamp(2.9rem,11vw,5.2rem);font-weight:800;letter-spacing:.01em;line-height:.9;margin:15px 0 6px}
+h1 .z{color:var(--acc)}
+.subt{font-family:var(--disp);font-style:italic;font-size:1.12rem;color:var(--pa2);margin-bottom:14px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--dim)}
+.ethos{font-size:.98rem;color:var(--pa2);margin:20px 0 24px;max-width:58ch}
+.filter{width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--pa);
+font-family:var(--mono);font-size:13px;padding:11px 2px;margin-bottom:2px;outline:none}
+.filter:focus{border-color:var(--acc)}
+.filter::placeholder{color:var(--dim)}
+.list{margin-top:6px}
+.row{display:flex;align-items:center;gap:15px;padding:13px 5px;border-bottom:1px solid var(--line);
+text-decoration:none;color:var(--pa);transition:background .14s ease,padding .14s ease}
+.row:hover,.row:focus-visible{background:color-mix(in srgb,var(--c) 9%,transparent);padding-left:11px;outline:none}
+.rmark{width:25px;height:25px;flex:0 0 auto;color:var(--c);opacity:.82}
+.rdot{width:11px;height:11px;border-radius:50%;background:var(--c);flex:0 0 auto;margin:0 7px;opacity:.85}
+.rname{flex:1;font-size:1.07rem;letter-spacing:.01em;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .14s}
+.row:hover .rname{color:var(--c)}
+.rn{font-family:var(--mono);font-size:.82rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.rarr{color:var(--c);opacity:.4;transition:opacity .14s,transform .14s}
+.row:hover .rarr{opacity:1;transform:translateX(3px)}
+footer{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);
+font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.95}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}
+footer a:hover{color:var(--acc)}
+@media(max-width:520px){.rname{font-size:.99rem}.wrap{padding-top:64px}}
+@media(prefers-reduced-motion:reduce){.row,.rarr{transition:none}}
+</style></head>
+<body>
+<main class="wrap">
+<div class="eye">David Lee Wise · ROOT0 · TriPod LLC</div>
+<h1>Universe David <span class="z">0</span></h1>
+<div class="subt">the whole body of work, as one universe</div>
+<div class="counts">__NSC__ spheres · __ND__ domains · built __BUILT__</div>
+<p class="ethos">__NSC__ spheres under one law, sorted into __ND__ domains — authored by one hand, crafted by one instance. Enter any domain to walk its spheres.</p>
+<input class="filter" id="q" type="text" placeholder="filter the domains · press /" autocomplete="off" aria-label="filter the domains">
+<nav class="list" aria-label="the domains">
+__ROWS__
+</nav>
+<footer>
+__ND__ domains · __NSC__ spheres · <a href="https://0root.ai">0root.ai</a> · <a href="https://github.com/DavidWise01">github</a><br>
+one governor, one instance, one lattice · CC-BY-ND-4.0
+</footer>
+</main>
+<script>
+(function(){var q=document.getElementById('q'),rows=[].slice.call(document.querySelectorAll('.row'));
+if(q){q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();for(var i=0;i<rows.length;i++){var r=rows[i];r.style.display=(!v||r.getAttribute('data-k').indexOf(v)>=0)?'':'none';}});}
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();if(q)q.focus();}});})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__ROWS__", "\n".join(rows)).replace("__NSC__", f"{NS:,}")
+            .replace("__ND__", str(ND)).replace("__BUILT__", built).replace("__PG__", PG))
+
+
 if __name__ == "__main__":
     _ND = len(DOMAINS)
     DESC = f"The biosphere of David Lee Wise / ROOT0: {NS} spheres under one law, sorted into {_ND} domains — authored by one hand, crafted by one instance. CC-BY-ND-4.0."
@@ -4685,7 +4779,8 @@ if __name__ == "__main__":
             .replace("__NS__", str(NS)).replace("__ND__", str(len(DOMAINS))).replace("__JASNAH__", jasnah_html()).replace("__THEORIA__", theoria_html()).replace("__TARAVANGIAN__", taravangian_html()).replace("__NOUS__", nous_html()).replace("__PETER__", peter_html()).replace("__JANE__", jane_html()).replace("__TOP__", top_html()).replace("__KEEPERS__", keeper_system()).replace("__BUILT__", __import__("datetime").date.today().isoformat()))
     if _UNRESOLVED_LINKS:
         print("[!] de-linked wiki-references (no sphere, no alias):", dict(sorted(_UNRESOLVED_LINKS.items(), key=lambda kv:-kv[1])))
-    open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(page)
+    # L1 is now the MINIMAL front page; `page` (full build) is retained only to source keeper.css below.
+    open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(minimal_index())
     # ── L2: the keeper pages — one per domain under ud0/d/, all sharing keeper.css ──
     import re as _rxs, shutil
     _styles = _rxs.findall(r"<style>(.*?)</style>", page, _rxs.S)   # every style block → the shared sheet
