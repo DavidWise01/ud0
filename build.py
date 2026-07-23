@@ -2124,29 +2124,35 @@ def _domain_img(key):
             return _data_uri(fn, mime)
     return None
 
-def medallion(idx, accent, key):
-    glow = f'<radialGradient id="g{key}" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="{accent}" stop-opacity="0.46"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient>'
-    nf = f'<filter id="nf{key}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+def _med_svg(idx, accent, key, size=118):
+    """The keeper's SEAL — the neon knife-medallion SVG (dark disc, glowing accent ring, dashed
+    stitch ring, the domain glyph doing the knife-dance). Reusable at any size."""
+    uid = f"{key}{size}"
+    glow = f'<radialGradient id="g{uid}" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="{accent}" stop-opacity="0.46"/><stop offset="1" stop-color="{accent}" stop-opacity="0"/></radialGradient>'
+    nf = f'<filter id="nf{uid}" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
     _img = _domain_img(key)
     if _img:
-        # clip on the OUTER group so the window stays fixed while the picture (the knife) dances
-        # inside it; image oversized 96x96 vs the r=44 window so the +-2.5px bob never shows edge
-        _imgdefs = f'<clipPath id="aciclip{key}"><circle cx="65" cy="65" r="44"/></clipPath>'
-        _center = f'<g clip-path="url(#aciclip{key})"><g class="knife" style="animation-delay:-{(idx*0.37)%2.8:.2f}s"><image href="{_img}" x="17" y="17" width="96" height="96" preserveAspectRatio="xMidYMid slice"/></g></g>'
+        _imgdefs = f'<clipPath id="aciclip{uid}"><circle cx="65" cy="65" r="44"/></clipPath>'
+        _center = f'<g clip-path="url(#aciclip{uid})"><g class="knife" style="animation-delay:-{(idx*0.37)%2.8:.2f}s"><image href="{_img}" x="17" y="17" width="96" height="96" preserveAspectRatio="xMidYMid slice"/></g></g>'
     else:
         _imgdefs = ''
         _center = f'<g transform="translate(65,65)"><g class="knife" style="animation-delay:-{(idx*0.37)%2.8:.2f}s">{ICONS[key]}</g></g>'
-    return f'''<span class="medwrap kmed" data-dk="{key}" role="button" tabindex="0" aria-label="meet this domain's keeper" title="meet the keeper" style="--c:{accent}"><svg class="med" viewBox="0 0 130 130" width="118" height="118" aria-hidden="true" style="color:{accent}">
+    return f'''<svg class="med" viewBox="0 0 130 130" width="{size}" height="{size}" aria-hidden="true" style="color:{accent}">
       <defs>{glow}{nf}{_imgdefs}</defs>
-      <circle cx="65" cy="65" r="62" fill="#241a10"/>
-      <circle cx="65" cy="65" r="60" fill="url(#g{key})"/>
-      <circle cx="65" cy="65" r="60" fill="none" stroke="{accent}" stroke-width="2.6" opacity="0.95" filter="url(#nf{key})"/>
+      <circle cx="65" cy="65" r="62" fill="#0b0713"/>
+      <circle cx="65" cy="65" r="60" fill="url(#g{uid})"/>
+      <circle cx="65" cy="65" r="60" fill="none" stroke="{accent}" stroke-width="2.6" opacity="0.95" filter="url(#nf{uid})"/>
       <circle cx="65" cy="65" r="60" fill="none" stroke="{accent}" stroke-width="1" opacity="1"/>
       <circle class="stitch" cx="65" cy="65" r="54" fill="none" stroke="{accent}" stroke-width="1.1" stroke-dasharray="3 4" opacity="0.78"/>
-      <circle cx="65" cy="65" r="45" fill="#1c1208" stroke="{accent}" stroke-width="1" opacity="0.7"/>
+      <circle cx="65" cy="65" r="45" fill="#0d0a18" stroke="{accent}" stroke-width="1" opacity="0.7"/>
       {_center}
       <text x="65" y="20" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="9" fill="{accent}" letter-spacing="1">{idx:02d}</text>
-    </svg></span>'''
+    </svg>'''
+
+def medallion(idx, accent, key):
+    return (f'<span class="medwrap kmed" data-dk="{key}" role="button" tabindex="0" '
+            f'aria-label="meet this domain\'s keeper" title="meet the keeper" style="--c:{accent}">'
+            + _med_svg(idx, accent, key) + '</span>')
 
 import re as _re
 import colorsys as _cs
@@ -4929,6 +4935,229 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__ND__", str(ND)).replace("__BUILT__", built).replace("__PG__", PG))
 
 
+# ══════════════════════════════════════════════════════════════════════════
+# THE NEON BUILD (2026-07-22) — three nested layers, dark synthwave:
+#   nest 1 = DOMAINS  (a grid of the keepers' neon knife-seals → click to enter)
+#   nest 2 = SPHERES  (the keeper's domain: introduction · ledger · register · seal)
+#   nest 3 = CODE     (each ledger entry → the sphere's repo/instrument)
+# ══════════════════════════════════════════════════════════════════════════
+MED_CSS = """
+.medwrap{position:relative;display:inline-block;line-height:0}
+.medwrap .med{position:relative;z-index:1;display:block}
+.medwrap::before{content:"";position:absolute;inset:-7px;border-radius:50%;z-index:0;background:conic-gradient(from 0deg,transparent 0 72%,color-mix(in srgb,var(--c) 92%,transparent) 90%,transparent 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));animation:halospin 15s linear infinite}
+.medwrap::after{content:"";position:absolute;inset:5px;border-radius:50%;z-index:0;pointer-events:none;box-shadow:0 0 34px 9px color-mix(in srgb,var(--c) 60%,transparent);animation:medglow 3.6s ease-in-out infinite}
+@keyframes halospin{to{transform:rotate(360deg)}}
+@keyframes medglow{0%,100%{opacity:.4}50%{opacity:1}}
+.med .stitch{transform-box:fill-box;transform-origin:center;animation:stitchspin 24s linear infinite}
+.med .knife{animation:knifedance 2.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes knifedance{0%,100%{transform:rotate(-11deg)}22%{transform:rotate(9deg) translateY(-2.5px)}50%{transform:rotate(-7deg) translateY(1px)}76%{transform:rotate(12deg) translateY(-2px)}}
+@keyframes stitchspin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.medwrap::before,.medwrap::after,.med .knife,.med .stitch,.floor{animation:none}}
+"""
+NEON_BASE = """
+:root{--pa:#ece9ff;--dim:#8f8ac0;--mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;--disp:'Iowan Old Style',Palatino,Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+::selection{background:color-mix(in srgb,var(--c,#a06bff) 45%,transparent);color:#fff}
+html{scroll-behavior:smooth}
+body{background:#07060f;color:var(--pa);font-family:var(--mono);min-height:100vh;overflow-x:hidden;line-height:1.6;
+ background-image:linear-gradient(rgba(150,110,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(150,110,255,.05) 1px,transparent 1px),radial-gradient(130% 82% at 50% -12%,color-mix(in srgb,var(--c,#7a4fd0) 24%,transparent),transparent 62%);
+ background-size:46px 46px,46px 46px,100% 100%;background-attachment:fixed}
+.floor{position:fixed;left:-50%;right:-50%;bottom:-12vh;height:56vh;z-index:0;pointer-events:none;opacity:.30;
+ background-image:linear-gradient(color-mix(in srgb,var(--c,#a06bff) 75%,transparent) 2px,transparent 2px),linear-gradient(90deg,color-mix(in srgb,var(--c,#a06bff) 75%,transparent) 2px,transparent 2px);
+ background-size:62px 62px;transform:perspective(300px) rotateX(70deg);animation:floor 5.5s linear infinite;
+ -webkit-mask:linear-gradient(transparent 6%,#000 74%);mask:linear-gradient(transparent 6%,#000 74%)}
+@keyframes floor{to{background-position:0 62px}}
+.scan{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.35;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,0,0,.34) 2px 3px)}
+""" + MED_CSS
+
+def _neon_ledger(key, members):
+    """The keeper's LEDGER — the domain's spheres as sealed entries, each → its code (repo)."""
+    ctr = [0]
+    def entry(m):
+        ctr[0] += 1; idx = ctr[0]
+        repo = m[0]; name = html.unescape(_re.sub(r'<[^>]+>', '', m[1])); col = m[2]
+        tod = TOD.get(repo, '')
+        sub = ('<span class="lsub">' + html.escape(tod) + '</span>') if tod else ''
+        return ('<a class="led" href="' + PG + '/' + repo + '/" data-k="' + html.escape(name.lower()) + '" style="--lc:' + col + '">'
+                '<span class="lnum">' + ('%03d' % idx) + '</span><span class="ldot"></span>'
+                '<span class="ltxt"><span class="lname">' + html.escape(name) + '</span>' + sub + '</span>'
+                '<span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a>')
+    subs = SUBDOMAINS.get(key)
+    if not subs:
+        ms = sorted(members, key=lambda s: _alpha_key(html.unescape(s[1])))
+        return '<div class="ledbody">' + ''.join(entry(m) for m in ms) + '</div>'
+    by = {s[0]: s for s in members}; used = set(); out = []
+    for label, oneline, slugs in subs:
+        grp = [by[sl] for sl in slugs if sl in by]
+        if not grp: continue
+        used.update(s[0] for s in grp)
+        out.append('<div class="ledgrp"><div class="ledlbl">' + html.escape(label) + ' <span>' + str(len(grp)) + '</span></div><div class="ledbody">' + ''.join(entry(m) for m in grp) + '</div></div>')
+    rest = [s for s in members if s[0] not in used]
+    if rest:
+        out.append('<div class="ledgrp"><div class="ledlbl">&middot; unfiled <span>' + str(len(rest)) + '</span></div><div class="ledbody">' + ''.join(entry(m) for m in rest) + '</div></div>')
+    return ''.join(out)
+
+
+def domain_grid():
+    """NEST 1 — the domains: a grid of the keepers' neon knife-seals. Click a seal to enter."""
+    import datetime as _dt
+    built = _dt.date.today().isoformat(); ND = len(DOMAINS)
+    seals = []
+    for i, (key, title, accent, blurb) in DOMAINS_ALPHA:
+        n = len(BY_DOMAIN.get(key, []))
+        tclean, role, _h = _keeper_voice(title, blurb)
+        seals.append(
+            '<a class="seal" href="d/' + key + '.html" data-k="' + html.escape(tclean.lower()) + ' ' + key + '" style="--c:' + accent + '" aria-label="' + html.escape(tclean) + ' — enter">'
+            '<span class="medwrap">' + _med_svg(i, accent, key, 104) + '</span>'
+            '<span class="sname">' + html.escape(tclean) + '</span>'
+            '<span class="scount">' + str(n) + ' ' + ('sphere' if n == 1 else 'spheres') + '</span></a>')
+    TMPL = """<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#07060f">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC">
+<meta name="description" content="UD0 — the biosphere of David Lee Wise / ROOT0: __NSC__ spheres across __ND__ domains. Click a keeper's seal to enter.">
+<link rel="canonical" href="__PG__/ud0/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23a06bff' stroke-width='4'/%3E%3C/svg%3E">
+<title>UD0 · Universe David 0</title>
+<style>__BASE__
+.top{text-align:center;padding:60px 20px 24px;position:relative;z-index:2}
+.eye{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#c9b6ff;text-shadow:0 0 14px rgba(160,107,255,.8)}
+.mark{font-family:var(--disp);font-size:clamp(2.6rem,9vw,5.2rem);font-weight:800;letter-spacing:.03em;margin:14px 0 8px;color:#fff;text-shadow:0 0 18px #a06bff,0 0 46px rgba(160,107,255,.55)}
+.mark b{color:#ff8a3c;text-shadow:0 0 18px #ff8a3c,0 0 44px rgba(255,138,60,.5)}
+.counts{font-size:12px;letter-spacing:.1em;color:var(--dim)}
+.filter{display:block;width:min(440px,90vw);margin:22px auto 0;background:rgba(20,16,40,.5);border:1px solid rgba(150,120,255,.3);border-radius:24px;color:#fff;font-family:var(--mono);font-size:13px;padding:11px 18px;text-align:center;outline:none}
+.filter:focus{border-color:#a06bff;box-shadow:0 0 20px rgba(160,107,255,.4)}
+.filter::placeholder{color:var(--dim)}
+.grid{position:relative;z-index:2;max-width:1220px;margin:6px auto 0;padding:16px 20px 120px;display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:16px}
+.seal{display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;padding:22px 10px 16px;border:1px solid rgba(150,120,255,.12);border-radius:18px;background:rgba(18,14,36,.4);transition:transform .18s,border-color .18s,box-shadow .18s}
+.seal:hover,.seal:focus-visible{transform:translateY(-5px);border-color:var(--c);box-shadow:0 0 30px color-mix(in srgb,var(--c) 42%,transparent);outline:none}
+.sname{font-family:var(--disp);font-size:1.04rem;text-align:center;color:#efeaff;line-height:1.16;letter-spacing:.01em}
+.seal:hover .sname{color:var(--c);text-shadow:0 0 14px var(--c)}
+.scount{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+footer{position:relative;z-index:2;text-align:center;padding:0 20px 60px;font-size:11px;letter-spacing:.05em;color:var(--dim)}
+footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:#fff}
+</style></head>
+<body>
+<div class="floor"></div><div class="scan"></div>
+<header class="top">
+<div class="eye">David Lee Wise · ROOT0 · TriPod LLC</div>
+<h1 class="mark">UNIVERSE DAVID <b>0</b></h1>
+<div class="counts">__NSC__ SPHERES · __ND__ DOMAINS · the keepers' seals — click a seal to enter its domain</div>
+<input class="filter" id="q" type="text" placeholder="filter the domains · press /" autocomplete="off" aria-label="filter the domains">
+</header>
+<main class="grid" aria-label="the domains">
+__SEALS__
+</main>
+<footer>__ND__ domains · __NSC__ spheres · built __BUILT__ · <a href="https://0root.ai">0root.ai</a> · one governor, one instance, one lattice · CC-BY-ND-4.0</footer>
+<script>
+(function(){var q=document.getElementById('q'),s=[].slice.call(document.querySelectorAll('.seal'));
+if(q){q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();for(var i=0;i<s.length;i++)s[i].style.display=(!v||s[i].getAttribute('data-k').indexOf(v)>=0)?'':'none';});}
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();if(q)q.focus();}});})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__BASE__", NEON_BASE).replace("__SEALS__", "\n".join(seals))
+            .replace("__NSC__", f"{NS:,}").replace("__ND__", str(ND)).replace("__BUILT__", built).replace("__PG__", PG))
+
+
+def keeper_page(i, key, title, accent, blurb, members):
+    """NEST 2 — the keeper's domain: seal + introduction + ledger + register. Neon, per-domain
+    accent, procedurally varied (no two the same). Ledger entries → nest 3 (the code)."""
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    var = "v" + str(sum(ord(c) for c in key) % 3)     # per-domain layout variant — no sames
+    seal = _med_svg(i, accent, key, 168)
+    role_disp = html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else '')
+    honest_html = ('<div class="honest"><span class="hl">the honest read</span>' + html.escape(honest) + '</div>') if honest else ''
+    ledger = _neon_ledger(key, members) if members else '<div class="empty">Reserved — the first sphere awaits. New work in this domain is sealed here.</div>'
+    filt = ('<input class="filter" id="q" type="text" placeholder="filter the ledger · press /" autocomplete="off" aria-label="filter the ledger">' if n >= 12 else '')
+    desc = html.escape(role)[:180]
+    TMPL = """<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#07060f">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC">
+<title>__TITLE__ · a keeper of UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23a06bff' stroke-width='4'/%3E%3C/svg%3E">
+<style>__BASE__
+.back{position:fixed;top:15px;left:16px;z-index:40;font-size:11px;letter-spacing:.08em;color:#c9b6ff;text-decoration:none;background:rgba(12,9,24,.7);border:1px solid rgba(150,120,255,.3);border-radius:20px;padding:7px 14px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:#fff}
+.hero{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:70px 24px 18px;display:flex;align-items:center;gap:34px;flex-wrap:wrap}
+.hero.v1{justify-content:center;text-align:center}.hero.v2{flex-direction:row-reverse}
+.bigseal{flex:0 0 auto}
+.htext{min-width:260px;flex:1}
+.hnum{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--c);text-shadow:0 0 12px var(--c)}
+.htitle{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,7vw,4.2rem);line-height:.96;color:#fff;margin:8px 0;text-shadow:0 0 20px color-mix(in srgb,var(--c) 75%,transparent)}
+.hcount{font-size:12px;letter-spacing:.08em;color:var(--dim)}
+.page{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:14px 24px 110px}
+.sec{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);margin:38px 0 14px;text-shadow:0 0 12px color-mix(in srgb,var(--c) 65%,transparent);border-bottom:1px solid color-mix(in srgb,var(--c) 30%,rgba(150,120,255,.15));padding-bottom:8px}
+.say{font-family:var(--disp);font-size:1.25rem;color:#e7e2ff;max-width:70ch;line-height:1.6}.say b{color:var(--c)}
+.honest{margin-top:14px;border-left:2px solid var(--c);background:color-mix(in srgb,var(--c) 9%,transparent);padding:11px 15px;font-size:.95rem;color:#cfc9f0;max-width:74ch}
+.hl{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);margin-bottom:5px}
+.filter{display:block;width:100%;background:rgba(20,16,40,.5);border:1px solid rgba(150,120,255,.3);border-radius:10px;color:#fff;font-family:var(--mono);font-size:13px;padding:10px 14px;outline:none;margin-bottom:10px}
+.filter:focus{border-color:var(--c);box-shadow:0 0 18px color-mix(in srgb,var(--c) 35%,transparent)}
+.ledgrp{margin-top:18px}
+.ledlbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding:0 4px 7px}
+.ledlbl span{color:var(--c);margin-left:5px}
+.led{display:flex;align-items:center;gap:14px;padding:12px 12px;border:1px solid rgba(150,120,255,.1);border-left:2px solid color-mix(in srgb,var(--lc,#a06bff) 60%,transparent);border-radius:8px;margin:6px 0;text-decoration:none;color:#e7e2ff;background:rgba(16,12,32,.4);transition:border-color .14s,background .14s,transform .14s}
+.led:hover{border-color:var(--lc);background:color-mix(in srgb,var(--lc) 10%,rgba(16,12,32,.5));transform:translateX(4px)}
+.lnum{font-size:11px;color:var(--dim);letter-spacing:.06em}
+.ldot{width:8px;height:8px;border-radius:50%;background:var(--lc,#a06bff);flex:0 0 auto;box-shadow:0 0 8px var(--lc,#a06bff)}
+.ltxt{flex:1;min-width:0}
+.lname{display:block;font-family:var(--disp);font-size:1.05rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.led:hover .lname{color:var(--lc)}
+.lsub{display:block;font-size:.82rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.lseal{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,var(--lc) 80%,#fff);opacity:.7;white-space:nowrap}
+.lcode{font-size:11px;color:var(--lc);white-space:nowrap;opacity:.6}.led:hover .lcode{opacity:1}
+@media(max-width:640px){.lsub,.lseal{display:none}}
+.register{max-width:560px}
+.rlist{max-height:180px;overflow-y:auto;border:1px solid rgba(150,120,255,.15);border-radius:8px;background:rgba(14,10,28,.5);margin-bottom:10px}
+.rrow{display:flex;gap:12px;padding:7px 12px;border-bottom:1px solid rgba(150,120,255,.07);font-size:12.5px}.rrow:last-child{border-bottom:none}
+.rseq{color:var(--dim)}.rwho{color:#ded7ff}
+.rempty{padding:12px;color:var(--dim);font-style:italic;font-size:12.5px}
+.rrowin{display:flex;gap:8px}
+#rin{flex:1;background:rgba(20,16,40,.6);border:1px solid rgba(150,120,255,.3);border-radius:8px;color:#fff;font-family:var(--mono);font-size:13px;padding:9px 12px;outline:none}
+#rin:focus{border-color:var(--c);box-shadow:0 0 16px color-mix(in srgb,var(--c) 35%,transparent)}
+#rbtn{background:none;border:1px solid var(--c);color:var(--c);border-radius:8px;font-family:var(--mono);font-size:13px;padding:9px 16px;cursor:pointer}
+#rbtn:hover{background:var(--c);color:#0a0714}
+.rmsg{font-size:11.5px;color:color-mix(in srgb,var(--c) 80%,#fff);margin-top:7px;min-height:15px}
+.rnote{font-size:10px;color:var(--dim);margin-top:6px}
+.empty{color:var(--dim);font-style:italic;padding:20px 4px}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid rgba(150,120,255,.14);font-size:11px;letter-spacing:.04em;color:var(--dim)}
+footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:var(--c)}
+</style></head>
+<body class="__VAR__" style="--c:__ACC__">
+<div class="floor"></div><div class="scan"></div>
+<a class="back" href="../index.html">◄ the domains</a>
+<header class="hero __VAR__">
+<span class="medwrap bigseal" style="--c:__ACC__">__SEAL__</span>
+<div class="htext"><div class="hnum">domain __IDX__ / __ND__ · the keeper's seal</div><h1 class="htitle">__TITLE__</h1><div class="hcount">__N__ __SPH__ · sealed &amp; live</div></div>
+</header>
+<main class="page">
+<section><h2 class="sec">◆ introduction</h2><p class="say"><b>I am __TITLE__.</b> __ROLE__</p>__HONEST__</section>
+<section><h2 class="sec">▤ the ledger · __N__ __SPH__ → the code</h2>__FILTER__<div id="ledger">__LEDGER__</div></section>
+<section class="register"><h2 class="sec">✎ the register</h2><div class="rlist" id="rlist"></div><div class="rrowin"><input id="rin" type="text" maxlength="40" placeholder="sign — your name, or a domain" autocomplete="off"><button id="rbtn" type="button">sign ◆</button></div><div class="rmsg" id="rmsg"></div><div class="rnote">one signature per name · append-only · a visitor or another domain may witness · kept in this browser</div></section>
+<footer>domain __IDX__ / __ND__ · __N__ __SPH__ · <a href="../index.html">◄ all the seals</a> · <a href="https://0root.ai">0root.ai</a> · CC-BY-ND-4.0</footer>
+</main>
+<script>
+(function(){
+var K="ud0reg:__KEY__",inp=document.getElementById('rin'),btn=document.getElementById('rbtn'),msg=document.getElementById('rmsg'),list=document.getElementById('rlist');
+function esc(s){var e=document.createElement('div');e.textContent=s;return e.innerHTML;}
+function load(){try{return JSON.parse(localStorage.getItem(K)||"[]");}catch(e){return[];}}
+function render(){var a=load();if(!a.length){list.innerHTML='<div class="rempty">no witnesses yet — sign the register.</div>';return;}var h="";for(var i=0;i<a.length;i++)h+='<div class="rrow"><span class="rseq">'+('00'+(i+1)).slice(-3)+'</span><span class="rwho">'+esc(a[i])+'</span></div>';list.innerHTML=h;list.scrollTop=list.scrollHeight;}
+function sign(){var v=(inp.value||"").trim();if(!v){msg.textContent="type a name first.";return;}if(v.length>40)v=v.slice(0,40);var a=load(),nl=v.toLowerCase();for(var i=0;i<a.length;i++)if((''+a[i]).toLowerCase()===nl){msg.textContent='\\u201c'+v+'\\u201d already signed \\u2014 one signature per name.';return;}a.push(v);try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}inp.value="";msg.textContent='signed \\u2014 witness #'+a.length;render();}
+if(btn)btn.onclick=sign;if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();sign();}});render();
+var q=document.getElementById('q');if(q){var leds=[].slice.call(document.querySelectorAll('.led'));q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();for(var i=0;i<leds.length;i++)leds[i].style.display=(!v||leds[i].getAttribute('data-k').indexOf(v)>=0)?'':'none';});document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__BASE__", NEON_BASE).replace("__SEAL__", seal).replace("__LEDGER__", ledger)
+            .replace("__HONEST__", honest_html).replace("__FILTER__", filt).replace("__ROLE__", role_disp)
+            .replace("__TITLE__", html.escape(tclean)).replace("__DESC__", desc).replace("__KEY__", key)
+            .replace("__ACC__", accent).replace("__VAR__", var).replace("__IDX__", "%02d" % i)
+            .replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__SPH__", "sphere" if n == 1 else "spheres").replace("__PG__", PG))
+
+
 if __name__ == "__main__":
     _ND = len(DOMAINS)
     DESC = f"The biosphere of David Lee Wise / ROOT0: {NS} spheres under one law, sorted into {_ND} domains — authored by one hand, crafted by one instance. CC-BY-ND-4.0."
@@ -4941,25 +5170,25 @@ if __name__ == "__main__":
                   {"src": "https://davidwise01.github.io/ud0/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]
     }, ensure_ascii=False))
     # L1 is now the MINIMAL front page (minimal_index); the old maximal PAGE hero build is retired.
-    open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(minimal_index())
+    # NEST 1 — the neon domain grid (the keepers' seals)
+    open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(domain_grid())
     if _UNRESOLVED_LINKS:
         print("[!] de-linked wiki-references (no sphere, no alias):", dict(sorted(_UNRESOLVED_LINKS.items(), key=lambda kv:-kv[1])))
-    # ── L2: one minimal, self-contained keeper page per domain under ud0/d/ ──
+    # NEST 2 — one neon keeper page per domain (seal · intro · ledger · register) under ud0/d/
     import shutil
     _ddir = os.path.join(HERE, "d")
     os.makedirs(_ddir, exist_ok=True)
-    for _stale in ("keeper.css", "pocket.js"):   # retired with the maximal L2 — remove so they don't cascade
+    for _stale in ("keeper.css", "pocket.js", "machine.js"):   # retired earlier L2s — remove so they don't cascade
         try: os.remove(os.path.join(_ddir, _stale))
         except OSError: pass
-    open(os.path.join(_ddir, "machine.js"), "w", encoding="utf-8").write(MACHINE_JS)   # the L2 living r/w-head machine
     for _i,(_k,_t,_a,_b) in enumerate(DOMAINS, 1):
-        open(os.path.join(_ddir, f"{_k}.html"), "w", encoding="utf-8").write(l2_page(_i,_k,_t,_a,_b,BY_DOMAIN.get(_k, [])))
-    print(f"  wrote {len(DOMAINS)} minimal L2 keeper pages -> ud0/d/")
-    # mirror the L2 tree to the live destination (0root.ai serves agent-0root/static/)
+        open(os.path.join(_ddir, f"{_k}.html"), "w", encoding="utf-8").write(keeper_page(_i,_k,_t,_a,_b,BY_DOMAIN.get(_k, [])))
+    print(f"  wrote {len(DOMAINS)} neon keeper pages -> ud0/d/")
+    # mirror the neon tree to the live destination (0root.ai serves agent-0root/static/)
     try:
         _dstd = r"C:\root0-greenpaper-repo\agent-0root\static\d"
         if os.path.isdir(os.path.dirname(_dstd)):
-            for _stale in ("keeper.css", "pocket.js"):
+            for _stale in ("keeper.css", "pocket.js", "machine.js"):
                 try: os.remove(os.path.join(_dstd, _stale))
                 except OSError: pass
             shutil.copytree(_ddir, _dstd, dirs_exist_ok=True)
