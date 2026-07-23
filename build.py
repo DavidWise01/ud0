@@ -4832,13 +4832,17 @@ def minimal_index():
     rows = []
     for i, (key, title, accent, blurb) in DOMAINS_ALPHA:
         n = len(BY_DOMAIN.get(key, []))
-        tclean = html.unescape(_re.sub(r'<[^>]+>', '', title))
-        ic = ICONS.get(key, '')
-        mark = ('<svg class="rmark" viewBox="-65 -65 130 130" aria-hidden="true">' + ic + '</svg>') if ic else '<span class="rdot"></span>'
+        tclean, role, _h = _keeper_voice(title, blurb)   # the domain's own one-line intro
+        intro = role if len(role) <= 96 else role[:96].rsplit(' ', 1)[0] + '…'
+        # the signet: a slow 3d cube in the domain's colour, with a sapphire root0 core
+        cube = ('<span class="cubewrap" aria-hidden="true"><span class="cube">'
+                '<i class="f f1"></i><i class="f f2"></i><i class="f f3"></i><i class="f f4"></i><i class="f f5"></i><i class="f f6"></i>'
+                '<i class="core"></i></span></span>')
         rows.append(
             '<a class="row" href="d/' + key + '.html" data-k="' + html.escape(tclean.lower()) + ' ' + key + '" style="--c:' + accent + '">'
-            + mark + '<span class="rname">' + tclean + '</span>'
-            + '<span class="rn">' + str(n) + '</span><span class="rarr">&rarr;</span></a>')
+            + cube + '<span class="rtxt"><span class="rname">' + html.escape(tclean) + '</span>'
+            + ('<span class="rsub">' + html.escape(intro) + '</span>' if intro else '')
+            + '</span><span class="rn">' + str(n) + '</span><span class="rarr">&rarr;</span></a>')
     TMPL = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="color-scheme" content="light"><meta name="theme-color" content="#E7E0D4">
@@ -4870,22 +4874,34 @@ font-family:var(--mono);font-size:13px;padding:11px 2px;margin-bottom:2px;outlin
 .filter:focus{border-color:var(--acc)}
 .filter::placeholder{color:var(--dim)}
 .list{margin-top:6px}
-.row{display:flex;align-items:center;gap:15px;padding:13px 5px;border-bottom:1px solid var(--line);
+.row{display:flex;align-items:center;gap:17px;padding:12px 5px;border-bottom:1px solid var(--line);
 text-decoration:none;color:var(--pa);transition:background .14s ease,padding .14s ease}
 .row:hover,.row:focus-visible{background:color-mix(in srgb,var(--c) 9%,transparent);padding-left:11px;outline:none}
-.rmark{width:25px;height:25px;flex:0 0 auto;color:var(--c);opacity:.82}
-.rdot{width:11px;height:11px;border-radius:50%;background:var(--c);flex:0 0 auto;margin:0 7px;opacity:.85}
-.rname{flex:1;font-size:1.07rem;letter-spacing:.01em;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .14s}
+/* the signet — a slow 3d cube in the domain's colour, root0 a sapphire core (sapphire · sapphic · Lesbos) */
+.cubewrap{width:40px;height:40px;flex:0 0 auto;perspective:230px}
+.cube{position:relative;width:30px;height:30px;margin:5px;transform-style:preserve-3d;transform:rotateX(-24deg) rotateY(0);animation:cspin 19s linear infinite}
+.row:hover .cube{animation-duration:5s}
+.cube .f{position:absolute;width:30px;height:30px;border:1px solid var(--c);background:color-mix(in srgb,var(--c) 13%,transparent);box-shadow:inset 0 0 9px color-mix(in srgb,var(--c) 42%,transparent)}
+.cube .f1{transform:translateZ(15px)}.cube .f2{transform:rotateY(180deg) translateZ(15px)}
+.cube .f3{transform:rotateY(90deg) translateZ(15px)}.cube .f4{transform:rotateY(-90deg) translateZ(15px)}
+.cube .f5{transform:rotateX(90deg) translateZ(15px)}.cube .f6{transform:rotateX(-90deg) translateZ(15px)}
+.cube .core{position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;
+background:radial-gradient(circle at 35% 32%,#e2eeff,#3a7bff 72%);box-shadow:0 0 12px 3px rgba(70,140,255,.72);animation:cpulse 3.4s ease-in-out infinite}
+@keyframes cspin{from{transform:rotateX(-24deg) rotateY(0)}to{transform:rotateX(-24deg) rotateY(360deg)}}
+@keyframes cpulse{0%,100%{opacity:.72;box-shadow:0 0 8px 2px rgba(70,140,255,.5)}50%{opacity:1;box-shadow:0 0 16px 5px rgba(120,180,255,.92)}}
+.rtxt{flex:1;min-width:0}
+.rname{display:block;font-size:1.07rem;letter-spacing:.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .14s}
 .row:hover .rname{color:var(--c)}
-.rn{font-family:var(--mono);font-size:.82rem;color:var(--dim);font-variant-numeric:tabular-nums}
-.rarr{color:var(--c);opacity:.4;transition:opacity .14s,transform .14s}
+.rsub{display:block;font-size:.84rem;font-style:italic;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
+.rn{font-family:var(--mono);font-size:.82rem;color:var(--dim);font-variant-numeric:tabular-nums;align-self:center}
+.rarr{color:var(--c);opacity:.4;transition:opacity .14s,transform .14s;align-self:center}
 .row:hover .rarr{opacity:1;transform:translateX(3px)}
 footer{margin-top:46px;padding-top:20px;border-top:1px solid var(--line);
 font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.95}
 footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}
 footer a:hover{color:var(--acc)}
 @media(max-width:520px){.rname{font-size:.99rem}.wrap{padding-top:64px}}
-@media(prefers-reduced-motion:reduce){.row,.rarr{transition:none}}
+@media(prefers-reduced-motion:reduce){.row,.rarr{transition:none}.cube,.cube .core{animation:none}}
 </style></head>
 <body>
 <main class="wrap">
