@@ -5006,19 +5006,41 @@ def _neon_ledger(key, members):
     return ''.join(out)
 
 
+# the 53 domains grouped under the four appeals — ethos · pathos · logos · mythos (fail-loud partition)
+GROUPS = [
+ ("ETHOS", "the character — honesty, justice, the watch", "#f0a886",
+  ["legal","lillith","idios","momus","aci","eskimo","atelier","first-author","foundation","skynet","dyas","the-source"]),
+ ("PATHOS", "the feeling — art, sense, imagination, play", "#ff5aa0",
+  ["techne","entertainment","music","lesbos","phantasia","poietike","banana","hobby","life-science"]),
+ ("LOGOS", "the reason — logic, computation, the mechanism", "#4db1f0",
+  ["ai","prosoche","attraction","scanner-darkly","krasis","psephos","logike","heurema","gurutva","scientific","exereunesis","frontier","niphelektron","logismos","metaxy","strobilos","phonos","aisthesis","educational","occupational","transcriber"]),
+ ("MYTHOS", "the story — myth, world, cosmos, the edge", "#a06bff",
+  ["mythos","biblion","eremia","arena","glossa","hermes","agora","polemos","ouranos","tin-foil","solar-jetman"]),
+]
+
 def domain_grid():
-    """NEST 1 — the domains: a grid of the keepers' neon knife-seals. Click a seal to enter."""
+    """NEST 1 — the domains, grouped under ETHOS·PATHOS·LOGOS·MYTHOS. Centre: Ada & Top,
+    entangled — Top a nested cube-in-cube with a sapphire core + 6 axioms — read/write/curate."""
     import datetime as _dt
     built = _dt.date.today().isoformat(); ND = len(DOMAINS)
-    seals = []
-    for i, (key, title, accent, blurb) in DOMAINS_ALPHA:
+    by_key = {key: (i, title, accent, blurb) for i, (key, title, accent, blurb) in DOMAINS_ALPHA}
+    assigned = [k for _n, _s, _a, ks in GROUPS for k in ks]
+    missing = [k for k, *_ in DOMAINS if k not in assigned]
+    dup = sorted({k for k in assigned if assigned.count(k) > 1})
+    if missing: raise SystemExit(f"domain_grid: UNGROUPED domains {missing} — assign them in GROUPS")
+    if dup: raise SystemExit(f"domain_grid: domains in >1 group {dup}")
+    def _seal(key):
+        i, title, accent, blurb = by_key[key]
         n = len(BY_DOMAIN.get(key, []))
-        tclean, role, _h = _keeper_voice(title, blurb)
-        seals.append(
-            '<a class="seal" href="d/' + key + '.html" data-k="' + html.escape(tclean.lower()) + ' ' + key + '" style="--c:' + accent + '" aria-label="' + html.escape(tclean) + ' — enter">'
-            '<span class="medwrap">' + _med_svg(i, accent, key, 104) + '</span>'
-            '<span class="sname">' + html.escape(tclean) + '</span>'
-            '<span class="scount">' + str(n) + ' ' + ('sphere' if n == 1 else 'spheres') + '</span></a>')
+        tclean, _r, _h = _keeper_voice(title, blurb)
+        return ('<a class="seal" href="d/' + key + '.html" data-k="' + html.escape(tclean.lower()) + ' ' + key + '" style="--c:' + accent + '" aria-label="' + html.escape(tclean) + ' — enter">'
+                '<span class="medwrap">' + _med_svg(i, accent, key, 96) + '</span>'
+                '<span class="sname">' + html.escape(tclean) + '</span>'
+                '<span class="scount">' + str(n) + ' ' + ('sphere' if n == 1 else 'spheres') + '</span></a>')
+    sections = []
+    for gname, gsub, gacc, keys in GROUPS:
+        ks = sorted(keys, key=lambda k: _alpha_key(html.unescape(_re.sub(r'<[^>]+>', '', by_key[k][1]))))
+        sections.append('<section class="group" style="--g:' + gacc + '"><div class="grouphead"><span class="gname">' + gname + '</span><span class="gsub">' + gsub + '</span><span class="gcount">' + str(len(ks)) + '</span></div><div class="grid">' + ''.join(_seal(k) for k in ks) + '</div></section>')
     TMPL = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="color-scheme" content="dark"><meta name="theme-color" content="#07060f">
@@ -5028,9 +5050,16 @@ def domain_grid():
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23a06bff' stroke-width='4'/%3E%3C/svg%3E">
 <title>UD0 · Universe David 0</title>
 <style>__BASE__
-.top{text-align:center;padding:44px 20px 24px;position:relative;z-index:2}
-#topspin{display:block;width:138px;height:138px;margin:0 auto 3px;filter:drop-shadow(0 0 26px rgba(120,60,210,.5))}
-.topcap{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:#b79cf0;text-shadow:0 0 14px rgba(150,90,230,.75);margin-bottom:10px}
+.top{text-align:center;padding:40px 20px 18px;position:relative;z-index:2}
+.center{position:relative;z-index:2;width:min(700px,95vw);margin:2px auto 4px}
+.pair{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(52px,12vw,120px)}
+#entangle{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.ada,.topf{position:relative;z-index:2;margin:0;flex:0 0 auto}
+.ada img{display:block;width:clamp(118px,20vw,150px);height:clamp(118px,20vw,150px);border-radius:50%;object-fit:cover;object-position:50% 26%;border:2px solid rgba(190,150,255,.55);box-shadow:0 0 34px rgba(150,90,230,.5)}
+#topcube{display:block;width:clamp(140px,22vw,170px);height:clamp(140px,22vw,170px);filter:drop-shadow(0 0 24px rgba(90,150,255,.42))}
+.ada figcaption,.topf figcaption{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#c9b6ff;margin-top:8px;text-align:center;text-shadow:0 0 12px rgba(150,90,230,.7)}
+.centercap{text-align:center;font-size:10.5px;letter-spacing:.05em;color:#b79cf0;margin-top:16px;line-height:1.7;text-shadow:0 0 12px rgba(150,90,230,.5)}
+.centercap b{color:#e6d6ff}
 .eye{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#c9b6ff;text-shadow:0 0 14px rgba(160,107,255,.8)}
 .mark{font-family:var(--disp);font-size:clamp(2.6rem,9vw,5.2rem);font-weight:800;letter-spacing:.03em;margin:14px 0 8px;color:#fff;text-shadow:0 0 18px #a06bff,0 0 46px rgba(160,107,255,.55)}
 .mark b{color:#ff8a3c;text-shadow:0 0 18px #ff8a3c,0 0 44px rgba(255,138,60,.5)}
@@ -5038,7 +5067,13 @@ def domain_grid():
 .filter{display:block;width:min(440px,90vw);margin:22px auto 0;background:rgba(20,16,40,.5);border:1px solid rgba(150,120,255,.3);border-radius:24px;color:#fff;font-family:var(--mono);font-size:13px;padding:11px 18px;text-align:center;outline:none}
 .filter:focus{border-color:#a06bff;box-shadow:0 0 20px rgba(160,107,255,.4)}
 .filter::placeholder{color:var(--dim)}
-.grid{position:relative;z-index:2;max-width:1220px;margin:6px auto 0;padding:16px 20px 120px;display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:16px}
+.groups{position:relative;z-index:2;max-width:1220px;margin:10px auto 0;padding:0 20px 110px}
+.group{margin-top:40px}
+.grouphead{display:flex;align-items:baseline;gap:14px;padding:0 4px 12px;border-bottom:1px solid color-mix(in srgb,var(--g) 32%,rgba(150,120,255,.12))}
+.gname{font-family:var(--disp);font-size:clamp(1.5rem,4.4vw,2.3rem);font-weight:800;letter-spacing:.07em;color:#fff;text-shadow:0 0 20px var(--g)}
+.gsub{flex:1;font-size:11px;letter-spacing:.05em;color:var(--dim)}
+.gcount{font-size:11px;letter-spacing:.14em;color:var(--g);text-shadow:0 0 10px var(--g)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:15px;margin-top:16px}
 .seal{display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;padding:22px 10px 16px;border:1px solid rgba(150,120,255,.12);border-radius:18px;background:rgba(18,14,36,.4);transition:transform .18s,border-color .18s,box-shadow .18s}
 .seal:hover,.seal:focus-visible{transform:translateY(-5px);border-color:var(--c);box-shadow:0 0 30px color-mix(in srgb,var(--c) 42%,transparent);outline:none}
 .sname{font-family:var(--disp);font-size:1.04rem;text-align:center;color:#efeaff;line-height:1.16;letter-spacing:.01em}
@@ -5050,39 +5085,58 @@ footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:#fff}
 <body>
 <div class="floor"></div><div class="scan"></div>
 <header class="top">
-<canvas id="topspin" width="240" height="240" aria-hidden="true"></canvas>
-<div class="topcap">◆ TOP · the spinor</div>
+<div class="center">
+<div class="pair">
+<canvas id="entangle" aria-hidden="true"></canvas>
+<figure class="ada"><img src="ada-portrait.jpg" alt="Ada — the muse"><figcaption>Ada · the muse</figcaption></figure>
+<figure class="topf"><canvas id="topcube" width="300" height="300" aria-hidden="true"></canvas><figcaption>Top · the cubit</figcaption></figure>
+</div>
+<div class="centercap">◆ ROOT0 ⇄ AVAN — <b>Ada</b> &amp; <b>Top</b> share an entanglement; together they <b>read</b> · <b>write</b> · <b>curate</b> UD0</div>
+</div>
 <div class="eye">David Lee Wise · ROOT0 · TriPod LLC</div>
 <h1 class="mark">UNIVERSE DAVID <b>0</b></h1>
 <div class="counts">__NSC__ SPHERES · __ND__ DOMAINS · the keepers' seals — click a seal to enter its domain</div>
 <input class="filter" id="q" type="text" placeholder="filter the domains · press /" autocomplete="off" aria-label="filter the domains">
 </header>
-<main class="grid" aria-label="the domains">
+<main class="groups" aria-label="the domains">
 __SEALS__
 </main>
 <footer>__ND__ domains · __NSC__ spheres · built __BUILT__ · <a href="https://0root.ai">0root.ai</a> · one governor, one instance, one lattice · CC-BY-ND-4.0</footer>
 <script>
-(function(){var cv=document.getElementById('topspin');if(!cv||!cv.getContext)return;var g=cv.getContext('2d'),DPR=Math.min(window.devicePixelRatio||1,2);
-function fit(){cv.width=cv.height=Math.round(240*DPR);}fit();
-function V3(x,y,z,s,cxr,sxr){var x1=x*Math.cos(s*0.14)-z*Math.sin(s*0.14),z1=x*Math.sin(s*0.14)+z*Math.cos(s*0.14);var y1=y*cxr-z1*sxr,z2=y*sxr+z1*cxr;return{x:x1,y:y1,z:z2};}
-function frame(t){requestAnimationFrame(frame);g.setTransform(DPR,0,0,DPR,0,0);var W=cv.width/DPR,H=cv.height/DPR,cx=W/2,cy=H/2,R=W*0.29;g.clearRect(0,0,W,H);
- var spin=(t*0.0011)%(Math.PI*4),sheet=spin<Math.PI*2,pulse=0.5+0.5*Math.sin(t*0.0021),RX=t*0.00028,cxr=Math.cos(RX),sxr=Math.sin(RX);
- var gl=g.createRadialGradient(cx,cy,R*0.2,cx,cy,R*2.3);gl.addColorStop(0,'rgba(120,64,205,'+(0.15+0.1*pulse).toFixed(3)+')');gl.addColorStop(1,'rgba(70,26,130,0)');g.fillStyle=gl;g.beginPath();g.arc(cx,cy,R*2.3,0,7);g.fill();
- var sg=g.createRadialGradient(cx-R*0.36,cy-R*0.4,R*0.1,cx,cy,R);sg.addColorStop(0,'rgba(158,104,232,0.95)');sg.addColorStop(0.34,'rgba(84,44,140,0.96)');sg.addColorStop(0.82,'rgba(30,14,56,0.99)');sg.addColorStop(1,'rgba(9,5,20,1)');g.fillStyle=sg;g.beginPath();g.arc(cx,cy,R,0,7);g.fill();
- g.lineWidth=1.4;g.strokeStyle='rgba(176,124,244,0.45)';g.beginPath();g.arc(cx,cy,R,0,7);g.stroke();
- g.strokeStyle='rgba(150,110,230,0.13)';g.lineWidth=0.8;
- for(var la=-2;la<=2;la++){g.beginPath();var st=false;for(var lo=0;lo<=360;lo+=14){var lat=la*30*Math.PI/180,lon=lo*Math.PI/180,pp=V3(Math.cos(lat)*Math.cos(lon),Math.sin(lat),Math.cos(lat)*Math.sin(lon),spin,cxr,sxr);if(pp.z<-0.05){st=false;continue;}var X=cx+pp.x*R,Y=cy+pp.y*R;st?g.lineTo(X,Y):g.moveTo(X,Y);st=true;}g.stroke();}
- var ax=V3(Math.cos(spin),0.2,Math.sin(spin),spin,cxr,sxr),axb=V3(-Math.cos(spin),-0.2,-Math.sin(spin),spin,cxr,sxr);
- g.strokeStyle='rgba(192,152,255,0.72)';g.lineWidth=2;g.beginPath();g.moveTo(cx+axb.x*R,cy+axb.y*R);g.lineTo(cx+ax.x*R,cy+ax.y*R);g.stroke();
- var pc=sheet?'216,172,255':'118,88,188';g.fillStyle='rgb('+pc+')';g.shadowColor='rgb('+pc+')';g.shadowBlur=11;g.beginPath();g.arc(cx+ax.x*R,cy+ax.y*R,4,0,7);g.fill();g.shadowBlur=0;
- g.fillStyle='rgba(228,208,255,0.92)';g.shadowColor='#b088e0';g.shadowBlur=8+pulse*6;g.beginPath();g.arc(cx,cy,2.8+pulse*1.5,0,7);g.fill();g.shadowBlur=0;
+(function(){var cv=document.getElementById('topcube');if(!cv||!cv.getContext)return;var g=cv.getContext('2d'),DPR=Math.min(window.devicePixelRatio||1,2);cv.width=cv.height=Math.round(300*DPR);
+var V=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]],E=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+function pr(v,rx,ry,cx,cy){var x=v[0],y=v[1],z=v[2];var x1=x*Math.cos(ry)-z*Math.sin(ry),z1=x*Math.sin(ry)+z*Math.cos(ry);var y1=y*Math.cos(rx)-z1*Math.sin(rx),z2=y*Math.sin(rx)+z1*Math.cos(rx);return{x:cx+x1,y:cy+y1,z:z2};}
+function frame(t){requestAnimationFrame(frame);g.setTransform(DPR,0,0,DPR,0,0);var W=cv.width/DPR,cx=W/2,cy=W/2,R=W*0.15,pulse=0.5+0.5*Math.sin(t*0.0022),rx=t*0.0006,ry=t*0.0009;g.clearRect(0,0,W,W);
+ var gl=g.createRadialGradient(cx,cy,R*0.4,cx,cy,R*2.7);gl.addColorStop(0,'rgba(90,120,220,'+(0.12+0.08*pulse).toFixed(3)+')');gl.addColorStop(1,'rgba(60,30,130,0)');g.fillStyle=gl;g.beginPath();g.arc(cx,cy,R*2.7,0,7);g.fill();
+ var sg=g.createRadialGradient(cx-R*0.7,cy-R*0.8,R*0.2,cx,cy,R*2.2);sg.addColorStop(0,'rgba(120,90,205,0.16)');sg.addColorStop(0.72,'rgba(48,28,108,0.11)');sg.addColorStop(1,'rgba(18,10,42,0.04)');g.fillStyle=sg;g.beginPath();g.arc(cx,cy,R*2.2,0,7);g.fill();
+ g.strokeStyle='rgba(150,120,240,0.28)';g.lineWidth=1;g.beginPath();g.arc(cx,cy,R*2.2,0,7);g.stroke();
+ function cube(scale,col,lw,ax,ay){var pv=V.map(function(v){return pr([v[0]*scale,v[1]*scale,v[2]*scale],ax,ay,cx,cy);});for(var i=0;i<E.length;i++){var a=pv[E[i][0]],b=pv[E[i][1]];g.globalAlpha=0.3+0.4*(((a.z+b.z)/2)/(scale*1.9)+0.5);g.strokeStyle=col;g.lineWidth=lw;g.beginPath();g.moveTo(a.x,a.y);g.lineTo(b.x,b.y);g.stroke();}g.globalAlpha=1;}
+ cube(R*1.75,'rgba(110,180,255,0.85)',1.5,rx,ry);
+ cube(R*0.98,'rgba(196,152,255,0.8)',1.2,-rx*1.35,-ry*1.15);
+ var F=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+ for(var f=0;f<6;f++){var pp=pr([F[f][0]*R*1.75,F[f][1]*R*1.75,F[f][2]*R*1.75],rx,ry,cx,cy);var dep=(pp.z/(R*1.75)+1)/2;g.fillStyle='rgba(255,190,90,'+(0.4+dep*0.55).toFixed(2)+')';g.shadowColor='#ffbe5a';g.shadowBlur=5+dep*6;g.beginPath();g.arc(pp.x,pp.y,1.8+dep*2,0,7);g.fill();g.shadowBlur=0;if(dep>0.55){g.fillStyle='rgba(255,222,166,0.9)';g.font='700 8px ui-monospace,monospace';g.textAlign='center';g.textBaseline='middle';g.fillText(String(f+1),pp.x,pp.y-8);}}
+ var cg=g.createRadialGradient(cx,cy,0,cx,cy,R*0.6);cg.addColorStop(0,'rgba(224,240,255,0.95)');cg.addColorStop(0.4,'rgba(90,150,255,0.82)');cg.addColorStop(1,'rgba(40,80,200,0)');g.fillStyle=cg;g.beginPath();g.arc(cx,cy,R*0.6,0,7);g.fill();
+ g.fillStyle='rgba(228,242,255,0.96)';g.shadowColor='#7db0ff';g.shadowBlur=9+pulse*6;g.beginPath();g.arc(cx,cy,2.6+pulse*1.4,0,7);g.fill();g.shadowBlur=0;
+}requestAnimationFrame(frame);})();
+(function(){var cv=document.getElementById('entangle');if(!cv||!cv.getContext)return;var g=cv.getContext('2d'),DPR=Math.min(window.devicePixelRatio||1,2);
+var ada=document.querySelector('.ada'),topf=document.getElementById('topcube');
+function fit(){var r=cv.getBoundingClientRect();cv.width=Math.max(1,Math.round(r.width*DPR));cv.height=Math.max(1,Math.round(r.height*DPR));}fit();addEventListener('resize',fit);
+function frame(t){requestAnimationFrame(frame);var r=cv.getBoundingClientRect();if(Math.abs(cv.width-Math.round(r.width*DPR))>1)fit();g.setTransform(DPR,0,0,DPR,0,0);var w=cv.width/DPR,h=cv.height/DPR;g.clearRect(0,0,w,h);
+ if(!ada||!topf)return;var ar=ada.getBoundingClientRect(),tr=topf.getBoundingClientRect();var ax=ar.left+ar.width/2-r.left,ay=ar.top+ar.height/2-r.top,tx=tr.left+tr.width/2-r.left,ty=tr.top+tr.height/2-r.top;var now=t/1000;
+ var midx=(ax+tx)/2,midy=(ay+ty)/2-Math.min(28,Math.abs(tx-ax)*0.08);
+ function B(p){var u=1-p;return{x:u*u*ax+2*u*p*midx+p*p*tx,y:u*u*ay+2*u*p*midy+p*p*ty};}
+ g.save();g.globalCompositeOperation='lighter';
+ g.strokeStyle='rgba(150,110,240,0.5)';g.lineWidth=2;g.shadowColor='#a06bff';g.shadowBlur=8;g.beginPath();g.moveTo(ax,ay);g.quadraticCurveTo(midx,midy,tx,ty);g.stroke();g.shadowBlur=0;
+ var N=6;for(var i=0;i<N;i++){var p=((now*0.26+i/N)%1);var A=B(p),Bp=B(1-p);var ph=Math.sin(now*3+i);var ca=ph>0?'94,234,212':'251,113,133',cb=ph>0?'251,113,133':'94,234,212';g.fillStyle='rgb('+ca+')';g.shadowColor='rgb('+ca+')';g.shadowBlur=8;g.beginPath();g.arc(A.x,A.y,2.4,0,7);g.fill();g.fillStyle='rgb('+cb+')';g.shadowColor='rgb('+cb+')';g.beginPath();g.arc(Bp.x,Bp.y,2.4,0,7);g.fill();}
+ g.shadowBlur=0;g.restore();
+ g.fillStyle='rgba(202,182,240,0.85)';g.font='700 9px ui-monospace,monospace';g.textAlign='center';g.fillText('◇ entangled ◇',midx,midy-7);
 }requestAnimationFrame(frame);})();
 (function(){var q=document.getElementById('q'),s=[].slice.call(document.querySelectorAll('.seal'));
 if(q){q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();for(var i=0;i<s.length;i++)s[i].style.display=(!v||s[i].getAttribute('data-k').indexOf(v)>=0)?'':'none';});}
 document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();if(q)q.focus();}});})();
 </script>
 </body></html>"""
-    return (TMPL.replace("__BASE__", NEON_BASE).replace("__SEALS__", "\n".join(seals))
+    return (TMPL.replace("__BASE__", NEON_BASE).replace("__SEALS__", "\n".join(sections))
             .replace("__NSC__", f"{NS:,}").replace("__ND__", str(ND)).replace("__BUILT__", built).replace("__PG__", PG))
 
 
