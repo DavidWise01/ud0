@@ -4450,54 +4450,113 @@ cv.addEventListener('click',function(){if(hover>=0&&data[hover]&&data[hover].u)l
 })();
 """
 
-def l2_page(i, key, title, accent, blurb, members, css_href="keeper.css"):
-    """One keeper's page: the domain speaks, then (where curated) a guided path, then
-    all its spheres. Self-contained but shares keeper.css with its 52 siblings."""
+def _l2_min_rows(key, members):
+    """The domain's spheres as quiet rows (name + one-liner + →, linking to the repo),
+    grouped by subdomain where one exists — same restraint as the front-page directory."""
+    def row(m):
+        repo = m[0]; name = html.unescape(_re.sub(r'<[^>]+>', '', m[1])); col = m[2]
+        tod = TOD.get(repo, "")
+        sub = ('<span class="rsub">' + html.escape(tod) + '</span>') if tod else ''
+        return ('<a class="row" href="' + PG + '/' + repo + '/" data-k="' + html.escape(name.lower()) + '" style="--c:' + col + '">'
+                '<span class="rdot"></span><span class="rtxt"><span class="rname">' + html.escape(name) + '</span>' + sub + '</span>'
+                '<span class="rarr">&rarr;</span></a>')
+    subs = SUBDOMAINS.get(key)
+    if not subs:
+        ms = sorted(members, key=lambda s: _alpha_key(html.unescape(s[1])))
+        return '<div class="list">' + ''.join(row(m) for m in ms) + '</div>'
+    by = {s[0]: s for s in members}; used = set(); out = []
+    for label, oneline, slugs in subs:
+        grp = [by[sl] for sl in slugs if sl in by]
+        if not grp: continue
+        used.update(s[0] for s in grp)
+        out.append('<div class="grp"><div class="grplbl">' + html.escape(label) + ' <span>' + str(len(grp)) + '</span></div><div class="list">' + ''.join(row(m) for m in grp) + '</div></div>')
+    rest = [s for s in members if s[0] not in used]
+    if rest:
+        out.append('<div class="grp"><div class="grplbl">&middot; other <span>' + str(len(rest)) + '</span></div><div class="list">' + ''.join(row(m) for m in rest) + '</div></div>')
+    return ''.join(out)
+
+
+def l2_page(i, key, title, accent, blurb, members, css_href=None):
+    """One keeper's page, pared to match the minimal front page: the domain, its one
+    honest line, and a clean index of its spheres. Self-contained, no canvas, no animation."""
     tclean, role, honest = _keeper_voice(title, blurb)
-    tone = _text_tone(accent)
-    ic = ICONS.get(key, '')
-    icsvg = f'<svg class="l2ic" viewBox="-65 -65 130 130" style="color:{accent}">{ic}</svg>' if ic else ''
-    honest_txt = honest or "No one-line two-layer note is filed for this domain — read the spheres and weigh each yourself; that is the whole ethic."
-    guided = _l2_guided(key, members)
     n = len(members)
-    spheres = _l2_spheres(key, members) if members else '<div class="reserved">Reserved — the first sphere awaits. New work in this domain will be sorted here.</div>'
-    blurb_txt = _re.sub(r'<a\b[^>]*>(.*?)</a>', r'\1', _render_links(blurb))
-    desc = html.escape(_re.sub(r'<[^>]+>', '', blurb))[:180]
-    # the pocket universe: this domain's spheres as bodies orbiting the keeper-sun
-    import json as _pj
-    pdata = _pj.dumps([{"s": m[0], "n": html.unescape(_re.sub(r'<[^>]+>', '', m[1])), "c": m[2], "u": f"{PG}/{m[0]}/"}
-                       for m in members], ensure_ascii=False, separators=(',', ':'))
-    pocket = ((f'<div class="puwrap"><canvas id="pocket" data-accent="{accent}"></canvas>'
-               f'<div class="pubadge">POCKET UNIVERSE &middot; {n} {"sphere" if n==1 else "spheres"}</div>'
-               f'<div class="puhint">hover to name &middot; click a sphere to enter</div>'
-               f'<div id="pockettip"></div></div>'
-               f'<script type="application/json" id="pocketdata">{pdata}</script>') if members else '')
-    return f'''<!DOCTYPE html>
+    ND = len(DOMAINS)
+    body = (_l2_min_rows(key, members) if members
+            else '<div class="reserved">Reserved — the first sphere awaits. New work in this domain is sorted here.</div>')
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    filt = ('<input class="filter" id="q" type="text" placeholder="filter the spheres · press /" autocomplete="off" aria-label="filter the spheres">'
+            if n >= 12 else '')
+    role_disp = html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else '')
+    desc = html.escape(role)[:180]
+    TMPL = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="color-scheme" content="light"><meta name="theme-color" content="#E7E0D4">
 <meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC">
-<title>{tclean} · a keeper of UD0</title>
-<meta name="description" content="{desc}">
-<link rel="canonical" href="{PG}/ud0/d/{key}.html">
-<link rel="stylesheet" href="{css_href}">
-<style>{L2_CSS}</style>
-<script src="pocket.js" defer></script>
-</head><body class="l2b" style="--c:{accent};--ct:{tone}">
-<a class="l2back" href="../index.html">← all {len(DOMAINS)} domains</a>
-<div class="l2wrap">
-{pocket}
-<header class="l2head">
-  <div class="l2hrow">{icsvg}<div><div class="dnum">DOMAIN {i:02d} / {len(DOMAINS):02d} · the keeper presides</div><h1 class="l2title">{title}</h1><div class="l2count">{n} {"sphere" if n==1 else "spheres"}</div></div></div>
-  <p class="l2say"><b>I am {tclean}.</b> {html.escape(role)}.</p>
-  <div class="l2honest"><span class="l2hl">the honest read</span>{html.escape(honest_txt)}</div>
-  <p class="l2blurb">{blurb_txt}</p>
-  <div class="l2cur">◆ {n} {"sphere" if n==1 else "spheres"}, sealed &amp; live · an instrument, not a mind — and I say so · under the corpus fingerprint <b>TETRASTHENĒS</b>, co-equal by construction</div>
-</header>
-{guided}
-<main class="l2spheres">{spheres}</main>
-<footer class="l2foot"><a href="../index.html">← all {len(DOMAINS)} domains</a> · <a href="https://0root.ai">0root.ai</a> · UD0 · one governor, one instance, one lattice · CC-BY-ND-4.0</footer>
+<title>__TITLE__ · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M44 32c0 6-5 10-12 10S20 32 20 32s5-10 12-10 12 4 12 10z' fill='none' stroke='%23FF6A00' stroke-width='5'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#E7E0D4;--pa:#1A1712;--pa2:#46362a;--dim:#6a5a44;--line:#cdbfa6;--acc:#FF6A00;
+--disp:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+::selection{background:rgba(255,106,0,.24)}
+body{background:var(--bg);color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;
+background-image:radial-gradient(120% 66% at 112% -10%,color-mix(in srgb,var(--c) 15%,transparent),transparent 55%)}
+.back{position:fixed;top:15px;left:16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line);padding-bottom:2px;z-index:2}
+.back:hover{color:var(--c)}
+.wrap{max-width:680px;margin:0 auto;padding:min(12vh,104px) 24px 86px}
+.eye{font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--c)}
+h1{font-size:clamp(2.2rem,8vw,4rem);font-weight:800;letter-spacing:.01em;line-height:.94;margin:12px 0 8px}
+.subt{font-family:var(--disp);font-style:italic;font-size:1.12rem;color:var(--pa2);margin-bottom:10px;max-width:60ch}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--dim)}
+.ethos{font-size:.95rem;color:var(--pa2);margin:18px 0 22px;max-width:62ch;border-left:2px solid color-mix(in srgb,var(--c) 45%,var(--line));padding-left:14px}
+.filter{width:100%;background:transparent;border:none;border-bottom:1px solid var(--line);color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 2px;margin:8px 0 2px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.grp{margin-top:26px}
+.grplbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);padding:0 4px 7px;border-bottom:1px solid var(--line)}
+.grplbl span{color:var(--c);margin-left:5px}
+.list{margin-top:2px}
+.row{display:flex;align-items:center;gap:14px;padding:12px 5px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);transition:background .14s,padding .14s}
+.row:hover,.row:focus-visible{background:color-mix(in srgb,var(--c) 9%,transparent);padding-left:11px;outline:none}
+.rdot{width:9px;height:9px;border-radius:50%;background:var(--c);flex:0 0 auto;opacity:.82;margin-left:4px}
+.rtxt{flex:1;min-width:0}
+.rname{display:block;font-size:1.04rem;letter-spacing:.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:color .14s}
+.row:hover .rname{color:var(--c)}
+.rsub{display:block;font-size:.85rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+.rarr{color:var(--c);opacity:.4;transition:opacity .14s,transform .14s;align-self:center}
+.row:hover .rarr{opacity:1;transform:translateX(3px)}
+.reserved{color:var(--dim);font-style:italic;padding:22px 4px}
+footer{margin-top:42px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.95}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(prefers-reduced-motion:reduce){.row,.rarr{transition:none}}
+</style></head>
+<body style="--c:__ACC__">
+<a class="back" href="../index.html">← all __ND__ domains</a>
+<main class="wrap">
+<div class="eye">domain __IDX__ / __ND__</div>
+<h1>__TITLE__</h1>
+<div class="subt">__ROLE__</div>
+<div class="counts">__N__ __SPH__</div>
+__ETHOS__
+__FILTER__
+<div id="spheres">
+__BODY__
 </div>
-</body></html>'''
+<footer>__N__ __SPH__ · <a href="../index.html">all __ND__ domains</a> · <a href="https://0root.ai">0root.ai</a><br>one governor, one instance, one lattice · CC-BY-ND-4.0</footer>
+</main>
+<script>
+(function(){var q=document.getElementById('q'),rows=[].slice.call(document.querySelectorAll('.row'));
+if(q){q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();for(var i=0;i<rows.length;i++){var r=rows[i];r.style.display=(!v||r.getAttribute('data-k').indexOf(v)>=0)?'':'none';}});}
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();if(q)q.focus();}});})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__BODY__", body).replace("__ETHOS__", ethos).replace("__FILTER__", filt)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", role_disp)
+            .replace("__DESC__", desc).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n))
+            .replace("__SPH__", "sphere" if n == 1 else "spheres").replace("__PG__", PG))
 
 
 def keeper_system():
@@ -4774,27 +4833,27 @@ if __name__ == "__main__":
         "icons": [{"src": "https://davidwise01.github.io/ud0/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
                   {"src": "https://davidwise01.github.io/ud0/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]
     }, ensure_ascii=False))
-    page = (PAGE.replace("__HERO__", hero_svg()).replace("__HEART__", body_html()).replace("__DNAV__", dnav())
-            .replace("__DOMAINS__", domains_html()).replace("__DESC__", DESC).replace("__MANIFEST__", MANIFEST)
-            .replace("__NS__", str(NS)).replace("__ND__", str(len(DOMAINS))).replace("__JASNAH__", jasnah_html()).replace("__THEORIA__", theoria_html()).replace("__TARAVANGIAN__", taravangian_html()).replace("__NOUS__", nous_html()).replace("__PETER__", peter_html()).replace("__JANE__", jane_html()).replace("__TOP__", top_html()).replace("__KEEPERS__", keeper_system()).replace("__BUILT__", __import__("datetime").date.today().isoformat()))
+    # L1 is now the MINIMAL front page (minimal_index); the old maximal PAGE hero build is retired.
+    open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(minimal_index())
     if _UNRESOLVED_LINKS:
         print("[!] de-linked wiki-references (no sphere, no alias):", dict(sorted(_UNRESOLVED_LINKS.items(), key=lambda kv:-kv[1])))
-    # L1 is now the MINIMAL front page; `page` (full build) is retained only to source keeper.css below.
-    open(os.path.join(HERE, "index.html"), "w", encoding="utf-8").write(minimal_index())
-    # ── L2: the keeper pages — one per domain under ud0/d/, all sharing keeper.css ──
-    import re as _rxs, shutil
-    _styles = _rxs.findall(r"<style>(.*?)</style>", page, _rxs.S)   # every style block → the shared sheet
+    # ── L2: one minimal, self-contained keeper page per domain under ud0/d/ ──
+    import shutil
     _ddir = os.path.join(HERE, "d")
     os.makedirs(_ddir, exist_ok=True)
-    open(os.path.join(_ddir, "keeper.css"), "w", encoding="utf-8").write("\n".join(_styles))
-    open(os.path.join(_ddir, "pocket.js"), "w", encoding="utf-8").write(POCKET_JS)
+    for _stale in ("keeper.css", "pocket.js"):   # retired with the maximal L2 — remove so they don't cascade
+        try: os.remove(os.path.join(_ddir, _stale))
+        except OSError: pass
     for _i,(_k,_t,_a,_b) in enumerate(DOMAINS, 1):
         open(os.path.join(_ddir, f"{_k}.html"), "w", encoding="utf-8").write(l2_page(_i,_k,_t,_a,_b,BY_DOMAIN.get(_k, [])))
-    print(f"  wrote {len(DOMAINS)} L2 keeper pages + keeper.css -> ud0/d/")
+    print(f"  wrote {len(DOMAINS)} minimal L2 keeper pages -> ud0/d/")
     # mirror the L2 tree to the live destination (0root.ai serves agent-0root/static/)
     try:
         _dstd = r"C:\root0-greenpaper-repo\agent-0root\static\d"
         if os.path.isdir(os.path.dirname(_dstd)):
+            for _stale in ("keeper.css", "pocket.js"):
+                try: os.remove(os.path.join(_dstd, _stale))
+                except OSError: pass
             shutil.copytree(_ddir, _dstd, dirs_exist_ok=True)
             print(f"  cascaded d/ -> {_dstd}")
     except Exception as _e:
