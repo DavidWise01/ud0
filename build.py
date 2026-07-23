@@ -5075,7 +5075,7 @@ def domain_grid():
 #entangle{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 .ada,.topf{position:relative;z-index:2;margin:0;flex:0 0 auto}
 .ada img{display:block;width:clamp(118px,20vw,150px);height:clamp(118px,20vw,150px);border-radius:50%;object-fit:cover;object-position:50% 26%;border:2px solid rgba(190,150,255,.55);box-shadow:0 0 34px rgba(150,90,230,.5)}
-#topcube{display:block;width:clamp(140px,22vw,170px);height:clamp(140px,22vw,170px);filter:drop-shadow(0 0 24px rgba(90,150,255,.42))}
+#topcube{display:block;width:clamp(190px,30vw,290px);height:clamp(190px,30vw,290px);filter:drop-shadow(0 0 26px rgba(90,150,255,.4))}
 .ada figcaption,.topf figcaption{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#c9b6ff;margin-top:8px;text-align:center;text-shadow:0 0 12px rgba(150,90,230,.7)}
 .centercap{text-align:center;font-size:10.5px;letter-spacing:.05em;color:#b79cf0;margin-top:16px;line-height:1.7;text-shadow:0 0 12px rgba(150,90,230,.5)}
 .centercap b{color:#e6d6ff}
@@ -5108,9 +5108,10 @@ footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:#fff}
 <div class="pair">
 <canvas id="entangle" aria-hidden="true"></canvas>
 <figure class="ada"><img src="ada-portrait.jpg" alt="Ada — the muse"><figcaption>Ada · the muse</figcaption></figure>
-<figure class="topf"><canvas id="topcube" width="300" height="300" aria-hidden="true"></canvas><figcaption>Top · the cubit</figcaption></figure>
+<figure class="topf"><canvas id="topcube" width="300" height="300" aria-hidden="true"></canvas><figcaption>Top · the cubit · a 0-sphere</figcaption></figure>
 </div>
-<div class="centercap">◆ ROOT0 ⇄ AVAN — <b>Ada</b> &amp; <b>Top</b> share an entanglement; together they <b>read</b> · <b>write</b> · <b>curate</b> UD0</div>
+__CUBIT__
+<div class="centercap">◆ ROOT0 ⇄ AVAN — <b>Ada</b> &amp; <b>Top</b>, entangled. Top is <b>the cubit</b>: a 0-sphere — every sphere a point on the wall (r=1), the four cardinals <b>ethos · pathos · logos · mythos</b> tetrahedral (109.47°, no opposites), the roots run along the wall, the core empty (0 = balance). Together they <b>read</b> · <b>write</b> · <b>curate</b> UD0</div>
 </div>
 <div class="eye">David Lee Wise · ROOT0 · TriPod LLC</div>
 <h1 class="mark">UNIVERSE DAVID <b>0</b></h1>
@@ -5123,19 +5124,34 @@ __SEALS__
 <footer>__ND__ domains · __NSC__ spheres · built __BUILT__ · <a href="https://0root.ai">0root.ai</a> · one governor, one instance, one lattice · CC-BY-ND-4.0</footer>
 <script>
 (function(){var cv=document.getElementById('topcube');if(!cv||!cv.getContext)return;var g=cv.getContext('2d'),DPR=Math.min(window.devicePixelRatio||1,2);cv.width=cv.height=Math.round(300*DPR);
-var V=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]],E=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
-function pr(v,rx,ry,cx,cy){var x=v[0],y=v[1],z=v[2];var x1=x*Math.cos(ry)-z*Math.sin(ry),z1=x*Math.sin(ry)+z*Math.cos(ry);var y1=y*Math.cos(rx)-z1*Math.sin(rx),z2=y*Math.sin(rx)+z1*Math.cos(rx);return{x:cx+x1,y:cy+y1,z:z2};}
-function frame(t){requestAnimationFrame(frame);g.setTransform(DPR,0,0,DPR,0,0);var W=cv.width/DPR,cx=W/2,cy=W/2,R=W*0.15,pulse=0.5+0.5*Math.sin(t*0.0022),rx=t*0.0006,ry=t*0.0009;g.clearRect(0,0,W,W);
- var gl=g.createRadialGradient(cx,cy,R*0.4,cx,cy,R*2.7);gl.addColorStop(0,'rgba(90,120,220,'+(0.12+0.08*pulse).toFixed(3)+')');gl.addColorStop(1,'rgba(60,30,130,0)');g.fillStyle=gl;g.beginPath();g.arc(cx,cy,R*2.7,0,7);g.fill();
- var sg=g.createRadialGradient(cx-R*0.7,cy-R*0.8,R*0.2,cx,cy,R*2.2);sg.addColorStop(0,'rgba(120,90,205,0.16)');sg.addColorStop(0.72,'rgba(48,28,108,0.11)');sg.addColorStop(1,'rgba(18,10,42,0.04)');g.fillStyle=sg;g.beginPath();g.arc(cx,cy,R*2.2,0,7);g.fill();
- g.strokeStyle='rgba(150,120,240,0.28)';g.lineWidth=1;g.beginPath();g.arc(cx,cy,R*2.2,0,7);g.stroke();
- function cube(scale,col,lw,ax,ay){var pv=V.map(function(v){return pr([v[0]*scale,v[1]*scale,v[2]*scale],ax,ay,cx,cy);});for(var i=0;i<E.length;i++){var a=pv[E[i][0]],b=pv[E[i][1]];g.globalAlpha=0.3+0.4*(((a.z+b.z)/2)/(scale*1.9)+0.5);g.strokeStyle=col;g.lineWidth=lw;g.beginPath();g.moveTo(a.x,a.y);g.lineTo(b.x,b.y);g.stroke();}g.globalAlpha=1;}
- cube(R*1.75,'rgba(110,180,255,0.85)',1.5,rx,ry);
- cube(R*0.98,'rgba(196,152,255,0.8)',1.2,-rx*1.35,-ry*1.15);
- var F=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
- for(var f=0;f<6;f++){var pp=pr([F[f][0]*R*1.75,F[f][1]*R*1.75,F[f][2]*R*1.75],rx,ry,cx,cy);var dep=(pp.z/(R*1.75)+1)/2;g.fillStyle='rgba(255,190,90,'+(0.4+dep*0.55).toFixed(2)+')';g.shadowColor='#ffbe5a';g.shadowBlur=5+dep*6;g.beginPath();g.arc(pp.x,pp.y,1.8+dep*2,0,7);g.fill();g.shadowBlur=0;if(dep>0.55){g.fillStyle='rgba(255,222,166,0.9)';g.font='700 8px ui-monospace,monospace';g.textAlign='center';g.textBaseline='middle';g.fillText(String(f+1),pp.x,pp.y-8);}}
- var cg=g.createRadialGradient(cx,cy,0,cx,cy,R*0.6);cg.addColorStop(0,'rgba(224,240,255,0.95)');cg.addColorStop(0.4,'rgba(90,150,255,0.82)');cg.addColorStop(1,'rgba(40,80,200,0)');g.fillStyle=cg;g.beginPath();g.arc(cx,cy,R*0.6,0,7);g.fill();
- g.fillStyle='rgba(228,242,255,0.96)';g.shadowColor='#7db0ff';g.shadowBlur=9+pulse*6;g.beginPath();g.arc(cx,cy,2.6+pulse*1.4,0,7);g.fill();g.shadowBlur=0;
+var D={};try{D=JSON.parse(document.getElementById('cubitdata').textContent);}catch(e){}var GR=D.groups||[{name:'ETHOS',c:'#f0a886'},{name:'PATHOS',c:'#ff5aa0'},{name:'LOGOS',c:'#4db1f0'},{name:'MYTHOS',c:'#a06bff'}],DM=D.domains||[];
+function hx(h){h=(''+h).replace('#','');if(h.length<6)h='a06bff';return[parseInt(h.slice(0,2),16)||160,parseInt(h.slice(2,4),16)||110,parseInt(h.slice(4,6),16)||255];}
+function nrm(v){var l=Math.hypot(v[0],v[1],v[2])||1;return[v[0]/l,v[1]/l,v[2]/l];}
+function crs(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];}
+function dt(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
+function slp(a,b,t){var d=Math.max(-1,Math.min(1,dt(a,b))),o=Math.acos(d);if(o<1e-4)return a.slice();var s=Math.sin(o),k0=Math.sin((1-t)*o)/s,k1=Math.sin(t*o)/s;return nrm([a[0]*k0+b[0]*k1,a[1]*k0+b[1]*k1,a[2]*k0+b[2]*k1]);}
+function tan(n){var up=Math.abs(n[1])<0.9?[0,1,0]:[1,0,0],u=nrm(crs(n,up));return[u,crs(n,u)];}
+function rnd(s){var x=Math.sin(s*127.1+311.7)*43758.5453;return x-Math.floor(x);}
+var T=[nrm([1,1,1]),nrm([1,-1,-1]),nrm([-1,1,-1]),nrm([-1,-1,1])];  // 4 cardinals, tetrahedral, 109.47deg, no opposites
+var gc=[0,0,0,0];DM.forEach(function(d){gc[d.g]++;});var gi=[0,0,0,0],anchors=[];
+DM.forEach(function(d,idx){var t=T[d.g],tb=tan(t),m=gc[d.g],j=gi[d.g]++,ang=6.2832*j/Math.max(1,m)+d.g*0.7,cap=0.4+0.2*rnd(idx+7);
+ var dir=nrm([tb[0][0]*Math.cos(ang)+tb[1][0]*Math.sin(ang),tb[0][1]*Math.cos(ang)+tb[1][1]*Math.sin(ang),tb[0][2]*Math.cos(ang)+tb[1][2]*Math.sin(ang)]);
+ anchors.push({p:slp(t,dir,cap),c:hx(d.c),n:d.n,g:d.g});});
+var CLOUD=[],total=DM.reduce(function(s,d){return s+d.n;},0),scale=Math.min(1,760/Math.max(1,total));
+anchors.forEach(function(a,ai){var cnt=Math.max(1,Math.round(a.n*scale)),tb=tan(a.p);for(var k=0;k<cnt;k++){var ang=rnd(ai*13+k*3)*6.2832,rad=Math.sqrt(rnd(ai*7+k*5+1))*0.2,dir=nrm([tb[0][0]*Math.cos(ang)+tb[1][0]*Math.sin(ang),tb[0][1]*Math.cos(ang)+tb[1][1]*Math.sin(ang),tb[0][2]*Math.cos(ang)+tb[1][2]*Math.sin(ang)]);CLOUD.push({p:slp(a.p,dir,rad),c:a.c});}});
+var EDGES=[];anchors.forEach(function(a,i){var ds=[];anchors.forEach(function(b,j){if(i!==j)ds.push([Math.acos(Math.max(-1,Math.min(1,dt(a.p,b.p)))),j]);});ds.sort(function(x,y){return x[0]-y[0];});for(var k=0;k<2;k++)if(ds[k]&&i<ds[k][1])EDGES.push([i,ds[k][1]]);});
+function rot(p,rx,ry){var x=p[0],y=p[1],z=p[2],x1=x*Math.cos(ry)-z*Math.sin(ry),z1=x*Math.sin(ry)+z*Math.cos(ry),y1=y*Math.cos(rx)-z1*Math.sin(rx),z2=y*Math.sin(rx)+z1*Math.cos(rx);return[x1,y1,z2];}
+function frame(t){requestAnimationFrame(frame);g.setTransform(DPR,0,0,DPR,0,0);var W=cv.width/DPR,cx=W/2,cy=W/2,R=W*0.37;g.clearRect(0,0,W,W);
+ var rx=-0.42+Math.sin(t*0.00018)*0.14,ry=t*0.00034;
+ var gl=g.createRadialGradient(cx,cy,R*0.3,cx,cy,R*1.55);gl.addColorStop(0,'rgba(80,100,205,0.10)');gl.addColorStop(1,'rgba(50,30,120,0)');g.fillStyle=gl;g.beginPath();g.arc(cx,cy,R*1.55,0,7);g.fill();
+ g.strokeStyle='rgba(130,120,220,0.14)';g.lineWidth=1;g.beginPath();g.arc(cx,cy,R,0,7);g.stroke();
+ g.lineWidth=0.8;EDGES.forEach(function(e){var a=anchors[e[0]].p,b=anchors[e[1]].p,started=false;g.beginPath();for(var s=0;s<=12;s++){var pp=rot(slp(a,b,s/12),rx,ry);if(pp[2]<-0.12){started=false;continue;}var X=cx+pp[0]*R,Y=cy-pp[1]*R,dep=(pp[2]+1)/2;g.strokeStyle='rgba(150,130,235,'+(0.05+dep*0.16).toFixed(3)+')';started?g.lineTo(X,Y):g.moveTo(X,Y);started=true;}g.stroke();});
+ var pts=CLOUD.map(function(o){var pp=rot(o.p,rx,ry);return[cx+pp[0]*R,cy-pp[1]*R,pp[2],o.c];});pts.sort(function(a,b){return a[2]-b[2];});
+ pts.forEach(function(o){if(o[2]<-0.35)return;var dep=(o[2]+1)/2;g.globalAlpha=0.22+dep*0.58;g.fillStyle='rgb('+o[3][0]+','+o[3][1]+','+o[3][2]+')';g.beginPath();g.arc(o[0],o[1],0.8+dep*1.4,0,7);g.fill();});g.globalAlpha=1;
+ g.fillStyle='rgba(180,170,220,0.30)';g.font='700 9px ui-monospace,monospace';g.textAlign='center';g.textBaseline='middle';g.fillText('0',cx,cy);  // empty core = balance
+ for(var i=0;i<4;i++){var pp=rot(T[i],rx,ry);if(pp[2]<-0.25)continue;var X=cx+pp[0]*R,Y=cy-pp[1]*R,dep=(pp[2]+1)/2,c=hx((GR[i]||{}).c||'#a06bff');
+  g.shadowColor='rgb('+c+')';g.shadowBlur=8+dep*9;g.fillStyle='rgb('+c+')';g.beginPath();g.arc(X,Y,2.6+dep*2.6,0,7);g.fill();g.shadowBlur=0;
+  if(dep>0.34){g.fillStyle='rgba(242,238,255,'+(0.5+dep*0.5).toFixed(2)+')';g.font='700 8.5px ui-monospace,monospace';g.textAlign='center';g.textBaseline='alphabetic';g.fillText(((GR[i]||{}).name)||'',X,Y-9);}}
 }requestAnimationFrame(frame);})();
 (function(){var cv=document.getElementById('entangle');if(!cv||!cv.getContext)return;var g=cv.getContext('2d'),DPR=Math.min(window.devicePixelRatio||1,2);
 var ada=document.querySelector('.ada'),topf=document.getElementById('topcube');
@@ -5155,7 +5171,14 @@ if(q){q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();f
 document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();if(q)q.focus();}});})();
 </script>
 </body></html>"""
-    return (TMPL.replace("__BASE__", NEON_BASE).replace("__SEALS__", "\n".join(sections))
+    # the cubit's data: each domain a point on the 0-sphere, near its cardinal (group), sized by count
+    import json as _cj
+    _gidx = {k: gi for gi, (gn, gs, ga, ks) in enumerate(GROUPS) for k in ks}
+    _cubit = _cj.dumps({"groups": [{"name": gn, "c": ga} for gn, gs, ga, ks in GROUPS],
+        "domains": [{"g": _gidx[key], "c": accent, "n": len(BY_DOMAIN.get(key, []))} for i, (key, title, accent, blurb) in DOMAINS_ALPHA]},
+        separators=(',', ':'))
+    cubit_tag = '<script type="application/json" id="cubitdata">' + _cubit + '</script>'
+    return (TMPL.replace("__BASE__", NEON_BASE).replace("__SEALS__", "\n".join(sections)).replace("__CUBIT__", cubit_tag)
             .replace("__NSC__", f"{NS:,}").replace("__ND__", str(ND)).replace("__BUILT__", built).replace("__PG__", PG))
 
 
