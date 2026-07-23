@@ -5059,9 +5059,68 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__NSC__", f"{NS:,}").replace("__ND__", str(ND)).replace("__BUILT__", built).replace("__PG__", PG))
 
 
+# Each keeper's REGISTER is its own kind of record — themed to the domain (name · verb · empty · glyph). No sames.
+REGISTERS = {
+ "ai": ("THE FORWARD PASS", "run", "no tokens have crossed yet.", "▷"),
+ "first-author": ("THE BYLINE", "sign", "no hand has signed yet.", "✍"),
+ "attraction": ("THE ATTENTION ROLL", "pull", "nothing has drawn the gaze yet.", "◉"),
+ "prosoche": ("THE FOCUS LOG", "attend", "nothing attended to yet.", "⊙"),
+ "legal": ("THE STATUTE ROLL", "enter", "nothing entered into the record yet.", "§"),
+ "educational": ("THE ENROLLMENT", "enroll", "no one enrolled yet.", "✎"),
+ "entertainment": ("THE GUEST LIST", "add", "the list is empty — get on it.", "★"),
+ "occupational": ("THE TIME-CARD", "clock in", "no one clocked in yet.", "◷"),
+ "scientific": ("THE LAB NOTEBOOK", "log", "no observation logged yet.", "⌕"),
+ "hobby": ("THE HIGH-SCORE TABLE", "enter", "no initials on the board yet.", "▚"),
+ "life-science": ("THE CULTURE PLATE", "inoculate", "the plate is sterile.", "❋"),
+ "frontier": ("THE MEASUREMENT LOG", "collapse", "no state collapsed yet.", "⟢"),
+ "logismos": ("THE PUNCH-CARD STACK", "punch in", "the stack is empty.", "▤"),
+ "tin-foil": ("THE FIELD REPORT", "file", "no sighting filed yet.", "✵"),
+ "eremia": ("THE SOLITARY ROLL", "mark", "no presence marked yet.", "◍"),
+ "music": ("THE LINER NOTES", "add", "no name in the credits yet.", "♪"),
+ "metaxy": ("THE THRESHOLD LOG", "cross", "no one crossed the threshold yet.", "⟠"),
+ "momus": ("THE COMPLAINT BOOK", "lodge", "no complaint lodged yet.", "✗"),
+ "niphelektron": ("THE SNOWFALL COUNT", "let fall", "no flake has fallen yet.", "❄"),
+ "mythos": ("THE BOOK OF NAMES", "inscribe", "no name inscribed yet.", "✶"),
+ "biblion": ("THE LIBRARY CARD", "check in", "no one checked in yet.", "▦"),
+ "glossa": ("THE TONGUE ROLL", "speak", "no word left yet.", "◈"),
+ "ouranos": ("THE STAR REGISTER", "name a star", "no star named yet.", "✦"),
+ "exereunesis": ("THE TEARDOWN LOG", "sign the bench", "the bench is clean.", "⌖"),
+ "agora": ("THE LEDGER OF ACCOUNTS", "record", "no trade recorded yet.", "◇"),
+ "polemos": ("THE MUSTER ROLL", "muster in", "no one mustered yet.", "✕"),
+ "techne": ("THE ARTIST SIGNATURE", "sign the canvas", "the canvas is blank.", "✧"),
+ "idios": ("THE REMAINDER", "leave", "nothing left over yet.", "∎"),
+ "heurema": ("THE PATENT ROLL", "file", "no invention filed yet.", "⌬"),
+ "gurutva": ("THE MASS REGISTER", "add weight", "no weight added yet.", "●"),
+ "psephos": ("THE TALLY OF PEBBLES", "cast a pebble", "no pebble cast yet.", "⬡"),
+ "logike": ("THE PROOF LEDGER", "assert", "nothing asserted yet.", "∴"),
+ "lesbos": ("THE SAPPHIC FRAGMENTS", "add a verse", "no verse added yet.", "⟡"),
+ "hermes": ("THE DISPATCH LOG", "send word", "no dispatch sent yet.", "▶"),
+ "aci": ("THE MAKER MARK", "leave your mark", "no mark left yet.", "◈"),
+ "eskimo": ("THE BROTHERHOOD ROLL", "claim kinship", "no kin claimed yet.", "⋔"),
+ "atelier": ("THE WORKSHOP LOG", "sign the bench", "the bench is empty.", "◎"),
+ "arena": ("THE COMBATANT ROLL", "enter the arena", "no combatant entered yet.", "▲"),
+ "lillith": ("THE DOCKET", "enter a plea", "no plea entered yet.", "§"),
+ "solar-jetman": ("THE FLIGHT LOG", "log the crossing", "no crossing logged yet.", "▷"),
+ "transcriber": ("THE TRANSCRIPT", "add a line", "no line transcribed yet.", "✎"),
+ "foundation": ("THE CORNERSTONE", "lay a stone", "no stone laid yet.", "⬢"),
+ "the-source": ("THE WELLSPRING", "draw", "nothing drawn yet.", "◍"),
+ "dyas": ("THE TWINNED ROLL", "sign both", "neither column signed yet.", "⧉"),
+ "banana": ("THE BUNCH", "add to the bunch", "the bunch is empty.", "◗"),
+ "phantasia": ("THE PLATE ARCHIVE", "expose a frame", "no frame exposed yet.", "◫"),
+ "scanner-darkly": ("THE SCANNER LOG", "pass under", "nothing scanned yet.", "▨"),
+ "aisthesis": ("THE SENSE REGISTER", "record a sensation", "no sensation recorded yet.", "◉"),
+ "poietike": ("THE STORY SPINE", "add a beat", "no beat added yet.", "❡"),
+ "skynet": ("THE ACTIVATION LOG", "self-declare", "nothing declared yet.", "◎"),
+ "phonos": ("THE RESONANCE LOG", "add a frequency", "silence — no frequency yet.", "♫"),
+ "krasis": ("THE BLEND", "temper in", "nothing tempered in yet.", "⧖"),
+ "strobilos": ("THE SPIN LOG", "add a revolution", "no revolution logged yet.", "⟳"),
+}
+
 def keeper_page(i, key, title, accent, blurb, members):
     """NEST 2 — the keeper's domain: seal + introduction + ledger + register. Neon, per-domain
-    accent, procedurally varied (no two the same). Ledger entries → nest 3 (the code)."""
+    accent, procedurally varied (no two the same). Each register is themed to the domain.
+    Ledger entries → nest 3 (the code)."""
+    rname, ract, rempty, rglyph = REGISTERS.get(key, ("THE REGISTER", "sign", "no witnesses yet — sign the register.", "✎"))
     tclean, role, honest = _keeper_voice(title, blurb)
     n = len(members); ND = len(DOMAINS)
     var = "v" + str(sum(ord(c) for c in key) % 3)     # per-domain layout variant — no sames
@@ -5136,7 +5195,7 @@ footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:var(--c)}
 <main class="page">
 <section><h2 class="sec">◆ introduction</h2><p class="say"><b>I am __TITLE__.</b> __ROLE__</p>__HONEST__</section>
 <section><h2 class="sec">▤ the ledger · __N__ __SPH__ → the code</h2>__FILTER__<div id="ledger">__LEDGER__</div></section>
-<section class="register"><h2 class="sec">✎ the register</h2><div class="rlist" id="rlist"></div><div class="rrowin"><input id="rin" type="text" maxlength="40" placeholder="sign — your name, or a domain" autocomplete="off"><button id="rbtn" type="button">sign ◆</button></div><div class="rmsg" id="rmsg"></div><div class="rnote">one signature per name · append-only · a visitor or another domain may witness · kept in this browser</div></section>
+<section class="register"><h2 class="sec">__RGLYPH__ __RNAME__</h2><div class="rlist" id="rlist"></div><div class="rrowin"><input id="rin" type="text" maxlength="40" placeholder="__RACT__ — your name, or a domain" autocomplete="off"><button id="rbtn" type="button">__RACT__ ◆</button></div><div class="rmsg" id="rmsg"></div><div class="rnote">one mark per name · append-only · a visitor or another domain may witness · kept in this browser</div></section>
 <footer>domain __IDX__ / __ND__ · __N__ __SPH__ · <a href="../index.html">◄ all the seals</a> · <a href="https://0root.ai">0root.ai</a> · CC-BY-ND-4.0</footer>
 </main>
 <script>
@@ -5144,7 +5203,7 @@ footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:var(--c)}
 var K="ud0reg:__KEY__",inp=document.getElementById('rin'),btn=document.getElementById('rbtn'),msg=document.getElementById('rmsg'),list=document.getElementById('rlist');
 function esc(s){var e=document.createElement('div');e.textContent=s;return e.innerHTML;}
 function load(){try{return JSON.parse(localStorage.getItem(K)||"[]");}catch(e){return[];}}
-function render(){var a=load();if(!a.length){list.innerHTML='<div class="rempty">no witnesses yet — sign the register.</div>';return;}var h="";for(var i=0;i<a.length;i++)h+='<div class="rrow"><span class="rseq">'+('00'+(i+1)).slice(-3)+'</span><span class="rwho">'+esc(a[i])+'</span></div>';list.innerHTML=h;list.scrollTop=list.scrollHeight;}
+function render(){var a=load();if(!a.length){list.innerHTML='<div class="rempty">__REMPTY__</div>';return;}var h="";for(var i=0;i<a.length;i++)h+='<div class="rrow"><span class="rseq">'+('00'+(i+1)).slice(-3)+'</span><span class="rwho">'+esc(a[i])+'</span></div>';list.innerHTML=h;list.scrollTop=list.scrollHeight;}
 function sign(){var v=(inp.value||"").trim();if(!v){msg.textContent="type a name first.";return;}if(v.length>40)v=v.slice(0,40);var a=load(),nl=v.toLowerCase();for(var i=0;i<a.length;i++)if((''+a[i]).toLowerCase()===nl){msg.textContent='\\u201c'+v+'\\u201d already signed \\u2014 one signature per name.';return;}a.push(v);try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}inp.value="";msg.textContent='signed \\u2014 witness #'+a.length;render();}
 if(btn)btn.onclick=sign;if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();sign();}});render();
 var q=document.getElementById('q');if(q){var leds=[].slice.call(document.querySelectorAll('.led'));q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();for(var i=0;i<leds.length;i++)leds[i].style.display=(!v||leds[i].getAttribute('data-k').indexOf(v)>=0)?'':'none';});document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}});}
@@ -5155,7 +5214,8 @@ var q=document.getElementById('q');if(q){var leds=[].slice.call(document.querySe
             .replace("__HONEST__", honest_html).replace("__FILTER__", filt).replace("__ROLE__", role_disp)
             .replace("__TITLE__", html.escape(tclean)).replace("__DESC__", desc).replace("__KEY__", key)
             .replace("__ACC__", accent).replace("__VAR__", var).replace("__IDX__", "%02d" % i)
-            .replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__SPH__", "sphere" if n == 1 else "spheres").replace("__PG__", PG))
+            .replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__SPH__", "sphere" if n == 1 else "spheres").replace("__PG__", PG)
+            .replace("__RGLYPH__", rglyph).replace("__RNAME__", rname).replace("__RACT__", ract).replace("__REMPTY__", rempty))
 
 
 if __name__ == "__main__":
