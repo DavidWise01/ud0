@@ -8383,6 +8383,173 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_attraction(i, key, title, accent, blurb, members):
+    """THE RULES OF ATTRACTION · attention-head domain — a bespoke keeper page (AVAN + TOP + the keeper,
+    OG 未解 mikai). AN ATTENTION HEAD MAP: the spheres are HEADS, each a query×key attention heatmap
+    (causal) rendering a distinct canonical signature (diagonal / previous-token / BOS / induction /
+    broad / recency / skip / name-mover / duplicate / positional); a query cursor sweeps the sequence in
+    sync across every head so you watch each light its characteristic keys. Green on teal-dark, not black.
+    Honest: the patterns are ILLUSTRATIVE archetypes of attention heads, not weights measured from a live
+    model — the domain catalogs the head TYPES; each tile shows a signature, each is a real sphere."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0c1a14">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · ATTENTION HEADS · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='10' y='10' width='44' height='44' rx='2' fill='none' stroke='%232ce68f' stroke-width='2'/%3E%3Crect x='14' y='14' width='9' height='9' fill='%232ce68f'/%3E%3Crect x='27' y='27' width='9' height='9' fill='%232ce68f' opacity='.7'/%3E%3Crect x='40' y='40' width='9' height='9' fill='%232ce68f' opacity='.4'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0c1a14;--pa:#e6f7ee;--pa2:#b6dcc8;--dim:#6f9a84;--line:rgba(44,230,143,.2);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(44,230,143,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(44,230,143,.12),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(90,220,180,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(12,26,20,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#7ff0be}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(44,230,143,.45)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#7ff0be}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.ahwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 30%,#12261d,#0a1610);box-shadow:0 18px 60px -20px rgba(44,230,143,.4)}
+#heads{display:block;width:100%;height:min(66vh,640px)}
+.ahbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(10,18,12,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.ahstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7ff0be;background:rgba(10,18,12,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ahhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#ahtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(10,18,12,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(12,26,20,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(44,230,143,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; RULES OF ATTRACTION &middot; <b>the attention heads</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> heads &middot; each a query&times;key signature &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="ahwrap">
+    <canvas id="heads"></canvas>
+    <div class="ahbadge">&#9638; ATTENTION HEAD MAP &middot; a query cursor sweeps every head</div>
+    <div class="ahstat" id="ahstat">HEADS &middot; &mdash;</div>
+    <div class="ahhint">hover a head &middot; click to enter its sphere</div>
+    <div id="ahtip"></div>
+  </div>
+  <div class="synhead"><h2>&#9638; the heads</h2><span class="sc">every head, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the heads · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ heads, one map &middot; THE RULES OF ATTRACTION &mdash; the attention-head domain: each head a query&times;key signature over the sequence &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the patterns are illustrative archetypes of attention heads, not weights from a live model &middot; each tile is a real sphere &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="headsdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('heads');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('headsdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var GN=hx(D.c||'#2ce68f'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var SEQ=9;
+// canonical illustrative attention signatures (causal: k<=q)
+function pat(type,q,k){if(k>q)return 0;
+  switch(type%10){
+    case 0:return k===q?1:0;                                   // current-token / diagonal
+    case 1:return k===q-1?1:(k===q?0.12:0);                    // previous-token
+    case 2:return k===0?1:(k===q?0.18:0);                      // BOS / first-token
+    case 3:return k===q-3?0.95:(k===0?0.22:0);                 // induction (offset stripe)
+    case 4:return 1/(q+1);                                     // broad / uniform-causal
+    case 5:return Math.exp(-(q-k)*0.85);                       // recency decay
+    case 6:return k===q-2?0.9:(k===q?0.1:0);                   // skip-2 / positional
+    case 7:return k===1?0.85:(k===q?0.2:0);                    // name-mover (fixed col)
+    case 8:return (k===q||k===Math.max(0,q-4))?0.7:0;          // duplicate-token
+    default:return (SEQ-1-k>=0)?((k+1)/(q+1))*0.9:0;           // positional ramp
+  }}
+var HD=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#2ce68f'),type:i%10,x:0,y:0,w:0,h:0};});
+var cols=Math.min(5,Math.ceil(Math.sqrt(N*1.3))),hrows=Math.ceil(N/cols);
+var mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=HD[hover].u;});
+var tip=document.getElementById('ahtip'),stat=document.getElementById('ahstat');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.05,pady=H*0.09,gw=(W-padx*2)/cols,gh=(H-pady*2)/hrows;
+  var tw=gw*0.82,th=Math.min(gh*0.74,tw);
+  var qf=(tt*1.1)%SEQ,qcur=Math.floor(qf);
+  for(var i=0;i<N;i++){var hd=HD[i];var c=i%cols,r=(i/cols)|0;hd.x=padx+c*gw+(gw-tw)/2;hd.y=pady+r*gh+(gh-th)/2-6;hd.w=tw;hd.h=th;}
+  // hover pick
+  hover=-1;
+  for(i=0;i<N;i++){var hd=HD[i];if(mx>=hd.x&&mx<=hd.x+hd.w&&my>=hd.y&&my<=hd.y+hd.h)hover=i;}
+  var cs=th/SEQ;
+  for(i=0;i<N;i++){var hd=HD[i],hit=(hover===i),col=hd.col;
+    // tile bg
+    g.fillStyle='rgba(10,20,14,0.8)';g.fillRect(hd.x-2,hd.y-2,hd.w+4,hd.h+4);
+    // matrix cells
+    for(var q=0;q<SEQ;q++)for(var k=0;k<=q;k++){var w=pat(hd.type,q,k);if(w<0.02)continue;
+      var act=(q===qcur);var b=w*(act?1:0.42);
+      g.fillStyle='rgba('+GN[0]+','+GN[1]+','+GN[2]+','+Math.min(0.95,b)+')';
+      g.fillRect(hd.x+k*cs+0.5,hd.y+q*cs+0.5,cs-1,cs-1);}
+    // active query row highlight
+    g.strokeStyle='rgba(200,255,225,0.5)';g.lineWidth=1;g.strokeRect(hd.x,hd.y+qcur*cs+0.5,hd.w,cs);
+    // query marker (diagonal cursor)
+    g.fillStyle='rgba(255,255,255,0.85)';g.fillRect(hd.x+qcur*cs+cs*0.3,hd.y+qcur*cs+cs*0.3,cs*0.4,cs*0.4);
+    // frame + head dot
+    g.strokeStyle=hit?'rgba(200,255,225,0.95)':'rgba('+col[0]+','+col[1]+','+col[2]+',0.5)';g.lineWidth=hit?1.8:1;g.strokeRect(hd.x,hd.y,hd.w,hd.h);
+    g.fillStyle='rgb('+col[0]+','+col[1]+','+col[2]+')';g.beginPath();g.arc(hd.x+5,hd.y-6,3,0,6.283);g.fill();
+    if(hit){var gl=g.createRadialGradient(hd.x+hd.w/2,hd.y+hd.h/2,0,hd.x+hd.w/2,hd.y+hd.h/2,hd.w*0.7);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+',0.12)');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.fillRect(hd.x-6,hd.y-6,hd.w+12,hd.h+12);}}
+  // axis hint under first tile
+  g.fillStyle='rgba('+GN[0]+','+GN[1]+','+GN[2]+',0.4)';g.font='9px ui-monospace,Menlo,Consolas,monospace';g.textAlign='left';
+  g.fillText('query ↓  key →  (causal)',padx,H-pady*0.5+6);
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){if(hover>=0)stat.textContent='HEAD · '+HD[hover].n;else stat.textContent='ATTENTION HEADS · q='+(qcur+1)+'/'+SEQ+' · '+N+' signatures';}
+  if(tip){if(hover>=0){tip.textContent=HD[hover].n;tip.style.left=(HD[hover].x+HD[hover].w/2)+'px';tip.style.top=(HD[hover].y-4)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
@@ -8391,7 +8558,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "phantasia": l2_page_phantasia, "prosoche": l2_page_prosoche, "poietike": l2_page_poietike,
              "banana": l2_page_banana, "tin-foil": l2_page_tinfoil, "occupational": l2_page_occupational,
              "heurema": l2_page_heurema, "dyas": l2_page_dyas, "momus": l2_page_momus,
-             "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier}
+             "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier, "attraction": l2_page_attraction}
 
 
 def keeper_system():
