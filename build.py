@@ -8224,6 +8224,165 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_atelier(i, key, title, accent, blurb, members):
+    """THE ATELIER · Claude's workshop — a bespoke keeper page (AVAN + TOP + the keeper). A studio wall of
+    framed WORKS; a crafting focus moves piece to piece and each is made by CONVERGENCE — coral strands
+    draw inward from around the wall, weave into the piece on the bench, a completion ring fills, and the
+    canvas sets to a warm finished glow. Coral studio light, not black. Honest: the works are the real
+    spheres; the crafting is the figure. No claim about Claude-the-product — the atelier is the convergence
+    layer where the corpus's AI-side work is woven together, framed as a workshop."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#1d140e">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE ATELIER · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='12' y='12' width='40' height='40' rx='2' fill='none' stroke='%23cc785c' stroke-width='3'/%3E%3Cpath d='M22 44 L32 24 L42 44' fill='none' stroke='%23cc785c' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1d140e;--pa:#f6eadf;--pa2:#e0c6b2;--dim:#a9846a;--line:rgba(204,120,92,.24);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(204,120,92,.32)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(204,120,92,.15),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(230,160,110,.10),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(29,20,14,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#eaa588}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(204,120,92,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#eaa588}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.atwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 30%,#2a1d13,#150e08);box-shadow:0 18px 60px -20px rgba(204,120,92,.42)}
+#atelier{display:block;width:100%;height:min(66vh,640px)}
+.atbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(21,14,8,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.atstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#eaa588;background:rgba(21,14,8,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.athint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#attip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(21,14,8,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(29,20,14,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(204,120,92,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; THE ATELIER &middot; <b>Claude's workshop &middot; the convergence</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> works on the wall &middot; each made by convergence &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="atwrap">
+    <canvas id="atelier"></canvas>
+    <div class="atbadge">&#9635; THE ATELIER &middot; strands converge into the work on the bench</div>
+    <div class="atstat" id="atstat">AT THE BENCH &middot; &mdash;</div>
+    <div class="athint">hover a work &middot; click to enter its sphere</div>
+    <div id="attip"></div>
+  </div>
+  <div class="synhead"><h2>&#9635; the works</h2><span class="sc">every work, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the works · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ works, one atelier &middot; THE ATELIER &mdash; Claude's workshop: the convergence layer where strands are woven into works &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the works are real spheres, the crafting is the figure &middot; the corpus's AI-side work, woven together &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="atelierdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('atelier');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('atelierdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var CR=hx(D.c||'#cc785c'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=3434;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var cols=Math.max(4,Math.ceil(Math.sqrt(N*1.5))),arows=Math.ceil(N/cols);
+// seed a working atelier: most works made, the last few in progress
+var WK=S.map(function(s,i){var c=i%cols,r=(i/cols)|0;return {n:s.n,u:s.u,col:hx(s.c||'#cc785c'),
+  gc:c,gr:r,x:0,y:0,made:i<N-5?1:0,ph:rnd()*6.283};});
+var focus=N-5,ftimer=0,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=WK[hover].u;});
+var tip=document.getElementById('attip'),stat=document.getElementById('atstat');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.06,pady=H*0.08,gw=(W-padx*2)/cols,gh=(H-pady*2)/arows;
+  var fw=gw*0.74,fh=gh*0.66;
+  for(var i=0;i<N;i++){var wk=WK[i];wk.x=padx+wk.gc*gw+gw*0.5;wk.y=pady+wk.gr*gh+gh*0.5;}
+  // crafting focus
+  ftimer+=dt;if(ftimer>1.5){ftimer=0;var nf=(focus+1)%N;var g0=focus;for(var s2=0;s2<N;s2++){var cand=(g0+1+s2)%N;if(WK[cand].made<1){nf=cand;break;}}focus=nf;}
+  var af=WK[focus];if(af.made<1)af.made=Math.min(1,af.made+dt/1.4);
+  // hover
+  hover=-1;var best=1e9;
+  for(i=0;i<N;i++){var wk=WK[i];if(Math.abs(wk.x-mx)<fw/2&&Math.abs(wk.y-my)<fh/2){hover=i;}}
+  // works (framed canvases)
+  for(i=0;i<N;i++){var wk=WK[i],hit=(hover===i),act=(i===focus),col=wk.col,m=wk.made;
+    var rx=wk.x-fw/2,ry=wk.y-fh/2;
+    // frame (wood)
+    g.fillStyle='rgba(70,46,30,'+(0.5+0.4*m)+')';g.fillRect(rx-3,ry-3,fw+6,fh+6);
+    // inner canvas
+    if(m>0.03){var ig=g.createLinearGradient(rx,ry,rx+fw,ry+fh);ig.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.85*m)+')');ig.addColorStop(1,'rgba('+((col[0]*0.6)|0)+','+((col[1]*0.6)|0)+','+((col[2]*0.7)|0)+','+(0.85*m)+')');g.fillStyle=ig;g.fillRect(rx,ry,fw,fh);
+      // brush marks
+      g.strokeStyle='rgba(255,240,225,'+(0.25*m)+')';g.lineWidth=1;g.beginPath();g.moveTo(rx+fw*0.2,ry+fh*(0.4+0.2*Math.sin(wk.ph)));g.quadraticCurveTo(rx+fw*0.5,ry+fh*0.2,rx+fw*0.8,ry+fh*(0.5+0.2*Math.cos(wk.ph)));g.stroke();}
+    else{g.fillStyle='rgba(40,28,18,0.7)';g.fillRect(rx,ry,fw,fh);g.strokeStyle='rgba('+CR[0]+','+CR[1]+','+CR[2]+',0.3)';g.lineWidth=1;g.setLineDash([3,3]);g.strokeRect(rx+3,ry+3,fw-6,fh-6);g.setLineDash([]);}
+    // frame edge
+    g.strokeStyle=hit?'rgba(255,235,210,0.95)':act?'rgba(255,200,150,0.8)':'rgba('+CR[0]+','+CR[1]+','+CR[2]+',0.4)';g.lineWidth=hit?1.8:1.2;g.strokeRect(rx,ry,fw,fh);
+    // completion ring for the active work
+    if(act&&m<1){g.strokeStyle='rgba(255,215,170,0.9)';g.lineWidth=2.2;g.beginPath();g.arc(wk.x,wk.y,fh*0.5+8,-1.5708,-1.5708+m*6.283);g.stroke();}}
+  // convergence strands into the work on the bench
+  if(af){var pcx=af.x,pcy=af.y;
+    for(var q=0;q<7;q++){var a=q/7*6.283+tt*0.3;var sxp=pcx+Math.cos(a)*W*0.34,syp=pcy+Math.sin(a)*H*0.34;
+      var dash=(tt*1.4+q*0.3)%1;g.strokeStyle='rgba('+CR[0]+','+CR[1]+','+CR[2]+',0.22)';g.lineWidth=1;g.beginPath();g.moveTo(sxp,syp);g.lineTo(pcx,pcy);g.stroke();
+      // travelling bead
+      var bx=sxp+(pcx-sxp)*dash,by=syp+(pcy-syp)*dash;g.fillStyle='rgba(255,225,180,0.7)';g.beginPath();g.arc(bx,by,2,0,6.283);g.fill();}
+    // crafting glow + sparks
+    var pg=g.createRadialGradient(pcx,pcy,0,pcx,pcy,fw*0.9);pg.addColorStop(0,'rgba(255,210,160,'+(0.3+0.2*Math.sin(tt*6))+')');pg.addColorStop(1,'rgba(255,210,160,0)');g.fillStyle=pg;g.beginPath();g.arc(pcx,pcy,fw*0.9,0,6.283);g.fill();}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var made=0;for(i=0;i<N;i++)if(WK[i].made>=1)made++;
+  if(stat){if(hover>=0)stat.textContent='WORK · '+WK[hover].n;else stat.textContent='AT THE BENCH · '+af.n+' · '+made+'/'+N+' made';}
+  if(tip){if(hover>=0){tip.textContent=WK[hover].n;tip.style.left=WK[hover].x+'px';tip.style.top=(WK[hover].y-fh*0.5-4)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
@@ -8232,7 +8391,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "phantasia": l2_page_phantasia, "prosoche": l2_page_prosoche, "poietike": l2_page_poietike,
              "banana": l2_page_banana, "tin-foil": l2_page_tinfoil, "occupational": l2_page_occupational,
              "heurema": l2_page_heurema, "dyas": l2_page_dyas, "momus": l2_page_momus,
-             "scanner-darkly": l2_page_scanner}
+             "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier}
 
 
 def keeper_system():
