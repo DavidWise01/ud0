@@ -9355,6 +9355,167 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_lesbos(i, key, title, accent, blurb, members):
+    """LESBOS · Sappho — a bespoke keeper page (AVAN + TOP + the keeper). SAPPHO FRAGMENTS: the spheres are
+    torn papyrus SCRAPS scattered like recovered fragments — aged papyrus, torn edges, faint fiber-text
+    broken by lacunae and brackets — and a reading light lifts one fragment at a time into legibility. Rose
+    on museum-dark, not black. Honest: each fragment is a real sphere and its legible line is the sphere's
+    OWN name; no Sappho text is fabricated — the torn papyrus + brackets are the figure of survival-in-pieces."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#1a1013">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · SAPPHO FRAGMENTS · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M14 10 L50 12 L48 52 L12 50 Z' fill='%23d9c8a0'/%3E%3Cline x1='20' y1='24' x2='40' y2='24' stroke='%237a5a3a' stroke-width='2'/%3E%3Cline x1='20' y1='34' x2='34' y2='34' stroke='%237a5a3a' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1a1013;--pa:#f6e7ea;--pa2:#e0bfc8;--dim:#a97e8c;--line:rgba(194,85,127,.24);
+  --c:__ACC__;--pap:#d9c8a0;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(194,85,127,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(194,85,127,.13),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(200,150,90,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(26,16,19,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#e089a8}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(194,85,127,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#e089a8}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.frwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 40%,#2a171c,#150c0f);box-shadow:0 18px 60px -20px rgba(194,85,127,.42)}
+#frag{display:block;width:100%;height:min(66vh,640px)}
+.frbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(21,12,15,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.frstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#e089a8;background:rgba(21,12,15,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.frhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#frtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(21,12,15,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(26,16,19,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(194,85,127,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; LESBOS &middot; <b>Sappho, in fragments</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> fragments recovered &middot; the light lifts one at a time &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="frwrap">
+    <canvas id="frag"></canvas>
+    <div class="frbadge">&#10086; SAPPHO FRAGMENTS &middot; torn papyrus, read one at a time</div>
+    <div class="frstat" id="frstat">FRAGMENT &middot; &mdash;</div>
+    <div class="frhint">hover a fragment &middot; click to enter its sphere</div>
+    <div id="frtip"></div>
+  </div>
+  <div class="synhead"><h2>&#10086; the fragments</h2><span class="sc">every fragment, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the fragments · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ fragments, one hand &middot; LESBOS &mdash; Sappho survives in pieces: each scrap a fragment, each fragment a real sphere &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the legible line is the sphere's own name &middot; no Sappho text is fabricated &middot; the brackets are the figure of the lacuna &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="fragdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('frag');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('fragdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var RO=hx(D.c||'#c2557f'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=3030;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var cols=Math.max(3,Math.ceil(Math.sqrt(N*1.2))),frows=Math.ceil(N/cols);
+// torn-edge points (normalized around unit rect) + per-fragment props
+var FR=S.map(function(s,i){var edge=[];var per=[[-0.5,-0.5],[0.5,-0.5],[0.5,0.5],[-0.5,0.5]];
+  for(var e=0;e<4;e++){var a=per[e],b=per[(e+1)%4];for(var k=0;k<4;k++){var f=k/4;var nx=a[0]+(b[0]-a[0])*f,ny=a[1]+(b[1]-a[1])*f;var jx=(rnd()-0.5)*0.1,jy=(rnd()-0.5)*0.1;edge.push([nx+jx,ny+jy]);}}
+  var lines=[];for(var l=0;l<3;l++)lines.push({w:0.4+rnd()*0.5,lb:rnd()<0.5,rb:rnd()<0.5,gap:rnd()<0.4});
+  return {n:s.n,u:s.u,col:hx(s.c||'#c2557f'),gc:i%cols,gr:(i/cols)|0,rot:(rnd()-0.5)*0.24,edge:edge,lines:lines,x:0,y:0,w:0,h:0};});
+var focus=0,ftimer=0,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=FR[hover].u;});
+var tip=document.getElementById('frtip'),stat=document.getElementById('frstat');
+function trunc(s,m){return s.length>m?s.slice(0,m-1)+'…':s;}
+function scrap(fr,scale,lift,tt){var cw=fr.w*scale,ch=fr.h*scale,cx=fr.x,cy=fr.y-lift;
+  g.save();g.translate(cx,cy);g.rotate(fr.rot+Math.sin(tt*0.3+fr.gc)*0.008);
+  if(lift>0){g.shadowColor='rgba(0,0,0,0.55)';g.shadowBlur=16;g.shadowOffsetY=9;}
+  g.beginPath();for(var e=0;e<fr.edge.length;e++){var p=fr.edge[e];if(e===0)g.moveTo(p[0]*cw,p[1]*ch);else g.lineTo(p[0]*cw,p[1]*ch);}g.closePath();
+  var pg=g.createLinearGradient(-cw/2,-ch/2,cw/2,ch/2);pg.addColorStop(0,'#e2d1a6');pg.addColorStop(1,'#c6b085');g.fillStyle=pg;g.fill();g.shadowBlur=0;g.shadowOffsetY=0;
+  g.strokeStyle='rgba(120,92,58,0.55)';g.lineWidth=1;g.stroke();
+  // fiber lines
+  g.strokeStyle='rgba(150,120,80,0.14)';g.lineWidth=1;for(var v=0;v<4;v++){var vy=-ch*0.35+v*ch*0.24;g.beginPath();g.moveTo(-cw*0.42,vy);g.lineTo(cw*0.42,vy);g.stroke();}
+  // text lines with lacunae/brackets
+  g.strokeStyle='rgba(90,62,40,0.6)';g.fillStyle='rgba(90,62,40,0.7)';g.font=(Math.max(8,cw*0.09)|0)+'px "Iowan Old Style",Georgia,serif';g.textAlign='left';
+  for(var li=0;li<fr.lines.length;li++){var L=fr.lines[li],ly=-ch*0.16+li*ch*0.17,lw=cw*0.72*L.w,lx=-cw*0.36;
+    if(L.lb){g.fillText(']',lx-8,ly+3);}
+    if(L.gap){g.lineWidth=1.6;g.beginPath();g.moveTo(lx,ly);g.lineTo(lx+lw*0.4,ly);g.stroke();g.fillText('…',lx+lw*0.44,ly+3);g.beginPath();g.moveTo(lx+lw*0.62,ly);g.lineTo(lx+lw,ly);g.stroke();}
+    else{g.lineWidth=1.6;g.beginPath();g.moveTo(lx,ly);g.lineTo(lx+lw,ly);g.stroke();}
+    if(L.rb){g.fillText('[',lx+lw+4,ly+3);}}
+  g.restore();}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.06,pady=H*0.10,gw=(W-padx*2)/cols,gh=(H-pady*2)/frows;
+  var cw=Math.min(gw*0.8,gh*0.82),ch=cw*1.02;
+  for(var i=0;i<N;i++){var fr=FR[i];fr.w=cw;fr.h=ch;fr.x=padx+fr.gc*gw+gw*0.5;fr.y=pady+fr.gr*gh+gh*0.5;}
+  ftimer+=dt;if(ftimer>1.8){ftimer=0;focus=(focus+1)%N;}
+  hover=-1;for(i=0;i<N;i++){var fr=FR[i];if(Math.abs(fr.x-mx)<cw*0.5&&Math.abs(fr.y-my)<ch*0.5)hover=i;}
+  var lifted=hover>=0?hover:focus;
+  // dust motes
+  for(var q=0;q<14;q++){var mxp=((q*137+tt*8)%W),myp=((q*89+tt*4)%H);g.fillStyle='rgba(220,190,150,0.05)';g.fillRect(mxp,myp,1.4,1.4);}
+  // scraps (non-lifted first)
+  for(i=0;i<N;i++){if(i===lifted)continue;scrap(FR[i],1,0,tt);}
+  // reading light + lifted scrap
+  var lf=FR[lifted];var rg=g.createRadialGradient(lf.x,lf.y,0,lf.x,lf.y,cw*1.4);rg.addColorStop(0,'rgba('+RO[0]+','+RO[1]+','+RO[2]+',0.22)');rg.addColorStop(1,'rgba('+RO[0]+','+RO[1]+','+RO[2]+',0)');g.fillStyle=rg;g.beginPath();g.arc(lf.x,lf.y,cw*1.4,0,6.283);g.fill();
+  scrap(lf,1.16,12,tt);
+  // legible name on the lifted fragment
+  g.save();g.translate(lf.x,lf.y-12);g.rotate(lf.rot);g.fillStyle='rgba(60,38,26,0.95)';g.font='italic '+(Math.max(10,cw*0.12)|0)+'px "Iowan Old Style",Georgia,serif';g.textAlign='center';
+  var nm=trunc(lf.n,18);g.fillText(nm,0,ch*0.42);g.restore();
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat)stat.textContent=(hover>=0?'FRAGMENT · ':'READING · ')+trunc(lf.n,24)+' · '+(lifted+1)+'/'+N;
+  if(tip){if(hover>=0){tip.textContent=FR[hover].n;tip.style.left=FR[hover].x+'px';tip.style.top=(FR[hover].y-ch*0.5-6)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_glossa(i, key, title, accent, blurb, members):
     """GLŌSSA · language — a bespoke keeper page (AVAN + TOP + the keeper). A LANGUAGE TREE: an organic
     tree grows from one root — a trunk forking into families and sub-branches, the spheres as the language
@@ -9697,7 +9858,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier, "attraction": l2_page_attraction,
              "transcriber": l2_page_transcriber, "first-author": l2_page_firstauthor, "arena": l2_page_arena,
              "idios": l2_page_idios, "exereunesis": l2_page_exereunesis, "hermes": l2_page_hermes,
-             "glossa": l2_page_glossa}
+             "glossa": l2_page_glossa, "lesbos": l2_page_lesbos}
 
 
 def keeper_system():
