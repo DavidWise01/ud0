@@ -9355,6 +9355,165 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_mythos(i, key, title, accent, blurb, members):
+    """MYTHOS · mythology — a bespoke keeper page (AVAN + TOP + the keeper). A CONSTELLATION MYTH MAP: a
+    night sky where the spheres are CONSTELLATIONS — star-asterisms connected into figures — over a faint
+    milky-way band and a twinkling starfield; a focus traces each constellation's lines alight in turn and
+    names its myth. Violet on night-indigo (the sky is the medium). Honest: each constellation is a real
+    sphere; the star patterns are invented asterisms (a celestial-atlas figure), not real star catalogue."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0c0a1e">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE MYTH MAP · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cline x1='14' y1='18' x2='30' y2='30' stroke='%237d4fc8' stroke-width='2'/%3E%3Cline x1='30' y1='30' x2='48' y2='22' stroke='%237d4fc8' stroke-width='2'/%3E%3Cline x1='30' y1='30' x2='40' y2='48' stroke='%237d4fc8' stroke-width='2'/%3E%3Ccircle cx='14' cy='18' r='3' fill='%23f0e6c0'/%3E%3Ccircle cx='30' cy='30' r='3' fill='%23f0e6c0'/%3E%3Ccircle cx='48' cy='22' r='3' fill='%23f0e6c0'/%3E%3Ccircle cx='40' cy='48' r='3' fill='%23f0e6c0'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0c0a1e;--pa:#ece7fb;--pa2:#c6bce6;--dim:#8479ac;--line:rgba(125,79,200,.24);
+  --c:__ACC__;--star:#f0e6c0;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(125,79,200,.32)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(125,79,200,.14),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(90,120,220,.09),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(12,10,30,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#a988e8}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(125,79,200,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#a988e8}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.mywrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(120% 120% at 50% 40%,#141026,#08061a);box-shadow:0 18px 60px -20px rgba(125,79,200,.4)}
+#sky{display:block;width:100%;height:min(68vh,660px)}
+.mybadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(8,6,20,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.mystat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#a988e8;background:rgba(8,6,20,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.myhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#mytip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(8,6,20,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(12,10,30,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(125,79,200,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; MYTHOS &middot; <b>each myth a constellation</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> constellations &middot; the sky draws each in turn &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="mywrap">
+    <canvas id="sky"></canvas>
+    <div class="mybadge">&#10022; THE MYTH MAP &middot; each myth written as stars</div>
+    <div class="mystat" id="mystat">SKY &middot; &mdash;</div>
+    <div class="myhint">hover a constellation &middot; click to enter its sphere</div>
+    <div id="mytip"></div>
+  </div>
+  <div class="synhead"><h2>&#10022; the constellations</h2><span class="sc">every myth, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the myths · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ constellations, one sky &middot; MYTHOS &mdash; the constellation myth map: every myth written in stars, each a real sphere &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the star patterns are invented asterisms (a celestial-atlas figure), not a real star catalogue &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="skydata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('sky');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('skydata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var VI=hx(D.c||'#7d4fc8'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=1313;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var cols=Math.max(3,Math.ceil(Math.sqrt(N*1.1))),crows=Math.ceil(N/cols);
+// each constellation: a walked asterism of 4-6 stars around its sky region
+var CO=S.map(function(s,i){var c=i%cols,r=(i/cols)|0,k=4+((rnd()*3)|0);
+  var fx=(c+0.5)/cols,fy=(r+0.5)/crows,stars=[];var wx=0,wy=0;
+  for(var j=0;j<k;j++){if(j===0){wx=(rnd()-0.5)*0.4;wy=(rnd()-0.5)*0.4;}else{var a=rnd()*6.283,st=0.4+rnd()*0.7;wx+=Math.cos(a)*st;wy+=Math.sin(a)*st;}
+    stars.push({dx:wx,dy:wy,mag:0.5+rnd()*0.5,tw:rnd()*6.283});}
+  return {n:s.n,u:s.u,col:hx(s.c||'#7d4fc8'),fx:fx,fy:fy,stars:stars,cx:0,cy:0};});
+var BG=[];for(var z=0;z<200;z++)BG.push({x:rnd(),y:rnd(),m:rnd()*0.6+0.2,tw:rnd()*6.283,sp:0.5+rnd()*2});
+var focus=0,DWELL=2.7,ft=DWELL*0.55,mx=-1,my=-1,hover=-1,t0=null,CELL=0;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=CO[hover].u;});
+var tip=document.getElementById('mytip'),stat=document.getElementById('mystat');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.06,pady=H*0.09,gw=(W-padx*2)/cols,gh=(H-pady*2)/crows;CELL=Math.min(gw,gh)*0.34;
+  // milky way band
+  g.save();g.translate(W*0.5,H*0.5);g.rotate(-0.5);var mw=g.createLinearGradient(0,-H*0.2,0,H*0.2);mw.addColorStop(0,'rgba(140,130,200,0)');mw.addColorStop(0.5,'rgba(150,140,210,0.06)');mw.addColorStop(1,'rgba(140,130,200,0)');g.fillStyle=mw;g.fillRect(-W,-H*0.2,W*2,H*0.4);g.restore();
+  // bg stars
+  for(var b=0;b<BG.length;b++){var s2=BG[b];var a=s2.m*(0.5+0.5*Math.sin(tt*s2.sp+s2.tw));g.fillStyle='rgba(240,236,210,'+(a*0.6)+')';g.fillRect(s2.x*W,s2.y*H,1.3,1.3);}
+  // positions
+  for(var i=0;i<N;i++){var co=CO[i];co.cx=padx+co.fx*(W-padx*2);co.cy=pady+co.fy*(H-pady*2);}
+  ft+=dt;if(ft>DWELL){ft=0;focus=(focus+1)%N;}
+  var p=ft/DWELL,trace=p<0.7?(p/0.7):1,fade=p<0.85?1:(1-(p-0.85)/0.15);
+  // hover pick
+  hover=-1;var best=1e9;
+  for(i=0;i<N;i++){var co=CO[i];for(var j=0;j<co.stars.length;j++){var sx=co.cx+co.stars[j].dx*CELL,sy=co.cy+co.stars[j].dy*CELL;var d2=(sx-mx)*(sx-mx)+(sy-my)*(sy-my);if(mx>=0&&d2<best&&d2<900){best=d2;hover=i;}}}
+  // constellations
+  for(i=0;i<N;i++){var co=CO[i],act=(i===focus),hit=(hover===i),col=co.col;
+    var lit=hit?1:(act?fade:0);var seg=co.stars.length-1,fr=(hit?1:(act?trace:0));
+    // lines
+    g.strokeStyle='rgba('+VI[0]+','+VI[1]+','+VI[2]+','+(0.1+0.55*lit)+')';g.lineWidth=1+lit*0.5;
+    for(var e=0;e<seg;e++){var s0=co.stars[e],s1=co.stars[e+1];var x0=co.cx+s0.dx*CELL,y0=co.cy+s0.dy*CELL,x1=co.cx+s1.dx*CELL,y1=co.cy+s1.dy*CELL;
+      var ef=(fr*seg)-e;if(ef<=0&&lit<0.5)continue;var ff=Math.min(1,Math.max(0,ef));if(lit<0.5)ff=1;
+      g.beginPath();g.moveTo(x0,y0);g.lineTo(x0+(x1-x0)*ff,y0+(y1-y0)*ff);g.stroke();}
+    // stars
+    for(j=0;j<co.stars.length;j++){var st=co.stars[j],sx=co.cx+st.dx*CELL,sy=co.cy+st.dy*CELL;
+      var tw=0.6+0.4*Math.sin(tt*1.4+st.tw),br=(1.4+st.mag*2.4)*(0.6+0.5*lit),sa=(0.35+0.5*lit)*tw+0.15;
+      var gl=g.createRadialGradient(sx,sy,0,sx,sy,br*2.6);gl.addColorStop(0,'rgba(245,240,214,'+sa+')');gl.addColorStop(0.5,'rgba('+col[0]+','+col[1]+','+col[2]+','+(sa*0.5)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');
+      g.fillStyle=gl;g.beginPath();g.arc(sx,sy,br*2.6,0,6.283);g.fill();
+      g.fillStyle='rgba(255,250,230,'+(0.5+0.5*lit)+')';g.beginPath();g.arc(sx,sy,Math.max(0.8,br*0.5),0,6.283);g.fill();}
+    // myth name
+    if(lit>0.3){g.fillStyle='rgba(220,205,245,'+lit+')';g.font='italic '+(Math.max(11,CELL*0.34)|0)+'px "Iowan Old Style",Georgia,serif';g.textAlign='center';
+      var nm=co.n.length>26?co.n.slice(0,25)+'…':co.n;g.fillText(nm,co.cx,co.cy-CELL*1.15);}}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){var showi=hover>=0?hover:focus;stat.textContent='CONSTELLATION · '+(CO[showi].n.length>24?CO[showi].n.slice(0,23)+'…':CO[showi].n)+' · '+N+' myths';}
+  if(tip){if(hover>=0){tip.textContent=CO[hover].n;tip.style.left=CO[hover].cx+'px';tip.style.top=(CO[hover].cy-CELL*1.4)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_agora(i, key, title, accent, blurb, members):
     """AGORA · the public square — a bespoke keeper page (AVAN + TOP + the keeper). AN OPEN FORUM: the
     spheres are citizens gathered in a ring around a central speaking floor (the bema); the floor passes
@@ -10170,7 +10329,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "transcriber": l2_page_transcriber, "first-author": l2_page_firstauthor, "arena": l2_page_arena,
              "idios": l2_page_idios, "exereunesis": l2_page_exereunesis, "hermes": l2_page_hermes,
              "glossa": l2_page_glossa, "lesbos": l2_page_lesbos, "logismos": l2_page_logismos,
-             "agora": l2_page_agora}
+             "agora": l2_page_agora, "mythos": l2_page_mythos}
 
 
 def keeper_system():
