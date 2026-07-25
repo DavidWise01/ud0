@@ -9355,6 +9355,168 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_entertainment(i, key, title, accent, blurb, members):
+    """ENTERTAINMENT — a bespoke keeper page (AVAN + TOP + the keeper). AN ARCADE CABINET ROW: a retro
+    arcade floor lined with upright cabinets, the spheres as machines with lit marquees, CRT screens and
+    control panels; a focus powers one cabinet at a time — its screen plays attract-mode, its marquee
+    flashes — the rest idle in neon. Magenta on arcade-dark (the arcade is the medium). Honest: each
+    cabinet is a real sphere; the arcade is the figure — a floor of the corpus, the titles are genuine."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#120818">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE ARCADE · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='18' y='8' width='28' height='48' rx='2' fill='%231a0e28' stroke='%23ff3da6' stroke-width='2'/%3E%3Crect x='22' y='12' width='20' height='5' fill='%23ff3da6'/%3E%3Crect x='22' y='20' width='20' height='16' fill='%2300e6ff' opacity='.6'/%3E%3Ccircle cx='27' cy='44' r='2.5' fill='%23ff3da6'/%3E%3Ccircle cx='37' cy='44' r='2.5' fill='%2300e6ff'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#120818;--pa:#f7e6f4;--pa2:#e2b6d8;--dim:#a870a0;--line:rgba(255,61,166,.24);
+  --c:__ACC__;--cyan:#00e6ff;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(255,61,166,.32)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(255,61,166,.14),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(0,230,255,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(18,8,24,.8);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#ff7ac4}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(255,61,166,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#ff7ac4}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.acwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 20%,#1c0e2c,#0c0614);box-shadow:0 18px 60px -20px rgba(255,61,166,.42)}
+#arcade{display:block;width:100%;height:min(66vh,660px)}
+.acbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(12,6,20,.72);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.acstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#ff7ac4;background:rgba(12,6,20,.72);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.achint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#actip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(12,6,20,.95);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(18,8,24,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(255,61,166,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; ENTERTAINMENT &middot; <b>insert coin</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> cabinets on the floor &middot; one powered up at a time &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="acwrap">
+    <canvas id="arcade"></canvas>
+    <div class="acbadge">&#127918; THE ARCADE &middot; a row of cabinets, attract mode</div>
+    <div class="acstat" id="acstat">FLOOR &middot; &mdash;</div>
+    <div class="achint">hover a cabinet &middot; click to enter its sphere</div>
+    <div id="actip"></div>
+  </div>
+  <div class="synhead"><h2>&#127918; the cabinets</h2><span class="sc">every title, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the cabinets · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ cabinets, one arcade &middot; ENTERTAINMENT &mdash; the arcade cabinet row: each cabinet a title, each title a real sphere &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>a floor of the corpus &middot; the arcade is the figure, the titles are genuine &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="arcadedata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('arcade');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('arcadedata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var MG=hx(D.c||'#ff3da6'),CY=[0,230,255],DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=4444;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var cols=Math.max(7,Math.ceil(Math.sqrt(N*2.0))),arows=Math.ceil(N/cols);
+var CB=S.map(function(s){return {n:s.n,u:s.u,col:hx(s.c||'#ff3da6'),ph:rnd()*6.283,pat:(rnd()*3)|0,x:0,y:0,w:0,h:0};});
+var focus=0,ft=0,DWELL=1.5,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=CB[hover].u;});
+var tip=document.getElementById('actip'),stat=document.getElementById('acstat');
+function cab(c,x,by,w,h,act,hit,tt){var col=c.col,on=act||hit;
+  // neon glow when on
+  if(on){var gl=g.createRadialGradient(x+w/2,by-h*0.6,0,x+w/2,by-h*0.6,h*0.8);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+',0.22)');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.fillRect(x-w*0.4,by-h*1.3,w*1.8,h*1.5);}
+  var bx=x,ty=by-h;
+  // body
+  g.fillStyle='rgba(26,14,40,0.98)';g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(on?0.9:0.4)+')';g.lineWidth=1.2;
+  g.beginPath();g.moveTo(bx,by);g.lineTo(bx,ty+h*0.16);g.lineTo(bx+w*0.14,ty);g.lineTo(bx+w*0.86,ty);g.lineTo(bx+w,ty+h*0.16);g.lineTo(bx+w,by);g.closePath();g.fill();g.stroke();
+  // marquee
+  g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(on?0.95:0.5)+')';g.fillRect(bx+w*0.14,ty+h*0.02,w*0.72,h*0.1);
+  // screen
+  var scx=bx+w*0.16,scy=ty+h*0.18,scw=w*0.68,sch=h*0.34;
+  g.fillStyle='#0a0612';g.fillRect(scx,scy,scw,sch);
+  g.save();g.beginPath();g.rect(scx,scy,scw,sch);g.clip();
+  if(on){// attract mode
+    for(var k=0;k<10;k++){var pc=(k%2)?col:CY;var pa=0.4+0.4*Math.sin(tt*3+k+c.ph);
+      if(c.pat===0){var px=scx+((k*11+tt*40)%scw);g.fillStyle='rgba('+pc[0]+','+pc[1]+','+pc[2]+','+pa+')';g.fillRect(px,scy+2+ (k%3)*(sch/3),3,sch/3-2);}
+      else if(c.pat===1){var bxp=scx+scw*0.5+Math.sin(tt*2+k)*scw*0.35,byp=scy+sch*0.5+Math.cos(tt*2.6+k)*sch*0.3;g.fillStyle='rgba('+pc[0]+','+pc[1]+','+pc[2]+','+pa+')';g.fillRect(bxp,byp,3,3);}
+      else{g.fillStyle='rgba('+pc[0]+','+pc[1]+','+pc[2]+','+(pa*0.6)+')';g.fillRect(scx,scy+((k*7+tt*30)%sch),scw,2);}}
+  }else{g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.14)';g.fillRect(scx,scy,scw,sch);}
+  // scanlines
+  g.fillStyle='rgba(0,0,0,0.25)';for(var sl=0;sl<sch;sl+=2)g.fillRect(scx,scy+sl,scw,1);
+  g.restore();
+  g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.4)';g.lineWidth=1;g.strokeRect(scx,scy,scw,sch);
+  // control panel
+  var cpy=ty+h*0.6;g.fillStyle='rgba(40,26,56,0.95)';g.beginPath();g.moveTo(bx+w*0.1,cpy);g.lineTo(bx+w*0.9,cpy);g.lineTo(bx+w*0.86,cpy+h*0.1);g.lineTo(bx+w*0.14,cpy+h*0.1);g.closePath();g.fill();
+  g.fillStyle='rgba('+MG[0]+','+MG[1]+','+MG[2]+',0.9)';g.beginPath();g.arc(bx+w*0.32,cpy+h*0.05,Math.max(1.4,w*0.05),0,6.283);g.fill();
+  g.fillStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.9)';g.beginPath();g.arc(bx+w*0.55,cpy+h*0.05,Math.max(1.2,w*0.04),0,6.283);g.fill();g.beginPath();g.arc(bx+w*0.68,cpy+h*0.05,Math.max(1.2,w*0.04),0,6.283);g.fill();
+  if(hit){g.strokeStyle='rgba(255,255,255,0.85)';g.lineWidth=1.4;g.strokeRect(bx-2,ty-2,w+4,h+4);}
+}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.04,pady=H*0.08,gw=(W-padx*2)/cols,gh=(H-pady*2)/arows;
+  var cw=gw*0.82,ch=gh*0.88;
+  for(var i=0;i<N;i++){var c=CB[i];c.w=cw;c.h=ch;c.x=padx+(i%cols)*gw+(gw-cw)/2;c.y=pady+((i/cols)|0)*gh+gh*0.96;}
+  ft+=dt;if(ft>DWELL){ft=0;focus=(focus+1)%N;}
+  // floor line
+  g.strokeStyle='rgba(255,61,166,0.08)';g.lineWidth=1;for(var r2=0;r2<arows;r2++){var fy=pady+r2*gh+gh*0.96+3;g.beginPath();g.moveTo(padx*0.5,fy);g.lineTo(W-padx*0.5,fy);g.stroke();}
+  hover=-1;for(i=0;i<N;i++){var c=CB[i];if(mx>=c.x&&mx<=c.x+c.w&&my>=c.y-c.h&&my<=c.y)hover=i;}
+  for(i=0;i<N;i++){var c=CB[i];cab(c,c.x,c.y,c.w,c.h,(i===focus),(hover===i),tt);}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var showi=hover>=0?hover:focus;
+  if(stat)stat.textContent='CABINET '+(showi+1)+'/'+N+' · '+(CB[showi].n.length>20?CB[showi].n.slice(0,19)+'…':CB[showi].n);
+  if(tip){if(hover>=0){tip.textContent=CB[hover].n;tip.style.left=(CB[hover].x+CB[hover].w/2)+'px';tip.style.top=(CB[hover].y-CB[hover].h-6)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrws=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrws.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_biblion(i, key, title, accent, blurb, members):
     """BIBLÍON · books — a bespoke keeper page (AVAN + TOP + the keeper). AN ANCIENT LIBRARY: a candlelit
     hall of shelves, the spheres as leather-bound book SPINES gold-banded on wooden shelves; a focus pulls
@@ -11282,7 +11444,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "agora": l2_page_agora, "mythos": l2_page_mythos, "polemos": l2_page_polemos,
              "niphelektron": l2_page_niphelektron, "educational": l2_page_educational,
              "scientific": l2_page_scientific, "life-science": l2_page_lifescience,
-             "biblion": l2_page_biblion}
+             "biblion": l2_page_biblion, "entertainment": l2_page_entertainment}
 
 
 def keeper_system():
