@@ -6761,12 +6761,169 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_prosoche(i, key, title, accent, blurb, members):
+    """PROSOCHĒ · attention — a bespoke keeper page (AVAN + TOP + the keeper). AN ATTENTION SPOTLIGHT:
+    a saccading pool of light lands on one node at a time; softmax weights over distance-to-focus light
+    the attended node bright and starve the rest toward dark (the-unattended). Attention beams run
+    focus→top nodes with width by weight; a live ATTENDING readout names where the budget went. Deep
+    indigo, not black. Honest: attention is a budget — to light one thing is to leave the rest dark."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0a1426">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE SPOTLIGHT · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 6 L46 40 L18 40 Z' fill='%234db1f0' opacity='.45'/%3E%3Ccircle cx='32' cy='46' r='9' fill='none' stroke='%234db1f0' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a1426;--pa:#e6f1fb;--pa2:#b6cbe4;--dim:#7089a8;--line:rgba(77,177,240,.22);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(77,177,240,.34)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(77,177,240,.13),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(120,160,235,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(10,20,38,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#9ad4fb}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 26px rgba(77,177,240,.6)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#9ad4fb}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.spwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(120% 120% at 50% 44%,#0d1c34,#060c18);box-shadow:0 18px 60px -20px rgba(77,177,240,.5)}
+#spot{display:block;width:100%;height:min(64vh,600px)}
+.spbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(6,12,24,.62);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.spstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#9ad4fb;background:rgba(6,12,24,.62);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sphint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#sptip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(6,12,24,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(10,20,38,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(77,177,240,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; PROSOCH&Ecirc; &middot; <b>attention is a budget</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> in the field &middot; one lit, the rest unattended &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="spwrap">
+    <canvas id="spot"></canvas>
+    <div class="spbadge">&#9788; THE SPOTLIGHT &middot; softmax over the field</div>
+    <div class="spstat" id="spstat">ATTENDING &middot; &mdash;</div>
+    <div class="sphint">hover a node &middot; click to enter its sphere</div>
+    <div id="sptip"></div>
+  </div>
+  <div class="synhead"><h2>&#9788; the field</h2><span class="sc">every node, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the field · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ in the field, one in the light &middot; PROSOCH&Ecirc; &mdash; attention is a budget: to light one thing is to leave the rest in the dark (the-unattended) &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the mechanism, not the pull &middot; a spotlight names what it starves &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="spotdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('spot');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('spotdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var CC=hx(D.c||'#4db1f0'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=4343;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+// nodes scattered across the field (seeded)
+var ND2=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#4db1f0'),fx:0.12+rnd()*0.76,fy:0.16+rnd()*0.68,ph:rnd()*6.283,w:0,x:0,y:0};});
+// faint context motes (the unattended field)
+var MOT=[];for(var q=0;q<70;q++)MOT.push({fx:rnd(),fy:rnd(),ph:rnd()*6.283});
+var foc={x:0,y:0,tx:0,ty:0,dwell:0,idx:0},started=false;
+var mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=ND2[hover].u;});
+var tip=document.getElementById('sptip'),stat=document.getElementById('spstat');
+function nextTarget(){var j;do{j=(rnd()*N)|0;}while(N>1&&j===foc.idx);foc.idx=j;foc.tx=ND2[j].x+(rnd()-0.5)*24;foc.ty=ND2[j].y+(rnd()-0.5)*24;foc.dwell=0.9+rnd()*1.4;}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  for(var i=0;i<N;i++){var nd=ND2[i];nd.x=W*nd.fx;nd.y=H*nd.fy;}
+  if(!started){foc.x=ND2[0].x;foc.y=ND2[0].y;nextTarget();started=true;}
+  // saccade: ease to target, dwell, hop
+  foc.x+=(foc.tx-foc.x)*Math.min(1,dt*4.5);foc.y+=(foc.ty-foc.y)*Math.min(1,dt*4.5);
+  var near=Math.abs(foc.tx-foc.x)<6&&Math.abs(foc.ty-foc.y)<6;if(near){foc.dwell-=dt;if(foc.dwell<=0)nextTarget();}
+  var fjx=foc.x+Math.sin(tt*1.7)*4,fjy=foc.y+Math.cos(tt*1.3)*4;
+  // softmax weights over distance to focus
+  var sig=Math.min(W,H)*0.185,sum=0;
+  for(i=0;i<N;i++){var nd=ND2[i];var dx=nd.x-fjx,dy=nd.y-fjy;nd.w=Math.exp(-(dx*dx+dy*dy)/(2*sig*sig));sum+=nd.w;}
+  var top=0;for(i=0;i<N;i++){ND2[i].w/=sum;if(ND2[i].w>ND2[top].w)top=i;}
+  // spotlight pool
+  var pr=Math.min(W,H)*0.27;var pg=g.createRadialGradient(fjx,fjy,0,fjx,fjy,pr);
+  pg.addColorStop(0,'rgba('+CC[0]+','+CC[1]+','+CC[2]+',0.20)');pg.addColorStop(0.5,'rgba('+CC[0]+','+CC[1]+','+CC[2]+',0.07)');pg.addColorStop(1,'rgba('+CC[0]+','+CC[1]+','+CC[2]+',0)');
+  g.fillStyle=pg;g.beginPath();g.arc(fjx,fjy,pr,0,6.283);g.fill();
+  // context motes, lit only if near the pool
+  for(q=0;q<MOT.length;q++){var m2=MOT[q];var mxp=W*m2.fx,myp=H*m2.fy;var dd=(mxp-fjx)*(mxp-fjx)+(myp-fjy)*(myp-fjy);var mw=Math.exp(-dd/(2*sig*sig));g.fillStyle='rgba('+CC[0]+','+CC[1]+','+CC[2]+','+(0.03+mw*0.4)+')';var rr=1+mw*1.4;g.fillRect(mxp-rr/2,myp-rr/2,rr,rr);}
+  // attention beams focus->top nodes
+  var order=ND2.map(function(nd,j){return {j:j,w:nd.w};}).sort(function(a,b){return b.w-a.w;});
+  for(q=0;q<Math.min(3,N);q++){var oj=order[q],nd=ND2[oj.j];var al=oj.w*1.6;if(al<0.02)continue;g.strokeStyle='rgba('+CC[0]+','+CC[1]+','+CC[2]+','+Math.min(0.5,al)+')';g.lineWidth=0.5+oj.w*7;g.beginPath();g.moveTo(fjx,fjy);g.lineTo(nd.x,nd.y);g.stroke();}
+  // nodes
+  hover=-1;var best=22*22;
+  for(i=0;i<N;i++){var nd=ND2[i];var d2=(nd.x-mx)*(nd.x-mx)+(nd.y-my)*(nd.y-my);if(mx>=0&&d2<best){best=d2;hover=i;}}
+  for(i=0;i<N;i++){var nd=ND2[i],hit=(hover===i),lit=nd.w*N;   // lit≈1 if it had uniform share
+    var b=Math.min(1,lit*0.9);var col=nd.col;
+    var rad=3.4+b*5+(hit?2:0);var ca=0.14+b*0.85;
+    var gl=g.createRadialGradient(nd.x,nd.y,0,nd.x,nd.y,rad*2.7);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+ca+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');
+    g.fillStyle=gl;g.beginPath();g.arc(nd.x,nd.y,rad*2.7,0,6.283);g.fill();
+    g.fillStyle=hit?'#fff':'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.3+b*0.7)+')';g.beginPath();g.arc(nd.x,nd.y,Math.max(1.1,rad*0.5),0,6.283);g.fill();
+    if(i===top||hit){g.strokeStyle='rgba(220,240,255,'+(i===top?0.85:0.5)+')';g.lineWidth=1.3;g.beginPath();g.arc(nd.x,nd.y,rad+6,0,6.283);g.stroke();}}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){var pct=Math.round(ND2[top].w*100);stat.textContent='ATTENDING · '+ND2[top].n+' · '+pct+'%';}
+  if(tip){if(hover>=0){tip.textContent=ND2[hover].n+'  ·  '+Math.round(ND2[hover].w*100)+'%';tip.style.left=ND2[hover].x+'px';tip.style.top=(ND2[hover].y-12)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
              "lillith": l2_page_lillith, "strobilos": l2_page_strobilos, "phonos": l2_page_phonos,
              "aisthesis": l2_page_aisthesis, "krasis": l2_page_krasis, "skynet": l2_page_skynet,
-             "phantasia": l2_page_phantasia}
+             "phantasia": l2_page_phantasia, "prosoche": l2_page_prosoche}
 
 
 def keeper_system():
