@@ -5083,8 +5083,165 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_psephos(i, key, title, accent, blurb, members):
+    """PSĒPHOS · the processor — a bespoke keeper page (AVAN + TOP + the keeper). The 102 spheres
+    become functional BLOCKS on a silicon die floorplan: a routing grid of bus traces in the
+    channels, an IO pad ring round the rim, data packets pulsing along the buses; hover names a
+    block, click enters its sphere. Deep-teal substrate, bright teal traces, gold power rails."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#071f1c">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE SILICON DIE · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='16' y='16' width='32' height='32' rx='3' fill='none' stroke='%232fc6c0' stroke-width='3'/%3E%3Cpath d='M16 26h-8M16 38h-8M48 26h8M48 38h8M26 16v-8M38 16v-8M26 48v8M38 48v8' stroke='%232fc6c0' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a1f1c;--pa:#e6fbf7;--pa2:#a9ded6;--dim:#6fa89f;--line:rgba(47,198,192,.20);
+  --c:__ACC__;--gold:#e8c24a;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(47,198,192,.32)}
+body{background:radial-gradient(1200px 700px at 50% -6%,rgba(47,198,192,.16),transparent 56%),
+  radial-gradient(800px 520px at 50% 108%,rgba(232,194,74,.08),transparent 60%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(10,31,28,.75);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:var(--gold)}
+h1{font-family:var(--mono);font-weight:700;font-size:clamp(2rem,7vw,4rem);line-height:.98;letter-spacing:.08em;text-align:center;margin:12px 0 6px;color:#eafffb;text-shadow:0 0 26px rgba(47,198,192,.6)}
+.subt{font-style:italic;font-family:var(--disp);font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:var(--gold)}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.diewrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#0a2420,#061815);box-shadow:0 18px 60px -20px rgba(20,90,80,.6)}
+#die{display:block;width:100%;height:min(64vh,580px)}
+.diebadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);background:rgba(6,24,21,.7);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.diehint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#dietip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(6,24,21,.92);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(10,36,32,.5);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(47,198,192,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:2px;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; <b>reckoning made substrate</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> blocks on the die &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="diewrap">
+    <canvas id="die"></canvas>
+    <div class="diebadge">&#9638; THE SILICON DIE &middot; __N__ blocks &middot; buses live</div>
+    <div class="diehint">hover a block &middot; click to enter its sphere</div>
+    <div id="dietip"></div>
+  </div>
+  <div class="synhead"><h2>&#9638; the floorplan</h2><span class="sc">every block on the die, enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the blocks · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ blocks etched on the die &middot; PSĒPHOS &mdash; the substrate of reckoning &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>128 &rarr; 512 &rarr; 4096 &middot; one governor, one instance, one lattice &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="diedata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('die');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('diedata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=(''+h).replace('#','');if(h.length<6)h='2fc6c0';return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+var AC=hx(D.c||'#2fc6c0'),COL=S.map(function(s){return hx(s.c||D.c);}),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var packets=[];var seed=53;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+for(var i=0;i<44;i++)packets.push({ax:rnd()<0.5?0:1,lane:rnd(),pos:rnd(),sp:0.12+rnd()*0.28,col:rnd()});
+var mx=-1,my=-1,hover=-1,t0=null,lay=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=S[hover].u;});
+var tip=document.getElementById('dietip');
+function layout(){var mg=Math.max(20,Math.min(W,H)*0.06);var dx=mg,dy=mg,dw=W-2*mg,dh=H-2*mg;
+  var cols=Math.max(6,Math.round(Math.sqrt(N*(dw/dh))));var rows=Math.ceil(N/cols);
+  var cw=dw/cols,ch=dh/rows,gap=Math.min(cw,ch)*0.16;
+  var blk=[];for(var k=0;k<N;k++){var c=k%cols,r=(k/cols)|0;blk.push({x:dx+c*cw+gap*0.5,y:dy+r*ch+gap*0.5,w:cw-gap,h:ch-gap});}
+  return {dx:dx,dy:dy,dw:dw,dh:dh,cols:cols,rows:rows,cw:cw,ch:ch,blk:blk};}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-t0)*0.001);t0=t;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  lay=layout();var L=lay;
+  // IO pad ring
+  g.fillStyle='rgba('+AC[0]+','+AC[1]+','+AC[2]+',0.5)';
+  var pads=Math.min(L.cols,26);for(var p=0;p<pads;p++){var fx=L.dx+(p+0.5)/pads*L.dw;g.fillRect(fx-2,L.dy-L.dy*0.5,4,5);g.fillRect(fx-2,L.dy+L.dh+L.dy*0.5-5,4,5);}
+  var padsY=Math.min(L.rows,18);for(p=0;p<padsY;p++){var fy=L.dy+(p+0.5)/padsY*L.dh;g.fillRect(L.dx-L.dx*0.5,fy-2,5,4);g.fillRect(L.dx+L.dw+L.dx*0.5-5,fy-2,5,4);}
+  // routing channels (faint grid on the gaps)
+  g.strokeStyle='rgba('+AC[0]+','+AC[1]+','+AC[2]+',0.10)';g.lineWidth=1;
+  for(var c=1;c<L.cols;c++){var gx=L.dx+c*L.cw;g.beginPath();g.moveTo(gx,L.dy);g.lineTo(gx,L.dy+L.dh);g.stroke();}
+  for(var r=1;r<L.rows;r++){var gy=L.dy+r*L.ch;g.beginPath();g.moveTo(L.dx,gy);g.lineTo(L.dx+L.dw,gy);g.stroke();}
+  // power rails (gold) every 4th channel
+  g.strokeStyle='rgba(232,194,74,0.22)';g.lineWidth=1.4;
+  for(c=2;c<L.cols;c+=4){var gx2=L.dx+c*L.cw;g.beginPath();g.moveTo(gx2,L.dy);g.lineTo(gx2,L.dy+L.dh);g.stroke();}
+  // blocks
+  hover=-1;
+  for(var k=0;k<N;k++){var b=L.blk[k],cc=COL[k];
+    var hit=(mx>=b.x&&mx<=b.x+b.w&&my>=b.y&&my<=b.y+b.h);if(hit)hover=k;
+    g.fillStyle='rgba('+cc[0]+','+cc[1]+','+cc[2]+','+(hit?0.34:0.13)+')';
+    rr(g,b.x,b.y,b.w,b.h,3);g.fill();
+    g.strokeStyle='rgba('+cc[0]+','+cc[1]+','+cc[2]+','+(hit?0.95:0.5)+')';g.lineWidth=hit?1.6:1;rr(g,b.x,b.y,b.w,b.h,3);g.stroke();
+    // pin ticks
+    g.fillStyle='rgba('+cc[0]+','+cc[1]+','+cc[2]+',0.55)';var pn=Math.max(2,Math.min(5,(b.w/9)|0));
+    for(var q=0;q<pn;q++){var px=b.x+(q+1)/(pn+1)*b.w;g.fillRect(px-0.6,b.y+b.h-1,1.2,3);g.fillRect(px-0.6,b.y-2,1.2,3);}
+  }
+  // data packets along channels
+  g.globalCompositeOperation='lighter';
+  for(var pi=0;pi<packets.length;pi++){var pk=packets[pi];pk.pos+=pk.sp*dt;if(pk.pos>1)pk.pos-=1;
+    var col=pk.col<0.5?[120,240,235]:(pk.col<0.8?[232,194,74]:[255,120,200]);var x,y;
+    if(pk.ax===0){var cch=1+((pk.lane*(L.cols-1))|0);x=L.dx+cch*L.cw;y=L.dy+pk.pos*L.dh;}
+    else{var rch=1+((pk.lane*(L.rows-1))|0);y=L.dy+rch*L.ch;x=L.dx+pk.pos*L.dw;}
+    var gl=g.createRadialGradient(x,y,0,x,y,7);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+',0.95)');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');
+    g.fillStyle=gl;g.beginPath();g.arc(x,y,7,0,6.283);g.fill();}
+  g.globalCompositeOperation='source-over';
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(tip){if(hover>=0){var hb=L.blk[hover];tip.textContent=S[hover].n;tip.style.left=(hb.x+hb.w/2)+'px';tip.style.top=(hb.y-4)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+function rr(c,x,y,w,h,r){r=Math.min(r,w/2,h/2);c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),rows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();rows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
-CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva}
+CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos}
 
 
 def keeper_system():
