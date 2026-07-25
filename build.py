@@ -9355,6 +9355,169 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_hermes(i, key, title, accent, blurb, members):
+    """HERMES · comms — a bespoke keeper page (AVAN + TOP + the keeper, HERMES the messenger). A MESSAGE-
+    PASSING BUS: the spheres are ENDPOINTS flanking a central bus spine; addressed messages spawn at a
+    sender, drop onto the bus, run along it to the receiver's tap and arrive with a flash — continuous
+    traffic, from → to. Cyan on bus-dark, not black. Honest: each endpoint is a real sphere; the packets
+    are the figure of message-passing, a live bus view of the comms domain, not a real network capture."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0d1622">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE MESSAGE BUS · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cline x1='6' y1='32' x2='58' y2='32' stroke='%233fb0d8' stroke-width='3'/%3E%3Crect x='14' y='14' width='10' height='8' fill='%233fb0d8'/%3E%3Crect x='40' y='42' width='10' height='8' fill='%233fb0d8'/%3E%3Cline x1='19' y1='22' x2='19' y2='32' stroke='%233fb0d8' stroke-width='2'/%3E%3Cline x1='45' y1='42' x2='45' y2='32' stroke='%233fb0d8' stroke-width='2'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0d1622;--pa:#e6f1f8;--pa2:#b3d0e2;--dim:#6d90a6;--line:rgba(63,176,216,.22);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(63,176,216,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(63,176,216,.12),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(90,180,220,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(13,22,34,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#79cbea}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(63,176,216,.45)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#79cbea}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.hbwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 50%,#122435,#0a121c);box-shadow:0 18px 60px -20px rgba(63,176,216,.4)}
+#bus{display:block;width:100%;height:min(64vh,600px)}
+.hbbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(10,18,28,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.hbstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#79cbea;background:rgba(10,18,28,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:64%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hbhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#hbtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(10,18,28,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(13,22,34,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(63,176,216,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; HERMES &middot; <b>the messenger &middot; from &rarr; to</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> endpoints &middot; messages ride the bus &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="hbwrap">
+    <canvas id="bus"></canvas>
+    <div class="hbbadge">&#8644; THE MESSAGE BUS &middot; sender &rarr; bus &rarr; receiver</div>
+    <div class="hbstat" id="hbstat">BUS &middot; &mdash;</div>
+    <div class="hbhint">hover an endpoint &middot; click to enter its sphere</div>
+    <div id="hbtip"></div>
+  </div>
+  <div class="synhead"><h2>&#8644; the endpoints</h2><span class="sc">every endpoint, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the endpoints · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ endpoints, one bus &middot; HERMES &mdash; the message-passing bus: every node addressable, every message from one to another &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>each endpoint is a real sphere &middot; the packets are the figure of message-passing, a live bus view &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="busdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('bus');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('busdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var CY=hx(D.c||'#3fb0d8'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=3131;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var half=Math.ceil(N/2);
+var EP=S.map(function(s,i){var top=i<half;var idx=top?i:i-half,cnt=top?half:N-half;return {n:s.n,u:s.u,col:hx(s.c||'#3fb0d8'),top:top,fi:(idx+0.5)/cnt,x:0,y:0,flash:0};});
+var MSG=[],spawnT=0;
+function mkMsg(){var a=(rnd()*N)|0,b;do{b=(rnd()*N)|0;}while(b===a);MSG.push({a:a,b:b,t:0});}
+for(var z=0;z<8;z++){mkMsg();MSG[MSG.length-1].t=rnd();}
+var mx=-1,my=-1,hover=-1,t0=null,busY=0;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=EP[hover].u;});
+var tip=document.getElementById('hbtip'),stat=document.getElementById('hbstat'),lastMsg='';
+function trunc(s,m){return s.length>m?s.slice(0,m-1)+'…':s;}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.07;busY=H*0.5;var topY=H*0.2,botY=H*0.8;
+  for(var i=0;i<N;i++){var e=EP[i];e.x=padx+e.fi*(W-padx*2);e.y=e.top?topY:botY;}
+  // bus spine
+  g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.45)';g.lineWidth=3;g.beginPath();g.moveTo(padx*0.6,busY);g.lineTo(W-padx*0.6,busY);g.stroke();
+  g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.14)';g.lineWidth=8;g.beginPath();g.moveTo(padx*0.6,busY);g.lineTo(W-padx*0.6,busY);g.stroke();
+  g.fillStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.4)';g.font='10px ui-monospace,Menlo,monospace';g.textAlign='left';g.fillText('THE BUS',padx*0.6,busY-10);
+  // stubs
+  g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.2)';g.lineWidth=1.2;
+  for(i=0;i<N;i++){var e=EP[i];g.beginPath();g.moveTo(e.x,e.y);g.lineTo(e.x,busY);g.stroke();g.fillStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.5)';g.beginPath();g.arc(e.x,busY,2.4,0,6.283);g.fill();}
+  // spawn
+  spawnT+=dt;if(spawnT>0.34){spawnT=0;if(MSG.length<16)mkMsg();}
+  // messages
+  hover=-1;for(i=0;i<N;i++){var e=EP[i];if(Math.abs(e.x-mx)<12&&Math.abs(e.y-my)<12)hover=i;}
+  for(i=MSG.length-1;i>=0;i--){var m=MSG[i];var A=EP[m.a],B=EP[m.b];
+    var L0=Math.abs(A.y-busY),L1=Math.abs(B.x-A.x),L2=Math.abs(B.y-busY),tot=L0+L1+L2||1;
+    var spd=340;m.t+=dt*spd/tot;
+    if(m.t<=0.02)A.flash=1;
+    if(m.t>=1){B.flash=1;lastMsg=trunc(A.n,14)+' → '+trunc(B.n,14);MSG.splice(i,1);continue;}
+    var d=m.t*tot,px,py;
+    if(d<L0){var f=d/(L0||1);px=A.x;py=A.y+(busY-A.y)*f;}
+    else if(d<L0+L1){var f2=(d-L0)/(L1||1);px=A.x+(B.x-A.x)*f2;py=busY;}
+    else{var f3=(d-L0-L1)/(L2||1);px=B.x;py=busY+(B.y-busY)*f3;}
+    // trail
+    g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.25)';g.lineWidth=2;g.beginPath();g.moveTo(px,py);g.lineTo(px-(py===busY?10:0),py-(py===busY?0:(py>busY?10:-10)));g.stroke();
+    // packet
+    g.fillStyle='rgba(210,240,252,0.95)';g.save();g.translate(px,py);g.rotate(0.5);g.fillRect(-3,-3,6,6);g.restore();
+    var pgl=g.createRadialGradient(px,py,0,px,py,8);pgl.addColorStop(0,'rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.6)');pgl.addColorStop(1,'rgba('+CY[0]+','+CY[1]+','+CY[2]+',0)');g.fillStyle=pgl;g.beginPath();g.arc(px,py,8,0,6.283);g.fill();}
+  // endpoints
+  for(i=0;i<N;i++){var e=EP[i],hit=(hover===i),col=e.col;e.flash*=0.92;
+    var r2=6+(hit?2.5:0)+e.flash*3;
+    var gl=g.createRadialGradient(e.x,e.y,0,e.x,e.y,r2*2.4);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.5+0.45*e.flash)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');
+    g.fillStyle=gl;g.beginPath();g.arc(e.x,e.y,r2*2.4,0,6.283);g.fill();
+    g.fillStyle='rgba(12,20,30,0.9)';g.strokeStyle=hit?'#fff':'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.6+0.4*e.flash)+')';g.lineWidth=1.5;
+    g.beginPath();g.rect(e.x-5,e.y-5,10,10);g.fill();g.stroke();
+    g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.9)';g.beginPath();g.arc(e.x,e.y,2,0,6.283);g.fill();}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){if(hover>=0)stat.textContent='ENDPOINT · '+trunc(EP[hover].n,26);else stat.textContent='BUS · '+MSG.length+' in flight'+(lastMsg?' · '+lastMsg:'');}
+  if(tip){if(hover>=0){tip.textContent=EP[hover].n;tip.style.left=EP[hover].x+'px';tip.style.top=(EP[hover].y-14)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
@@ -9365,7 +9528,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "heurema": l2_page_heurema, "dyas": l2_page_dyas, "momus": l2_page_momus,
              "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier, "attraction": l2_page_attraction,
              "transcriber": l2_page_transcriber, "first-author": l2_page_firstauthor, "arena": l2_page_arena,
-             "idios": l2_page_idios, "exereunesis": l2_page_exereunesis}
+             "idios": l2_page_idios, "exereunesis": l2_page_exereunesis, "hermes": l2_page_hermes}
 
 
 def keeper_system():
