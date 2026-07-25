@@ -9196,6 +9196,165 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_exereunesis(i, key, title, accent, blurb, members):
+    """EXEREÚNESIS · teardowns — a bespoke keeper page (AVAN + TOP + the keeper). THE TEARDOWN BENCH: a
+    device EXPLODES into its component parts spread across a blueprint bench, then reassembles — the
+    spheres are the parts, drifting out from a central assembled unit to their bench positions and back on
+    a breathing cycle, with exploded-view leader lines and an inspection loupe that calls out each part.
+    Cyan on blueprint-dark, not black. Honest: each part is a real teardown sphere; the explode/assemble
+    is the figure of disassembly — a bench view of the corpus, the components are genuine."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0c1822">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE TEARDOWN BENCH · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='14' y='14' width='16' height='16' rx='2' fill='none' stroke='%232f9ec0' stroke-width='2'/%3E%3Ccircle cx='46' cy='18' r='5' fill='none' stroke='%232f9ec0' stroke-width='2'/%3E%3Crect x='38' y='36' width='16' height='10' rx='1' fill='none' stroke='%232f9ec0' stroke-width='2'/%3E%3Cline x1='30' y1='22' x2='41' y2='18' stroke='%232f9ec0' stroke-width='1' stroke-dasharray='2 2'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0c1822;--pa:#e6f2f8;--pa2:#b4d2e0;--dim:#6d93a6;--line:rgba(47,158,192,.22);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(47,158,192,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(47,158,192,.12),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(90,170,200,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(12,24,34,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#6cc6e2}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(47,158,192,.45)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#6cc6e2}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.tdwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 46%,#122535,#0a141d);box-shadow:0 18px 60px -20px rgba(47,158,192,.4)}
+#teardown{display:block;width:100%;height:min(66vh,640px)}
+.tdbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(10,18,26,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.tdstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6cc6e2;background:rgba(10,18,26,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tdhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#tdtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(10,18,26,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(12,24,34,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(47,158,192,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; EXERE&Uacute;NESIS &middot; <b>the technical teardown</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> parts on the bench &middot; explode, inspect, reassemble &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="tdwrap">
+    <canvas id="teardown"></canvas>
+    <div class="tdbadge">&#9881; THE TEARDOWN BENCH &middot; the device explodes into its parts</div>
+    <div class="tdstat" id="tdstat">TEARDOWN &middot; &mdash;</div>
+    <div class="tdhint">hover a part &middot; click to enter its sphere</div>
+    <div id="tdtip"></div>
+  </div>
+  <div class="synhead"><h2>&#9881; the parts</h2><span class="sc">every teardown, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the parts · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ parts, one bench &middot; EXERE&Uacute;NESIS &mdash; the teardown bench: take it apart to see how it is made; each part named, each enterable &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>each part is a real teardown sphere &middot; the explode / assemble is the figure of disassembly &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="teardowndata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('teardown');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('teardowndata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var CY=hx(D.c||'#2f9ec0'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=2323;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var cols=Math.max(6,Math.ceil(Math.sqrt(N*1.6))),prows=Math.ceil(N/cols);
+var PT=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#2f9ec0'),kind:i%5,gc:i%cols,gr:(i/cols)|0,
+  bx:0,by:0,cx0:0,cy0:0,x:0,y:0,jit:(rnd()-0.5)*0.02};});
+var focus=0,ftimer=0,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=PT[hover].u;});
+var tip=document.getElementById('tdtip'),stat=document.getElementById('tdstat');
+function part(x,y,kind,s,col,a){g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+a+')';g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(a*0.28)+')';g.lineWidth=1.2;
+  if(kind===0){g.fillRect(x-s,y-s*0.7,s*2,s*1.4);g.strokeRect(x-s,y-s*0.7,s*2,s*1.4);for(var p=0;p<4;p++){var px=x-s+s*2*(p+0.5)/4;g.beginPath();g.moveTo(px,y-s*0.7);g.lineTo(px,y-s*0.7-3);g.moveTo(px,y+s*0.7);g.lineTo(px,y+s*0.7+3);g.stroke();}}
+  else if(kind===1){g.beginPath();g.arc(x,y,s*0.9,0,6.283);g.fill();g.stroke();g.beginPath();g.moveTo(x-s*0.5,y);g.lineTo(x+s*0.5,y);g.moveTo(x,y-s*0.5);g.lineTo(x,y+s*0.5);g.stroke();}
+  else if(kind===2){g.fillRect(x-s*1.1,y-s*0.6,s*2.2,s*1.2);g.strokeRect(x-s*1.1,y-s*0.6,s*2.2,s*1.2);g.beginPath();g.moveTo(x-s*0.7,y-s*0.2);g.lineTo(x+s*0.7,y-s*0.2);g.moveTo(x-s*0.5,y+s*0.2);g.lineTo(x+s*0.9,y+s*0.2);g.stroke();}
+  else if(kind===3){g.fillRect(x-s*0.8,y-s,s*1.6,s*2);g.strokeRect(x-s*0.8,y-s,s*1.6,s*2);g.strokeRect(x-s*0.4,y-s*0.7,s*0.8,s*0.4);}
+  else{g.fillRect(x-s,y-s*0.5,s*2,s);g.strokeRect(x-s,y-s*0.5,s*2,s);for(var q=0;q<3;q++){var qx=x-s*0.5+q*s*0.5;g.beginPath();g.moveTo(qx,y+s*0.5);g.lineTo(qx,y+s*0.5+4);g.stroke();}}}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var cx=W*0.5,cy=H*0.5,padx=W*0.06,pady=H*0.10,gw=(W-padx*2)/cols,gh=(H-pady*2)/prows;
+  for(var i=0;i<N;i++){var p=PT[i];p.bx=padx+p.gc*gw+gw*0.5;p.by=pady+p.gr*gh+gh*0.5;p.cx0=cx+(p.gc-cols/2)*3;p.cy0=cy+(p.gr-prows/2)*2;}
+  // blueprint grid
+  g.strokeStyle='rgba(47,158,192,0.06)';g.lineWidth=1;var gs=Math.max(22,W/34);
+  for(var gx=padx;gx<W-padx*0.4;gx+=gs){g.beginPath();g.moveTo(gx,pady*0.6);g.lineTo(gx,H-pady*0.4);g.stroke();}
+  for(var gy=pady*0.6;gy<H-pady*0.4;gy+=gs){g.beginPath();g.moveTo(padx,gy);g.lineTo(W-padx*0.6,gy);g.stroke();}
+  var E=0.5-0.5*Math.cos(tt*0.34+3.14159);var Es=E*E*(3-2*E);   // opens exploded
+  // device outline (visible when assembled)
+  var da=Math.max(0,1-Es*1.6);if(da>0.02){g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+','+(0.4*da)+')';g.lineWidth=1.4;var dw=Math.min(W,H)*0.16;g.strokeRect(cx-dw,cy-dw*1.3,dw*2,dw*2.6);g.fillStyle='rgba(47,158,192,'+(0.25*da)+')';g.font='10px ui-monospace,Menlo,monospace';g.textAlign='center';g.fillText('UNIT UNDER TEARDOWN',cx,cy-dw*1.3-6);}
+  // positions
+  for(i=0;i<N;i++){var p=PT[i];p.x=p.cx0+(p.bx-p.cx0)*Es;p.y=p.cy0+(p.by-p.cy0)*Es;}
+  // leader lines (exploded view) when exploded
+  if(Es>0.3){for(i=0;i<N;i++){var p=PT[i];g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+','+((Es-0.3)*0.09)+')';g.lineWidth=1;g.beginPath();g.moveTo(p.cx0,p.cy0);g.lineTo(p.x,p.y);g.stroke();}}
+  // hover pick
+  hover=-1;var best=15*15;
+  for(i=0;i<N;i++){var p=PT[i];var d2=(p.x-mx)*(p.x-mx)+(p.y-my)*(p.y-my);if(mx>=0&&d2<best){best=d2;hover=i;}}
+  ftimer+=dt;if(ftimer>1.2){ftimer=0;focus=(focus+1)%N;}
+  var ps=Math.max(4,gw*0.13);
+  // parts
+  for(i=0;i<N;i++){var p=PT[i],hit=(hover===i),foc=(i===focus);part(p.x,p.y,p.kind,ps,hit?[220,244,252]:p.col,hit?0.98:(foc?0.9:0.62));}
+  // inspection loupe on the focused/hovered part
+  var li=hover>=0?hover:focus,lp=PT[li];
+  g.strokeStyle='rgba(200,240,252,0.7)';g.lineWidth=1.6;g.beginPath();g.arc(lp.x,lp.y,ps*1.9,0,6.283);g.stroke();g.beginPath();g.moveTo(lp.x+ps*1.9*0.7,lp.y+ps*1.9*0.7);g.lineTo(lp.x+ps*1.9*0.7+7,lp.y+ps*1.9*0.7+7);g.stroke();
+  // callout
+  var cnum='['+(li+1)+'/'+N+'] ';g.font='11px ui-monospace,Menlo,Consolas,monospace';g.textAlign='left';
+  var lbl=cnum+(lp.n.length>30?lp.n.slice(0,29)+'…':lp.n);var lx=lp.x+ps*2.4,ly=lp.y-ps*1.9;if(lx>W-160)lx=lp.x-ps*2.4-g.measureText(lbl).width;
+  g.fillStyle='rgba(200,240,252,0.92)';g.fillText(lbl,lx,ly);
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){if(hover>=0)stat.textContent='PART · '+(lp.n.length>24?lp.n.slice(0,23)+'…':lp.n);else stat.textContent='TEARDOWN · part '+(focus+1)+'/'+N+' · '+(Es>0.5?'exploded':'assembling');}
+  if(tip){if(hover>=0){tip.textContent=PT[hover].n;tip.style.left=PT[hover].x+'px';tip.style.top=(PT[hover].y-12)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
@@ -9206,7 +9365,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "heurema": l2_page_heurema, "dyas": l2_page_dyas, "momus": l2_page_momus,
              "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier, "attraction": l2_page_attraction,
              "transcriber": l2_page_transcriber, "first-author": l2_page_firstauthor, "arena": l2_page_arena,
-             "idios": l2_page_idios}
+             "idios": l2_page_idios, "exereunesis": l2_page_exereunesis}
 
 
 def keeper_system():
