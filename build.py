@@ -9355,6 +9355,169 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_solarjetman(i, key, title, accent, blurb, members):
+    """SOLAR JETMAN — a bespoke keeper page (AVAN + TOP + the keeper; the NES salvage game). A SPACE
+    SALVAGE MAP: a starfield with a planet limb, the spheres as salvage WRECKS scattered across the field;
+    a jetman POD flies a salvage route, locks a TRACTOR BEAM on each site, collects it (tagged salvaged),
+    and hauls toward the mothership. Gold on space-dark (the void is the medium). Honest: each wreck is a
+    real sphere; the salvage run is the figure — a map of the corpus, the sites are genuine."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0a0e1a">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE SALVAGE MAP · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M20 20 L36 26 L30 40 L16 34 Z' fill='none' stroke='%23d9a441' stroke-width='3'/%3E%3Cpath d='M40 40 L54 46 L48 56' fill='none' stroke='%2300e6ff' stroke-width='2' stroke-dasharray='3 3'/%3E%3Ccircle cx='44' cy='20' r='5' fill='%23d9a441'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a0e1a;--pa:#eaeefb;--pa2:#c2cbe4;--dim:#7787a6;--line:rgba(217,164,65,.24);
+  --c:__ACC__;--beam:#00e6ff;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(217,164,65,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(217,164,65,.12),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(90,120,220,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(10,14,26,.8);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#e6bf6a}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(217,164,65,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#e6bf6a}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.sjwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 30%,#101528,#070a14);box-shadow:0 18px 60px -20px rgba(217,164,65,.42)}
+#salvage{display:block;width:100%;height:min(68vh,680px)}
+.sjbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(7,10,20,.72);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.sjstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#e6bf6a;background:rgba(7,10,20,.72);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sjhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#sjtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(7,10,20,.95);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(10,14,26,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(217,164,65,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; SOLAR JETMAN &middot; <b>hunt the salvage</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> salvage sites &middot; the pod hauls one at a time &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="sjwrap">
+    <canvas id="salvage"></canvas>
+    <div class="sjbadge">&#128640; THE SALVAGE MAP &middot; tractor-beam &amp; haul to the mothership</div>
+    <div class="sjstat" id="sjstat">SALVAGE &middot; &mdash;</div>
+    <div class="sjhint">hover a wreck &middot; click to enter its sphere</div>
+    <div id="sjtip"></div>
+  </div>
+  <div class="synhead"><h2>&#128640; the salvage</h2><span class="sc">every wreck, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the salvage · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ salvage sites, one field &middot; SOLAR JETMAN &mdash; the space salvage map: each wreck a site, each site a real sphere &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>a map of the corpus &middot; the salvage run is the figure, the sites are genuine &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="salvagedata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('salvage');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('salvagedata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var GD=hx(D.c||'#d9a441'),BM=[0,230,255],DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=4747;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var WK=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#d9a441'),fx:0.08+rnd()*0.84,fy:0.14+rnd()*0.66,rot:rnd()*6.283,collected:false,x:0,y:0,ph:rnd()*6.283};});
+var BG=[];for(var z=0;z<150;z++)BG.push({x:rnd(),y:rnd(),m:rnd()*0.6+0.2,tw:rnd()*6.283,sp:0.5+rnd()*2});
+var target=0,beamT=0,ship={x:0,y:0},mx=-1,my=-1,hover=-1,t0=null,started=false;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=WK[hover].u;});
+var tip=document.getElementById('sjtip'),stat=document.getElementById('sjstat');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  for(var i=0;i<N;i++){var wk=WK[i];wk.x=W*wk.fx;wk.y=H*wk.fy;}
+  var moX=W*0.9,moY=H*0.12;   // mothership
+  if(!started){ship.x=WK[0].x;ship.y=WK[0].y;var seedC=Math.min(9,N-1);for(i=0;i<seedC;i++)WK[i].collected=true;target=seedC;ship.x=WK[target].x-30;ship.y=WK[target].y-30;started=true;}
+  // starfield
+  for(var b=0;b<BG.length;b++){var s2=BG[b];var a=s2.m*(0.5+0.5*Math.sin(tt*s2.sp+s2.tw));g.fillStyle='rgba(230,236,255,'+(a*0.6)+')';g.fillRect(s2.x*W,s2.y*H,1.3,1.3);}
+  // planet limb (bottom)
+  var pg=g.createRadialGradient(W*0.5,H*1.35,H*0.5,W*0.5,H*1.35,H*0.95);pg.addColorStop(0,'rgba(217,164,65,0.14)');pg.addColorStop(0.7,'rgba(120,90,40,0.08)');pg.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=pg;g.beginPath();g.arc(W*0.5,H*1.35,H*0.95,0,6.283);g.fill();
+  // orbital grid rings around mothership
+  g.strokeStyle='rgba(217,164,65,0.05)';g.lineWidth=1;for(var k=1;k<=4;k++){g.beginPath();g.arc(moX,moY,k*H*0.14,0,6.283);g.stroke();}
+  // ship physics toward target
+  var tg=WK[target];var dxs=tg.x-ship.x,dys=tg.y-ship.y,dist=Math.hypot(dxs,dys)||1;
+  if(dist>18){ship.x+=dxs/dist*Math.min(dist,240)*dt;ship.y+=dys/dist*Math.min(dist,240)*dt;beamT=0;}
+  else{beamT+=dt;if(beamT>0.7){WK[target].collected=true;var nt=target;var all=true;for(i=0;i<N;i++)if(!WK[i].collected)all=false;if(all){for(i=0;i<N;i++)WK[i].collected=false;}nt=(target+1)%N;while(WK[nt].collected&&nt!==target)nt=(nt+1)%N;target=nt;beamT=0;}}
+  var shipAng=Math.atan2(dys,dxs);
+  // mothership
+  g.fillStyle='rgba(217,164,65,0.18)';g.beginPath();g.arc(moX,moY,H*0.05,0,6.283);g.fill();g.strokeStyle='rgba('+GD[0]+','+GD[1]+','+GD[2]+',0.7)';g.lineWidth=1.6;g.beginPath();g.arc(moX,moY,H*0.05,0,6.283);g.stroke();g.fillStyle='rgba('+GD[0]+','+GD[1]+','+GD[2]+',0.9)';g.fillRect(moX-3,moY-3,6,6);
+  g.fillStyle='rgba('+GD[0]+','+GD[1]+','+GD[2]+',0.4)';g.font='9px ui-monospace,Menlo,monospace';g.textAlign='center';g.fillText('MOTHERSHIP',moX,moY+H*0.05+14);
+  // haul line ship->mothership
+  g.strokeStyle='rgba('+GD[0]+','+GD[1]+','+GD[2]+',0.12)';g.setLineDash([4,6]);g.lineWidth=1;g.beginPath();g.moveTo(ship.x,ship.y);g.lineTo(moX,moY);g.stroke();g.setLineDash([]);
+  // hover
+  hover=-1;var best=18*18;
+  for(i=0;i<N;i++){var wk=WK[i];var d2=(wk.x-mx)*(wk.x-mx)+(wk.y-my)*(wk.y-my);if(mx>=0&&d2<best){best=d2;hover=i;}}
+  // wrecks
+  for(i=0;i<N;i++){var wk=WK[i],act=(i===target),hit=(hover===i),col=wk.col;
+    var a=wk.collected?0.3:(act?1:(hit?0.95:0.62));
+    if(act||hit){var gl=g.createRadialGradient(wk.x,wk.y,0,wk.x,wk.y,14);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+',0.5)');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(wk.x,wk.y,14,0,6.283);g.fill();}
+    g.save();g.translate(wk.x,wk.y);g.rotate(wk.rot+tt*0.1);g.strokeStyle=hit?'rgba(255,240,210,0.95)':'rgba('+col[0]+','+col[1]+','+col[2]+','+a+')';g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(a*0.3)+')';g.lineWidth=1.3;
+    g.beginPath();g.rect(-4,-4,8,8);g.fill();g.stroke();g.beginPath();g.moveTo(-4,-4);g.lineTo(4,4);g.stroke();g.restore();
+    if(wk.collected){g.strokeStyle='rgba(120,220,150,0.6)';g.lineWidth=1.4;g.beginPath();g.moveTo(wk.x-3,wk.y);g.lineTo(wk.x-1,wk.y+2.5);g.lineTo(wk.x+3.5,wk.y-3);g.stroke();}}
+  // tractor beam ship->target (when close)
+  if(dist<=60){var bw=0.6+0.4*Math.sin(tt*20);var nx=Math.cos(shipAng),ny=Math.sin(shipAng),perp=[-ny,nx];
+    g.fillStyle='rgba('+BM[0]+','+BM[1]+','+BM[2]+','+(0.12*bw)+')';g.beginPath();g.moveTo(ship.x,ship.y);g.lineTo(tg.x+perp[0]*8,tg.y+perp[1]*8);g.lineTo(tg.x-perp[0]*8,tg.y-perp[1]*8);g.closePath();g.fill();
+    g.strokeStyle='rgba('+BM[0]+','+BM[1]+','+BM[2]+',0.5)';g.lineWidth=1;g.setLineDash([3,3]);g.lineDashOffset=-(tt*20)%6;g.beginPath();g.moveTo(ship.x,ship.y);g.lineTo(tg.x,tg.y);g.stroke();g.setLineDash([]);}
+  // ship (jetman pod)
+  g.save();g.translate(ship.x,ship.y);g.rotate(shipAng);
+  g.fillStyle='rgba(255,120,60,'+(0.6+0.4*Math.sin(tt*20))+')';g.beginPath();g.moveTo(-6,0);g.lineTo(-12,-2);g.lineTo(-12,2);g.closePath();g.fill();
+  g.fillStyle='rgba(230,236,255,0.95)';g.strokeStyle='rgba('+GD[0]+','+GD[1]+','+GD[2]+',0.9)';g.lineWidth=1.4;g.beginPath();g.moveTo(8,0);g.lineTo(-5,-5);g.lineTo(-3,0);g.lineTo(-5,5);g.closePath();g.fill();g.stroke();g.restore();
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var col2=0;for(i=0;i<N;i++)if(WK[i].collected)col2++;
+  var showi=hover>=0?hover:target;
+  if(stat)stat.textContent='SALVAGE '+col2+'/'+N+' · '+(WK[showi].n.length>20?WK[showi].n.slice(0,19)+'…':WK[showi].n);
+  if(tip){if(hover>=0){tip.textContent=WK[hover].n;tip.style.left=WK[hover].x+'px';tip.style.top=(WK[hover].y-14)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrws=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrws.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_hobby(i, key, title, accent, blurb, members):
     """HOBBY — a bespoke keeper page (AVAN + TOP + the keeper). A WORKBENCH OF PROJECTS: a maker's bench
     with a pegboard of tools and a swing-arm lamp; the spheres are PROJECTS scattered on the wood — models,
@@ -11607,7 +11770,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "niphelektron": l2_page_niphelektron, "educational": l2_page_educational,
              "scientific": l2_page_scientific, "life-science": l2_page_lifescience,
              "biblion": l2_page_biblion, "entertainment": l2_page_entertainment,
-             "hobby": l2_page_hobby}
+             "hobby": l2_page_hobby, "solar-jetman": l2_page_solarjetman}
 
 
 def keeper_system():
