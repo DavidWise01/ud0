@@ -9355,6 +9355,162 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_agora(i, key, title, accent, blurb, members):
+    """AGORA · the public square — a bespoke keeper page (AVAN + TOP + the keeper). AN OPEN FORUM: the
+    spheres are citizens gathered in a ring around a central speaking floor (the bema); the floor passes
+    openly — each rises to the center in turn, addresses the assembly with speech-ripples spreading through
+    the gathering, then yields to the next. A colonnade rings the plaza. Green on stone-dark, not black.
+    Honest: each citizen is a real sphere; the floor-passing is the figure of an open forum where any may speak."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0e1712">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE OPEN FORUM · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%232f9e6a' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%232f9e6a'/%3E%3Ccircle cx='32' cy='10' r='3' fill='%232f9e6a'/%3E%3Ccircle cx='54' cy='32' r='3' fill='%232f9e6a'/%3E%3Ccircle cx='32' cy='54' r='3' fill='%232f9e6a'/%3E%3Ccircle cx='10' cy='32' r='3' fill='%232f9e6a'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0e1712;--pa:#e2f3ea;--pa2:#b2d8c4;--dim:#6f9a84;--line:rgba(47,158,106,.24);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(47,158,106,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(47,158,106,.12),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(180,160,90,.07),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(14,23,18,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#66c99a}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(47,158,106,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#66c99a}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.agwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(120% 110% at 50% 50%,#15251c,#0b130e);box-shadow:0 18px 60px -20px rgba(47,158,106,.4)}
+#agora{display:block;width:100%;height:min(66vh,640px)}
+.agbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(11,19,14,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.agstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#66c99a;background:rgba(11,19,14,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.aghint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#agtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(11,19,14,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(14,23,18,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(47,158,106,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; AGORA &middot; <b>the floor is open</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> gathered &middot; the floor passes to each &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="agwrap">
+    <canvas id="agora"></canvas>
+    <div class="agbadge">&#9068; THE OPEN FORUM &middot; the floor passes, any may speak</div>
+    <div class="agstat" id="agstat">THE FLOOR &middot; &mdash;</div>
+    <div class="aghint">hover a citizen &middot; click to enter its sphere</div>
+    <div id="agtip"></div>
+  </div>
+  <div class="synhead"><h2>&#9068; the gathered</h2><span class="sc">every citizen, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the gathered · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ gathered, one forum &middot; AGORA &mdash; the open forum: the floor passes to each in turn, and any may speak &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>each citizen is a real sphere &middot; the floor-passing is the figure of an open assembly &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="agoradata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('agora');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('agoradata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var GN=hx(D.c||'#2f9e6a'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var CT=S.map(function(s,i){var a=(i/N)*6.2831853-1.5708;return {n:s.n,u:s.u,col:hx(s.c||'#2f9e6a'),a:a,x:0,y:0,rx:0,ry:0,hear:0};});
+var focus=0,DWELL=2.4,ft=DWELL*0.45,RIP=[{r:60},{r:130},{r:200}],ripT=0,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=CT[hover].u;});
+var tip=document.getElementById('agtip'),stat=document.getElementById('agstat');
+function sm(p){p=p<0?0:(p>1?1:p);return p*p*(3-2*p);}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var cx=W*0.5,cy=H*0.5,R=Math.min(W,H)*0.37;
+  for(var i=0;i<N;i++){var c=CT[i];c.rx=cx+Math.cos(c.a)*R;c.ry=cy+Math.sin(c.a)*R;}
+  // floor timing
+  ft+=dt;if(ft>DWELL){ft=0;focus=(focus+1)%N;}
+  var p=ft/DWELL,rise=p<0.25?sm(p/0.25):p<0.72?1:sm(1-(p-0.72)/0.28);
+  var sp=CT[focus];var spx=sp.rx+(cx-sp.rx)*rise,spy=sp.ry+(cy-sp.ry)*rise;
+  // paving rings
+  g.strokeStyle='rgba(47,158,106,0.08)';g.lineWidth=1;for(var k=1;k<=3;k++){g.beginPath();g.arc(cx,cy,R*k/3,0,6.283);g.stroke();}
+  // colonnade (columns just outside the ring)
+  var NC=Math.max(16,N);for(k=0;k<NC;k++){var ca=k/NC*6.283,ccx=cx+Math.cos(ca)*R*1.14,ccy=cy+Math.sin(ca)*R*1.14;g.fillStyle='rgba(160,180,150,0.18)';g.fillRect(ccx-1.6,ccy-5,3.2,10);}
+  // bema (speaking floor) at center
+  g.fillStyle='rgba(200,210,180,0.12)';g.beginPath();g.arc(cx,cy,R*0.16,0,6.283);g.fill();
+  g.strokeStyle='rgba('+GN[0]+','+GN[1]+','+GN[2]+',0.4)';g.lineWidth=1.2;g.beginPath();g.arc(cx,cy,R*0.16,0,6.283);g.stroke();
+  // speech ripples while speaking
+  ripT+=dt;if(rise>0.6&&ripT>0.55){ripT=0;RIP.push({r:R*0.16});}
+  for(i=RIP.length-1;i>=0;i--){var rp=RIP[i];rp.r+=dt*R*0.55;if(rp.r>R*1.15){RIP.splice(i,1);continue;}
+    var al=Math.max(0,1-rp.r/(R*1.15))*0.4;g.strokeStyle='rgba('+GN[0]+','+GN[1]+','+GN[2]+','+al+')';g.lineWidth=1.4;g.beginPath();g.arc(cx,cy,rp.r,0,6.283);g.stroke();}
+  // listeners hear when a ripple passes them
+  for(i=0;i<N;i++){var c=CT[i];if(i===focus){c.hear*=0.9;continue;}var d=Math.hypot(c.rx-cx,c.ry-cy);for(var j=0;j<RIP.length;j++){if(Math.abs(RIP[j].r-d)<10)c.hear=1;}c.hear*=0.93;}
+  // hover pick (current positions)
+  hover=-1;var best=20*20;
+  for(i=0;i<N;i++){var c=CT[i];var px=(i===focus)?spx:c.rx,py=(i===focus)?spy:c.ry;var d2=(px-mx)*(px-mx)+(py-my)*(py-my);if(mx>=0&&d2<best){best=d2;hover=i;}}
+  // citizens
+  for(i=0;i<N;i++){var c=CT[i],hit=(hover===i),spk=(i===focus),col=c.col;
+    var px=spk?spx:c.rx,py=spk?spy:c.ry,rad=5+(hit?2.5:0)+(spk?rise*3:0)+c.hear*1.5;
+    var ga=spk?(0.5+0.45*rise):(0.42+c.hear*0.4);
+    var gl=g.createRadialGradient(px,py,0,px,py,rad*2.6);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+ga+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');
+    g.fillStyle=gl;g.beginPath();g.arc(px,py,rad*2.6,0,6.283);g.fill();
+    g.fillStyle=hit?'#fff':'rgb('+col[0]+','+col[1]+','+col[2]+')';g.beginPath();g.arc(px,py,Math.max(1.6,rad*0.5),0,6.283);g.fill();
+    if(spk&&rise>0.5){g.strokeStyle='rgba(220,245,232,'+(rise*0.7)+')';g.lineWidth=1.3;g.beginPath();g.arc(px,py,rad+6,0,6.283);g.stroke();
+      // speech waveform under speaker
+      g.strokeStyle='rgba('+GN[0]+','+GN[1]+','+GN[2]+','+(rise*0.7)+')';g.lineWidth=1.4;g.beginPath();for(var w=0;w<20;w++){var wx=px-19+w*2,wy=py+rad+10+Math.sin(w*0.9+tt*10)*4*Math.sin(w*0.31);if(w===0)g.moveTo(wx,wy);else g.lineTo(wx,wy);}g.stroke();}
+    if(hit){g.strokeStyle='rgba(220,245,232,0.85)';g.lineWidth=1.3;g.beginPath();g.arc(px,py,rad+7,0,6.283);g.stroke();}}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){if(hover>=0)stat.textContent='CITIZEN · '+(CT[hover].n.length>24?CT[hover].n.slice(0,23)+'…':CT[hover].n);else{var nm=CT[focus].n;stat.textContent='THE FLOOR · '+(nm.length>22?nm.slice(0,21)+'…':nm)+' · '+N+' gathered';}}
+  if(tip){if(hover>=0){var c=CT[hover];var px=(hover===focus)?spx:c.rx,py=(hover===focus)?spy:c.ry;tip.textContent=c.n;tip.style.left=px+'px';tip.style.top=(py-14)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_logismos(i, key, title, accent, blurb, members):
     """LOGISMÓS · terminal history — a bespoke keeper page (AVAN + TOP + the keeper). A TERMINAL HISTORY:
     a green-phosphor CRT replays the command HISTORY line by line — a scrollback of prompts, each entry a
@@ -10013,7 +10169,8 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier, "attraction": l2_page_attraction,
              "transcriber": l2_page_transcriber, "first-author": l2_page_firstauthor, "arena": l2_page_arena,
              "idios": l2_page_idios, "exereunesis": l2_page_exereunesis, "hermes": l2_page_hermes,
-             "glossa": l2_page_glossa, "lesbos": l2_page_lesbos, "logismos": l2_page_logismos}
+             "glossa": l2_page_glossa, "lesbos": l2_page_lesbos, "logismos": l2_page_logismos,
+             "agora": l2_page_agora}
 
 
 def keeper_system():
