@@ -7573,13 +7573,181 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_heurema(i, key, title, accent, blurb, members):
+    """HEÚREMA · hardware inventions — a bespoke keeper page (AVAN + TOP + the keeper). A HARDWARE
+    INVENTION WORKBENCH: a perfboard where the spheres are DEVICES; copper traces route between them and
+    a solder head SOLDERS them in one by one (build cycle), then current pulses flow through the finished
+    wiring. Live 'traces routed' tally. Hover a device names it, click enters. Copper on blueprint-dark,
+    not black. Honest: a workbench figure — each device is a real sphere; the assembly is the metaphor."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#17120a">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE WORKBENCH · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='10' y='10' width='16' height='16' rx='2' fill='none' stroke='%23d99a52' stroke-width='3'/%3E%3Crect x='38' y='38' width='16' height='16' rx='2' fill='none' stroke='%23d99a52' stroke-width='3'/%3E%3Cpath d='M26 18 L46 18 L46 38' fill='none' stroke='%23b5733a' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#17120a;--pa:#f6ecdb;--pa2:#e0c69f;--dim:#a7855a;--line:rgba(181,115,58,.26);
+  --c:__ACC__;--sol:#ffcf8a;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(181,115,58,.34)}
+body{background:radial-gradient(1000px 600px at 20% -6%,rgba(181,115,58,.14),transparent 56%),
+  radial-gradient(1000px 600px at 86% 108%,rgba(255,180,90,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(23,18,10,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#f0b878}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(181,115,58,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#f0b878}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.wbwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 44%,#221a0f,#120d07);box-shadow:0 18px 60px -20px rgba(181,115,58,.45)}
+#bench{display:block;width:100%;height:min(64vh,600px)}
+.wbbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(18,13,7,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.wbstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--sol);background:rgba(18,13,7,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wbhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#wbtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(18,13,7,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(23,18,10,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(181,115,58,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; HE&Uacute;REMA &middot; <b>eureka &mdash; a thing found</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> devices on the bench &middot; routed, soldered, powered &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="wbwrap">
+    <canvas id="bench"></canvas>
+    <div class="wbbadge">&#9881; THE WORKBENCH &middot; solder the invention together</div>
+    <div class="wbstat" id="wbstat">ROUTING &middot; &mdash;</div>
+    <div class="wbhint">hover a device &middot; click to enter its sphere</div>
+    <div id="wbtip"></div>
+  </div>
+  <div class="synhead"><h2>&#9881; the devices</h2><span class="sc">every invention, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the devices · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ devices, one bench &middot; HE&Uacute;REMA &mdash; the hardware workbench: each device is a real sphere, routed and soldered into the whole &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>eureka is the found thing &middot; the assembly is the figure, the inventions are real &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="benchdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('bench');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('benchdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var CO=hx(D.c||'#b5733a'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var cols=Math.max(3,Math.ceil(Math.sqrt(N*1.5))),arows=Math.ceil(N/cols);
+var DV=S.map(function(s,i){var c=i%cols,r=(i/cols)|0;return {n:s.n,u:s.u,col:hx(s.c||'#b5733a'),
+  gx:(c+0.5)/cols,gy:(r+0.5)/arows,x:0,y:0,lit:0};});
+// traces: connect each device to nearest 1-2 others (orthogonal), dedupe
+var TR=[];function keyp(a,b){return a<b?a+'_'+b:b+'_'+a;}var seen={};
+for(var a=0;a<N;a++){var d=[];for(var b=0;b<N;b++){if(b===a)continue;var dx=DV[a].gx-DV[b].gx,dy=DV[a].gy-DV[b].gy;d.push({b:b,dd:dx*dx+dy*dy});}
+  d.sort(function(p,q){return p.dd-q.dd;});for(var k=0;k<Math.min(2,d.length);k++){var kp=keyp(a,d[k].b);if(seen[kp])continue;seen[kp]=1;TR.push({a:a,b:d[k].b});}}
+var T=TR.length;
+var mx=-1,my=-1,hover=-1,t0=null,CYC=9.0;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=DV[hover].u;});
+var tip=document.getElementById('wbtip'),stat=document.getElementById('wbstat');
+function ppath(tr){var A=DV[tr.a],B=DV[tr.b];return {ax:A.x,ay:A.y,ex:B.x,ey:A.y,bx:B.x,by:B.y};}
+function ptAt(p,t){var l1=Math.abs(p.ex-p.ax),l2=Math.abs(p.by-p.ey),L=l1+l2||1;var d=t*L;
+  if(d<l1){return [p.ax+(p.ex-p.ax)*(d/(l1||1)),p.ay];}else{var d2=d-l1;return [p.ex,p.ey+(p.by-p.ey)*(d2/(l2||1))];}}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var pad=Math.min(W,H)*0.10,bx0=pad,by0=pad*0.8,bw=W-pad*2,bh=H-pad*1.6;
+  for(var i=0;i<N;i++){var v=DV[i];v.x=bx0+v.gx*bw;v.y=by0+v.gy*bh;}
+  // perfboard dot grid
+  g.fillStyle='rgba(181,115,58,0.10)';var gs=Math.max(14,bw/26);
+  for(var yy=by0;yy<by0+bh;yy+=gs)for(var xx=bx0;xx<bx0+bw;xx+=gs){g.fillRect(xx,yy,1.4,1.4);}
+  var tc=(tt+4.4)%CYC,grow=Math.min(1,tc/6.6);grow=grow*grow*(3-2*grow);var front=grow*T;
+  var solEnd=tc<7.2?1:Math.max(0,1-(tc-7.2)/1.2); // solder brightness fade before reset
+  // traces
+  for(i=0;i<T;i++){var p=ppath(TR[i]);var sol=i<front;
+    if(!sol){g.strokeStyle='rgba(181,115,58,0.14)';g.lineWidth=1;g.setLineDash([3,4]);}
+    else{g.strokeStyle='rgba('+CO[0]+','+CO[1]+','+CO[2]+','+(0.55*solEnd+0.2)+')';g.lineWidth=2;g.setLineDash([]);}
+    g.beginPath();g.moveTo(p.ax,p.ay);g.lineTo(p.ex,p.ey);g.lineTo(p.bx,p.by);g.stroke();
+    if(sol){g.fillStyle='rgba('+CO[0]+','+CO[1]+','+CO[2]+','+solEnd+')';g.beginPath();g.arc(p.ex,p.ey,2.2,0,6.283);g.fill();
+      // current pulse
+      var pp=(tt*0.4+i*0.13)%1,q=ptAt(p,pp);g.fillStyle='rgba(255,225,170,'+solEnd+')';g.beginPath();g.arc(q[0],q[1],2.4,0,6.283);g.fill();
+      DV[TR[i].a].lit=Math.max(DV[TR[i].a].lit,0.6);DV[TR[i].b].lit=Math.max(DV[TR[i].b].lit,0.6);}}
+  g.setLineDash([]);
+  // solder head at build front
+  if(front<T){var fp=ppath(TR[Math.floor(front)%T]);var fl=0.5+0.5*Math.sin(tt*18);g.strokeStyle='rgba(255,235,190,'+(0.6+0.4*fl)+')';g.lineWidth=1.6;g.beginPath();g.arc(fp.bx,fp.by,5+fl*3,0,6.283);g.stroke();
+    g.fillStyle='rgba(255,240,200,'+(0.5+0.4*fl)+')';g.beginPath();g.arc(fp.bx,fp.by,2,0,6.283);g.fill();}
+  // devices (chips)
+  hover=-1;var best=1e9;
+  for(i=0;i<N;i++){var v=DV[i];var d2=(v.x-mx)*(v.x-mx)+(v.y-my)*(v.y-my);if(mx>=0&&d2<best&&d2<420){best=d2;hover=i;}}
+  for(i=0;i<N;i++){var v=DV[i],hit=(hover===i),col=v.col,lit=v.lit;v.lit*=0.9;
+    var cw=Math.max(16,bw/cols*0.4),ch=cw*0.68;
+    // glow
+    if(lit>0.05||hit){var gl=g.createRadialGradient(v.x,v.y,0,v.x,v.y,cw*1.5);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.5*lit+(hit?0.4:0))+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(v.x,v.y,cw*1.5,0,6.283);g.fill();}
+    // pin ticks
+    g.strokeStyle='rgba('+CO[0]+','+CO[1]+','+CO[2]+',0.7)';g.lineWidth=1.4;
+    for(var pnq=0;pnq<3;pnq++){var fxp=v.x-cw/2+cw*(pnq+0.5)/3;g.beginPath();g.moveTo(fxp,v.y-ch/2);g.lineTo(fxp,v.y-ch/2-4);g.stroke();g.beginPath();g.moveTo(fxp,v.y+ch/2);g.lineTo(fxp,v.y+ch/2+4);g.stroke();}
+    // body
+    g.fillStyle=hit?'rgba(44,32,18,0.98)':'rgba(34,25,14,0.96)';g.strokeStyle=hit?'rgba(255,225,170,0.95)':'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.55+0.4*lit)+')';g.lineWidth=hit?1.8:1.3;
+    var rx=v.x-cw/2,ry=v.y-ch/2,rr=4;g.beginPath();g.moveTo(rx+rr,ry);g.arcTo(rx+cw,ry,rx+cw,ry+ch,rr);g.arcTo(rx+cw,ry+ch,rx,ry+ch,rr);g.arcTo(rx,ry+ch,rx,ry,rr);g.arcTo(rx,ry,rx+cw,ry,rr);g.closePath();g.fill();g.stroke();
+    // pin-1 dot
+    g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(0.6+0.4*lit)+')';g.beginPath();g.arc(rx+5,ry+5,1.8,0,6.283);g.fill();}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){if(hover>=0)stat.textContent='DEVICE · '+DV[hover].n;else stat.textContent=(front>=T?'POWERED · ':'ROUTING · ')+Math.min(T,Math.floor(front))+'/'+T+' traces soldered';}
+  if(tip){if(hover>=0){tip.textContent=DV[hover].n;tip.style.left=DV[hover].x+'px';tip.style.top=(DV[hover].y-14)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
              "lillith": l2_page_lillith, "strobilos": l2_page_strobilos, "phonos": l2_page_phonos,
              "aisthesis": l2_page_aisthesis, "krasis": l2_page_krasis, "skynet": l2_page_skynet,
              "phantasia": l2_page_phantasia, "prosoche": l2_page_prosoche, "poietike": l2_page_poietike,
-             "banana": l2_page_banana, "tin-foil": l2_page_tinfoil, "occupational": l2_page_occupational}
+             "banana": l2_page_banana, "tin-foil": l2_page_tinfoil, "occupational": l2_page_occupational,
+             "heurema": l2_page_heurema}
 
 
 def keeper_system():
