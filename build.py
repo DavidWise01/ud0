@@ -6137,10 +6137,162 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_aisthesis(i, key, title, accent, blurb, members):
+    """AÍSTHĒSIS · the perceiving brain — a bespoke keeper page (AVAN + TOP + the keeper). The 10
+    spheres are brain REGIONS wired into a CONNECTOME: a ring of nodes joined by curved neural
+    tracts, and activity CASCADES — a region fires, pulses travel its tracts, the regions they
+    reach fire in turn (spreading activation). Hover a region names it, click enters. Neuro-dark, coral."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0e1526">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE CONNECTOME · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cg stroke='%23ff7a6a' stroke-width='2.4' fill='none'%3E%3Cpath d='M14 20C32 40 32 24 50 44M50 20C32 40 32 24 14 44'/%3E%3C/g%3E%3Ccircle cx='14' cy='20' r='4' fill='%23ff7a6a'/%3E%3Ccircle cx='50' cy='44' r='4' fill='%234fe3ff'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0e1526;--pa:#f2ecf6;--pa2:#d0c2d8;--dim:#9385a8;--line:rgba(255,122,106,.20);
+  --c:__ACC__;--cy:#4fe3ff;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(255,122,106,.34)}
+body{background:radial-gradient(1100px 640px at 74% -6%,rgba(255,122,106,.16),transparent 56%),
+  radial-gradient(900px 560px at 12% 108%,rgba(79,227,255,.12),transparent 60%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(14,21,38,.75);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:var(--cy)}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 28px rgba(255,122,106,.6)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:var(--cy)}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.conwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(120% 100% at 50% 40%,#141c33,#0a1120);box-shadow:0 18px 60px -20px rgba(120,60,120,.5)}
+#conn{display:block;width:100%;height:min(64vh,600px)}
+.conbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);background:rgba(10,17,32,.6);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.conhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#contip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(10,17,32,.92);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(14,21,38,.5);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(255,122,106,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; the perceiving brain &middot; <b>the wiring, not the parts</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> regions &middot; the connectome fires &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="conwrap">
+    <canvas id="conn"></canvas>
+    <div class="conbadge">&#9673; THE CONNECTOME &middot; __N__ regions wired &middot; activity cascades</div>
+    <div class="conhint">hover a region &middot; click to enter its sphere</div>
+    <div id="contip"></div>
+  </div>
+  <div class="synhead"><h2>&#9673; the regions</h2><span class="sc">every node, wired &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the regions · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ regions on one connectome &middot; AÍSTHĒSIS &mdash; perception is the wiring, not the parts &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>a signal fired here arrives there &middot; one governor, one instance, one lattice &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="conndata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('conn');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('conndata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=(''+h).replace('#','');if(h.length<6)h='ff7a6a';return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+var AC=hx(D.c||'#ff7a6a'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0,PI=Math.PI;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=67;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var ND2=S.map(function(s,i){return {col:hx(s.c||D.c),n:s.n,u:s.u,ang:(i/N)*6.2831853-PI/2,rj:0.86+rnd()*0.18,act:0,cool:0,x:0,y:0};});
+var E=[],seen={};for(var i=0;i<N;i++){var deg=2+((rnd()*2)|0);for(var d2=0;d2<deg;d2++){var j=(i+1+((rnd()*(N-1))|0))%N;var ky=Math.min(i,j)+'-'+Math.max(i,j);if(i!==j&&!seen[ky]){seen[ky]=1;E.push({a:i,b:j});}}}
+var pulses=[],mx=-1,my=-1,hover=-1,t0=null,fireT=-9;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=ND2[hover].u;});
+var tip=document.getElementById('contip');
+function fire(k){var nd=ND2[k];if(nd.cool>0)return;nd.act=1;nd.cool=0.55;
+  for(var e2=0;e2<E.length;e2++){if(E[e2].a===k||E[e2].b===k){var from=k,to=(E[e2].a===k?E[e2].b:E[e2].a);pulses.push({e:e2,from:from,pos:0,sp:0.7+rnd()*0.5});}}}
+function bez(ax,ay,bx,by,cx,cy,t){var u=1-t;return [u*u*ax+2*u*t*cx+t*t*bx, u*u*ay+2*u*t*cy+t*t*by];}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var tt=(t-t0)*0.001,dt=Math.min(0.05,tt-(loop._l||tt));loop._l=tt;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var cx=W/2,cy=H*0.5,R=Math.min(W,H)*0.40;
+  for(var k=0;k<N;k++){ND2[k].x=cx+Math.cos(ND2[k].ang)*R*ND2[k].rj;ND2[k].y=cy+Math.sin(ND2[k].ang)*R*ND2[k].rj;}
+  if(tt-fireT>1.15){fireT=tt;fire((Math.random()*N)|0);}
+  for(k=0;k<N;k++){ND2[k].act*=Math.pow(0.35,dt);ND2[k].cool-=dt;}
+  // cortical rim
+  g.strokeStyle='rgba('+AC[0]+','+AC[1]+','+AC[2]+',0.10)';g.lineWidth=1;g.setLineDash([3,5]);g.beginPath();g.arc(cx,cy,R*1.06,0,6.283);g.stroke();g.setLineDash([]);
+  // tracts
+  g.globalCompositeOperation='lighter';
+  for(var e2=0;e2<E.length;e2++){var a=ND2[E[e2].a],b=ND2[E[e2].b];var mcx=cx+(a.x+b.x-2*cx)*0.28,mcy=cy+(a.y+b.y-2*cy)*0.28;
+    var lit=Math.max(a.act,b.act);
+    g.strokeStyle='rgba('+AC[0]+','+AC[1]+','+AC[2]+','+(0.08+lit*0.4)+')';g.lineWidth=1;
+    g.beginPath();g.moveTo(a.x,a.y);g.quadraticCurveTo(mcx,mcy,b.x,b.y);g.stroke();}
+  // pulses
+  for(var pi=pulses.length-1;pi>=0;pi--){var p=pulses[pi];p.pos+=p.sp*dt;
+    var ed=E[p.e],from=ND2[p.from],to=ND2[(ed.a===p.from?ed.b:ed.a)];
+    var mcx2=cx+(from.x+to.x-2*cx)*0.28,mcy2=cy+(from.y+to.y-2*cy)*0.28;
+    if(p.pos>=1){fire(ed.a===p.from?ed.b:ed.a);pulses.splice(pi,1);continue;}
+    var pt=bez(from.x,from.y,to.x,to.y,mcx2,mcy2,p.pos);
+    var gl=g.createRadialGradient(pt[0],pt[1],0,pt[0],pt[1],5);gl.addColorStop(0,'rgba(150,240,255,0.95)');gl.addColorStop(1,'rgba(150,240,255,0)');
+    g.fillStyle=gl;g.beginPath();g.arc(pt[0],pt[1],5,0,6.283);g.fill();}
+  // nodes
+  hover=-1;var best=18*18;
+  for(k=0;k<N;k++){var nd=ND2[k];var d=(nd.x-mx)*(nd.x-mx)+(nd.y-my)*(nd.y-my);if(mx>=0&&d<best){best=d;hover=k;}
+    var hit=(hover===k),rad=5+nd.act*5+(hit?3:0);
+    var gl2=g.createRadialGradient(nd.x,nd.y,0,nd.x,nd.y,rad*2.4);gl2.addColorStop(0,'rgba('+nd.col[0]+','+nd.col[1]+','+nd.col[2]+','+(0.55+nd.act*0.45)+')');gl2.addColorStop(1,'rgba('+nd.col[0]+','+nd.col[1]+','+nd.col[2]+',0)');
+    g.fillStyle=gl2;g.beginPath();g.arc(nd.x,nd.y,rad*2.4,0,6.283);g.fill();
+    g.fillStyle='rgba(255,255,255,'+(0.55+nd.act*0.45)+')';g.beginPath();g.arc(nd.x,nd.y,Math.max(1,rad*0.5),0,6.283);g.fill();}
+  g.globalCompositeOperation='source-over';
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(tip){if(hover>=0){tip.textContent=ND2[hover].n;tip.style.left=ND2[hover].x+'px';tip.style.top=(ND2[hover].y-12)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
-             "lillith": l2_page_lillith, "strobilos": l2_page_strobilos, "phonos": l2_page_phonos}
+             "lillith": l2_page_lillith, "strobilos": l2_page_strobilos, "phonos": l2_page_phonos,
+             "aisthesis": l2_page_aisthesis}
 
 
 def keeper_system():
