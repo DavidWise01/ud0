@@ -8714,6 +8714,163 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_firstauthor(i, key, title, accent, blurb, members):
+    """THE FIRST AUTHOR · human vs AI flattening — a bespoke keeper page (AVAN + TOP + the keeper). THE
+    FLATTENING: the spheres are distinct authorial VOICES standing at individual heights above a mean
+    baseline; a FLATTENING PRESS descends on a cycle and levels every voice toward the AI-average mean
+    (colours desaturate to grey, jagged signatures smooth out), then releases and the voices spring back
+    to their distinctiveness. Vermilion on cinnamon-dark, not black. Honest: the voices are the real
+    spheres (facets of the first-author argument); the press is the figure of AI's regression to the mean."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#1b120d">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE FLATTENING · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='10' y='30' width='7' height='24' fill='%23e0503c'/%3E%3Crect x='22' y='16' width='7' height='38' fill='%23e0503c'/%3E%3Crect x='34' y='36' width='7' height='18' fill='%23e0503c'/%3E%3Crect x='46' y='22' width='7' height='32' fill='%23e0503c'/%3E%3Cline x1='6' y1='12' x2='58' y2='12' stroke='%23e0503c' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1b120d;--pa:#f8ebe2;--pa2:#e6c7b6;--dim:#ac8168;--line:rgba(224,80,60,.24);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(224,80,60,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(224,80,60,.14),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(200,120,80,.09),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(27,18,13,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#f2957f}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(224,80,60,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#f2957f}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.fawrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 20%,#2a1810,#150d08);box-shadow:0 18px 60px -20px rgba(224,80,60,.42)}
+#flat{display:block;width:100%;height:min(64vh,600px)}
+.fabadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(21,13,8,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.fastat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#f2957f;background:rgba(21,13,8,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fahint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#fatip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(21,13,8,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(27,18,13,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(224,80,60,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; THE FIRST AUTHOR &middot; <b>the human, not the mean</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> voices &middot; the press flattens, the voices rise &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="fawrap">
+    <canvas id="flat"></canvas>
+    <div class="fabadge">&#9603; THE FLATTENING &middot; distinct voices vs the AI mean</div>
+    <div class="fastat" id="fastat">DISTINCTNESS &middot; &mdash;</div>
+    <div class="fahint">hover a voice &middot; click to enter its sphere</div>
+    <div id="fatip"></div>
+  </div>
+  <div class="synhead"><h2>&#9603; the voices</h2><span class="sc">every voice, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the voices · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ voices, one press &middot; THE FIRST AUTHOR &mdash; the human vs the AI flattening: distinctiveness is the variance the mean erases; the first author is the one the press cannot level &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the voices are real spheres, the press is the figure of regression to the mean &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="flatdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('flat');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('flatdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var VM=hx(D.c||'#e0503c'),GREY=[150,138,132],DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=3939;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+// each voice: a natural (distinctive) height + a jagged personal signature
+var VO=S.map(function(s,i){var sig=[];for(var q=0;q<5;q++)sig.push((rnd()-0.5)*2);return {n:s.n,u:s.u,col:hx(s.c||'#e0503c'),nat:0.32+rnd()*0.68,sig:sig,x:0,w:0,ph:rnd()*6.283};});
+var meanNat=0;for(var z=0;z<N;z++)meanNat+=VO[z].nat;meanNat/=N;
+function mix(a,b,t){return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];}
+var mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=VO[hover].u;});
+var tip=document.getElementById('fatip'),stat=document.getElementById('fastat');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.06,floorY=H*0.84,topY=H*0.14,maxH=floorY-topY;
+  var bw=(W-padx*2)/N,barW=bw*0.56;
+  var F=0.5-0.5*Math.cos(tt*0.62);   // flattening press 0..1..0 (opens distinct)
+  var meanH=meanNat*maxH,meanY=floorY-meanH;
+  // floor
+  g.strokeStyle='rgba('+VM[0]+','+VM[1]+','+VM[2]+',0.25)';g.lineWidth=1.2;g.beginPath();g.moveTo(padx,floorY);g.lineTo(W-padx,floorY);g.stroke();
+  // mean line (the AI average)
+  g.setLineDash([6,5]);g.strokeStyle='rgba(220,200,190,0.45)';g.lineWidth=1.2;g.beginPath();g.moveTo(padx,meanY);g.lineTo(W-padx,meanY);g.stroke();g.setLineDash([]);
+  g.fillStyle='rgba(220,200,190,0.6)';g.font='10px ui-monospace,Menlo,Consolas,monospace';g.textAlign='left';g.fillText('the mean · AI average',padx+2,meanY-6);
+  // hover pick
+  hover=-1;
+  for(var i=0;i<N;i++){var vx=padx+i*bw+bw*0.5;if(Math.abs(vx-mx)<barW*0.7&&my>topY&&my<floorY+10)hover=i;}
+  // voices (bars)
+  for(i=0;i<N;i++){var vo=VO[i],hit=(hover===i);vo.x=padx+i*bw+bw*0.5;vo.w=barW;
+    var hgt=(vo.nat+(vo.nat-meanNat)*0.0);var curH=(vo.nat+(meanNat-vo.nat)*F)*maxH;   // lerp toward mean
+    var bx=vo.x-barW/2,by=floorY-curH;var col=mix(vo.col,GREY,F*0.9);
+    // bar
+    var bg=g.createLinearGradient(0,by,0,floorY);bg.addColorStop(0,'rgba('+(col[0]|0)+','+(col[1]|0)+','+(col[2]|0)+','+(hit?0.98:0.82)+')');bg.addColorStop(1,'rgba('+((col[0]*0.5)|0)+','+((col[1]*0.5)|0)+','+((col[2]*0.5)|0)+',0.5)');
+    g.fillStyle=bg;g.fillRect(bx,by,barW,curH);
+    // personal signature top (jagged) — flattens with F
+    g.strokeStyle=hit?'#fff':'rgba('+(col[0]|0)+','+(col[1]|0)+','+(col[2]|0)+',0.95)';g.lineWidth=1.6;g.beginPath();
+    for(var q=0;q<vo.sig.length;q++){var sx=bx+barW*(q/(vo.sig.length-1)),sy=by+vo.sig[q]*7*(1-F)-2;if(q===0)g.moveTo(sx,sy);else g.lineTo(sx,sy);}g.stroke();
+    if(hit){g.fillStyle='rgba(255,255,255,0.9)';g.beginPath();g.arc(vo.x,by-10,3,0,6.283);g.fill();}}
+  // flattening press platen descending as F rises
+  var pressY=topY+F*(meanY-topY-4);
+  g.fillStyle='rgba(240,150,120,'+(0.12+0.25*F)+')';g.fillRect(padx-4,pressY-8,W-padx*2+8,8);
+  g.strokeStyle='rgba(255,190,160,'+(0.4+0.4*F)+')';g.lineWidth=1.4;g.beginPath();g.moveTo(padx-4,pressY);g.lineTo(W-padx+4,pressY);g.stroke();
+  for(var h2=padx;h2<W-padx;h2+=16){g.strokeStyle='rgba(255,190,160,'+(0.2+0.3*F)+')';g.lineWidth=1;g.beginPath();g.moveTo(h2,pressY-8);g.lineTo(h2+6,pressY);g.stroke();}
+  g.fillStyle='rgba(255,190,160,'+(0.5+0.4*F)+')';g.font='10px ui-monospace,Menlo,Consolas,monospace';g.textAlign='right';g.fillText('THE FLATTENING ↓',W-padx-2,pressY-6);
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var distinct=Math.round((1-F)*100);
+  if(stat){if(hover>=0)stat.textContent='VOICE · '+VO[hover].n;else stat.textContent=(F>0.7?'FLATTENED · ':'DISTINCT · ')+distinct+'% distinctness · '+N+' voices';}
+  if(tip){if(hover>=0){var vo=VO[hover];var curH=(vo.nat+(meanNat-vo.nat)*F)*maxH;tip.textContent=vo.n;tip.style.left=vo.x+'px';tip.style.top=(floorY-curH-16)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
@@ -8723,7 +8880,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "banana": l2_page_banana, "tin-foil": l2_page_tinfoil, "occupational": l2_page_occupational,
              "heurema": l2_page_heurema, "dyas": l2_page_dyas, "momus": l2_page_momus,
              "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier, "attraction": l2_page_attraction,
-             "transcriber": l2_page_transcriber}
+             "transcriber": l2_page_transcriber, "first-author": l2_page_firstauthor}
 
 
 def keeper_system():
