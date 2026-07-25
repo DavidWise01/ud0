@@ -9355,6 +9355,173 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_eremia(i, key, title, accent, blurb, members):
+    """ERĒMIA · the wilderness — a bespoke keeper page (AVAN + TOP + the keeper; ἐρημία, desert/solitude).
+    A WASTELAND MAP: a bleak horizon over cracked ground, the spheres as ruined LANDMARKS casting long
+    shadows, a solitary WANDERER crossing from one to the next leaving footprints, dust on the wind. Muted
+    violet on wasteland-dusk (the emptiness is the medium). Honest: each landmark is a real sphere; the
+    wasteland is the figure — a solitary map of the corpus, the sites genuine."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#1a1622">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE WASTELAND · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cline x1='4' y1='40' x2='60' y2='40' stroke='%238a7cc8' stroke-width='2'/%3E%3Crect x='16' y='26' width='5' height='14' fill='%238a7cc8'/%3E%3Cpath d='M40 26 L44 30 L42 40 L38 40 Z' fill='%238a7cc8'/%3E%3Ccircle cx='50' cy='16' r='6' fill='%238a7cc8' opacity='.5'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1a1622;--pa:#e6e0f0;--pa2:#c0b6d8;--dim:#867ba0;--line:rgba(138,124,200,.24);
+  --c:__ACC__;--dust:#b0a890;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(138,124,200,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(138,124,200,.12),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(150,120,90,.07),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(26,22,34,.8);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#a99ad8}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(138,124,200,.4)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#a99ad8}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.wswrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#221b30,#15111c);box-shadow:0 18px 60px -20px rgba(138,124,200,.4)}
+#waste{display:block;width:100%;height:min(66vh,660px)}
+.wsbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(18,14,24,.72);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.wsstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#a99ad8;background:rgba(18,14,24,.72);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wshint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#wstip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(18,14,24,.95);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(26,22,34,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(138,124,200,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; ER&Emacr;MIA &middot; <b>the wilderness, alone</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> landmarks &middot; a lone wanderer crosses the waste &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="wswrap">
+    <canvas id="waste"></canvas>
+    <div class="wsbadge">&#128367; THE WASTELAND &middot; ruins, dust, a lone wanderer</div>
+    <div class="wsstat" id="wsstat">WASTE &middot; &mdash;</div>
+    <div class="wshint">hover a landmark &middot; click to enter its sphere</div>
+    <div id="wstip"></div>
+  </div>
+  <div class="synhead"><h2>&#128367; the landmarks</h2><span class="sc">every ruin, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the landmarks · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ landmarks, one waste &middot; ER&Emacr;MIA &mdash; the wasteland: a lone wanderer among the ruins, each landmark a real sphere &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>a solitary map of the corpus &middot; the wasteland is the figure, the sites are genuine &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="wastedata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('waste');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('wastedata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var VI=hx(D.c||'#8a7cc8'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=2929;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var LM=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#8a7cc8'),kind:i%3,fx:0.05+rnd()*0.9,fy:0.5+rnd()*0.42,sz:0.8+rnd()*0.5,x:0,y:0};});
+LM.sort(function(a,b){return a.fy-b.fy;});
+var DUST=[];for(var z=0;z<40;z++)DUST.push({x:rnd(),y:0.42+rnd()*0.56,vx:0.03+rnd()*0.05,r:rnd()*0.8+0.3,ph:rnd()*6.283});
+var CRK=[];for(z=0;z<7;z++)CRK.push({x:rnd(),y:0.5+rnd()*0.42,a:rnd()*6.283,len:0.06+rnd()*0.1});
+var focus=0,ft=0,DWELL=2.6,ward={x:0,y:0},steps=[],stepT=0,mx=-1,my=-1,hover=-1,t0=null,started=false;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=LM[hover].u;});
+var tip=document.getElementById('wstip'),stat=document.getElementById('wsstat');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var horizon=H*0.42;
+  // sky
+  var sk=g.createLinearGradient(0,0,0,horizon);sk.addColorStop(0,'#221a32');sk.addColorStop(1,'#4a3d54');g.fillStyle=sk;g.fillRect(0,0,W,horizon);
+  // dim sun low
+  var sunx=W*0.72,suny=horizon-18;var sg=g.createRadialGradient(sunx,suny,0,sunx,suny,60);sg.addColorStop(0,'rgba(200,180,190,0.3)');sg.addColorStop(1,'rgba(200,180,190,0)');g.fillStyle=sg;g.beginPath();g.arc(sunx,suny,60,0,6.283);g.fill();
+  g.fillStyle='rgba(210,196,200,0.4)';g.beginPath();g.arc(sunx,suny,12,0,6.283);g.fill();
+  // ground
+  var gr=g.createLinearGradient(0,horizon,0,H);gr.addColorStop(0,'#3a2f42');gr.addColorStop(1,'#181320');g.fillStyle=gr;g.fillRect(0,horizon,W,H-horizon);
+  g.strokeStyle='rgba(138,124,200,0.5)';g.lineWidth=1;g.beginPath();g.moveTo(0,horizon);g.lineTo(W,horizon);g.stroke();
+  // dune ridges
+  g.strokeStyle='rgba(120,105,150,0.08)';for(var d=0;d<4;d++){var dy=horizon+ (H-horizon)*(0.2+d*0.22);g.beginPath();for(var xx=0;xx<=W;xx+=14)g.lineTo(xx,dy+Math.sin(xx*0.01+d)*6);g.stroke();}
+  // cracks
+  g.strokeStyle='rgba(20,15,26,0.5)';g.lineWidth=1;for(d=0;d<CRK.length;d++){var ck=CRK[d];var bx=ck.x*W,by=horizon+(ck.y-0.42)/0.58*(H-horizon);g.beginPath();g.moveTo(bx,by);g.lineTo(bx+Math.cos(ck.a)*ck.len*W,by+Math.abs(Math.sin(ck.a))*ck.len*H*0.4);g.stroke();}
+  for(var i=0;i<N;i++){var lm=LM[i];lm.x=W*lm.fx;lm.y=horizon+(lm.fy-0.42)/0.58*(H-horizon);}
+  if(!started){ward.x=LM[0].x;ward.y=LM[0].y+18;focus=Math.min(6,N-1);ward.x=LM[focus].x-20;ward.y=LM[focus].y+16;started=true;}
+  ft+=dt;if(ft>DWELL){ft=0;focus=(focus+1)%N;}
+  // wanderer walks to focus landmark
+  var fl=LM[focus];var tx=fl.x-8,ty=fl.y+14,dxs=tx-ward.x,dys=ty-ward.y,dw=Math.hypot(dxs,dys)||1;
+  if(dw>3){ward.x+=dxs/dw*Math.min(dw,70)*dt;ward.y+=dys/dw*Math.min(dw,70)*dt;stepT+=dt;if(stepT>0.28){stepT=0;steps.push({x:ward.x,y:ward.y+6,a:1});if(steps.length>16)steps.shift();}}
+  // footprints
+  for(d=steps.length-1;d>=0;d--){var st=steps[d];st.a-=dt*0.15;if(st.a<=0){steps.splice(d,1);continue;}g.fillStyle='rgba(20,15,26,'+(st.a*0.4)+')';g.beginPath();g.ellipse(st.x,st.y,2.4,1.2,0,0,6.283);g.fill();}
+  // dust on the wind
+  for(d=0;d<DUST.length;d++){var p=DUST[d];p.x+=p.vx*dt;if(p.x>1.05){p.x=-0.05;p.y=0.42+rnd()*0.56;}var py=horizon+(p.y-0.42)/0.58*(H-horizon);g.fillStyle='rgba(176,168,144,'+(0.06+0.05*Math.sin(tt*3+p.ph))+')';g.fillRect(p.x*W,py+Math.sin(tt*2+p.ph)*3,p.r*3,p.r);}
+  // hover
+  hover=-1;var best=18*18;
+  for(i=0;i<N;i++){var lm=LM[i];var d2=(lm.x-mx)*(lm.x-mx)+(lm.y-my)*(lm.y-my);if(mx>=0&&d2<best){best=d2;hover=i;}}
+  // landmarks (ruins) with long shadow
+  for(i=0;i<N;i++){var lm=LM[i],act=(i===focus),hit=(hover===i),col=lm.col,s=(7+lm.sz*7)*(0.7+0.3*(lm.fy-0.5)/0.42);
+    // long shadow (low sun to the right)
+    g.fillStyle='rgba(15,10,20,0.35)';g.beginPath();g.moveTo(lm.x,lm.y);g.lineTo(lm.x-s*2.5,lm.y+3);g.lineTo(lm.x-s*2.2,lm.y+6);g.lineTo(lm.x,lm.y+3);g.closePath();g.fill();
+    if(act||hit){var gl=g.createRadialGradient(lm.x,lm.y-s*0.5,0,lm.x,lm.y-s*0.5,s*2.2);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(act?0.4:0.28)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(lm.x,lm.y-s*0.5,s*2.2,0,6.283);g.fill();}
+    var C=hit?'rgba(230,224,245,0.95)':'rgba('+col[0]+','+col[1]+','+col[2]+','+(act?0.95:0.62)+')';g.strokeStyle=C;g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(act?0.4:0.22)+')';g.lineWidth=1.4;
+    if(lm.kind===0){g.beginPath();g.rect(lm.x-s*0.28,lm.y-s,s*0.56,s);g.fill();g.stroke();g.beginPath();g.moveTo(lm.x-s*0.28,lm.y-s);g.lineTo(lm.x-s*0.1,lm.y-s*1.2);g.lineTo(lm.x+s*0.1,lm.y-s*0.9);g.lineTo(lm.x+s*0.28,lm.y-s);g.stroke();g.fillRect(lm.x-s*0.4,lm.y-2,s*0.8,3);}
+    else if(lm.kind===1){for(var q=0;q<3;q++){g.beginPath();g.arc(lm.x+(q-1)*s*0.2*(q%2?1:-1)*0.5,lm.y-q*s*0.32-s*0.15,s*0.28-q*s*0.05,0,6.283);g.fill();g.stroke();}}
+    else{g.beginPath();g.moveTo(lm.x,lm.y);g.lineTo(lm.x,lm.y-s*1.1);g.stroke();g.beginPath();g.moveTo(lm.x-s*0.35,lm.y-s*0.9);g.lineTo(lm.x+s*0.35,lm.y-s*0.75);g.stroke();}
+    if(hit){g.strokeStyle='rgba(230,224,245,0.7)';g.lineWidth=1.1;g.beginPath();g.arc(lm.x,lm.y-s*0.5,s+6,0,6.283);g.stroke();}}
+  // wanderer (lone figure)
+  g.fillStyle='rgba(20,16,28,0.95)';g.strokeStyle='rgba('+VI[0]+','+VI[1]+','+VI[2]+',0.7)';g.lineWidth=1;
+  g.beginPath();g.arc(ward.x,ward.y-9,2.4,0,6.283);g.fill();g.beginPath();g.moveTo(ward.x-3,ward.y);g.lineTo(ward.x,ward.y-7);g.lineTo(ward.x+3,ward.y);g.closePath();g.fill();
+  g.strokeStyle='rgba('+VI[0]+','+VI[1]+','+VI[2]+',0.6)';g.beginPath();g.moveTo(ward.x+3,ward.y-6);g.lineTo(ward.x+7,ward.y+3);g.stroke();
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var showi=hover>=0?hover:focus;
+  if(stat)stat.textContent='WANDERING · '+(LM[showi].n.length>22?LM[showi].n.slice(0,21)+'…':LM[showi].n)+' · '+(showi+1)+'/'+N;
+  if(tip){if(hover>=0){tip.textContent=LM[hover].n;tip.style.left=LM[hover].x+'px';tip.style.top=(LM[hover].y-20)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrws=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrws.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_legal(i, key, title, accent, blurb, members):
     """LEGAL · law — a bespoke keeper page (AVAN + TOP + the keeper). A COURTROOM: a columned pediment
     behind the judge's bench with its gavel, a witness stand, counsel tables, a jury box, the bar rail, and
@@ -12094,7 +12261,8 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "scientific": l2_page_scientific, "life-science": l2_page_lifescience,
              "biblion": l2_page_biblion, "entertainment": l2_page_entertainment,
              "hobby": l2_page_hobby, "solar-jetman": l2_page_solarjetman,
-             "frontier": l2_page_frontier, "legal": l2_page_legal}
+             "frontier": l2_page_frontier, "legal": l2_page_legal,
+             "eremia": l2_page_eremia}
 
 
 def keeper_system():
