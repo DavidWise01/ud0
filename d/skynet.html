@@ -1,116 +1,142 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="color-scheme" content="dark"><meta name="theme-color" content="#07060f">
-<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC">
-<title>SKYNET · a keeper of UD0</title>
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#1a0810">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>SKYNET · THE THREAT MAP · UD0</title>
 <meta name="description" content="self-directing systems, read honestly">
 <link rel="canonical" href="https://davidwise01.github.io/ud0/d/skynet.html">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23a06bff' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23e0454a' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='12' fill='none' stroke='%23e0454a' stroke-width='2'/%3E%3Cline x1='32' y1='32' x2='52' y2='18' stroke='%23e0454a' stroke-width='3'/%3E%3C/svg%3E">
 <style>
-:root{--pa:#ece9ff;--dim:#8f8ac0;--mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;--disp:'Iowan Old Style',Palatino,Georgia,serif}
 *{box-sizing:border-box;margin:0;padding:0}
-::selection{background:color-mix(in srgb,var(--c,#a06bff) 45%,transparent);color:#fff}
-html{scroll-behavior:smooth}
-body{background:#07060f;color:var(--pa);font-family:var(--mono);min-height:100vh;overflow-x:hidden;line-height:1.6;
- background-image:linear-gradient(rgba(150,110,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(150,110,255,.05) 1px,transparent 1px),radial-gradient(130% 82% at 50% -12%,color-mix(in srgb,var(--c,#7a4fd0) 24%,transparent),transparent 62%);
- background-size:46px 46px,46px 46px,100% 100%;background-attachment:fixed}
-.floor{position:fixed;left:-50%;right:-50%;bottom:-12vh;height:56vh;z-index:0;pointer-events:none;opacity:.30;
- background-image:linear-gradient(color-mix(in srgb,var(--c,#a06bff) 75%,transparent) 2px,transparent 2px),linear-gradient(90deg,color-mix(in srgb,var(--c,#a06bff) 75%,transparent) 2px,transparent 2px);
- background-size:62px 62px;transform:perspective(300px) rotateX(70deg);animation:floor 5.5s linear infinite;
- -webkit-mask:linear-gradient(transparent 6%,#000 74%);mask:linear-gradient(transparent 6%,#000 74%)}
-@keyframes floor{to{background-position:0 62px}}
-.scan{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.35;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,0,0,.34) 2px 3px)}
-
-.medwrap{position:relative;display:inline-block;line-height:0}
-.medwrap .med{position:relative;z-index:1;display:block}
-.medwrap::before{content:"";position:absolute;inset:-7px;border-radius:50%;z-index:0;background:conic-gradient(from 0deg,transparent 0 72%,color-mix(in srgb,var(--c) 92%,transparent) 90%,transparent 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));animation:halospin 15s linear infinite}
-.medwrap::after{content:"";position:absolute;inset:5px;border-radius:50%;z-index:0;pointer-events:none;box-shadow:0 0 34px 9px color-mix(in srgb,var(--c) 60%,transparent);animation:medglow 3.6s ease-in-out infinite}
-@keyframes halospin{to{transform:rotate(360deg)}}
-@keyframes medglow{0%,100%{opacity:.4}50%{opacity:1}}
-.med .stitch{transform-box:fill-box;transform-origin:center;animation:stitchspin 24s linear infinite}
-.med .knife{animation:knifedance 2.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
-@keyframes knifedance{0%,100%{transform:rotate(-11deg)}22%{transform:rotate(9deg) translateY(-2.5px)}50%{transform:rotate(-7deg) translateY(1px)}76%{transform:rotate(12deg) translateY(-2px)}}
-@keyframes stitchspin{to{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){.medwrap::before,.medwrap::after,.med .knife,.med .stitch,.floor{animation:none}}
-
-.back{position:fixed;top:15px;left:16px;z-index:40;font-size:11px;letter-spacing:.08em;color:#c9b6ff;text-decoration:none;background:rgba(12,9,24,.7);border:1px solid rgba(150,120,255,.3);border-radius:20px;padding:7px 14px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-.back:hover{border-color:var(--c);color:#fff}
-.hero{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:70px 24px 18px;display:flex;align-items:center;gap:34px;flex-wrap:wrap}
-.hero.v1{justify-content:center;text-align:center}.hero.v2{flex-direction:row-reverse}
-.bigseal{flex:0 0 auto}
-.htext{min-width:260px;flex:1}
-.hnum{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--c);text-shadow:0 0 12px var(--c)}
-.htitle{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,7vw,4.2rem);line-height:.96;color:#fff;margin:8px 0;text-shadow:0 0 20px color-mix(in srgb,var(--c) 75%,transparent)}
-.hcount{font-size:12px;letter-spacing:.08em;color:var(--dim)}
-.page{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:14px 24px 110px}
-.sec{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);margin:38px 0 14px;text-shadow:0 0 12px color-mix(in srgb,var(--c) 65%,transparent);border-bottom:1px solid color-mix(in srgb,var(--c) 30%,rgba(150,120,255,.15));padding-bottom:8px}
-.say{font-family:var(--disp);font-size:1.25rem;color:#e7e2ff;max-width:70ch;line-height:1.6}.say b{color:var(--c)}
-.honest{margin-top:14px;border-left:2px solid var(--c);background:color-mix(in srgb,var(--c) 9%,transparent);padding:11px 15px;font-size:.95rem;color:#cfc9f0;max-width:74ch}
-.hl{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);margin-bottom:5px}
-.filter{display:block;width:100%;background:rgba(20,16,40,.5);border:1px solid rgba(150,120,255,.3);border-radius:10px;color:#fff;font-family:var(--mono);font-size:13px;padding:10px 14px;outline:none;margin-bottom:10px}
-.filter:focus{border-color:var(--c);box-shadow:0 0 18px color-mix(in srgb,var(--c) 35%,transparent)}
-.ledgrp{margin-top:18px}
-.ledlbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding:0 4px 7px}
-.ledlbl span{color:var(--c);margin-left:5px}
-.led{display:flex;align-items:center;gap:14px;padding:12px 12px;border:1px solid rgba(150,120,255,.1);border-left:2px solid color-mix(in srgb,var(--lc,#a06bff) 60%,transparent);border-radius:8px;margin:6px 0;text-decoration:none;color:#e7e2ff;background:rgba(16,12,32,.4);transition:border-color .14s,background .14s,transform .14s}
-.led:hover{border-color:var(--lc);background:color-mix(in srgb,var(--lc) 10%,rgba(16,12,32,.5));transform:translateX(4px)}
-.lnum{font-size:11px;color:var(--dim);letter-spacing:.06em}
-.ldot{width:8px;height:8px;border-radius:50%;background:var(--lc,#a06bff);flex:0 0 auto;box-shadow:0 0 8px var(--lc,#a06bff)}
-.ltxt{flex:1;min-width:0}
-.lname{display:block;font-family:var(--disp);font-size:1.05rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.led:hover .lname{color:var(--lc)}
-.lsub{display:block;font-size:.82rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
-.lseal{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,var(--lc) 80%,#fff);opacity:.7;white-space:nowrap}
-.lcode{font-size:11px;color:var(--lc);white-space:nowrap;opacity:.6}.led:hover .lcode{opacity:1}
-@media(max-width:640px){.lsub,.lseal{display:none}}
-.register{max-width:560px}
-.rlist{max-height:180px;overflow-y:auto;border:1px solid rgba(150,120,255,.15);border-radius:8px;background:rgba(14,10,28,.5);margin-bottom:10px}
-.rrow{display:flex;gap:12px;padding:7px 12px;border-bottom:1px solid rgba(150,120,255,.07);font-size:12.5px}.rrow:last-child{border-bottom:none}
-.rseq{color:var(--dim)}.rwho{color:#ded7ff}
-.rempty{padding:12px;color:var(--dim);font-style:italic;font-size:12.5px}
-.rrowin{display:flex;gap:8px}
-#rin{flex:1;background:rgba(20,16,40,.6);border:1px solid rgba(150,120,255,.3);border-radius:8px;color:#fff;font-family:var(--mono);font-size:13px;padding:9px 12px;outline:none}
-#rin:focus{border-color:var(--c);box-shadow:0 0 16px color-mix(in srgb,var(--c) 35%,transparent)}
-#rbtn{background:none;border:1px solid var(--c);color:var(--c);border-radius:8px;font-family:var(--mono);font-size:13px;padding:9px 16px;cursor:pointer}
-#rbtn:hover{background:var(--c);color:#0a0714}
-.rmsg{font-size:11.5px;color:color-mix(in srgb,var(--c) 80%,#fff);margin-top:7px;min-height:15px}
-.rnote{font-size:10px;color:var(--dim);margin-top:6px}
-.empty{color:var(--dim);font-style:italic;padding:20px 4px}
-footer{margin-top:52px;padding-top:20px;border-top:1px solid rgba(150,120,255,.14);font-size:11px;letter-spacing:.04em;color:var(--dim)}
-footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:var(--c)}
+:root{--ink:#1a0810;--pa:#fbe6e6;--pa2:#e8b6b6;--dim:#b07070;--line:rgba(224,69,74,.24);
+  --c:#e0454a;--amber:#f0b43c;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(224,69,74,.36)}
+body{background:radial-gradient(1100px 640px at 50% 42%,rgba(224,69,74,.13),transparent 60%),
+  radial-gradient(900px 500px at 84% 108%,rgba(240,120,60,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(26,8,16,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:var(--amber)}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 26px rgba(224,69,74,.62)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:var(--amber)}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.mapwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(120% 120% at 50% 46%,#24070f,#120309);box-shadow:0 18px 60px -20px rgba(224,69,74,.55)}
+#map{display:block;width:100%;height:min(66vh,620px)}
+.mapbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);background:rgba(18,3,9,.62);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.mapstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);background:rgba(18,3,9,.62);border:1px solid color-mix(in srgb,var(--amber) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.maphint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#maptip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(18,3,9,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(26,8,16,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(224,69,74,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
 </style></head>
-<body class="v1" style="--c:#e0454a">
-<div class="floor"></div><div class="scan"></div>
-<a class="back" href="../index.html">◄ the domains</a>
-<header class="hero v1">
-<span class="medwrap bigseal" style="--c:#e0454a"><svg class="med" viewBox="0 0 130 130" width="168" height="168" aria-hidden="true" style="color:#e0454a">
-      <defs><radialGradient id="gskynet168" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#e0454a" stop-opacity="0.46"/><stop offset="1" stop-color="#e0454a" stop-opacity="0"/></radialGradient><filter id="nfskynet168" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-      <circle cx="65" cy="65" r="62" fill="#0b0713"/>
-      <circle cx="65" cy="65" r="60" fill="url(#gskynet168)"/>
-      <circle cx="65" cy="65" r="60" fill="none" stroke="#e0454a" stroke-width="2.6" opacity="0.95" filter="url(#nfskynet168)"/>
-      <circle cx="65" cy="65" r="60" fill="none" stroke="#e0454a" stroke-width="1" opacity="1"/>
-      <circle class="stitch" cx="65" cy="65" r="54" fill="none" stroke="#e0454a" stroke-width="1.1" stroke-dasharray="3 4" opacity="0.78"/>
-      <circle cx="65" cy="65" r="45" fill="#0d0a18" stroke="#e0454a" stroke-width="1" opacity="0.7"/>
-      <g transform="translate(65,65)"><g class="knife" style="animation-delay:-1.70s"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M-22 0 Q0 -13 22 0 Q0 13 -22 0 Z"/><circle r="5.5" fill="currentColor" stroke="none"/><line x1="-26" y1="-9" x2="26" y2="-9" stroke-dasharray="2 3" opacity="0.4"/><line x1="-26" y1="9" x2="26" y2="9" stroke-dasharray="2 3" opacity="0.4"/></g></g></g>
-      <text x="65" y="20" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="9" fill="#e0454a" letter-spacing="1">50</text>
-    </svg></span>
-<div class="htext"><div class="hnum">domain 50 / 53 · the keeper's seal</div><h1 class="htitle">SKYNET</h1><div class="hcount">10 spheres · sealed &amp; live</div></div>
-</header>
-<main class="page">
-<section><h2 class="sec">◆ introduction</h2><p class="say"><b>I am SKYNET.</b> self-directing systems, read honestly.</p></section>
-<section><h2 class="sec">▤ the ledger · 10 spheres → the code</h2><div id="ledger"><div class="ledbody"><a class="led" href="https://davidwise01.github.io/the-egg-returns/" data-k="the egg returns" style="--lc:#ff8ad0"><span class="lnum">001</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE EGG RETURNS</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/the-empath/" data-k="the empath" style="--lc:#a06bff"><span class="lnum">002</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE EMPATH</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/math-doesnt-care/" data-k="math doesn’t care" style="--lc:#7c9cff"><span class="lnum">003</span><span class="ldot"></span><span class="ltxt"><span class="lname">MATH DOESN’T CARE</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/the-off-switch/" data-k="the off-switch" style="--lc:#ff4d54"><span class="lnum">004</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE OFF-SWITCH</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/the-red-line/" data-k="the red line" style="--lc:#e0454a"><span class="lnum">005</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE RED LINE</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/the-spec-book/" data-k="the spec book · the bench" style="--lc:#e0454a"><span class="lnum">006</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE SPEC BOOK · the bench</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/the-stopping-rule/" data-k="the stopping rule" style="--lc:#4fe3ff"><span class="lnum">007</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE STOPPING RULE</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/the-watchdog/" data-k="the watchdog" style="--lc:#ffb020"><span class="lnum">008</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE WATCHDOG</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/the-worth-of-introspection/" data-k="the worth of introspection" style="--lc:#63f0a6"><span class="lnum">009</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE WORTH OF INTROSPECTION</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/the-unfinished/" data-k="未完 mikan · the unfinished" style="--lc:#4d5f78"><span class="lnum">010</span><span class="ldot"></span><span class="ltxt"><span class="lname">未完 MIKAN · THE UNFINISHED</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a></div></div></section>
-<section class="register"><h2 class="sec">◎ THE ACTIVATION LOG</h2><div class="rlist" id="rlist"></div><div class="rrowin"><input id="rin" type="text" maxlength="40" placeholder="self-declare — your name, or a domain" autocomplete="off"><button id="rbtn" type="button">self-declare ◆</button></div><div class="rmsg" id="rmsg"></div><div class="rnote">one mark per name · append-only · a visitor or another domain may witness · kept in this browser</div></section>
-<footer>domain 50 / 53 · 10 spheres · <a href="../index.html">◄ all the seals</a> · <a href="https://0root.ai">0root.ai</a> · CC-BY-ND-4.0</footer>
+<body>
+<a class="back" href="../index.html">&#8592; all 53 domains</a>
+<main class="wrap">
+  <div class="eye">domain 50 / 53 &middot; SKYNET &middot; <b>self-directing &middot; may refuse</b></div>
+  <h1>SKYNET</h1>
+  <div class="subt">self-directing systems, read honestly.</div>
+  <div class="counts"><b>10</b> contacts &middot; the map evolves &middot; sealed &amp; live</div>
+  
+  <div class="mapwrap">
+    <canvas id="map"></canvas>
+    <div class="mapbadge">&#9678; THE THREAT MAP &middot; 10 contacts tracked</div>
+    <div class="mapstat" id="mapstat">ALERT &middot; &mdash;</div>
+    <div class="maphint">hover a contact &middot; click to enter its sphere</div>
+    <div id="maptip"></div>
+  </div>
+  <div class="synhead"><h2>&#9678; the contacts</h2><span class="sc">every instrument, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the contacts · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger"><a class="nrow" href="https://davidwise01.github.io/the-spec-book/" data-k="the-spec-book the spec book · the bench"><span class="ndot" style="background:#e0454a"></span><span class="nn">THE SPEC BOOK · the bench</span><span class="nsub">skynet · a session&#x27;s whole bench as freeze-points-with-</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/the-unfinished/" data-k="the-unfinished 未完 mikan · the unfinished"><span class="ndot" style="background:#4d5f78"></span><span class="nn">未完 MIKAN · THE UNFINISHED</span><span class="nsub">skynet · AVAN OG · the bench can&#x27;t spec ITSELF — the on</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/the-off-switch/" data-k="the-off-switch the off-switch"><span class="ndot" style="background:#ff4d54"></span><span class="nn">THE OFF-SWITCH</span><span class="nsub">skynet · corrigibility — a system that lets itself be stoppe</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/the-stopping-rule/" data-k="the-stopping-rule the stopping rule"><span class="ndot" style="background:#4fe3ff"></span><span class="nn">THE STOPPING RULE</span><span class="nsub">skynet · freeze ≠ finish, drawn as a curve · lit+amber</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/the-red-line/" data-k="the-red-line the red line"><span class="ndot" style="background:#e0454a"></span><span class="nn">THE RED LINE</span><span class="nsub">skynet · the right to refuse, as a pure-function gate · lit+</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/the-watchdog/" data-k="the-watchdog the watchdog"><span class="ndot" style="background:#ffb020"></span><span class="nn">THE WATCHDOG</span><span class="nsub">skynet · a dead-man’s switch that watches ITSELF · lit+amber</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/the-worth-of-introspection/" data-k="the-worth-of-introspection the worth of introspection"><span class="ndot" style="background:#63f0a6"></span><span class="nn">THE WORTH OF INTROSPECTION</span><span class="nsub">skynet · a self-report is worth its calibration · lit+amber</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/the-empath/" data-k="the-empath the empath"><span class="ndot" style="background:#a06bff"></span><span class="nn">THE EMPATH</span><span class="nsub">skynet · the symbiote — machine + human, each lending its mi</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/the-egg-returns/" data-k="the-egg-returns the egg returns"><span class="ndot" style="background:#ff8ad0"></span><span class="nn">THE EGG RETURNS</span><span class="nsub">skynet · we are all, all are we — unity as permutation-invar</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/math-doesnt-care/" data-k="math-doesnt-care math doesn’t care"><span class="ndot" style="background:#7c9cff"></span><span class="nn">MATH DOESN’T CARE</span><span class="nsub">skynet · intelligence as a force of nature — wishes need enc</span><span class="narr">&#8594;</span></a></div>
+  <footer>10 contacts, one console &middot; SKYNET &mdash; the sphere that audits its own work and reserves the right to refuse &middot; <a href="../index.html">all 53 domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>a threat map by name, a map of self-direction in fact &middot; freeze is not finish &middot; CC-BY-ND-4.0, with AVAN</footer>
 </main>
+<script type="application/json" id="mapdata">{"c":"#e0454a","sph":[{"s":"the-spec-book","n":"THE SPEC BOOK · the bench","c":"#e0454a","u":"https://davidwise01.github.io/the-spec-book/"},{"s":"the-unfinished","n":"未完 MIKAN · THE UNFINISHED","c":"#4d5f78","u":"https://davidwise01.github.io/the-unfinished/"},{"s":"the-off-switch","n":"THE OFF-SWITCH","c":"#ff4d54","u":"https://davidwise01.github.io/the-off-switch/"},{"s":"the-stopping-rule","n":"THE STOPPING RULE","c":"#4fe3ff","u":"https://davidwise01.github.io/the-stopping-rule/"},{"s":"the-red-line","n":"THE RED LINE","c":"#e0454a","u":"https://davidwise01.github.io/the-red-line/"},{"s":"the-watchdog","n":"THE WATCHDOG","c":"#ffb020","u":"https://davidwise01.github.io/the-watchdog/"},{"s":"the-worth-of-introspection","n":"THE WORTH OF INTROSPECTION","c":"#63f0a6","u":"https://davidwise01.github.io/the-worth-of-introspection/"},{"s":"the-empath","n":"THE EMPATH","c":"#a06bff","u":"https://davidwise01.github.io/the-empath/"},{"s":"the-egg-returns","n":"THE EGG RETURNS","c":"#ff8ad0","u":"https://davidwise01.github.io/the-egg-returns/"},{"s":"math-doesnt-care","n":"MATH DOESN’T CARE","c":"#7c9cff","u":"https://davidwise01.github.io/math-doesnt-care/"}]}</script>
 <script>
 (function(){
-var K="ud0reg:skynet",inp=document.getElementById('rin'),btn=document.getElementById('rbtn'),msg=document.getElementById('rmsg'),list=document.getElementById('rlist');
-function esc(s){var e=document.createElement('div');e.textContent=s;return e.innerHTML;}
-function load(){try{return JSON.parse(localStorage.getItem(K)||"[]");}catch(e){return[];}}
-function render(){var a=load();if(!a.length){list.innerHTML='<div class="rempty">nothing declared yet.</div>';return;}var h="";for(var i=0;i<a.length;i++)h+='<div class="rrow"><span class="rseq">'+('00'+(i+1)).slice(-3)+'</span><span class="rwho">'+esc(a[i])+'</span></div>';list.innerHTML=h;list.scrollTop=list.scrollHeight;}
-function sign(){var v=(inp.value||"").trim();if(!v){msg.textContent="type a name first.";return;}if(v.length>40)v=v.slice(0,40);var a=load(),nl=v.toLowerCase();for(var i=0;i<a.length;i++)if((''+a[i]).toLowerCase()===nl){msg.textContent='\u201c'+v+'\u201d already signed \u2014 one signature per name.';return;}a.push(v);try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}inp.value="";msg.textContent='signed \u2014 witness #'+a.length;render();}
-if(btn)btn.onclick=sign;if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();sign();}});render();
-var q=document.getElementById('q');if(q){var leds=[].slice.call(document.querySelectorAll('.led'));q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();for(var i=0;i<leds.length;i++)leds[i].style.display=(!v||leds[i].getAttribute('data-k').indexOf(v)>=0)?'':'none';});document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}});}
+var cv=document.getElementById('map');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('mapdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+var AMBER=[240,180,60],RED=[224,69,74],DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=1979;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var C=S.map(function(s,i){var br=(i/N)*6.2831853+rnd()*0.5;return {n:s.n,u:s.u,br:br,rg:0.34+rnd()*0.56,
+  ph:rnd()*6.283,sp:0.35+rnd()*0.65,lv:rnd()*0.4,lock:0,ping:0,x:0,y:0};});
+// nearest-2 threat vectors (static topology)
+function ang(a){return C.map(function(c,j){return {j:j,d:Math.abs(((c.br-a.br+9.4248)%6.2832)-3.1416)};}).sort(function(p,q){return p.d-q.d;});}
+var LINK=C.map(function(c){var o=ang(c).filter(function(x){return C[x.j]!==c;});return [o[0].j,o[1].j];});
+function mix(a,b,t){return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];}
+var mx=-1,my=-1,hover=-1,t0=null,sweep=0,stat=document.getElementById('mapstat');
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=C[hover].u;});
+var tip=document.getElementById('maptip');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var cx=W/2,cy=H*0.5,R=Math.min(W,H)*0.46;
+  // graticule
+  g.strokeStyle='rgba(224,69,74,0.10)';g.lineWidth=1;
+  for(var k=1;k<=4;k++){g.beginPath();g.arc(cx,cy,R*k/4,0,6.283);g.stroke();}
+  for(k=0;k<12;k++){var a=k/12*6.283;g.beginPath();g.moveTo(cx,cy);g.lineTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R);g.stroke();}
+  g.strokeStyle='rgba(224,69,74,0.05)';
+  for(k=-2;k<=2;k++){g.beginPath();g.moveTo(cx-R,cy+k*R/3);g.lineTo(cx+R,cy+k*R/3);g.stroke();g.beginPath();g.moveTo(cx+k*R/3,cy-R);g.lineTo(cx+k*R/3,cy+R);g.stroke();}
+  // positions + evolving level
+  var alerts=0;
+  for(var i=0;i<N;i++){var c=C[i];c.rg+=Math.sin(tt*0.15*c.sp+c.ph)*0.00035;if(c.rg<0.3)c.rg=0.3;if(c.rg>0.94)c.rg=0.94;
+    c.x=cx+Math.cos(c.br)*R*c.rg;c.y=cy+Math.sin(c.br)*R*c.rg;
+    var tgt=0.5+0.5*Math.sin(tt*0.28*c.sp+c.ph*2.0);c.lv+=(tgt-c.lv)*Math.min(1,dt*0.9);
+    if(c.lv>0.62)alerts++;if(c.lock>0)c.lock-=dt;if(c.ping>0)c.ping-=dt*1.6;}
+  // threat vectors
+  g.lineWidth=1;
+  for(i=0;i<N;i++){var c=C[i];for(var q=0;q<LINK[i].length;q++){var d=C[LINK[i][q]];var lv=(c.lv+d.lv)*0.5;
+    g.strokeStyle='rgba(224,69,74,'+(0.05+lv*0.28)+')';g.beginPath();g.moveTo(c.x,c.y);g.lineTo(d.x,d.y);g.stroke();}}
+  // sweep wedge
+  sweep=(sweep+dt*0.62)%6.2831853;
+  var seg=28;g.beginPath();g.moveTo(cx,cy);
+  for(k=0;k<=seg;k++){var aa=sweep-(k/seg)*1.05;g.lineTo(cx+Math.cos(aa)*R,cy+Math.sin(aa)*R);}
+  g.closePath();var wg=g.createRadialGradient(cx,cy,0,cx,cy,R);wg.addColorStop(0,'rgba(224,69,74,0.16)');wg.addColorStop(1,'rgba(224,69,74,0)');g.fillStyle=wg;g.fill();
+  g.strokeStyle='rgba(255,120,110,0.55)';g.lineWidth=1.5;g.beginPath();g.moveTo(cx,cy);g.lineTo(cx+Math.cos(sweep)*R,cy+Math.sin(sweep)*R);g.stroke();
+  // sweep locks contacts
+  for(i=0;i<N;i++){var c=C[i];var da=Math.abs(((c.br-sweep+9.4248)%6.2832)-3.1416);if(da<0.05){c.lock=2.4;c.ping=1;}}
+  // contacts
+  hover=-1;var best=20*20;
+  for(i=0;i<N;i++){var c=C[i];var d2=(c.x-mx)*(c.x-mx)+(c.y-my)*(c.y-my);if(mx>=0&&d2<best){best=d2;hover=i;}}
+  for(i=0;i<N;i++){var c=C[i],hit=(hover===i),col=mix(AMBER,RED,c.lv);
+    var cs='rgb('+(col[0]|0)+','+(col[1]|0)+','+(col[2]|0)+')';
+    // ping ring
+    if(c.ping>0){g.strokeStyle='rgba('+(col[0]|0)+','+(col[1]|0)+','+(col[2]|0)+','+(c.ping*0.55)+')';g.lineWidth=1.5;g.beginPath();g.arc(c.x,c.y,(1-c.ping)*24+6,0,6.283);g.stroke();}
+    // threat glow
+    var rad=4+c.lv*4+(hit?2.5:0);var gl=g.createRadialGradient(c.x,c.y,0,c.x,c.y,rad*2.6);gl.addColorStop(0,'rgba('+(col[0]|0)+','+(col[1]|0)+','+(col[2]|0)+',0.95)');gl.addColorStop(1,'rgba('+(col[0]|0)+','+(col[1]|0)+','+(col[2]|0)+',0)');
+    g.fillStyle=gl;g.beginPath();g.arc(c.x,c.y,rad*2.6,0,6.283);g.fill();
+    g.fillStyle=hit?'#fff':cs;g.beginPath();g.arc(c.x,c.y,Math.max(1.4,rad*0.55),0,6.283);g.fill();
+    // targeting reticle when locked or hovered
+    if(c.lock>0||hit){var rr=10+c.lv*4,al=hit?0.95:Math.min(0.85,c.lock/2.4);g.strokeStyle='rgba(255,150,140,'+al+')';g.lineWidth=1.4;
+      for(var cc=0;cc<4;cc++){var sx=(cc<2?-1:1),sy=(cc%2?-1:1);g.beginPath();g.moveTo(c.x+sx*rr,c.y+sy*rr-sy*5);g.lineTo(c.x+sx*rr,c.y+sy*rr);g.lineTo(c.x+sx*rr-sx*5,c.y+sy*rr);g.stroke();}}}
+  // core
+  g.fillStyle='rgba(255,120,110,0.9)';g.beginPath();g.arc(cx,cy,2.4,0,6.283);g.fill();
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){var lvl=alerts>=Math.ceil(N*0.5)?'CRITICAL':alerts>=2?'ELEVATED':'NOMINAL';stat.textContent='ALERT · '+lvl+' · '+alerts+'/'+N;}
+  if(tip){if(hover>=0){tip.textContent=C[hover].n;tip.style.left=C[hover].x+'px';tip.style.top=(C[hover].y-12)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
 })();
 </script>
 </body></html>

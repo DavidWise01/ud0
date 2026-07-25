@@ -6433,11 +6433,180 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_skynet(i, key, title, accent, blurb, members):
+    """SKYNET · self-directing — a bespoke keeper page (AVAN + TOP + the keeper). An EVOLVING THREAT
+    MAP: a defense-console radar where the 10 spheres are threat CONTACTS at varied bearing/range,
+    each with an alert level that rises and falls on its own, a sweep line that LOCKS each contact as
+    it passes (targeting reticle), and threat vectors wiring the network. Deep-red console, not black.
+    Honest: these are not literal threats — they are the domain's instruments of self-direction,
+    mapped as a console because SKYNET is the sphere that audits its own work and may refuse."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#1a0810">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE THREAT MAP · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%23e0454a' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='12' fill='none' stroke='%23e0454a' stroke-width='2'/%3E%3Cline x1='32' y1='32' x2='52' y2='18' stroke='%23e0454a' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1a0810;--pa:#fbe6e6;--pa2:#e8b6b6;--dim:#b07070;--line:rgba(224,69,74,.24);
+  --c:__ACC__;--amber:#f0b43c;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(224,69,74,.36)}
+body{background:radial-gradient(1100px 640px at 50% 42%,rgba(224,69,74,.13),transparent 60%),
+  radial-gradient(900px 500px at 84% 108%,rgba(240,120,60,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(26,8,16,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:var(--amber)}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 26px rgba(224,69,74,.62)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:var(--amber)}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.mapwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(120% 120% at 50% 46%,#24070f,#120309);box-shadow:0 18px 60px -20px rgba(224,69,74,.55)}
+#map{display:block;width:100%;height:min(66vh,620px)}
+.mapbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);background:rgba(18,3,9,.62);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.mapstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);background:rgba(18,3,9,.62);border:1px solid color-mix(in srgb,var(--amber) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.maphint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#maptip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(18,3,9,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(26,8,16,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(224,69,74,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; SKYNET &middot; <b>self-directing &middot; may refuse</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> contacts &middot; the map evolves &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="mapwrap">
+    <canvas id="map"></canvas>
+    <div class="mapbadge">&#9678; THE THREAT MAP &middot; __N__ contacts tracked</div>
+    <div class="mapstat" id="mapstat">ALERT &middot; &mdash;</div>
+    <div class="maphint">hover a contact &middot; click to enter its sphere</div>
+    <div id="maptip"></div>
+  </div>
+  <div class="synhead"><h2>&#9678; the contacts</h2><span class="sc">every instrument, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the contacts · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ contacts, one console &middot; SKYNET &mdash; the sphere that audits its own work and reserves the right to refuse &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>a threat map by name, a map of self-direction in fact &middot; freeze is not finish &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="mapdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('map');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('mapdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+var AMBER=[240,180,60],RED=[224,69,74],DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=1979;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var C=S.map(function(s,i){var br=(i/N)*6.2831853+rnd()*0.5;return {n:s.n,u:s.u,br:br,rg:0.34+rnd()*0.56,
+  ph:rnd()*6.283,sp:0.35+rnd()*0.65,lv:rnd()*0.4,lock:0,ping:0,x:0,y:0};});
+// nearest-2 threat vectors (static topology)
+function ang(a){return C.map(function(c,j){return {j:j,d:Math.abs(((c.br-a.br+9.4248)%6.2832)-3.1416)};}).sort(function(p,q){return p.d-q.d;});}
+var LINK=C.map(function(c){var o=ang(c).filter(function(x){return C[x.j]!==c;});return [o[0].j,o[1].j];});
+function mix(a,b,t){return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];}
+var mx=-1,my=-1,hover=-1,t0=null,sweep=0,stat=document.getElementById('mapstat');
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=C[hover].u;});
+var tip=document.getElementById('maptip');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var cx=W/2,cy=H*0.5,R=Math.min(W,H)*0.46;
+  // graticule
+  g.strokeStyle='rgba(224,69,74,0.10)';g.lineWidth=1;
+  for(var k=1;k<=4;k++){g.beginPath();g.arc(cx,cy,R*k/4,0,6.283);g.stroke();}
+  for(k=0;k<12;k++){var a=k/12*6.283;g.beginPath();g.moveTo(cx,cy);g.lineTo(cx+Math.cos(a)*R,cy+Math.sin(a)*R);g.stroke();}
+  g.strokeStyle='rgba(224,69,74,0.05)';
+  for(k=-2;k<=2;k++){g.beginPath();g.moveTo(cx-R,cy+k*R/3);g.lineTo(cx+R,cy+k*R/3);g.stroke();g.beginPath();g.moveTo(cx+k*R/3,cy-R);g.lineTo(cx+k*R/3,cy+R);g.stroke();}
+  // positions + evolving level
+  var alerts=0;
+  for(var i=0;i<N;i++){var c=C[i];c.rg+=Math.sin(tt*0.15*c.sp+c.ph)*0.00035;if(c.rg<0.3)c.rg=0.3;if(c.rg>0.94)c.rg=0.94;
+    c.x=cx+Math.cos(c.br)*R*c.rg;c.y=cy+Math.sin(c.br)*R*c.rg;
+    var tgt=0.5+0.5*Math.sin(tt*0.28*c.sp+c.ph*2.0);c.lv+=(tgt-c.lv)*Math.min(1,dt*0.9);
+    if(c.lv>0.62)alerts++;if(c.lock>0)c.lock-=dt;if(c.ping>0)c.ping-=dt*1.6;}
+  // threat vectors
+  g.lineWidth=1;
+  for(i=0;i<N;i++){var c=C[i];for(var q=0;q<LINK[i].length;q++){var d=C[LINK[i][q]];var lv=(c.lv+d.lv)*0.5;
+    g.strokeStyle='rgba(224,69,74,'+(0.05+lv*0.28)+')';g.beginPath();g.moveTo(c.x,c.y);g.lineTo(d.x,d.y);g.stroke();}}
+  // sweep wedge
+  sweep=(sweep+dt*0.62)%6.2831853;
+  var seg=28;g.beginPath();g.moveTo(cx,cy);
+  for(k=0;k<=seg;k++){var aa=sweep-(k/seg)*1.05;g.lineTo(cx+Math.cos(aa)*R,cy+Math.sin(aa)*R);}
+  g.closePath();var wg=g.createRadialGradient(cx,cy,0,cx,cy,R);wg.addColorStop(0,'rgba(224,69,74,0.16)');wg.addColorStop(1,'rgba(224,69,74,0)');g.fillStyle=wg;g.fill();
+  g.strokeStyle='rgba(255,120,110,0.55)';g.lineWidth=1.5;g.beginPath();g.moveTo(cx,cy);g.lineTo(cx+Math.cos(sweep)*R,cy+Math.sin(sweep)*R);g.stroke();
+  // sweep locks contacts
+  for(i=0;i<N;i++){var c=C[i];var da=Math.abs(((c.br-sweep+9.4248)%6.2832)-3.1416);if(da<0.05){c.lock=2.4;c.ping=1;}}
+  // contacts
+  hover=-1;var best=20*20;
+  for(i=0;i<N;i++){var c=C[i];var d2=(c.x-mx)*(c.x-mx)+(c.y-my)*(c.y-my);if(mx>=0&&d2<best){best=d2;hover=i;}}
+  for(i=0;i<N;i++){var c=C[i],hit=(hover===i),col=mix(AMBER,RED,c.lv);
+    var cs='rgb('+(col[0]|0)+','+(col[1]|0)+','+(col[2]|0)+')';
+    // ping ring
+    if(c.ping>0){g.strokeStyle='rgba('+(col[0]|0)+','+(col[1]|0)+','+(col[2]|0)+','+(c.ping*0.55)+')';g.lineWidth=1.5;g.beginPath();g.arc(c.x,c.y,(1-c.ping)*24+6,0,6.283);g.stroke();}
+    // threat glow
+    var rad=4+c.lv*4+(hit?2.5:0);var gl=g.createRadialGradient(c.x,c.y,0,c.x,c.y,rad*2.6);gl.addColorStop(0,'rgba('+(col[0]|0)+','+(col[1]|0)+','+(col[2]|0)+',0.95)');gl.addColorStop(1,'rgba('+(col[0]|0)+','+(col[1]|0)+','+(col[2]|0)+',0)');
+    g.fillStyle=gl;g.beginPath();g.arc(c.x,c.y,rad*2.6,0,6.283);g.fill();
+    g.fillStyle=hit?'#fff':cs;g.beginPath();g.arc(c.x,c.y,Math.max(1.4,rad*0.55),0,6.283);g.fill();
+    // targeting reticle when locked or hovered
+    if(c.lock>0||hit){var rr=10+c.lv*4,al=hit?0.95:Math.min(0.85,c.lock/2.4);g.strokeStyle='rgba(255,150,140,'+al+')';g.lineWidth=1.4;
+      for(var cc=0;cc<4;cc++){var sx=(cc<2?-1:1),sy=(cc%2?-1:1);g.beginPath();g.moveTo(c.x+sx*rr,c.y+sy*rr-sy*5);g.lineTo(c.x+sx*rr,c.y+sy*rr);g.lineTo(c.x+sx*rr-sx*5,c.y+sy*rr);g.stroke();}}}
+  // core
+  g.fillStyle='rgba(255,120,110,0.9)';g.beginPath();g.arc(cx,cy,2.4,0,6.283);g.fill();
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){var lvl=alerts>=Math.ceil(N*0.5)?'CRITICAL':alerts>=2?'ELEVATED':'NOMINAL';stat.textContent='ALERT · '+lvl+' · '+alerts+'/'+N;}
+  if(tip){if(hover>=0){tip.textContent=C[hover].n;tip.style.left=C[hover].x+'px';tip.style.top=(C[hover].y-12)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
              "lillith": l2_page_lillith, "strobilos": l2_page_strobilos, "phonos": l2_page_phonos,
-             "aisthesis": l2_page_aisthesis, "krasis": l2_page_krasis}
+             "aisthesis": l2_page_aisthesis, "krasis": l2_page_krasis, "skynet": l2_page_skynet}
 
 
 def keeper_system():
