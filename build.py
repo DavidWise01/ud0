@@ -9355,6 +9355,155 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_lifescience(i, key, title, accent, blurb, members):
+    """LIFE SCIENCE · biology — a bespoke keeper page (AVAN + TOP + the keeper). A CELL CULTURE LAB: the
+    spheres are PETRI DISHES, each a colony of cells on green agar; a focus cultures one at a time — a
+    growth ring sweeps the dish, cells divide at the front, the colony glows — the rest breathe quietly.
+    Green on incubator-dark (agar is the medium). Honest: each dish is a real sphere; the growth is the
+    figure of a culture, not a real assay."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0a1810">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE CULTURE LAB · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='24' fill='none' stroke='%2343d17a' stroke-width='3'/%3E%3Ccircle cx='28' cy='28' r='4' fill='%2343d17a'/%3E%3Ccircle cx='38' cy='34' r='3' fill='%2343d17a'/%3E%3Ccircle cx='30' cy='40' r='3' fill='%2343d17a'/%3E%3Ccircle cx='40' cy='24' r='2.5' fill='%2343d17a'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0a1810;--pa:#e2f6ea;--pa2:#b2dec4;--dim:#6f9a80;--line:rgba(67,209,122,.24);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(67,209,122,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(67,209,122,.12),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(120,200,140,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(10,24,16,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#78e6a2}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(67,209,122,.45)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#78e6a2}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.clwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 30%,#10281a,#07130c);box-shadow:0 18px 60px -20px rgba(67,209,122,.4)}
+#petri{display:block;width:100%;height:min(66vh,660px)}
+.clbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(7,19,12,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.clstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#78e6a2;background:rgba(7,19,12,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.clhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#cltip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(7,19,12,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(10,24,16,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(67,209,122,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; LIFE SCIENCE &middot; <b>the culture grows</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> cultures on the rack &middot; one grows at a time &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="clwrap">
+    <canvas id="petri"></canvas>
+    <div class="clbadge">&#9906; THE CULTURE LAB &middot; colonies on the agar, one culturing</div>
+    <div class="clstat" id="clstat">CULTURE &middot; &mdash;</div>
+    <div class="clhint">hover a dish &middot; click to enter its sphere</div>
+    <div id="cltip"></div>
+  </div>
+  <div class="synhead"><h2>&#9906; the cultures</h2><span class="sc">every dish, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the cultures · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ cultures, one rack &middot; LIFE SCIENCE &mdash; the cell culture lab: each dish a colony, each colony a real sphere &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the growth is the figure of a culture, not a real assay &middot; each dish is a real sphere &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="petridata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('petri');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('petridata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var GN=hx(D.c||'#43d17a'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=3232;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var cols=Math.max(5,Math.ceil(Math.sqrt(N*1.5))),drows=Math.ceil(N/cols);
+var DI=S.map(function(s,i){var k=10+((rnd()*8)|0),cells=[];for(var j=0;j<k;j++){var a=rnd()*6.283,rr=Math.pow(rnd(),0.6)*0.82;cells.push({a:a,r:rr,sz:0.5+rnd()*0.6,ph:rnd()*6.283});}
+  return {n:s.n,u:s.u,col:hx(s.c||'#43d17a'),cells:cells,x:0,y:0,R:0};});
+var focus=0,ft=0,DWELL=2.3,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=DI[hover].u;});
+var tip=document.getElementById('cltip'),stat=document.getElementById('clstat');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.05,pady=H*0.09,gw=(W-padx*2)/cols,gh=(H-pady*2)/drows;var R=Math.min(gw,gh)*0.38;
+  for(var i=0;i<N;i++){var d=DI[i];d.x=padx+(i%cols)*gw+gw*0.5;d.y=pady+((i/cols)|0)*gh+gh*0.5;d.R=R;}
+  ft+=dt;if(ft>DWELL){ft=0;focus=(focus+1)%N;}
+  var grow=ft/DWELL;
+  hover=-1;var best=R*R;
+  for(i=0;i<N;i++){var d=DI[i];var dx=d.x-mx,dy=d.y-my;var dd=dx*dx+dy*dy;if(mx>=0&&dd<best*1.1&&dd<R*R*1.2){best=dd;hover=i;}}
+  for(i=0;i<N;i++){var d=DI[i],act=(i===focus),hit=(hover===i),col=d.col;
+    // dish glow (active/hover)
+    if(act||hit){var gl=g.createRadialGradient(d.x,d.y,0,d.x,d.y,R*1.5);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(act?0.2:0.12)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(d.x,d.y,R*1.5,0,6.283);g.fill();}
+    // agar + dish rim
+    g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.06)';g.beginPath();g.arc(d.x,d.y,R,0,6.283);g.fill();
+    g.strokeStyle=hit?'rgba(220,255,235,0.9)':'rgba('+col[0]+','+col[1]+','+col[2]+',0.5)';g.lineWidth=1.4;g.beginPath();g.arc(d.x,d.y,R,0,6.283);g.stroke();
+    g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.18)';g.lineWidth=1;g.beginPath();g.arc(d.x,d.y,R*0.9,0,6.283);g.stroke();
+    // colony cells
+    g.save();g.beginPath();g.arc(d.x,d.y,R*0.96,0,6.283);g.clip();
+    for(var j=0;j<d.cells.length;j++){var c=d.cells[j];var cx=d.x+Math.cos(c.a)*c.r*R,cy=d.y+Math.sin(c.a)*c.r*R;
+      var br=0.7+0.3*Math.sin(tt*1.5+c.ph);var ca=(act?0.95:(hit?0.85:0.6))*br;var cr=c.sz*(R*0.09)*(0.8+0.4*br);
+      // division for the active dish at the growth front
+      if(act&&Math.abs(c.r-grow*0.95)<0.12){var sep=cr*1.2*Math.sin(tt*8+c.ph);g.fillStyle='rgba(200,255,220,'+ca+')';g.beginPath();g.arc(cx-sep,cy,cr,0,6.283);g.fill();g.beginPath();g.arc(cx+sep,cy,cr,0,6.283);g.fill();}
+      else{var glc=g.createRadialGradient(cx,cy,0,cx,cy,cr*1.8);glc.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+ca+')');glc.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=glc;g.beginPath();g.arc(cx,cy,cr*1.8,0,6.283);g.fill();g.fillStyle='rgba(210,255,225,'+(ca*0.7)+')';g.beginPath();g.arc(cx,cy,cr*0.5,0,6.283);g.fill();}}
+    // active growth ring
+    if(act){g.strokeStyle='rgba(190,255,215,'+(0.5*(1-grow))+')';g.lineWidth=1.4;g.beginPath();g.arc(d.x,d.y,grow*R*0.95,0,6.283);g.stroke();}
+    g.restore();}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var showi=hover>=0?hover:focus;
+  if(stat)stat.textContent=(hover>=0?'DISH · ':'CULTURING · ')+(showi+1)+'/'+N+' · '+(DI[showi].n.length>20?DI[showi].n.slice(0,19)+'…':DI[showi].n);
+  if(tip){if(hover>=0){tip.textContent=DI[hover].n;tip.style.left=DI[hover].x+'px';tip.style.top=(DI[hover].y-R-6)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrws=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrws.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_scientific(i, key, title, accent, blurb, members):
     """SCIENTIFIC · science — a bespoke keeper page (AVAN + TOP + the keeper). A LAB EXPERIMENT BENCH: the
     spheres are glassware apparatus on the bench (beakers, Erlenmeyer & round-bottom flasks, test tubes)
@@ -10980,7 +11129,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "glossa": l2_page_glossa, "lesbos": l2_page_lesbos, "logismos": l2_page_logismos,
              "agora": l2_page_agora, "mythos": l2_page_mythos, "polemos": l2_page_polemos,
              "niphelektron": l2_page_niphelektron, "educational": l2_page_educational,
-             "scientific": l2_page_scientific}
+             "scientific": l2_page_scientific, "life-science": l2_page_lifescience}
 
 
 def keeper_system():
