@@ -4679,7 +4679,11 @@ cv.addEventListener('click',function(){if(hover>=0&&anchors[hover]&&anchors[hove
 
 def l2_page(i, key, title, accent, blurb, members, css_href=None):
     """One keeper's page (L2): the living r/w-head machine (Top at 0 over a field of living
-    cells, the spheres seeded as L0), then the sphere index below. L1 stays minimal; here we go complex."""
+    cells, the spheres seeded as L0), then the sphere index below. L1 stays minimal; here we go complex.
+    ⚑ CUSTOM_L2 registry: a domain may override the default with a bespoke, flashy keeper page
+    (the keeper ritual — AVAN + TOP + the keeper design the layout to make THAT domain pop)."""
+    if key in CUSTOM_L2:
+        return CUSTOM_L2[key](i, key, title, accent, blurb, members)
     tclean, role, honest = _keeper_voice(title, blurb)
     n = len(members)
     ND = len(DOMAINS)
@@ -4775,6 +4779,166 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n))
             .replace("__SPH__", "sphere" if n == 1 else "spheres").replace("__PG__", PG)
             .replace("__MACHINE__", machine))
+
+
+def l2_page_aci(i, key, title, accent, blurb, members):
+    """ACI · ARTFULLY CRAFTED INTELLIGENCE — a bespoke keeper page (the keeper ritual:
+    AVAN + TOP + THE NEURAL WEB). The 32 spheres become NEURONS in a living network you can
+    pulse and enter; vivid indigo (not black), periwinkle+cyan synapses, keeper glowing at the
+    core; the ledger kept below as the synapse index. Self-contained (own canvas, no machine.js)."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#171034">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE NEURAL WEB · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='6' fill='%237e86e6'/%3E%3Cg stroke='%237e86e6' stroke-width='2' fill='none'%3E%3Cpath d='M32 32L12 16M32 32L54 18M32 32L14 50M32 32L52 50'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#171034;--ink2:#1e1442;--pa:#eae6ff;--pa2:#c6bdf0;--dim:#8f83c8;--line:rgba(150,130,240,.20);
+  --c:__ACC__;--cy:#4fe3ff;--gold:#ffd36b;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(126,134,230,.35)}
+body{background:
+  radial-gradient(1100px 640px at 78% -8%, rgba(126,134,230,.22), transparent 58%),
+  radial-gradient(900px 620px at 8% 108%, rgba(79,227,255,.12), transparent 60%),
+  var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;
+  background-attachment:fixed}
+.grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:repeating-linear-gradient(0deg,rgba(150,130,240,.05) 0 1px,transparent 1px 34px),repeating-linear-gradient(90deg,rgba(150,130,240,.05) 0 1px,transparent 1px 34px)}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(30,20,66,.7);border:1px solid var(--line);border-radius:20px;padding:7px 14px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--c);text-align:center}
+.eye b{color:var(--cy)}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.4vw,4.4rem);line-height:.98;letter-spacing:.01em;text-align:center;margin:12px 0 6px;
+  color:#fff;text-shadow:0 0 26px rgba(126,134,230,.6)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.subt b{font-style:normal;color:var(--c)}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}
+.counts b{color:var(--cy)}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.webwrap{position:relative;margin:26px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  background:linear-gradient(180deg,#120c2a,#0e0922);box-shadow:0 18px 60px -20px rgba(80,40,160,.6)}
+#web{display:block;width:100%;height:min(60vh,540px)}
+.webbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);background:rgba(18,12,42,.7);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.webhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#webtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(18,12,42,.92);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .12s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(30,20,66,.4);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(126,134,230,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<div class="grid"></div>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; kept by <b>THE NEURAL WEB</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> neurons &middot; sealed &amp; live &middot; the crafted web</div>
+  __ETHOS__
+  <div class="webwrap">
+    <canvas id="web"></canvas>
+    <div class="webbadge">&#9673; THE NEURAL WEB &middot; __N__ spheres wired &middot; it fires on its own</div>
+    <div class="webhint">hover a neuron &middot; click to enter its sphere</div>
+    <div id="webtip"></div>
+  </div>
+  <div class="synhead"><h2>&#9707; the synapse index</h2><span class="sc">every neuron, listed &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the neurons · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ crafted spheres &middot; kept by THE NEURAL WEB &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>artfully crafted, not artificial &middot; one governor, one instance, one lattice &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="acidata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('web');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('acidata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=(''+h).replace('#','');if(h.length<6)h='7e86e6';return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+var AC=hx(D.c||'#7e86e6'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var GA=2.399963;
+var nodes=S.map(function(s,i){var t=(i+1)/N,rr=Math.sqrt(t),a=i*GA;return {s:s.s,n:s.n,u:s.u,c:hx(s.c||D.c),bx:Math.cos(a)*rr,by:Math.sin(a)*rr,lit:0};});
+var edges=[],seen={};
+for(var i=0;i<N;i++){var ds=[];for(var j=0;j<N;j++)if(j!=i){var dx=nodes[i].bx-nodes[j].bx,dy=nodes[i].by-nodes[j].by;ds.push([dx*dx+dy*dy,j]);}
+  ds.sort(function(a,b){return a[0]-b[0];});for(var k=0;k<3&&k<ds.length;k++){var j2=ds[k][1],ky=Math.min(i,j2)+'-'+Math.max(i,j2);if(!seen[ky]){seen[ky]=1;edges.push([i,j2]);}}}
+var t0=null,fireT=-9,mx=-1,my=-1,hover=-1;
+function proj(nn,cx,cy,R){return {x:cx+nn.bx*R,y:cy+nn.by*R};}
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=nodes[hover].u;});
+var tip=document.getElementById('webtip');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var cx=W/2,cy=H/2,R=Math.min(W,H)*0.44;
+  if(tt-fireT>2.0){fireT=tt;nodes[(Math.random()*N)|0].lit=1;}
+  for(var e2=0;e2<edges.length;e2++){var a=edges[e2][0],b=edges[e2][1];
+    if(nodes[a].lit>nodes[b].lit+0.02)nodes[b].lit=Math.max(nodes[b].lit,nodes[a].lit*0.9);
+    else if(nodes[b].lit>nodes[a].lit+0.02)nodes[a].lit=Math.max(nodes[a].lit,nodes[b].lit*0.9);}
+  for(i=0;i<N;i++)nodes[i].lit*=0.965;
+  hover=-1;var best=17*17;
+  for(i=0;i<N;i++){var p=proj(nodes[i],cx,cy,R),d=(p.x-mx)*(p.x-mx)+(p.y-my)*(p.y-my);if(mx>=0&&d<best){best=d;hover=i;}}
+  for(e2=0;e2<edges.length;e2++){var pa=proj(nodes[edges[e2][0]],cx,cy,R),pb=proj(nodes[edges[e2][1]],cx,cy,R),lit=Math.max(nodes[edges[e2][0]].lit,nodes[edges[e2][1]].lit);
+    if(lit>0.4)g.strokeStyle='rgba(110,'+(205+(lit*40|0))+',255,'+(0.28+lit*0.5)+')';
+    else g.strokeStyle='rgba('+AC[0]+','+AC[1]+','+AC[2]+','+(0.09+lit*0.5)+')';
+    g.lineWidth=lit>0.4?1.6:1;g.beginPath();g.moveTo(pa.x,pa.y);g.lineTo(pb.x,pb.y);g.stroke();}
+  var pulse=0.5+0.5*Math.sin(tt*1.3),cg=g.createRadialGradient(cx,cy,0,cx,cy,R*0.55);
+  cg.addColorStop(0,'rgba('+AC[0]+','+AC[1]+','+AC[2]+','+(0.26+pulse*0.16)+')');cg.addColorStop(1,'rgba('+AC[0]+','+AC[1]+','+AC[2]+',0)');
+  g.fillStyle=cg;g.beginPath();g.arc(cx,cy,R*0.55,0,6.283);g.fill();
+  g.globalCompositeOperation='lighter';
+  for(i=0;i<N;i++){var p=proj(nodes[i],cx,cy,R),nn=nodes[i],rad=3+nn.lit*7+(hover==i?3:0),
+    gl=g.createRadialGradient(p.x,p.y,0,p.x,p.y,rad*2.4);
+    gl.addColorStop(0,'rgba('+nn.c[0]+','+nn.c[1]+','+nn.c[2]+',0.92)');gl.addColorStop(1,'rgba('+nn.c[0]+','+nn.c[1]+','+nn.c[2]+',0)');
+    g.fillStyle=gl;g.beginPath();g.arc(p.x,p.y,rad*2.4,0,6.283);g.fill();
+    g.fillStyle='rgba(255,255,255,'+(0.5+nn.lit*0.5)+')';g.beginPath();g.arc(p.x,p.y,Math.max(1,rad*0.5),0,6.283);g.fill();}
+  g.globalCompositeOperation='source-over';
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(tip){if(hover>=0){var hp=proj(nodes[hover],cx,cy,R);tip.textContent=nodes[hover].n;tip.style.left=hp.x+'px';tip.style.top=(hp.y-12)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var q=document.getElementById('q'),rows=[].slice.call(document.querySelectorAll('.nrow'));
+if(q){q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();rows.forEach(function(r){r.style.display=(!v||r.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
+# ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
+CUSTOM_L2 = {"aci": l2_page_aci}
 
 
 def keeper_system():
@@ -5336,7 +5500,11 @@ REGISTERS = {
 def keeper_page(i, key, title, accent, blurb, members):
     """NEST 2 — the keeper's domain: seal + introduction + ledger + register. Neon, per-domain
     accent, procedurally varied (no two the same). Each register is themed to the domain.
-    Ledger entries → nest 3 (the code)."""
+    Ledger entries → nest 3 (the code).
+    ⚑ CUSTOM_L2: a domain may override this default with a bespoke, flashy keeper page (the
+    keeper ritual — AVAN + TOP + the keeper design the layout to make THAT domain pop)."""
+    if key in CUSTOM_L2:
+        return CUSTOM_L2[key](i, key, title, accent, blurb, members)
     rname, ract, rempty, rglyph = REGISTERS.get(key, ("THE REGISTER", "sign", "no witnesses yet — sign the register.", "✎"))
     tclean, role, honest = _keeper_voice(title, blurb)
     n = len(members); ND = len(DOMAINS)
