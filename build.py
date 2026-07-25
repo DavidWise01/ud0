@@ -6918,12 +6918,168 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_poietike(i, key, title, accent, blurb, members):
+    """POIĒTIKĒ · narrative — a bespoke keeper page (AVAN + TOP + the keeper). A STORY GRAMMAR TREE:
+    a tidy top-down derivation tree rooted at STORY that unfolds depth-by-depth — branches grow in as
+    the grammar derives its constituents — then fades and regrows, telling again. The spheres are the
+    constituent nodes; hover names, click enters. Warm ochre on dark parchment, not black. Honest:
+    the tree is the reverse side (裏) of what you read — the grammar beneath the story, regrown from
+    the un-cut (渾沌) each pass. A structure inferred, one of many that would derive the same telling."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "root": html.unescape(_re.sub(r'<[^>]+>', '', title)),
+                      "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#17110a">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · STORY GRAMMAR · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='12' r='5' fill='%23cf8f5a'/%3E%3Cline x1='32' y1='16' x2='18' y2='36' stroke='%23cf8f5a' stroke-width='2.5'/%3E%3Cline x1='32' y1='16' x2='46' y2='36' stroke='%23cf8f5a' stroke-width='2.5'/%3E%3Ccircle cx='18' cy='40' r='4' fill='%23cf8f5a' opacity='.7'/%3E%3Ccircle cx='46' cy='40' r='4' fill='%23cf8f5a' opacity='.7'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#17110a;--pa:#f6ecdd;--pa2:#dcc7a8;--dim:#a98d68;--line:rgba(207,143,90,.24);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(207,143,90,.32)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(207,143,90,.14),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(180,130,80,.10),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(23,17,10,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#e8b784}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(207,143,90,.55)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#e8b784}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.trwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(120% 120% at 50% 8%,#241a0f,#120d07);box-shadow:0 18px 60px -20px rgba(207,143,90,.5)}
+#tree{display:block;width:100%;height:min(64vh,600px)}
+.trbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(18,13,7,.62);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.trstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#e8b784;background:rgba(18,13,7,.62);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.trhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#trtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(18,13,7,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(23,17,10,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(207,143,90,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; POI&Emacr;TIK&Emacr; &middot; <b>the grammar beneath the story</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> constituents &middot; the tree derives, then tells again &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="trwrap">
+    <canvas id="tree"></canvas>
+    <div class="trbadge">&#10087; STORY GRAMMAR &middot; deriving the tree</div>
+    <div class="trstat" id="trstat">DERIVING &middot; &mdash;</div>
+    <div class="trhint">hover a node &middot; click to enter its sphere</div>
+    <div id="trtip"></div>
+  </div>
+  <div class="synhead"><h2>&#10087; the constituents</h2><span class="sc">every node, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the constituents · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ constituents, one grammar &middot; POI&Emacr;TIK&Emacr; &mdash; the grammar beneath the story: every telling derives from a tree, the reverse side (&#35065;) of what you read &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>regrown from the un-cut (&#28088;&#27803;) each pass &middot; a structure inferred, one of many that would derive the same telling &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="treedata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('tree');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('treedata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var CC=hx(D.c||'#cf8f5a'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+// node 0 = STORY root; 1..N = spheres. parent: first 3 spheres -> root; rest -> earlier spheres (branching)
+var NM=[D.root||'STORY'],UR=[null],CL=[CC];
+for(var k=0;k<N;k++){NM.push(S[k].n);UR.push(S[k].u);CL.push(hx(S[k].c||'#cf8f5a'));}
+var PAR=[-1];for(k=0;k<N;k++){PAR.push(k<3?0:(1+Math.floor((k-3)/2)));}
+var CH=[];for(k=0;k<=N;k++)CH.push([]);for(k=1;k<=N;k++)CH[PAR[k]].push(k);
+var DEP=[];DEP[0]=0;var maxD=0,Q=[0];while(Q.length){var u=Q.shift();for(var j=0;j<CH[u].length;j++){var c=CH[u][j];DEP[c]=DEP[u]+1;if(DEP[c]>maxD)maxD=DEP[c];Q.push(c);}}
+var numL=0;for(k=0;k<=N;k++)if(CH[k].length===0)numL++;
+var FX=[],FY=[],lf={v:0};
+function dfs(u){if(CH[u].length===0){FX[u]=lf.v+0.5;lf.v++;}else{var s=0;for(var j=0;j<CH[u].length;j++){dfs(CH[u][j]);s+=FX[CH[u][j]];}FX[u]=s/CH[u].length;}}
+dfs(0);
+for(k=0;k<=N;k++){FX[k]=0.08+(FX[k]/numL)*0.84;FY[k]=0.15+(maxD?DEP[k]/maxD:0)*0.72;}
+function sm(p){p=p<0?0:(p>1?1:p);return p*p*(3-2*p);}
+var mx=-1,my=-1,hover=-1,t0=null,CYC=8.6,NX=[],NY=[];
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=1&&UR[hover])location.href=UR[hover];});
+var tip=document.getElementById('trtip'),stat=document.getElementById('trstat');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  for(var k=0;k<=N;k++){NX[k]=W*FX[k];NY[k]=H*FY[k];}
+  var tc=tt%CYC,grow=Math.min(1,tc/6.4),front=grow*(maxD+1);
+  var ga=tc<7.0?1:Math.max(0,1-(tc-7.0)/1.4);
+  // edges (branches grow parent->child)
+  g.lineCap='round';
+  for(k=1;k<=N;k++){var p=PAR[k];var vf=sm(front-DEP[k]);if(vf<=0.001)continue;
+    var ex=NX[p]+(NX[k]-NX[p])*vf,ey=NY[p]+(NY[k]-NY[p])*vf;
+    g.strokeStyle='rgba('+CC[0]+','+CC[1]+','+CC[2]+','+(ga*(0.18+0.34*vf))+')';g.lineWidth=1+vf*1.4;
+    g.beginPath();g.moveTo(NX[p],NY[p]);g.lineTo(ex,ey);g.stroke();}
+  // nodes
+  hover=-1;var best=22*22,revealed=0;
+  for(k=0;k<=N;k++){var vf2=sm(front-DEP[k]);if(vf2>0.5&&k>=1){var d2=(NX[k]-mx)*(NX[k]-mx)+(NY[k]-my)*(NY[k]-my);if(mx>=0&&d2<best){best=d2;hover=k;}}}
+  for(k=0;k<=N;k++){var vf2=sm(front-DEP[k]);if(vf2<=0.02)continue;if(vf2>0.5)revealed++;
+    var isR=(k===0),hit=(hover===k),col=CL[k],a=ga*vf2;
+    var rad=(isR?7:4.2)+(hit?2:0);rad*= (0.5+0.5*vf2);
+    var gl=g.createRadialGradient(NX[k],NY[k],0,NX[k],NY[k],rad*2.7);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(a*0.95)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');
+    g.fillStyle=gl;g.beginPath();g.arc(NX[k],NY[k],rad*2.7,0,6.283);g.fill();
+    g.fillStyle=hit?'rgba(255,255,255,'+a+')':(isR?'rgba(255,240,220,'+a+')':'rgba('+col[0]+','+col[1]+','+col[2]+','+a+')');
+    g.beginPath();g.arc(NX[k],NY[k],Math.max(1.2,rad*0.55),0,6.283);g.fill();
+    if(isR){g.fillStyle='rgba(245,230,210,'+(a*0.9)+')';g.font='11px ui-monospace,Menlo,Consolas,monospace';g.textAlign='center';g.fillText('STORY',NX[k],NY[k]-rad-7);}
+    if(hit){g.strokeStyle='rgba(255,240,225,'+a+')';g.lineWidth=1.3;g.beginPath();g.arc(NX[k],NY[k],rad+6,0,6.283);g.stroke();}}
+  cv.style.cursor=hover>=1?'pointer':'default';
+  if(stat)stat.textContent='DERIVING · '+revealed+' / '+(N+1)+' · depth '+Math.min(maxD,Math.floor(front))+'/'+maxD;
+  if(tip){if(hover>=1){tip.textContent=NM[hover];tip.style.left=NX[hover]+'px';tip.style.top=(NY[hover]-12)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
              "lillith": l2_page_lillith, "strobilos": l2_page_strobilos, "phonos": l2_page_phonos,
              "aisthesis": l2_page_aisthesis, "krasis": l2_page_krasis, "skynet": l2_page_skynet,
-             "phantasia": l2_page_phantasia, "prosoche": l2_page_prosoche}
+             "phantasia": l2_page_phantasia, "prosoche": l2_page_prosoche, "poietike": l2_page_poietike}
 
 
 def keeper_system():
