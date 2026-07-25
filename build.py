@@ -9355,6 +9355,175 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_scientific(i, key, title, accent, blurb, members):
+    """SCIENTIFIC · science — a bespoke keeper page (AVAN + TOP + the keeper). A LAB EXPERIMENT BENCH: the
+    spheres are glassware apparatus on the bench (beakers, Erlenmeyer & round-bottom flasks, test tubes)
+    filled with reagent; a focus RUNS each experiment in turn — bubbles rise, a flame heats it, steam
+    wisps up — the rest idle. Blue on lab-dark (the bench is the medium). Honest: each apparatus is a real
+    sphere; the reactions are the figure of experiment, not a real assay."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0c1226">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE LAB BENCH · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M26 8 L26 26 L14 50 Q14 56 20 56 L44 56 Q50 56 50 50 L38 26 L38 8 Z' fill='none' stroke='%235b7cfa' stroke-width='3'/%3E%3Cpath d='M18 42 L46 42 L50 50 Q50 56 44 56 L20 56 Q14 56 14 50 Z' fill='%235b7cfa' opacity='.5'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0c1226;--pa:#e6ecfb;--pa2:#bcc9ee;--dim:#7788b6;--line:rgba(91,124,250,.24);
+  --c:__ACC__;--flame:#ff8a3c;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(91,124,250,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(91,124,250,.13),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(120,150,255,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(12,18,38,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#8fa4ff}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(91,124,250,.45)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#8fa4ff}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.sbwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 20%,#141d3a,#090e1e);box-shadow:0 18px 60px -20px rgba(91,124,250,.4)}
+#lab{display:block;width:100%;height:min(66vh,660px)}
+.sbbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(9,14,30,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.sbstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8fa4ff;background:rgba(9,14,30,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sbhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#sbtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(9,14,30,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(12,18,38,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(91,124,250,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; SCIENTIFIC &middot; <b>the experiment runs</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> apparatus on the bench &middot; one runs at a time &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="sbwrap">
+    <canvas id="lab"></canvas>
+    <div class="sbbadge">&#9879; THE LAB BENCH &middot; the reaction runs, then the next</div>
+    <div class="sbstat" id="sbstat">BENCH &middot; &mdash;</div>
+    <div class="sbhint">hover an apparatus &middot; click to enter its sphere</div>
+    <div id="sbtip"></div>
+  </div>
+  <div class="synhead"><h2>&#9879; the experiments</h2><span class="sc">every apparatus, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the experiments · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ apparatus, one bench &middot; SCIENTIFIC &mdash; the lab experiment bench: each apparatus an experiment, each experiment a real sphere &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the reactions are the figure of experiment, not a real assay &middot; each apparatus is a real sphere &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="labdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('lab');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('labdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var BL=hx(D.c||'#5b7cfa'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=1919;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var cols=Math.max(5,Math.ceil(Math.sqrt(N*1.5))),lrows=Math.ceil(N/cols);
+var AP=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#5b7cfa'),kind:i%4,fill:0.42+rnd()*0.32,ph:rnd()*6.283,x:0,y:0,w:0,h:0};});
+var focus=0,ft=0,DWELL=1.9,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=AP[hover].u;});
+var tip=document.getElementById('sbtip'),stat=document.getElementById('sbstat');
+function glass(ap,cx,by,s,active,hit,tt){var col=ap.col,kind=ap.kind;
+  var liqA=(hit?1:(active?1:0.72));
+  // liquid region computed per kind; draw shape outline + liquid + bubbles
+  var lc='rgba('+col[0]+','+col[1]+','+col[2]+',';var gc=hit?'rgba(220,235,255,0.95)':'rgba(170,195,255,0.6)';
+  var topY=by-s*1.7,liqTop=by-s*1.7*ap.fill;
+  g.lineWidth=1.4;g.strokeStyle=gc;
+  function fillClip(){g.save();g.clip();var lg=g.createLinearGradient(0,liqTop,0,by);lg.addColorStop(0,lc+(0.5*liqA)+')');lg.addColorStop(1,lc+(0.85*liqA)+')');g.fillStyle=lg;g.fillRect(cx-s,liqTop,s*2,by-liqTop);
+    // bubbles when active/hit
+    if(active||hit){for(var bq=0;bq<6;bq++){var bp=((tt*(0.5+bq*0.12)+ap.ph+bq)%1);var bx=cx+Math.sin(bq*2+ap.ph)*s*0.5,byy=by-(by-liqTop)*bp-2;var ba=(1-bp)*0.7;g.fillStyle='rgba(220,240,255,'+ba+')';g.beginPath();g.arc(bx,byy,1.2+bq*0.2,0,6.283);g.fill();}}
+    g.restore();
+    // meniscus
+    g.strokeStyle=gc;g.lineWidth=1;g.beginPath();g.moveTo(cx-s*0.7,liqTop);g.lineTo(cx+s*0.7,liqTop);g.stroke();}
+  if(kind===0){ // beaker
+    g.beginPath();g.moveTo(cx-s,topY);g.lineTo(cx-s,by);g.lineTo(cx+s,by);g.lineTo(cx+s,topY);g.stroke();
+    g.beginPath();g.rect(cx-s,liqTop,s*2,by-liqTop);fillClip();
+    g.strokeStyle=gc;g.beginPath();g.moveTo(cx-s,topY);g.lineTo(cx-s-3,topY-4);g.stroke();}
+  else if(kind===1){ // erlenmeyer
+    g.beginPath();g.moveTo(cx-s*0.35,topY);g.lineTo(cx-s*0.35,topY+s*0.5);g.lineTo(cx-s,by);g.lineTo(cx+s,by);g.lineTo(cx+s*0.35,topY+s*0.5);g.lineTo(cx+s*0.35,topY);g.stroke();
+    g.beginPath();g.moveTo(cx-s*0.35,Math.max(liqTop,topY+s*0.5));g.lineTo(cx-s*(0.35+(by-Math.max(liqTop,topY+s*0.5))/(by-(topY+s*0.5))*0.65),by);g.lineTo(cx+s*(0.35+(by-Math.max(liqTop,topY+s*0.5))/(by-(topY+s*0.5))*0.65),by);g.lineTo(cx+s*0.35,Math.max(liqTop,topY+s*0.5));g.closePath();fillClip();}
+  else if(kind===2){ // round flask (bulb + neck)
+    var bcy=by-s*0.85;
+    g.save();g.beginPath();g.arc(cx,bcy,s*0.98,0,6.283);g.clip();var lqt=Math.max(liqTop,bcy-s*0.6);var lg2=g.createLinearGradient(0,lqt,0,bcy+s);lg2.addColorStop(0,lc+(0.5*liqA)+')');lg2.addColorStop(1,lc+(0.85*liqA)+')');g.fillStyle=lg2;g.fillRect(cx-s,lqt,s*2,s*2.2);
+    if(active||hit){for(var bq2=0;bq2<6;bq2++){var bp2=((tt*(0.5+bq2*0.12)+ap.ph+bq2)%1);g.fillStyle='rgba(220,240,255,'+((1-bp2)*0.7)+')';g.beginPath();g.arc(cx+Math.sin(bq2*2+ap.ph)*s*0.5,(bcy+s*0.6)-(s*1.2)*bp2,1.4,0,6.283);g.fill();}}
+    g.restore();
+    g.strokeStyle=gc;g.lineWidth=1.4;g.beginPath();g.arc(cx,bcy,s,0,6.283);g.stroke();
+    g.beginPath();g.moveTo(cx-s*0.28,topY);g.lineTo(cx-s*0.28,bcy-s*0.9);g.moveTo(cx+s*0.28,topY);g.lineTo(cx+s*0.28,bcy-s*0.9);g.stroke();}
+  else{ // test tube
+    g.beginPath();g.moveTo(cx-s*0.55,topY);g.lineTo(cx-s*0.55,by-s*0.4);g.arc(cx,by-s*0.4,s*0.55,3.1416,0,true);g.lineTo(cx+s*0.55,topY);g.stroke();
+    g.save();g.beginPath();g.moveTo(cx-s*0.55,liqTop);g.lineTo(cx-s*0.55,by-s*0.4);g.arc(cx,by-s*0.4,s*0.55,3.1416,0,true);g.lineTo(cx+s*0.55,liqTop);g.closePath();fillClip();}
+  // active extras: flame + steam
+  if(active){var fl=0.6+0.4*Math.sin(tt*14+ap.ph);g.fillStyle='rgba(255,138,60,'+(0.5+0.3*fl)+')';g.beginPath();g.moveTo(cx-4,by+2);g.quadraticCurveTo(cx,by+2-10*fl-6,cx+4,by+2);g.closePath();g.fill();g.fillStyle='rgba(120,180,255,0.5)';g.beginPath();g.moveTo(cx-2,by+2);g.quadraticCurveTo(cx,by-4*fl,cx+2,by+2);g.closePath();g.fill();
+    g.strokeStyle='rgba(210,225,255,0.25)';g.lineWidth=1;g.beginPath();for(var sw=0;sw<8;sw++){var syy=liqTop-sw*4;g.lineTo(cx+Math.sin(syy*0.1+tt*2)*4,syy);}g.stroke();}
+}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.05,pady=H*0.09,gw=(W-padx*2)/cols,gh=(H-pady*2)/lrows;
+  var s=Math.min(gw*0.2,gh*0.2);
+  for(var i=0;i<N;i++){var ap=AP[i];var c=i%cols,r=(i/cols)|0;ap.x=padx+c*gw+gw*0.5;ap.y=pady+r*gh+gh*0.72;ap.w=gw*0.7;ap.h=gh*0.7;}
+  ft+=dt;if(ft>DWELL){ft=0;focus=(focus+1)%N;}
+  // bench shelves
+  g.strokeStyle='rgba(91,124,250,0.1)';g.lineWidth=1;for(r=0;r<lrows;r++){var by=pady+r*gh+gh*0.72+2;g.beginPath();g.moveTo(padx*0.6,by);g.lineTo(W-padx*0.6,by);g.stroke();}
+  // hover
+  hover=-1;for(i=0;i<N;i++){var ap=AP[i];if(Math.abs(ap.x-mx)<s*1.4&&my>ap.y-s*2&&my<ap.y+s*0.6)hover=i;}
+  for(i=0;i<N;i++){var ap=AP[i],act=(i===focus),hit=(hover===i);
+    if(act||hit){var gl=g.createRadialGradient(ap.x,ap.y-s,0,ap.x,ap.y-s,s*3.2);gl.addColorStop(0,'rgba('+ap.col[0]+','+ap.col[1]+','+ap.col[2]+',0.28)');gl.addColorStop(1,'rgba('+ap.col[0]+','+ap.col[1]+','+ap.col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(ap.x,ap.y-s,s*3.2,0,6.283);g.fill();}
+    glass(ap,ap.x,ap.y,s,act,hit,tt);}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var showi=hover>=0?hover:focus;
+  if(stat)stat.textContent='EXPERIMENT '+(showi+1)+'/'+N+' · '+(AP[showi].n.length>22?AP[showi].n.slice(0,21)+'…':AP[showi].n);
+  if(tip){if(hover>=0){tip.textContent=AP[hover].n;tip.style.left=AP[hover].x+'px';tip.style.top=(AP[hover].y-s*2.2)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrws=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrws.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_educational(i, key, title, accent, blurb, members):
     """EDUCATIONAL · teaching — a bespoke keeper page (AVAN + TOP + the keeper). A LESSON PLAN BOARD: a
     chalkboard in a wooden frame, the spheres written in chalk as the day's lessons in two columns, a focus
@@ -10810,7 +10979,8 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "idios": l2_page_idios, "exereunesis": l2_page_exereunesis, "hermes": l2_page_hermes,
              "glossa": l2_page_glossa, "lesbos": l2_page_lesbos, "logismos": l2_page_logismos,
              "agora": l2_page_agora, "mythos": l2_page_mythos, "polemos": l2_page_polemos,
-             "niphelektron": l2_page_niphelektron, "educational": l2_page_educational}
+             "niphelektron": l2_page_niphelektron, "educational": l2_page_educational,
+             "scientific": l2_page_scientific}
 
 
 def keeper_system():
