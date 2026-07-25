@@ -8550,6 +8550,170 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_transcriber(i, key, title, accent, blurb, members):
+    """THE TRANSCRIBER · gap interpreter — a bespoke keeper page (AVAN + TOP + the keeper). A GAP
+    INTERPRETER: the spheres are SOURCE MARKS in an encoded field on the left; a torn SEAM runs down the
+    middle; a transcription cursor sweeps the field and BRIDGES each mark across the gap to its interpreted
+    (readable) name on the right, logging a running transcript. Every bridge is drawn frayed — crossing a
+    gap is a reading, not a copy. Violet on seam-dark, not black. Honest: the fraying is uniform (the seam
+    always loses something), NOT a claim that any specific mark was misread — interpretation is inference."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#16121f">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE GAP INTERPRETER · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cline x1='32' y1='8' x2='32' y2='56' stroke='%239d7cd8' stroke-width='2' stroke-dasharray='4 4'/%3E%3Ccircle cx='16' cy='32' r='5' fill='%239d7cd8'/%3E%3Cpath d='M22 32 Q32 22 46 32' fill='none' stroke='%239d7cd8' stroke-width='2' stroke-dasharray='3 3'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#16121f;--pa:#efe9f8;--pa2:#cabfe0;--dim:#8a7ba6;--line:rgba(157,124,216,.24);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(157,124,216,.32)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(157,124,216,.13),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(120,150,220,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(22,18,31,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#c1a6ea}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(157,124,216,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#c1a6ea}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.tswrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:linear-gradient(100deg,#1b1526 0%,#141020 52%,#131826 100%);box-shadow:0 18px 60px -20px rgba(157,124,216,.42)}
+#seam{display:block;width:100%;height:min(66vh,640px)}
+.tsbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(19,15,28,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.tsstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#c1a6ea;background:rgba(19,15,28,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:52%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tshint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#tstip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(19,15,28,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(22,18,31,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(157,124,216,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; THE TRANSCRIBER &middot; <b>the gap interpreter</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> source marks &middot; read across the seam, honestly &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="tswrap">
+    <canvas id="seam"></canvas>
+    <div class="tsbadge">&#8261; THE GAP INTERPRETER &middot; source ┃ seam ┃ interpretation</div>
+    <div class="tsstat" id="tsstat">INTERPRETING &middot; &mdash;</div>
+    <div class="tshint">hover a source mark &middot; click to enter its sphere</div>
+    <div id="tstip"></div>
+  </div>
+  <div class="synhead"><h2>&#8261; the source marks</h2><span class="sc">every mark, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the marks · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ source marks, one seam &middot; THE TRANSCRIBER &mdash; the gap interpreter: it reads each mark across the seam into a name; a crossing, never a copy &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the fraying is uniform &mdash; the seam always loses something, so no mark is claimed misread &middot; interpretation is inference &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="seamdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('seam');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('seamdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var VI=hx(D.c||'#9d7cd8'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=3737;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var cols=Math.max(4,Math.round(Math.sqrt(N*1.05))),mrows=Math.ceil(N/cols);
+var MK=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#9d7cd8'),gc:i%cols,gr:(i/cols)|0,x:0,y:0,ph:rnd()*6.283};});
+var cur=0,ctimer=0,LOG=[],mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=MK[hover].u;});
+var tip=document.getElementById('tstip'),stat=document.getElementById('tsstat');
+function trunc(str,max){return str.length>max?str.slice(0,max-1)+'…':str;}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var lpad=W*0.05,ltop=H*0.10,lw=W*0.40,lh=H*0.80,cw=lw/cols,ch=lh/mrows;
+  var seamX=W*0.50,rx0=W*0.55,rx1=W*0.96;
+  for(var i=0;i<N;i++){var m=MK[i];m.x=lpad+m.gc*cw+cw*0.5;m.y=ltop+m.gr*ch+ch*0.5;}
+  // cursor advance
+  ctimer+=dt;if(ctimer>0.7){ctimer=0;cur=(cur+1)%N;LOG.unshift(cur);if(LOG.length>6)LOG.pop();}
+  // torn seam
+  g.strokeStyle='rgba('+VI[0]+','+VI[1]+','+VI[2]+',0.3)';g.lineWidth=1.4;g.beginPath();
+  for(var y=ltop-10;y<ltop+lh+10;y+=10){var jx=seamX+Math.sin(y*0.09+tt*0.6)*4;if(y===ltop-10)g.moveTo(jx,y);else g.lineTo(jx,y);}g.stroke();
+  // seam shimmer
+  for(var q=0;q<18;q++){var sy=ltop+((q*97+tt*30)%(lh));g.fillStyle='rgba('+VI[0]+','+VI[1]+','+VI[2]+','+(0.1+0.2*Math.sin(tt*3+q))+')';g.fillRect(seamX-1+Math.sin(sy*0.09+tt*0.6)*4,sy,2,4);}
+  // hover pick
+  hover=-1;
+  for(i=0;i<N;i++){var m=MK[i];if(Math.abs(m.x-mx)<cw*0.5&&Math.abs(m.y-my)<ch*0.5)hover=i;}
+  // source marks (encoded)
+  for(i=0;i<N;i++){var m=MK[i],hit=(hover===i),act=(i===cur),col=m.col;
+    var b=act?1:(hit?0.85:0.4);
+    if(act||hit){var gl=g.createRadialGradient(m.x,m.y,0,m.x,m.y,9);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.6*b)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(m.x,m.y,9,0,6.283);g.fill();}
+    // encoded glyph = dot + 2 ticks
+    g.fillStyle=act?'#fff':'rgba('+col[0]+','+col[1]+','+col[2]+','+b+')';g.beginPath();g.arc(m.x,m.y,2.4,0,6.283);g.fill();
+    g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(b*0.6)+')';g.lineWidth=1;g.beginPath();g.moveTo(m.x-4,m.y+4);g.lineTo(m.x+4,m.y+4);g.stroke();
+    if(act){g.strokeStyle='rgba(220,205,245,0.8)';g.lineWidth=1.2;g.beginPath();g.arc(m.x,m.y,7,0,6.283);g.stroke();}}
+  // bridge from current mark across the seam (frayed = a reading, not a copy)
+  var cm=MK[cur];var anchorY=ltop+30;
+  g.setLineDash([4,4]);g.lineDashOffset=-(tt*24)%8;
+  g.strokeStyle='rgba('+VI[0]+','+VI[1]+','+VI[2]+',0.6)';g.lineWidth=1.4;
+  g.beginPath();g.moveTo(cm.x,cm.y);g.quadraticCurveTo((cm.x+rx0)/2,cm.y-40,rx0+8,anchorY+6);g.stroke();
+  g.setLineDash([]);
+  // travelling read-bead
+  var bd=(tt*0.8)%1;var bx=cm.x+(rx0+8-cm.x)*bd,by=cm.y+((anchorY+6)-cm.y)*bd - Math.sin(bd*3.1416)*30;
+  g.fillStyle='rgba(230,215,250,0.85)';g.beginPath();g.arc(bx,by,2.6,0,6.283);g.fill();
+  // right: interpretation panel
+  g.textAlign='left';
+  g.fillStyle='rgba('+VI[0]+','+VI[1]+','+VI[2]+',0.5)';g.font='10px ui-monospace,Menlo,Consolas,monospace';g.fillText('INTERPRETATION',rx0+8,ltop+4);
+  g.fillStyle='#fff';g.font='600 17px "Iowan Old Style",Georgia,serif';g.fillText(trunc(cm.n,30),rx0+8,anchorY+10);
+  g.fillStyle='rgba('+VI[0]+','+VI[1]+','+VI[2]+',0.8)';g.font='10px ui-monospace,Menlo,Consolas,monospace';g.fillText('≡ read across the seam · a crossing, not a copy',rx0+8,anchorY+30);
+  // transcript log
+  g.font='11px ui-monospace,Menlo,Consolas,monospace';
+  for(q=1;q<LOG.length;q++){var ly=anchorY+56+q*22;var al=Math.max(0,0.6-q*0.09);g.fillStyle='rgba('+VI[0]+','+VI[1]+','+VI[2]+','+al+')';g.fillText('‾ '+trunc(MK[LOG[q]].n,34),rx0+8,ly);}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){if(hover>=0)stat.textContent='MARK · '+trunc(MK[hover].n,26);else stat.textContent='INTERPRETING · '+trunc(cm.n,22)+' · '+(cur+1)+'/'+N;}
+  if(tip){if(hover>=0){tip.textContent=MK[hover].n;tip.style.left=MK[hover].x+'px';tip.style.top=(MK[hover].y-12)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
@@ -8558,7 +8722,8 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "phantasia": l2_page_phantasia, "prosoche": l2_page_prosoche, "poietike": l2_page_poietike,
              "banana": l2_page_banana, "tin-foil": l2_page_tinfoil, "occupational": l2_page_occupational,
              "heurema": l2_page_heurema, "dyas": l2_page_dyas, "momus": l2_page_momus,
-             "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier, "attraction": l2_page_attraction}
+             "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier, "attraction": l2_page_attraction,
+             "transcriber": l2_page_transcriber}
 
 
 def keeper_system():
