@@ -9355,6 +9355,168 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_thesource(i, key, title, accent, blurb, members):
+    """THE SOURCE — a bespoke keeper page (AVAN + TOP + the keeper). A GREEN GIT TERMINAL: a `git log
+    --graph` view — the commit DAG with a feature branch looping off and merging back, short hashes, the
+    spheres as commit messages, HEAD -> main, a blinking cursor over phosphor scanlines. Green on terminal-
+    dark (the terminal is the medium). Honest: each commit is a real sphere; the git graph is the figure —
+    a source tree of the corpus, the commits genuine (hashes derived from slugs, not real git objects)."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#06120b">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE GIT TERMINAL · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cline x1='20' y1='8' x2='20' y2='56' stroke='%2312a35a' stroke-width='3'/%3E%3Ccircle cx='20' cy='16' r='5' fill='%2312a35a'/%3E%3Ccircle cx='20' cy='40' r='5' fill='%2312a35a'/%3E%3Cpath d='M20 28 Q40 28 40 40 L40 48' fill='none' stroke='%2312a35a' stroke-width='3'/%3E%3Ccircle cx='40' cy='40' r='5' fill='%2312a35a'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#06120b;--pa:#cdf3d8;--pa2:#9ad4ac;--dim:#5f9370;--line:rgba(18,163,90,.26);
+  --c:__ACC__;--term:#3ae67a;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(18,163,90,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(18,163,90,.1),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(60,180,110,.07),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(6,18,11,.8);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#5cf090}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(18,163,90,.45)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#5cf090}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.gtwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:linear-gradient(180deg,#08160d,#050d07);box-shadow:0 18px 60px -20px rgba(18,163,90,.4),inset 0 0 90px rgba(0,0,0,0.55)}
+#git{display:block;width:100%;height:min(68vh,700px)}
+.gtbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(5,13,7,.72);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.gtstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5cf090;background:rgba(5,13,7,.72);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gthint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#gttip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#eafcf0;background:rgba(5,13,7,.95);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(6,18,11,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(18,163,90,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; THE SOURCE &middot; <b>git log &middot; the tree</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> commits &middot; the source tree, HEAD &rarr; main &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="gtwrap">
+    <canvas id="git"></canvas>
+    <div class="gtbadge">&#9646; THE GIT TERMINAL &middot; git log --graph --oneline --all</div>
+    <div class="gtstat" id="gtstat">GIT &middot; &mdash;</div>
+    <div class="gthint">hover a commit &middot; click to enter its sphere</div>
+    <div id="gttip"></div>
+  </div>
+  <div class="synhead"><h2>&#9646; the commits</h2><span class="sc">every commit, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the commits · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ commits, one tree &middot; THE SOURCE &mdash; the git terminal: each commit a sphere, the branch merged, HEAD on main &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>a source tree of the corpus &middot; the graph is the figure; hashes derived from slugs, not real git objects &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="gitdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('git');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('gitdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var GN=hx(D.c||'#12a35a'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+function hash7(str){var h=2166136261;for(var i=0;i<str.length;i++){h^=str.charCodeAt(i);h=(h*16777619)>>>0;}var s=h.toString(16);while(s.length<7)s='0'+s;return s.slice(0,7);}
+var bS=N>=6?2:99,bE=N>=6?Math.min(4,N-2):-1;
+var CM=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#12a35a'),hash:hash7(s.s),lane:(i>=bS&&i<=bE)?1:0,y:0};});
+var mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=CM[hover].u;});
+var tip=document.getElementById('gttip'),stat=document.getElementById('gtstat');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var flick=0.96+0.04*Math.sin(tt*30);
+  var padL=W*0.06,top=H*0.1,rowH=Math.min((H*0.78)/(N+1),34),lane0=padL+14,lane1=padL+34,textX=padL+56;
+  var fs=Math.max(11,Math.min(15,rowH*0.44));g.font=fs+'px ui-monospace,Menlo,Consolas,monospace';g.textBaseline='middle';
+  for(var i=0;i<N;i++)CM[i].y=top+i*rowH+rowH*0.5;
+  var lc='rgba('+GN[0]+','+GN[1]+','+GN[2]+',';
+  // main lane line (through lane0 commits)
+  g.strokeStyle=lc+'0.55)';g.lineWidth=2;var first0=-1,last0=-1;for(i=0;i<N;i++)if(CM[i].lane===0){if(first0<0)first0=i;last0=i;}
+  g.beginPath();g.moveTo(lane0,CM[first0].y);g.lineTo(lane0,CM[last0].y);g.stroke();
+  // branch lane + diverge/merge curves
+  if(bE>=bS){g.strokeStyle=lc+'0.5)';g.lineWidth=2;
+    g.beginPath();g.moveTo(lane0,CM[bS-1].y);g.quadraticCurveTo(lane1,CM[bS-1].y,lane1,CM[bS].y);g.stroke();
+    g.beginPath();g.moveTo(lane1,CM[bS].y);g.lineTo(lane1,CM[bE].y);g.stroke();
+    g.beginPath();g.moveTo(lane1,CM[bE].y);g.quadraticCurveTo(lane1,CM[bE+1].y,lane0,CM[bE+1].y);g.stroke();}
+  // hover
+  hover=-1;for(i=0;i<N;i++){if(my>CM[i].y-rowH*0.5&&my<CM[i].y+rowH*0.5&&mx<W-padL)hover=i;}
+  // commits
+  for(i=0;i<N;i++){var c=CM[i],lx=c.lane?lane1:lane0,head=(i===0),hit=(hover===i);
+    // dot
+    g.fillStyle=head?'rgba(120,255,170,'+flick+')':(hit?'#eafcf0':lc+(0.9*flick)+')');g.beginPath();g.arc(lx,c.y,head?5:4,0,6.283);g.fill();
+    if(head){g.strokeStyle=lc+flick+')';g.lineWidth=1.4;g.beginPath();g.arc(lx,c.y,8,0,6.283);g.stroke();}
+    // hash
+    g.textAlign='left';g.fillStyle=lc+(0.55*flick)+')';g.fillText(c.hash,textX,c.y);
+    // refs
+    var rx=textX+g.measureText(c.hash+' ').width;
+    if(head){g.fillStyle='rgba(120,220,255,'+flick+')';g.fillText('(HEAD -> main)',rx,c.y);rx+=g.measureText('(HEAD -> main) ').width;}
+    else if(i===bS){g.fillStyle='rgba(230,190,90,'+flick+')';g.fillText('(feature)',rx,c.y);rx+=g.measureText('(feature) ').width;}
+    else if(i===N-1){g.fillStyle='rgba(230,190,90,'+flick+')';g.fillText('(tag: v1.0)',rx,c.y);rx+=g.measureText('(tag: v1.0) ').width;}
+    // message (sphere name)
+    var msg=c.n;var avail=(W-padL)-rx;while(msg.length>4&&g.measureText(msg).width>avail)msg=msg.slice(0,-2);if(msg!==c.n)msg=msg.slice(0,-1)+'…';
+    g.fillStyle=hit?'rgba(230,255,240,'+flick+')':(head?'rgba(150,255,190,'+flick+')':'rgba('+GN[0]+','+GN[1]+','+GN[2]+','+(0.82*flick)+')');g.fillText(msg,rx,c.y);
+  }
+  // prompt line + blinking cursor
+  var py=top+N*rowH+rowH*0.6;g.textAlign='left';g.fillStyle=lc+(0.8*flick)+')';var prompt='root0@ud0:~/the-source$ git log --graph --oneline --all';g.fillText(prompt,padL,py);
+  if((tt*2)%1<0.55){g.fillStyle=lc+flick+')';g.fillRect(padL+g.measureText(prompt+' ').width,py-fs*0.5,fs*0.5,fs);}
+  // scanlines + vignette
+  g.fillStyle='rgba(0,0,0,0.16)';for(var sy=0;sy<H;sy+=3)g.fillRect(0,sy,W,1);
+  var vg=g.createRadialGradient(W/2,H/2,H*0.3,W/2,H/2,H*0.75);vg.addColorStop(0,'rgba(6,18,11,0)');vg.addColorStop(1,'rgba(3,8,5,0.5)');g.fillStyle=vg;g.fillRect(0,0,W,H);
+  g.textBaseline='alphabetic';
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat)stat.textContent='git log · '+N+' commits · '+(hover>=0?CM[hover].hash+' '+(CM[hover].n.length>16?CM[hover].n.slice(0,15)+'…':CM[hover].n):'HEAD -> main');
+  if(tip){if(hover>=0){tip.textContent=CM[hover].n;tip.style.left=(W*0.4)+'px';tip.style.top=(CM[hover].y-fs-2)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrws=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrws.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_eremia(i, key, title, accent, blurb, members):
     """ERĒMIA · the wilderness — a bespoke keeper page (AVAN + TOP + the keeper; ἐρημία, desert/solitude).
     A WASTELAND MAP: a bleak horizon over cracked ground, the spheres as ruined LANDMARKS casting long
@@ -12262,7 +12424,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "biblion": l2_page_biblion, "entertainment": l2_page_entertainment,
              "hobby": l2_page_hobby, "solar-jetman": l2_page_solarjetman,
              "frontier": l2_page_frontier, "legal": l2_page_legal,
-             "eremia": l2_page_eremia}
+             "eremia": l2_page_eremia, "the-source": l2_page_thesource}
 
 
 def keeper_system():
