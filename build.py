@@ -9355,6 +9355,176 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_polemos(i, key, title, accent, blurb, members):
+    """POLEMOS · conflict — a bespoke keeper page (AVAN + TOP + the keeper; Heraclitus: war, father of all).
+    A CONFLICT BATTLEFIELD: a tactical map with terrain, an undulating FRONT LINE dividing a contested
+    field, the spheres as fortified POSITIONS on either side, and live ENGAGEMENTS — attacks arc across
+    the front and clash in ember-sparks, the tide shifting with each strike. Crimson on war-dark, not black.
+    Honest: each position is a real sphere; the battle is the figure of strife (polemos), not real combat."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#1a0e12">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE BATTLEFIELD · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 6 L32 58' stroke='%23b0405a' stroke-width='2' stroke-dasharray='3 3'/%3E%3Cpath d='M14 20 L26 30' stroke='%23ff7a3c' stroke-width='3'/%3E%3Cpath d='M50 20 L38 30' stroke='%23ff7a3c' stroke-width='3'/%3E%3Ccircle cx='14' cy='20' r='4' fill='%23b0405a'/%3E%3Ccircle cx='50' cy='20' r='4' fill='%23b0405a'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1a0e12;--pa:#f6e3e8;--pa2:#e0b6c0;--dim:#a97080;--line:rgba(176,64,90,.26);
+  --c:__ACC__;--ember:#ff7a3c;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(176,64,90,.32)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(176,64,90,.14),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(255,122,60,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(26,14,18,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#e2708a}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(176,64,90,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#e2708a}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.pmwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 50%,#25131a,#130a0e);box-shadow:0 18px 60px -20px rgba(176,64,90,.4)}
+#field{display:block;width:100%;height:min(66vh,640px)}
+.pmbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(19,10,14,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.pmstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#ff9a6a;background:rgba(19,10,14,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pmhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#pmtip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(19,10,14,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(26,14,18,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(176,64,90,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; POLEMOS &middot; <b>war, father of all</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> positions &middot; the front shifts with every clash &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="pmwrap">
+    <canvas id="field"></canvas>
+    <div class="pmbadge">&#9876; THE BATTLEFIELD &middot; the front line, the engagements</div>
+    <div class="pmstat" id="pmstat">FRONT &middot; &mdash;</div>
+    <div class="pmhint">hover a position &middot; click to enter its sphere</div>
+    <div id="pmtip"></div>
+  </div>
+  <div class="synhead"><h2>&#9876; the positions</h2><span class="sc">every position, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the positions · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ positions, one field &middot; POLEMOS &mdash; the conflict battlefield: strife across a contested front, each position a real sphere &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>war is the father of all (Heraclitus) &middot; the battle is the figure of strife, not real combat &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="fielddata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('field');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('fielddata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var CR=hx(D.c||'#b0405a'),EM=[255,122,60],DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=1111;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+// positions scattered on either side of the field
+var PO=S.map(function(s,i){var left=(i%2===0);return {n:s.n,u:s.u,col:hx(s.c||'#b0405a'),
+  fx:left?(0.1+rnd()*0.3):(0.6+rnd()*0.3),fy:0.14+rnd()*0.72,x:0,y:0,flash:0,ph:rnd()*6.283};});
+var ATK=[],SPK=[],spawnT=0,tide=0,mx=-1,my=-1,hover=-1,t0=null;
+function frontX(y,tt){return W*(0.5+Math.sin(y*0.011+tt*0.5)*0.05)+tide;}
+function side(p,tt){return p.x<frontX(p.y,tt)?0:1;}
+function mkAtk(tt){var a=(rnd()*N)|0,sa=side(PO[a],tt);var cand=[];for(var b=0;b<N;b++)if(b!==a&&side(PO[b],tt)!==sa)cand.push(b);if(!cand.length)return;var to=cand[(rnd()*cand.length)|0];ATK.push({a:a,b:to,t:rnd()*0.5});}
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=PO[hover].u;});
+var tip=document.getElementById('pmtip'),stat=document.getElementById('pmstat');
+for(var pi=0;pi<N;pi++){PO[pi].x=W*PO[pi].fx;PO[pi].y=H*PO[pi].fy;}
+for(var z=0;z<6;z++)mkAtk(0);
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  tide=Math.sin(tt*0.35)*W*0.05;
+  for(var i=0;i<N;i++){var p=PO[i];p.x=W*p.fx;p.y=H*p.fy;}
+  // tactical grid
+  g.strokeStyle='rgba(176,64,90,0.06)';g.lineWidth=1;var gs=Math.max(26,W/28);
+  for(var gx=0;gx<W;gx+=gs){g.beginPath();g.moveTo(gx,0);g.lineTo(gx,H);g.stroke();}
+  for(var gy=0;gy<H;gy+=gs){g.beginPath();g.moveTo(0,gy);g.lineTo(W,gy);g.stroke();}
+  // terrain contours
+  g.strokeStyle='rgba(200,150,120,0.05)';g.lineWidth=1;for(var c=0;c<3;c++){g.beginPath();for(var xx=0;xx<=W;xx+=12){var yy=H*(0.3+c*0.2)+Math.sin(xx*0.01+c+tt*0.1)*22;if(xx===0)g.moveTo(xx,yy);else g.lineTo(xx,yy);}g.stroke();}
+  // contested zone + front line
+  g.fillStyle='rgba(176,64,90,0.05)';for(var y=0;y<=H;y+=4){var fx=frontX(y,tt);g.fillRect(fx-24,y,48,4);}
+  g.strokeStyle='rgba('+CR[0]+','+CR[1]+','+CR[2]+',0.6)';g.lineWidth=1.6;g.setLineDash([7,5]);g.beginPath();for(y=0;y<=H;y+=8){var fx2=frontX(y,tt);if(y===0)g.moveTo(fx2,y);else g.lineTo(fx2,y);}g.stroke();g.setLineDash([]);
+  g.fillStyle='rgba('+CR[0]+','+CR[1]+','+CR[2]+',0.5)';g.font='9px ui-monospace,Menlo,monospace';g.textAlign='center';g.fillText('FRONT',frontX(H*0.06,tt),H*0.05);
+  // spawn engagements
+  spawnT+=dt;if(spawnT>0.7){spawnT=0;if(ATK.length<7)mkAtk(tt);}
+  // attacks (arcs)
+  for(i=ATK.length-1;i>=0;i--){var at=ATK[i];var A=PO[at.a],B=PO[at.b];var dx=B.x-A.x,dy=B.y-A.y,len=Math.hypot(dx,dy)||1;at.t+=dt*260/len;
+    if(at.t<=0.02)A.flash=Math.max(A.flash,0.6);
+    if(at.t>=1){B.flash=1;SPK.push({x:B.x,y:B.y,r:0,life:1});tide+= (side(A,tt)===0?1:-1)*0.6;ATK.splice(i,1);continue;}
+    var cxp=(A.x+B.x)/2,cyp=(A.y+B.y)/2-len*0.28;var it=1-at.t,px=it*it*A.x+2*it*at.t*cxp+at.t*at.t*B.x,py=it*it*A.y+2*it*at.t*cyp+at.t*at.t*B.y;
+    g.strokeStyle='rgba(255,150,90,0.12)';g.lineWidth=1;g.beginPath();g.moveTo(A.x,A.y);g.quadraticCurveTo(cxp,cyp,B.x,B.y);g.stroke();
+    g.fillStyle='rgba(255,180,120,0.95)';g.beginPath();g.arc(px,py,2.4,0,6.283);g.fill();
+    var tg=g.createRadialGradient(px,py,0,px,py,7);tg.addColorStop(0,'rgba(255,150,90,0.6)');tg.addColorStop(1,'rgba(255,150,90,0)');g.fillStyle=tg;g.beginPath();g.arc(px,py,7,0,6.283);g.fill();}
+  // clash sparks
+  for(i=SPK.length-1;i>=0;i--){var sk=SPK[i];sk.r+=dt*90;sk.life-=dt*1.5;if(sk.life<=0){SPK.splice(i,1);continue;}
+    g.strokeStyle='rgba('+EM[0]+','+EM[1]+','+EM[2]+','+sk.life*0.7+')';g.lineWidth=1.6;g.beginPath();g.arc(sk.x,sk.y,sk.r,0,6.283);g.stroke();
+    for(var e=0;e<6;e++){var ea=e/6*6.283+sk.r*0.05;g.fillStyle='rgba(255,190,120,'+sk.life*0.7+')';g.fillRect(sk.x+Math.cos(ea)*sk.r-1,sk.y+Math.sin(ea)*sk.r-1,2,2);}}
+  // hover pick
+  hover=-1;var best=18*18;
+  for(i=0;i<N;i++){var p=PO[i];var d2=(p.x-mx)*(p.x-mx)+(p.y-my)*(p.y-my);if(mx>=0&&d2<best){best=d2;hover=i;}}
+  // positions (bastions)
+  for(i=0;i<N;i++){var p=PO[i],hit=(hover===i),col=p.col;p.flash*=0.9;
+    var rad=6+(hit?2:0)+p.flash*3;
+    var gl=g.createRadialGradient(p.x,p.y,0,p.x,p.y,rad*2.4);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.45+0.5*p.flash)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');
+    g.fillStyle=gl;g.beginPath();g.arc(p.x,p.y,rad*2.4,0,6.283);g.fill();
+    // diamond bastion
+    g.fillStyle=hit?'#fff':'rgb('+col[0]+','+col[1]+','+col[2]+')';g.save();g.translate(p.x,p.y);g.rotate(0.785);g.fillRect(-4,-4,8,8);g.restore();
+    // flag
+    g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.8)';g.lineWidth=1.2;g.beginPath();g.moveTo(p.x,p.y-5);g.lineTo(p.x,p.y-16);g.stroke();
+    var fw=6+Math.sin(tt*4+p.ph)*1.5;g.fillStyle='rgba('+CR[0]+','+CR[1]+','+CR[2]+',0.85)';g.beginPath();g.moveTo(p.x,p.y-16);g.lineTo(p.x+fw,p.y-13.5);g.lineTo(p.x,p.y-11);g.closePath();g.fill();
+    if(hit){g.strokeStyle='rgba(255,225,215,0.85)';g.lineWidth=1.3;g.beginPath();g.arc(p.x,p.y,rad+6,0,6.283);g.stroke();}}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){if(hover>=0)stat.textContent='POSITION · '+(PO[hover].n.length>24?PO[hover].n.slice(0,23)+'…':PO[hover].n);else stat.textContent='FRONT · '+ATK.length+' engaged · '+N+' positions';}
+  if(tip){if(hover>=0){tip.textContent=PO[hover].n;tip.style.left=PO[hover].x+'px';tip.style.top=(PO[hover].y-16)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_mythos(i, key, title, accent, blurb, members):
     """MYTHOS · mythology — a bespoke keeper page (AVAN + TOP + the keeper). A CONSTELLATION MYTH MAP: a
     night sky where the spheres are CONSTELLATIONS — star-asterisms connected into figures — over a faint
@@ -10329,7 +10499,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "transcriber": l2_page_transcriber, "first-author": l2_page_firstauthor, "arena": l2_page_arena,
              "idios": l2_page_idios, "exereunesis": l2_page_exereunesis, "hermes": l2_page_hermes,
              "glossa": l2_page_glossa, "lesbos": l2_page_lesbos, "logismos": l2_page_logismos,
-             "agora": l2_page_agora, "mythos": l2_page_mythos}
+             "agora": l2_page_agora, "mythos": l2_page_mythos, "polemos": l2_page_polemos}
 
 
 def keeper_system():
