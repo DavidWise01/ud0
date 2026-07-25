@@ -7740,6 +7740,159 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_dyas(i, key, title, accent, blurb, members):
+    """DYAS · duality — a bespoke keeper page (AVAN + TOP + the keeper). A DUALITY MIRROR: a vertical
+    mirror down the center; the spheres are the ORIGINALS on the left, each casting a faithful (ghosted)
+    reflection to the right — every original meets its dual across the glass, and the two field-circles
+    overlap into the VESICA lens at the seam (the domain's icon). Warm/cool split for the two natures,
+    not black. Honest: the reflections are images of the real spheres, not other things — the Dyad, one
+    become two, shown as a mirror. Hover an original names it + lights its dual, click enters."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#14131f">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE DUALITY MIRROR · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='26' cy='32' r='16' fill='none' stroke='%23c9a84a' stroke-width='3'/%3E%3Ccircle cx='38' cy='32' r='16' fill='none' stroke='%23c9a84a' stroke-width='3'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#14131f;--pa:#f2eede;--pa2:#d4cbb0;--dim:#9a9078;--line:rgba(201,168,74,.24);
+  --c:__ACC__;--warm:#e0b24a;--cool:#5aa0d8;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(201,168,74,.3)}
+body{background:radial-gradient(900px 600px at 18% 20%,rgba(224,178,74,.12),transparent 54%),
+  radial-gradient(900px 600px at 82% 80%,rgba(90,160,216,.11),transparent 54%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(20,19,31,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#e6c66e}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(201,168,74,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#e6c66e}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.mywrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:linear-gradient(100deg,#1d1a12 0%,#161421 50%,#121824 100%);box-shadow:0 18px 60px -20px rgba(201,168,74,.4)}
+#mirror{display:block;width:100%;height:min(64vh,600px)}
+.mybadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(18,17,28,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.mystat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#e6c66e;background:rgba(18,17,28,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.myhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#mytip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(18,17,28,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(20,19,31,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(201,168,74,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; DYAS &middot; <b>the dyad &mdash; one become two</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> originals &middot; each meets its dual across the glass &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="mywrap">
+    <canvas id="mirror"></canvas>
+    <div class="mybadge">&#11052; THE DUALITY MIRROR &middot; original &amp; reflection at the vesica</div>
+    <div class="mystat" id="mystat">THE DYAD &middot; &mdash;</div>
+    <div class="myhint">hover an original &middot; click to enter its sphere</div>
+    <div id="mytip"></div>
+  </div>
+  <div class="synhead"><h2>&#11052; the originals</h2><span class="sc">every sphere, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the originals · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ originals, __N__ reflections &middot; DYAS &mdash; the Dyad: one become two; every original meets its dual across the glass &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the reflections are images of the real spheres, not other things &middot; duality as an object &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="mirrordata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('mirror');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('mirrordata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var GD=hx(D.c||'#c9a84a'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=4444;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+// originals scattered in the LEFT half; reflections mirror across cx
+var OB=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#c9a84a'),
+  fx:0.10+rnd()*0.32,fy:0.14+rnd()*0.72,ph:rnd()*6.283,sp:0.4+rnd()*0.6,amp:0.012+rnd()*0.016,x:0,y:0};});
+var mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=OB[hover].u;});
+var tip=document.getElementById('mytip'),stat=document.getElementById('mystat');
+function circ(x,y,r){g.beginPath();g.arc(x,y,r,0,6.283);}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var cx=W*0.5,cy=H*0.5,R=W*0.33,d=R*0.6;
+  // vesica field circles + lens
+  g.strokeStyle='rgba('+GD[0]+','+GD[1]+','+GD[2]+',0.16)';g.lineWidth=1.2;circ(cx-d,cy,R);g.stroke();circ(cx+d,cy,R);g.stroke();
+  g.save();circ(cx-d,cy,R);g.clip();var lg=g.createLinearGradient(cx-R*0.2,cy,cx+R*0.2,cy);lg.addColorStop(0,'rgba('+GD[0]+','+GD[1]+','+GD[2]+',0.05)');lg.addColorStop(0.5,'rgba('+GD[0]+','+GD[1]+','+GD[2]+',0.12)');lg.addColorStop(1,'rgba('+GD[0]+','+GD[1]+','+GD[2]+',0.05)');g.fillStyle=lg;circ(cx+d,cy,R);g.fill();g.restore();
+  // positions
+  for(var i=0;i<N;i++){var o=OB[i];o.x=W*(o.fx+Math.sin(tt*o.sp+o.ph)*o.amp);o.y=H*(o.fy+Math.cos(tt*o.sp*0.8+o.ph)*o.amp*0.7);}
+  // mirror line + sheen
+  g.strokeStyle='rgba('+GD[0]+','+GD[1]+','+GD[2]+',0.32)';g.lineWidth=1.4;g.beginPath();g.moveTo(cx,H*0.05);g.lineTo(cx,H*0.95);g.stroke();
+  var sy=(H*0.05)+((tt*0.18)%1)*(H*0.9);var sh=g.createLinearGradient(cx,sy-40,cx,sy+40);sh.addColorStop(0,'rgba(255,240,200,0)');sh.addColorStop(0.5,'rgba(255,240,200,0.5)');sh.addColorStop(1,'rgba(255,240,200,0)');g.strokeStyle=sh;g.lineWidth=2.2;g.beginPath();g.moveTo(cx,sy-40);g.lineTo(cx,sy+40);g.stroke();
+  // hover pick (originals only)
+  hover=-1;var best=22*22;
+  for(i=0;i<N;i++){var o=OB[i];var d2=(o.x-mx)*(o.x-mx)+(o.y-my)*(o.y-my);if(mx>=0&&d2<best){best=d2;hover=i;}}
+  // tie lines + reflections (ghost) drawn first
+  for(i=0;i<N;i++){var o=OB[i],hit=(hover===i),rx=2*cx-o.x,ry=o.y;
+    g.strokeStyle='rgba('+GD[0]+','+GD[1]+','+GD[2]+','+(hit?0.4:0.08)+')';g.lineWidth=1;g.beginPath();g.moveTo(o.x,o.y);g.lineTo(rx,ry);g.stroke();
+    // vesica pip at mirror crossing
+    var col=o.col,gc=[(col[0]+150)/2,(col[1]+150)/2,(col[2]+156)/2];
+    var ra=hit?0.7:0.34;var gl=g.createRadialGradient(rx,ry,0,rx,ry,10);gl.addColorStop(0,'rgba('+(gc[0]|0)+','+(gc[1]|0)+','+(gc[2]|0)+','+ra+')');gl.addColorStop(1,'rgba('+(gc[0]|0)+','+(gc[1]|0)+','+(gc[2]|0)+',0)');g.fillStyle=gl;circ(rx,ry,10);g.fill();
+    g.fillStyle='rgba('+(gc[0]|0)+','+(gc[1]|0)+','+(gc[2]|0)+','+(hit?0.85:0.4)+')';circ(rx,ry,hit?4.6:3.2);g.fill();
+    g.strokeStyle='rgba('+(gc[0]|0)+','+(gc[1]|0)+','+(gc[2]|0)+',0.3)';g.lineWidth=1;circ(rx,ry,hit?4.6:3.2);g.stroke();}
+  // originals (solid)
+  for(i=0;i<N;i++){var o=OB[i],hit=(hover===i),col=o.col,rad=5+(hit?2.5:0);
+    var gl=g.createRadialGradient(o.x,o.y,0,o.x,o.y,rad*2.6);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+',0.95)');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');
+    g.fillStyle=gl;circ(o.x,o.y,rad*2.6);g.fill();
+    g.fillStyle=hit?'#fff':'rgb('+col[0]+','+col[1]+','+col[2]+')';circ(o.x,o.y,Math.max(1.4,rad*0.5));g.fill();
+    if(hit){g.strokeStyle='rgba(255,240,210,0.85)';g.lineWidth=1.3;circ(o.x,o.y,rad+6);g.stroke();}}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){if(hover>=0)stat.textContent='REFLECTING · '+OB[hover].n+' · and its dual';else stat.textContent='THE DYAD · '+N+' originals · '+N+' reflections';}
+  if(tip){if(hover>=0){tip.textContent=OB[hover].n+'  ·  and its dual';tip.style.left=OB[hover].x+'px';tip.style.top=(OB[hover].y-14)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
@@ -7747,7 +7900,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "aisthesis": l2_page_aisthesis, "krasis": l2_page_krasis, "skynet": l2_page_skynet,
              "phantasia": l2_page_phantasia, "prosoche": l2_page_prosoche, "poietike": l2_page_poietike,
              "banana": l2_page_banana, "tin-foil": l2_page_tinfoil, "occupational": l2_page_occupational,
-             "heurema": l2_page_heurema}
+             "heurema": l2_page_heurema, "dyas": l2_page_dyas}
 
 
 def keeper_system():
