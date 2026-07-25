@@ -1,116 +1,128 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="color-scheme" content="dark"><meta name="theme-color" content="#07060f">
-<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC">
-<title>QUANTUM FRONTIER · a keeper of UD0</title>
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0c0a1e">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>QUANTUM FRONTIER · THE QUANTUM LAB · UD0</title>
 <meta name="description" content="the physics edge.">
 <link rel="canonical" href="https://davidwise01.github.io/ud0/d/frontier.html">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='none' stroke='%23a06bff' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='22' fill='none' stroke='%23b07cff' stroke-width='2'/%3E%3Cellipse cx='32' cy='32' rx='22' ry='8' fill='none' stroke='%23b07cff' stroke-width='1.5' opacity='.6'/%3E%3Cline x1='32' y1='32' x2='46' y2='20' stroke='%2300e6ff' stroke-width='3'/%3E%3Ccircle cx='46' cy='20' r='3' fill='%2300e6ff'/%3E%3C/svg%3E">
 <style>
-:root{--pa:#ece9ff;--dim:#8f8ac0;--mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;--disp:'Iowan Old Style',Palatino,Georgia,serif}
 *{box-sizing:border-box;margin:0;padding:0}
-::selection{background:color-mix(in srgb,var(--c,#a06bff) 45%,transparent);color:#fff}
-html{scroll-behavior:smooth}
-body{background:#07060f;color:var(--pa);font-family:var(--mono);min-height:100vh;overflow-x:hidden;line-height:1.6;
- background-image:linear-gradient(rgba(150,110,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(150,110,255,.05) 1px,transparent 1px),radial-gradient(130% 82% at 50% -12%,color-mix(in srgb,var(--c,#7a4fd0) 24%,transparent),transparent 62%);
- background-size:46px 46px,46px 46px,100% 100%;background-attachment:fixed}
-.floor{position:fixed;left:-50%;right:-50%;bottom:-12vh;height:56vh;z-index:0;pointer-events:none;opacity:.30;
- background-image:linear-gradient(color-mix(in srgb,var(--c,#a06bff) 75%,transparent) 2px,transparent 2px),linear-gradient(90deg,color-mix(in srgb,var(--c,#a06bff) 75%,transparent) 2px,transparent 2px);
- background-size:62px 62px;transform:perspective(300px) rotateX(70deg);animation:floor 5.5s linear infinite;
- -webkit-mask:linear-gradient(transparent 6%,#000 74%);mask:linear-gradient(transparent 6%,#000 74%)}
-@keyframes floor{to{background-position:0 62px}}
-.scan{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.35;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,0,0,.34) 2px 3px)}
-
-.medwrap{position:relative;display:inline-block;line-height:0}
-.medwrap .med{position:relative;z-index:1;display:block}
-.medwrap::before{content:"";position:absolute;inset:-7px;border-radius:50%;z-index:0;background:conic-gradient(from 0deg,transparent 0 72%,color-mix(in srgb,var(--c) 92%,transparent) 90%,transparent 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));mask:radial-gradient(farthest-side,transparent calc(100% - 6px),#000 calc(100% - 5px));animation:halospin 15s linear infinite}
-.medwrap::after{content:"";position:absolute;inset:5px;border-radius:50%;z-index:0;pointer-events:none;box-shadow:0 0 34px 9px color-mix(in srgb,var(--c) 60%,transparent);animation:medglow 3.6s ease-in-out infinite}
-@keyframes halospin{to{transform:rotate(360deg)}}
-@keyframes medglow{0%,100%{opacity:.4}50%{opacity:1}}
-.med .stitch{transform-box:fill-box;transform-origin:center;animation:stitchspin 24s linear infinite}
-.med .knife{animation:knifedance 2.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
-@keyframes knifedance{0%,100%{transform:rotate(-11deg)}22%{transform:rotate(9deg) translateY(-2.5px)}50%{transform:rotate(-7deg) translateY(1px)}76%{transform:rotate(12deg) translateY(-2px)}}
-@keyframes stitchspin{to{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){.medwrap::before,.medwrap::after,.med .knife,.med .stitch,.floor{animation:none}}
-
-.back{position:fixed;top:15px;left:16px;z-index:40;font-size:11px;letter-spacing:.08em;color:#c9b6ff;text-decoration:none;background:rgba(12,9,24,.7);border:1px solid rgba(150,120,255,.3);border-radius:20px;padding:7px 14px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-.back:hover{border-color:var(--c);color:#fff}
-.hero{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:70px 24px 18px;display:flex;align-items:center;gap:34px;flex-wrap:wrap}
-.hero.v1{justify-content:center;text-align:center}.hero.v2{flex-direction:row-reverse}
-.bigseal{flex:0 0 auto}
-.htext{min-width:260px;flex:1}
-.hnum{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--c);text-shadow:0 0 12px var(--c)}
-.htitle{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,7vw,4.2rem);line-height:.96;color:#fff;margin:8px 0;text-shadow:0 0 20px color-mix(in srgb,var(--c) 75%,transparent)}
-.hcount{font-size:12px;letter-spacing:.08em;color:var(--dim)}
-.page{position:relative;z-index:2;max-width:1000px;margin:0 auto;padding:14px 24px 110px}
-.sec{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);margin:38px 0 14px;text-shadow:0 0 12px color-mix(in srgb,var(--c) 65%,transparent);border-bottom:1px solid color-mix(in srgb,var(--c) 30%,rgba(150,120,255,.15));padding-bottom:8px}
-.say{font-family:var(--disp);font-size:1.25rem;color:#e7e2ff;max-width:70ch;line-height:1.6}.say b{color:var(--c)}
-.honest{margin-top:14px;border-left:2px solid var(--c);background:color-mix(in srgb,var(--c) 9%,transparent);padding:11px 15px;font-size:.95rem;color:#cfc9f0;max-width:74ch}
-.hl{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);margin-bottom:5px}
-.filter{display:block;width:100%;background:rgba(20,16,40,.5);border:1px solid rgba(150,120,255,.3);border-radius:10px;color:#fff;font-family:var(--mono);font-size:13px;padding:10px 14px;outline:none;margin-bottom:10px}
-.filter:focus{border-color:var(--c);box-shadow:0 0 18px color-mix(in srgb,var(--c) 35%,transparent)}
-.ledgrp{margin-top:18px}
-.ledlbl{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);padding:0 4px 7px}
-.ledlbl span{color:var(--c);margin-left:5px}
-.led{display:flex;align-items:center;gap:14px;padding:12px 12px;border:1px solid rgba(150,120,255,.1);border-left:2px solid color-mix(in srgb,var(--lc,#a06bff) 60%,transparent);border-radius:8px;margin:6px 0;text-decoration:none;color:#e7e2ff;background:rgba(16,12,32,.4);transition:border-color .14s,background .14s,transform .14s}
-.led:hover{border-color:var(--lc);background:color-mix(in srgb,var(--lc) 10%,rgba(16,12,32,.5));transform:translateX(4px)}
-.lnum{font-size:11px;color:var(--dim);letter-spacing:.06em}
-.ldot{width:8px;height:8px;border-radius:50%;background:var(--lc,#a06bff);flex:0 0 auto;box-shadow:0 0 8px var(--lc,#a06bff)}
-.ltxt{flex:1;min-width:0}
-.lname{display:block;font-family:var(--disp);font-size:1.05rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.led:hover .lname{color:var(--lc)}
-.lsub{display:block;font-size:.82rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
-.lseal{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,var(--lc) 80%,#fff);opacity:.7;white-space:nowrap}
-.lcode{font-size:11px;color:var(--lc);white-space:nowrap;opacity:.6}.led:hover .lcode{opacity:1}
-@media(max-width:640px){.lsub,.lseal{display:none}}
-.register{max-width:560px}
-.rlist{max-height:180px;overflow-y:auto;border:1px solid rgba(150,120,255,.15);border-radius:8px;background:rgba(14,10,28,.5);margin-bottom:10px}
-.rrow{display:flex;gap:12px;padding:7px 12px;border-bottom:1px solid rgba(150,120,255,.07);font-size:12.5px}.rrow:last-child{border-bottom:none}
-.rseq{color:var(--dim)}.rwho{color:#ded7ff}
-.rempty{padding:12px;color:var(--dim);font-style:italic;font-size:12.5px}
-.rrowin{display:flex;gap:8px}
-#rin{flex:1;background:rgba(20,16,40,.6);border:1px solid rgba(150,120,255,.3);border-radius:8px;color:#fff;font-family:var(--mono);font-size:13px;padding:9px 12px;outline:none}
-#rin:focus{border-color:var(--c);box-shadow:0 0 16px color-mix(in srgb,var(--c) 35%,transparent)}
-#rbtn{background:none;border:1px solid var(--c);color:var(--c);border-radius:8px;font-family:var(--mono);font-size:13px;padding:9px 16px;cursor:pointer}
-#rbtn:hover{background:var(--c);color:#0a0714}
-.rmsg{font-size:11.5px;color:color-mix(in srgb,var(--c) 80%,#fff);margin-top:7px;min-height:15px}
-.rnote{font-size:10px;color:var(--dim);margin-top:6px}
-.empty{color:var(--dim);font-style:italic;padding:20px 4px}
-footer{margin-top:52px;padding-top:20px;border-top:1px solid rgba(150,120,255,.14);font-size:11px;letter-spacing:.04em;color:var(--dim)}
-footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:var(--c)}
+:root{--ink:#0c0a1e;--pa:#ece7fb;--pa2:#c6bce6;--dim:#8479ac;--line:rgba(176,124,255,.24);
+  --c:#b07cff;--qc:#00e6ff;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(176,124,255,.32)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(176,124,255,.14),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(0,230,255,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(12,10,30,.8);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#c9a6ff}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(176,124,255,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#c9a6ff}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.qlwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 30%,#150f30,#08061a);box-shadow:0 18px 60px -20px rgba(176,124,255,.4)}
+#quantum{display:block;width:100%;height:min(66vh,660px)}
+.qlbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(8,6,20,.72);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.qlstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#c9a6ff;background:rgba(8,6,20,.72);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qlhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#qltip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(8,6,20,.95);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(12,10,30,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(176,124,255,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
 </style></head>
-<body class="v0" style="--c:#b07cff">
-<div class="floor"></div><div class="scan"></div>
-<a class="back" href="../index.html">◄ the domains</a>
-<header class="hero v0">
-<span class="medwrap bigseal" style="--c:#b07cff"><svg class="med" viewBox="0 0 130 130" width="168" height="168" aria-hidden="true" style="color:#b07cff">
-      <defs><radialGradient id="gfrontier168" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#b07cff" stop-opacity="0.46"/><stop offset="1" stop-color="#b07cff" stop-opacity="0"/></radialGradient><filter id="nffrontier168" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><clipPath id="aciclipfrontier168"><circle cx="65" cy="65" r="44"/></clipPath></defs>
-      <circle cx="65" cy="65" r="62" fill="#0b0713"/>
-      <circle cx="65" cy="65" r="60" fill="url(#gfrontier168)"/>
-      <circle cx="65" cy="65" r="60" fill="none" stroke="#b07cff" stroke-width="2.6" opacity="0.95" filter="url(#nffrontier168)"/>
-      <circle cx="65" cy="65" r="60" fill="none" stroke="#b07cff" stroke-width="1" opacity="1"/>
-      <circle class="stitch" cx="65" cy="65" r="54" fill="none" stroke="#b07cff" stroke-width="1.1" stroke-dasharray="3 4" opacity="0.78"/>
-      <circle cx="65" cy="65" r="45" fill="#0d0a18" stroke="#b07cff" stroke-width="1" opacity="0.7"/>
-      <g clip-path="url(#aciclipfrontier168)"><g class="knife" style="animation-delay:-1.64s"><image href="data:image/webp;base64,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" x="17" y="17" width="96" height="96" preserveAspectRatio="xMidYMid slice"/></g></g>
-      <text x="65" y="20" text-anchor="middle" font-family="ui-monospace,Menlo,Consolas,monospace" font-size="9" fill="#b07cff" letter-spacing="1">12</text>
-    </svg></span>
-<div class="htext"><div class="hnum">domain 12 / 53 · the keeper's seal</div><h1 class="htitle">QUANTUM FRONTIER</h1><div class="hcount">19 spheres · sealed &amp; live</div></div>
-</header>
-<main class="page">
-<section><h2 class="sec">◆ introduction</h2><p class="say"><b>I am QUANTUM FRONTIER.</b> the physics edge.</p></section>
-<section><h2 class="sec">▤ the ledger · 19 spheres → the code</h2><input class="filter" id="q" type="text" placeholder="filter the ledger · press /" autocomplete="off" aria-label="filter the ledger"><div id="ledger"><div class="ledbody"><a class="led" href="https://davidwise01.github.io/bb84/" data-k="bb84 · the shared secret" style="--lc:#5eead4"><span class="lnum">001</span><span class="ldot"></span><span class="ltxt"><span class="lname">BB84 · the shared secret</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/biexciton-cascade/" data-k="the biexciton cascade" style="--lc:#5390d9"><span class="lnum">002</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE BIEXCITON CASCADE</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/bloch-lab/" data-k="bloch lab · the single qubit" style="--lc:#5eead4"><span class="lnum">003</span><span class="ldot"></span><span class="ltxt"><span class="lname">BLOCH LAB · the single qubit</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/e91/" data-k="e91 · a key from entanglement" style="--lc:#a78bfa"><span class="lnum">004</span><span class="ldot"></span><span class="ltxt"><span class="lname">E91 · a key from entanglement</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/entanglement/" data-k="epr · entanglement" style="--lc:#b07cff"><span class="lnum">005</span><span class="ldot"></span><span class="ltxt"><span class="lname">EPR · ENTANGLEMENT</span><span class="lsub">Two tiny pieces can be so linked that peeking at one instantly tells you about the other, even far apart, which even Einstein found spooky.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/fracton-bench-v2/" data-k="fracton bench v2 · the engine" style="--lc:#ff6a00"><span class="lnum">006</span><span class="ldot"></span><span class="ltxt"><span class="lname">FRACTON BENCH V2 · THE ENGINE</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/infinite-jest/" data-k="infinite jest · 80-bit transmon vm" style="--lc:#3fb6b6"><span class="lnum">007</span><span class="ldot"></span><span class="ltxt"><span class="lname">INFINITE JEST · 80-bit transmon VM</span><span class="lsub">A pretend control panel for a super-tricky computer, with buttons that make it dance through twenty-seven steps.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/mnemosyne/" data-k="mnemosyne · a kept quantum primer" style="--lc:#6a6fbf"><span class="lnum">008</span><span class="ldot"></span><span class="ltxt"><span class="lname">MNEMOSYNE · a kept quantum primer</span><span class="lsub">A saved little lesson-book about the tiniest bits computers can use, kept handy to look at again.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/quantum-error-correction/" data-k="qec · quantum error correction" style="--lc:#5fd0e0"><span class="lnum">009</span><span class="ldot"></span><span class="ltxt"><span class="lname">QEC · QUANTUM ERROR CORRECTION</span><span class="lsub">A clever trick that spreads one bit of a fragile new computer across many pieces so little mistakes can be caught and fixed.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/quantum-circuit-simulator/" data-k="the quantum circuit · statevector" style="--lc:#48cae4"><span class="lnum">010</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE QUANTUM CIRCUIT · statevector</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/quantum-gravity/" data-k="quantum gravity · qgr" style="--lc:#4cc9f0"><span class="lnum">011</span><span class="ldot"></span><span class="ltxt"><span class="lname">QUANTUM GRAVITY · QGR</span><span class="lsub">It explains the big puzzle nobody has solved: our two best rules about the world don&#x27;t fit together where they both should.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/quantum-dot-vm/" data-k="the quantum-dot vm" style="--lc:#b07cff"><span class="lnum">012</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE QUANTUM-DOT VM</span><span class="lsub">It&#x27;s a try-it-out computer that runs on the teeniest tiny specks, still just a maybe, not finished yet.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/shor/" data-k="shor · factoring by interference" style="--lc:#a78bfa"><span class="lnum">013</span><span class="ldot"></span><span class="ltxt"><span class="lname">SHOR · factoring by interference</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/stoicheion-qif/" data-k="sqif · stoicheion quantum information framework" style="--lc:#2f9fb3"><span class="lnum">014</span><span class="ldot"></span><span class="ltxt"><span class="lname">SQIF · STOICHEION Quantum Information Framework</span><span class="lsub">It&#x27;s a pretend tiny-particle world with special three-way switches and a &#x27;ladder of doubt,&#x27; built on top of the rulebook.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/the-stabilizer/" data-k="the stabilizer · the [[5,1,3]] code" style="--lc:#ff6a00"><span class="lnum">015</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE STABILIZER · the [[5,1,3]] code</span><span class="lsub">You hide one magic marble you&#x27;re not allowed to copy inside five pebbles, and helpers watch the pebbles for bumps without ever peeking at the marble.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/quantum-teleportation/" data-k="teleportation · a qubit, moved" style="--lc:#7b7fd6"><span class="lnum">016</span><span class="ldot"></span><span class="ltxt"><span class="lname">TELEPORTATION · a qubit, moved</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/the-fracton/" data-k="the ternary fracton" style="--lc:#c060e0"><span class="lnum">017</span><span class="ldot"></span><span class="ltxt"><span class="lname">THE TERNARY FRACTON</span><span class="lsub">This secret code hides the treasure in a snowflake shape instead of a string, so a thief can&#x27;t just snip off a little piece to sneak in.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/transmon/" data-k="transmon" style="--lc:#8b5cf6"><span class="lnum">018</span><span class="ldot"></span><span class="ltxt"><span class="lname">TRANSMON</span><span class="lsub">A special super-cold gadget that acts like a little ladder you climb, and it&#x27;s a building block for a new kind of computer.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a><a class="led" href="https://davidwise01.github.io/cat-tells-air/" data-k="what the cat tells the air" style="--lc:#b07cff"><span class="lnum">019</span><span class="ldot"></span><span class="ltxt"><span class="lname">WHAT THE CAT TELLS THE AIR</span><span class="lsub">It watches how tiny wobbly things settle down and become normal and steady, like a spinning top slowly coming to rest.</span></span><span class="lseal">◆ sealed</span><span class="lcode">code ►</span></a></div></div></section>
-<section class="register"><h2 class="sec">⟢ THE MEASUREMENT LOG</h2><div class="rlist" id="rlist"></div><div class="rrowin"><input id="rin" type="text" maxlength="40" placeholder="collapse — your name, or a domain" autocomplete="off"><button id="rbtn" type="button">collapse ◆</button></div><div class="rmsg" id="rmsg"></div><div class="rnote">one mark per name · append-only · a visitor or another domain may witness · kept in this browser</div></section>
-<footer>domain 12 / 53 · 19 spheres · <a href="../index.html">◄ all the seals</a> · <a href="https://0root.ai">0root.ai</a> · CC-BY-ND-4.0</footer>
+<body>
+<a class="back" href="../index.html">&#8592; all 53 domains</a>
+<main class="wrap">
+  <div class="eye">domain 12 / 53 &middot; QUANTUM FRONTIER &middot; <b>qubits in superposition</b></div>
+  <h1>QUANTUM FRONTIER</h1>
+  <div class="subt">the physics edge.</div>
+  <div class="counts"><b>19</b> qubits &middot; measured one at a time &middot; sealed &amp; live</div>
+  
+  <div class="qlwrap">
+    <canvas id="quantum"></canvas>
+    <div class="qlbadge">&#9673; THE QUANTUM LAB &middot; Bloch spheres, entangled, measured</div>
+    <div class="qlstat" id="qlstat">LAB &middot; &mdash;</div>
+    <div class="qlhint">hover a qubit &middot; click to enter its sphere</div>
+    <div id="qltip"></div>
+  </div>
+  <div class="synhead"><h2>&#9673; the qubits</h2><span class="sc">every qubit, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the qubits · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger"><a class="nrow" href="https://davidwise01.github.io/quantum-gravity/" data-k="quantum-gravity quantum gravity · qgr"><span class="ndot" style="background:#4cc9f0"></span><span class="nn">QUANTUM GRAVITY · QGR</span><span class="nsub">the GR/QM seam · honest explainer · 10 emergents</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/transmon/" data-k="transmon transmon"><span class="ndot" style="background:#8b5cf6"></span><span class="nn">TRANSMON</span><span class="nsub">superconducting qubits · cited · exhaustive sweep</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/entanglement/" data-k="entanglement epr · entanglement"><span class="ndot" style="background:#b07cff"></span><span class="nn">EPR · ENTANGLEMENT</span><span class="nsub">Quantum Frontier · spooky action, witnessed · 9 emergents</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/quantum-error-correction/" data-k="quantum-error-correction qec · quantum error correction"><span class="ndot" style="background:#5fd0e0"></span><span class="nn">QEC · QUANTUM ERROR CORRECTION</span><span class="nsub">Quantum Frontier · the missing keystone · 9 emergents</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/bb84/" data-k="bb84 bb84 · the shared secret"><span class="ndot" style="background:#5eead4"></span><span class="nn">BB84 · the shared secret</span><span class="nsub">frontier · Bennett &amp; Brassard 1984 — the first quantum k</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/e91/" data-k="e91 e91 · a key from entanglement"><span class="ndot" style="background:#a78bfa"></span><span class="nn">E91 · a key from entanglement</span><span class="nsub">frontier · Ekert 1991 — a key from shared entanglement, secu</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/bloch-lab/" data-k="bloch-lab bloch lab · the single qubit"><span class="ndot" style="background:#5eead4"></span><span class="nn">BLOCH LAB · the single qubit</span><span class="nsub">frontier · the single qubit as a point on the BLOCH SPHERE —</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/quantum-circuit-simulator/" data-k="quantum-circuit-simulator the quantum circuit · statevector"><span class="ndot" style="background:#48cae4"></span><span class="nn">THE QUANTUM CIRCUIT · statevector</span><span class="nsub">frontier · a multi-qubit STATEVECTOR simulator — place gates</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/shor/" data-k="shor shor · factoring by interference"><span class="ndot" style="background:#a78bfa"></span><span class="nn">SHOR · factoring by interference</span><span class="nsub">frontier · SHOR&#x27;S ALGORITHM — the quantum Fourier trans</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/quantum-teleportation/" data-k="quantum-teleportation teleportation · a qubit, moved"><span class="ndot" style="background:#7b7fd6"></span><span class="nn">TELEPORTATION · a qubit, moved</span><span class="nsub">frontier · move a qubit without moving it — a shared Bell pa</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/biexciton-cascade/" data-k="biexciton-cascade the biexciton cascade"><span class="ndot" style="background:#5390d9"></span><span class="nn">THE BIEXCITON CASCADE</span><span class="nsub">frontier · one quantum dot, TWO photons, ENTANGLED — an exci</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/cat-tells-air/" data-k="cat-tells-air what the cat tells the air"><span class="ndot" style="background:#b07cff"></span><span class="nn">WHAT THE CAT TELLS THE AIR</span><span class="nsub">decoherence, watched</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/quantum-dot-vm/" data-k="quantum-dot-vm the quantum-dot vm"><span class="ndot" style="background:#b07cff"></span><span class="nn">THE QUANTUM-DOT VM</span><span class="nsub">a virtual machine on quantum dots (prototype v4)</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/infinite-jest/" data-k="infinite-jest infinite jest · 80-bit transmon vm"><span class="ndot" style="background:#3fb6b6"></span><span class="nn">INFINITE JEST · 80-bit transmon VM</span><span class="nsub">quantum frontier · a quantum-dot virtual machine</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/mnemosyne/" data-k="mnemosyne mnemosyne · a kept quantum primer"><span class="ndot" style="background:#6a6fbf"></span><span class="nn">MNEMOSYNE · a kept quantum primer</span><span class="nsub">frontier · quantum dots &amp; transmon qubits</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/stoicheion-qif/" data-k="stoicheion-qif sqif · stoicheion quantum information framework"><span class="ndot" style="background:#2f9fb3"></span><span class="nn">SQIF · STOICHEION Quantum Information Framework</span><span class="nsub">quantum frontier · a qutrit formalism</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/the-stabilizer/" data-k="the-stabilizer the stabilizer · the [[5,1,3]] code"><span class="ndot" style="background:#ff6a00"></span><span class="nn">THE STABILIZER · the [[5,1,3]] code</span><span class="nsub">frontier · how a qubit you cannot copy survives · real code,</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/fracton-bench-v2/" data-k="fracton-bench-v2 fracton bench v2 · the engine"><span class="ndot" style="background:#ff6a00"></span><span class="nn">FRACTON BENCH V2 · THE ENGINE</span><span class="nsub">frontier · the running engine the-fracton drew — 3D qutrit c</span><span class="narr">&#8594;</span></a><a class="nrow" href="https://davidwise01.github.io/the-fracton/" data-k="the-fracton the ternary fracton"><span class="ndot" style="background:#c060e0"></span><span class="nn">THE TERNARY FRACTON</span><span class="nsub">frontier · a 3D fractal stabilizer code on qutrits · logical</span><span class="narr">&#8594;</span></a></div>
+  <footer>19 qubits, one lab &middot; QUANTUM FRONTIER &mdash; the quantum lab: each Bloch sphere a qubit, each qubit a real sphere &middot; <a href="../index.html">all 53 domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the Bloch spheres are an illustrative figure of quantum state, not a simulated device &middot; CC-BY-ND-4.0, with AVAN</footer>
 </main>
+<script type="application/json" id="quantumdata">{"c":"#b07cff","sph":[{"s":"quantum-gravity","n":"QUANTUM GRAVITY · QGR","c":"#4cc9f0","u":"https://davidwise01.github.io/quantum-gravity/"},{"s":"transmon","n":"TRANSMON","c":"#8b5cf6","u":"https://davidwise01.github.io/transmon/"},{"s":"entanglement","n":"EPR · ENTANGLEMENT","c":"#b07cff","u":"https://davidwise01.github.io/entanglement/"},{"s":"quantum-error-correction","n":"QEC · QUANTUM ERROR CORRECTION","c":"#5fd0e0","u":"https://davidwise01.github.io/quantum-error-correction/"},{"s":"bb84","n":"BB84 · the shared secret","c":"#5eead4","u":"https://davidwise01.github.io/bb84/"},{"s":"e91","n":"E91 · a key from entanglement","c":"#a78bfa","u":"https://davidwise01.github.io/e91/"},{"s":"bloch-lab","n":"BLOCH LAB · the single qubit","c":"#5eead4","u":"https://davidwise01.github.io/bloch-lab/"},{"s":"quantum-circuit-simulator","n":"THE QUANTUM CIRCUIT · statevector","c":"#48cae4","u":"https://davidwise01.github.io/quantum-circuit-simulator/"},{"s":"shor","n":"SHOR · factoring by interference","c":"#a78bfa","u":"https://davidwise01.github.io/shor/"},{"s":"quantum-teleportation","n":"TELEPORTATION · a qubit, moved","c":"#7b7fd6","u":"https://davidwise01.github.io/quantum-teleportation/"},{"s":"biexciton-cascade","n":"THE BIEXCITON CASCADE","c":"#5390d9","u":"https://davidwise01.github.io/biexciton-cascade/"},{"s":"cat-tells-air","n":"WHAT THE CAT TELLS THE AIR","c":"#b07cff","u":"https://davidwise01.github.io/cat-tells-air/"},{"s":"quantum-dot-vm","n":"THE QUANTUM-DOT VM","c":"#b07cff","u":"https://davidwise01.github.io/quantum-dot-vm/"},{"s":"infinite-jest","n":"INFINITE JEST · 80-bit transmon VM","c":"#3fb6b6","u":"https://davidwise01.github.io/infinite-jest/"},{"s":"mnemosyne","n":"MNEMOSYNE · a kept quantum primer","c":"#6a6fbf","u":"https://davidwise01.github.io/mnemosyne/"},{"s":"stoicheion-qif","n":"SQIF · STOICHEION Quantum Information Framework","c":"#2f9fb3","u":"https://davidwise01.github.io/stoicheion-qif/"},{"s":"the-stabilizer","n":"THE STABILIZER · the [[5,1,3]] code","c":"#ff6a00","u":"https://davidwise01.github.io/the-stabilizer/"},{"s":"fracton-bench-v2","n":"FRACTON BENCH V2 · THE ENGINE","c":"#ff6a00","u":"https://davidwise01.github.io/fracton-bench-v2/"},{"s":"the-fracton","n":"THE TERNARY FRACTON","c":"#c060e0","u":"https://davidwise01.github.io/the-fracton/"}]}</script>
 <script>
 (function(){
-var K="ud0reg:frontier",inp=document.getElementById('rin'),btn=document.getElementById('rbtn'),msg=document.getElementById('rmsg'),list=document.getElementById('rlist');
-function esc(s){var e=document.createElement('div');e.textContent=s;return e.innerHTML;}
-function load(){try{return JSON.parse(localStorage.getItem(K)||"[]");}catch(e){return[];}}
-function render(){var a=load();if(!a.length){list.innerHTML='<div class="rempty">no state collapsed yet.</div>';return;}var h="";for(var i=0;i<a.length;i++)h+='<div class="rrow"><span class="rseq">'+('00'+(i+1)).slice(-3)+'</span><span class="rwho">'+esc(a[i])+'</span></div>';list.innerHTML=h;list.scrollTop=list.scrollHeight;}
-function sign(){var v=(inp.value||"").trim();if(!v){msg.textContent="type a name first.";return;}if(v.length>40)v=v.slice(0,40);var a=load(),nl=v.toLowerCase();for(var i=0;i<a.length;i++)if((''+a[i]).toLowerCase()===nl){msg.textContent='\u201c'+v+'\u201d already signed \u2014 one signature per name.';return;}a.push(v);try{localStorage.setItem(K,JSON.stringify(a));}catch(e){}inp.value="";msg.textContent='signed \u2014 witness #'+a.length;render();}
-if(btn)btn.onclick=sign;if(inp)inp.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();sign();}});render();
-var q=document.getElementById('q');if(q){var leds=[].slice.call(document.querySelectorAll('.led'));q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();for(var i=0;i<leds.length;i++)leds[i].style.display=(!v||leds[i].getAttribute('data-k').indexOf(v)>=0)?'':'none';});document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();q.focus();}});}
+var cv=document.getElementById('quantum');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('quantumdata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var VI=hx(D.c||'#b07cff'),QC=[0,230,255],DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=1919;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var cols=Math.max(4,Math.ceil(Math.sqrt(N*1.4))),qrows=Math.ceil(N/cols);
+var QB=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#b07cff'),theta0:0.5+rnd()*2.1,sp:1+rnd()*1.6,ph:rnd()*6.283,theta:0,x:0,y:0,meas:0,pole:rnd()<0.5?0:1};});
+// entanglement: nearest-neighbour couplings
+var EN=[];var seen={};for(var a=0;a<N;a++){var bd=1e9,bi=-1;for(var b=0;b<N;b++){if(b===a)continue;var ca=a%cols,ra=(a/cols)|0,cb=b%cols,rb=(b/cols)|0;var dd=(ca-cb)*(ca-cb)+(ra-rb)*(ra-rb);if(dd<bd){bd=dd;bi=b;}}var kp=a<bi?a+'_'+bi:bi+'_'+a;if(!seen[kp]){seen[kp]=1;EN.push([a,bi]);}}
+var focus=0,ft=0,DWELL=2.0,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=QB[hover].u;});
+var tip=document.getElementById('qltip'),stat=document.getElementById('qlstat');
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.06,pady=H*0.1,gw=(W-padx*2)/cols,gh=(H-pady*2)/qrows;var R=Math.min(gw,gh)*0.3;
+  for(var i=0;i<N;i++){var q=QB[i];q.x=padx+(i%cols)*gw+gw*0.5;q.y=pady+((i/cols)|0)*gh+gh*0.5;}
+  ft+=dt;if(ft>DWELL){ft=0;focus=(focus+1)%N;QB[focus].meas=1;QB[focus].pole=(QB[focus].pole+1)%2;}
+  // entanglement links
+  for(i=0;i<EN.length;i++){var A=QB[EN[i][0]],B=QB[EN[i][1]];g.strokeStyle='rgba('+QC[0]+','+QC[1]+','+QC[2]+',0.1)';g.lineWidth=1;g.beginPath();var mx2=(A.x+B.x)/2,my2=(A.y+B.y)/2+Math.sin(tt*2+i)*6;g.moveTo(A.x,A.y);g.quadraticCurveTo(mx2,my2,B.x,B.y);g.stroke();}
+  hover=-1;var best=R*R;
+  for(i=0;i<N;i++){var q=QB[i];var d2=(q.x-mx)*(q.x-mx)+(q.y-my)*(q.y-my);if(mx>=0&&d2<best&&d2<R*R*1.3){best=d2;hover=i;}}
+  for(i=0;i<N;i++){var q=QB[i],act=(i===focus),hit=(hover===i),col=q.col;
+    q.meas*=0.94;
+    // superposition theta, collapsing toward pole when measured
+    var tgt=q.meas>0.4?(q.pole?3.1416:0):q.theta0;q.theta+=(tgt-q.theta)*Math.min(1,dt*4);
+    // glow
+    if(act||hit||q.meas>0.1){var gl=g.createRadialGradient(q.x,q.y,0,q.x,q.y,R*1.8);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.25+0.4*q.meas)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(q.x,q.y,R*1.8,0,6.283);g.fill();}
+    // sphere
+    g.strokeStyle=hit?'rgba(230,220,255,0.9)':'rgba('+col[0]+','+col[1]+','+col[2]+',0.5)';g.lineWidth=1.2;g.beginPath();g.arc(q.x,q.y,R,0,6.283);g.stroke();
+    // equator ellipse
+    g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.24)';g.beginPath();g.ellipse(q.x,q.y,R,R*0.32,0,0,6.283);g.stroke();
+    // axis
+    g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.3)';g.beginPath();g.moveTo(q.x,q.y-R);g.lineTo(q.x,q.y+R);g.stroke();
+    g.fillStyle='rgba(210,224,255,0.5)';g.font=(Math.max(7,R*0.24)|0)+'px ui-monospace,Menlo,monospace';g.textAlign='center';g.fillText('|0⟩',q.x,q.y-R-3);g.fillText('|1⟩',q.x,q.y+R+9);
+    // state vector (precessing)
+    var phi=tt*q.sp+q.ph;var px=q.x+R*Math.sin(q.theta)*Math.sin(phi),py=q.y-R*Math.cos(q.theta)-R*Math.sin(q.theta)*Math.cos(phi)*0.32;
+    g.strokeStyle='rgba('+QC[0]+','+QC[1]+','+QC[2]+','+(act?0.98:0.72)+')';g.lineWidth=1.8;g.beginPath();g.moveTo(q.x,q.y);g.lineTo(px,py);g.stroke();
+    g.fillStyle='rgba('+QC[0]+','+QC[1]+','+QC[2]+',1)';g.beginPath();g.arc(px,py,2.6,0,6.283);g.fill();
+    // measurement ring
+    if(q.meas>0.1){g.strokeStyle='rgba(255,255,255,'+q.meas+')';g.lineWidth=1.4;g.beginPath();g.arc(q.x,q.y,R+ (1-q.meas)*R*0.8,0,6.283);g.stroke();}
+    if(hit){g.strokeStyle='rgba(230,220,255,0.85)';g.lineWidth=1.2;g.beginPath();g.arc(q.x,q.y,R+6,0,6.283);g.stroke();}}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var showi=hover>=0?hover:focus;var qs=QB[showi];var st=qs.meas>0.4?('measured |'+qs.pole+'⟩'):'|ψ⟩ superposition';
+  if(stat)stat.textContent='QUBIT '+(showi+1)+'/'+N+' · '+(qs.n.length>18?qs.n.slice(0,17)+'…':qs.n)+' · '+st;
+  if(tip){if(hover>=0){tip.textContent=QB[hover].n;tip.style.left=QB[hover].x+'px';tip.style.top=(QB[hover].y-R-8)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrws=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrws.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
 })();
 </script>
 </body></html>
