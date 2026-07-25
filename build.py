@@ -8871,6 +8871,174 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_arena(i, key, title, accent, blurb, members):
+    """ARENA · MTG — a bespoke keeper page (AVAN + TOP + the keeper). ONE SET PER SPHERE: each sphere is a
+    Magic card laid on the playmat — card frame, title bar bearing the set name, art box, type line, and a
+    set-symbol gem; a showcase focus cycles, lifting one card off the mat with a foil shimmer, and hover
+    lifts + names any card. Gold on playmat-dark, not black. Honest: each card is one real sphere (one
+    set); frames are tinted by the sphere's own accent, not a fabricated WUBRG colour identity."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#17130a">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · ONE SET PER SPHERE · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='16' y='8' width='32' height='46' rx='3' fill='none' stroke='%23c9a23a' stroke-width='3'/%3E%3Crect x='21' y='20' width='22' height='16' fill='%23c9a23a' opacity='.5'/%3E%3Cpath d='M32 40 l6 5 -6 5 -6 -5 z' fill='%23c9a23a'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#17130a;--pa:#f7edd6;--pa2:#e2cea4;--dim:#a98f5f;--line:rgba(201,162,58,.24);
+  --c:__ACC__;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(201,162,58,.3)}
+body{background:radial-gradient(1000px 600px at 50% -8%,rgba(201,162,58,.13),transparent 56%),
+  radial-gradient(900px 500px at 82% 108%,rgba(150,110,50,.09),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(23,19,10,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#e8c561}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(201,162,58,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#e8c561}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.arwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 34%,#241d10,#130f07);box-shadow:0 18px 60px -20px rgba(201,162,58,.42)}
+#arena{display:block;width:100%;height:min(66vh,640px)}
+.arbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(19,15,7,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.arstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#e8c561;background:rgba(19,15,7,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arhint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#artip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(19,15,7,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(23,19,10,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(201,162,58,.12);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; ARENA &middot; <b>one Magic set per sphere</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> sets on the mat &middot; one card, one sphere &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="arwrap">
+    <canvas id="arena"></canvas>
+    <div class="arbadge">&#9830; ONE SET PER SPHERE &middot; the showcase lifts each card</div>
+    <div class="arstat" id="arstat">FEATURED SET &middot; &mdash;</div>
+    <div class="arhint">hover a card &middot; click to enter its sphere</div>
+    <div id="artip"></div>
+  </div>
+  <div class="synhead"><h2>&#9830; the sets</h2><span class="sc">every set, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the sets · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ sets, one mat &middot; ARENA &mdash; one Magic set per sphere, curated by worth &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>each card is one real sphere &middot; frames tinted by the sphere's accent, not a fabricated colour identity &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="arenadata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('arena');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('arenadata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var GD=hx(D.c||'#c9a23a'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=3535;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var cols=Math.max(4,Math.ceil(Math.sqrt(N*1.6))),crows=Math.ceil(N/cols);
+var CD=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#c9a23a'),gc:i%cols,gr:(i/cols)|0,x:0,y:0,cw:0,ch:0,ph:rnd()*6.283};});
+function rr(x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath();}
+function trunc(str,max){return str.length>max?str.slice(0,max-1)+'…':str;}
+var focus=0,ftimer=0,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=CD[hover].u;});
+var tip=document.getElementById('artip'),stat=document.getElementById('arstat');
+function drawCard(cd,scale,lift,fatf){
+  var cw=cd.cw*scale,ch=cd.ch*scale,cx=cd.x-(cw-cd.cw)/2,cy=cd.y-(ch-cd.ch)/2-lift;var col=cd.col;
+  if(lift>0||scale>1){g.save();g.shadowColor='rgba(0,0,0,0.5)';g.shadowBlur=14;g.shadowOffsetY=8;}
+  // frame
+  rr(cx,cy,cw,ch,5);var fg=g.createLinearGradient(cx,cy,cx,cy+ch);fg.addColorStop(0,'rgba('+((col[0]*0.5+40)|0)+','+((col[1]*0.5+34)|0)+','+((col[2]*0.5+26)|0)+',1)');fg.addColorStop(1,'rgba(30,24,16,1)');g.fillStyle=fg;g.fill();
+  if(lift>0||scale>1)g.restore();
+  g.lineWidth=1.4;g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.85)';rr(cx,cy,cw,ch,5);g.stroke();
+  var pad=cw*0.07;
+  // title bar
+  rr(cx+pad,cy+pad,cw-pad*2,ch*0.11,2);g.fillStyle='rgba(20,16,10,0.72)';g.fill();
+  g.fillStyle='rgba(245,235,210,'+(0.7+0.3*fatf)+')';g.font=(Math.max(7,cw*0.075)|0)+'px "Iowan Old Style",Georgia,serif';g.textAlign='left';g.textBaseline='middle';
+  g.fillText(trunc(cd.n,scale>1.05?26:12),cx+pad+3,cy+pad+ch*0.055);
+  // art box
+  var ay=cy+pad+ch*0.13,ah=ch*0.42;rr(cx+pad,ay,cw-pad*2,ah,2);var ag=g.createLinearGradient(cx,ay,cx+cw,ay+ah);ag.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+',0.8)');ag.addColorStop(1,'rgba('+((col[0]*0.4)|0)+','+((col[1]*0.4)|0)+','+((col[2]*0.5)|0)+',0.9)');g.fillStyle=ag;g.fill();
+  g.strokeStyle='rgba(20,16,10,0.6)';g.lineWidth=1;g.stroke();
+  // art strokes
+  g.strokeStyle='rgba(255,245,225,0.28)';g.lineWidth=1;g.beginPath();g.moveTo(cx+pad+4,ay+ah*(0.6+0.2*Math.sin(cd.ph)));g.quadraticCurveTo(cx+cw*0.5,ay+ah*0.2,cx+cw-pad-4,ay+ah*(0.5+0.2*Math.cos(cd.ph)));g.stroke();
+  // type line + set symbol gem
+  var ty=ay+ah+ch*0.03;rr(cx+pad,ty,cw-pad*2,ch*0.08,2);g.fillStyle='rgba(20,16,10,0.6)';g.fill();
+  g.fillStyle='rgba(230,215,180,0.7)';g.font=(Math.max(6,cw*0.055)|0)+'px ui-monospace,Menlo,monospace';g.fillText('Expansion · Set',cx+pad+3,ty+ch*0.04);
+  var gemx=cx+cw-pad-6,gemy=ty+ch*0.04;g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.95)';g.beginPath();g.moveTo(gemx,gemy-4);g.lineTo(gemx+4,gemy);g.lineTo(gemx,gemy+4);g.lineTo(gemx-4,gemy);g.closePath();g.fill();
+  // text box
+  var txy=ty+ch*0.11,txh=ch*0.2;rr(cx+pad,txy,cw-pad*2,txh,2);g.fillStyle='rgba(28,22,14,0.55)';g.fill();
+  g.strokeStyle='rgba(210,195,160,0.2)';g.lineWidth=1;for(var l=0;l<3;l++){var ly=txy+6+l*(txh-8)/3;g.beginPath();g.moveTo(cx+pad+3,ly);g.lineTo(cx+cw-pad-3-(l===2?cw*0.2:0),ly);g.stroke();}
+  // foil shimmer
+  var fpos=(((cd.gc+cd.gr)*0.2 + FT*0.5)%1);
+  var sgx=cx+fpos*cw;var sh=g.createLinearGradient(sgx-cw*0.3,cy,sgx+cw*0.3,cy+ch);var fa=(0.06+0.16*fatf);sh.addColorStop(0,'rgba(255,250,235,0)');sh.addColorStop(0.5,'rgba(255,250,235,'+fa+')');sh.addColorStop(1,'rgba(255,250,235,0)');g.save();rr(cx,cy,cw,ch,5);g.clip();g.fillStyle=sh;g.fillRect(cx,cy,cw,ch);g.restore();
+  g.textBaseline='alphabetic';
+}
+var FT=0;
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;FT=tt;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var padx=W*0.05,pady=H*0.09,gw=(W-padx*2)/cols,gh=(H-pady*2)/crows;
+  var cw=Math.min(gw*0.82,gh*0.64),ch=cw*1.4;if(ch>gh*0.9){ch=gh*0.9;cw=ch/1.4;}
+  for(var i=0;i<N;i++){var cd=CD[i];cd.cw=cw;cd.ch=ch;cd.x=padx+cd.gc*gw+(gw-cw)/2;cd.y=pady+cd.gr*gh+(gh-ch)/2;}
+  ftimer+=dt;if(ftimer>1.6){ftimer=0;focus=(focus+1)%N;}
+  // hover
+  hover=-1;for(i=0;i<N;i++){var cd=CD[i];if(mx>=cd.x&&mx<=cd.x+cd.cw&&my>=cd.y&&my<=cd.y+cd.ch)hover=i;}
+  var lifted=hover>=0?hover:focus;
+  // draw non-lifted first
+  for(i=0;i<N;i++){if(i===lifted)continue;drawCard(CD[i],1,0,0.2);}
+  // lifted card on top
+  drawCard(CD[lifted],1.16,14,1);
+  // glow under lifted
+  cv.style.cursor=hover>=0?'pointer':'default';
+  if(stat){if(hover>=0)stat.textContent='CARD · '+trunc(CD[hover].n,26);else stat.textContent='FEATURED SET · '+trunc(CD[focus].n,22)+' · '+(focus+1)+'/'+N;}
+  if(tip){if(hover>=0){tip.textContent=CD[hover].n;tip.style.left=(CD[hover].x+CD[hover].cw/2)+'px';tip.style.top=(CD[hover].y-16)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 # ⚑ CUSTOM_L2 — domains whose keeper page overrides the default (the keeper ritual makes each pop).
 CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_psephos,
              "techne": l2_page_techne, "metaxy": l2_page_metaxy, "logike": l2_page_logike,
@@ -8880,7 +9048,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "banana": l2_page_banana, "tin-foil": l2_page_tinfoil, "occupational": l2_page_occupational,
              "heurema": l2_page_heurema, "dyas": l2_page_dyas, "momus": l2_page_momus,
              "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier, "attraction": l2_page_attraction,
-             "transcriber": l2_page_transcriber, "first-author": l2_page_firstauthor}
+             "transcriber": l2_page_transcriber, "first-author": l2_page_firstauthor, "arena": l2_page_arena}
 
 
 def keeper_system():
