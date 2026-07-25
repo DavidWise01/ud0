@@ -9355,6 +9355,171 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_glossa(i, key, title, accent, blurb, members):
+    """GLŌSSA · language — a bespoke keeper page (AVAN + TOP + the keeper). A LANGUAGE TREE: an organic
+    tree grows from one root — a trunk forking into families and sub-branches, the spheres as the language
+    BLOSSOMS at the tips, opening as the tree grows and swaying in a breeze with petals drifting (Under One
+    Blossoming). Teal foliage on teal-dark, not black. Honest: each blossom is a real sphere; the branching
+    is an illustrative family tree (one root, related tongues), a figure of kinship, not a claimed cladogram."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#0c1a1c">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE LANGUAGE TREE · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cline x1='32' y1='56' x2='32' y2='32' stroke='%233a8a9a' stroke-width='4'/%3E%3Cline x1='32' y1='38' x2='18' y2='20' stroke='%233a8a9a' stroke-width='3'/%3E%3Cline x1='32' y1='38' x2='46' y2='20' stroke='%233a8a9a' stroke-width='3'/%3E%3Ccircle cx='18' cy='18' r='5' fill='%23e6a6c0'/%3E%3Ccircle cx='46' cy='18' r='5' fill='%23e6a6c0'/%3E%3Ccircle cx='32' cy='30' r='5' fill='%23e6a6c0'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0c1a1c;--pa:#e4f3f2;--pa2:#b4d8d4;--dim:#6d9a97;--line:rgba(58,138,154,.22);
+  --c:__ACC__;--blossom:#e6a6c0;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(58,138,154,.3)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(58,138,154,.13),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(230,166,192,.09),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(12,26,28,.78);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#e6a6c0}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(58,138,154,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#e6a6c0}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.gtwrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 96%,#123032,#0a1618);box-shadow:0 18px 60px -20px rgba(58,138,154,.4)}
+#tree{display:block;width:100%;height:min(68vh,660px)}
+.gtbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(10,20,22,.66);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.gtstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#e6a6c0;background:rgba(10,20,22,.66);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gthint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#gttip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(10,20,22,.94);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(12,26,28,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(58,138,154,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; GL&Omacr;SSA &middot; <b>one root, many tongues</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> tongues &middot; one root, blossoming &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="gtwrap">
+    <canvas id="tree"></canvas>
+    <div class="gtbadge">&#127800; THE LANGUAGE TREE &middot; one root forks into every tongue</div>
+    <div class="gtstat" id="gtstat">TREE &middot; &mdash;</div>
+    <div class="gthint">hover a blossom &middot; click to enter its sphere</div>
+    <div id="gttip"></div>
+  </div>
+  <div class="synhead"><h2>&#127800; the tongues</h2><span class="sc">every language, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the tongues · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ tongues, one root &middot; GL&Omacr;SSA &mdash; the language tree: one root forks into families and tongues, each a blossom &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>Under One Blossoming &middot; each blossom is a real sphere; the branching is an illustrative family tree, a figure of kinship &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="treedata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('tree');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('treedata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var TE=hx(D.c||'#3a8a9a'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=1919;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var COL=S.map(function(s){return hx(s.c||'#3a8a9a');});
+// build a family tree with exactly N leaves (one blossom per sphere)
+function build(lo,hi,depth){if(hi-lo<=1)return {leaf:true,s:lo};
+  var cnt=Math.min(depth===0?3:2,hi-lo),parts=[],sz=hi-lo;
+  for(var c=0;c<cnt;c++){var a=lo+Math.floor(sz*c/cnt),b=lo+Math.floor(sz*(c+1)/cnt);parts.push(build(a,b,depth+1));}
+  return {leaf:false,ch:parts};}
+var ROOT=build(0,N,0);
+function md(node,d){if(node.leaf)return d;var m=d;for(var i=0;i<node.ch.length;i++)m=Math.max(m,md(node.ch[i],d+1));return m;}
+var MAXD=md(ROOT,0);
+function sm(p){p=p<0?0:(p>1?1:p);return p*p*(3-2*p);}
+function bcol(depth){var t=depth/(MAXD||1);var a=[92,68,48],b=[58,138,154];return 'rgb('+((a[0]+(b[0]-a[0])*t)|0)+','+((a[1]+(b[1]-a[1])*t)|0)+','+((a[2]+(b[2]-a[2])*t)|0)+')';}
+var PET=[];for(var z=0;z<26;z++)PET.push({x:rnd(),y:rnd(),vy:0.02+rnd()*0.03,vx:(rnd()-0.5)*0.015,r:rnd()*6.283,sp:1+rnd()*2});
+var LEAF=[],front=0,focus=0,ftimer=0,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=S[LEAF[hover].s].u;});
+var tip=document.getElementById('gttip'),stat=document.getElementById('gtstat');
+function drawNode(node,x,y,ang,len,depth,thick,tt){var f=sm(front-depth);if(f<=0.01)return;
+  var sway=Math.sin(tt*0.5+depth*0.8)*0.03*(depth+1);var aa=ang+sway;
+  var ex=x+Math.cos(aa)*len*f,ey=y+Math.sin(aa)*len*f;
+  g.strokeStyle=bcol(depth);g.lineWidth=Math.max(0.6,thick*f);g.lineCap='round';g.beginPath();g.moveTo(x,y);g.lineTo(ex,ey);g.stroke();
+  if(node.leaf){LEAF.push({s:node.s,x:ex,y:ey,f:f});}
+  else{var nc=node.ch.length,spread=0.62-depth*0.03;
+    for(var c=0;c<nc;c++){var a2=aa+(c-(nc-1)/2)*spread;drawNode(node.ch[c],ex,ey,a2,len*0.72,depth+1,thick*0.68,tt);}}}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001+5.2;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  front=sm(Math.min(1,tt/4))*(MAXD+1);
+  // falling petals
+  for(var p=0;p<PET.length;p++){var pt=PET[p];pt.y+=pt.vy*dt;pt.x+=pt.vx*dt+Math.sin(tt*pt.sp)*0.0006;pt.r+=dt*pt.sp;if(pt.y>1.02){pt.y=-0.02;pt.x=rnd();}
+    g.save();g.translate(pt.x*W,pt.y*H);g.rotate(pt.r);g.fillStyle='rgba(230,166,192,0.28)';g.beginPath();g.ellipse(0,0,3.4,1.8,0,0,6.283);g.fill();g.restore();}
+  // tree
+  LEAF=[];var baseY=H*0.92,cx=W*0.5,rootLen=Math.min(W,H)*0.17,rootThick=Math.max(5,W/120);
+  drawNode(ROOT,cx,baseY,-1.5708,rootLen,0,rootThick,tt);
+  // root nub
+  g.fillStyle='rgba(92,68,48,0.8)';g.fillRect(cx-rootThick*0.6,baseY,rootThick*1.2,6);
+  g.fillStyle='rgba('+TE[0]+','+TE[1]+','+TE[2]+',0.4)';g.font='10px ui-monospace,Menlo,monospace';g.textAlign='center';g.fillText('the root',cx,baseY+18);
+  // focus cycle among blossoms
+  ftimer+=dt;if(ftimer>1.3&&LEAF.length){ftimer=0;focus=(focus+1)%LEAF.length;}
+  // hover pick
+  hover=-1;var best=18*18;
+  for(var i=0;i<LEAF.length;i++){var L=LEAF[i];var d2=(L.x-mx)*(L.x-mx)+(L.y-my)*(L.y-my);if(mx>=0&&d2<best){best=d2;hover=i;}}
+  // blossoms
+  for(i=0;i<LEAF.length;i++){var L=LEAF[i],hit=(hover===i),foc=(i===focus%LEAF.length),col=COL[L.s]||TE,op=L.f;
+    var br=(3.4+(hit?2:0)+(foc?1:0))*op,bloom=0.85+0.15*Math.sin(tt*1.6+L.s);
+    var gl=g.createRadialGradient(L.x,L.y,0,L.x,L.y,br*3);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.5*op+(foc?0.25:0))+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(L.x,L.y,br*3,0,6.283);g.fill();
+    // petals
+    for(var q=0;q<5;q++){var a=q/5*6.2831853+tt*0.1+L.s;var pr=br*bloom;g.fillStyle=hit?'rgba(255,240,246,0.95)':'rgba(240,200,218,'+(0.72*op)+')';g.beginPath();g.ellipse(L.x+Math.cos(a)*pr,L.y+Math.sin(a)*pr,br*0.62,br*0.42,a,0,6.283);g.fill();}
+    g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+op+')';g.beginPath();g.arc(L.x,L.y,Math.max(1,br*0.42),0,6.283);g.fill();
+    if(hit){g.strokeStyle='rgba(255,240,246,0.9)';g.lineWidth=1.3;g.beginPath();g.arc(L.x,L.y,br+7,0,6.283);g.stroke();}}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var showi=hover>=0?hover:(LEAF.length?focus%LEAF.length:0);
+  if(stat){if(LEAF.length)stat.textContent=(front>=MAXD?'BLOSSOMING · ':'GROWING · ')+(LEAF[showi]?S[LEAF[showi].s].n:'')+' · '+N+' tongues';}
+  if(tip){if(hover>=0){tip.textContent=S[LEAF[hover].s].n;tip.style.left=LEAF[hover].x+'px';tip.style.top=(LEAF[hover].y-14)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrows.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_hermes(i, key, title, accent, blurb, members):
     """HERMES · comms — a bespoke keeper page (AVAN + TOP + the keeper, HERMES the messenger). A TIERED
     KEEPER BUS: the corpus's keepers are wired like-to-like — a MEDALLION lane carries all the domain
@@ -9531,7 +9696,8 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "heurema": l2_page_heurema, "dyas": l2_page_dyas, "momus": l2_page_momus,
              "scanner-darkly": l2_page_scanner, "atelier": l2_page_atelier, "attraction": l2_page_attraction,
              "transcriber": l2_page_transcriber, "first-author": l2_page_firstauthor, "arena": l2_page_arena,
-             "idios": l2_page_idios, "exereunesis": l2_page_exereunesis, "hermes": l2_page_hermes}
+             "idios": l2_page_idios, "exereunesis": l2_page_exereunesis, "hermes": l2_page_hermes,
+             "glossa": l2_page_glossa}
 
 
 def keeper_system():
