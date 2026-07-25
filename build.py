@@ -9356,15 +9356,18 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
 
 
 def l2_page_hermes(i, key, title, accent, blurb, members):
-    """HERMES · comms — a bespoke keeper page (AVAN + TOP + the keeper, HERMES the messenger). A MESSAGE-
-    PASSING BUS: the spheres are ENDPOINTS flanking a central bus spine; addressed messages spawn at a
-    sender, drop onto the bus, run along it to the receiver's tap and arrive with a flash — continuous
-    traffic, from → to. Cyan on bus-dark, not black. Honest: each endpoint is a real sphere; the packets
-    are the figure of message-passing, a live bus view of the comms domain, not a real network capture."""
+    """HERMES · comms — a bespoke keeper page (AVAN + TOP + the keeper, HERMES the messenger). A TIERED
+    KEEPER BUS: the corpus's keepers are wired like-to-like — a MEDALLION lane carries all the domain
+    (medallion) keepers, a SPHERE lane carries the sphere keepers, and each is its own bus: medallion
+    talks to medallion, sphere talks to sphere, the tiers never cross. Addressed messages arc within a
+    lane from sender to receiver. Cyan on bus-dark, not black. Honest: every node is a real keeper (all
+    53 domain medallions; Hermes's own sphere keepers shown for the sphere tier); the traffic is the
+    figure of message-passing under the like-to-like wiring rule, not a real network capture."""
     import json as _pj
     tclean, role, honest = _keeper_voice(title, blurb)
     n = len(members); ND = len(DOMAINS)
     def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    def _dnm(txt): return html.unescape(_re.sub(r'<[^>]+>', '', txt))
     rows = "".join(
         f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
         f'<span class="ndot" style="background:{m[2]}"></span>'
@@ -9372,14 +9375,18 @@ def l2_page_hermes(i, key, title, accent, blurb, members):
         f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
         f'<span class="narr">&#8594;</span></a>'
         for m in members)
-    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
-                     ensure_ascii=False, separators=(',', ':'))
+    MED = [{"s": dk, "n": _dnm(dt), "c": da, "u": f"{PG}/ud0/d/{dk}.html"} for (dk, dt, da, db) in DOMAINS]
+    SPH = [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]
+    data = _pj.dumps({"c": accent, "tiers": [
+        {"name": "MEDALLION BUS", "sub": "domain keepers · medallion ↔ medallion", "nodes": MED},
+        {"name": "SPHERE BUS", "sub": "sphere keepers · sphere ↔ sphere", "nodes": SPH}]},
+        ensure_ascii=False, separators=(',', ':'))
     ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
     TMPL = r"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="color-scheme" content="dark"><meta name="theme-color" content="#0d1622">
 <meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
-<title>__TITLE__ · THE MESSAGE BUS · UD0</title>
+<title>__TITLE__ · THE KEEPER BUS · UD0</title>
 <meta name="description" content="__DESC__">
 <link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cline x1='6' y1='32' x2='58' y2='32' stroke='%233fb0d8' stroke-width='3'/%3E%3Crect x='14' y='14' width='10' height='8' fill='%233fb0d8'/%3E%3Crect x='40' y='42' width='10' height='8' fill='%233fb0d8'/%3E%3Cline x1='19' y1='22' x2='19' y2='32' stroke='%233fb0d8' stroke-width='2'/%3E%3Cline x1='45' y1='42' x2='45' y2='32' stroke='%233fb0d8' stroke-width='2'/%3E%3C/svg%3E">
@@ -9425,85 +9432,81 @@ footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--li
 <body>
 <a class="back" href="../index.html">&#8592; all __ND__ domains</a>
 <main class="wrap">
-  <div class="eye">domain __IDX__ / __ND__ &middot; HERMES &middot; <b>the messenger &middot; from &rarr; to</b></div>
+  <div class="eye">domain __IDX__ / __ND__ &middot; HERMES &middot; <b>medallion &harr; medallion &middot; sphere &harr; sphere</b></div>
   <h1>__TITLE__</h1>
   <div class="subt">__ROLE__</div>
-  <div class="counts"><b>__N__</b> endpoints &middot; messages ride the bus &middot; sealed &amp; live</div>
+  <div class="counts"><b>__ND__</b> medallion keepers &middot; <b>__N__</b> sphere keepers &middot; each tier its own bus &middot; sealed &amp; live</div>
   __ETHOS__
   <div class="hbwrap">
     <canvas id="bus"></canvas>
-    <div class="hbbadge">&#8644; THE MESSAGE BUS &middot; sender &rarr; bus &rarr; receiver</div>
+    <div class="hbbadge">&#8644; THE KEEPER BUS &middot; like talks to like, tiers never cross</div>
     <div class="hbstat" id="hbstat">BUS &middot; &mdash;</div>
-    <div class="hbhint">hover an endpoint &middot; click to enter its sphere</div>
+    <div class="hbhint">hover a keeper &middot; click to enter</div>
     <div id="hbtip"></div>
   </div>
-  <div class="synhead"><h2>&#8644; the endpoints</h2><span class="sc">every endpoint, named &amp; enterable</span></div>
-  <input class="filter" id="q" type="text" placeholder="filter the endpoints · press /" autocomplete="off" aria-label="filter">
+  <div class="synhead"><h2>&#8644; the sphere keepers</h2><span class="sc">Hermes's endpoints &middot; the medallion bus carries all __ND__ domain keepers</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the sphere keepers · press /" autocomplete="off" aria-label="filter">
   <div class="ledger" id="ledger">__ROWS__</div>
-  <footer>__N__ endpoints, one bus &middot; HERMES &mdash; the message-passing bus: every node addressable, every message from one to another &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>each endpoint is a real sphere &middot; the packets are the figure of message-passing, a live bus view &middot; CC-BY-ND-4.0, with AVAN</footer>
+  <footer>__ND__ medallion keepers + __N__ sphere keepers, two buses &middot; HERMES &mdash; the keeper bus: keepers are wired like-to-like, medallion&harr;medallion and sphere&harr;sphere, and the tiers never cross &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>every node is a real keeper (all __ND__ medallions; Hermes's own sphere keepers shown) &middot; the traffic is the figure of the wiring rule, not a network capture &middot; CC-BY-ND-4.0, with AVAN</footer>
 </main>
 <script type="application/json" id="busdata">__DATA__</script>
 <script>
 (function(){
 var cv=document.getElementById('bus');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
 var D={};try{D=JSON.parse(document.getElementById('busdata').textContent);}catch(e){return;}
-var S=D.sph||[],N=S.length;if(!N)return;
+var TI=D.tiers||[];if(!TI.length)return;
 function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
 var CY=hx(D.c||'#3fb0d8'),DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
 function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
 fit();addEventListener('resize',fit);
 var seed=3131;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
-var half=Math.ceil(N/2);
-var EP=S.map(function(s,i){var top=i<half;var idx=top?i:i-half,cnt=top?half:N-half;return {n:s.n,u:s.u,col:hx(s.c||'#3fb0d8'),top:top,fi:(idx+0.5)/cnt,x:0,y:0,flash:0};});
-var MSG=[],spawnT=0;
-function mkMsg(){var a=(rnd()*N)|0,b;do{b=(rnd()*N)|0;}while(b===a);MSG.push({a:a,b:b,t:0});}
-for(var z=0;z<8;z++){mkMsg();MSG[MSG.length-1].t=rnd();}
-var mx=-1,my=-1,hover=-1,t0=null,busY=0;
+var TIER=TI.map(function(T){return {name:T.name||'BUS',sub:T.sub||'',msg:[],spineY:0,bandH:0,
+  nodes:(T.nodes||[]).map(function(nd){return {n:nd.n,u:nd.u,col:hx(nd.c||'#3fb0d8'),x:0,y:0,flash:0};})};});
+function mk(T){var ns=T.nodes.length;if(ns<2)return;var a=(rnd()*ns)|0,b;do{b=(rnd()*ns)|0;}while(b===a);T.msg.push({a:a,b:b,t:0});}
+TIER.forEach(function(X){var seedn=Math.min(6,Math.max(2,X.nodes.length>>3));for(var z=0;z<seedn;z++){mk(X);if(X.msg.length)X.msg[X.msg.length-1].t=rnd();}});
+var mx=-1,my=-1,hover=null,hoverT='',t0=null,spawnT=0,lastMsg='';
 cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
 cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
-cv.addEventListener('click',function(){if(hover>=0)location.href=EP[hover].u;});
-var tip=document.getElementById('hbtip'),stat=document.getElementById('hbstat'),lastMsg='';
+cv.addEventListener('click',function(){if(hover)location.href=hover.u;});
+var tip=document.getElementById('hbtip'),stat=document.getElementById('hbstat');
 function trunc(s,m){return s.length>m?s.slice(0,m-1)+'…':s;}
-function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;
   g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
-  var padx=W*0.07;busY=H*0.5;var topY=H*0.2,botY=H*0.8;
-  for(var i=0;i<N;i++){var e=EP[i];e.x=padx+e.fi*(W-padx*2);e.y=e.top?topY:botY;}
-  // bus spine
-  g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.45)';g.lineWidth=3;g.beginPath();g.moveTo(padx*0.6,busY);g.lineTo(W-padx*0.6,busY);g.stroke();
-  g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.14)';g.lineWidth=8;g.beginPath();g.moveTo(padx*0.6,busY);g.lineTo(W-padx*0.6,busY);g.stroke();
-  g.fillStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.4)';g.font='10px ui-monospace,Menlo,monospace';g.textAlign='left';g.fillText('THE BUS',padx*0.6,busY-10);
-  // stubs
-  g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.2)';g.lineWidth=1.2;
-  for(i=0;i<N;i++){var e=EP[i];g.beginPath();g.moveTo(e.x,e.y);g.lineTo(e.x,busY);g.stroke();g.fillStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.5)';g.beginPath();g.arc(e.x,busY,2.4,0,6.283);g.fill();}
-  // spawn
-  spawnT+=dt;if(spawnT>0.34){spawnT=0;if(MSG.length<16)mkMsg();}
-  // messages
-  hover=-1;for(i=0;i<N;i++){var e=EP[i];if(Math.abs(e.x-mx)<12&&Math.abs(e.y-my)<12)hover=i;}
-  for(i=MSG.length-1;i>=0;i--){var m=MSG[i];var A=EP[m.a],B=EP[m.b];
-    var L0=Math.abs(A.y-busY),L1=Math.abs(B.x-A.x),L2=Math.abs(B.y-busY),tot=L0+L1+L2||1;
-    var spd=340;m.t+=dt*spd/tot;
-    if(m.t<=0.02)A.flash=1;
-    if(m.t>=1){B.flash=1;lastMsg=trunc(A.n,14)+' → '+trunc(B.n,14);MSG.splice(i,1);continue;}
-    var d=m.t*tot,px,py;
-    if(d<L0){var f=d/(L0||1);px=A.x;py=A.y+(busY-A.y)*f;}
-    else if(d<L0+L1){var f2=(d-L0)/(L1||1);px=A.x+(B.x-A.x)*f2;py=busY;}
-    else{var f3=(d-L0-L1)/(L2||1);px=B.x;py=busY+(B.y-busY)*f3;}
-    // trail
-    g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.25)';g.lineWidth=2;g.beginPath();g.moveTo(px,py);g.lineTo(px-(py===busY?10:0),py-(py===busY?0:(py>busY?10:-10)));g.stroke();
-    // packet
-    g.fillStyle='rgba(210,240,252,0.95)';g.save();g.translate(px,py);g.rotate(0.5);g.fillRect(-3,-3,6,6);g.restore();
-    var pgl=g.createRadialGradient(px,py,0,px,py,8);pgl.addColorStop(0,'rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.6)');pgl.addColorStop(1,'rgba('+CY[0]+','+CY[1]+','+CY[2]+',0)');g.fillStyle=pgl;g.beginPath();g.arc(px,py,8,0,6.283);g.fill();}
-  // endpoints
-  for(i=0;i<N;i++){var e=EP[i],hit=(hover===i),col=e.col;e.flash*=0.92;
-    var r2=6+(hit?2.5:0)+e.flash*3;
-    var gl=g.createRadialGradient(e.x,e.y,0,e.x,e.y,r2*2.4);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.5+0.45*e.flash)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');
-    g.fillStyle=gl;g.beginPath();g.arc(e.x,e.y,r2*2.4,0,6.283);g.fill();
-    g.fillStyle='rgba(12,20,30,0.9)';g.strokeStyle=hit?'#fff':'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.6+0.4*e.flash)+')';g.lineWidth=1.5;
-    g.beginPath();g.rect(e.x-5,e.y-5,10,10);g.fill();g.stroke();
-    g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.9)';g.beginPath();g.arc(e.x,e.y,2,0,6.283);g.fill();}
-  cv.style.cursor=hover>=0?'pointer':'default';
-  if(stat){if(hover>=0)stat.textContent='ENDPOINT · '+trunc(EP[hover].n,26);else stat.textContent='BUS · '+MSG.length+' in flight'+(lastMsg?' · '+lastMsg:'');}
-  if(tip){if(hover>=0){tip.textContent=EP[hover].n;tip.style.left=EP[hover].x+'px';tip.style.top=(EP[hover].y-14)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+  var padx=W*0.07,T=TIER.length,top=H*0.12,bot=H*0.93,bandH=(bot-top)/T,x0=padx*0.6,x1=W-padx*0.6;
+  // layout + spines + labels
+  for(var k=0;k<T;k++){var TR=TIER[k],bandTop=top+k*bandH,spineY=bandTop+bandH*0.66;TR.spineY=spineY;TR.bandH=bandH;
+    var ns=TR.nodes.length;for(var j=0;j<ns;j++){TR.nodes[j].x=padx+(j+0.5)/ns*(W-padx*2);TR.nodes[j].y=spineY;}
+    if(k>0){g.strokeStyle='rgba(120,150,175,0.1)';g.setLineDash([3,6]);g.lineWidth=1;g.beginPath();g.moveTo(x0,bandTop);g.lineTo(x1,bandTop);g.stroke();g.setLineDash([]);}
+    g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.4)';g.lineWidth=2.4;g.beginPath();g.moveTo(x0,spineY);g.lineTo(x1,spineY);g.stroke();
+    g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.1)';g.lineWidth=7;g.beginPath();g.moveTo(x0,spineY);g.lineTo(x1,spineY);g.stroke();
+    g.fillStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.6)';g.font='11px ui-monospace,Menlo,monospace';g.textAlign='left';g.fillText(TR.name,x0,spineY+18);
+    g.fillStyle='rgba(150,180,200,0.42)';g.font='10px ui-monospace,Menlo,monospace';g.fillText(TR.sub,x0,spineY+31);}
+  g.fillStyle='rgba(150,180,200,0.4)';g.font='9px ui-monospace,Menlo,monospace';g.textAlign='right';g.fillText('tiers do not cross · like talks to like',x1,top-3);
+  // spawn (within a random tier)
+  spawnT+=dt;if(spawnT>0.26){spawnT=0;var tot=0;TIER.forEach(function(x){tot+=x.msg.length;});if(tot<22)mk(TIER[(rnd()*T)|0]);}
+  // hover pick across all tiers
+  hover=null;var best=13*13;
+  for(k=0;k<T;k++){var TR=TIER[k];for(j=0;j<TR.nodes.length;j++){var nd=TR.nodes[j];var d2=(nd.x-mx)*(nd.x-mx)+(nd.y-my)*(nd.y-my);if(mx>=0&&d2<best){best=d2;hover=nd;hoverT=TR.name;}}}
+  // messages (each stays within its tier)
+  for(k=0;k<T;k++){var TR=TIER[k];var arcMax=TR.bandH*0.5;
+    for(var mi=TR.msg.length-1;mi>=0;mi--){var m=TR.msg[mi];var A=TR.nodes[m.a],B=TR.nodes[m.b];
+      var dx=Math.abs(B.x-A.x),arcH=Math.min(arcMax,18+dx*0.32),cxp=(A.x+B.x)/2,cyp=TR.spineY-arcH,len=dx+arcH*2||1;
+      m.t+=dt*300/len;
+      if(m.t<=0.02)A.flash=1;
+      if(m.t>=1){B.flash=1;lastMsg=trunc(A.n,12)+' → '+trunc(B.n,12);TR.msg.splice(mi,1);continue;}
+      g.strokeStyle='rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.12)';g.lineWidth=1;g.beginPath();g.moveTo(A.x,A.y);g.quadraticCurveTo(cxp,cyp,B.x,B.y);g.stroke();
+      var it=1-m.t,px=it*it*A.x+2*it*m.t*cxp+m.t*m.t*B.x,py=it*it*A.y+2*it*m.t*cyp+m.t*m.t*B.y;
+      var pgl=g.createRadialGradient(px,py,0,px,py,8);pgl.addColorStop(0,'rgba('+CY[0]+','+CY[1]+','+CY[2]+',0.6)');pgl.addColorStop(1,'rgba('+CY[0]+','+CY[1]+','+CY[2]+',0)');g.fillStyle=pgl;g.beginPath();g.arc(px,py,8,0,6.283);g.fill();
+      g.fillStyle='rgba(215,242,252,0.95)';g.save();g.translate(px,py);g.rotate(0.5);g.fillRect(-2.6,-2.6,5.2,5.2);g.restore();}}
+  // nodes (keepers) on each spine
+  for(k=0;k<T;k++){var TR=TIER[k];for(j=0;j<TR.nodes.length;j++){var nd=TR.nodes[j],hit=(hover===nd),col=nd.col;nd.flash*=0.92;
+    var r2=4.5+(hit?2:0)+nd.flash*3;
+    if(hit||nd.flash>0.05){var gl=g.createRadialGradient(nd.x,nd.y,0,nd.x,nd.y,r2*2.6);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.5+0.45*nd.flash)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(nd.x,nd.y,r2*2.6,0,6.283);g.fill();}
+    g.fillStyle='rgba(12,20,30,0.92)';g.strokeStyle=hit?'#fff':'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.55+0.4*nd.flash)+')';g.lineWidth=1.3;g.beginPath();g.rect(nd.x-4,nd.y-4,8,8);g.fill();g.stroke();
+    g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.9)';g.beginPath();g.arc(nd.x,nd.y,1.7,0,6.283);g.fill();}}
+  cv.style.cursor=hover?'pointer':'default';
+  if(stat){if(hover)stat.textContent=hoverT.split(' ')[0]+' · '+trunc(hover.n,24);else stat.textContent=TIER.map(function(x){return x.name.split(' ')[0].toLowerCase()+':'+x.msg.length;}).join(' · ')+' · like → like';}
+  if(tip){if(hover){tip.textContent=hover.n;tip.style.left=hover.x+'px';tip.style.top=(hover.y-12)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
 }
 requestAnimationFrame(loop);
 var qq=document.getElementById('q'),lrows=[].slice.call(document.querySelectorAll('.nrow'));
