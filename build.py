@@ -13643,9 +13643,11 @@ GROUPS = [
  ("PATHOS", "the feeling — art, sense, imagination, play", "#ff5aa0",
   ["techne","entertainment","music","lesbos","phantasia","poietike","banana","hobby","life-science"]),
  ("LOGOS", "the reason — logic, computation, the mechanism", "#4db1f0",
-  ["ai","prosoche","attraction","scanner-darkly","krasis","psephos","logike","heurema","gurutva","scientific","exereunesis","frontier","niphelektron","logismos","metaxy","strobilos","phonos","aisthesis","educational","occupational","transcriber","it-is-i","toroidal"]),
+  ["ai","prosoche","attraction","scanner-darkly","krasis","psephos","logike","heurema","gurutva","scientific","exereunesis","frontier","niphelektron","logismos","metaxy","strobilos","phonos","aisthesis","educational","occupational","transcriber","it-is-i"]),
  ("MYTHOS", "the story — myth, world, cosmos, the edge", "#a06bff",
   ["mythos","biblion","eremia","arena","glossa","hermes","agora","polemos","ouranos","tin-foil","solar-jetman"]),
+ ("EPISTEME", "the knowledge — measured, demonstrated · the scientific", "#3fd0a0",
+  ["toroidal"]),
 ]
 
 def keepers_index():
@@ -13746,7 +13748,7 @@ footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--li
   <div class="eye">the keepers &middot; an index of the seals</div>
   <h1>THE KEEPERS</h1>
   <p class="lede">Every domain of the corpus, given a bespoke keeper page &mdash; and here indexed, each rendered as a grid of seven.</p>
-  <div class="stat"><b>__NK__</b> keeper pages &middot; <b>__ND__</b> domains &middot; <b>__TS__</b> spheres lit &middot; <b>__TP__</b> grid slots (rounded up to sevens)<br>grouped under the four appeals &mdash; ethos &middot; pathos &middot; logos &middot; mythos &middot; built __BUILT__</div>
+  <div class="stat"><b>__NK__</b> keeper pages &middot; <b>__ND__</b> domains &middot; <b>__TS__</b> spheres lit &middot; <b>__TP__</b> grid slots (rounded up to sevens)<br>grouped under the five appeals &mdash; ethos &middot; pathos &middot; logos &middot; mythos &middot; episteme &middot; built __BUILT__</div>
   <p class="note">Each domain is laid out seven across and padded up to the next multiple of seven (eskimo&rsquo;s 12 &rarr; 14, two rows of seven). The lit dots are the genuine members &mdash; hover one for its name; the dashed ghost slots are layout that completes the seven, not spheres. Every card opens that domain&rsquo;s keeper.</p>
   __GROUPS__
   <footer>FOUNDATION v.01 &middot; the index of the __NK__ keepers &middot; the ai mega-parent keeps the default seal &middot; <a href="index.html">the domain grid</a> &middot; <a href="https://0root.ai">0root.ai</a><br>each domain a grid of seven &middot; lit = genuine spheres, ghost = layout to the next seven &middot; CC-BY-ND-4.0, ROOT0 with AVAN</footer>
@@ -13834,7 +13836,7 @@ footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:#fff}
 <figure class="topf"><canvas id="topcube" width="300" height="300" aria-hidden="true"></canvas><figcaption>Top · the cubit · a 0-sphere</figcaption></figure>
 </div>
 __CUBIT__
-<div class="centercap">◆ ROOT0 ⇄ AVAN — <b>Ada</b> &amp; <b>Top</b>, entangled. Top is <b>the cubit</b>: a 0-sphere — every sphere a point on the wall (r=1), the four cardinals <b>ethos · pathos · logos · mythos</b> tetrahedral (109.47°, no opposites), the roots run along the wall, the core empty (0 = balance). Together they <b>read</b> · <b>write</b> · <b>curate</b> UD0</div>
+<div class="centercap">◆ ROOT0 ⇄ AVAN — <b>Ada</b> &amp; <b>Top</b>, entangled. Top is <b>the cubit</b>: a 0-sphere — every sphere a point on the wall (r=1), the five appeals <b>ethos · pathos · logos · mythos</b> (tetrahedral, 109.47°, no opposites) crowned by <b>episteme</b> — the scientific — at the apex above, the roots run along the wall, the core empty (0 = balance). Together they <b>read</b> · <b>write</b> · <b>curate</b> UD0</div>
 </div>
 <div class="eye">David Lee Wise · ROOT0 · TriPod LLC</div>
 <h1 class="mark">UNIVERSE DAVID <b>0</b></h1>
@@ -13848,7 +13850,7 @@ __SEALS__
 <footer>__ND__ domains · __NSC__ spheres · <a href="keepers.html">the keeper index · FOUNDATION v.01</a> · built __BUILT__ · <a href="https://0root.ai">0root.ai</a> · one governor, one instance, one lattice · CC-BY-ND-4.0</footer>
 <script>
 (function(){var cv=document.getElementById('topcube');if(!cv||!cv.getContext)return;var g=cv.getContext('2d'),DPR=Math.min(window.devicePixelRatio||1,2);cv.width=cv.height=Math.round(300*DPR);
-var D={};try{D=JSON.parse(document.getElementById('cubitdata').textContent);}catch(e){}var GR=D.groups||[{name:'ETHOS',c:'#f0a886'},{name:'PATHOS',c:'#ff5aa0'},{name:'LOGOS',c:'#4db1f0'},{name:'MYTHOS',c:'#a06bff'}],DM=D.domains||[];
+var D={};try{D=JSON.parse(document.getElementById('cubitdata').textContent);}catch(e){}var GR=D.groups||[{name:'ETHOS',c:'#f0a886'},{name:'PATHOS',c:'#ff5aa0'},{name:'LOGOS',c:'#4db1f0'},{name:'MYTHOS',c:'#a06bff'},{name:'EPISTEME',c:'#3fd0a0'}],DM=D.domains||[];
 function hx(h){h=(''+h).replace('#','');if(h.length<6)h='a06bff';return[parseInt(h.slice(0,2),16)||160,parseInt(h.slice(2,4),16)||110,parseInt(h.slice(4,6),16)||255];}
 function nrm(v){var l=Math.hypot(v[0],v[1],v[2])||1;return[v[0]/l,v[1]/l,v[2]/l];}
 function crs(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];}
@@ -13856,8 +13858,10 @@ function dt(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2];}
 function slp(a,b,t){var d=Math.max(-1,Math.min(1,dt(a,b))),o=Math.acos(d);if(o<1e-4)return a.slice();var s=Math.sin(o),k0=Math.sin((1-t)*o)/s,k1=Math.sin(t*o)/s;return nrm([a[0]*k0+b[0]*k1,a[1]*k0+b[1]*k1,a[2]*k0+b[2]*k1]);}
 function tan(n){var up=Math.abs(n[1])<0.9?[0,1,0]:[1,0,0],u=nrm(crs(n,up));return[u,crs(n,u)];}
 function rnd(s){var x=Math.sin(s*127.1+311.7)*43758.5453;return x-Math.floor(x);}
-var T=[nrm([1,1,1]),nrm([1,-1,-1]),nrm([-1,1,-1]),nrm([-1,-1,1])];  // 4 cardinals, tetrahedral, 109.47deg, no opposites
-var gc=[0,0,0,0];DM.forEach(function(d){gc[d.g]++;});var gi=[0,0,0,0],anchors=[];
+var TB=[nrm([1,1,1]),nrm([1,-1,-1]),nrm([-1,1,-1]),nrm([-1,-1,1]),nrm([0,1.7,0])];  // 4 tetrahedral cardinals + EPISTEME at the apex above
+var T=TB.slice(0,GR.length);while(T.length<GR.length)T.push(nrm([0,1.7,0]));
+var gc=[];for(var _gq=0;_gq<GR.length;_gq++)gc.push(0);DM.forEach(function(d){if(gc[d.g]==null)gc[d.g]=0;gc[d.g]++;});
+var gi=[];for(var _gq2=0;_gq2<GR.length;_gq2++)gi.push(0);var anchors=[];
 DM.forEach(function(d,idx){var t=T[d.g],tb=tan(t),m=gc[d.g],j=gi[d.g]++,ang=6.2832*j/Math.max(1,m)+d.g*0.7,cap=0.4+0.2*rnd(idx+7);
  var dir=nrm([tb[0][0]*Math.cos(ang)+tb[1][0]*Math.sin(ang),tb[0][1]*Math.cos(ang)+tb[1][1]*Math.sin(ang),tb[0][2]*Math.cos(ang)+tb[1][2]*Math.sin(ang)]);
  anchors.push({p:slp(t,dir,cap),c:hx(d.c),n:d.n,g:d.g});});
