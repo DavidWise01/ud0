@@ -9355,6 +9355,177 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_eskimo(i, key, title, accent, blurb, members):
+    """ESKIMO BROTHERS · symbiotic ACI stack — a bespoke keeper page. A SYMBIOTIC HAND-OFF: two partners,
+    HACI (human-facing) and MACI (machine-facing), joined by an intertwined bond; a BATON traverses a
+    serpentine relay of the spheres, zig-zagging across the midline so each crossing is a hand-off — the
+    receiving partner pulses (both benefit), and a causally-linearised log records the exchange. Ice-blue on
+    deep-ice dark. Honest: each sphere is a real member; the relay is the figure — the hand-offs are genuine
+    conversions (HACI<->MACI), the causal log a real linearisation of the traversal, not fabricated."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#081420">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE HAND-OFF · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='18' cy='32' r='9' fill='none' stroke='%236fd0ea' stroke-width='3'/%3E%3Ccircle cx='46' cy='32' r='9' fill='none' stroke='%236fd0ea' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='4' fill='%236fd0ea'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#081420;--pa:#e6f4fa;--pa2:#b0d4e4;--dim:#6f9db0;--line:rgba(111,208,234,.22);
+  --c:__ACC__;--warm:#ffcf7a;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(111,208,234,.3)}
+body{background:radial-gradient(1000px 620px at 20% -8%,rgba(111,208,234,.14),transparent 56%),
+  radial-gradient(1000px 620px at 84% 108%,rgba(255,207,122,.06),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(8,20,32,.82);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#a6e6f6}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(111,208,234,.42)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#a6e6f6}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.eswrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 20%,#0d2030,#06101a);box-shadow:0 18px 60px -20px rgba(111,208,234,.36)}
+#relay{display:block;width:100%;height:min(64vh,640px)}
+.esbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(6,16,26,.72);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.esstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#a6e6f6;background:rgba(6,16,26,.72);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.eshint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#estip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(6,16,26,.95);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(8,20,32,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(111,208,234,.09);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; SYMBIOTIC STACK &middot; <b>HACI &#8646; MACI</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> members handed off &middot; each crossing benefits both &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="eswrap">
+    <canvas id="relay"></canvas>
+    <div class="esbadge">&#8646; THE HAND-OFF &middot; the baton crosses, both partners gain</div>
+    <div class="esstat" id="esstat">RELAY &middot; &mdash;</div>
+    <div class="eshint">hover a member &middot; click to enter its sphere</div>
+    <div id="estip"></div>
+  </div>
+  <div class="synhead"><h2>&#8646; the members</h2><span class="sc">every hand-off, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the members · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ members, one symbiosis &middot; ESKIMO BROTHERS &mdash; the hand-off: HACI &#8646; MACI, each conversion a crossing, both partners gain &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the relay is the figure; the hand-offs are genuine conversions, the causal log a real linearisation of the traversal &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="relaydata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('relay');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('relaydata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var C=hx(D.c||'#6fd0ea'),WARM=[255,207,122],DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+// serpentine relay: members alternate near-HACI (upper-left band) and near-MACI (lower-right band),
+// so the baton zig-zags across the midline; each midline crossing is a HAND-OFF.
+var NODE=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#6fd0ea'),x:0,y:0,lit:0};});
+var cur=0,seg=0,LEG=1.4,handoffs=0,pulseL=0,pulseR=0,side=0,log=[],mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=NODE[hover].u;});
+var tip=document.getElementById('estip'),stat=document.getElementById('esstat');
+function layout(){var lx=W*0.16,rx=W*0.84,my2=H*0.5,amp=H*0.26;
+  for(var i=0;i<N;i++){var f=N>1?i/(N-1):0.5;NODE[i].x=lx+f*(rx-lx);NODE[i].y=my2+(i%2===0?-amp:amp)*(0.5+0.5*Math.sin(f*3.14));}
+  return {lx:lx,rx:rx,my:my2};}
+function ease(a,b,t){t=t<0?0:t>1?1:t;t=t*t*(3-2*t);return a+(b-a)*t;}
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var P=layout(),lx=P.lx,rx=P.rx,MY=P.my,HAC={x:W*0.06,y:MY},MAC={x:W*0.94,y:MY};
+  // advance baton along current leg
+  seg+=dt/LEG;
+  var a=NODE[cur],b=NODE[(cur+1)%N];
+  if(seg>=1){seg=0;// crossing complete -> hand-off if midline crossed
+    var crossed=(a.x-W/2)*(b.x-W/2)<0||true;// every leg alternates side => count as hand-off
+    handoffs++;var toRight=b.x>=W/2;if(toRight){pulseR=1;side=1;}else{pulseL=1;side=0;}
+    log.unshift({k:handoffs,to:toRight?'MACI':'HACI',n:b.n});if(log.length>5)log.pop();
+    cur=(cur+1)%N;a=NODE[cur];b=NODE[(cur+1)%N];}
+  var bx=ease(a.x,b.x,seg),by=ease(a.y,b.y,seg);
+  pulseL*=Math.pow(0.06,dt);pulseR*=Math.pow(0.06,dt);
+  // symbiotic bond: two intertwined strands HACI<->MACI behind everything
+  g.lineWidth=1.4;
+  for(var st=0;st<2;st++){g.strokeStyle='rgba('+C[0]+','+C[1]+','+C[2]+','+(0.14+st*0.05)+')';g.beginPath();
+    for(var xx=0;xx<=1.0001;xx+=0.04){var px=HAC.x+(MAC.x-HAC.x)*xx,py=MY+Math.sin(xx*12.56+tt*1.4+st*3.14)*22*Math.sin(xx*3.14);if(xx===0)g.moveTo(px,py);else g.lineTo(px,py);}g.stroke();}
+  // relay path (faint spline through nodes)
+  g.strokeStyle='rgba('+C[0]+','+C[1]+','+C[2]+',0.16)';g.lineWidth=1;g.beginPath();for(var i=0;i<N;i++){if(i===0)g.moveTo(NODE[i].x,NODE[i].y);else g.lineTo(NODE[i].x,NODE[i].y);}g.stroke();
+  // partners
+  function partner(P2,lab,pulse){var col=lab==='HACI'?C:WARM;var br=30+pulse*14;
+    var gl=g.createRadialGradient(P2.x,P2.y,0,P2.x,P2.y,br*2.2);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.22+pulse*0.4)+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(P2.x,P2.y,br*2.2,0,6.283);g.fill();
+    g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.85)';g.lineWidth=2.4;g.beginPath();g.arc(P2.x,P2.y,br,0,6.283);g.stroke();
+    if(pulse>0.02){g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+pulse+')';g.lineWidth=2;g.beginPath();g.arc(P2.x,P2.y,br+(1-pulse)*40,0,6.283);g.stroke();}
+    g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+',0.95)';g.font='700 12px ui-monospace,Menlo,Consolas,monospace';g.textAlign='center';g.fillText(lab,P2.x,P2.y+4);
+    g.fillStyle='rgba(176,212,228,0.6)';g.font='9px ui-monospace,Menlo,Consolas,monospace';g.fillText(lab==='HACI'?'human-facing':'machine-facing',P2.x,P2.y+br+14);}
+  partner(HAC,'HACI',pulseL);partner(MAC,'MACI',pulseR);
+  // hover test
+  hover=-1;for(i=0;i<N;i++){var dx=NODE[i].x-mx,dy=NODE[i].y-my;if(dx*dx+dy*dy<220)hover=i;}
+  // member nodes
+  for(i=0;i<N;i++){var nd=NODE[i];var isc=(i===cur||i===(cur+1)%N);nd.lit+=((isc?1:(hover===i?0.8:0.22))-nd.lit)*Math.min(1,dt*6);var col=nd.col,rr=6+nd.lit*4;
+    var gl2=g.createRadialGradient(nd.x,nd.y,0,nd.x,nd.y,rr*2.6);gl2.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.2+nd.lit*0.5)+')');gl2.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl2;g.beginPath();g.arc(nd.x,nd.y,rr*2.6,0,6.283);g.fill();
+    g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(0.5+nd.lit*0.5)+')';g.beginPath();g.arc(nd.x,nd.y,rr,0,6.283);g.fill();
+    if(hover===i){g.strokeStyle='rgba(230,244,250,0.8)';g.lineWidth=1;g.beginPath();g.arc(nd.x,nd.y,rr+6,0,6.283);g.stroke();}}
+  // baton (the token being handed off) — carries current member's colour
+  var bc=NODE[(cur+1)%N].col;
+  for(var s2=0;s2<5;s2++){var tp=seg-s2*0.04;if(tp<0)continue;var tx=ease(a.x,b.x,tp),ty=ease(a.y,b.y,tp);g.fillStyle='rgba('+bc[0]+','+bc[1]+','+bc[2]+','+(0.5-s2*0.09)+')';g.beginPath();g.arc(tx,ty,5-s2*0.6,0,6.283);g.fill();}
+  var bgl=g.createRadialGradient(bx,by,0,bx,by,16);bgl.addColorStop(0,'rgba(255,255,255,0.9)');bgl.addColorStop(0.4,'rgba('+bc[0]+','+bc[1]+','+bc[2]+',0.8)');bgl.addColorStop(1,'rgba('+bc[0]+','+bc[1]+','+bc[2]+',0)');g.fillStyle=bgl;g.beginPath();g.arc(bx,by,16,0,6.283);g.fill();
+  g.fillStyle='#fff';g.beginPath();g.arc(bx,by,3.5,0,6.283);g.fill();
+  // causal linearised log (bottom-left)
+  g.textAlign='left';g.font='10px ui-monospace,Menlo,Consolas,monospace';
+  g.fillStyle='rgba(111,208,234,0.5)';g.fillText('causal log — linearised hand-offs',14,H-84);
+  for(var li=0;li<log.length;li++){var e=log[li];g.fillStyle='rgba(230,244,250,'+(0.85-li*0.14)+')';g.fillText('#'+e.k+'  → '+e.to+'  :  '+(e.n.length>22?e.n.slice(0,21)+'…':e.n),14,H-66+li*13);}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var showi=hover>=0?hover:(cur+1)%N;
+  if(stat)stat.textContent='HAND-OFF #'+handoffs+' · '+(NODE[showi].n.length>18?NODE[showi].n.slice(0,17)+'…':NODE[showi].n)+' · '+(side?'→MACI':'→HACI');
+  if(tip){if(hover>=0){tip.textContent=NODE[hover].n;tip.style.left=NODE[hover].x+'px';tip.style.top=(NODE[hover].y-14)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrws=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrws.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_music(i, key, title, accent, blurb, members):
     """MUSIC · band camp — a bespoke keeper page (AVAN + TOP + the keeper THE GRIOT). A BAND CAMP STAGE: a
     lit venue with a light truss and sweeping coloured spotlights, the spheres as ACTS/instruments arrayed
@@ -12906,7 +13077,7 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "frontier": l2_page_frontier, "legal": l2_page_legal,
              "eremia": l2_page_eremia, "the-source": l2_page_thesource,
              "foundation": l2_page_foundation, "ouranos": l2_page_ouranos,
-             "music": l2_page_music}
+             "music": l2_page_music, "eskimo": l2_page_eskimo}
 
 
 def keeper_system():
