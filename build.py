@@ -9355,6 +9355,171 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_music(i, key, title, accent, blurb, members):
+    """MUSIC · band camp — a bespoke keeper page (AVAN + TOP + the keeper THE GRIOT). A BAND CAMP STAGE: a
+    lit venue with a light truss and sweeping coloured spotlights, the spheres as ACTS/instruments arrayed
+    across the stage, a crowd below; a spotlight swings to whoever is NOW PLAYING with sound-waves and
+    floating notes, the crowd bobbing. Magenta on stage-dark (the venue is the medium). Honest: each act is
+    a real sphere; the stage is the figure — a set list of the corpus, the acts genuine."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#140a16">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · THE STAGE · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='8' y='10' width='48' height='4' fill='%23e85aa0'/%3E%3Cpath d='M20 14 L12 40 L28 40 Z' fill='%23e85aa0' opacity='.3'/%3E%3Cpath d='M44 14 L36 40 L52 40 Z' fill='%2300e6ff' opacity='.3'/%3E%3Ccircle cx='32' cy='36' r='6' fill='%23e85aa0'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#140a16;--pa:#f8e6f0;--pa2:#e0b6d0;--dim:#a870a0;--line:rgba(232,90,160,.24);
+  --c:__ACC__;--cyan:#00e6ff;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(232,90,160,.32)}
+body{background:radial-gradient(1000px 600px at 22% -6%,rgba(232,90,160,.14),transparent 56%),
+  radial-gradient(1000px 600px at 84% 108%,rgba(0,230,255,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(20,10,22,.8);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:64px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#ff8ac4}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(232,90,160,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#ff8ac4}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.mswrap{position:relative;margin:22px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:radial-gradient(130% 120% at 50% 12%,#22102a,#0e0712);box-shadow:0 18px 60px -20px rgba(232,90,160,.42)}
+#stage{display:block;width:100%;height:min(66vh,660px)}
+.msbadge{position:absolute;top:12px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--c);background:rgba(14,7,18,.72);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none}
+.msstat{position:absolute;top:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#ff8ac4;background:rgba(14,7,18,.72);border:1px solid color-mix(in srgb,var(--c) 34%,transparent);border-radius:12px;padding:5px 11px;pointer-events:none;max-width:62%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mshint{position:absolute;bottom:12px;right:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+#mstip{position:absolute;pointer-events:none;transform:translate(-50%,-100%);font-family:var(--mono);font-size:12px;color:#fff;background:rgba(14,7,18,.95);border:1px solid var(--line);border-radius:7px;padding:4px 10px;opacity:0;transition:opacity .1s;white-space:nowrap;z-index:5}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(20,10,22,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(232,90,160,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; BAND CAMP &middot; <b>now playing</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> acts on the stage &middot; the spotlight finds each &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="mswrap">
+    <canvas id="stage"></canvas>
+    <div class="msbadge">&#9835; THE STAGE &middot; lights, the set list, the crowd</div>
+    <div class="msstat" id="msstat">STAGE &middot; &mdash;</div>
+    <div class="mshint">hover an act &middot; click to enter its sphere</div>
+    <div id="mstip"></div>
+  </div>
+  <div class="synhead"><h2>&#9835; the set list</h2><span class="sc">every act, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the set list · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ acts, one stage &middot; MUSIC &mdash; the band camp stage: each act a sphere, each sphere on the set list &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>a set list of the corpus &middot; the stage is the figure, the acts are genuine &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="stagedata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('stage');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('stagedata').textContent);}catch(e){return;}
+var S=D.sph||[],N=S.length;if(!N)return;
+function hx(h){h=h.replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var MG=hx(D.c||'#e85aa0'),CY=[0,230,255],GO=[255,200,90],DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var seed=1414;function rnd(){seed=(seed*1103515245+12345)&0x7fffffff;return seed/0x7fffffff;}
+var AC=S.map(function(s,i){return {n:s.n,u:s.u,col:hx(s.c||'#e85aa0'),kind:i%6,ph:rnd()*6.283,x:0,y:0};});
+var NOTE=[];var focus=0,ft=0,DWELL=2.0,spotX=0,mx=-1,my=-1,hover=-1,t0=null;
+cv.addEventListener('mousemove',function(e){var r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
+cv.addEventListener('mouseleave',function(){mx=-1;my=-1;});
+cv.addEventListener('click',function(){if(hover>=0)location.href=AC[hover].u;});
+var tip=document.getElementById('mstip'),stat=document.getElementById('msstat');
+function inst(x,y,kind,s,col,a){var C='rgba('+col[0]+','+col[1]+','+col[2]+',';g.strokeStyle=C+a+')';g.fillStyle=C+(a*0.3)+')';g.lineWidth=1.4;
+  if(kind===0){g.beginPath();g.arc(x,y-s*0.7,s*0.4,0,6.283);g.fill();g.stroke();g.beginPath();g.moveTo(x,y-s*0.3);g.lineTo(x,y+s*0.6);g.stroke();}        // mic
+  else if(kind===1){g.beginPath();g.ellipse(x,y+s*0.1,s*0.5,s*0.36,0.4,0,6.283);g.fill();g.stroke();g.beginPath();g.moveTo(x+s*0.3,y-s*0.1);g.lineTo(x+s*0.8,y-s*0.7);g.stroke();}  // guitar
+  else if(kind===2){g.beginPath();g.ellipse(x,y,s*0.55,s*0.22,0,0,6.283);g.stroke();g.beginPath();g.rect(x-s*0.55,y,s*1.1,s*0.5);g.fill();g.stroke();}     // drum
+  else if(kind===3){g.beginPath();g.rect(x-s*0.6,y-s*0.2,s*1.2,s*0.5);g.fill();g.stroke();for(var k=0;k<5;k++)g.strokeRect(x-s*0.55+k*s*0.22,y-s*0.15,s*0.18,s*0.4);}  // keys
+  else if(kind===4){g.beginPath();g.rect(x-s*0.5,y-s*0.6,s*1,s*1.2);g.stroke();g.beginPath();g.arc(x,y,s*0.32,0,6.283);g.fill();g.stroke();}                // amp
+  else{g.beginPath();g.rect(x-s*0.45,y-s*0.7,s*0.9,s*1.4);g.stroke();g.beginPath();g.arc(x,y-s*0.25,s*0.22,0,6.283);g.stroke();g.beginPath();g.arc(x,y+s*0.3,s*0.28,0,6.283);g.stroke();}}  // speaker
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var dt=Math.min(0.05,(t-(loop._p||t))*0.001);loop._p=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  var trussY=H*0.1,stageY=H*0.66,padx=W*0.08;
+  ft+=dt;if(ft>DWELL){ft=0;focus=(focus+1)%N;}
+  for(var i=0;i<N;i++){var ac=AC[i];ac.x=padx+(N>1?i/(N-1):0.5)*(W-padx*2);ac.y=stageY;}
+  var fa=AC[focus];spotX+=((fa.x)-spotX)*Math.min(1,dt*3);
+  // ambient sweeping beams (magenta, cyan, gold)
+  var beams=[[MG,0.24,0.9],[CY,-0.2,1.3],[GO,0.34,0.7]];
+  g.globalCompositeOperation='lighter';
+  for(var bi=0;bi<beams.length;bi++){var bc=beams[bi][0],base=beams[bi][1],sp=beams[bi][2];var fxp=W*(0.2+bi*0.3);var ang=base+Math.sin(tt*sp+bi)*0.4;var tx=fxp+Math.tan(ang)*(stageY-trussY);
+    g.beginPath();g.moveTo(fxp,trussY);g.lineTo(tx-40,stageY+20);g.lineTo(tx+40,stageY+20);g.closePath();var bg=g.createLinearGradient(fxp,trussY,tx,stageY);bg.addColorStop(0,'rgba('+bc[0]+','+bc[1]+','+bc[2]+',0.14)');bg.addColorStop(1,'rgba('+bc[0]+','+bc[1]+','+bc[2]+',0)');g.fillStyle=bg;g.fill();}
+  // performer spotlight (follows focus)
+  g.beginPath();g.moveTo(W*0.5,trussY);g.lineTo(spotX-46,stageY+16);g.lineTo(spotX+46,stageY+16);g.closePath();var pg=g.createLinearGradient(W*0.5,trussY,spotX,stageY);pg.addColorStop(0,'rgba(255,240,220,0.16)');pg.addColorStop(1,'rgba(255,240,220,0.02)');g.fillStyle=pg;g.fill();
+  g.globalCompositeOperation='source-over';
+  // truss
+  g.strokeStyle='rgba('+MG[0]+','+MG[1]+','+MG[2]+',0.5)';g.lineWidth=3;g.beginPath();g.moveTo(padx*0.5,trussY);g.lineTo(W-padx*0.5,trussY);g.stroke();
+  for(var fx2=padx*0.5;fx2<W-padx*0.5;fx2+=W*0.1){g.fillStyle='rgba('+GO[0]+','+GO[1]+','+GO[2]+',0.6)';g.fillRect(fx2-2,trussY,4,5);}
+  // stage floor
+  var sg=g.createLinearGradient(0,stageY,0,H);sg.addColorStop(0,'rgba(40,20,44,0.8)');sg.addColorStop(1,'rgba(14,7,18,0.9)');g.fillStyle=sg;g.fillRect(0,stageY+6,W,H-stageY);
+  g.strokeStyle='rgba('+MG[0]+','+MG[1]+','+MG[2]+',0.35)';g.lineWidth=1.4;g.beginPath();g.moveTo(0,stageY+6);g.lineTo(W,stageY+6);g.stroke();
+  // hover
+  hover=-1;for(i=0;i<N;i++){var ac=AC[i];if(Math.abs(ac.x-mx)<22&&Math.abs(ac.y-my-6)<28)hover=i;}
+  // acts
+  for(i=0;i<N;i++){var ac=AC[i],act=(i===focus),hit=(hover===i),col=ac.col,s=15;
+    if(act){ // sound waves + floating notes
+      for(var w=0;w<3;w++){var wr=((tt*0.6+w*0.33)%1)*44;g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+((1-wr/44)*0.4)+')';g.lineWidth=1.2;g.beginPath();g.arc(ac.x,ac.y-8,wr+8,0,6.283);g.stroke();}
+      if(NOTE.length<10&&Math.sin(tt*8)>0.9)NOTE.push({x:ac.x+(rnd()-0.5)*20,y:ac.y-14,vy:20+rnd()*15,life:1,gl:rnd()<0.5?'♪':'♫'});
+    }
+    var gl=g.createRadialGradient(ac.x,ac.y-6,0,ac.x,ac.y-6,s*2.4);gl.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(act?0.5:(hit?0.35:0.12))+')');gl.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(ac.x,ac.y-6,s*2.4,0,6.283);g.fill();
+    inst(ac.x,ac.y-6,ac.kind,s,hit?[255,235,245]:col,act?0.98:(hit?0.9:0.55));
+    if(act||hit){g.strokeStyle='rgba(255,235,245,'+(act?0.7:0.5)+')';g.lineWidth=1;g.beginPath();g.arc(ac.x,ac.y-6,s+8,0,6.283);g.stroke();}}
+  // notes
+  for(i=NOTE.length-1;i>=0;i--){var nt=NOTE[i];nt.y-=nt.vy*dt;nt.life-=dt*0.5;if(nt.life<=0){NOTE.splice(i,1);continue;}g.fillStyle='rgba(255,200,230,'+nt.life+')';g.font='14px "Iowan Old Style",Georgia,serif';g.textAlign='center';g.fillText(nt.gl,nt.x+Math.sin(tt*3+i)*4,nt.y);}
+  // crowd silhouettes + hands
+  var cy2=H-6;g.fillStyle='rgba(8,4,10,0.95)';g.fillRect(0,cy2-14,W,20);
+  for(var c=0;c<Math.floor(W/26);c++){var hx2=13+c*26,bob=Math.sin(tt*3+c)*3;g.fillStyle='rgba(10,5,14,0.98)';g.beginPath();g.arc(hx2,cy2-8+bob,6,0,6.283);g.fill();g.strokeStyle='rgba(20,10,26,0.9)';g.lineWidth=2;g.beginPath();g.moveTo(hx2-4,cy2-6+bob);g.lineTo(hx2-7,cy2-16-Math.abs(Math.sin(tt*3+c))*6);g.moveTo(hx2+4,cy2-6+bob);g.lineTo(hx2+7,cy2-16-Math.abs(Math.cos(tt*3+c))*6);g.stroke();}
+  cv.style.cursor=hover>=0?'pointer':'default';
+  var showi=hover>=0?hover:focus;
+  if(stat)stat.textContent='NOW PLAYING · '+(AC[showi].n.length>20?AC[showi].n.slice(0,19)+'…':AC[showi].n)+' · '+(showi+1)+'/'+N;
+  if(tip){if(hover>=0){tip.textContent=AC[hover].n;tip.style.left=AC[hover].x+'px';tip.style.top=(AC[hover].y-30)+'px';tip.style.opacity=1;}else tip.style.opacity=0;}
+}
+requestAnimationFrame(loop);
+var qq=document.getElementById('q'),lrws=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrws.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_ouranos(i, key, title, accent, blurb, members):
     """OURANOS · the heavens — a bespoke keeper page (AVAN + TOP + the keeper). A STAR CHART: a rotating
     planisphere with a celestial coordinate grid (RA/Dec), the ecliptic, and an astrolabe RULE that sweeps
@@ -12740,7 +12905,8 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "hobby": l2_page_hobby, "solar-jetman": l2_page_solarjetman,
              "frontier": l2_page_frontier, "legal": l2_page_legal,
              "eremia": l2_page_eremia, "the-source": l2_page_thesource,
-             "foundation": l2_page_foundation, "ouranos": l2_page_ouranos}
+             "foundation": l2_page_foundation, "ouranos": l2_page_ouranos,
+             "music": l2_page_music}
 
 
 def keeper_system():
