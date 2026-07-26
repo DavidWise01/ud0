@@ -13589,6 +13589,9 @@ def domain_grid():
 .mark{font-family:var(--disp);font-size:clamp(2.6rem,9vw,5.2rem);font-weight:800;letter-spacing:.03em;margin:14px 0 8px;color:#fff;text-shadow:0 0 18px #a06bff,0 0 46px rgba(160,107,255,.55)}
 .mark b{color:#ff8a3c;text-shadow:0 0 18px #ff8a3c,0 0 44px rgba(255,138,60,.5)}
 .counts{font-size:12px;letter-spacing:.1em;color:var(--dim)}
+.kix{display:inline-flex;align-items:center;gap:9px;margin:18px auto 0;text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#0c0716;background:linear-gradient(90deg,#c9a6ff,#ff9ec2);border-radius:24px;padding:9px 20px;font-weight:700;box-shadow:0 0 26px rgba(190,150,255,.4);transition:transform .16s,box-shadow .16s}
+.kix:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(190,150,255,.6)}
+.kix .v{background:rgba(12,7,22,.32);border-radius:12px;padding:1px 8px;letter-spacing:.1em}
 .filter{display:block;width:min(440px,90vw);margin:22px auto 0;background:rgba(20,16,40,.5);border:1px solid rgba(150,120,255,.3);border-radius:24px;color:#fff;font-family:var(--mono);font-size:13px;padding:11px 18px;text-align:center;outline:none}
 .filter:focus{border-color:#a06bff;box-shadow:0 0 20px rgba(160,107,255,.4)}
 .filter::placeholder{color:var(--dim)}
@@ -13622,12 +13625,13 @@ __CUBIT__
 <div class="eye">David Lee Wise · ROOT0 · TriPod LLC</div>
 <h1 class="mark">UNIVERSE DAVID <b>0</b></h1>
 <div class="counts">__NSC__ SPHERES · __ND__ DOMAINS · the keepers' seals — click a seal to enter its domain</div>
+<div style="text-align:center"><a class="kix" href="keepers.html">&#9635; the keeper index <span class="v">FOUNDATION v.01</span> &#8594;</a></div>
 <input class="filter" id="q" type="text" placeholder="filter the domains · press /" autocomplete="off" aria-label="filter the domains">
 </header>
 <main class="groups" aria-label="the domains">
 __SEALS__
 </main>
-<footer>__ND__ domains · __NSC__ spheres · built __BUILT__ · <a href="https://0root.ai">0root.ai</a> · one governor, one instance, one lattice · CC-BY-ND-4.0</footer>
+<footer>__ND__ domains · __NSC__ spheres · <a href="keepers.html">the keeper index · FOUNDATION v.01</a> · built __BUILT__ · <a href="https://0root.ai">0root.ai</a> · one governor, one instance, one lattice · CC-BY-ND-4.0</footer>
 <script>
 (function(){var cv=document.getElementById('topcube');if(!cv||!cv.getContext)return;var g=cv.getContext('2d'),DPR=Math.min(window.devicePixelRatio||1,2);cv.width=cv.height=Math.round(300*DPR);
 var D={};try{D=JSON.parse(document.getElementById('cubitdata').textContent);}catch(e){}var GR=D.groups||[{name:'ETHOS',c:'#f0a886'},{name:'PATHOS',c:'#ff5aa0'},{name:'LOGOS',c:'#4db1f0'},{name:'MYTHOS',c:'#a06bff'}],DM=D.domains||[];
