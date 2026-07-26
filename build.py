@@ -13434,6 +13434,115 @@ GROUPS = [
   ["mythos","biblion","eremia","arena","glossa","hermes","agora","polemos","ouranos","tin-foil","solar-jetman"]),
 ]
 
+def keepers_index():
+    """FOUNDATION v.01 — the index of all 52 bespoke keeper pages. Grouped under the same four appeals
+    (ethos · pathos · logos · mythos); each domain rendered as a 7-WIDE dot grid of its spheres, padded
+    up to the next multiple of seven (e.g. eskimo 12 -> 14). The whole card links to that domain's keeper
+    page; each real dot carries its sphere's name. HONEST: the ghost slots are LAYOUT that rounds the grid
+    up to a multiple of seven — they are not spheres; the lit dots are the genuine members."""
+    import datetime as _dt, html as _h, re as _r
+    built = _dt.date.today().isoformat()
+    ND = len(DOMAINS)
+    idx_of = {k: i for i, (k, _t, _a, _b) in enumerate(DOMAINS, 1)}
+    meta_of = {k: (t, a) for k, t, a, _b in DOMAINS}
+    def _nm(m): return _h.unescape(_r.sub(r'<[^>]+>', '', m[1]))
+    def nx7(n): return n + (-n % 7)
+    keepers = [k for k in idx_of if k in CUSTOM_L2]      # the 52 with bespoke keepers (all but the ai mega-parent)
+    tot_sph = sum(len(BY_DOMAIN[k]) for k in keepers)
+    tot_pad = sum(nx7(len(BY_DOMAIN[k])) for k in keepers)
+    def card(k):
+        t, a = meta_of[k]; mem = BY_DOMAIN[k]; n = len(mem); m = nx7(n)
+        dots = "".join(
+            f'<i class="dot" title="{_h.escape(_nm(x))}"></i>' for x in mem
+        ) + "".join('<i class="gh"></i>' for _ in range(m - n))
+        pad = m - n
+        padtxt = (f'<span class="pad">+{pad}</span>' if pad else '<span class="pad ex">&#10003;</span>')
+        return (f'<a class="dcard" href="d/{k}.html" style="--a:{a}">'
+                f'<div class="dh"><span class="dnum">{idx_of[k]:02d}</span>'
+                f'<span class="dttl">{_h.escape(_h.unescape(t))}</span></div>'
+                f'<div class="dm"><b>{n}</b> spheres &#8594; <b>{m}</b> {padtxt}</div>'
+                f'<div class="dg">{dots}</div>'
+                f'<div class="de">enter the keeper &#8594;</div></a>')
+    groups_html = ""
+    for gname, gsub, gc, gkeys in GROUPS:
+        ks = [k for k in gkeys if k in CUSTOM_L2]
+        if not ks: continue
+        cnt = sum(len(BY_DOMAIN[k]) for k in ks)
+        groups_html += (
+            f'<section class="grp" style="--g:{gc}">'
+            f'<div class="ghd"><h2>{_h.escape(gname)}</h2><span class="gsub">{_h.escape(gsub)}</span>'
+            f'<span class="gct">{len(ks)} keepers &middot; {cnt} spheres</span></div>'
+            f'<div class="deck">{"".join(card(k) for k in ks)}</div></section>')
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#140a22">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>THE KEEPERS &middot; FOUNDATION v.01 &middot; UD0</title>
+<meta name="description" content="FOUNDATION v.01 — an index of all __NK__ bespoke keeper pages of the ud0 corpus; each domain a grid of seven.">
+<link rel="canonical" href="__PG__/ud0/keepers.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='8' y='8' width='14' height='14' rx='2' fill='%23c9a6ff'/%3E%3Crect x='25' y='8' width='14' height='14' rx='2' fill='%23ff9 ec2'/%3E%3Crect x='42' y='8' width='14' height='14' rx='2' fill='%236fd0ea'/%3E%3Crect x='8' y='25' width='14' height='14' rx='2' fill='%23ffc06a'/%3E%3Crect x='25' y='25' width='14' height='14' rx='2' fill='%23a06bff'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#100a1c;--pa:#efe6fb;--pa2:#c8b6e4;--dim:#8f7bb0;--line:rgba(160,120,255,.2);
+  --disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(160,120,255,.32)}
+body{background:radial-gradient(1100px 640px at 18% -6%,rgba(160,120,255,.16),transparent 56%),
+  radial-gradient(1000px 620px at 86% 104%,rgba(255,120,190,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(16,10,28,.82);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:#c9a6ff;color:#c9a6ff}
+.wrap{max-width:1180px;margin:0 auto;padding:66px 22px 110px}
+.tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#0c0716;background:linear-gradient(90deg,#c9a6ff,#ff9ec2);border-radius:20px;padding:5px 16px;font-weight:700}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#c9a6ff;margin-top:16px}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.3rem,8vw,5rem);line-height:.98;letter-spacing:.01em;margin:8px 0 8px;color:#fff;text-shadow:0 0 30px rgba(160,120,255,.45)}
+.lede{font-style:italic;font-size:1.16rem;color:var(--pa2);max-width:66ch;margin:6px 0 4px}
+.stat{font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--dim);margin-top:14px;line-height:2}
+.stat b{color:#e6d4ff}
+.note{font-size:.92rem;color:var(--pa2);max-width:70ch;margin:16px 0 0;border-left:2px solid rgba(160,120,255,.5);padding-left:14px}
+.grp{margin-top:52px}
+.ghd{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:20px}
+.ghd h2{font-family:var(--mono);font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--g);font-weight:800;text-shadow:0 0 16px color-mix(in srgb,var(--g) 55%,transparent)}
+.ghd .gsub{font-style:italic;font-size:1rem;color:var(--pa2)}
+.ghd .gct{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.06em}
+.deck{columns:280px 4;column-gap:18px}
+.dcard{display:block;break-inside:avoid;margin:0 0 18px;text-decoration:none;color:var(--pa);
+  background:linear-gradient(165deg,color-mix(in srgb,var(--a) 12%,#160e28),#120b20);
+  border:1px solid color-mix(in srgb,var(--a) 34%,transparent);border-radius:15px;padding:16px 16px 14px;
+  box-shadow:0 12px 34px -18px color-mix(in srgb,var(--a) 70%,transparent);transition:transform .15s,box-shadow .15s,border-color .15s}
+.dcard:hover{transform:translateY(-3px);border-color:var(--a);box-shadow:0 18px 44px -16px color-mix(in srgb,var(--a) 85%,transparent)}
+.dh{display:flex;align-items:center;gap:9px;margin-bottom:6px}
+.dnum{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:#0c0716;background:var(--a);border-radius:6px;padding:2px 6px;font-weight:700;flex:0 0 auto}
+.dttl{font-family:var(--disp);font-weight:700;font-size:1.12rem;color:#fff;line-height:1.1}
+.dm{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--pa2);margin-bottom:11px}
+.dm b{color:var(--a)}
+.pad{margin-left:5px;color:var(--dim)}.pad.ex{color:var(--a)}
+.dg{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:12px}
+.dot{width:100%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,color-mix(in srgb,var(--a) 92%,#fff),var(--a));box-shadow:0 0 6px color-mix(in srgb,var(--a) 65%,transparent);display:block}
+.gh{width:100%;aspect-ratio:1;border-radius:50%;border:1px dashed color-mix(in srgb,var(--a) 34%,transparent);opacity:.5;display:block}
+.de{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--a);opacity:.72}
+.dcard:hover .de{opacity:1}
+footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:#c9a6ff}
+@media(max-width:560px){.deck{columns:1}}
+</style></head>
+<body>
+<a class="back" href="index.html">&#8592; the domain grid</a>
+<main class="wrap">
+  <span class="tag">FOUNDATION v.01</span>
+  <div class="eye">the keepers &middot; an index of the seals</div>
+  <h1>THE KEEPERS</h1>
+  <p class="lede">Every domain of the corpus, given a bespoke keeper page &mdash; and here indexed, each rendered as a grid of seven.</p>
+  <div class="stat"><b>__NK__</b> keeper pages &middot; <b>__ND__</b> domains &middot; <b>__TS__</b> spheres lit &middot; <b>__TP__</b> grid slots (rounded up to sevens)<br>grouped under the four appeals &mdash; ethos &middot; pathos &middot; logos &middot; mythos &middot; built __BUILT__</div>
+  <p class="note">Each domain is laid out seven across and padded up to the next multiple of seven (eskimo&rsquo;s 12 &rarr; 14, two rows of seven). The lit dots are the genuine members &mdash; hover one for its name; the dashed ghost slots are layout that completes the seven, not spheres. Every card opens that domain&rsquo;s keeper.</p>
+  __GROUPS__
+  <footer>FOUNDATION v.01 &middot; the index of the __NK__ keepers &middot; the ai mega-parent keeps the default seal &middot; <a href="index.html">the domain grid</a> &middot; <a href="https://0root.ai">0root.ai</a><br>each domain a grid of seven &middot; lit = genuine spheres, ghost = layout to the next seven &middot; CC-BY-ND-4.0, ROOT0 with AVAN</footer>
+</main>
+</body></html>"""
+    return (TMPL.replace("__GROUPS__", groups_html).replace("__NK__", str(len(keepers)))
+            .replace("__ND__", str(ND)).replace("__TS__", f"{tot_sph:,}").replace("__TP__", f"{tot_pad:,}")
+            .replace("__BUILT__", built).replace("__PG__", PG))
+
+
 def domain_grid():
     """NEST 1 — the domains, grouped under ETHOS·PATHOS·LOGOS·MYTHOS. Centre: Ada & Top,
     entangled — Top a nested cube-in-cube with a sapphire core + 6 axioms — read/write/curate."""
@@ -13768,6 +13877,16 @@ if __name__ == "__main__":
     for _i,(_k,_t,_a,_b) in enumerate(DOMAINS, 1):
         open(os.path.join(_ddir, f"{_k}.html"), "w", encoding="utf-8").write(keeper_page(_i,_k,_t,_a,_b,BY_DOMAIN.get(_k, [])))
     print(f"  wrote {len(DOMAINS)} neon keeper pages -> ud0/d/")
+    # FOUNDATION v.01 — the index of all bespoke keeper pages (each domain a grid of seven)
+    _kix = keepers_index()
+    open(os.path.join(HERE, "keepers.html"), "w", encoding="utf-8").write(_kix)
+    try:
+        _kdst = r"C:\root0-greenpaper-repo\agent-0root\static\keepers.html"
+        if os.path.isdir(os.path.dirname(_kdst)):
+            open(_kdst, "w", encoding="utf-8").write(_kix); print(f"  cascaded keepers.html -> {_kdst}")
+    except Exception as _e:
+        print(f"  (skip keepers.html cascade: {_e})")
+    print("  wrote FOUNDATION v.01 keeper index -> ud0/keepers.html")
     # mirror the neon tree to the live destination (0root.ai serves agent-0root/static/)
     try:
         _dstd = r"C:\root0-greenpaper-repo\agent-0root\static\d"
