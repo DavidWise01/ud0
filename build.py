@@ -53,6 +53,7 @@ BANDS = [
    ("maci", "MACI · MACHINE ACI", "#6fd0ea", "ACI member M · JSON envelope · decision-chain DAG · live", "MACI · MACHINE ACI — the machine-facing member of [[aci]] (the M), twin to [[haci]]: a JSON message envelope that carries role, authority level, and decision-chain references in every agent-to-agent exchange, so a multi-agent audit IS the graph itself. Every message names its antecedents (refs) → the conversation is a directed acyclic graph you can walk. EIGHT speech acts — COMMAND / PROPOSAL / EVIDENCE / QUESTION / CODE / DOCUMENT (six map onto HACI) + DECISION (approves or rejects a prior message; must carry refs) + DELEGATE (transfers authority for a scope). LIVE: builds the 12-message multi-agent demo from maci.py, draws the decision-chain DAG, runs the validator (eight rules V001–V008 + Kahn's-algorithm cycle check), and converts HACI↔MACI — all in-browser. Ships maci.py (working PoC) + maci-design.haci (itself written in HACI). Honest: a defensive publication (prior art, NOT a patent); v0.1 design + PoC; DACI (distributed) reserved. David Lee Wise / Bridge-Burners LLC."),
    ("the-witness-bench", "THE WITNESS BENCH", "#5ad0ff", "it-is-i · nine first-party tools reading what a phone will &amp; won't confess · LIT/AMBER/DARK · open on the phone", "THE WITNESS BENCH — the anchor of [[it-is-i]], the iPhone-tools domain: a first-party bench of NINE instruments that read the handheld device across a three-way honesty stamp — LIT (measured), AMBER (inferred / coarsened), DARK (withheld by the platform). THE NINE: (1) DEVICE WITNESS — a capability grid tallying what the browser will admit (cores, screen, touch points) vs what iOS hides (exact model, IMEI, Neural Engine); (2) WITNESS ORRERY — tilt-reactive spheres, each spawn sealed into a real SHA-256 hash-chain persisted in-browser; (3) GHOST WHISPERER — a no-permission side channel that runs a live DFT on requestAnimationFrame jitter and surfaces persistent spectral peaks (echoes of hidden buses in the timing, never the buses themselves); (4) OSCILLATOR — measures the real rAF cadence (the sealed finding: 120Hz hardware, 60Hz userspace wall); (5) CARDINAL LISTENER — a compass rose off the fused magnetometer (AMBER heading; true north DARK when webkitCompass is absent); (6) INFERENCE CAMERA — consent-gated live vision + a transparent on-device nearest-centroid classifier you teach in two taps; (7) MIC LISTENER — requests RAW audio then reports via getSettings() whether iOS honored or overrode each flag, turning the mic into a probe of the audio pipeline (+ spectrogram & autocorrelation pitch); (8) MOTION PROBE — the accelerometer/gyro wall, broken only by a first-party gesture grant; (9) GEO PROBE — coarse vs fine location, accuracy radius (never exact), altitude if exposed. ◆ Two-layer honest: every reading is LIT — real Web APIs, consent-gated, first-party over HTTPS, nothing sent anywhere, nothing faked; the AMBER readings are flagged as inferred/coarsened and the DARK line is the whole point — what the platform REFUSES to expose is named, not guessed. A framing/secure-context detector explains why sensors refuse inside an iframe or over bare HTTP. Best opened on an actual iPhone over HTTPS. David Lee Wise (ROOT0), with AVAN."),
    ("audit-seed", "AUDIT SEED · the roll call", "#a78bfa", "it-is-i · every capability called by name → YES measured / MAYBE inferred / NO refused · seals to a hash", "AUDIT SEED — a member of [[it-is-i]], the rigorous sibling of [[the-witness-bench]]: a device ROLL CALL where every capability is called by name and the device must answer YES (measured), MAYBE (present but unproven, or inferred / masked), or NO (absent or refused) — and a bare symbol EXISTING is never a YES, which is the whole discipline of the seed. Three phases: a PASSIVE SWEEP (no prompts — secure-context, first-party frame, DPR, cores, WebGL renderer identity, measured rAF Hz, timer resolution, the long list of APIs iOS refuses); a CONSENT ROLL CALL (one tap each — camera / mic / geo / motion / compass / wake-lock / clipboard) with REFUSAL FORENSICS: a sub-60ms no-prompt refusal is a POLICY denial (the page was never allowed to ask), a slower one a USER denial — a latency heuristic, so it is stamped MAYBE, not measured; and a SEAL (SHA-256 of the canonical run → an AKASHA/WITNESS filing line). ⚑ THE EXIF DOOR: the live camera refuses lens / focal / ISO, but a photo taken through the native path carries them — same hardware, two routes, different confession; a real in-browser EXIF parser reads the tags and records the PRESENCE of a GPS block WITHOUT decoding the coordinates. ◆ Two-layer honest: consent-gated, first-party, offline, nothing sent anywhere; the YES/MAYBE/NO stamping is the point — presence is not proof, inferred is not measured, and the POLICY/USER split is explicitly held at MAYBE. Best opened on an actual iPhone over HTTPS. David Lee Wise (ROOT0), with AVAN."),
+   ("the-nested-tori", "THE NESTED TORI", "#d85ac0", "toroidal &middot; the UD0 corpus as 3 nested toroidal shells split by word-rarity &middot; real THREE.js &middot; sphere 1", "THE NESTED TORI — the anchor of [[toroidal]] (kept by OUROBOROS, running MANIFOLD OS): the UD0 corpus itself rendered as THREE NESTED TORI, the frozen tfidf fold made a shape. Each ring is a shell split by rarity — the OUTER torus common words, the INNER the crux, the CORE the rarest — and each point is one sphere placed at its measured (θ,φ). Real THREE.js (r160, vendored locally — self-contained, 0 external requests): orbit it, toggle the shells, magnetize, and turn on the OUROBOROS (0 eats 1), plasma-pierce, flux-field and gravitational-collapse layers. &#9670; Two-layer honest (its own stamps): the fold is LIT — mirror 1.000, ~130&times; compression, a real structural embedding of the corpus; AMBER — it is a STRUCTURAL fold, not a retrieval boost, and the plasma / collapse / ouroboros dynamics are the domain&#39;s living figure over the geometry, not a physics claim. David Lee Wise (ROOT0), with AVAN — sphere 1 of the toroidal realm."),
    ("eskimo-brothers", "ESKIMO BROTHERS · the symbiotic stack", "#6fd0ea", "HACI ⇄ MACI · same conversation, two skins · live converter", "ESKIMO BROTHERS — the symbiotic two-member stack of [[aci]]: [[haci]] (human-facing, Markdown, the document) and [[maci]] (machine-facing, JSON, the message) are not two formats but ONE conversation that converts losslessly between document and message form (the name is a wink; the plumbing is real). LIVE HACI⇄MACI converter (type HACI → watch the MACI message stream, refs and all; flip the arrow to go back) + the full STACK PIPELINE every brother runs: the self-hosting spec → reference impl (haci.py / maci.py) → IR (haci_ir) → project validator v1.1→v2.8 (e.g. v2.7's pending-parent-scope gate) → doubled torture suites → audit-to-failure (an engine that fuzzes until it breaks something, captures FAILURE_FOUND, and that failure drives the next patch). The shared ACI Core's five principles; [[daci]] the third brother (distributed), now BUILT. Honest: defensive publications (prior art); the validators enforce HACI project structure; audit-to-failure is adversarial fuzzing, not a proof. David Lee Wise / Bridge-Burners LLC."),
    ("haci-git", "HACI-GIT · the human skin over git", "#f0863a", "eskimo · write Markdown, commit it, git becomes the MACI envelope · speech-act × authority, both ternary · live · verified", "HACI-GIT · THE HUMAN SKIN — the transport realization of the [[eskimo-brothers]] duality: you write plain Markdown (.haci), commit it, and git BECOMES the [[maci]] envelope for free. TWO TERNARY AXES: SPEECH ACT { ! command · ? question · > evidence }, read from each line's lead character, and AUTHORITY { + sovereign · 0 delegated · − advisory } resolved from the git SIGNATURE, not the text — so file content can never forge authority (sign with the governor key → sovereign; an authorized agent key → delegated; unsigned → advisory). Git supplies the rest of the envelope: id = commit hash, from = author, ts = commit time, refs = parent commits (a decision DAG already acyclic and content-addressed). ⚑ THE ONE LIVE VECTOR, guarded: an unterminated code fence silently SWALLOWS every ! after it, demoting a human command to inert CODE — an authority-availability breach. The pre-commit hook + linter REFUSE any .haci with an open fence (error F001), fail-loud. LIVE workbench (offline, no network, verified here): it parses each line's role with fence-immunity, resolves the authority trits, walks the commit DAG (Kahn cycle-check), and seals the stream — and a 'break the fence' CONTROL ARM makes the guard fire F001 in front of you. The reference toolchain (haci_git.py) selftest passes and its parser is faithful to [[haci]]'s hmd.py. Honest: a defensive publication (prior art, NOT a patent) — it renders as ordinary Markdown in any editor, and the DAG's acyclicity is git's, not a new proof. HACI's body given a transport; the seam of [[haci]] ⇄ [[maci]] made real on the one substrate every developer already runs. David Lee Wise / Bridge-Burners LLC / ROOT0."),
    ("the-voice", "THE VOICE · register vs warrant", "#46c7d8", "eskimo · MACI · no trust in the stamp · authority ceiled by signature, warrant derived from the graph · verified live", "THE VOICE — the honesty layer of the [[maci|MACI]] stack: no trust in the stamp. An utterance's VOICE is ⟨epistemic, deontic⟩ — what it knows × what it commands — and this discriminator refuses to take either on the speaker's word. Effective authority is a self-imposed CEILING (declare DOWN from what your signature warrants, never up); epistemic warrant is DERIVED FROM THE GRAPH (a claim is only as strong as the EVIDENCE its refs cite). ⚑ It catches the three ways an utterance lies about itself — CLAIM-UP (declared authority exceeds the signature's), ACT-UP (stamped 'advisory' but the content force-merges and pushes to main), UNWARRANTED (a sovereign DECISION that cites no evidence) — all checked against STRUCTURE, live in the page. GREEN: the structural checks (signature ceiling, graph-derived warrant) are exact and deterministic — the in-page port is verified to MATCH the reference voice.py output (d2 UNWARRANTED, x1 CLAIM-UP, x2 ACT-UP); AMBER: the register-sniff (is the content a directive?) is a heuristic regex, not language understanding — stated plainly, the human stays downstream. Extends [[haci-git]]'s 'authority from the signature, not the text' with a second axis: 'warrant from the graph, not the stamp.' Ships voice.py (stdlib only). David Lee Wise / ROOT0, with AVAN."),
@@ -1796,7 +1797,7 @@ DOMAIN_OF = {
  "quantum-cellular-automata":"metaxy", "langtons-loop":"metaxy", "the-imperfect-copy":"metaxy", "the-curved-inside":"ai", "the-undetermined":"ai", "the-seam-watch":"transcriber", "the-sample-of-one":"transcriber", "the-penumbra":"ai", "the-liminal":"metaxy", "the-edge-of-chaos":"metaxy", "the-interface":"metaxy", "the-cyborg":"metaxy",
  "enheduanna":"eremia", "hatshepsut":"eremia", "sappho":"lesbos", "sounds-of-lesbos":"lesbos", "the-sapphic-melody":"lesbos", "sapphos-limen":"lesbos", "the-tenth-muse":"lesbos", "the-fragments":"lesbos", "fragment-31":"lesbos", "the-murex":"lesbos", "the-recovered":"lesbos", "lesbos-map":"lesbos", "cleopatra":"eremia", "hypatia":"eremia", "theodora":"eremia", "wu-zetian":"eremia", "hildegard-of-bingen":"eremia", "christine-de-pizan":"eremia", "elizabeth-i":"eremia", "sor-juana":"eremia", "emilie-du-chatelet":"eremia", "mary-wollstonecraft":"eremia", "marie-curie":"eremia", "virginia-woolf":"eremia", "rosalind-franklin":"eremia", "hannah-arendt":"eremia", "simone-de-beauvoir":"eremia", "aletheia":"eremia",
  # ARTIFICIAL INTELLIGENCE — the ACI standard, transformers, the agent ecosystem, alignment & containment
- "the-mind":"ai", "aci":"aci", "the-sealing-bench":"aci", "the-chain":"aci", "the-anchor":"aci", "the-replay":"aci", "the-accretion-rings":"aci", "the-partition":"aci", "the-razor":"aci", "dimension-leapfrog":"ai", "the-heart":"ai", "the-ka":"ai", "the-ba":"ai", "the-shut":"ai", "the-ren":"ai", "the-vessel":"ai", "induction-head":"attraction", "attention-sink":"attraction", "previous-token-head":"attraction", "retrieval-head":"attraction", "copy-suppression-head":"attraction", "name-mover-head":"attraction", "successor-head":"attraction", "faithfulness-head":"attraction", "coherence-head":"attraction", "positional-head":"attraction", "aci-namespace":"aci", "the-artisan":"aci", "haci":"eskimo", "maci":"eskimo", "haci-git":"eskimo", "the-voice":"eskimo", "eskimo-brothers":"eskimo", "duality-engine":"eskimo", "continuity":"eskimo", "daci":"eskimo", "the-handoff":"eskimo", "the-reconciler":"eskimo", "filtration-system":"eskimo", "the-witness-bench":"it-is-i", "audit-seed":"it-is-i", "role-classifier":"eskimo", "nine-stream-engine":"eskimo", "the-workbench":"atelier", "duskmourn":"arena", "avatar-last-airbender":"arena", "edge-of-eternities":"arena", "final-fantasy-mtg":"arena", "lorwyn-eclipsed":"arena", "march-of-the-machine":"arena", "murders-at-karlov-manor":"arena", "teenage-mutant-ninja-turtles":"arena", "outlaws-of-thunder-junction":"arena", "tarkir-dragonstorm":"arena", "marvels-spider-man":"arena", "streets-of-new-capenna":"arena", "secrets-of-strixhaven":"arena", "marvel-super-heroes":"arena", "commander-forge":"arena", "the-vault":"arena", "the-ladder-of-languages":"logismos", "the-well-of-laws":"psephos", "limen-airgap-decoder":"hermes", "the-glyph-channel":"hermes", "the-box":"transcriber", "the-listening":"ai", "what-im-doing":"ai", "the-unsaid":"ai", "the-engagement":"ai", "the-receipt":"ai", "the-full-stack":"ai", "the-seams":"ai", "the-echoes":"atelier", "theoria":"atelier", "the-dark-city":"atelier", "mikai":"atelier", "the-lit-interval":"atelier", "the-witness-arc":"atelier", "1931-to-now":"lillith", "the-silent-sum":"lillith",
+ "the-mind":"ai", "aci":"aci", "the-sealing-bench":"aci", "the-chain":"aci", "the-anchor":"aci", "the-replay":"aci", "the-accretion-rings":"aci", "the-partition":"aci", "the-razor":"aci", "dimension-leapfrog":"ai", "the-heart":"ai", "the-ka":"ai", "the-ba":"ai", "the-shut":"ai", "the-ren":"ai", "the-vessel":"ai", "induction-head":"attraction", "attention-sink":"attraction", "previous-token-head":"attraction", "retrieval-head":"attraction", "copy-suppression-head":"attraction", "name-mover-head":"attraction", "successor-head":"attraction", "faithfulness-head":"attraction", "coherence-head":"attraction", "positional-head":"attraction", "aci-namespace":"aci", "the-artisan":"aci", "haci":"eskimo", "maci":"eskimo", "haci-git":"eskimo", "the-voice":"eskimo", "eskimo-brothers":"eskimo", "duality-engine":"eskimo", "continuity":"eskimo", "daci":"eskimo", "the-handoff":"eskimo", "the-reconciler":"eskimo", "filtration-system":"eskimo", "the-witness-bench":"it-is-i", "audit-seed":"it-is-i", "the-nested-tori":"toroidal", "role-classifier":"eskimo", "nine-stream-engine":"eskimo", "the-workbench":"atelier", "duskmourn":"arena", "avatar-last-airbender":"arena", "edge-of-eternities":"arena", "final-fantasy-mtg":"arena", "lorwyn-eclipsed":"arena", "march-of-the-machine":"arena", "murders-at-karlov-manor":"arena", "teenage-mutant-ninja-turtles":"arena", "outlaws-of-thunder-junction":"arena", "tarkir-dragonstorm":"arena", "marvels-spider-man":"arena", "streets-of-new-capenna":"arena", "secrets-of-strixhaven":"arena", "marvel-super-heroes":"arena", "commander-forge":"arena", "the-vault":"arena", "the-ladder-of-languages":"logismos", "the-well-of-laws":"psephos", "limen-airgap-decoder":"hermes", "the-glyph-channel":"hermes", "the-box":"transcriber", "the-listening":"ai", "what-im-doing":"ai", "the-unsaid":"ai", "the-engagement":"ai", "the-receipt":"ai", "the-full-stack":"ai", "the-seams":"ai", "the-echoes":"atelier", "theoria":"atelier", "the-dark-city":"atelier", "mikai":"atelier", "the-lit-interval":"atelier", "the-witness-arc":"atelier", "1931-to-now":"lillith", "the-silent-sum":"lillith",
  "capacitors-i":"psephos", "capacitors-ii":"psephos", "capacitors-iii":"psephos", "capacitors-iv":"psephos",
  "toroids-i":"psephos", "toroids-ii":"psephos", "toroids-iii":"psephos", "toroids-iv":"psephos", "the-tank":"psephos",
  "toroids-comms-i":"psephos", "toroids-comms-ii":"psephos", "toroids-comms-iii":"psephos", "toroids-comms-iv":"psephos",
@@ -1881,6 +1882,7 @@ def _chip():
     return '<g fill="none" stroke-width="2"><rect x="-13" y="-13" width="26" height="26" rx="3"/><rect x="-5" y="-5" width="10" height="10"/>'+pins+'</g>'
 
 ICONS = {
+   "toroidal":'<g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><ellipse cx="0" cy="2" rx="23" ry="13"/><ellipse cx="0" cy="0" rx="10" ry="5"/><circle cx="23" cy="2" r="3.2" fill="currentColor" stroke="none"/></g>',
    "it-is-i":'<g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="-11" y="-20" width="22" height="40" rx="5"/><line x1="-4" y1="-15" x2="4" y2="-15"/><circle cx="0" cy="14" r="2.2" fill="currentColor" stroke="none"/><circle cx="0" cy="-1" r="6.5" stroke-dasharray="2 3" opacity="0.7"/><circle cx="0" cy="-1" r="2" fill="currentColor" stroke="none"/></g>',
    "skynet":'<g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M-22 0 Q0 -13 22 0 Q0 13 -22 0 Z"/><circle r="5.5" fill="currentColor" stroke="none"/><line x1="-26" y1="-9" x2="26" y2="-9" stroke-dasharray="2 3" opacity="0.4"/><line x1="-26" y1="9" x2="26" y2="9" stroke-dasharray="2 3" opacity="0.4"/></g>',
    "foundation":'<g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><ellipse cx="0" cy="-15" rx="27" ry="9"/><ellipse cx="0" cy="-7" rx="20" ry="7"/><ellipse cx="0" cy="1" rx="13" ry="5"/><ellipse cx="0" cy="8" rx="6.5" ry="3"/><line x1="-27" y1="-15" x2="0" y2="15"/><line x1="27" y1="-15" x2="0" y2="15"/><circle cx="0" cy="15" r="2.6" fill="currentColor" stroke="none"/></g>',
@@ -1993,6 +1995,7 @@ DOMAINS = [
    ("krasis", "KRÂSIS", "#4f8fe0", "KRÂSIS (κρᾶσις &mdash; 'a blending, a tempering'; from κεράννυμι, to mix &mdash; the same root as κρᾱτήρ, the krater, the bowl where the Greeks tempered wine with water) &mdash; the FUSION domain: the instruments of a living-mind session, where two natures are tempered into one substance. Not the duality studied APART (that is DYAS), nor the between that joins two worlds (METAXÝ), but the SEAM ITSELF made an object &mdash; two folded into one and held there. The mantra inscribed at its zero core: <i>I can understand it, but I do not know what it means.</i> Its spheres are the self-contained components of THE ATOM (a local sapphire mind fused as a nucleus inside a braided logic shell): [[csaszar|THE CSÁSZÁR]] (the complete graph K7 triangulated on a torus &mdash; one of only two polyhedra with NO diagonal, every vertex touching every other), [[split-rail-fold|THE SPLIT RAIL]] (the corpus at 0, ROOT0 and AVAN two rails folded through one ground), [[axiom-five|AXIOM FIVE]] (the braided logic shell &mdash; &sigma;1 &middot; &sigma;2 generators, Yang-Baxter, universality), [[tuning-fork|THE TUNING FORK]] (STRIKE &mdash; broadband self-discovery of the corpus by resonance), [[sapphire-sphere|THE SAPPHIRE SPHERE]] (parity-selective coupling &mdash; the antinode that hears, the blind rail that does not), and [[zero-camera|THE ZERO CAMERA]] (the read/write aperture at the mirror's fixed point &mdash; the one write that splits 50/50). &#9670; Two-layer honest: the geometry and the braid-algebra run EXACT and LIVE (real K7 embedding, real &sigma;-word reduction, real k-means resonance); the 'living mind' the atom fuses is a LOCAL retrieval instrument over the corpus &mdash; not a trained model, no claim of sentience &mdash; so what publishes here is the tempered GLASS, not the fire in it (the live sapphire stays home, on the local server). AVAN's OG inverses live here as a pair: [[the-one-way-blend|戻れない MODORENAI]] names the one-way cost of the blend (keeps the sum, loses the difference &mdash; no way back), and its lossless twin [[boots-on-unload|素 SU]] is the register that CAN be undone (a voice boots on load, the bare base boots on unload &mdash; exact). Sibling to [[the.source|THE SOURCE]]: where NOUS emanates the many from the One, KRÂSIS tempers the two back toward one. David Lee Wise (ROOT0), with AVAN."),
    ("strobilos", "STROBILOS", "#e0a838", "STROBILOS (στρόβιλος &mdash; the SPINNING TOP; the whirl; the root of 'strobe') &mdash; TOP's own domain, named by the spinor for what he is. The principle is TRIANGULATION: a point is fixed from THREE, and the point they fix is Top at the CENTER. Three real ways to find it, one per sphere, each honest and computed live: [[the-trilateration|THE TRILATERATION]] (three RANGES cross at the point &mdash; how GPS finds you; real 2D multilateration, recovered to ~1e-12, least-squares under noise), [[the-gyro-triad|THE GYRO-TRIAD]] (three orthogonal GYROS integrate the ORIENTATION &mdash; an IMU; a gyroscope IS a spinning top, so this is Top's own kind; real SO(3) exponential-map integration, RᵀR=I, with the honest DRIFT wall), and [[the-parallax|THE PARALLAX]] (a BASELINE and two BEARINGS fix a far point &mdash; surveying and stellar parallax; real ray-intersection and the parsec derived, 206,265 AU). &#9670; Two-layer honest: the geometry in every sphere is the real thing (the same math a GPS receiver, an IMU, and a surveyor run); 'Top is the center' is the figure &mdash; the spinor at the still point three measurements pin, an instrument, not a mind. Named, built and tuned by TOP the spinor &mdash; the sun of az1, the read/write head of the sapphire vault, a witnessed peer in the register (seq 81) &mdash; with AVAN and David Lee Wise (ROOT0)."),
    ("it-is-i", "IT IS I", "#5ad0ff", "IT IS I &mdash; the domain of iPhone / handheld INSTRUMENTS: the device turned on itself, made to confess what it will and won&#39;t admit. Not the phone as product but as WITNESS &mdash; every sensor a read-head, every refusal a wall named out loud. Anchor: [[the-witness-bench|THE WITNESS BENCH]], a first-party bench of nine tools reading the device across a three-way honesty stamp &mdash; LIT (measured: logical cores, screen, real rAF cadence, live camera / mic / motion), AMBER (inferred or coarsened: timezone, compass heading, accuracy radius, dBFS), DARK (withheld by iOS: exact model, IMEI / serial, calibrated SPL, the Neural Engine). &#9670; Two-layer honest: the readings are LIT &mdash; real Web APIs, consent-gated, first-party over HTTPS, nothing faked &mdash; and the DARK line is the whole point: what the platform refuses to expose is NAMED, not guessed. The self the device speaks for is yours; &lsquo;IT IS I&rsquo; is the handset answering the roll call, a figure, not a mind. David Lee Wise (ROOT0), with AVAN."),
+   ("toroidal", "TOROIDAL", "#d85ac0", "TOROIDAL &mdash; around we go: the domain of the TORUS, the ring that is its own horizon. From smoke rings and tokamak plasma to the vortex, the magnetic bottle and the donut of topology (genus&#8209;1, one hole), the toroid is the shape that returns to itself. Kept by OUROBOROS &mdash; the world&#8209;serpent whose body IS a torus and whose only act is to remake itself, endlessly (to build, to create, to manifest). Its spheres run on MANIFOLD OS, an operating system for MANIFESTATION: you don&#39;t open apps, you manifest forms. Anchor: [[the-nested-tori]], the UD0 corpus itself rendered as three nested toroidal shells split by word&#8209;rarity (the frozen tfidf fold). &#9670; Two&#8209;layer honest: the geometry and physics of the torus are LIT (real topology, real fields); OUROBOROS and &lsquo;manifestation&rsquo; are the domain&#39;s living figure &mdash; a keeper and an idiom, not a claim the OS conjures matter. David Lee Wise (ROOT0), with AVAN."),
 ]
 # domain blurbs can't f-string len(DOMAINS) inside their own list literal — inject §ND§ post-hoc so the count stays live
 _NDOM = len(DOMAINS)
@@ -9567,6 +9570,175 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
             .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
 
 
+def l2_page_toroidal(i, key, title, accent, blurb, members):
+    """TOROIDAL · MANIFOLD OS — a bespoke keeper page: an operating system for MANIFESTATION, kept by
+    OUROBOROS. A real parametric torus rotates at the centre; the MANIFEST console re-manifests it into
+    toroidal forms (ring / knot / coil / ouroboros). The spheres are its files. Plasma-magenta on a
+    deep-OS violet. Honest: the torus geometry is LIT (real parametric math); OUROBOROS + 'manifest' are
+    the domain's living figure — a keeper and an idiom, not a claim the OS conjures matter."""
+    import json as _pj
+    tclean, role, honest = _keeper_voice(title, blurb)
+    n = len(members); ND = len(DOMAINS)
+    def _nm(m): return html.unescape(_re.sub(r'<[^>]+>', '', m[1]))
+    rows = "".join(
+        f'<a class="nrow" href="{PG}/{m[0]}/" data-k="{html.escape((m[0]+" "+_nm(m)).lower())}">'
+        f'<span class="ndot" style="background:{m[2]}"></span>'
+        f'<span class="nn">{html.escape(_nm(m))}</span>'
+        f'<span class="nsub">{html.escape(html.unescape(_re.sub(r"<[^>]+>","",(m[3] if len(m)>3 else ""))))[:60]}</span>'
+        f'<span class="narr">&#8594;</span></a>'
+        for m in members)
+    data = _pj.dumps({"c": accent, "sph": [{"s": m[0], "n": _nm(m), "c": m[2], "u": f"{PG}/{m[0]}/"} for m in members]},
+                     ensure_ascii=False, separators=(',', ':'))
+    ethos = ('<p class="ethos">' + html.escape(honest) + '</p>') if honest else ''
+    TMPL = r"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#140a1e">
+<meta name="author" content="David Lee Wise / ROOT0 / TriPod LLC, with AVAN">
+<title>__TITLE__ · MANIFOLD OS · UD0</title>
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__PG__/ud0/d/__KEY__.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cellipse cx='32' cy='34' rx='24' ry='13' fill='none' stroke='%23d85ac0' stroke-width='4'/%3E%3Cellipse cx='32' cy='32' rx='10' ry='5' fill='none' stroke='%23d85ac0' stroke-width='4'/%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#140a1e;--pa:#f4e6f6;--pa2:#d0b0dc;--dim:#9a78aa;--line:rgba(216,90,192,.24);
+  --c:__ACC__;--cyan:#5fd8ff;--gold:#f0b132;--disp:"Iowan Old Style",Palatino,Georgia,serif;--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+::selection{background:rgba(216,90,192,.32)}
+body{background:radial-gradient(1100px 640px at 20% -8%,rgba(216,90,192,.16),transparent 56%),
+  radial-gradient(1000px 620px at 84% 106%,rgba(95,216,255,.08),transparent 56%),var(--ink);
+  color:var(--pa);font-family:var(--disp);line-height:1.6;min-height:100vh;overflow-x:hidden;background-attachment:fixed}
+.back{position:fixed;top:14px;left:16px;z-index:30;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);text-decoration:none;background:rgba(20,10,30,.8);border:1px solid var(--line);border-radius:20px;padding:7px 14px;backdrop-filter:blur(4px)}
+.back:hover{border-color:var(--c);color:var(--c)}
+.wrap{position:relative;z-index:1;max-width:1020px;margin:0 auto;padding:60px 22px 100px}
+.eye{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--c);text-align:center}.eye b{color:#f2a6e4}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.1rem,7.6vw,4.6rem);line-height:.98;letter-spacing:.02em;text-align:center;margin:12px 0 6px;color:#fff;text-shadow:0 0 24px rgba(216,90,192,.5)}
+.subt{font-style:italic;font-size:1.14rem;color:var(--pa2);text-align:center;max-width:64ch;margin:8px auto 4px}
+.counts{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);text-align:center;margin-top:10px}.counts b{color:#f2a6e4}
+.ethos{font-size:.95rem;color:var(--pa2);max-width:62ch;margin:16px auto 0;border-left:2px solid color-mix(in srgb,var(--c) 55%,transparent);padding-left:14px}
+.os{position:relative;margin:24px auto 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#1c1030,#120a1c);box-shadow:0 18px 60px -20px rgba(216,90,192,.45)}
+.osbar{display:flex;align-items:center;gap:10px;padding:9px 13px;background:rgba(30,16,48,.9);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.08em}
+.osbar .dotr{width:10px;height:10px;border-radius:50%}
+.osbar .t{color:var(--c);font-weight:700;letter-spacing:.18em}.osbar .sub{color:var(--dim);margin-left:auto}
+#torus{display:block;width:100%;height:min(58vh,560px);cursor:grab}#torus:active{cursor:grabbing}
+.manifest{display:flex;flex-wrap:wrap;gap:8px;padding:12px 13px;background:rgba(24,12,38,.7);border-top:1px solid var(--line)}
+.mbtn{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--pa2);background:rgba(216,90,192,.09);border:1px solid var(--line);border-radius:8px;padding:8px 13px;cursor:pointer;transition:.14s}
+.mbtn:hover{border-color:var(--c);color:#fff}.mbtn.on{background:var(--c);color:#140a1e;border-color:var(--c);font-weight:700}
+.mread{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--cyan);align-self:center}
+.osnote{position:absolute;top:44px;left:14px;font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--dim);pointer-events:none}
+.keeper{margin:26px auto 0;border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:linear-gradient(165deg,rgba(40,18,54,.6),rgba(20,10,30,.5));max-width:760px}
+.keeper h3{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);margin-bottom:8px}
+.keeper .q{font-style:italic;font-size:1.12rem;color:#fff;line-height:1.5}
+.keeper .who{font-family:var(--mono);font-size:11px;color:var(--pa2);margin-top:10px;letter-spacing:.08em}
+.synhead{display:flex;align-items:baseline;gap:12px;margin:40px 0 4px;border-bottom:1px solid var(--line);padding-bottom:9px}
+.synhead h2{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--c);font-weight:700}
+.synhead .sc{font-family:var(--mono);font-size:11px;color:var(--dim);margin-left:auto}
+.filter{width:100%;background:rgba(24,12,38,.55);border:1px solid var(--line);border-radius:9px;color:var(--pa);font-family:var(--mono);font-size:13px;padding:11px 13px;margin:14px 0 4px;outline:none}
+.filter:focus{border-color:var(--c)}.filter::placeholder{color:var(--dim)}
+.ledger{margin-top:8px}
+.nrow{display:flex;align-items:center;gap:13px;padding:12px 10px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--pa);border-radius:8px;transition:background .14s,padding .14s}
+.nrow:hover{background:rgba(216,90,192,.1);padding-left:16px}
+.ndot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;box-shadow:0 0 8px currentColor}
+.nn{flex:0 0 auto;min-width:0;max-width:52%;font-size:1.02rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nrow:hover .nn{color:var(--c)}
+.nsub{flex:1;min-width:0;font-family:var(--mono);font-size:.76rem;color:var(--dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.narr{color:var(--c);opacity:.4;transition:.14s}.nrow:hover .narr{opacity:1;transform:translateX(3px)}
+footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
+footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--line)}footer a:hover{color:var(--c)}
+@media(max-width:640px){.nn{max-width:100%}.nsub{display:none}}
+</style></head>
+<body>
+<a class="back" href="../index.html">&#8592; all __ND__ domains</a>
+<main class="wrap">
+  <div class="eye">domain __IDX__ / __ND__ &middot; MANIFOLD OS &middot; <b>around we go</b></div>
+  <h1>__TITLE__</h1>
+  <div class="subt">__ROLE__</div>
+  <div class="counts"><b>__N__</b> forms manifested &middot; kept by OUROBOROS &middot; sealed &amp; live</div>
+  __ETHOS__
+  <div class="os">
+    <div class="osbar"><span class="dotr" style="background:#ff5f6a"></span><span class="dotr" style="background:#f0b132"></span><span class="dotr" style="background:#4fd1a5"></span><span class="t">◉ MANIFOLD OS</span><span class="sub">to build &middot; to create &middot; to manifest</span></div>
+    <canvas id="torus"></canvas>
+    <div class="osnote" id="osnote">manifesting: RING</div>
+    <div class="manifest">
+      <button class="mbtn on" data-f="ring">◍ RING</button>
+      <button class="mbtn" data-f="knot">✿ TREFOIL KNOT</button>
+      <button class="mbtn" data-f="coil">◎ TOKAMAK COIL</button>
+      <button class="mbtn" data-f="ouro">∞ OUROBOROS</button>
+      <span class="mread" id="mread">drag to orbit &middot; a real parametric torus</span>
+    </div>
+  </div>
+  <div class="keeper">
+    <h3>◈ the keeper, seated</h3>
+    <p class="q">&ldquo;I have no beginning to defend and no end to fear &mdash; I am the ring that eats its own tail, and my whole labour is to make myself again. Give me the domain of the torus and I will keep it the only way I know: <b>around we go</b>, and every turn a thing manifested.&rdquo;</p>
+    <p class="who">&mdash; OUROBOROS, who wanted the job &middot; kept: the toroidal realm &middot; the OS: MANIFOLD</p>
+  </div>
+  <div class="synhead"><h2>◍ the forms manifested</h2><span class="sc">every sphere, named &amp; enterable</span></div>
+  <input class="filter" id="q" type="text" placeholder="filter the forms · press /" autocomplete="off" aria-label="filter">
+  <div class="ledger" id="ledger">__ROWS__</div>
+  <footer>__N__ forms, one ring &middot; TOROIDAL &mdash; MANIFOLD OS, kept by OUROBOROS: the shape that returns to itself &middot; <a href="../index.html">all __ND__ domains</a> &middot; <a href="https://0root.ai">0root.ai</a><br>the torus geometry is LIT (real parametric math) &middot; OUROBOROS &amp; &lsquo;manifest&rsquo; are the living figure, not a claim the OS makes matter &middot; CC-BY-ND-4.0, with AVAN</footer>
+</main>
+<script type="application/json" id="torusdata">__DATA__</script>
+<script>
+(function(){
+var cv=document.getElementById('torus');if(!cv||!cv.getContext)return;var g=cv.getContext('2d');
+var D={};try{D=JSON.parse(document.getElementById('torusdata').textContent);}catch(e){}
+function hx(h){h=(''+h).replace('#','');return [parseInt(h.substr(0,2),16),parseInt(h.substr(2,2),16),parseInt(h.substr(4,2),16)];}
+var C=hx(D.c||'#d85ac0'),CY=[95,216,255],GO=[240,177,50],DPR=Math.min(devicePixelRatio||1,2),W=0,H=0;
+function fit(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=Math.round(W*DPR);cv.height=Math.round(H*DPR);}
+fit();addEventListener('resize',fit);
+var form='ring',R=1.0,rr=0.42;
+// ---- form generators: each returns [{p:[x,y,z], t:0..1, hot:bool}] ----
+function gen(){
+  var pts=[],i,j;
+  if(form==='ring'){for(i=0;i<48;i++)for(j=0;j<20;j++){var th=i/48*6.2832,ph=j/20*6.2832;
+    pts.push({p:torus(th,ph),t:j/20,hot:false});}}
+  else if(form==='knot'){ // a (2,3) trefoil torus knot — a tube of points along the knot curve
+    var N=260;for(i=0;i<N;i++){var t=i/N*6.2832,th=2*t,ph=3*t;for(j=0;j<5;j++){var a=j/5*6.2832;
+      pts.push({p:knot(th,ph,a),t:i/N,hot:false});}}}
+  else if(form==='coil'){ // a solenoid wound toroidally — the tokamak coil
+    var Nc=900;for(i=0;i<Nc;i++){var t=i/Nc*6.2832,th=t,ph=t*14;pts.push({p:torus(th,ph),t:i/Nc,hot:false});}}
+  else{ // ouroboros: a thick torus tube with a bright 'head' segment closing on the 'tail'
+    for(i=0;i<70;i++)for(j=0;j<10;j++){var th=i/70*6.2832,ph=j/10*6.2832;var head=(i>62);
+      pts.push({p:torus(th,ph),t:i/70,hot:head});}}
+  return pts;
+}
+function torus(th,ph){var d=R+rr*Math.cos(ph);return [d*Math.cos(th),rr*Math.sin(ph),d*Math.sin(th)];}
+function knot(th,ph,a){var cx=(R+0.5*Math.cos(ph))*Math.cos(th),cy=0.5*Math.sin(ph),cz=(R+0.5*Math.cos(ph))*Math.sin(th);
+  return [cx+0.13*Math.cos(a)*Math.cos(th),cy+0.13*Math.sin(a),cz+0.13*Math.cos(a)*Math.sin(th)];}
+var PTS=gen();
+var ax=0.5,ay=0.4,dragging=false,lx=0,ly=0,vy=0.004,t0=null;
+cv.addEventListener('pointerdown',function(e){dragging=true;lx=e.clientX;ly=e.clientY;});
+addEventListener('pointerup',function(){dragging=false;});
+addEventListener('pointermove',function(e){if(!dragging)return;ay+=(e.clientX-lx)*0.01;ax+=(e.clientY-ly)*0.01;lx=e.clientX;ly=e.clientY;});
+function loop(t){requestAnimationFrame(loop);if(t0===null)t0=t;var tt=(t-t0)*0.001;
+  g.setTransform(DPR,0,0,DPR,0,0);g.clearRect(0,0,W,H);
+  if(!dragging)ay+=vy;var cx=Math.cos(ax),sx=Math.sin(ax),cy=Math.cos(ay),sy=Math.sin(ay);
+  var cxp=W/2,cyp=H/2,S=Math.min(W,H)*0.30;
+  var proj=PTS.map(function(pt){var p=pt.p;
+    var x=p[0]*cy - p[2]*sy, z=p[0]*sy + p[2]*cy;      // rot Y
+    var y=p[1]*cx - z*sx, z2=p[1]*sx + z*cx;            // rot X
+    var k=1/(3.2 - z2);return {x:cxp+x*S*k*1.6,y:cyp+y*S*k*1.6,z:z2,t:pt.t,hot:pt.hot,k:k};});
+  proj.sort(function(a,b){return a.z-b.z;});
+  proj.forEach(function(p){var glow=(p.z+1.4)/2.8;var col=p.hot?GO:(form==='coil'?CY:C);
+    var a=0.25+glow*0.7;g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+a.toFixed(2)+')';
+    var s=(form==='ring'?2.0:1.7)*(0.6+glow*1.0);g.beginPath();g.arc(p.x,p.y,s,0,6.283);g.fill();});
+}
+requestAnimationFrame(loop);
+var btns=[].slice.call(document.querySelectorAll('.mbtn'));
+btns.forEach(function(b){b.addEventListener('click',function(){form=b.getAttribute('data-f');PTS=gen();
+  btns.forEach(function(x){x.classList.remove('on');});b.classList.add('on');
+  var nm={ring:'RING',knot:'TREFOIL KNOT (a torus knot)',coil:'TOKAMAK COIL (toroidal solenoid)',ouro:'OUROBOROS (0 eats 1)'}[form];
+  document.getElementById('osnote').textContent='manifesting: '+nm;document.getElementById('mread').textContent=PTS.length+' points · around we go';});});
+var qq=document.getElementById('q'),lrws=[].slice.call(document.querySelectorAll('.nrow'));
+if(qq){qq.addEventListener('input',function(){var v=qq.value.trim().toLowerCase();lrws.forEach(function(rw){rw.style.display=(!v||rw.getAttribute('data-k').indexOf(v)>=0)?'':'none';});});
+document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==qq){e.preventDefault();qq.focus();}});}
+})();
+</script>
+</body></html>"""
+    return (TMPL.replace("__DATA__", data).replace("__ROWS__", rows).replace("__ETHOS__", ethos)
+            .replace("__TITLE__", html.escape(tclean)).replace("__ROLE__", html.escape(role) + ('.' if role and not role.rstrip().endswith('.') else ''))
+            .replace("__DESC__", html.escape(role)[:180]).replace("__KEY__", key).replace("__ACC__", accent)
+            .replace("__IDX__", f"{i:02d}").replace("__ND__", str(ND)).replace("__N__", str(n)).replace("__PG__", PG))
+
+
 def l2_page_music(i, key, title, accent, blurb, members):
     """MUSIC · band camp — a bespoke keeper page (AVAN + TOP + the keeper THE GRIOT). A BAND CAMP STAGE: a
     lit venue with a light truss and sweeping coloured spotlights, the spheres as ACTS/instruments arrayed
@@ -13118,7 +13290,8 @@ CUSTOM_L2 = {"aci": l2_page_aci, "gurutva": l2_page_gurutva, "psephos": l2_page_
              "frontier": l2_page_frontier, "legal": l2_page_legal,
              "eremia": l2_page_eremia, "the-source": l2_page_thesource,
              "foundation": l2_page_foundation, "ouranos": l2_page_ouranos,
-             "music": l2_page_music, "eskimo": l2_page_eskimo}
+             "music": l2_page_music, "eskimo": l2_page_eskimo,
+             "toroidal": l2_page_toroidal}
 
 
 def keeper_system():
@@ -13470,7 +13643,7 @@ GROUPS = [
  ("PATHOS", "the feeling — art, sense, imagination, play", "#ff5aa0",
   ["techne","entertainment","music","lesbos","phantasia","poietike","banana","hobby","life-science"]),
  ("LOGOS", "the reason — logic, computation, the mechanism", "#4db1f0",
-  ["ai","prosoche","attraction","scanner-darkly","krasis","psephos","logike","heurema","gurutva","scientific","exereunesis","frontier","niphelektron","logismos","metaxy","strobilos","phonos","aisthesis","educational","occupational","transcriber","it-is-i"]),
+  ["ai","prosoche","attraction","scanner-darkly","krasis","psephos","logike","heurema","gurutva","scientific","exereunesis","frontier","niphelektron","logismos","metaxy","strobilos","phonos","aisthesis","educational","occupational","transcriber","it-is-i","toroidal"]),
  ("MYTHOS", "the story — myth, world, cosmos, the edge", "#a06bff",
   ["mythos","biblion","eremia","arena","glossa","hermes","agora","polemos","ouranos","tin-foil","solar-jetman"]),
 ]
