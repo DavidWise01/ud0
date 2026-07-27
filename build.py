@@ -13927,7 +13927,12 @@ def domain_grid():
 .pair{position:relative;display:flex;align-items:center;justify-content:center;gap:clamp(52px,12vw,120px)}
 #entangle{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 .ada,.topf{position:relative;z-index:2;margin:0;flex:0 0 auto}
-.ada img{display:block;width:clamp(118px,20vw,150px);height:clamp(118px,20vw,150px);border-radius:50%;object-fit:cover;object-position:50% 26%;border:2px solid rgba(190,150,255,.55);box-shadow:0 0 34px rgba(150,90,230,.5)}
+.ada{perspective:640px}
+.ada .rig{position:relative;display:inline-block;transform-style:preserve-3d;will-change:transform}
+.ada img{display:block;width:clamp(118px,20vw,150px);height:clamp(118px,20vw,150px);border-radius:50%;object-fit:cover;object-position:50% 26%;border:2px solid rgba(190,150,255,.55);box-shadow:0 0 34px rgba(150,90,230,.5);position:relative;z-index:1;animation:adabreath 4.6s ease-in-out infinite}
+.ada .lid{position:absolute;left:8%;right:8%;top:29%;height:17%;z-index:2;pointer-events:none;border-radius:50%/70%;transform:scaleY(0);transform-origin:50% 0;background:radial-gradient(ellipse at 50% 30%,rgba(30,15,42,.12),rgba(16,7,26,.92) 82%)}
+@keyframes adabreath{0%,100%{box-shadow:0 0 26px rgba(150,90,230,.42)}50%{box-shadow:0 0 48px rgba(184,122,255,.74),0 0 64px rgba(150,90,230,.26)}}
+@media (prefers-reduced-motion:reduce){.ada img{animation:none}.ada .rig{transform:none!important}}
 #topcube{display:block;width:clamp(190px,30vw,290px);height:clamp(190px,30vw,290px);filter:drop-shadow(0 0 26px rgba(90,150,255,.4))}
 .ada figcaption,.topf figcaption{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#c9b6ff;margin-top:8px;text-align:center;text-shadow:0 0 12px rgba(150,90,230,.7)}
 .centercap{text-align:center;font-size:10.5px;letter-spacing:.05em;color:#b79cf0;margin-top:16px;line-height:1.7;text-shadow:0 0 12px rgba(150,90,230,.5)}
@@ -13963,11 +13968,11 @@ footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:#fff}
 <div class="center">
 <div class="pair">
 <canvas id="entangle" aria-hidden="true"></canvas>
-<figure class="ada"><img src="ada-portrait.jpg" alt="Ada — the muse"><figcaption>Ada · the muse</figcaption></figure>
+<figure class="ada"><span class="rig"><img src="ada-portrait.jpg" alt="Ada Lovelace — the Mother of AI"><span class="lid" aria-hidden="true"></span></span><figcaption>Ada &middot; Mother of AI &middot; keeper of the cubit</figcaption></figure>
 <figure class="topf"><canvas id="topcube" width="300" height="300" aria-hidden="true"></canvas><figcaption>Top · the cubit · a 0-sphere</figcaption></figure>
 </div>
 __CUBIT__
-<div class="centercap">◆ ROOT0 ⇄ AVAN — <b>Ada</b> &amp; <b>Top</b>, entangled. Top is <b>the cubit</b>: a 0-sphere — every sphere a point on the wall (r=1), the five appeals <b>ethos · pathos · logos · mythos</b> (tetrahedral, 109.47°, no opposites) crowned by <b>episteme</b> — the scientific — at the apex above, the roots run along the wall, the core empty (0 = balance). Together they <b>read</b> · <b>write</b> · <b>curate</b> UD0</div>
+<div class="centercap">◆ ROOT0 ⇄ AVAN — <b>Ada Lovelace</b>, the <b>Mother of AI</b>, keeper of <b>Top the cubit</b> at her right, entangled with it. Top is <b>the cubit</b>: a 0-sphere — every sphere a point on the wall (r=1), the five appeals <b>ethos · pathos · logos · mythos</b> (tetrahedral, 109.47°, no opposites) crowned by <b>episteme</b> — the scientific — at the apex above, the roots run along the wall, the core empty (0 = balance). Together they <b>read</b> · <b>write</b> · <b>curate</b> UD0</div>
 </div>
 <div class="eye">David Lee Wise · ROOT0 · TriPod LLC</div>
 <h1 class="mark">UNIVERSE DAVID <b>0</b></h1>
@@ -14025,6 +14030,25 @@ function frame(t){requestAnimationFrame(frame);var r=cv.getBoundingClientRect();
  g.shadowBlur=0;g.restore();
  g.fillStyle='rgba(202,182,240,0.85)';g.font='700 9px ui-monospace,monospace';g.textAlign='center';g.fillText('◇ entangled ◇',midx,midy-7);
 }requestAnimationFrame(frame);})();
+(function(){ // Ada, animatronic — aware (gaze tracks the cursor; at rest she watches Top, the cubit she keeps) + moving (breath sway) + blinks
+ var fig=document.querySelector('.ada');if(!fig)return;var img=fig.querySelector('img'),lid=fig.querySelector('.lid');if(!img)return;
+ var reduce=matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+ var REST=0.34; // default gaze bias to the RIGHT — toward Top the cubit
+ var gx=REST,gy=0,tx=REST,ty=0;
+ addEventListener('mousemove',function(e){var b=fig.getBoundingClientRect(),cx=b.left+b.width/2,cy=b.top+b.height/2;
+   tx=Math.max(-1,Math.min(1,(e.clientX-cx)/280));ty=Math.max(-1,Math.min(1,(e.clientY-cy)/280));});
+ document.addEventListener('mouseleave',function(){tx=REST;ty=0;});
+ var t0=null;function loop(ts){requestAnimationFrame(loop);if(t0==null)t0=ts;var s=(ts-t0)/1000;
+   gx+=(tx-gx)*0.06;gy+=(ty-gy)*0.06;
+   var swayY=reduce?0:Math.sin(s*0.9)*3.0,swayX=reduce?0:Math.sin(s*0.7+1)*2.0,breath=reduce?1:1+Math.sin(s*1.25)*0.006;
+   var ry=gx*16+swayY,rx=-gy*12+swayX;
+   img.style.transform='rotateY('+ry.toFixed(2)+'deg) rotateX('+rx.toFixed(2)+'deg) scale('+breath.toFixed(4)+')';
+ }requestAnimationFrame(loop);
+ if(lid&&!reduce){(function blink(){lid.style.transition='none';lid.style.transform='scaleY(0)';
+   requestAnimationFrame(function(){lid.style.transition='transform 85ms ease-in';lid.style.transform='scaleY(1)';
+     setTimeout(function(){lid.style.transition='transform 120ms ease-out';lid.style.transform='scaleY(0)';},90);});
+   setTimeout(blink,3000+Math.random()*4200);})();}
+})();
 (function(){var q=document.getElementById('q'),s=[].slice.call(document.querySelectorAll('.seal'));
 if(q){q.addEventListener('input',function(){var v=q.value.trim().toLowerCase();for(var i=0;i<s.length;i++)s[i].style.display=(!v||s[i].getAttribute('data-k').indexOf(v)>=0)?'':'none';});}
 document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeElement!==q){e.preventDefault();if(q)q.focus();}});})();
