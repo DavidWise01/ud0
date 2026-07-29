@@ -14303,18 +14303,45 @@ def domain_grid():
     dup = sorted({k for k in assigned if assigned.count(k) > 1})
     if missing: raise SystemExit(f"domain_grid: UNGROUPED domains {missing} — assign them in GROUPS")
     if dup: raise SystemExit(f"domain_grid: domains in >1 group {dup}")
-    def _seal(key):
+    import math as _m, json as _json
+    # the 8 octagon vertices (flat-top, vertically + horizontally symmetric), as %-of-box
+    _OCTA = [(50 + 39 * _m.sin(_m.radians(22.5 + 45 * i)), 50 - 39 * _m.cos(_m.radians(22.5 + 45 * i))) for i in range(8)]
+    # SEAL STATE — read the PUBLISHED .dlw chain so each card shows its REAL provenance,
+    # not the old static "sealed" copy (surfacing fix, 2026-07-29).
+    _SEALED = set()
+    try:
+        _cd = _json.load(open(os.path.join(HERE, "dlw-chain.json"), encoding="utf-8"))
+        _SEALED = set(l.get("slug") for l in _cd.get("links", []))
+    except Exception:
+        pass
+    def _seal(key, pos=None):
         i, title, accent, blurb = by_key[key]
-        n = len(BY_DOMAIN.get(key, []))
+        members = BY_DOMAIN.get(key, [])
+        n = len(members)
+        sealed = sum(1 for m in members if (m[0] if isinstance(m, (list, tuple)) else m) in _SEALED)
+        if n and sealed == n:
+            badge = '<span class="sseal ok" title="all ' + str(n) + ' spheres sealed in the .dlw chain">&#9670; sealed</span>'
+        elif sealed:
+            badge = '<span class="sseal part" title="' + str(sealed) + ' of ' + str(n) + ' sealed in the .dlw chain">&#9670; ' + str(sealed) + '/' + str(n) + ' sealed</span>'
+        else:
+            badge = '<span class="sseal none" title="not yet in the .dlw chain">&#9671; unsealed</span>'
         tclean, _r, _h = _keeper_voice(title, blurb)
-        return ('<a class="seal" href="d/' + key + '.html" data-k="' + html.escape(tclean.lower()) + ' ' + key + '" style="--c:' + accent + '" aria-label="' + html.escape(tclean) + ' — enter">'
+        card = ('<a class="seal" href="d/' + key + '.html" data-k="' + html.escape(tclean.lower()) + ' ' + key + '" style="--c:' + accent + '" aria-label="' + html.escape(tclean) + ' — enter">'
                 '<span class="medwrap">' + _med_svg(i, accent, key, 96) + '</span>'
                 '<span class="sname">' + html.escape(tclean) + '</span>'
-                '<span class="scount">' + str(n) + ' ' + ('sphere' if n == 1 else 'spheres') + '</span></a>')
+                '<span class="scount">' + str(n) + ' ' + ('sphere' if n == 1 else 'spheres') + '</span>'
+                + badge + '</a>')
+        if pos:  # positioned octagon slot centres the card on the vertex; card stays static (hover lift intact)
+            return '<div class="slot" data-k="' + html.escape(tclean.lower()) + ' ' + key + '" style="left:' + format(pos[0], '.2f') + '%;top:' + format(pos[1], '.2f') + '%">' + card + '</div>'
+        return card
     sections = []
     for gname, gsub, gacc, keys in GROUPS:
         ks = sorted(keys, key=lambda k: _alpha_key(html.unescape(_re.sub(r'<[^>]+>', '', by_key[k][1]))))
-        sections.append('<section class="group" style="--g:' + gacc + '"><div class="grouphead"><span class="gname">' + gname + '</span><span class="gsub">' + gsub + '</span><span class="gcount">' + str(len(ks)) + '</span></div><div class="grid">' + ''.join(_seal(k) for k in ks) + '</div></section>')
+        if len(ks) == 8:   # an octagon of the 8 agentic domains, empty at the centre
+            body = '<div class="octa">' + ''.join(_seal(k, _OCTA[j]) for j, k in enumerate(ks)) + '</div>'
+        else:
+            body = '<div class="grid">' + ''.join(_seal(k) for k in ks) + '</div>'
+        sections.append('<section class="group" style="--g:' + gacc + '"><div class="grouphead"><span class="gname">' + gname + '</span><span class="gsub">' + gsub + '</span><span class="gcount">' + str(len(ks)) + '</span></div>' + body + '</section>')
     TMPL = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="color-scheme" content="dark"><meta name="theme-color" content="#07060f">
@@ -14361,6 +14388,17 @@ def domain_grid():
 .sname{font-family:var(--disp);font-size:1.04rem;text-align:center;color:#efeaff;line-height:1.16;letter-spacing:.01em}
 .seal:hover .sname{color:var(--c);text-shadow:0 0 14px var(--c)}
 .scount{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+.octa{position:relative;width:min(720px,95vw);aspect-ratio:1/1;margin:26px auto 10px}
+.octa .slot{position:absolute;transform:translate(-50%,-50%);width:clamp(120px,15vw,146px)}
+.octa .seal{width:100%;padding:16px 8px 13px;gap:9px}
+.octa .seal .medwrap{width:70px;height:70px;display:flex;align-items:center;justify-content:center}
+.octa .seal .medwrap svg{width:70px;height:70px}
+.octa .seal .sname{font-size:.92rem}
+.sseal{font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;padding:2px 9px;border-radius:11px;line-height:1.5}
+.sseal.ok{color:#7fe0b0;background:rgba(63,208,160,.1);border:1px solid rgba(63,208,160,.3)}
+.sseal.part{color:#e6b45a;background:rgba(224,168,58,.1);border:1px solid rgba(224,168,58,.32)}
+.sseal.none{color:#d99;background:rgba(210,120,120,.1);border:1px solid rgba(210,120,120,.3)}
+@media (max-width:760px){.octa{aspect-ratio:auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}.octa .slot{position:static;transform:none;left:auto!important;top:auto!important;width:auto}.octa .seal .medwrap,.octa .seal .medwrap svg{width:86px;height:86px}}
 footer{position:relative;z-index:2;text-align:center;padding:0 20px 60px;font-size:11px;letter-spacing:.05em;color:var(--dim)}
 footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:#fff}
 </style></head>
