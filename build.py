@@ -14335,7 +14335,7 @@ def domain_grid():
             return '<div class="slot" data-k="' + html.escape(tclean.lower()) + ' ' + key + '" style="left:' + format(pos[0], '.2f') + '%;top:' + format(pos[1], '.2f') + '%">' + card + '</div>'
         return card
     sections = []
-    for gname, gsub, gacc, keys in GROUPS:
+    for gname, gsub, gacc, keys in sorted(GROUPS, key=lambda g: g[0]):   # appeals A→Z (full ud0 alphabetical)
         ks = sorted(keys, key=lambda k: _alpha_key(html.unescape(_re.sub(r'<[^>]+>', '', by_key[k][1]))))
         if len(ks) == 8:   # an octagon of the 8 agentic domains, empty at the centre
             body = '<div class="octa">' + ''.join(_seal(k, _OCTA[j]) for j, k in enumerate(ks)) + '</div>'
@@ -14358,11 +14358,14 @@ def domain_grid():
 .ada,.topf{position:relative;z-index:2;margin:0;flex:0 0 auto}
 .ada{perspective:640px}
 .ada .rig{position:relative;display:inline-block;transform-style:preserve-3d;will-change:transform}
-.ada img{display:block;width:clamp(118px,20vw,150px);height:clamp(118px,20vw,150px);border-radius:50%;object-fit:cover;object-position:50% 26%;border:2px solid rgba(190,150,255,.55);box-shadow:0 0 34px rgba(150,90,230,.5);position:relative;z-index:1;animation:adabreath 4.6s ease-in-out infinite}
-.ada .lid{position:absolute;left:8%;right:8%;top:29%;height:17%;z-index:2;pointer-events:none;border-radius:50%/70%;transform:scaleY(0);transform-origin:50% 0;background:radial-gradient(ellipse at 50% 30%,rgba(30,15,42,.12),rgba(16,7,26,.92) 82%)}
+.ada img{display:block;width:clamp(158px,23vw,214px);height:clamp(158px,23vw,214px);border-radius:50%;object-fit:cover;object-position:50% 24%;border:2px solid rgba(190,150,255,.55);box-shadow:0 0 34px rgba(150,90,230,.5);position:relative;z-index:1;animation:adabreath 4.6s ease-in-out infinite}
+.ada .lid{position:absolute;left:8%;right:8%;top:29%;height:17%;z-index:2;pointer-events:none;border-radius:50%/70%;transform:scaleY(0);transform-origin:50% 0;background:radial-gradient(ellipse at 50% 30%,rgba(30,15,42,.12),rgba(16,7,26,.92) 82%);animation:adablink 6.4s ease-in-out infinite}
+.ada .rig{animation:adafloat 9s ease-in-out infinite}
 @keyframes adabreath{0%,100%{box-shadow:0 0 26px rgba(150,90,230,.42)}50%{box-shadow:0 0 48px rgba(184,122,255,.74),0 0 64px rgba(150,90,230,.26)}}
-@media (prefers-reduced-motion:reduce){.ada img{animation:none}.ada .rig{transform:none!important}}
-#topcube{display:block;width:clamp(190px,30vw,290px);height:clamp(190px,30vw,290px);filter:drop-shadow(0 0 26px rgba(90,150,255,.4))}
+@keyframes adablink{0%,90%,100%{transform:scaleY(0)}94%{transform:scaleY(1)}98%{transform:scaleY(0)}}
+@keyframes adafloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}
+@media (prefers-reduced-motion:reduce){.ada img{animation:none}.ada .lid{animation:none}.ada .rig{animation:none;transform:none!important}}
+#topcube{display:block;width:clamp(206px,29vw,278px);height:clamp(206px,29vw,278px);filter:drop-shadow(0 0 26px rgba(90,150,255,.4))}
 .ada figcaption,.topf figcaption{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#c9b6ff;margin-top:8px;text-align:center;text-shadow:0 0 12px rgba(150,90,230,.7)}
 .centercap{text-align:center;font-size:10.5px;letter-spacing:.05em;color:#b79cf0;margin-top:16px;line-height:1.7;text-shadow:0 0 12px rgba(150,90,230,.5)}
 .centercap b{color:#e6d6ff}
