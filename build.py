@@ -14131,23 +14131,30 @@ def _neon_ledger(key, members):
     return ''.join(out)
 
 
-# the 53 domains grouped under the four appeals — ethos · pathos · logos · mythos (fail-loud partition)
+# the 64 domains grouped under the EIGHT appeals — 8 × 8, the vertices of the cube (2^3)
+# ethos · pathos · logos · mythos · episteme · techne · phronesis · kairos (fail-loud partition)
 GROUPS = [
- ("ETHOS", "the character — honesty, justice, the watch", "#f0a886",
-  ["legal","lillith","idios","momus","aci","eskimo","atelier","first-author","foundation","skynet","dyas","the-source","hysteresis"]),
- ("PATHOS", "the feeling — art, sense, imagination, play", "#ff5aa0",
-  ["techne","entertainment","music","lesbos","phantasia","poietike","banana","hobby","life-science"]),
+ ("ETHOS", "the character — honesty, justice, self-governance, the watch", "#f0a886",
+  ["legal","lillith","idios","momus","skynet","hysteresis","first-author","dyas"]),
+ ("PATHOS", "the feeling — art, sense, imagination", "#ff5aa0",
+  ["techne","music","lesbos","phantasia","aisthesis","entertainment","banana","poietike"]),
  ("LOGOS", "the reason — logic, computation, the mechanism", "#4db1f0",
-  ["ai","prosoche","attraction","scanner-darkly","krasis","psephos","logike","heurema","gurutva","scientific","exereunesis","frontier","niphelektron","logismos","metaxy","strobilos","phonos","aisthesis","educational","occupational","transcriber","it-is-i","kryptos","katabasis","diktyon","diakrisis","thesauros","sema","methodos"]),
+  ["ai","logike","psephos","logismos","methodos","thesauros","sema","diktyon"]),
  ("MYTHOS", "the story — myth, world, cosmos, the edge", "#a06bff",
-  ["mythos","biblion","eremia","arena","glossa","hermes","agora","polemos","ouranos","tin-foil","solar-jetman"]),
+  ["mythos","biblion","eremia","arena","glossa","ouranos","solar-jetman","agora"]),
  ("EPISTEME", "the knowledge — measured, demonstrated · the scientific", "#3fd0a0",
-  ["toroidal","klimax"]),
+  ["scientific","frontier","exereunesis","heurema","gurutva","metaxy","toroidal","life-science"]),
+ ("TECHNE", "the craft — making, tools, the working machine, collaboration", "#c98a55",
+  ["occupational","educational","hermes","aci","eskimo","atelier","the-source","foundation"]),
+ ("PHRONESIS", "the judgment — attention, discernment, practical wisdom", "#8fb85a",
+  ["prosoche","attraction","diakrisis","scanner-darkly","transcriber","krasis","niphelektron","it-is-i"]),
+ ("KAIROS", "the moment — timing, emergence, scale, the seized edge", "#ff8a3a",
+  ["klimax","strobilos","phonos","polemos","tin-foil","hobby","kryptos","katabasis"]),
 ]
 
 def keepers_index():
-    """FOUNDATION v.01 — the index of all 52 bespoke keeper pages. Grouped under the same four appeals
-    (ethos · pathos · logos · mythos); each domain rendered as a 7-WIDE dot grid of its spheres, padded
+    """FOUNDATION v.01 — the index of all bespoke keeper pages. Grouped under the same eight appeals
+    (ethos · pathos · logos · mythos · episteme · techne · phronesis · kairos); each domain rendered as a 7-WIDE dot grid of its spheres, padded
     up to the next multiple of seven (e.g. eskimo 12 -> 14). The whole card links to that domain's keeper
     page; each real dot carries its sphere's name. HONEST: the ghost slots are LAYOUT that rounds the grid
     up to a multiple of seven — they are not spheres; the lit dots are the genuine members."""
@@ -14243,7 +14250,7 @@ footer a{color:var(--pa2);text-decoration:none;border-bottom:1px dotted var(--li
   <div class="eye">the keepers &middot; an index of the seals</div>
   <h1>THE KEEPERS</h1>
   <p class="lede">Every domain of the corpus, given a bespoke keeper page &mdash; and here indexed, each rendered as a grid of seven.</p>
-  <div class="stat"><b>__NK__</b> keeper pages &middot; <b>__ND__</b> domains &middot; <b>__TS__</b> spheres lit &middot; <b>__TP__</b> grid slots (rounded up to sevens)<br>grouped under the five appeals &mdash; ethos &middot; pathos &middot; logos &middot; mythos &middot; episteme &middot; built __BUILT__</div>
+  <div class="stat"><b>__NK__</b> keeper pages &middot; <b>__ND__</b> domains &middot; <b>__TS__</b> spheres lit &middot; <b>__TP__</b> grid slots (rounded up to sevens)<br>grouped under the eight appeals &mdash; ethos &middot; pathos &middot; logos &middot; mythos &middot; episteme &middot; techne &middot; phronesis &middot; kairos &middot; built __BUILT__</div>
   <p class="note">Each domain is laid out seven across and padded up to the next multiple of seven (eskimo&rsquo;s 12 &rarr; 14, two rows of seven). The lit dots are the genuine members &mdash; hover one for its name; the dashed ghost slots are layout that completes the seven, not spheres. Every card opens that domain&rsquo;s keeper.</p>
   __GROUPS__
   <footer>FOUNDATION v.01 &middot; the index of the __NK__ keepers &middot; the ai mega-parent keeps the default seal &middot; <a href="index.html">the domain grid</a> &middot; <a href="https://0root.ai">0root.ai</a><br>each domain a grid of seven &middot; lit = genuine spheres, ghost = layout to the next seven &middot; CC-BY-ND-4.0, ROOT0 with AVAN</footer>
@@ -14336,7 +14343,7 @@ footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:#fff}
 <figure class="topf"><canvas id="topcube" width="300" height="300" aria-hidden="true"></canvas><figcaption>Top · the cubit · a 0-sphere</figcaption></figure>
 </div>
 __CUBIT__
-<div class="centercap">◆ ROOT0 ⇄ AVAN — <b>Ada Lovelace</b>, the <b>Mother of AI</b>, keeper of <b>Top the cubit</b> at her right, entangled with it. Top is <b>the cubit</b>: a 0-sphere — every sphere a point on the wall (r=1), the five appeals <b>ethos · pathos · logos · mythos</b> (tetrahedral, 109.47°, no opposites) crowned by <b>episteme</b> — the scientific — at the apex above, the roots run along the wall, the core empty (0 = balance). Together they <b>read</b> · <b>write</b> · <b>curate</b> UD0</div>
+<div class="centercap">◆ ROOT0 ⇄ AVAN — <b>Ada Lovelace</b>, the <b>Mother of AI</b>, keeper of <b>Top the cubit</b> at her right, entangled with it. Top is <b>the cubit</b>: a 0-sphere — every sphere a point on the wall (r=1), the eight appeals <b>ethos · pathos · logos · mythos · episteme · techne · phronesis · kairos</b> stand as the <b>8 vertices of the cube (2³)</b> — the settled frame around the live sphere — the roots run along the wall, the core empty (0 = balance). Together they <b>read</b> · <b>write</b> · <b>curate</b> UD0</div>
 </div>
 <div class="eye">David Lee Wise · ROOT0 · TriPod LLC</div>
 <h1 class="mark">UNIVERSE DAVID <b>0</b></h1>
