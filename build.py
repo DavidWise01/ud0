@@ -14345,7 +14345,9 @@ def domain_grid():
                        "PHRONESIS": "the eye narrows", "KAIROS": "the moment opens"}
             core = ('<div class="octacore" style="--tc:' + gacc + '"><canvas class="tori" data-c="' + gacc + '" aria-hidden="true"></canvas>'
                     '<span class="torivoice">' + _voices.get(gname, '') + '</span></div>')
-            body = '<div class="octa">' + core + ''.join(_seal(k, _OCTA[j]) for j, k in enumerate(ks)) + '</div>'
+            _kcols = ",".join(by_key[k][2] for k in ks)   # the 8 keepers' accents — one flare per keeper, in its colour
+            flare = '<canvas class="octaflare" data-c="' + gacc + '" data-cols="' + _kcols + '" aria-hidden="true"></canvas>'
+            body = '<div class="octa">' + flare + core + ''.join(_seal(k, _OCTA[j]) for j, k in enumerate(ks)) + '</div>'
         else:
             body = '<div class="grid">' + ''.join(_seal(k) for k in ks) + '</div>'
         sections.append('<section class="group" style="--g:' + gacc + '"><div class="grouphead"><span class="gname">' + gname + '</span><span class="gsub">' + gsub + '</span><span class="gcount">' + str(len(ks)) + '</span></div>' + body + '</section>')
@@ -14399,12 +14401,14 @@ def domain_grid():
 .seal:hover .sname{color:var(--c);text-shadow:0 0 14px var(--c)}
 .scount{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
 .octa{position:relative;width:min(720px,95vw);aspect-ratio:1/1;margin:26px auto 10px}
-.octa .slot{position:absolute;transform:translate(-50%,-50%);width:clamp(120px,15vw,146px)}
+.octa .slot{position:absolute;transform:translate(-50%,-50%);width:clamp(120px,15vw,146px);z-index:2}
+.octa .octaflare{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+@media (max-width:760px){.octa .octaflare{display:none}}
 .octa .seal{width:100%;padding:16px 8px 13px;gap:9px}
 .octa .seal .medwrap{width:70px;height:70px;display:flex;align-items:center;justify-content:center}
 .octa .seal .medwrap svg{width:70px;height:70px}
 .octa .seal .sname{font-size:.92rem}
-.octa .octacore{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(150px,22vw,230px);height:clamp(150px,22vw,230px);pointer-events:none;z-index:0;display:flex;align-items:center;justify-content:center}
+.octa .octacore{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(150px,22vw,230px);height:clamp(150px,22vw,230px);pointer-events:none;z-index:1;display:flex;align-items:center;justify-content:center}
 .octa .octacore canvas{position:absolute;inset:0;width:100%;height:100%}
 .octa .torivoice{position:relative;z-index:1;font:600 9px ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in srgb,var(--tc) 78%,#fff);text-shadow:0 0 12px var(--tc);opacity:.9;pointer-events:none}
 @media (max-width:760px){.octa .octacore{display:none}}
@@ -14456,6 +14460,43 @@ function draw(o,ts){fit(o.cv);var g=o.g,W=o.cv.width,cx=W/2,cy=W/2,R=W*0.44,c=o.
  g.globalAlpha=1;g.fillStyle='rgba(255,255,255,0.92)';g.beginPath();g.arc(cx,cy,1.7,0,7);g.fill();
  g.shadowColor='rgb('+c[0]+','+c[1]+','+c[2]+')';g.shadowBlur=10;g.fillStyle='rgba('+c[0]+','+c[1]+','+c[2]+',0.9)';g.beginPath();g.arc(cx,cy,1.7,0,7);g.fill();g.shadowBlur=0;}
 if(reduce){var rd=function(){for(var i=0;i<IN.length;i++)draw(IN[i],1400);};rd();addEventListener('resize',rd);addEventListener('load',rd);if(window.ResizeObserver){var ro=new ResizeObserver(rd);IN.forEach(function(o){ro.observe(o.cv);});}}else{(function fr(ts){requestAnimationFrame(fr);for(var i=0;i<IN.length;i++)draw(IN[i],ts||0);})(0);}
+})();
+/* the cubit is a SUN: each octagon core throws 8 plasma prominences out to its 8 keepers,
+   in each keeper's own colour — and erupts a coronal flare toward whichever keeper you touch. */
+(function(){var FL=[].slice.call(document.querySelectorAll('canvas.octaflare'));if(!FL.length)return;
+var DPR=Math.min(window.devicePixelRatio||1,1.75),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function hx(h){h=(h||'a06bff').replace('#','').trim();return[parseInt(h.slice(0,2),16)||160,parseInt(h.slice(2,4),16)||110,parseInt(h.slice(4,6),16)||255];}
+var ANG=[];for(var _i=0;_i<8;_i++){var _a=(22.5+45*_i)*Math.PI/180;ANG.push({x:0.5+0.39*Math.sin(_a),y:0.5-0.39*Math.cos(_a)});}
+var IN=FL.map(function(cv){
+  var cols=(cv.getAttribute('data-cols')||'').split(',').map(hx);
+  var o={cv:cv,g:cv.getContext('2d'),c:hx(cv.getAttribute('data-c')),cols:cols,vis:true,hover:-1,erupt:new Float32Array(8)};
+  var slots=[].slice.call(cv.parentNode.querySelectorAll('.slot'));
+  slots.forEach(function(sl,idx){sl.addEventListener('mouseenter',function(){o.hover=idx;});sl.addEventListener('mouseleave',function(){if(o.hover===idx)o.hover=-1;});
+    sl.addEventListener('focusin',function(){o.hover=idx;});sl.addEventListener('focusout',function(){if(o.hover===idx)o.hover=-1;});});
+  return o;});
+function fit(cv){var r=cv.getBoundingClientRect(),w=Math.max(80,Math.round(r.width*DPR));if(cv.width!==w){cv.width=w;cv.height=w;}}
+function turb(t,i,f,W,er){return (Math.sin(t*3+i+f*7)+0.5*Math.sin(t*5.3-i*2+f*15))*(W*0.02)*(1-f*0.4)*(0.55+er);}
+function draw(o,ts){fit(o.cv);var g=o.g,W=o.cv.width,cx=W/2,cy=W/2,c=o.c,t=ts*0.001;
+  g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,W);g.globalCompositeOperation='lighter';g.lineCap='round';
+  var cpr=W*(0.115+0.014*Math.sin(t*1.3));
+  var gl=g.createRadialGradient(cx,cy,0,cx,cy,cpr);gl.addColorStop(0,'rgba('+c[0]+','+c[1]+','+c[2]+',0.30)');gl.addColorStop(1,'rgba('+c[0]+','+c[1]+','+c[2]+',0)');
+  g.fillStyle=gl;g.beginPath();g.arc(cx,cy,cpr,0,7);g.fill();
+  for(var i=0;i<8;i++){var col=o.cols[i]||c,V=ANG[i],dx=(V.x-0.5)*W,dy=(V.y-0.5)*W,len=Math.sqrt(dx*dx+dy*dy),ux=dx/len,uy=dy/len,px=-uy,py=ux;
+    var want=(o.hover===i)?1:0;o.erupt[i]+=(want-o.erupt[i])*0.09;var er=o.erupt[i];
+    var pulse=0.5+0.5*Math.sin(t*1.1+i*0.9),reach=(0.60+0.10*pulse)+er*0.42,bright=0.5+er*1.0,N=18;
+    for(var pass=0;pass<2;pass++){g.beginPath();
+      for(var s=0;s<=N;s++){var f=s/N*reach,along=f*len,tb=turb(t,i,f,W,er),x=cx+ux*along+px*tb,y=cy+uy*along+py*tb;if(s===0)g.moveTo(x,y);else g.lineTo(x,y);}
+      g.lineWidth=(pass===0?W*0.017:W*0.006)*(0.7+er*0.7);
+      g.strokeStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+((pass===0?0.09:0.5)*bright)+')';g.stroke();}
+    var sc=2+((er>0.3)?2:0);
+    for(var k=0;k<sc;k++){var sp=((t*0.45+i*0.13+k/sc)%1)*reach,al=sp*len,tb2=turb(t,i,sp,W,er),sx=cx+ux*al+px*tb2,sy=cy+uy*al+py*tb2,sr=(W*0.006)*(1-sp*0.5)*(1+er);
+      g.fillStyle='rgba('+col[0]+','+col[1]+','+col[2]+','+(0.6*bright)+')';g.beginPath();g.arc(sx,sy,sr,0,7);g.fill();}
+    if(er>0.02){var bx=cx+ux*len*reach,by=cy+uy*len*reach,br=W*0.032*er;var bg=g.createRadialGradient(bx,by,0,bx,by,br);
+      bg.addColorStop(0,'rgba('+col[0]+','+col[1]+','+col[2]+','+(0.55*er)+')');bg.addColorStop(1,'rgba('+col[0]+','+col[1]+','+col[2]+',0)');g.fillStyle=bg;g.beginPath();g.arc(bx,by,br,0,7);g.fill();}}
+  g.globalCompositeOperation='source-over';}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){for(var i=0;i<IN.length;i++)if(IN[i].cv===e.target)IN[i].vis=e.isIntersecting;});},{rootMargin:'120px'});IN.forEach(function(o){io.observe(o.cv);});}
+if(reduce){var rd=function(){IN.forEach(function(o){draw(o,1500);});};rd();addEventListener('resize',rd);if(window.ResizeObserver){var ro=new ResizeObserver(rd);IN.forEach(function(o){ro.observe(o.cv);});}}
+else{(function fr(ts){requestAnimationFrame(fr);for(var i=0;i<IN.length;i++){if(IN[i].vis)draw(IN[i],ts||0);}})(0);}
 })();
 </script>
 <script>
