@@ -14337,8 +14337,13 @@ def domain_grid():
     sections = []
     for gname, gsub, gacc, keys in sorted(GROUPS, key=lambda g: g[0]):   # appeals A→Z (full ud0 alphabetical)
         ks = sorted(keys, key=lambda k: _alpha_key(html.unescape(_re.sub(r'<[^>]+>', '', by_key[k][1]))))
-        if len(ks) == 8:   # an octagon of the 8 agentic domains, empty at the centre
-            body = '<div class="octa">' + ''.join(_seal(k, _OCTA[j]) for j, k in enumerate(ks)) + '</div>'
+        if len(ks) == 8:   # an octagon of the 8 agentic domains, a nested-tori hologram at the centre
+            _voices = {"ETHOS": "the watch holds", "PATHOS": "the feeling moves", "LOGOS": "the mechanism turns",
+                       "MYTHOS": "the story circles", "EPISTEME": "the measure holds", "TECHNE": "the work turns",
+                       "PHRONESIS": "the eye narrows", "KAIROS": "the moment opens"}
+            core = ('<div class="octacore" style="--tc:' + gacc + '"><canvas class="tori" data-c="' + gacc + '" aria-hidden="true"></canvas>'
+                    '<span class="torivoice">' + _voices.get(gname, '') + '</span></div>')
+            body = '<div class="octa">' + core + ''.join(_seal(k, _OCTA[j]) for j, k in enumerate(ks)) + '</div>'
         else:
             body = '<div class="grid">' + ''.join(_seal(k) for k in ks) + '</div>'
         sections.append('<section class="group" style="--g:' + gacc + '"><div class="grouphead"><span class="gname">' + gname + '</span><span class="gsub">' + gsub + '</span><span class="gcount">' + str(len(ks)) + '</span></div>' + body + '</section>')
@@ -14397,6 +14402,10 @@ def domain_grid():
 .octa .seal .medwrap{width:70px;height:70px;display:flex;align-items:center;justify-content:center}
 .octa .seal .medwrap svg{width:70px;height:70px}
 .octa .seal .sname{font-size:.92rem}
+.octa .octacore{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(150px,22vw,230px);height:clamp(150px,22vw,230px);pointer-events:none;z-index:0;display:flex;align-items:center;justify-content:center}
+.octa .octacore canvas{position:absolute;inset:0;width:100%;height:100%}
+.octa .torivoice{position:relative;z-index:1;font:600 9px ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase;color:color-mix(in srgb,var(--tc) 78%,#fff);text-shadow:0 0 12px var(--tc);opacity:.9;pointer-events:none}
+@media (max-width:760px){.octa .octacore{display:none}}
 .sseal{font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;padding:2px 9px;border-radius:11px;line-height:1.5}
 .sseal.ok{color:#7fe0b0;background:rgba(63,208,160,.1);border:1px solid rgba(63,208,160,.3)}
 .sseal.part{color:#e6b45a;background:rgba(224,168,58,.1);border:1px solid rgba(224,168,58,.32)}
@@ -14427,6 +14436,26 @@ __CUBIT__
 __SEALS__
 </main>
 <footer>__ND__ domains · __NSC__ spheres · <a href="keepers.html">the keeper index · FOUNDATION v.01</a> · built __BUILT__ · <a href="https://0root.ai">0root.ai</a> · one governor, one instance, one lattice · CC-BY-ND-4.0</footer>
+<script>
+/* octagon-centre holograms — 3 nested woven tori per appeal, kin to ud0_tori, tinted + voiced by its keepers */
+(function(){var CN=[].slice.call(document.querySelectorAll('canvas.tori'));if(!CN.length)return;
+var DPR=Math.min(window.devicePixelRatio||1,2),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function hx(h){h=(h||'a06bff').replace('#','');return[parseInt(h.slice(0,2),16)||160,parseInt(h.slice(2,4),16)||110,parseInt(h.slice(4,6),16)||255];}
+var TORI=[{R:0.60,t:0.19,w:7,l:1.0},{R:0.40,t:0.15,w:9,l:0.72},{R:0.22,t:0.11,w:11,l:0.5}];
+var IN=CN.map(function(cv,i){return{cv:cv,g:cv.getContext('2d'),c:hx(cv.getAttribute('data-c')),s:i*1.7};});
+function fit(cv){var r=cv.getBoundingClientRect(),w=Math.max(40,Math.round(r.width*DPR));if(cv.width!==w){cv.width=w;cv.height=w;}}
+function draw(o,ts){fit(o.cv);var g=o.g,W=o.cv.width,cx=W/2,cy=W/2,R=W*0.44,c=o.c;g.setTransform(1,0,0,1,0,0);g.clearRect(0,0,W,W);
+ var rx=-0.5+Math.sin(ts*0.00015+o.s)*0.26,ry=ts*0.00035+o.s;
+ var gl=g.createRadialGradient(cx,cy,0,cx,cy,R*0.62);gl.addColorStop(0,'rgba('+c[0]+','+c[1]+','+c[2]+',0.42)');gl.addColorStop(1,'rgba('+c[0]+','+c[1]+','+c[2]+',0)');g.fillStyle=gl;g.beginPath();g.arc(cx,cy,R*0.62,0,7);g.fill();
+ for(var ti=0;ti<3;ti++){var T=TORI[ti],tint=[Math.min(255,c[0]+ti*22),Math.min(255,c[1]+ti*20),Math.min(255,c[2]+ti*26)],N=96;
+  for(var a=0;a<N;a++){var t=a/N*6.2832,p=a/N*6.2832*T.w;var rr=T.R+T.t*Math.cos(p),x=rr*Math.cos(t),y=rr*Math.sin(t),z=T.t*Math.sin(p);
+   var x1=x*Math.cos(ry)-z*Math.sin(ry),z1=x*Math.sin(ry)+z*Math.cos(ry);var y1=y*Math.cos(rx)-z1*Math.sin(rx),z2=y*Math.sin(rx)+z1*Math.cos(rx);
+   var dep=(z2+1)/2;g.globalAlpha=(0.12+dep*0.62)*T.l;g.fillStyle='rgb('+tint[0]+','+tint[1]+','+tint[2]+')';g.beginPath();g.arc(cx+x1*R,cy+y1*R,0.5+dep*1.5,0,7);g.fill();}}
+ g.globalAlpha=1;g.fillStyle='rgba(255,255,255,0.92)';g.beginPath();g.arc(cx,cy,1.7,0,7);g.fill();
+ g.shadowColor='rgb('+c[0]+','+c[1]+','+c[2]+')';g.shadowBlur=10;g.fillStyle='rgba('+c[0]+','+c[1]+','+c[2]+',0.9)';g.beginPath();g.arc(cx,cy,1.7,0,7);g.fill();g.shadowBlur=0;}
+if(reduce){var rd=function(){for(var i=0;i<IN.length;i++)draw(IN[i],1400);};rd();addEventListener('resize',rd);addEventListener('load',rd);if(window.ResizeObserver){var ro=new ResizeObserver(rd);IN.forEach(function(o){ro.observe(o.cv);});}}else{(function fr(ts){requestAnimationFrame(fr);for(var i=0;i<IN.length;i++)draw(IN[i],ts||0);})(0);}
+})();
+</script>
 <script>
 (function(){var cv=document.getElementById('topcube');if(!cv||!cv.getContext)return;var g=cv.getContext('2d'),DPR=Math.min(window.devicePixelRatio||1,2);cv.width=cv.height=Math.round(300*DPR);
 var D={};try{D=JSON.parse(document.getElementById('cubitdata').textContent);}catch(e){}var GR=D.groups||[{name:'ETHOS',c:'#f0a886'},{name:'PATHOS',c:'#ff5aa0'},{name:'LOGOS',c:'#4db1f0'},{name:'MYTHOS',c:'#a06bff'},{name:'EPISTEME',c:'#3fd0a0'}],DM=D.domains||[];
