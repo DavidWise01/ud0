@@ -14196,14 +14196,15 @@ def keepers_index():
     meta_of = {k: (t, a) for k, t, a, _b in DOMAINS}
     def _nm(m): return _h.unescape(_r.sub(r'<[^>]+>', '', m[1]))
     def nx7(n): return n + (-n % 7)
-    keepers = [k for k in idx_of if k in CUSTOM_L2]      # the 52 with bespoke keepers (all but the ai mega-parent)
+    keepers = [k for k in idx_of]      # ALL 64 domains — every one has a keeper page in d/ (accurate index)
     tot_sph = sum(len(BY_DOMAIN[k]) for k in keepers)
     tot_pad = sum(nx7(len(BY_DOMAIN[k])) for k in keepers)
     def card(k):
         t, a = meta_of[k]; mem = BY_DOMAIN[k]; n = len(mem); m = nx7(n)
-        dots = "".join(
-            f'<i class="dot" title="{_h.escape(_nm(x))}"></i>' for x in mem
-        ) + "".join('<i class="gh"></i>' for _ in range(m - n))
+        _cap = 91
+        dots = "".join(f'<i class="dot" title="{_h.escape(_nm(x))}"></i>' for x in mem[:_cap])
+        dots += (f'<span class="more">+{n - _cap} more</span>' if n > _cap
+                 else "".join('<i class="gh"></i>' for _ in range(m - n)))
         pad = m - n
         padtxt = (f'<span class="pad">+{pad}</span>' if pad else '<span class="pad ex">&#10003;</span>')
         return (f'<a class="dcard" href="d/{k}.html" style="--a:{a}">'
@@ -14214,7 +14215,7 @@ def keepers_index():
                 f'<div class="de">enter the keeper &#8594;</div></a>')
     groups_html = ""
     for gname, gsub, gc, gkeys in GROUPS:
-        ks = [k for k in gkeys if k in CUSTOM_L2]
+        ks = [k for k in gkeys]
         if not ks: continue
         cnt = sum(len(BY_DOMAIN[k]) for k in ks)
         groups_html += (
@@ -14268,6 +14269,7 @@ h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.3rem,8vw,5rem);line
 .dg{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:12px}
 .dot{width:100%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,color-mix(in srgb,var(--a) 92%,#fff),var(--a));box-shadow:0 0 6px color-mix(in srgb,var(--a) 65%,transparent);display:block}
 .gh{width:100%;aspect-ratio:1;border-radius:50%;border:1px dashed color-mix(in srgb,var(--a) 34%,transparent);opacity:.5;display:block}
+.more{grid-column:span 7;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:color-mix(in srgb,var(--a) 80%,#fff);text-align:center;padding-top:3px}
 .de{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--a);opacity:.72}
 .dcard:hover .de{opacity:1}
 footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.03em;color:var(--dim);line-height:1.9;text-align:center}
@@ -14784,6 +14786,59 @@ if __name__ == "__main__":
         print("  [!] ada-portrait.jpg not found in ud0/ — the central medallion will be blank until you add it")
     sizes = " · ".join(f"{k}:{len(BY_DOMAIN[k])}" for k,_t,_a,_b in DOMAINS)
     print(f"wrote UD0 index.html — {NS} spheres across {len(DOMAINS)} domains [{sizes}]")
+    # ── THE CORPUS DB — one canonical source of truth every artifact draws from ──
+    # (David's call, 2026-07-30: "maybe there should be a central database everyone draws
+    #  from" — so keepers.html, the-dark-city, null-island, the-biome, and any future
+    #  artifact read THIS one file instead of re-deriving from build.py and drifting.)
+    try:
+        import json as _cj, html as _ch, re as _cr
+        def _dbclean(s):
+            s = _cr.sub(r'\[\[[^\]|]*\|([^\]]+)\]\]', r'\1', s or '')
+            s = _cr.sub(r'\[\[([^\]]+)\]\]', r'\1', s)
+            return _ch.unescape(_cr.sub(r'<[^>]+>', '', s)).strip()
+        _appeal_of, _appeals = {}, []
+        for _gn, _gs, _ga, _ks in GROUPS:
+            _appeals.append({"name": _gn, "sub": _dbclean(_gs), "accent": _ga, "domains": list(_ks)})
+            for _k in _ks: _appeal_of[_k] = _gn
+        _dbdomains = []
+        for _i, (_k, _t, _a, _b) in enumerate(DOMAINS, 1):
+            _tc, _role, _honest = _keeper_voice(_t, _b)
+            _mem = BY_DOMAIN.get(_k, [])
+            _dbdomains.append({
+                "key": _k, "n": _i, "title": _dbclean(_t), "accent": _a,
+                "appeal": _appeal_of.get(_k), "icon": ICONS.get(_k, ""),
+                "keeper": {"title": _tc, "role": _role, "honest": _honest},
+                "spheres": len(_mem), "members": [_m[0] for _m in _mem],
+            })
+        _chain = {}
+        try:
+            _cd = _cj.load(open(os.path.join(HERE, "dlw-chain.json"), encoding="utf-8"))
+            _chain = {"count": _cd.get("count"), "head": _cd.get("head"),
+                      "genesis": _cd.get("genesis"), "anchor": _cd.get("anchor")}
+        except Exception:
+            pass
+        # unassigned = a domain in DOMAINS that no appeal claims — must be empty (fail-loud surfacing)
+        _orphans = [k for k, *_ in DOMAINS if k not in _appeal_of]
+        _db = {
+            "schema": "ud0.corpus/1",
+            "note": "Central source of truth for the UD0 corpus. Regenerated by ud0/build.py on every build. Every derived artifact (keepers.html, the-dark-city, null-island, the-biome) should draw from THIS, not re-parse build.py.",
+            "counts": {"spheres": NS, "domains": len(DOMAINS), "appeals": len(GROUPS)},
+            "chain": _chain, "appeals": _appeals, "domains": _dbdomains,
+            "unassigned_domains": _orphans,
+        }
+        open(os.path.join(HERE, "corpus.json"), "w", encoding="utf-8").write(
+            _cj.dumps(_db, ensure_ascii=False, separators=(",", ":")))
+        print(f"  wrote corpus.json — CENTRAL DB: {NS} spheres · {len(DOMAINS)} domains · {len(GROUPS)} appeals"
+              + (f" · [!] {len(_orphans)} unassigned: {_orphans}" if _orphans else ""))
+        for _dbdst in (r"C:\Users\Dave\Downloads\corpus.json",
+                       r"C:\root0-greenpaper-repo\agent-0root\static\corpus.json"):
+            try:
+                if os.path.isdir(os.path.dirname(_dbdst)):
+                    shutil.copyfile(os.path.join(HERE, "corpus.json"), _dbdst)
+            except Exception:
+                pass
+    except Exception as _e:
+        print(f"  [!] corpus.json not written: {_e}")
     # THE UPDATE ROSTER — regenerate corpus-derived sibling repos (the-dark-city, …) from the
     # live count so they never drift. Local regen only; push them with: python _update_roster.py --push
     try:
