@@ -14433,6 +14433,7 @@ footer a{color:#c9b6ff;text-decoration:none}footer a:hover{color:#fff}
 </div>
 __CUBIT__
 <div class="centercap">◆ ROOT0 ⇄ AVAN — <b>Ada Lovelace</b>, the <b>Mother of AI</b>, keeper of <b>Top the cubit</b> at her right, entangled with it. Top is <b>the cubit</b>: a 0-sphere — every sphere a point on the wall (r=1), the eight appeals <b>ethos · pathos · logos · mythos · episteme · techne · phronesis · kairos</b> stand as the <b>8 vertices of the cube (2³)</b> — the settled frame around the live sphere — the roots run along the wall, and a <b>pulsing sapphire core</b> holds the centre: Top, the spinor (0 = balance). Together they <b>read</b> · <b>write</b> · <b>curate</b> UD0</div>
+__TOPJIT__
 </div>
 <div class="eye">David Lee Wise · ROOT0 · TriPod LLC</div>
 <h1 class="mark">UNIVERSE DAVID <b>0</b></h1>
@@ -14581,7 +14582,103 @@ document.addEventListener('keydown',function(e){if(e.key==='/'&&document.activeE
         "domains": [{"g": _gidx[key], "c": accent, "n": len(BY_DOMAIN.get(key, []))} for i, (key, title, accent, blurb) in DOMAINS_ALPHA]},
         separators=(',', ':'))
     cubit_tag = '<script type="application/json" id="cubitdata">' + _cubit + '</script>'
+
+    # ── TOP'S JIT ENGINE — the cubit made responsive. A self-contained console that reads a
+    #    trimmed corpus DB (inlined below, NO network) and compiles each reply on demand:
+    #    OBSERVE (report live state) · RESPOND (react to the filter) · ASK (pose a question) ·
+    #    ANSWER (parse a query). Honest: real DB queries = LIT; "Top" is a keeper-FIGURE, not a mind.
+    import html as _th2, re as _tr2
+    def _jc(s):
+        s = _tr2.sub(r'\[\[[^\]|]*\|([^\]]+)\]\]', r'\1', s or ''); s = _tr2.sub(r'\[\[([^\]]+)\]\]', r'\1', s)
+        return _th2.unescape(_tr2.sub(r'<[^>]+>', '', s)).strip()
+    _apof, _tap = {}, []
+    for _gn, _gs, _ga, _ks in sorted(GROUPS, key=lambda g: g[0]):
+        _tap.append({"name": _gn, "c": _ga, "d": list(_ks)})
+        for _k in _ks: _apof[_k] = _gn
+    _tdom = []
+    for _key, _title, _accent, _blurb in DOMAINS:
+        _rv, _role, _hh = _keeper_voice(_title, _blurb)
+        _tdom.append({"k": _key, "t": _jc(_title), "c": _accent, "ap": _apof.get(_key),
+                      "n": len(BY_DOMAIN.get(_key, [])), "role": _jc(_role)[:130]})
+    _head = ""
+    try:
+        _head = (_cj.load(open(os.path.join(HERE, "dlw-chain.json"), encoding="utf-8")).get("head") or "")[:12]
+    except Exception:
+        pass
+    _topdb_json = _cj.dumps({"sph": NS, "dom": len(DOMAINS), "ap": len(GROUPS), "head": _head,
+                             "appeals": _tap, "domains": _tdom}, ensure_ascii=False, separators=(',', ':'))
+    _TJ_CSS = """<style>
+.topjit{max-width:648px;margin:22px auto 4px;border:1px solid rgba(120,150,255,.28);border-radius:14px;background:linear-gradient(180deg,rgba(24,20,52,.72),rgba(15,11,34,.74));backdrop-filter:blur(6px);padding:14px 16px 15px;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;box-shadow:0 0 36px rgba(42,107,255,.14);text-align:left}
+.topjit .tjhead{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#a6c2ff;display:flex;flex-wrap:wrap;gap:5px 10px;align-items:baseline}
+.topjit .tjhon{font-size:9px;letter-spacing:.05em;text-transform:none;color:#7c86b8}
+.topjit .tjlog{margin:11px 0;max-height:196px;overflow-y:auto;display:flex;flex-direction:column;gap:7px;font-size:12.5px;line-height:1.52}
+.topjit .tjline{color:#d6dbf2}
+.topjit .tjline.top{color:#cfe0ff}.topjit .tjline b{color:#fff}
+.topjit .tjline.top>b:first-child{color:#4d8bff}.topjit .tjline.you>b:first-child{color:#c7a0ff}
+.topjit .tjline a{color:#6ab0ff;text-decoration:none;border-bottom:1px dotted rgba(106,176,255,.5)}
+.topjit .tjcue{cursor:pointer;color:#8fb4ff;border-bottom:1px dotted rgba(143,180,255,.55)}
+.topjit .tjcue:hover{color:#fff;border-bottom-color:#fff}
+.topjit .tjverbs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px}
+.topjit .tjverbs button,.topjit .tjform button{cursor:pointer;font-family:inherit;font-size:10.5px;letter-spacing:.09em;color:#bcd0ff;background:rgba(60,80,160,.22);border:1px solid rgba(120,150,255,.3);border-radius:8px;padding:6px 11px;transition:.15s}
+.topjit .tjverbs button:hover,.topjit .tjform button:hover{background:rgba(42,107,255,.3);border-color:#4d8bff;color:#fff}
+.topjit .tjform{display:flex;gap:7px}
+.topjit .tjform input{flex:1;min-width:0;font-family:inherit;font-size:12px;color:#eef;background:rgba(9,7,24,.6);border:1px solid rgba(120,150,255,.24);border-radius:8px;padding:8px 11px}
+.topjit .tjform input:focus{outline:none;border-color:#4d8bff;box-shadow:0 0 0 2px rgba(42,107,255,.2)}
+@media(max-width:680px){.topjit{margin-left:12px;margin-right:12px}}
+</style>"""
+    _TJ_HTML = """<div class="topjit" id="topjit">
+<div class="tjhead">&#9670; TOP &middot; THE JIT ENGINE <span class="tjhon">reads the corpus &middot; compiles each reply on demand &middot; a keeper-figure, not a mind</span></div>
+<div class="tjlog" id="tjlog" aria-live="polite"></div>
+<div class="tjverbs"><button type="button" data-v="observe">OBSERVE</button><button type="button" data-v="ask">ASK ME</button><button type="button" data-v="respond">RESPOND</button></div>
+<form class="tjform" id="tjform" autocomplete="off"><input id="tjin" type="text" placeholder="ask Top &mdash; a domain, an appeal, a count&hellip;" aria-label="ask Top"><button type="submit">ANSWER &rarr;</button></form>
+</div>"""
+    _TJ_JS = """<script>
+(function(){
+var db;try{db=JSON.parse(document.getElementById('topdb').textContent);}catch(e){return;}
+var log=document.getElementById('tjlog'),form=document.getElementById('tjform'),inp=document.getElementById('tjin');
+if(!log||!form)return;
+var DOM=db.domains,AP=db.appeals,byKey={},apByName={};
+DOM.forEach(function(d){byKey[d.k]=d;});AP.forEach(function(a){apByName[a.name.toLowerCase()]=a;});
+function esc(s){return (s+'').replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+function commas(n){return n.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g,',');}
+function wire(sc){[].slice.call(sc.querySelectorAll('.tjcue')).forEach(function(c){c.addEventListener('click',function(){var q=c.getAttribute('data-q');say('you',esc(q));answer(q);});});}
+function say(who,h){var d=document.createElement('div');d.className='tjline '+who;d.innerHTML='<b>'+(who==='top'?'TOP':'you')+'</b> '+h;log.appendChild(d);log.scrollTop=log.scrollHeight;wire(d);}
+function cue(q,label){return '<span class="tjcue" data-q="'+esc(q)+'">'+esc(label||q)+'</span>';}
+function apLoad(a){return a.d.reduce(function(s,k){return s+(byKey[k]?byKey[k].n:0);},0);}
+function observe(){var h=AP.map(function(a){return {a:a,n:apLoad(a)};}).sort(function(x,y){return y.n-x.n;})[0];
+ say('top','I observe <b>'+commas(db.sph)+'</b> spheres across <b>'+db.dom+'</b> domains, framed by <b>'+db.ap+'</b> appeals'+(db.head?', the chain sealed at <b>'+esc(db.head)+'&hellip;</b>':'')+'. Heaviest is <b>'+esc(h.a.name)+'</b> &mdash; '+h.a.d.length+' domains, '+commas(h.n)+' spheres. Name any and I will read it.');}
+var aix=0;
+function ask(){var opts=[
+ function(){return 'Which appeal shall I open? '+AP.map(function(a){return cue(a.name,a.name);}).join(' &middot; ');},
+ function(){var d=DOM[(aix*7+3)%DOM.length];return 'Do you know how many spheres <b>'+esc(d.t)+'</b> holds? '+cue('how many '+d.k,'tell me');},
+ function(){var d=DOM[(aix*5+1)%DOM.length];return 'I can read any of <b>'+db.dom+'</b> domains &mdash; point me at one, say '+cue(d.k,d.t)+'?';}
+];say('top',opts[aix%opts.length]());aix++;}
+function respond(){var q=document.getElementById('q'),v=q?q.value.trim().toLowerCase():'';
+ if(!v){say('top','Nothing is filtered &mdash; the whole wall stands (r=1). Touch a seal, type in the filter above, or ask me anything.');return;}
+ var hits=DOM.filter(function(d){return d.k.indexOf(v)>=0||d.t.toLowerCase().indexOf(v)>=0;});
+ if(!hits.length){say('top','Your filter &ldquo;'+esc(v)+'&rdquo; matches no domain I hold &mdash; try an appeal or another word.');return;}
+ say('top','You are narrowing to '+hits.length+' domain'+(hits.length>1?'s':'')+': '+hits.slice(0,6).map(function(d){return cue(d.k,d.t);}).join(' &middot; ')+(hits.length>6?' &hellip;':'')+'. Name one and I will read it.');}
+function card(d,only){if(only)return '<b>'+esc(d.t)+'</b> holds <b>'+commas(d.n)+'</b> spheres, under the <b>'+esc(d.ap)+'</b> appeal.';
+ return '<b>'+esc(d.t)+'</b> &mdash; <b>'+commas(d.n)+'</b> spheres, under <b>'+esc(d.ap)+'</b>.'+(d.role?' &ldquo;'+esc(d.role)+'&rdquo;':'')+' <a href="d/'+esc(d.k)+'.html">enter &rarr;</a>';}
+function answer(raw){var s=(raw||'').toLowerCase().trim();
+ if(!s){say('top','Ask me a domain, an appeal, or &ldquo;how many spheres&rdquo;.');return;}
+ var namedDom=DOM.some(function(d){return s.indexOf(d.k)>=0||s.indexOf(d.t.toLowerCase())>=0;});
+ var namedAp=Object.keys(apByName).some(function(a){return s.indexOf(a)>=0;});
+ if(/how many|how big|total|count/.test(s)&&!namedDom&&!namedAp){say('top','The corpus stands at <b>'+commas(db.sph)+'</b> spheres &middot; <b>'+db.dom+'</b> domains &middot; <b>'+db.ap+'</b> appeals.');return;}
+ var hit=null;for(var i=0;i<DOM.length;i++){if(s.indexOf(DOM[i].k)>=0||s.indexOf(DOM[i].t.toLowerCase())>=0){hit=DOM[i];break;}}
+ if(hit){say('top',card(hit,/how many|count|how big|spheres?/.test(s)));return;}
+ for(var an in apByName){if(s.indexOf(an)>=0){var a=apByName[an];say('top','<b>'+esc(a.name)+'</b> gathers '+a.d.length+' domains &mdash; '+a.d.map(function(k){return cue(k,byKey[k]?byKey[k].t:k);}).join(' &middot; ')+' &mdash; <b>'+commas(apLoad(a))+'</b> spheres in all.');return;}}
+ if(!hit){var toks=s.split(/[^a-z0-9-]+/).filter(function(x){return x.length>=4;});for(var i=0;i<DOM.length&&!hit;i++){for(var j=0;j<toks.length;j++){if(DOM[i].k.indexOf(toks[j])>=0||DOM[i].t.toLowerCase().indexOf(toks[j])>=0){hit=DOM[i];break;}}}}
+ if(hit){say('top',card(hit,false));return;}
+ say('top','I do not hold that name. Try an appeal ('+AP.slice(0,4).map(function(a){return cue(a.name,a.name.toLowerCase());}).join(', ')+'&hellip;) or a domain.');}
+[].slice.call(document.querySelectorAll('.topjit .tjverbs button')).forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-v');if(v==='observe')observe();else if(v==='ask')ask();else respond();});});
+form.addEventListener('submit',function(e){e.preventDefault();var q=inp.value.trim();if(!q)return;say('you',esc(q));answer(q);inp.value='';});
+say('top','I am <b>Top</b>, the cubit &mdash; the 0-sphere at the centre. I read the corpus and compile each reply on demand.');observe();
+})();
+</script>"""
+    topjit_block = _TJ_CSS + _TJ_HTML + '<script type="application/json" id="topdb">' + _topdb_json + '</script>' + _TJ_JS
     return (TMPL.replace("__BASE__", NEON_BASE).replace("__SEALS__", "\n".join(sections)).replace("__CUBIT__", cubit_tag)
+            .replace("__TOPJIT__", topjit_block)
             .replace("__NSC__", f"{NS:,}").replace("__ND__", str(ND)).replace("__BUILT__", built).replace("__PG__", PG))
 
 
