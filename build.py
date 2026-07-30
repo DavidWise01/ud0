@@ -2684,29 +2684,28 @@ LINK_ALIAS = {
     "transcriber-domain": "the-transcriber",
     "the-garden": "https://davidwise01.github.io/The-Garden/",
     "the-register-peers": "the-register",
-    "tin-foil-domain": "#tin-foil",
+    "tin-foil-domain": "tin-foil",
     "0xdeadbeef-emergence-theory": "0xdeadbeef",
     "entelecheia-universe": "entelecheia",
     "heian-kokoro-kotoba": "under-one-blossoming-tree",
-    "quantum-frontier-life-batch": "#frontier",
-    "gurutva-gravity-domain": "#gurutva",
+    "quantum-frontier-life-batch": "frontier",
+    "gurutva-gravity-domain": "gurutva",
     "mimzy-forge": "mimzy",
     "idios-the-honest-remainder": "idios",
     "the-mind-ai-theater": "the-mind",
     "crippled-god-cg1": "crippled-god",
     "fmb-topology": "anabasis",
-    "frontier": "#frontier",
     "ai-ethics-governance-gov": "ai-governance",
     "the-greek-mirror-amp": "enheduanna",
     "field-guide-purple-papers": "the-purple-book",
-    "hermes": "#hermes",
     "the-city": "https://davidwise01.github.io/the-city/",
     "ttu1-transformer-tech": "ttu1",
-    "phantasia": "#phantasia",
-    "banana": "#banana",
-    "the-source": "#the-source",
+    # memory-slug wikilinks that DO have a real sphere target
+    "duality-mantra-zero-core": "the-duality-of-the-brain",
+    "jacobi-basins-companions": "jacobi-space",
 }
 _ALL_SLUGS = {t[0] for t in ALL}
+_DOMAIN_KEYS = {d[0] for d in DOMAINS}   # a bare [[domain-key]] means the DOMAIN — resolve to its keeper page
 _UNRESOLVED_LINKS = {}
 _RESOLVED_LINKS = [0]
 _WORST_CONTRAST = [99.0]
@@ -2719,6 +2718,9 @@ def _render_links(escaped_text):
             _RESOLVED_LINKS[0]+=1
             href = f"{PG}/{t}/" if t in _ALL_SLUGS else t
             return f'<a href="{href}">{label}</a>'
+        if t in _DOMAIN_KEYS:   # a domain reference -> its keeper page (absolute, works from grid AND keeper pages)
+            _RESOLVED_LINKS[0]+=1
+            return f'<a href="{PG}/ud0/d/{t}.html">{label}</a>'
         _UNRESOLVED_LINKS[target] = _UNRESOLVED_LINKS.get(target, 0) + 1
         return f'<i>{label}</i>'
     return _re.sub(r'\[\[([^\]|]+)(?:\|([^\]]*))?\]\]', sub, escaped_text)
