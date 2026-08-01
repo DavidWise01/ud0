@@ -2,25 +2,25 @@
   "schema": "dlw.fold/1",
   "world": "II",
   "kind": "sphere",
-  "name": "THE ONE-BIT RIVER",
-  "slug": "the-one-bit-river",
-  "seal": "aa278900f365a6a82f0ef6bc146afec09071c69772e27892607d5a3b56ef2b5f",
-  "index": 147,
+  "name": "THE MEAN OF TWO MEANS",
+  "slug": "the-mean-of-two-means",
+  "seal": "1602077499986cc6178a5a57d3d2739c46a822e29ee92544556dd09610e77bf1",
+  "index": 148,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "d91299ce44be4e15a7c3a29a9e7fdf52c35cba1a8f3a5ed7cc8349349d8c9b6e",
-      "side": "L"
-    },
-    {
-      "h": "4c82b2622835f3de46cdf76fd87bfc763b631ae50bc7458e423997d904e61e89",
-      "side": "L"
-    },
-    {
-      "h": "96e05d165ed1fa2a4304457f398a5c3295d9cb65a2b2f1a61efb63c62b49b14b",
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
       "side": "R"
+    },
+    {
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "side": "R"
+    },
+    {
+      "h": "63e3acbefa6a2db4dd880b228a946140ab64e58fe8e98b0576c7c306895de3e3",
+      "side": "L"
     },
     {
       "h": "9f28157d6142b52d5fd44455ad7c25beeb834ffe50f283195a7678f413aaed43",
