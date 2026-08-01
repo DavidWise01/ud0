@@ -2,37 +2,37 @@
   "schema": "dlw.fold/1",
   "world": "II",
   "kind": "sphere",
-  "name": "THE FAILURE WEB",
-  "slug": "the-failure-web",
-  "seal": "415bfa4ad14aaa7241d86723a53d001516e7a6ed0e7f68aee4586716407958cb",
-  "index": 152,
+  "name": "THE SQUARE ROOT IN THE RING",
+  "slug": "the-square-root-in-the-ring",
+  "seal": "74467ea2332094c9b202e495baf2baecfb7b08ce9f526b1c0b88ad08ce621bbd",
+  "index": 165,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "361275f07eccc964b458d692cfba0c3d5ae51f6f95429feeb15dad02c96906b1",
-      "side": "R"
-    },
-    {
-      "h": "23d3aafdd0ab6135126106201ef699db7ed35b1d7d8af594b13549afa763932b",
-      "side": "R"
-    },
-    {
-      "h": "c9194ffede10c8708619440919bfb30b4353e78b45a7cc4aa0f7542b7e7d28ac",
-      "side": "R"
-    },
-    {
-      "h": "96c657b48b4e9f18b970c0220589c56282260d460f80773a0709db844bc5def4",
+      "h": "6052f0ee97e1aafa13ec99fece22c92e6620eefedb61195f7be89555ff6d2c00",
       "side": "L"
     },
     {
-      "h": "50c17481741defdc6c99efbb83ab916dc31a63bbc282f7b0229e80772cdd6c19",
+      "h": "c3aef53a6c220fd627da7acdbfcfb0645d69e8935994ed097adb8abb9f953bec",
+      "side": "R"
+    },
+    {
+      "h": "055326fddebcd544a0e9b97bdb0bd4cd3956979ad90ca5cb8c26fda9f4ae5546",
       "side": "L"
     },
     {
-      "h": "c50725e7244a87468fefbd551129f4af6358ff3b6b0e11e105e35230ed26b044",
+      "h": "7349af00e45a482dea676eeb1db27c8d7364eb50100d2f1f86c6bde51d83b989",
       "side": "R"
+    },
+    {
+      "h": "9b766cdf555c952be7d557b6af836ab9649f7c9931cd3b860370cc6764d8d871",
+      "side": "R"
+    },
+    {
+      "h": "455a820fc2e7fa319e2b1b2649426f972846473bef044124228b3dd2a5d06b19",
+      "side": "L"
     },
     {
       "h": "9f7c955e9f93f60b9f03e3adc908a3ade7ba1bfc0c17b55f802d0d1506fa4b20",
