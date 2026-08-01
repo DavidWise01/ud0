@@ -2,25 +2,25 @@
   "schema": "dlw.fold/1",
   "world": "II",
   "kind": "sphere",
-  "name": "THE ORTHOGONAL SIGN-FLIP",
-  "slug": "the-orthogonal-sign-flip",
-  "seal": "a34bbd9df667d4119dec028b5f46eae547f2d6f37de3885532add6c0eb7ba9ea",
-  "index": 162,
+  "name": "THE COIN-FLIP HEAP",
+  "slug": "the-coin-flip-heap",
+  "seal": "b3ffb429ba35ef9bd151639fb334fa6ac13f9feafe4bb26a0f5703625fd18c9c",
+  "index": 167,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "3247a6898155995a2ea40ed4ac3d163ea88c5fd85085b5e53534cc5a77d8a8fe",
-      "side": "R"
-    },
-    {
-      "h": "04a919662207afe1d2e9e09c2f98aff9d4fc6e063d39f9f35b35b8a8871da61f",
+      "h": "775bbd2384ffa3cc057cffe692bf95a219b1e5049d6a92c44e5cb92970b8af47",
       "side": "L"
     },
     {
-      "h": "dc749a6b37199c70e9c959b78b18eee527421ad4b814685f39d6f1a5c089a31c",
-      "side": "R"
+      "h": "80ecd591f348563bc1ff9762d6e6adc4e22c729524cf528ee7ce7bbc6d165e31",
+      "side": "L"
+    },
+    {
+      "h": "055326fddebcd544a0e9b97bdb0bd4cd3956979ad90ca5cb8c26fda9f4ae5546",
+      "side": "L"
     },
     {
       "h": "0638558a58a2999b91361be9bc8b7064abe23159c24d02c435097b341b1e3998",

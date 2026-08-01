@@ -5,29 +5,29 @@
   "name": "THE GLASS",
   "slug": "the-glass",
   "seal": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016",
-  "index": 172,
+  "index": 173,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef",
-      "side": "R"
-    },
-    {
-      "h": "fd4ede1eb0b00624d8148db26942ae3b671ab8839194226c9f9b056cfce17539",
-      "side": "R"
-    },
-    {
-      "h": "1d83a5e68348472f2acf3a5888d020145343c06534ef6d3bbcb139aecc9133b8",
+      "h": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b",
       "side": "L"
     },
     {
-      "h": "ff26ea120386ea26ead2644d79a965407cc841a2967e685cf7ce89856112dc8c",
+      "h": "21bd83e5d00b222e70f969e33e920ecd316323b4c49e7ec40d0d24de32bcb5d3",
+      "side": "R"
+    },
+    {
+      "h": "b7374d88a1b1096a196b943b77357f609c459479fbb53d17dfb24f9075a05dfb",
       "side": "L"
     },
     {
-      "h": "e2c1aaaca2ec74dd4e96527cb67325e0066d26ffda734a69ee1c69bc3cfbddcb",
+      "h": "ba81ecacc72ce269f20e61ff5d237c714f8206ba1a35bad30f8f5fa94eb7a771",
+      "side": "L"
+    },
+    {
+      "h": "185c05b02ce56879b1edc011d436d78a91d2935cce18477d92b2fe5ce831bbf5",
       "side": "R"
     },
     {
@@ -35,7 +35,7 @@
       "side": "L"
     },
     {
-      "h": "e921679b3d1a1056834742825a764c6ae3f3c410d273b7d1e6d529b078fe8db6",
+      "h": "12e626cdd93557df3eec98682ca63dc7b67f7ca5ea6920ba99353903cf484f0f",
       "side": "R"
     },
     {
@@ -44,7 +44,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "d19123edba7330fa945d5933182b74f64d5bbace81a1dff963bfccade0c9cfea",
+  "root": "afdbb934fed4bb3be72d7dd68e22c0c8f6afd0f631808b4df87422e227321ce0",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-07-31",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
