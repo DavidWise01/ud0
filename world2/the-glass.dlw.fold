@@ -5,34 +5,34 @@
   "name": "THE GLASS",
   "slug": "the-glass",
   "seal": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016",
-  "index": 479,
+  "index": 484,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b",
-      "side": "L"
-    },
-    {
-      "h": "4f92d1304f79aad08143281517aa616aa5f51a4788eb70438fc658eebba57cc4",
-      "side": "L"
-    },
-    {
-      "h": "b5d5aa64986076963b3177883bf59301d415303bcd461c37f611d0a2bdc02551",
-      "side": "L"
-    },
-    {
-      "h": "b0799a2d2c076968d40bcea48c713fd17ad1afe52ae74f20e9a9d3ccd6de3f69",
-      "side": "L"
-    },
-    {
-      "h": "045d91706acdb2a90360fd542b7026cefbbf2b1eb4a0c81bee17c8f883e875d2",
-      "side": "L"
-    },
-    {
-      "h": "ed67daf65309e4d1495d5e8b878875a62267b7ecf5d97e01caf22cac1f97d98b",
+      "h": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef",
       "side": "R"
+    },
+    {
+      "h": "fd4ede1eb0b00624d8148db26942ae3b671ab8839194226c9f9b056cfce17539",
+      "side": "R"
+    },
+    {
+      "h": "1d83a5e68348472f2acf3a5888d020145343c06534ef6d3bbcb139aecc9133b8",
+      "side": "L"
+    },
+    {
+      "h": "54ae948eb87479b35f7a1205419f706fb579dd946b5d988def22b99cab157245",
+      "side": "R"
+    },
+    {
+      "h": "8b79a1756b1468bcfd660199108feec7dedd13305ac11881a6930dcb67a2dfcd",
+      "side": "R"
+    },
+    {
+      "h": "be8ef46376671c80e407fe9611ffd2993a8fab5e87347ef6b430de582f063f2c",
+      "side": "L"
     },
     {
       "h": "fd0314d9d9afee2c93cd2ec2309fd7a64ea1314d3797108244341025d6a0605e",
@@ -48,7 +48,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "de3e56d701e140d97206d268da295af5606219c2597b4f0ac608f9e529451902",
+  "root": "c41cea62e08bd79ccb5c5ab5bf9033313d115baf6a3645adf2a2aeb742b9c333",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-01",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
