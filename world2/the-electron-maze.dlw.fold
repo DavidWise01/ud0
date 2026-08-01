@@ -2,29 +2,29 @@
   "schema": "dlw.fold/1",
   "world": "II",
   "kind": "sphere",
-  "name": "THE EXACT TRANSFORM",
-  "slug": "the-exact-transform",
-  "seal": "d91299ce44be4e15a7c3a29a9e7fdf52c35cba1a8f3a5ed7cc8349349d8c9b6e",
-  "index": 146,
+  "name": "THE ELECTRON MAZE",
+  "slug": "the-electron-maze",
+  "seal": "b1e28024549b639a244bcca544ffdf73bfb6be341244dfa823cb7932d749798d",
+  "index": 156,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "aa278900f365a6a82f0ef6bc146afec09071c69772e27892607d5a3b56ef2b5f",
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
       "side": "R"
     },
     {
-      "h": "4c82b2622835f3de46cdf76fd87bfc763b631ae50bc7458e423997d904e61e89",
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "side": "R"
+    },
+    {
+      "h": "dab1137a48133346a8c1697981d6816fc0b0f7df0828160179a15b0199d32371",
       "side": "L"
     },
     {
-      "h": "01cd33dae02feb4611a2bd3987cde7461e16f98fad51528630fb84d5c42b4d58",
-      "side": "R"
-    },
-    {
-      "h": "839a5b8137b747402d5ab6919405769e3224ec20935e9cbda50d9d7bf7fefacf",
-      "side": "R"
+      "h": "96c657b48b4e9f18b970c0220589c56282260d460f80773a0709db844bc5def4",
+      "side": "L"
     },
     {
       "h": "50c17481741defdc6c99efbb83ab916dc31a63bbc282f7b0229e80772cdd6c19",
