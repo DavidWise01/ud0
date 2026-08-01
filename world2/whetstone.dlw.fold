@@ -5,37 +5,37 @@
   "name": "WHETSTONE",
   "slug": "whetstone",
   "seal": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc",
-  "index": 151,
+  "index": 152,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851",
-      "side": "L"
-    },
-    {
-      "h": "4380ef2f0fcad6380e9f32241e50e72a8d746f69f141ee2dd0b2c97819cf8d1d",
-      "side": "L"
-    },
-    {
-      "h": "63e3acbefa6a2db4dd880b228a946140ab64e58fe8e98b0576c7c306895de3e3",
-      "side": "L"
-    },
-    {
-      "h": "9f28157d6142b52d5fd44455ad7c25beeb834ffe50f283195a7678f413aaed43",
+      "h": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc",
       "side": "R"
+    },
+    {
+      "h": "f38bb4286a96ccb84e08785279457381b498e2e82584880dfcb274671742eb43",
+      "side": "R"
+    },
+    {
+      "h": "e5b77462f38458ebf844587854baca20295df7aae6e457f4b7d3764a648707e2",
+      "side": "R"
+    },
+    {
+      "h": "4db7b4d98141a0f3ccc96a7a31015fecfa851e05e8fc5156ec63d6bd21da58db",
+      "side": "L"
     },
     {
       "h": "50c17481741defdc6c99efbb83ab916dc31a63bbc282f7b0229e80772cdd6c19",
       "side": "L"
     },
     {
-      "h": "ea5a99b4b3ac7162a6c34e74b06eb71419864a8f29703444ddb1313c944b050c",
+      "h": "6f586db37da9bb405eeca648bc9131b1f62269cf895b9ff270586c1a407f8eec",
       "side": "R"
     },
     {
-      "h": "d4dc101f7a1b3c4ac3e80a1e7dfb592d6a657517fbe2fdc5957c73890c728b68",
+      "h": "77389dc4fd94a526efe36035399dd80b147331cb801b747a10d8cb51cd4c8e5e",
       "side": "R"
     },
     {
@@ -44,7 +44,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "2bff9b34bf2fb6bde7960ffc2ef27c1856ea14ca79af25ce22b3f0f96e16a1b3",
+  "root": "bf21f2a2eef5d79c62d52f0012725e3cf316bf88418771c1fe68ea2ebddb73b2",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-07-31",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
