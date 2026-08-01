@@ -5,25 +5,25 @@
   "name": "THE HONEST MACHINE",
   "slug": "the-honest-machine",
   "seal": "0b8b8862d7685cc5eaa3ae0b16d76182f699d5730169a20fe2649d8e46c1b8e2",
-  "index": 154,
+  "index": 155,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "0b8b8862d7685cc5eaa3ae0b16d76182f699d5730169a20fe2649d8e46c1b8e2",
-      "side": "R"
-    },
-    {
-      "h": "a60eeab3264276b19abf5ff33b581392f036474d3d4b53b4af0dc22b40dafcaa",
+      "h": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef",
       "side": "L"
     },
     {
-      "h": "034ce0963e96d313746c278f9aca16401c5b927b37aa13bef55648cdcd1fc542",
+      "h": "f38bb4286a96ccb84e08785279457381b498e2e82584880dfcb274671742eb43",
+      "side": "L"
+    },
+    {
+      "h": "d53c83b07fc4d181354a82be1f95e0b082de37fc069c47e7002d00e32a3bc2e4",
       "side": "R"
     },
     {
-      "h": "02f63106c16bf0fd549598373206eda4cf2ce70df30ee4765fc611106b628e0b",
+      "h": "70710bd0697e0c361a8c46c50b7fb040c8280c1a7a432b0ce3d373a52ba41e18",
       "side": "L"
     },
     {
@@ -31,11 +31,11 @@
       "side": "L"
     },
     {
-      "h": "c33b96f6f1c1f00c8dba394fbe62567d0aa2c7028eb473c5a204ea75ec03040f",
+      "h": "743e341aa7c449d1a33a6f1cdf42631670dbfff1b6ef79a1e9e447f8b51ff19d",
       "side": "R"
     },
     {
-      "h": "12c61dcd64370ad57953c3a6e7080ef7c469e06a49a0de65fd6ee6072d557a8b",
+      "h": "78309297e72813d34927886811e163db0c5e8b8a0b13e9f969c0a270fe9dd0ef",
       "side": "R"
     },
     {
@@ -44,7 +44,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "75ee3bd54544d55291e0a07303dd4fd088b5b5b7b4b2ec1a5fe85e14284edb26",
+  "root": "8088ec098b62d8d91d2590104854f30a5347e70b69abfed1494285e9aac08d3a",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-07-31",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"

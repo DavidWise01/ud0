@@ -5,25 +5,25 @@
   "name": "ECHO",
   "slug": "echo",
   "seal": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc",
-  "index": 150,
+  "index": 151,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b",
-      "side": "R"
-    },
-    {
-      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "h": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc",
       "side": "L"
     },
     {
-      "h": "c14f510a4e2a78a653ed963c1b01e7a2f2145bb2b16fe38679f0260fe7600768",
+      "h": "c3aef53a6c220fd627da7acdbfcfb0645d69e8935994ed097adb8abb9f953bec",
       "side": "L"
     },
     {
-      "h": "7ddc746476e7f820c1e876ec5c1fec6c5364c64c70de61f2070daba94b3e8aad",
+      "h": "63e3acbefa6a2db4dd880b228a946140ab64e58fe8e98b0576c7c306895de3e3",
+      "side": "L"
+    },
+    {
+      "h": "2f79034feecb0967e1f0936912b0703f63828a0b95833275896dab3238ece9ff",
       "side": "R"
     },
     {
@@ -31,11 +31,11 @@
       "side": "L"
     },
     {
-      "h": "c33b96f6f1c1f00c8dba394fbe62567d0aa2c7028eb473c5a204ea75ec03040f",
+      "h": "743e341aa7c449d1a33a6f1cdf42631670dbfff1b6ef79a1e9e447f8b51ff19d",
       "side": "R"
     },
     {
-      "h": "12c61dcd64370ad57953c3a6e7080ef7c469e06a49a0de65fd6ee6072d557a8b",
+      "h": "78309297e72813d34927886811e163db0c5e8b8a0b13e9f969c0a270fe9dd0ef",
       "side": "R"
     },
     {
@@ -44,7 +44,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "75ee3bd54544d55291e0a07303dd4fd088b5b5b7b4b2ec1a5fe85e14284edb26",
+  "root": "8088ec098b62d8d91d2590104854f30a5347e70b69abfed1494285e9aac08d3a",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-07-31",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
