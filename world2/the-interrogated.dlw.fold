@@ -5,37 +5,37 @@
   "name": "THE INTERROGATED",
   "slug": "the-interrogated",
   "seal": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef",
-  "index": 151,
+  "index": 152,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016",
-      "side": "L"
-    },
-    {
-      "h": "fa956deaae9e6ace64a09bad4e35eab65c143568cb487635dc9af15ef50f35aa",
-      "side": "L"
-    },
-    {
-      "h": "1c17519bff6e48198f51f84376eff8259fd26f3b303125845e626860853c4601",
-      "side": "L"
-    },
-    {
-      "h": "eaf38c2cd96997d54d6a4c5db37ee0cfaec10743902b74eafba1eb5507e33c6f",
+      "h": "0b8b8862d7685cc5eaa3ae0b16d76182f699d5730169a20fe2649d8e46c1b8e2",
       "side": "R"
+    },
+    {
+      "h": "21bd83e5d00b222e70f969e33e920ecd316323b4c49e7ec40d0d24de32bcb5d3",
+      "side": "R"
+    },
+    {
+      "h": "e5b77462f38458ebf844587854baca20295df7aae6e457f4b7d3764a648707e2",
+      "side": "R"
+    },
+    {
+      "h": "9a56214fce123510c7f489304d7fd75f616f77b0167c85cd455b6758b4ba9fed",
+      "side": "L"
     },
     {
       "h": "50c17481741defdc6c99efbb83ab916dc31a63bbc282f7b0229e80772cdd6c19",
       "side": "L"
     },
     {
-      "h": "102a1d68de989aa10b6961a80fbd17f95e97cb3d642c827d478794bfa7684376",
+      "h": "4c96e3faa3aa5de86dc3819f38522a5d8c724c91ff79942dff759cbfb6394cdc",
       "side": "R"
     },
     {
-      "h": "853d1127d9c6a30c57b90ad16f1e5cd33b0c2359fd91082d3f71532de7160b1e",
+      "h": "cc0e620b257cf0876b64ebb7192e79aaae068959e5efa36c94b83723e852b4bf",
       "side": "R"
     },
     {
@@ -44,7 +44,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "34f8d5c507c651cc8d2b0d4feeb4df74c6b0410d5aeda13102b54c695583a3f8",
+  "root": "bb92147fb6b8a251f9b97a1ede39af0d1df73e9ec5febe7c8779c3bd2c3bce44",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-07-31",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
