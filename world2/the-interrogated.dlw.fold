@@ -5,29 +5,29 @@
   "name": "THE INTERROGATED",
   "slug": "the-interrogated",
   "seal": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef",
-  "index": 172,
+  "index": 173,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "0b8b8862d7685cc5eaa3ae0b16d76182f699d5730169a20fe2649d8e46c1b8e2",
-      "side": "R"
-    },
-    {
-      "h": "21bd83e5d00b222e70f969e33e920ecd316323b4c49e7ec40d0d24de32bcb5d3",
-      "side": "R"
-    },
-    {
-      "h": "7601211745dca092106718fb4970aabdd4766a49fbf40294644af4b255850d98",
+      "h": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016",
       "side": "L"
     },
     {
-      "h": "952e5f07e7cfdf7f42fdbdc71f954f5018326795b042ccd909bc814149b0bdc8",
+      "h": "fd4ede1eb0b00624d8148db26942ae3b671ab8839194226c9f9b056cfce17539",
+      "side": "R"
+    },
+    {
+      "h": "1d83a5e68348472f2acf3a5888d020145343c06534ef6d3bbcb139aecc9133b8",
       "side": "L"
     },
     {
-      "h": "9b766cdf555c952be7d557b6af836ab9649f7c9931cd3b860370cc6764d8d871",
+      "h": "ff26ea120386ea26ead2644d79a965407cc841a2967e685cf7ce89856112dc8c",
+      "side": "L"
+    },
+    {
+      "h": "e2c1aaaca2ec74dd4e96527cb67325e0066d26ffda734a69ee1c69bc3cfbddcb",
       "side": "R"
     },
     {
@@ -35,7 +35,7 @@
       "side": "L"
     },
     {
-      "h": "9f7c955e9f93f60b9f03e3adc908a3ade7ba1bfc0c17b55f802d0d1506fa4b20",
+      "h": "e921679b3d1a1056834742825a764c6ae3f3c410d273b7d1e6d529b078fe8db6",
       "side": "R"
     },
     {
@@ -44,7 +44,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "6a10b389f1f1c48ef5ad84d2520ebc0de8195d27d35080efb220cbeaab673123",
+  "root": "d19123edba7330fa945d5933182b74f64d5bbace81a1dff963bfccade0c9cfea",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-07-31",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
