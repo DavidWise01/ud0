@@ -2,29 +2,29 @@
   "schema": "dlw.fold/1",
   "world": "II",
   "kind": "sphere",
-  "name": "THE PENROSE INFLATION",
-  "slug": "the-penrose-inflation",
-  "seal": "98c8c746052c067580ed8a1a60fe8dce7a5be6b21c4d5aff4c45595454e23b6e",
-  "index": 149,
+  "name": "THE SPOTS THAT BREED",
+  "slug": "the-spots-that-breed",
+  "seal": "546082910d1547547e3f6a7e63b35f8e380436338793758c95751286f96eb0ff",
+  "index": 158,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "1602077499986cc6178a5a57d3d2739c46a822e29ee92544556dd09610e77bf1",
-      "side": "L"
-    },
-    {
-      "h": "550702e2a25fb156dba855958122562ecc23ae9db1b2196cbe66bb66dc19827b",
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
       "side": "R"
     },
     {
-      "h": "63e3acbefa6a2db4dd880b228a946140ab64e58fe8e98b0576c7c306895de3e3",
+      "h": "807548abaf4a94d59501743d77397d6485d05e417d9d532e9146da03999a7c91",
       "side": "L"
     },
     {
-      "h": "20e108bd06d6ad2f83a0344269016904c679ef624b27613ee01b84a9a7497d52",
-      "side": "R"
+      "h": "dab1137a48133346a8c1697981d6816fc0b0f7df0828160179a15b0199d32371",
+      "side": "L"
+    },
+    {
+      "h": "96c657b48b4e9f18b970c0220589c56282260d460f80773a0709db844bc5def4",
+      "side": "L"
     },
     {
       "h": "50c17481741defdc6c99efbb83ab916dc31a63bbc282f7b0229e80772cdd6c19",
