@@ -2,21 +2,21 @@
   "schema": "dlw.fold/1",
   "world": "II",
   "kind": "sphere",
-  "name": "THE PERMUTATION CLOCK",
-  "slug": "the-permutation-clock",
-  "seal": "43974029dea2cd11ee1b8a6625067ba6922d9a8815d7325c9ca01dc7c5185db8",
-  "index": 140,
+  "name": "THE FENWICK LADDER",
+  "slug": "the-fenwick-ladder",
+  "seal": "5d943093b4745b4df42f3b56be4e344898dc3636255be0e49bd0f2067ed7f999",
+  "index": 142,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "f70dad3ae2817478c1c6dd6f6ba37a11edec9d4ad3a211a84aed841a90064295",
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
       "side": "R"
     },
     {
-      "h": "25cf7fda84533b29cda4b95490bab95a0b5d309a35c15ae6433560b3a1520d58",
-      "side": "R"
+      "h": "bb32f2ebd6a84df5451cdecc70ab220fa7cdca12b8ccde0e138b7ab7fbac238d",
+      "side": "L"
     },
     {
       "h": "fb0a9f3b5992b2a024307a079e376e73a867dbb5bcefc209e58360082b60ffa7",
