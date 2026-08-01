@@ -5,21 +5,21 @@
   "name": "WHETSTONE",
   "slug": "whetstone",
   "seal": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc",
-  "index": 156,
+  "index": 157,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc",
+      "h": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851",
+      "side": "L"
+    },
+    {
+      "h": "fa956deaae9e6ace64a09bad4e35eab65c143568cb487635dc9af15ef50f35aa",
       "side": "R"
     },
     {
-      "h": "f38bb4286a96ccb84e08785279457381b498e2e82584880dfcb274671742eb43",
-      "side": "R"
-    },
-    {
-      "h": "edb53b9b3c2a0ebe93e585447b079a533c04bc30441932507ca52b1cc0da514d",
+      "h": "c789f84f6a4de2d61b049199f655bb83589203dca6634a63b01e9cccb106bafa",
       "side": "L"
     },
     {
@@ -31,11 +31,11 @@
       "side": "L"
     },
     {
-      "h": "ed67daf65309e4d1495d5e8b878875a62267b7ecf5d97e01caf22cac1f97d98b",
+      "h": "f525173ae9e15528c862f2defd5e5f687935c1782afaf271dc14d6d64d92fadd",
       "side": "R"
     },
     {
-      "h": "3af6b8a1735312f52f41a916653c03ca3e5792a611a85e04594d7caff9b907cc",
+      "h": "ed632181018ab7573e0eb2b2553b34939776142e52f3e31ff6a9e858feae3f16",
       "side": "R"
     },
     {
@@ -44,7 +44,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "e97035e5f8758ba8f8131e9128f001cfa690a4066046b429d7c6140cce780be0",
+  "root": "a5cb37c03f9a47400407857a07dd3a623eab66de4fd179ad30541f5582cf047a",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-07-31",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
