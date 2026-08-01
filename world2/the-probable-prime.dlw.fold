@@ -1,34 +1,34 @@
 {
   "schema": "dlw.fold/1",
   "world": "II",
-  "kind": "keeper",
-  "name": "WHETSTONE",
-  "slug": "whetstone",
-  "seal": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc",
-  "index": 146,
+  "kind": "sphere",
+  "name": "THE PROBABLE PRIME",
+  "slug": "the-probable-prime",
+  "seal": "a324d3a9429fb3039bc4617ef5bf8b0b11551ec04440cde9309bf08e9dfc780b",
+  "index": 143,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc",
-      "side": "R"
-    },
-    {
-      "h": "c3aef53a6c220fd627da7acdbfcfb0645d69e8935994ed097adb8abb9f953bec",
+      "h": "5d943093b4745b4df42f3b56be4e344898dc3636255be0e49bd0f2067ed7f999",
       "side": "L"
     },
     {
-      "h": "d53c83b07fc4d181354a82be1f95e0b082de37fc069c47e7002d00e32a3bc2e4",
-      "side": "R"
-    },
-    {
-      "h": "0638558a58a2999b91361be9bc8b7064abe23159c24d02c435097b341b1e3998",
-      "side": "R"
-    },
-    {
-      "h": "50c17481741defdc6c99efbb83ab916dc31a63bbc282f7b0229e80772cdd6c19",
+      "h": "bb32f2ebd6a84df5451cdecc70ab220fa7cdca12b8ccde0e138b7ab7fbac238d",
       "side": "L"
+    },
+    {
+      "h": "fb0a9f3b5992b2a024307a079e376e73a867dbb5bcefc209e58360082b60ffa7",
+      "side": "L"
+    },
+    {
+      "h": "54b3228339627402daa11744786f6d9284eb28344a2738e55a63b8090cefcd17",
+      "side": "L"
+    },
+    {
+      "h": "484c04c6d805f0230997aa1b871e1df71632eb85bde9f0e80dc88f1e80eb6d8f",
+      "side": "R"
     },
     {
       "h": "bdca32b410f8d4c7761d5a4acbd81ecad05eea37619e5a49ca1779e7789e5ede",
