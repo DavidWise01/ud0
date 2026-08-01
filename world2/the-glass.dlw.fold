@@ -5,29 +5,29 @@
   "name": "THE GLASS",
   "slug": "the-glass",
   "seal": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016",
-  "index": 167,
+  "index": 168,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b",
-      "side": "L"
-    },
-    {
-      "h": "4f92d1304f79aad08143281517aa616aa5f51a4788eb70438fc658eebba57cc4",
-      "side": "L"
-    },
-    {
-      "h": "3ade7e94513691ba93c2e233a3926ef34177d0d3e1f1bfeb2e0993e773036c39",
-      "side": "L"
-    },
-    {
-      "h": "b99d3a721f7fece3db920eec8eab30badc49894a76182a6a7f5e299aff5428d8",
+      "h": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef",
       "side": "R"
     },
     {
-      "h": "85550680dd74deceae77374178d6161a4fd18d29e371e0d0b27a1d2d2841922a",
+      "h": "fd4ede1eb0b00624d8148db26942ae3b671ab8839194226c9f9b056cfce17539",
+      "side": "R"
+    },
+    {
+      "h": "034ce0963e96d313746c278f9aca16401c5b927b37aa13bef55648cdcd1fc542",
+      "side": "R"
+    },
+    {
+      "h": "e3aed2a623938242625fbb241541f920b27cb0559dbc3b1cab8b3ced279b743e",
+      "side": "L"
+    },
+    {
+      "h": "e5d55f1dfc9e3a0dd9aa982d6787e1bca3f8ff28c75041a29349596521bd3eca",
       "side": "R"
     },
     {
@@ -35,7 +35,7 @@
       "side": "L"
     },
     {
-      "h": "218dbf2aec29a747ac349386124a095c02a97bcea8e667f661440ff88f15f720",
+      "h": "8e183a841b30a90c0cb3e650c6d6ab645347e559d56ddb17ab12766dd61e2693",
       "side": "R"
     },
     {
@@ -44,7 +44,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "75a84d5e3551cc48450290e385f8a44eb3006da6c80dbd3ffc854ace52f67942",
+  "root": "3571c67842f911f1721e0e0143fdb7d4c92ca97f745acf0c191dca49a3acb3ae",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-07-31",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
