@@ -2,29 +2,29 @@
   "schema": "dlw.fold/1",
   "world": "II",
   "kind": "sphere",
-  "name": "THE SORT",
-  "slug": "the-sort",
-  "seal": "1f21b858aa105411d2c4e08d6b115f0ac6fb342741c7b4e3675cd327c863d19e",
-  "index": 132,
+  "name": "THE PERMUTATION CLOCK",
+  "slug": "the-permutation-clock",
+  "seal": "43974029dea2cd11ee1b8a6625067ba6922d9a8815d7325c9ca01dc7c5185db8",
+  "index": 140,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "7f377730e4ed8eacbcebbb4a1ed3a4d6c78e2b308c38db931765f9767cd233fb",
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
       "side": "R"
     },
     {
-      "h": "55fb8ae8bc0e3cf6978f88b7b6d06bb2f0ebe04a3fab6f309ab008723a181ff7",
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
       "side": "R"
     },
     {
-      "h": "ef19755c906b183f0f16b2e56f35a7daaebfc1fde9521cd3ee6405e3b76222f1",
+      "h": "fb0a9f3b5992b2a024307a079e376e73a867dbb5bcefc209e58360082b60ffa7",
       "side": "L"
     },
     {
-      "h": "327e18aa8252f4c4a265b28b94d2cc64142d307c974a0f850e7909b5eaa410d2",
-      "side": "R"
+      "h": "54b3228339627402daa11744786f6d9284eb28344a2738e55a63b8090cefcd17",
+      "side": "L"
     },
     {
       "h": "7c21292708b58f63fd339f83909b5aa280a3d935a5ceade89528a85b646147fa",
