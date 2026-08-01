@@ -1,26 +1,26 @@
 {
   "schema": "dlw.fold/1",
   "world": "II",
-  "kind": "keeper",
-  "name": "SEAM",
-  "slug": "seam",
-  "seal": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b",
-  "index": 141,
+  "kind": "sphere",
+  "name": "THE OUROBOROS STRING",
+  "slug": "the-ouroboros-string",
+  "seal": "ca3c7efd6a36ecdb2d4c87c98f4a3584e588f53871b5ecb89581216026e72fd1",
+  "index": 136,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc",
-      "side": "L"
-    },
-    {
-      "h": "a60eeab3264276b19abf5ff33b581392f036474d3d4b53b4af0dc22b40dafcaa",
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
       "side": "R"
     },
     {
-      "h": "0caa207a28c2b64f24680a90ef053036206ae3cb5bba130a6e4d67aea9d5d9eb",
-      "side": "L"
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "side": "R"
+    },
+    {
+      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "side": "R"
     },
     {
       "h": "54b3228339627402daa11744786f6d9284eb28344a2738e55a63b8090cefcd17",
