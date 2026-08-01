@@ -1,34 +1,34 @@
 {
   "schema": "dlw.fold/1",
   "world": "II",
-  "kind": "keeper",
-  "name": "THE HONEST MACHINE",
-  "slug": "the-honest-machine",
-  "seal": "0b8b8862d7685cc5eaa3ae0b16d76182f699d5730169a20fe2649d8e46c1b8e2",
-  "index": 146,
+  "kind": "sphere",
+  "name": "THE OVERLAP-FREE WORD",
+  "slug": "the-overlap-free-word",
+  "seal": "d80b8c49751542cd618056db9987e39a6113e96f22a23a6da969ca147d270bff",
+  "index": 138,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "0b8b8862d7685cc5eaa3ae0b16d76182f699d5730169a20fe2649d8e46c1b8e2",
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
       "side": "R"
     },
     {
-      "h": "a60eeab3264276b19abf5ff33b581392f036474d3d4b53b4af0dc22b40dafcaa",
+      "h": "172ac9160058a45d559189668c76857ebb494a5ca1e3308500c2070a0d11a17e",
       "side": "L"
     },
     {
-      "h": "034ce0963e96d313746c278f9aca16401c5b927b37aa13bef55648cdcd1fc542",
+      "h": "1d83a5e68348472f2acf3a5888d020145343c06534ef6d3bbcb139aecc9133b8",
       "side": "R"
     },
     {
-      "h": "7ddc746476e7f820c1e876ec5c1fec6c5364c64c70de61f2070daba94b3e8aad",
-      "side": "R"
-    },
-    {
-      "h": "9b1b1c0b75c014d608c36f2c6f752fbbab8b8ff684165517a198c3e6f3f4f0e5",
+      "h": "54b3228339627402daa11744786f6d9284eb28344a2738e55a63b8090cefcd17",
       "side": "L"
+    },
+    {
+      "h": "c8f9ebb0fc156a56cfa5abbc8f701d72430e1d58d0d034ec7be652282bcf1058",
+      "side": "R"
     },
     {
       "h": "a8a5548fc4ee10630baee36a08607411cbbe5d4747ba96a2791c367110273b21",
