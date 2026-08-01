@@ -1,30 +1,30 @@
 {
   "schema": "dlw.fold/1",
   "world": "II",
-  "kind": "keeper",
-  "name": "SEAM",
-  "slug": "seam",
-  "seal": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b",
-  "index": 139,
+  "kind": "sphere",
+  "name": "THE TWINDRAGON",
+  "slug": "the-twindragon",
+  "seal": "5cd5e11770664446ee18c59783c5d694e41fec7901fd3a02f9ea4a577ec7e850",
+  "index": 134,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc",
-      "side": "L"
-    },
-    {
-      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
-      "side": "L"
-    },
-    {
-      "h": "034ce0963e96d313746c278f9aca16401c5b927b37aa13bef55648cdcd1fc542",
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
       "side": "R"
     },
     {
-      "h": "f5bf1871dccc3b9d9acb44e8897f98dd49b6db60c040fd10dc50574a60ed97c1",
+      "h": "60f72138d102d7e982c8d35fa116b9eb7cdec5875a6580eba5f0e648a339ee52",
       "side": "L"
+    },
+    {
+      "h": "ef19755c906b183f0f16b2e56f35a7daaebfc1fde9521cd3ee6405e3b76222f1",
+      "side": "L"
+    },
+    {
+      "h": "54ae948eb87479b35f7a1205419f706fb579dd946b5d988def22b99cab157245",
+      "side": "R"
     },
     {
       "h": "dc336b30644e7b3bf6f10d2f72043d34cf3b6ee987ec6722622ecf4ba98bcb03",
