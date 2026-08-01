@@ -5,29 +5,29 @@
   "name": "ECHO",
   "slug": "echo",
   "seal": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc",
-  "index": 164,
+  "index": 165,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b",
-      "side": "R"
-    },
-    {
-      "h": "a60eeab3264276b19abf5ff33b581392f036474d3d4b53b4af0dc22b40dafcaa",
-      "side": "R"
-    },
-    {
-      "h": "ad7db9cc6336f36caff82cd8f6565990df6401b0ee9babf408c9befa573793d4",
+      "h": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc",
       "side": "L"
     },
     {
-      "h": "eaf38c2cd96997d54d6a4c5db37ee0cfaec10743902b74eafba1eb5507e33c6f",
+      "h": "f38bb4286a96ccb84e08785279457381b498e2e82584880dfcb274671742eb43",
       "side": "R"
     },
     {
-      "h": "5c8771e86732df763a5a4a8aec8bb66e562908ffa6db11d8eec1e333cd23de40",
+      "h": "3ade7e94513691ba93c2e233a3926ef34177d0d3e1f1bfeb2e0993e773036c39",
+      "side": "L"
+    },
+    {
+      "h": "b99d3a721f7fece3db920eec8eab30badc49894a76182a6a7f5e299aff5428d8",
+      "side": "R"
+    },
+    {
+      "h": "85550680dd74deceae77374178d6161a4fd18d29e371e0d0b27a1d2d2841922a",
       "side": "R"
     },
     {
@@ -35,7 +35,7 @@
       "side": "L"
     },
     {
-      "h": "c93ab603680de5e9668766d912be7fe55ca0d9c299a8cae29ef8070d5673cb09",
+      "h": "218dbf2aec29a747ac349386124a095c02a97bcea8e667f661440ff88f15f720",
       "side": "R"
     },
     {
@@ -44,7 +44,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "3c188dfdd22a53473ca71a07e3485aefd2bdb0573e57fcc839ff0891a1919626",
+  "root": "75a84d5e3551cc48450290e385f8a44eb3006da6c80dbd3ffc854ace52f67942",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-07-31",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
