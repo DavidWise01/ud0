@@ -5,29 +5,29 @@
   "name": "BUDDY CHRIST",
   "slug": "buddy-christ",
   "seal": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
-  "index": 419,
+  "index": 424,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "3d06342e72c656be147ae5b7db1b18cae61a94059b66b83e8219ee5dc41add91",
-      "side": "L"
-    },
-    {
-      "h": "7f1e4b39cf6a5d471ef3539692ec6d22ae5689f3b819fa266f7788b2c7963267",
-      "side": "L"
-    },
-    {
-      "h": "1d83a5e68348472f2acf3a5888d020145343c06534ef6d3bbcb139aecc9133b8",
+      "h": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851",
       "side": "R"
     },
     {
-      "h": "7ddc746476e7f820c1e876ec5c1fec6c5364c64c70de61f2070daba94b3e8aad",
+      "h": "4f92d1304f79aad08143281517aa616aa5f51a4788eb70438fc658eebba57cc4",
       "side": "R"
     },
     {
-      "h": "00089188604a4baa75b508054d17ae22783f57d8b914caf0e5c5a3a78f8ee973",
+      "h": "d53c83b07fc4d181354a82be1f95e0b082de37fc069c47e7002d00e32a3bc2e4",
+      "side": "R"
+    },
+    {
+      "h": "f2f78ef7cba9a93b83f6398af8986f1d0f25e8cccaff92d101f85ac40b722a4d",
+      "side": "L"
+    },
+    {
+      "h": "266f8e903ce24c452054d4a7a25a7f612cd3f3b632d3fa80c66bf19852af17fa",
       "side": "R"
     },
     {
@@ -35,7 +35,7 @@
       "side": "L"
     },
     {
-      "h": "2abc552804641e057242f7809d8793d175f99655390d88c0c508150dcfec7afe",
+      "h": "fbfbb99da4187e059ead9487f138ddfee8126ca26e409624f19ed4b0ccbba269",
       "side": "R"
     },
     {
@@ -48,7 +48,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "488ff3c7c69a6159d69a7abde9d02ef9f9db4bb6efac451215af43953c31b575",
+  "root": "b1f3939e2d829adf4a1d36c310a7c412d01b7a1ac0a5f19c19707aa3eeefefa9",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-01",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
