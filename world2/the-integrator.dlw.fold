@@ -2,29 +2,29 @@
   "schema": "dlw.fold/1",
   "world": "II",
   "kind": "sphere",
-  "name": "THE MIRROR SEEKER",
-  "slug": "the-mirror-seeker",
-  "seal": "814079a9fce66c1b7c1784023585416954ed2bd7c2ec9692aee0bcb4846341a5",
-  "index": 150,
+  "name": "THE INTEGRATOR THAT NEVER DRIFTS",
+  "slug": "the-integrator",
+  "seal": "2accfcd3f787d697c5db011f507cdd192b1c26bf34d798e496765c91f7fca678",
+  "index": 157,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "e6210771f2c157f0a55b64be322dd787ffad9e5fd7aff2cc97f82147a0fb6e58",
-      "side": "R"
-    },
-    {
-      "h": "e2277c7ad6cb8022478742455cbaf88aa687bbc91c776f42e4e078e4b3602bc7",
+      "h": "b1e28024549b639a244bcca544ffdf73bfb6be341244dfa823cb7932d749798d",
       "side": "L"
     },
     {
-      "h": "63e3acbefa6a2db4dd880b228a946140ab64e58fe8e98b0576c7c306895de3e3",
+      "h": "c3aef53a6c220fd627da7acdbfcfb0645d69e8935994ed097adb8abb9f953bec",
+      "side": "R"
+    },
+    {
+      "h": "dab1137a48133346a8c1697981d6816fc0b0f7df0828160179a15b0199d32371",
       "side": "L"
     },
     {
-      "h": "cdb01e8c092c191c653ae62bed6c0aeebb8b0f21a8a35424d881babce4004fc5",
-      "side": "R"
+      "h": "96c657b48b4e9f18b970c0220589c56282260d460f80773a0709db844bc5def4",
+      "side": "L"
     },
     {
       "h": "50c17481741defdc6c99efbb83ab916dc31a63bbc282f7b0229e80772cdd6c19",
