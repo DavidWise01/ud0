@@ -2,33 +2,33 @@
   "schema": "dlw.fold/1",
   "world": "II",
   "kind": "sphere",
-  "name": "THE CARRYLESS FIELD",
-  "slug": "the-carryless-field",
-  "seal": "91b550278c3b3e5d8927ddbe4e4ab3613fb6db48ea3a42bc0a75d15a1b76d302",
-  "index": 135,
+  "name": "THE CURVE THAT FILLS THE PLANE",
+  "slug": "the-plane-filler",
+  "seal": "a8bd53c91d9eece197dc13f95fce8419914c5e5101788a377f8d73661cc00ecf",
+  "index": 144,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "5cd5e11770664446ee18c59783c5d694e41fec7901fd3a02f9ea4a577ec7e850",
-      "side": "L"
-    },
-    {
-      "h": "60f72138d102d7e982c8d35fa116b9eb7cdec5875a6580eba5f0e648a339ee52",
-      "side": "L"
-    },
-    {
-      "h": "ef19755c906b183f0f16b2e56f35a7daaebfc1fde9521cd3ee6405e3b76222f1",
-      "side": "L"
-    },
-    {
-      "h": "b91b13478527259895873838c40af475c6aa52711156a2e2d7521b2a5f6cb612",
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
       "side": "R"
     },
     {
-      "h": "81d9bc7ee07000c4c0bc9456d237de523e07d477fa46666ae786c719ee22cd46",
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
       "side": "R"
+    },
+    {
+      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "side": "R"
+    },
+    {
+      "h": "eaf38c2cd96997d54d6a4c5db37ee0cfaec10743902b74eafba1eb5507e33c6f",
+      "side": "R"
+    },
+    {
+      "h": "50c17481741defdc6c99efbb83ab916dc31a63bbc282f7b0229e80772cdd6c19",
+      "side": "L"
     },
     {
       "h": "102a1d68de989aa10b6961a80fbd17f95e97cb3d642c827d478794bfa7684376",
