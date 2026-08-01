@@ -5,34 +5,34 @@
   "name": "THE HONEST MACHINE",
   "slug": "the-honest-machine",
   "seal": "0b8b8862d7685cc5eaa3ae0b16d76182f699d5730169a20fe2649d8e46c1b8e2",
-  "index": 476,
+  "index": 481,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "0b8b8862d7685cc5eaa3ae0b16d76182f699d5730169a20fe2649d8e46c1b8e2",
-      "side": "R"
-    },
-    {
-      "h": "fd4ede1eb0b00624d8148db26942ae3b671ab8839194226c9f9b056cfce17539",
-      "side": "R"
-    },
-    {
-      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "h": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef",
       "side": "L"
     },
     {
-      "h": "690d1a4bd8e02d13d2267121be599c4b4a27597e44cf1837b2e3dda77d7bb31b",
-      "side": "L"
-    },
-    {
-      "h": "045d91706acdb2a90360fd542b7026cefbbf2b1eb4a0c81bee17c8f883e875d2",
-      "side": "L"
-    },
-    {
-      "h": "ead7a80cb78de1fa32cbb01ad5f18b5d76b6d6400422d1cfa4a400832de20262",
+      "h": "21bd83e5d00b222e70f969e33e920ecd316323b4c49e7ec40d0d24de32bcb5d3",
       "side": "R"
+    },
+    {
+      "h": "e5b77462f38458ebf844587854baca20295df7aae6e457f4b7d3764a648707e2",
+      "side": "R"
+    },
+    {
+      "h": "b99d3a721f7fece3db920eec8eab30badc49894a76182a6a7f5e299aff5428d8",
+      "side": "R"
+    },
+    {
+      "h": "657535d96eb536c7f59d5e73131991ee9bca39fc9882f0262e22b1aa4df75b3b",
+      "side": "R"
+    },
+    {
+      "h": "eba43840cf74825dfe17bc7feba2f296f3a5e4a20bf857ec9b7a0d40d79ab204",
+      "side": "L"
     },
     {
       "h": "fd0314d9d9afee2c93cd2ec2309fd7a64ea1314d3797108244341025d6a0605e",
@@ -48,7 +48,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "0f7860956412baa103a039e6e5e974f72c9492a3a2b7794023bbc8e5ee389822",
+  "root": "de3e56d701e140d97206d268da295af5606219c2597b4f0ac608f9e529451902",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-01",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
