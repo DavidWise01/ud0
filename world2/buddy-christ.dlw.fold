@@ -5,33 +5,33 @@
   "name": "BUDDY CHRIST",
   "slug": "buddy-christ",
   "seal": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
-  "index": 449,
+  "index": 454,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "b83a032cf6d7025b61b2e3baec00fe3e3c7ffe363562806c48689beb17bf61fc",
+      "h": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851",
+      "side": "R"
+    },
+    {
+      "h": "c7192ef4716078449fc99b3fb92c0d006efc9b07afdd9d13585ff1c6749b4cc5",
       "side": "L"
     },
     {
-      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "h": "7aefebba9fca1d9282b916a8f0e89021f203dfd1503a79cd3261c16b7b56ead4",
+      "side": "L"
+    },
+    {
+      "h": "7349af00e45a482dea676eeb1db27c8d7364eb50100d2f1f86c6bde51d83b989",
       "side": "R"
     },
     {
-      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "h": "b0feff5ad00b2a379148b708dab1d0eaaba280e7582c7838ff0af14973bebb64",
       "side": "R"
     },
     {
-      "h": "eaf38c2cd96997d54d6a4c5db37ee0cfaec10743902b74eafba1eb5507e33c6f",
-      "side": "R"
-    },
-    {
-      "h": "c68076688ce99a5358fbbf674455f1bddc76eac9ff6783b7af78d7ce47c78ced",
-      "side": "R"
-    },
-    {
-      "h": "661fd37f79dbc390915dd718ec67d4b9355f2975e28fd09887f36d8cdd5fcf03",
+      "h": "dd53db07e904014c449339ead1b1d1fee712f9b7e7265064c4778515bf5d8dd2",
       "side": "R"
     },
     {
@@ -48,7 +48,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "d95ebb365705133a574b1cceeabe2521765a5d14153ae8e800d0ac27ef067423",
+  "root": "a90cd5e4639fe243ecd77d58ca26be535e1525c958520980d72e503d219bc1b9",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-01",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
