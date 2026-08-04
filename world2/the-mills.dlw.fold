@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE MILLS",
+  "slug": "the-mills",
+  "seal": "2455b825a4bd9f03453f5d947f023d988bd5f58eed430fa02b0974e0099de5ac",
+  "index": 1026,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "e43ecb7467bbf408be34112bc58a36b04146bf6a54d3b18903790747e641508d",
+      "side": "R"
+    },
+    {
+      "h": "b06c61750213d3ee7381dec07920fec6e7243f850c12776bb91aa3bb8f0007bf",
+      "side": "L"
+    },
+    {
+      "h": "120d62d54b943aaac11b886a73bba6bc6779fa4143f4c91f9f04ce54196d9c17",
+      "side": "R"
+    },
+    {
+      "h": "7349af00e45a482dea676eeb1db27c8d7364eb50100d2f1f86c6bde51d83b989",
+      "side": "R"
+    },
+    {
+      "h": "edc9703a34a626589a141d8cd9372233e0ba374c75d46f9ab71d8d0f89f66aae",
+      "side": "R"
+    },
+    {
+      "h": "5592a76025a0e03e43d875f149203d4ce5b5a39b454fdd9bf4da9358c37311a4",
+      "side": "R"
+    },
+    {
+      "h": "2ca9e9afc577e562e33f2f75dc065b31a7de76659a4a738d060e3bdeb737b355",
+      "side": "R"
+    },
+    {
+      "h": "0c930d6104afabd3bc120245f9ccf2f7211ec91db1a8585e914e7dd9d4a3d9fe",
+      "side": "R"
+    },
+    {
+      "h": "4586b18273adbb05d2d7d0a7c2657ad6f30c1c80f5664f89e42fce7250678cf4",
+      "side": "R"
+    },
+    {
+      "h": "777a420e236c8b604d6f65feacab416f229eea7cf708057735bf8d57ba298021",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "b619f0f33e5d9dca6a69430a6a7ec6d9ff16ecef0712b0467422335a6c940103",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

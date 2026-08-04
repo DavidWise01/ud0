@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1025,
+    "spheres": 1030,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1019,
+    "spheres_built": 1024,
     "apex": 1
   },
   "keepers": [
@@ -9313,6 +9313,51 @@
       "blurb": "Pancake sorting in the 5-window house format — a stack of n pancakes, one move: slide a spatula under any prefix and flip it. The pancake number P(n) is the worst case over all stacks, and computing it means searching the full n!-vertex prefix-reversal graph to its diameter: P(1..8) = 0,1,3,4,5,7,8,9, no formula known, P(20) uncomputed. Claim to fame: the (5n+5)/3 upper bound came from a 1979 paper by Christos Papadimitriou and a Harvard undergraduate named William Gates — Bill Gates' only research publication, unbeaten for 30 years until Chitturi et al. 2009. Posed by Jacob Goodman under the pseudonym 'Harry Dweighter' (harried waiter). Verified live: BFS over the complete graph for every n ≤ 8 — all 40,320 stacks of 8 reached — reproducing the diameters exactly. Neon-noir traced. See the formula-less staircase in 1D, the spatula replay in 2D, and the space of stacks in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "8885299fd9f921712a8e5abea7f2656edc6af73a2cf65447c5c62cefeb1134c8"
+    },
+    {
+      "slug": "the-sierpinski-number",
+      "title": "THE SIERPIŃSKI NUMBER",
+      "kicker": "a family composite forever by seven-prime conspiracy",
+      "accent": "#b06bff",
+      "blurb": "78,557 in the 5-window house format — a Sierpiński number: every member of 78557·2ⁿ+1 is composite, forever, by covering set. Seven primes {3,5,7,13,19,37,73} conspire — their orders of 2 all divide 36, so the conspiracy repeats with period 36: check 36 residues and you have checked all of infinity. Sierpiński proved such numbers exist (1960); Selfridge found 78,557 (1962); whether it is the SMALLEST is the Sierpiński problem, with PrimeGrid still hunting five candidates below it. Verified live, proof-grade: orders computed, lcm confirmed 36, all 36 residues matched to covering primes, and 1,500 actual BigInt terms audited (each divisible by its prime, each larger than it — composite). A complete finite proof of an infinite statement. Neon-noir traced. See the 36-spoke covering wheel in 1D, the per-n divisibility in 2D, and the patrol rota in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d6d816d96ebfa5894b509bcf058cfc2a14ce1b6ed11af7c27da77cf53a403dcc"
+    },
+    {
+      "slug": "the-mills",
+      "title": "THE MILLS",
+      "kicker": "a constant that boots an infinite prime cascade",
+      "accent": "#21e6ff",
+      "blurb": "Mills' constant in the 5-window house format — William Mills proved (1947) a constant A exists with floor(A^(3ⁿ)) prime for every n: 2, 11, 1361, 2521008887, 16022236204009818131831320183 — each the smallest prime after the cube of the last, perched astonishingly close above it (gaps 3, 30, 6, 80; the cube root of the fifth prime exceeds the fourth by just 4×10⁻¹⁸). The honest secret: the constant is the cascade written as a limit — the primes generate A, not the other way round — and its published digits as the LEAST such constant assume the Riemann Hypothesis. Verified live: the cascade re-derived from p=2 by Miller–Rabin next-prime hunts, every window (p³,(p+1)³) confirmed, the 4×10⁻¹⁸ knife-edge measured by BigInt cube root, and A itself extracted live as the 243rd root of the fifth prime — 31 digits of agreement, matching the published 1.3063778838630806904686144926. Neon-noir traced. See the cascade in 1D, the hop-by-hop rebuild in 2D, and the tower of cubes in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2455b825a4bd9f03453f5d947f023d988bd5f58eed430fa02b0974e0099de5ac"
+    },
+    {
+      "slug": "the-ruth-aaron",
+      "title": "THE RUTH-AARON",
+      "kicker": "two ballplayers sharing a factor sum",
+      "accent": "#35ffb0",
+      "blurb": "Ruth–Aaron pairs in the 5-window house format — on April 8, 1974, Hank Aaron's 715th home run passed Babe Ruth's 714, and days later Carl Pomerance noticed the numbers share a secret: 714 = 2·3·7·17 and 715 = 5·11·13 both have prime-factor sum 29. Bonus: 714·715 = 510,510 = 2·3·5·7·11·13·17, the product of the first seven primes. Erdős phoned Pomerance, they proved such pairs have density zero, and a legendary collaboration was born (Aaron and Erdős later received honorary degrees together — Aaron signed a baseball for Erdős, giving him an Erdős number of 1, as the joke goes). Verified live: both factor sums under both definitions, the primorial identity exact, and a full sieve census below 1,000,000 — 139 distinct-definition pairs, 149 with multiplicity, first pairs (5,6),(24,25),(49,50),(77,78)… Neon-noir traced. See the converging factorizations in 1D, the pair walk in 2D, and the balanced beam in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e43ecb7467bbf408be34112bc58a36b04146bf6a54d3b18903790747e641508d"
+    },
+    {
+      "slug": "the-erdos-straus",
+      "title": "THE ERDŐS-STRAUS",
+      "kicker": "four quarters split into three unit coins",
+      "accent": "#ff8a3c",
+      "blurb": "The Erdős–Straus conjecture in the 5-window house format — for every n ≥ 2, does 4/n split into three unit fractions 1/x+1/y+1/z? Ancient Egypt wrote all fractions as unit sums; Erdős asked (1948) whether three coins always suffice for 4/n. One-line identities swallow even n, n≡3 mod 4, and n≡0,2 mod 3; composites inherit from their factors; the entire battlefield shrinks to primes ≡ 1 mod 12, hunted one by one with no formula known. Verified computationally past 10¹⁷ in the literature — but OPEN. Verified live here: every n from 2 to 100,000 solved (families + factor-lifting + banded divisor search for the 2,374 hard primes), every solution certified by the exact BigInt identity n(yz+xz+xy)=4xyz — no floating point anywhere. Neon-noir traced. See the three coins in 1D, the wheel with certificates in 2D, and the mod-12 battlefield in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bd71e403a44b27b26ba9096e13f577b800b1c25faa873d8ff7fbb421a7b3fefe"
+    },
+    {
+      "slug": "the-untouchable",
+      "title": "THE UNTOUCHABLE",
+      "kicker": "the loot no drop table contains",
+      "accent": "#ffcf4a",
+      "blurb": "Untouchable numbers in the 5-window house format — values the aliquot sum s(n) (sum of proper divisors) never produces: 2, 5, 52, 88, 96, 120, 124, 146… No integer's divisors will ever sum to them. Erdős proved infinitude (1973). Two gems: 5 is believed the only odd untouchable — because strong Goldbach gives every even 2k = p+q, hence s(pq) = p+q+1 hits every odd ≥ 7; and untouchability is CERTIFIABLE without infinite search, because composite n has s(n) > √n, so small targets can only be hit by small n. Verified live: aliquot sums sieved to 998,001, the √n bound turning the finite scan into a certificate for all values ≤ 1000 — the exact untouchable list to 500 (38 values), with 5 the only odd member. Neon-noir traced. See the lit-and-dark number line in 1D, the witness queries in 2D, and the aliquot rain in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0a7e8dcb7af73edf4a02f4c31e9ec297f94640bb10bccc33ac2326a0d655b36f"
     }
   ],
   "appeals": [
@@ -10356,6 +10401,14 @@
               "accent": "#21e6ff",
               "icon": "skiplist",
               "kicker": "express lanes built by coin flips",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mills",
+              "title": "THE MILLS",
+              "accent": "#21e6ff",
+              "icon": "mills",
+              "kicker": "a constant that boots an infinite prime cascade",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -11453,6 +11506,14 @@
               "accent": "#ff8a3c",
               "icon": "resultant",
               "kicker": "a determinant that detects a shared root",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-erdos-straus",
+              "title": "THE ERDŐS-STRAUS",
+              "accent": "#ff8a3c",
+              "icon": "erdosstraus",
+              "kicker": "four quarters split into three unit coins",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -13263,6 +13324,14 @@
               "accent": "#ffcf4a",
               "icon": "alternating",
               "kicker": "zigzag permutations counted by secant plus tangent",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-untouchable",
+              "title": "THE UNTOUCHABLE",
+              "accent": "#ffcf4a",
+              "icon": "untouchable",
+              "kicker": "the loot no drop table contains",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -16474,6 +16543,14 @@
               "icon": "jamesstein",
               "kicker": "an estimator improved by shrinking it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ruth-aaron",
+              "title": "THE RUTH-AARON",
+              "accent": "#35ffb0",
+              "icon": "ruthaaron",
+              "kicker": "two ballplayers sharing a factor sum",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 22,
@@ -17294,6 +17371,14 @@
               "accent": "#ffcf4a",
               "icon": "aliasmethod",
               "kicker": "a die loaded in constant time",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sierpinski-number",
+              "title": "THE SIERPIŃSKI NUMBER",
+              "accent": "#b06bff",
+              "icon": "sierpinskinum",
+              "kicker": "a family composite forever by seven-prime conspiracy",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18429,7 +18514,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "3a9e4d4127246ae6c0312c7de867cd69daa04656a10bc8239f3514ff7eebaf9a",
+  "fold_root": "b619f0f33e5d9dca6a69430a6a7ec6d9ff16ecef0712b0467422335a6c940103",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
