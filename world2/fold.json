@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1115,
+    "spheres": 1120,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1109,
+    "spheres_built": 1114,
     "apex": 1
   },
   "keepers": [
@@ -10123,6 +10123,51 @@
       "blurb": "A square is a stutter — any block repeated immediately. With two letters it's unavoidable: every binary word of length 4 contains one. With three, Thue proved in 1906 you can walk forever without stuttering, via a simple substitution word. The gate between alphabets 2 and 3 is absolute — and Thue's overlooked Norwegian papers founded combinatorics on words.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "ebf9dce48f2eb42df5cd3decfa2077526078cce285d1e86787eb0e40a148b32f"
+    },
+    {
+      "slug": "the-ising",
+      "title": "THE ISING",
+      "kicker": "the temperature that melts order",
+      "accent": "#21e6ff",
+      "blurb": "A grid of arrows, each preferring to agree with its neighbours, each shaken by heat. Cold: one giant aligned domain. Hot: static. The Ising model is the simplest genuine phase transition — and Onsager solved 2D exactly in 1944, pinning Tc = 2/ln(1+√2). The irony: Ising solved the 1D chain in 1925, found no transition, and wrongly concluded there was none in any dimension.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7ec466ba8409f5258ffe5193025583d93f2b3ed717eeb8b933b6099d5fd215a3"
+    },
+    {
+      "slug": "the-giant-component",
+      "title": "THE GIANT COMPONENT",
+      "kicker": "the edge where one giant appears",
+      "accent": "#ff8a3c",
+      "blurb": "Sprinkle random edges on n nodes until each averages c connections. Below c = 1 the network is dust — every piece O(log n). Cross c = 1 and a single giant component appears holding a fixed fraction S of everything, with all others still logarithmic. Erdős and Rényi called it the double jump; the giant's size is the root of S = 1 − e^(−cS).",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "acebc29eba4f4902cddc894bbaeaad1c49e3129bd95026d9e73f38c6d5ee2f3a"
+    },
+    {
+      "slug": "the-zeeman-machine",
+      "title": "THE ZEEMAN MACHINE",
+      "kicker": "the disc that jumps",
+      "accent": "#ffcf4a",
+      "blurb": "A cardboard disc on a pin and two elastics: move your hand smoothly and the disc follows — until it flips, and flips back at a DIFFERENT place. Zeeman's 1972 catastrophe machine is Thom's cusp made physical: a control plane with a bistable tongue, so continuous input yields discontinuous output and the route decides the state. Hysteresis you can build for a pound.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "179c28b03e10418f04dd66f8fca28ce6458d845b1566e8a572cdd26e55b6556f"
+    },
+    {
+      "slug": "the-lanchester",
+      "title": "THE LANCHESTER",
+      "kicker": "why concentration wins",
+      "accent": "#ffcf4a",
+      "blurb": "Lanchester, watching Great War aircraft, found that under aimed fire combat power scales as the SQUARE of numbers — invariant αA² − βB². Hence defeat in detail: 100 fighting two 50s in sequence walks away with √(100²−50²−50²) = 70.7 survivors where fighting all 100 at once annihilates it. And it's conditional: under unaimed fire the law goes linear and concentration buys nothing.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "dbd20ea1968c0a518efd3ca4042e250a46c307ee9a14afb53c809b3d70c294ae"
+    },
+    {
+      "slug": "the-lotka-volterra",
+      "title": "THE LOTKA–VOLTERRA",
+      "kicker": "why killing both helps the prey",
+      "accent": "#b06bff",
+      "blurb": "Predator and prey chase each other around a loop forever. Two surprises: the orbits are exactly closed (an invariant preserves them), and the time-averages depend ONLY on the parameters — ⟨prey⟩ = c/d, ⟨predator⟩ = a/b, whatever the amplitude. Hence Volterra's principle: kill both species indiscriminately and the prey average RISES. He derived it in 1926 to explain why the WWI fishing halt raised the Adriatic shark fraction.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "790aebf396e51336c6c58a2804aa7948648936e968eedfd8d53377df3d63df62"
     }
   ],
   "appeals": [
@@ -12188,6 +12233,14 @@
               "icon": "coastline",
               "kicker": "the coast that has no length",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lotka-volterra",
+              "title": "THE LOTKA–VOLTERRA",
+              "accent": "#b06bff",
+              "icon": "lotkavolterra",
+              "kicker": "why killing both helps the prey",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -12967,6 +13020,14 @@
               "accent": "#ff8a3c",
               "icon": "chipfiring",
               "kicker": "avalanches that forget their order",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lanchester",
+              "title": "THE LANCHESTER",
+              "accent": "#ffcf4a",
+              "icon": "lanchester",
+              "kicker": "why concentration wins",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -15502,6 +15563,14 @@
               "icon": "kuratowski",
               "kicker": "fourteen sets and never a fifteenth",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-zeeman-machine",
+              "title": "THE ZEEMAN MACHINE",
+              "accent": "#ffcf4a",
+              "icon": "zeeman",
+              "kicker": "the disc that jumps",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -15974,6 +16043,14 @@
               "accent": "#21e6ff",
               "icon": "hydra",
               "kicker": "the boss that must lose but arithmetic cannot say so",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-giant-component",
+              "title": "THE GIANT COMPONENT",
+              "accent": "#ff8a3c",
+              "icon": "giantcomponent",
+              "kicker": "the edge where one giant appears",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17367,6 +17444,14 @@
               "accent": "#21e6ff",
               "icon": "friendshipthm",
               "kicker": "every friendship wheel has a hub",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ising",
+              "title": "THE ISING",
+              "accent": "#21e6ff",
+              "icon": "ising",
+              "kicker": "the temperature that melts order",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19959,7 +20044,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "98e4032d49c4cc921bcc24601dbddef18f49273ceda9cb8671df9e4fb236edd2",
+  "fold_root": "4c8150c9a515a54da5f3642b8673db28d80794faa09236c338b58306137bedf8",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
