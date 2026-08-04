@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1040,
+    "spheres": 1045,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1034,
+    "spheres_built": 1039,
     "apex": 1
   },
   "keepers": [
@@ -9448,6 +9448,51 @@
       "blurb": "Weird numbers in the 5-window house format — 70's proper divisors (1,2,5,7,10,14,35) sum to 74: abundant. Usually abundance buys flexibility — some subset hits n exactly (semiperfect). But none of 70's 128 subsets makes 70: rich, and unable to spend the wealth exactly. Abundant-but-not-semiperfect numbers are the weird numbers (Benkoski & Erdős 1974): 70, 836, 4030, 5830, 7192, 7912, 9272… — provably infinite, all known ones even, the odd case open past 10²¹ with Erdős cash on the table. Verified live: exhaustive sweep below 10,000 with real divisor lists and exact subset-sum DP finds exactly those seven. Build note kept honest: memory said six; the computation found seven (5830) — computation wins. Neon-noir traced. See 70's unspendable wealth in 1D, the seven audits in 2D, and the reachable-sums map with its one dark slot in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "d3377cd62da4d0204551cac6326c1824f9333e70dd00ba40399ed0439cd0199a"
+    },
+    {
+      "slug": "the-graham",
+      "title": "THE GRAHAM",
+      "kicker": "a number too big for the universe with a visible tail",
+      "accent": "#35ffb0",
+      "blurb": "Graham's number in the 5-window house format — too large for the observable universe to store its digits (an upper bound from Ramsey theory, Graham–Rothschild 1971, made famous by Martin Gardner), yet its FINAL digits are perfectly knowable: modulo 10^k every sufficiently tall tower of 3s stabilizes, and the tail is …262464195387. You cannot know the beginning; you can know the end. Verified live by three independent routes: the Carmichael-λ chain shows 3↑↑20 ≡ 3↑↑40 mod 10¹² (stabilization); the anchor 3↑↑3 = 7,625,597,484,987 computed exactly; and a Chinese-Remainder recombination (2¹² × 5¹²) reproduces the same tail. Neon-noir traced. See the digits locking in 1D, the growing tower with frozen tail in 2D, and the tower vanishing upward in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0b49efb71b20cbbe352a7687c378356672abad1c6d378fc8a99df989cfcf14ae"
+    },
+    {
+      "slug": "the-friendship-theorem",
+      "title": "THE FRIENDSHIP THEOREM",
+      "kicker": "every friendship wheel has a hub",
+      "accent": "#21e6ff",
+      "blurb": "The friendship theorem in the 5-window house format — if every two people share exactly one common friend, the network MUST be a windmill: one universal friend at the hub, everyone else paired into triangles through them (Erdős–Rényi–Sós 1966). No decentralized configuration survives; a 'politician' is forced into existence — and the standard proof runs through eigenvalues of the adjacency matrix, spectral graph theory summoned for a party puzzle. Verified live, exhaustively: ALL graphs on 3–7 vertices (2,097,152 at n=7) tested; survivors number 1, 0, 15, 0, 105 and every one is structurally certified a windmill; even n admit none. Neon-noir traced. See the three survivors in 1D, pair-by-pair checks in 2D, and the turning windmill in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "730c9b25789f34691d432eb805469d7d1dc55a4f585d5f3ebfd71e4f2f8da8a1"
+    },
+    {
+      "slug": "the-kuratowski",
+      "title": "THE KURATOWSKI",
+      "kicker": "fourteen sets and never a fifteenth",
+      "accent": "#ffcf4a",
+      "blurb": "Kuratowski's closure-complement problem in the 5-window house format — take any set of reals; two buttons: closure (add limit points) and complement (flip inside/out). Press in any order, forever: you can produce AT MOST 14 distinct sets (Kuratowski 1922), and some starting sets achieve exactly 14 — classically the Frankenstein witness (0,1) ∪ (1,2) ∪ {3} ∪ (ℚ∩(4,5)). The bound is pure algebra: kk=k, cc=1, one hidden identity folds everything past fourteen. Verified live twice: the operator monoid generated across 60 random finite topological spaces closes at exactly 14 operators; and the classical witness runs through an EXACT symbolic engine (intervals, points, rational dust — closed under both operations) producing 14 distinct sets, never a fifteenth. Neon-noir traced. See the witness anatomy in 1D, the two live buttons in 2D, and the 14-orbit in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "44e59b0e5d86d354039843c49b8701fd2ba5f48882133acbbfbeae626891f2c8"
+    },
+    {
+      "slug": "the-schur",
+      "title": "THE SCHUR",
+      "kicker": "the wall at thirteen",
+      "accent": "#b06bff",
+      "blurb": "Schur numbers in the 5-window house format — color 1, 2, 3, … with k colors so no color class contains x+y=z: with 2 colors you reach exactly 4; with 3, exactly 13; with 4, exactly 44. Then the frontier: S(5) = 160, proved in 2017 by Marijn Heule's SAT certificate occupying TWO PETABYTES — the largest mathematical proof ever constructed, for a puzzle a child can state (Schur invented them in 1917 for modular Fermat equations). Verified live: S(2)=4 both directions (witness + all 32 bipartitions of 1..5 fail); S(3)=13 both directions (witness {1,4,10,13}/{2,3,11,12}/{5,6,7,8,9} + pruned exhaustive DFS of 1,954 nodes proving 1..14 impossible). Neon-noir traced. See the 13-coloring in 1D, the blocked 14 in 2D, and the staircase of proof sizes in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f6d01b252d4efffef995eed07decbc25d54088f998c13e5a828a0c6f8a592033"
+    },
+    {
+      "slug": "the-nested-radical",
+      "title": "THE NESTED RADICAL",
+      "kicker": "the infinite root that equals three",
+      "accent": "#ff8a3c",
+      "blurb": "Ramanujan's nested radical in the 5-window house format — in 1911 a Madras clerk mailed the Journal of the Indian Mathematical Society a puzzle: evaluate √(1+2√(1+3√(1+4√(…)))). Six months, no solvers; Ramanujan published the answer himself: exactly 3, via the telescoping identity x+1 = √(1+x√(1+(x+1)√(…))). The infinite dig has a clean bottom. Cousins verified alongside: √(2+√(2+…)) = 2, √(6+√(6+…)) = 3, √(1+√(1+…)) = φ. Verified live with rigorous two-sided bracketing: depth-60 truncations seeded LOW and HIGH pin 3 between them to 14 decimals; the tail identity (=4) bracketed the same way; the fixed-point cousins to 1e-10. Neon-noir traced. See the telescope in 1D, the squeezing brackets in 2D, and the radical well in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8b026b105463569645a580189977f7f06ae5d267018cfbc9fe7a86dfebb6d3fd"
     }
   ],
   "appeals": [
@@ -12025,6 +12070,14 @@
               "icon": "stirling",
               "kicker": "a factorial approximated by a smooth curve",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-nested-radical",
+              "title": "THE NESTED RADICAL",
+              "accent": "#ff8a3c",
+              "icon": "nestedradical",
+              "kicker": "the infinite root that equals three",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 30,
@@ -14539,6 +14592,14 @@
               "icon": "kelly",
               "kicker": "the bet size that survives",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kuratowski",
+              "title": "THE KURATOWSKI",
+              "accent": "#ffcf4a",
+              "icon": "kuratowski",
+              "kicker": "fourteen sets and never a fifteenth",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -15407,6 +15468,14 @@
               "accent": "#35ffb0",
               "icon": "farymilnor",
               "kicker": "the bending toll every knot must pay",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-schur",
+              "title": "THE SCHUR",
+              "accent": "#b06bff",
+              "icon": "schur",
+              "kicker": "the wall at thirteen",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -16284,6 +16353,14 @@
               "accent": "#21e6ff",
               "icon": "graceful",
               "kicker": "a labeling whose edge-gaps are 1 to m",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-friendship-theorem",
+              "title": "THE FRIENDSHIP THEOREM",
+              "accent": "#21e6ff",
+              "icon": "friendshipthm",
+              "kicker": "every friendship wheel has a hub",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18291,6 +18368,14 @@
               "icon": "fagnano",
               "kicker": "the min-perimeter inscribed triangle is the orthic",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-graham",
+              "title": "THE GRAHAM",
+              "accent": "#35ffb0",
+              "icon": "graham",
+              "kicker": "a number too big for the universe with a visible tail",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -18684,7 +18769,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "ed99191ccafc819bd6e4e0ea89926261703b9b3c17561af7bdf71b77ea79c177",
+  "fold_root": "eea7849ba55730af617b9482300962356b7a34555c7a928af2365c862d757a84",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
