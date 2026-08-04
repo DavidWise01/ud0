@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE BROUWER",
+  "slug": "the-brouwer",
+  "seal": "a29b1134e700ae1152750225065a9671eeb18df207e0b956a64d04abdbf57f98",
+  "index": 1064,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
+      "side": "R"
+    },
+    {
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "side": "R"
+    },
+    {
+      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "side": "R"
+    },
+    {
+      "h": "ba9413f287951dd1df88b50c68f4784b0d9ce12eb60ede36774716db756362ad",
+      "side": "L"
+    },
+    {
+      "h": "3981aec510495597cc0e5e301e83390be3b8fd48983aa372eb2d059fd976da2e",
+      "side": "R"
+    },
+    {
+      "h": "39b61bd7c1bef68ffb4c4a29586d97c04f96df2044cc07463823609c7f425fa9",
+      "side": "L"
+    },
+    {
+      "h": "15ca9bd17cefc80e3ca4f5fc77c9cf303895b6844ef49e47392dbc99d39ba0ac",
+      "side": "R"
+    },
+    {
+      "h": "ad99bb274c6b5eea16d767611ab7ce9cf8ba551d4f685daebc368e50250c37c9",
+      "side": "R"
+    },
+    {
+      "h": "a4339311f5ae103dd8183372952caf37e61007d613d92b179aa802718867222e",
+      "side": "R"
+    },
+    {
+      "h": "ebd20aa62620a2dedddc9bd6ff8f7ea2ec838e381c0cf0cce0008550f8713c70",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "3cc8765134504361d1385355ad451a6da36abe54695beb9af1dc99777548ffe8",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

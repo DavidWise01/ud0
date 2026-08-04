@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE ARISTOTLE WHEEL",
+  "slug": "the-aristotle-wheel",
+  "seal": "c8e9f36b00daaaad0c373d73ba599a56fd6304c588b63ad754c073e93bb39587",
+  "index": 1062,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "44253da78e426e09c5a149bdae8f9682d3f9958183ff6451cc6e40bc4b712fee",
+      "side": "R"
+    },
+    {
+      "h": "70542675e62caebcc1e1d81650a5c169842e371f3ffc4de67d931270830c9839",
+      "side": "L"
+    },
+    {
+      "h": "b42a236ff78b3b61de396438b35d08082915e3f4bd428ee0014281488cc1be75",
+      "side": "L"
+    },
+    {
+      "h": "4dca89efb0af00ca02e9d5a55cef5c14cd0e8cee7cedbefb2a1eadfeaaff9e47",
+      "side": "R"
+    },
+    {
+      "h": "3981aec510495597cc0e5e301e83390be3b8fd48983aa372eb2d059fd976da2e",
+      "side": "R"
+    },
+    {
+      "h": "39b61bd7c1bef68ffb4c4a29586d97c04f96df2044cc07463823609c7f425fa9",
+      "side": "L"
+    },
+    {
+      "h": "15ca9bd17cefc80e3ca4f5fc77c9cf303895b6844ef49e47392dbc99d39ba0ac",
+      "side": "R"
+    },
+    {
+      "h": "ad99bb274c6b5eea16d767611ab7ce9cf8ba551d4f685daebc368e50250c37c9",
+      "side": "R"
+    },
+    {
+      "h": "a4339311f5ae103dd8183372952caf37e61007d613d92b179aa802718867222e",
+      "side": "R"
+    },
+    {
+      "h": "ebd20aa62620a2dedddc9bd6ff8f7ea2ec838e381c0cf0cce0008550f8713c70",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "3cc8765134504361d1385355ad451a6da36abe54695beb9af1dc99777548ffe8",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

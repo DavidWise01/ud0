@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1060,
+    "spheres": 1065,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1054,
+    "spheres_built": 1059,
     "apex": 1
   },
   "keepers": [
@@ -9628,6 +9628,51 @@
       "blurb": "The German tank problem in the 5-window house format — WWII intelligence said 1,400 tanks a month; the statisticians read the captured serial numbers and said 246; postwar German records showed 245. The estimator: seeing k serials with maximum m, answer m(1+1/k)−1 — the observed maximum pushed up by the average gap. It is minimum-variance unbiased: across ALL possible samples it averages to exactly N. The same trick has counted iPhones and Commodore 64s since. Verified live: exact unbiasedness by COMPLETE enumeration (all 15,504 five-samples from a population of twenty average to exactly 20.0000000000), plus Monte-Carlo at the historical scale (N=245, k=10) with the MVUE at half the error of doubled-mean (21.8 vs 43.7 RMSE) and the raw max biased low. Neon-noir traced. See the serial line in 1D, the estimator tournament in 2D, and 246-vs-1400-vs-245 in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "103cb2a4929176944f27c0227e8c6fe8a3aeee0b693b4c12f5b4c177b113c989"
+    },
+    {
+      "slug": "the-napkin-ring",
+      "title": "THE NAPKIN RING",
+      "kicker": "a ring that forgets its sphere",
+      "accent": "#ffcf4a",
+      "blurb": "The napkin ring problem in the 5-window house format — drill a cylindrical hole through a sphere's center leaving a ring of height h: the remaining volume is πh³/6, and the sphere's radius has VANISHED from the formula. A height-6 ring from an orange and one from the Earth hold identical volume — the planet's is wafer-thin but vast, the orange's thick but tiny, the trade exact. Cavalieri's proof is the jewel: the cross-section annulus area is π((h/2)²−y²) — R cancels BEFORE you integrate. Verified live three ways: numeric integration for R = 5, 50, 500 all landing on 113.0973; the Cavalieri cancellation exact at 100 heights; 2M-point Monte-Carlo within 1%. Neon-noir traced. See matched slices in 1D, the growing sphere with pinned volume in 2D, and rings of three worlds in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "df27f184f41e09656eb59a1756c0270ae6e61563c3e078dade40962250d69c2c"
+    },
+    {
+      "slug": "the-coastline",
+      "title": "THE COASTLINE",
+      "kicker": "the coast that has no length",
+      "accent": "#21e6ff",
+      "blurb": "The coastline paradox in the 5-window house format — Richardson asked how long the coast of Britain is and found it depends on the ruler, divergently: halve the ruler and the length grows by a power law, because every bay hides smaller bays. Mandelbrot's 1967 paper on that data launched fractal geometry: coastlines have no length but they have a DIMENSION. The laboratory specimen is the Koch curve: length exactly (4/3)ⁿ (divergent), dimension exactly log4/log3 = 1.2619. Verified live: Koch lengths match (4/3)ⁿ to 1e-9 for n ≤ 7; the dimension measured by TWO independent meters — box-counting (1.29) and Richardson's ruler-walking (1.20) — both bracketing the truth. Neon-noir traced. See the unfolding curve in 1D, the shrinking ruler in 2D, and the bottomless zoom in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5366fbff7dbf2a8f96d941f0d90d24ecfbe28c7ce726504c93163eac7b46f843"
+    },
+    {
+      "slug": "the-aristotle-wheel",
+      "title": "THE ARISTOTLE WHEEL",
+      "kicker": "the wheel that skids in plain sight",
+      "accent": "#ff8a3c",
+      "blurb": "Aristotle's wheel paradox in the 5-window house format — two concentric wheels welded together roll one revolution; both advance 2πR, but the small wheel's circumference is only 2πr: how did it unroll more road than it has rim? The puzzle stumped readers of the pseudo-Aristotelian Mechanica for 2,300 years (Galileo wrestled it in Two New Sciences). The resolution is measurable: only the big wheel ROLLS; the small one SKIDS — its contact point never rests (speed ω(R−r)) while the big wheel's touches down at speed zero (the cycloid's cusp), dragging slip of exactly 2π(R−r) per turn. Verified live: cycloid arc length exactly 8R, trochoid 6.68R over the same advance, bottom speeds 0 vs 0.5, slip exact. Neon-noir traced. See the two paths in 1D, the speed gauges in 2D, and the glowing skid trail in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c8e9f36b00daaaad0c373d73ba599a56fd6304c588b63ad754c073e93bb39587"
+    },
+    {
+      "slug": "the-mountain-climber",
+      "title": "THE MOUNTAIN CLIMBER",
+      "kicker": "two climbers in height-lockstep",
+      "accent": "#35ffb0",
+      "blurb": "The mountain climbing theorem in the 5-window house format — two climbers on opposite faces of a range want to summit while staying at EXACTLY equal altitude the whole way. The theorem: for any two continuous profiles with shared endpoints, the synchronized traversal always exists — but the climbers must sometimes go BACKWARDS, descending a peak already won, to let a partner cross a valley; always-forward fails. For piecewise-linear mountains the proof is executable: BFS on the equal-height coordination graph. Verified live: 200 random mountain pairs, 200 synchronized routes found, including the classic pair whose solution provably requires backtracking. Neon-noir traced. See the twin profiles in 1D, freshly generated ranges in 2D, and the coordination square in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "44253da78e426e09c5a149bdae8f9682d3f9958183ff6451cc6e40bc4b712fee"
+    },
+    {
+      "slug": "the-brouwer",
+      "title": "THE BROUWER",
+      "kicker": "the point that cannot escape",
+      "accent": "#b06bff",
+      "blurb": "Brouwer's fixed-point theorem in the 5-window house format — crumple a map of your city and drop it anywhere in the city: one point lies exactly atop the place it depicts. Every continuous self-map of a disk fixes at least one point (Brouwer 1911) — the engine beneath Nash equilibria and market-clearing prices. The most beautiful proof is combinatorial: Sperner's lemma (1928) — triangulate, label by simple rules, and an ODD number of small triangles must carry all three labels; odd cannot be zero, and those triangles corner the fixed point. Verified live: 30 random self-maps, fully-labeled count odd every time; the flagged triangle localizes a fixed point with error shrinking 3e-2 → 2e-3 under refinement; and 1D Brouwer (= IVT) bisected to 1e-12. Neon-noir traced. See the diagonal crossing in 1D, the Sperner rainbow in 2D, and the crumpled map in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a29b1134e700ae1152750225065a9671eeb18df207e0b956a64d04abdbf57f98"
     }
   ],
   "appeals": [
@@ -11629,6 +11674,14 @@
               "icon": "gijswijt",
               "kicker": "the slowest counter in mathematics",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-coastline",
+              "title": "THE COASTLINE",
+              "accent": "#21e6ff",
+              "icon": "coastline",
+              "kicker": "the coast that has no length",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -12685,6 +12738,14 @@
               "accent": "#35ffb0",
               "icon": "primerace",
               "kicker": "a prime race with one famous upset",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-aristotle-wheel",
+              "title": "THE ARISTOTLE WHEEL",
+              "accent": "#ff8a3c",
+              "icon": "aristotlewheel",
+              "kicker": "the wheel that skids in plain sight",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -14659,6 +14720,14 @@
               "icon": "magichexagon",
               "kicker": "the one hexagon that exists",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-napkin-ring",
+              "title": "THE NAPKIN RING",
+              "accent": "#ffcf4a",
+              "icon": "napkinring",
+              "kicker": "a ring that forgets its sphere",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -15543,6 +15612,14 @@
               "accent": "#b06bff",
               "icon": "treiber",
               "kicker": "a stack that needs no lock",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-brouwer",
+              "title": "THE BROUWER",
+              "accent": "#b06bff",
+              "icon": "brouwer",
+              "kicker": "the point that cannot escape",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17184,6 +17261,14 @@
               "accent": "#35ffb0",
               "icon": "tautochrone",
               "kicker": "every bead arriving together",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mountain-climber",
+              "title": "THE MOUNTAIN CLIMBER",
+              "accent": "#35ffb0",
+              "icon": "mountainclimber",
+              "kicker": "two climbers in height-lockstep",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19024,7 +19109,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "8612657fdb50a9e77490a2d5660b5d1ff79868e3712543f113fce4b1ebe7404e",
+  "fold_root": "3cc8765134504361d1385355ad451a6da36abe54695beb9af1dc99777548ffe8",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
