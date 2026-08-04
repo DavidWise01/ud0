@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE KOCHEN–SPECKER",
+  "slug": "the-kochen-specker",
+  "seal": "93ba283495062a26e05607c3824ae5739430723b06b4a3092d999c3d443cba50",
+  "index": 1126,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "3c806e3ae009a874f3ac83a6a362c26d9452e6b0bfec533dac8ffdcb085b2761",
+      "side": "R"
+    },
+    {
+      "h": "d587fc29494949ab61c8a4aa2e0a5ccf92e12fc8b39d4bc02043236a4384e3c0",
+      "side": "L"
+    },
+    {
+      "h": "bad397ed3980ef1eeb027dc4c445a980753b99f468ddb545f67fd8a3e38e9bd5",
+      "side": "L"
+    },
+    {
+      "h": "73be745c45400386f2da83840e5f9e55eb3fe17701c3035023da84eab48455e3",
+      "side": "R"
+    },
+    {
+      "h": "657535d96eb536c7f59d5e73131991ee9bca39fc9882f0262e22b1aa4df75b3b",
+      "side": "R"
+    },
+    {
+      "h": "f269c8a529f815d2f48903968708708d6595d6abda30d6646468816c5751ef16",
+      "side": "L"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "42ffddbfb85c31945304900fa0b0e50e31fe5ca2d9502278f461faf5ee948f73",
+      "side": "R"
+    },
+    {
+      "h": "23318a8cf773457ca6fc66ef49577fde34165c0098b9e501eb7c138644ddc0d1",
+      "side": "R"
+    },
+    {
+      "h": "a265f64bf7bd2fdf375a6b991d63727ba00e216926676c4820091ae7e44559e3",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "5f2c60cfebdbbc87b473149b8bf6c35a2ddb8bdf38a785da36ebc60028accfb7",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

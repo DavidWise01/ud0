@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1125,
+    "spheres": 1130,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1119,
+    "spheres_built": 1124,
     "apex": 1
   },
   "keepers": [
@@ -10213,6 +10213,51 @@
       "blurb": "Place n points in a unit square; among all their triangles, how large can you force the SMALLEST to be? Random placement is terrible at this — six points typically leave a sliver of area 0.005 — while careful placement reaches 1/8, twenty-three times better. Heilbronn conjectured the optimum decays like 1/n²; Komlós, Pintz and Szemerédi disproved that in 1982, and the asymptotics are still open.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "54aa72f7530d133ba67fce2a7466b0255cf98be60fdbe26ba8907b32e3160e52"
+    },
+    {
+      "slug": "the-peres-mermin",
+      "title": "THE PERES–MERMIN",
+      "kicker": "the square with no numbers",
+      "accent": "#21e6ff",
+      "blurb": "A 3×3 grid of two-qubit observables where every row commutes and every column commutes, so each line is jointly measurable and each cell can only read ±1. Multiply along the lines: rows give +I, one column gives −I — an odd number of minus signs. But if the cells had pre-existing values, each appears in one row and one column, so the six products multiply to a square: +1. Odd ≠ even.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5731c20a56a8930cba31283b17e63d3760ce37c0758afdc5103cb229ae1903c0"
+    },
+    {
+      "slug": "the-kochen-specker",
+      "title": "THE KOCHEN–SPECKER",
+      "kicker": "eighteen rays no assignment survives",
+      "accent": "#ffcf4a",
+      "blurb": "You cannot hand every quantum observable a pre-existing value. The proof is combinatorial: find directions such that no yes/no labelling works, where every set of mutually perpendicular directions must contain exactly one yes. Kochen and Specker needed 117 vectors; Cabello, Estebaranz and García-Alcaine found a record with 18 in 4D — nine perpendicular quadruples, each ray in exactly two. The contradiction is pure parity.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "93ba283495062a26e05607c3824ae5739430723b06b4a3092d999c3d443cba50"
+    },
+    {
+      "slug": "the-bomb-tester",
+      "title": "THE BOMB TESTER",
+      "kicker": "seeing without looking",
+      "accent": "#ff8a3c",
+      "blurb": "Bombs that detonate on a single photon. Classically you cannot test one without risking it. Elitzur and Vaidman 1993: put the bomb in one interferometer arm — a dud preserves interference, a live one destroys it, and the 'dark' detector fires, reporting the bomb live without the photon ever taking that path. The naive scheme wastes half; the quantum-Zeno version (Kwiat et al. 1995, built in a lab) drives efficiency to 1.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3c806e3ae009a874f3ac83a6a362c26d9452e6b0bfec533dac8ffdcb085b2761"
+    },
+    {
+      "slug": "the-hardy",
+      "title": "THE HARDY",
+      "kicker": "the paradox at phi to the minus five",
+      "accent": "#b06bff",
+      "blurb": "Bell's theorem needs an inequality and a statistical margin. Hardy 1992 found something sharper: three joint outcomes with probability exactly zero and a fourth with probability greater than zero — logically inconsistent for any local realist. No inequality, no error bars; one event of the fourth kind refutes hidden variables outright. The price is rarity: the maximum is (5√5−11)/2 ≈ 0.0902, which is exactly φ⁻⁵.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b539bfca5464e95a922e9c39f61e312752efdac45259b401a411c6083f957fac"
+    },
+    {
+      "slug": "the-quantum-pigeonhole",
+      "title": "THE QUANTUM PIGEONHOLE",
+      "kicker": "three in two boxes, none together",
+      "accent": "#35ffb0",
+      "blurb": "Three particles, two boxes: classically some pair must share — the pigeonhole principle has no exceptions. Aharonov and collaborators 2016: in a pre- and post-selected ensemble, the two-state amplitude for 'these two share a box' is exactly zero for EVERY pair, while three particles and two boxes remain three particles and two boxes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "78eb236eac44b59d0dd5a9868ab8e652cf5c144c78dfa71ad9922cb13a4149db"
     }
   ],
   "appeals": [
@@ -13755,6 +13800,14 @@
               "icon": "twoenvelope",
               "kicker": "two envelopes and a threshold that beats the coin",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kochen-specker",
+              "title": "THE KOCHEN–SPECKER",
+              "accent": "#ffcf4a",
+              "icon": "kochenspecker",
+              "kicker": "eighteen rays no assignment survives",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -13870,6 +13923,14 @@
               "accent": "#21e6ff",
               "icon": "hairyball",
               "kicker": "the coconut that cannot be combed",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hardy",
+              "title": "THE HARDY",
+              "accent": "#b06bff",
+              "icon": "hardy",
+              "kicker": "the paradox at phi to the minus five",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -14134,6 +14195,14 @@
               "accent": "#21e6ff",
               "icon": "thomae",
               "kicker": "popcorn continuous only off the grid",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-peres-mermin",
+              "title": "THE PERES–MERMIN",
+              "accent": "#21e6ff",
+              "icon": "peresmermin",
+              "kicker": "the square with no numbers",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18891,6 +18960,14 @@
               "icon": "nontransitivedice",
               "kicker": "dice with no best",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-bomb-tester",
+              "title": "THE BOMB TESTER",
+              "accent": "#ff8a3c",
+              "icon": "bombtester",
+              "kicker": "seeing without looking",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -19873,6 +19950,14 @@
               "icon": "karplusstrong",
               "kicker": "a burst of noise that decays into a musical note",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-quantum-pigeonhole",
+              "title": "THE QUANTUM PIGEONHOLE",
+              "accent": "#35ffb0",
+              "icon": "qpigeonhole",
+              "kicker": "three in two boxes, none together",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -20129,7 +20214,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "1544fef6009bb1d77dd25c81e09061a1e10d8421cabcca87a6dbc47918cf1199",
+  "fold_root": "5f2c60cfebdbbc87b473149b8bf6c35a2ddb8bdf38a785da36ebc60028accfb7",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
