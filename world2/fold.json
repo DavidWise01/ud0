@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1070,
+    "spheres": 1075,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1064,
+    "spheres_built": 1069,
     "apex": 1
   },
   "keepers": [
@@ -9718,6 +9718,51 @@
       "blurb": "Tupper's formula in the 5-window house format — one inequality, ½ < ⌊mod(⌊y/17⌋·2^(−17⌊x⌋−mod(⌊y⌋,17)), 2)⌋, plots a picture of ITSELF at a particular 543-digit k. The honest magic, better than the myth: it is a universal bitmap decoder — the giant k IS the picture (every pixel a bit of k's binary expansion) and the formula merely reads bit 17⌊x⌋+mod(y,17) back out. It plots everything — your name, a smiley — each image at its own altitude; the famous self-portrait is self-reference by construction. Verified live in exact BigInt: 50 random 106×17 bitmaps encoded and decoded through the actual formula arithmetic, formula route ≡ direct-bit route ≡ original at every sample; a structured 1,802-pixel bitmap round-trips exactly (k has 424 digits). Neon-noir traced. See the pipeline in 1D, live payload roundtrips in 2D, and the everything-tower in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a831ca7c6bb9e8a4825850dc803a7933b62409d9082003d69b2bff9cc40280a3"
+    },
+    {
+      "slug": "the-borsuk-ulam",
+      "title": "THE BORSUK-ULAM",
+      "kicker": "antipodes that must agree",
+      "accent": "#b06bff",
+      "blurb": "The Borsuk–Ulam theorem in the 5-window house format — right now, somewhere on Earth, two antipodal points have exactly the same temperature AND pressure: provably (Borsuk 1933, answering Ulam). Every continuous map from the n-sphere to ℝⁿ collapses some antipodal pair. It is the boss theorem of a whole dungeon — ham sandwich, Brouwer's fixed point, and necklace splitting all drop from it. The 1D proof fits in a line: g(θ) = f(θ)−f(θ+π) satisfies g(0) = −g(π), so it crosses zero. Verified live: 200 random circle functions with the antipodal pair bisected to 1e-10 every time, and 50 random (temperature, pressure) sphere pairs with the odd map driven below 1e-5 — the promised twins located. Neon-noir traced. See the forced crossing in 1D, the weather twins in 2D, and the pinned globe in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9d9bbe4c3f944dffee48a123bb985173a19f1b9d97bcff4d3cbf541302d13929"
+    },
+    {
+      "slug": "the-banach-tarski",
+      "title": "THE BANACH-TARSKI",
+      "kicker": "two spheres from one",
+      "accent": "#ffcf4a",
+      "blurb": "The Banach–Tarski engine in the 5-window house format — the 1924 theorem says a ball splits into five pieces that rotations reassemble into TWO identical balls. The full theorem needs the axiom of choice and non-measurable pieces (no knife can cut them) — but its ENGINE is computable and this sphere runs it: in the free group F₂, S(a) ∪ a·S(a⁻¹) = the whole group, and the b-side yields the second copy — two wholes from one, by relabeling. The bridge to geometry: two rotations built from the 3-4-5 triangle generate a free group inside SO(3). Verified live and exactly: 118,097 reduced words with the five-set partition and both doubling identities checked on every word; and the rotations proven free — all 13,120 words to length 8 evaluated in exact BigInt integer matrices, none the identity. Neon-noir traced. See the Cayley tree in 1D, the doubling steps in 2D, and one-ball-two-balls in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "eac0ad364149f072999addd51eea97f1af50980c9437f82db56219880da924b4"
+    },
+    {
+      "slug": "the-nontransitive-dice",
+      "title": "THE NONTRANSITIVE DICE",
+      "kicker": "dice with no best",
+      "accent": "#ff8a3c",
+      "blurb": "Efron's nontransitive dice in the 5-window house format — four honest-weight dice with strange faces: A=[4,4,4,4,0,0], B=[3,3,3,3,3,3], C=[6,6,2,2,2,2], D=[5,5,5,1,1,1]. A beats B beats C beats D beats A — every arrow at exactly 2/3. Rock-paper-scissors smuggled into cubes: there is NO best die; whatever your opponent picks, one of the rest beats it two times in three. Buffett offered Gates first pick of such a set; Gates examined the dice and made Buffett choose first. Verified live by complete enumeration: all 36 outcomes per adjacent pair — 24/36 exactly, four times around — and the no-best-die beat graph confirmed. Neon-noir traced. See the 2/3 cycle in 1D, the 36-cell tables in 2D, and the circle-where-a-ladder-should-be in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "543ab8289377474dfba4154ee8310fabc54b1ecafb3827475871424f1bfba6d7"
+    },
+    {
+      "slug": "the-hundred-doors",
+      "title": "THE HUNDRED DOORS",
+      "kicker": "doors that remember their divisors",
+      "accent": "#21e6ff",
+      "blurb": "The hundred doors in the 5-window house format — 100 closed doors; pass k toggles every k-th; after 100 passes exactly the perfect squares stand open: 1, 4, 9, …, 100. The one-line jewel: door n is toggled once per divisor, divisors pair d ↔ n/d, and only a square's √n partners itself — odd toggle count ⟺ open ⟺ square. A divisor-parity detector built from hinges. Verified live two ways: full simulation (open set = the ten squares exactly) and the independent τ(n)-parity engine checked for all n ≤ 1000, plus the 1000-door corridor opening exactly 31 (31² = 961). Neon-noir traced. See the surviving squares in 1D, the interfering passes in 2D, and the divisors pairing off in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "28aea6796fc6a42c8cb2c8e9580e561ca8c3446875877191f321b469ca59b591"
+    },
+    {
+      "slug": "the-sleeping-beauty",
+      "title": "THE SLEEPING BEAUTY",
+      "kicker": "the princess with two right answers",
+      "accent": "#35ffb0",
+      "blurb": "The Sleeping Beauty problem in the 5-window house format — heads: wake her once; tails: twice with memory erased between; each waking she's asked her credence the coin was heads. Thirders (Elga 2000) say 1/3; halfers (Lewis 2001) say 1/2; the war has run twenty-five years. This sphere executes BOTH: per-awakening frequency of heads is 1/3, per-experiment is 1/2 — and the betting table settles what words cannot: per-awakening heads bets are fair at exactly 2:1 odds, while at even odds she bleeds precisely ½ per experiment. Verified live over 200,000 simulated experiments: 0.500 / 0.334 / EV(2:1) ≈ 0 / EV(1:1) = −0.498. Neon-noir traced. See the experiment tree in 1D, the question switch in 2D, and the two honest counters in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d0c45363982b29aaecc7ec1a69373d9d312bd135a3ecba7b777e1ae86efc2f28"
     }
   ],
   "appeals": [
@@ -11915,6 +11960,14 @@
               "icon": "erdosstraus",
               "kicker": "four quarters split into three unit coins",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hundred-doors",
+              "title": "THE HUNDRED DOORS",
+              "accent": "#21e6ff",
+              "icon": "hundreddoors",
+              "kicker": "doors that remember their divisors",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -13644,6 +13697,14 @@
               "icon": "twochild",
               "kicker": "the answer that depends on how you asked",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sleeping-beauty",
+              "title": "THE SLEEPING BEAUTY",
+              "accent": "#35ffb0",
+              "icon": "sleepingbeauty",
+              "kicker": "the princess with two right answers",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -14164,6 +14225,14 @@
               "accent": "#b06bff",
               "icon": "multiperfect",
               "kicker": "coins the mint stopped printing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-banach-tarski",
+              "title": "THE BANACH-TARSKI",
+              "accent": "#ffcf4a",
+              "icon": "banachtarski",
+              "kicker": "two spheres from one",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -15105,6 +15174,14 @@
               "accent": "#b06bff",
               "icon": "mihailescu",
               "kicker": "the only two powers that touch",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-borsuk-ulam",
+              "title": "THE BORSUK-ULAM",
+              "accent": "#b06bff",
+              "icon": "borsukulam",
+              "kicker": "antipodes that must agree",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18020,6 +18097,14 @@
               "icon": "sierpinskinum",
               "kicker": "a family composite forever by seven-prime conspiracy",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-nontransitive-dice",
+              "title": "THE NONTRANSITIVE DICE",
+              "accent": "#ff8a3c",
+              "icon": "nontransitivedice",
+              "kicker": "dice with no best",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -19194,7 +19279,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "00c7750dba39c92b61ddc896dfbef4715b8efec592bed5c1c203032b61acd9cb",
+  "fold_root": "f0308f5ca6e884368c80527420cbdc1acd3f763185f85f76c10bc3a14b4c2d33",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

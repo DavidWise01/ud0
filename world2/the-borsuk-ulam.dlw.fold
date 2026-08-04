@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE BORSUK-ULAM",
+  "slug": "the-borsuk-ulam",
+  "seal": "9d9bbe4c3f944dffee48a123bb985173a19f1b9d97bcff4d3cbf541302d13929",
+  "index": 1070,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "eac0ad364149f072999addd51eea97f1af50980c9437f82db56219880da924b4",
+      "side": "R"
+    },
+    {
+      "h": "aecf5969343855b5496d5e46aa13498409923175a593469e1400311304119aae",
+      "side": "L"
+    },
+    {
+      "h": "adbd3079061fa7b49af7be1247d046d977dc0cf6182861b5ef0650463c9aa223",
+      "side": "L"
+    },
+    {
+      "h": "ba9413f287951dd1df88b50c68f4784b0d9ce12eb60ede36774716db756362ad",
+      "side": "L"
+    },
+    {
+      "h": "929df6a82b062162d3566816b38fca4a03e7e08e3a057d672eaeb1004fd241b8",
+      "side": "R"
+    },
+    {
+      "h": "39b61bd7c1bef68ffb4c4a29586d97c04f96df2044cc07463823609c7f425fa9",
+      "side": "L"
+    },
+    {
+      "h": "03156febd3ae1dd6aea4a45d6a5b46e8be3d62fdbc513587ec5c05cfb5a1aa4b",
+      "side": "R"
+    },
+    {
+      "h": "a083f9d85993b594e3cc3faebda387d7c0171c05b16996925514e8b51ab88261",
+      "side": "R"
+    },
+    {
+      "h": "ddbdb65c822ac5a0b4609d9c09477a69460911d0bae0104066b6a31cae0490da",
+      "side": "R"
+    },
+    {
+      "h": "ae9b7dcff968f59452fd1d6322cdaf3aef513afcdb1812997a4630026b9eec3f",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "f0308f5ca6e884368c80527420cbdc1acd3f763185f85f76c10bc3a14b4c2d33",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
