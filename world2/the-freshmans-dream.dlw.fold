@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE FRESHMAN'S DREAM",
+  "slug": "the-freshmans-dream",
+  "seal": "28d05848c8e516c905c09bd6a17637aff34ac8edb2d14fa4b5eaf96798f05f49",
+  "index": 1037,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "52bd22a0df84687319c35d1d71604f850f81e1a2b7c262bf5256e6b5b043e3e2",
+      "side": "L"
+    },
+    {
+      "h": "fd0914c5a33eb7ed474e3201a6891934b60adec6821501552c3a25ef5f1776db",
+      "side": "R"
+    },
+    {
+      "h": "db7c62a604abc716f06b014562fac6f8be7136cd3d19e32c113708cd025267e3",
+      "side": "L"
+    },
+    {
+      "h": "a5e2f22e8681c77a6f7bc1b969e1eb4892def0dd31964e56615f49354d28454d",
+      "side": "L"
+    },
+    {
+      "h": "484c04c6d805f0230997aa1b871e1df71632eb85bde9f0e80dc88f1e80eb6d8f",
+      "side": "R"
+    },
+    {
+      "h": "e2feac3c5f44f72d789a561cad61977ed84daf2ed2f5d591938ac4c88ceece9b",
+      "side": "R"
+    },
+    {
+      "h": "acb0a8fde57b1509298039c60b07f56fef25c9607458bf31c63cfce57432f110",
+      "side": "R"
+    },
+    {
+      "h": "9d710d7b52826eac26d7ea7a0d971ba63f12860d56a76881b80403e8697174cd",
+      "side": "R"
+    },
+    {
+      "h": "92c1cfd27984216c275f7ac218b51f290036f3425a059540f0f078d5d2cc6b26",
+      "side": "R"
+    },
+    {
+      "h": "1dfdf71dca3b94a059f314c43f8e7558bab3a4b90699445cde68d26ff31579cd",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "ed99191ccafc819bd6e4e0ea89926261703b9b3c17561af7bdf71b77ea79c177",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1035,
+    "spheres": 1040,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1029,
+    "spheres_built": 1034,
     "apex": 1
   },
   "keepers": [
@@ -9403,6 +9403,51 @@
       "blurb": "The Kirby–Paris hydra in the 5-window house format — a tree-shaped raid boss: chop a head and, if it sat deep, the hydra sprouts n copies of the wounded branch at chop n. It grows faster the longer you fight — and the theorem says every strategy kills every hydra: you cannot lose. The famous twist: this truth is unprovable in Peano arithmetic (Kirby–Paris 1982) — the fight lengths outgrow ordinary induction, and the proof needs ε₀. Verified live with two independently coded engines (literal tree vs multiset ledger) agreeing exactly: deepest-first kills star-3/4/5 in exactly 66 / 2,278 / 2,598,060 chops; shallowest-first on a 4-NODE hydra exceeds 10,000,000 chops without dying (finite by theorem — prolonged, never saved); and the depth-4 chain grows past 100,000 heads in 199 chops. Neon-noir traced. See the sprouting rule in 1D, a live chop-by-chop fight in 2D, and the fight-length tower in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "4a269813326251e27a2868e05b541b12594b6e255fc6f7d1111e66ddbc910391"
+    },
+    {
+      "slug": "the-heegner",
+      "title": "THE HEEGNER",
+      "kicker": "an integer missed by seven ten-trillionths",
+      "accent": "#21e6ff",
+      "blurb": "Ramanujan's constant in the 5-window house format — e^(π√163) = 262537412640768743.99999999999925…, a transcendental missing the integer 640320³+744 by 7.5×10⁻¹³. No accident: 163 is the largest Heegner number (class number one: {1,2,3,7,11,19,43,67,163}), and modular-function theory FORCES the near-miss — the same 163 = 4·41−3 that powers Euler's prime factory n²+n+41. Hermite computed it in 1859; Martin Gardner ran it as a 1975 April Fools' hoax. Verified live entirely from scratch: π by two independent arctangent engines agreeing to 58 digits, √163 by BigInt Newton, the exponential by halve-series-square fixed point, the target exact, the gap measured at 7.499×10⁻¹³. Neon-noir traced. See the magnified number line in 1D, the Heegner ladder in 2D, and the tower-and-hair in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "df616b4542374d8e4546d7d9bbab50a633f4c6a981a9572ce83025a7c4ef36fe"
+    },
+    {
+      "slug": "the-khinchin",
+      "title": "THE KHINCHIN",
+      "kicker": "the average hiding in almost every number",
+      "accent": "#b06bff",
+      "blurb": "Khinchin's constant in the 5-window house format — write any real as a continued fraction and average its terms geometrically: for ALMOST EVERY real the answer converges to one universal constant, K₀ = 2.6854520… (Khinchin 1934), regardless of the number chosen. The exceptions have measure zero but include celebrities: √2 = [1;2,2,2,…] locks at GM 2; e = [2;1,2,1,1,4,1,1,6,…] follows a rigid pattern and misses too. π looks utterly typical — its first hundred terms average 2.6831 — but whether π truly obeys Khinchin is UNPROVEN. Verified live: π to 320 digits by Machin BigInt, 100 CF terms extracted with truncation-stability audit, GM 2.6831; √2's all-2s and e's [1,2k,1] pattern verified as the provable exceptions they are. Neon-noir traced. See π's wild spikes in 1D, the running means in 2D, and three rivers flowing at K₀ in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "52bd22a0df84687319c35d1d71604f850f81e1a2b7c262bf5256e6b5b043e3e2"
+    },
+    {
+      "slug": "the-freshmans-dream",
+      "title": "THE FRESHMAN'S DREAM",
+      "kicker": "the child's error that becomes law",
+      "accent": "#35ffb0",
+      "blurb": "The freshman's dream in the 5-window house format — every algebra teacher crosses out (a+b)² = a²+b² in red ink. The punchline of abstract algebra: in the right world the freshman is CORRECT — modulo a prime p, (a+b)^p ≡ a^p + b^p for all a, b, because every interior binomial coefficient C(p,k) is divisible by p and the cross-terms vanish wholesale. It is an exact characterization: every composite modulus breaks the dream. As the Frobenius endomorphism, the child's error is load-bearing machinery across finite fields — AKS primality testing starts from precisely this identity. Verified live: the dream for every prime below 100 across 20 random BigInt pairs each, the vanishing binomials exactly, and both converses — every composite exhibits a surviving coefficient AND a concrete breaking pair. Neon-noir traced. See Pascal mod 7 go dark in 1D, the modulus switch in 2D, and rows darkening exactly at primes in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "28d05848c8e516c905c09bd6a17637aff34ac8edb2d14fa4b5eaf96798f05f49"
+    },
+    {
+      "slug": "the-smith",
+      "title": "THE SMITH",
+      "kicker": "a phone number with balanced books",
+      "accent": "#ffcf4a",
+      "blurb": "Smith numbers in the 5-window house format — in 1982 Albert Wilansky noticed his brother-in-law Harold Smith's phone number 493-7775 factors as 3·5·5·65837, and the digit sum of the number (42) equals the combined digit sum of its prime factors (42). Smith numbers begin 4, 22, 27, 58, 85, 94, 121… — the books balancing between two unrelated representations: positional digits and multiplicative atoms. McDaniel proved infinitude in 1987. Verified live: a full sieve census below 100,000 (3,294 Smiths, first twelve exact), the phone number's factorization audited with 65837 confirmed prime, both ledgers exactly 42. Neon-noir traced. See the phone-number ledger in 1D, the walking double ledgers in 2D, and the balance pans in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a3aeb2997aca8e9ebbd66788e3dd7b95ee61ebeae6c7888e9be0a1926c97c2d6"
+    },
+    {
+      "slug": "the-weird",
+      "title": "THE WEIRD",
+      "kicker": "abundance you cannot spend",
+      "accent": "#ff8a3c",
+      "blurb": "Weird numbers in the 5-window house format — 70's proper divisors (1,2,5,7,10,14,35) sum to 74: abundant. Usually abundance buys flexibility — some subset hits n exactly (semiperfect). But none of 70's 128 subsets makes 70: rich, and unable to spend the wealth exactly. Abundant-but-not-semiperfect numbers are the weird numbers (Benkoski & Erdős 1974): 70, 836, 4030, 5830, 7192, 7912, 9272… — provably infinite, all known ones even, the odd case open past 10²¹ with Erdős cash on the table. Verified live: exhaustive sweep below 10,000 with real divisor lists and exact subset-sum DP finds exactly those seven. Build note kept honest: memory said six; the computation found seven (5830) — computation wins. Neon-noir traced. See 70's unspendable wealth in 1D, the seven audits in 2D, and the reachable-sums map with its one dark slot in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d3377cd62da4d0204551cac6326c1824f9333e70dd00ba40399ed0439cd0199a"
     }
   ],
   "appeals": [
@@ -11832,6 +11877,14 @@
               "icon": "fibmatrix",
               "kicker": "Fibonacci as a matrix power",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-khinchin",
+              "title": "THE KHINCHIN",
+              "accent": "#b06bff",
+              "icon": "khinchin",
+              "kicker": "the average hiding in almost every number",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 25,
@@ -12528,6 +12581,14 @@
               "accent": "#35ffb0",
               "icon": "inclusion",
               "kicker": "add the parts, subtract the overlaps",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-heegner",
+              "title": "THE HEEGNER",
+              "accent": "#21e6ff",
+              "icon": "heegner",
+              "kicker": "an integer missed by seven ten-trillionths",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -14157,6 +14218,14 @@
               "accent": "#ffcf4a",
               "icon": "brahmagupta",
               "kicker": "a cyclic quadrilateral's maximal area from its sides",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-weird",
+              "title": "THE WEIRD",
+              "accent": "#ff8a3c",
+              "icon": "weird",
+              "kicker": "abundance you cannot spend",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -16488,6 +16557,14 @@
               "icon": "ceva",
               "kicker": "three cevians meeting at one point",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-smith",
+              "title": "THE SMITH",
+              "accent": "#ffcf4a",
+              "icon": "smith",
+              "kicker": "a phone number with balanced books",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -17060,6 +17137,14 @@
               "accent": "#b06bff",
               "icon": "kakeya",
               "kicker": "a needle turned in an eighth of pi",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-freshmans-dream",
+              "title": "THE FRESHMAN'S DREAM",
+              "accent": "#35ffb0",
+              "icon": "freshmansdream",
+              "kicker": "the child's error that becomes law",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18599,7 +18684,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "ddec28accf3ea7f70e9cbc47f5f3a731fa45cafdf1b329f437e0a3b0a932f389",
+  "fold_root": "ed99191ccafc819bd6e4e0ea89926261703b9b3c17561af7bdf71b77ea79c177",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
