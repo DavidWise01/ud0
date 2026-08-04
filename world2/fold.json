@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1050,
+    "spheres": 1055,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1044,
+    "spheres_built": 1049,
     "apex": 1
   },
   "keepers": [
@@ -9538,6 +9538,51 @@
       "blurb": "Kissing numbers in the 5-window house format — how many unit spheres can touch one central sphere? In 2D: 6, with a one-sentence proof (neighbors ≥ 60° apart, 7×60 = 420 > 360). In 3D the question ignited the 1694 Newton–Gregory argument — 12 or 13? — because the icosahedral twelve leave visible slack (neighbors at 2.10, not 2.00); Schütte–van der Waerden vindicated Newton only in 1953, 259 years later. Beyond: K(4)=24 (Musin 2003), and only dimensions 8 (240, E₈) and 24 (196,560, Leech) are also solved — the Viazovska-era miracle dimensions. Verified live: the hexagonal 6-kiss exact, the 7-impossibility executed as the chord-angle pigeonhole (boundary algebraically exact), and the icosahedral 12-kiss constructed from (0,±1,±φ) with min neighbor distance 2.1029… ≥ 2. Neon-noir traced. See the six-and-no-seventh in 1D, the failed insertion in 2D, and Gregory's ghost sphere in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "16fe28e8668a7640c7a292a2eafc82637f63ab4e190b2865e658199d55838a76"
+    },
+    {
+      "slug": "the-hundred-prisoners",
+      "title": "THE HUNDRED PRISONERS",
+      "kicker": "a pointer-chase that beats impossible odds",
+      "accent": "#35ffb0",
+      "blurb": "The 100 prisoners problem in the 5-window house format — 100 boxes, numbers permuted; each prisoner opens 50; ALL must find their own number or all die. Random opening: (1/2)¹⁰⁰ ≈ 8×10⁻³¹. The miracle: start at your own box and follow the numbers — chaining along the permutation's cycles — and everyone succeeds exactly when no cycle exceeds 50: probability 1 − (H₁₀₀−H₅₀) ≈ 31.18%. The brain-breaker: no individual's odds improve; the strategy CORRELATES the failures, spending them together. Verified live: exact harmonic computation (0.311828), 200k-trial Monte-Carlo within 0.5%, and the random strategy winning zero. Neon-noir traced. See the cycles in 1D, the running record in 2D, and the shared fate in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9345ebea56c64b3e3f6d27e4c34278c212b97e993896390589858f0a18bcad89"
+    },
+    {
+      "slug": "the-pirate-game",
+      "title": "THE PIRATE GAME",
+      "kicker": "gold divided by pure logic",
+      "accent": "#ffcf4a",
+      "blurb": "The pirate game in the 5-window house format — five perfectly rational pirates split 100 gold by seniority proposal and majority vote (ties favor the proposer); rejected proposers are thrown overboard. Intuition says bribe heavily; backward induction says the senior pirate keeps 98, hands single coins to pirates 3 and 5: [98,0,1,0,1], and it passes. Push past 2G pirates and gold can no longer buy votes — proposers survive only at crew sizes 2G + 2^k, islands of survival at powers of two (Ian Stewart's analysis). Verified live: full DP from one pirate up — the 5-pirate answer exact, and with G=10 the survival islands land at exactly 20+{1,2,4,8,16,32,64}. Neon-noir traced. See the sub-game ladder in 1D, the crew stepper in 2D, and the survival sea in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "080b2a2a71a6894060348b2d24bb3c426ab42777008e728b59c25b67350af931"
+    },
+    {
+      "slug": "the-blue-eyes",
+      "title": "THE BLUE EYES",
+      "kicker": "the announcement everyone already knew",
+      "accent": "#21e6ff",
+      "blurb": "The blue-eyes puzzle in the 5-window house format — an island of perfect logicians; anyone who deduces their own eye color must leave that night. A visitor announces what everyone can already see: 'I see at least one person with blue eyes.' If b islanders are blue-eyed, all b leave on night b — because the announcement, contentless about eyes, created COMMON KNOWLEDGE: everyone knows that everyone knows, to unlimited depth, and that tower is load-bearing. Verified live by an executable possible-worlds engine (Kripke semantics, computed): for every configuration at n ≤ 8, blues leave exactly night b and browns night b+1 — and rerunning WITHOUT the announcement, nobody ever leaves, in any world. Neon-noir traced. See the three quiet nights in 1D, the two regimes in 2D, and the knowledge tower in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "699ed995d4667e6611851f7f94ecd16a25137a91c55d0b10cdc656f491cc0295"
+    },
+    {
+      "slug": "the-chip-firing",
+      "title": "THE CHIP-FIRING",
+      "kicker": "avalanches that forget their order",
+      "accent": "#ff8a3c",
+      "blurb": "The abelian sandpile in the 5-window house format — chips on a grid; any cell with 4+ fires one to each neighbor; avalanches cascade. Dhar's theorem (1990): the final stable configuration is IDENTICAL regardless of firing order — chaos with a deterministic destination. The stable states form a group whose identity element is a breathtaking fractal mandala nobody designed; and the model is the birthplace of self-organized criticality (Bak–Tang–Wiesenfeld 1987). Verified live on 25×25: one random configuration stabilized under 20 different random orders, byte-identical every time; the identity computed via e = stab(2m − stab(2m)), verified idempotent, and certified recurrent by Dhar's burning test (all 625 sites burn exactly once). The W5 window draws the actual computed identity. Neon-noir traced.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "22934cbe7a4d82706c5cbb9c6746ac871270210b964c6543e6b05e6cf91224dd"
+    },
+    {
+      "slug": "the-hackenbush",
+      "title": "THE HACKENBUSH",
+      "kicker": "numbers born from games",
+      "accent": "#b06bff",
+      "blurb": "Blue-Red Hackenbush in the 5-window house format — colored edges on the ground; Left cuts blue, Right cuts red; disconnected pieces fall; no move = lose. From this child's game Conway discovered that positions have numerical values, and the numbers are the SURREAL numbers: a blue edge is +1, blue-with-red-on-top is exactly ½, blue-red-red is ¼ — and value arithmetic PREDICTS game outcomes: zero sums are second-player wins, positive means Left wins from either seat. Verified live by pure exhaustive minimax that knows no value theory: BR+BR+R second-player (½+½−1=0), four BRRs plus R second-player, BR+RB cancels, BR alone Left-wins both seats, BR+RBB to Left (½>¼) — seven arithmetic claims converted into game-tree facts. Neon-noir traced. See the value ladder in 1D, arithmetic-vs-minimax in 2D, and the birth tree in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a43d5a045bd6e9449fa6712fc36d6834322a73db3f58b4126195fe1e90718cac"
     }
   ],
   "appeals": [
@@ -10293,6 +10338,14 @@
               "accent": "#21e6ff",
               "icon": "fusc",
               "kicker": "every fraction born exactly once",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hackenbush",
+              "title": "THE HACKENBUSH",
+              "accent": "#b06bff",
+              "icon": "hackenbush",
+              "kicker": "numbers born from games",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -12279,6 +12332,14 @@
               "icon": "gilbreath",
               "kicker": "difference rows that always lead with one",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-chip-firing",
+              "title": "THE CHIP-FIRING",
+              "accent": "#ff8a3c",
+              "icon": "chipfiring",
+              "kicker": "avalanches that forget their order",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 30,
@@ -13127,6 +13188,14 @@
               "accent": "#21e6ff",
               "icon": "anscombe",
               "kicker": "four datasets wearing the same statistics",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-blue-eyes",
+              "title": "THE BLUE EYES",
+              "accent": "#21e6ff",
+              "icon": "blueeyes",
+              "kicker": "the announcement everyone already knew",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -14044,6 +14113,14 @@
               "accent": "#ff8a3c",
               "icon": "eulerbrick",
               "kicker": "a brick whose faces are all Pythagorean but whose heart is an open problem",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-pirate-game",
+              "title": "THE PIRATE GAME",
+              "accent": "#ffcf4a",
+              "icon": "pirategame",
+              "kicker": "gold divided by pure logic",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -16571,6 +16648,14 @@
               "icon": "fibonaccigcd",
               "kicker": "a greatest common divisor that stays inside the Fibonacci sequence",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hundred-prisoners",
+              "title": "THE HUNDRED PRISONERS",
+              "accent": "#35ffb0",
+              "icon": "hundredprisoners",
+              "kicker": "a pointer-chase that beats impossible odds",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -18854,7 +18939,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "a4078c5526a6145b812b632479e8196f17c67abb3e1ebf8565e922ff67c9c8a6",
+  "fold_root": "d882c8c825ea0f7236b3930f8ad0529cb6e8dba96d7aaa598986d69272be107f",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

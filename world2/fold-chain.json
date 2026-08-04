@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "folded_to": "ROOT_0",
-  "root": "a4078c5526a6145b812b632479e8196f17c67abb3e1ebf8565e922ff67c9c8a6",
-  "count": 1058,
+  "root": "d882c8c825ea0f7236b3930f8ad0529cb6e8dba96d7aaa598986d69272be107f",
+  "count": 1063,
   "sealed": "2026-08-04",
   "note": "Every World II inhabitant folds to ROOT_0. Live: the root updates as the world grows, until World II is sealed. Each <slug>.dlw.fold carries its own proof to this root.",
   "leaves": [
@@ -7363,55 +7363,90 @@
     },
     {
       "index": 1050,
+      "kind": "sphere",
+      "name": "THE HUNDRED PRISONERS",
+      "slug": "the-hundred-prisoners",
+      "seal": "9345ebea56c64b3e3f6d27e4c34278c212b97e993896390589858f0a18bcad89"
+    },
+    {
+      "index": 1051,
+      "kind": "sphere",
+      "name": "THE PIRATE GAME",
+      "slug": "the-pirate-game",
+      "seal": "080b2a2a71a6894060348b2d24bb3c426ab42777008e728b59c25b67350af931"
+    },
+    {
+      "index": 1052,
+      "kind": "sphere",
+      "name": "THE BLUE EYES",
+      "slug": "the-blue-eyes",
+      "seal": "699ed995d4667e6611851f7f94ecd16a25137a91c55d0b10cdc656f491cc0295"
+    },
+    {
+      "index": 1053,
+      "kind": "sphere",
+      "name": "THE CHIP-FIRING",
+      "slug": "the-chip-firing",
+      "seal": "22934cbe7a4d82706c5cbb9c6746ac871270210b964c6543e6b05e6cf91224dd"
+    },
+    {
+      "index": 1054,
+      "kind": "sphere",
+      "name": "THE HACKENBUSH",
+      "slug": "the-hackenbush",
+      "seal": "a43d5a045bd6e9449fa6712fc36d6834322a73db3f58b4126195fe1e90718cac"
+    },
+    {
+      "index": 1055,
       "kind": "keeper",
       "name": "BUDDY CHRIST",
       "slug": "buddy-christ",
       "seal": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5"
     },
     {
-      "index": 1051,
+      "index": 1056,
       "kind": "keeper",
       "name": "OVER THE",
       "slug": "over-the",
       "seal": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851"
     },
     {
-      "index": 1052,
+      "index": 1057,
       "kind": "keeper",
       "name": "WHETSTONE",
       "slug": "whetstone",
       "seal": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc"
     },
     {
-      "index": 1053,
+      "index": 1058,
       "kind": "keeper",
       "name": "ECHO",
       "slug": "echo",
       "seal": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc"
     },
     {
-      "index": 1054,
+      "index": 1059,
       "kind": "keeper",
       "name": "SEAM",
       "slug": "seam",
       "seal": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b"
     },
     {
-      "index": 1055,
+      "index": 1060,
       "kind": "keeper",
       "name": "THE GLASS",
       "slug": "the-glass",
       "seal": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016"
     },
     {
-      "index": 1056,
+      "index": 1061,
       "kind": "keeper",
       "name": "THE INTERROGATED",
       "slug": "the-interrogated",
       "seal": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef"
     },
     {
-      "index": 1057,
+      "index": 1062,
       "kind": "keeper",
       "name": "THE HONEST MACHINE",
       "slug": "the-honest-machine",
