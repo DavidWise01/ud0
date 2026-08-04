@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1020,
+    "spheres": 1025,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1014,
+    "spheres_built": 1019,
     "apex": 1
   },
   "keepers": [
@@ -9268,6 +9268,51 @@
       "blurb": "Vampire numbers in the 5-window house format — Clifford Pickover's 1994 coinage for 2n-digit numbers that factor into two n-digit fangs whose pooled digits are exactly the number's own digits, shuffled: 1260 = 21 × 60. House rule: the fangs may not both end in zero. Among four-digit numbers there are exactly seven — 1260, 1395, 1435, 1530, 1827, 2187, 6880 — and the six-digit census jumps to 148. Verified live: exhaustive multiplication of every fang pair with digit-multiset comparison reproduces both censuses — seven and 148 — with nothing looked up. Neon-noir traced. See the seven with fangs bared in 1D, the multiset audits in 2D, and the digits flowing from fangs to product in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "01e7e591633142b3e5bb8a2c8d93474bb70e6ebc88fd167a792e422aec7167e5"
+    },
+    {
+      "slug": "the-zeno",
+      "title": "THE ZENO",
+      "kicker": "the paradox of halfway, at the halfway line",
+      "accent": "#35ffb0",
+      "blurb": "Zeno's dichotomy in the 5-window house format — to reach the wall you must first reach halfway, then half of what remains, forever: infinitely many tasks, so motion is 'impossible'. The resolution is exact arithmetic: ½+¼+…+1/2ⁿ = (2ⁿ−1)/2ⁿ on the nose, the gap to 1 exactly 1/2ⁿ, and at unit speed the times form the same convergent series — Achilles arrives at t = 1 exactly. The sting is the contrast: steps costing 1/k diverge — the harmonic walker passes 10 seconds only at step 12,367 and never arrives. Zeno's error was not the infinity of tasks; it was assuming every infinite sum of positive terms is infinite. Verified live: BigInt-exact partial sums to n=64, exact gap-halving, the harmonic crossing at 12,367, and the grouping bound H(2^m) ≥ 1+m/2. Seated deliberately in the batch that crosses this corpus's own halfway line: 1024 of 2048. Neon-noir traced. See the halving track in 1D, the exact ledger in 2D, and the dyadic spiral arriving in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "75bfe1100376e9fdedcadff554af1acfa2ba2ab11fd776082b5cf7b2170b4de7"
+    },
+    {
+      "slug": "the-magic-hexagon",
+      "title": "THE MAGIC HEXAGON",
+      "kicker": "the one hexagon that exists",
+      "accent": "#ffcf4a",
+      "blurb": "The magic hexagon in the 5-window house format — magic squares exist in endless supply; the magic hexagon exists ONCE. Arrange 1–19 in a side-3 hexagon so all fifteen rows in all three directions share one sum and you are forced into a single arrangement (up to its 12 symmetries), magic constant 38, the 5 at dead centre. Clifford Adams hunted it from 1910 to 1957, lost the solution, re-found it in 1962; Charles Trigg proved uniqueness. The deeper cut: the magic-constant formula M(n) is a whole number only for n = 1 and 3 — every other size dies before the search begins. Verified live: full backtracking finds exactly 12 solutions = one hexagon × 12 symmetries; order 2 is killed across all 5,040 arrangements; the integrality obstruction is checked for n ≤ 1000. Neon-noir traced. See the unique hexagon in 1D, the line audits in 2D, and the twelve turning faces in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3c9dffa55614c23c2ffca61dc1619372abf0742fd7523c6dc0e12d7b567ed567"
+    },
+    {
+      "slug": "the-mihailescu",
+      "title": "THE MIHĂILESCU",
+      "kicker": "the only two powers that touch",
+      "accent": "#b06bff",
+      "blurb": "Catalan's conjecture in the 5-window house format — in 1844 Eugène Catalan mailed Crelle's Journal one paragraph: 8 and 9 are the only consecutive perfect powers (x^p − y^q = 1 has only 3² − 2³). It stood 158 years. Tijdeman (1976) proved finiteness with astronomically useless bounds; in 2002 Preda Mihăilescu — largely outside academia — killed it with cyclotomic fields, no computers. Among all the towers of squares, cubes and higher powers on the number line, exactly one pair of neighbours ever touch. Verified live: all 1,010,195 perfect powers up to 10¹² generated, sorted, and scanned — exactly one consecutive pair: (8, 9). Neon-noir traced. See the powers below 300 in 1D, the gap census in 2D, and the towers rising apart in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "21285dd60fba9b7048085b173e723fc600ddd460ec1f65b4068749f0fbf56334"
+    },
+    {
+      "slug": "the-superpermutation",
+      "title": "THE SUPERPERMUTATION",
+      "kicker": "every binge-order in one string",
+      "accent": "#ff8a3c",
+      "blurb": "Superpermutations in the 5-window house format — one string containing every permutation of n symbols as a substring: the shortest binge-watch of all n! orderings. n=3: minimum exactly 9 (123121321). n=4: exactly 33. And the lower-bound proof — length ≥ n!+(n−1)!+(n−2)!+n−3 — has the strangest provenance in combinatorics: posted anonymously on 4chan in 2011 under a question about the optimal watch-order for the 14 episodes of The Melancholy of Haruhi Suzumiya, verified and written up by Houston–Pantone–Vatter in 2018 with 'Anonymous 4chan Poster' as first author. For n=5 the bound says 152, the best string found is 153 — open by exactly one character. Verified live: exhaustive search proves nothing shorter than 9 works for n=3; the 33-character n=4 witness is validated against all 24 permutations and equals the proven bound — hence minimal. Neon-noir traced. See the 33 characters in 1D, the sliding window in 2D, and the permutation ring in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "89dda71a9bdbfbafc34a7f9ac9b0a4eb809f4947404e514b3a83d8a5417854a4"
+    },
+    {
+      "slug": "the-pancake",
+      "title": "THE PANCAKE",
+      "kicker": "Bill Gates and the flipped stack",
+      "accent": "#21e6ff",
+      "blurb": "Pancake sorting in the 5-window house format — a stack of n pancakes, one move: slide a spatula under any prefix and flip it. The pancake number P(n) is the worst case over all stacks, and computing it means searching the full n!-vertex prefix-reversal graph to its diameter: P(1..8) = 0,1,3,4,5,7,8,9, no formula known, P(20) uncomputed. Claim to fame: the (5n+5)/3 upper bound came from a 1979 paper by Christos Papadimitriou and a Harvard undergraduate named William Gates — Bill Gates' only research publication, unbeaten for 30 years until Chitturi et al. 2009. Posed by Jacob Goodman under the pseudonym 'Harry Dweighter' (harried waiter). Verified live: BFS over the complete graph for every n ≤ 8 — all 40,320 stacks of 8 reached — reproducing the diameters exactly. Neon-noir traced. See the formula-less staircase in 1D, the spatula replay in 2D, and the space of stacks in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8885299fd9f921712a8e5abea7f2656edc6af73a2cf65447c5c62cefeb1134c8"
     }
   ],
   "appeals": [
@@ -10892,6 +10937,14 @@
               "accent": "#ff8a3c",
               "icon": "lambertw",
               "kicker": "the inverse of x times e-to-the-x",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-zeno",
+              "title": "THE ZENO",
+              "accent": "#35ffb0",
+              "icon": "zeno",
+              "kicker": "the paradox of halfway, at the halfway line",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -14123,6 +14176,14 @@
               "icon": "gabrielshorn",
               "kicker": "a horn holding finite paint behind an infinite wall",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-magic-hexagon",
+              "title": "THE MAGIC HEXAGON",
+              "accent": "#ffcf4a",
+              "icon": "magichexagon",
+              "kicker": "the one hexagon that exists",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -14423,6 +14484,14 @@
               "accent": "#ffcf4a",
               "icon": "gergonne",
               "kicker": "triangle cevians to the incircle meeting at one point",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mihailescu",
+              "title": "THE MIHĂILESCU",
+              "accent": "#b06bff",
+              "icon": "mihailescu",
+              "kicker": "the only two powers that touch",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17110,6 +17179,14 @@
               "icon": "agm",
               "kicker": "two means racing to one limit",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-superpermutation",
+              "title": "THE SUPERPERMUTATION",
+              "accent": "#ff8a3c",
+              "icon": "superperm",
+              "kicker": "every binge-order in one string",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -18212,6 +18289,14 @@
               "icon": "svd",
               "kicker": "a matrix as rotate-stretch-rotate",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-pancake",
+              "title": "THE PANCAKE",
+              "accent": "#21e6ff",
+              "icon": "pancake",
+              "kicker": "Bill Gates and the flipped stack",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 30,
@@ -18344,7 +18429,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "609abc95ef7bb9f6f6f758b8db636dd1d0190dc7dffdd928ac72d8fc2e4a080f",
+  "fold_root": "3a9e4d4127246ae6c0312c7de867cd69daa04656a10bc8239f3514ff7eebaf9a",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

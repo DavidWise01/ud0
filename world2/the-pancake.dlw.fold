@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE PANCAKE",
+  "slug": "the-pancake",
+  "seal": "8885299fd9f921712a8e5abea7f2656edc6af73a2cf65447c5c62cefeb1134c8",
+  "index": 1024,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
+      "side": "R"
+    },
+    {
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "side": "R"
+    },
+    {
+      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "side": "R"
+    },
+    {
+      "h": "eaf38c2cd96997d54d6a4c5db37ee0cfaec10743902b74eafba1eb5507e33c6f",
+      "side": "R"
+    },
+    {
+      "h": "389e6915dbb3c4333e0b08c2bc7abb0aa479d54571ea20be29c1979bba687f4d",
+      "side": "R"
+    },
+    {
+      "h": "e776d658f17aee04e8c48e2e20154907fff2abe8c0e129d3802191ce4f3bfd53",
+      "side": "R"
+    },
+    {
+      "h": "c667a1d7233af921747d2200c98451ef89eb820048bfea06b3097f44e2af620b",
+      "side": "R"
+    },
+    {
+      "h": "8d8da4c82ea1517902116ce6153bbb132bc8b42e6745f9b5852d44b8aefa8394",
+      "side": "R"
+    },
+    {
+      "h": "4a9bf1498c18f6d1b05fe8f249baebbf582ef9eabbbd5ba51b88258b6e1f5e29",
+      "side": "R"
+    },
+    {
+      "h": "73bae38a3f3097978b34a68b9dd63627985f806cdeb1195ac6635d4a880ac909",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "3a9e4d4127246ae6c0312c7de867cd69daa04656a10bc8239f3514ff7eebaf9a",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
