@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE TWO-CHILD",
+  "slug": "the-two-child",
+  "seal": "146123c5d02f3e1bf5e72bd219e29c4dabe1ade72dedb603eaadfa28e91c70c6",
+  "index": 1056,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "123623eb425bf771aab6a5e85f7627d6e2018af9d0055f067680b042e58bbc08",
+      "side": "R"
+    },
+    {
+      "h": "93133475f0d85592a91695be6dfade8b84af7c81b60d5620183da7f1418ff39b",
+      "side": "R"
+    },
+    {
+      "h": "b7374d88a1b1096a196b943b77357f609c459479fbb53d17dfb24f9075a05dfb",
+      "side": "R"
+    },
+    {
+      "h": "2f79034feecb0967e1f0936912b0703f63828a0b95833275896dab3238ece9ff",
+      "side": "R"
+    },
+    {
+      "h": "cce6107000a2d03fc0c3275c7ad0085049317f5f36676212a8227f4d58b8908c",
+      "side": "R"
+    },
+    {
+      "h": "39b61bd7c1bef68ffb4c4a29586d97c04f96df2044cc07463823609c7f425fa9",
+      "side": "L"
+    },
+    {
+      "h": "f8ffcf043836ab057aaf554a3159c8cbc89b8b1a19698d2c659bc80cae6b3331",
+      "side": "R"
+    },
+    {
+      "h": "36908c47a348e21bbe868433ca03a99d247f2176e39ca62f6e11d0003422ad56",
+      "side": "R"
+    },
+    {
+      "h": "97b6aeaeafb9394956e4c13f398eba2fbffec7763b29712118dfa6b4e6191f43",
+      "side": "R"
+    },
+    {
+      "h": "2c183cc6c2923ae7f734280cddbf2fa6bccca267cbe3850210b746f082d08532",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "8612657fdb50a9e77490a2d5660b5d1ff79868e3712543f113fce4b1ebe7404e",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

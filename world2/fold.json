@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1055,
+    "spheres": 1060,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1049,
+    "spheres_built": 1054,
     "apex": 1
   },
   "keepers": [
@@ -9583,6 +9583,51 @@
       "blurb": "Blue-Red Hackenbush in the 5-window house format — colored edges on the ground; Left cuts blue, Right cuts red; disconnected pieces fall; no move = lose. From this child's game Conway discovered that positions have numerical values, and the numbers are the SURREAL numbers: a blue edge is +1, blue-with-red-on-top is exactly ½, blue-red-red is ¼ — and value arithmetic PREDICTS game outcomes: zero sums are second-player wins, positive means Left wins from either seat. Verified live by pure exhaustive minimax that knows no value theory: BR+BR+R second-player (½+½−1=0), four BRRs plus R second-player, BR+RB cancels, BR alone Left-wins both seats, BR+RBB to Left (½>¼) — seven arithmetic claims converted into game-tree facts. Neon-noir traced. See the value ladder in 1D, arithmetic-vs-minimax in 2D, and the birth tree in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a43d5a045bd6e9449fa6712fc36d6834322a73db3f58b4126195fe1e90718cac"
+    },
+    {
+      "slug": "the-martingale",
+      "title": "THE MARTINGALE",
+      "kicker": "the system that always wins until it doesn't",
+      "accent": "#ffcf4a",
+      "blurb": "The martingale betting system in the 5-window house format — bet 1, double after every loss; your first win recovers everything plus one. With a ten-round bankroll you win 99.9% of sessions, and the mathematics is merciless: on a fair game EV is EXACTLY zero (the rare −1023 bust precisely cancels the parade of +1s), and on roulette (18/38) it is exactly 1−(2q)^k < 0 — doubling doesn't shrink the house edge, it CONCENTRATES it into catastrophes. Variance reshaped, expectation untouched (optional stopping, in its most famous costume). Verified live: fair EV exact to the last bit, 200k-session MC matching the 99.90% win rate and near-zero mean, roulette EV by two independent algebraic routes agreeing exactly. Neon-noir traced. See the staircase-and-cliff in 1D, running sessions in 2D, and the shape of the risk in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c4d3fbb74971ab60f7ceb8d7ee49acb2ad8dec730f8a515459264c0bf7a2becf"
+    },
+    {
+      "slug": "the-two-child",
+      "title": "THE TWO-CHILD",
+      "kicker": "the answer that depends on how you asked",
+      "accent": "#21e6ff",
+      "blurb": "The two-child paradox in the 5-window house format — 'At least one of my two children is a boy': P(both boys) = 1/3. 'My ELDER child is a boy': 1/2. Then Gary Foshee, Gathering 4 Gardner 2010: 'at least one is a boy born on a TUESDAY' — and the answer becomes 13/27, the irrelevant weekday dragging 1/3 nearly to 1/2. Deepest layer: learn the same fact by MEETING a random child and the answer snaps back to 1/2 — the number depends on the sampling protocol, and without declaring it the question is genuinely underdetermined. Verified live: 1/3 and 1/2 by exact enumeration, 13/27 by exact count over all 196 (sex,weekday) pairs, and the protocol dependence by Monte-Carlo (0.499). Neon-noir traced. See the 196-cell grid in 1D, the phrasing switch in 2D, and the pruning worlds in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "146123c5d02f3e1bf5e72bd219e29c4dabe1ade72dedb603eaadfa28e91c70c6"
+    },
+    {
+      "slug": "the-will-rogers",
+      "title": "THE WILL ROGERS",
+      "kicker": "a transfer that flatters everyone",
+      "accent": "#b06bff",
+      "blurb": "The Will Rogers phenomenon in the 5-window house format — 'When the Okies left Oklahoma and moved to California, they raised the average intelligence of both states.' The joke is a theorem: moving one element from B to A raises BOTH averages exactly when it sits between the two means. Nothing improves; both dashboards celebrate. In medicine this is stage migration (Feinstein & Sosin 1985): better scanners reclassify borderline patients, survival improves in EVERY cancer stage simultaneously, and no one lives a day longer. Verified live: the classic example exact (2.5→3.0 and 7.0→7.5), and the full characterization — both rise ⟺ mean(A) < x < mean(B) — verified with zero exceptions across ~900 random set pairs, every element tested. Neon-noir traced. See the crossing transfer in 1D, the between-means rule in 2D, and the twin gauges over an unchanged world in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "123623eb425bf771aab6a5e85f7627d6e2018af9d0055f067680b042e58bbc08"
+    },
+    {
+      "slug": "the-inspection-paradox",
+      "title": "THE INSPECTION PARADOX",
+      "kicker": "the bus that is always late for you",
+      "accent": "#ff8a3c",
+      "blurb": "The inspection paradox in the 5-window house format — buses every 10 minutes on average should mean 5-minute waits; you wait longer, by arithmetic: arriving at random you land in an interval with probability proportional to its LENGTH, so your experienced interval averages E[X²]/E[X] ≥ E[X], equality only for clockwork service. The extreme: exponential (memoryless) spacing gives a full ten-minute expected wait, as if the schedule restarted on your arrival. Length-biased sampling runs everywhere — friends with more friends, class sizes, congested routers. Verified live on a simulated million-minute timeline, 120k random arrivals per schedule: deterministic 10.00/5.00, exponential 20.1/10.1, mixed-5-or-15 12.5/6.25 — all matching E[X²]/E[X] within 1%. Neon-noir traced. See the crowded long gaps in 1D, the schedule switch in 2D, and the variance tax in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ecc8ddf8efcd78492af7893375609f1b0656a10798a1f1ed817d6ab7f32d1708"
+    },
+    {
+      "slug": "the-german-tank",
+      "title": "THE GERMAN TANK",
+      "kicker": "counting tanks from their serial numbers",
+      "accent": "#35ffb0",
+      "blurb": "The German tank problem in the 5-window house format — WWII intelligence said 1,400 tanks a month; the statisticians read the captured serial numbers and said 246; postwar German records showed 245. The estimator: seeing k serials with maximum m, answer m(1+1/k)−1 — the observed maximum pushed up by the average gap. It is minimum-variance unbiased: across ALL possible samples it averages to exactly N. The same trick has counted iPhones and Commodore 64s since. Verified live: exact unbiasedness by COMPLETE enumeration (all 15,504 five-samples from a population of twenty average to exactly 20.0000000000), plus Monte-Carlo at the historical scale (N=245, k=10) with the MVUE at half the error of doubled-mean (21.8 vs 43.7 RMSE) and the raw max biased low. Neon-noir traced. See the serial line in 1D, the estimator tournament in 2D, and 246-vs-1400-vs-245 in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "103cb2a4929176944f27c0227e8c6fe8a3aeee0b693b4c12f5b4c177b113c989"
     }
   ],
   "appeals": [
@@ -10806,6 +10851,14 @@
               "accent": "#ffcf4a",
               "icon": "galton",
               "kicker": "a board of pegs building the bell curve",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-german-tank",
+              "title": "THE GERMAN TANK",
+              "accent": "#35ffb0",
+              "icon": "germantank",
+              "kicker": "counting tanks from their serial numbers",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -12496,6 +12549,14 @@
               "icon": "sparsetable",
               "kicker": "every window pre-answered by two overlapping blocks",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-inspection-paradox",
+              "title": "THE INSPECTION PARADOX",
+              "accent": "#ff8a3c",
+              "icon": "inspection",
+              "kicker": "the bus that is always late for you",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -13461,6 +13522,14 @@
               "icon": "lychrel",
               "kicker": "the number that never comes home",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-two-child",
+              "title": "THE TWO-CHILD",
+              "accent": "#21e6ff",
+              "icon": "twochild",
+              "kicker": "the answer that depends on how you asked",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -13777,6 +13846,14 @@
               "accent": "#ffcf4a",
               "icon": "hipparchus",
               "kicker": "a count buried in Plutarch for two thousand years",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-martingale",
+              "title": "THE MARTINGALE",
+              "accent": "#ffcf4a",
+              "icon": "martingale",
+              "kicker": "the system that always wins until it doesn't",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18013,6 +18090,14 @@
               "icon": "simpsonparadox",
               "kicker": "a treatment that wins twice and loses once",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-will-rogers",
+              "title": "THE WILL ROGERS",
+              "accent": "#b06bff",
+              "icon": "willrogers",
+              "kicker": "a transfer that flatters everyone",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -18939,7 +19024,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "d882c8c825ea0f7236b3930f8ad0529cb6e8dba96d7aaa598986d69272be107f",
+  "fold_root": "8612657fdb50a9e77490a2d5660b5d1ff79868e3712543f113fce4b1ebe7404e",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
