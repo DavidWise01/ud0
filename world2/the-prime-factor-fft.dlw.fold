@@ -39,7 +39,7 @@
       "side": "R"
     },
     {
-      "h": "b5e3f475c8585c1e9776d3cad1ce2ac47be442efce32ea2941a601c1d97a2f93",
+      "h": "8ae5611e1062903284ba3c9e7e15643caeb92dae2021c573f98b55ee6f751e4b",
       "side": "R"
     },
     {
@@ -49,10 +49,14 @@
     {
       "h": "146735c9d0d21c000bb78e49f83a2ec1313d4351576085fbfd8bdf68cdffc6c1",
       "side": "L"
+    },
+    {
+      "h": "58b8cc64409685ae66075d2538e2333543006afa11f34bb03258a2c1cf4fa688",
+      "side": "R"
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "c3e958f0cf2bb72e147b1ea8eecd620a281f0db74bd61eb3f10f1b70f74b47cf",
+  "root": "609abc95ef7bb9f6f6f758b8db636dd1d0190dc7dffdd928ac72d8fc2e4a080f",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-04",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"

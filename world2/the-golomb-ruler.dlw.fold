@@ -47,12 +47,16 @@
       "side": "L"
     },
     {
-      "h": "443135aa390a47d544c6bfd3c4981674ce6fa553dba9271412486d2a2959ac25",
+      "h": "99c90a36439277cb85d73894eff6e0a3589ac8d6ed649ddc4bbec716895e13a8",
+      "side": "R"
+    },
+    {
+      "h": "58b8cc64409685ae66075d2538e2333543006afa11f34bb03258a2c1cf4fa688",
       "side": "R"
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "c3e958f0cf2bb72e147b1ea8eecd620a281f0db74bd61eb3f10f1b70f74b47cf",
+  "root": "609abc95ef7bb9f6f6f758b8db636dd1d0190dc7dffdd928ac72d8fc2e4a080f",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-04",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
