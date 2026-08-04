@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE CATENARY",
+  "slug": "the-catenary",
+  "seal": "a7335d6905374150692ee482975efac1b25c9f3f6deb325a0172ff95a1a39f0a",
+  "index": 1087,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "aca84f833f3295ae3544ae9fbe76b3b61908b615cc7b6a30e36b81985d11e073",
+      "side": "L"
+    },
+    {
+      "h": "0222bcd4d8cdb7631b62021260d9f9ad75c21e9a505d99e237cf23d793f92d5f",
+      "side": "L"
+    },
+    {
+      "h": "a82f3ff1566244240d938dc5668ba0ac41bbc7fe57f777e86028577c0090f8d8",
+      "side": "L"
+    },
+    {
+      "h": "133b7c702e2b462f6866b48c3bd14412da9c9d87bc019f20567072f20526818d",
+      "side": "L"
+    },
+    {
+      "h": "048b16d119e474e59a5a41e64faf36afc71f6d0258c039feb5139b86718a0f43",
+      "side": "L"
+    },
+    {
+      "h": "39b61bd7c1bef68ffb4c4a29586d97c04f96df2044cc07463823609c7f425fa9",
+      "side": "L"
+    },
+    {
+      "h": "99a3a42c48197442344d6f7af03b0b25fecd9a2f3d92e360fcca2128069e55e9",
+      "side": "R"
+    },
+    {
+      "h": "49eb9b8750839119303d8f13c5ada9dc2fb42ba063e514882200f4521b6c6126",
+      "side": "R"
+    },
+    {
+      "h": "a674d07bbf50ecb67048cab00611efe87f93b8b3051bf66b4617146a64d7c1ce",
+      "side": "R"
+    },
+    {
+      "h": "e3c6e5d45c395d3656227901d1ea3ee519927fdf8668d944aaf04e59610c9702",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "9bfc5e6e4e7b2247cc16713973f07b4609cbb9c7b88a95cfa57202dc0c20fa3b",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
