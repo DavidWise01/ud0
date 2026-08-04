@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE MALFATTI",
+  "slug": "the-malfatti",
+  "seal": "2f38fb8a8093d3ed9be82fe8c2a1e7b95a5b1a7c0b5976a855435e0edc6f373a",
+  "index": 1090,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "401bb4d55c4f6d1aaff0f6fb2da380a67b85802842383c269b3a7f7c42b65643",
+      "side": "R"
+    },
+    {
+      "h": "ceebed3c404dc86f09c4fc7c5d258453d30eda65d74a3187d2b3913779ed5adc",
+      "side": "L"
+    },
+    {
+      "h": "b0947caa3b9dcd47e0fd399dd93dd122d2b4aa543583676e42f5ea72b0bb49d7",
+      "side": "R"
+    },
+    {
+      "h": "54ae948eb87479b35f7a1205419f706fb579dd946b5d988def22b99cab157245",
+      "side": "R"
+    },
+    {
+      "h": "c367b5b641183329ae38789a04069981a8336c0abdffa749cd84fb9464d7fb7d",
+      "side": "R"
+    },
+    {
+      "h": "5def9d525a0da5ca4a8ac29bdfccdc222af3316db49dc01a0ec6f8d76da19b27",
+      "side": "R"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "2b24ef224a4af7abb74f3b6b79b4e3d60712afff60f5a85029bdf9757d043620",
+      "side": "R"
+    },
+    {
+      "h": "1eb6a15c38e23a0fe1a66faa4fa041c5801729bda21714f0fe77ec11adaf8bfd",
+      "side": "R"
+    },
+    {
+      "h": "ecbb4f30b82d47088567b49efec0c6d45aa664ef9bb03c63c9f4b4cefbbed7b1",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "c31de1c838320cd558882643e9deaa71b22dc94b84ad942175c6666c28ef8500",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

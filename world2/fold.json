@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1090,
+    "spheres": 1095,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1084,
+    "spheres_built": 1089,
     "apex": 1
   },
   "keepers": [
@@ -9898,6 +9898,51 @@
       "blurb": "Turn the wheel at constant speed while driving at constant speed: you trace Euler's spiral (1744), curvature growing linearly with distance. That linearity is why it underlies every railway easement and highway ramp — and why roller-coaster loops are clothoid teardrops, not the circles that snapped necks at Coney Island. Wound forever, it stills into the Fresnel eye at (½, ½).",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "76f41df14b65922055be93671cf2184c4f3ef134d87240850bf97ce54d19b693"
+    },
+    {
+      "slug": "the-malfatti",
+      "title": "THE MALFATTI",
+      "kicker": "the official answer that always loses",
+      "accent": "#b06bff",
+      "blurb": "Malfatti's 1803 marble problem — pack three circles in a triangle — got his elegant mutually-tangent answer canonized for a century. It is wrong for EVERY triangle: Goldberg 1967 proved never optimal, Zalgaller–Los 1994 proved the greedy shortcut (biggest circle first, repeat) always wins. In the equilateral, officialdom loses by 1.36%.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2f38fb8a8093d3ed9be82fe8c2a1e7b95a5b1a7c0b5976a855435e0edc6f373a"
+    },
+    {
+      "slug": "the-pitot",
+      "title": "THE PITOT",
+      "kicker": "the shared tangent ledger",
+      "accent": "#35ffb0",
+      "blurb": "Wrap any quadrilateral around a circle, every side touching: opposite sides sum equal, a+c = b+d, always. Pitot's 1725 proof is pure bookkeeping — each corner's two tangent segments are equal, so every side spends two entries from a four-entry shared pool, and both sums spend the whole pool. By the engineer whose Pitot tube still reads every aircraft's airspeed.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "401bb4d55c4f6d1aaff0f6fb2da380a67b85802842383c269b3a7f7c42b65643"
+    },
+    {
+      "slug": "the-langley",
+      "title": "THE LANGLEY",
+      "kicker": "the freak integer angle",
+      "accent": "#ffcf4a",
+      "blurb": "An 80-80-20 isosceles triangle, cevians at 60° and 50°, find the marked angle. Langley's 1922 puzzle looks like a warm-up and resists every direct angle-chase; the answer is exactly 30°, and it founded the literature of 'adventitious angles' — configurations where whole degrees appear by freak alignment. Scanning all 5,041 integer cevian pairs: only 1.73% compile to an integer.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "42eaced7071a721b4d161115c3ffbafc4450aa27de43964883dd30f3dfd7a63d"
+    },
+    {
+      "slug": "the-arbelos",
+      "title": "THE ARBELOS",
+      "kicker": "the twins in the shoemaker's knife",
+      "accent": "#ff8a3c",
+      "blurb": "Geometry's oldest playground: a semicircle minus two smaller ones on its split diameter — Archimedes' shoemaker's knife. Its area equals the circle on the perpendicular at the split (the geometric mean 2√(r₁r₂), made visible), and the two circles inscribed either side of that perpendicular — Archimedes' twins — are always congruent, radius r₁r₂/(r₁+r₂), however lopsided the cut.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "eda104adcb8d26d8b959e88fa3b9341c657cf3c444946e6aa9af2fade9c89970"
+    },
+    {
+      "slug": "the-newton-pepys",
+      "title": "THE NEWTON–PEPYS",
+      "kicker": "the shortest gauntlet",
+      "accent": "#21e6ff",
+      "blurb": "Pepys asked Newton in 1693: likeliest — one six in 6 dice, two in 12, or three in 18? Intuition says equal; Newton said the first, correctly: 0.665 vs 0.619 vs 0.597. The mean scales perfectly but variance spreads the bigger pools across more failing configurations. Pepys had bet on the long corridor.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "426e9605951d51866202cbb7311e65ba61973cf745f842390e086ca933d5b3b1"
     }
   ],
   "appeals": [
@@ -10521,6 +10566,14 @@
               "accent": "#21e6ff",
               "icon": "fordcircles",
               "kicker": "fractions kissing along the number line",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-arbelos",
+              "title": "THE ARBELOS",
+              "accent": "#ff8a3c",
+              "icon": "arbelos",
+              "kicker": "the twins in the shoemaker's knife",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -13896,6 +13949,14 @@
               "icon": "sleepingbeauty",
               "kicker": "the princess with two right answers",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-langley",
+              "title": "THE LANGLEY",
+              "accent": "#ffcf4a",
+              "icon": "langley",
+              "kicker": "the freak integer angle",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -15529,6 +15590,14 @@
               "accent": "#35ffb0",
               "icon": "normalnumber",
               "kicker": "the digits nobody can certify",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-newton-pepys",
+              "title": "THE NEWTON–PEPYS",
+              "accent": "#21e6ff",
+              "icon": "newtonpepys",
+              "kicker": "the shortest gauntlet",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17467,6 +17536,14 @@
               "icon": "ruthaaron",
               "kicker": "two ballplayers sharing a factor sum",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-pitot",
+              "title": "THE PITOT",
+              "accent": "#35ffb0",
+              "icon": "pitot",
+              "kicker": "the shared tangent ledger",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 22,
@@ -18852,6 +18929,14 @@
               "icon": "questionmark",
               "kicker": "continued fractions transcribed to binary",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-malfatti",
+              "title": "THE MALFATTI",
+              "accent": "#b06bff",
+              "icon": "malfatti",
+              "kicker": "the official answer that always loses",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -19534,7 +19619,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "9bfc5e6e4e7b2247cc16713973f07b4609cbb9c7b88a95cfa57202dc0c20fa3b",
+  "fold_root": "c31de1c838320cd558882643e9deaa71b22dc94b84ad942175c6666c28ef8500",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

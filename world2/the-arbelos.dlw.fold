@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE ARBELOS",
+  "slug": "the-arbelos",
+  "seal": "eda104adcb8d26d8b959e88fa3b9341c657cf3c444946e6aa9af2fade9c89970",
+  "index": 1093,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "42eaced7071a721b4d161115c3ffbafc4450aa27de43964883dd30f3dfd7a63d",
+      "side": "L"
+    },
+    {
+      "h": "52f1eb366bb8271c792760f8078a13bd0bb81090ec141e7b146c79035b7f53d1",
+      "side": "R"
+    },
+    {
+      "h": "787deaa1ee93dca5220390c5d18ff50bc306a39e201e20a1758933f84109a21f",
+      "side": "L"
+    },
+    {
+      "h": "54ae948eb87479b35f7a1205419f706fb579dd946b5d988def22b99cab157245",
+      "side": "R"
+    },
+    {
+      "h": "c367b5b641183329ae38789a04069981a8336c0abdffa749cd84fb9464d7fb7d",
+      "side": "R"
+    },
+    {
+      "h": "5def9d525a0da5ca4a8ac29bdfccdc222af3316db49dc01a0ec6f8d76da19b27",
+      "side": "R"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "2b24ef224a4af7abb74f3b6b79b4e3d60712afff60f5a85029bdf9757d043620",
+      "side": "R"
+    },
+    {
+      "h": "1eb6a15c38e23a0fe1a66faa4fa041c5801729bda21714f0fe77ec11adaf8bfd",
+      "side": "R"
+    },
+    {
+      "h": "ecbb4f30b82d47088567b49efec0c6d45aa664ef9bb03c63c9f4b4cefbbed7b1",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "c31de1c838320cd558882643e9deaa71b22dc94b84ad942175c6666c28ef8500",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
