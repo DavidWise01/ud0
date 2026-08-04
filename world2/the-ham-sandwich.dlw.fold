@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE HAM SANDWICH",
+  "slug": "the-ham-sandwich",
+  "seal": "ed516382c6b8254fc5a9b11d2b297b66fbc2389442ca0bc87b3b067fee304403",
+  "index": 1065,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "a29b1134e700ae1152750225065a9671eeb18df207e0b956a64d04abdbf57f98",
+      "side": "L"
+    },
+    {
+      "h": "fc64f4c22f59bb54f9a9639f1601c6be24cab8bf28cb0b8920f3a4f4feeb0bc5",
+      "side": "R"
+    },
+    {
+      "h": "0f7af597124ce51b0f4f25fc560bfd97d5059c5739bfbccfc1f56619ccc2fddf",
+      "side": "R"
+    },
+    {
+      "h": "ba9413f287951dd1df88b50c68f4784b0d9ce12eb60ede36774716db756362ad",
+      "side": "L"
+    },
+    {
+      "h": "05c198fdca861d19bae41bfa42ceb633cf85bb7a73265d809d9026fb641c380d",
+      "side": "R"
+    },
+    {
+      "h": "39b61bd7c1bef68ffb4c4a29586d97c04f96df2044cc07463823609c7f425fa9",
+      "side": "L"
+    },
+    {
+      "h": "855694939ffb0d2590f08ac469c679d9d76fb69b1ff0ae9562e625b77a801794",
+      "side": "R"
+    },
+    {
+      "h": "52663af59a774e4e60d16ceb156d1d5d67bf7500d9c5c7ec40a4fa64cb10b2ba",
+      "side": "R"
+    },
+    {
+      "h": "b9efbd808f9fde922fd04aafc15665512a8f9a0e977e27a2760e4b1f239ca9b3",
+      "side": "R"
+    },
+    {
+      "h": "a6a2f8e107a0def87f89e27dd0255b343e82b40677d03eda34c5edbb4b309dcc",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "00c7750dba39c92b61ddc896dfbef4715b8efec592bed5c1c203032b61acd9cb",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

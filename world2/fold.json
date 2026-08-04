@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1065,
+    "spheres": 1070,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1059,
+    "spheres_built": 1064,
     "apex": 1
   },
   "keepers": [
@@ -9673,6 +9673,51 @@
       "blurb": "Brouwer's fixed-point theorem in the 5-window house format — crumple a map of your city and drop it anywhere in the city: one point lies exactly atop the place it depicts. Every continuous self-map of a disk fixes at least one point (Brouwer 1911) — the engine beneath Nash equilibria and market-clearing prices. The most beautiful proof is combinatorial: Sperner's lemma (1928) — triangulate, label by simple rules, and an ODD number of small triangles must carry all three labels; odd cannot be zero, and those triangles corner the fixed point. Verified live: 30 random self-maps, fully-labeled count odd every time; the flagged triangle localizes a fixed point with error shrinking 3e-2 → 2e-3 under refinement; and 1D Brouwer (= IVT) bisected to 1e-12. Neon-noir traced. See the diagonal crossing in 1D, the Sperner rainbow in 2D, and the crumpled map in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a29b1134e700ae1152750225065a9671eeb18df207e0b956a64d04abdbf57f98"
+    },
+    {
+      "slug": "the-ham-sandwich",
+      "title": "THE HAM SANDWICH",
+      "kicker": "one cut for two appetites",
+      "accent": "#35ffb0",
+      "blurb": "The ham sandwich theorem in the 5-window house format — two tangled point clouds on a table, and a SINGLE straight line bisecting both simultaneously, guaranteed (Steinhaus 1938; Stone–Tukey 1942). In 3D one planar cut halves bread, ham, AND cheese; in n dimensions one hyperplane bisects n masses. The proof rotates: anchor the line to always bisect red, sweep 180°; the blue imbalance flips sign, so it crosses zero — Borsuk–Ulam wearing an apron. Verified live: 300 random 20+20 point-set pairs, the rotating construction finds and count-verifies the double bisector every time (with sign-change refinement at anchor jumps). Neon-noir traced. See the clouds and blade in 1D, fresh instances in 2D, and the draining imbalance in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ed516382c6b8254fc5a9b11d2b297b66fbc2389442ca0bc87b3b067fee304403"
+    },
+    {
+      "slug": "the-hairy-ball",
+      "title": "THE HAIRY BALL",
+      "kicker": "the coconut that cannot be combed",
+      "accent": "#21e6ff",
+      "blurb": "The hairy ball theorem in the 5-window house format — every continuous tangent field on a sphere vanishes somewhere (Poincaré 1885; Brouwer 1912): there is ALWAYS a point on Earth with zero horizontal wind. The bookkeeping is Poincaré–Hopf: zero indices sum to the Euler characteristic — 2 for the sphere (failure forced), 0 for the torus (a donut CAN be combed). Verified live three ways: 50 quadratic-form Morse censuses reading exactly 2+2−2 = 2; 40 random smooth winds with a vanishing point LOCATED each time via the eigen-parameter equation (M−λI)p = −c, |p|=1, residual < 1e-6; and the explicit torus field with |v| ≥ 1.3 everywhere. Neon-noir traced. See the wind and its eye in 1D, the λ-pinned zeros in 2D, and the combed donut beside the doomed sphere in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "57d99ad70632661f8e0dd634a297c32d00571ac99f899f51b3c466749fa71b77"
+    },
+    {
+      "slug": "the-cake-cutting",
+      "title": "THE CAKE CUTTING",
+      "kicker": "cake without envy",
+      "accent": "#ffcf4a",
+      "blurb": "The Selfridge–Conway procedure in the 5-window house format — cut-and-choose settles two; THREE people with private valuations need the first bounded envy-free protocol ever found (c. 1960): at most five cuts, and afterwards no one would trade shares, each by their OWN measure. P1 cuts three equal-to-them pieces; P2 trims the largest to a tie; choices cascade; the trimmings divide in a second round whose picking order neutralizes every resentment. (Four players resisted until Aziz–Mackenzie 2016.) Verified live: the full procedure over exact piecewise-constant measures — 300 random valuation triples, all 1,800 envy comparisons, envy-free every time with worst envy 5×10⁻¹⁶. Neon-noir traced. See three value-landscapes in 1D, the all-clear envy matrix in 2D, and shares each tallest in their owner's eyes in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f2d56e8a7781b428572c33e94a327645cfbd0f45d4fdc186473815c55e296cf7"
+    },
+    {
+      "slug": "the-stable-marriage",
+      "title": "THE STABLE MARRIAGE",
+      "kicker": "the proposer's hidden crown",
+      "accent": "#b06bff",
+      "blurb": "Gale–Shapley in the 5-window house format — n rank n; a matching is stable when no pair would elope. Deferred acceptance (propose, hold, reject, rise again) always finds one — and the dark exact twist: it is OPTIMAL for every proposer and PESSIMAL for every reviewer; each man gets his best partner across ALL stable matchings, each woman her worst. Whoever proposes, wins. The framework runs residency matching and school choice; Roth & Shapley took the 2012 Nobel. Verified live two ways: zero blocking pairs on 300 random instances, AND complete enumeration of all 720 matchings across 60 instances confirming men-optimal/women-pessimal with no exceptions. Neon-noir traced. See the proposal rounds in 1D, instances with their exhaustive court in 2D, and the lattice of stable matchings in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2f81075e0333e650e24a8183f799548baeb50acbdc77a3fde558b6cf64e7815d"
+    },
+    {
+      "slug": "the-tupper",
+      "title": "THE TUPPER",
+      "kicker": "the formula that draws everything",
+      "accent": "#ff8a3c",
+      "blurb": "Tupper's formula in the 5-window house format — one inequality, ½ < ⌊mod(⌊y/17⌋·2^(−17⌊x⌋−mod(⌊y⌋,17)), 2)⌋, plots a picture of ITSELF at a particular 543-digit k. The honest magic, better than the myth: it is a universal bitmap decoder — the giant k IS the picture (every pixel a bit of k's binary expansion) and the formula merely reads bit 17⌊x⌋+mod(y,17) back out. It plots everything — your name, a smiley — each image at its own altitude; the famous self-portrait is self-reference by construction. Verified live in exact BigInt: 50 random 106×17 bitmaps encoded and decoded through the actual formula arithmetic, formula route ≡ direct-bit route ≡ original at every sample; a structured 1,802-pixel bitmap round-trips exactly (k has 424 digits). Neon-noir traced. See the pipeline in 1D, live payload roundtrips in 2D, and the everything-tower in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a831ca7c6bb9e8a4825850dc803a7933b62409d9082003d69b2bff9cc40280a3"
     }
   ],
   "appeals": [
@@ -13203,6 +13248,14 @@
               "icon": "schwarzlantern",
               "kicker": "an inscribed surface whose area depends on how you refine it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hairy-ball",
+              "title": "THE HAIRY BALL",
+              "accent": "#21e6ff",
+              "icon": "hairyball",
+              "kicker": "the coconut that cannot be combed",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -13759,6 +13812,14 @@
               "accent": "#ffcf4a",
               "icon": "untouchable",
               "kicker": "the loot no drop table contains",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cake-cutting",
+              "title": "THE CAKE CUTTING",
+              "accent": "#ffcf4a",
+              "icon": "cakecutting",
+              "kicker": "cake without envy",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -16366,6 +16427,14 @@
               "icon": "prouhet",
               "kicker": "a fair split sharp at every power",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ham-sandwich",
+              "title": "THE HAM SANDWICH",
+              "accent": "#35ffb0",
+              "icon": "hamsandwich",
+              "kicker": "one cut for two appetites",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -18067,6 +18136,14 @@
               "icon": "vampire",
               "kicker": "factors hiding their digits in the product",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-tupper",
+              "title": "THE TUPPER",
+              "accent": "#ff8a3c",
+              "icon": "tupper",
+              "kicker": "the formula that draws everything",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -18547,6 +18624,14 @@
               "accent": "#ff8a3c",
               "icon": "holditch",
               "kicker": "a curve reborn smaller by exactly pi-p-q",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-stable-marriage",
+              "title": "THE STABLE MARRIAGE",
+              "accent": "#b06bff",
+              "icon": "stablemarriage",
+              "kicker": "the proposer's hidden crown",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19109,7 +19194,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "3cc8765134504361d1385355ad451a6da36abe54695beb9af1dc99777548ffe8",
+  "fold_root": "00c7750dba39c92b61ddc896dfbef4715b8efec592bed5c1c203032b61acd9cb",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
