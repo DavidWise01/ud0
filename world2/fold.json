@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1030,
+    "spheres": 1035,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1024,
+    "spheres_built": 1029,
     "apex": 1
   },
   "keepers": [
@@ -9358,6 +9358,51 @@
       "blurb": "Untouchable numbers in the 5-window house format — values the aliquot sum s(n) (sum of proper divisors) never produces: 2, 5, 52, 88, 96, 120, 124, 146… No integer's divisors will ever sum to them. Erdős proved infinitude (1973). Two gems: 5 is believed the only odd untouchable — because strong Goldbach gives every even 2k = p+q, hence s(pq) = p+q+1 hits every odd ≥ 7; and untouchability is CERTIFIABLE without infinite search, because composite n has s(n) > √n, so small targets can only be hit by small n. Verified live: aliquot sums sieved to 998,001, the √n bound turning the finite scan into a certificate for all values ≤ 1000 — the exact untouchable list to 500 (38 values), with 5 the only odd member. Neon-noir traced. See the lit-and-dark number line in 1D, the witness queries in 2D, and the aliquot rain in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "0a7e8dcb7af73edf4a02f4c31e9ec297f94640bb10bccc33ac2326a0d655b36f"
+    },
+    {
+      "slug": "the-somos",
+      "title": "THE SOMOS",
+      "kicker": "an integer streak that dies at seventeen",
+      "accent": "#ff8a3c",
+      "blurb": "The Somos sequences in the 5-window house format — start 1,1,1,1 and iterate a(n) = (a(n−1)a(n−3)+a(n−2)²)/a(n−4): dividing at every step, yet Somos-4 stays integer forever (2, 3, 7, 23, 59, 314, 1529…), as do Somos-5, 6, 7 — protected by the Laurent phenomenon (Fomin–Zelevinsky, cluster algebras): every term is secretly a Laurent polynomial in the seeds. Then Somos-8: integer through a(16), and at a(17) the spell breaks — 420514/7. The 7 that was always lurking finally surfaces. Verified live in exact BigInt rationals: Somos-4..7 integer through 40 terms; Somos-8's first break at a(17) = 420514/7 exactly. Neon-noir traced. See Somos-4 climbing in 1D, the denominator watch in 2D, and the four protected spirals in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1f3c4e8f7c17bdbddbfc94a3f38d1e371db900b8041230ad7bff6da6f1ac6443"
+    },
+    {
+      "slug": "the-prouhet",
+      "title": "THE PROUHET",
+      "kicker": "a fair split sharp at every power",
+      "accent": "#35ffb0",
+      "blurb": "The Prouhet–Tarry–Escott split in the 5-window house format — divide 0..2^k−1 by bit-parity (even 1-bits team A, odd team B: the Thue–Morse pattern ABBA BAAB) and the teams have equal sums, equal squares, equal cubes… equal sums of EVERY power up to k−1 (Prouhet 1851). For k=3: {0,3,5,6} vs {1,2,4,7} — same size, same sum 14, same square-sum 70. And the split is SHARP: at power k the sums finally differ. Fair turn-taking, formalized. Verified live in exact BigInt for every k ≤ 11: all equalities below k, strict difference at k. Neon-noir traced. See the k=3 teams in 1D, the tipping ledger in 2D, and the balance beam in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "13ccc63b0e4661a7cbca28e6a334817b701ee540559f9ce759e53343cdecc5ee"
+    },
+    {
+      "slug": "the-wilson-prime",
+      "title": "THE WILSON PRIME",
+      "kicker": "three coins in 250 years",
+      "accent": "#ffcf4a",
+      "blurb": "Wilson primes in the 5-window house format — Wilson's theorem is a perfect prime detector: p prime ⟺ (p−1)! ≡ −1 mod p, with composites > 4 collapsing to 0 instead. Sharpen to modulo p² and you get the Wilson primes — and in 250 years of searching exactly THREE have been found: 5, 13, 563, with the hunt swept past 2×10¹³. Heuristically infinitely many should exist (~1/p odds per prime); nobody knows where the fourth is. Verified live: the theorem and its converse for every number below 1000, and the mod-p² sweep finding exactly {5, 13, 563}. Neon-noir traced. See the −1/0 residue rows in 1D, the p² lottery in 2D, and the three golden strikes in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f6f3f456dc3de5d0458e131db9236b92074bd8c0506fe889bdbf5ec2cbf78287"
+    },
+    {
+      "slug": "the-gijswijt",
+      "title": "THE GIJSWIJT",
+      "kicker": "the slowest counter in mathematics",
+      "accent": "#b06bff",
+      "blurb": "Gijswijt's sequence in the 5-window house format — each term is the curling number of everything before it: find the longest block B such that the sequence ends in B repeated k times, and write k. From 1: 1,1,2,1,1,2,2,2,3,… The first 2 arrives at position 3, the first 3 at position 9, the first 4 at position 220 — and the first 5 near position 10^(10²³) (van de Pol & Gijswijt), more positions than atoms in the observable universe. The sequence will provably say 5; no computation will live to hear it. Verified live: 1000 terms generated from the definition, first 4 at exactly 220, no 5, census 296/527/173/4. Neon-noir traced. See the march to 220 in 1D, the tail-reading rule in 2D, and the milestone spiral with its unreachable magenta 5 in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bfa0010977cd68a46dc55d927f54759e31c790e3d3e165f3cbc35ec326309187"
+    },
+    {
+      "slug": "the-hydra",
+      "title": "THE HYDRA",
+      "kicker": "the boss that must lose but arithmetic cannot say so",
+      "accent": "#21e6ff",
+      "blurb": "The Kirby–Paris hydra in the 5-window house format — a tree-shaped raid boss: chop a head and, if it sat deep, the hydra sprouts n copies of the wounded branch at chop n. It grows faster the longer you fight — and the theorem says every strategy kills every hydra: you cannot lose. The famous twist: this truth is unprovable in Peano arithmetic (Kirby–Paris 1982) — the fight lengths outgrow ordinary induction, and the proof needs ε₀. Verified live with two independently coded engines (literal tree vs multiset ledger) agreeing exactly: deepest-first kills star-3/4/5 in exactly 66 / 2,278 / 2,598,060 chops; shallowest-first on a 4-NODE hydra exceeds 10,000,000 chops without dying (finite by theorem — prolonged, never saved); and the depth-4 chain grows past 100,000 heads in 199 chops. Neon-noir traced. See the sprouting rule in 1D, a live chop-by-chop fight in 2D, and the fight-length tower in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4a269813326251e27a2868e05b541b12594b6e255fc6f7d1111e66ddbc910391"
     }
   ],
   "appeals": [
@@ -11327,6 +11372,14 @@
               "icon": "eulermascheroni",
               "kicker": "the constant left over between the harmonic series and the logarithm",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gijswijt",
+              "title": "THE GIJSWIJT",
+              "accent": "#b06bff",
+              "icon": "gijswijt",
+              "kicker": "the slowest counter in mathematics",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -13032,6 +13085,14 @@
               "icon": "dedekind",
               "kicker": "sawtooth sums bound by a reciprocity law",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-somos",
+              "title": "THE SOMOS",
+              "accent": "#ff8a3c",
+              "icon": "somos",
+              "kicker": "an integer streak that dies at seventeen",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -13949,6 +14010,14 @@
               "icon": "niven",
               "kicker": "rational cosines only at five angles",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-wilson-prime",
+              "title": "THE WILSON PRIME",
+              "accent": "#ffcf4a",
+              "icon": "wilsonprime",
+              "kicker": "three coins in 250 years",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -14841,6 +14910,14 @@
               "accent": "#ffcf4a",
               "icon": "gaussianintegral",
               "kicker": "a bell curve whose area is the square root of pi",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hydra",
+              "title": "THE HYDRA",
+              "accent": "#21e6ff",
+              "icon": "hydra",
+              "kicker": "the boss that must lose but arithmetic cannot say so",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -15842,6 +15919,14 @@
               "accent": "#21e6ff",
               "icon": "braess",
               "kicker": "a free road that slows every driver",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-prouhet",
+              "title": "THE PROUHET",
+              "accent": "#35ffb0",
+              "icon": "prouhet",
+              "kicker": "a fair split sharp at every power",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18514,7 +18599,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "b619f0f33e5d9dca6a69430a6a7ec6d9ff16ecef0712b0467422335a6c940103",
+  "fold_root": "ddec28accf3ea7f70e9cbc47f5f3a731fa45cafdf1b329f437e0a3b0a932f389",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
