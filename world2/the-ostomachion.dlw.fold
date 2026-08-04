@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE OSTOMACHION",
+  "slug": "the-ostomachion",
+  "seal": "1cca8bc56583ab6a2dad2b1be8de2668f6c1015cdf29870eb66feffca9e613f8",
+  "index": 1123,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "313b72d4f82cb10596492f9ff2b1c312107ba9115ea086ce473205d33711a4fa",
+      "side": "L"
+    },
+    {
+      "h": "8b38d8f14a46ce92b6c04e3585ecdf3b7ffb6e841a287053a62c9c4fb954e39f",
+      "side": "L"
+    },
+    {
+      "h": "5c48bbfffabb817f766a8fa33e31d5fbab2b7aff8ac2bf50d6bfb3fa758185c0",
+      "side": "R"
+    },
+    {
+      "h": "9f28157d6142b52d5fd44455ad7c25beeb834ffe50f283195a7678f413aaed43",
+      "side": "R"
+    },
+    {
+      "h": "85058d6e21cb9b2a41a2aed340cd641eb691c26fee9366bc5cf1a3bb5dbd2d9a",
+      "side": "R"
+    },
+    {
+      "h": "f269c8a529f815d2f48903968708708d6595d6abda30d6646468816c5751ef16",
+      "side": "L"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "9376f1b2e436076f4c7e07a3057c11261e139f09ff1f38d6a6d71e3c8dd98bd6",
+      "side": "R"
+    },
+    {
+      "h": "224d1a73efa46fe4916c9eb29d7c4cc52e577450462de2b44507b3091c2a88e8",
+      "side": "R"
+    },
+    {
+      "h": "1cde03a0d3963f367ca665e6e180f57078a4f30ed6bd93679847980eb3ffcbfb",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "1544fef6009bb1d77dd25c81e09061a1e10d8421cabcca87a6dbc47918cf1199",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

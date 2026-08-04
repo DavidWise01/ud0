@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1120,
+    "spheres": 1125,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1114,
+    "spheres_built": 1119,
     "apex": 1
   },
   "keepers": [
@@ -10168,6 +10168,51 @@
       "blurb": "Predator and prey chase each other around a loop forever. Two surprises: the orbits are exactly closed (an invariant preserves them), and the time-averages depend ONLY on the parameters — ⟨prey⟩ = c/d, ⟨predator⟩ = a/b, whatever the amplitude. Hence Volterra's principle: kill both species indiscriminately and the prey average RISES. He derived it in 1926 to explain why the WWI fishing halt raised the Adriatic shark fraction.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "790aebf396e51336c6c58a2804aa7948648936e968eedfd8d53377df3d63df62"
+    },
+    {
+      "slug": "the-arrow",
+      "title": "THE ARROW",
+      "kicker": "no fair rule",
+      "accent": "#ffcf4a",
+      "blurb": "Ask a voting rule for three things — never rank X above Y when everyone prefers Y; decide X vs Y using only how voters rank X against Y; and no dictator. Arrow proved in 1951 that with three or more candidates nothing satisfies all three. Borda, plurality, pairwise majority all break; the only survivor is a dictatorship, which solves the problem the way deleting the database solves the query.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c6e7613b3e53b6d54d939e4ab19f8b3374b70d4860f5937913011ae7580c1238"
+    },
+    {
+      "slug": "the-gibbard",
+      "title": "THE GIBBARD",
+      "kicker": "no honest rule",
+      "accent": "#b06bff",
+      "blurb": "Arrow's theorem is about ranking; Gibbard–Satterthwaite is about lying. Any single-winner rule that can elect any of three candidates and isn't a dictatorship has a situation where some voter does better by submitting a FALSE ballot. Strategic voting isn't a flaw in your election system — it's a theorem about all of them.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6023d3659b38685a46a81ef8fb3d2ad612e04d0ef45f7ce71b7b3db66031bfe8"
+    },
+    {
+      "slug": "the-minkowski-body",
+      "title": "THE MINKOWSKI BODY",
+      "kicker": "area forces a lattice point",
+      "accent": "#35ffb0",
+      "blurb": "Any convex shape symmetric about the origin with area over 4 is FORCED to contain a nonzero integer point — stretch, rotate or shear it as you like. Minkowski 1889, the founding result of the geometry of numbers, and it's sharp: the open unit square has area exactly 4 and dodges every one. Beneath it, Blichfeldt's pigeonhole: fold any region of area > 1 into the unit torus and two points must collide.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "313b72d4f82cb10596492f9ff2b1c312107ba9115ea086ce473205d33711a4fa"
+    },
+    {
+      "slug": "the-ostomachion",
+      "title": "THE OSTOMACHION",
+      "kicker": "Archimedes counting",
+      "accent": "#ff8a3c",
+      "blurb": "The oldest known dissection puzzle: a square cut into 14 pieces, attributed to Archimedes. It looked like a toy until the Archimedes Palimpsest — parchment scraped clean of his writing and overwritten with prayers — was imaged in 1998, and Netz argued he was COUNTING the arrangements. If so it's the earliest combinatorics by two millennia. Cutler settled the count by computer in 2003: 17,152 ways.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1cca8bc56583ab6a2dad2b1be8de2668f6c1015cdf29870eb66feffca9e613f8"
+    },
+    {
+      "slug": "the-heilbronn",
+      "title": "THE HEILBRONN",
+      "kicker": "the triangle you cannot avoid",
+      "accent": "#ffcf4a",
+      "blurb": "Place n points in a unit square; among all their triangles, how large can you force the SMALLEST to be? Random placement is terrible at this — six points typically leave a sliver of area 0.005 — while careful placement reaches 1/8, twenty-three times better. Heilbronn conjectured the optimum decays like 1/n²; Komlós, Pintz and Szemerédi disproved that in 1982, and the asymptotics are still open.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "54aa72f7530d133ba67fce2a7466b0255cf98be60fdbe26ba8907b32e3160e52"
     }
   ],
   "appeals": [
@@ -11572,6 +11617,14 @@
               "icon": "friendship",
               "kicker": "a network where your friends outnumber you",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-minkowski-body",
+              "title": "THE MINKOWSKI BODY",
+              "accent": "#35ffb0",
+              "icon": "minkowskibody",
+              "kicker": "area forces a lattice point",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 26,
@@ -12708,6 +12761,14 @@
               "accent": "#b06bff",
               "icon": "khinchin",
               "kicker": "the average hiding in almost every number",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ostomachion",
+              "title": "THE OSTOMACHION",
+              "accent": "#ff8a3c",
+              "icon": "ostomachion",
+              "kicker": "Archimedes counting",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -14775,6 +14836,14 @@
               "icon": "banachtarski",
               "kicker": "two spheres from one",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-arrow",
+              "title": "THE ARROW",
+              "accent": "#ffcf4a",
+              "icon": "arrow",
+              "kicker": "no fair rule",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -14930,6 +14999,14 @@
               "accent": "#ffcf4a",
               "icon": "pirategame",
               "kicker": "gold divided by pure logic",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-heilbronn",
+              "title": "THE HEILBRONN",
+              "accent": "#ffcf4a",
+              "icon": "heilbronn",
+              "kicker": "the triangle you cannot avoid",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18938,6 +19015,14 @@
               "icon": "tupper",
               "kicker": "the formula that draws everything",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gibbard",
+              "title": "THE GIBBARD",
+              "accent": "#b06bff",
+              "icon": "gibbard",
+              "kicker": "no honest rule",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -20044,7 +20129,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "4c8150c9a515a54da5f3642b8673db28d80794faa09236c338b58306137bedf8",
+  "fold_root": "1544fef6009bb1d77dd25c81e09061a1e10d8421cabcca87a6dbc47918cf1199",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
