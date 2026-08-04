@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE AZTEC",
+  "slug": "the-aztec",
+  "seal": "7e864d0f19aaa58330d874303225fbf4429dfc8a28fb8b10e3a652f5f186e17a",
+  "index": 1104,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
+      "side": "R"
+    },
+    {
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "side": "R"
+    },
+    {
+      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "side": "R"
+    },
+    {
+      "h": "eaf38c2cd96997d54d6a4c5db37ee0cfaec10743902b74eafba1eb5507e33c6f",
+      "side": "R"
+    },
+    {
+      "h": "e0cd5e17827b78b1fdfa1cc31881cf808a652b24c9a02351ce1f2f111796ad62",
+      "side": "L"
+    },
+    {
+      "h": "aff1d88d146462f2c5f8665ce1487f26444f73d31a7878034da811f7772d8a6c",
+      "side": "R"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "217969319228254c57f1e5f2cde6b47c69c31b497e6e70aa6a3f3804a9ed1bb0",
+      "side": "R"
+    },
+    {
+      "h": "da1841ae7b01d6427119cd547f313debc18db38ddbdfe6fc957da5cfefd501b6",
+      "side": "R"
+    },
+    {
+      "h": "68204336a9e23b767f67d1076ed110aa5a9a32e75605a79e4b01564cc2df6361",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "c0b43425962044cc96299fbc2a531ab0e3745edb209357dbe73bc002ddce28a0",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

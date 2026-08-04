@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE KRUSKAL COUNT",
+  "slug": "the-kruskal-count",
+  "seal": "f619bfa5e81e225ab7f1e3cad938beaaf06da6000a6bd6a8a0f7766dc7919429",
+  "index": 1101,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "cf5304bf879ed1dccfad50b94d09e3a7786b2b80b7015fb7ee0d1fbdfba68325",
+      "side": "L"
+    },
+    {
+      "h": "58804846fdfbb453de8f886092552e9c72458a3bc9aaaf4f373c06d08ead0d54",
+      "side": "R"
+    },
+    {
+      "h": "392990a3e676fdaf0aad5b616e4dd6a6ddbbf77d5d2ec10c816e1824babd56eb",
+      "side": "L"
+    },
+    {
+      "h": "54428118fbbd3d5494a1caf038285dbd969424e7500215d394062d01dfcf1abf",
+      "side": "L"
+    },
+    {
+      "h": "ed4a6431ab2121ce9b845b0f28195e8099bade75204e65d15a7a8dffb838a6e9",
+      "side": "R"
+    },
+    {
+      "h": "aff1d88d146462f2c5f8665ce1487f26444f73d31a7878034da811f7772d8a6c",
+      "side": "R"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "217969319228254c57f1e5f2cde6b47c69c31b497e6e70aa6a3f3804a9ed1bb0",
+      "side": "R"
+    },
+    {
+      "h": "da1841ae7b01d6427119cd547f313debc18db38ddbdfe6fc957da5cfefd501b6",
+      "side": "R"
+    },
+    {
+      "h": "68204336a9e23b767f67d1076ed110aa5a9a32e75605a79e4b01564cc2df6361",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "c0b43425962044cc96299fbc2a531ab0e3745edb209357dbe73bc002ddce28a0",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

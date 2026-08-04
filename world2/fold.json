@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1100,
+    "spheres": 1105,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1094,
+    "spheres_built": 1099,
     "apex": 1
   },
   "keepers": [
@@ -9988,6 +9988,51 @@
       "blurb": "Cut the packet anywhere; turn the top two over as one; repeat in any order — Bob Hummer's 1946 CATO principle guards one quantity through all of it: face-up cards at even positions always equal face-up cards at odd positions. Dozens of self-working card tricks are this single conserved ledger in a trench coat. Diaconis & Graham open Magical Mathematics with it.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "860abb3187bcefe06088c489f93b95104771d71305a97dde8162c1519af13a97"
+    },
+    {
+      "slug": "the-moessner",
+      "title": "THE MOESSNER",
+      "kicker": "strike and sum — the powers fall out",
+      "accent": "#ff8a3c",
+      "blurb": "Write the naturals; strike every 3rd; partial-sum; strike every 2nd; partial-sum — you're looking at the cubes. Choose n and the same delete-accumulate loop compiles n-th powers from pure addition. Moessner conjectured it in 1951; Perron proved it the same year. Strike at triangular positions instead and iterate: the factorials appear.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "cf5304bf879ed1dccfad50b94d09e3a7786b2b80b7015fb7ee0d1fbdfba68325"
+    },
+    {
+      "slug": "the-kruskal-count",
+      "title": "THE KRUSKAL COUNT",
+      "kicker": "chains that never part",
+      "accent": "#21e6ff",
+      "blurb": "Think of a card among the first ten; hop forward by its value; repeat. The magician hops their own chain and names your final card — because hopping chains coalesce, and the load-bearing lemma is deterministic: two chains that ever share a card are identical forever after. Different pasts, one future.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f619bfa5e81e225ab7f1e3cad938beaaf06da6000a6bd6a8a0f7766dc7919429"
+    },
+    {
+      "slug": "the-happy-ending",
+      "title": "THE HAPPY ENDING",
+      "kicker": "the marriage theorem",
+      "accent": "#ffcf4a",
+      "blurb": "Esther Klein, Budapest 1933: any five points in general position contain a convex quadrilateral. Szekeres attacked the generalization; Erdős named it the Happy Ending problem — Klein and Szekeres married. For pentagons the threshold is 9: eight points can dodge, nine cannot; the hexagon's 17 fell to computer in 2006; the growth rate waited for Suk, 2016.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1e9aa0c4e6760932388514ee276071dca16a58f0dea9a3123477d5f45a2309d2"
+    },
+    {
+      "slug": "the-alternating-sign",
+      "title": "THE ALTERNATING SIGN",
+      "kicker": "the 88-referee formula",
+      "accent": "#b06bff",
+      "blurb": "Matrices of 0, +1, −1 with unit row/column sums and alternating signs count as 1, 2, 7, 42, 429, 7436… Mills–Robbins–Rumsey conjectured the product formula ∏(3k+1)!/(n+k)! in 1983 — and it held as a wall for thirteen years, until Zeilberger's 84-page proof, checked by 88 volunteer referees, then Kuperberg's short six-vertex proof.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fec6f441eca6ca00831d6516a4a2cef83ff63df73b38c946e760520b9626d737"
+    },
+    {
+      "slug": "the-aztec",
+      "title": "THE AZTEC",
+      "kicker": "the frozen diamond",
+      "accent": "#35ffb0",
+      "blurb": "Tile the Aztec diamond AD(n) with dominoes: exactly 2^(n(n+1)/2) ways — a formula so clean Elkies, Kuperberg, Larsen and Propp gave it four proofs in one 1992 paper. And a RANDOM tiling freezes into brickwork outside the inscribed circle (the arctic circle theorem): order at the corners is forced by counting, not designed.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7e864d0f19aaa58330d874303225fbf4429dfc8a28fb8b10e3a652f5f186e17a"
     }
   ],
   "appeals": [
@@ -11080,6 +11125,14 @@
               "icon": "mills",
               "kicker": "a constant that boots an infinite prime cascade",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-aztec",
+              "title": "THE AZTEC",
+              "accent": "#35ffb0",
+              "icon": "aztec",
+              "kicker": "the frozen diamond",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -11684,6 +11737,14 @@
               "accent": "#ffcf4a",
               "icon": "wallis",
               "kicker": "pi milled from fractions",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-moessner",
+              "title": "THE MOESSNER",
+              "accent": "#ff8a3c",
+              "icon": "moessner",
+              "kicker": "strike and sum — the powers fall out",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -14343,6 +14404,14 @@
               "icon": "martingale",
               "kicker": "the system that always wins until it doesn't",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-happy-ending",
+              "title": "THE HAPPY ENDING",
+              "accent": "#ffcf4a",
+              "icon": "happyending",
+              "kicker": "the marriage theorem",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -16228,6 +16297,14 @@
               "icon": "schur",
               "kicker": "the wall at thirteen",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-alternating-sign",
+              "title": "THE ALTERNATING SIGN",
+              "accent": "#b06bff",
+              "icon": "alternatingsign",
+              "kicker": "the 88-referee formula",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 22,
@@ -17448,6 +17525,14 @@
               "accent": "#35ffb0",
               "icon": "superellipse",
               "kicker": "between the circle and the square",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kruskal-count",
+              "title": "THE KRUSKAL COUNT",
+              "accent": "#21e6ff",
+              "icon": "kruskalcount",
+              "kicker": "chains that never part",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19704,7 +19789,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "bc6ba61b9f3cfa9cdd7b8adaaf844b0254228a93fc0408ab1f68ec7ba706fa75",
+  "fold_root": "c0b43425962044cc96299fbc2a531ab0e3745edb209357dbe73bc002ddce28a0",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
