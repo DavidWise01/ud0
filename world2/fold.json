@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1105,
+    "spheres": 1110,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1099,
+    "spheres_built": 1104,
     "apex": 1
   },
   "keepers": [
@@ -10033,6 +10033,51 @@
       "blurb": "Tile the Aztec diamond AD(n) with dominoes: exactly 2^(n(n+1)/2) ways — a formula so clean Elkies, Kuperberg, Larsen and Propp gave it four proofs in one 1992 paper. And a RANDOM tiling freezes into brickwork outside the inscribed circle (the arctic circle theorem): order at the corners is forced by counting, not designed.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "7e864d0f19aaa58330d874303225fbf4429dfc8a28fb8b10e3a652f5f186e17a"
+    },
+    {
+      "slug": "the-stable-roommates",
+      "title": "THE STABLE ROOMMATES",
+      "kicker": "the co-op with no settlement",
+      "accent": "#21e6ff",
+      "blurb": "Gale–Shapley 1962: two-sided matching ALWAYS has a stable outcome. Flip one structural bit — everyone in ONE group, pairing as roommates — and the guarantee dies: profiles exist where every pairing has a blocking pair. The classic witness needs four people: three in a preference cycle, one nobody wants. Bipartite vs not is the whole difference.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7d224738c2554860209deac9ac4c6a2efbfdf82d38faf9d175c6fd7aeadeafa2"
+    },
+    {
+      "slug": "the-tennis-racket",
+      "title": "THE TENNIS RACKET",
+      "kicker": "the axis that flips",
+      "accent": "#ff8a3c",
+      "blurb": "Spin anything about its longest or shortest inertia axis: stable forever. Spin about the middle axis and it flips over, mid-flight, on schedule — the tennis racket theorem, made famous when cosmonaut Dzhanibekov watched a wingnut do it in orbit (1985). The verdict hides in one product: (Ik−Ii)(Ik−Ij), negative only for the middle axis.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b55fc9113ba7441c73f9619a720f272ff79becaac94359278f2e5e4d1ffbffbe"
+    },
+    {
+      "slug": "the-ehrenfest",
+      "title": "THE EHRENFEST",
+      "kicker": "the urn that takes 2^N to reset",
+      "accent": "#b06bff",
+      "blurb": "Two dogs, N fleas, one random jump per tick — the 1907 Ehrenfest urn, built to defuse the objection that reversible dynamics forbids an arrow of time. Equilibrium is binomial; and by Kac's theorem the expected return to any state is exactly 1/π(state): the all-on-one-dog reset costs 2^N ticks. Reversible in law, priced out in practice.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "684b144d76e75604a98d5d3170aedbcfef95599f376cce67b1302209eeec05ab"
+    },
+    {
+      "slug": "the-fput",
+      "title": "THE FPUT",
+      "kicker": "the lattice that refused to thermalize",
+      "accent": "#ffcf4a",
+      "blurb": "Los Alamos 1955: Fermi, Pasta, Ulam — and Mary Tsingou, who wrote the program — pumped mode 1 of a 32-mass nonlinear chain and waited for equipartition. Instead the energy wandered a few low modes and came home: the FPUT recurrence, the computation that founded nonlinear science and seeded soliton theory.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "cc2d7f01152f3569e3b70604a8381886d742b51484ca5ccd34923a553fc48273"
+    },
+    {
+      "slug": "the-figure-eight",
+      "title": "THE FIGURE-EIGHT",
+      "kicker": "three bodies, one curve",
+      "accent": "#35ffb0",
+      "blurb": "In the home stadium of chaos, three equal masses chase each other around a single figure-eight — every body on the SAME curve, T/3 apart, zero angular momentum. Found numerically by Cris Moore in 1993, proven by Chenciner & Montgomery in 2000: the first new closed three-body family since Lagrange, 1772.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "cc584db7a3d8710dd2e73d2b16471c3ab623e003a9b03f2a40cc8bbf58e474cc"
     }
   ],
   "appeals": [
@@ -10984,6 +11029,14 @@
               "accent": "#ffcf4a",
               "icon": "caustic",
               "kicker": "sunlight signing its name in coffee",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-figure-eight",
+              "title": "THE FIGURE-EIGHT",
+              "accent": "#35ffb0",
+              "icon": "figureeight",
+              "kicker": "three bodies, one curve",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -13033,6 +13086,14 @@
               "accent": "#ff8a3c",
               "icon": "inspection",
               "kicker": "the bus that is always late for you",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fput",
+              "title": "THE FPUT",
+              "accent": "#ffcf4a",
+              "icon": "fput",
+              "kicker": "the lattice that refused to thermalize",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -16001,6 +16062,14 @@
               "icon": "conwaysoldiers",
               "kicker": "an army that cannot reach the fifth row",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-tennis-racket",
+              "title": "THE TENNIS RACKET",
+              "accent": "#ff8a3c",
+              "icon": "tennisracket",
+              "kicker": "the axis that flips",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -16917,6 +16986,14 @@
               "accent": "#35ffb0",
               "icon": "hamsandwich",
               "kicker": "one cut for two appetites",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-stable-roommates",
+              "title": "THE STABLE ROOMMATES",
+              "accent": "#21e6ff",
+              "icon": "roommates",
+              "kicker": "the co-op with no settlement",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19777,6 +19854,14 @@
               "icon": "involution",
               "kicker": "self-inverse permutations counted by a recurrence",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ehrenfest",
+              "title": "THE EHRENFEST",
+              "accent": "#b06bff",
+              "icon": "ehrenfest",
+              "kicker": "the urn that takes 2^N to reset",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -19789,7 +19874,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "c0b43425962044cc96299fbc2a531ab0e3745edb209357dbe73bc002ddce28a0",
+  "fold_root": "66559a50f1cba86cb52bde6984a9a0fd5435bd2b7760c18173edd71eb3fdd1fd",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

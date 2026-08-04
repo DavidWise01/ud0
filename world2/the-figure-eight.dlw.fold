@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE FIGURE-EIGHT",
+  "slug": "the-figure-eight",
+  "seal": "cc584db7a3d8710dd2e73d2b16471c3ab623e003a9b03f2a40cc8bbf58e474cc",
+  "index": 1109,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "cc2d7f01152f3569e3b70604a8381886d742b51484ca5ccd34923a553fc48273",
+      "side": "L"
+    },
+    {
+      "h": "c3aef53a6c220fd627da7acdbfcfb0645d69e8935994ed097adb8abb9f953bec",
+      "side": "R"
+    },
+    {
+      "h": "539abbc7d1690abcb0e83690387f39b97b4f4c3df8dd5c733514ce5a6098aa6d",
+      "side": "L"
+    },
+    {
+      "h": "7349af00e45a482dea676eeb1db27c8d7364eb50100d2f1f86c6bde51d83b989",
+      "side": "R"
+    },
+    {
+      "h": "e0cd5e17827b78b1fdfa1cc31881cf808a652b24c9a02351ce1f2f111796ad62",
+      "side": "L"
+    },
+    {
+      "h": "1513ca3847a8e864b19b52a8e17418ad7845e6df6250e4c67565f3fda03d8612",
+      "side": "R"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "6a29cd67d998e31e14b77afed9d44dd31d1267b9ddb583a7e754551118b77b51",
+      "side": "R"
+    },
+    {
+      "h": "d0c30bbe51dd619592d350812f1652627611d3ff73afc60b7b93b6bb8f51830b",
+      "side": "R"
+    },
+    {
+      "h": "7de94435a702ba83a0b98fbca5ad21221893581908f00cffd586306b2d066911",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "66559a50f1cba86cb52bde6984a9a0fd5435bd2b7760c18173edd71eb3fdd1fd",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
