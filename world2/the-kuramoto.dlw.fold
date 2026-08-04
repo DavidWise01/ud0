@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE KURAMOTO",
+  "slug": "the-kuramoto",
+  "seal": "08843d3e17af8818410451516a6c84f1ce7b535b26365849600e94c14de5d894",
+  "index": 1111,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "59c87fbcaf0aa05c7470c49cb4a11304d2e8b32567f3d4fcf275bf4b641bb987",
+      "side": "L"
+    },
+    {
+      "h": "c09b02d07fd21cab78558135db54008bb29bd5c27f7dbe5e142de6b6f2ec8e3d",
+      "side": "L"
+    },
+    {
+      "h": "539abbc7d1690abcb0e83690387f39b97b4f4c3df8dd5c733514ce5a6098aa6d",
+      "side": "L"
+    },
+    {
+      "h": "f1119c5fd4cb86ac49e4c274818d369bf9d11a47b45f2ec9c23e523f4daa249a",
+      "side": "R"
+    },
+    {
+      "h": "e0cd5e17827b78b1fdfa1cc31881cf808a652b24c9a02351ce1f2f111796ad62",
+      "side": "L"
+    },
+    {
+      "h": "f525173ae9e15528c862f2defd5e5f687935c1782afaf271dc14d6d64d92fadd",
+      "side": "R"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "e935636fadab5154984fb6ed3c1a2b271797ae0f83344822f3c0ce26dc07477b",
+      "side": "R"
+    },
+    {
+      "h": "32e18ad3d15674aaf4b0042bb2d19d6a5705bf4038a4318b55756e2423a26f89",
+      "side": "R"
+    },
+    {
+      "h": "3ac5d369a1d4f675eb2ef3c898701b927c59ff2e65135d63663987fde87a3fdb",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "98e4032d49c4cc921bcc24601dbddef18f49273ceda9cb8671df9e4fb236edd2",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

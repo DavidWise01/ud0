@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE FOUCAULT",
+  "slug": "the-foucault",
+  "seal": "9e183fef76ba79adcb9f521be6af56e9b151e5b49f5f1c4ea5722084bc1c682e",
+  "index": 1113,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "8a689fe799c8a67f95a3593c5523e74fd109b1489cd174bbf51ce3115721d9b2",
+      "side": "L"
+    },
+    {
+      "h": "ddf737b53a9a17dd28d1ba55eda471323eefb40cb891bb7c727cdab380f7fa5c",
+      "side": "R"
+    },
+    {
+      "h": "1d83a5e68348472f2acf3a5888d020145343c06534ef6d3bbcb139aecc9133b8",
+      "side": "R"
+    },
+    {
+      "h": "730a67a7402c34f1b87b4575297be21eb3f2322c9d9f0d8a2fabe56ab1a2efb1",
+      "side": "L"
+    },
+    {
+      "h": "e0cd5e17827b78b1fdfa1cc31881cf808a652b24c9a02351ce1f2f111796ad62",
+      "side": "L"
+    },
+    {
+      "h": "f525173ae9e15528c862f2defd5e5f687935c1782afaf271dc14d6d64d92fadd",
+      "side": "R"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "e935636fadab5154984fb6ed3c1a2b271797ae0f83344822f3c0ce26dc07477b",
+      "side": "R"
+    },
+    {
+      "h": "32e18ad3d15674aaf4b0042bb2d19d6a5705bf4038a4318b55756e2423a26f89",
+      "side": "R"
+    },
+    {
+      "h": "3ac5d369a1d4f675eb2ef3c898701b927c59ff2e65135d63663987fde87a3fdb",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "98e4032d49c4cc921bcc24601dbddef18f49273ceda9cb8671df9e4fb236edd2",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

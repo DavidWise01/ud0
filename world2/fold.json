@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1110,
+    "spheres": 1115,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1104,
+    "spheres_built": 1109,
     "apex": 1
   },
   "keepers": [
@@ -10078,6 +10078,51 @@
       "blurb": "In the home stadium of chaos, three equal masses chase each other around a single figure-eight — every body on the SAME curve, T/3 apart, zero angular momentum. Found numerically by Cris Moore in 1993, proven by Chenciner & Montgomery in 2000: the first new closed three-body family since Lagrange, 1772.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "cc584db7a3d8710dd2e73d2b16471c3ab623e003a9b03f2a40cc8bbf58e474cc"
+    },
+    {
+      "slug": "the-kapitza",
+      "title": "THE KAPITZA",
+      "kicker": "gravity beaten by vibration",
+      "accent": "#b06bff",
+      "blurb": "An inverted pendulum falls — unless its pivot vibrates fast enough, and then upside-down becomes STABLE: an effective well where gravity built a peak. Stephenson saw it in 1908, Kapitza analyzed it in 1951, and the averaging trick behind a²ω² > 2gL now runs Paul traps and strong-field physics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "59c87fbcaf0aa05c7470c49cb4a11304d2e8b32567f3d4fcf275bf4b641bb987"
+    },
+    {
+      "slug": "the-kuramoto",
+      "title": "THE KURAMOTO",
+      "kicker": "the sync transition",
+      "accent": "#21e6ff",
+      "blurb": "Fireflies, pacemaker cells, clocks on a beam — Kuramoto's 1975 model distilled them: oscillators with random frequencies, each pulled toward the crowd's mean phase. Below Kc = 2γ, anarchy; above it, synchronization ignites with the exact law r = √(1 − Kc/K) — a phase transition solved in closed form.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "08843d3e17af8818410451516a6c84f1ce7b535b26365849600e94c14de5d894"
+    },
+    {
+      "slug": "the-wilberforce",
+      "title": "THE WILBERFORCE",
+      "kicker": "bounce traded for twist",
+      "accent": "#ffcf4a",
+      "blurb": "A mass on a soft helical spring, twist and stretch frequencies tuned to match: the bounce dies completely while the mass starts spinning, then the trade reverses — the two motions passing the whole energy budget back and forth like items between inventory slots. Wilberforce 1896; the beat is normal-mode interference, scheduled by the eigenvalues.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8a689fe799c8a67f95a3593c5523e74fd109b1489cd174bbf51ce3115721d9b2"
+    },
+    {
+      "slug": "the-foucault",
+      "title": "THE FOUCAULT",
+      "kicker": "the Earth turning under a wire",
+      "accent": "#35ffb0",
+      "blurb": "Paris 1851: Foucault hangs 67 meters of wire in the Panthéon and the public watches the swing plane creep — the first direct dynamical proof that the Earth turns. One sine rules it all: precession at Ω sin(latitude) — 23.93h at the pole, 31.8h in Paris, never at the equator — and the whole motion has an exact closed form with rotation stamped on as a complex phase.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9e183fef76ba79adcb9f521be6af56e9b151e5b49f5f1c4ea5722084bc1c682e"
+    },
+    {
+      "slug": "the-square-free",
+      "title": "THE SQUARE-FREE",
+      "kicker": "three letters never stutter",
+      "accent": "#ff8a3c",
+      "blurb": "A square is a stutter — any block repeated immediately. With two letters it's unavoidable: every binary word of length 4 contains one. With three, Thue proved in 1906 you can walk forever without stuttering, via a simple substitution word. The gate between alphabets 2 and 3 is absolute — and Thue's overlooked Norwegian papers founded combinatorics on words.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ebf9dce48f2eb42df5cd3decfa2077526078cce285d1e86787eb0e40a148b32f"
     }
   ],
   "appeals": [
@@ -15121,6 +15166,14 @@
               "icon": "weird",
               "kicker": "abundance you cannot spend",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-wilberforce",
+              "title": "THE WILBERFORCE",
+              "accent": "#ffcf4a",
+              "icon": "wilberforce",
+              "kicker": "bounce traded for twist",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 23,
@@ -16217,6 +16270,14 @@
               "accent": "#b06bff",
               "icon": "brouwer",
               "kicker": "the point that cannot escape",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-square-free",
+              "title": "THE SQUARE-FREE",
+              "accent": "#ff8a3c",
+              "icon": "squarefree",
+              "kicker": "three letters never stutter",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17939,6 +18000,14 @@
               "icon": "eyeball",
               "kicker": "the equal gaze",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kuramoto",
+              "title": "THE KURAMOTO",
+              "accent": "#21e6ff",
+              "icon": "kuramoto",
+              "kicker": "the sync transition",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -18339,6 +18408,14 @@
               "accent": "#ff8a3c",
               "icon": "chuvandermonde",
               "kicker": "a binomial convolution collapsing to one entry",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kapitza",
+              "title": "THE KAPITZA",
+              "accent": "#b06bff",
+              "icon": "kapitza",
+              "kicker": "gravity beaten by vibration",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19449,6 +19526,14 @@
               "icon": "lissajous",
               "kicker": "rationality on an oscilloscope",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-foucault",
+              "title": "THE FOUCAULT",
+              "accent": "#35ffb0",
+              "icon": "foucault",
+              "kicker": "the Earth turning under a wire",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -19874,7 +19959,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "66559a50f1cba86cb52bde6984a9a0fd5435bd2b7760c18173edd71eb3fdd1fd",
+  "fold_root": "98e4032d49c4cc921bcc24601dbddef18f49273ceda9cb8671df9e4fb236edd2",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
