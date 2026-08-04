@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1045,
+    "spheres": 1050,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1039,
+    "spheres_built": 1044,
     "apex": 1
   },
   "keepers": [
@@ -9493,6 +9493,51 @@
       "blurb": "Ramanujan's nested radical in the 5-window house format — in 1911 a Madras clerk mailed the Journal of the Indian Mathematical Society a puzzle: evaluate √(1+2√(1+3√(1+4√(…)))). Six months, no solvers; Ramanujan published the answer himself: exactly 3, via the telescoping identity x+1 = √(1+x√(1+(x+1)√(…))). The infinite dig has a clean bottom. Cousins verified alongside: √(2+√(2+…)) = 2, √(6+√(6+…)) = 3, √(1+√(1+…)) = φ. Verified live with rigorous two-sided bracketing: depth-60 truncations seeded LOW and HIGH pin 3 between them to 14 decimals; the tail identity (=4) bracketed the same way; the fixed-point cousins to 1e-10. Neon-noir traced. See the telescope in 1D, the squeezing brackets in 2D, and the radical well in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "8b026b105463569645a580189977f7f06ae5d267018cfbc9fe7a86dfebb6d3fd"
+    },
+    {
+      "slug": "the-lazy-caterer",
+      "title": "THE LAZY CATERER",
+      "kicker": "every cut counted exactly",
+      "accent": "#21e6ff",
+      "blurb": "The lazy caterer's sequence in the 5-window house format — slice a pancake with n straight cuts: the most pieces is 1+n+C(n,2) (2, 4, 7, 11, 16, 22…), because each new cut adds one region plus one per crossing. Stack the same logic into 3D and you get the cake numbers (n³+5n+6)/6 — each plane slices in the pattern of a 2D arrangement, so 3D is a running sum of 2D: Pascal's triangle wearing an apron. Verified live with exact arithmetic: random-slope arrangements built over BigInt rationals, general position certified, regions counted incrementally for n = 5, 12, 25, 40 matching BOTH the closed formula and the independent Euler route (V=C(n,2), E=n²); the cake recurrence checked to n=30. Neon-noir traced. See the growing cuts in 1D, the live triple count in 2D, and the stacked cake in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3ef9329e058d3ab580d467c7c9d16e4e4e27a816a0c4d5716ddbf346f4ea9a6c"
+    },
+    {
+      "slug": "the-parker-square",
+      "title": "THE PARKER SQUARE",
+      "kicker": "the celebrated failure",
+      "accent": "#ffcf4a",
+      "blurb": "The Parker Square in the 5-window house format — can a 3×3 magic square be built from nine DISTINCT perfect squares? Genuinely open (LaBar 1984; Bremner's analysis). In 2016 Matt Parker gave it a go on Numberphile: his square of squares gets SEVEN of eight lines summing to 3051, misses one diagonal (4107), and repeats three entries — and the internet made it the mascot of glorious, instructive failure. The underlying rigidity: opposite entries must sum to twice the center, reducing the hunt to four disjoint square-pairs balanced around a central square. Verified live: the Parker Square audited exactly (7/8 at 3051, the 4107 diagonal, 3 repeats — my own memory said 6/8; the computation said 7 and won), plus an exhaustive structural sweep proving no valid square of distinct squares exists with center up to 1500². Neon-noir traced. See the seven green lines in 1D, the audits in 2D, and the one loose diagonal in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "cf4ed89c69bca33e3160f66575bde9214d5ea007c1e369493f1781191b61ba8e"
+    },
+    {
+      "slug": "the-multiperfect",
+      "title": "THE MULTIPERFECT",
+      "kicker": "coins the mint stopped printing",
+      "accent": "#b06bff",
+      "blurb": "Multiperfect numbers in the 5-window house format — perfect numbers pay back double (σ(n)=2n); triperfects pay TRIPLE: 120, 672, 523776, 459818240, 1476304896, 51001180160 — and that is believed to be the complete list forever (exactly six, all even; an odd seventh would summon an odd perfect number, the oldest open question in mathematics). Quadruple-perfect: 30240, 32760… Mersenne and Fermat traded these by letter in the 1630s. Verified live: full σ-sieve to 2²⁰ finds exactly {120, 672, 523776} triperfect and {30240, 32760} quadperfect with the perfect anchor {6,28,496,8128}; every hit re-verified by independent trial-division σ. Neon-noir traced. See the abundancy sea in 1D, each coin's divisors in 2D, and the six-coin hoard with its empty die in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5b5580b6ebee0fc142408314945971671d2a78c90b2ae9f2ecd063bc158d26ef"
+    },
+    {
+      "slug": "the-practical",
+      "title": "THE PRACTICAL",
+      "kicker": "exact change for every bill",
+      "accent": "#35ffb0",
+      "blurb": "Practical numbers in the 5-window house format — n is practical when every amount from 1 to n is payable in DISTINCT divisors of n. 12 works (1,2,3,4,6 make everything); ancient bazaars ran on them, Fibonacci used them for Egyptian-fraction change, and 12, 60, 240 became coinage and clock faces for exactly this property. Srinivasan (1948) and Stewart (1954) found the complete DNA: each prime, in order, must arrive no later than one-plus-the-divisor-sum of what came before — recursive solvency. They even mirror the primes: Goldbach-for-practicals is a THEOREM (Melfi 1996). Verified live with two fully independent engines — brute subset-sum DP versus the Stewart–Sierpiński cascade — on every n ≤ 5,000 with ZERO disagreements; census prefix exact. Neon-noir traced. See 12's wallet in 1D, the twin engines in 2D, and the prime cascade in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e32f356abcdb17d602bf5e9b2b3af6c959ed0f012e76b6e1f6b5209873befa1e"
+    },
+    {
+      "slug": "the-kissing-number",
+      "title": "THE KISSING NUMBER",
+      "kicker": "how many can touch the one",
+      "accent": "#ff8a3c",
+      "blurb": "Kissing numbers in the 5-window house format — how many unit spheres can touch one central sphere? In 2D: 6, with a one-sentence proof (neighbors ≥ 60° apart, 7×60 = 420 > 360). In 3D the question ignited the 1694 Newton–Gregory argument — 12 or 13? — because the icosahedral twelve leave visible slack (neighbors at 2.10, not 2.00); Schütte–van der Waerden vindicated Newton only in 1953, 259 years later. Beyond: K(4)=24 (Musin 2003), and only dimensions 8 (240, E₈) and 24 (196,560, Leech) are also solved — the Viazovska-era miracle dimensions. Verified live: the hexagonal 6-kiss exact, the 7-impossibility executed as the chord-angle pigeonhole (boundary algebraically exact), and the icosahedral 12-kiss constructed from (0,±1,±φ) with min neighbor distance 2.1029… ≥ 2. Neon-noir traced. See the six-and-no-seventh in 1D, the failed insertion in 2D, and Gregory's ghost sphere in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "16fe28e8668a7640c7a292a2eafc82637f63ab4e190b2865e658199d55838a76"
     }
   ],
   "appeals": [
@@ -10404,6 +10449,14 @@
               "accent": "#35ffb0",
               "icon": "viete",
               "kicker": "π from an endless nested radical",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lazy-caterer",
+              "title": "THE LAZY CATERER",
+              "accent": "#21e6ff",
+              "icon": "lazycaterer",
+              "kicker": "every cut counted exactly",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -13836,6 +13889,14 @@
               "icon": "mamikon",
               "kicker": "an annulus worth only its tangent length",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-multiperfect",
+              "title": "THE MULTIPERFECT",
+              "accent": "#b06bff",
+              "icon": "multiperfect",
+              "kicker": "coins the mint stopped printing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -15757,6 +15818,14 @@
               "icon": "hadwigerfinsler",
               "kicker": "a sharpened Weitzenbock inequality",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kissing-number",
+              "title": "THE KISSING NUMBER",
+              "accent": "#ff8a3c",
+              "icon": "kissingnumber",
+              "kicker": "how many can touch the one",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 35,
@@ -16197,6 +16266,14 @@
               "accent": "#ff8a3c",
               "icon": "wald",
               "kicker": "an expected sum equal to expected count times expected step",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-practical",
+              "title": "THE PRACTICAL",
+              "accent": "#35ffb0",
+              "icon": "practical",
+              "kicker": "exact change for every bill",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18452,6 +18529,14 @@
               "icon": "keith",
               "kicker": "a number reborn in its own digit stream",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-parker-square",
+              "title": "THE PARKER SQUARE",
+              "accent": "#ffcf4a",
+              "icon": "parkersquare",
+              "kicker": "the celebrated failure",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -18769,7 +18854,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "eea7849ba55730af617b9482300962356b7a34555c7a928af2365c862d757a84",
+  "fold_root": "a4078c5526a6145b812b632479e8196f17c67abb3e1ebf8565e922ff67c9c8a6",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
