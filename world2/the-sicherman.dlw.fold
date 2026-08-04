@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE SICHERMAN",
+  "slug": "the-sicherman",
+  "seal": "b75124857c5bb7a493f11e8288ac616fd70234d1b9e08f4b650b0939cd285ed3",
+  "index": 1095,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "426e9605951d51866202cbb7311e65ba61973cf745f842390e086ca933d5b3b1",
+      "side": "L"
+    },
+    {
+      "h": "115b64f65600c69bf1944de8f6a5aa9ce2bf62b04a947b5a07420a6a78dac659",
+      "side": "L"
+    },
+    {
+      "h": "787deaa1ee93dca5220390c5d18ff50bc306a39e201e20a1758933f84109a21f",
+      "side": "L"
+    },
+    {
+      "h": "3491487d3d20d7a39c3084fdcb1cf96c3ece146135a19e4d92ddbadce5841678",
+      "side": "R"
+    },
+    {
+      "h": "928a5de2969ac65740b70fdf76127deb9085756467af8da0f5a6279451678466",
+      "side": "R"
+    },
+    {
+      "h": "de85d0571629943c180846909cf0cf5ee5f777c11afbacb9889ee9a98af4ae1d",
+      "side": "R"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "528b4785e101c690d4cde03e0b55cca87641e5385cc243b3aa98ec18973dc8a5",
+      "side": "R"
+    },
+    {
+      "h": "c10f7fa82d6e5bcc872a5ed54a3450c94b730c16987d7127edc79712c764d5f3",
+      "side": "R"
+    },
+    {
+      "h": "94eda466e0d1e577c3112cd859cf2c5839e53097eb2995e9be4426ce5af26579",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "bc6ba61b9f3cfa9cdd7b8adaaf844b0254228a93fc0408ab1f68ec7ba706fa75",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

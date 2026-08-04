@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1095,
+    "spheres": 1100,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1089,
+    "spheres_built": 1094,
     "apex": 1
   },
   "keepers": [
@@ -9943,6 +9943,51 @@
       "blurb": "Pepys asked Newton in 1693: likeliest — one six in 6 dice, two in 12, or three in 18? Intuition says equal; Newton said the first, correctly: 0.665 vs 0.619 vs 0.597. The mean scales perfectly but variance spreads the bigger pools across more failing configurations. Pepys had bet on the long corridor.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "426e9605951d51866202cbb7311e65ba61973cf745f842390e086ca933d5b3b1"
+    },
+    {
+      "slug": "the-sicherman",
+      "title": "THE SICHERMAN",
+      "kicker": "the twin dice",
+      "accent": "#ffcf4a",
+      "blurb": "Is there any OTHER pair of positive-integer dice with exactly 2d6's distribution? Sicherman 1978: exactly one — [1,2,2,3,3,4] + [1,3,4,5,6,8]. Two different drop tables, byte-identical payouts; no sum-based game can tell them apart. Underneath: the unique other regrouping of (x+…+x⁶)²'s cyclotomic factors.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b75124857c5bb7a493f11e8288ac616fd70234d1b9e08f4b650b0939cd285ed3"
+    },
+    {
+      "slug": "the-droz-farny",
+      "title": "THE DROZ-FARNY",
+      "kicker": "the 105-year line",
+      "accent": "#b06bff",
+      "blurb": "Any two perpendicular lines through a triangle's orthocenter cut the three side-lines; the midpoints of the three cut segments are ALWAYS collinear. Droz-Farny published it in 1899 without proof — and the first synthetic proof arrived in 2004, from Ayme. An elementary-looking alignment, open for 105 years.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "32156171552240f379f17c500113cabb65cb9b0282452e0f7db789bb8f3d90a2"
+    },
+    {
+      "slug": "the-eyeball",
+      "title": "THE EYEBALL",
+      "kicker": "the equal gaze",
+      "accent": "#21e6ff",
+      "blurb": "Two circles gaze at each other: from each center, draw the tangents to the other circle; each gaze cuts a chord — a pupil — from the gazer's own circle. The eyeball theorem: the pupils are always equal, both exactly 2r₁r₂/d, however mismatched the eyes. The formula is symmetric; neither eye can tell which is which from its pupil.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9cbaa46b11214341c6d2c3a0fbbef7af40eeabcac408641cdb2c145961b104fd"
+    },
+    {
+      "slug": "the-seven-circles",
+      "title": "THE SEVEN CIRCLES",
+      "kicker": "the chain porism",
+      "accent": "#35ffb0",
+      "blurb": "Six circles ring the inside of a seventh, each touching its neighbors and the host: the three lines joining opposite tangency points are concurrent. Discovered not in 1874 but 1974 (Evelyn, Money-Coutts, Tyrrell). Underneath, a porism: with m = r/(1−r), tangency reads mᵢmⱼ = sin²(Δ/2), so closure depends only on the six angles — and then holds for EVERY starting radius.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7d548d9e700cad469fb965a305b3fa408cc1d0aa8148cd4987e316c9158a023d"
+    },
+    {
+      "slug": "the-hummer",
+      "title": "THE HUMMER",
+      "kicker": "the magician's ledger",
+      "accent": "#ff8a3c",
+      "blurb": "Cut the packet anywhere; turn the top two over as one; repeat in any order — Bob Hummer's 1946 CATO principle guards one quantity through all of it: face-up cards at even positions always equal face-up cards at odd positions. Dozens of self-working card tricks are this single conserved ledger in a trench coat. Diaconis & Graham open Magical Mathematics with it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "860abb3187bcefe06088c489f93b95104771d71305a97dde8162c1519af13a97"
     }
   ],
   "appeals": [
@@ -14134,6 +14179,14 @@
               "icon": "cakecutting",
               "kicker": "cake without envy",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sicherman",
+              "title": "THE SICHERMAN",
+              "accent": "#ffcf4a",
+              "icon": "sicherman",
+              "kicker": "the twin dice",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -16463,6 +16516,14 @@
               "icon": "kissingnumber",
               "kicker": "how many can touch the one",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-droz-farny",
+              "title": "THE DROZ-FARNY",
+              "accent": "#b06bff",
+              "icon": "drozfarny",
+              "kicker": "the 105-year line",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 35,
@@ -17708,6 +17769,14 @@
               "icon": "mountainclimber",
               "kicker": "two climbers in height-lockstep",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-eyeball",
+              "title": "THE EYEBALL",
+              "accent": "#21e6ff",
+              "icon": "eyeball",
+              "kicker": "the equal gaze",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -17868,6 +17937,14 @@
               "accent": "#ffcf4a",
               "icon": "faroshuffle",
               "kicker": "eight perfect shuffles back to the start",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hummer",
+              "title": "THE HUMMER",
+              "accent": "#ff8a3c",
+              "icon": "hummer",
+              "kicker": "the magician's ledger",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19479,6 +19556,14 @@
               "icon": "pancake",
               "kicker": "Bill Gates and the flipped stack",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-seven-circles",
+              "title": "THE SEVEN CIRCLES",
+              "accent": "#35ffb0",
+              "icon": "sevencircles",
+              "kicker": "the chain porism",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 30,
@@ -19619,7 +19704,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "c31de1c838320cd558882643e9deaa71b22dc94b84ad942175c6666c28ef8500",
+  "fold_root": "bc6ba61b9f3cfa9cdd7b8adaaf844b0254228a93fc0408ab1f68ec7ba706fa75",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
