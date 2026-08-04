@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1010,
+    "spheres": 1015,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1004,
+    "spheres_built": 1009,
     "apex": 1
   },
   "keepers": [
@@ -9178,6 +9178,51 @@
       "blurb": "The Fáry–Milnor theorem in the 5-window house format — the bending toll a knot must pay. Total curvature is how much a closed curve turns, summed along its length: any convex loop turns through exactly 2π. The theorem (Fáry 1949; Milnor 1950, as an undergraduate): if a closed curve is knotted, its total curvature must exceed 4π — a knot cannot exist without bending at least twice around. No gradual transition: any curve bending less than 4π is provably an unknot. Topology reaches down and constrains geometry. Verified live: polygonal total curvature of a circle and a convex ellipse both compute to 2π to three decimals, while a trefoil knot computes to 13.95 — comfortably above the 4π = 12.566 floor. Neon-noir traced. See the three totals against the wall in 1D, the per-curve audit in 2D, and the audit-the-bending inverse in 3D.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "0d36d534dd3209ce8ca5fc496b471bc45c38942b4821435d1743ecfb04c98a6c"
+    },
+    {
+      "slug": "the-moser-spindle",
+      "title": "THE MOSER SPINDLE",
+      "kicker": "seven points that outlaw three colors",
+      "accent": "#b06bff",
+      "blurb": "The Moser spindle in the 5-window house format — seven dots that legislate about the entire infinite plane. The Hadwiger–Nelson problem asks how many colours are needed to paint every point of the plane so that no two points at distance exactly 1 match. The spindle (Leo and William Moser, 1961) is 7 vertices and 11 edges, every edge exactly unit length, drawable in the plane — and it cannot be properly 3-coloured, while 4 colours suffice. Since it embeds with unit edges, the plane needs at least 4 colours; Aubrey de Grey's 1553-vertex graph pushed the bound to ≥5 in 2018, and the true answer (5, 6, or 7) is still open. Verified live: all 11 edges measure 1.000000000, all 2187 three-colourings fail exhaustively, and a proper 4-colouring is exhibited. Neon-noir traced. See the hinged construction in 1D, the failing colourings in 2D, and the relaxed 4-colouring in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d5361dc7f7121949a052d97e00a23e07ef1729d7a19e5a47f2b86f37f2e09bfb"
+    },
+    {
+      "slug": "the-perfect-shuffle",
+      "title": "THE PERFECT SHUFFLE",
+      "kicker": "eight perfect shuffles back to the start",
+      "accent": "#ffcf4a",
+      "blurb": "The faro shuffle in the 5-window house format — the card mechanic's perfect riffle: cut exactly in half, interleave one card at a time. It looks like the ultimate randomizer and is precisely the opposite — a fixed permutation. Eight out-shuffles return a 52-card deck exactly to its starting order, because an out-shuffle sends position p to 2p mod 51 and the multiplicative order of 2 mod 51 is 8. Prefer the in-shuffle? Position maps through mod 53, order of 2 is 52 — fifty-two shuffles home. Magicians exploit the difference; parallel computers wire it as the perfect-shuffle interconnect. Verified live: the interleave is simulated on a real array — 8 out-shuffles restore, 52 in-shuffles restore, and both counts equal independently computed modular orders. Neon-noir traced. See position 1's doubling orbit in 1D, the step-by-step scramble-and-snap-back in 2D, and the displacement wheel in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b1c0bd27cca40809c465745ee6957e9b351e34cf7feb619f9b45767d98382eea"
+    },
+    {
+      "slug": "the-tautochrone",
+      "title": "THE TAUTOCHRONE",
+      "kicker": "every bead arriving together",
+      "accent": "#35ffb0",
+      "blurb": "The tautochrone in the 5-window house format — the curve of impossible fairness. A bowl shaped as an inverted cycloid delivers a frictionless bead from ANY release height to the bottom in exactly the same time, T = π√(a/g): drop one from the rim and one from barely above the floor and they arrive together. Christiaan Huygens proved it in 1673 hunting an amplitude-independent pendulum, and built cycloidal-cheek clocks on the result. The secret is hidden linearity: in arc-length coordinates the cycloid turns gravity into a perfect spring, and springs don't care about amplitude. Verified live: four beads at four widely different heights, integrated by RK4 on the true Lagrangian dynamics, all arrive at 1.00354 s to five decimals — while a circular bowl's times differ by over 70%. Neon-noir traced. See the four-bead bowl in 1D, the race ledger in 2D, and the synchronized descent in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8565d822c18cb1b951589aab14a05712344fdd659f383deed312eaa419adbeb4"
+    },
+    {
+      "slug": "the-ford-circles",
+      "title": "THE FORD CIRCLES",
+      "kicker": "fractions kissing along the number line",
+      "accent": "#21e6ff",
+      "blurb": "Ford circles in the 5-window house format — every fraction given a body. Above each reduced p/q draw a circle of radius 1/(2q²) resting on the number line at that point: giants for simple fractions, dust for deep denominators. The miracle: no two Ford circles ever overlap. They miss, or they KISS — and they kiss precisely when |ps−qr| = 1, the Farey-neighbour condition, because one exact identity governs everything: dist²−(r₁+r₂)² = ((ps−qr)²−1)/(q²s²). Between kissing circles the mediant's bubble nests in the gap and kisses both — the Stern–Brocot structure of the rationals drawn in soap bubbles (Lester Ford, 1938). Verified live: 129 fractions with q ≤ 20, 8,256 pairs, zero overlaps, 255 kisses exactly at determinant ±1, identity to 1e-9 on every pair. Neon-noir traced. See the full bubble line in 1D, the pair-audit in 2D, and the breathing zoom in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "505c34561019d36f379d0e74bcfa4c5050b6a97d9ae87166e7fed1a563ccf0e4"
+    },
+    {
+      "slug": "the-cyclic-number",
+      "title": "THE CYCLIC NUMBER",
+      "kicker": "the number that rotates instead of growing",
+      "accent": "#ff8a3c",
+      "blurb": "142857 in the 5-window house format — the most famous cyclic number. Multiply by 1 through 6 and the answer is always the same six digits rotated: 285714, 428571, 571428, 714285, 857142. Multiply by 7 and the register overflows to 999999. The engine is decimal arithmetic itself: 142857 is the repeating block of 1/7, and 7 is a full-reptend prime — 10 is a primitive root mod 7, so multiplication can only rotate the block. The next such prime is 17, whose 16-digit block 0588235294117647 rotates under ×1..16 and overflows to sixteen nines at ×17. Verified live: all six rotations exact, the overflow exact, the block regenerated by long division, the 17-family checked in BigInt, and the orders ord(10,7)=6 and ord(10,17)=16 confirmed. Neon-noir traced. See the digit wheel in 1D, the stepping multiplier in 2D, and the spinning clock in 3D.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "58e60b696d029f10583047c9fe9500428ec30f19e3821af0293b26dfe504f4f1"
     }
   ],
   "appeals": [
@@ -9785,6 +9830,14 @@
               "accent": "#21e6ff",
               "icon": "galton",
               "kicker": "beads falling into a bell curve",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ford-circles",
+              "title": "THE FORD CIRCLES",
+              "accent": "#21e6ff",
+              "icon": "fordcircles",
+              "kicker": "fractions kissing along the number line",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -12355,6 +12408,14 @@
               "accent": "#ffcf4a",
               "icon": "midy",
               "kicker": "the two halves of a repeating decimal summing to nines",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cyclic-number",
+              "title": "THE CYCLIC NUMBER",
+              "accent": "#ff8a3c",
+              "icon": "cyclicnumber",
+              "kicker": "the number that rotates instead of growing",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -15134,6 +15195,14 @@
               "icon": "lemoine",
               "kicker": "medians reflected over bisectors meeting at one point",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-moser-spindle",
+              "title": "THE MOSER SPINDLE",
+              "accent": "#b06bff",
+              "icon": "moserspindle",
+              "kicker": "seven points that outlaw three colors",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 35,
@@ -16415,6 +16484,14 @@
               "icon": "pizza",
               "kicker": "a pizza split fairly from any interior cut-point",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-tautochrone",
+              "title": "THE TAUTOCHRONE",
+              "accent": "#35ffb0",
+              "icon": "tautochrone",
+              "kicker": "every bead arriving together",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -16567,6 +16644,14 @@
               "accent": "#ffcf4a",
               "icon": "morrie",
               "kicker": "three cosines multiplying to exactly one eighth",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-perfect-shuffle",
+              "title": "THE PERFECT SHUFFLE",
+              "accent": "#ffcf4a",
+              "icon": "faroshuffle",
+              "kicker": "eight perfect shuffles back to the start",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18174,7 +18259,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "3bffb827301a49ee0e67f1b664b959fc7af3919a91733b220eb15c3d5f120910",
+  "fold_root": "c3e958f0cf2bb72e147b1ea8eecd620a281f0db74bd61eb3f10f1b70f74b47cf",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
