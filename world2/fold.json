@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1215,
+    "spheres": 1220,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1209,
+    "spheres_built": 1214,
     "apex": 1
   },
   "keepers": [
@@ -11023,6 +11023,51 @@
       "blurb": "A loyal commander sending 0 forces the answer to 0; sending 1 forces it to 1; and a traitorous commander producing both views at once still demands the loyal players agree. No rule survives.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "e2af80f0c1dc812ab7064d1f8f12ec4740de74d47ae9afcbb455203eb78fc631"
+    },
+    {
+      "slug": "the-no-free-lunch",
+      "title": "THE NO FREE LUNCH",
+      "kicker": "a tie nobody can break",
+      "accent": "#7de2b0",
+      "blurb": "Averaged over every possible objective function, all search algorithms perform identically. The theorem is quoted far more often than its hypothesis is.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2643f2965227630b822f69bf52d0ce0cd90379f59004bc94ea5562de66fcbece"
+    },
+    {
+      "slug": "the-interval-arithmetic",
+      "title": "THE INTERVAL ARITHMETIC",
+      "kicker": "bounds that are right and useless",
+      "accent": "#ff5a8a",
+      "blurb": "Every result comes with a guarantee that the true answer is inside the bracket. Nothing promises the bracket is narrow - and x minus x does not give zero.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "68c3846bdf0ed1bb7d2d4198a726d1c7d8c2f49e2c7e3fb0cb3975f1ed74ab43"
+    },
+    {
+      "slug": "the-ballot",
+      "title": "THE BALLOT",
+      "kicker": "strictly ahead, never merely level",
+      "accent": "#ffd76a",
+      "blurb": "The chance that A leads at every moment of the count is (a-b)/(a+b) - depending on nothing but the margin over the total. Twice the votes, same probability.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5b29376e6857a4a6cdfb4744bab5d5d231153fb3949dee374f106f105211bad0"
+    },
+    {
+      "slug": "the-count-min",
+      "title": "THE COUNT MIN",
+      "kicker": "the error that only goes one way",
+      "accent": "#5ad6ff",
+      "blurb": "A grid of counters and no keys at all. Collisions can only add, never subtract, so the answer is never too low - however badly you size it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1d6b5725ece3d7285b1470e843fdd84b52a1908e14cf32d72c48fdc35232a150"
+    },
+    {
+      "slug": "the-perfect-code",
+      "title": "THE PERFECT CODE",
+      "kicker": "a packing with no slack",
+      "accent": "#b98cff",
+      "blurb": "16 balls of 8 points tile all 128 strings exactly - nothing left over, nothing counted twice. And so there is no room left to notice a second flipped bit.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0c2febf3b932603e07e752707f35d48691bde7f3bad1670a9391ed34379bfacc"
     }
   ],
   "appeals": [
@@ -14397,6 +14442,14 @@
               "icon": "tangram",
               "kicker": "the piece that was never missing",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ballot",
+              "title": "THE BALLOT",
+              "accent": "#ffd76a",
+              "icon": "☑",
+              "kicker": "strictly ahead, never merely level",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -14816,6 +14869,14 @@
               "accent": "#ff5a8a",
               "icon": "↑",
               "kicker": "an asymmetry that costs nothing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-perfect-code",
+              "title": "THE PERFECT CODE",
+              "accent": "#b98cff",
+              "icon": "◉",
+              "kicker": "a packing with no slack",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21251,6 +21312,14 @@
               "icon": "∷",
               "kicker": "twenty roots you can see and cannot recover",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-interval-arithmetic",
+              "title": "THE INTERVAL ARITHMETIC",
+              "accent": "#ff5a8a",
+              "icon": "⧉",
+              "kicker": "bounds that are right and useless",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -21523,6 +21592,14 @@
               "icon": "⊖",
               "kicker": "the price of forgetting",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-count-min",
+              "title": "THE COUNT MIN",
+              "accent": "#5ad6ff",
+              "icon": "↓",
+              "kicker": "the error that only goes one way",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -21647,6 +21724,14 @@
               "icon": "⑂",
               "kicker": "a number that needed a credential",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-no-free-lunch",
+              "title": "THE NO FREE LUNCH",
+              "accent": "#7de2b0",
+              "icon": "⚖",
+              "kicker": "a tie nobody can break",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -21659,7 +21744,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "64fed62b99b6124f20bdbe9cafdbf703cd714e9b758a40c6c621af166346be67",
+  "fold_root": "09e72b3b6462d2753ed8488f139a64a93c800a992ec64b6c45995b3a9b7f5896",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
