@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1190,
+    "spheres": 1195,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1184,
+    "spheres_built": 1189,
     "apex": 1
   },
   "keepers": [
@@ -10798,6 +10798,51 @@
       "blurb": "A uniform seeded draw returned an item that did not belong in the pool at all. Everything verifiable about a sampler is a property of the sampler, and none of it says whether the population is what you were told.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "7321eb5c99172f7a7b2bd69bf8b2023d7e089128bc44d6cd33bfa63d236a8cf1"
+    },
+    {
+      "slug": "the-two-tests",
+      "title": "THE TWO TESTS",
+      "kicker": "same table, three p-values, one threshold",
+      "accent": "#5ad6ff",
+      "blurb": "110/180 against 128/180. Unpooled z gives 0.0438, pooled z gives 0.0450, Fisher exact gives 0.0581. Two below the line and one above, with nothing in the data changed.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "28f70c6b1fd1561283c23d3db9ca57266d66bc27a27f4729b06bca8a4dbe2092"
+    },
+    {
+      "slug": "the-shallow-clone",
+      "title": "THE SHALLOW CLONE",
+      "kicker": "a truncation that reports as a count",
+      "accent": "#7de2b0",
+      "blurb": "A shallow clone does not error — it returns a smaller number of the right type. Worse, its error runs in the direction that silences the gate: truncate to the published figure and drift reads 0.00%.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "534b79bdb90dc64f99ff7c8308cfd3c7918598189c0428f4b6d8013691fafa0a"
+    },
+    {
+      "slug": "the-weighted-arm",
+      "title": "THE WEIGHTED ARM",
+      "kicker": "one measurement, two headlines",
+      "accent": "#ff9a5a",
+      "blurb": "Raw, the two arms sit at a ratio of 1.751. Weighted, 4.326. Both correct, answering different questions — and the entire distance between them is one number applied after the counting was done.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "39d63e03b7881fe9d0870574749f865cbecec5e596019e5973cc725559c449c0"
+    },
+    {
+      "slug": "the-missing-n",
+      "title": "THE MISSING N",
+      "kicker": "a sample size from a different experiment",
+      "accent": "#ffd76a",
+      "blurb": "A grep for the advertised N returned zero hits, and the dead search was the finding. The number is real — it belongs to the 180+180 comparison, while the effect beside it came from 60+60.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "22ee6708f4404a68f217385e53893566730f06414fad4eb9275cdab3a901af9b"
+    },
+    {
+      "slug": "the-dropped-predicate",
+      "title": "THE DROPPED PREDICATE",
+      "kicker": "an instrument that guesses",
+      "accent": "#ff5a8a",
+      "blurb": "A predicate that cannot locate its own evidence is not silent — it returns a verdict anyway, and the verdict is a coin. Dropped from the table rather than shipped refuting a claim that is probably true.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "35b6dc6b485aca6d7e9e07a18e0afd12843da5cbb45dd495ddef57806167bb91"
     }
   ],
   "appeals": [
@@ -14016,6 +14061,14 @@
               "icon": "╋",
               "kicker": "put the two rulers on different axes and the collisions stop existing",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-shallow-clone",
+              "title": "THE SHALLOW CLONE",
+              "accent": "#7de2b0",
+              "icon": "✂",
+              "kicker": "a truncation that reports as a count",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -14419,6 +14472,14 @@
               "accent": "#7de2b0",
               "icon": "△",
               "kicker": "the square refuses an odd number of equal cuts",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-two-tests",
+              "title": "THE TWO TESTS",
+              "accent": "#5ad6ff",
+              "icon": "≠",
+              "kicker": "same table, three p-values, one threshold",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19356,6 +19417,14 @@
               "icon": "◑",
               "kicker": "the states reality will not hand you on demand",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-missing-n",
+              "title": "THE MISSING N",
+              "accent": "#ffd76a",
+              "icon": "∅",
+              "kicker": "a sample size from a different experiment",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 43,
@@ -19955,6 +20024,14 @@
               "accent": "#5ad6ff",
               "icon": "◻",
               "kicker": "if it would be enough to prove it, it is already proved",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-weighted-arm",
+              "title": "THE WEIGHTED ARM",
+              "accent": "#ff9a5a",
+              "icon": "⚖",
+              "kicker": "one measurement, two headlines",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20866,6 +20943,14 @@
               "icon": "⌇",
               "kicker": "how a true sentence becomes a false one",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-dropped-predicate",
+              "title": "THE DROPPED PREDICATE",
+              "accent": "#ff5a8a",
+              "icon": "⊘",
+              "kicker": "an instrument that guesses",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -21234,7 +21319,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "184c3c4ddf9dad9fa854ac9fedbf18cb120d0512054e634f32eff3a668b635b9",
+  "fold_root": "df4923d8cb2ab4a0c1987bcc4b4ae140ece071c0ed20aa601fee5d1b234e2f03",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

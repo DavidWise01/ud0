@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE TWO TESTS",
+  "slug": "the-two-tests",
+  "seal": "28f70c6b1fd1561283c23d3db9ca57266d66bc27a27f4729b06bca8a4dbe2092",
+  "index": 1190,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "534b79bdb90dc64f99ff7c8308cfd3c7918598189c0428f4b6d8013691fafa0a",
+      "side": "R"
+    },
+    {
+      "h": "2ade4e57c695615f3f8694f322e2b03b9c4757e1e8d4fe95e9cbdbed4da0548b",
+      "side": "L"
+    },
+    {
+      "h": "380e6469936803e272c0c28cde9a62b81e97b17d954c8c07fe900fb116998c08",
+      "side": "L"
+    },
+    {
+      "h": "54d8301f3f69e11a7502815eaaa566e6fd906bbbc461365939ffac1ca7cf403e",
+      "side": "R"
+    },
+    {
+      "h": "c8f9ebb0fc156a56cfa5abbc8f701d72430e1d58d0d034ec7be652282bcf1058",
+      "side": "R"
+    },
+    {
+      "h": "5f6e9863361e4171031b59a5dc9672046d34f6e3f9162b8c9627ba3cdd5a6144",
+      "side": "L"
+    },
+    {
+      "h": "e347b26722486f89d8ba2b38bca1c6d19ff0772f1ab36b9e30d02418df25c231",
+      "side": "R"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "17e2a44848d858726814dbd066f9907ebf711ae908ddb42e69d93d8c68825871",
+      "side": "R"
+    },
+    {
+      "h": "8cd4fd62f2d441b03dfe2c66f499c1a7a9b17be202e686b8a357e6c997a71029",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "df4923d8cb2ab4a0c1987bcc4b4ae140ece071c0ed20aa601fee5d1b234e2f03",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
