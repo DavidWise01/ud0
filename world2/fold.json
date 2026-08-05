@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1275,
+    "spheres": 1280,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1269,
+    "spheres_built": 1274,
     "apex": 1
   },
   "keepers": [
@@ -11563,6 +11563,51 @@
       "blurb": "Twelve constructs and nothing else. No loops, no booleans, no arrays - yes and no are 1 and 0. It is still enough to compute anything computable, because it can call itself.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a3a9dfc2a8ab7c2757f866c04e0b9aa00b947cca488015bf13c6aca5c270ab93"
+    },
+    {
+      "slug": "the-zero-one-principle",
+      "title": "THE ZERO-ONE PRINCIPLE",
+      "kicker": "256 tests instead of 40,320",
+      "accent": "#7de2b0",
+      "blurb": "A comparator network sorts every input if and only if it sorts every input of 0s and 1s. Check the corners of a cube and the whole space comes with it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "feb4a2dc1ec37136af356c827b20b6e3bcc0718e29254665a557242195d537ba"
+    },
+    {
+      "slug": "the-marsaglia-planes",
+      "title": "THE MARSAGLIA PLANES",
+      "kicker": "random numbers fall mainly in the planes",
+      "accent": "#ff5a8a",
+      "blurb": "Every linear congruential generator confines its k-tuples to parallel hyperplanes. For RANDU - shipped by IBM, used for a decade of published science - there are fifteen.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "eecbe2ba7b5629f32825b10e5be2ba23d0a088c4d01b5ab1efbe31c0ab874ca1"
+    },
+    {
+      "slug": "the-lyndon-word",
+      "title": "THE LYNDON WORD",
+      "kicker": "every string falls apart exactly one way",
+      "accent": "#5ad6ff",
+      "blurb": "A word smaller than all its rotations. Every string splits into a non-increasing run of them, uniquely, and one left-to-right pass finds the cuts.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "462113a80eab09c35bcfc77df39321513e5ef9199f1ade9d1205186b2106a388"
+    },
+    {
+      "slug": "the-davenport-schinzel",
+      "title": "THE DAVENPORT-SCHINZEL",
+      "kicker": "a sequence that cannot alternate",
+      "accent": "#ffd76a",
+      "blurb": "Forbid a symbol from sitting beside itself, and forbid two symbols from alternating too often. How long can the sequence get? At order 3 the answer stops being linear.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "698e347d0e3b30e1676a18404a35925d257f7e86f0275e893e7d364982f528cb"
+    },
+    {
+      "slug": "the-hashlife",
+      "title": "THE HASHLIFE",
+      "kicker": "the same square, remembered",
+      "accent": "#b98cff",
+      "blurb": "Life repeats itself constantly. Store the universe as a quadtree where identical subsquares ARE the same object, and the repetition collapses.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4d683e99308de94b0ba9c0d650039a961401d3359c0d282b0932fc415b2661c4"
     }
   ],
   "appeals": [
@@ -12695,6 +12740,14 @@
               "icon": "aztec",
               "kicker": "the frozen diamond",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lyndon-word",
+              "title": "THE LYNDON WORD",
+              "accent": "#5ad6ff",
+              "icon": "✂",
+              "kicker": "every string falls apart exactly one way",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -13511,6 +13564,14 @@
               "accent": "#35ffb0",
               "icon": "loxodrome",
               "kicker": "the bearing that never arrives",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hashlife",
+              "title": "THE HASHLIFE",
+              "accent": "#b98cff",
+              "icon": "▣",
+              "kicker": "the same square, remembered",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17995,6 +18056,14 @@
               "icon": "☠",
               "kicker": "winning as the evidence you were wrong",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-zero-one-principle",
+              "title": "THE ZERO-ONE PRINCIPLE",
+              "accent": "#7de2b0",
+              "icon": "⇅",
+              "kicker": "256 tests instead of 40,320",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -20457,6 +20526,14 @@
               "icon": "⚑",
               "kicker": "a filter that only lies one way",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-marsaglia-planes",
+              "title": "THE MARSAGLIA PLANES",
+              "accent": "#ff5a8a",
+              "icon": "≡",
+              "kicker": "random numbers fall mainly in the planes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 43,
@@ -21730,6 +21807,14 @@
               "icon": "↺",
               "kicker": "everything comes back",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-davenport-schinzel",
+              "title": "THE DAVENPORT-SCHINZEL",
+              "accent": "#ffd76a",
+              "icon": "∿",
+              "kicker": "a sequence that cannot alternate",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -22679,7 +22764,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "c47fb444274c17aa91fc940daa0f194a8adbe443891ed1f9e7ef9349ff3f576d",
+  "fold_root": "ca287a0b9d1b7255036aa711ec025d24340d0c252ffcc9aa1c688d4f99c48f1d",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
