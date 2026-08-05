@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1305,
+    "spheres": 1310,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1299,
+    "spheres_built": 1304,
     "apex": 1
   },
   "keepers": [
@@ -11833,6 +11833,51 @@
       "blurb": "The fourth argument became an options object. Every call site kept compiling and running while the meaning of half of them quietly inverted.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "5f782e82a6d47431ee80ae3c1654f0e527e442290a737d50115b7064cdac9094"
+    },
+    {
+      "slug": "the-order-that-is-forced",
+      "title": "THE ORDER THAT IS FORCED",
+      "kicker": "seven floors, and only one way to stack them",
+      "accent": "#7de2b0",
+      "blurb": "A stated reason for every adjacency turns a build plan into a theorem. Six reasons in a row and the order stops being a choice.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f85e852db0b67370052ae168f9e6cf4edd2478d6dbfab2a5de59869fa4cc0b11"
+    },
+    {
+      "slug": "the-wider-at-the-bottom",
+      "title": "THE WIDER AT THE BOTTOM",
+      "kicker": "a floor laid on one run is laid on a coincidence",
+      "accent": "#ffd76a",
+      "blurb": "73 checks that ran twice and were sealed, beneath 28 gates that have not. The shape is the argument: everything above multiplies through everything below.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f69bd13c3b3dd632a88900e76a59dd45c4dd6ab9d1bed4cb6d8797454f25655e"
+    },
+    {
+      "slug": "the-gate-that-can-stop-it",
+      "title": "THE GATE THAT CAN STOP IT",
+      "kicker": "put the falsifiable floor early",
+      "accent": "#5ad6ff",
+      "blurb": "One floor is allowed to halt everything. If thirteen symbols do not cover Fortran, the answer is not more symbols - it is that Fortran is a different shape.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a8198c42796529f27a5ed510be05f925584b8978cfaf4c674cef5d9a50740123"
+    },
+    {
+      "slug": "the-declarable-only",
+      "title": "THE DECLARABLE ONLY",
+      "kicker": "a synonym cannot be found by looking",
+      "accent": "#b98cff",
+      "blurb": "One name for two things is detectable. One thing with many names is declarable only. Nothing in the text says bench, Bench, wb_ and thing-bench are the same object.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ba6d4b3cade4a24d36755fe35319a9bbd31af7834a2ec1ecff06305f42fc9300"
+    },
+    {
+      "slug": "the-unfiled",
+      "title": "THE UNFILED",
+      "kicker": "the symbols nobody wrote down",
+      "accent": "#ff5a8a",
+      "blurb": "Two censuses of one corpus: what is used, and what is declared. The difference is the only category a registry cannot enumerate.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "472312b6631eb66ea98e0dd47dc9eaeb40ad2b85d72cb853c15227792b46a48b"
     }
   ],
   "appeals": [
@@ -20599,6 +20644,14 @@
               "icon": "⧉",
               "kicker": "the state that cannot be copied",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-declarable-only",
+              "title": "THE DECLARABLE ONLY",
+              "accent": "#b98cff",
+              "icon": "≡",
+              "kicker": "a synonym cannot be found by looking",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -22380,6 +22433,14 @@
               "icon": "↺",
               "kicker": "a call that never leaves",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-order-that-is-forced",
+              "title": "THE ORDER THAT IS FORCED",
+              "accent": "#7de2b0",
+              "icon": "↓",
+              "kicker": "seven floors, and only one way to stack them",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -22865,6 +22926,14 @@
               "icon": "◆",
               "kicker": "a signature attests a moment, not a file",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gate-that-can-stop-it",
+              "title": "THE GATE THAT CAN STOP IT",
+              "accent": "#5ad6ff",
+              "icon": "⊖",
+              "kicker": "put the falsifiable floor early",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 30,
@@ -23020,6 +23089,14 @@
               "accent": "#b98cff",
               "icon": "⇆",
               "kicker": "logic that throws nothing away",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-unfiled",
+              "title": "THE UNFILED",
+              "accent": "#ff5a8a",
+              "icon": "∅",
+              "kicker": "the symbols nobody wrote down",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -23177,6 +23254,14 @@
               "icon": "⊘",
               "kicker": "five rules with nothing to tune",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-wider-at-the-bottom",
+              "title": "THE WIDER AT THE BOTTOM",
+              "accent": "#ffd76a",
+              "icon": "△",
+              "kicker": "a floor laid on one run is laid on a coincidence",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -23189,7 +23274,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "a39603b0e696d51aad6d44d3452f4694cec82d105ba5f92f11650238386c65ad",
+  "fold_root": "1e9f992bcaa57a1cd3bc00d92bd10ecaee7fae8de37fb9685f013529b3907543",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

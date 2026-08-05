@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE ORDER THAT IS FORCED",
+  "slug": "the-order-that-is-forced",
+  "seal": "f85e852db0b67370052ae168f9e6cf4edd2478d6dbfab2a5de59869fa4cc0b11",
+  "index": 1305,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "5f782e82a6d47431ee80ae3c1654f0e527e442290a737d50115b7064cdac9094",
+      "side": "L"
+    },
+    {
+      "h": "eedb9149704a7d96f1d0cde5f3d38e31c64427bf3c05534105a014ae48f7f5dd",
+      "side": "R"
+    },
+    {
+      "h": "c05066e743cd65d3cde2aa46bbd252a58ca5129bbebac74c4377eddb7acafec8",
+      "side": "R"
+    },
+    {
+      "h": "6b276046b89620caf931b0154e9ff2cfa26e6f7b84aebaf82c67078585a3c979",
+      "side": "L"
+    },
+    {
+      "h": "c5af7fa930c794e81fe20599c919cac188c50c8870e3403625d9594e841a05f4",
+      "side": "L"
+    },
+    {
+      "h": "94fd8eed4fab66a3046e074709698e2a9a1e9c3e5505222018e7efb9ab7c2ba6",
+      "side": "R"
+    },
+    {
+      "h": "664c113425f46a611da889a99ad4b1ceaa8f9511dca7aeb669554ca3aff74933",
+      "side": "R"
+    },
+    {
+      "h": "2b183fa1abd8f94ef63185b1b7bcf18dc57b28491b93629d1911d2ecf46c8a29",
+      "side": "R"
+    },
+    {
+      "h": "e5d40fbbdc40da94b47c6cea9b81ca58db318dbff5012b0611e6109932829e68",
+      "side": "L"
+    },
+    {
+      "h": "d99db507023761b9ce32729863b63d0b2b22626409f11bb46dc8d7bb42e7d1d6",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "1e9f992bcaa57a1cd3bc00d92bd10ecaee7fae8de37fb9685f013529b3907543",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

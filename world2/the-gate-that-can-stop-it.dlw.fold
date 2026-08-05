@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE GATE THAT CAN STOP IT",
+  "slug": "the-gate-that-can-stop-it",
+  "seal": "a8198c42796529f27a5ed510be05f925584b8978cfaf4c674cef5d9a50740123",
+  "index": 1307,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "f69bd13c3b3dd632a88900e76a59dd45c4dd6ab9d1bed4cb6d8797454f25655e",
+      "side": "L"
+    },
+    {
+      "h": "ebd766731b3ae9fef026dce223ac945f124bfb211ee47c75215f004e16d84b4a",
+      "side": "L"
+    },
+    {
+      "h": "c05066e743cd65d3cde2aa46bbd252a58ca5129bbebac74c4377eddb7acafec8",
+      "side": "R"
+    },
+    {
+      "h": "6b276046b89620caf931b0154e9ff2cfa26e6f7b84aebaf82c67078585a3c979",
+      "side": "L"
+    },
+    {
+      "h": "c5af7fa930c794e81fe20599c919cac188c50c8870e3403625d9594e841a05f4",
+      "side": "L"
+    },
+    {
+      "h": "94fd8eed4fab66a3046e074709698e2a9a1e9c3e5505222018e7efb9ab7c2ba6",
+      "side": "R"
+    },
+    {
+      "h": "664c113425f46a611da889a99ad4b1ceaa8f9511dca7aeb669554ca3aff74933",
+      "side": "R"
+    },
+    {
+      "h": "2b183fa1abd8f94ef63185b1b7bcf18dc57b28491b93629d1911d2ecf46c8a29",
+      "side": "R"
+    },
+    {
+      "h": "e5d40fbbdc40da94b47c6cea9b81ca58db318dbff5012b0611e6109932829e68",
+      "side": "L"
+    },
+    {
+      "h": "d99db507023761b9ce32729863b63d0b2b22626409f11bb46dc8d7bb42e7d1d6",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "1e9f992bcaa57a1cd3bc00d92bd10ecaee7fae8de37fb9685f013529b3907543",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
