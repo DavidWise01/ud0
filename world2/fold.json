@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1205,
+    "spheres": 1210,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1199,
+    "spheres_built": 1204,
     "apex": 1
   },
   "keepers": [
@@ -10933,6 +10933,51 @@
       "blurb": "Most findings were surfaced by safety checks the subject had already built and left switched on. That is a compliment — and it bounds what the audit itself contributed.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a6e98994bc6c6d6b7338b18f884f56967812a7b503f96da259659cb1c695dfaf"
+    },
+    {
+      "slug": "the-wilkinson",
+      "title": "THE WILKINSON",
+      "kicker": "twenty roots you can see and cannot recover",
+      "accent": "#ff5a8a",
+      "blurb": "The roots are the integers 1 to 20, readable straight off the factored form. Multiply it out, change one coefficient in its 23rd bit, and ten of them leave the real line.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "044a978669462ca6b31490ecd1a1e665ce31f302829b3a6c7ba1c0e9cd754bce"
+    },
+    {
+      "slug": "the-landauer",
+      "title": "THE LANDAUER",
+      "kicker": "the price of forgetting",
+      "accent": "#7de2b0",
+      "blurb": "Computation is not what costs energy — forgetting is. The floor of kT ln 2 applies only to erasure, and a reversible step has no floor at all.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ac5ba471ce759cb2100172e7832315fe13f346768609d0bd3a80ea2dbad103d6"
+    },
+    {
+      "slug": "the-moore-bound",
+      "title": "THE MOORE BOUND",
+      "kicker": "a shape that may or may not exist",
+      "accent": "#ffd76a",
+      "blurb": "Counting outward bounds a graph of given degree and diameter. Meeting the bound forces extraordinary symmetry — and for degree 57 nobody has built one or ruled one out since 1960.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a2019481cf6265a0a091d44f8d05b6ada775ce53bacdc243840b471c9bf5ee98"
+    },
+    {
+      "slug": "the-hilbert-matrix",
+      "title": "THE HILBERT MATRIX",
+      "kicker": "integers floating point cannot reach",
+      "accent": "#5ad6ff",
+      "blurb": "Every entry is a simple fraction. The inverse is a table of exact integers. Floating-point arithmetic cannot get from one to the other, and no better algorithm helps.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "242dec8e7613362282e19951e4f37d649dad797cfe467cd3ed58b908cce47abf"
+    },
+    {
+      "slug": "the-szilard",
+      "title": "THE SZILARD",
+      "kicker": "one bit, one push, and the books balance",
+      "accent": "#b98cff",
+      "blurb": "One molecule, one partition, one bit of knowledge — and kT ln 2 of work comes out. Resetting the memory costs exactly the same, so the cycle closes at zero.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7b8ac49ecfb346a8e6cb8669b59c15e59880bfd4b9f3491aeacd92aae2be9e61"
     }
   ],
   "appeals": [
@@ -14430,6 +14475,14 @@
               "accent": "#ff9a5a",
               "icon": "▣",
               "kicker": "bounded under the resolver, not under string comparison",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hilbert-matrix",
+              "title": "THE HILBERT MATRIX",
+              "accent": "#5ad6ff",
+              "icon": "⊞",
+              "kicker": "integers floating point cannot reach",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20824,6 +20877,14 @@
               "icon": "⊘",
               "kicker": "identical to a test that passes",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-moore-bound",
+              "title": "THE MOORE BOUND",
+              "accent": "#ffd76a",
+              "icon": "○",
+              "kicker": "a shape that may or may not exist",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -20955,6 +21016,14 @@
               "accent": "#ffd76a",
               "icon": "⚖",
               "kicker": "a rule written before the result",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-szilard",
+              "title": "THE SZILARD",
+              "accent": "#b98cff",
+              "icon": "◫",
+              "kicker": "one bit, one push, and the books balance",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21088,6 +21157,14 @@
               "accent": "#ff5a8a",
               "icon": "⊘",
               "kicker": "an instrument that guesses",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-wilkinson",
+              "title": "THE WILKINSON",
+              "accent": "#ff5a8a",
+              "icon": "∷",
+              "kicker": "twenty roots you can see and cannot recover",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21353,6 +21430,14 @@
               "icon": "⌇",
               "kicker": "the careful thinking gets left behind",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-landauer",
+              "title": "THE LANDAUER",
+              "accent": "#7de2b0",
+              "icon": "⊖",
+              "kicker": "the price of forgetting",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -21489,7 +21574,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "0f055959419823fbccbeaae1ee41b52fd41b6531f95a47ddb0dcbc98c6e2c12b",
+  "fold_root": "9e8b3f82a7253a65568d1da3aafe90b4649e82584288e1063e398deab08aaf77",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
