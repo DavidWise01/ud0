@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE INVERTED RATIO",
+  "slug": "the-inverted-ratio",
+  "seal": "aedef853c646fde724909a3d8d4d8847e61342a88b42e3bd036b7d322a3b4336",
+  "index": 1297,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "d0a4ba58fa682b291c6831d71a7b2e18b1918d6f35c41856fe86941778e3d0dd",
+      "side": "L"
+    },
+    {
+      "h": "9a8694605a46489ba796e58de06e2b126656fe5bdf6427a703642e219c6243eb",
+      "side": "R"
+    },
+    {
+      "h": "b7374d88a1b1096a196b943b77357f609c459479fbb53d17dfb24f9075a05dfb",
+      "side": "R"
+    },
+    {
+      "h": "2f79034feecb0967e1f0936912b0703f63828a0b95833275896dab3238ece9ff",
+      "side": "R"
+    },
+    {
+      "h": "c5af7fa930c794e81fe20599c919cac188c50c8870e3403625d9594e841a05f4",
+      "side": "L"
+    },
+    {
+      "h": "a2797aa531254995218427c0e73a39c9542fc5635d2d6a11db77e84fe911242b",
+      "side": "R"
+    },
+    {
+      "h": "3cbb8f7f3399ee6ee7fc431ecf26e9afc7e2502fb03e57c11e37c0ae8b8c6c21",
+      "side": "R"
+    },
+    {
+      "h": "fe5b68ee7f9e15f2495a7a597ca70172fe1ae97328649defd479ef4c6e350d3d",
+      "side": "R"
+    },
+    {
+      "h": "e5d40fbbdc40da94b47c6cea9b81ca58db318dbff5012b0611e6109932829e68",
+      "side": "L"
+    },
+    {
+      "h": "775eda779c5d6a87d88d7d7404cfb3dfcc323c8abe3e884b49e1b44404209d80",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "c1a3c471c6b2dc4f412d68a6e795741c364173e2e726995de462e567445cc19c",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
