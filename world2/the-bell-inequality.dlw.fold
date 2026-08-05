@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE BELL INEQUALITY",
+  "slug": "the-bell-inequality",
+  "seal": "a88a4c186d885894ef7e9a4cd65d0c657ed56023e19482efe3cf53dfa05d772d",
+  "index": 1255,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "bf2fe9bf3ea32bbcdc0cf207d3f12f1e4c90fa7fffbcab066ac130d2f72cda38",
+      "side": "L"
+    },
+    {
+      "h": "04b833dd9890ec68d27bd6d8a4cb3151f00dd0671d8e92fe498bf3747a1094d2",
+      "side": "L"
+    },
+    {
+      "h": "d0dd87f99e6ba7e96d49da963204ddee5f9497716c6d7bb387322ac78369a009",
+      "side": "L"
+    },
+    {
+      "h": "185ad6da8020dfd0ad302451d7be1347e2410cf20176a740f5c9dfe403ed529c",
+      "side": "R"
+    },
+    {
+      "h": "928a5de2969ac65740b70fdf76127deb9085756467af8da0f5a6279451678466",
+      "side": "R"
+    },
+    {
+      "h": "96f05a74874b103ab0001182f92afb626f7bd440fcc63926ca18d69a32b770c9",
+      "side": "L"
+    },
+    {
+      "h": "b6ba99016ed8f8a810be3fb3e608e37a513c161cc9e054e59fc89a7ee2924d9f",
+      "side": "L"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "573df38673cf26839d55e36465ff874c187ef9a9bc5af0ee8cff31cba16ab6b4",
+      "side": "R"
+    },
+    {
+      "h": "3fa661d2a18000936f7c2a99987f25d3982053d3924ca68321b0ed63a827b621",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "1d83688d58ed21565a3c47c395336b3ca9ee55aac0d884bd39171b8b0b197af7",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

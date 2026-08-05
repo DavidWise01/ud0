@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE SUPERDENSE",
+  "slug": "the-superdense",
+  "seal": "7a5491043078f8bc131d988fffab3bfce092b7a9cc0431acea3ebdab43f6e0f1",
+  "index": 1257,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "76d21d27d7c6e19baf3045f3abe40031a8d626644978a02b1d03f2dc490e61f6",
+      "side": "L"
+    },
+    {
+      "h": "9ea05ffd3e9c019a5c6d8aac9cbb34edb185e3cf945f88490f2aff877bfd2b7c",
+      "side": "R"
+    },
+    {
+      "h": "b7374d88a1b1096a196b943b77357f609c459479fbb53d17dfb24f9075a05dfb",
+      "side": "R"
+    },
+    {
+      "h": "1eb4e33b6078a8f617757a54a5116040ffc80d63197190681231dc9fac73c7da",
+      "side": "L"
+    },
+    {
+      "h": "928a5de2969ac65740b70fdf76127deb9085756467af8da0f5a6279451678466",
+      "side": "R"
+    },
+    {
+      "h": "96f05a74874b103ab0001182f92afb626f7bd440fcc63926ca18d69a32b770c9",
+      "side": "L"
+    },
+    {
+      "h": "b6ba99016ed8f8a810be3fb3e608e37a513c161cc9e054e59fc89a7ee2924d9f",
+      "side": "L"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "573df38673cf26839d55e36465ff874c187ef9a9bc5af0ee8cff31cba16ab6b4",
+      "side": "R"
+    },
+    {
+      "h": "3fa661d2a18000936f7c2a99987f25d3982053d3924ca68321b0ed63a827b621",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "1d83688d58ed21565a3c47c395336b3ca9ee55aac0d884bd39171b8b0b197af7",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
