@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1285,
+    "spheres": 1290,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1279,
+    "spheres_built": 1284,
     "apex": 1
   },
   "keepers": [
@@ -11653,6 +11653,51 @@
       "blurb": "Every name replaced by a code, every figure untouched. Defensible only if no figure depended on the names - which here is provable.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "50da29d6cde5d11d9ad715bfce036c7e09eef73b3dcbd6d7c7f2e81b67d04a05"
+    },
+    {
+      "slug": "the-ziggurat",
+      "title": "THE ZIGGURAT",
+      "kicker": "128 rectangles that all weigh the same",
+      "accent": "#7de2b0",
+      "blurb": "Cover the bell curve with 128 equal-area rectangles. Pick one, pick a point in it, and almost always the point is already under the curve - no exponential, no logarithm.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ad759e0f49d7cf1aa1f4b61dbdf62dda8f37559aecc2bb21eb3e06a18fc1ef9c"
+    },
+    {
+      "slug": "the-middle-square",
+      "title": "THE MIDDLE SQUARE",
+      "kicker": "the first generator, and how it dies",
+      "accent": "#ff5a8a",
+      "blurb": "Square a four-digit number, keep the middle four, repeat. Von Neumann proposed it in 1946 and knew it was inadequate. The state graph shows exactly how inadequate.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b03b0ce33e14d01a1619bdd0d5a3c01dff11e86238160c3a7352daca33067173"
+    },
+    {
+      "slug": "the-soft-heap",
+      "title": "THE SOFT HEAP",
+      "kicker": "a structure allowed to lie, by exactly this much",
+      "accent": "#ffd76a",
+      "blurb": "Fix an error budget. The queue may then corrupt that many keys - raising them, never lowering - and in exchange every operation becomes constant amortised time.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d3eed859051b9e0bd51bae45259118b4d972d48f4f2aa1ee2c420b9ec9c98c5b"
+    },
+    {
+      "slug": "the-centroid-decomposition",
+      "title": "THE CENTROID DECOMPOSITION",
+      "kicker": "every tree has a middle",
+      "accent": "#5ad6ff",
+      "blurb": "Every tree, however lopsided, has a node you can delete to leave nothing bigger than half of it behind. Recurse and the depth cannot exceed about log2 n.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2d0b30cf0a25d436b1dbbaafc05346324fee7fa249ee9ad4cf7c7dabbf9eb97d"
+    },
+    {
+      "slug": "the-hopscotch",
+      "title": "THE HOPSCOTCH",
+      "kicker": "never more than H slots from home",
+      "accent": "#b98cff",
+      "blurb": "Fix the probe distance instead of the load. Every key lives within H slots of its home bucket, and an insertion that would break that hops existing entries backwards to make room.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a11317f312d935122831536b6158aca6e0ba8ef97f29cf155dffe16de04e4725"
     }
   ],
   "appeals": [
@@ -15443,6 +15488,14 @@
               "icon": "≡",
               "kicker": "one letter doing twelve jobs",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-middle-square",
+              "title": "THE MIDDLE SQUARE",
+              "accent": "#ff5a8a",
+              "icon": "□",
+              "kicker": "the first generator, and how it dies",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -15910,6 +15963,14 @@
               "accent": "#b98cff",
               "icon": "↻",
               "kicker": "when the long run answers for everyone",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-soft-heap",
+              "title": "THE SOFT HEAP",
+              "accent": "#ffd76a",
+              "icon": "≈",
+              "kicker": "a structure allowed to lie, by exactly this much",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18765,6 +18826,14 @@
               "icon": "≈",
               "kicker": "two tools agreeing on a blank",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-centroid-decomposition",
+              "title": "THE CENTROID DECOMPOSITION",
+              "accent": "#5ad6ff",
+              "icon": "✳",
+              "kicker": "every tree has a middle",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 35,
@@ -19597,6 +19666,14 @@
               "accent": "#ff5a8a",
               "icon": "⚖",
               "kicker": "the voter in the middle",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hopscotch",
+              "title": "THE HOPSCOTCH",
+              "accent": "#b98cff",
+              "icon": "⇄",
+              "kicker": "never more than H slots from home",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21744,6 +21821,14 @@
               "icon": "∴",
               "kicker": "the pile that does not care what order you push it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ziggurat",
+              "title": "THE ZIGGURAT",
+              "accent": "#7de2b0",
+              "icon": "△",
+              "kicker": "128 rectangles that all weigh the same",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -22849,7 +22934,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "95e1e035744d265370e4799b4ca905a79d30dbf3aa1d04fb8a978e5f953e5353",
+  "fold_root": "42c6a27f669000f52d866b113df1d1378ee6b55cf17ac2ed0042c48a6df1e9f7",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

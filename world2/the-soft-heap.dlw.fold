@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE SOFT HEAP",
+  "slug": "the-soft-heap",
+  "seal": "d3eed859051b9e0bd51bae45259118b4d972d48f4f2aa1ee2c420b9ec9c98c5b",
+  "index": 1287,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "b03b0ce33e14d01a1619bdd0d5a3c01dff11e86238160c3a7352daca33067173",
+      "side": "L"
+    },
+    {
+      "h": "688329a3affb141e3ed432e2fbfc66dd3fff42361f4f7b5d6f237118227fd33a",
+      "side": "L"
+    },
+    {
+      "h": "26ba95ca4543e10ca3a414394a494c070d990e6836a59e442031cc2215c605f2",
+      "side": "L"
+    },
+    {
+      "h": "333ef15551d4322ba52da30c6fdc345aee67eb48499236947149c5efc9af1b4f",
+      "side": "R"
+    },
+    {
+      "h": "657535d96eb536c7f59d5e73131991ee9bca39fc9882f0262e22b1aa4df75b3b",
+      "side": "R"
+    },
+    {
+      "h": "ee155bcff0394ac99776f62169ccaee4b0dbcf02214d295ef4d71d7bedd4300c",
+      "side": "R"
+    },
+    {
+      "h": "6fc0a23f1988b83018d52bbc55b1ffca6bdd3dc070de9265dff735ea345054da",
+      "side": "R"
+    },
+    {
+      "h": "de28ef3935a461692e70ccdd2cf51cc5d98587ec0cfe9f13bd7cdf6e8345a81f",
+      "side": "R"
+    },
+    {
+      "h": "e5d40fbbdc40da94b47c6cea9b81ca58db318dbff5012b0611e6109932829e68",
+      "side": "L"
+    },
+    {
+      "h": "2e7f1b087a47cb235311ae2ecd2add3af03c9ac29cdf49fd474bda79c81348c1",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "42c6a27f669000f52d866b113df1d1378ee6b55cf17ac2ed0042c48a6df1e9f7",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
