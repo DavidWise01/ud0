@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE BLIND INSTRUMENT",
+  "slug": "the-blind-instrument",
+  "seal": "ae59de60a1a3743553a4dd7742dd20016d59bae1b8f1b880edc50d7ecea68790",
+  "index": 1315,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "d31003d14ff11c206646981571660cac4d8cea644adf62d7a27574218db9a2bf",
+      "side": "L"
+    },
+    {
+      "h": "7c5a36cc6876e620bb4edfb7a0a7e5f6aff7ce73d46c6365d601016cb6f656b8",
+      "side": "L"
+    },
+    {
+      "h": "5a522fda2120a2642e36b3bf393e4a219a3f15b1ba0153f99123914bdbacc83e",
+      "side": "R"
+    },
+    {
+      "h": "0638558a58a2999b91361be9bc8b7064abe23159c24d02c435097b341b1e3998",
+      "side": "R"
+    },
+    {
+      "h": "baa66179f2ccb568f6ba547cbadf387b63608eb6ad098f5e6e5e93bf986feb43",
+      "side": "R"
+    },
+    {
+      "h": "cdc0cab2d369d0a9dfb8a94ef3d4567a245882e3b799446f6c18e1b98e7c5cc1",
+      "side": "L"
+    },
+    {
+      "h": "3d9f93820a64eb60af0f77aa613afed1ee5feb8c6ef1876821fd276aa40c13f2",
+      "side": "R"
+    },
+    {
+      "h": "9a46ee3792c3797faae90c8748da2a24198c314f98d5d3c43c481ca34824e1cf",
+      "side": "R"
+    },
+    {
+      "h": "e5d40fbbdc40da94b47c6cea9b81ca58db318dbff5012b0611e6109932829e68",
+      "side": "L"
+    },
+    {
+      "h": "40e9890763071e0981361d803720452ddb691b0991caad25ed0b3950e5d02bfc",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "0a43ae3b07bfc28c4c8c23e8adedf9f2968e110c767717d8fee649e03b0b6048",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

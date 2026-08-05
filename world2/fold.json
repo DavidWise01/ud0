@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1315,
+    "spheres": 1320,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1309,
+    "spheres_built": 1314,
     "apex": 1
   },
   "keepers": [
@@ -11923,6 +11923,51 @@
       "blurb": "A parser could not see an ambiguity, so the grammar was narrowed until it could not be written. Not a smarter checker - a smaller language.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "d31003d14ff11c206646981571660cac4d8cea644adf62d7a27574218db9a2bf"
+    },
+    {
+      "slug": "the-blind-instrument",
+      "title": "THE BLIND INSTRUMENT",
+      "kicker": "a checker that cannot see is silent, not noisy",
+      "accent": "#ff5a8a",
+      "blurb": "A FORTRAN veto sliced each line to column 7, discarding the label that lives in columns 1-5, and let any closer pop whatever was on top. Two repairs, and the numbers moved in both directions.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ae59de60a1a3743553a4dd7742dd20016d59bae1b8f1b880edc50d7ecea68790"
+    },
+    {
+      "slug": "the-two-errors-that-cancel",
+      "title": "THE TWO ERRORS THAT CANCEL",
+      "kicker": "clean for exactly the wrong reason",
+      "accent": "#ffd76a",
+      "blurb": "DO 10 I = 1.10 is an assignment to a variable named DO10I - a period, not a comma, and spaces are not significant. Two programs contain it. One is called clean.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d450f7642c2eb6a2e9a143a0c7eca1a2055087ee65e3845c766017058533e45a"
+    },
+    {
+      "slug": "the-stack-that-cannot-jump",
+      "title": "THE STACK THAT CANNOT JUMP",
+      "kicker": "a pushdown model has no move for GO TO",
+      "accent": "#5ad6ff",
+      "blurb": "A pushdown automaton reads one symbol and makes one move. That discipline is what makes it decidable, and it is exactly what a jump violates.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f41e6817e0927165a2d8ea3ce08688e2252fb57d27e9439118456980705d6163"
+    },
+    {
+      "slug": "the-cap-that-was-luck",
+      "title": "THE CAP THAT WAS LUCK",
+      "kicker": "a number about this machine, written as a number about the language",
+      "accent": "#7de2b0",
+      "blurb": "A recursion cap shipped at 1000, chosen by taste. The real ceiling was then bisected: 1734 completes, 1750 overflows. It had sat under the ceiling by luck.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ccc57b0aa70f15e5ef80d4ac88cf6ef135b2ea58c6b02b314387c4922b97e3fb"
+    },
+    {
+      "slug": "the-branch-still-in-the-machine",
+      "title": "THE BRANCH STILL IN THE MACHINE",
+      "kicker": "the grammar lost if/then; the ISA never did",
+      "accent": "#b98cff",
+      "blurb": "A language with no if/then was lowered onto a VM and the opcodes counted. No new instruction was needed, and JMPF appears three times.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c1f402991f4619542a6ac3e40bdfbef9aaf8f2468ea9bc5bcffea842dd602716"
     }
   ],
   "appeals": [
@@ -18195,6 +18240,14 @@
               "icon": "newtonpepys",
               "kicker": "the shortest gauntlet",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cap-that-was-luck",
+              "title": "THE CAP THAT WAS LUCK",
+              "accent": "#7de2b0",
+              "icon": "⤒",
+              "kicker": "a number about this machine, written as a number about the language",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 26,
@@ -18523,6 +18576,14 @@
               "icon": "⇅",
               "kicker": "256 tests instead of 40,320",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-branch-still-in-the-machine",
+              "title": "THE BRANCH STILL IN THE MACHINE",
+              "accent": "#b98cff",
+              "icon": "⑂",
+              "kicker": "the grammar lost if/then; the ISA never did",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -18686,6 +18747,14 @@
               "accent": "#ff8a3c",
               "icon": "tait",
               "kicker": "the lemma that held up a theorem for 62 years",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-blind-instrument",
+              "title": "THE BLIND INSTRUMENT",
+              "accent": "#ff5a8a",
+              "icon": "◑",
+              "kicker": "a checker that cannot see is silent, not noisy",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18851,6 +18920,14 @@
               "icon": "polyaconj",
               "kicker": "a million confirmations, still false",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-two-errors-that-cancel",
+              "title": "THE TWO ERRORS THAT CANCEL",
+              "accent": "#ffd76a",
+              "icon": "⊕",
+              "kicker": "clean for exactly the wrong reason",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 22,
@@ -19014,6 +19091,14 @@
               "accent": "#5ad6ff",
               "icon": "⚖",
               "kicker": "compiles equals distinct positions fired",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-stack-that-cannot-jump",
+              "title": "THE STACK THAT CANNOT JUMP",
+              "accent": "#5ad6ff",
+              "icon": "↯",
+              "kicker": "a pushdown model has no move for GO TO",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -23359,7 +23444,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "a043edf9a8bb59ace5e2d1d88a007ea13e960aef431531612773d9a3ffaf5b47",
+  "fold_root": "0a43ae3b07bfc28c4c8c23e8adedf9f2968e110c767717d8fee649e03b0b6048",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
