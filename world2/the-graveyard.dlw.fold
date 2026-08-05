@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE GRAVEYARD",
+  "slug": "the-graveyard",
+  "seal": "f70d6edddc4d76ded489379d7771c0405d7c043ac6f808c90505748f235b6a7e",
+  "index": 1170,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "4405f1bbfd88f44f1bf2be8ba20193eba448bd8bfd44886a30915d6af285d031",
+      "side": "R"
+    },
+    {
+      "h": "f82d814b83f387013cd30c3f90657e575584db5ebec8da03db7b47674e7c94ad",
+      "side": "L"
+    },
+    {
+      "h": "8f7f9c989434506a75ef621c207842bc1167e1f98998b85902d8f623aeac52bb",
+      "side": "R"
+    },
+    {
+      "h": "54ae948eb87479b35f7a1205419f706fb579dd946b5d988def22b99cab157245",
+      "side": "R"
+    },
+    {
+      "h": "c1af02cf554f24a670f657de959261be57fad04643660f6d8b6a0a768d613d1c",
+      "side": "L"
+    },
+    {
+      "h": "3d7bbac6dae672e3b51b68987339a53b813c0d70ea05d6f12854fe558172ad02",
+      "side": "R"
+    },
+    {
+      "h": "ff0ee5f0ed92a3d2d5c6aecd8bc553b0349ff5f0fa4eff00eacae545214d6ecc",
+      "side": "R"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "5798916975e36a330a50d5969bc634e023f5ba121fa273887575078192f508ef",
+      "side": "R"
+    },
+    {
+      "h": "778f5605ceef742074a286a2ec10755abc90557e5c394a4d09daf2752ee38119",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "6fc70412e5b2ad83b981317ea433dbcdd55280900d765e714cb0f8cb32a0e485",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

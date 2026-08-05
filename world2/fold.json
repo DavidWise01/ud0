@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1170,
+    "spheres": 1175,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1164,
+    "spheres_built": 1169,
     "apex": 1
   },
   "keepers": [
@@ -10618,6 +10618,51 @@
       "blurb": "Three stamps, and the discipline is in which ones you may give yourself. The only one you can assert freely is AMBER — the one that admits it was a judgement call.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "4a7297d2e1f035076c4701e44947784e419646a8fe623d88cbd2f58b0a369527"
+    },
+    {
+      "slug": "the-graveyard",
+      "title": "THE GRAVEYARD",
+      "kicker": "bury it, and name what killed it",
+      "accent": "#7de2b0",
+      "blurb": "Refusing a burial until you name the control that killed it turns dead code into an instrument — and lets you finally ask which of your controls has ever caught anything.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f70d6edddc4d76ded489379d7771c0405d7c043ac6f808c90505748f235b6a7e"
+    },
+    {
+      "slug": "the-blast-radius",
+      "title": "THE BLAST RADIUS",
+      "kicker": "bounded under the resolver, not under string comparison",
+      "accent": "#ff9a5a",
+      "blurb": "The obvious containment check waves through ../evil and an absolute path to anywhere on disk. A prefix compare has a second hole: /workshop/secret starts with /work.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4405f1bbfd88f44f1bf2be8ba20193eba448bd8bfd44886a30915d6af285d031"
+    },
+    {
+      "slug": "the-verify-then-copy",
+      "title": "THE VERIFY THEN COPY",
+      "kicker": "an entire outcome removed, for free",
+      "accent": "#ffd76a",
+      "blurb": "Copy first and a failing test leaves you fully installed and broken. Verify first and that state cannot occur — not less likely, impossible. Same work, different arithmetic.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6b9dce2218f83bfa1b9fa5923fed9b9bd6feb94859bc612e74be7d4d87b7f64b"
+    },
+    {
+      "slug": "the-fake-context",
+      "title": "THE FAKE CONTEXT",
+      "kicker": "the states reality will not hand you on demand",
+      "accent": "#5ad6ff",
+      "blurb": "42/42 checks against a fake. The fake is not a shortcut — some of those checks cannot exist without it. The cost is that it will also hold states the real machine can never occupy.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8e4821a0bc5e63693b25088a17ab43fc4e85b843179e7b194377c670298431fc"
+    },
+    {
+      "slug": "the-dissent",
+      "title": "THE DISSENT",
+      "kicker": "the parts agree and the whole does not",
+      "accent": "#b98cff",
+      "blurb": "Every judge individually consistent; majority on the premises says TRUE, majority on the conclusion says FALSE. Both routes defensible, so more care cannot settle it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ade813ee90e179e9d080960e2068a7d05a2ff39a0c100316542c0874ebeb9e5f"
     }
   ],
   "appeals": [
@@ -14100,6 +14145,14 @@
               "icon": "berry",
               "kicker": "the phrase that names what cannot be named",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-blast-radius",
+              "title": "THE BLAST RADIUS",
+              "accent": "#ff9a5a",
+              "icon": "▣",
+              "kicker": "bounded under the resolver, not under string comparison",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -14487,6 +14540,14 @@
               "accent": "#21e6ff",
               "icon": "witchofagnesi",
               "kicker": "the witch with no mean",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-graveyard",
+              "title": "THE GRAVEYARD",
+              "accent": "#7de2b0",
+              "icon": "†",
+              "kicker": "bury it, and name what killed it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19144,6 +19205,14 @@
               "icon": "⧖",
               "kicker": "error-free, through noise, at a rate that does not vanish",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fake-context",
+              "title": "THE FAKE CONTEXT",
+              "accent": "#5ad6ff",
+              "icon": "◑",
+              "kicker": "the states reality will not hand you on demand",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 43,
@@ -20133,6 +20202,14 @@
               "icon": "↺",
               "kicker": "one cycle length forces all the rest",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-dissent",
+              "title": "THE DISSENT",
+              "accent": "#b98cff",
+              "icon": "≠",
+              "kicker": "the parts agree and the whole does not",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -20448,6 +20525,14 @@
               "accent": "#ffcf4a",
               "icon": "vanderwaerden",
               "kicker": "order you cannot avoid",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-verify-then-copy",
+              "title": "THE VERIFY THEN COPY",
+              "accent": "#ffd76a",
+              "icon": "✓",
+              "kicker": "an entire outcome removed, for free",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20894,7 +20979,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "9292dac17b9f7d7d46ae76bc67564629a6b9d679ebed2303a6a34fe621404c85",
+  "fold_root": "6fc70412e5b2ad83b981317ea433dbcdd55280900d765e714cb0f8cb32a0e485",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
