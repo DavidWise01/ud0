@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1180,
+    "spheres": 1185,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1174,
+    "spheres_built": 1179,
     "apex": 1
   },
   "keepers": [
@@ -10708,6 +10708,51 @@
       "blurb": "A convex shape with infinitely many points is entirely determined by its extreme points. Everything interior is redundant — which is why optimisation so often reduces to checking corners.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "6451088966b62f89ff0d01de827888b2bb3093a9305765e60c5d10c43efc309c"
+    },
+    {
+      "slug": "the-claimlink",
+      "title": "THE CLAIMLINK",
+      "kicker": "a verdict that admits it cannot tell",
+      "accent": "#5ad6ff",
+      "blurb": "seamgate checks whether published numbers came from the repo. claimlink checks whether published sentences survive it — and refuses to answer where no code-shaped evidence exists.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "801863973bcb26d68dcff83527ab2b55fe3eac5281c9dd11dc0e455d4e10ddde"
+    },
+    {
+      "slug": "the-reachability-gap",
+      "title": "THE REACHABILITY GAP",
+      "kicker": "true of the shipped app, false of the repository",
+      "accent": "#ffd76a",
+      "blurb": "A grep finds the call. The module is imported by nothing. Both facts are true, of different objects — and reporting only one of them is a choice somebody made without saying so.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1abc50929721d5e4f6ff3fc3306de422527a15ad2bdb36667bbed9cb25715188"
+    },
+    {
+      "slug": "the-decay",
+      "title": "THE DECAY",
+      "kicker": "how a true sentence becomes a false one",
+      "accent": "#ff5a8a",
+      "blurb": "Nobody writes a false claim about their own project. They write a true one and the project moves. Re-checking does not slow the decay — it bounds how long the claim sits silently false.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e8553e3b8fe33718c5877956d4516e1b908e8887119e5ca6c1a46ec3368f78a4"
+    },
+    {
+      "slug": "the-manifest",
+      "title": "THE MANIFEST",
+      "kicker": "installable is not offline",
+      "accent": "#7de2b0",
+      "blurb": "A manifest grants installability. A service worker grants offline. Without one there is no cache, so a second visit with no network has nothing to load from — and the claim confuses the two.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "195592d73db27ab2124f216543c5518a477e631854bf608cc7209e4aab9a8bff"
+    },
+    {
+      "slug": "the-predicate",
+      "title": "THE PREDICATE",
+      "kicker": "what it automates is the re-running, not the judgement",
+      "accent": "#b98cff",
+      "blurb": "Total error splits in two: the human's predicate error and the machine's staleness error. Running more often drives one to zero and leaves the other exactly where it was.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a0f980dff6483b98aac775815194edaafadaf62d509c5a69cb3eef44ac311af8"
     }
   ],
   "appeals": [
@@ -19586,6 +19631,14 @@
               "icon": "bombtester",
               "kicker": "seeing without looking",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-reachability-gap",
+              "title": "THE REACHABILITY GAP",
+              "accent": "#ffd76a",
+              "icon": "↱",
+              "kicker": "true of the shipped app, false of the repository",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -20263,6 +20316,14 @@
               "icon": "≠",
               "kicker": "the parts agree and the whole does not",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-predicate",
+              "title": "THE PREDICATE",
+              "accent": "#b98cff",
+              "icon": "≡",
+              "kicker": "what it automates is the re-running, not the judgement",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -20603,6 +20664,14 @@
               "icon": "✓",
               "kicker": "an entire outcome removed, for free",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-manifest",
+              "title": "THE MANIFEST",
+              "accent": "#7de2b0",
+              "icon": "◱",
+              "kicker": "installable is not offline",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -20719,6 +20788,14 @@
               "accent": "#ff5a8a",
               "icon": "◔",
               "kicker": "a preference no probability can hold",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-decay",
+              "title": "THE DECAY",
+              "accent": "#ff5a8a",
+              "icon": "⌇",
+              "kicker": "how a true sentence becomes a false one",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21052,6 +21129,14 @@
               "icon": "⊘",
               "kicker": "a grader with amnesia can only be shown",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-claimlink",
+              "title": "THE CLAIMLINK",
+              "accent": "#5ad6ff",
+              "icon": "⚇",
+              "kicker": "a verdict that admits it cannot tell",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -21064,7 +21149,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "8abe3096dfb8c063829dfa40b9f4e63490d99f88f7633baec1d2cf0fb0cd1ed2",
+  "fold_root": "e7f94ff745015f6825e281c2d3b3a187507bf206f9ddcc9978167dbe4fa0fb1a",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

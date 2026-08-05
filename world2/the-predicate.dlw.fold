@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE PREDICATE",
+  "slug": "the-predicate",
+  "seal": "a0f980dff6483b98aac775815194edaafadaf62d509c5a69cb3eef44ac311af8",
+  "index": 1184,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
+      "side": "R"
+    },
+    {
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "side": "R"
+    },
+    {
+      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "side": "R"
+    },
+    {
+      "h": "eaf38c2cd96997d54d6a4c5db37ee0cfaec10743902b74eafba1eb5507e33c6f",
+      "side": "R"
+    },
+    {
+      "h": "0080ff6556ecaf6556d91227576054db9c9d62d0573de94cfac1462896ce80da",
+      "side": "R"
+    },
+    {
+      "h": "5f6e9863361e4171031b59a5dc9672046d34f6e3f9162b8c9627ba3cdd5a6144",
+      "side": "L"
+    },
+    {
+      "h": "deeef0ad3b9bf0790f371456807a8f6df04e6a7e307d26880abf89c9a007c514",
+      "side": "R"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "efaf84aacbe1249e97c118c0494382821e6fece8cf7169c7e9e710b2233cc7d5",
+      "side": "R"
+    },
+    {
+      "h": "ff648a3abffc4490ff974e3b1367c9e80f68958547bff45d33e5683cd4c43f07",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "e7f94ff745015f6825e281c2d3b3a187507bf206f9ddcc9978167dbe4fa0fb1a",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
