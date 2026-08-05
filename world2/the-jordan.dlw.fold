@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE JORDAN",
+  "slug": "the-jordan",
+  "seal": "a301bef705c3aa74a54e2de4538773a970b98e2625e704dcee077602dd994b3e",
+  "index": 1232,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "6c31df4c3b2e825a68c03009ad07513adc7bf1ad3de43bf4e6a7e911e4af8870",
+      "side": "R"
+    },
+    {
+      "h": "aea6f33e6196033df359a389d1bdeff8d6599a11237abba4bb47a614c8e87b96",
+      "side": "R"
+    },
+    {
+      "h": "1d83a5e68348472f2acf3a5888d020145343c06534ef6d3bbcb139aecc9133b8",
+      "side": "R"
+    },
+    {
+      "h": "7ddc746476e7f820c1e876ec5c1fec6c5364c64c70de61f2070daba94b3e8aad",
+      "side": "R"
+    },
+    {
+      "h": "4f7872203a946f6d06b27d939eaa2026d42511bd56ba2bf08e93ae5c416c46ad",
+      "side": "L"
+    },
+    {
+      "h": "faefbc473df1259951f1426f16158c8ee4b02a2a5f79faba4ce85c1869cbf5e5",
+      "side": "R"
+    },
+    {
+      "h": "b6ba99016ed8f8a810be3fb3e608e37a513c161cc9e054e59fc89a7ee2924d9f",
+      "side": "L"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "19eb69d6a56b8f01398ae1084b692f9f5c4b3939520ff00d67d32a5cc789c471",
+      "side": "R"
+    },
+    {
+      "h": "e432ee500c66f1d136937938521a305e016adc602498c7685d9bb468a452da0c",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "fe54b0bf210a9f05ed22b9363485263fe2819ffc323c3a224852887bea797125",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

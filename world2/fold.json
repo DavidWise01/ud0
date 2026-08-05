@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1230,
+    "spheres": 1235,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1224,
+    "spheres_built": 1229,
     "apex": 1
   },
   "keepers": [
@@ -11158,6 +11158,51 @@
       "blurb": "A trefoil and its mirror image are different knots, and for fifty years the standard invariant could not tell them apart. This one can.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "b107a467e67032d850df8571dcd88f6051e01d45d5757733aa0eb022e1db44c7"
+    },
+    {
+      "slug": "the-zipf",
+      "title": "THE ZIPF",
+      "kicker": "a law that is not evidence",
+      "accent": "#ff5a8a",
+      "blurb": "Zipf's law has been read as a fingerprint of deep structure for eighty years. A monkey with a space bar produces it too.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "11f6977af46e8a0721568686c859d44449e4703e5fc464868fd9d1a171087404"
+    },
+    {
+      "slug": "the-lord",
+      "title": "THE LORD",
+      "kicker": "two right answers that disagree",
+      "accent": "#5ad6ff",
+      "blurb": "Two statisticians, one dataset, one question. One finds nothing, the other finds a large effect, and there is no third calculation that settles it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "69241b475084d61737511f7e95f11ecf7a0af0c83ee878d173b375974e90f86b"
+    },
+    {
+      "slug": "the-jordan",
+      "title": "THE JORDAN",
+      "kicker": "the obvious theorem that took twenty years",
+      "accent": "#7de2b0",
+      "blurb": "A loop that never crosses itself has an inside and an outside. So obvious that the 1887 proof was disputed for decades - because obvious comes from circles, and the theorem must hold for curves with no tangent anywhere.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a301bef705c3aa74a54e2de4538773a970b98e2625e704dcee077602dd994b3e"
+    },
+    {
+      "slug": "the-fixed-point",
+      "title": "THE FIXED POINT",
+      "kicker": "the map that always comes home",
+      "accent": "#ffd76a",
+      "blurb": "A map that pulls every pair of points closer has exactly one fixed point, and you can bound the error before running anything. Press cosine repeatedly and you are watching it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6c31df4c3b2e825a68c03009ad07513adc7bf1ad3de43bf4e6a7e911e4af8870"
+    },
+    {
+      "slug": "the-cross-entropy",
+      "title": "THE CROSS ENTROPY",
+      "kicker": "the bits you pay for being wrong",
+      "accent": "#b98cff",
+      "blurb": "The surcharge, in literal bits, for encoding the world with a model that is false. Never negative, zero only if you are exactly right.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6b11cae968597373da3cefc01572b0f1b4ee6b4603336af6fa4658455f9fb352"
     }
   ],
   "appeals": [
@@ -14392,6 +14437,14 @@
               "icon": "✂",
               "kicker": "a truncation that reports as a count",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-zipf",
+              "title": "THE ZIPF",
+              "accent": "#ff5a8a",
+              "icon": "≣",
+              "kicker": "a law that is not evidence",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -15123,6 +15176,14 @@
               "accent": "#b98cff",
               "icon": "⚔",
               "kicker": "three who cannot agree if one lies",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lord",
+              "title": "THE LORD",
+              "accent": "#5ad6ff",
+              "icon": "⇄",
+              "kicker": "two right answers that disagree",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21193,6 +21254,14 @@
               "icon": "○",
               "kicker": "a shape that may or may not exist",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fixed-point",
+              "title": "THE FIXED POINT",
+              "accent": "#ffd76a",
+              "icon": "↺",
+              "kicker": "the map that always comes home",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -21482,6 +21551,14 @@
               "icon": "⧉",
               "kicker": "bounds that are right and useless",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-jordan",
+              "title": "THE JORDAN",
+              "accent": "#7de2b0",
+              "icon": "◌",
+              "kicker": "the obvious theorem that took twenty years",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -21762,6 +21839,14 @@
               "icon": "↓",
               "kicker": "the error that only goes one way",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cross-entropy",
+              "title": "THE CROSS ENTROPY",
+              "accent": "#b98cff",
+              "icon": "⚖",
+              "kicker": "the bits you pay for being wrong",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -21914,7 +21999,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "15c0bb0cd2dcf80f04be35673f49d6dc9c1517b3223397a72581d551170284ec",
+  "fold_root": "fe54b0bf210a9f05ed22b9363485263fe2819ffc323c3a224852887bea797125",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
