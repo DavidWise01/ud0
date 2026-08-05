@@ -5,22 +5,22 @@
   "name": "OVER THE",
   "slug": "over-the",
   "seal": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851",
-  "index": 1146,
+  "index": 1151,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc",
-      "side": "R"
-    },
-    {
-      "h": "6e30806a847d2a4cdf86d53c7df303d63c8c3adcf188e8564cc7a8deadcb0c35",
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
       "side": "L"
     },
     {
-      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
-      "side": "R"
+      "h": "28bc817f6c95e704f3163d5ec9c3da5cfab9ce4fb21234e3c0d31ee2b7dc8838",
+      "side": "L"
+    },
+    {
+      "h": "bf491ca13e5d5472b9c5c8ce8f02a06cc0e0a6b4b1da08c1a9639a6fa2a0c662",
+      "side": "L"
     },
     {
       "h": "8232d6e04964af7d8a47e7897738ae84e3946142bfa2dcd4db4312fcd1feb9c1",
@@ -39,15 +39,15 @@
       "side": "L"
     },
     {
-      "h": "08a9070007e6a507fa5b575c1f7745ce9eac7eca3b3619ccf0772071acf99d04",
+      "h": "71a6fbc6424630d47637e896cb78d77f543637fc6423a607af64c45b0c0119aa",
       "side": "R"
     },
     {
-      "h": "d0905387d3d89afccdd46cbc0d787cd5251f33b7598d41b79653b6197473d288",
+      "h": "420de8781ae16797e5cee4761e8ce6cdb8dd72559256f4fa16b723ba5b3117e0",
       "side": "R"
     },
     {
-      "h": "8054a649080cced65be80aef2b880250c4b308dc95f6b192f5610b6e72cf7481",
+      "h": "4ef766232b477024f04c5778f303df79cffe561e0ff0bab1bc103350d21f5b42",
       "side": "R"
     },
     {
@@ -56,7 +56,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "1d6294619a498ea7f531b0cce2dbd52ee2eed100a13d02bcdbe32fe7e00e7cce",
+  "root": "1f5938fdd98e7b96737ab4ee29b042229fbca6b55fc11e8a3535becff5d2f13f",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-04",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"

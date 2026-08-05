@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1145,
+    "spheres": 1150,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1139,
+    "spheres_built": 1144,
     "apex": 1
   },
   "keepers": [
@@ -10393,6 +10393,51 @@
       "blurb": "Cantor's middle-thirds set is the standard picture of dust: uncountably many points, total length zero. That pairing — nowhere dense, therefore negligible — feels like a law. It isn't. Shrink the removed intervals faster and you get the Smith–Volterra–Cantor set: still containing no interval whatsoever, yet with length exactly ½. Osgood used the same trick in 1903 to build a Jordan arc with positive area.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "234b19dc22111c26bd826f1d201e285cf79919e97fb42c3497445e867ea1a99d"
+    },
+    {
+      "slug": "the-berry-paradox",
+      "title": "THE BERRY PARADOX",
+      "kicker": "the phrase that names what cannot be named",
+      "accent": "#b06bff",
+      "blurb": "'The least number not nameable in under sixty characters' is fifty-one characters long — so it names, in under sixty, the number it declares unnameable. Russell published it in 1908 crediting G. G. Berry, a Bodleian librarian. It is the one-line cousin of Gödel's theorem and Tarski's undefinability theorem: a language cannot contain a truthful account of its own naming power.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1cfb2a09f453d76135b9334bc423fe46864fa623177ea193682fc92620d98c07"
+    },
+    {
+      "slug": "the-van-der-waerden",
+      "title": "THE VAN DER WAERDEN",
+      "kicker": "order you cannot avoid",
+      "accent": "#ffcf4a",
+      "blurb": "Two-colour the numbers 1 to 8 and you can avoid ever having three evenly spaced numbers of one colour. Add a single number and it becomes impossible — all 512 colourings of 1..9 contain one. That threshold is W(3,2) = 9, and van der Waerden proved in 1927 that a threshold exists for every colour count and length. The catch: they grow so violently that W(6,2) is still unknown.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b072dd64841381e426491f3e5f501bae6dbaedbf3a00289b6417d6e57a589ccf"
+    },
+    {
+      "slug": "the-rice",
+      "title": "THE RICE",
+      "kicker": "every question about meaning",
+      "accent": "#35ffb0",
+      "blurb": "Halting is undecidable — that much is famous. Rice's theorem generalises it to devastation: EVERY non-trivial property of what a program computes is undecidable. Whether it outputs 7, whether it equals another program, whether it is malicious in any semantic sense. Syntactic questions stay cheap; the moment your question is about meaning, no algorithm answers it for all inputs.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bcf0ee23fe8a63f1887609433ee3cc63b0641e9367e3538b9c5d6219eb8682b5"
+    },
+    {
+      "slug": "the-chaitin-omega",
+      "title": "THE CHAITIN OMEGA",
+      "kicker": "the number no theory can reach",
+      "accent": "#21e6ff",
+      "blurb": "Feed a machine random bits and ask: what is the probability it halts? That is Chaitin's Ω — perfectly well-defined, uncomputable, and algorithmically random. Its digits are incompressible, so any formal system can determine only finitely many of them. Knowing the first n bits would settle halting for all programs shorter than n. You can only ever approach it from below.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b5489609a69bfa1c3744219a58bee8b55d092227781f26d90e1845f2c83a3747"
+    },
+    {
+      "slug": "the-tree",
+      "title": "THE TREE",
+      "kicker": "the sequence that must end",
+      "accent": "#ffcf4a",
+      "blurb": "Build a sequence of labelled trees, the n-th having at most n nodes, where no earlier tree embeds in a later one. Kruskal's theorem says every such sequence must stop. TREE(1) = 1. TREE(2) = 3. TREE(3) is finite — guaranteed by a theorem — and so large that Graham's number is not a useful comparison. Friedman showed that finiteness is not provable in systems that handle ordinary mathematics comfortably.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "33b0c8209f0f47a6dcd19442c3555ebefc835bd6cd5febeac90790a98b0cf607"
     }
   ],
   "appeals": [
@@ -13858,6 +13903,14 @@
               "accent": "#ffcf4a",
               "icon": "insanity",
               "kicker": "331,776 wrong towers",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-berry-paradox",
+              "title": "THE BERRY PARADOX",
+              "accent": "#b06bff",
+              "icon": "berry",
+              "kicker": "the phrase that names what cannot be named",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19904,6 +19957,14 @@
               "icon": "vitali",
               "kicker": "the set that cannot be measured",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-tree",
+              "title": "THE TREE",
+              "accent": "#ffcf4a",
+              "icon": "tree",
+              "kicker": "the sequence that must end",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -20012,6 +20073,14 @@
               "icon": "foucault",
               "kicker": "the Earth turning under a wire",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rice",
+              "title": "THE RICE",
+              "accent": "#35ffb0",
+              "icon": "rice",
+              "kicker": "every question about meaning",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -20103,6 +20172,14 @@
               "accent": "#35ffb0",
               "icon": "theodorus",
               "kicker": "the spiral that stops at 17",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-van-der-waerden",
+              "title": "THE VAN DER WAERDEN",
+              "accent": "#ffcf4a",
+              "icon": "vanderwaerden",
+              "kicker": "order you cannot avoid",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20196,6 +20273,14 @@
               "accent": "#35ffb0",
               "icon": "qpigeonhole",
               "kicker": "three in two boxes, none together",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-chaitin-omega",
+              "title": "THE CHAITIN OMEGA",
+              "accent": "#21e6ff",
+              "icon": "chaitin",
+              "kicker": "the number no theory can reach",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20469,7 +20554,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "1d6294619a498ea7f531b0cce2dbd52ee2eed100a13d02bcdbe32fe7e00e7cce",
+  "fold_root": "1f5938fdd98e7b96737ab4ee29b042229fbca6b55fc11e8a3535becff5d2f13f",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

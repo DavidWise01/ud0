@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE CHAITIN OMEGA",
+  "slug": "the-chaitin-omega",
+  "seal": "b5489609a69bfa1c3744219a58bee8b55d092227781f26d90e1845f2c83a3747",
+  "index": 1148,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "33b0c8209f0f47a6dcd19442c3555ebefc835bd6cd5febeac90790a98b0cf607",
+      "side": "R"
+    },
+    {
+      "h": "c3aef53a6c220fd627da7acdbfcfb0645d69e8935994ed097adb8abb9f953bec",
+      "side": "R"
+    },
+    {
+      "h": "bf491ca13e5d5472b9c5c8ce8f02a06cc0e0a6b4b1da08c1a9639a6fa2a0c662",
+      "side": "L"
+    },
+    {
+      "h": "8232d6e04964af7d8a47e7897738ae84e3946142bfa2dcd4db4312fcd1feb9c1",
+      "side": "L"
+    },
+    {
+      "h": "597da00323d1968be4932d61f23183cb17bd82d4901b16d449ed27716a1c4b7f",
+      "side": "L"
+    },
+    {
+      "h": "f269c8a529f815d2f48903968708708d6595d6abda30d6646468816c5751ef16",
+      "side": "L"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "71a6fbc6424630d47637e896cb78d77f543637fc6423a607af64c45b0c0119aa",
+      "side": "R"
+    },
+    {
+      "h": "420de8781ae16797e5cee4761e8ce6cdb8dd72559256f4fa16b723ba5b3117e0",
+      "side": "R"
+    },
+    {
+      "h": "4ef766232b477024f04c5778f303df79cffe561e0ff0bab1bc103350d21f5b42",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "1f5938fdd98e7b96737ab4ee29b042229fbca6b55fc11e8a3535becff5d2f13f",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE BERRY PARADOX",
+  "slug": "the-berry-paradox",
+  "seal": "1cfb2a09f453d76135b9334bc423fe46864fa623177ea193682fc92620d98c07",
+  "index": 1145,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "234b19dc22111c26bd826f1d201e285cf79919e97fb42c3497445e867ea1a99d",
+      "side": "L"
+    },
+    {
+      "h": "3e49ac4680d5c149e168c18e785307afe4b17dc058dbce8dcf6d5fdc022a7ced",
+      "side": "R"
+    },
+    {
+      "h": "b1b9536ba26ccb0dd079400a5fb0eafb9a355fe28b1497915f9f686d2bd56992",
+      "side": "R"
+    },
+    {
+      "h": "8232d6e04964af7d8a47e7897738ae84e3946142bfa2dcd4db4312fcd1feb9c1",
+      "side": "L"
+    },
+    {
+      "h": "597da00323d1968be4932d61f23183cb17bd82d4901b16d449ed27716a1c4b7f",
+      "side": "L"
+    },
+    {
+      "h": "f269c8a529f815d2f48903968708708d6595d6abda30d6646468816c5751ef16",
+      "side": "L"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "71a6fbc6424630d47637e896cb78d77f543637fc6423a607af64c45b0c0119aa",
+      "side": "R"
+    },
+    {
+      "h": "420de8781ae16797e5cee4761e8ce6cdb8dd72559256f4fa16b723ba5b3117e0",
+      "side": "R"
+    },
+    {
+      "h": "4ef766232b477024f04c5778f303df79cffe561e0ff0bab1bc103350d21f5b42",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "1f5938fdd98e7b96737ab4ee29b042229fbca6b55fc11e8a3535becff5d2f13f",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
