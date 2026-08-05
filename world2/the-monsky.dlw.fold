@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE MONSKY",
+  "slug": "the-monsky",
+  "seal": "f5d20fffe66e62fa62bd226969d13b24cf3606bf9900cc56835c209a05f60992",
+  "index": 1160,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "90a0843f48e7b2976c798d878f6648a0fbd79c92155b840669ff8b50bb691e84",
+      "side": "R"
+    },
+    {
+      "h": "4174892c8a9e690e9b10ceb5ecb03a0c4677979abc9345c8448a8ac79091eeaa",
+      "side": "R"
+    },
+    {
+      "h": "937d08f71724bdcd839bede494280559c0a84a65eeb9fa4291b55bc0d262cea7",
+      "side": "R"
+    },
+    {
+      "h": "9b2335f46ad316b6b69efd30b7a67db6317e9a1e72e98f3417283d3054be8dd9",
+      "side": "L"
+    },
+    {
+      "h": "7c21292708b58f63fd339f83909b5aa280a3d935a5ceade89528a85b646147fa",
+      "side": "R"
+    },
+    {
+      "h": "cd3401d607d931df1351d4f377ad6bbd4d314abad08291538d79893533cd803a",
+      "side": "R"
+    },
+    {
+      "h": "c59ade2b8678c64520c699eb0b40e7d32728a45ec3a6ceafd81b49f476ad0fd3",
+      "side": "R"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "be283d492fd1210502c739b03798bf34e6f4f0c895fe638a6898e87dc64ec064",
+      "side": "R"
+    },
+    {
+      "h": "5cdeb09b2bce46d16279852309ab521f430005b277c72f5404f32033bc4cc145",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "2f09973afe19edac7fafea748d67a9ad54c6c76658953f5a194033cdc7bf03f9",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

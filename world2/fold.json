@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1160,
+    "spheres": 1165,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1154,
+    "spheres_built": 1159,
     "apex": 1
   },
   "keepers": [
@@ -10528,6 +10528,51 @@
       "blurb": "Two sensors that cannot hear each other still pay only what a single encoder seeing both would pay. The correlation is exploited by the decoder — the encoders never need to know it exists.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "ba0bf4ece5379974af66e388e726c6244c910fa0b5b3ecfcc4940414455855cf"
+    },
+    {
+      "slug": "the-monsky",
+      "title": "THE MONSKY",
+      "kicker": "the square refuses an odd number of equal cuts",
+      "accent": "#7de2b0",
+      "blurb": "Two equal triangles, four, six, any even number — easy. Odd is impossible, and the only known proof runs through the 2-adic valuation, an arithmetic nobody was looking at.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f5d20fffe66e62fa62bd226969d13b24cf3606bf9900cc56835c209a05f60992"
+    },
+    {
+      "slug": "the-sharkovskii",
+      "title": "THE SHARKOVSKII",
+      "kicker": "one cycle length forces all the rest",
+      "accent": "#ff5a8a",
+      "blurb": "Every continuous interval map obeys a single fixed ordering of the integers. Period three sits first, so a single 3-cycle forces cycles of every other length — and the map gets no say.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "90a0843f48e7b2976c798d878f6648a0fbd79c92155b840669ff8b50bb691e84"
+    },
+    {
+      "slug": "the-lob",
+      "title": "THE LOB",
+      "kicker": "if it would be enough to prove it, it is already proved",
+      "accent": "#5ad6ff",
+      "blurb": "'If this were provable it would be true' is only ever assertable about things already provable. Godel's second theorem falls out as the special case P = false.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b3ac63a58b17165a1a051d4e1ae99abc943aafb9090025a1c30ec2ecffa6a49c"
+    },
+    {
+      "slug": "the-presburger",
+      "title": "THE PRESBURGER",
+      "kicker": "surrender multiplication, get decidability back",
+      "accent": "#ffd76a",
+      "blurb": "Godel and Church killed decidable arithmetic. Presburger had already shown that if you throw multiplication away, an actual algorithm exists — and in its cleanest form it is a finite automaton reading binary digits.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e95fedb7e915d478b9ac5be1b114f8f9b4caced04fe1839a7f87ec9aa33b4a0b"
+    },
+    {
+      "slug": "the-jordan-curve",
+      "title": "THE JORDAN CURVE",
+      "kicker": "inside is not a place, it is a count",
+      "accent": "#b98cff",
+      "blurb": "Every eye believes a closed loop has an inside. Proving it took until 1887, because no amount of looking near a point tells you which side you are on — only a global parity does.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "dca65d74adac12043dc1c539bcd87f4809653267d04871d8da0304852f636188"
     }
   ],
   "appeals": [
@@ -14125,6 +14170,14 @@
               "accent": "#21e6ff",
               "icon": "wada",
               "kicker": "three lakes, one shore",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-monsky",
+              "title": "THE MONSKY",
+              "accent": "#7de2b0",
+              "icon": "△",
+              "kicker": "the square refuses an odd number of equal cuts",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19606,6 +19659,14 @@
               "icon": "fermatprimes",
               "kicker": "five in a row, then Euler",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lob",
+              "title": "THE LOB",
+              "accent": "#5ad6ff",
+              "icon": "◻",
+              "kicker": "if it would be enough to prove it, it is already proved",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -20002,6 +20063,14 @@
               "accent": "#35ffb0",
               "icon": "weierstrass",
               "kicker": "the curve with no slope anywhere",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sharkovskii",
+              "title": "THE SHARKOVSKII",
+              "accent": "#ff5a8a",
+              "icon": "↺",
+              "kicker": "one cycle length forces all the rest",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20620,6 +20689,14 @@
               "icon": "⊘",
               "kicker": "how small it gets if you say what you can lose",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-presburger",
+              "title": "THE PRESBURGER",
+              "accent": "#ffd76a",
+              "icon": "⊕",
+              "kicker": "surrender multiplication, get decidability back",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -20712,6 +20789,14 @@
               "icon": "hat",
               "kicker": "one tile that never repeats",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-jordan-curve",
+              "title": "THE JORDAN CURVE",
+              "accent": "#b98cff",
+              "icon": "◌",
+              "kicker": "inside is not a place, it is a count",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -20724,7 +20809,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "afad07b3123759d17e6ae4e9af1c1c9f5d4bcb85af5a9d56d48aee750d71da8d",
+  "fold_root": "2f09973afe19edac7fafea748d67a9ad54c6c76658953f5a194033cdc7bf03f9",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
