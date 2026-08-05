@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1235,
+    "spheres": 1240,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1229,
+    "spheres_built": 1234,
     "apex": 1
   },
   "keepers": [
@@ -11203,6 +11203,51 @@
       "blurb": "The surcharge, in literal bits, for encoding the world with a model that is false. Never negative, zero only if you are exactly right.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "6b11cae968597373da3cefc01572b0f1b4ee6b4603336af6fa4658455f9fb352"
+    },
+    {
+      "slug": "the-alabama-paradox",
+      "title": "THE ALABAMA PARADOX",
+      "kicker": "more seats, fewer seats",
+      "accent": "#ff5a8a",
+      "blurb": "Hamilton's apportionment method has a defect nobody predicted: enlarging the assembly can cost a state a seat. The House noticed in 1880.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "16de653e51b17d50f3fadc5fa78b90b77a3297f3e7ddfacd569f89532ff6cc60"
+    },
+    {
+      "slug": "the-vickrey",
+      "title": "THE VICKREY",
+      "kicker": "where honesty is the dominant strategy",
+      "accent": "#7de2b0",
+      "blurb": "Highest bidder wins and pays the SECOND-highest bid. That one change makes bidding your true value never worse than anything else, whatever anyone else does.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bcd5e30ab1bda65306fb4bc7e4523a4bab2d8a27ac07f75c1c18f20d1cbe2f21"
+    },
+    {
+      "slug": "the-price-of-anarchy",
+      "title": "THE PRICE OF ANARCHY",
+      "kicker": "the exact cost of everyone choosing freely",
+      "accent": "#ffd76a",
+      "blurb": "Everyone takes the route fastest for them, and everyone ends up worse off. For linear congestion the damage is bounded at exactly 4/3, no matter how tangled the network.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e34415e6789a8c700d78c64aad813beb1ad729c52275da9b8533204b154b6519"
+    },
+    {
+      "slug": "the-top-trading",
+      "title": "THE TOP TRADING",
+      "kicker": "the trade that cannot be gamed",
+      "accent": "#5ad6ff",
+      "blurb": "Point at the owner of your favourite house; the arrows must contain a cycle; execute and repeat. One page of instructions gives the unique unimprovable allocation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "cbbcfa18603d52e27ec025994db412b197e10e4c433f869d889e2182ef2afadd"
+    },
+    {
+      "slug": "the-winners-curse",
+      "title": "THE WINNERS CURSE",
+      "kicker": "winning as the evidence you were wrong",
+      "accent": "#b98cff",
+      "blurb": "When everyone bids their honest estimate of a common value, the winner is by construction the one who overestimated most. Winning is evidence against you.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "25eaa1a79bf014e251820c7a756fba93076f7c7b24c37dd91f60eed5fe584ea6"
     }
   ],
   "appeals": [
@@ -11834,6 +11879,14 @@
               "accent": "#ff8a3c",
               "icon": "arbelos",
               "kicker": "the twins in the shoemaker's knife",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-vickrey",
+              "title": "THE VICKREY",
+              "accent": "#7de2b0",
+              "icon": "✓",
+              "kicker": "where honesty is the dominant strategy",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -12762,6 +12815,14 @@
               "accent": "#ffd76a",
               "icon": "☠",
               "kicker": "a win with no strategy attached",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-top-trading",
+              "title": "THE TOP TRADING",
+              "accent": "#5ad6ff",
+              "icon": "↻",
+              "kicker": "the trade that cannot be gamed",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17491,6 +17552,14 @@
               "icon": "tennisracket",
               "kicker": "the axis that flips",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-winners-curse",
+              "title": "THE WINNERS CURSE",
+              "accent": "#b98cff",
+              "icon": "☠",
+              "kicker": "winning as the evidence you were wrong",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -21402,6 +21471,14 @@
               "icon": "◫",
               "kicker": "one bit, one push, and the books balance",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-price-of-anarchy",
+              "title": "THE PRICE OF ANARCHY",
+              "accent": "#ffd76a",
+              "icon": "⑂",
+              "kicker": "the exact cost of everyone choosing freely",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -21698,6 +21775,14 @@
               "accent": "#7de2b0",
               "icon": "→",
               "kicker": "a sign pattern that acquits",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-alabama-paradox",
+              "title": "THE ALABAMA PARADOX",
+              "accent": "#ff5a8a",
+              "icon": "↶",
+              "kicker": "more seats, fewer seats",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21999,7 +22084,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "fe54b0bf210a9f05ed22b9363485263fe2819ffc323c3a224852887bea797125",
+  "fold_root": "915455cfe548566646aedfb94ab485367d8b09e585ebf1ee30905668cd0811d2",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
