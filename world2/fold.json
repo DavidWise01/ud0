@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1300,
+    "spheres": 1305,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1294,
+    "spheres_built": 1299,
     "apex": 1
   },
   "keepers": [
@@ -11788,6 +11788,51 @@
       "blurb": "A frozen record kept every digit of its Bernoulli numbers deliberately. Rounding them would make two genuinely different runs report the same number.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "bfe688854e1914e01f5938425ded14f9f7a20910cb8743cbfa284165014804c7"
+    },
+    {
+      "slug": "the-observer-that-moved-it",
+      "title": "THE OBSERVER THAT MOVED IT",
+      "kicker": "a probe that re-ran what it was watching",
+      "accent": "#ff5a8a",
+      "blurb": "A sensitivity probe must re-execute an assertion once per mutated field. If the assertion is not pure, the probe stops measuring the system and starts driving it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9e4d275aad61802333510b5f281215baf4fed49c96355f07092deb95ba4b9782"
+    },
+    {
+      "slug": "the-mutator-that-moved-everything",
+      "title": "THE MUTATOR THAT MOVED EVERYTHING",
+      "kicker": "a shift that shifts nothing that matters",
+      "accent": "#ffd76a",
+      "blurb": "Bump every number by one and equality survives untouched - 6 == 6 becomes 7 == 7. A perfectly sensitive assertion gets reported insensitive.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f95d8f0a70b546f06191e2e7e9e7b2c7d7e9c93e7b5715981bbdcb2cef952e66"
+    },
+    {
+      "slug": "the-seal-over-a-red-test",
+      "title": "THE SEAL OVER A RED TEST",
+      "kicker": "INTACT was true, and meant nothing",
+      "accent": "#7de2b0",
+      "blurb": "The seal was written while the suite was red. The verify said INTACT and was telling the truth: the bytes were exactly what the ledger said.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ea71c5689e89d47168fb17df215e06552deb376ccd5f2e228ceeca0457a9a91b"
+    },
+    {
+      "slug": "the-flag-that-says-what-it-knows",
+      "title": "THE FLAG THAT SAYS WHAT IT KNOWS",
+      "kicker": "INSENSITIVE, renamed",
+      "accent": "#5ad6ff",
+      "blurb": "A probe that perturbs numbers cannot move an assertion about an array length or a null check. Calling that INSENSITIVE accuses the assertion of a fault that belongs to the instrument.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "02fdc9cf7fdcadeaf03aff61385e8225f4605f79199fb57791d5bf5a1eba561d"
+    },
+    {
+      "slug": "the-api-change",
+      "title": "THE API CHANGE",
+      "kicker": "a signature moved and a default came with it",
+      "accent": "#b98cff",
+      "blurb": "The fourth argument became an options object. Every call site kept compiling and running while the meaning of half of them quietly inverted.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5f782e82a6d47431ee80ae3c1654f0e527e442290a737d50115b7064cdac9094"
     }
   ],
   "appeals": [
@@ -15462,6 +15507,14 @@
               "icon": "⇉",
               "kicker": "two bits down one wire",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-observer-that-moved-it",
+              "title": "THE OBSERVER THAT MOVED IT",
+              "accent": "#ff5a8a",
+              "icon": "◎",
+              "kicker": "a probe that re-ran what it was watching",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -15945,6 +15998,14 @@
               "accent": "#b98cff",
               "icon": "⌨",
               "kicker": "the glyph you cannot enter",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mutator-that-moved-everything",
+              "title": "THE MUTATOR THAT MOVED EVERYTHING",
+              "accent": "#ffd76a",
+              "icon": "↔",
+              "kicker": "a shift that shifts nothing that matters",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17147,6 +17208,14 @@
               "icon": "squaredsquare",
               "kicker": "squares that fit exactly",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-seal-over-a-red-test",
+              "title": "THE SEAL OVER A RED TEST",
+              "accent": "#7de2b0",
+              "icon": "◆",
+              "kicker": "INTACT was true, and meant nothing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -17302,6 +17371,14 @@
               "accent": "#ffcf4a",
               "icon": "wilberforce",
               "kicker": "bounce traded for twist",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-flag-that-says-what-it-knows",
+              "title": "THE FLAG THAT SAYS WHAT IT KNOWS",
+              "accent": "#5ad6ff",
+              "icon": "⚑",
+              "kicker": "INSENSITIVE, renamed",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -22624,6 +22701,14 @@
               "icon": "↔",
               "kicker": "how far a call can see",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-api-change",
+              "title": "THE API CHANGE",
+              "accent": "#b98cff",
+              "icon": "⇄",
+              "kicker": "a signature moved and a default came with it",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -23104,7 +23189,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "c1a3c471c6b2dc4f412d68a6e795741c364173e2e726995de462e567445cc19c",
+  "fold_root": "a39603b0e696d51aad6d44d3452f4694cec82d105ba5f92f11650238386c65ad",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

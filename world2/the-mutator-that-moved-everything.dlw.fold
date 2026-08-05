@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE MUTATOR THAT MOVED EVERYTHING",
+  "slug": "the-mutator-that-moved-everything",
+  "seal": "f95d8f0a70b546f06191e2e7e9e7b2c7d7e9c93e7b5715981bbdcb2cef952e66",
+  "index": 1301,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "9e4d275aad61802333510b5f281215baf4fed49c96355f07092deb95ba4b9782",
+      "side": "L"
+    },
+    {
+      "h": "e64a5afca80ee6e3b9852c77f0c32ba23b9c41b983f234ade1dc7fb8ceb52f2b",
+      "side": "R"
+    },
+    {
+      "h": "dd869d7b053fc2d7d7564c28a5bf68d63c161aa15a94fa5d9cef46ef62a9edce",
+      "side": "L"
+    },
+    {
+      "h": "2e04062566870cc88034a4fab18a6c06e46142c6cd2a4e71f57b0d698e06469a",
+      "side": "R"
+    },
+    {
+      "h": "c5af7fa930c794e81fe20599c919cac188c50c8870e3403625d9594e841a05f4",
+      "side": "L"
+    },
+    {
+      "h": "e0650e0c05f7f33b4f1719f6e55b3793f3002c8cfa1ba1b77db0d8a41417da69",
+      "side": "R"
+    },
+    {
+      "h": "801edfb133f08848f2cf43f528275cb932f5e829c75944ac9e16d83c8302983f",
+      "side": "R"
+    },
+    {
+      "h": "5e8002c53371ac981e9eb63f2224dc489115a36f04053baa7e63c26c24650bb9",
+      "side": "R"
+    },
+    {
+      "h": "e5d40fbbdc40da94b47c6cea9b81ca58db318dbff5012b0611e6109932829e68",
+      "side": "L"
+    },
+    {
+      "h": "65b81b65876edd990f3fca08ad8427ffe6180884773dd934614350002bc9ce37",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "a39603b0e696d51aad6d44d3452f4694cec82d105ba5f92f11650238386c65ad",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE API CHANGE",
+  "slug": "the-api-change",
+  "seal": "5f782e82a6d47431ee80ae3c1654f0e527e442290a737d50115b7064cdac9094",
+  "index": 1304,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
+      "side": "R"
+    },
+    {
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "side": "R"
+    },
+    {
+      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "side": "R"
+    },
+    {
+      "h": "6b276046b89620caf931b0154e9ff2cfa26e6f7b84aebaf82c67078585a3c979",
+      "side": "L"
+    },
+    {
+      "h": "c5af7fa930c794e81fe20599c919cac188c50c8870e3403625d9594e841a05f4",
+      "side": "L"
+    },
+    {
+      "h": "e0650e0c05f7f33b4f1719f6e55b3793f3002c8cfa1ba1b77db0d8a41417da69",
+      "side": "R"
+    },
+    {
+      "h": "801edfb133f08848f2cf43f528275cb932f5e829c75944ac9e16d83c8302983f",
+      "side": "R"
+    },
+    {
+      "h": "5e8002c53371ac981e9eb63f2224dc489115a36f04053baa7e63c26c24650bb9",
+      "side": "R"
+    },
+    {
+      "h": "e5d40fbbdc40da94b47c6cea9b81ca58db318dbff5012b0611e6109932829e68",
+      "side": "L"
+    },
+    {
+      "h": "65b81b65876edd990f3fca08ad8427ffe6180884773dd934614350002bc9ce37",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "a39603b0e696d51aad6d44d3452f4694cec82d105ba5f92f11650238386c65ad",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
