@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1225,
+    "spheres": 1230,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1219,
+    "spheres_built": 1224,
     "apex": 1
   },
   "keepers": [
@@ -11113,6 +11113,51 @@
       "blurb": "Accumulate the angle of a polynomial's image around a loop and divide by 2pi. That integer is how many roots are inside - no root-finding, no algebra.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "6314fc10ab3c7a189da9155a1bc986981636e7c6c540e5f745d7fd2dec3edad1"
+    },
+    {
+      "slug": "the-cauchy",
+      "title": "THE CAUCHY",
+      "kicker": "a mean that never settles",
+      "accent": "#ff5a8a",
+      "blurb": "The average of n Cauchy draws is distributed identically to a single draw. Not almost - identically. A thousand measurements tell you exactly as much as one.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "37bab572391cdb7e614284ca149bd1b78e7e7c32ea85c25c62b4504e290dfa8c"
+    },
+    {
+      "slug": "the-berkson",
+      "title": "THE BERKSON",
+      "kicker": "a correlation made of nothing but who was let in",
+      "accent": "#5ad6ff",
+      "blurb": "Two unrelated things, seen only through a filter that admits either one being large, come out strongly negatively correlated. Nothing changed in the world.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a21f577866cdf0321d5a9e016cdaac7ad19b758eb2f934b9c2a3c61133fec77d"
+    },
+    {
+      "slug": "the-record",
+      "title": "THE RECORD",
+      "kicker": "one over k, whatever the world",
+      "accent": "#ffd76a",
+      "blurb": "The chance the k-th measurement is a new record is exactly 1/k, for any distribution at all. A hundred times more data buys about five more records.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "70399ddd1482b0b9bce19da190b56d7364cbd56243823e2c5b6a4352526e2bb4"
+    },
+    {
+      "slug": "the-church-rosser",
+      "title": "THE CHURCH ROSSER",
+      "kicker": "any order, one answer",
+      "accent": "#7de2b0",
+      "blurb": "If two reduction orders both finish, they finish at the same term. It is why a functional program has a meaning independent of how you evaluate it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "72071dcae036309891f1770956cc13a4ea83c6c1bacfbc687bbf7697fec1b03f"
+    },
+    {
+      "slug": "the-jones",
+      "title": "THE JONES",
+      "kicker": "the invariant that finally sees the mirror",
+      "accent": "#b98cff",
+      "blurb": "A trefoil and its mirror image are different knots, and for fifty years the standard invariant could not tell them apart. This one can.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b107a467e67032d850df8571dcd88f6051e01d45d5757733aa0eb022e1db44c7"
     }
   ],
   "appeals": [
@@ -18186,6 +18231,14 @@
               "icon": "steiner",
               "kicker": "a ring of circles that always closes",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-church-rosser",
+              "title": "THE CHURCH ROSSER",
+              "accent": "#7de2b0",
+              "icon": "⇉",
+              "kicker": "any order, one answer",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -20111,6 +20164,14 @@
               "icon": "↱",
               "kicker": "true of the shipped app, false of the repository",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-berkson",
+              "title": "THE BERKSON",
+              "accent": "#5ad6ff",
+              "icon": "⊘",
+              "kicker": "a correlation made of nothing but who was let in",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -20398,6 +20459,14 @@
               "accent": "#ff9a5a",
               "icon": "⚖",
               "kicker": "one measurement, two headlines",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-jones",
+              "title": "THE JONES",
+              "accent": "#b98cff",
+              "icon": "❀",
+              "kicker": "the invariant that finally sees the mirror",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20975,6 +21044,14 @@
               "accent": "#5ad6ff",
               "icon": "⊕",
               "kicker": "where greedy is exactly right",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-record",
+              "title": "THE RECORD",
+              "accent": "#ffd76a",
+              "icon": "↑",
+              "kicker": "one over k, whatever the world",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21817,6 +21894,14 @@
               "icon": "⚖",
               "kicker": "a tie nobody can break",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cauchy",
+              "title": "THE CAUCHY",
+              "accent": "#ff5a8a",
+              "icon": "∞",
+              "kicker": "a mean that never settles",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -21829,7 +21914,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "8cfe22bc7d92046fa7a1ceec79ccbb072b6f250a822618d6aabc76e6a42af9e9",
+  "fold_root": "15c0bb0cd2dcf80f04be35673f49d6dc9c1517b3223397a72581d551170284ec",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

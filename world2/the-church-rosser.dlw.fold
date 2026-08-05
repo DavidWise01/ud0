@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE CHURCH ROSSER",
+  "slug": "the-church-rosser",
+  "seal": "72071dcae036309891f1770956cc13a4ea83c6c1bacfbc687bbf7697fec1b03f",
+  "index": 1228,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "b107a467e67032d850df8571dcd88f6051e01d45d5757733aa0eb022e1db44c7",
+      "side": "R"
+    },
+    {
+      "h": "c3aef53a6c220fd627da7acdbfcfb0645d69e8935994ed097adb8abb9f953bec",
+      "side": "R"
+    },
+    {
+      "h": "0aa2cf9afd68763bbe004253adf9e264d7643d0acfc6eea5ee2236ff556e15b6",
+      "side": "L"
+    },
+    {
+      "h": "2f2978c75abfdb3322b9e72e01bfbb67b95de7d4f8ffff0b22dd27ea417e4c60",
+      "side": "L"
+    },
+    {
+      "h": "05c198fdca861d19bae41bfa42ceb633cf85bb7a73265d809d9026fb641c380d",
+      "side": "R"
+    },
+    {
+      "h": "bab6054c55b44dd95bee1870dd2750165055b11296c6d1bf61170467f4e49a20",
+      "side": "R"
+    },
+    {
+      "h": "b6ba99016ed8f8a810be3fb3e608e37a513c161cc9e054e59fc89a7ee2924d9f",
+      "side": "L"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "65acc32ebb176b7363203477ba1c80df2701475488eda0cfac98856f990275f7",
+      "side": "R"
+    },
+    {
+      "h": "5deffe6ec1820a66c56458553de9d2cd58e9cf1d074a556693bcddcc087b4b71",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "15c0bb0cd2dcf80f04be35673f49d6dc9c1517b3223397a72581d551170284ec",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
