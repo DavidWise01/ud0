@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1250,
+    "spheres": 1255,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1244,
+    "spheres_built": 1249,
     "apex": 1
   },
   "keepers": [
@@ -11338,6 +11338,51 @@
       "blurb": "It will sometimes say yes to something it never saw. It will never say no to something it did, and that guarantee survives any choice of parameters.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a54ae90af245f6b54fcea7eefa35b9fd97369e330cf1c877e7a8c6c5048bb41c"
+    },
+    {
+      "slug": "the-benfords-law",
+      "title": "THE BENFORDS LAW",
+      "kicker": "the leading digit is not fair",
+      "accent": "#ffd76a",
+      "blurb": "A 1 leads about 30% of the time and a 9 under 5%. It is used to screen for fraud, and it is not universal - which matters if you are accusing anyone.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "26abfc262074630c8ab4448933d672f5b37d35d6cf3b07c5a9bc5f2d7d079886"
+    },
+    {
+      "slug": "the-shapley-value",
+      "title": "THE SHAPLEY VALUE",
+      "kicker": "the only fair split there is",
+      "accent": "#7de2b0",
+      "blurb": "Write down four requirements for dividing what a group produced and exactly one formula satisfies them: average each player's marginal contribution over every order of arrival.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8dbdef024e63b24e79433b3319fb74655a369e12071038afb4031f9471ac9006"
+    },
+    {
+      "slug": "the-hawk-dove",
+      "title": "THE HAWK DOVE",
+      "kicker": "a fight nobody wins outright",
+      "accent": "#ff5a8a",
+      "blurb": "Hawks beat Doves every time, so why is not everyone a Hawk? Because two Hawks fight. The stable outcome is a precise mixture at exactly V/C.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2f15015149999216488c8cf974780ab68da847483a1f01a6081c400db4efe93c"
+    },
+    {
+      "slug": "the-folk-theorem",
+      "title": "THE FOLK THEOREM",
+      "kicker": "why tomorrow makes today honest",
+      "accent": "#5ad6ff",
+      "blurb": "Repeat a prisoner's dilemma forever and cooperation becomes an equilibrium - not from decency, but because the threat of never being trusted again outweighs one round of gain.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "acaa70d73b47f9cf69b15472493b0e09d8660e57475f9746163af869cdb745b7"
+    },
+    {
+      "slug": "the-ergodic",
+      "title": "THE ERGODIC",
+      "kicker": "when the long run answers for everyone",
+      "accent": "#b98cff",
+      "blurb": "Watching one trajectory long enough gives the same answer as sampling the whole space - for almost every start. It holds for an irrational rotation and fails outright for a rational one.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bf2fe9bf3ea32bbcdc0cf207d3f12f1e4c90fa7fffbcab066ac130d2f72cda38"
     }
   ],
   "appeals": [
@@ -14752,6 +14797,14 @@
               "icon": "☑",
               "kicker": "strictly ahead, never merely level",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-benfords-law",
+              "title": "THE BENFORDS LAW",
+              "accent": "#ffd76a",
+              "icon": "①",
+              "kicker": "the leading digit is not fair",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -15491,6 +15544,14 @@
               "accent": "#21e6ff",
               "icon": "peresmermin",
               "kicker": "the square with no numbers",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ergodic",
+              "title": "THE ERGODIC",
+              "accent": "#b98cff",
+              "icon": "↻",
+              "kicker": "when the long run answers for everyone",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17190,6 +17251,14 @@
               "icon": "borsukulam",
               "kicker": "antipodes that must agree",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hawk-dove",
+              "title": "THE HAWK DOVE",
+              "accent": "#ff5a8a",
+              "icon": "⚔",
+              "kicker": "a fight nobody wins outright",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -18474,6 +18543,14 @@
               "accent": "#7de2b0",
               "icon": "⇉",
               "kicker": "any order, one answer",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-shapley-value",
+              "title": "THE SHAPLEY VALUE",
+              "accent": "#7de2b0",
+              "icon": "⚖",
+              "kicker": "the only fair split there is",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20596,6 +20673,14 @@
               "icon": "⤴",
               "kicker": "a hill built to mislead",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-folk-theorem",
+              "title": "THE FOLK THEOREM",
+              "accent": "#5ad6ff",
+              "icon": "∞",
+              "kicker": "why tomorrow makes today honest",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -22254,7 +22339,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "84d99663522513abf3f7e313f74a578a849fbc44d6dfba1c53b7b851bcbdb6e4",
+  "fold_root": "d99677c7fcbba59e72c5ba07be6f7793e05eea032aa4b6177939792de98c27e6",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
