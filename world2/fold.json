@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1290,
+    "spheres": 1295,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1284,
+    "spheres_built": 1289,
     "apex": 1
   },
   "keepers": [
@@ -11698,6 +11698,51 @@
       "blurb": "Fix the probe distance instead of the load. Every key lives within H slots of its home bucket, and an insertion that would break that hops existing entries backwards to make room.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a11317f312d935122831536b6158aca6e0ba8ef97f29cf155dffe16de04e4725"
+    },
+    {
+      "slug": "the-zero-that-counted",
+      "title": "THE ZERO THAT COUNTED",
+      "kicker": "a counter that walked the wrong field",
+      "accent": "#ff5a8a",
+      "blurb": "It returned 0/0 for every program and looked exactly like a working counter. Zero is the one answer a broken counter and an empty input agree on.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6d784bd519346809301b1f03285e7efa4652b5f9d1f7b16211613320fe14ff57"
+    },
+    {
+      "slug": "the-three-ratios",
+      "title": "THE THREE RATIOS",
+      "kicker": "three quantities, one name",
+      "accent": "#ffd76a",
+      "blurb": "Pairing is a control invariant fixed at 1.00. ASK:ANSWER runs 1.20 to 11.00 at the programmer's level. LOAD:STORE runs 0.33 to 1.88 after lowering. They share nothing but a name.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a20298ec465296ee2b29e2bb475017c588ea01db3eaa2c8ba83ea1f39cce7a86"
+    },
+    {
+      "slug": "the-threshold-from-hope",
+      "title": "THE THRESHOLD FROM HOPE",
+      "kicker": "a gate set before the measurement",
+      "accent": "#7de2b0",
+      "blurb": "The test asserted a ratio above 2. Measurement said 0.33 to 1.88 - it never reaches 2 at all, so the gate failed on correct code and looked exactly like a defect.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "896f8362f72ef90ab61e1a43584d9bf9b3633c91026bf734b770845067e7ff57"
+    },
+    {
+      "slug": "the-compile-invariant",
+      "title": "THE COMPILE INVARIANT",
+      "kicker": "compiles equals distinct positions fired",
+      "accent": "#5ad6ff",
+      "blurb": "Eight positions, preloaded, nothing built until asked. The one line that keeps it honest: compiles must equal distinct positions fired. Speculation breaks it and nothing else notices.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b4b9cea327a5caea6e34255d8cfcacd55dc7932b1ed2dcb09877cb3b4891a7f0"
+    },
+    {
+      "slug": "the-counters-sum",
+      "title": "THE COUNTERS SUM",
+      "kicker": "the notation IS the state",
+      "accent": "#b98cff",
+      "blurb": "Positions at rest and positions fired, and the two counters always sum to 8 = 2^3. Reading the notation and reading the machine are the same act.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7235093f5a1ee17758765d6bf363d6c0781961f9f64adb363077d8e67baca28d"
     }
   ],
   "appeals": [
@@ -13166,6 +13211,14 @@
               "icon": "∅",
               "kicker": "an identity with no domain attached",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-counters-sum",
+              "title": "THE COUNTERS SUM",
+              "accent": "#b98cff",
+              "icon": "▣",
+              "kicker": "the notation IS the state",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 26,
@@ -14507,6 +14560,14 @@
               "icon": "tractrix",
               "kicker": "the leash with constant length",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-threshold-from-hope",
+              "title": "THE THRESHOLD FROM HOPE",
+              "accent": "#7de2b0",
+              "icon": "║",
+              "kicker": "a gate set before the measurement",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 30,
@@ -15175,6 +15236,14 @@
               "accent": "#ffd76a",
               "icon": "①",
               "kicker": "the leading digit is not fair",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-zero-that-counted",
+              "title": "THE ZERO THAT COUNTED",
+              "accent": "#ff5a8a",
+              "icon": "∅",
+              "kicker": "a counter that walked the wrong field",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -16127,6 +16196,14 @@
               "accent": "#ffcf4a",
               "icon": "langley",
               "kicker": "the freak integer angle",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-three-ratios",
+              "title": "THE THREE RATIOS",
+              "accent": "#ffd76a",
+              "icon": "≡",
+              "kicker": "three quantities, one name",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18661,6 +18738,14 @@
               "accent": "#21e6ff",
               "icon": "chinesehyp",
               "kicker": "the test that lets impostors through",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-compile-invariant",
+              "title": "THE COMPILE INVARIANT",
+              "accent": "#5ad6ff",
+              "icon": "⚖",
+              "kicker": "compiles equals distinct positions fired",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -22934,7 +23019,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "42c6a27f669000f52d866b113df1d1378ee6b55cf17ac2ed0042c48a6df1e9f7",
+  "fold_root": "958558235e3ceaa907863eeb5ab43195273cf730fb9c6b0738548330eda0a29d",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
