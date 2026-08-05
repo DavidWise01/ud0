@@ -103,7 +103,7 @@ function selftest(){if(VR)return VR;
  var gSide=Math.abs(distToLine(GC[0],TA,TB)-r2);
  var okGreedy=Math.max(gTan,gSide)<1e-12;
  var aM=3*Math.PI*rho*rho,aG=Math.PI*(r1*r1+2*r2*r2);
- VR={aM:aM,aG:aG,pct:(aG/aM-1)*100,okMalf:okMalf,okGreedy:okGreedy,
+ VR={rho:rho,r1:r1,r2:r2,aM:aM,aG:aG,pct:(aG/aM-1)*100,okMalf:okMalf,okGreedy:okGreedy,
   ok:okMalf&&okGreedy&&aG>aM};return VR;}
 function drawConfig(g,cx,cy,sc,which,dim){
  ne(g,'rgba(150,160,210,0.7)',1.6);g.beginPath();
