@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE NYQUIST",
+  "slug": "the-nyquist",
+  "seal": "1af81cd98329bab29ff4b83bf9bb2ee29328bc05c4d344ce0a9bf7ec55d5156b",
+  "index": 1155,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "5730ba1d726c3a72930fb22f970968cd16acb708723b15a0a7525e4bd2a910dd",
+      "side": "L"
+    },
+    {
+      "h": "825334b76c6d666a1b7469e770e0b4cb67ece067f8054eebcef61ca7be53b50e",
+      "side": "L"
+    },
+    {
+      "h": "5ffa69e6576bd55186720ef1760cd708dfd905ee720f3af96d5fe93131e7a67d",
+      "side": "R"
+    },
+    {
+      "h": "0638558a58a2999b91361be9bc8b7064abe23159c24d02c435097b341b1e3998",
+      "side": "R"
+    },
+    {
+      "h": "89c48b85466e42a79907a6f394719149120072a748e18fb1c0429be7edce3990",
+      "side": "R"
+    },
+    {
+      "h": "eab160a7d5323691a53e6886400027f915fd806f73d289119bf402bb6d42d409",
+      "side": "R"
+    },
+    {
+      "h": "b878b017b67f10fa726f79c6b6ba50cf88593b6c6ac3f447a59b387074688aa5",
+      "side": "R"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "724b0384e714bca57e517c006ee97198f22e30b192e69220e68972503c1dfbf3",
+      "side": "R"
+    },
+    {
+      "h": "5a88f0e8163831e6d75d6137066e6cfc9406b95c0481caee086a402611584573",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "afad07b3123759d17e6ae4e9af1c1c9f5d4bcb85af5a9d56d48aee750d71da8d",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

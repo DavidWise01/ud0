@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1155,
+    "spheres": 1160,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1149,
+    "spheres_built": 1154,
     "apex": 1
   },
   "keepers": [
@@ -10483,6 +10483,51 @@
       "blurb": "For sixty years mathematicians hunted the einstein — one tile (ein Stein) that covers the plane but never periodically. Penrose got it to two in 1974 and there it stuck. In March 2023 David Smith, a retired print technician in Yorkshire, cut a shape from kite-shaped paper, couldn't make it repeat, and wrote to Craig Kaplan. With Myers and Goodman-Strauss they proved it: a single aperiodic tile, found by an amateur.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "5730ba1d726c3a72930fb22f970968cd16acb708723b15a0a7525e4bd2a910dd"
+    },
+    {
+      "slug": "the-nyquist",
+      "title": "THE NYQUIST",
+      "kicker": "half the sampling rate, and not one hertz more",
+      "accent": "#5ad6ff",
+      "blurb": "Sample too slowly and the lost frequencies do not vanish — they come back wearing a disguise. A 700 Hz tone and a 300 Hz tone produce identical samples at 1000 Hz. Verified here to floating-point zero.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1af81cd98329bab29ff4b83bf9bb2ee29328bc05c4d344ce0a9bf7ec55d5156b"
+    },
+    {
+      "slug": "the-rate-distortion",
+      "title": "THE RATE-DISTORTION",
+      "kicker": "how small it gets if you say what you can lose",
+      "accent": "#7de2b0",
+      "blurb": "Shannon's other curve: the minimum bits per symbol for a permitted distortion. Real quantisers built here fall short of it by two exact constants — and the 1.533 dB gap is the price of cutting space into cubes instead of spheres.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "938819caa094bffc66d01d369983edc471e2477f2b510e7fc417393944a4b2c7"
+    },
+    {
+      "slug": "the-gilbert-varshamov",
+      "title": "THE GILBERT-VARSHAMOV",
+      "kicker": "the code is there; nobody has to find it",
+      "accent": "#ffd76a",
+      "blurb": "A bound that proves good error-correcting codes exist without ever building one — the greedy process simply cannot stop until the balls cover everything. It stood unbeaten for thirty years.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bae18d2c81545e08b298e55351f9693f0429430e114f6fc5e26d6fba000d50b2"
+    },
+    {
+      "slug": "the-shannon-limit",
+      "title": "THE SHANNON LIMIT",
+      "kicker": "error-free, through noise, at a rate that does not vanish",
+      "accent": "#ff9a5a",
+      "blurb": "Everyone assumed reliability had to be bought with throughput. Shannon proved that below capacity you can drive error as low as you like without the rate collapsing — and above it, you cannot, at any price.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ce7985005f61c4170f665761814932200976d1b2fedac05ecbbedf06f85bcf8e"
+    },
+    {
+      "slug": "the-slepian-wolf",
+      "title": "THE SLEPIAN-WOLF",
+      "kicker": "two encoders, no channel between them, joint price",
+      "accent": "#b98cff",
+      "blurb": "Two sensors that cannot hear each other still pay only what a single encoder seeing both would pay. The correlation is exploited by the decoder — the encoders never need to know it exists.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ba0bf4ece5379974af66e388e726c6244c910fa0b5b3ecfcc4940414455855cf"
     }
   ],
   "appeals": [
@@ -18853,6 +18898,14 @@
               "icon": "tusi",
               "kicker": "rotation compiled to translation",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-slepian-wolf",
+              "title": "THE SLEPIAN-WOLF",
+              "accent": "#b98cff",
+              "icon": "⇉",
+              "kicker": "two encoders, no channel between them, joint price",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -18968,6 +19021,14 @@
               "accent": "#b06bff",
               "icon": "kapitza",
               "kicker": "gravity beaten by vibration",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-shannon-limit",
+              "title": "THE SHANNON LIMIT",
+              "accent": "#ff9a5a",
+              "icon": "⧖",
+              "kicker": "error-free, through noise, at a rate that does not vanish",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20026,6 +20087,14 @@
               "icon": "tree",
               "kicker": "the sequence that must end",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gilbert-varshamov",
+              "title": "THE GILBERT-VARSHAMOV",
+              "accent": "#ffd76a",
+              "icon": "◈",
+              "kicker": "the code is there; nobody has to find it",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -20343,6 +20412,14 @@
               "icon": "chaitin",
               "kicker": "the number no theory can reach",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-nyquist",
+              "title": "THE NYQUIST",
+              "accent": "#5ad6ff",
+              "icon": "⌇",
+              "kicker": "half the sampling rate, and not one hertz more",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -20535,6 +20612,14 @@
               "icon": "gasket",
               "kicker": "circles all the way down, all integers",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rate-distortion",
+              "title": "THE RATE-DISTORTION",
+              "accent": "#7de2b0",
+              "icon": "⊘",
+              "kicker": "how small it gets if you say what you can lose",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -20639,7 +20724,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "207d4caec83e1bd49bed25f1f79be8521049cc0962e3074b49e0cc05c1665cc0",
+  "fold_root": "afad07b3123759d17e6ae4e9af1c1c9f5d4bcb85af5a9d56d48aee750d71da8d",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
