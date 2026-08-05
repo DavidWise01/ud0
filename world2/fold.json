@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1240,
+    "spheres": 1245,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1234,
+    "spheres_built": 1239,
     "apex": 1
   },
   "keepers": [
@@ -11248,6 +11248,51 @@
       "blurb": "When everyone bids their honest estimate of a common value, the winner is by construction the one who overestimated most. Winning is evidence against you.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "25eaa1a79bf014e251820c7a756fba93076f7c7b24c37dd91f60eed5fe584ea6"
+    },
+    {
+      "slug": "the-cutoff",
+      "title": "THE CUTOFF",
+      "kicker": "mixing that happens all at once",
+      "accent": "#5ad6ff",
+      "blurb": "Many Markov chains stay almost entirely unmixed for a long stretch, then collapse to near-uniform in a window far shorter than the wait.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e1a7858a48a28e418166a01afd8586f0cc74667a8c749c06539c94f39869fa6e"
+    },
+    {
+      "slug": "the-reflection",
+      "title": "THE REFLECTION",
+      "kicker": "a path folded through a wall",
+      "accent": "#7de2b0",
+      "blurb": "Take any walk that touches a level and reflect everything after the first touch. A question about whole histories becomes a question about endpoints.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7ad5cc23b31a8d439a9bd9a67744d48daba13a99f5112eb38e0cb5fffe7b0a8d"
+    },
+    {
+      "slug": "the-lyapunov",
+      "title": "THE LYAPUNOV",
+      "kicker": "two futures from one place",
+      "accent": "#ff5a8a",
+      "blurb": "The rate at which nearby states separate, and its sign is the whole diagnostic. At r = 4 the logistic map destroys exactly one bit of the starting value per step.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bb45a0bfa261de635d87b528c9bfe26a8489e3241e74851c7a6ceb44726cbdae"
+    },
+    {
+      "slug": "the-poincare-recurrence",
+      "title": "THE POINCARE RECURRENCE",
+      "kicker": "everything comes back",
+      "accent": "#ffd76a",
+      "blurb": "A volume-preserving system in a bounded region must return arbitrarily close to where it began, infinitely often. It says nothing whatever about when.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1b08ac09c7f168f6e4d3a7aab8aa0a3d601ba2f8da3e80f61f73ae1d82751201"
+    },
+    {
+      "slug": "the-birthday-attack",
+      "title": "THE BIRTHDAY ATTACK",
+      "kicker": "half the bits, all the security",
+      "accent": "#b98cff",
+      "blurb": "Finding any collision takes about the square root of finding a specific one, because pairs grow quadratically. A 128-bit digest offers 64 bits of resistance.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7d9bfc1a3db1910938e546a7c5a15c5e71293d7527af3c1bc5b8d36b5e9483c6"
     }
   ],
   "appeals": [
@@ -12675,6 +12720,14 @@
               "accent": "#35ffb0",
               "icon": "minkowskibody",
               "kicker": "area forces a lattice point",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lyapunov",
+              "title": "THE LYAPUNOV",
+              "accent": "#ff5a8a",
+              "icon": "⤳",
+              "kicker": "two futures from one place",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19818,6 +19871,14 @@
               "icon": "⚭",
               "kicker": "an integer that survives any deformation",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-reflection",
+              "title": "THE REFLECTION",
+              "accent": "#7de2b0",
+              "icon": "⤨",
+              "kicker": "a path folded through a wall",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -20301,6 +20362,14 @@
               "accent": "#5ad6ff",
               "icon": "⊘",
               "kicker": "a correlation made of nothing but who was let in",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-birthday-attack",
+              "title": "THE BIRTHDAY ATTACK",
+              "accent": "#b98cff",
+              "icon": "√",
+              "kicker": "half the bits, all the security",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21182,6 +21251,14 @@
               "accent": "#ffd76a",
               "icon": "↑",
               "kicker": "one over k, whatever the world",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-poincare-recurrence",
+              "title": "THE POINCARE RECURRENCE",
+              "accent": "#ffd76a",
+              "icon": "↺",
+              "kicker": "everything comes back",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -22072,6 +22149,14 @@
               "icon": "∞",
               "kicker": "a mean that never settles",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cutoff",
+              "title": "THE CUTOFF",
+              "accent": "#5ad6ff",
+              "icon": "⌷",
+              "kicker": "mixing that happens all at once",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -22084,7 +22169,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "915455cfe548566646aedfb94ab485367d8b09e585ebf1ee30905668cd0811d2",
+  "fold_root": "cd02b01fce4c2fa7f1e56af8753a018edb86de6a06ce5a454508cbc482f1c4d3",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
