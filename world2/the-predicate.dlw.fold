@@ -11,23 +11,23 @@
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
+      "h": "870cf9581ea66925830d221061bc4dcbd57dffb43008ede7c0c66cf1f267c427",
       "side": "R"
     },
     {
-      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "h": "b90dbe1b56e1643a301ba73ca3ce4d1acc9d5725e21c636a1a5efcf0d33fc5b9",
       "side": "R"
     },
     {
-      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "h": "bdafac8bb0f29fe99c92547c15260ab23c8e858f2b7cd9f462de8f68aa036e7d",
       "side": "R"
     },
     {
-      "h": "eaf38c2cd96997d54d6a4c5db37ee0cfaec10743902b74eafba1eb5507e33c6f",
+      "h": "7349af00e45a482dea676eeb1db27c8d7364eb50100d2f1f86c6bde51d83b989",
       "side": "R"
     },
     {
-      "h": "0080ff6556ecaf6556d91227576054db9c9d62d0573de94cfac1462896ce80da",
+      "h": "f5c573bf432fbe4ea912be7d0209f036c14a59e1558f391aa8357755d4436f00",
       "side": "R"
     },
     {
@@ -35,7 +35,7 @@
       "side": "L"
     },
     {
-      "h": "deeef0ad3b9bf0790f371456807a8f6df04e6a7e307d26880abf89c9a007c514",
+      "h": "027ff556fb2286cbf2b41106a3285688c5abadc33c08ea73d50e57016fe5093f",
       "side": "R"
     },
     {
@@ -43,11 +43,11 @@
       "side": "L"
     },
     {
-      "h": "efaf84aacbe1249e97c118c0494382821e6fece8cf7169c7e9e710b2233cc7d5",
+      "h": "78917d897a39b227fe3304534cffd354a700125a4917204ad045c2a86090e906",
       "side": "R"
     },
     {
-      "h": "ff648a3abffc4490ff974e3b1367c9e80f68958547bff45d33e5683cd4c43f07",
+      "h": "97d9c73c8cce3cf839816a4d2c0a795a97b3a9efbb511b818e954c7a307c3536",
       "side": "R"
     },
     {
@@ -56,7 +56,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "e7f94ff745015f6825e281c2d3b3a187507bf206f9ddcc9978167dbe4fa0fb1a",
+  "root": "184c3c4ddf9dad9fa854ac9fedbf18cb120d0512054e634f32eff3a668b635b9",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-04",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"

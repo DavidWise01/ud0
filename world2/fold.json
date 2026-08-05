@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1185,
+    "spheres": 1190,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1179,
+    "spheres_built": 1184,
     "apex": 1
   },
   "keepers": [
@@ -10753,6 +10753,51 @@
       "blurb": "Total error splits in two: the human's predicate error and the machine's staleness error. Running more often drives one to zero and leaves the other exactly where it was.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a0f980dff6483b98aac775815194edaafadaf62d509c5a69cb3eef44ac311af8"
+    },
+    {
+      "slug": "the-union",
+      "title": "THE UNION",
+      "kicker": "read their generator instead of guessing at it",
+      "accent": "#ffd76a",
+      "blurb": "A grep returned 350 and was 35% low. What makes it worth keeping is why it survived inspection: 350 sits 0.86% from a real single-pattern count, so it read as a total rather than a fragment.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "870cf9581ea66925830d221061bc4dcbd57dffb43008ede7c0c66cf1f267c427"
+    },
+    {
+      "slug": "the-definition",
+      "title": "THE DEFINITION",
+      "kicker": "apples-to-apples matters more than thoroughness",
+      "accent": "#7de2b0",
+      "blurb": "Count the same test files four ways and get 272, 273, 346, 390. Nothing in the repository changed — only the definition did, and only one of the four can be honestly compared to the figure under audit.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "97245eea5a8b55a18b1723c507a4ac763ac3074785ca9788eea92056a9c29d9a"
+    },
+    {
+      "slug": "the-line-count",
+      "title": "THE LINE COUNT",
+      "kicker": "the third time, and the lesson still did not take",
+      "accent": "#ff5a8a",
+      "blurb": "A probe killed its own author's published figure: 1.64% drift shipped where the truth was 8.50%. The cause was counting lines with his definition instead of theirs — the same error he had already caught twice.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "021c694e9bbcd71aa09d0bf2e0d42ff505fe6b6d152aad5b7445b1c233e3195d"
+    },
+    {
+      "slug": "the-test-that-did-not-run",
+      "title": "THE TEST THAT DID NOT RUN",
+      "kicker": "identical to a test that passes",
+      "accent": "#5ad6ff",
+      "blurb": "A shell mismatch meant two of seven cases never executed. The harness reported zero failures — which is exactly what a fully passing suite reports. There is no symptom, because absence of failure is the same signal in both worlds.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "93024620e2e6259043f9d88d103ad0cad7bfac37e01c50948137f847867855b9"
+    },
+    {
+      "slug": "the-contaminated-pool",
+      "title": "THE CONTAMINATED POOL",
+      "kicker": "my draw was honest, the pool was not",
+      "accent": "#b98cff",
+      "blurb": "A uniform seeded draw returned an item that did not belong in the pool at all. Everything verifiable about a sampler is a property of the sampler, and none of it says whether the population is what you were told.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7321eb5c99172f7a7b2bd69bf8b2023d7e089128bc44d6cd33bfa63d236a8cf1"
     }
   ],
   "appeals": [
@@ -19771,6 +19816,14 @@
               "icon": "gibbard",
               "kicker": "no honest rule",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-contaminated-pool",
+              "title": "THE CONTAMINATED POOL",
+              "accent": "#b98cff",
+              "icon": "◌",
+              "kicker": "my draw was honest, the pool was not",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -20432,6 +20485,14 @@
               "icon": "◇",
               "kicker": "keep the corners, discard the rest, rebuild the whole",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-definition",
+              "title": "THE DEFINITION",
+              "accent": "#7de2b0",
+              "icon": "≡",
+              "kicker": "apples-to-apples matters more than thoroughness",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -20555,6 +20616,14 @@
               "accent": "#5ad6ff",
               "icon": "∃",
               "kicker": "an infinity settled by a finite piece of itself",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-test-that-did-not-run",
+              "title": "THE TEST THAT DID NOT RUN",
+              "accent": "#5ad6ff",
+              "icon": "⊘",
+              "kicker": "identical to a test that passes",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20921,6 +20990,14 @@
               "icon": "↯",
               "kicker": "the last instant a rollback was still free",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-line-count",
+              "title": "THE LINE COUNT",
+              "accent": "#ff5a8a",
+              "icon": "≡",
+              "kicker": "the third time, and the lesson still did not take",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 30,
@@ -21020,6 +21097,14 @@
               "accent": "#7de2b0",
               "icon": "⊢",
               "kicker": "a proof that stops borrowing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-union",
+              "title": "THE UNION",
+              "accent": "#ffd76a",
+              "icon": "∪",
+              "kicker": "read their generator instead of guessing at it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21149,7 +21234,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "e7f94ff745015f6825e281c2d3b3a187507bf206f9ddcc9978167dbe4fa0fb1a",
+  "fold_root": "184c3c4ddf9dad9fa854ac9fedbf18cb120d0512054e634f32eff3a668b635b9",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

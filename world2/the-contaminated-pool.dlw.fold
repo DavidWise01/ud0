@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE CONTAMINATED POOL",
+  "slug": "the-contaminated-pool",
+  "seal": "7321eb5c99172f7a7b2bd69bf8b2023d7e089128bc44d6cd33bfa63d236a8cf1",
+  "index": 1189,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "93024620e2e6259043f9d88d103ad0cad7bfac37e01c50948137f847867855b9",
+      "side": "L"
+    },
+    {
+      "h": "c3aef53a6c220fd627da7acdbfcfb0645d69e8935994ed097adb8abb9f953bec",
+      "side": "R"
+    },
+    {
+      "h": "380e6469936803e272c0c28cde9a62b81e97b17d954c8c07fe900fb116998c08",
+      "side": "L"
+    },
+    {
+      "h": "7349af00e45a482dea676eeb1db27c8d7364eb50100d2f1f86c6bde51d83b989",
+      "side": "R"
+    },
+    {
+      "h": "f5c573bf432fbe4ea912be7d0209f036c14a59e1558f391aa8357755d4436f00",
+      "side": "R"
+    },
+    {
+      "h": "5f6e9863361e4171031b59a5dc9672046d34f6e3f9162b8c9627ba3cdd5a6144",
+      "side": "L"
+    },
+    {
+      "h": "027ff556fb2286cbf2b41106a3285688c5abadc33c08ea73d50e57016fe5093f",
+      "side": "R"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "78917d897a39b227fe3304534cffd354a700125a4917204ad045c2a86090e906",
+      "side": "R"
+    },
+    {
+      "h": "97d9c73c8cce3cf839816a4d2c0a795a97b3a9efbb511b818e954c7a307c3536",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "184c3c4ddf9dad9fa854ac9fedbf18cb120d0512054e634f32eff3a668b635b9",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
