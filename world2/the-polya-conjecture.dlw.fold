@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE PÓLYA CONJECTURE",
+  "slug": "the-polya-conjecture",
+  "seal": "1bd2ee8b3760cf050cf7433da72311a39b5af8d077598e0c137b6942e861a9ea",
+  "index": 1136,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "6de3d7ed680d859a90c4214cbbd8363eb6571704336e0cf72f9b8560842377c6",
+      "side": "R"
+    },
+    {
+      "h": "d6ffa96fa90a9b8b7c6552598a8e5b124e5bb9903a4fccf93a6361592ff027bd",
+      "side": "R"
+    },
+    {
+      "h": "b7374d88a1b1096a196b943b77357f609c459479fbb53d17dfb24f9075a05dfb",
+      "side": "R"
+    },
+    {
+      "h": "2f79034feecb0967e1f0936912b0703f63828a0b95833275896dab3238ece9ff",
+      "side": "R"
+    },
+    {
+      "h": "597da00323d1968be4932d61f23183cb17bd82d4901b16d449ed27716a1c4b7f",
+      "side": "L"
+    },
+    {
+      "h": "f269c8a529f815d2f48903968708708d6595d6abda30d6646468816c5751ef16",
+      "side": "L"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "5ff6f84cbba94f2d1769f88c8309dd243e1e52d76f393684edb5067a6f4b36c5",
+      "side": "R"
+    },
+    {
+      "h": "51d93f1da60f4ce11cac456ea534323343683627435d93fdbf0de38304133477",
+      "side": "R"
+    },
+    {
+      "h": "9361d50b756ba76d9a4bfae51f50d574be125013be96b66d578b997736e86d12",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "ddbbdc16ace5c29696a1aae0e59c810434b69c0affdee43018fe76d2312101a3",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

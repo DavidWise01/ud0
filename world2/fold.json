@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1135,
+    "spheres": 1140,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1129,
+    "spheres_built": 1134,
     "apex": 1
   },
   "keepers": [
@@ -10303,6 +10303,51 @@
       "blurb": "Seven flat pieces cut from a square, a craze in Europe from about 1815. Its famous trick is the vanishing-piece paradox — Dudeney's two monks, built from the same seven tans, one plainly missing a foot. Nothing vanishes: the pieces are rigid, the areas identical, and the missing foot is paid for by a redistribution too diffuse to see, because equal area never implied equal shape and the eye keeps assuming it does.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "8b7a5bc33a31bc141eb36005c46d8699d06c244ade93d2c881d8ca16a1defcb2"
+    },
+    {
+      "slug": "the-fermat-primes",
+      "title": "THE FERMAT PRIMES",
+      "kicker": "five in a row, then Euler",
+      "accent": "#ffcf4a",
+      "blurb": "Fermat saw 3, 5, 17, 257, 65537 — every 2^(2ⁿ)+1 he could compute was prime — and wrote in 1640 that he was convinced they all were. Ninety-two years later Euler took F₅ apart: 4,294,967,297 = 641 × 6,700,417, found not by trial division but by proving every factor must be 1 mod 2^(n+2). No sixth Fermat prime has ever been found.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ee963f616eb6830cebde0e3defab501369ff1be23461038dc6b14065084b7abd"
+    },
+    {
+      "slug": "the-polya-conjecture",
+      "title": "THE PÓLYA CONJECTURE",
+      "kicker": "a million confirmations, still false",
+      "accent": "#b06bff",
+      "blurb": "Sort every number by whether it has an even or odd count of prime factors. Pólya conjectured in 1919 that from n=2 the odd ones always lead — the running tally never goes positive. It holds for a million. It holds for nine hundred million. It is false: Haselgrove proved a counterexample must exist (1958) without producing one, and Tanaka pinned the first at n = 906,150,257 in 1980.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1bd2ee8b3760cf050cf7433da72311a39b5af8d077598e0c137b6942e861a9ea"
+    },
+    {
+      "slug": "the-chinese-hypothesis",
+      "title": "THE CHINESE HYPOTHESIS",
+      "kicker": "the test that lets impostors through",
+      "accent": "#21e6ff",
+      "blurb": "Every prime satisfies 2ⁿ ≡ 2 (mod n). The tempting converse would be a one-line primality test — and it is false, with a witness small enough to check by hand: 341 = 11 × 31 sails through. Worse are the Carmichael numbers, which pass for EVERY coprime base; 561 is the first, and there are infinitely many. The name is dead too: a 19th-century European idea misattributed to ancient China.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6de3d7ed680d859a90c4214cbbd8363eb6571704336e0cf72f9b8560842377c6"
+    },
+    {
+      "slug": "the-tait",
+      "title": "THE TAIT",
+      "kicker": "the lemma that held up a theorem for 62 years",
+      "accent": "#ff8a3c",
+      "blurb": "In 1884 Tait announced a proof of the four-colour theorem resting on one obvious-looking assumption: every 3-connected planar cubic graph has a Hamiltonian cycle. It is false. Tutte killed it in 1946 with a 46-vertex counterexample, and the four-colour theorem stayed open until Appel–Haken in 1976. The smallest non-Hamiltonian polyhedral graph predates the conjecture: Herschel's, 1873.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "691460ef39999175445b69aa034241b4d407b16d342549f81265ea74cdc5bd66"
+    },
+    {
+      "slug": "the-keller",
+      "title": "THE KELLER",
+      "kicker": "true until dimension seven",
+      "accent": "#b06bff",
+      "blurb": "Tile space with identical cubes at any offsets: Keller conjectured in 1930 that some two must share a complete face. True in the plane, true in 3D, true up to six dimensions — then it dies. Lagarias and Shor broke dimension 10 in 1992, Mackey reached 8 in 2002, and dimension 7 held until 2020, when a SAT proof with a forty-terabyte certificate finished it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "db56b4a252fbc17cf1b12c2f669d9725239e8c3894d68d00382312eb90c82574"
     }
   ],
   "appeals": [
@@ -16579,6 +16624,14 @@
               "icon": "squarefree",
               "kicker": "three letters never stutter",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-tait",
+              "title": "THE TAIT",
+              "accent": "#ff8a3c",
+              "icon": "tait",
+              "kicker": "the lemma that held up a theorem for 62 years",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 34,
@@ -16735,6 +16788,14 @@
               "icon": "alternatingsign",
               "kicker": "the 88-referee formula",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-polya-conjecture",
+              "title": "THE PÓLYA CONJECTURE",
+              "accent": "#b06bff",
+              "icon": "polyaconj",
+              "kicker": "a million confirmations, still false",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 22,
@@ -16883,6 +16944,14 @@
               "icon": "moserspindle",
               "kicker": "seven points that outlaw three colors",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-chinese-hypothesis",
+              "title": "THE CHINESE HYPOTHESIS",
+              "accent": "#21e6ff",
+              "icon": "chinesehyp",
+              "kicker": "the test that lets impostors through",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 35,
@@ -17030,6 +17099,14 @@
               "accent": "#b06bff",
               "icon": "drozfarny",
               "kicker": "the 105-year line",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-keller",
+              "title": "THE KELLER",
+              "accent": "#b06bff",
+              "icon": "keller",
+              "kicker": "true until dimension seven",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19293,6 +19370,14 @@
               "icon": "willrogers",
               "kicker": "a transfer that flatters everyone",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fermat-primes",
+              "title": "THE FERMAT PRIMES",
+              "accent": "#ffcf4a",
+              "icon": "fermatprimes",
+              "kicker": "five in a row, then Euler",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -20299,7 +20384,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "7e4cb3294d9cef544fb7f7b1feeef4de328e61ede4f3bb8fe077f3a2be6363e4",
+  "fold_root": "ddbbdc16ace5c29696a1aae0e59c810434b69c0affdee43018fe76d2312101a3",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
