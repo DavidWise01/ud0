@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1165,
+    "spheres": 1170,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1159,
+    "spheres_built": 1164,
     "apex": 1
   },
   "keepers": [
@@ -10573,6 +10573,51 @@
       "blurb": "Every eye believes a closed loop has an inside. Proving it took until 1887, because no amount of looking near a point tells you which side you are on — only a global parity does.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "dca65d74adac12043dc1c539bcd87f4809653267d04871d8da0304852f636188"
+    },
+    {
+      "slug": "the-orthogonal-split",
+      "title": "THE ORTHOGONAL SPLIT",
+      "kicker": "put the two rulers on different axes and the collisions stop existing",
+      "accent": "#7de2b0",
+      "blurb": "ROOT_0's rev 5 · 0804. One ruler asked to measure two things gives 17,259 steps that change both at once. Two rulers on different axes give zero — and the zero is structural, not lucky.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "656aeb63926622fe5c1acdc21318c5044bed5d55da0f57bdd00368748d872b53"
+    },
+    {
+      "slug": "the-seam",
+      "title": "THE SEAM",
+      "kicker": "the gate and the lie on opposite sides of a join nobody stands on",
+      "accent": "#ff5a8a",
+      "blurb": "The compute side is gated. The render side is not. So a published artifact can assert a number its own repository abandoned, and the pipeline is satisfied — because nothing is watching the seam.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8fe3bf22e558292791c792e35188a776eb6789afb446d28f2f79548edbcd9a5c"
+    },
+    {
+      "slug": "the-first-mutate",
+      "title": "THE FIRST MUTATE",
+      "kicker": "the last instant a rollback was still free",
+      "accent": "#5ad6ff",
+      "blurb": "One metric, and it is answerable: did anything that could falsify the answer fire before the first action that mutates? After that the answer is frozen, and nothing said later can improve it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "122135cf23d674c8f65b1259d4d31cd4cad6854b80ff4dadb981aa75e4c93f81"
+    },
+    {
+      "slug": "the-memoryless-examiner",
+      "title": "THE MEMORYLESS EXAMINER",
+      "kicker": "a grader with amnesia can only be shown",
+      "accent": "#ffd76a",
+      "blurb": "Icarium cannot remember whether you did well last time, cannot like you, cannot give you the benefit of the doubt. It reads only what you wrote down — and that is the point, not the handicap.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fa57a8684fd1049d12568bfe6ed3eae1f0bbec74b6480cd57a49de9f888d6a4b"
+    },
+    {
+      "slug": "the-stamp",
+      "title": "THE STAMP",
+      "kicker": "LIT is refused without an evidence string",
+      "accent": "#b98cff",
+      "blurb": "Three stamps, and the discipline is in which ones you may give yourself. The only one you can assert freely is AMBER — the one that admits it was a judgement call.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4a7297d2e1f035076c4701e44947784e419646a8fe623d88cbd2f58b0a369527"
     }
   ],
   "appeals": [
@@ -13783,6 +13828,14 @@
               "icon": "mediant",
               "kicker": "the forbidden addition with its own laws",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-orthogonal-split",
+              "title": "THE ORTHOGONAL SPLIT",
+              "accent": "#7de2b0",
+              "icon": "╋",
+              "kicker": "put the two rulers on different axes and the collisions stop existing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -14302,6 +14355,14 @@
               "accent": "#b06bff",
               "icon": "hardy",
               "kicker": "the paradox at phi to the minus five",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-seam",
+              "title": "THE SEAM",
+              "accent": "#ff5a8a",
+              "icon": "⧉",
+              "kicker": "the gate and the lie on opposite sides of a join nobody stands on",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20164,6 +20225,14 @@
               "icon": "◈",
               "kicker": "the code is there; nobody has to find it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-stamp",
+              "title": "THE STAMP",
+              "accent": "#b98cff",
+              "icon": "◆",
+              "kicker": "LIT is refused without an evidence string",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -20605,6 +20674,14 @@
               "icon": "honeycomb",
               "kicker": "the cheapest walls",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-first-mutate",
+              "title": "THE FIRST MUTATE",
+              "accent": "#5ad6ff",
+              "icon": "↯",
+              "kicker": "the last instant a rollback was still free",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 30,
@@ -20797,6 +20874,14 @@
               "icon": "◌",
               "kicker": "inside is not a place, it is a count",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-memoryless-examiner",
+              "title": "THE MEMORYLESS EXAMINER",
+              "accent": "#ffd76a",
+              "icon": "⊘",
+              "kicker": "a grader with amnesia can only be shown",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -20809,7 +20894,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "2f09973afe19edac7fafea748d67a9ad54c6c76658953f5a194033cdc7bf03f9",
+  "fold_root": "9292dac17b9f7d7d46ae76bc67564629a6b9d679ebed2303a6a34fe621404c85",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
