@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1280,
+    "spheres": 1285,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1274,
+    "spheres_built": 1279,
     "apex": 1
   },
   "keepers": [
@@ -11608,6 +11608,51 @@
       "blurb": "Life repeats itself constantly. Store the universe as a quadtree where identical subsquares ARE the same object, and the repetition collapses.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "4d683e99308de94b0ba9c0d650039a961401d3359c0d282b0932fc415b2661c4"
+    },
+    {
+      "slug": "the-permutation-null",
+      "title": "THE PERMUTATION NULL",
+      "kicker": "the control that killed the pretty result",
+      "accent": "#ff5a8a",
+      "blurb": "A catalogue of 2,048 items decomposed as a quantum state gave Schmidt rank 8 and 0.6081 bits of entanglement. Then the control ran, and that is what random labelling gives anyway.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3c650e1b38d1ea581a6c2d2e49f4b73159fe371211603b22e295180603324a27"
+    },
+    {
+      "slug": "the-two-rulers",
+      "title": "THE TWO RULERS",
+      "kicker": "91% balanced and 39% used, both correct",
+      "accent": "#7de2b0",
+      "blurb": "Two standard measures of spread, the same 64 numbers, fifty-two points apart. Neither is a mistake. One takes a logarithm and the other does not.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9057cdd3b922b22ca9a9f3ce4c4fcbeeece48b1c62928d5c4dba392b72123a63"
+    },
+    {
+      "slug": "the-half-in-fourteen",
+      "title": "THE HALF IN FOURTEEN",
+      "kicker": "a mean that touches almost nothing",
+      "accent": "#ffd76a",
+      "blurb": "2,048 items across 64 containers makes the mean 32. Forty-six containers hold less than that, and fourteen hold half the corpus between them.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d44d1e2176e665d19cdb753c6f5487a6f0a1eab4331f035fe810d4509401d9e2"
+    },
+    {
+      "slug": "the-self-clocking-seam",
+      "title": "THE SELF-CLOCKING SEAM",
+      "kicker": "a signal that carries its own clock",
+      "accent": "#5ad6ff",
+      "blurb": "A receiver needs to know where each bit begins. A code that changes at every position hands the clock over inside the data - the property an air gap needs, because an air gap has no second wire.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "54d4a90885b2bb1b833e5fe749cccc69fd4452061f6849ea1a0e9c6985826330"
+    },
+    {
+      "slug": "the-redaction",
+      "title": "THE REDACTION",
+      "kicker": "names removed, and nothing measured moved",
+      "accent": "#b98cff",
+      "blurb": "Every name replaced by a code, every figure untouched. Defensible only if no figure depended on the names - which here is provable.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "50da29d6cde5d11d9ad715bfce036c7e09eef73b3dcbd6d7c7f2e81b67d04a05"
     }
   ],
   "appeals": [
@@ -17900,6 +17945,14 @@
               "icon": "▦",
               "kicker": "a threshold at exactly one half",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-permutation-null",
+              "title": "THE PERMUTATION NULL",
+              "accent": "#ff5a8a",
+              "icon": "⚔",
+              "kicker": "the control that killed the pretty result",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 40,
@@ -19209,6 +19262,14 @@
               "icon": "✲",
               "kicker": "a border every country touches",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-self-clocking-seam",
+              "title": "THE SELF-CLOCKING SEAM",
+              "accent": "#5ad6ff",
+              "icon": "⌇",
+              "kicker": "a signal that carries its own clock",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 37,
@@ -19857,6 +19918,14 @@
               "icon": "pitot",
               "kicker": "the shared tangent ledger",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-two-rulers",
+              "title": "THE TWO RULERS",
+              "accent": "#7de2b0",
+              "icon": "⚖",
+              "kicker": "91% balanced and 39% used, both correct",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 22,
@@ -20369,6 +20438,14 @@
               "accent": "#7de2b0",
               "icon": "⤨",
               "kicker": "a path folded through a wall",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-half-in-fourteen",
+              "title": "THE HALF IN FOURTEEN",
+              "accent": "#ffd76a",
+              "icon": "◥",
+              "kicker": "a mean that touches almost nothing",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21205,6 +21282,14 @@
               "accent": "#7de2b0",
               "icon": "∞",
               "kicker": "a correlation no local story can tell",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-redaction",
+              "title": "THE REDACTION",
+              "accent": "#b98cff",
+              "icon": "█",
+              "kicker": "names removed, and nothing measured moved",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -22764,7 +22849,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "ca287a0b9d1b7255036aa711ec025d24340d0c252ffcc9aa1c688d4f99c48f1d",
+  "fold_root": "95e1e035744d265370e4799b4ca905a79d30dbf3aa1d04fb8a978e5f953e5353",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

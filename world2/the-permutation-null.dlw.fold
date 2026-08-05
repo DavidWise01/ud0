@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE PERMUTATION NULL",
+  "slug": "the-permutation-null",
+  "seal": "3c650e1b38d1ea581a6c2d2e49f4b73159fe371211603b22e295180603324a27",
+  "index": 1280,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "9057cdd3b922b22ca9a9f3ce4c4fcbeeece48b1c62928d5c4dba392b72123a63",
+      "side": "R"
+    },
+    {
+      "h": "ddea6de212c0f668aa3ca249c66707c6e84c231072fc7b3980e7fe49631e246d",
+      "side": "R"
+    },
+    {
+      "h": "704baede3115b7f452c51725647ab1dc63b2abffbbe579f7850f62f1f666093c",
+      "side": "R"
+    },
+    {
+      "h": "9f28157d6142b52d5fd44455ad7c25beeb834ffe50f283195a7678f413aaed43",
+      "side": "R"
+    },
+    {
+      "h": "e7393324f96a5bd3806ef781ebe438213254f8c9b4fab5c3e354b8da73eaa3a6",
+      "side": "R"
+    },
+    {
+      "h": "85f69a447e13d2808d28df64be6135cc644bcb66bc9b6031cdc8ee1e6661b7a4",
+      "side": "R"
+    },
+    {
+      "h": "2b1e03c574e59cb15f07420b61ad1ea2a01e1b4a7beac2047a66ddad2c2060df",
+      "side": "R"
+    },
+    {
+      "h": "2049e7fb65404c78453e7aea26a5a524c7a5286425120a881506b7eab173c0fb",
+      "side": "R"
+    },
+    {
+      "h": "e5d40fbbdc40da94b47c6cea9b81ca58db318dbff5012b0611e6109932829e68",
+      "side": "L"
+    },
+    {
+      "h": "3f3c55af36aa69c0147b84f9ac0ac54382d9e30287aedae0d3928fbe0e11a902",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "95e1e035744d265370e4799b4ca905a79d30dbf3aa1d04fb8a978e5f953e5353",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
