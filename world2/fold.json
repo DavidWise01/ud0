@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1130,
+    "spheres": 1135,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1124,
+    "spheres_built": 1129,
     "apex": 1
   },
   "keepers": [
@@ -10258,6 +10258,51 @@
       "blurb": "Three particles, two boxes: classically some pair must share — the pigeonhole principle has no exceptions. Aharonov and collaborators 2016: in a pre- and post-selected ensemble, the two-state amplitude for 'these two share a box' is exactly zero for EVERY pair, while three particles and two boxes remain three particles and two boxes.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "78eb236eac44b59d0dd5a9868ab8e652cf5c144c78dfa71ad9922cb13a4149db"
+    },
+    {
+      "slug": "the-spiral-of-theodorus",
+      "title": "THE SPIRAL OF THEODORUS",
+      "kicker": "the spiral that stops at 17",
+      "accent": "#35ffb0",
+      "blurb": "Stand a unit segment on a unit segment at a right angle: √2. Stand another on that: √3. Keep going and the n-th spoke is exactly √n — the irrationals made constructible one triangle at a time. Plato reports Theodorus proved √3 through √17 irrational and then stopped; the spiral stops too, lapping itself at the 17th triangle. Whether that is why he stopped is one of mathematics' oldest unanswerable questions.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f21917558d63d4234f459a95c883000102ab4a88bf7020f4f6ca1f35ec218322"
+    },
+    {
+      "slug": "the-loxodrome",
+      "title": "THE LOXODROME",
+      "kicker": "the bearing that never arrives",
+      "accent": "#35ffb0",
+      "blurb": "Set a compass bearing and just hold the angle. On a sphere you trace a loxodrome: it crosses every meridian at the same angle and spirals into the pole, winding infinitely many times over a finite distance. Nunes worked it out in 1537; Mercator's 1569 projection exists so that a constant bearing is a straight line on the chart. The catch every sailor pays: the rhumb is never the shortest route.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bd974512dbb333a819eb97d4ee92838b25081e1e67fa5732184061b942d55776"
+    },
+    {
+      "slug": "the-instant-insanity",
+      "title": "THE INSTANT INSANITY",
+      "kicker": "331,776 wrong towers",
+      "accent": "#ffcf4a",
+      "blurb": "Four cubes, four colours, stacked so each of the four long sides shows all four colours. There are 24⁴ = 331,776 orientations and, for a well-made set, exactly one works — which is why the 1967 toy drove people mad. Carteblanche (a Tutte pseudonym) had published the graph method in 1947, twenty years earlier: vertices are colours, edges are opposite face-pairs, find two edge-disjoint spanning subgraphs, done in minutes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bf24afb434d689b81d80e9e84ca1aa4a1c4baad9c19e0503a4986a21400a43d3"
+    },
+    {
+      "slug": "the-soma-cube",
+      "title": "THE SOMA CUBE",
+      "kicker": "seven pieces, 240 cubes",
+      "accent": "#ffcf4a",
+      "blurb": "Piet Hein reportedly invented this during a Heisenberg lecture: take every shape of three or four unit cubes that is NOT a straight box — there are exactly seven, and they contain exactly 27 cells, which is a 3×3×3. That coincidence is the whole puzzle. The Soma cube assembles 240 essentially different ways (Conway & Guy, 1961), and the same seven pieces build a zoo of other figures.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "60ddf02aee3848f277a69034aad9b6fa82109a04acbf8ed171de25ba67bc3c6f"
+    },
+    {
+      "slug": "the-tangram",
+      "title": "THE TANGRAM",
+      "kicker": "the piece that was never missing",
+      "accent": "#b06bff",
+      "blurb": "Seven flat pieces cut from a square, a craze in Europe from about 1815. Its famous trick is the vanishing-piece paradox — Dudeney's two monks, built from the same seven tans, one plainly missing a foot. Nothing vanishes: the pieces are rigid, the areas identical, and the missing foot is paid for by a redistribution too diffuse to see, because equal area never implied equal shape and the eye keeps assuming it does.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8b7a5bc33a31bc141eb36005c46d8699d06c244ade93d2c881d8ca16a1defcb2"
     }
   ],
   "appeals": [
@@ -11530,6 +11575,14 @@
               "icon": "germantank",
               "kicker": "counting tanks from their serial numbers",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-soma-cube",
+              "title": "THE SOMA CUBE",
+              "accent": "#ffcf4a",
+              "icon": "soma",
+              "kicker": "seven pieces, 240 cubes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -12126,6 +12179,14 @@
               "accent": "#b06bff",
               "icon": "neumann",
               "kicker": "a matrix inverse as a power series",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-loxodrome",
+              "title": "THE LOXODROME",
+              "accent": "#35ffb0",
+              "icon": "loxodrome",
+              "kicker": "the bearing that never arrives",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -13584,6 +13645,14 @@
               "icon": "heegner",
               "kicker": "an integer missed by seven ten-trillionths",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-tangram",
+              "title": "THE TANGRAM",
+              "accent": "#b06bff",
+              "icon": "tangram",
+              "kicker": "the piece that was never missing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -13691,6 +13760,14 @@
               "accent": "#ff8a3c",
               "icon": "cyclicnumber",
               "kicker": "the number that rotates instead of growing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-instant-insanity",
+              "title": "THE INSTANT INSANITY",
+              "accent": "#ffcf4a",
+              "icon": "insanity",
+              "kicker": "331,776 wrong towers",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19865,6 +19942,14 @@
               "icon": "parkersquare",
               "kicker": "the celebrated failure",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-spiral-of-theodorus",
+              "title": "THE SPIRAL OF THEODORUS",
+              "accent": "#35ffb0",
+              "icon": "theodorus",
+              "kicker": "the spiral that stops at 17",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -20214,7 +20299,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "5f2c60cfebdbbc87b473149b8bf6c35a2ddb8bdf38a785da36ebc60028accfb7",
+  "fold_root": "7e4cb3294d9cef544fb7f7b1feeef4de328e61ede4f3bb8fe077f3a2be6363e4",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
