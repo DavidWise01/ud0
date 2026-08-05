@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE KEPLER CONJECTURE",
+  "slug": "the-kepler-conjecture",
+  "seal": "8f96343ad80817771e55cdd5bbc3df69b43b79d062f731cb1c56d7cad651f72f",
+  "index": 1152,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "ed0bd41fd4b1ffb9022ca57a966b6dd83829b035bd792043ca5780dbbc682694",
+      "side": "R"
+    },
+    {
+      "h": "e4d4533e0d2d6defed310aebdc396473e2a01c034317d9f2958d204405f9b05b",
+      "side": "R"
+    },
+    {
+      "h": "1d83a5e68348472f2acf3a5888d020145343c06534ef6d3bbcb139aecc9133b8",
+      "side": "R"
+    },
+    {
+      "h": "7ddc746476e7f820c1e876ec5c1fec6c5364c64c70de61f2070daba94b3e8aad",
+      "side": "R"
+    },
+    {
+      "h": "8acfdcf208b97a58a619d41b007be72f4dff07c7b46d9a9e3b78b07c602f8a84",
+      "side": "R"
+    },
+    {
+      "h": "44d23876ff8685fa90fe7a6522ec409d4daa3dd0eb42daee743d15632f28ae0c",
+      "side": "R"
+    },
+    {
+      "h": "5adbe8fe7f0966274d5533a4755c213d9fe9fc92c68c1e068d3651f3a4178248",
+      "side": "R"
+    },
+    {
+      "h": "60e6fa04d53b3f9da0e6b70dd3d4aa17df183d7f65baddf13af04fea43ddcd32",
+      "side": "L"
+    },
+    {
+      "h": "e660216e04e83fcf7da3b85ec7b5babe514abc07ec42f3999d31ffa06c981913",
+      "side": "R"
+    },
+    {
+      "h": "9b96e1038834fedc9ffe6832932ce2861a30bf8c0d37c5ab7c17d2c8ee0f6f50",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "7acf7418b7ea091fcd46d8ebb40a6e0031855da311b4facbf06bd7b14781f167",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
