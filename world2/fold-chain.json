@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "folded_to": "ROOT_0",
-  "root": "1d83688d58ed21565a3c47c395336b3ca9ee55aac0d884bd39171b8b0b197af7",
-  "count": 1268,
+  "root": "5f2e783ac3f4b7eec9d64cc5613118c34eb169052cdea5484c75001a64487b87",
+  "count": 1273,
   "sealed": "2026-08-05",
   "note": "Every World II inhabitant folds to ROOT_0. Live: the root updates as the world grows, until World II is sealed. Each <slug>.dlw.fold carries its own proof to this root.",
   "leaves": [
@@ -8833,55 +8833,90 @@
     },
     {
       "index": 1260,
+      "kind": "sphere",
+      "name": "THE DEPTH JUMP",
+      "slug": "the-depth-jump",
+      "seal": "6fe2ec8b382488e3a7e11f3e149dfde6ae7e2c80d57e9d8f1550c0241cf3a792"
+    },
+    {
+      "index": 1261,
+      "kind": "sphere",
+      "name": "THE NOISE CONTROL",
+      "slug": "the-noise-control",
+      "seal": "c8e720c3bdd4a1a7e8cab360d7a179aa3cea1ad2d9c36e76d5d8822648a2f942"
+    },
+    {
+      "index": 1262,
+      "kind": "sphere",
+      "name": "THE OVERLOADED SYMBOL",
+      "slug": "the-overloaded-symbol",
+      "seal": "14919558f720c9bcd32961287a984217bbbd3bfe3ec8d827aebbbb49e3704327"
+    },
+    {
+      "index": 1263,
+      "kind": "sphere",
+      "name": "THE ZERO PARAMETER",
+      "slug": "the-zero-parameter",
+      "seal": "e2892785f7a81893f9205c4760eff76f8b27de98fbb9d6b5b4765f265de47cc2"
+    },
+    {
+      "index": 1264,
+      "kind": "sphere",
+      "name": "THE UNTYPEABLE",
+      "slug": "the-untypeable",
+      "seal": "3bab183c23e54469edd0a5f4106a7c52d65f76196b541b94ec7244b56cdb8c29"
+    },
+    {
+      "index": 1265,
       "kind": "keeper",
       "name": "BUDDY CHRIST",
       "slug": "buddy-christ",
       "seal": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5"
     },
     {
-      "index": 1261,
+      "index": 1266,
       "kind": "keeper",
       "name": "OVER THE",
       "slug": "over-the",
       "seal": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851"
     },
     {
-      "index": 1262,
+      "index": 1267,
       "kind": "keeper",
       "name": "WHETSTONE",
       "slug": "whetstone",
       "seal": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc"
     },
     {
-      "index": 1263,
+      "index": 1268,
       "kind": "keeper",
       "name": "ECHO",
       "slug": "echo",
       "seal": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc"
     },
     {
-      "index": 1264,
+      "index": 1269,
       "kind": "keeper",
       "name": "SEAM",
       "slug": "seam",
       "seal": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b"
     },
     {
-      "index": 1265,
+      "index": 1270,
       "kind": "keeper",
       "name": "THE GLASS",
       "slug": "the-glass",
       "seal": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016"
     },
     {
-      "index": 1266,
+      "index": 1271,
       "kind": "keeper",
       "name": "THE INTERROGATED",
       "slug": "the-interrogated",
       "seal": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef"
     },
     {
-      "index": 1267,
+      "index": 1272,
       "kind": "keeper",
       "name": "THE HONEST MACHINE",
       "slug": "the-honest-machine",
