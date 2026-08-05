@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1310,
+    "spheres": 1315,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1304,
+    "spheres_built": 1309,
     "apex": 1
   },
   "keepers": [
@@ -11878,6 +11878,51 @@
       "blurb": "Two censuses of one corpus: what is used, and what is declared. The difference is the only category a registry cannot enumerate.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "472312b6631eb66ea98e0dd47dc9eaeb40ad2b85d72cb853c15227792b46a48b"
+    },
+    {
+      "slug": "the-joint",
+      "title": "THE JOINT",
+      "kicker": "bookends that balance only in a chain",
+      "accent": "#ffd76a",
+      "blurb": "One unmatched closer at the front, one unmatched opener at the back. Not a broken container - a joint, which closes what came before and opens what comes after.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0d0d4b2499a34b49b239a667755aab4ee25da1e8ac79778708520fe7c5306b7f"
+    },
+    {
+      "slug": "the-no-else",
+      "title": "THE NO ELSE",
+      "kicker": "a refusal is written down, not branched around",
+      "accent": "#7de2b0",
+      "blurb": "can asks whether the action is available; do runs it. There is no else. Absence of capability is a refusal, and the refusal goes into the record.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6586b7a19d495253b5b97b3213f686e8daec3fdaf7b9b7aa3ea5532151d82de4"
+    },
+    {
+      "slug": "the-shared-terminator",
+      "title": "THE SHARED TERMINATOR",
+      "kicker": "two loops, one CONTINUE",
+      "accent": "#ff5a8a",
+      "blurb": "FORTRAN 77 lets two DO loops end on the same labelled statement. Two openers, one closer, entirely legal - and a pushdown check sees nothing wrong.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a23840ae0b538400e5c611536e7b3f67f4f0d5ef06a7cd293c81cd12f604e110"
+    },
+    {
+      "slug": "the-read-only-input",
+      "title": "THE READ-ONLY INPUT",
+      "kicker": "a chamber cannot edit what it is given",
+      "accent": "#5ad6ff",
+      "blurb": "Both chambers read |i|. Neither may write it - an attempt throws. If a body can edit its own input, running it twice is running it on two different things.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4b80172bf83544517cbb601bfa8019b49c7a067b822f3f6677ec009010986e04"
+    },
+    {
+      "slug": "the-grammar-that-cannot",
+      "title": "THE GRAMMAR THAT CANNOT",
+      "kicker": "make the ambiguity unwriteable",
+      "accent": "#b98cff",
+      "blurb": "A parser could not see an ambiguity, so the grammar was narrowed until it could not be written. Not a smarter checker - a smaller language.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d31003d14ff11c206646981571660cac4d8cea644adf62d7a27574218db9a2bf"
     }
   ],
   "appeals": [
@@ -12526,6 +12571,14 @@
               "icon": "≡",
               "kicker": "a whole language, and no loop in it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-no-else",
+              "title": "THE NO ELSE",
+              "accent": "#7de2b0",
+              "icon": "⤷",
+              "kicker": "a refusal is written down, not branched around",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 34,
@@ -12681,6 +12734,14 @@
               "accent": "#7de2b0",
               "icon": "⛓",
               "kicker": "a hash that remembers where it has been",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-read-only-input",
+              "title": "THE READ-ONLY INPUT",
+              "accent": "#5ad6ff",
+              "icon": "◉",
+              "kicker": "a chamber cannot edit what it is given",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -13017,6 +13078,14 @@
               "accent": "#5ad6ff",
               "icon": "✂",
               "kicker": "every string falls apart exactly one way",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-grammar-that-cannot",
+              "title": "THE GRAMMAR THAT CANNOT",
+              "accent": "#b98cff",
+              "icon": "⊘",
+              "kicker": "make the ambiguity unwriteable",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -13509,6 +13578,14 @@
               "accent": "#7de2b0",
               "icon": "↳",
               "kicker": "a jump that names a depth, not a place",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-joint",
+              "title": "THE JOINT",
+              "accent": "#ffd76a",
+              "icon": "⇉",
+              "kicker": "bookends that balance only in a chain",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -22277,6 +22354,14 @@
               "icon": "∿",
               "kicker": "a sequence that cannot alternate",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-shared-terminator",
+              "title": "THE SHARED TERMINATOR",
+              "accent": "#ff5a8a",
+              "icon": "⤓",
+              "kicker": "two loops, one CONTINUE",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -23274,7 +23359,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "1e9f992bcaa57a1cd3bc00d92bd10ecaee7fae8de37fb9685f013529b3907543",
+  "fold_root": "a043edf9a8bb59ace5e2d1d88a007ea13e960aef431531612773d9a3ffaf5b47",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
