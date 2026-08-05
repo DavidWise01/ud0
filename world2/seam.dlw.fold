@@ -5,26 +5,26 @@
   "name": "SEAM",
   "slug": "seam",
   "seal": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b",
-  "index": 1269,
+  "index": 1274,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc",
-      "side": "L"
-    },
-    {
-      "h": "a60eeab3264276b19abf5ff33b581392f036474d3d4b53b4af0dc22b40dafcaa",
+      "h": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016",
       "side": "R"
     },
     {
-      "h": "aab99d2f2924d45611e8544f4db3da2136c10c6bf18c800fb0cbdf02f41755ce",
+      "h": "4f92d1304f79aad08143281517aa616aa5f51a4788eb70438fc658eebba57cc4",
       "side": "L"
     },
     {
-      "h": "eaf38c2cd96997d54d6a4c5db37ee0cfaec10743902b74eafba1eb5507e33c6f",
+      "h": "e5b77462f38458ebf844587854baca20295df7aae6e457f4b7d3764a648707e2",
       "side": "R"
+    },
+    {
+      "h": "dad55713e638e46da982a1b9774816eb5696163f32be00cec9bbb4bb00524c19",
+      "side": "L"
     },
     {
       "h": "14ba89621dd75190fd9b74d490e8b9191c5fe3fed30aa697b78f0fee8c5e09c9",
@@ -43,11 +43,11 @@
       "side": "L"
     },
     {
-      "h": "d3ef68fe4115715c430c1ebf39fab7871ce2e3a111784ea05df4b37f6079478b",
+      "h": "a37dbefeb5077a3adbdc65aa0a5d08378cdfaef29ecc630c7ebf6127e1ad4f68",
       "side": "R"
     },
     {
-      "h": "6610e547a9faa6495d2f8f3f32b30fefe6a4095ceaccc904f7873f6a5ce17a81",
+      "h": "0248ce6e76be2afe69050211cd7a8e546c961eb9fd77826edf88903533e0397f",
       "side": "R"
     },
     {
@@ -56,7 +56,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "5f2e783ac3f4b7eec9d64cc5613118c34eb169052cdea5484c75001a64487b87",
+  "root": "8846b0ec64a1411d1d176e28573ccdf616f3bc4104ab711b068bb35232f70649",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-05",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"
