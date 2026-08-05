@@ -5,25 +5,25 @@
   "name": "SEAM",
   "slug": "seam",
   "seal": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b",
-  "index": 1274,
+  "index": 1279,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016",
-      "side": "R"
-    },
-    {
-      "h": "4f92d1304f79aad08143281517aa616aa5f51a4788eb70438fc658eebba57cc4",
+      "h": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc",
       "side": "L"
     },
     {
-      "h": "e5b77462f38458ebf844587854baca20295df7aae6e457f4b7d3764a648707e2",
-      "side": "R"
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "side": "L"
     },
     {
-      "h": "dad55713e638e46da982a1b9774816eb5696163f32be00cec9bbb4bb00524c19",
+      "h": "9ad4348e86b0b144bd46a93213ca4d7cfa1822e0ffa35708cc5498f4e4f54347",
+      "side": "L"
+    },
+    {
+      "h": "f644fc8be3bc91f38b03a4c9289b84d85524e70c7119f7707710bd3856b32ebb",
       "side": "L"
     },
     {
@@ -43,11 +43,11 @@
       "side": "L"
     },
     {
-      "h": "a37dbefeb5077a3adbdc65aa0a5d08378cdfaef29ecc630c7ebf6127e1ad4f68",
+      "h": "645a223cde3069d2d0e2b248c070d23de435b996e7b664a93182953698449c5b",
       "side": "R"
     },
     {
-      "h": "0248ce6e76be2afe69050211cd7a8e546c961eb9fd77826edf88903533e0397f",
+      "h": "6b0f7e7147141228c645a1c269ef5b0323d1642e9ef818cb6aa01a956c717965",
       "side": "R"
     },
     {
@@ -56,7 +56,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "8846b0ec64a1411d1d176e28573ccdf616f3bc4104ab711b068bb35232f70649",
+  "root": "c47fb444274c17aa91fc940daa0f194a8adbe443891ed1f9e7ef9349ff3f576d",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-05",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"

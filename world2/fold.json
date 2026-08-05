@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1270,
+    "spheres": 1275,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1264,
+    "spheres_built": 1269,
     "apex": 1
   },
   "keepers": [
@@ -11518,6 +11518,51 @@
       "blurb": "Addition is associative - somewhere. Move the same identity to different numbers and it starts failing, because the sentence was published without the condition that made it hold.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "0ad1fe79097dd2fdda20558817cfcd906ed4e23c1e9fb2eca9e7894814504f86"
+    },
+    {
+      "slug": "the-self-branch",
+      "title": "THE SELF-BRANCH",
+      "kicker": "a call that never leaves",
+      "accent": "#ffd76a",
+      "blurb": "On ARM64 an unlinked call carries displacement zero, and zero means THIS instruction. Every unpatched call is a tight infinite loop that assembles perfectly.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d559265bad94e35364135291452d449eceeb61f981cfa97ef1f0a93be41e2dee"
+    },
+    {
+      "slug": "the-placeholder-agreement",
+      "title": "THE PLACEHOLDER AGREEMENT",
+      "kicker": "two tools agreeing on a blank",
+      "accent": "#ff5a8a",
+      "blurb": "Differential testing catches an enormous amount. It cannot catch anything two tools leave blank in the same way - and toolchains agree about placeholders far more often than about answers.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "77aaa6fb8b7b55c29c9df2ec02b429b7d7c4879238fe7621f0e27ce118bd4833"
+    },
+    {
+      "slug": "the-reach-of-a-branch",
+      "title": "THE REACH OF A BRANCH",
+      "kicker": "how far a call can see",
+      "accent": "#5ad6ff",
+      "blurb": "A branch has to fit its destination inside itself. Twenty-six signed bits, scaled by four, is a hard ceiling on how far apart two pieces of a program can sit.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5e3875e502c695a9622f572a6a5c386b3947e980d2d3b3b476f46c9d45df4765"
+    },
+    {
+      "slug": "the-oracle",
+      "title": "THE ORACLE",
+      "kicker": "a check that could actually fail",
+      "accent": "#7de2b0",
+      "blurb": "A roadmap of things to build is not a test plan. Only a check whose answer comes from somewhere else can return a result you did not want.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "37a05e998b359c5a9d7ffea08b6af19f45a5855fa9c0b708339b6b4b87b778cd"
+    },
+    {
+      "slug": "the-twelve-constructs",
+      "title": "THE TWELVE CONSTRUCTS",
+      "kicker": "a whole language, and no loop in it",
+      "accent": "#b98cff",
+      "blurb": "Twelve constructs and nothing else. No loops, no booleans, no arrays - yes and no are 1 and 0. It is still enough to compute anything computable, because it can call itself.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a3a9dfc2a8ab7c2757f866c04e0b9aa00b947cca488015bf13c6aca5c270ab93"
     }
   ],
   "appeals": [
@@ -12157,6 +12202,14 @@
               "accent": "#7de2b0",
               "icon": "✓",
               "kicker": "where honesty is the dominant strategy",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-twelve-constructs",
+              "title": "THE TWELVE CONSTRUCTS",
+              "accent": "#b98cff",
+              "icon": "≡",
+              "kicker": "a whole language, and no loop in it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17458,6 +17511,14 @@
               "icon": "⚔",
               "kicker": "a fight nobody wins outright",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-oracle",
+              "title": "THE ORACLE",
+              "accent": "#7de2b0",
+              "icon": "❓",
+              "kicker": "a check that could actually fail",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -18573,6 +18634,14 @@
               "accent": "#b06bff",
               "icon": "keller",
               "kicker": "true until dimension seven",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-placeholder-agreement",
+              "title": "THE PLACEHOLDER AGREEMENT",
+              "accent": "#ff5a8a",
+              "icon": "≈",
+              "kicker": "two tools agreeing on a blank",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21809,6 +21878,14 @@
               "icon": "↺",
               "kicker": "the map that always comes home",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-self-branch",
+              "title": "THE SELF-BRANCH",
+              "accent": "#ffd76a",
+              "icon": "↺",
+              "kicker": "a call that never leaves",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -22113,6 +22190,14 @@
               "accent": "#7de2b0",
               "icon": "◌",
               "kicker": "the obvious theorem that took twenty years",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-reach-of-a-branch",
+              "title": "THE REACH OF A BRANCH",
+              "accent": "#5ad6ff",
+              "icon": "↔",
+              "kicker": "how far a call can see",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -22594,7 +22679,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "8846b0ec64a1411d1d176e28573ccdf616f3bc4104ab711b068bb35232f70649",
+  "fold_root": "c47fb444274c17aa91fc940daa0f194a8adbe443891ed1f9e7ef9349ff3f576d",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
