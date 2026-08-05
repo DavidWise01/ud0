@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1140,
+    "spheres": 1145,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1134,
+    "spheres_built": 1139,
     "apex": 1
   },
   "keepers": [
@@ -10348,6 +10348,51 @@
       "blurb": "Tile space with identical cubes at any offsets: Keller conjectured in 1930 that some two must share a complete face. True in the plane, true in 3D, true up to six dimensions — then it dies. Lagarias and Shor broke dimension 10 in 1992, Mackey reached 8 in 2002, and dimension 7 held until 2020, when a SAT proof with a forty-terabyte certificate finished it.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "db56b4a252fbc17cf1b12c2f669d9725239e8c3894d68d00382312eb90c82574"
+    },
+    {
+      "slug": "the-weierstrass",
+      "title": "THE WEIERSTRASS",
+      "kicker": "the curve with no slope anywhere",
+      "accent": "#35ffb0",
+      "blurb": "Before 1872 'continuous' quietly meant 'smooth except at obvious corners'. Then Weierstrass exhibited Σ aⁿcos(bⁿπx) — continuous at every point, differentiable at none. Hermite called such things a lamentable plague. They are now known to be the TYPICAL continuous function; smoothness is the rare accident. The mechanism is a race: each term shrinks by a but wiggles b times faster, so ab > 1 lets slopes outrun amplitudes forever.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e51088f0303269d500d3201e21f644e251442369736150aee44c97256290ed7b"
+    },
+    {
+      "slug": "the-wada",
+      "title": "THE WADA",
+      "kicker": "three lakes, one shore",
+      "accent": "#21e6ff",
+      "blurb": "Three lakes on an island, dug so every lake comes within ε of every point of dry land, forever. In the limit every remaining point touches all three lakes at once — a boundary shared by three regions, with no stretch belonging to only two. Yoneyama published it in 1917 crediting Takeo Wada. It sounds hand-built, then turns up in the most ordinary computation there is: Newton's method on z³ = 1.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "63bd8e0fc3ebacabf7d27c98ffe369c9e8c6ff1106428354063c5f117bbcb301"
+    },
+    {
+      "slug": "the-peano-curve",
+      "title": "THE PEANO CURVE",
+      "kicker": "the line that fills a square",
+      "accent": "#ffcf4a",
+      "blurb": "A line is one-dimensional and a square is two, so a curve cannot cover a square. Peano destroyed that in 1890 with an explicit continuous map from the interval ONTO the square; Hilbert gave the picture a year later. The escape hatch that keeps dimension meaningful: the limit is surjective but not injective — Netto had already proved no continuous bijection between line and square can exist.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6806c761ab2590dbcd84eee2789d9b844085a26cffa8fa03a3cfb2502e0350aa"
+    },
+    {
+      "slug": "the-vitali",
+      "title": "THE VITALI",
+      "kicker": "the set that cannot be measured",
+      "accent": "#b06bff",
+      "blurb": "Call two reals equivalent when they differ by a rational, then pick one representative from every class — the axiom of choice lets you. Translate the result by each rational in [−1,1]: the copies are disjoint, their union contains [0,1], and it all fits inside [−1,2]. If the set had a length, the total would have to be both ≥1 and ≤3, while actually being either 0 or infinite. Neither is allowed. Vitali 1905: the first unmeasurable set.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "231eb1ac0e34d40245a65e20d6ff2433feb2ace8ccd0228c461ad11a84dc33d3"
+    },
+    {
+      "slug": "the-osgood",
+      "title": "THE OSGOOD",
+      "kicker": "the dust that still weighs half",
+      "accent": "#ff8a3c",
+      "blurb": "Cantor's middle-thirds set is the standard picture of dust: uncountably many points, total length zero. That pairing — nowhere dense, therefore negligible — feels like a law. It isn't. Shrink the removed intervals faster and you get the Smith–Volterra–Cantor set: still containing no interval whatsoever, yet with length exactly ½. Osgood used the same trick in 1903 to build a Jordan arc with positive area.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "234b19dc22111c26bd826f1d201e285cf79919e97fb42c3497445e867ea1a99d"
     }
   ],
   "appeals": [
@@ -13929,6 +13974,14 @@
               "accent": "#ffcf4a",
               "icon": "kochenspecker",
               "kicker": "eighteen rays no assignment survives",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-wada",
+              "title": "THE WADA",
+              "accent": "#21e6ff",
+              "icon": "wada",
+              "kicker": "three lakes, one shore",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19767,6 +19820,14 @@
               "icon": "stablemarriage",
               "kicker": "the proposer's hidden crown",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-weierstrass",
+              "title": "THE WEIERSTRASS",
+              "accent": "#35ffb0",
+              "icon": "weierstrass",
+              "kicker": "the curve with no slope anywhere",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -19834,6 +19895,14 @@
               "accent": "#35ffb0",
               "icon": "sylvesterinertia",
               "kicker": "a signature invariant under congruence",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-vitali",
+              "title": "THE VITALI",
+              "accent": "#b06bff",
+              "icon": "vitali",
+              "kicker": "the set that cannot be measured",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20296,6 +20365,14 @@
               "icon": "grandi",
               "kicker": "the sum that flickers",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-peano-curve",
+              "title": "THE PEANO CURVE",
+              "accent": "#ffcf4a",
+              "icon": "peano",
+              "kicker": "the line that fills a square",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -20372,6 +20449,14 @@
               "icon": "ehrenfest",
               "kicker": "the urn that takes 2^N to reset",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-osgood",
+              "title": "THE OSGOOD",
+              "accent": "#ff8a3c",
+              "icon": "osgood",
+              "kicker": "the dust that still weighs half",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -20384,7 +20469,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "ddbbdc16ace5c29696a1aae0e59c810434b69c0affdee43018fe76d2312101a3",
+  "fold_root": "1d6294619a498ea7f531b0cce2dbd52ee2eed100a13d02bcdbe32fe7e00e7cce",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

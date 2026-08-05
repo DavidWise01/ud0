@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE WEIERSTRASS",
+  "slug": "the-weierstrass",
+  "seal": "e51088f0303269d500d3201e21f644e251442369736150aee44c97256290ed7b",
+  "index": 1140,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "63bd8e0fc3ebacabf7d27c98ffe369c9e8c6ff1106428354063c5f117bbcb301",
+      "side": "R"
+    },
+    {
+      "h": "0014ac443d0b2b8975129ad030878a94867c1527b4e6e6c0c70d14e3ccc8a6bb",
+      "side": "R"
+    },
+    {
+      "h": "f4bf8ddc84dc0be17b4bdf0b68bf3b9ff89bc91f54666462ef45de85263f6a9a",
+      "side": "L"
+    },
+    {
+      "h": "b453c38d1b9776efbe781bca7eda957916d2f2d0206a9f53c54f322b36ca4070",
+      "side": "R"
+    },
+    {
+      "h": "597da00323d1968be4932d61f23183cb17bd82d4901b16d449ed27716a1c4b7f",
+      "side": "L"
+    },
+    {
+      "h": "f269c8a529f815d2f48903968708708d6595d6abda30d6646468816c5751ef16",
+      "side": "L"
+    },
+    {
+      "h": "3efe962d4e645e27c3d8e459384a1c0f476f9ba51a0349ce1d64bab157da44a1",
+      "side": "L"
+    },
+    {
+      "h": "08a9070007e6a507fa5b575c1f7745ce9eac7eca3b3619ccf0772071acf99d04",
+      "side": "R"
+    },
+    {
+      "h": "d0905387d3d89afccdd46cbc0d787cd5251f33b7598d41b79653b6197473d288",
+      "side": "R"
+    },
+    {
+      "h": "8054a649080cced65be80aef2b880250c4b308dc95f6b192f5610b6e72cf7481",
+      "side": "R"
+    },
+    {
+      "h": "f6b31168fcc3c98dd04fa37108001b05756dd136d9070b1a419cb5e345d616d9",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "1d6294619a498ea7f531b0cce2dbd52ee2eed100a13d02bcdbe32fe7e00e7cce",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
