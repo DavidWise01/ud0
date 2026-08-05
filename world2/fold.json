@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1195,
+    "spheres": 1200,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1189,
+    "spheres_built": 1194,
     "apex": 1
   },
   "keepers": [
@@ -10843,6 +10843,51 @@
       "blurb": "A predicate that cannot locate its own evidence is not silent — it returns a verdict anyway, and the verdict is a coin. Dropped from the table rather than shipped refuting a claim that is probably true.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "35b6dc6b485aca6d7e9e07a18e0afd12843da5cbb45dd495ddef57806167bb91"
+    },
+    {
+      "slug": "the-breach-rule",
+      "title": "THE BREACH RULE",
+      "kicker": "an asymmetry that costs nothing",
+      "accent": "#ff5a8a",
+      "blurb": "History only grows. So a published number below today's count is staleness, needing a threshold — and one above it cannot be staleness at all, needing nothing.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9271e0fdfb8c5bec5c9ed80c2c5fc1f2bd7a38b2318b4ca8d3ce42b899909c7c"
+    },
+    {
+      "slug": "the-only-failed-probe",
+      "title": "THE ONLY-FAILED PROBE",
+      "kicker": "a detector nobody ever made say yes",
+      "accent": "#5ad6ff",
+      "blurb": "Every catch is evidence about recall and none about the false-positive rate. Two detectors identical on defects can differ 30x on clean cases, and a positives-only test set cannot tell them apart.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "dc44c2d78a2d6fad2553251129e13e19758ba58c3c39be0a626e5b7c233da3b2"
+    },
+    {
+      "slug": "the-warn-only",
+      "title": "THE WARN-ONLY",
+      "kicker": "a gate that cannot fail the build is a log line",
+      "accent": "#ffd76a",
+      "blurb": "Warn-only detects everything a blocking gate detects, logs the same lines, and lets every one of them ship. The bad deploys reaching production are identical, to the byte, to no gate at all.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5fa32e00421fc96fa0be5d632dcf65f2375cf847aa72030054af9ccc3deff47b"
+    },
+    {
+      "slug": "the-scoreboard",
+      "title": "THE SCOREBOARD",
+      "kicker": "zero out of six is not zero",
+      "accent": "#7de2b0",
+      "blurb": "Six errors caught before a human saw them, zero escaped. But zero events in six trials bounds the true escape rate at 50%, not at zero — and saying so is what the arithmetic permits.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d11d9960129b2458674c0acbb6e71dc884e399b0ff6cb581aa14dfe468cc8109"
+    },
+    {
+      "slug": "the-zero-error",
+      "title": "THE ZERO ERROR",
+      "kicker": "an exact match kills a hypothesis",
+      "accent": "#b98cff",
+      "blurb": "Three metrics reproduced at exactly zero error does more than validate a probe — it eliminates the definition-mismatch explanation for any fourth number that does not reproduce.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5b89f76ef75ff3d0cea532c87fcf000de3b205580e76833f4f5f271f0ee965c2"
     }
   ],
   "appeals": [
@@ -14612,6 +14657,14 @@
               "accent": "#ff5a8a",
               "icon": "⧉",
               "kicker": "the gate and the lie on opposite sides of a join nobody stands on",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-breach-rule",
+              "title": "THE BREACH RULE",
+              "accent": "#ff5a8a",
+              "icon": "↑",
+              "kicker": "an asymmetry that costs nothing",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20454,6 +20507,14 @@
               "icon": "≡",
               "kicker": "what it automates is the re-running, not the judgement",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-scoreboard",
+              "title": "THE SCOREBOARD",
+              "accent": "#7de2b0",
+              "icon": "⌀",
+              "kicker": "zero out of six is not zero",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -20569,6 +20630,14 @@
               "accent": "#7de2b0",
               "icon": "≡",
               "kicker": "apples-to-apples matters more than thoroughness",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-only-failed-probe",
+              "title": "THE ONLY-FAILED PROBE",
+              "accent": "#5ad6ff",
+              "icon": "✓",
+              "kicker": "a detector nobody ever made say yes",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20817,6 +20886,14 @@
               "accent": "#7de2b0",
               "icon": "◱",
               "kicker": "installable is not offline",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-zero-error",
+              "title": "THE ZERO ERROR",
+              "accent": "#b98cff",
+              "icon": "≡",
+              "kicker": "an exact match kills a hypothesis",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21191,6 +21268,14 @@
               "icon": "∪",
               "kicker": "read their generator instead of guessing at it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-warn-only",
+              "title": "THE WARN-ONLY",
+              "accent": "#ffd76a",
+              "icon": "⚠",
+              "kicker": "a gate that cannot fail the build is a log line",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -21319,7 +21404,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "df4923d8cb2ab4a0c1987bcc4b4ae140ece071c0ed20aa601fee5d1b234e2f03",
+  "fold_root": "81d5048641db2cef464877f864915c6f9a09ce1056ade238b057935fc659cef7",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

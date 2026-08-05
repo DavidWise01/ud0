@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE BREACH RULE",
+  "slug": "the-breach-rule",
+  "seal": "9271e0fdfb8c5bec5c9ed80c2c5fc1f2bd7a38b2318b4ca8d3ce42b899909c7c",
+  "index": 1195,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "35b6dc6b485aca6d7e9e07a18e0afd12843da5cbb45dd495ddef57806167bb91",
+      "side": "L"
+    },
+    {
+      "h": "f40665840f5c1abf2ac8e54f96785e7c24356d197d7cc43a5e5ba622229803e7",
+      "side": "L"
+    },
+    {
+      "h": "694776251de821f6caf21b60dc6b908cb347584f53f642d758d9af117a895b5a",
+      "side": "R"
+    },
+    {
+      "h": "52ddc4e976dcffa574e78a5042e87e2b985749970843041a83ffa7d29e13175f",
+      "side": "L"
+    },
+    {
+      "h": "484c04c6d805f0230997aa1b871e1df71632eb85bde9f0e80dc88f1e80eb6d8f",
+      "side": "R"
+    },
+    {
+      "h": "5f6e9863361e4171031b59a5dc9672046d34f6e3f9162b8c9627ba3cdd5a6144",
+      "side": "L"
+    },
+    {
+      "h": "78106ee02842a713639bce87fefb7e0766892ffaca6185065aceac7be5a5b3dc",
+      "side": "R"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "9e92640c00dcc5d2bf282e4549a5d192a6df03eb260fc5455048da4465f3f8e8",
+      "side": "R"
+    },
+    {
+      "h": "e88c469d5986d94a723a03b52e16463e80deb9def7c88a5339becc3fc1a1ac5f",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "81d5048641db2cef464877f864915c6f9a09ce1056ade238b057935fc659cef7",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-04",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
