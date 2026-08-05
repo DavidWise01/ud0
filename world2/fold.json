@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1245,
+    "spheres": 1250,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1239,
+    "spheres_built": 1244,
     "apex": 1
   },
   "keepers": [
@@ -11293,6 +11293,51 @@
       "blurb": "Finding any collision takes about the square root of finding a specific one, because pairs grow quadratically. A 128-bit digest offers 64 bits of resistance.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "7d9bfc1a3db1910938e546a7c5a15c5e71293d7527af3c1bc5b8d36b5e9483c6"
+    },
+    {
+      "slug": "the-percolation",
+      "title": "THE PERCOLATION",
+      "kicker": "a threshold at exactly one half",
+      "accent": "#7de2b0",
+      "blurb": "Below a critical density nothing connects; above it, a path spans the lattice. For bond percolation on the square lattice that threshold is exactly 1/2, by self-duality.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b90fcbb09bbe20c5b913aa5fd950ed1c8b3ddb8fa70b26a29ab4ff973af33e44"
+    },
+    {
+      "slug": "the-abelian-sandpile",
+      "title": "THE ABELIAN SANDPILE",
+      "kicker": "the pile that does not care what order you push it",
+      "accent": "#ffd76a",
+      "blurb": "Grains topple when a site holds four. The startling part is not the avalanches - it is that the order you topple in makes no difference at all.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ce144fd37d306e44aaf4618aa353830b8c87a2a3540d4553a836bd96fa51e7e7"
+    },
+    {
+      "slug": "the-basin-boundary",
+      "title": "THE BASIN BOUNDARY",
+      "kicker": "a border every country touches",
+      "accent": "#5ad6ff",
+      "blurb": "Newton's method on z^3 - 1 gives three basins whose shared border has no stretch belonging to only two of them. Every boundary point touches all three.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "90fdc510c80f34db3677491a1843a44ab98163441b1574e1c896090dd8c26cbd"
+    },
+    {
+      "slug": "the-median-voter",
+      "title": "THE MEDIAN VOTER",
+      "kicker": "the voter in the middle",
+      "accent": "#ff5a8a",
+      "blurb": "Majority rule can produce no winner at all. Single-peaked preferences forbid that, and then the median voter's favourite beats everything.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fa96d0b3c09e5f09403a4949c7c4f947d5de2747f2881e0a64f9743b04bf59c1"
+    },
+    {
+      "slug": "the-bloom",
+      "title": "THE BLOOM",
+      "kicker": "a filter that only lies one way",
+      "accent": "#b98cff",
+      "blurb": "It will sometimes say yes to something it never saw. It will never say no to something it did, and that guarantee survives any choice of parameters.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a54ae90af245f6b54fcea7eefa35b9fd97369e330cf1c877e7a8c6c5048bb41c"
     }
   ],
   "appeals": [
@@ -17457,6 +17502,14 @@
               "icon": "giantcomponent",
               "kicker": "the edge where one giant appears",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-percolation",
+              "title": "THE PERCOLATION",
+              "accent": "#7de2b0",
+              "icon": "▦",
+              "kicker": "a threshold at exactly one half",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 40,
@@ -18734,6 +18787,14 @@
               "icon": "catenary",
               "kicker": "the chain that corrected Galileo",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-basin-boundary",
+              "title": "THE BASIN BOUNDARY",
+              "accent": "#5ad6ff",
+              "icon": "✲",
+              "kicker": "a border every country touches",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 37,
@@ -19053,6 +19114,14 @@
               "accent": "#ffd76a",
               "icon": "⬡",
               "kicker": "a number three solids cannot tell apart",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-median-voter",
+              "title": "THE MEDIAN VOTER",
+              "accent": "#ff5a8a",
+              "icon": "⚖",
+              "kicker": "the voter in the middle",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20026,6 +20095,14 @@
               "accent": "#ff5a8a",
               "icon": "⛓",
               "kicker": "a signature that continues itself",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-bloom",
+              "title": "THE BLOOM",
+              "accent": "#b98cff",
+              "icon": "⚑",
+              "kicker": "a filter that only lies one way",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21112,6 +21189,14 @@
               "icon": "⤴",
               "kicker": "it climbs without ever rising",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-abelian-sandpile",
+              "title": "THE ABELIAN SANDPILE",
+              "accent": "#ffd76a",
+              "icon": "∴",
+              "kicker": "the pile that does not care what order you push it",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -22169,7 +22254,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "cd02b01fce4c2fa7f1e56af8753a018edb86de6a06ce5a454508cbc482f1c4d3",
+  "fold_root": "84d99663522513abf3f7e313f74a578a849fbc44d6dfba1c53b7b851bcbdb6e4",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
