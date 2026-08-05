@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE MATROID",
+  "slug": "the-matroid",
+  "seal": "49d0b5c7e668a47046b15dfc0db3d974f275e6e460c682835d575d4c56fad3d8",
+  "index": 1213,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "55d8600743419811a22aae22a5dee4f0db8b5f7690d0cec985f051ed6c60a161",
+      "side": "L"
+    },
+    {
+      "h": "ef8719465d9e2fa23af5da4496dbcc8fe90993aba1432f47ee7d7000620b5911",
+      "side": "R"
+    },
+    {
+      "h": "d1b6c363e8897240f3fa414111d0fc68fe168d6e237baa2fa2775f1a42b79450",
+      "side": "L"
+    },
+    {
+      "h": "5c089729d1dd7a8a6f75912a4d14412d84e200a568877d4e9245996f5b7605ed",
+      "side": "L"
+    },
+    {
+      "h": "a22863cb8940be0d8015017319d74872bc4fe38daee7666766312431cd358ee7",
+      "side": "L"
+    },
+    {
+      "h": "5f6e9863361e4171031b59a5dc9672046d34f6e3f9162b8c9627ba3cdd5a6144",
+      "side": "L"
+    },
+    {
+      "h": "88e2cf01c36a0867cab8d28b1884b382417c61f58c794a334f01374a3ed929ae",
+      "side": "R"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "3562d6febbf386320757d8ae4d53bf7d50a19d137c61b6bc75293ec7c46e0b4a",
+      "side": "R"
+    },
+    {
+      "h": "a12a239209f63babde1b534eb670448c9e64229ec8b2543391553ffe5b06dbf3",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "64fed62b99b6124f20bdbe9cafdbf703cd714e9b758a40c6c621af166346be67",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

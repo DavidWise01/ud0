@@ -5,49 +5,49 @@
   "name": "OVER THE",
   "slug": "over-the",
   "seal": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851",
-  "index": 1211,
+  "index": 1216,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
-      "side": "L"
-    },
-    {
-      "h": "4f4c8037d7b589420b9def66b4541dc1a43e5fb9a7e0e559859a40080631674e",
-      "side": "L"
-    },
-    {
-      "h": "7601211745dca092106718fb4970aabdd4766a49fbf40294644af4b255850d98",
+      "h": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc",
       "side": "R"
     },
     {
-      "h": "5c089729d1dd7a8a6f75912a4d14412d84e200a568877d4e9245996f5b7605ed",
-      "side": "L"
-    },
-    {
-      "h": "a22863cb8940be0d8015017319d74872bc4fe38daee7666766312431cd358ee7",
-      "side": "L"
-    },
-    {
-      "h": "5f6e9863361e4171031b59a5dc9672046d34f6e3f9162b8c9627ba3cdd5a6144",
-      "side": "L"
-    },
-    {
-      "h": "a026768ec115948a2391f8c7b3bb100f742423301ef37dd15fb0a9b43c4c6eb2",
+      "h": "fa956deaae9e6ace64a09bad4e35eab65c143568cb487635dc9af15ef50f35aa",
       "side": "R"
+    },
+    {
+      "h": "034ce0963e96d313746c278f9aca16401c5b927b37aa13bef55648cdcd1fc542",
+      "side": "R"
+    },
+    {
+      "h": "54ae948eb87479b35f7a1205419f706fb579dd946b5d988def22b99cab157245",
+      "side": "R"
+    },
+    {
+      "h": "8b79a1756b1468bcfd660199108feec7dedd13305ac11881a6930dcb67a2dfcd",
+      "side": "R"
+    },
+    {
+      "h": "0e5e17f3273500f1df536231f0a8ba8351de06a2124acefb21f1e87ab6feb97c",
+      "side": "R"
+    },
+    {
+      "h": "5d72ede8d2f08dde89ddd9c288667d1d7ea9acff37f4fa6cce8ce02585e56355",
+      "side": "L"
     },
     {
       "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
       "side": "L"
     },
     {
-      "h": "491cd0fcd45a4c461ec6092cbe1314a77eb5f8d86eb907e2d8bdce1059babfe1",
+      "h": "3562d6febbf386320757d8ae4d53bf7d50a19d137c61b6bc75293ec7c46e0b4a",
       "side": "R"
     },
     {
-      "h": "65c809635a654e0334b025fa7640ca68e1cbbd6f8001c4116ec744a4f113e5cc",
+      "h": "a12a239209f63babde1b534eb670448c9e64229ec8b2543391553ffe5b06dbf3",
       "side": "R"
     },
     {
@@ -56,7 +56,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "9e8b3f82a7253a65568d1da3aafe90b4649e82584288e1063e398deab08aaf77",
+  "root": "64fed62b99b6124f20bdbe9cafdbf703cd714e9b758a40c6c621af166346be67",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-05",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"

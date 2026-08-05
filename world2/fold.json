@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1210,
+    "spheres": 1215,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1204,
+    "spheres_built": 1209,
     "apex": 1
   },
   "keepers": [
@@ -10978,6 +10978,51 @@
       "blurb": "One molecule, one partition, one bit of knowledge — and kT ln 2 of work comes out. Resetting the memory costs exactly the same, so the cycle closes at zero.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "7b8ac49ecfb346a8e6cb8669b59c15e59880bfd4b9f3491aeacd92aae2be9e61"
+    },
+    {
+      "slug": "the-chomp",
+      "title": "THE CHOMP",
+      "kicker": "a win with no strategy attached",
+      "accent": "#ffd76a",
+      "blurb": "Strategy stealing proves the first player wins on every board bigger than 1x1, without examining a single position — and names none of the winning moves. For general boards nobody knows them.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "488fd2a3f5aa27aeb63e7b9bdfcfda370320fd8f8586869c212aa551a8dfdf37"
+    },
+    {
+      "slug": "the-length-extension",
+      "title": "THE LENGTH EXTENSION",
+      "kicker": "a signature that continues itself",
+      "accent": "#ff5a8a",
+      "blurb": "A Merkle-Damgard digest IS the internal state it stopped at, so anyone holding it can keep hashing from there — forging a valid tag for a longer message without ever knowing the secret.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ac967c9298f5cccef822b0df64192d892d730e99a5521673ca21df51b96e580a"
+    },
+    {
+      "slug": "the-cantor-function",
+      "title": "THE CANTOR FUNCTION",
+      "kicker": "it climbs without ever rising",
+      "accent": "#7de2b0",
+      "blurb": "Continuous, non-decreasing, derivative zero almost everywhere — and it still gets from 0 to 1. The entire ascent happens on a set of measure zero.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "55d8600743419811a22aae22a5dee4f0db8b5f7690d0cec985f051ed6c60a161"
+    },
+    {
+      "slug": "the-matroid",
+      "title": "THE MATROID",
+      "kicker": "where greedy is exactly right",
+      "accent": "#5ad6ff",
+      "blurb": "On a matroid, greedy is not a heuristic — it is provably optimal every time. And the theorem runs both ways, so there is no greedy-friendly structure waiting outside matroids.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "49d0b5c7e668a47046b15dfc0db3d974f275e6e460c682835d575d4c56fad3d8"
+    },
+    {
+      "slug": "the-byzantine-generals",
+      "title": "THE BYZANTINE GENERALS",
+      "kicker": "three who cannot agree if one lies",
+      "accent": "#b98cff",
+      "blurb": "A loyal commander sending 0 forces the answer to 0; sending 1 forces it to 1; and a traitorous commander producing both views at once still demands the loyal players agree. No rule survives.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e2af80f0c1dc812ab7064d1f8f12ec4740de74d47ae9afcbb455203eb78fc631"
     }
   ],
   "appeals": [
@@ -12529,6 +12574,14 @@
               "accent": "#21e6ff",
               "icon": "weyl",
               "kicker": "an irrational stride fills the interval evenly",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-chomp",
+              "title": "THE CHOMP",
+              "accent": "#ffd76a",
+              "icon": "☠",
+              "kicker": "a win with no strategy attached",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -14895,6 +14948,14 @@
               "accent": "#7de2b0",
               "icon": "†",
               "kicker": "bury it, and name what killed it",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-byzantine-generals",
+              "title": "THE BYZANTINE GENERALS",
+              "accent": "#b98cff",
+              "icon": "⚔",
+              "kicker": "three who cannot agree if one lies",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -19576,6 +19637,14 @@
               "icon": "∅",
               "kicker": "a sample size from a different experiment",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-length-extension",
+              "title": "THE LENGTH EXTENSION",
+              "accent": "#ff5a8a",
+              "icon": "⛓",
+              "kicker": "a signature that continues itself",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 43,
@@ -20621,6 +20690,14 @@
               "icon": "◐",
               "kicker": "whose control actually fired",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cantor-function",
+              "title": "THE CANTOR FUNCTION",
+              "accent": "#7de2b0",
+              "icon": "⤴",
+              "kicker": "it climbs without ever rising",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -20744,6 +20821,14 @@
               "accent": "#5ad6ff",
               "icon": "✓",
               "kicker": "a detector nobody ever made say yes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-matroid",
+              "title": "THE MATROID",
+              "accent": "#5ad6ff",
+              "icon": "⊕",
+              "kicker": "where greedy is exactly right",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21574,7 +21659,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "9e8b3f82a7253a65568d1da3aafe90b4649e82584288e1063e398deab08aaf77",
+  "fold_root": "64fed62b99b6124f20bdbe9cafdbf703cd714e9b758a40c6c621af166346be67",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
