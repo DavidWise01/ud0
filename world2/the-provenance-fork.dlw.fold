@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE PROVENANCE FORK",
+  "slug": "the-provenance-fork",
+  "seal": "29422f5806f0988d14f1d28644e4d532b9a54e8051de82eaec663ccd80705904",
+  "index": 1200,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "1eb350375bf3ff337f68bc8157646dfd3287069aabf0ddc64bc3dbaabfdefd44",
+      "side": "R"
+    },
+    {
+      "h": "1b5742f44b1d8de6ef8eff40f3f97aac400e9e7a469878d06ecaa1aa2529b9d5",
+      "side": "R"
+    },
+    {
+      "h": "d19ca474225ef1ba4ea68679b13f9534e52c2b87235f91c0207b0d9a918b22e0",
+      "side": "R"
+    },
+    {
+      "h": "9f28157d6142b52d5fd44455ad7c25beeb834ffe50f283195a7678f413aaed43",
+      "side": "R"
+    },
+    {
+      "h": "a22863cb8940be0d8015017319d74872bc4fe38daee7666766312431cd358ee7",
+      "side": "L"
+    },
+    {
+      "h": "5f6e9863361e4171031b59a5dc9672046d34f6e3f9162b8c9627ba3cdd5a6144",
+      "side": "L"
+    },
+    {
+      "h": "939c384fd615957d9a96680e18980d3a486ed8a3e39e10f69804448950d8702d",
+      "side": "R"
+    },
+    {
+      "h": "4f3d2568d1f2b7d6f893b142cdc3785b6788d3e3c2a83496884ffcca411c1525",
+      "side": "L"
+    },
+    {
+      "h": "062b14e0b0b937b5008773f566757a400943f96eca928cd17f2c66b98dd2d29e",
+      "side": "R"
+    },
+    {
+      "h": "c907934cfba608980e844e8c1de8799fe534be0d95ab8759fed7b4df9296d086",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "0f055959419823fbccbeaae1ee41b52fd41b6531f95a47ddb0dcbc98c6e2c12b",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

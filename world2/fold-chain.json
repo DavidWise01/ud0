@@ -6,9 +6,9 @@
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "folded_to": "ROOT_0",
-  "root": "81d5048641db2cef464877f864915c6f9a09ce1056ade238b057935fc659cef7",
-  "count": 1208,
-  "sealed": "2026-08-04",
+  "root": "0f055959419823fbccbeaae1ee41b52fd41b6531f95a47ddb0dcbc98c6e2c12b",
+  "count": 1213,
+  "sealed": "2026-08-05",
   "note": "Every World II inhabitant folds to ROOT_0. Live: the root updates as the world grows, until World II is sealed. Each <slug>.dlw.fold carries its own proof to this root.",
   "leaves": [
     {
@@ -8413,55 +8413,90 @@
     },
     {
       "index": 1200,
+      "kind": "sphere",
+      "name": "THE PROVENANCE FORK",
+      "slug": "the-provenance-fork",
+      "seal": "29422f5806f0988d14f1d28644e4d532b9a54e8051de82eaec663ccd80705904"
+    },
+    {
+      "index": 1201,
+      "kind": "sphere",
+      "name": "THE DIRECTION TEST",
+      "slug": "the-direction-test",
+      "seal": "1eb350375bf3ff337f68bc8157646dfd3287069aabf0ddc64bc3dbaabfdefd44"
+    },
+    {
+      "index": 1202,
+      "kind": "sphere",
+      "name": "THE CAVEAT ATTRITION",
+      "slug": "the-caveat-attrition",
+      "seal": "5361c24c611bb8f670ce0448e329df201ec4cf1776c96ee07374411b8e2a33c0"
+    },
+    {
+      "index": 1203,
+      "kind": "sphere",
+      "name": "THE STANDING CREDIT",
+      "slug": "the-standing-credit",
+      "seal": "23ea83f47f14720d8fd536ef2729f24fb3712dc01f6a4bde937dc57f8b5bcb67"
+    },
+    {
+      "index": 1204,
+      "kind": "sphere",
+      "name": "THE SELF-CAUGHT SHARE",
+      "slug": "the-self-caught-share",
+      "seal": "a6e98994bc6c6d6b7338b18f884f56967812a7b503f96da259659cb1c695dfaf"
+    },
+    {
+      "index": 1205,
       "kind": "keeper",
       "name": "BUDDY CHRIST",
       "slug": "buddy-christ",
       "seal": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5"
     },
     {
-      "index": 1201,
+      "index": 1206,
       "kind": "keeper",
       "name": "OVER THE",
       "slug": "over-the",
       "seal": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851"
     },
     {
-      "index": 1202,
+      "index": 1207,
       "kind": "keeper",
       "name": "WHETSTONE",
       "slug": "whetstone",
       "seal": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc"
     },
     {
-      "index": 1203,
+      "index": 1208,
       "kind": "keeper",
       "name": "ECHO",
       "slug": "echo",
       "seal": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc"
     },
     {
-      "index": 1204,
+      "index": 1209,
       "kind": "keeper",
       "name": "SEAM",
       "slug": "seam",
       "seal": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b"
     },
     {
-      "index": 1205,
+      "index": 1210,
       "kind": "keeper",
       "name": "THE GLASS",
       "slug": "the-glass",
       "seal": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016"
     },
     {
-      "index": 1206,
+      "index": 1211,
       "kind": "keeper",
       "name": "THE INTERROGATED",
       "slug": "the-interrogated",
       "seal": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef"
     },
     {
-      "index": 1207,
+      "index": 1212,
       "kind": "keeper",
       "name": "THE HONEST MACHINE",
       "slug": "the-honest-machine",
