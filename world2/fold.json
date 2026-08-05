@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1220,
+    "spheres": 1225,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1214,
+    "spheres_built": 1219,
     "apex": 1
   },
   "keepers": [
@@ -11068,6 +11068,51 @@
       "blurb": "16 balls of 8 points tile all 128 strings exactly - nothing left over, nothing counted twice. And so there is no room left to notice a second flipped bit.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "0c2febf3b932603e07e752707f35d48691bde7f3bad1670a9391ed34379bfacc"
+    },
+    {
+      "slug": "the-linking-number",
+      "title": "THE LINKING NUMBER",
+      "kicker": "an integer that survives any deformation",
+      "accent": "#7de2b0",
+      "blurb": "Gauss's double integral returns an integer that no bending or stretching can move. And it has a blind spot: zero does not mean unlinked.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b307498f972e097af0c3fe064c66688fd7f7dd4afd8ba71cebe136c6fd107c8b"
+    },
+    {
+      "slug": "the-space-filling",
+      "title": "THE SPACE FILLING",
+      "kicker": "a line that becomes a plane",
+      "accent": "#5ad6ff",
+      "blurb": "A continuous curve passing through every point of the square. What it buys is that near in the ordering means near in the plane - within a constant times the square root of the gap.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "406acc39c9940800b82bf00f4d1cbc9755d2c5750ca0637c20cd21873a5fa6b8"
+    },
+    {
+      "slug": "the-euler-characteristic",
+      "title": "THE EULER CHARACTERISTIC",
+      "kicker": "a number three solids cannot tell apart",
+      "accent": "#ffd76a",
+      "blurb": "V minus E plus F is 2 for every convex polyhedron, and 0 for every torus. It depends on nothing about the shape except how many holes it has.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "92b10a73b56b9de35c541fa8036d024d0dad045a28a6a1edd6bc6c1027f39903"
+    },
+    {
+      "slug": "the-deceptive",
+      "title": "THE DECEPTIVE",
+      "kicker": "a hill built to mislead",
+      "accent": "#ff5a8a",
+      "blurb": "A landscape where following the gradient takes you away from the answer, and the decoy pays 90% of the optimum - which is exactly what makes it convincing.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "09f423bbbaa041c1aaa2ca478c1e9d618212f3c657ab9790de5952d958f93076"
+    },
+    {
+      "slug": "the-winding-number",
+      "title": "THE WINDING NUMBER",
+      "kicker": "counting roots by counting turns",
+      "accent": "#b98cff",
+      "blurb": "Accumulate the angle of a polynomial's image around a loop and divide by 2pi. That integer is how many roots are inside - no root-finding, no algebra.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6314fc10ab3c7a189da9155a1bc986981636e7c6c540e5f745d7fd2dec3edad1"
     }
   ],
   "appeals": [
@@ -14590,6 +14635,14 @@
               "icon": "⊞",
               "kicker": "integers floating point cannot reach",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-space-filling",
+              "title": "THE SPACE FILLING",
+              "accent": "#5ad6ff",
+              "icon": "⇿",
+              "kicker": "a line that becomes a plane",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -14729,6 +14782,14 @@
               "accent": "#5ad6ff",
               "icon": "≠",
               "kicker": "same table, three p-values, one threshold",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-winding-number",
+              "title": "THE WINDING NUMBER",
+              "accent": "#b98cff",
+              "icon": "↻",
+              "kicker": "counting roots by counting turns",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -18749,6 +18810,14 @@
               "icon": "hundredprisoners",
               "kicker": "a pointer-chase that beats impossible odds",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-euler-characteristic",
+              "title": "THE EULER CHARACTERISTIC",
+              "accent": "#ffd76a",
+              "icon": "⬡",
+              "kicker": "a number three solids cannot tell apart",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -19558,6 +19627,14 @@
               "icon": "⊞",
               "kicker": "two valid rules, opposite answers, same table",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-linking-number",
+              "title": "THE LINKING NUMBER",
+              "accent": "#7de2b0",
+              "icon": "⚭",
+              "kicker": "an integer that survives any deformation",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -20173,6 +20250,14 @@
               "accent": "#b98cff",
               "icon": "◌",
               "kicker": "my draw was honest, the pool was not",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-deceptive",
+              "title": "THE DECEPTIVE",
+              "accent": "#ff5a8a",
+              "icon": "⤴",
+              "kicker": "a hill built to mislead",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21744,7 +21829,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "09e72b3b6462d2753ed8488f139a64a93c800a992ec64b6c45995b3a9b7f5896",
+  "fold_root": "8cfe22bc7d92046fa7a1ceec79ccbb072b6f250a822618d6aabc76e6a42af9e9",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
