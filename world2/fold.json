@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1175,
+    "spheres": 1180,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1169,
+    "spheres_built": 1174,
     "apex": 1
   },
   "keepers": [
@@ -10663,6 +10663,51 @@
       "blurb": "Every judge individually consistent; majority on the premises says TRUE, majority on the conclusion says FALSE. Both routes defensible, so more care cannot settle it.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "ade813ee90e179e9d080960e2068a7d05a2ff39a0c100316542c0874ebeb9e5f"
+    },
+    {
+      "slug": "the-ellsberg",
+      "title": "THE ELLSBERG",
+      "kicker": "a preference no probability can hold",
+      "accent": "#ff5a8a",
+      "blurb": "30 red, 60 black-or-yellow in a split nobody tells you. Two obvious choices, and no assignment to black makes both rational — because people are declining to bet on a number they were never given.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "26898695cc0d72cbd9e7dcfba329d07901b44fde7295156c91ecb8dd955fd86d"
+    },
+    {
+      "slug": "the-newcomb",
+      "title": "THE NEWCOMB",
+      "kicker": "two valid rules, opposite answers, same table",
+      "accent": "#ffd76a",
+      "blurb": "Causal decision theory says take both boxes and its dominance argument never becomes wrong. Evidential says take one, and one-boxers really do end up richer. Both facts are verified here.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "47565d375b302762fb66cb1947b172df9ff135b1e7c07c3c16dbeb8223fd63bb"
+    },
+    {
+      "slug": "the-gentzen",
+      "title": "THE GENTZEN",
+      "kicker": "a proof that stops borrowing",
+      "accent": "#7de2b0",
+      "blurb": "Cut is the rule that lets a proof use a lemma. Remove every cut and the proof mentions nothing but the thing it proves — which is what makes proof search possible, and what makes proofs enormous.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a2fb6657c236c7165bfee86bb8061035cfe9d7f6f97a33d0f897cda8b4c2ab9b"
+    },
+    {
+      "slug": "the-herbrand",
+      "title": "THE HERBRAND",
+      "kicker": "an infinity settled by a finite piece of itself",
+      "accent": "#5ad6ff",
+      "blurb": "If a first-order clause set is unsatisfiable, some finite set of ground instances already is. Expand far enough and an ordinary SAT solver settles it — but nothing tells you how far.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "dd3cbf495ce12f404a025fe6bc49039c1ddc3595c3c9b9fc39284ff037ca99c4"
+    },
+    {
+      "slug": "the-krein-milman",
+      "title": "THE KREIN-MILMAN",
+      "kicker": "keep the corners, discard the rest, rebuild the whole",
+      "accent": "#b98cff",
+      "blurb": "A convex shape with infinitely many points is entirely determined by its extreme points. Everything interior is redundant — which is why optimisation so often reduces to checking corners.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6451088966b62f89ff0d01de827888b2bb3093a9305765e60c5d10c43efc309c"
     }
   ],
   "appeals": [
@@ -19081,6 +19126,14 @@
               "icon": "⇉",
               "kicker": "two encoders, no channel between them, joint price",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-newcomb",
+              "title": "THE NEWCOMB",
+              "accent": "#ffd76a",
+              "icon": "⊞",
+              "kicker": "two valid rules, opposite answers, same table",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -20310,6 +20363,14 @@
               "icon": "◆",
               "kicker": "LIT is refused without an evidence string",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-krein-milman",
+              "title": "THE KREIN-MILMAN",
+              "accent": "#b98cff",
+              "icon": "◇",
+              "kicker": "keep the corners, discard the rest, rebuild the whole",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -20425,6 +20486,14 @@
               "accent": "#35ffb0",
               "icon": "rice",
               "kicker": "every question about meaning",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-herbrand",
+              "title": "THE HERBRAND",
+              "accent": "#5ad6ff",
+              "icon": "∃",
+              "kicker": "an infinity settled by a finite piece of itself",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20643,6 +20712,14 @@
               "icon": "⌇",
               "kicker": "half the sampling rate, and not one hertz more",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ellsberg",
+              "title": "THE ELLSBERG",
+              "accent": "#ff5a8a",
+              "icon": "◔",
+              "kicker": "a preference no probability can hold",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -20859,6 +20936,14 @@
               "icon": "⊕",
               "kicker": "surrender multiplication, get decidability back",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gentzen",
+              "title": "THE GENTZEN",
+              "accent": "#7de2b0",
+              "icon": "⊢",
+              "kicker": "a proof that stops borrowing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 27,
@@ -20979,7 +21064,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "6fc70412e5b2ad83b981317ea433dbcdd55280900d765e714cb0f8cb32a0e485",
+  "fold_root": "8abe3096dfb8c063829dfa40b9f4e63490d99f88f7633baec1d2cf0fb0cd1ed2",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
