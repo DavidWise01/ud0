@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "folded_to": "ROOT_0",
-  "root": "a6b2937194185b7ccbe8bca02b52aff6c07108891cad4e2fbb04a452e5f4d306",
-  "count": 1343,
+  "root": "45dced0ba0df99834d0e7f0708eeba004ced9d2ea91e29991363c800e8a427c1",
+  "count": 1348,
   "sealed": "2026-08-05",
   "note": "Every World II inhabitant folds to ROOT_0. Live: the root updates as the world grows, until World II is sealed. Each <slug>.dlw.fold carries its own proof to this root.",
   "leaves": [
@@ -9358,55 +9358,90 @@
     },
     {
       "index": 1335,
+      "kind": "sphere",
+      "name": "THE CARELESS CANDIDATE FIRST",
+      "slug": "the-careless-candidate-first",
+      "seal": "38f82851e101e2d853bd75ddfb80260b1487203c1fae7d8bd1a6dd256492f622"
+    },
+    {
+      "index": 1336,
+      "kind": "sphere",
+      "name": "TWO ORACLES",
+      "slug": "two-oracles",
+      "seal": "de9d3a6191fd865dfec40642c649ca72e1a593464e253acef6696f7941f13cb4"
+    },
+    {
+      "index": 1337,
+      "kind": "sphere",
+      "name": "THE CURRICULUM NOT MADE UP",
+      "slug": "the-curriculum-not-made-up",
+      "seal": "ca5c0a908adc775f20e51311f40b869846e6ea8032ba1d49e76b55b7c034d1c7"
+    },
+    {
+      "index": 1338,
+      "kind": "sphere",
+      "name": "PROVEN TO DISCRIMINATE",
+      "slug": "proven-to-discriminate",
+      "seal": "a0d9105064c92cad605f820017575a4825bbe185d7abb9ef48cf27e3ada8a436"
+    },
+    {
+      "index": 1339,
+      "kind": "sphere",
+      "name": "OUTSIDE THAT IT STOPS",
+      "slug": "outside-that-it-stops",
+      "seal": "a47a377a39ee4eadd976ca5e69d07f20070499af68fdde2979e5c3181759dbbe"
+    },
+    {
+      "index": 1340,
       "kind": "keeper",
       "name": "BUDDY CHRIST",
       "slug": "buddy-christ",
       "seal": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5"
     },
     {
-      "index": 1336,
+      "index": 1341,
       "kind": "keeper",
       "name": "OVER THE",
       "slug": "over-the",
       "seal": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851"
     },
     {
-      "index": 1337,
+      "index": 1342,
       "kind": "keeper",
       "name": "WHETSTONE",
       "slug": "whetstone",
       "seal": "e676d547976c42e515662043bf448eeb0ffe0e49251d9d708f670635667095bc"
     },
     {
-      "index": 1338,
+      "index": 1343,
       "kind": "keeper",
       "name": "ECHO",
       "slug": "echo",
       "seal": "1842b27c82b02324df65def746ad5ca102ebefbcb0a4776cd4fc52ff2d19d9dc"
     },
     {
-      "index": 1339,
+      "index": 1344,
       "kind": "keeper",
       "name": "SEAM",
       "slug": "seam",
       "seal": "dd31f8012930a92412d38e0185fe1a1928688de88172b901da7391e84299339b"
     },
     {
-      "index": 1340,
+      "index": 1345,
       "kind": "keeper",
       "name": "THE GLASS",
       "slug": "the-glass",
       "seal": "08b1326015991c18cedec720d95c36ab6aa7bece44beee325899e67289fc1016"
     },
     {
-      "index": 1341,
+      "index": 1346,
       "kind": "keeper",
       "name": "THE INTERROGATED",
       "slug": "the-interrogated",
       "seal": "bf3f1fe970aab1de9045dc5ad634e3cb52abbf19da4d12c981579055d3b962ef"
     },
     {
-      "index": 1342,
+      "index": 1347,
       "kind": "keeper",
       "name": "THE HONEST MACHINE",
       "slug": "the-honest-machine",

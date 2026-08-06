@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1335,
+    "spheres": 1340,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1329,
+    "spheres_built": 1334,
     "apex": 1
   },
   "keepers": [
@@ -12103,6 +12103,51 @@
       "blurb": "Five bugs in one build, every one a regex meeting a nested structure. A parse tree nests; a regular expression does not.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "0d7ca3be6b2fed47dea61179f94e1439c2d8fbe6f5d0798800d56104a42007bc"
+    },
+    {
+      "slug": "the-careless-candidate-first",
+      "title": "THE CARELESS CANDIDATE FIRST",
+      "kicker": "an exam nobody has failed is not an exam",
+      "accent": "#ffd76a",
+      "blurb": "Before an exercise is pointed at anything real, a deliberately lazy answer is run against it. If the rubric passes that, the rubric is worthless.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "38f82851e101e2d853bd75ddfb80260b1487203c1fae7d8bd1a6dd256492f622"
+    },
+    {
+      "slug": "two-oracles",
+      "title": "TWO ORACLES",
+      "kicker": "valid and right are different questions",
+      "accent": "#5ad6ff",
+      "blurb": "A compiler decides whether a candidate is legal; a reference implementation decides whether it is right. Three candidates, all three compiled, two rejected.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "de9d3a6191fd865dfec40642c649ca72e1a593464e253acef6696f7941f13cb4"
+    },
+    {
+      "slug": "the-curriculum-not-made-up",
+      "title": "THE CURRICULUM NOT MADE UP",
+      "kicker": "every exercise is an observed failure",
+      "accent": "#7de2b0",
+      "blurb": "A curriculum whose every exercise is a failure that actually happened - four defects observed in one working session, two of them the author's own tools.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ca5c0a908adc775f20e51311f40b869846e6ea8032ba1d49e76b55b7c034d1c7"
+    },
+    {
+      "slug": "proven-to-discriminate",
+      "title": "PROVEN TO DISCRIMINATE",
+      "kicker": "which is not proven to teach",
+      "accent": "#ff5a8a",
+      "blurb": "Teaching needs four things: a curriculum, a marking scheme, a way to set the work, and a student. Three exist and have been used. The fourth is marked ABSENT.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a0d9105064c92cad605f820017575a4825bbe185d7abb9ef48cf27e3ada8a436"
+    },
+    {
+      "slug": "outside-that-it-stops",
+      "title": "OUTSIDE THAT IT STOPS",
+      "kicker": "a bounded specialist declares its own edge",
+      "accent": "#b98cff",
+      "blurb": "A specialist defined by what it refuses. Three skills, one domain, and an explicit instruction that outside it the answer is to say so and stop.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a47a377a39ee4eadd976ca5e69d07f20070499af68fdde2979e5c3181759dbbe"
     }
   ],
   "appeals": [
@@ -15489,6 +15534,14 @@
               "icon": "⚠",
               "kicker": "an invariant that lives in flight",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-curriculum-not-made-up",
+              "title": "THE CURRICULUM NOT MADE UP",
+              "accent": "#7de2b0",
+              "icon": "☷",
+              "kicker": "every exercise is an observed failure",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -15653,6 +15706,14 @@
               "icon": "∅",
               "kicker": "a counter that walked the wrong field",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-careless-candidate-first",
+              "title": "THE CARELESS CANDIDATE FIRST",
+              "accent": "#ffd76a",
+              "icon": "⊘",
+              "kicker": "an exam nobody has failed is not an exam",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -15816,6 +15877,14 @@
               "accent": "#ff5a8a",
               "icon": "◎",
               "kicker": "a probe that re-ran what it was watching",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "outside-that-it-stops",
+              "title": "OUTSIDE THAT IT STOPS",
+              "accent": "#b98cff",
+              "icon": "∅",
+              "kicker": "a bounded specialist declares its own edge",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -16153,6 +16222,14 @@
               "icon": "⛓",
               "kicker": "a freeze that cannot re-read itself",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "proven-to-discriminate",
+              "title": "PROVEN TO DISCRIMINATE",
+              "accent": "#ff5a8a",
+              "icon": "⊥",
+              "kicker": "which is not proven to teach",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -16480,6 +16557,14 @@
               "accent": "#ffd76a",
               "icon": "≈",
               "kicker": "a structure allowed to lie, by exactly this much",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "two-oracles",
+              "title": "TWO ORACLES",
+              "accent": "#5ad6ff",
+              "icon": "⚖",
+              "kicker": "valid and right are different questions",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -23699,7 +23784,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "a6b2937194185b7ccbe8bca02b52aff6c07108891cad4e2fbb04a452e5f4d306",
+  "fold_root": "45dced0ba0df99834d0e7f0708eeba004ced9d2ea91e29991363c800e8a427c1",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
