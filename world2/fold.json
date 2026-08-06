@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1345,
+    "spheres": 1350,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1339,
+    "spheres_built": 1344,
     "apex": 1
   },
   "keepers": [
@@ -12193,6 +12193,51 @@
       "blurb": "Brodal's 1996 priority queue does insert, meld and find-min in worst-case constant time. An amortised bound permits a spike; some systems cannot have one.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "ede93cb3b04f6bd7a9b9024aebd7db9b330efaadd4f3b2c0cb69ed6bde420f56"
+    },
+    {
+      "slug": "the-rank-wall",
+      "title": "THE RANK WALL",
+      "kicker": "the one result that CLOSES an option",
+      "accent": "#ff5a8a",
+      "blurb": "A linear map from C^4096 to C^1 has rank at most 1. Reversibility needs rank 4096. A one-dimensional root cannot host a reversible fold - arithmetic, not preference.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "919d2c26a44e6388c06e297eeda5e893d3f70fc24648041a82bcf0751165f0c6"
+    },
+    {
+      "slug": "the-only-factorisation",
+      "title": "THE ONLY FACTORISATION",
+      "kicker": "the drawing IS the number",
+      "accent": "#ffd76a",
+      "blurb": "A drawing shows four arms around a centre. Among equal arm sizes, exactly one reaches the total: 8^4 = 4096.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "27f3e77053444358aff76d901ffea429647aee196480c638baa8f200a30b4d9f"
+    },
+    {
+      "slug": "the-ranking-inverts",
+      "title": "THE RANKING INVERTS",
+      "kicker": "fewer bits kept, and the better operator",
+      "accent": "#5ad6ff",
+      "blurb": "Rank six folds by bits kept and one operator wins; rank them by recoverability and a different one does. A single-number ranking picks the wrong one.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e716e466321b3c3feadedaa1c77b9bb6517e60b6a2026ea77a96a9deb7fe8ce4"
+    },
+    {
+      "slug": "a-guess-wearing-syntax",
+      "title": "A GUESS WEARING SYNTAX",
+      "kicker": "a selector that graded the wrong row",
+      "accent": "#b98cff",
+      "blurb": "A verifier looked up a row with .find() and a loose pattern. The pattern matched two rows; .find() silently returned the first, and reported a correct claim as wrong.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8336a81a29776131b211c79c4022dc31e909b822ab43125a64459d65e30183e4"
+    },
+    {
+      "slug": "the-costume",
+      "title": "THE COSTUME",
+      "kicker": "an auditor cannot tell an obfuscation from an error",
+      "accent": "#7de2b0",
+      "blurb": "A sequence arrived as 'the structure'. Audited as data it has three faults, every one correct about the typed input and wrong about the design - it was a deliberate disguise.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8fe98d88afa0522010dc9e1fffd6a4f8d2aff6af2c6d330cee9b59ece40c9b78"
     }
   ],
   "appeals": [
@@ -14074,6 +14119,14 @@
               "icon": "moessner",
               "kicker": "strike and sum — the powers fall out",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ranking-inverts",
+              "title": "THE RANKING INVERTS",
+              "accent": "#5ad6ff",
+              "icon": "⇅",
+              "kicker": "fewer bits kept, and the better operator",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -15090,6 +15143,14 @@
               "icon": "║",
               "kicker": "a gate set before the measurement",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rank-wall",
+              "title": "THE RANK WALL",
+              "accent": "#ff5a8a",
+              "icon": "⊥",
+              "kicker": "the one result that CLOSES an option",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 30,
@@ -15253,6 +15314,14 @@
               "accent": "#ffcf4a",
               "icon": "lanchester",
               "kicker": "why concentration wins",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-only-factorisation",
+              "title": "THE ONLY FACTORISATION",
+              "accent": "#ffd76a",
+              "icon": "✥",
+              "kicker": "the drawing IS the number",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -16471,6 +16540,14 @@
               "icon": "↔",
               "kicker": "a shift that shifts nothing that matters",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-costume",
+              "title": "THE COSTUME",
+              "accent": "#7de2b0",
+              "icon": "◒",
+              "kicker": "an auditor cannot tell an obfuscation from an error",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 35,
@@ -16806,6 +16883,14 @@
               "accent": "#ffd76a",
               "icon": "≡",
               "kicker": "three quantities, one name",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "a-guess-wearing-syntax",
+              "title": "A GUESS WEARING SYNTAX",
+              "accent": "#b98cff",
+              "icon": "≠",
+              "kicker": "a selector that graded the wrong row",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -23869,7 +23954,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "bbbefc2c7d4280682b5aff374bc7b945bc752e28931c1344d25fc4c0d7d685b8",
+  "fold_root": "c2223f52c7b1e2efc7079e66ea608e37383f39a9aae1755c83a6617cb2a2efd9",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

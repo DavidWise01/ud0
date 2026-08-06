@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE RANKING INVERTS",
+  "slug": "the-ranking-inverts",
+  "seal": "e716e466321b3c3feadedaa1c77b9bb6517e60b6a2026ea77a96a9deb7fe8ce4",
+  "index": 1347,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "27f3e77053444358aff76d901ffea429647aee196480c638baa8f200a30b4d9f",
+      "side": "L"
+    },
+    {
+      "h": "296de9657d2b1751ddfc69eae775848cc58fe1df7d71d460b94ac5a128c48c48",
+      "side": "L"
+    },
+    {
+      "h": "954dec20909be4dae209ff3ef757f60129764dafbb474c634e05c5781e0154a5",
+      "side": "R"
+    },
+    {
+      "h": "7349af00e45a482dea676eeb1db27c8d7364eb50100d2f1f86c6bde51d83b989",
+      "side": "R"
+    },
+    {
+      "h": "1bcc1f53c0590a745fc8c9558e9650d8e25ddf71a52a0ad36b74d4f0e3e36bce",
+      "side": "R"
+    },
+    {
+      "h": "0290e6e867e4dc280ab1f3bc689d47b4edc29937a281dcd96ed0c9fc5dca6a4e",
+      "side": "R"
+    },
+    {
+      "h": "483f21e177ca01a7cfb670f37de46d2b936a5bb1efca2ba405bfe02e715e8ced",
+      "side": "L"
+    },
+    {
+      "h": "9c1e92d7ee67f6fccc1eeadb47ea91c2cd8f7c9135d3b7fd79a35cb87034e60b",
+      "side": "R"
+    },
+    {
+      "h": "e5d40fbbdc40da94b47c6cea9b81ca58db318dbff5012b0611e6109932829e68",
+      "side": "L"
+    },
+    {
+      "h": "1c8a32bd8a9f35b42113b60ca007eab75f571437498d8c5fea30fc8f0b590154",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "c2223f52c7b1e2efc7079e66ea608e37383f39a9aae1755c83a6617cb2a2efd9",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
