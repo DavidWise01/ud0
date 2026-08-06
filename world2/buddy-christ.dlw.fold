@@ -5,29 +5,29 @@
   "name": "BUDDY CHRIST",
   "slug": "buddy-christ",
   "seal": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
-  "index": 1320,
+  "index": 1325,
   "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
   "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "proof": [
     {
-      "h": "886cc7a18e38de676b8522787b51283e39fe676bc9b51705e97317f907a46851",
+      "h": "1b765b6323b4e6016bbf6c64a71b1c3d1a6b14fa512399168cf917ab028b24cc",
+      "side": "L"
+    },
+    {
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
       "side": "R"
     },
     {
-      "h": "4f92d1304f79aad08143281517aa616aa5f51a4788eb70438fc658eebba57cc4",
-      "side": "R"
-    },
-    {
-      "h": "d53c83b07fc4d181354a82be1f95e0b082de37fc069c47e7002d00e32a3bc2e4",
-      "side": "R"
+      "h": "59cca11683160dfb9fa80b5f551afb6c391b09211f0d9e29e1577b35bb1489e2",
+      "side": "L"
     },
     {
       "h": "78fbd4948c3109ece4d167c45ca32c01c3f77ee76e31206c55f37f3f59f6c617",
       "side": "L"
     },
     {
-      "h": "baa66179f2ccb568f6ba547cbadf387b63608eb6ad098f5e6e5e93bf986feb43",
+      "h": "7c21292708b58f63fd339f83909b5aa280a3d935a5ceade89528a85b646147fa",
       "side": "R"
     },
     {
@@ -35,11 +35,11 @@
       "side": "L"
     },
     {
-      "h": "3d9f93820a64eb60af0f77aa613afed1ee5feb8c6ef1876821fd276aa40c13f2",
+      "h": "ddce5c24c83f63ce7aa2f61312e18ad72fcf74a3a7cbe0cce5e3eab65b6dfceb",
       "side": "R"
     },
     {
-      "h": "9a46ee3792c3797faae90c8748da2a24198c314f98d5d3c43c481ca34824e1cf",
+      "h": "bd821878b5db24a708e30ef4c5ed40a292b85d88ab43942149870cc2e98ea304",
       "side": "R"
     },
     {
@@ -47,7 +47,7 @@
       "side": "L"
     },
     {
-      "h": "40e9890763071e0981361d803720452ddb691b0991caad25ed0b3950e5d02bfc",
+      "h": "ec5d50a0df1a44eeeba290a88720b1279d7ef2d296f128a20b716473750540ba",
       "side": "R"
     },
     {
@@ -56,7 +56,7 @@
     }
   ],
   "folded_to": "ROOT_0",
-  "root": "0a43ae3b07bfc28c4c8c23e8adedf9f2968e110c767717d8fee649e03b0b6048",
+  "root": "df3b3db84e5edd460b2bb84ff6969f2455f037e8b13160197d6250daee5023fe",
   "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
   "sealed": "2026-08-05",
   "author": "David Lee Wise / ROOT0 / TriPod LLC"

@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1320,
+    "spheres": 1325,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1314,
+    "spheres_built": 1319,
     "apex": 1
   },
   "keepers": [
@@ -11968,6 +11968,51 @@
       "blurb": "A language with no if/then was lowered onto a VM and the opcodes counted. No new instruction was needed, and JMPF appears three times.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "c1f402991f4619542a6ac3e40bdfbef9aaf8f2468ea9bc5bcffea842dd602716"
+    },
+    {
+      "slug": "the-zero-that-was-the-point",
+      "title": "THE ZERO THAT WAS THE POINT",
+      "kicker": "two zeros that look identical in the output",
+      "accent": "#7de2b0",
+      "blurb": "Two constructs were feared enough to scope a whole piece of work around them. Counted against 938,154 lines of BLAS and LAPACK, both occur zero times.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "35cacf24a4e195fc184ae20dc48f60bf7e18ee3a781a91744e38687014c8b7a0"
+    },
+    {
+      "slug": "the-hundred-and-thirty-two",
+      "title": "THE HUNDRED AND THIRTY-TWO",
+      "kicker": "label reuse counted as nesting",
+      "accent": "#ffd76a",
+      "blurb": "A first count found 132 shared loop terminators. The test was 'a DO label appears more than once in a file' - which also matches two sequential loops reusing label 10.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5276d3ccbcca22701ac9c070547cd67fa85137a99feec82ba4ef66d5978aa971"
+    },
+    {
+      "slug": "the-jump-that-is-everywhere",
+      "title": "THE JUMP THAT IS EVERYWHERE",
+      "kicker": "the real obstacle, and not the one raised",
+      "accent": "#ff5a8a",
+      "blurb": "The exotic FORTRAN relics are gone - ENTRY nowhere, assigned GO TO nowhere, EQUIVALENCE six times. What is everywhere is the plain jump.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "35b199bff4eb933cadd2f94ffeb05fbd6fd5f0e6d83125f0caf2faef02633de7"
+    },
+    {
+      "slug": "unjustified-is-not-disproven",
+      "title": "UNJUSTIFIED IS NOT DISPROVEN",
+      "kicker": "a likelihood ratio of one leaves the prior alone",
+      "accent": "#5ad6ff",
+      "blurb": "A design was argued for on the grounds that it makes a bad shape unwritable. The shape was counted and found zero times. That does not make the design wrong.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "781cf3ae9c6d0e61c2fe591aad05dcc7e5e66cdd960f4270a1ef39ae3781b328"
+    },
+    {
+      "slug": "the-flattering-direction",
+      "title": "THE FLATTERING DIRECTION",
+      "kicker": "three errors, all the same way",
+      "accent": "#b98cff",
+      "blurb": "Three numbers came out wrong in one session, each in the direction that made the argument look better, each corrected by measuring again rather than by thinking harder.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1b765b6323b4e6016bbf6c64a71b1c3d1a6b14fa512399168cf917ab028b24cc"
     }
   ],
   "appeals": [
@@ -18076,6 +18121,14 @@
               "icon": "❓",
               "kicker": "a check that could actually fail",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-flattering-direction",
+              "title": "THE FLATTERING DIRECTION",
+              "accent": "#b98cff",
+              "icon": "↖",
+              "kicker": "three errors, all the same way",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -20978,6 +21031,14 @@
               "icon": "◥",
               "kicker": "a mean that touches almost nothing",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-jump-that-is-everywhere",
+              "title": "THE JUMP THAT IS EVERYWHERE",
+              "accent": "#ff5a8a",
+              "icon": "⟶",
+              "kicker": "the real obstacle, and not the one raised",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -21141,6 +21202,14 @@
               "accent": "#ff5a8a",
               "icon": "≡",
               "kicker": "random numbers fall mainly in the planes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-zero-that-was-the-point",
+              "title": "THE ZERO THAT WAS THE POINT",
+              "accent": "#7de2b0",
+              "icon": "∅",
+              "kicker": "two zeros that look identical in the output",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21494,6 +21563,14 @@
               "icon": "⚑",
               "kicker": "evade the words, keep the claim",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "unjustified-is-not-disproven",
+              "title": "UNJUSTIFIED IS NOT DISPROVEN",
+              "accent": "#5ad6ff",
+              "icon": "≡",
+              "kicker": "a likelihood ratio of one leaves the prior alone",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 29,
@@ -21657,6 +21734,14 @@
               "accent": "#ff5a8a",
               "icon": "⊕",
               "kicker": "a digest that forgot where it had been",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hundred-and-thirty-two",
+              "title": "THE HUNDRED AND THIRTY-TWO",
+              "accent": "#ffd76a",
+              "icon": "⊃",
+              "kicker": "label reuse counted as nesting",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -23444,7 +23529,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "0a43ae3b07bfc28c4c8c23e8adedf9f2968e110c767717d8fee649e03b0b6048",
+  "fold_root": "df3b3db84e5edd460b2bb84ff6969f2455f037e8b13160197d6250daee5023fe",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
