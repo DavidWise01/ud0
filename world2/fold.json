@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1325,
+    "spheres": 1330,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1319,
+    "spheres_built": 1324,
     "apex": 1
   },
   "keepers": [
@@ -12013,6 +12013,51 @@
       "blurb": "Three numbers came out wrong in one session, each in the direction that made the argument look better, each corrected by measuring again rather than by thinking harder.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "1b765b6323b4e6016bbf6c64a71b1c3d1a6b14fa512399168cf917ab028b24cc"
+    },
+    {
+      "slug": "the-unary-minus-that-isnt",
+      "title": "THE UNARY MINUS THAT ISN'T",
+      "kicker": "a gap only a negative number can find",
+      "accent": "#5ad6ff",
+      "blurb": "A 13-symbol language has a binary minus and no unary one. Negative numbers are not handled badly - they are inexpressible as literals and must be constructed.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b6c399fb36d1a45d7c5de4f1ab112951c48014cfab00b5863ea4c6ba7350b47b"
+    },
+    {
+      "slug": "the-point-three-seven",
+      "title": "THE POINT THREE SEVEN",
+      "kicker": "a third have jumps; almost none are irreducible",
+      "accent": "#7de2b0",
+      "blurb": "A third of LAPACK contains a GO TO, which looked like the end of a stack-based checker. Then the control-flow graphs were analysed.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ebcff4060b3f6a7eee2eb9977ce5258198e1afb3b80b7d22954ae8a3cd4a21d5"
+    },
+    {
+      "slug": "the-gate-that-was-run",
+      "title": "THE GATE THAT WAS RUN",
+      "kicker": "no partial credit, and the number stays honest",
+      "accent": "#ffd76a",
+      "blurb": "A progress board where every item is binary. A gate is a thing that was run - a command with an output - or it is open. Nothing is 'mostly done'.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ba7c2109144ce27728f5a12732c8cfdec9208b376f7d2dd7bf2e1103e6808220"
+    },
+    {
+      "slug": "the-judge-built-first",
+      "title": "THE JUDGE BUILT FIRST",
+      "kicker": "the oracle was cheaper than the thing it judges",
+      "accent": "#b98cff",
+      "blurb": "On a seven-floor board, the floor that judges is 75% built and the floor it judges sits at 0%. Recognising is structurally cheaper than generating.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9284a9eaf7399d307cc1681198e30a690001d3cbabc81d7ac096ff20a652b8a7"
+    },
+    {
+      "slug": "the-fourteen-decimals",
+      "title": "THE FOURTEEN DECIMALS",
+      "kicker": "what an exact agreement does and does not show",
+      "accent": "#ff5a8a",
+      "blurb": "Reference BLAS DDOT, unmodified, with its MOD(N,5) clean-up and five-way unrolled loop kept rather than smoothed, translated into a 13-symbol language and run interpreted.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a01e829ec5f88d937d870ae3c3898868a5f74bae320078b6bc1269ab9b7b2d8b"
     }
   ],
   "appeals": [
@@ -19674,6 +19719,14 @@
               "icon": "roommates",
               "kicker": "the co-op with no settlement",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gate-that-was-run",
+              "title": "THE GATE THAT WAS RUN",
+              "accent": "#ffd76a",
+              "icon": "▣",
+              "kicker": "no partial credit, and the number stays honest",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -19837,6 +19890,14 @@
               "accent": "#5ad6ff",
               "icon": "⌇",
               "kicker": "a signal that carries its own clock",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-unary-minus-that-isnt",
+              "title": "THE UNARY MINUS THAT ISN'T",
+              "accent": "#5ad6ff",
+              "icon": "−",
+              "kicker": "a gap only a negative number can find",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20338,6 +20399,14 @@
               "icon": "kruskalcount",
               "kicker": "chains that never part",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-judge-built-first",
+              "title": "THE JUDGE BUILT FIRST",
+              "accent": "#b98cff",
+              "icon": "⚖",
+              "kicker": "the oracle was cheaper than the thing it judges",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 28,
@@ -20501,6 +20570,14 @@
               "accent": "#7de2b0",
               "icon": "⚖",
               "kicker": "91% balanced and 39% used, both correct",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-point-three-seven",
+              "title": "THE POINT THREE SEVEN",
+              "accent": "#7de2b0",
+              "icon": "⤷",
+              "kicker": "a third have jumps; almost none are irreducible",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -20681,6 +20758,14 @@
               "accent": "#21e6ff",
               "icon": "kuramoto",
               "kicker": "the sync transition",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fourteen-decimals",
+              "title": "THE FOURTEEN DECIMALS",
+              "accent": "#ff5a8a",
+              "icon": "≡",
+              "kicker": "what an exact agreement does and does not show",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -23529,7 +23614,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "df3b3db84e5edd460b2bb84ff6969f2455f037e8b13160197d6250daee5023fe",
+  "fold_root": "20cccea75d4cdf4d2d02335d9848eae6da13c6a07597d4a9e046e741fa92bd2d",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
