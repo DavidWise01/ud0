@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1330,
+    "spheres": 1335,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1324,
+    "spheres_built": 1329,
     "apex": 1
   },
   "keepers": [
@@ -12058,6 +12058,51 @@
       "blurb": "Reference BLAS DDOT, unmodified, with its MOD(N,5) clean-up and five-way unrolled loop kept rather than smoothed, translated into a 13-symbol language and run interpreted.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a01e829ec5f88d937d870ae3c3898868a5f74bae320078b6bc1269ab9b7b2d8b"
+    },
+    {
+      "slug": "the-smaller-language",
+      "title": "THE SMALLER LANGUAGE",
+      "kicker": "13 forms cover fortran better than python",
+      "accent": "#7de2b0",
+      "blurb": "A 13-symbol budget was designed by looking at Python. The gate that could stop everything asked whether the same thirteen forms cover FORTRAN.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1ca7ddb8a0905a4709dd6ea27e629c6fd8cfbc4fa7476582fe867696b2481404"
+    },
+    {
+      "slug": "rare-in-code",
+      "title": "RARE IN CODE",
+      "kicker": "common in codebases, rare in code",
+      "accent": "#ff5a8a",
+      "blurb": "GO TO appears in more than a third of LAPACK's files and does not reach thirteenth place by node count. Both are measurements of the same construct.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "eebedd5285a7cfd8ab99528831d78967ed549971243c814b967778618830cd96"
+    },
+    {
+      "slug": "the-verdict-not-the-framing",
+      "title": "THE VERDICT NOT THE FRAMING",
+      "kicker": "drop the dominant kind and ask again",
+      "accent": "#ffd76a",
+      "blurb": "A coverage result dominated by one node kind is a result about that node kind. So the dominant kinds were thrown away and the question asked again.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b3a56fcd3f2474f232a3ef6e0d12e528a9fa7e6e800328420a3adead937de9bf"
+    },
+    {
+      "slug": "the-threaded-accumulator",
+      "title": "THE THREADED ACCUMULATOR",
+      "kicker": "computed from the tree, not supplied by hand",
+      "accent": "#5ad6ff",
+      "blurb": "A language with no mutable loop variable cannot keep a DO loop. Every loop that assigns must become a recursive function carrying the variables it mutates.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e1285b55817ed35f3d3774367f6d8d91759482c6cf781a1e375280417073c408"
+    },
+    {
+      "slug": "a-regex-meeting-nesting",
+      "title": "A REGEX MEETING NESTING",
+      "kicker": "the error surfaces four frames from its cause",
+      "accent": "#b98cff",
+      "blurb": "Five bugs in one build, every one a regex meeting a nested structure. A parse tree nests; a regular expression does not.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0d7ca3be6b2fed47dea61179f94e1439c2d8fbe6f5d0798800d56104a42007bc"
     }
   ],
   "appeals": [
@@ -15936,6 +15981,14 @@
               "icon": "□",
               "kicker": "the first generator, and how it dies",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-verdict-not-the-framing",
+              "title": "THE VERDICT NOT THE FRAMING",
+              "accent": "#ffd76a",
+              "icon": "∂",
+              "kicker": "drop the dominant kind and ask again",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -18510,6 +18563,14 @@
               "icon": "⚔",
               "kicker": "the control that killed the pretty result",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "a-regex-meeting-nesting",
+              "title": "A REGEX MEETING NESTING",
+              "accent": "#b98cff",
+              "icon": "⌇",
+              "kicker": "the error surfaces four frames from its cause",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 40,
@@ -19555,6 +19616,14 @@
               "icon": "⇆",
               "kicker": "1.00 for a fan-out that was 2.00",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "rare-in-code",
+              "title": "RARE IN CODE",
+              "accent": "#ff5a8a",
+              "icon": "∷",
+              "kicker": "common in codebases, rare in code",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -20234,6 +20303,14 @@
               "accent": "#b98cff",
               "icon": "⇄",
               "kicker": "never more than H slots from home",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-smaller-language",
+              "title": "THE SMALLER LANGUAGE",
+              "accent": "#7de2b0",
+              "icon": "≡",
+              "kicker": "13 forms cover fortran better than python",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -21992,6 +22069,14 @@
               "icon": "█",
               "kicker": "names removed, and nothing measured moved",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-threaded-accumulator",
+              "title": "THE THREADED ACCUMULATOR",
+              "accent": "#5ad6ff",
+              "icon": "↻",
+              "kicker": "computed from the tree, not supplied by hand",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -23614,7 +23699,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "20cccea75d4cdf4d2d02335d9848eae6da13c6a07597d4a9e046e741fa92bd2d",
+  "fold_root": "a6b2937194185b7ccbe8bca02b52aff6c07108891cad4e2fbb04a452e5f4d306",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
