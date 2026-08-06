@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1340,
+    "spheres": 1345,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1334,
+    "spheres_built": 1339,
     "apex": 1
   },
   "keepers": [
@@ -12148,6 +12148,51 @@
       "blurb": "A specialist defined by what it refuses. Three skills, one domain, and an explicit instruction that outside it the answer is to say so and stop.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a47a377a39ee4eadd976ca5e69d07f20070499af68fdde2979e5c3181759dbbe"
+    },
+    {
+      "slug": "the-gap-buffer",
+      "title": "THE GAP BUFFER",
+      "kicker": "free at the cursor, paid for by moving it",
+      "accent": "#7de2b0",
+      "blurb": "The structure inside a text editor: one array with a hole at the cursor. Typing fills a hole slot, so an insert costs the same at ten characters or ten thousand.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fcdee5b0d5775b3053312c56f559ce7414482f84421be430946f07072b8c3901"
+    },
+    {
+      "slug": "the-two-heuristics",
+      "title": "THE TWO HEURISTICS",
+      "kicker": "rank prevents, compression repairs",
+      "accent": "#ffd76a",
+      "blurb": "Union-Find carries two famous heuristics and the inverse-Ackermann bound belongs to the pair. Measured separately they do different jobs at different times.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d3042e4c1f88d11dbaf85843ad2058446368d3b3cc009e8712a330f8d1084403"
+    },
+    {
+      "slug": "the-finger-tree",
+      "title": "THE FINGER TREE",
+      "kicker": "two cheap ends, and a ridge between them",
+      "accent": "#5ad6ff",
+      "blurb": "Hinze and Paterson's 2-3 finger tree reaches index i in time proportional to log min(i, n-i), so the front and the back cost the same.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fd4ff373b6f929ed29116506188fbaafec63595ec2a7fea5e98e3a2746a0ced8"
+    },
+    {
+      "slug": "the-hash-life-doubling",
+      "title": "THE HASH LIFE DOUBLING",
+      "kicker": "a node of side 2^k advances 2^(k-2) generations",
+      "accent": "#b98cff",
+      "blurb": "The half of Gosper's HashLife that memoisation alone does not give you. That exponent is not a tuning choice - it is the largest sound step.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "66d330cce6678934fbe9072d4dbc432f3475789fdb01314ae41dedb36bf73723"
+    },
+    {
+      "slug": "the-brodal-queue",
+      "title": "THE BRODAL QUEUE",
+      "kicker": "worst case, not amortised -- and what that costs",
+      "accent": "#ff5a8a",
+      "blurb": "Brodal's 1996 priority queue does insert, meld and find-min in worst-case constant time. An amortised bound permits a spike; some systems cannot have one.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ede93cb3b04f6bd7a9b9024aebd7db9b330efaadd4f3b2c0cb69ed6bde420f56"
     }
   ],
   "appeals": [
@@ -12804,6 +12849,14 @@
               "icon": "⤷",
               "kicker": "a refusal is written down, not branched around",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-two-heuristics",
+              "title": "THE TWO HEURISTICS",
+              "accent": "#ffd76a",
+              "icon": "⇄",
+              "kicker": "rank prevents, compression repairs",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 34,
@@ -12967,6 +13020,14 @@
               "accent": "#5ad6ff",
               "icon": "◉",
               "kicker": "a chamber cannot edit what it is given",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hash-life-doubling",
+              "title": "THE HASH LIFE DOUBLING",
+              "accent": "#b98cff",
+              "icon": "⧉",
+              "kicker": "a node of side 2^k advances 2^(k-2) generations",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -13311,6 +13372,14 @@
               "accent": "#b98cff",
               "icon": "⊘",
               "kicker": "make the ambiguity unwriteable",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gap-buffer",
+              "title": "THE GAP BUFFER",
+              "accent": "#7de2b0",
+              "icon": "⌷",
+              "kicker": "free at the cursor, paid for by moving it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -13811,6 +13880,14 @@
               "accent": "#ffd76a",
               "icon": "⇉",
               "kicker": "bookends that balance only in a chain",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-finger-tree",
+              "title": "THE FINGER TREE",
+              "accent": "#5ad6ff",
+              "icon": "⫨",
+              "kicker": "two cheap ends, and a ridge between them",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -23107,6 +23184,14 @@
               "icon": "↻",
               "kicker": "nothing enters the seal on one green run",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-brodal-queue",
+              "title": "THE BRODAL QUEUE",
+              "accent": "#ff5a8a",
+              "icon": "↑",
+              "kicker": "worst case, not amortised -- and what that costs",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -23784,7 +23869,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "45dced0ba0df99834d0e7f0708eeba004ced9d2ea91e29991363c800e8a427c1",
+  "fold_root": "bbbefc2c7d4280682b5aff374bc7b945bc752e28931c1344d25fc4c0d7d685b8",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",

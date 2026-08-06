@@ -1,0 +1,63 @@
+{
+  "schema": "dlw.fold/1",
+  "world": "II",
+  "kind": "sphere",
+  "name": "THE BRODAL QUEUE",
+  "slug": "the-brodal-queue",
+  "seal": "ede93cb3b04f6bd7a9b9024aebd7db9b330efaadd4f3b2c0cb69ed6bde420f56",
+  "index": 1344,
+  "algo": "sha256(name|slug|blurb) + sha256 merkle-fold",
+  "anchor": "0ROOT.AI//THE-FOLD//4096->0//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
+  "proof": [
+    {
+      "h": "5ef3e0a8f251bcbe0900c86490fd82f65e41e74e9889f8f7e62ed4bc3c7087f5",
+      "side": "R"
+    },
+    {
+      "h": "2d9d14c192f80f60e221fcad47f94bfa2a62d00da4eab16900beb46ec6be3d8c",
+      "side": "R"
+    },
+    {
+      "h": "0157264d9821dab3fb240db61257a111a8b58a30fa9fb4ed00fe8546cc96a4ed",
+      "side": "R"
+    },
+    {
+      "h": "eaf38c2cd96997d54d6a4c5db37ee0cfaec10743902b74eafba1eb5507e33c6f",
+      "side": "R"
+    },
+    {
+      "h": "32bb2591e8e30d8f09fd51dd72ddd9ce796cd6d9eabcca8038ebdc3afd704214",
+      "side": "R"
+    },
+    {
+      "h": "675f9fcbb5202880c259c55cf6cd99a760f966b01e38a24b3b9e37e424ae5177",
+      "side": "R"
+    },
+    {
+      "h": "483f21e177ca01a7cfb670f37de46d2b936a5bb1efca2ba405bfe02e715e8ced",
+      "side": "L"
+    },
+    {
+      "h": "dc25bda0dfeec1e394fe941f2a61bbca5876f048b9804e97ad11dd128385f6d4",
+      "side": "R"
+    },
+    {
+      "h": "e5d40fbbdc40da94b47c6cea9b81ca58db318dbff5012b0611e6109932829e68",
+      "side": "L"
+    },
+    {
+      "h": "b985f512735a273f0cb8096a569c65dffc2cb88541b55cc97b7aa64ec7a01d25",
+      "side": "R"
+    },
+    {
+      "h": "9dc7fac326e07796e16f2a140059a3e2623c93758ae737b252cbcceea2cce7b3",
+      "side": "L"
+    }
+  ],
+  "folded_to": "ROOT_0",
+  "root": "bbbefc2c7d4280682b5aff374bc7b945bc752e28931c1344d25fc4c0d7d685b8",
+  "verify": "fold seal up the proof (R: h(x+sib), L: h(sib+x)) -> root",
+  "sealed": "2026-08-05",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
