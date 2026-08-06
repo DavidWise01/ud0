@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1350,
+    "spheres": 1355,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1344,
+    "spheres_built": 1349,
     "apex": 1
   },
   "keepers": [
@@ -12238,6 +12238,51 @@
       "blurb": "A sequence arrived as 'the structure'. Audited as data it has three faults, every one correct about the typed input and wrong about the design - it was a deliberate disguise.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "8fe98d88afa0522010dc9e1fffd6a4f8d2aff6af2c6d330cee9b59ece40c9b78"
+    },
+    {
+      "slug": "the-objection-recorded",
+      "title": "THE OBJECTION RECORDED",
+      "kicker": "drawn alike is not measured",
+      "accent": "#ff5a8a",
+      "blurb": "A panel filed an objection against the artifact it belongs to, and the artifact shipped with the objection still in it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1eb3371a8af1846b7b328ca2618a6fea08bf353ef9f02f1efb39d39e55b33797"
+    },
+    {
+      "slug": "the-residual-hole",
+      "title": "THE RESIDUAL HOLE",
+      "kicker": "three revs, and none of them has moved",
+      "accent": "#ffd76a",
+      "blurb": "Three known gaps, carried forward through three revisions, none closed. Not hidden and not fixed - named, in the same place, three times.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b8f7dcef3847391d745c9ee33b25fa2f33b01ae44f393e1a67292a4056d2d3e3"
+    },
+    {
+      "slug": "nothing-watches-the-gate",
+      "title": "NOTHING WATCHES THE GATE",
+      "kicker": "a regress with a measurable depth",
+      "accent": "#5ad6ff",
+      "blurb": "The verifiers check the model. A gate checks the verifiers with deliberately broken copies. Nothing checks the gate - and where the regress stops is the finding.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "10d4ce14ed93882abf394b3f8c4eed2f2568e50b6fc86f2d0562c059548607fc"
+    },
+    {
+      "slug": "the-coincidence-left-alone",
+      "title": "THE COINCIDENCE LEFT ALONE",
+      "kicker": "13 rungs and 13 opcodes, noted and not tested",
+      "accent": "#7de2b0",
+      "blurb": "Two thirteens in one project. Noted as a coincidence and deliberately left untested - listed under what is NOT in the pack.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8b2ec616480075a58ac12f758466dc9484fa6144963132a79a84656f7c66a79e"
+    },
+    {
+      "slug": "the-missing-mutant",
+      "title": "THE MISSING MUTANT",
+      "kicker": "the quadrant with no test in it",
+      "accent": "#b98cff",
+      "blurb": "A gate proves its verifiers work by catching six deliberately broken copies. 6 of 6, every revision - and all six land in the same quadrant of a two-by-two.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f6833ac3bbb8592c4fc2532b96ce548085f7c772e8e864c10cf28bcccd6be324"
     }
   ],
   "appeals": [
@@ -17077,6 +17122,14 @@
               "icon": "sicherman",
               "kicker": "the twin dice",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-residual-hole",
+              "title": "THE RESIDUAL HOLE",
+              "accent": "#ffd76a",
+              "icon": "◌",
+              "kicker": "three revs, and none of them has moved",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 36,
@@ -17240,6 +17293,14 @@
               "accent": "#ffcf4a",
               "icon": "happyending",
               "kicker": "the marriage theorem",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-missing-mutant",
+              "title": "THE MISSING MUTANT",
+              "accent": "#b98cff",
+              "icon": "⊞",
+              "kicker": "the quadrant with no test in it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -17609,6 +17670,14 @@
               "icon": "heilbronn",
               "kicker": "the triangle you cannot avoid",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-objection-recorded",
+              "title": "THE OBJECTION RECORDED",
+              "accent": "#ff5a8a",
+              "icon": "⛶",
+              "kicker": "drawn alike is not measured",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 37,
@@ -17773,6 +17842,14 @@
               "icon": "◆",
               "kicker": "INTACT was true, and meant nothing",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "nothing-watches-the-gate",
+              "title": "NOTHING WATCHES THE GATE",
+              "accent": "#5ad6ff",
+              "icon": "△",
+              "kicker": "a regress with a measurable depth",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -17936,6 +18013,14 @@
               "accent": "#5ad6ff",
               "icon": "⚑",
               "kicker": "INSENSITIVE, renamed",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-coincidence-left-alone",
+              "title": "THE COINCIDENCE LEFT ALONE",
+              "accent": "#7de2b0",
+              "icon": "≈",
+              "kicker": "13 rungs and 13 opcodes, noted and not tested",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -23954,7 +24039,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "c2223f52c7b1e2efc7079e66ea608e37383f39a9aae1755c83a6617cb2a2efd9",
+  "fold_root": "2e2bea490a936091caf9364a627fa3f9e63a03ea3f0043fb7ac1b1635dd2b342",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
