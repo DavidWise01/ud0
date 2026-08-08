@@ -53,24 +53,24 @@ input[type=range]{width:120px;vertical-align:middle;accent-color:#e8b84b}
 <h1>THE GOLDEN SEQUENCE</h1>
 <div class="kick">{n·φ} — more even than random, by irrationality</div>
 <div class="win"><div class="winh"><span class="wn">1</span> WHAT IT IS &middot; WHAT IT DOES &middot; FACT OR FICTION</div>
- <div class="wintxt"><b>The golden-ratio sequence.</b> Drop points into the interval [0,1) by the rule x<sub>n</sub> = fractional part of <b>n&middot;&phi;</b>, where &phi; = 1.618&hellip; is the golden ratio. The result spreads <b>more evenly than random</b> &mdash; random points clump and leave gaps; these never do. &phi; is the &lsquo;<b>most irrational</b>&rsquo; number (its continued fraction is all 1s, the hardest to approximate by fractions), so the sequence resists every rational rhythm that would make it repeat and pile up.<br><br>
- Two exact facts make it beautiful. The <b>three-gap theorem</b>: at <i>every</i> step n, the points cut the circle into arcs of <b>at most three distinct lengths</b> &mdash; never four. And the <b>discrepancy</b> (how far the point count in any interval strays from its fair share) shrinks like log N / N &mdash; near the theoretical best, far better than random&rsquo;s 1/&radic;N.<br><br>
- <span class="lit">LIT</span> verified live: this page confirms the three-gap theorem for every n up to 400 (never more than 3 gap lengths), and that the golden sequence&rsquo;s star discrepancy is <b>several times smaller</b> than an equal number of random points (window.__golden.threeGap &amp;&amp; goldenMoreUniform). <span class="fig">FIG</span> &lsquo;most irrational&rsquo; is a nickname; the three-gap count and the lower discrepancy are exact.</div></div>
+ <div class="wintxt">Record what the code does today, commit it, and fail the build when it changes. The suite now defends the current behaviour &mdash; including every bug in it.<br><br>
+ <span class="lit">LIT</span> verified live. <b>8</b> golden files recorded from an implementation with a known defect. All <b>8</b> pass before the fix. Fix the defect and <b>2</b> of them fail &mdash; <b>25.0%</b> of the suite goes red because the code became correct. The other <b>6</b> still pass. Green means unchanged; it has never meant right.</div></div>
 <div class="win"><div class="winh"><span class="wn">2</span> HOW IT WAS WEAVED &middot; AI + HUMAN</div>
- <div class="wintxt"><b>David (human)</b> seated this in <i>THE BOUNTY</i>, beside <i>THE POLITE SCATTER</i> (Poisson-disk) &mdash; the loot domain of spreading a reward evenly, no clumps, no bare patches. The golden sequence is the cheapest even scatter there is: one multiplication per point. <b>AVAN (AI)</b> built the instrument: the sequence, the gap counter, the discrepancy race, the sunflower.<br><br>The weave: David names the seat (the even spread); I make the evenness visible and the theorems checkable &mdash; the gap-filling in 1D, golden-vs-random in 2D, the phyllotaxis spiral in 3D. The sphere is the seam. Credit: three-gap theorem &mdash; Steinhaus conjecture, proved by Sós, Świerczkowski &amp; Surányi (1957); golden-ratio sampling is classical.</div></div>
+ <div class="wintxt">Golden or snapshot tests are enormously effective at catching unintended change, which is a different job from catching incorrectness, and the two are easy to confuse when the output is green.<br><br>
+ <b>AVAN (AI)</b> reports the <b>6</b> that still pass alongside the <b>2</b> that break. A correct change breaking a quarter of the suite is the visible half; the invisible half is that three quarters of the golden files were never testing the defect at all and would have stayed green either way.</div></div>
 <div class="win"><div class="winh"><span class="wn">3</span> ONE DIMENSION</div>
- <div class="wc"><canvas id="w3" width="512" height="150"></canvas>
-  <div class="wctrl"><div class="cap">Each new point x<sub>n</sub> = {n&middot;&phi;} lands in one of the <b>largest current gaps</b>, splitting it &mdash; so the interval fills as evenly as possible at every step. The gap lengths, coloured, are never more than three distinct values at once.</div></div></div></div>
+ <div class="wc"><canvas id="w3" width="512" height="290"></canvas>
+  <div class="wctrl"><div class="cap">Eight recordings, before and after the fix.</div></div></div></div>
 <div class="win"><div class="winh"><span class="wn">4</span> TWO DIMENSIONS &middot; INTERACTIVE</div>
- <div class="wc"><canvas id="w4" width="384" height="300"></canvas>
-  <div class="wctrl"><div class="cap"><b>Add</b> points and race the two rows: <b>golden</b> {n&phi;} on top, <b>random</b> below. The golden row stays visibly regular while the random one clumps and gaps. The live discrepancy numbers confirm the golden sequence covers far more evenly.</div>
-   <div class="btns" style="margin-top:10px"><button id="gdadd">+ add 10</button><button id="gd1">+ 1</button><button id="gdrst">reset</button></div>
-   <div class="cap" id="gdread" style="margin-top:8px"></div></div></div></div>
+ <div class="wc"><canvas id="w4" width="384" height="330"></canvas>
+  <div class="wctrl"><div class="cap">Fix the bug. Re-record. Fix it again.</div>
+   <div class="btns" style="margin-top:10px"><button id="gldnf">fix the bug &#9654;</button><button id="gldnr2">re-record the goldens</button><button id="gldnr">reset</button></div>
+   <div class="cap" id="gldno" style="margin-top:8px"></div></div></div></div>
 <div class="win"><div class="winh"><span class="wn">5</span> THREE DIMENSIONS + AVAN&rsquo;S INVERSE</div>
  <div class="wc"><canvas id="w5" width="384" height="360"></canvas>
-  <div class="wctrl"><div class="cap">The same &phi;, in two dimensions: a <b>sunflower</b> &mdash; point n at radius &radic;n, angle n&middot;(golden angle). <b>Green</b>, the seeds of a real phyllotaxis spiral, turning.</div>
-   <div class="avan"><b>AVAN&rsquo;s addition</b> (the inverse-companion): the <b>magenta</b> seeds are the newest, always landing in the widest gap left by the rest. Evenness usually means randomness &mdash; but random clumps. This is the inverse: a <b>fully deterministic</b> rule that is <i>more</i> uniform than chance, because it is built on the number that most stubbornly refuses to be a ratio. Nature uses exactly this to pack sunflower seeds and pinecone scales without waste. Order that looks like the best possible randomness &mdash; the green is the whole spiral, the magenta is irrationality filling the last gap, forever, without ever repeating.</div>
-   <div class="btns" style="margin-top:10px"><button id="gdspin">pause spin</button></div></div></div></div>
+  <div class="wctrl"><div class="cap">The <b>green</b> forward object: yesterday, held as the answer.</div>
+   <div class="avan"><b>AVAN&rsquo;s addition</b> (the inverse-companion): the forward reading is that golden tests freeze bugs into the expected output. The inverse is that <b>they are the only tests that require no opinion about what is correct</b>. Every other test needs somebody to know the right answer and write it down; a golden test needs only that the behaviour be observed, which is why they can be generated for systems nobody fully understands. Read backwards, the bug is frozen in because the method was designed for exactly the case where nobody could have said what should have been there instead.</div>
+   <div class="btns" style="margin-top:10px"><button id="gldnp">pause spin</button></div></div></div></div>
 <div class="note"><span class="lit">LIT</span> Genuine golden-ratio sampling. Verified live: the three-gap theorem holds for every n up to 400 (never more than 3 distinct gap lengths — Steinhaus conjecture, proved by Sos/Swierczkowski/Suranyi 1957), and the golden sequence's star discrepancy is several times smaller than an equal number of random points (window.__golden.threeGap && goldenMoreUniform, both true; discrepancies reported). φ's continued fraction being all 1s (hardest to rationally approximate) is what drives the evenness.<br><br><span class="fig">FIG</span> 'Most irrational' is a nickname for φ's all-1s continued fraction; the three-gap count and the measured lower discrepancy are exact. The sunflower is a real phyllotaxis model (r=sqrt(n), θ=n·golden angle), the same φ giving even 2D coverage — shown, not merely asserted.</div>
 <div class="seal">&#9670; sealed .dlw.fold &rarr; folded to ROOT_0 &middot; a sphere of THE BOUNTY &middot; David Lee Wise (ROOT0), with AVAN</div>
 </main>
@@ -81,40 +81,148 @@ function rs(){W=c.width=innerWidth;H=c.height=innerHeight;cols=Math.floor(W/fs);
 rs();addEventListener('resize',rs);
 setInterval(function(){g.fillStyle='rgba(7,11,7,.09)';g.fillRect(0,0,W,H);g.fillStyle='#1aa63a';g.font=fs+'px VT323,monospace';
 for(var i=0;i<cols;i++){g.fillText(Math.random()<.5?'0':'1',i*fs,drops[i]*fs);if(drops[i]*fs>H&&Math.random()>.975)drops[i]=0;drops[i]++;}},70);})();
-(function(){
-var PHI=(1+Math.sqrt(5))/2,GA=Math.PI*(3-Math.sqrt(5)),ang=0,spin=true,N=13,seedv=3;
-function frac(x){return x-Math.floor(x);}
-function starDisc(pts){var p=pts.slice().sort(function(a,b){return a-b;}),n=p.length,D=0;for(var i=0;i<n;i++){D=Math.max(D,Math.abs((i+1)/n-p[i]),Math.abs(i/n-p[i]));}return D;}
-function gapsDistinct(n){var pts=[];for(var k=1;k<=n;k++)pts.push(frac(k*PHI));pts.sort(function(a,b){return a-b;});var s={};for(var i=0;i<pts.length;i++){var g=(pts[(i+1)%pts.length]-pts[i]+1)%1;s[Math.round(g*1e9)]=1;}return Object.keys(s).length;}
-function verify(){var tg=true;for(var n=1;n<400;n++)if(gapsDistinct(n)>3)tg=false;var g=[],r=[],sv=3;function L(){sv=(1664525*sv+1013904223)>>>0;return sv/4294967296;}for(var k=1;k<=500;k++)g.push(frac(k*PHI));for(var k=0;k<500;k++)r.push(L());var dg=starDisc(g),dr=starDisc(r);return {threeGap:tg,goldenDiscrepancy:+dg.toFixed(5),randomDiscrepancy:+dr.toFixed(5),goldenMoreUniform:dg<dr};}
-function goldenPts(n){var p=[];for(var k=1;k<=n;k++)p.push(frac(k*PHI));return p;}
-function randPts(n){var p=[],sv=987;for(var k=0;k<n;k++){sv=(1664525*sv+1013904223)>>>0;p.push(sv/4294967296);}return p;}
-function drawW3(){var cv=document.getElementById('w3'),g=cv.getContext('2d'),W=cv.width,H=cv.height;g.clearRect(0,0,W,H);var pts=goldenPts(N).slice().sort(function(a,b){return a-b;});
- var gaps=[];for(var i=0;i<pts.length;i++)gaps.push((pts[(i+1)%pts.length]-pts[i]+1)%1);
- var uniq=[];for(var i=0;i<gaps.length;i++){var found=-1;for(var j=0;j<uniq.length;j++)if(Math.abs(uniq[j]-gaps[i])<1e-9)found=j;if(found<0){uniq.push(gaps[i]);}}
- var cols=['#e8b84b','#7ce0ff','#ff7bd0'];
- var x0=15,x1=W-15;for(var i=0;i<pts.length;i++){var xa=x0+pts[i]*(x1-x0),xb=x0+(pts[i]+gaps[i])*(x1-x0);var ci=0;for(var j=0;j<uniq.length;j++)if(Math.abs(uniq[j]-gaps[i])<1e-9)ci=j;g.fillStyle=cols[ci%3];g.fillRect(xa,60,Math.max(1,(x1-x0)*gaps[i])-1,16);}
- for(var i=0;i<pts.length;i++){var x=x0+pts[i]*(x1-x0);g.fillStyle='#fff';g.fillRect(x-1,54,2,28);}
- g.fillStyle='#e8b84b';g.font='11px ui-monospace,monospace';g.fillText(N+' golden points → '+uniq.length+' distinct gap length'+(uniq.length>1?'s':'')+' (≤3, three-gap theorem)',15,30);
- g.fillStyle='#4c7a54';g.font='10px ui-monospace,monospace';g.fillText('gap colours = the (at most three) distinct arc lengths',15,110);}
-function drawW4(){var cv=document.getElementById('w4'),g=cv.getContext('2d'),W=cv.width,H=cv.height;g.clearRect(0,0,W,H);var gp=goldenPts(N),rp=randPts(N),x0=20,x1=W-20;
- g.fillStyle='#e8b84b';g.font='12px ui-monospace,monospace';g.fillText('golden {nφ}',20,30);
- g.strokeStyle='#234';g.strokeRect(x0,40,x1-x0,26);for(var i=0;i<gp.length;i++){g.fillStyle='#e8b84b';g.fillRect(x0+gp[i]*(x1-x0)-1,40,2,26);}
- g.fillStyle='#8ca';g.fillText('random',20,100);g.strokeRect(x0,110,x1-x0,26);for(var i=0;i<rp.length;i++){g.fillStyle='#ff7b9c';g.fillRect(x0+rp[i]*(x1-x0)-1,110,2,26);}
- var dg=starDisc(gp),dr=starDisc(rp);
- g.font='12px ui-monospace,monospace';g.fillStyle='#e8b84b';g.fillText('golden discrepancy: '+dg.toFixed(4),20,175);
- g.fillStyle='#ff7b9c';g.fillText('random discrepancy: '+dr.toFixed(4),20,197);
- g.fillStyle=dg<dr?'#39fc6b':'#ff5a5a';g.font='13px ui-monospace,monospace';g.fillText('golden is '+(dr/dg).toFixed(1)+'× more uniform '+(dg<dr?'✓':''),20,224);
- g.fillStyle='#4c7a54';g.font='10px ui-monospace,monospace';g.fillText(N+' points each · lower discrepancy = more even coverage',20,250);
- document.getElementById('gdread').textContent=N+' points: golden disc '+dg.toFixed(4)+' vs random '+dr.toFixed(4);}
-function drawW5(){var cv=document.getElementById('w5'),g=cv.getContext('2d'),W=cv.width,H=cv.height;g.clearRect(0,0,W,H);var cx=W/2,cy=H/2,M=Math.max(N,120);
- for(var k=1;k<=M;k++){var r=8*Math.sqrt(k),th=k*GA+ang,x=cx+Math.cos(th)*r,y=cy+Math.sin(th)*r;if(r>H/2-10)break;var fresh=k>M-12;g.fillStyle=fresh?'#ff2d95':'#39fc6b';g.beginPath();g.arc(x,y,fresh?3.5:2.4,0,7);g.fill();}
- g.fillStyle='#39fc6b';g.font='11px ui-monospace,monospace';g.fillText('green: sunflower seeds (r=√n, θ=n·golden angle 137.5°)',10,20);
- g.fillStyle='#ff2d95';g.fillText('magenta: newest seeds — always filling the widest gap',10,H-12);}
-document.getElementById('gdadd').onclick=function(){N+=10;drawW3();drawW4();};
-document.getElementById('gd1').onclick=function(){N+=1;drawW3();drawW4();};
-document.getElementById('gdrst').onclick=function(){N=13;drawW3();drawW4();};
-document.getElementById('gdspin').onclick=function(){spin=!spin;this.textContent=spin?'pause spin':'resume spin';};
-drawW3();drawW4();window.__golden=verify();
-function loop(){if(spin)ang+=0.006;drawW5();requestAnimationFrame(loop);}requestAnimationFrame(loop);})();
+(function(){function nb(g,W,H){var gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,'#0a0713');gr.addColorStop(0.6,'#0f0a1c');gr.addColorStop(1,'#150b22');g.fillStyle=gr;g.fillRect(0,0,W,H);g.strokeStyle='rgba(150,90,220,0.05)';g.lineWidth=1;for(var y=2;y<H;y+=3){g.beginPath();g.moveTo(0,y+0.5);g.lineTo(W,y+0.5);g.stroke();}var v=g.createRadialGradient(W/2,H*0.5,H*0.12,W/2,H*0.5,H*0.85);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(0,0,0,0.5)');g.fillStyle=v;g.fillRect(0,0,W,H);}
+function ne(g,c,w){g.strokeStyle=c;g.lineWidth=w||2;g.shadowColor=c;g.shadowBlur=9;g.lineCap='round';g.lineJoin='round';}
+function nf(g,c){g.fillStyle=c;g.shadowColor=c;g.shadowBlur=8;}
+function ng(g){g.shadowBlur=0;}
+function nt(g,c,x,y,s,txt){g.shadowBlur=0;g.fillStyle=c;g.font=(s||10)+'px monospace';g.fillText(txt,x,y);}
+function ndot(g,x,y,r,c){nf(g,c);g.beginPath();g.arc(x,y,r,0,7);g.fill();ng(g);}
+function kfmt(v){if(typeof v!=='number')return ''+v;
+ if(v===Math.floor(v)&&Math.abs(v)<1e15)return v.toLocaleString();
+ return ''+(Math.round(v*1000)/1000);}
+function krow(g,x,y,w,label,val,frac,col){
+ nt(g,'#8a7ab8',x,y,9,label);
+ nf(g,'rgba(90,70,140,0.28)');g.fillRect(x,y+6,w,20);ng(g);
+ nf(g,col);g.fillRect(x,y+6,Math.max(2,Math.round(w*Math.max(0,Math.min(1,frac)))),20);ng(g);
+ nt(g,'#e8e0ff',x+w+8,y+21,10,kfmt(val));}
+function kpair(g,x,y,w,lab,a,b,ca,cb,na,nb){
+ nt(g,'#8a7ab8',x,y,9,lab);
+ var m=Math.max(Math.abs(a),Math.abs(b),1e-9);
+ nf(g,ca);g.fillRect(x,y+6,Math.max(2,Math.round(w*Math.abs(a)/m)),17);ng(g);
+ nt(g,'#e8e0ff',x+w+8,y+20,9,kfmt(a)+(na?' '+na:''));
+ nf(g,cb);g.fillRect(x,y+27,Math.max(2,Math.round(w*Math.abs(b)/m)),17);ng(g);
+ nt(g,'#e8e0ff',x+w+8,y+41,9,kfmt(b)+(nb?' '+nb:''));}
+function kcurve(g,x,y,w,h,n,fn,col,wd){
+ ne(g,col,wd||2);g.beginPath();
+ var mn=1e30,mx=-1e30,i,v,vs=[];
+ for(i=0;i<=n;i++){v=fn(i/n);vs.push(v);if(v<mn)mn=v;if(v>mx)mx=v;}
+ if(mx-mn<1e-12)mx=mn+1;
+ for(i=0;i<=n;i++){
+  var px=x+i/n*w,py=y+h-(vs[i]-mn)/(mx-mn)*h;
+  if(i===0)g.moveTo(px,py);else g.lineTo(px,py);}
+ g.stroke();ng(g);
+ return {min:mn,max:mx};}
+function kgrid(g,x,y,cols,rows,cw,ch,fn){
+ for(var r=0;r<rows;r++)for(var c=0;c<cols;c++){
+  var col=fn(r*cols+c);
+  if(!col)continue;
+  nf(g,col);g.fillRect(x+c*cw,y+r*ch,cw-1.2,ch-1.2);ng(g);}}
+function korb(g,cx,cy,ang,n,fn){
+ var rr=Math.cos(ang*0.0175),sn=Math.sin(ang*0.0175);
+ for(var i=0;i<n;i++){
+  var p=fn(i,n);
+  if(!p)continue;
+  var px=cx+p.x*rr-p.z*sn,py=cy+(p.y||0)*0.8+(p.x*sn+p.z*rr)*(p.flat||0.32);
+  ndot(g,px,py,p.r||2.4,p.c);}}
+function kring(g,cx,cy,ang,n,rad,lift,col,rsize){
+ korb(g,cx,cy,ang,n,function(i,N){
+  var t=i/N*6.283185307;
+  return {x:Math.cos(t)*rad,z:Math.sin(t)*rad,y:lift||0,c:col,r:rsize||2.4};});}
+function kbits(g,v,x,y,cw,onCol,offCol,bits){
+ var B=bits||32;
+ for(var i=0;i<B;i++){
+  var on=(v>>>(B-1-i))&1;
+  nf(g,on?onCol:offCol);g.fillRect(x+i*cw,y,cw-1.4,15);ng(g);}}
+function kverdict(g,x,y,w,good,txt){
+ nf(g,good?'rgba(125,226,176,0.14)':'rgba(255,60,90,0.15)');g.fillRect(x,y,w,30);ng(g);
+ nt(g,good?'#7de2b0':'#ff5a8a',x+8,y+20,10,txt);}
+function kout(id,html){var o=document.getElementById(id);if(o)o.innerHTML=html;}
+
+function under(x,y){var r=0;if(x>0)r=r+1;if(y>0)r=r+2;return 10/r;}
+function classify(a,b,c){var r=0;if(a)r+=1;if(b)r+=2;if(c)r+=4;if(a&&b)r=r-3+3;return r;}
+function correct(a,b,c){var r=0;if(a)r+=1;if(b)r+=2;if(c)r+=4;if(a&&b)r=r+8;return r;}
+function allInputs(){var o=[],i;for(i=0;i<8;i++)o.push([!!(i&1),!!(i&2),!!(i&4)]);return o;}
+
+var ang=0,spin=true,VR=null,fixed=false,rerecorded=false;
+function goldens(fromFixed){
+ return allInputs().map(function(t){
+  return fromFixed?correct(t[0],t[1],t[2]):classify(t[0],t[1],t[2]);});}
+function state(fx,rr){
+ var gold=goldens(rr);
+ var now=allInputs().map(function(t){
+  return fx?correct(t[0],t[1],t[2]):classify(t[0],t[1],t[2]);});
+ var fail=0,i;
+ for(i=0;i<gold.length;i++)if(gold[i]!==now[i])fail++;
+ return {gold:gold,now:now,fail:fail,pass:gold.length-fail};}
+function selftest(){
+ var before=state(false,false),after=state(true,false);
+ return {goldenFiles:8,
+  recordedFromTheBuggyImplementation:true,
+  passingBeforeTheFix:before.pass,
+  failingAfterTheFix:after.fail,
+  stillPassingAfterTheFix:after.pass,
+  pctBrokenByACorrectChange:+(100*after.fail/8).toFixed(1),
+  pctThatNeverTestedTheDefect:+(100*after.pass/8).toFixed(1),
+  theSuiteDefendsTheBug:after.fail>0,
+  greenMeansUnchangedNotCorrect:true,
+  noOpinionAboutCorrectnessRequired:true,
+  ok:before.pass===8&&after.fail===2&&after.pass===6};}
+function drawW3(){var c=document.getElementById('w3'),g=c.getContext('2d'),W=c.width,H=c.height;
+ nb(g,W,H);
+ nt(g,'#9d00ff',14,20,11,'EIGHT RECORDINGS, BEFORE AND AFTER');
+ var b=state(false,false),a=state(true,false),I=allInputs(),i;
+ nt(g,'#8a7ab8',20,48,9,'before the fix');
+ for(i=0;i<8;i++){
+  nf(g,'rgba(125,226,176,0.85)');g.fillRect(140+i*42,34,36,24);ng(g);
+  nt(g,'#0a0713',148+i*42,51,8,''+b.gold[i]);}
+ nt(g,'#8a7ab8',20,102,9,'after the fix');
+ for(i=0;i<8;i++){
+  var broke=b.gold[i]!==a.now[i];
+  nf(g,broke?'rgba(255,60,90,0.9)':'rgba(125,226,176,0.85)');
+  g.fillRect(140+i*42,88,36,24);ng(g);
+  nt(g,'#0a0713',148+i*42,105,8,''+a.now[i]);}
+ nt(g,'#ff5a8a',140,132,8,'red = a golden file that now FAILS because the code is right');
+ krow(g,20,148,300,'passing before',8,1,'rgba(125,226,176,0.85)');
+ krow(g,20,190,300,'failing after a CORRECT fix',a.fail,a.fail/8,
+  'rgba(255,60,90,0.85)');
+ krow(g,20,232,300,'never tested the defect',a.pass,a.pass/8,
+  'rgba(255,210,63,0.75)');
+ kverdict(g,12,262-4,W-24,false,VR.pctBrokenByACorrectChange+
+  '% goes red for being correct, and '+VR.pctThatNeverTestedTheDefect+
+  '% was never testing it');}
+function drawW4(){var c=document.getElementById('w4'),g=c.getContext('2d'),W=c.width,H=c.height;
+ nb(g,W,H);
+ var s=state(fixed,rerecorded);
+ nt(g,'#9d00ff',12,20,11,(fixed?'CODE FIXED':'CODE AS SHIPPED')+
+  (rerecorded?'   [re-recorded]':''));
+ var i;
+ for(i=0;i<8;i++){
+  var bad=s.gold[i]!==s.now[i];
+  nf(g,bad?'rgba(255,60,90,0.85)':'rgba(125,226,176,0.8)');
+  g.fillRect(14+(i%4)*86,44+Math.floor(i/4)*54,78,44);ng(g);
+  nt(g,'#0a0713',22+(i%4)*86,72+Math.floor(i/4)*54,9,
+   s.gold[i]+' / '+s.now[i]);}
+ nt(g,'#8a7ab8',14,166,8,'golden / actual -- red where they disagree');
+ krow(g,14,184,230,'failing',s.fail,s.fail/8,'rgba(255,60,90,0.85)');
+ krow(g,14,226,230,'passing',s.pass,s.pass/8,'rgba(125,226,176,0.85)');
+ kverdict(g,12,268,W-24,s.fail===0,
+  s.fail>0?'the suite is red because the code became correct':
+  (rerecorded&&fixed?'green again -- and the goldens now encode the FIXED behaviour':
+   'green, and the bug is what is being defended'));
+ kout('gldno',(fixed?'fixed':'buggy')+(rerecorded?', re-recorded':'')+
+  ' &middot; failing <b>'+s.fail+'</b> of 8');}
+function drawW5(){var c=document.getElementById('w5'),g=c.getContext('2d'),W=c.width,H=c.height;
+ nb(g,W,H);
+ nt(g,'#7de2b0',12,20,11,'YESTERDAY, HELD AS THE ANSWER');
+ korb(g,W/2,H/2+10,ang,24,function(i,N){
+  var t=i/N,frozen=(i%4===0);
+  return {x:(t-0.5)*250,z:Math.sin(t*6.283)*30,y:0,
+   c:frozen?'rgba(157,0,255,0.75)':'rgba(125,226,176,0.55)',r:frozen?3.2:2};});
+ nt(g,'#8a7ab8',12,H-22,8,'designed for the case where nobody could say what should be there');}
+document.getElementById('gldnf').onclick=function(){fixed=!fixed;drawW4();};
+document.getElementById('gldnr2').onclick=function(){rerecorded=fixed;drawW4();};
+document.getElementById('gldnr').onclick=function(){fixed=false;rerecorded=false;drawW4();};
+document.getElementById('gldnp').onclick=function(){spin=!spin;};
+VR=selftest();window.__thegoldentest=VR;drawW3();drawW4();
+function loop(){if(spin)ang+=0.4;drawW5();requestAnimationFrame(loop);}requestAnimationFrame(loop);})();
 </script></body></html>
