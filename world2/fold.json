@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1690,
+    "spheres": 1700,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1684,
+    "spheres_built": 1694,
     "apex": 1
   },
   "keepers": [
@@ -15298,6 +15298,96 @@
       "blurb": "Fisher information (Fisher 1925), runnable in THE OCHO: the curvature of the log-likelihood, E[score^2] = -E[second derivative], with 1/(nI) the Cramer-Rao floor on any unbiased estimator - the-maximum-likelihood's precision, the metric the natural gradient descends.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "09d9dce489760dab7344f98016b8f5bf032513ca48786df70f8004d5564d7a0c"
+    },
+    {
+      "slug": "the-causal-graph",
+      "title": "THE CAUSAL GRAPH",
+      "kicker": "an arrow means: listens to",
+      "accent": "#7fd4ff",
+      "blurb": "The causal graph (Pearl 1995), runnable in THE OCHO: a DAG where an arrow means listens-to and the joint factorizes as the product of P(child|parents) - the-markov-chain generalized to a DAG and read causally, the object every causal claim lives on.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e742fc9999701096f7cfc39931ed699825a7514eafac4261fb713488c91ea5f6"
+    },
+    {
+      "slug": "the-d-separation",
+      "title": "THE D-SEPARATION",
+      "kicker": "read independence off the graph",
+      "accent": "#ff9e6a",
+      "blurb": "D-separation (Pearl 1988), runnable in THE OCHO: chains and forks transmit, colliders block, and the graph's verdict matches the joint's independencies exactly - the syntax that turns the-causal-graph's arrows into testable claims.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "70095065bb7e888a099920f1f7073fe57cb6ad9cdcf9d0f2f6b19a192b002522"
+    },
+    {
+      "slug": "the-confounder",
+      "title": "THE CONFOUNDER",
+      "kicker": "a common cause that fakes an effect",
+      "accent": "#c0b0ff",
+      "blurb": "The confounder (Pearl; Reichenbach 1956), runnable in THE OCHO: a common cause Z makes X and Y correlate though neither causes the other; condition on Z and it vanishes - why correlation is not causation, the bias the-backdoor-criterion closes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "676769018f69b6c3de7eb087a64c728f9c68b9220702e3997d472b99c4b8717d"
+    },
+    {
+      "slug": "the-collider-bias",
+      "title": "THE COLLIDER BIAS",
+      "kicker": "conditioning on a common effect invents correlation",
+      "accent": "#9ee0d0",
+      "blurb": "Collider bias (Berkson 1946), runnable in THE OCHO: X and Y independent, but conditioning on a common effect C invents a correlation (exactly -1/2 here) - the-confounder's mirror image; why controlling for everything is a trap.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0667dc08c231c97005fabf48231d76ba2401ae2f5310d45fd7664ddc7aec19f3"
+    },
+    {
+      "slug": "the-backdoor-criterion",
+      "title": "THE BACKDOOR CRITERION",
+      "kicker": "which variables to adjust for",
+      "accent": "#ffd23f",
+      "blurb": "The backdoor criterion (Pearl 1995), runnable in THE OCHO: adjust for a set that blocks every back-door path and holds no descendant of X, and the adjustment equals the do-truth - the-confounder's cure made a graphical test.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1ebbe0c2257cd4eba6bd78c79c66a2a715bd8c55ff8e42f9f4746f7011317e5e"
+    },
+    {
+      "slug": "the-do-calculus",
+      "title": "THE DO-CALCULUS",
+      "kicker": "surgery that separates seeing from doing",
+      "accent": "#7fe0c0",
+      "blurb": "The do-calculus (Pearl 1995), runnable in THE OCHO: do(X=x) cuts X's incoming edges and the truncated product matches forcing X directly - seeing is not doing, the second rung of Pearl's ladder above the-bayes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3428d03f4aba9bb273c52bc81c8a6eb0f572b421c7d3f24ca0906081141b67f6"
+    },
+    {
+      "slug": "the-counterfactual",
+      "title": "THE COUNTERFACTUAL",
+      "kicker": "what would have happened, for the unit we saw",
+      "accent": "#ff7a7a",
+      "blurb": "The counterfactual (Pearl 2000), runnable in THE OCHO: abduct the unit's noise, act with do(x'), predict - what would have happened for the very unit we saw; the third and highest rung, the what-if that assigns blame and regret.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e9a6024d5d4e9d83d08838776a4a33a2365c8efc875282d41f4309b19c098107"
+    },
+    {
+      "slug": "the-instrumental-variable",
+      "title": "THE INSTRUMENTAL VARIABLE",
+      "kicker": "a lever that moves only the cause",
+      "accent": "#9ee06a",
+      "blurb": "The instrumental variable (Wright 1928; Angrist), runnable in THE OCHO: when you cannot see the confounder, a lever Z that moves only X gives Cov(Z,Y)/Cov(Z,X) = the true effect where OLS is biased - identification without adjustment.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "348cbebca50aa0b224040e21e49d936bc0b31cced55871f5e028c28635246329"
+    },
+    {
+      "slug": "the-potential-outcomes",
+      "title": "THE POTENTIAL OUTCOMES",
+      "kicker": "every unit has a Y(1) and a Y(0)",
+      "accent": "#c8a2ff",
+      "blurb": "Potential outcomes (Neyman 1923; Rubin 1974), runnable in THE OCHO: every unit has Y(1) and Y(0) and we see only one; randomization makes the difference in means unbiased for the ATE - the-counterfactual written as missing data.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "307dad75c1f39e1bce35d8780cf741210580d467a0f100c097625a22d7557de5"
+    },
+    {
+      "slug": "the-propensity-score",
+      "title": "THE PROPENSITY SCORE",
+      "kicker": "one number for all the confounders",
+      "accent": "#ffb0d0",
+      "blurb": "The propensity score (Rosenbaum and Rubin 1983), runnable in THE OCHO: e(x)=P(T=1|x) is a balancing score and inverse-propensity weighting recovers the ATE exactly - the-backdoor adjustment compressed into one dimension.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e4372ecdb4476067f509d3d2ddc168c0dbe20bb7592c47db5a9a4c0e9e902035"
     }
   ],
   "appeals": [
@@ -17082,9 +17172,89 @@
               "icon": "⬜",
               "kicker": "it helps most where it is needed least",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-causal-graph",
+              "title": "THE CAUSAL GRAPH",
+              "accent": "#7fd4ff",
+              "icon": "spawn",
+              "kicker": "an arrow means: listens to",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-d-separation",
+              "title": "THE D-SEPARATION",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "read independence off the graph",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-confounder",
+              "title": "THE CONFOUNDER",
+              "accent": "#c0b0ff",
+              "icon": "glitch",
+              "kicker": "a common cause that fakes an effect",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-collider-bias",
+              "title": "THE COLLIDER BIAS",
+              "accent": "#9ee0d0",
+              "icon": "glitch",
+              "kicker": "conditioning on a common effect invents correlation",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-backdoor-criterion",
+              "title": "THE BACKDOOR CRITERION",
+              "accent": "#ffd23f",
+              "icon": "cheat",
+              "kicker": "which variables to adjust for",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-do-calculus",
+              "title": "THE DO-CALCULUS",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "surgery that separates seeing from doing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-counterfactual",
+              "title": "THE COUNTERFACTUAL",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "what would have happened, for the unit we saw",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-instrumental-variable",
+              "title": "THE INSTRUMENTAL VARIABLE",
+              "accent": "#9ee06a",
+              "icon": "cheat",
+              "kicker": "a lever that moves only the cause",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-potential-outcomes",
+              "title": "THE POTENTIAL OUTCOMES",
+              "accent": "#c8a2ff",
+              "icon": "spawn",
+              "kicker": "every unit has a Y(1) and a Y(0)",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-propensity-score",
+              "title": "THE PROPENSITY SCORE",
+              "accent": "#ffb0d0",
+              "icon": "loot",
+              "kicker": "one number for all the confounders",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 29,
+          "seats": 34,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -29734,7 +29904,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "75dcac9bb148ae7c0658b578e864ff5004e7054e6603708ba5892fd7911f4a67",
+  "fold_root": "c94b856629950f959a24d410b5c76a68a23e317a5124daad7194ead8190de39a",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
