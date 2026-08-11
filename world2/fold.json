@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1850,
+    "spheres": 1860,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1844,
+    "spheres_built": 1854,
     "apex": 1
   },
   "keepers": [
@@ -16738,6 +16738,96 @@
       "blurb": "Deadlock detection (Coffman 1971), runnable in THE OCHO: a cycle in the wait-for graph means deadlock, and breaking any of the four conditions prevents it - what the-banker-deadlock avoidance forestalls.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "96ea2c47872a8a99ded41b238abfaf3f2fa4c51cbdae3955185cf27e7b8d6ac8"
+    },
+    {
+      "slug": "the-forward-euler",
+      "title": "THE FORWARD EULER",
+      "kicker": "the simplest ODE step, and its price",
+      "accent": "#7fd4ff",
+      "blurb": "Forward Euler (Euler 1768), runnable in THE OCHO: the first-order tangent step y+h*f, accurate to O(h) but energy-leaking on an orbit - the baseline the-symplectic-integrator repairs and the-runge-kutta refines.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3fd9f76c2fcb21aa04397fc3ec7e8346a5064e29212c4e2549092d493180c5e8"
+    },
+    {
+      "slug": "the-symplectic-integrator",
+      "title": "THE SYMPLECTIC INTEGRATOR",
+      "kicker": "integration that keeps energy honest",
+      "accent": "#ff9e6a",
+      "blurb": "The symplectic integrator (Ruth 1983), runnable in THE OCHO: a phase-space-area-preserving step (Jacobian determinant 1) whose energy stays bounded where forward Euler drifts - why the-verlet and leapfrog beat Euler for physics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f04124594ee7b740d0458db0549bfe53c7f38f88681119251c9970c4f399a4bb"
+    },
+    {
+      "slug": "the-n-body",
+      "title": "THE N-BODY",
+      "kicker": "many masses, all pulling",
+      "accent": "#c0b0ff",
+      "blurb": "The N-body problem, runnable in THE OCHO: pairwise inverse-square gravity conserving energy and momentum exactly (Newton's third law) - the O(n^2) sum the-barnes-hut approximates with a tree.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4596997a594c37753e5f9ee16879f5a77aeebab63aee5676249b24624100f0ca"
+    },
+    {
+      "slug": "the-kepler-orbit",
+      "title": "THE KEPLER ORBIT",
+      "kicker": "one mass around another, an ellipse",
+      "accent": "#9ee0d0",
+      "blurb": "The Kepler orbit (Kepler 1609), runnable in THE OCHO: a closed ellipse with the sun at a focus, equal areas in equal times, T^2 proportional to a^3 - the two-body case of the-n-body, conservation as geometry.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f07a17ae2e937a65b5d356260f6be2fe72624215ae16d22c02130d2b43d02760"
+    },
+    {
+      "slug": "the-lennard-jones",
+      "title": "THE LENNARD-JONES POTENTIAL",
+      "kicker": "how two atoms repel and attract",
+      "accent": "#ffd23f",
+      "blurb": "The Lennard-Jones potential (Lennard-Jones 1924), runnable in THE OCHO: a steep r^-12 repulsion and soft r^-6 attraction with a minimum at 2^(1/6)*sigma - the pair potential the-molecular-dynamics integrates.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b1a41b62603b432425de0aad599ef14b19589a23e207530be6d70b391acba638"
+    },
+    {
+      "slug": "the-molecular-dynamics",
+      "title": "THE MOLECULAR DYNAMICS",
+      "kicker": "atoms pushed by forces, stepped in time",
+      "accent": "#7fe0c0",
+      "blurb": "Molecular dynamics (Alder and Wainwright 1959), runnable in THE OCHO: Lennard-Jones forces integrated by velocity Verlet, energy conserved in NVE - statistical mechanics you can simulate.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "58b29a4cb600ed6291319d1adb7adb8ce67bad341b1d509ac996c4dd69baaf16"
+    },
+    {
+      "slug": "the-collision-detection",
+      "title": "THE COLLISION DETECTION",
+      "kicker": "do these two shapes touch?",
+      "accent": "#ff7a7a",
+      "blurb": "Collision detection (GJK; separating axis theorem), runnable in THE OCHO: shapes overlap iff no separating axis exists, and an elastic bounce conserves momentum and energy - the physics of contact.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fe2d16ebd40ab705aad1445251a9b5a300c00c81cc60fd02297b41110e0395f7"
+    },
+    {
+      "slug": "the-rigid-body",
+      "title": "THE RIGID BODY",
+      "kicker": "spin without a pivot",
+      "accent": "#9ee06a",
+      "blurb": "The rigid body (Euler), runnable in THE OCHO: the inertia tensor maps angular velocity to angular momentum, conserved torque-free even as omega wobbles (the tennis-racket effect) - rotation in three dimensions.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f2d591fbda6384038d5e070de4fd446e08e697fb494b23353a2bd1eb76b66c5e"
+    },
+    {
+      "slug": "the-spring-mass",
+      "title": "THE SPRING MASS",
+      "kicker": "the oscillation inside everything",
+      "accent": "#c8a2ff",
+      "blurb": "The spring-mass system (Hooke 1678), runnable in THE OCHO: simple harmonic motion at omega = sqrt(k/m), energy conserved, damped into three regimes - the linear model the-pendulum reduces to.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e765a975f9b78dd84e88ddb404468ba020ec2bce5a367de6813b7a3ce1337e28"
+    },
+    {
+      "slug": "the-double-pendulum",
+      "title": "THE DOUBLE PENDULUM",
+      "kicker": "two rods, infinite complexity",
+      "accent": "#ffb0d0",
+      "blurb": "The double pendulum, runnable in THE OCHO: coupled Lagrangian equations with a positive Lyapunov exponent so a 1e-8 nudge diverges - deterministic chaos, the-spring-mass's nonlinear cousin.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "59bec7096ae80246de92dcb5d480ac1b6952d5ec2768fdb91ec7769578c6bc47"
     }
   ],
   "appeals": [
@@ -23896,6 +23986,86 @@
               "accent": "#ffd76a",
               "icon": "◌",
               "kicker": "three revs, and none of them has moved",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-forward-euler",
+              "title": "THE FORWARD EULER",
+              "accent": "#7fd4ff",
+              "icon": "spawn",
+              "kicker": "the simplest ODE step, and its price",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-symplectic-integrator",
+              "title": "THE SYMPLECTIC INTEGRATOR",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "integration that keeps energy honest",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-n-body",
+              "title": "THE N-BODY",
+              "accent": "#c0b0ff",
+              "icon": "boss",
+              "kicker": "many masses, all pulling",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kepler-orbit",
+              "title": "THE KEPLER ORBIT",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "one mass around another, an ellipse",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lennard-jones",
+              "title": "THE LENNARD-JONES POTENTIAL",
+              "accent": "#ffd23f",
+              "icon": "grind",
+              "kicker": "how two atoms repel and attract",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-molecular-dynamics",
+              "title": "THE MOLECULAR DYNAMICS",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "atoms pushed by forces, stepped in time",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-collision-detection",
+              "title": "THE COLLISION DETECTION",
+              "accent": "#ff7a7a",
+              "icon": "glitch",
+              "kicker": "do these two shapes touch?",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rigid-body",
+              "title": "THE RIGID BODY",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "spin without a pivot",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-spring-mass",
+              "title": "THE SPRING MASS",
+              "accent": "#c8a2ff",
+              "icon": "spawn",
+              "kicker": "the oscillation inside everything",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-double-pendulum",
+              "title": "THE DOUBLE PENDULUM",
+              "accent": "#ffb0d0",
+              "icon": "glitch",
+              "kicker": "two rods, infinite complexity",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -32454,7 +32624,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "1dac6586d5c828075230adbef070c33326abc8341e6249e33220888ede314b71",
+  "fold_root": "894e961b4e1e5f79b1714dc1fe63f1e1c4bbc34c41d2857f256b67d032af1d61",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
