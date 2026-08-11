@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1790,
+    "spheres": 1800,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1784,
+    "spheres_built": 1794,
     "apex": 1
   },
   "keepers": [
@@ -16198,6 +16198,96 @@
       "blurb": "The scale-free network (Barabasi and Albert 1999), runnable in THE OCHO: preferential attachment grows a power-law degree distribution k^-3 - why real networks have hubs, the-power-law from a simple local rule.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "6271a756237e799de6fe56da07429a9fb9ccb6d4f93cb0383d09add142628f58"
+    },
+    {
+      "slug": "the-homogeneous-coordinates",
+      "title": "THE HOMOGENEOUS COORDINATES",
+      "kicker": "one extra number unifies all transforms",
+      "accent": "#7fd4ff",
+      "blurb": "Homogeneous coordinates (Mobius 1827), runnable in THE OCHO: a 4th number turns translation into a matrix multiply and distinguishes points from directions - the projective trick under the-perspective-projection and every graphics matrix.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5e932c263bf9d77a72b7630093e28b634b125281df2f65a08f16807bf30437fe"
+    },
+    {
+      "slug": "the-perspective-projection",
+      "title": "THE PERSPECTIVE PROJECTION",
+      "kicker": "distant things made small",
+      "accent": "#ff9e6a",
+      "blurb": "Perspective projection, runnable in THE OCHO: a 4x4 matrix and the divide by w make distant objects small, with depth mapped to a range - the eye's geometry as a matrix, in the-homogeneous-coordinates.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "03e74cbf7a0a1d4e4e49aeb80f4b967251e64aad681846cec91d3f6587bb80bd"
+    },
+    {
+      "slug": "the-view-frustum",
+      "title": "THE VIEW FRUSTUM",
+      "kicker": "the box of what the camera can see",
+      "accent": "#c0b0ff",
+      "blurb": "The view frustum, runnable in THE OCHO: six planes bound what the camera sees; a point is visible iff inside all six, a sphere culled iff outside one - the first optimization of every renderer.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6b47ad5b00d75e882881b8136613a9bfadcae2ec64f75245b8bfba9e35aa929c"
+    },
+    {
+      "slug": "the-rasterization",
+      "title": "THE RASTERIZATION",
+      "kicker": "a triangle turned into pixels",
+      "accent": "#9ee0d0",
+      "blurb": "Rasterization (Pineda 1988), runnable in THE OCHO: three edge functions decide if a pixel is inside a triangle and give the barycentric weights - the-barycentric coordinates per pixel, the inner loop of every GPU.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "91a9635d7c436fe6b2df2bb228d9b532a0fdc8b6dc417f006bfd69618c5b2620"
+    },
+    {
+      "slug": "the-z-buffer",
+      "title": "THE Z-BUFFER",
+      "kicker": "the nearest fragment wins",
+      "accent": "#ffd23f",
+      "blurb": "The z-buffer (Catmull 1974), runnable in THE OCHO: keep per pixel only the nearest fragment, so the image is independent of draw order - hidden surfaces solved by memory, the depth test after the-rasterization.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8e5820fc9cb12c8131452be7ac2d93593f5572f547208fc110e278502d5245a8"
+    },
+    {
+      "slug": "the-gouraud-shading",
+      "title": "THE GOURAUD SHADING",
+      "kicker": "light the corners, smear the color",
+      "accent": "#7fe0c0",
+      "blurb": "Gouraud shading (Gouraud 1971), runnable in THE OCHO: light the three vertices then interpolate the colors, blind to an interior highlight - the-barycentric interpolation of color, cheaper than the-phong-reflection.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ee7a52869a3845e610aa2f6e4022b158bbb4e7bc3da3ee3744d92332c4d3f27c"
+    },
+    {
+      "slug": "the-phong-reflection",
+      "title": "THE PHONG REFLECTION",
+      "kicker": "ambient, diffuse, specular",
+      "accent": "#ff7a7a",
+      "blurb": "The Phong reflection model (Phong 1975), runnable in THE OCHO: ambient + diffuse*max(0,N.L) + specular*(R.V)^n - per-pixel lighting on the-rasterized fragment, the look of plastic and shine.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1e1cbcb4b5389fdf56e4dd788fd7afaa4f381e09be29a59bf859caa77fbb9cbd"
+    },
+    {
+      "slug": "the-texture-mapping",
+      "title": "THE TEXTURE MAPPING",
+      "kicker": "paint an image, perspective-correct",
+      "accent": "#9ee06a",
+      "blurb": "Texture mapping (Catmull 1974; Heckbert 1986), runnable in THE OCHO: interpolate u/w and 1/w then divide for perspective correctness, so a floor texture does not warp - the-barycentric interpolation in 1/w space.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0a0984bc5e0bea042e1df435b153ad9987d2399d9633489f44aaec12912b40f2"
+    },
+    {
+      "slug": "the-alpha-blending",
+      "title": "THE ALPHA BLENDING",
+      "kicker": "translucency stacked correctly",
+      "accent": "#c8a2ff",
+      "blurb": "Alpha blending (Porter and Duff 1984), runnable in THE OCHO: the OVER operator with premultiplied alpha, associative and halo-free - the compositing step after the-z-buffer, the correct algebra of translucency.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c0b190b9e4f10f09cca9251f39df9a89c02d65b743023790bc8fd8f57a0c3c90"
+    },
+    {
+      "slug": "the-ray-triangle-intersection",
+      "title": "THE RAY TRIANGLE INTERSECTION",
+      "kicker": "does the ray hit the triangle?",
+      "accent": "#ffb0d0",
+      "blurb": "Ray-triangle intersection (Moller and Trumbore 1997), runnable in THE OCHO: solve for t and the barycentric hit in one shot - the-barycentric coordinates from a ray, the inner loop of ray tracing and the alternative to the-rasterization.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "558625f134b2beb1ad0a4c2852e702a54ae0644c4b4e34eec91f7f559934e473"
     }
   ],
   "appeals": [
@@ -23533,9 +23623,89 @@
               "icon": "◈",
               "kicker": "cheaper because it delivers something that is not a code",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-homogeneous-coordinates",
+              "title": "THE HOMOGENEOUS COORDINATES",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "one extra number unifies all transforms",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-perspective-projection",
+              "title": "THE PERSPECTIVE PROJECTION",
+              "accent": "#ff9e6a",
+              "icon": "boss",
+              "kicker": "distant things made small",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-view-frustum",
+              "title": "THE VIEW FRUSTUM",
+              "accent": "#c0b0ff",
+              "icon": "cheat",
+              "kicker": "the box of what the camera can see",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rasterization",
+              "title": "THE RASTERIZATION",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "a triangle turned into pixels",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-z-buffer",
+              "title": "THE Z-BUFFER",
+              "accent": "#ffd23f",
+              "icon": "loot",
+              "kicker": "the nearest fragment wins",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gouraud-shading",
+              "title": "THE GOURAUD SHADING",
+              "accent": "#7fe0c0",
+              "icon": "spawn",
+              "kicker": "light the corners, smear the color",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-phong-reflection",
+              "title": "THE PHONG REFLECTION",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "ambient, diffuse, specular",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-texture-mapping",
+              "title": "THE TEXTURE MAPPING",
+              "accent": "#9ee06a",
+              "icon": "cheat",
+              "kicker": "paint an image, perspective-correct",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-alpha-blending",
+              "title": "THE ALPHA BLENDING",
+              "accent": "#c8a2ff",
+              "icon": "loot",
+              "kicker": "translucency stacked correctly",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ray-triangle-intersection",
+              "title": "THE RAY TRIANGLE INTERSECTION",
+              "accent": "#ffb0d0",
+              "icon": "boss",
+              "kicker": "does the ray hit the triangle?",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 27,
+          "seats": 38,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -31434,7 +31604,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "512f7ae9d4f4ebb4cb26866ecf23432adfa27de801162430897c9f382fc123b6",
+  "fold_root": "bddb9fbaac018b84e691393f1bfb4dca92453bf925331f43756a36d8174f342d",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
