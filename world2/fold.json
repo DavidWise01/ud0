@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1820,
+    "spheres": 1830,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1814,
+    "spheres_built": 1824,
     "apex": 1
   },
   "keepers": [
@@ -16468,6 +16468,96 @@
       "blurb": "The Greeks, runnable in THE OCHO: delta = N(d1), gamma, theta, vega, and a delta-hedged book insensitive to small moves - the derivatives of the-black-scholes that let a trader hedge.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "cdb910fca9c77f678806bb94e67680a025183500d5800d620df37d1af057f912"
+    },
+    {
+      "slug": "the-gaussian-blur",
+      "title": "THE GAUSSIAN BLUR",
+      "kicker": "smooth before you see, separably",
+      "accent": "#7fd4ff",
+      "blurb": "Gaussian blur (Witkin 1983), runnable in THE OCHO: a separable low-pass kernel summing to 1, the 2D convolution done as two 1D passes - the-convolution with a bell curve, the first stage of the-canny-edge-detector.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "54ad263425e113f0e86ef5628756a1be8716cf6e3e7abdffaa76f1279a9f3860"
+    },
+    {
+      "slug": "the-sobel-operator",
+      "title": "THE SOBEL OPERATOR",
+      "kicker": "the discrete image gradient",
+      "accent": "#ff9e6a",
+      "blurb": "The Sobel operator (Sobel 1968), runnable in THE OCHO: 3x3 kernels giving the image gradient, zero on flat regions and peaking at an edge, separable as smoothing times difference - the discrete gradient feeding the-harris-corner.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d171acab378e19e0b464df69684aa1d76a3934d2f2f370b978f69070fdd1d09e"
+    },
+    {
+      "slug": "the-canny-edge-detector",
+      "title": "THE CANNY EDGE DETECTOR",
+      "kicker": "the optimal edge pipeline",
+      "accent": "#c0b0ff",
+      "blurb": "The Canny edge detector (Canny 1986), runnable in THE OCHO: blur, gradient, non-max suppression, and hysteresis yield thin single-pixel edges - the optimal edge pipeline, the-sobel-operator thinned and thresholded.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2267e944f75151e1cd843f6e8ac3ba6fbd332da4bd021e58c4d6949e1c65c530"
+    },
+    {
+      "slug": "the-harris-corner",
+      "title": "THE HARRIS CORNER",
+      "kicker": "where two edges meet",
+      "accent": "#9ee0d0",
+      "blurb": "The Harris corner (Harris and Stephens 1988), runnable in THE OCHO: the structure tensor's two eigenvalues classify corner, edge, or flat, rotation-invariant - the-sobel gradients in a window, the feature the-optical-flow tracks.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "22fb34010cf48d4a8da3fc96408fdc4ddddafca953e609c4a1342af4f24557c9"
+    },
+    {
+      "slug": "the-non-maximum-suppression",
+      "title": "THE NON-MAXIMUM SUPPRESSION",
+      "kicker": "one response per thing",
+      "accent": "#ffd23f",
+      "blurb": "Non-maximum suppression (Canny 1986), runnable in THE OCHO: keep only the local maximum along the gradient, or the top box per IoU cluster - one response per thing, the thinning in Canny and the box-dedup after every detector.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ab78f26347e4bf7d19e1a9f1327a91a7b0ea23cfb672e6dbfdcb2357128279e0"
+    },
+    {
+      "slug": "the-integral-image",
+      "title": "THE INTEGRAL IMAGE",
+      "kicker": "any rectangle sum in four lookups",
+      "accent": "#7fe0c0",
+      "blurb": "The integral image (Viola and Jones 2001), runnable in THE OCHO: a 2D prefix sum giving any rectangle's total in four lookups, verified over all 441 rectangles - the trick that made real-time face detection possible.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "01b3c68633660689dd1a9cb727f9718ef45c57038154cdb05b1c567af031d095"
+    },
+    {
+      "slug": "the-histogram-of-oriented-gradients",
+      "title": "THE HISTOGRAM OF ORIENTED GRADIENTS",
+      "kicker": "shape as a histogram of edge directions",
+      "accent": "#ff7a7a",
+      "blurb": "Histogram of oriented gradients (Dalal and Triggs 2005), runnable in THE OCHO: per-cell gradient-orientation histograms, block-normalized for contrast invariance - the-sobel gradients binned by angle, the descriptor behind pedestrian detection.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6ccff25bb319a1f6dddff59289366059cc65c9ed9119a4e8b1a5af27d91800f1"
+    },
+    {
+      "slug": "the-homography",
+      "title": "THE HOMOGRAPHY",
+      "kicker": "one plane onto another",
+      "accent": "#9ee06a",
+      "blurb": "The homography, runnable in THE OCHO: a 3x3 projective map fit from 4 correspondences by the DLT, preserving collinearity, defined up to scale - the-homogeneous-coordinates map behind panorama stitching.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "75115546ed48a751fa05c682cfea3bfc870a94a8e97526a7351ef8bade312b78"
+    },
+    {
+      "slug": "the-fundamental-matrix",
+      "title": "THE FUNDAMENTAL MATRIX",
+      "kicker": "the geometry of two eyes",
+      "accent": "#c8a2ff",
+      "blurb": "The fundamental matrix, runnable in THE OCHO: rank 2, with x'TFx=0 for corresponding points and Fx the epipolar line - the geometry of two eyes that reduces stereo to a 1D search, the basis of structure from motion.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2604c44d566e14b6f23ac42b3ef564bf6975a61322a4dc58bccf09a704a12961"
+    },
+    {
+      "slug": "the-optical-flow",
+      "title": "THE OPTICAL FLOW",
+      "kicker": "motion from brightness",
+      "accent": "#ffb0d0",
+      "blurb": "Optical flow (Lucas and Kanade 1981), runnable in THE OCHO: brightness constancy solved by least squares over a window, recovering motion where textured and stuck at the aperture problem on a bare edge - why a the-harris-corner is trackable.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ae9d535618911202a482aecb51805e6288169b0cb28f085794b06597300827d0"
     }
   ],
   "appeals": [
@@ -20489,9 +20579,89 @@
               "icon": "∩",
               "kicker": "the descent is the cost of everyone agreeing",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gaussian-blur",
+              "title": "THE GAUSSIAN BLUR",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "smooth before you see, separably",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sobel-operator",
+              "title": "THE SOBEL OPERATOR",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "the discrete image gradient",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-canny-edge-detector",
+              "title": "THE CANNY EDGE DETECTOR",
+              "accent": "#c0b0ff",
+              "icon": "boss",
+              "kicker": "the optimal edge pipeline",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-harris-corner",
+              "title": "THE HARRIS CORNER",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "where two edges meet",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-non-maximum-suppression",
+              "title": "THE NON-MAXIMUM SUPPRESSION",
+              "accent": "#ffd23f",
+              "icon": "cheat",
+              "kicker": "one response per thing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-integral-image",
+              "title": "THE INTEGRAL IMAGE",
+              "accent": "#7fe0c0",
+              "icon": "cheat",
+              "kicker": "any rectangle sum in four lookups",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-histogram-of-oriented-gradients",
+              "title": "THE HISTOGRAM OF ORIENTED GRADIENTS",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "shape as a histogram of edge directions",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-homography",
+              "title": "THE HOMOGRAPHY",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "one plane onto another",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fundamental-matrix",
+              "title": "THE FUNDAMENTAL MATRIX",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "the geometry of two eyes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-optical-flow",
+              "title": "THE OPTICAL FLOW",
+              "accent": "#ffb0d0",
+              "icon": "spawn",
+              "kicker": "motion from brightness",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 25,
+          "seats": 45,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -31944,7 +32114,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "d791728d72fccc59d2204bb11a98b8fda4a2a413dd0e1bab59931ce503de4102",
+  "fold_root": "b6e785f7c099969a7244ace0a53407e5b04719d08fbd2e7228fbcef9786c4738",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
