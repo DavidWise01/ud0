@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1900,
+    "spheres": 1910,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1894,
+    "spheres_built": 1904,
     "apex": 1
   },
   "keepers": [
@@ -17188,6 +17188,96 @@
       "blurb": "Integrated rate laws (van't Hoff; Ostwald), runnable in THE OCHO: first-order's constant half-life ln2/k versus second-order's concentration-dependent 1/(k[A]0) - the reaction order read off the half-life, the time-integral of the-mass-action's differential rate.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "adde8217b94ad80cecfea0e0c555a8d0dac4ab9fc69b26191bb49cb9c34941c9"
+    },
+    {
+      "slug": "the-coulomb-law",
+      "title": "THE COULOMB LAW",
+      "kicker": "the inverse-square force between charges",
+      "accent": "#ff7a7a",
+      "blurb": "Coulomb (1785), runnable in THE OCHO: F = k q1 q2 / r^2, so doubling the distance quarters the force, like charges repelling and unlike attracting - the point-charge law whose flux the-gauss-law repackages for any surface.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4ea5ce199d52e9fcea3cfb5327ede8ccbe7170104655a06e0f6ba5638ec5364a"
+    },
+    {
+      "slug": "the-gauss-law",
+      "title": "THE GAUSS LAW",
+      "kicker": "flux equals the charge inside",
+      "accent": "#7fd4ff",
+      "blurb": "Gauss, runnable in THE OCHO: the flux through any closed surface is Q_enc/eps0, independent of its shape, with the shell theorem giving zero field inside a uniform shell - the-coulomb-law recast as the first of Maxwell's equations.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "92c12d30ac5826601665184763aff5d121c3079688f621b6daadcb757ce18a58"
+    },
+    {
+      "slug": "the-faraday-law",
+      "title": "THE FARADAY LAW",
+      "kicker": "changing flux makes voltage",
+      "accent": "#9ee06a",
+      "blurb": "Faraday (1831), runnable in THE OCHO: EMF = -dPhi/dt, Lenz's minus sign opposing the change to conserve energy, a rotating loop as an AC generator - the induction that with the-ampere-law closes the electromagnetic loop.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a4081d7aefa9cf97607cf82dc75955886bb53825c9a83a42c172ec436a2f4863"
+    },
+    {
+      "slug": "the-ampere-law",
+      "title": "THE AMPERE LAW",
+      "kicker": "current circulates a field",
+      "accent": "#c8a2ff",
+      "blurb": "Ampere, runnable in THE OCHO: the loop integral of B equals mu0 times the enclosed current, giving B ~ 1/r around a straight wire - the magnetostatic partner of the-faraday-law and the-gauss-law.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2e6ae7176740f79e939aaee71db845591e34cce9d56a250cf3cbcc99b485dbfe"
+    },
+    {
+      "slug": "the-lorentz-force",
+      "title": "THE LORENTZ FORCE",
+      "kicker": "fields push a moving charge",
+      "accent": "#ffd23f",
+      "blurb": "Lorentz, runnable in THE OCHO: F = q(E + v x B), the magnetic part perpendicular to v and doing no work, a charge circling at radius r = mv/qB - the force that turns the-ampere-law and the-faraday-law into motion.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f98ffe342b0a80aa0e8e7a4187ea73361b6f55a5e2bf058214cfe13f69777211"
+    },
+    {
+      "slug": "the-poynting-vector",
+      "title": "THE POYNTING VECTOR",
+      "kicker": "where a wave's energy flows",
+      "accent": "#ff9e6a",
+      "blurb": "Poynting (1884), runnable in THE OCHO: S = E x B / mu0 perpendicular to both fields, the time-averaged power E0^2/(2 mu0 c) of a plane wave moving at c - the energy carried by the wave the-wave-equation governs.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "545a16b75306dea063340f132aa677f6484d4e50ddb650d474fb0f557950423c"
+    },
+    {
+      "slug": "the-wave-equation",
+      "title": "THE WAVE EQUATION",
+      "kicker": "the law of a travelling wave",
+      "accent": "#7fe0c0",
+      "blurb": "d'Alembert (1747), runnable in THE OCHO: u_tt = c^2 u_xx solved by f(x-ct), non-dispersive translation at speed c with superposition - the shape behind the-standing-wave and the-poynting-vector's energy.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a01a15a9ce513091f63b44a9b8a81bee001591bfe642b3e114de31814a20bb05"
+    },
+    {
+      "slug": "the-snell-law",
+      "title": "THE SNELL LAW",
+      "kicker": "bending at a boundary",
+      "accent": "#ffb0d0",
+      "blurb": "Snell (1621; Ibn Sahl 984), runnable in THE OCHO: n1 sin th1 = n2 sin th2, bending toward the normal into a denser medium and total internal reflection past the critical angle - refraction of the wave the-wave-equation carries.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8010e1ae4438a76ffc6563d7e55d8b4d5a7ed7c87df2a44cd63ff651764fed4e"
+    },
+    {
+      "slug": "the-doppler-effect",
+      "title": "THE DOPPLER EFFECT",
+      "kicker": "motion shifts pitch",
+      "accent": "#9ee0d0",
+      "blurb": "Doppler (1842), runnable in THE OCHO: f' = f (v + v_obs)/(v - v_src), an approaching source raising the pitch, asymmetric in who moves because the medium sets the frame - the moving-frame face of the-wave-equation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4f35628240b65fb1e6fbf3ff969e214c064184bbd804730f8ffba16fe4f5644c"
+    },
+    {
+      "slug": "the-standing-wave",
+      "title": "THE STANDING WAVE",
+      "kicker": "two waves standing still",
+      "accent": "#ffcf5a",
+      "blurb": "Standing waves on a string (Mersenne 1636), runnable in THE OCHO: f_n = n v/2L integer harmonics from fixed-end nodes, the sum of two counter-propagating solutions of the-wave-equation - the string behind the-overtone-series.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "771b82118379d3761025e9bf9a2564e814708822a8a7d0cd4d526abbd87bc370"
     }
   ],
   "appeals": [
@@ -30226,6 +30316,86 @@
               "icon": "⇄",
               "kicker": "two polite algorithms waiting for each other",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-coulomb-law",
+              "title": "THE COULOMB LAW",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "the inverse-square force between charges",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gauss-law",
+              "title": "THE GAUSS LAW",
+              "accent": "#7fd4ff",
+              "icon": "boss",
+              "kicker": "flux equals the charge inside",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-faraday-law",
+              "title": "THE FARADAY LAW",
+              "accent": "#9ee06a",
+              "icon": "cheat",
+              "kicker": "changing flux makes voltage",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ampere-law",
+              "title": "THE AMPERE LAW",
+              "accent": "#c8a2ff",
+              "icon": "grind",
+              "kicker": "current circulates a field",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lorentz-force",
+              "title": "THE LORENTZ FORCE",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "fields push a moving charge",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-poynting-vector",
+              "title": "THE POYNTING VECTOR",
+              "accent": "#ff9e6a",
+              "icon": "spawn",
+              "kicker": "where a wave's energy flows",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-wave-equation",
+              "title": "THE WAVE EQUATION",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "the law of a travelling wave",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-snell-law",
+              "title": "THE SNELL LAW",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "bending at a boundary",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-doppler-effect",
+              "title": "THE DOPPLER EFFECT",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "motion shifts pitch",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-standing-wave",
+              "title": "THE STANDING WAVE",
+              "accent": "#ffcf5a",
+              "icon": "spawn",
+              "kicker": "two waves standing still",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -33304,7 +33474,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "03ce9787e05f5e535715d51525f3d61e7c7e1d8ba33b5e5a9f8376ae69c2ab8e",
+  "fold_root": "34f98fdb3892683b8f6eae4e60244523cdb30071edd0317754659e9664391950",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
