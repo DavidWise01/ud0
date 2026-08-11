@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1920,
+    "spheres": 1930,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1914,
+    "spheres_built": 1924,
     "apex": 1
   },
   "keepers": [
@@ -17368,6 +17368,96 @@
       "blurb": "Terminal velocity, runnable in THE OCHO: drag balances weight, v_t ~ sqrt(mass) in the quadratic regime, an object from rest approaching v_t asymptotically without overshoot - the steady state of the-drag-equation and the-stokes-drag under gravity.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "6454d11a809a8dc4d9615c786cb770ab91ff9059fafc552a8c5677cefc898d87"
+    },
+    {
+      "slug": "the-hookes-law",
+      "title": "THE HOOKES LAW",
+      "kicker": "the restoring straight line",
+      "accent": "#7fd4ff",
+      "blurb": "Hooke (1678), runnable in THE OCHO: F = -k x, stress = E strain, elastic energy 0.5 k x^2, the force doubling with the stretch and opposing it - the linear law the-stress-strain curve obeys until it yields.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0daf9e3b8d00839b48effb14da969549d2c27c8df01a23ec7aaa17f626eb4c35"
+    },
+    {
+      "slug": "the-stress-strain",
+      "title": "THE STRESS-STRAIN CURVE",
+      "kicker": "a material's life story",
+      "accent": "#9ee06a",
+      "blurb": "The stress-strain curve, runnable in THE OCHO: a linear elastic region of slope E (Young's modulus), then yield, plastic flow, and fracture, with resilience 0.5 sigma_y^2/E - the tensile test the-hookes-law starts and the-hall-petch strengthens.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6a09e49ce904cd683e83aaabcbb8673017741cef68cda783c99257873e9b4556"
+    },
+    {
+      "slug": "the-poisson-ratio",
+      "title": "THE POISSON RATIO",
+      "kicker": "stretch thins the bar",
+      "accent": "#c8a2ff",
+      "blurb": "Poisson (1829), runnable in THE OCHO: nu = -lateral/axial strain, bounded below 0.5 (incompressible), with volume change dV/V = e(1-2nu) - the sideways response completing the-hookes-law's elasticity.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8253f78262a534daddb14cd9516cc10b7064622e957b4421fceaaab10918d15d"
+    },
+    {
+      "slug": "the-braggs-law",
+      "title": "THE BRAGG LAW",
+      "kicker": "X-rays pick out the planes",
+      "accent": "#ff7a7a",
+      "blurb": "Bragg (1913), runnable in THE OCHO: n lambda = 2 d sin(theta), diffraction only when the path difference is a whole wavelength and only if lambda <= 2d - the ruler that reads the-miller-indices' spacings.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "be475e0ad3c213ca969ff7594f8c2397fe2f9344625345fbf3604de852772e39"
+    },
+    {
+      "slug": "the-miller-indices",
+      "title": "THE MILLER INDICES",
+      "kicker": "naming the planes",
+      "accent": "#ffd23f",
+      "blurb": "Miller (1839), runnable in THE OCHO: (h k l) from reciprocal axis intercepts, cubic spacing d = a/sqrt(h^2+k^2+l^2) - the plane labels the-braggs-law diffracts from and the-bravais-lattice stacks.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6d19bd470dc25e9256ac40bdd3ca4a8599306a7a722f007962a9b648fecb515b"
+    },
+    {
+      "slug": "the-bravais-lattice",
+      "title": "THE BRAVAIS LATTICE",
+      "kicker": "the fourteen space-fillings",
+      "accent": "#ff9e6a",
+      "blurb": "Bravais (1848), runnable in THE OCHO: SC/BCC/FCC with packing fractions 0.52/0.68/0.74 from touching-sphere geometry, coordination 6/8/12 - the periodic scaffold the-miller-indices labels and the-braggs-law probes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ca3752284c8c2a6921f23c0ddecf477d10896f6e4a3e0249a3a4c81ca148e334"
+    },
+    {
+      "slug": "the-ficks-law",
+      "title": "THE FICK LAW",
+      "kicker": "spreading down the gradient",
+      "accent": "#7fe0c0",
+      "blurb": "Fick (1855), runnable in THE OCHO: J = -D dc/dx and dc/dt = D c_xx, matter flowing high-to-low and spreading as sqrt(D t) - the mass-transport twin of the-heat-equation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9dc6463bb02564ab11368eb522acca440886d165db26f7cb9c3f903e2195747c"
+    },
+    {
+      "slug": "the-hall-petch",
+      "title": "THE HALL-PETCH RELATION",
+      "kicker": "finer grains, stronger metal",
+      "accent": "#ffb0d0",
+      "blurb": "Hall-Petch (1951-53), runnable in THE OCHO: sigma_y = sigma_0 + k/sqrt(d), grain boundaries pinning slip so smaller grains strengthen - the yield-point boost on the-stress-strain curve.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4691862571fb58a6db37e2481d6b34b2b422db7404db7f637cd609aeab8e2c44"
+    },
+    {
+      "slug": "the-thermal-expansion",
+      "title": "THE THERMAL EXPANSION",
+      "kicker": "heat swells a solid",
+      "accent": "#9ee0d0",
+      "blurb": "Thermal expansion, runnable in THE OCHO: dL = alpha L dT with 2 alpha for area and 3 alpha for volume, a bimetallic strip bending toward the lower-alpha metal - the strain that stresses a constrained bar, kin to the-stress-strain.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "afbc34c22e48c8e0be174878ab806df4f030f877e4cad6d4b508fd8992ac4466"
+    },
+    {
+      "slug": "the-griffith-crack",
+      "title": "THE GRIFFITH CRACK",
+      "kicker": "cracks break the ideal",
+      "accent": "#ffcf5a",
+      "blurb": "Griffith (1921), runnable in THE OCHO: sigma_f = sqrt(2 E gamma / (pi a)), fracture stress falling as 1/sqrt(crack) with a material-constant toughness K_c - the flaw dropping a real solid far below the-stress-strain's ideal strength.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0b3c200009f171560d919962948037f5057b5e22bb0a30f019b2bd115d75cc31"
     }
   ],
   "appeals": [
@@ -32243,6 +32333,86 @@
               "icon": "↻",
               "kicker": "the rows keep coming back",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hookes-law",
+              "title": "THE HOOKES LAW",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "the restoring straight line",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-stress-strain",
+              "title": "THE STRESS-STRAIN CURVE",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "a material's life story",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-poisson-ratio",
+              "title": "THE POISSON RATIO",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "stretch thins the bar",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-braggs-law",
+              "title": "THE BRAGG LAW",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "X-rays pick out the planes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-miller-indices",
+              "title": "THE MILLER INDICES",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "naming the planes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-bravais-lattice",
+              "title": "THE BRAVAIS LATTICE",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "the fourteen space-fillings",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ficks-law",
+              "title": "THE FICK LAW",
+              "accent": "#7fe0c0",
+              "icon": "spawn",
+              "kicker": "spreading down the gradient",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hall-petch",
+              "title": "THE HALL-PETCH RELATION",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "finer grains, stronger metal",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-thermal-expansion",
+              "title": "THE THERMAL EXPANSION",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "heat swells a solid",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-griffith-crack",
+              "title": "THE GRIFFITH CRACK",
+              "accent": "#ffcf5a",
+              "icon": "boss",
+              "kicker": "cracks break the ideal",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -33644,7 +33814,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "8787c10eb41b29b9d80dcc6f4f90800509ba71b41cd99fa725a76466f168ba85",
+  "fold_root": "0dfb3f172c79ac3509152594e3387741d03fafba6f21ae3c28f267163e480a3a",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
