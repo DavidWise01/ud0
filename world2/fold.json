@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1890,
+    "spheres": 1900,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1884,
+    "spheres_built": 1894,
     "apex": 1
   },
   "keepers": [
@@ -17098,6 +17098,96 @@
       "blurb": "Pitch detection (autocorrelation; YIN 2002), runnable in THE OCHO: the lag of best self-similarity is the period and f0 = sr/period, with the octave trap that snags naive peak-pickers - reading back the fundamental the-overtone-series stacks upward from.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "018a31bcbfa44b52b35a097eb5e132bcd0e7de50c4c71c208a546f39acf4a9b3"
+    },
+    {
+      "slug": "the-arrhenius-equation",
+      "title": "THE ARRHENIUS EQUATION",
+      "kicker": "rate constant vs temperature",
+      "accent": "#ff7a7a",
+      "blurb": "Arrhenius (1889), runnable in THE OCHO: k = A exp(-Ea/RT), so ln k is linear in 1/T with slope -Ea/R and the rate roughly doubles per 10 K - the exponential temperature law feeding every the-rate-law's k.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b2489924fc6d8347e28fc7745cfb4d700087f583d93c4f0ea8b6fa847046c026"
+    },
+    {
+      "slug": "the-michaelis-menten",
+      "title": "THE MICHAELIS-MENTEN",
+      "kicker": "how an enzyme saturates",
+      "accent": "#7fd4ff",
+      "blurb": "Michaelis and Menten (1913), runnable in THE OCHO: v = Vmax[S]/(Km+[S]), half-maximal exactly at [S]=Km with a straight-line Lineweaver-Burk double reciprocal - the-mass-action law under a quasi-steady-state enzyme.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8ef1dfc1f3a2015f2a314ec486b7f953df1ad1b1663896105073d30ee1943d31"
+    },
+    {
+      "slug": "the-mass-action",
+      "title": "THE MASS ACTION",
+      "kicker": "rate from concentrations",
+      "accent": "#9ee06a",
+      "blurb": "Guldberg and Waage (1864), runnable in THE OCHO: rate proportional to the product of concentrations, driving Q toward Keq = kf/kr while atoms stay conserved - the law beneath the-michaelis-menten and the-equilibrium-constant.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4d16441cb2862f436d197cfd8ac1a4ba93815f0c6d188dc6431003398dd326db"
+    },
+    {
+      "slug": "the-gillespie",
+      "title": "THE GILLESPIE ALGORITHM",
+      "kicker": "exact stochastic chemistry",
+      "accent": "#c8a2ff",
+      "blurb": "Gillespie (1977), runnable in THE OCHO: the SSA drawing exponential waiting times (coefficient of variation 1) from mass-action propensities, its ensemble mean tracing the deterministic decay - chemistry one molecule at a time.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "509a9a245a46e98a69ba41f2ab76b327c1120d0b5b3ee52bde33e7ccc5d10d2e"
+    },
+    {
+      "slug": "the-nernst-equation",
+      "title": "THE NERNST EQUATION",
+      "kicker": "voltage from a concentration ratio",
+      "accent": "#ffd23f",
+      "blurb": "Nernst (1889), runnable in THE OCHO: E = E0 - (RT/nF) ln Q, a slope of -59.2 mV per decade at 298 K for n=1 - the-equilibrium-constant read as a cell voltage.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4257c2f28d52c6f65cf622098fd2b04ff80a9bcd3a3ee8fada09da2037f735b8"
+    },
+    {
+      "slug": "the-le-chatelier",
+      "title": "THE LE CHATELIER PRINCIPLE",
+      "kicker": "equilibrium pushes back",
+      "accent": "#ff9e6a",
+      "blurb": "Le Chatelier (1884), runnable in THE OCHO: an equilibrium shifts to oppose a push while Keq holds fixed at constant T (moving only with temperature, by van't Hoff) - the qualitative face of the-mass-action.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9f7750bd5a8b4ffe468f4749c418be53ff7cdd34b0ed8116238006bc3bfb017c"
+    },
+    {
+      "slug": "the-beer-lambert",
+      "title": "THE BEER-LAMBERT LAW",
+      "kicker": "light through solution",
+      "accent": "#7fe0c0",
+      "blurb": "Beer-Lambert (Bouguer 1729; Lambert 1760; Beer 1852), runnable in THE OCHO: absorbance A = e*c*l linear in concentration, transmittance T = 10^-A, absorbances adding as light stacks through cuvettes - the spectrophotometer's law.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4b0fe0687f97eb23583475d70c83f84947a9c91506b1d124c1b8495f87e1ef05"
+    },
+    {
+      "slug": "the-equilibrium-constant",
+      "title": "THE EQUILIBRIUM CONSTANT",
+      "kicker": "how far a reaction goes",
+      "accent": "#ffb0d0",
+      "blurb": "van't Hoff / Gibbs, runnable in THE OCHO: Keq = products/reactants with dG0 = -RT ln K, and Q versus K fixing the direction (Q<K drives forward) - the thermodynamic destination the-mass-action rates approach and the-nernst-equation reads as voltage.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "42a8359c030ab3a2dd916291d83a5133903be7494498afe678649cf1e8a64f8c"
+    },
+    {
+      "slug": "the-henderson-hasselbalch",
+      "title": "THE HENDERSON-HASSELBALCH",
+      "kicker": "the pH of a buffer",
+      "accent": "#9ee0d0",
+      "blurb": "Henderson (1908) and Hasselbalch (1917), runnable in THE OCHO: pH = pKa + log([A-]/[HA]), dead flat at the pKa where the buffer resists change and rising one unit per tenfold ratio - the-equilibrium-constant of a weak acid solved for pH.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0681c1273dc20e9133c8c358f5bde31352073b6f8fc4e2fa7a8d986b232e34c5"
+    },
+    {
+      "slug": "the-rate-law",
+      "title": "THE RATE LAW",
+      "kicker": "how concentration falls with time",
+      "accent": "#ffcf5a",
+      "blurb": "Integrated rate laws (van't Hoff; Ostwald), runnable in THE OCHO: first-order's constant half-life ln2/k versus second-order's concentration-dependent 1/(k[A]0) - the reaction order read off the half-life, the time-integral of the-mass-action's differential rate.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "adde8217b94ad80cecfea0e0c555a8d0dac4ab9fc69b26191bb49cb9c34941c9"
     }
   ],
   "appeals": [
@@ -28747,6 +28837,86 @@
               "icon": "≺",
               "kicker": "a negative result wearing a positive name",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-arrhenius-equation",
+              "title": "THE ARRHENIUS EQUATION",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "rate constant vs temperature",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-michaelis-menten",
+              "title": "THE MICHAELIS-MENTEN",
+              "accent": "#7fd4ff",
+              "icon": "boss",
+              "kicker": "how an enzyme saturates",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mass-action",
+              "title": "THE MASS ACTION",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "rate from concentrations",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gillespie",
+              "title": "THE GILLESPIE ALGORITHM",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "exact stochastic chemistry",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-nernst-equation",
+              "title": "THE NERNST EQUATION",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "voltage from a concentration ratio",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-le-chatelier",
+              "title": "THE LE CHATELIER PRINCIPLE",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "equilibrium pushes back",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-beer-lambert",
+              "title": "THE BEER-LAMBERT LAW",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "light through solution",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-equilibrium-constant",
+              "title": "THE EQUILIBRIUM CONSTANT",
+              "accent": "#ffb0d0",
+              "icon": "boss",
+              "kicker": "how far a reaction goes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-henderson-hasselbalch",
+              "title": "THE HENDERSON-HASSELBALCH",
+              "accent": "#9ee0d0",
+              "icon": "spawn",
+              "kicker": "the pH of a buffer",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rate-law",
+              "title": "THE RATE LAW",
+              "accent": "#ffcf5a",
+              "icon": "grind",
+              "kicker": "how concentration falls with time",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 37,
@@ -33134,7 +33304,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "fb37c6ff28084edcd7b50ee32e281756f1a0a10b274b8bb77e7a702bc18927c1",
+  "fold_root": "03ce9787e05f5e535715d51525f3d61e7c7e1d8ba33b5e5a9f8376ae69c2ab8e",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
