@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1800,
+    "spheres": 1810,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1794,
+    "spheres_built": 1804,
     "apex": 1
   },
   "keepers": [
@@ -16288,6 +16288,96 @@
       "blurb": "Ray-triangle intersection (Moller and Trumbore 1997), runnable in THE OCHO: solve for t and the barycentric hit in one shot - the-barycentric coordinates from a ray, the inner loop of ray tracing and the alternative to the-rasterization.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "558625f134b2beb1ad0a4c2852e702a54ae0644c4b4e34eec91f7f559934e473"
+    },
+    {
+      "slug": "the-serializability",
+      "title": "THE SERIALIZABILITY",
+      "kicker": "as correct as running one at a time",
+      "accent": "#7fd4ff",
+      "blurb": "Serializability (Eswaran et al. 1976), runnable in THE OCHO: a schedule is conflict-serializable iff its conflict graph is acyclic, checked against brute force over all serial orders - the gold standard the-two-phase-locking guarantees.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b0f074262b1b681637701ae293c939edae9e9cbc77cfc8698efeefedd0cd5130"
+    },
+    {
+      "slug": "the-two-phase-locking",
+      "title": "THE TWO-PHASE LOCKING",
+      "kicker": "acquire all locks before releasing any",
+      "accent": "#ff9e6a",
+      "blurb": "Two-phase locking (Eswaran et al. 1976), runnable in THE OCHO: grow then shrink, never acquire after releasing, and every schedule is serializable - the discipline that makes the-serializability hold, at the price of deadlock.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a7af828c36ed4cfc35361a8c5239cf8dfb30a0e649dd7410934c728d3e2c97ae"
+    },
+    {
+      "slug": "the-mvcc",
+      "title": "THE MVCC",
+      "kicker": "keep old versions so readers do not block",
+      "accent": "#c0b0ff",
+      "blurb": "Multi-version concurrency control (Reed 1978), runnable in THE OCHO: each write makes a new version so a reader sees a stable snapshot and never blocks - the mechanism under the-snapshot-isolation and every modern database.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a7e8280062a251cf7fd6bfe2ac9b7ac9be1e3785de13ef19b83bf10f54c963e0"
+    },
+    {
+      "slug": "the-snapshot-isolation",
+      "title": "THE SNAPSHOT ISOLATION",
+      "kicker": "strong, but write-skew slips through",
+      "accent": "#9ee0d0",
+      "blurb": "Snapshot isolation (Berenson et al. 1995), runnable in THE OCHO: read your snapshot, first-committer-wins; strong, but write-skew commits a non-serializable schedule (verified against both serial orders) - the-mvcc as an isolation level with one hole.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f03d599f9e70d4c3e142835fcba38e11ca493d2fe5458d6389cc9661670e4605"
+    },
+    {
+      "slug": "the-isolation-levels",
+      "title": "THE ISOLATION LEVELS",
+      "kicker": "the dials between speed and safety",
+      "accent": "#ffd23f",
+      "blurb": "The isolation levels (ANSI SQL; Berenson 1995), runnable in THE OCHO: read-uncommitted to serializable, each blocking exactly its named anomalies (dirty read, non-repeatable, phantom) - the ladder from a snapshot to full the-serializability.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0a75fbf6777b611d533d7471ee4489dc95b0dec990bf6512159dcf10d96a7f45"
+    },
+    {
+      "slug": "the-write-ahead-log",
+      "title": "THE WRITE-AHEAD LOG",
+      "kicker": "log before data, recover after a crash",
+      "accent": "#7fe0c0",
+      "blurb": "The write-ahead log (Mohan et al. ARIES 1992), runnable in THE OCHO: log the change before the data, and recovery redoes committed and undoes uncommitted after a crash - the D and A of ACID from a log.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "afb298f35c84a2c3382defde8190cb8ce294df945c2618e4ae5860ae67ba75b2"
+    },
+    {
+      "slug": "the-hash-join",
+      "title": "THE HASH JOIN",
+      "kicker": "match rows by hashing, not scanning",
+      "accent": "#ff7a7a",
+      "blurb": "The hash join (Bratbergsengen 1984), runnable in THE OCHO: build a hash table on one relation, probe with the other, in O(n+m) equal to the nested-loop result - the-hash-table applied to relational algebra.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d537f4cf5d57fa6425c64bec15ebf80ba771bdb89deccc01430fe138422e7c54"
+    },
+    {
+      "slug": "the-query-optimization",
+      "title": "THE QUERY OPTIMIZATION",
+      "kicker": "the database picks the cheapest plan",
+      "accent": "#9ee06a",
+      "blurb": "Query optimization (Selinger et al. 1979, System R), runnable in THE OCHO: dynamic programming finds the min-cost join order, matched to brute force - the-dynamic-programming applied to join order, why SQL is declarative.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d14face607a6eca440fe84902950349d8405aa6476f0ba104b52c507cd2c29f4"
+    },
+    {
+      "slug": "the-b-plus-tree",
+      "title": "THE B-PLUS TREE",
+      "kicker": "the balanced index with linked leaves",
+      "accent": "#c8a2ff",
+      "blurb": "The B+ tree (Bayer; Comer 1979), runnable in THE OCHO: all data in linked leaves, always balanced and half-full, with O(log n) lookups and ordered range scans - the-b-tree specialized for disk and range queries.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "62d2b6bc15595db436dfb6a7452b1a936e31bbba1049036b7cff7034abc5fee6"
+    },
+    {
+      "slug": "the-lsm-tree",
+      "title": "THE LSM TREE",
+      "kicker": "writes made sequential",
+      "accent": "#ffb0d0",
+      "blurb": "The LSM tree (ONeil et al. 1996), runnable in THE OCHO: buffer writes in a memtable, flush sorted, merge later, reads newest-first - writes made sequential, the write-optimized opposite of the-b-plus-tree.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7fffa792515737447d770b0f44e8de0206f83307783dd6f14bcec38d998a9842"
     }
   ],
   "appeals": [
@@ -24599,9 +24689,89 @@
               "icon": "⚗",
               "kicker": "the fraction of a particular list",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-serializability",
+              "title": "THE SERIALIZABILITY",
+              "accent": "#7fd4ff",
+              "icon": "cheat",
+              "kicker": "as correct as running one at a time",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-two-phase-locking",
+              "title": "THE TWO-PHASE LOCKING",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "acquire all locks before releasing any",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mvcc",
+              "title": "THE MVCC",
+              "accent": "#c0b0ff",
+              "icon": "spawn",
+              "kicker": "keep old versions so readers do not block",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-snapshot-isolation",
+              "title": "THE SNAPSHOT ISOLATION",
+              "accent": "#9ee0d0",
+              "icon": "glitch",
+              "kicker": "strong, but write-skew slips through",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-isolation-levels",
+              "title": "THE ISOLATION LEVELS",
+              "accent": "#ffd23f",
+              "icon": "grind",
+              "kicker": "the dials between speed and safety",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-write-ahead-log",
+              "title": "THE WRITE-AHEAD LOG",
+              "accent": "#7fe0c0",
+              "icon": "loot",
+              "kicker": "log before data, recover after a crash",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hash-join",
+              "title": "THE HASH JOIN",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "match rows by hashing, not scanning",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-query-optimization",
+              "title": "THE QUERY OPTIMIZATION",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "the database picks the cheapest plan",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-b-plus-tree",
+              "title": "THE B-PLUS TREE",
+              "accent": "#c8a2ff",
+              "icon": "loot",
+              "kicker": "the balanced index with linked leaves",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lsm-tree",
+              "title": "THE LSM TREE",
+              "accent": "#ffb0d0",
+              "icon": "loot",
+              "kicker": "writes made sequential",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 36,
+          "seats": 40,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -31604,7 +31774,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "bddb9fbaac018b84e691393f1bfb4dca92453bf925331f43756a36d8174f342d",
+  "fold_root": "323f8b230f0e1a40dffe82be9e6d9c0811589635a9cd60169a25782ca1204567",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
