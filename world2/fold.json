@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1639,
+    "spheres": 1640,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1633,
+    "spheres_built": 1634,
     "apex": 1
   },
   "keepers": [
@@ -14839,6 +14839,15 @@
       "blurb": "The convolution (LeCun et al. LeNet 1998), runnable in THE OCHO: a 3x3 kernel sliding over an image, a Sobel kernel finding edges, verified against hand computation - the neuron with shared weights, the ConvNet that gave vision to machines.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "b6886da8c2d914c062b5762bb0de4ce8df66faea8c0881f63f26ad485af1470c"
+    },
+    {
+      "slug": "the-gan",
+      "title": "THE GAN",
+      "kicker": "a forger vs a detector - blue team vs red team as a training loop",
+      "accent": "#ff7a7a",
+      "blurb": "Generative adversarial networks (Goodfellow et al. 2014, arxiv), runnable in THE OCHO: a generator matches a target distribution as a discriminator's accuracy falls to 0.5 - gradient descent turned into a two-player game.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c71ed1008356e25fe2fc720f6e519287063d7551d55ce83a141309a7d7742cbb"
     }
   ],
   "appeals": [
@@ -18555,6 +18564,14 @@
               "accent": "#c8a2ff",
               "icon": "spawn",
               "kicker": "weight sharing over space - the feature map",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gan",
+              "title": "THE GAN",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "a forger vs a detector - blue team vs red team as a training loop",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -28867,7 +28884,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "00d09de47a96eb95e7fa50bb80f4a48b2ac6e165460439d9f27f942d0a7a8db0",
+  "fold_root": "592a45c78255ddbd190b19758dbcbb2eb4cec39a4867a9cb51947a79959efac1",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
