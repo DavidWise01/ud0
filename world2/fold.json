@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1740,
+    "spheres": 1750,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1734,
+    "spheres_built": 1744,
     "apex": 1
   },
   "keepers": [
@@ -15748,6 +15748,96 @@
       "blurb": "The margin bound (Bartlett 1998; Vapnik), runnable in THE OCHO: generalization scales as 1/(gamma^2 m), dimension-free - why the SVM survives high dimensions, the-duality's geometric margin turned into a guarantee.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "410defcc59698f5f43c9985e7878c38755e0884ab573089ddedcac77f8768ca1"
+    },
+    {
+      "slug": "the-elbo",
+      "title": "THE EVIDENCE LOWER BOUND",
+      "kicker": "the tractable floor beneath an intractable likelihood",
+      "accent": "#7fd4ff",
+      "blurb": "The evidence lower bound (Jordan et al. 1999), runnable in THE OCHO: ELBO = reconstruction - KL(q||prior) <= log p(x), the gap being the posterior KL - the-kl-divergence turned into the objective the-vae maximizes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "60ce0eef307c7323db0660a95061681dc2910bad7c7007468b0fab7e7f56fea9"
+    },
+    {
+      "slug": "the-vae",
+      "title": "THE VARIATIONAL AUTOENCODER",
+      "kicker": "an autoencoder that learns a distribution",
+      "accent": "#ff9e6a",
+      "blurb": "The variational autoencoder (Kingma and Welling 2013), runnable in THE OCHO: an encoder and decoder trained by the ELBO with a closed-form Gaussian KL - the-elbo made an architecture, the first scalable deep generative model.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ff7930e1d62d5d45e2575cf4565fb67da4bc151974265b28806260677e9f5419"
+    },
+    {
+      "slug": "the-reparameterization-trick",
+      "title": "THE REPARAMETERIZATION TRICK",
+      "kicker": "take a gradient through a random sample",
+      "accent": "#c0b0ff",
+      "blurb": "The reparameterization trick (Kingma and Welling 2013), runnable in THE OCHO: z = mu + sigma*epsilon moves the randomness out of the parameters so a gradient flows - the low-variance alternative to the-policy-gradient's score-function.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6e8176e543143e143067e2e4a741e6b00c55293d8bbbf020b9847e28ae12fcd5"
+    },
+    {
+      "slug": "the-normalizing-flow",
+      "title": "THE NORMALIZING FLOW",
+      "kicker": "an invertible map with an exact likelihood",
+      "accent": "#9ee0d0",
+      "blurb": "The normalizing flow (Rezende and Mohamed 2015), runnable in THE OCHO: an invertible map gives exact likelihood by change of variables, log p(x) = log p(z) - log|det J| - where the-vae approximates, a flow computes p(x) precisely.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a49a9de412c9a95cdff0f2d3a9f82d384d0ed271a40c58f9e897a44050b31469"
+    },
+    {
+      "slug": "the-diffusion-model",
+      "title": "THE DIFFUSION MODEL",
+      "kicker": "destroy with noise, learn to run time backward",
+      "accent": "#ffd23f",
+      "blurb": "The diffusion model (Ho et al. 2020), runnable in THE OCHO: the forward marginal x_t = sqrt(alphabar_t) x_0 + noise collapses the noising chain to a closed form, then learns time in reverse - the-score-matching over noise levels, behind modern image generation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "17b5f8986917b60884af9f567c5c112b33a5bbe2397596a4dc313c014fa8e2f5"
+    },
+    {
+      "slug": "the-score-matching",
+      "title": "THE SCORE MATCHING",
+      "kicker": "learn the shape without the normalizer",
+      "accent": "#7fe0c0",
+      "blurb": "Score matching (Hyvarinen 2005), runnable in THE OCHO: learn grad log p by an objective that via integration by parts equals the Fisher divergence, no normalizer needed - the trick the-diffusion-model uses at every noise level.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "165c077319d25b98cd131049cd76dd54ab116a22c652a985125fafc4364ad6e4"
+    },
+    {
+      "slug": "the-contrastive-learning",
+      "title": "THE CONTRASTIVE LEARNING",
+      "kicker": "pull positives together, push negatives apart",
+      "accent": "#ff7a7a",
+      "blurb": "Contrastive learning / InfoNCE (van den Oord et al. 2018), runnable in THE OCHO: a cross-entropy that picks the positive from negatives, a lower bound on mutual information - representation learning without labels, behind SimCLR and CLIP.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3942430f499c5da2f39e5384f00a1af4f0c57c5daa96677576abf613f0b35bed"
+    },
+    {
+      "slug": "the-autoregressive-model",
+      "title": "THE AUTOREGRESSIVE MODEL",
+      "kicker": "factor the joint into next-step predictions",
+      "accent": "#9ee06a",
+      "blurb": "The autoregressive model (Larochelle-Murray 2011; van den Oord 2016), runnable in THE OCHO: p(x) = product of p(x_i | x_<i), an exact tractable likelihood - the chain rule as a generator, the-causal-mask's training objective for language models.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "675568e411851360e4d7ec71a108e65cffe99b9a0e3dd880e842d520df749912"
+    },
+    {
+      "slug": "the-optimal-transport",
+      "title": "THE OPTIMAL TRANSPORT",
+      "kicker": "the cheapest way to move one pile onto another",
+      "accent": "#c8a2ff",
+      "blurb": "Optimal transport (Monge 1781; Kantorovich 1942), runnable in THE OCHO: the cheapest coupling of two distributions, W1 in 1-D the sorted matching - the Wasserstein metric behind WGAN and the geometry the-diffusion-model flows along.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f5a52e884f2077ee8538730286ba778db3242ca449592e3815ab7f4d5d225250"
+    },
+    {
+      "slug": "the-denoising-autoencoder",
+      "title": "THE DENOISING AUTOENCODER",
+      "kicker": "reconstruct clean from corrupted, learn the manifold",
+      "accent": "#ffb0d0",
+      "blurb": "The denoising autoencoder (Vincent et al. 2008), runnable in THE OCHO: reconstruct clean from corrupted, and the optimal denoiser's residual is the score grad log p - the-score-matching in disguise, the idea the-diffusion-model scaled.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4c976149c74cc66bbc63f62ef9d5d4e591bd7d0aeff11e92230a08ea640d5464"
     }
   ],
   "appeals": [
@@ -16435,6 +16525,86 @@
               "accent": "#ffd23f",
               "icon": "⏱",
               "kicker": "the randomness in v4 was the property, not the waste",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-elbo",
+              "title": "THE EVIDENCE LOWER BOUND",
+              "accent": "#7fd4ff",
+              "icon": "spawn",
+              "kicker": "the tractable floor beneath an intractable likelihood",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-vae",
+              "title": "THE VARIATIONAL AUTOENCODER",
+              "accent": "#ff9e6a",
+              "icon": "spawn",
+              "kicker": "an autoencoder that learns a distribution",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-reparameterization-trick",
+              "title": "THE REPARAMETERIZATION TRICK",
+              "accent": "#c0b0ff",
+              "icon": "cheat",
+              "kicker": "take a gradient through a random sample",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-normalizing-flow",
+              "title": "THE NORMALIZING FLOW",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "an invertible map with an exact likelihood",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-diffusion-model",
+              "title": "THE DIFFUSION MODEL",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "destroy with noise, learn to run time backward",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-score-matching",
+              "title": "THE SCORE MATCHING",
+              "accent": "#7fe0c0",
+              "icon": "cheat",
+              "kicker": "learn the shape without the normalizer",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-contrastive-learning",
+              "title": "THE CONTRASTIVE LEARNING",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "pull positives together, push negatives apart",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-autoregressive-model",
+              "title": "THE AUTOREGRESSIVE MODEL",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "factor the joint into next-step predictions",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-optimal-transport",
+              "title": "THE OPTIMAL TRANSPORT",
+              "accent": "#c8a2ff",
+              "icon": "loot",
+              "kicker": "the cheapest way to move one pile onto another",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-denoising-autoencoder",
+              "title": "THE DENOISING AUTOENCODER",
+              "accent": "#ffb0d0",
+              "icon": "spawn",
+              "kicker": "reconstruct clean from corrupted, learn the manifold",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -30584,7 +30754,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "632c63eac2b63bfad20077d7815077a4ed5f4b9ff39f775fe38ff874a06fe282",
+  "fold_root": "6191e6787b63b6227e2fadb3e4131fe89f11eeb0f647c27e97de863a898d5b5b",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
