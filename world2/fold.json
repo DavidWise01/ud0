@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1600,
+    "spheres": 1601,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1594,
+    "spheres_built": 1595,
     "apex": 1
   },
   "keepers": [
@@ -14488,6 +14488,15 @@
       "blurb": "Turing's 1936 a-machine, runnable in THE OCHO: step BB(2)/BB(3) to their proven halts and a binary machine computes n+1 — the universal reader, and the halting boundary. Cited to archive.org.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "d6159de86fb5c9148428e6f2dcf62083b838a3e3aa649db0d9b0d7578dfd54c4"
+    },
+    {
+      "slug": "the-three-valued",
+      "title": "THE THREE-VALUED",
+      "kicker": "the third value: Lukasiewicz's half, where excluded middle fails",
+      "accent": "#a98bff",
+      "blurb": "Lukasiewicz's three-valued logic (from his Aristotle's Syllogistic, archive.org), runnable in THE OCHO: live L3 truth tables where the excluded middle fails and the third value is the trit's 0. Self-checked, tamper vs Kleene. The spine loops back to Aristotle with a value between.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "351106c5a3d41c776be44d7c1fdc3c35634aa3ddc7fbbac0552d1d2123f9128d"
     }
   ],
   "appeals": [
@@ -15444,9 +15453,17 @@
               "icon": "boss",
               "kicker": "step a real Turing machine to its proven halt",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-three-valued",
+              "title": "THE THREE-VALUED",
+              "accent": "#a98bff",
+              "icon": "glitch",
+              "kicker": "the third value: Lukasiewicz's half, where excluded middle fails",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 32,
+          "seats": 33,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -28204,7 +28221,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "9d736851b6c4ea3788d16d2c8d2567d04a1163be275d99472427a58b65fb1631",
+  "fold_root": "8f281650ed6091837b24584ae9159960bb072fea04d7ce125ed28d30a2e068d9",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
