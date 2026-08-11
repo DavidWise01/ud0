@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1670,
+    "spheres": 1680,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1664,
+    "spheres_built": 1674,
     "apex": 1
   },
   "keepers": [
@@ -15118,6 +15118,96 @@
       "blurb": "Monte Carlo tree search / UCT (Kocsis and Szepesvari 2006; Coulom 2006), runnable in THE OCHO: a bandit at every tree node, enough sims and the most-visited move is minimax-optimal - the search that, with a value net, became AlphaGo.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "ae7d1225e02cc89fc8073143889da80a655e9956f5e26535828a52e7c4dc6a77"
+    },
+    {
+      "slug": "the-nash-equilibrium",
+      "title": "THE NASH EQUILIBRIUM",
+      "kicker": "no one can gain by deviating alone",
+      "accent": "#7fd4ff",
+      "blurb": "The Nash equilibrium (Nash 1950/1951), runnable in THE OCHO: a profile where no player gains by deviating alone; a mixed equilibrium makes each opponent indifferent - the-bellman-equation's best response, now to another mind.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4c731671b3ec41846e2289526cf0c541f356e045f1a662ead395c3b8f06e6a0e"
+    },
+    {
+      "slug": "the-minimax",
+      "title": "THE MINIMAX THEOREM",
+      "kicker": "every zero-sum game has a definite value",
+      "accent": "#ff9e6a",
+      "blurb": "The minimax theorem (von Neumann 1928), runnable in THE OCHO: every finite two-person zero-sum game has a value, max-min = min-max, no gap; RPS value 0 at (1/3,1/3,1/3) - the-nash-equilibrium under pure conflict, the value the-monte-carlo-tree-search seeks.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4ebc855b5d8f379635935cbe55957fb4701927f71c62155db972e5c304f086ed"
+    },
+    {
+      "slug": "the-prisoners-dilemma",
+      "title": "THE PRISONERS DILEMMA",
+      "kicker": "individually rational, collectively ruinous",
+      "accent": "#c0b0ff",
+      "blurb": "The prisoner's dilemma (Flood, Dresher and Tucker 1950), runnable in THE OCHO: Defect strictly dominates, the unique Nash is (D,D), yet (C,C) Pareto-dominates it - the sharpest wedge between individual and collective good, the raw form of every alignment problem.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b7f6e92868c740b8bdd4fc0e4c1ff19f390492d6512fc06d5a11ce806ab87820"
+    },
+    {
+      "slug": "the-correlated-equilibrium",
+      "title": "THE CORRELATED EQUILIBRIUM",
+      "kicker": "a shared signal you couldn't reach alone",
+      "accent": "#9ee0d0",
+      "blurb": "The correlated equilibrium (Aumann 1974), runnable in THE OCHO: a trusted signal recommends actions no one wants to disobey; on Chicken it beats every Nash - the-nash-equilibrium with a shared coin, the target of the-regret-matching.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bbc62d034a6510563dbcaf53cb183a4adb81fed3adf3dbb8bb272c4d15126e38"
+    },
+    {
+      "slug": "the-regret-matching",
+      "title": "THE REGRET MATCHING",
+      "kicker": "simple learning whose average is equilibrium",
+      "accent": "#ffd23f",
+      "blurb": "Regret matching (Hart and Mas-Colell 2000), runnable in THE OCHO: play each action in proportion to its positive regret, and the average play is a correlated equilibrium - the-bandit's no-regret idea in a game, the engine behind superhuman poker.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5e53d6633c2110ee020c2f6195112a0b1987edfbd1ca790fd11c29307130caf9"
+    },
+    {
+      "slug": "the-fictitious-play",
+      "title": "THE FICTITIOUS PLAY",
+      "kicker": "learn the equilibrium by watching the average",
+      "accent": "#7fe0c0",
+      "blurb": "Fictitious play (Brown and Robinson 1951), runnable in THE OCHO: best-respond to the opponent's empirical average and, in a zero-sum game, the play converges to the minimax value - the-minimax reached without solving a linear program.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "580c4a77ece59bc593305e4667b63aa66b2090658954cd0da7793aa1440aac72"
+    },
+    {
+      "slug": "the-replicator-dynamics",
+      "title": "THE REPLICATOR DYNAMICS",
+      "kicker": "do better than average, and grow",
+      "accent": "#ff7a7a",
+      "blurb": "Replicator dynamics (Taylor and Jonker 1978), runnable in THE OCHO: shares that beat the average grow, the simplex stays invariant, dominated strategies go extinct - the-nash-equilibrium as a rest point of evolution, no rationality required.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fd1f2a73a91c4a5da72282801a1f1fc548faafc8927a55ee841504d1c13aac05"
+    },
+    {
+      "slug": "the-evolutionarily-stable-strategy",
+      "title": "THE EVOLUTIONARILY STABLE STRATEGY",
+      "kicker": "a strategy no mutant can invade",
+      "accent": "#9ee06a",
+      "blurb": "The evolutionarily stable strategy (Maynard Smith and Price 1973), runnable in THE OCHO: a strategy no mutant can invade; on Hawk-Dove it plays Hawk with probability V/C - the-nash-equilibrium hardened against mutation, the stable point of the-replicator-dynamics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "df7dc95fb136c1ce8da54b6467d264b8295e890d3d7b29f40dae76d0cf4a4a5e"
+    },
+    {
+      "slug": "the-mechanism-design",
+      "title": "THE MECHANISM DESIGN",
+      "kicker": "design the rules so honesty is optimal",
+      "accent": "#c8a2ff",
+      "blurb": "Mechanism design (Vickrey 1961; Myerson), runnable in THE OCHO: the second-price auction where truthful bidding is dominant - game theory run backwards, design the payoffs so honesty wins; the corner alignment and governance build on.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e61f5d41a2c0eec6f98b6836019c6028e21e3591c7fec78dd3a1cdd266513956"
+    },
+    {
+      "slug": "the-cournot-competition",
+      "title": "THE COURNOT COMPETITION",
+      "kicker": "Nash equilibrium, found in 1838",
+      "accent": "#ffb0d0",
+      "blurb": "Cournot competition (Cournot 1838), runnable in THE OCHO: firms choose quantities, the reaction functions meet at the Nash quantities (a-c)/((n+1)b) - the-nash-equilibrium's first instance, found a century before Nash proved it always exists.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9eca9f3e46381943d7f53788587d5b50643dce441daa826ab76b605e33121dd0"
     }
   ],
   "appeals": [
@@ -19472,9 +19562,89 @@
               "icon": "⚄",
               "kicker": "one is enough, and there are five thousand chances",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-nash-equilibrium",
+              "title": "THE NASH EQUILIBRIUM",
+              "accent": "#7fd4ff",
+              "icon": "boss",
+              "kicker": "no one can gain by deviating alone",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-minimax",
+              "title": "THE MINIMAX THEOREM",
+              "accent": "#ff9e6a",
+              "icon": "boss",
+              "kicker": "every zero-sum game has a definite value",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-prisoners-dilemma",
+              "title": "THE PRISONERS DILEMMA",
+              "accent": "#c0b0ff",
+              "icon": "glitch",
+              "kicker": "individually rational, collectively ruinous",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-correlated-equilibrium",
+              "title": "THE CORRELATED EQUILIBRIUM",
+              "accent": "#9ee0d0",
+              "icon": "cheat",
+              "kicker": "a shared signal you couldn't reach alone",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-regret-matching",
+              "title": "THE REGRET MATCHING",
+              "accent": "#ffd23f",
+              "icon": "grind",
+              "kicker": "simple learning whose average is equilibrium",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fictitious-play",
+              "title": "THE FICTITIOUS PLAY",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "learn the equilibrium by watching the average",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-replicator-dynamics",
+              "title": "THE REPLICATOR DYNAMICS",
+              "accent": "#ff7a7a",
+              "icon": "spawn",
+              "kicker": "do better than average, and grow",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-evolutionarily-stable-strategy",
+              "title": "THE EVOLUTIONARILY STABLE STRATEGY",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "a strategy no mutant can invade",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mechanism-design",
+              "title": "THE MECHANISM DESIGN",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "design the rules so honesty is optimal",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cournot-competition",
+              "title": "THE COURNOT COMPETITION",
+              "accent": "#ffb0d0",
+              "icon": "loot",
+              "kicker": "Nash equilibrium, found in 1838",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 31,
+          "seats": 38,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -29394,7 +29564,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "66301070016c7e824072a9ee03187ecb843b77859e6338e1940d7a0144e77181",
+  "fold_root": "8bc3872c028ccf84a58c679f57d9fdf4070c30c077f049ee09a87e9dc91bf1de",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
