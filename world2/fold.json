@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1700,
+    "spheres": 1710,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1694,
+    "spheres_built": 1704,
     "apex": 1
   },
   "keepers": [
@@ -15388,6 +15388,96 @@
       "blurb": "The propensity score (Rosenbaum and Rubin 1983), runnable in THE OCHO: e(x)=P(T=1|x) is a balancing score and inverse-propensity weighting recovers the ATE exactly - the-backdoor adjustment compressed into one dimension.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "e4372ecdb4476067f509d3d2ddc168c0dbe20bb7592c47db5a9a4c0e9e902035"
+    },
+    {
+      "slug": "the-superposition",
+      "title": "THE SUPERPOSITION",
+      "kicker": "more features than dimensions, when sparse",
+      "accent": "#7fd4ff",
+      "blurb": "Superposition (Elhage et al. 2022, Anthropic), runnable in THE OCHO: a model packs more sparse features than it has dimensions as a near-orthogonal frame (3-in-2D cosine exactly -0.5) - why a neuron is not a feature, the-linear-representation crammed tighter than the space allows.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bf3a20498860e2cfdae62a2c3932d141c532896018755162490174ff016d73cf"
+    },
+    {
+      "slug": "the-sparse-autoencoder",
+      "title": "THE SPARSE AUTOENCODER",
+      "kicker": "unpack the crammed features into a dictionary",
+      "accent": "#ff9e6a",
+      "blurb": "The sparse autoencoder (Bricken et al. 2023, Anthropic), runnable in THE OCHO: ISTA on an overcomplete dictionary recovers the true sparse code, soft-threshold verified against a brute-force minimizer - the-superposition undone into monosemantic features.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0cd03c9871b8da35343ba62914e17d9c94b13e1fd4fee84aa7da3d30e1c03249"
+    },
+    {
+      "slug": "the-linear-representation",
+      "title": "THE LINEAR REPRESENTATION",
+      "kicker": "concepts are directions, not neurons",
+      "accent": "#c0b0ff",
+      "blurb": "The linear representation hypothesis (Mikolov 2013; Park et al. 2023), runnable in THE OCHO: concepts are directions, king - man + woman lands on queen when the axes are orthogonal - the ground the-activation-steering and the-probing-classifier stand on.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ccccfcaf1e526430f181043dc0c69cb41071097a627389cad00a69a602313e11"
+    },
+    {
+      "slug": "the-probing-classifier",
+      "title": "THE PROBING CLASSIFIER",
+      "kicker": "read a feature off the activations, honestly",
+      "accent": "#9ee0d0",
+      "blurb": "The probing classifier (Alain and Bengio 2016; Hewitt and Liang 2019), runnable in THE OCHO: a linear probe reads a feature, and a control probe on random labels sitting at chance proves it is real - the-linear-representation put on trial with the selectivity control.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "71451e67c37e619346316595a71d77bf42b3bbe4315c7ea19f4939ec37eb7b2f"
+    },
+    {
+      "slug": "the-logit-lens",
+      "title": "THE LOGIT LENS",
+      "kicker": "the residual stream as a running prediction",
+      "accent": "#ffd23f",
+      "blurb": "The logit lens (nostalgebraist 2020), runnable in THE OCHO: project the residual stream through the unembedding early; the final layer reproduces the true logits exactly, earlier layers show the guess forming - the-unembedding applied layer by layer.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5538fc6a94fc8413ca5cdd2c3c976848d1dc7caef7b9b84f069b75399bd72b2d"
+    },
+    {
+      "slug": "the-activation-patching",
+      "title": "THE ACTIVATION PATCHING",
+      "kicker": "the do-operator for a neural network",
+      "accent": "#7fe0c0",
+      "blurb": "Activation patching (Meng et al. 2022, ROME), runnable in THE OCHO: patch one node's activation from a clean run into a corrupted one and the causal node fully restores the output - the-do-calculus applied to activations, the workhorse of circuit-finding.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5965ffb50e252520a6b6ccdf18f5e0e365d23d549c878c63d8367c6cacf2b364"
+    },
+    {
+      "slug": "the-activation-steering",
+      "title": "THE ACTIVATION STEERING",
+      "kicker": "add a direction, move the behavior",
+      "accent": "#ff7a7a",
+      "blurb": "Activation steering (Turner et al. 2023; Zou et al. 2023), runnable in THE OCHO: add alpha times a concept's difference-of-means direction and the behavior shifts linearly - the-linear-representation used as a lever, control without retraining.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2d5dcb27186f047baf65756a79e3b8d383a876b72a8fb12c67506617ec01c6b4"
+    },
+    {
+      "slug": "the-induction-head",
+      "title": "THE INDUCTION HEAD",
+      "kicker": "the two-head circuit that copies a pattern",
+      "accent": "#9ee06a",
+      "blurb": "The induction head (Olsson et al. 2022, Anthropic), runnable in THE OCHO: a previous-token head plus an induction head copy [A][B]..[A]->[B], built by hand and proven - two the-attention-heads composed, the circuit behind in-context learning.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "02e7420b61e232db7aa6b35e721856b784e1f9e09b093bc9f08297d2ccb1d8bd"
+    },
+    {
+      "slug": "the-feature-ablation",
+      "title": "THE FEATURE ABLATION",
+      "kicker": "remove it and see what breaks",
+      "accent": "#c8a2ff",
+      "blurb": "Feature ablation, runnable in THE OCHO: zero- or mean-ablate a component and the behavior it implements breaks while unrelated ones survive - the necessity test, the-activation-patching's destructive twin.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6c097ed9ab78c070f12d00963a44ea21cc8ff18d0ad4e762f26ea56b440a3093"
+    },
+    {
+      "slug": "the-concept-erasure",
+      "title": "THE CONCEPT ERASURE",
+      "kicker": "delete a direction so no probe can read it",
+      "accent": "#ffb0d0",
+      "blurb": "Concept erasure (Ravfogel 2020, INLP; Belrose 2023, LEACE), runnable in THE OCHO: project out a concept's direction so a linear probe drops to chance while orthogonal concepts survive - the-probing-classifier run in reverse, the tool for unlearning a trait.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "74e6fc0560bce6268f14a7d262ddddb94e488df9c2776ef16d331c302a0618e7"
     }
   ],
   "appeals": [
@@ -21190,9 +21280,89 @@
               "icon": "◯",
               "kicker": "a commitment to defend an answer against the future",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-superposition",
+              "title": "THE SUPERPOSITION",
+              "accent": "#7fd4ff",
+              "icon": "glitch",
+              "kicker": "more features than dimensions, when sparse",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sparse-autoencoder",
+              "title": "THE SPARSE AUTOENCODER",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "unpack the crammed features into a dictionary",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-linear-representation",
+              "title": "THE LINEAR REPRESENTATION",
+              "accent": "#c0b0ff",
+              "icon": "spawn",
+              "kicker": "concepts are directions, not neurons",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-probing-classifier",
+              "title": "THE PROBING CLASSIFIER",
+              "accent": "#9ee0d0",
+              "icon": "cheat",
+              "kicker": "read a feature off the activations, honestly",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-logit-lens",
+              "title": "THE LOGIT LENS",
+              "accent": "#ffd23f",
+              "icon": "cheat",
+              "kicker": "the residual stream as a running prediction",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-activation-patching",
+              "title": "THE ACTIVATION PATCHING",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "the do-operator for a neural network",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-activation-steering",
+              "title": "THE ACTIVATION STEERING",
+              "accent": "#ff7a7a",
+              "icon": "loot",
+              "kicker": "add a direction, move the behavior",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-induction-head",
+              "title": "THE INDUCTION HEAD",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "the two-head circuit that copies a pattern",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-feature-ablation",
+              "title": "THE FEATURE ABLATION",
+              "accent": "#c8a2ff",
+              "icon": "glitch",
+              "kicker": "remove it and see what breaks",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-concept-erasure",
+              "title": "THE CONCEPT ERASURE",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "delete a direction so no probe can read it",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 36,
+          "seats": 43,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -29904,7 +30074,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "c94b856629950f959a24d410b5c76a68a23e317a5124daad7194ead8190de39a",
+  "fold_root": "b9bd39fb3841b86accf4ee8fab24c399046ea23847b60a7b4d96c66377f6ff54",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
