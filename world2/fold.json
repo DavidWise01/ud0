@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1680,
+    "spheres": 1690,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1674,
+    "spheres_built": 1684,
     "apex": 1
   },
   "keepers": [
@@ -15208,6 +15208,96 @@
       "blurb": "Cournot competition (Cournot 1838), runnable in THE OCHO: firms choose quantities, the reaction functions meet at the Nash quantities (a-c)/((n+1)b) - the-nash-equilibrium's first instance, found a century before Nash proved it always exists.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "9eca9f3e46381943d7f53788587d5b50643dce441daa826ab76b605e33121dd0"
+    },
+    {
+      "slug": "the-maximum-likelihood",
+      "title": "THE MAXIMUM LIKELIHOOD",
+      "kicker": "the parameters that make the data most probable",
+      "accent": "#7fd4ff",
+      "blurb": "Maximum likelihood (Fisher 1922), runnable in THE OCHO: choose the parameters that make the observed data most probable; the Gaussian MLE is exactly the sample mean and variance - minimizing the-cross-entropy IS maximizing likelihood, the principle under every trained model.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "85774b6f4f8b1fd72de01d4fe3ebc9544d8e07b4316d2adad5beadd2bda2e22c"
+    },
+    {
+      "slug": "the-maximum-a-posteriori",
+      "title": "THE MAXIMUM A POSTERIORI",
+      "kicker": "maximum likelihood, pulled by a prior",
+      "accent": "#ff9e6a",
+      "blurb": "Maximum a posteriori, runnable in THE OCHO: the MLE pulled by a prior toward mu0; a Gaussian prior on the weights IS ridge regression - the-maximum-likelihood plus a prior, where regularization and the-reward-model's KL penalty come from.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6a4445f822ecb1bb1207b74e73db628a1eae4914761c213f6434332ae1487378"
+    },
+    {
+      "slug": "the-law-of-large-numbers",
+      "title": "THE LAW OF LARGE NUMBERS",
+      "kicker": "the sample average converges to the truth",
+      "accent": "#c0b0ff",
+      "blurb": "The law of large numbers (Bernoulli 1713), runnable in THE OCHO: the sample mean converges to mu with variance sigma^2/n, bounded by Chebyshev - why averaging works, the ground the-monte-carlo and every empirical estimate stand on.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "23d63eb4f7ac2f9be33d0a742775c9db97198b76cf7fa264e76472da50325948"
+    },
+    {
+      "slug": "the-conjugate-prior",
+      "title": "THE CONJUGATE PRIOR",
+      "kicker": "Bayesian updating that stays arithmetic",
+      "accent": "#9ee0d0",
+      "blurb": "The conjugate prior (Raiffa and Schlaifer 1961), runnable in THE OCHO: a Beta prior plus coin flips gives a Beta posterior, alpha+heads and beta+tails - the-bayes made closed-form, belief update as arithmetic, sequential equals batch.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "78932db4984b93ba93e57cec6988219103b39798fe20fb4185913ad040465ff8"
+    },
+    {
+      "slug": "the-naive-bayes",
+      "title": "THE NAIVE BAYES",
+      "kicker": "wrong assumption, useful classifier",
+      "accent": "#ffd23f",
+      "blurb": "Naive Bayes, runnable in THE OCHO: classify by P(c) times the product of P(x_i|c), assuming features independent given the class - the-bayes with a bold, usually-false assumption that works anyway; the baseline every text model is measured against.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a4a83a0fd0bdbe789b7b469729aca01e136fd06e8a0374f1de38614b6f4b43bd"
+    },
+    {
+      "slug": "the-em-algorithm",
+      "title": "THE EXPECTATION MAXIMIZATION",
+      "kicker": "maximum likelihood when data is hidden",
+      "accent": "#7fe0c0",
+      "blurb": "Expectation-maximization (Dempster, Laird and Rubin 1977), runnable in THE OCHO: E-step responsibilities, M-step re-estimate, and the log-likelihood never decreases - the-maximum-likelihood with hidden data, the engine behind clustering and HMMs.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "db8083306e6ecc8c6cad0e5c077c37e3ea367d1905597848db23343e4040dec0"
+    },
+    {
+      "slug": "the-gibbs-sampler",
+      "title": "THE GIBBS SAMPLER",
+      "kicker": "sample a joint, one coordinate at a time",
+      "accent": "#ff7a7a",
+      "blurb": "The Gibbs sampler (Geman and Geman 1984), runnable in THE OCHO: draw each coordinate from its full conditional, x|y ~ N(rho*y, 1-rho^2), and the chain's stationary law is the target - the-metropolis when every conditional is easy to sample.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "43b300a7bcb35010b5f483d098ba307a755d7be87a7df3d315e0cecc301caaf9"
+    },
+    {
+      "slug": "the-importance-sampling",
+      "title": "THE IMPORTANCE SAMPLING",
+      "kicker": "sample the wrong distribution, correct with a weight",
+      "accent": "#9ee06a",
+      "blurb": "Importance sampling, runnable in THE OCHO: estimate E_p[f] from samples of q reweighted by p/q, an exactly unbiased trick - the correction under the-policy-gradient's off-policy estimate and every reweighted average.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "038fef2925931f68e80b3a295c30aaf640d4fd8fd8852055a1aa2ea73c10f67d"
+    },
+    {
+      "slug": "the-hidden-markov-model",
+      "title": "THE HIDDEN MARKOV MODEL",
+      "kicker": "a Markov chain you cannot see",
+      "accent": "#c8a2ff",
+      "blurb": "The hidden Markov model (Baum 1966; Rabiner 1989), runnable in THE OCHO: the forward algorithm is the exact sum over all paths, Viterbi the exact best path - the-markov-chain with hidden states and noisy emissions, the-kalman-filter's discrete cousin.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1f556c51bbfa33b549c5db457af86187ef2c68dc092d42126a14d415e966cc87"
+    },
+    {
+      "slug": "the-fisher-information",
+      "title": "THE FISHER INFORMATION",
+      "kicker": "how much a sample tells you about a parameter",
+      "accent": "#ffb0d0",
+      "blurb": "Fisher information (Fisher 1925), runnable in THE OCHO: the curvature of the log-likelihood, E[score^2] = -E[second derivative], with 1/(nI) the Cramer-Rao floor on any unbiased estimator - the-maximum-likelihood's precision, the metric the natural gradient descends.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "09d9dce489760dab7344f98016b8f5bf032513ca48786df70f8004d5564d7a0c"
     }
   ],
   "appeals": [
@@ -16527,6 +16617,86 @@
               "accent": "#00f5ff",
               "icon": "▿",
               "kicker": "a slow, silent, correct-looking decline",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-maximum-likelihood",
+              "title": "THE MAXIMUM LIKELIHOOD",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "the parameters that make the data most probable",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-maximum-a-posteriori",
+              "title": "THE MAXIMUM A POSTERIORI",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "maximum likelihood, pulled by a prior",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-law-of-large-numbers",
+              "title": "THE LAW OF LARGE NUMBERS",
+              "accent": "#c0b0ff",
+              "icon": "spawn",
+              "kicker": "the sample average converges to the truth",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-conjugate-prior",
+              "title": "THE CONJUGATE PRIOR",
+              "accent": "#9ee0d0",
+              "icon": "cheat",
+              "kicker": "Bayesian updating that stays arithmetic",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-naive-bayes",
+              "title": "THE NAIVE BAYES",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "wrong assumption, useful classifier",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-em-algorithm",
+              "title": "THE EXPECTATION MAXIMIZATION",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "maximum likelihood when data is hidden",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gibbs-sampler",
+              "title": "THE GIBBS SAMPLER",
+              "accent": "#ff7a7a",
+              "icon": "spawn",
+              "kicker": "sample a joint, one coordinate at a time",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-importance-sampling",
+              "title": "THE IMPORTANCE SAMPLING",
+              "accent": "#9ee06a",
+              "icon": "loot",
+              "kicker": "sample the wrong distribution, correct with a weight",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hidden-markov-model",
+              "title": "THE HIDDEN MARKOV MODEL",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "a Markov chain you cannot see",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fisher-information",
+              "title": "THE FISHER INFORMATION",
+              "accent": "#ffb0d0",
+              "icon": "loot",
+              "kicker": "how much a sample tells you about a parameter",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -29564,7 +29734,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "8bc3872c028ccf84a58c679f57d9fdf4070c30c077f049ee09a87e9dc91bf1de",
+  "fold_root": "75dcac9bb148ae7c0658b578e864ff5004e7054e6603708ba5892fd7911f4a67",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
