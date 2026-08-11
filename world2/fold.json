@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1830,
+    "spheres": 1840,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1824,
+    "spheres_built": 1834,
     "apex": 1
   },
   "keepers": [
@@ -16558,6 +16558,96 @@
       "blurb": "Optical flow (Lucas and Kanade 1981), runnable in THE OCHO: brightness constancy solved by least squares over a window, recovering motion where textured and stuck at the aperture problem on a bare edge - why a the-harris-corner is trackable.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "ae9d535618911202a482aecb51805e6288169b0cb28f085794b06597300827d0"
+    },
+    {
+      "slug": "the-extended-kalman-filter",
+      "title": "THE EXTENDED KALMAN FILTER",
+      "kicker": "the Kalman filter for a curved world",
+      "accent": "#7fd4ff",
+      "blurb": "The extended Kalman filter, runnable in THE OCHO: linearize the nonlinear motion and measurement via Jacobians, then filter; on a linear system it is exactly the-kalman filter - the workhorse of GPS and inertial navigation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a33f776890677a11055ad999c376389355e4226f59cdaa756a64f83eb561706e"
+    },
+    {
+      "slug": "the-unscented-kalman-filter",
+      "title": "THE UNSCENTED KALMAN FILTER",
+      "kicker": "sample the nonlinearity, do not linearize it",
+      "accent": "#ff9e6a",
+      "blurb": "The unscented Kalman filter (Julier and Uhlmann 1997), runnable in THE OCHO: propagate sigma points through the true nonlinearity, exact on a quadratic where the-extended-kalman-filter is biased - points, not a tangent line.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0a9f584018638628955de683c81351edb7e2da5fd1163b8882cb66478e8a2bd5"
+    },
+    {
+      "slug": "the-particle-filter",
+      "title": "THE PARTICLE FILTER",
+      "kicker": "a cloud of guesses reweighted by evidence",
+      "accent": "#c0b0ff",
+      "blurb": "The particle filter (Gordon et al. 1993), runnable in THE OCHO: a population of weighted guesses, reweighted by the sensor and resampled, converging to the posterior and holding two modes - the-monte-carlo method as a filter.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1cfedce707a3298f040818b3ca65b47bb40c5d324db2acbc8496f81ae97095df"
+    },
+    {
+      "slug": "the-occupancy-grid",
+      "title": "THE OCCUPANCY GRID",
+      "kicker": "a map as a lattice of beliefs",
+      "accent": "#9ee0d0",
+      "blurb": "The occupancy grid (Elfes 1989), runnable in THE OCHO: each cell's log-odds equals the Bayesian posterior, additive and underflow-proof - the-bayes rule per cell, the map a robot builds.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4f71177c2fb5c4395416b14206840ff9066511b79e5970fbf807b2165585498f"
+    },
+    {
+      "slug": "the-motion-model",
+      "title": "THE MOTION MODEL",
+      "kicker": "where am I from my wheels alone, and why it drifts",
+      "accent": "#ffd23f",
+      "blurb": "The motion model, runnable in THE OCHO: integrate wheel velocities into a pose, but the covariance grows without bound - dead reckoning drifts, the prediction step every filter corrects.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1321323ced54b1b1a33164abf73a2bb8a0fc98df2f790807b78b513eefbd4c89"
+    },
+    {
+      "slug": "the-complementary-filter",
+      "title": "THE COMPLEMENTARY FILTER",
+      "kicker": "two flawed sensors, one good estimate",
+      "accent": "#7fe0c0",
+      "blurb": "The complementary filter, runnable in THE OCHO: high-pass the drifting gyro and low-pass the noisy accelerometer, their transfer functions summing to 1 - a cheap the-kalman for orientation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "938b44351a90dd231fe43b767763141af08ad29ac2b344adc4bf03bc52c86e64"
+    },
+    {
+      "slug": "the-icp",
+      "title": "THE ITERATIVE CLOSEST POINT",
+      "kicker": "snap one point cloud onto another",
+      "accent": "#ff7a7a",
+      "blurb": "Iterative closest point (Besl and McKay 1992), runnable in THE OCHO: match nearest points, solve the Procrustes rigid fit, iterate to recover a known transform - how scans register into a map, trapped by bad initialization.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "73e611c1a7f656ba554f8f7932638dfb59925abc54c89d878a8c4ce0851a6575"
+    },
+    {
+      "slug": "the-rrt",
+      "title": "THE RAPIDLY-EXPLORING RANDOM TREE",
+      "kicker": "reach randomly into the unknown",
+      "accent": "#9ee06a",
+      "blurb": "The rapidly-exploring random tree (LaValle 1998), runnable in THE OCHO: reach randomly into free space, biased toward the unknown, probabilistically complete - the sampling planner for high-dimensional motion.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "99f09808871439c7c481372148ccc6439cbd96ea294cf4810c84c09c0e1ba0b0"
+    },
+    {
+      "slug": "the-potential-field",
+      "title": "THE POTENTIAL FIELD",
+      "kicker": "goal pulls, obstacles push",
+      "accent": "#c8a2ff",
+      "blurb": "The potential field (Khatib 1986), runnable in THE OCHO: the goal attracts and obstacles repel, and the robot descends the gradient - fast but trapped by local minima, the opposite tradeoff from the-rrt.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "28cfe884bf868907478833164b0fc36f711c98a4c05dc045fa414821cdaea759"
+    },
+    {
+      "slug": "the-slam",
+      "title": "THE SLAM",
+      "kicker": "map the world while finding yourself in it",
+      "accent": "#ffb0d0",
+      "blurb": "SLAM (Smith, Self and Cheeseman 1986), runnable in THE OCHO: estimate pose and landmarks jointly so a loop closure corrects both, the correlated chicken-and-egg - the-extended-kalman-filter over the world, mapping while localizing.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e624d0394e6a6d149da68952e5ea47261e1022b1852788b5c47a1dadee6f7f27"
     }
   ],
   "appeals": [
@@ -21374,6 +21464,86 @@
               "accent": "#5ad0ff",
               "icon": "◧",
               "kicker": "it finds recent repeats, not repeats",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-extended-kalman-filter",
+              "title": "THE EXTENDED KALMAN FILTER",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "the Kalman filter for a curved world",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-unscented-kalman-filter",
+              "title": "THE UNSCENTED KALMAN FILTER",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "sample the nonlinearity, do not linearize it",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-particle-filter",
+              "title": "THE PARTICLE FILTER",
+              "accent": "#c0b0ff",
+              "icon": "spawn",
+              "kicker": "a cloud of guesses reweighted by evidence",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-occupancy-grid",
+              "title": "THE OCCUPANCY GRID",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "a map as a lattice of beliefs",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-motion-model",
+              "title": "THE MOTION MODEL",
+              "accent": "#ffd23f",
+              "icon": "glitch",
+              "kicker": "where am I from my wheels alone, and why it drifts",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-complementary-filter",
+              "title": "THE COMPLEMENTARY FILTER",
+              "accent": "#7fe0c0",
+              "icon": "cheat",
+              "kicker": "two flawed sensors, one good estimate",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-icp",
+              "title": "THE ITERATIVE CLOSEST POINT",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "snap one point cloud onto another",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rrt",
+              "title": "THE RAPIDLY-EXPLORING RANDOM TREE",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "reach randomly into the unknown",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-potential-field",
+              "title": "THE POTENTIAL FIELD",
+              "accent": "#c8a2ff",
+              "icon": "glitch",
+              "kicker": "goal pulls, obstacles push",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-slam",
+              "title": "THE SLAM",
+              "accent": "#ffb0d0",
+              "icon": "boss",
+              "kicker": "map the world while finding yourself in it",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -32114,7 +32284,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "b6e785f7c099969a7244ace0a53407e5b04719d08fbd2e7228fbcef9786c4738",
+  "fold_root": "0ded15d6a2e611c880a07bd49d04e922ad693487cbe87f70f682d73bd8a745f9",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
