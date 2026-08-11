@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1720,
+    "spheres": 1730,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1714,
+    "spheres_built": 1724,
     "apex": 1
   },
   "keepers": [
@@ -15568,6 +15568,96 @@
       "blurb": "Transferability (Papernot et al. 2016), runnable in THE OCHO: an FGSM example crafted on one model flips another when their weights align (positive cosine) - the-adversarial-example that generalizes, the basis of black-box attacks.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "b879cb9431be86f451b69c3c8ab54326d102cc6e3f00c2a54f27322e13fd75e1"
+    },
+    {
+      "slug": "the-convexity",
+      "title": "THE CONVEXITY",
+      "kicker": "every valley is the valley",
+      "accent": "#7fd4ff",
+      "blurb": "Convexity (Jensen 1906; Rockafellar 1970), runnable in THE OCHO: the chord lies above the curve, so every local min is the global min - the line between easy and hard optimization, the ground the-gradient-descent needs to be safe.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "23cf9669983a8622225fa637b610ef4e05bbc1a00faed49d550678324729ebad"
+    },
+    {
+      "slug": "the-momentum",
+      "title": "THE MOMENTUM",
+      "kicker": "gradient descent with inertia",
+      "accent": "#ff9e6a",
+      "blurb": "Momentum (Polyak 1964), runnable in THE OCHO: v = beta*v - alpha*grad, x += v; on a quadratic it beats gradient descent 19 steps to 76 - the-gradient-descent given inertia, the first moment inside Adam.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4fc817c2b428fd0e7759b43e291adc227c6a1933a58072bf59998df135aea45b"
+    },
+    {
+      "slug": "the-nesterov-acceleration",
+      "title": "THE NESTEROV ACCELERATION",
+      "kicker": "the provably fastest first-order method",
+      "accent": "#c0b0ff",
+      "blurb": "Nesterov acceleration (Nesterov 1983), runnable in THE OCHO: a look-ahead momentum reaching O(1/k^2), the optimal first-order rate (error quarters per doubling) - the-momentum that hits the speed limit.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "97468235149e9c9f50a6792d2a9bf256e97390eb9d793d89f6d7fe333938e879"
+    },
+    {
+      "slug": "the-lagrange-multiplier",
+      "title": "THE LAGRANGE MULTIPLIER",
+      "kicker": "optimization on a leash",
+      "accent": "#9ee0d0",
+      "blurb": "The Lagrange multiplier (Lagrange 1788), runnable in THE OCHO: at a constrained optimum grad(f) is parallel to grad(g), and lambda is the shadow price - optimization on a leash, the seed of the-kkt-conditions.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0d7c1124fe5d52096154590fb8b92c4ae7db958e5c72d464742c8f42d918159a"
+    },
+    {
+      "slug": "the-kkt-conditions",
+      "title": "THE KKT CONDITIONS",
+      "kicker": "the four-part certificate of a constrained optimum",
+      "accent": "#ffd23f",
+      "blurb": "The KKT conditions (Karush 1939; Kuhn-Tucker 1951), runnable in THE OCHO: stationarity, feasibility, dual feasibility, complementary slackness - the four-part certificate every constrained optimum carries, sufficient when convex.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e7cb16753b9443b8849ad8d15373bbb1e820b3b65ef3bc77a1d092e2f664294d"
+    },
+    {
+      "slug": "the-duality",
+      "title": "THE DUALITY",
+      "kicker": "the maximization beneath every minimization",
+      "accent": "#7fe0c0",
+      "blurb": "Duality (Lagrangian), runnable in THE OCHO: the dual lower-bounds the primal always, the gap is zero under convexity and nonzero without it - the-lagrange-multiplier's shadow problem, the structure behind the SVM.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c9b08c6bd8cea9c0bdccf469a3e555d9dc08bf558582a4451aee7a16dbdf2859"
+    },
+    {
+      "slug": "the-subgradient",
+      "title": "THE SUBGRADIENT",
+      "kicker": "a gradient for functions with corners",
+      "accent": "#ff7a7a",
+      "blurb": "The subgradient (Rockafellar 1970), runnable in THE OCHO: at the kink of |x| the subdifferential is the whole interval [-1,1], each a supporting line - the-gradient-descent where no gradient exists, for the-lasso's corner.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "71e350efb3e4a33f93f4f7625984926b14920654591ce7c8e1d2e5b7935222c8"
+    },
+    {
+      "slug": "the-proximal-operator",
+      "title": "THE PROXIMAL OPERATOR",
+      "kicker": "an implicit gradient step",
+      "accent": "#9ee06a",
+      "blurb": "The proximal operator (Moreau 1965), runnable in THE OCHO: the prox of the L1 norm is soft-thresholding, the prox of an indicator is projection - the implicit gradient step behind ISTA (the-sparse-autoencoder) and ADMM.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "870e9648143c153f866207e9933faa80749ab7c1fdc96b60afa5dd373fb6a5b1"
+    },
+    {
+      "slug": "the-mirror-descent",
+      "title": "THE MIRROR DESCENT",
+      "kicker": "gradient descent in the right geometry",
+      "accent": "#c8a2ff",
+      "blurb": "Mirror descent (Nemirovski-Yudin 1983), runnable in THE OCHO: the entropy mirror map gives exponentiated gradient, its Bregman divergence is the-kl-divergence - the-gradient-descent in the geometry that fits, the-regret-matching's continuous cousin.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fefe6bbf393d399aaf1334155726272d7dc3a66efe29655ecf347d31239392fb"
+    },
+    {
+      "slug": "the-newton-optimization",
+      "title": "THE NEWTON STEP",
+      "kicker": "curvature, not just slope",
+      "accent": "#ffb0d0",
+      "blurb": "The Newton step (Newton 1685), runnable in THE OCHO: x -= inv(Hessian)*grad lands on a quadratic's minimizer in one step and converges quadratically - the-gradient-descent that reads curvature, under the-fisher-information's natural gradient.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e040e2bb3ccea9404b2868a25aaafa9553884633a29509a0da395bf868860145"
     }
   ],
   "appeals": [
@@ -18813,9 +18903,89 @@
               "icon": "◔",
               "kicker": "correctness does not compose",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-convexity",
+              "title": "THE CONVEXITY",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "every valley is the valley",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-momentum",
+              "title": "THE MOMENTUM",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "gradient descent with inertia",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-nesterov-acceleration",
+              "title": "THE NESTEROV ACCELERATION",
+              "accent": "#c0b0ff",
+              "icon": "boss",
+              "kicker": "the provably fastest first-order method",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lagrange-multiplier",
+              "title": "THE LAGRANGE MULTIPLIER",
+              "accent": "#9ee0d0",
+              "icon": "cheat",
+              "kicker": "optimization on a leash",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kkt-conditions",
+              "title": "THE KKT CONDITIONS",
+              "accent": "#ffd23f",
+              "icon": "cheat",
+              "kicker": "the four-part certificate of a constrained optimum",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-duality",
+              "title": "THE DUALITY",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "the maximization beneath every minimization",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-subgradient",
+              "title": "THE SUBGRADIENT",
+              "accent": "#ff7a7a",
+              "icon": "spawn",
+              "kicker": "a gradient for functions with corners",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-proximal-operator",
+              "title": "THE PROXIMAL OPERATOR",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "an implicit gradient step",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mirror-descent",
+              "title": "THE MIRROR DESCENT",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "gradient descent in the right geometry",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-newton-optimization",
+              "title": "THE NEWTON STEP",
+              "accent": "#ffb0d0",
+              "icon": "boss",
+              "kicker": "curvature, not just slope",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 31,
+          "seats": 38,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -30244,7 +30414,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "56a5d8fe7f71474ef9500a1fa2d39edf95168d1410a9f35ccad722139d357d75",
+  "fold_root": "9753b615f93396eeae8f5ef979e6f457e33517798fd07ebe4e755721ade8b815",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
