@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1601,
+    "spheres": 1610,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1595,
+    "spheres_built": 1604,
     "apex": 1
   },
   "keepers": [
@@ -14497,6 +14497,87 @@
       "blurb": "Lukasiewicz's three-valued logic (from his Aristotle's Syllogistic, archive.org), runnable in THE OCHO: live L3 truth tables where the excluded middle fails and the third value is the trit's 0. Self-checked, tamper vs Kleene. The spine loops back to Aristotle with a value between.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "351106c5a3d41c776be44d7c1fdc3c35634aa3ddc7fbbac0552d1d2123f9128d"
+    },
+    {
+      "slug": "the-quantifier",
+      "title": "THE QUANTIFIER",
+      "kicker": "the forall/exists Aristotle and Boole lacked",
+      "accent": "#7fd4ff",
+      "blurb": "Frege's predicate logic (Begriffsschrift 1879), runnable in THE OCHO: evaluate forall/exists formulas over a finite domain with an editable relation - what the syllogism and the algebra could not express. Live, self-checked, tamper-provable.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0ae50fde80c2c189bec70b46d4e3268cd39c3f0fee46e40abcef8e8fd98c9b2a"
+    },
+    {
+      "slug": "the-successor",
+      "title": "THE SUCCESSOR",
+      "kicker": "+ and x built from 0 and S, by the axioms",
+      "accent": "#8bffcf",
+      "blurb": "Peano's arithmetic (1889), runnable in THE OCHO: numbers as S(S(0)), add and mul unfolded recursively from the axioms, matching ordinary arithmetic over 0..8. The axioms under all the counting the other spheres assume.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "936e586d14fb12c13314693f421b8be0427f2360515a8bcfa9082ed1c37f9991"
+    },
+    {
+      "slug": "the-diagonal",
+      "title": "THE DIAGONAL",
+      "kicker": "the sequence that is not in the list",
+      "accent": "#ff9ecb",
+      "blurb": "Cantor's diagonal argument (1891), runnable in THE OCHO: build the anti-diagonal that differs from every row at its own index, so it cannot be in the list - the self-reference that becomes Godel and the halting problem.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7b541008f9b30c5aa1de3e9bd18a7292b1eb5079b01e283b3f31c3324e059653"
+    },
+    {
+      "slug": "the-lambda",
+      "title": "THE LAMBDA",
+      "kicker": "beta-reduce Church numerals - Turing's twin",
+      "accent": "#c8a2ff",
+      "blurb": "Church's lambda calculus (1936), runnable in THE OCHO: Church numerals and a normal-order beta-reduction evaluator; PLUS 2 3 reduces to 5. The other 1936 model of computation, provably equal to the Turing machine.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1e92dc17f181688044e428569e0a72eb366c29ed298fc66b7f4d8fe369ef187a"
+    },
+    {
+      "slug": "the-godel-number",
+      "title": "THE GODEL NUMBER",
+      "kicker": "a formula encoded as 2^.3^.5^..., decoded back",
+      "accent": "#ffd23f",
+      "blurb": "Godel numbering (1931), runnable in THE OCHO: encode a formula as a product of prime powers (BigInt) and decode it by factoring - arithmetic made able to talk about itself, the number that says 'this is unprovable'.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a327799c2e20f1cd1647f1da5766928fa49b683bdb83b984eefee15b615bfe54"
+    },
+    {
+      "slug": "the-logic-piano",
+      "title": "THE LOGIC PIANO",
+      "kicker": "the first machine that did inference (Jevons 1869)",
+      "accent": "#ffb060",
+      "blurb": "Jevons's Logic Piano (1869), runnable in THE OCHO: enter premises and watch it eliminate the inconsistent rows, reading the conclusion off the survivors - Boole's algebra made mechanical, the ancestor of the logic gate.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "84c4b2614e5c969540011cfca16c1a2a8c61a0414a55c1a112c4fb6c59fb9d68"
+    },
+    {
+      "slug": "the-entropy",
+      "title": "THE ENTROPY",
+      "kicker": "H = -sum p log2 p, plus Huffman coding",
+      "accent": "#57e0d0",
+      "blurb": "Shannon's information theory (1948), runnable in THE OCHO: compute entropy in bits and build a Huffman code that meets the H <= L < H+1 bound - Boole's bit given a measure, the bridge from logic to information.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9779790f676c6def9a60326aad30604fe254666e8d1ed37cfc83229ade109b6c"
+    },
+    {
+      "slug": "the-hamming-code",
+      "title": "THE HAMMING CODE",
+      "kicker": "fix a flipped bit by the syndrome (7,4)",
+      "accent": "#9ee06a",
+      "blurb": "Hamming's error-correcting code (1950), runnable in THE OCHO: encode 4 bits to 7, flip any one, and watch the syndrome locate and correct it - all 16x7 cases self-checked. A code you can see repair itself.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b1fe3b5251e4bb384f14dcad43dfc8978d3294470d06aed6375f4b4cd1545369"
+    },
+    {
+      "slug": "the-first-neuron",
+      "title": "THE FIRST NEURON",
+      "kicker": "logic from a threshold - and why one neuron can't do XOR",
+      "accent": "#ff7a7a",
+      "blurb": "The McCulloch-Pitts neuron (1943), runnable in THE OCHO: a threshold unit computing AND/OR/NOT, and the proof that a single neuron cannot compute XOR - Boolean logic reborn as a neuron, the seed of the AI world.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6c0f519862e7b4bc8dcb81e75ee9436cc45b3c87f64dadb88ba4612c8a1a57bb"
     }
   ],
   "appeals": [
@@ -15461,9 +15542,81 @@
               "icon": "glitch",
               "kicker": "the third value: Lukasiewicz's half, where excluded middle fails",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-quantifier",
+              "title": "THE QUANTIFIER",
+              "accent": "#7fd4ff",
+              "icon": "cheat",
+              "kicker": "the forall/exists Aristotle and Boole lacked",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-successor",
+              "title": "THE SUCCESSOR",
+              "accent": "#8bffcf",
+              "icon": "spawn",
+              "kicker": "+ and x built from 0 and S, by the axioms",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-diagonal",
+              "title": "THE DIAGONAL",
+              "accent": "#ff9ecb",
+              "icon": "glitch",
+              "kicker": "the sequence that is not in the list",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lambda",
+              "title": "THE LAMBDA",
+              "accent": "#c8a2ff",
+              "icon": "grind",
+              "kicker": "beta-reduce Church numerals - Turing's twin",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-godel-number",
+              "title": "THE GODEL NUMBER",
+              "accent": "#ffd23f",
+              "icon": "loot",
+              "kicker": "a formula encoded as 2^.3^.5^..., decoded back",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-logic-piano",
+              "title": "THE LOGIC PIANO",
+              "accent": "#ffb060",
+              "icon": "cheat",
+              "kicker": "the first machine that did inference (Jevons 1869)",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-entropy",
+              "title": "THE ENTROPY",
+              "accent": "#57e0d0",
+              "icon": "boss",
+              "kicker": "H = -sum p log2 p, plus Huffman coding",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hamming-code",
+              "title": "THE HAMMING CODE",
+              "accent": "#9ee06a",
+              "icon": "respawn",
+              "kicker": "fix a flipped bit by the syndrome (7,4)",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-first-neuron",
+              "title": "THE FIRST NEURON",
+              "accent": "#ff7a7a",
+              "icon": "spawn",
+              "kicker": "logic from a threshold - and why one neuron can't do XOR",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 33,
+          "seats": 42,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -28221,7 +28374,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "8f281650ed6091837b24584ae9159960bb072fea04d7ce125ed28d30a2e068d9",
+  "fold_root": "903eccba6ffc516f2a8ea5b82c10faf1b921b0e8ef71e500f850f5f486152476",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
