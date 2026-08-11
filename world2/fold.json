@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1610,
+    "spheres": 1620,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1604,
+    "spheres_built": 1614,
     "apex": 1
   },
   "keepers": [
@@ -14578,6 +14578,96 @@
       "blurb": "The McCulloch-Pitts neuron (1943), runnable in THE OCHO: a threshold unit computing AND/OR/NOT, and the proof that a single neuron cannot compute XOR - Boolean logic reborn as a neuron, the seed of the AI world.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "6c0f519862e7b4bc8dcb81e75ee9436cc45b3c87f64dadb88ba4612c8a1a57bb"
+    },
+    {
+      "slug": "the-stored-program",
+      "title": "THE STORED PROGRAM",
+      "kicker": "code and data in one memory - a tiny CPU you can step",
+      "accent": "#8bd0ff",
+      "blurb": "von Neumann's stored-program architecture (EDVAC 1945), runnable in THE OCHO: a fetch-decode-execute machine running a program from memory (sum 1..N gives 55) - Turing's universal machine given a body; code is data.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c0d0f9331786eb23da84fa402e155048b7aefea95ca2af503060378eebb84e54"
+    },
+    {
+      "slug": "the-finite-automaton",
+      "title": "THE FINITE AUTOMATON",
+      "kicker": "a DFA matching a regular language, vs brute force",
+      "accent": "#7fe0c0",
+      "blurb": "Kleene's finite automata (1951), runnable in THE OCHO: a DFA recognizing 'even 1s' and 'contains 101', step by step, checked against brute force - from McCulloch-Pitts nets to the regex in every editor.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0da5d342a99646fed09274de4b2cc9a00b61f55de9f2263ad6c794e4dee2dabb"
+    },
+    {
+      "slug": "the-context-free-grammar",
+      "title": "THE CONTEXT-FREE GRAMMAR",
+      "kicker": "a^n b^n and balanced parens - one rung up the hierarchy",
+      "accent": "#c0b0ff",
+      "blurb": "Chomsky's context-free grammars (1956), runnable in THE OCHO: a recognizer for a^n b^n and balanced parentheses vs a stack oracle - what a finite automaton cannot count, a grammar can.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a0f38b2fdfc961b8358f6ecd1959529457d90e90c51509f83d04b2de3c9416cb"
+    },
+    {
+      "slug": "the-hebbian",
+      "title": "THE HEBBIAN RULE",
+      "kicker": "fire together, wire together - the first learning rule",
+      "accent": "#ffb0d0",
+      "blurb": "Hebb's learning rule (1949), runnable in THE OCHO: delta w = eta * x_i x_j growing the weights of co-active neurons - the first way a McCulloch-Pitts neuron could LEARN, and the storage rule Hopfield uses.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0dd61c974a1df2400dea71f15819292425872c1ae9a5de81cc4ace57e3106559"
+    },
+    {
+      "slug": "the-hopfield-net",
+      "title": "THE HOPFIELD NET",
+      "kicker": "store patterns, recall from noise, energy rolls downhill",
+      "accent": "#ff9e6a",
+      "blurb": "Hopfield's network (1982), runnable in THE OCHO: store patterns by the Hebb outer-product, corrupt one, watch it converge back as the energy (wells at -300/-444/-420) descends monotonically - memory as physics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3b15422006933566963586e383e9a3d56d60f6b61e8601316d2f5c4962791d87"
+    },
+    {
+      "slug": "the-backprop",
+      "title": "THE BACKPROP",
+      "kicker": "a net LEARNS XOR - the wall the first neuron could not cross",
+      "accent": "#ff7a7a",
+      "blurb": "Backpropagation (Rumelhart, Hinton and Williams, 1986), runnable in THE OCHO: a 2-2-1 net trained by gradient descent to compute XOR (loss < 0.02) - the exact wall the-first-neuron and the perceptron could not pass; depth plus backprop crosses it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d4fd49dd163fe28def31067308aaeebfa2e267b3b6f15df93db8a0094ee04b86"
+    },
+    {
+      "slug": "the-markov-chain",
+      "title": "THE MARKOV CHAIN",
+      "kicker": "the stationary distribution by power iteration",
+      "accent": "#9ee0d0",
+      "blurb": "Markov chains (Markov 1906), runnable in THE OCHO: power-iterate a transition matrix to its stationary distribution, matching the closed form - the chain under PageRank, MCMC, and the n-gram language model.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7dd8a7c34c6a475e53dab326ae9e0c696f4a4aae4e237265a0581c1a641bfbff"
+    },
+    {
+      "slug": "the-bayes",
+      "title": "THE BAYES",
+      "kicker": "the base-rate update: 1%/99%/95% gives 16.7%",
+      "accent": "#ffd23f",
+      "blurb": "Bayes' theorem (1763), runnable in THE OCHO: the medical-test update where a rare disease plus an accurate test still gives a low posterior (1%/99%/95% gives 1/6) - probability turned into inference, the rule under every learner.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "13a6ebd4a7c6ee0f133b2506061b4c9c394760a2bdb5992aea5e8d37e5f3eeba"
+    },
+    {
+      "slug": "the-control-loop",
+      "title": "THE CONTROL LOOP",
+      "kicker": "feedback to a setpoint; flip the sign and it diverges",
+      "accent": "#9ee06a",
+      "blurb": "Wiener's cybernetics (1948), runnable in THE OCHO: a proportional feedback loop converging to a setpoint - flip the sign to positive feedback and it diverges - the Watt governor generalized, the loop under every thermostat and training run.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "32a927e6b313adecceb301590b5650f18bc6540ab1706569b38f3fa5de7c104e"
+    },
+    {
+      "slug": "the-shortest-program",
+      "title": "THE SHORTEST PROGRAM",
+      "kicker": "compression as an upper bound on K - most strings incompressible",
+      "accent": "#c8a2ff",
+      "blurb": "Kolmogorov complexity (1965), runnable in THE OCHO: a lossless compressor as an upper bound on K(x) with the counting argument that most strings are incompressible (K itself is uncomputable, marked AMBER) - the information in a single object.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f70ce4d7b34e0febd256f4dcaeb3b82e3e4277b75f3840b29c6e460d2d68eec2"
     }
   ],
   "appeals": [
@@ -15614,9 +15704,89 @@
               "icon": "spawn",
               "kicker": "logic from a threshold - and why one neuron can't do XOR",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-stored-program",
+              "title": "THE STORED PROGRAM",
+              "accent": "#8bd0ff",
+              "icon": "spawn",
+              "kicker": "code and data in one memory - a tiny CPU you can step",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-finite-automaton",
+              "title": "THE FINITE AUTOMATON",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "a DFA matching a regular language, vs brute force",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-context-free-grammar",
+              "title": "THE CONTEXT-FREE GRAMMAR",
+              "accent": "#c0b0ff",
+              "icon": "glitch",
+              "kicker": "a^n b^n and balanced parens - one rung up the hierarchy",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hebbian",
+              "title": "THE HEBBIAN RULE",
+              "accent": "#ffb0d0",
+              "icon": "spawn",
+              "kicker": "fire together, wire together - the first learning rule",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hopfield-net",
+              "title": "THE HOPFIELD NET",
+              "accent": "#ff9e6a",
+              "icon": "boss",
+              "kicker": "store patterns, recall from noise, energy rolls downhill",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-backprop",
+              "title": "THE BACKPROP",
+              "accent": "#ff7a7a",
+              "icon": "respawn",
+              "kicker": "a net LEARNS XOR - the wall the first neuron could not cross",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-markov-chain",
+              "title": "THE MARKOV CHAIN",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "the stationary distribution by power iteration",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-bayes",
+              "title": "THE BAYES",
+              "accent": "#ffd23f",
+              "icon": "cheat",
+              "kicker": "the base-rate update: 1%/99%/95% gives 16.7%",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-control-loop",
+              "title": "THE CONTROL LOOP",
+              "accent": "#9ee06a",
+              "icon": "respawn",
+              "kicker": "feedback to a setpoint; flip the sign and it diverges",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-shortest-program",
+              "title": "THE SHORTEST PROGRAM",
+              "accent": "#c8a2ff",
+              "icon": "loot",
+              "kicker": "compression as an upper bound on K - most strings incompressible",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 42,
+          "seats": 52,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -28374,7 +28544,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "903eccba6ffc516f2a8ea5b82c10faf1b921b0e8ef71e500f850f5f486152476",
+  "fold_root": "576b2fdfbc827b152aae13edcc5574d970f428aa625fd2783ddd7ee9a918b6ac",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
