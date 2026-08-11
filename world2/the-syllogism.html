@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE SYLLOGISM · WORLD II — THE FOLD · THE OCHO</title>
+<style>
+:root{ --bg:#070d09; --bg2:#0c150e; --ink:#a8e6b4; --dim:#5f8a68; --line:#20402a;
+ --am:#ffcf4d; --gr:#39fc6b; --lit:#39fc6b; --amber:#ffcf4d; --wall:#ff6b6b; --cy:#57e0d0; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--bg);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1120px;margin:0 auto;padding:16px 16px 60px;font-size:14px;
+ background-image:radial-gradient(circle at 15% 0,rgba(57,252,107,.06),transparent 55%),radial-gradient(circle at 90% 100%,rgba(255,207,77,.06),transparent 55%);}
+a{color:var(--am);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:8px;}
+.top a{color:var(--gr);text-decoration:none;} .top a:hover{color:var(--am);}
+header{border:2px solid var(--am);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(255,207,77,.05),transparent);}
+h1{font-size:23px;letter-spacing:3px;color:var(--am);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:6px;}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--cy);}
+.fail{display:none;background:var(--wall);color:#210606;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px;}
+.win{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:8px;right:10px;font-size:26px;color:var(--line);font-weight:700;}
+.win h2{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--am);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:34px;}
+.win p{font-size:13px;margin-bottom:8px;color:#c3e8ca;} .win b{color:#eafff0;} .win .k{color:var(--gr);}
+.win.full{grid-column:1 / -1;}
+.tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+select,button{font-family:inherit;font-size:12.5px;background:#0a130c;color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:5px 8px;}
+select:focus{outline:1px solid var(--am);}
+button{cursor:pointer;} button:hover{border-color:var(--am);color:var(--am);}
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin:2px 0;}
+.toggle button{border:none;border-radius:0;padding:5px 12px;} .toggle button.on{background:var(--am);color:#1a1204;font-weight:700;}
+.engine{display:flex;gap:16px;flex-wrap:wrap;}
+.controls{flex:1;min-width:220px;} .readout{flex:1;min-width:240px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;} .row label{color:var(--dim);min-width:80px;}
+.sent{font-size:14px;line-height:1.9;margin:8px 0;padding:10px;background:#0a130c;border:1px solid var(--line);border-radius:6px;}
+.sent .M{color:var(--am);} .sent .S{color:var(--cy);} .sent .P{color:var(--gr);}
+.verdict{font-size:19px;font-weight:700;letter-spacing:1px;margin:8px 0 4px;}
+.verdict.ok{color:var(--gr);} .verdict.no{color:var(--wall);}
+.moodname{font-size:13px;color:var(--am);} .reason{font-size:12px;color:var(--dim);}
+table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);}
+.dist .y{color:var(--gr);font-weight:700;} .dist .n{color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:8px 6px 0 0;}
+.badge.pass{background:rgba(57,252,107,.14);color:var(--lit);border:1px solid var(--lit);}
+.badge.failb{background:rgba(255,107,107,.16);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#8aa;font-size:12.5px;} .grave s{color:#6b7d6f;} .grave b{color:#b7d3bd;}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);color:var(--dim);font-size:11.5px;line-height:1.7;}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(255,107,107,.05);font-size:12.5px;margin-top:6px;}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="https://davidwise01.github.io/ud0/world2/">◄ WORLD II · THE FOLD</a><span>THE OCHO · eight windows · 五 standard, 八 when earned</span></div>
+
+<header>
+ <h1>THE SYLLOGISM</h1>
+ <p class="sub">Two truths, locked in a frame, force a third. Aristotle wrote the first formal logic — and it is <b>runnable</b>: every one of the 256 possible forms is decidable by four rules, and exactly <b class="k">15</b> hold for Boole, <b class="k">24</b> for Aristotle. The gap between those numbers is a single idea, and it is the road to the next sphere.</p>
+ <p class="src"><span class="tag t-amber">source</span> Aristotle, <i>The Organon</i> (Prior Analytics), E. M. Cooke tr. — <a href="https://archive.org/details/organoncooke01arisuoft">archive.org/details/organoncooke01arisuoft</a>. Rendered, not quoted.</p>
+</header>
+
+<div class="grid">
+
+ <div class="win"><span class="no">一</span><h2>THE SOURCE</h2>
+  <p>A <b>categorical syllogism</b> has three terms and three statements. The <b class="P">major term</b> P and <b class="S">minor term</b> S each appear once in a premise and once in the conclusion; the <b class="M">middle term</b> M appears in both premises and vanishes from the conclusion — it is the hinge that never shows in the answer.</p>
+  <p>Each statement is one of four kinds: <b>A</b> "All S are P", <b>E</b> "No S are P", <b>I</b> "Some S are P", <b>O</b> "Some S are not P". Two letters name quantity (all/some) and quality (is/is-not).</p>
+  <p class="small">Where M sits in the premises gives the <b>figure</b> (1–4). Aristotle worked figures 1–3; the 4th is Theophrastus/Galen — see the graveyard.</p>
+ </div>
+
+ <div class="win"><span class="no">二</span><h2>THE FORM</h2>
+  <p>A syllogism is fully named by its <b>mood</b> (the three letters, major·minor·conclusion) and its <b>figure</b> (1–4). <b class="k">AAA-1</b> is <b>Barbara</b>: <i>All M are P; all S are M; ∴ all S are P.</i></p>
+  <p>4 moods³ × 4 figures = <b>256</b> forms. The medievals gave the valid ones mnemonic names whose vowels <i>are</i> the mood — Barbara, Celarent, Darii, Ferio…</p>
+  <table><thead><tr><th>type</th><th>says</th><th>subject</th><th>predicate</th></tr></thead>
+   <tbody class="dist">
+    <tr><td>A</td><td>All S are P</td><td class="y">distributed</td><td class="n">—</td></tr>
+    <tr><td>E</td><td>No S are P</td><td class="y">distributed</td><td class="y">distributed</td></tr>
+    <tr><td>I</td><td>Some S are P</td><td class="n">—</td><td class="n">—</td></tr>
+    <tr><td>O</td><td>Some S are not P</td><td class="n">—</td><td class="y">distributed</td></tr>
+   </tbody></table>
+  <p class="small">"Distributed" = the statement speaks of <i>every</i> member of that term. It is the whole game.</p>
+ </div>
+
+ <div class="win full"><span class="no">三</span><h2>THE ENGINE <span class="tag t-lit">LIT</span></h2>
+  <div class="engine">
+   <div class="controls">
+    <div class="row"><label>figure</label>
+     <select id="fig"><option value="1">1 · M-P / S-M</option><option value="2">2 · P-M / S-M</option><option value="3">3 · M-P / M-S</option><option value="4">4 · P-M / M-S</option></select></div>
+    <div class="row"><label>major (P,M)</label><select id="mj"></select></div>
+    <div class="row"><label>minor (S,M)</label><select id="mn"></select></div>
+    <div class="row"><label>conclusion</label><select id="co"></select></div>
+    <div class="row"><label>reading</label>
+     <span class="toggle"><button id="tBoole" class="on">BOOLE · modern</button><button id="tAris">ARISTOTLE</button></span></div>
+    <p class="small" id="readmode">Modern: a universal claim does <b>not</b> assume its subject exists. 15 forms hold.</p>
+    <div class="row"><button id="rand">↺ random form</button><button id="barbara">→ Barbara</button></div>
+   </div>
+   <div class="readout">
+    <div class="sent" id="sent"></div>
+    <div class="verdict" id="verdict"></div>
+    <div class="moodname" id="moodname"></div>
+    <div class="reason" id="reason"></div>
+   </div>
+  </div>
+  <p class="small" style="margin-top:8px">S = <span style="color:var(--cy)">minor term</span> (subject of the conclusion) · P = <span style="color:var(--gr)">major term</span> · M = <span style="color:var(--am)">middle term</span>. Change any control — the verdict is computed from the four rules on the spot, never looked up.</p>
+ </div>
+
+ <div class="win"><span class="no">四</span><h2>THE MODEL — the four rules</h2>
+  <p>Validity is not memorized; it falls out of <b>distribution</b>:</p>
+  <p><b class="k">R1</b> the middle term M must be distributed in at least one premise. <b class="k">R2</b> a term distributed in the conclusion must be distributed in its premise (no "illicit" leap). <b class="k">R3</b> two negative premises prove nothing. <b class="k">R4</b> a negative premise forces a negative conclusion, and vice-versa.</p>
+  <p>For the current form, the live distribution of each term:</p>
+  <table id="distTbl"><thead><tr><th>term</th><th>in its premise</th><th>in conclusion</th></tr></thead><tbody id="distBody"></tbody></table>
+  <p class="small">These four (plus "some premise is universal") decide all 256 forms with no diagrams and no exceptions.</p>
+ </div>
+
+ <div class="win"><span class="no">五</span><h2>THE INVERSE — 24 vs 15 <span class="tag t-amber">AVAN</span></h2>
+  <p>Aristotle counts <b class="am">24</b> valid; Boole counts <b class="k">15</b>. The nine that differ are the <b>weakened</b> moods — Barbari, Darapti, Felapton, Bramantip… — that draw a <i>particular</i> conclusion ("some S are P") from two <i>universal</i> premises.</p>
+  <p>They are valid only if you assume <b>the subject class is not empty</b> — Aristotle's silent premise of <b>existential import</b>. Boole drops it: "All unicorns are horned" is true of an empty world, so "some unicorn is horned" does <i>not</i> follow.</p>
+  <p class="k" style="color:var(--cy)">That single deletion — a class may be empty — is the doorway from term-logic to the algebra of 0 and 1. The next sphere in THE FOLD is Boole's <i>Laws of Thought</i>; this is where it begins.</p>
+ </div>
+
+ <div class="win"><span class="no">六</span><h2>THE AUDIT <span class="tag t-lit">live</span></h2>
+  <p>This window re-runs the engine over <b>all 256 forms</b> right now and checks the counts against the known truth. Then tamper with a rule and watch it break.</p>
+  <div id="auditout"></div>
+  <div class="row" style="margin-top:8px"><button id="tamper">⚠ TAMPER — delete rule R1</button><button id="restore">↺ restore</button></div>
+  <p class="small" id="tampernote">Deleting the middle-distribution rule should let false forms pass — the audit will catch it and turn red. The badge is computed, not painted.</p>
+ </div>
+
+ <div class="win"><span class="no">七</span><h2>THE GRAVEYARD</h2>
+  <p class="grave"><s>"There are 19 valid syllogisms."</s> <b>Cut.</b> 19 is the strict set (no weakened moods, no 4th-figure subalterns); the honest counts are 15 (modern) and 24 (Aristotelian). Both are computed above — you can see which.</p>
+  <p class="grave"><s>"Aristotle proved all four figures."</s> <b>Cut.</b> Aristotle treated figures 1–3; the fourth figure is credited to Theophrastus and later Galen. The engine includes it, labelled — it is not pretended to be his.</p>
+  <p class="grave"><s>"The named mnemonics are decoration."</s> <b>Kept, corrected.</b> The vowels of Barbara/Celarent/Darii <i>are</i> the mood (A-A-A, E-A-E, A-I-I) — a working code, not decoration.</p>
+ </div>
+
+ <div class="win"><span class="no">八</span><h2>THE ADVERSARY</h2>
+  <p>The strongest case <b>against</b> this sphere, stated fairly:</p>
+  <div class="wall-note"><span class="tag t-wall">WALL</span> The categorical syllogism is a <b>fragment</b>. It cannot express relations or multiple generality — "every boy loves some girl" is outside it entirely. Modern predicate logic (Frege, 1879) subsumes all 256 forms as a trivial special case and goes vastly further.</div>
+  <p class="small" style="margin-top:8px">And: 9 of Aristotle's 24 depend on a metaphysical assumption (non-empty classes) that a modern logician rejects, so calling them "valid" without qualification is already a choice — which is exactly why this window shows both numbers and lets you pick the reading. The syllogism is not <i>the</i> logic; it is the first proof that reasoning has a computable shape.</p>
+ </div>
+
+</div>
+
+<footer id="foot">THE SYLLOGISM — World II · THE FOLD, in THE OCHO (八) form. A runnable rendering of Aristotle's <i>Organon</i>, sourced from archive.org, honest by construction: the engine is LIT (all 256 forms decided live, 15/24 self-checked, tamper-provable), the source is cited not quoted, and the adversary + graveyard carry what a single frame cannot. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== the engine (verified: 15 modern / 24 Aristotelian) ===== */
+const TYPES=["A","E","I","O"];
+const neg=t=>t==="E"||t==="O";
+const subjDist=t=>t==="A"||t==="E";
+const predDist=t=>t==="E"||t==="O";
+const FIG={1:{maj:["M","P"],min:["S","M"]},2:{maj:["P","M"],min:["S","M"]},3:{maj:["M","P"],min:["M","S"]},4:{maj:["P","M"],min:["M","S"]}};
+let TAMPER=false;   // deletes R1 when true — audit must catch it
+function dp(term,pt,ty){ const s=pt[0]===term,p=pt[1]===term; return (s&&subjDist(ty))||(p&&predDist(ty)); }
+function judge(f,mj,mn,co,modern){
+ const F=FIG[f];
+ if(neg(mj)&&neg(mn)) return {ok:false,rule:"R3 — two negative premises prove nothing"};
+ const np=(neg(mj)?1:0)+(neg(mn)?1:0), cn=neg(co);
+ if(np===1&&!cn) return {ok:false,rule:"R4 — a negative premise needs a negative conclusion"};
+ if(np===0&&cn) return {ok:false,rule:"R4 — negative conclusion needs a negative premise"};
+ if(!TAMPER && !dp("M",F.maj,mj) && !dp("M",F.min,mn)) return {ok:false,rule:"R1 — the middle term is never distributed"};
+ if(subjDist(co)&&!dp("S",F.min,mn)) return {ok:false,rule:"R2 — illicit minor (S leaps to 'all' from a premise that didn't)"};
+ if(predDist(co)&&!dp("P",F.maj,mj)) return {ok:false,rule:"R2 — illicit major (P leaps to 'all' from a premise that didn't)"};
+ if(modern){ const bu=(mj==="A"||mj==="E")&&(mn==="A"||mn==="E"), pc=(co==="I"||co==="O"); if(bu&&pc) return {ok:false,rule:"existential fallacy — a 'some' conclusion from two 'all' premises assumes the class exists"}; }
+ return {ok:true,rule:""};
+}
+function countValid(modern){ let n=0; for(const f of[1,2,3,4])for(const j of TYPES)for(const m of TYPES)for(const c of TYPES) if(judge(f,j,m,c,modern).ok)n++; return n; }
+
+/* ===== the 24 named moods ===== */
+const NAMES={"AAA-1":"Barbara","EAE-1":"Celarent","AII-1":"Darii","EIO-1":"Ferio","AAI-1":"Barbari","EAO-1":"Celaront",
+ "EAE-2":"Cesare","AEE-2":"Camestres","EIO-2":"Festino","AOO-2":"Baroco","EAO-2":"Cesaro","AEO-2":"Camestros",
+ "AAI-3":"Darapti","IAI-3":"Disamis","AII-3":"Datisi","EAO-3":"Felapton","OAO-3":"Bocardo","EIO-3":"Ferison",
+ "AAI-4":"Bramantip","AEE-4":"Camenes","IAI-4":"Dimaris","EAO-4":"Fesapo","EIO-4":"Fresison","AEO-4":"Camenos"};
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ const t=(c,m)=>{ if(!c) throw new Error(m); };
+ const save=TAMPER; TAMPER=false;
+ t(countValid(true)===15,"modern valid count must be 15");
+ t(countValid(false)===24,"aristotelian valid count must be 24");
+ t(judge(1,"A","A","A",true).ok,"Barbara AAA-1 must be valid");
+ t(!judge(2,"A","A","A",true).ok,"AAA-2 must be invalid");
+ t(judge(1,"A","I","I",true).ok,"Darii AII-1 must be valid");
+ t(Object.keys(NAMES).length===24,"there must be 24 named moods");
+ // every modern-valid form must have a name
+ for(const f of[1,2,3,4])for(const j of TYPES)for(const m of TYPES)for(const c of TYPES) if(judge(f,j,m,c,false).ok) t(NAMES[j+m+c+"-"+f],"every valid form named: "+j+m+c+"-"+f);
+ TAMPER=save; return true;
+}
+
+/* ===== rendering ===== */
+const $=id=>document.getElementById(id);
+const propTxt=(ty,s,p)=>({A:`All <span class="${s}">${s}</span> are <span class="${p}">${p}</span>`,E:`No <span class="${s}">${s}</span> are <span class="${p}">${p}</span>`,I:`Some <span class="${s}">${s}</span> are <span class="${p}">${p}</span>`,O:`Some <span class="${s}">${s}</span> are not <span class="${p}">${p}</span>`}[ty]);
+let modern=true;
+function sel(id){ const s=$(id); s.innerHTML=TYPES.map(t=>`<option value="${t}">${t}</option>`).join(""); }
+function cur(){ return {f:+$("fig").value, mj:$("mj").value, mn:$("mn").value, co:$("co").value}; }
+function render(){
+ const {f,mj,mn,co}=cur(), F=FIG[f];
+ $("sent").innerHTML = propTxt(mj,F.maj[0],F.maj[1])+" ;<br>"+propTxt(mn,F.min[0],F.min[1])+" ;<br>∴ "+propTxt(co,"S","P");
+ const v=judge(f,mj,mn,co,modern);
+ $("verdict").textContent = v.ok?"VALID":"INVALID"; $("verdict").className="verdict "+(v.ok?"ok":"no");
+ const nm=NAMES[mj+mn+co+"-"+f];
+ $("moodname").innerHTML = `${mj+mn+co}-${f}` + (nm?` &nbsp;·&nbsp; <b>${nm}</b>`:` &nbsp;·&nbsp; <span class="mut">unnamed form</span>`);
+ $("reason").textContent = v.ok? "holds under all four rules"+(!modern&&(mj==="A"||mj==="E")&&(mn==="A"||mn==="E")&&(co==="I"||co==="O")?" — weakened: needs existential import":"") : v.rule;
+ // distribution table
+ const rows=[["M",dp("M",F.maj,mj)||dp("M",F.min,mn),"—"],
+  ["S (minor)",dp("S",F.min,mn),subjDist(co)],
+  ["P (major)",dp("P",F.maj,mj),predDist(co)]];
+ $("distBody").innerHTML=rows.map(r=>`<tr><td>${r[0]}</td><td class="${r[1]===true?'y':(r[1]==='—'?'':'n')}">${r[1]===true?'distributed':(r[1]==='—'?'—':'no')}</td><td class="${r[2]===true?'y':(r[2]==='—'?'':'n')}">${r[2]===true?'distributed':(r[2]==='—'?'—':'no')}</td></tr>`).join("");
+}
+function setMode(m){ modern=m; $("tBoole").classList.toggle("on",m); $("tAris").classList.toggle("on",!m);
+ $("readmode").innerHTML = m?"Modern: a universal claim does <b>not</b> assume its subject exists. 15 forms hold.":"Aristotle: every term names something real (existential import). 24 forms hold — the extra 9 are 'weakened'.";
+ render(); audit(); }
+function audit(){
+ const el=$("auditout");
+ const m=countValid(true), a=countValid(false);
+ const ok = m===15 && a===24 && judge(1,"A","A","A",false).ok && !judge(2,"A","A","A",false).ok;
+ el.innerHTML = `<span class="badge ${ok?'pass':'failb'}">${ok?'✓ AUDIT PASSED':'✗ AUDIT FAILED'}</span>`
+  + `<div class="small" style="margin-top:6px">modern-valid forms counted: <b class="${m===15?'k':''}" style="color:${m===15?'var(--gr)':'var(--wall)'}">${m}</b> / expected 15 &nbsp; · &nbsp; aristotelian: <b style="color:${a===24?'var(--gr)':'var(--wall)'}">${a}</b> / expected 24 &nbsp; · &nbsp; Barbara valid: ${judge(1,"A","A","A",false).ok} · AAA-2 rejected: ${!judge(2,"A","A","A",false).ok}${TAMPER?' &nbsp; — <span style="color:var(--wall)">rule R1 is deleted</span>':''}</div>`;
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ sel("mj"); sel("mn"); sel("co");
+ $("mj").value="A"; $("mn").value="A"; $("co").value="A"; $("fig").value="1";
+ ["fig","mj","mn","co"].forEach(id=>$(id).addEventListener("change",()=>{render();audit();}));
+ $("tBoole").addEventListener("click",()=>setMode(true));
+ $("tAris").addEventListener("click",()=>setMode(false));
+ $("rand").addEventListener("click",()=>{ $("fig").value=1+((Math.random()*4)|0); ["mj","mn","co"].forEach(id=>$(id).value=TYPES[(Math.random()*4)|0]); render();audit(); });
+ $("barbara").addEventListener("click",()=>{ $("fig").value="1"; $("mj").value="A"; $("mn").value="A"; $("co").value="A"; render();audit(); });
+ $("tamper").addEventListener("click",()=>{ TAMPER=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>R1 deleted.</b> Forms with an undistributed middle now slip through — the count is wrong and the badge went red. Nothing was faked."; render(); audit(); });
+ $("restore").addEventListener("click",()=>{ TAMPER=false; $("tampernote").textContent="Deleting the middle-distribution rule should let false forms pass — the audit will catch it and turn red. The badge is computed, not painted."; render(); audit(); });
+ render(); audit();
+}catch(e){
+ const fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the syllogism engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>
