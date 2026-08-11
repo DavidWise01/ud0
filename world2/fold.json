@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1710,
+    "spheres": 1720,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1704,
+    "spheres_built": 1714,
     "apex": 1
   },
   "keepers": [
@@ -15478,6 +15478,96 @@
       "blurb": "Concept erasure (Ravfogel 2020, INLP; Belrose 2023, LEACE), runnable in THE OCHO: project out a concept's direction so a linear probe drops to chance while orthogonal concepts survive - the-probing-classifier run in reverse, the tool for unlearning a trait.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "74e6fc0560bce6268f14a7d262ddddb94e488df9c2776ef16d331c302a0618e7"
+    },
+    {
+      "slug": "the-adversarial-example",
+      "title": "THE ADVERSARIAL EXAMPLE",
+      "kicker": "an imperceptible nudge that flips the answer",
+      "accent": "#7fd4ff",
+      "blurb": "The adversarial example (Szegedy et al. 2013), runnable in THE OCHO: for a linear classifier the minimal flip is the margin |w.x+b|/||w|| along w - a decision boundary is closer than it looks, the fragility under the-linear-representation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e9161a10227977415544c63366ebd7dce7db764dc0626bfc5ec3f84056cbcfb9"
+    },
+    {
+      "slug": "the-fgsm",
+      "title": "THE FAST GRADIENT SIGN METHOD",
+      "kicker": "one gradient step, the whole budget",
+      "accent": "#ff9e6a",
+      "blurb": "FGSM (Goodfellow et al. 2014), runnable in THE OCHO: x + epsilon*sign(grad) is the Holder-optimal L-infinity attack, raising the loss by exactly epsilon*||w||_1 - the-backprop's gradient turned against the input.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ac98d7bdfcb18827e00a553acec85c6b3b2c7761735111cf58ec418870d49a53"
+    },
+    {
+      "slug": "the-pgd",
+      "title": "THE PROJECTED GRADIENT DESCENT",
+      "kicker": "FGSM iterated and projected",
+      "accent": "#c0b0ff",
+      "blurb": "PGD (Madry et al. 2017), runnable in THE OCHO: FGSM iterated and projected back into the epsilon-ball; for a linear model it lands on the same vertex - the inner loop of adversarial training's min-max.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1601342f606ba4d853ff4c8baa716318656a19893afa12ea3e9a369f23fdebfb"
+    },
+    {
+      "slug": "the-robustness-tradeoff",
+      "title": "THE ROBUSTNESS TRADEOFF",
+      "kicker": "accuracy and robustness can conflict",
+      "accent": "#9ee0d0",
+      "blurb": "The robustness tradeoff (Tsipras et al. 2018), runnable in THE OCHO: the standard-accuracy and robust-accuracy optima are provably different classifiers - the fragile features the-fgsm exploits are the ones standard training loves.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6ebdbee8d160543d70d8e171bbd7a0b412da989ceffe94cfc7b688b07cb96bdc"
+    },
+    {
+      "slug": "the-differential-privacy",
+      "title": "THE DIFFERENTIAL PRIVACY",
+      "kicker": "one record barely changes the output",
+      "accent": "#ffd23f",
+      "blurb": "Differential privacy (Dwork et al. 2006), runnable in THE OCHO: the Laplace mechanism keeps the density ratio between adjacent datasets <= e^epsilon everywhere - a bounded likelihood ratio, the defense against the-membership-inference.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4d9b197ab9a418e5bd77adc9773f2ebfe5b070bd982f8b333c032f4afd5e451d"
+    },
+    {
+      "slug": "the-certified-robustness",
+      "title": "THE CERTIFIED ROBUSTNESS",
+      "kicker": "a provable no-attack zone",
+      "accent": "#7fe0c0",
+      "blurb": "Certified robustness (Lipschitz bound), runnable in THE OCHO: an L-Lipschitz model certifies a radius margin/(sqrt(2)L) inside which nothing can flip the class - a provable no-attack zone, the answer to the-fgsm's arms race.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5312fe32d96a4b93fa3b0831871d8deec6c1798b400052bf79876c3e3e3e19b8"
+    },
+    {
+      "slug": "the-randomized-smoothing",
+      "title": "THE RANDOMIZED SMOOTHING",
+      "kicker": "certified robustness via noise",
+      "accent": "#ff7a7a",
+      "blurb": "Randomized smoothing (Cohen et al. 2019), runnable in THE OCHO: a Gaussian-smoothed classifier certifies radius sigma*PhiInv(p_A) - certified robustness that scales to big models, noise turned into a proof.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "02e932a30102963c9582343df438a8ca81fad2e292fc16b38afb06af82b83f09"
+    },
+    {
+      "slug": "the-membership-inference",
+      "title": "THE MEMBERSHIP INFERENCE",
+      "kicker": "was this sample in the training set?",
+      "accent": "#9ee06a",
+      "blurb": "Membership inference (Shokri et al. 2017), runnable in THE OCHO: threshold the loss and members (lower loss) are exposed, AUC above chance - the leak the-differential-privacy seals, overfitting seen from outside the box.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8eabbea033257f02b9ff4cd618e665e6709f2ed759b04625bc76129f2b11dd02"
+    },
+    {
+      "slug": "the-gradient-masking",
+      "title": "THE GRADIENT MASKING",
+      "kicker": "robustness that is only skin-deep",
+      "accent": "#c8a2ff",
+      "blurb": "Gradient masking (Athalye et al. 2018), runnable in THE OCHO: a defense that flattens the gradient beats FGSM yet falls to a gradient-free attack - the-fgsm failing is not evidence of safety, why evaluations must be adaptive.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0dde959d09ac01b323dffa7a21afe0f9404fddaa36e1447af706e6fb8c3e70a8"
+    },
+    {
+      "slug": "the-transferability",
+      "title": "THE TRANSFERABILITY",
+      "kicker": "an attack that crosses models",
+      "accent": "#ffb0d0",
+      "blurb": "Transferability (Papernot et al. 2016), runnable in THE OCHO: an FGSM example crafted on one model flips another when their weights align (positive cosine) - the-adversarial-example that generalizes, the basis of black-box attacks.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b879cb9431be86f451b69c3c8ab54326d102cc6e3f00c2a54f27322e13fd75e1"
     }
   ],
   "appeals": [
@@ -21003,6 +21093,86 @@
               "accent": "#7de2b0",
               "icon": "◒",
               "kicker": "an auditor cannot tell an obfuscation from an error",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-adversarial-example",
+              "title": "THE ADVERSARIAL EXAMPLE",
+              "accent": "#7fd4ff",
+              "icon": "glitch",
+              "kicker": "an imperceptible nudge that flips the answer",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fgsm",
+              "title": "THE FAST GRADIENT SIGN METHOD",
+              "accent": "#ff9e6a",
+              "icon": "boss",
+              "kicker": "one gradient step, the whole budget",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-pgd",
+              "title": "THE PROJECTED GRADIENT DESCENT",
+              "accent": "#c0b0ff",
+              "icon": "boss",
+              "kicker": "FGSM iterated and projected",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-robustness-tradeoff",
+              "title": "THE ROBUSTNESS TRADEOFF",
+              "accent": "#9ee0d0",
+              "icon": "glitch",
+              "kicker": "accuracy and robustness can conflict",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-differential-privacy",
+              "title": "THE DIFFERENTIAL PRIVACY",
+              "accent": "#ffd23f",
+              "icon": "cheat",
+              "kicker": "one record barely changes the output",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-certified-robustness",
+              "title": "THE CERTIFIED ROBUSTNESS",
+              "accent": "#7fe0c0",
+              "icon": "cheat",
+              "kicker": "a provable no-attack zone",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-randomized-smoothing",
+              "title": "THE RANDOMIZED SMOOTHING",
+              "accent": "#ff7a7a",
+              "icon": "cheat",
+              "kicker": "certified robustness via noise",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-membership-inference",
+              "title": "THE MEMBERSHIP INFERENCE",
+              "accent": "#9ee06a",
+              "icon": "loot",
+              "kicker": "was this sample in the training set?",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gradient-masking",
+              "title": "THE GRADIENT MASKING",
+              "accent": "#c8a2ff",
+              "icon": "glitch",
+              "kicker": "robustness that is only skin-deep",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-transferability",
+              "title": "THE TRANSFERABILITY",
+              "accent": "#ffb0d0",
+              "icon": "spawn",
+              "kicker": "an attack that crosses models",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -30074,7 +30244,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "b9bd39fb3841b86accf4ee8fab24c399046ea23847b60a7b4d96c66377f6ff54",
+  "fold_root": "56a5d8fe7f71474ef9500a1fa2d39edf95168d1410a9f35ccad722139d357d75",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
