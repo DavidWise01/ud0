@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1750,
+    "spheres": 1760,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1744,
+    "spheres_built": 1754,
     "apex": 1
   },
   "keepers": [
@@ -15838,6 +15838,96 @@
       "blurb": "The denoising autoencoder (Vincent et al. 2008), runnable in THE OCHO: reconstruct clean from corrupted, and the optimal denoiser's residual is the score grad log p - the-score-matching in disguise, the idea the-diffusion-model scaled.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "4c976149c74cc66bbc63f62ef9d5d4e591bd7d0aeff11e92230a08ea640d5464"
+    },
+    {
+      "slug": "the-state-space",
+      "title": "THE STATE SPACE",
+      "kicker": "a system as a first-order vector ODE",
+      "accent": "#7fd4ff",
+      "blurb": "The state space (Kalman 1960), runnable in THE OCHO: a system as x-dot = Ax + Bu with the matrix exponential e^At its flow - the-markov-chain in continuous time, the object the-kalman filter tracks.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f6a5d30d4305956acdae5a4728445cc73d69e78b375ec8185f3c87abb6a00a59"
+    },
+    {
+      "slug": "the-controllability",
+      "title": "THE CONTROLLABILITY",
+      "kicker": "can the input steer the state anywhere?",
+      "accent": "#ff9e6a",
+      "blurb": "Controllability (Kalman 1960), runnable in THE OCHO: rank[B AB A^2B ...] = n iff the input can drive the state anywhere - the reachability the-pole-placement and the-lqr require.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4fb73add5adb2d574dc4e6fde7ef023d53d9cf2a0d826660f1da0eb085f5d835"
+    },
+    {
+      "slug": "the-observability",
+      "title": "THE OBSERVABILITY",
+      "kicker": "can you reconstruct the state from outputs?",
+      "accent": "#c0b0ff",
+      "blurb": "Observability (Kalman 1960), runnable in THE OCHO: rank[C; CA; CA^2; ...] = n iff the state is reconstructible from outputs - the exact dual of the-controllability, what the-luenberger-observer needs.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d02216b6ff65de32354125364aaa7d59b026a93a1705114a4e4dbcd99362ffb2"
+    },
+    {
+      "slug": "the-pole-placement",
+      "title": "THE POLE PLACEMENT",
+      "kicker": "choose the dynamics by feedback",
+      "accent": "#9ee0d0",
+      "blurb": "Pole placement (Ackermann 1972), runnable in THE OCHO: for a controllable system, feedback u = -Kx puts the closed-loop eigenvalues anywhere - the-controllability cashed in, the classical sibling of the-lqr.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "35ea730de8551cb39cb7019e84b7df6f5592322febc4e292a0c82c5ce8e9d521"
+    },
+    {
+      "slug": "the-lqr",
+      "title": "THE LINEAR QUADRATIC REGULATOR",
+      "kicker": "optimal feedback for a quadratic cost",
+      "accent": "#ffd23f",
+      "blurb": "The linear quadratic regulator (Kalman 1960), runnable in THE OCHO: u = -Kx with K from the Riccati P minimizes a quadratic cost, and value iteration converges to the same P - the-bellman-equation in continuous time, where RL began.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ac64895820b96754e1df75dd7effd1fd8ac12c93db80eab05984ff713decf767"
+    },
+    {
+      "slug": "the-riccati-equation",
+      "title": "THE RICCATI EQUATION",
+      "kicker": "the quadratic matrix equation of optimal control",
+      "accent": "#7fe0c0",
+      "blurb": "The Riccati equation (Riccati; Kalman 1960), runnable in THE OCHO: A'P + PA - PBR^-1B'P + Q = 0 has a unique stabilizing positive-definite P - the continuous fixed point of the-bellman-equation, solved by the-lqr and the-kalman filter.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "02ba3c2dbb9e6803bb4073f666b7a471bf40936e1d419383314b5919631579a6"
+    },
+    {
+      "slug": "the-pid-controller",
+      "title": "THE PID CONTROLLER",
+      "kicker": "three gains, no model",
+      "accent": "#ff7a7a",
+      "blurb": "The PID controller (Minorsky 1922), runnable in THE OCHO: Kp*e + Ki*integral + Kd*derivative, where the integral kills steady-state error - control without a model, the loop in ninety percent of the world's controllers.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "800b42f4269c84e6555b8ea45d6028a374c212319396de67b9331ccc1a359a0c"
+    },
+    {
+      "slug": "the-luenberger-observer",
+      "title": "THE LUENBERGER OBSERVER",
+      "kicker": "a twin that watches and corrects",
+      "accent": "#9ee06a",
+      "blurb": "The Luenberger observer (Luenberger 1964), runnable in THE OCHO: a model x-hat-dot = Ax-hat + Bu + L(y - Cx-hat) whose error decays if observable - the deterministic skeleton of the-kalman filter, dual to the-pole-placement.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "742d58f053c8f82eb680cda9cdd1871d60a8cdc5d0b86469c37ae57008805e4c"
+    },
+    {
+      "slug": "the-transfer-function",
+      "title": "THE TRANSFER FUNCTION",
+      "kicker": "poles and zeros in the frequency domain",
+      "accent": "#c8a2ff",
+      "blurb": "The transfer function (Heaviside; Bode 1945), runnable in THE OCHO: H(s) = C(sI-A)^-1B + D, its poles the eigenvalues of A - the frequency-domain face of the-state-space, stable iff every pole is in the left half-plane.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "867aeb491d1bc35f1fa4dda68763ff77830d6add3d527218027b81630f4edffb"
+    },
+    {
+      "slug": "the-bode-plot",
+      "title": "THE BODE PLOT",
+      "kicker": "the frequency ruler and its margins",
+      "accent": "#ffb0d0",
+      "blurb": "The Bode plot (Bode 1945), runnable in THE OCHO: magnitude and phase versus frequency, -3 dB and -45 degrees at the corner - the-transfer-function across frequency, how gain and phase margins are read.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4bc69bb371a9912a7f1f000dad5186da1d44f06b5df234e988ed0c8cd43a9d24"
     }
   ],
   "appeals": [
@@ -18682,6 +18772,86 @@
               "accent": "#ffd23f",
               "icon": "≈",
               "kicker": "monotonic and correct were always separable",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-state-space",
+              "title": "THE STATE SPACE",
+              "accent": "#7fd4ff",
+              "icon": "spawn",
+              "kicker": "a system as a first-order vector ODE",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-controllability",
+              "title": "THE CONTROLLABILITY",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "can the input steer the state anywhere?",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-observability",
+              "title": "THE OBSERVABILITY",
+              "accent": "#c0b0ff",
+              "icon": "cheat",
+              "kicker": "can you reconstruct the state from outputs?",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-pole-placement",
+              "title": "THE POLE PLACEMENT",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "choose the dynamics by feedback",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lqr",
+              "title": "THE LINEAR QUADRATIC REGULATOR",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "optimal feedback for a quadratic cost",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-riccati-equation",
+              "title": "THE RICCATI EQUATION",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "the quadratic matrix equation of optimal control",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-pid-controller",
+              "title": "THE PID CONTROLLER",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "three gains, no model",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-luenberger-observer",
+              "title": "THE LUENBERGER OBSERVER",
+              "accent": "#9ee06a",
+              "icon": "cheat",
+              "kicker": "a twin that watches and corrects",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-transfer-function",
+              "title": "THE TRANSFER FUNCTION",
+              "accent": "#c8a2ff",
+              "icon": "grind",
+              "kicker": "poles and zeros in the frequency domain",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-bode-plot",
+              "title": "THE BODE PLOT",
+              "accent": "#ffb0d0",
+              "icon": "grind",
+              "kicker": "the frequency ruler and its margins",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -30754,7 +30924,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "6191e6787b63b6227e2fadb3e4131fe89f11eeb0f647c27e97de863a898d5b5b",
+  "fold_root": "e8bc7934fe7a975f69419282cb99c6df7f5d68c77373564d4f1e1c79afba7930",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
