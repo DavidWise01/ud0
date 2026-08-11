@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1640,
+    "spheres": 1650,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1634,
+    "spheres_built": 1644,
     "apex": 1
   },
   "keepers": [
@@ -14848,6 +14848,96 @@
       "blurb": "Generative adversarial networks (Goodfellow et al. 2014, arxiv), runnable in THE OCHO: a generator matches a target distribution as a discriminator's accuracy falls to 0.5 - gradient descent turned into a two-player game.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "c71ed1008356e25fe2fc720f6e519287063d7551d55ce83a141309a7d7742cbb"
+    },
+    {
+      "slug": "the-positional-encoding",
+      "title": "THE POSITIONAL ENCODING",
+      "kicker": "order injected as sin/cos geometry",
+      "accent": "#7fd4ff",
+      "blurb": "Sinusoidal positional encoding (Vaswani et al. 2017, arxiv), runnable in THE OCHO: PE(pos,2i)=sin, PE(pos,2i+1)=cos, each position unique and PE(pos+k) a rotation of PE(pos) - order as geometry so attention can tell position 1 from 5.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2e77c7bc7c7b46d8f568bd3f8f857a3cb642262e9ffb031d53e2ebf03041d2ff"
+    },
+    {
+      "slug": "the-layer-norm",
+      "title": "THE LAYER NORM",
+      "kicker": "normalize each token across its features",
+      "accent": "#9ee0d0",
+      "blurb": "Layer normalization (Ba, Kiros, Hinton 2016, arxiv), runnable in THE OCHO: each row driven to mean 0, variance 1 - the per-token normalization that works at batch size 1, the transformer's choice over batch-norm.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6832f3e696c48d49db2c6234c87aad07aea724a36aca25a6b31cfd8874f5d830"
+    },
+    {
+      "slug": "the-attention-heads",
+      "title": "THE ATTENTION HEADS",
+      "kicker": "multi-head - look in several subspaces at once",
+      "accent": "#c0b0ff",
+      "blurb": "Multi-head attention (Vaswani et al. 2017, arxiv), runnable in THE OCHO: split d into h heads of d/h, attend independently, concat and project - the transformer attending to several relationships at once.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a5843398c38a98c1601193a47980e85c7cac6f049647b127be4915fbaf09ec85"
+    },
+    {
+      "slug": "the-causal-mask",
+      "title": "THE CAUSAL MASK",
+      "kicker": "the mask that makes attention a language model",
+      "accent": "#ff9e6a",
+      "blurb": "The causal mask (Vaswani 2017 / GPT), runnable in THE OCHO: a lower-triangular mask so position i attends only to <=i and its output is unchanged when future tokens change - predicting the next token without seeing it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c6b411b780b014d19dcfb8eaa11935127aeae93e6e34e9c40de433fd3c115dc5"
+    },
+    {
+      "slug": "the-temperature",
+      "title": "THE TEMPERATURE",
+      "kicker": "the knob between argmax and chaos",
+      "accent": "#ffd23f",
+      "blurb": "Temperature sampling, runnable in THE OCHO: softmax(logits/T) sharpening to argmax as T->0 and flattening to uniform as T->infinity, entropy monotone in T - the dial from deterministic to creative.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "97298e0e8ee0bce78ab108ed105829ad3c90464c8b69172c775e7e67d3449f39"
+    },
+    {
+      "slug": "the-beam-search",
+      "title": "THE BEAM SEARCH",
+      "kicker": "decoding better than greedy",
+      "accent": "#ffb0d0",
+      "blurb": "Beam search, runnable in THE OCHO: keep the top-B partial sequences by cumulative log-prob, beating greedy and matching brute force on a small tree - the search over what to say next.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bbc8fee4c990afe1620d1551adf63e08178c6072370c3e298b290aaf800fae29"
+    },
+    {
+      "slug": "the-kv-cache",
+      "title": "THE KV CACHE",
+      "kicker": "why generation is not quadratic per token",
+      "accent": "#7fe0c0",
+      "blurb": "The key-value cache, runnable in THE OCHO: cache past K,V so each new token attends in O(n) not O(n^2), bit-identical to recompute - the-attention memoized, because the causal mask means the past never changes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b41f2a5e54178f497ab4090ec0a5b3eb1455e6391ebf9197da70749623a115eb"
+    },
+    {
+      "slug": "the-mixture-of-experts",
+      "title": "THE MIXTURE OF EXPERTS",
+      "kicker": "more parameters, same compute",
+      "accent": "#ff7a7a",
+      "blurb": "Sparse mixture of experts (Shazeer et al. 2017, arxiv), runnable in THE OCHO: a gate routes each input to the top-k of N experts, only k run - scale by sparsity, the trick behind the biggest models.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7bdde46c35b3efd08f754383a5c6702cf24efc94acca0b1d1b4b30fff5af155d"
+    },
+    {
+      "slug": "the-gelu",
+      "title": "THE GELU",
+      "kicker": "the smooth ReLU in GPT and BERT",
+      "accent": "#9ee06a",
+      "blurb": "GELU (Hendrycks and Gimpel 2016, arxiv), runnable in THE OCHO: x*Phi(x) and its tanh approximation, smooth everywhere where ReLU has a kink - the nonlinearity in the transformer's feed-forward.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ad058cade2ccf9320a5b4d967d4cd1f511bb45ca2d9e05f20d2182e7b6e302b3"
+    },
+    {
+      "slug": "the-perplexity",
+      "title": "THE PERPLEXITY",
+      "kicker": "the branching factor of a language model",
+      "accent": "#c8a2ff",
+      "blurb": "Perplexity (Jelinek et al. 1977), runnable in THE OCHO: exp of the cross-entropy - a uniform model over V tokens scores V, a perfect model scores 1 - the-entropy exponentiated, the number on every LLM benchmark.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "18da89d3dc90ffb827585f66bb8ae1418119c1edc865938d9d2b2ebaf47ed04e"
     }
   ],
   "appeals": [
@@ -17104,6 +17194,86 @@
               "accent": "#39fc6b",
               "icon": "≣",
               "kicker": "the saving and the ordering bug are one mechanism",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-positional-encoding",
+              "title": "THE POSITIONAL ENCODING",
+              "accent": "#7fd4ff",
+              "icon": "cheat",
+              "kicker": "order injected as sin/cos geometry",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-layer-norm",
+              "title": "THE LAYER NORM",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "normalize each token across its features",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-attention-heads",
+              "title": "THE ATTENTION HEADS",
+              "accent": "#c0b0ff",
+              "icon": "cheat",
+              "kicker": "multi-head - look in several subspaces at once",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-causal-mask",
+              "title": "THE CAUSAL MASK",
+              "accent": "#ff9e6a",
+              "icon": "boss",
+              "kicker": "the mask that makes attention a language model",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-temperature",
+              "title": "THE TEMPERATURE",
+              "accent": "#ffd23f",
+              "icon": "glitch",
+              "kicker": "the knob between argmax and chaos",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-beam-search",
+              "title": "THE BEAM SEARCH",
+              "accent": "#ffb0d0",
+              "icon": "loot",
+              "kicker": "decoding better than greedy",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kv-cache",
+              "title": "THE KV CACHE",
+              "accent": "#7fe0c0",
+              "icon": "spawn",
+              "kicker": "why generation is not quadratic per token",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mixture-of-experts",
+              "title": "THE MIXTURE OF EXPERTS",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "more parameters, same compute",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gelu",
+              "title": "THE GELU",
+              "accent": "#9ee06a",
+              "icon": "spawn",
+              "kicker": "the smooth ReLU in GPT and BERT",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-perplexity",
+              "title": "THE PERPLEXITY",
+              "accent": "#c8a2ff",
+              "icon": "grind",
+              "kicker": "the branching factor of a language model",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -28884,7 +29054,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "592a45c78255ddbd190b19758dbcbb2eb4cec39a4867a9cb51947a79959efac1",
+  "fold_root": "d64b03300a44b4b69fc03457a81e1d73dc7f31d0568e13a0f68207891c9c2de2",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
