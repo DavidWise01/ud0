@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1650,
+    "spheres": 1660,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1644,
+    "spheres_built": 1654,
     "apex": 1
   },
   "keepers": [
@@ -14938,6 +14938,96 @@
       "blurb": "Perplexity (Jelinek et al. 1977), runnable in THE OCHO: exp of the cross-entropy - a uniform model over V tokens scores V, a perfect model scores 1 - the-entropy exponentiated, the number on every LLM benchmark.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "18da89d3dc90ffb827585f66bb8ae1418119c1edc865938d9d2b2ebaf47ed04e"
+    },
+    {
+      "slug": "the-kl-divergence",
+      "title": "THE KL DIVERGENCE",
+      "kicker": "the distance that is not a distance",
+      "accent": "#7fd4ff",
+      "blurb": "Kullback-Leibler divergence (1951), runnable in THE OCHO: sum p*log(p/q), always >= 0, zero only when P=Q, asymmetric - the-entropy given a direction, the gap every model minimizes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "baeeec367534e9b9ebcb59259eb900421528c97b202404567c9e7b391f0464bb"
+    },
+    {
+      "slug": "the-reward-model",
+      "title": "THE REWARD MODEL",
+      "kicker": "turning A-beats-B into a number",
+      "accent": "#ff9e6a",
+      "blurb": "The reward model (Christiano et al. 2017, arxiv), runnable in THE OCHO: fit a scalar reward from pairwise preferences under Bradley-Terry, a concave objective that converges - the r that RLHF optimizes against.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9eaffa37e477006a4845f7143325917842b358b7d15a5fb73ae5ae3796875c58"
+    },
+    {
+      "slug": "the-dpo",
+      "title": "DIRECT PREFERENCE OPTIMIZATION",
+      "kicker": "align to preferences with no reward model and no RL",
+      "accent": "#c0b0ff",
+      "blurb": "Direct Preference Optimization (Rafailov et al. 2023, arxiv), runnable in THE OCHO: the reward folded into the policy as a log-ratio, so at pi=pi_ref the win-probability is exactly 0.5 - the-reward-model with no RL loop.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "29732f87abcb887b55a75e04873acdad9e59151fca32886724f1211c8e97ed1e"
+    },
+    {
+      "slug": "the-lora",
+      "title": "THE LOW-RANK ADAPTATION",
+      "kicker": "fine-tune a giant matrix by training two tiny ones",
+      "accent": "#9ee0d0",
+      "blurb": "LoRA (Hu et al. 2021, arxiv), runnable in THE OCHO: W + (alpha/r)BA, a rank-r update with r(d+k) params not d*k, B zero-init so it starts identical to the base - a weight update constrained to a low-rank subspace.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "39c0c6f8f5f624664780c39d08420923c33aca9160bebc236f576b0d6ac8062a"
+    },
+    {
+      "slug": "the-quantization",
+      "title": "THE QUANTIZATION",
+      "kicker": "running a float model in 8-bit integers",
+      "accent": "#ffd23f",
+      "blurb": "Quantization (Jacob et al. 2017, arxiv), runnable in THE OCHO: symmetric int8, scale = max/127, round-trip error bounded by half a step - a real-valued weight forced onto a coarse grid, the trick behind on-device inference.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "baf442b4cc5255963ad669702d19bc1b3040979ef0f7f0ef462d458be26fd29d"
+    },
+    {
+      "slug": "the-scaling-law",
+      "title": "THE SCALING LAW",
+      "kicker": "loss falls as a power law in size",
+      "accent": "#7fe0c0",
+      "blurb": "Scaling laws (Kaplan et al. 2020, arxiv), runnable in THE OCHO: L = Linf + (Nc/N)^alpha, the exponent recovered exactly by log-log regression - the-power-law measured on the loss curve, why bigger is reliably better.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "726f502174c8b1ff8f4decfd4281c80acfd2be630e30b812f7f73aa9dbe651bc"
+    },
+    {
+      "slug": "the-double-descent",
+      "title": "THE DOUBLE DESCENT",
+      "kicker": "the test curve that dips, spikes, then dips again",
+      "accent": "#ff7a7a",
+      "blurb": "Double descent (Belkin et al. 2019, arxiv), runnable in THE OCHO: test error peaks at the interpolation threshold p=n then descends again for the minimum-norm interpolant - why over-parameterized models generalize.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9f5437bcbb5f4cce1ee4857bb7d584fb70d2d9f17849e311facc9b64cff5a5d2"
+    },
+    {
+      "slug": "the-distillation",
+      "title": "THE KNOWLEDGE DISTILLATION",
+      "kicker": "a small student learns from a big teacher's soft answers",
+      "accent": "#9ee06a",
+      "blurb": "Knowledge distillation (Hinton, Vinyals and Dean 2015, arxiv), runnable in THE OCHO: soften a teacher's logits with temperature, the relative probs of the wrong classes are the signal - the-temperature applied to a teacher, more than the label alone.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3ff22b4142200de1a7d045fd55b27aa0f2aa5350f229f153a3aaa598150b0f4f"
+    },
+    {
+      "slug": "the-flash-attention",
+      "title": "THE FLASH ATTENTION",
+      "kicker": "the same attention, tiled so the n-by-n matrix is never stored",
+      "accent": "#c8a2ff",
+      "blurb": "FlashAttention (Dao et al. 2022, arxiv), runnable in THE OCHO: an online softmax streams K,V in blocks, output bit-identical to naive to 1e-10, memory O(block) not O(n^2) - the-attention made memory-linear without changing one output value.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "18115b68dea8dd01b86458b390cd123e3ac7f68757e807696e2c9444d69edf2a"
+    },
+    {
+      "slug": "the-speculative-decoding",
+      "title": "THE SPECULATIVE DECODING",
+      "kicker": "a draft guesses, the big model checks, output unchanged",
+      "accent": "#ffb0d0",
+      "blurb": "Speculative decoding (Leviathan et al. 2023, arxiv), runnable in THE OCHO: a draft proposes, the target accepts with prob min(1,p/q) or resamples the residual, the emitted distribution is provably the target's, unchanged - rejection sampling applied to decoding.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ca57f135358be79daa2aef3302b3df5cec5e4a4fadcab2275706bb162b72d2ad"
     }
   ],
   "appeals": [
@@ -17707,9 +17797,89 @@
               "icon": "∆",
               "kicker": "an operational health metric wearing a storage costume",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kl-divergence",
+              "title": "THE KL DIVERGENCE",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "the distance that is not a distance",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-reward-model",
+              "title": "THE REWARD MODEL",
+              "accent": "#ff9e6a",
+              "icon": "boss",
+              "kicker": "turning A-beats-B into a number",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-dpo",
+              "title": "DIRECT PREFERENCE OPTIMIZATION",
+              "accent": "#c0b0ff",
+              "icon": "cheat",
+              "kicker": "align to preferences with no reward model and no RL",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lora",
+              "title": "THE LOW-RANK ADAPTATION",
+              "accent": "#9ee0d0",
+              "icon": "spawn",
+              "kicker": "fine-tune a giant matrix by training two tiny ones",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-quantization",
+              "title": "THE QUANTIZATION",
+              "accent": "#ffd23f",
+              "icon": "loot",
+              "kicker": "running a float model in 8-bit integers",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-scaling-law",
+              "title": "THE SCALING LAW",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "loss falls as a power law in size",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-double-descent",
+              "title": "THE DOUBLE DESCENT",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "the test curve that dips, spikes, then dips again",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-distillation",
+              "title": "THE KNOWLEDGE DISTILLATION",
+              "accent": "#9ee06a",
+              "icon": "spawn",
+              "kicker": "a small student learns from a big teacher's soft answers",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-flash-attention",
+              "title": "THE FLASH ATTENTION",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "the same attention, tiled so the n-by-n matrix is never stored",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-speculative-decoding",
+              "title": "THE SPECULATIVE DECODING",
+              "accent": "#ffb0d0",
+              "icon": "loot",
+              "kicker": "a draft guesses, the big model checks, output unchanged",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 31,
+          "seats": 39,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -29054,7 +29224,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "d64b03300a44b4b69fc03457a81e1d73dc7f31d0568e13a0f68207891c9c2de2",
+  "fold_root": "d3bf1adaf3d3b3eec4012865447a6aeaa70c7260f4617e6a5fb9194d754ced92",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
