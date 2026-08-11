@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1840,
+    "spheres": 1850,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1834,
+    "spheres_built": 1844,
     "apex": 1
   },
   "keepers": [
@@ -16648,6 +16648,96 @@
       "blurb": "SLAM (Smith, Self and Cheeseman 1986), runnable in THE OCHO: estimate pose and landmarks jointly so a loop closure corrects both, the correlated chicken-and-egg - the-extended-kalman-filter over the world, mapping while localizing.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "e624d0394e6a6d149da68952e5ea47261e1022b1852788b5c47a1dadee6f7f27"
+    },
+    {
+      "slug": "the-round-robin",
+      "title": "THE ROUND ROBIN",
+      "kicker": "give every process a turn",
+      "accent": "#7fd4ff",
+      "blurb": "Round-robin scheduling (CTSS 1962), runnable in THE OCHO: a time quantum cycles the ready queue so every process gets a turn within (n-1)q, fair with no starvation - the preemptive core of the-cron-job.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2a284f37046b12e97f6fc40b958c70b59fc6da25bd0822acb9d06d51b7b887a4"
+    },
+    {
+      "slug": "the-shortest-job-first",
+      "title": "THE SHORTEST JOB FIRST",
+      "kicker": "quickest first, minimum wait",
+      "accent": "#ff9e6a",
+      "blurb": "Shortest-job-first (Conway et al. 1967), runnable in THE OCHO: run the quickest next and the average wait equals the minimum over all n! orders - provably optimal, the ideal the-round-robin approximates fairly.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "761faa853de120e8e3c050d973aec71f00181573300d7fbd5eeb70df01c0bfcf"
+    },
+    {
+      "slug": "the-virtual-memory",
+      "title": "THE VIRTUAL MEMORY",
+      "kicker": "a private address space per process",
+      "accent": "#c0b0ff",
+      "blurb": "Virtual memory (Atlas 1961), runnable in THE OCHO: a page table maps virtual pages to physical frames, isolating each process, faulting on the absent - the mapping the-tlb caches.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bcb6dda247222ccb6c8823607d3e6be64af976454829ecf828a5f4d311250597"
+    },
+    {
+      "slug": "the-page-replacement",
+      "title": "THE PAGE REPLACEMENT",
+      "kicker": "which page to evict",
+      "accent": "#9ee0d0",
+      "blurb": "Page replacement (Belady 1966), runnable in THE OCHO: OPT evicts the furthest-future page and matches the brute-force minimum faults, LRU the practical stand-in - the source of the-belady-anomaly.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "681f10ea4911ecc80013696ca431139bfb5e25f74629c81d04e5213dcfd2e684"
+    },
+    {
+      "slug": "the-clock-algorithm",
+      "title": "THE CLOCK ALGORITHM",
+      "kicker": "LRU on a single bit",
+      "accent": "#ffd23f",
+      "blurb": "The clock algorithm (Multics 1968), runnable in THE OCHO: a reference bit and a moving hand give referenced pages a second chance, approximating LRU with one bit - the page daemon real systems run.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4ef7fe44429f5231a7e4155051859c6725e193d9c777b869c8649aaf96686d53"
+    },
+    {
+      "slug": "the-mutex",
+      "title": "THE MUTEX",
+      "kicker": "only one at a time",
+      "accent": "#7fe0c0",
+      "blurb": "The mutex (Dijkstra 1965), runnable in THE OCHO: an atomic lock keeps at most one thread in the critical section over every interleaving, where a non-atomic check-then-set races - correct only when the acquire is atomic (the-peterson).",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "90bad2663f0ff90fc921dbb752f72f3e43fb6b9660e5e8f0119c9a23e98fb832"
+    },
+    {
+      "slug": "the-semaphore",
+      "title": "THE SEMAPHORE",
+      "kicker": "counting the permits",
+      "accent": "#ff7a7a",
+      "blurb": "The semaphore (Dijkstra 1965), runnable in THE OCHO: atomic P and V guard a pool, the count never negative, a binary one is a mutex - the primitive beneath the-producer-consumer and the-readers-writers.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b09f5a1043d0f7496464df515a76606619b7a6bca0bf5334004d8180dc04e6a6"
+    },
+    {
+      "slug": "the-producer-consumer",
+      "title": "THE PRODUCER CONSUMER",
+      "kicker": "a bounded buffer with back-pressure",
+      "accent": "#9ee06a",
+      "blurb": "The producer-consumer (Dijkstra 1965), runnable in THE OCHO: three semaphores make a bounded buffer never overflow or underflow, every item consumed once - the-semaphore pattern under every queue and pipe.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5744066049eaad35486f399f6a9a372033f367d4ce130d24a35e5a87f07d7a95"
+    },
+    {
+      "slug": "the-readers-writers",
+      "title": "THE READERS WRITERS",
+      "kicker": "many readers or one writer",
+      "accent": "#c8a2ff",
+      "blurb": "The readers-writers problem (Courtois et al. 1971), runnable in THE OCHO: many readers concurrent or one writer exclusive, never both - the-semaphore pattern behind every read/write lock.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "29ed51a976c2ca99425edf9037d3cf2972d793d05cf2c8598963a738dbd8ff40"
+    },
+    {
+      "slug": "the-deadlock-detection",
+      "title": "THE DEADLOCK DETECTION",
+      "kicker": "the cycle where everyone is stuck",
+      "accent": "#ffb0d0",
+      "blurb": "Deadlock detection (Coffman 1971), runnable in THE OCHO: a cycle in the wait-for graph means deadlock, and breaking any of the four conditions prevents it - what the-banker-deadlock avoidance forestalls.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "96ea2c47872a8a99ded41b238abfaf3f2fa4c51cbdae3955185cf27e7b8d6ac8"
     }
   ],
   "appeals": [
@@ -21882,9 +21972,89 @@
               "icon": "loot",
               "kicker": "Nash equilibrium, found in 1838",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-round-robin",
+              "title": "THE ROUND ROBIN",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "give every process a turn",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-shortest-job-first",
+              "title": "THE SHORTEST JOB FIRST",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "quickest first, minimum wait",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-virtual-memory",
+              "title": "THE VIRTUAL MEMORY",
+              "accent": "#c0b0ff",
+              "icon": "spawn",
+              "kicker": "a private address space per process",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-page-replacement",
+              "title": "THE PAGE REPLACEMENT",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "which page to evict",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-clock-algorithm",
+              "title": "THE CLOCK ALGORITHM",
+              "accent": "#ffd23f",
+              "icon": "cheat",
+              "kicker": "LRU on a single bit",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mutex",
+              "title": "THE MUTEX",
+              "accent": "#7fe0c0",
+              "icon": "glitch",
+              "kicker": "only one at a time",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-semaphore",
+              "title": "THE SEMAPHORE",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "counting the permits",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-producer-consumer",
+              "title": "THE PRODUCER CONSUMER",
+              "accent": "#9ee06a",
+              "icon": "spawn",
+              "kicker": "a bounded buffer with back-pressure",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-readers-writers",
+              "title": "THE READERS WRITERS",
+              "accent": "#c8a2ff",
+              "icon": "glitch",
+              "kicker": "many readers or one writer",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-deadlock-detection",
+              "title": "THE DEADLOCK DETECTION",
+              "accent": "#ffb0d0",
+              "icon": "glitch",
+              "kicker": "the cycle where everyone is stuck",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 31,
+          "seats": 48,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -32284,7 +32454,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "0ded15d6a2e611c880a07bd49d04e922ad693487cbe87f70f682d73bd8a745f9",
+  "fold_root": "1dac6586d5c828075230adbef070c33326abc8341e6249e33220888ede314b71",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
