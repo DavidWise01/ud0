@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1880,
+    "spheres": 1890,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1874,
+    "spheres_built": 1884,
     "apex": 1
   },
   "keepers": [
@@ -17008,6 +17008,96 @@
       "blurb": "The Fermi-Dirac distribution (Fermi and Dirac 1926), runnable in THE OCHO: n = 1/(e+1) in [0,1] with a step at the Fermi level - the-boltzmann-distribution for electrons, why metals conduct and matter is solid.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "5ba6700b05a00b9c9fa12adc971fbeb321b7bf48b231c199fc9d77a1e2e7c164"
+    },
+    {
+      "slug": "the-equal-temperament",
+      "title": "THE EQUAL TEMPERAMENT",
+      "kicker": "twelve equal steps, the 12th root of 2",
+      "accent": "#ffd23f",
+      "blurb": "Equal temperament (12-TET), runnable in THE OCHO: each semitone is the ratio 2^(1/12), twelve of them closing the octave exactly at 2:1 while every fifth sits ~2 cents flat - the tempered compromise the-just-intonation refuses.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6c17eae9ab22be144c5eb294424ca0a037386aa289343c80fd435121d15a53ce"
+    },
+    {
+      "slug": "the-just-intonation",
+      "title": "THE JUST INTONATION",
+      "kicker": "harmony from whole-number ratios",
+      "accent": "#9ee06a",
+      "blurb": "Just intonation (Ptolemy; Zarlino 1558), runnable in THE OCHO: the fifth is 3/2, the major third 5/4, intervals so pure they beat almost silent - and the Pythagorean comma that stacking twelve fifths leaves, the crack the-equal-temperament paves over.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "758ed3f55bdeee199896bd6940c4335fe77f34cc92c110ebf64f1d50bea6d2d2"
+    },
+    {
+      "slug": "the-overtone-series",
+      "title": "THE OVERTONE SERIES",
+      "kicker": "every note is secretly a chord",
+      "accent": "#7fe0c0",
+      "blurb": "The overtone series (Mersenne 1636; Helmholtz 1863), runnable in THE OCHO: a plucked string sounds f, 2f, 3f, 4f... exact integer multiples whose spacing carves the-just-intonation's ratios out of raw physics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "80c7a413179c0afa1bad83725f9dae096b692c3202d1c10d547bf89eadd37088"
+    },
+    {
+      "slug": "the-adsr",
+      "title": "THE ADSR ENVELOPE",
+      "kicker": "a note's shape in time",
+      "accent": "#ff7a7a",
+      "blurb": "The ADSR envelope (Moog/Buchla c.1964), runnable in THE OCHO: Attack, Decay, Sustain, Release draw the amplitude contour that turns a static pitch into a pluck, pad, or bell - the time-domain half of a sound the-fm-synthesis colours in frequency.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4366b667f3178afce8b2c1b5c2f8f184a9d22c75d99b7dc334302ee18a7d3d71"
+    },
+    {
+      "slug": "the-fm-synthesis",
+      "title": "THE FM SYNTHESIS",
+      "kicker": "bend one sine with another",
+      "accent": "#c8a2ff",
+      "blurb": "FM synthesis (Chowning 1973), runnable in THE OCHO: a carrier fc modulated at fm with index I sprouts Bessel-weighted sidebands at fc +/- n*fm - two oscillators making the metallic bell timbres the DX7 sold a million times.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "82d86cc866d9f4734c2c1ca13c7f058909563cb104a5f6083ce21147ed50fd8d"
+    },
+    {
+      "slug": "the-additive-synthesis",
+      "title": "THE ADDITIVE SYNTHESIS",
+      "kicker": "build any wave from sines",
+      "accent": "#ffb0d0",
+      "blurb": "Additive synthesis (Fourier 1822; Hammond drawbars 1935), runnable in THE OCHO: stack harmonics at amplitude 1/n and the pile climbs toward a square - carrying the 8.95%-of-jump Gibbs overshoot that never shrinks, the inverse of the-fourier-series' analysis.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "352b401855f58c4f86de19597e0f13ffc8a4df568765e374b2d4693969cbbdb4"
+    },
+    {
+      "slug": "the-biquad-filter",
+      "title": "THE BIQUAD FILTER",
+      "kicker": "two poles, two zeros",
+      "accent": "#7fb0ff",
+      "blurb": "The biquad filter (RBJ cookbook, Direct Form II), runnable in THE OCHO: a second-order section y = b0 x + b1 x1 + b2 x2 - a1 y1 - a2 y2, its poles held inside the unit circle for stability - the building block every parametric EQ cascades.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "cc1c41e97760275f8b060468a915f611022cd55d747c6d050876f59dcf0f6e5b"
+    },
+    {
+      "slug": "the-comb-filter",
+      "title": "THE COMB FILTER",
+      "kicker": "signal plus its own echo",
+      "accent": "#ffd23f",
+      "blurb": "The comb filter, runnable in THE OCHO: add a signal to a delayed copy and the spectrum grows teeth - a notch or peak every fs/D hertz - the flanger, the plucked-string model, and the seed of digital reverb.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fbc122030080af5254352198c67d37563d4f94bc262d46cf0423a50c69e727e8"
+    },
+    {
+      "slug": "the-window-function",
+      "title": "THE WINDOW FUNCTION",
+      "kicker": "taming the edges of a finite block",
+      "accent": "#9ee06a",
+      "blurb": "The window function (Hann, Hamming, Blackman), runnable in THE OCHO: multiplying a finite block by a tapered window trades a wider main lobe for far lower sidelobes, curbing the spectral leakage a bare rectangle rings with - what every FFT frame is multiplied by first.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e45b958133295abe0c8d0d174aa58153caa2d697d758ca248634ffabd0e3542d"
+    },
+    {
+      "slug": "the-pitch-detection",
+      "title": "THE PITCH DETECTION",
+      "kicker": "the note inside the waveform",
+      "accent": "#c8a2ff",
+      "blurb": "Pitch detection (autocorrelation; YIN 2002), runnable in THE OCHO: the lag of best self-similarity is the period and f0 = sr/period, with the octave trap that snags naive peak-pickers - reading back the fundamental the-overtone-series stacks upward from.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "018a31bcbfa44b52b35a097eb5e132bcd0e7de50c4c71c208a546f39acf4a9b3"
     }
   ],
   "appeals": [
@@ -26147,6 +26237,86 @@
               "icon": "…",
               "kicker": "the wasted bytes were buying the ability to not look",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-equal-temperament",
+              "title": "THE EQUAL TEMPERAMENT",
+              "accent": "#ffd23f",
+              "icon": "grind",
+              "kicker": "twelve equal steps, the 12th root of 2",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-just-intonation",
+              "title": "THE JUST INTONATION",
+              "accent": "#9ee06a",
+              "icon": "cheat",
+              "kicker": "harmony from whole-number ratios",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-overtone-series",
+              "title": "THE OVERTONE SERIES",
+              "accent": "#7fe0c0",
+              "icon": "spawn",
+              "kicker": "every note is secretly a chord",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-adsr",
+              "title": "THE ADSR ENVELOPE",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "a note's shape in time",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fm-synthesis",
+              "title": "THE FM SYNTHESIS",
+              "accent": "#c8a2ff",
+              "icon": "grind",
+              "kicker": "bend one sine with another",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-additive-synthesis",
+              "title": "THE ADDITIVE SYNTHESIS",
+              "accent": "#ffb0d0",
+              "icon": "spawn",
+              "kicker": "build any wave from sines",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-biquad-filter",
+              "title": "THE BIQUAD FILTER",
+              "accent": "#7fb0ff",
+              "icon": "grind",
+              "kicker": "two poles, two zeros",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-comb-filter",
+              "title": "THE COMB FILTER",
+              "accent": "#ffd23f",
+              "icon": "cheat",
+              "kicker": "signal plus its own echo",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-window-function",
+              "title": "THE WINDOW FUNCTION",
+              "accent": "#9ee06a",
+              "icon": "spawn",
+              "kicker": "taming the edges of a finite block",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-pitch-detection",
+              "title": "THE PITCH DETECTION",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "the note inside the waveform",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -32964,7 +33134,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "ac6893183117fa5c8cd59b75dbd6d3fb66731bc90a09d64f38735e8432030b83",
+  "fold_root": "fb37c6ff28084edcd7b50ee32e281756f1a0a10b274b8bb77e7a702bc18927c1",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
