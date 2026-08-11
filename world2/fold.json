@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1730,
+    "spheres": 1740,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1724,
+    "spheres_built": 1734,
     "apex": 1
   },
   "keepers": [
@@ -15658,6 +15658,96 @@
       "blurb": "The Newton step (Newton 1685), runnable in THE OCHO: x -= inv(Hessian)*grad lands on a quadratic's minimizer in one step and converges quadratically - the-gradient-descent that reads curvature, under the-fisher-information's natural gradient.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "e040e2bb3ccea9404b2868a25aaafa9553884633a29509a0da395bf868860145"
+    },
+    {
+      "slug": "the-empirical-risk-minimization",
+      "title": "THE EMPIRICAL RISK MINIMIZATION",
+      "kicker": "learn by fitting the data you have",
+      "accent": "#7fd4ff",
+      "blurb": "Empirical risk minimization (Vapnik), runnable in THE OCHO: pick the hypothesis with the least training error and hope it holds - the principle every model follows, safe only when capacity is controlled; the-maximum-likelihood as risk.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b77b7c1abf81cec70b6d8e8f49e4b5ae1a0cff7bbf807350f1e3b9da50e8855e"
+    },
+    {
+      "slug": "the-vc-dimension",
+      "title": "THE VC DIMENSION",
+      "kicker": "the capacity of a model, counted",
+      "accent": "#ff9e6a",
+      "blurb": "The VC dimension (Vapnik and Chervonenkis 1971), runnable in THE OCHO: half-planes shatter 3 points but not 4 (all 8 labelings vs 14 of 16) - the capacity that decides generalize-or-memorize, the-pac-learning's key number.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "95610d88c8aaf03e731cc5a945af335e2bf816ec77e369f4da08c6cced7ebc2b"
+    },
+    {
+      "slug": "the-sauer-lemma",
+      "title": "THE SAUER LEMMA",
+      "kicker": "below VC it explodes, above it is polynomial",
+      "accent": "#c0b0ff",
+      "blurb": "Sauer's lemma (Sauer 1972), runnable in THE OCHO: the growth function is 2^m below the VC dimension and only O(m^d) above it - why a finite the-vc-dimension tames an infinite class, the engine of uniform convergence.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b71b50b076742f682fc42e8bf0ac40fe3f4ecc17a534e69d58030d4eb2e7a10a"
+    },
+    {
+      "slug": "the-pac-learning",
+      "title": "THE PAC LEARNING",
+      "kicker": "probably approximately correct, from few examples",
+      "accent": "#9ee0d0",
+      "blurb": "PAC learning (Valiant 1984), runnable in THE OCHO: m >= (1/eps)(ln|H| + ln(1/delta)) samples give error <= eps with probability 1-delta - learnable made quantitative, the-vc-dimension's promise as a sample count.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b39989b834dd9701d40cfc08b9a4bbfa0a776ef7f669ef577c2639c22a992c9d"
+    },
+    {
+      "slug": "the-uniform-convergence",
+      "title": "THE UNIFORM CONVERGENCE",
+      "kicker": "training error tracks true error for every h at once",
+      "accent": "#ffd23f",
+      "blurb": "Uniform convergence (Vapnik-Chervonenkis 1971), runnable in THE OCHO: the union bound gives P(sup|R_emp-R|>eps) <= 2|H|e^(-2m eps^2) - the-hoeffding-bound over a whole class, why training error is a valid proxy.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "139d3f3ba2e76a93b0cc9419c1a29eb1067c283d6065a62979a1947ccaac75fa"
+    },
+    {
+      "slug": "the-hoeffding-bound",
+      "title": "THE HOEFFDING BOUND",
+      "kicker": "bounded randomness concentrates exponentially",
+      "accent": "#7fe0c0",
+      "blurb": "Hoeffding's inequality (Hoeffding 1963), runnable in THE OCHO: P(|mean-mu|>=t) <= 2e^(-2mt^2) for bounded variables - the-law-of-large-numbers with an exponential rate, the concentration engine under every generalization bound.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "cfe27d2584dc1934d3cab6aaf02f3bad915e8ce8985f6a2e49e80afde214076b"
+    },
+    {
+      "slug": "the-rademacher-complexity",
+      "title": "THE RADEMACHER COMPLEXITY",
+      "kicker": "capacity measured on your own data",
+      "accent": "#ff7a7a",
+      "blurb": "Rademacher complexity (Bartlett and Mendelson 2002), runnable in THE OCHO: how well a class fits random signs, computed by enumerating all 2^m patterns - the-vc-dimension made data-dependent, capacity as correlation with noise.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "178dd5702aa303325d668c5f606b29de7d8b72100a135b76c68d898ccac20e9e"
+    },
+    {
+      "slug": "the-bias-variance-tradeoff",
+      "title": "THE BIAS VARIANCE TRADEOFF",
+      "kicker": "what you cannot fit vs how much you wobble",
+      "accent": "#9ee06a",
+      "blurb": "The bias-variance tradeoff (Geman et al. 1992), runnable in THE OCHO: expected error = bias^2 + variance + noise, a U in complexity - the classical curve beneath the-double-descent, the tension regularization manages.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "90af9162b2020e3cafae6ef62cf97ba8b8781d5ac2d4df8645dbfc54508827f0"
+    },
+    {
+      "slug": "the-occams-razor",
+      "title": "THE OCCAMS RAZOR",
+      "kicker": "compression is generalization",
+      "accent": "#c8a2ff",
+      "blurb": "Occam's razor made rigorous (Blumer et al. 1987; Rissanen MDL), runnable in THE OCHO: Kraft's inequality bounds the union over prefix codes, so a shorter hypothesis needs less evidence - compression is generalization, the-kolmogorov idea as a bound.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "017efead8282be06904e2eab0bc9719a4baff9213290ce0ac3ff677ba965daf9"
+    },
+    {
+      "slug": "the-margin-bound",
+      "title": "THE MARGIN BOUND",
+      "kicker": "a wide margin is low capacity",
+      "accent": "#ffb0d0",
+      "blurb": "The margin bound (Bartlett 1998; Vapnik), runnable in THE OCHO: generalization scales as 1/(gamma^2 m), dimension-free - why the SVM survives high dimensions, the-duality's geometric margin turned into a guarantee.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "410defcc59698f5f43c9985e7878c38755e0884ab573089ddedcac77f8768ca1"
     }
   ],
   "appeals": [
@@ -17237,6 +17327,86 @@
               "accent": "#ffd76a",
               "icon": "⚑",
               "kicker": "metadata living inside the data",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-empirical-risk-minimization",
+              "title": "THE EMPIRICAL RISK MINIMIZATION",
+              "accent": "#7fd4ff",
+              "icon": "spawn",
+              "kicker": "learn by fitting the data you have",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-vc-dimension",
+              "title": "THE VC DIMENSION",
+              "accent": "#ff9e6a",
+              "icon": "boss",
+              "kicker": "the capacity of a model, counted",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sauer-lemma",
+              "title": "THE SAUER LEMMA",
+              "accent": "#c0b0ff",
+              "icon": "grind",
+              "kicker": "below VC it explodes, above it is polynomial",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-pac-learning",
+              "title": "THE PAC LEARNING",
+              "accent": "#9ee0d0",
+              "icon": "cheat",
+              "kicker": "probably approximately correct, from few examples",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-uniform-convergence",
+              "title": "THE UNIFORM CONVERGENCE",
+              "accent": "#ffd23f",
+              "icon": "grind",
+              "kicker": "training error tracks true error for every h at once",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hoeffding-bound",
+              "title": "THE HOEFFDING BOUND",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "bounded randomness concentrates exponentially",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rademacher-complexity",
+              "title": "THE RADEMACHER COMPLEXITY",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "capacity measured on your own data",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-bias-variance-tradeoff",
+              "title": "THE BIAS VARIANCE TRADEOFF",
+              "accent": "#9ee06a",
+              "icon": "glitch",
+              "kicker": "what you cannot fit vs how much you wobble",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-occams-razor",
+              "title": "THE OCCAMS RAZOR",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "compression is generalization",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-margin-bound",
+              "title": "THE MARGIN BOUND",
+              "accent": "#ffb0d0",
+              "icon": "boss",
+              "kicker": "a wide margin is low capacity",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -30414,7 +30584,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "9753b615f93396eeae8f5ef979e6f457e33517798fd07ebe4e755721ade8b815",
+  "fold_root": "632c63eac2b63bfad20077d7815077a4ed5f4b9ff39f775fe38ff874a06fe282",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
