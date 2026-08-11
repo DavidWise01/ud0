@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1910,
+    "spheres": 1920,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1904,
+    "spheres_built": 1914,
     "apex": 1
   },
   "keepers": [
@@ -17278,6 +17278,96 @@
       "blurb": "Standing waves on a string (Mersenne 1636), runnable in THE OCHO: f_n = n v/2L integer harmonics from fixed-end nodes, the sum of two counter-propagating solutions of the-wave-equation - the string behind the-overtone-series.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "771b82118379d3761025e9bf9a2564e814708822a8a7d0cd4d526abbd87bc370"
+    },
+    {
+      "slug": "the-bernoulli-equation",
+      "title": "THE BERNOULLI EQUATION",
+      "kicker": "faster flow, lower pressure",
+      "accent": "#7fd4ff",
+      "blurb": "Bernoulli (1738), runnable in THE OCHO: p + 0.5 rho v^2 + rho g h constant along a streamline, so a Venturi that speeds the flow drops the pressure - energy conservation for a fluid, paired with the-continuity-equation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bdaaff262a572cb6e411552af8ecb2b2579b04f5603febc36393826c063fa8b6"
+    },
+    {
+      "slug": "the-continuity-equation",
+      "title": "THE CONTINUITY EQUATION",
+      "kicker": "mass cannot vanish",
+      "accent": "#9ee06a",
+      "blurb": "The continuity equation (Euler 1757), runnable in THE OCHO: A1 v1 = A2 v2 and div v = 0, so squeezing the pipe speeds the flow - the incompressibility that lets the-bernoulli-equation trade speed for pressure.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1459717e82372ad6b6548e0bae099d72e9ff55f2b1ce6249eef8ab830ac1c673"
+    },
+    {
+      "slug": "the-reynolds-number",
+      "title": "THE REYNOLDS NUMBER",
+      "kicker": "glide or tumble",
+      "accent": "#c8a2ff",
+      "blurb": "Reynolds (1883), runnable in THE OCHO: Re = rho v L / mu, dimensionless and inverse in viscosity, laminar below ~2300 and turbulent above ~4000 - the dial between the-stokes-drag's regime and the-drag-equation's.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "906f3cbf2fda0fef1fe6c20cacf5377ecfbb2d258a342950e605f4b70337e337"
+    },
+    {
+      "slug": "the-navier-stokes",
+      "title": "THE NAVIER-STOKES EQUATIONS",
+      "kicker": "Newton's law for a fluid",
+      "accent": "#ff7a7a",
+      "blurb": "Navier-Stokes (Navier 1822; Stokes 1845), runnable in THE OCHO: rho Dv/Dt = -grad p + mu lap v, reducing to Euler when inviscid, with plane Poiseuille an exact solution - the master equation the-bernoulli-equation and the-poiseuille-flow specialize.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9b6941ea803ab4a8688493c008eb822232f0b40d9e42d6aa2d800150ad3ca4bb"
+    },
+    {
+      "slug": "the-poiseuille-flow",
+      "title": "THE POISEUILLE FLOW",
+      "kicker": "the fourth-power pipe",
+      "accent": "#ffd23f",
+      "blurb": "Hagen-Poiseuille (1839-40), runnable in THE OCHO: Q = pi r^4 dp / 8 mu L, so doubling the radius gives sixteen times the flow, a parabolic no-slip profile - an exact laminar solution of the-navier-stokes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "53ab9342ac9ee3bd2769e11aee618747016cbb025bc62cdf30931b920ae118d1"
+    },
+    {
+      "slug": "the-stokes-drag",
+      "title": "THE STOKES DRAG",
+      "kicker": "gentle linear drag",
+      "accent": "#7fe0c0",
+      "blurb": "Stokes (1851), runnable in THE OCHO: F = 6 pi mu r v, LINEAR in speed at low the-reynolds-number, why dust drifts rather than plummets - the creeping-flow limit whose balance sets a settling the-terminal-velocity.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f7c5c5606661e3288eb6bf5090cbe5b0acd3970d568382ef38f7d880ba6ffa22"
+    },
+    {
+      "slug": "the-vorticity",
+      "title": "THE VORTICITY",
+      "kicker": "the local spin of flow",
+      "accent": "#ff9e6a",
+      "blurb": "Vorticity (Helmholtz 1858), runnable in THE OCHO: omega = curl v, twice the angular velocity for a rigid rotation yet ZERO for a free vortex off-axis - the circulation that lifts a wing in the-kutta-joukowski.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c882860491250bc4ef2f3f0b9aeea942318cbadbba231ca743fed09fec0cec24"
+    },
+    {
+      "slug": "the-drag-equation",
+      "title": "THE DRAG EQUATION",
+      "kicker": "resistance squares with speed",
+      "accent": "#ffb0d0",
+      "blurb": "The drag equation (Rayleigh 1876), runnable in THE OCHO: F = 0.5 rho v^2 Cd A, QUADRATIC in velocity at high the-reynolds-number - the fast-flow complement of the-stokes-drag that sets a quadratic the-terminal-velocity.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7b9218aedc44ce751a2e6d05ecf04b349116894c58e51e28051b08f025ab8f5c"
+    },
+    {
+      "slug": "the-kutta-joukowski",
+      "title": "THE KUTTA-JOUKOWSKI",
+      "kicker": "lift is circulation",
+      "accent": "#9ee0d0",
+      "blurb": "Kutta-Joukowski (1902-06), runnable in THE OCHO: lift per span L' = rho v Gamma, no circulation no lift (resolving d'Alembert's paradox) - the-vorticity bound around a wing turned into flight.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b75e5939456a472359ab245ba908207ff39011a6d8ac6db37c09b155e2542121"
+    },
+    {
+      "slug": "the-terminal-velocity",
+      "title": "THE TERMINAL VELOCITY",
+      "kicker": "where falling stops speeding up",
+      "accent": "#ffcf5a",
+      "blurb": "Terminal velocity, runnable in THE OCHO: drag balances weight, v_t ~ sqrt(mass) in the quadratic regime, an object from rest approaching v_t asymptotically without overshoot - the steady state of the-drag-equation and the-stokes-drag under gravity.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6454d11a809a8dc4d9615c786cb770ab91ff9059fafc552a8c5677cefc898d87"
     }
   ],
   "appeals": [
@@ -23431,6 +23521,86 @@
               "accent": "#5ad4ff",
               "icon": "△",
               "kicker": "289 points collapsed onto one line",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-bernoulli-equation",
+              "title": "THE BERNOULLI EQUATION",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "faster flow, lower pressure",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-continuity-equation",
+              "title": "THE CONTINUITY EQUATION",
+              "accent": "#9ee06a",
+              "icon": "cheat",
+              "kicker": "mass cannot vanish",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-reynolds-number",
+              "title": "THE REYNOLDS NUMBER",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "glide or tumble",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-navier-stokes",
+              "title": "THE NAVIER-STOKES EQUATIONS",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "Newton's law for a fluid",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-poiseuille-flow",
+              "title": "THE POISEUILLE FLOW",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "the fourth-power pipe",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-stokes-drag",
+              "title": "THE STOKES DRAG",
+              "accent": "#7fe0c0",
+              "icon": "spawn",
+              "kicker": "gentle linear drag",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-vorticity",
+              "title": "THE VORTICITY",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "the local spin of flow",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-drag-equation",
+              "title": "THE DRAG EQUATION",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "resistance squares with speed",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-kutta-joukowski",
+              "title": "THE KUTTA-JOUKOWSKI",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "lift is circulation",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-terminal-velocity",
+              "title": "THE TERMINAL VELOCITY",
+              "accent": "#ffcf5a",
+              "icon": "spawn",
+              "kicker": "where falling stops speeding up",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -33474,7 +33644,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "34f98fdb3892683b8f6eae4e60244523cdb30071edd0317754659e9664391950",
+  "fold_root": "8787c10eb41b29b9d80dcc6f4f90800509ba71b41cd99fa725a76466f168ba85",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
