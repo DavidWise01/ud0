@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1620,
+    "spheres": 1630,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1614,
+    "spheres_built": 1624,
     "apex": 1
   },
   "keepers": [
@@ -14668,6 +14668,96 @@
       "blurb": "Kolmogorov complexity (1965), runnable in THE OCHO: a lossless compressor as an upper bound on K(x) with the counting argument that most strings are incompressible (K itself is uncomputable, marked AMBER) - the information in a single object.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "f70ce4d7b34e0febd256f4dcaeb3b82e3e4277b75f3840b29c6e460d2d68eec2"
+    },
+    {
+      "slug": "the-least-squares",
+      "title": "THE LEAST SQUARES",
+      "kicker": "fit a line by minimizing squared error",
+      "accent": "#8bd0ff",
+      "blurb": "Gauss and Legendre's method of least squares (1805-1809), runnable in THE OCHO: fit y=mx+b by the closed-form normal equations minimizing the sum of squared residuals - the ancestor of every regression and the loss gradient descent minimizes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0129a2376a714adb39cc08ca356a4a35d6e9c165f76a729c2aba198f4a9a898b"
+    },
+    {
+      "slug": "the-principal-component",
+      "title": "THE PRINCIPAL COMPONENT",
+      "kicker": "PCA - the axis of most variance",
+      "accent": "#c0b0ff",
+      "blurb": "Pearson's principal component analysis (1901), runnable in THE OCHO: the top eigenvector of the covariance as the line of closest fit, projecting a cloud onto its axis of most variance - the axes under every embedding.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "97a6f3c60fa22ace88ce29a6657c84c42554021a33842052918cd77be04e17db"
+    },
+    {
+      "slug": "the-central-limit",
+      "title": "THE CENTRAL LIMIT",
+      "kicker": "sum uniforms, get a bell",
+      "accent": "#7fe0c0",
+      "blurb": "The central limit theorem (de Moivre, Laplace), runnable in THE OCHO: sum many uniforms and watch the distribution converge to the Gaussian - why the bell curve is everywhere, the noise model under least squares and Bayes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9e6969fdffe98271d7efd1926efc5f475c2b7af5689b25341cf5dabbb43bff1b"
+    },
+    {
+      "slug": "the-k-means",
+      "title": "THE K-MEANS",
+      "kicker": "clustering as alternating minimization",
+      "accent": "#9ee0d0",
+      "blurb": "Lloyd's k-means (1957), runnable in THE OCHO: assign-to-nearest then move-to-mean, the within-cluster variance falling every step to a fixed point - unsupervised learning as the same descent as the rest of the batch.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "33f0e0fd0abfaee26ffbf930cd322c5c28255f9099daac47741d2b08bb6a2e20"
+    },
+    {
+      "slug": "the-margin",
+      "title": "THE MARGIN",
+      "kicker": "the widest street between the classes",
+      "accent": "#ff9e6a",
+      "blurb": "Vapnik's maximum-margin classifier / SVM, runnable in THE OCHO: the separating line that maximizes the distance to the nearest point, with its support vectors - generalization as the widest street between two classes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "58a97b5919752cf76ebd355e53639268003f8539864c22c420df5f38a3f50da1"
+    },
+    {
+      "slug": "the-boltzmann-machine",
+      "title": "THE BOLTZMANN MACHINE",
+      "kicker": "Hopfield made stochastic - temperature added",
+      "accent": "#ff7a7a",
+      "blurb": "The Boltzmann machine (Ackley, Hinton, Sejnowski 1985), runnable in THE OCHO: a stochastic Hopfield net whose samples match the Boltzmann distribution exp(-E/T)/Z - Hopfield's net made stochastic, the ancestor of the deep belief net.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fb432e54eae79257b84d0cf28c7aa742ba120dd395e62542a19c512ac38ca986"
+    },
+    {
+      "slug": "the-discriminant",
+      "title": "THE DISCRIMINANT",
+      "kicker": "Fisher's LDA - project to separate",
+      "accent": "#ffd23f",
+      "blurb": "Fisher's linear discriminant (1936), runnable in THE OCHO: the direction that maximizes between-class over within-class variance, projecting two classes to a line that separates them - supervised projection, the discriminant under classification.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e13c996bcaf130e44485b93246082318fd3f6eef55b6afcb09a3394f274ed129"
+    },
+    {
+      "slug": "the-gradient-descent",
+      "title": "THE GRADIENT DESCENT",
+      "kicker": "step downhill to the minimum - the engine of learning",
+      "accent": "#9ee06a",
+      "blurb": "Gradient descent (Cauchy 1847), runnable in THE OCHO: step downhill on a loss surface to its minimum, with a learning rate that converges or diverges - the descent under backprop, k-means, and least squares, the engine of all learning.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "78d5b36e6c155af812d6ea1d161e690d1ab3debc46d40737e6ce13d6e679ad9a"
+    },
+    {
+      "slug": "the-monte-carlo",
+      "title": "THE MONTE CARLO",
+      "kicker": "estimate pi by random darts - error ~ 1/sqrt(n)",
+      "accent": "#c8a2ff",
+      "blurb": "The Monte Carlo method (Metropolis and Ulam 1949), runnable in THE OCHO: estimate pi by random darts with error shrinking like 1/sqrt(n) - sampling to compute what cannot be done by hand, the method under MCMC and every simulation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4b85dece79d3c2d692aee55bc5d28e284fcbe70af55239403cf9267fa239483e"
+    },
+    {
+      "slug": "the-dynamic-programming",
+      "title": "THE DYNAMIC PROGRAMMING",
+      "kicker": "edit distance by optimal substructure",
+      "accent": "#7fd4ff",
+      "blurb": "Dynamic programming (Bellman 1957), runnable in THE OCHO: the Levenshtein edit distance filled cell by cell (kitten to sitting = 3), matching brute force - optimal substructure, the method under sequence alignment, Viterbi, and RL.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "736eed5c9c37047e60a6dad83f60e1aae9ea171b158e82056150e15ec277ba08"
     }
   ],
   "appeals": [
@@ -18060,6 +18150,86 @@
               "accent": "#ff5a8a",
               "icon": "⊥",
               "kicker": "the one result that CLOSES an option",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-least-squares",
+              "title": "THE LEAST SQUARES",
+              "accent": "#8bd0ff",
+              "icon": "grind",
+              "kicker": "fit a line by minimizing squared error",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-principal-component",
+              "title": "THE PRINCIPAL COMPONENT",
+              "accent": "#c0b0ff",
+              "icon": "glitch",
+              "kicker": "PCA - the axis of most variance",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-central-limit",
+              "title": "THE CENTRAL LIMIT",
+              "accent": "#7fe0c0",
+              "icon": "spawn",
+              "kicker": "sum uniforms, get a bell",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-k-means",
+              "title": "THE K-MEANS",
+              "accent": "#9ee0d0",
+              "icon": "loot",
+              "kicker": "clustering as alternating minimization",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-margin",
+              "title": "THE MARGIN",
+              "accent": "#ff9e6a",
+              "icon": "boss",
+              "kicker": "the widest street between the classes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-boltzmann-machine",
+              "title": "THE BOLTZMANN MACHINE",
+              "accent": "#ff7a7a",
+              "icon": "respawn",
+              "kicker": "Hopfield made stochastic - temperature added",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-discriminant",
+              "title": "THE DISCRIMINANT",
+              "accent": "#ffd23f",
+              "icon": "cheat",
+              "kicker": "Fisher's LDA - project to separate",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gradient-descent",
+              "title": "THE GRADIENT DESCENT",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "step downhill to the minimum - the engine of learning",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-monte-carlo",
+              "title": "THE MONTE CARLO",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "estimate pi by random darts - error ~ 1/sqrt(n)",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-dynamic-programming",
+              "title": "THE DYNAMIC PROGRAMMING",
+              "accent": "#7fd4ff",
+              "icon": "spawn",
+              "kicker": "edit distance by optimal substructure",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -28544,7 +28714,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "576b2fdfbc827b152aae13edcc5574d970f428aa625fd2783ddd7ee9a918b6ac",
+  "fold_root": "f58745a1a4af4da74d0afea7aea9cbfff0b8ed152a1d3a1ea1fea69e7875ff07",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
