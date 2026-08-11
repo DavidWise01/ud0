@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1630,
+    "spheres": 1639,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1624,
+    "spheres_built": 1633,
     "apex": 1
   },
   "keepers": [
@@ -14758,6 +14758,87 @@
       "blurb": "Dynamic programming (Bellman 1957), runnable in THE OCHO: the Levenshtein edit distance filled cell by cell (kitten to sitting = 3), matching brute force - optimal substructure, the method under sequence alignment, Viterbi, and RL.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "736eed5c9c37047e60a6dad83f60e1aae9ea171b158e82056150e15ec277ba08"
+    },
+    {
+      "slug": "the-attention",
+      "title": "THE ATTENTION",
+      "kicker": "scaled dot-product attention - the transformer's core",
+      "accent": "#7fd4ff",
+      "blurb": "Scaled dot-product attention (Vaswani et al. 2017, arxiv), runnable in THE OCHO: softmax(QK^T/sqrt d)V with the weight matrix live - every row a probability, a query matching a key attends to it. The mechanism the whole transformer is built from.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "86fe1b1e7b4c8298c1f6b488fe89d26107c7b12defd792b60ab70bfba65ea079"
+    },
+    {
+      "slug": "the-word-embedding",
+      "title": "THE WORD EMBEDDING",
+      "kicker": "meaning as geometry - king - man + woman = queen",
+      "accent": "#c0b0ff",
+      "blurb": "Word vectors (Mikolov et al. word2vec 2013, arxiv), runnable in THE OCHO: cosine similarity and the analogy king - man + woman gives queen on a consistent vector set - from one-hot symbols to a metric space where direction is meaning.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ab0feb1ea94db4c43d9a795b63207a569e2bc83afd7a1e9d499dbb249edb0e1b"
+    },
+    {
+      "slug": "the-lstm",
+      "title": "THE LSTM",
+      "kicker": "the constant error carousel - memory that does not decay",
+      "accent": "#7fe0c0",
+      "blurb": "The LSTM (Hochreiter and Schmidhuber 1997), runnable in THE OCHO: with forget=1 the cell state is carried exactly across 200 steps while a vanilla RNN decays to zero - the gate that let recurrent nets remember.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2dd3daa8ca9204985cac20af029229b9f58d2ea91697813d9098b3fa34a46458"
+    },
+    {
+      "slug": "the-dropout",
+      "title": "THE DROPOUT",
+      "kicker": "delete neurons at random - the expected activation preserved",
+      "accent": "#ffb0d0",
+      "blurb": "Dropout (Srivastava, Hinton et al. 2014), runnable in THE OCHO: inverted dropout zeros a fraction of units and scales survivors by 1/(1-p) so the expected activation is unbiased - an ensemble of subnetworks in one net.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7c492149690f6e83a772c824b112b8149f65ebf55e0944fe99b5067e1b7807ed"
+    },
+    {
+      "slug": "the-batch-norm",
+      "title": "THE BATCH NORM",
+      "kicker": "standardize activations to mean 0, variance 1",
+      "accent": "#9ee0d0",
+      "blurb": "Batch normalization (Ioffe and Szegedy 2015, arxiv), runnable in THE OCHO: (x-mean)/sqrt(var+eps) driving activations to mean 0 and unit variance - the trick that let very deep nets train.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fe06e1467e145736f5fd12d278d1a7a37c64a8f53e7ddf26453d3db87f27192e"
+    },
+    {
+      "slug": "the-skip-connection",
+      "title": "THE SKIP CONNECTION",
+      "kicker": "the identity shortcut - the gradient survives depth",
+      "accent": "#ff9e6a",
+      "blurb": "The residual connection (He et al. ResNet 2015, arxiv), runnable in THE OCHO: y=f(x)+x keeps the gradient order-1 through 50 layers where a plain stack vanishes below 1e-6 - how nets got very deep.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5fb68c0364f957b39a1ff46a80d331406333942cab1881f2c05fc8c19c9c9339"
+    },
+    {
+      "slug": "the-adam",
+      "title": "THE ADAM",
+      "kicker": "a per-parameter learning rate - beats SGD on bad scaling",
+      "accent": "#ffd23f",
+      "blurb": "Adam (Kingma and Ba 2015, arxiv), runnable in THE OCHO: first and second moments with bias correction reaching an ill-conditioned minimum faster than SGD - gradient descent with a per-parameter step, the optimizer under almost every modern net.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e0691b5d926d019c0760462f934ddb36fa3f48309ccd4ef43a7b2b132c607c48"
+    },
+    {
+      "slug": "the-q-learning",
+      "title": "THE Q-LEARNING",
+      "kicker": "reinforcement learning - value from experience",
+      "accent": "#9ee06a",
+      "blurb": "Q-learning (Watkins 1989), runnable in THE OCHO: Q(s,a) += alpha[r + gamma max Q(s') - Q(s,a)] converging to the optimal policy on a gridworld - Bellman's dynamic programming done from experience instead of a model.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "101f7c3d7ac33914a274f91ad9ce77e3ad9968247382470ab9d40e39da61d3cd"
+    },
+    {
+      "slug": "the-convolution",
+      "title": "THE CONVOLUTION",
+      "kicker": "weight sharing over space - the feature map",
+      "accent": "#c8a2ff",
+      "blurb": "The convolution (LeCun et al. LeNet 1998), runnable in THE OCHO: a 3x3 kernel sliding over an image, a Sobel kernel finding edges, verified against hand computation - the neuron with shared weights, the ConvNet that gave vision to machines.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b6886da8c2d914c062b5762bb0de4ce8df66faea8c0881f63f26ad485af1470c"
     }
   ],
   "appeals": [
@@ -18402,6 +18483,78 @@
               "accent": "#ffd76a",
               "icon": "✥",
               "kicker": "the drawing IS the number",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-attention",
+              "title": "THE ATTENTION",
+              "accent": "#7fd4ff",
+              "icon": "cheat",
+              "kicker": "scaled dot-product attention - the transformer's core",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-word-embedding",
+              "title": "THE WORD EMBEDDING",
+              "accent": "#c0b0ff",
+              "icon": "loot",
+              "kicker": "meaning as geometry - king - man + woman = queen",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lstm",
+              "title": "THE LSTM",
+              "accent": "#7fe0c0",
+              "icon": "spawn",
+              "kicker": "the constant error carousel - memory that does not decay",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-dropout",
+              "title": "THE DROPOUT",
+              "accent": "#ffb0d0",
+              "icon": "glitch",
+              "kicker": "delete neurons at random - the expected activation preserved",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-batch-norm",
+              "title": "THE BATCH NORM",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "standardize activations to mean 0, variance 1",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-skip-connection",
+              "title": "THE SKIP CONNECTION",
+              "accent": "#ff9e6a",
+              "icon": "respawn",
+              "kicker": "the identity shortcut - the gradient survives depth",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-adam",
+              "title": "THE ADAM",
+              "accent": "#ffd23f",
+              "icon": "grind",
+              "kicker": "a per-parameter learning rate - beats SGD on bad scaling",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-q-learning",
+              "title": "THE Q-LEARNING",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "reinforcement learning - value from experience",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-convolution",
+              "title": "THE CONVOLUTION",
+              "accent": "#c8a2ff",
+              "icon": "spawn",
+              "kicker": "weight sharing over space - the feature map",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -28714,7 +28867,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "f58745a1a4af4da74d0afea7aea9cbfff0b8ed152a1d3a1ea1fea69e7875ff07",
+  "fold_root": "00d09de47a96eb95e7fa50bb80f4a48b2ac6e165460439d9f27f942d0a7a8db0",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
