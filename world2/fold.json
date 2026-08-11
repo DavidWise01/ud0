@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1810,
+    "spheres": 1820,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1804,
+    "spheres_built": 1814,
     "apex": 1
   },
   "keepers": [
@@ -16378,6 +16378,96 @@
       "blurb": "The LSM tree (ONeil et al. 1996), runnable in THE OCHO: buffer writes in a memtable, flush sorted, merge later, reads newest-first - writes made sequential, the write-optimized opposite of the-b-plus-tree.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "7fffa792515737447d770b0f44e8de0206f83307783dd6f14bcec38d998a9842"
+    },
+    {
+      "slug": "the-black-scholes",
+      "title": "THE BLACK-SCHOLES",
+      "kicker": "the formula that priced every option",
+      "accent": "#7fd4ff",
+      "blurb": "Black-Scholes (Black, Scholes and Merton 1973), runnable in THE OCHO: C = S*N(d1) - K*e^-rT*N(d2), obeying put-call parity and the payoff limit - the-geometric-brownian-motion priced under the-risk-neutral measure, a Nobel.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "dfc5aa4ddcc9be475234258a6336d64381bea8df016ee9d5806cb4dc67e6446d"
+    },
+    {
+      "slug": "the-binomial-option-pricing",
+      "title": "THE BINOMIAL OPTION PRICING",
+      "kicker": "price on a lattice, become Black-Scholes",
+      "accent": "#ff9e6a",
+      "blurb": "Binomial option pricing (Cox, Ross and Rubinstein 1979), runnable in THE OCHO: a lattice with risk-neutral p that converges to Black-Scholes as steps grow - the-risk-neutral-pricing made discrete.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "806dbcaf94a6ef9ae66a93dc4e22cdf7f5aa82a39d4f060c24ebbc53eaab7e08"
+    },
+    {
+      "slug": "the-put-call-parity",
+      "title": "THE PUT-CALL PARITY",
+      "kicker": "the identity the market cannot violate",
+      "accent": "#c0b0ff",
+      "blurb": "Put-call parity (Stoll 1969), runnable in THE OCHO: C - P = S - K*e^-rT exactly, model-independent, a violation is free money - the-no-arbitrage principle at its cleanest.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "237323c2605cfdd1de978725ba6366999d6798064000c89ba17d87874b7c603f"
+    },
+    {
+      "slug": "the-risk-neutral-pricing",
+      "title": "THE RISK-NEUTRAL PRICING",
+      "kicker": "price as a discounted fair bet",
+      "accent": "#9ee0d0",
+      "blurb": "Risk-neutral pricing (Harrison and Kreps 1979), runnable in THE OCHO: price = discounted expected payoff under Q, replication matches it, the real drift is irrelevant - the-no-arbitrage principle as an expectation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "cbcf61cfad015c21316f6084a7575ee7ee7d7b84a7cd5164f8f48671b9133a85"
+    },
+    {
+      "slug": "the-geometric-brownian-motion",
+      "title": "THE GEOMETRIC BROWNIAN MOTION",
+      "kicker": "the random walk of a stock price",
+      "accent": "#ffd23f",
+      "blurb": "Geometric Brownian motion (Samuelson 1965), runnable in THE OCHO: S = S0*exp((mu-sigma^2/2)t + sigma*W), positive prices with normal log-returns and E[S]=S0*e^(mu t) - the-brownian-motion made multiplicative, the process the-black-scholes prices.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "be61b62289bea18967895ac2018b3f33a333efb65f52c34b16186d7ebb044357"
+    },
+    {
+      "slug": "the-markowitz-portfolio",
+      "title": "THE MARKOWITZ PORTFOLIO",
+      "kicker": "risk and return, optimized together",
+      "accent": "#7fe0c0",
+      "blurb": "The Markowitz portfolio (Markowitz 1952), runnable in THE OCHO: minimize variance for a target return, and diversification beats the average - the-optimization of return against risk, modern portfolio theory.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ed5fa1698d229ac78ebcb87808896bbe1dd63a0c3e625794abe7683543d5b607"
+    },
+    {
+      "slug": "the-capm",
+      "title": "THE CAPITAL ASSET PRICING MODEL",
+      "kicker": "the price of risk is beta",
+      "accent": "#ff7a7a",
+      "blurb": "The capital asset pricing model (Sharpe 1964), runnable in THE OCHO: E[R] = Rf + beta*(market premium), only systematic risk is priced - the-markowitz-portfolio's equilibrium, where diversifiable risk earns nothing.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7eee4849b2090f052d926336db1b776e64cc6a0f52f776f184882787feba2a14"
+    },
+    {
+      "slug": "the-monte-carlo-pricing",
+      "title": "THE MONTE CARLO PRICING",
+      "kicker": "simulate the future, average the payoff",
+      "accent": "#9ee06a",
+      "blurb": "Monte-Carlo pricing (Boyle 1977), runnable in THE OCHO: simulate risk-neutral paths and average discounted payoffs, converging to Black-Scholes as 1/sqrt(N) - the-monte-carlo method applied to the-risk-neutral expectation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4b847bb628ff09babfc3e59cc338f3b694eb8f78b5531436eaa0e5be184f0fe0"
+    },
+    {
+      "slug": "the-value-at-risk",
+      "title": "THE VALUE AT RISK",
+      "kicker": "the loss you will not exceed, and its lie",
+      "accent": "#c8a2ff",
+      "blurb": "Value at Risk (RiskMetrics 1994), runnable in THE OCHO: the 95% loss quantile - but NOT subadditive (a counterexample), which Expected Shortfall fixes - a risk measure with a blind spot, the one that survived 2008.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "74b81330cd01ca377d9f1716018c6226c6c81b86181313c38cf59100219d014b"
+    },
+    {
+      "slug": "the-greeks",
+      "title": "THE GREEKS",
+      "kicker": "an option's sensitivities, the hedge",
+      "accent": "#ffb0d0",
+      "blurb": "The Greeks, runnable in THE OCHO: delta = N(d1), gamma, theta, vega, and a delta-hedged book insensitive to small moves - the derivatives of the-black-scholes that let a trader hedge.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "cdb910fca9c77f678806bb94e67680a025183500d5800d620df37d1af057f912"
     }
   ],
   "appeals": [
@@ -23476,6 +23566,86 @@
               "accent": "#7de2b0",
               "icon": "⌘",
               "kicker": "evidence is measured in the alternatives you wrote down",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-black-scholes",
+              "title": "THE BLACK-SCHOLES",
+              "accent": "#7fd4ff",
+              "icon": "boss",
+              "kicker": "the formula that priced every option",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-binomial-option-pricing",
+              "title": "THE BINOMIAL OPTION PRICING",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "price on a lattice, become Black-Scholes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-put-call-parity",
+              "title": "THE PUT-CALL PARITY",
+              "accent": "#c0b0ff",
+              "icon": "cheat",
+              "kicker": "the identity the market cannot violate",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-risk-neutral-pricing",
+              "title": "THE RISK-NEUTRAL PRICING",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "price as a discounted fair bet",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-geometric-brownian-motion",
+              "title": "THE GEOMETRIC BROWNIAN MOTION",
+              "accent": "#ffd23f",
+              "icon": "spawn",
+              "kicker": "the random walk of a stock price",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-markowitz-portfolio",
+              "title": "THE MARKOWITZ PORTFOLIO",
+              "accent": "#7fe0c0",
+              "icon": "loot",
+              "kicker": "risk and return, optimized together",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-capm",
+              "title": "THE CAPITAL ASSET PRICING MODEL",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "the price of risk is beta",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-monte-carlo-pricing",
+              "title": "THE MONTE CARLO PRICING",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "simulate the future, average the payoff",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-value-at-risk",
+              "title": "THE VALUE AT RISK",
+              "accent": "#c8a2ff",
+              "icon": "glitch",
+              "kicker": "the loss you will not exceed, and its lie",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-greeks",
+              "title": "THE GREEKS",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "an option's sensitivities, the hedge",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
@@ -31774,7 +31944,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "323f8b230f0e1a40dffe82be9e6d9c0811589635a9cd60169a25782ca1204567",
+  "fold_root": "d791728d72fccc59d2204bb11a98b8fda4a2a413dd0e1bab59931ce503de4102",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
