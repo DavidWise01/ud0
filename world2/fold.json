@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1780,
+    "spheres": 1790,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1774,
+    "spheres_built": 1784,
     "apex": 1
   },
   "keepers": [
@@ -16108,6 +16108,96 @@
       "blurb": "Abstract interpretation (Cousot 1977), runnable in THE OCHO: a sound over-approximation with a Galois connection and widening that terminates - proof by computing on shapes, honesty by never claiming more than it covers.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "d215c84468916cec60d03ad9fac731c12d0a629092b5c680d9e8ec58f9fb392d"
+    },
+    {
+      "slug": "the-dijkstra",
+      "title": "THE DIJKSTRA",
+      "kicker": "the greedy shortest path",
+      "accent": "#7fd4ff",
+      "blurb": "Dijkstra's algorithm (Dijkstra 1959), runnable in THE OCHO: the greedy shortest path on non-negative weights, matched against brute force - the-bellman-ford's faster cousin, the frontier under routing and the-a-star.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "87171425598774d78025d8c03e3a34564c714fc179fae2688b06adc3911e3488"
+    },
+    {
+      "slug": "the-a-star",
+      "title": "THE A-STAR",
+      "kicker": "Dijkstra with a sense of direction",
+      "accent": "#ff9e6a",
+      "blurb": "A* search (Hart, Nilsson and Raphael 1968), runnable in THE OCHO: f = g + h, optimal exactly when the heuristic is admissible - the-dijkstra guided toward the goal, the search behind pathfinding.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9e8367962959fe20b2c38f71069496231a1ad16f4424c58f928ec4dc0e934803"
+    },
+    {
+      "slug": "the-topological-sort",
+      "title": "THE TOPOLOGICAL SORT",
+      "kicker": "an order that respects every dependency",
+      "accent": "#c0b0ff",
+      "blurb": "Topological sort (Kahn 1962), runnable in THE OCHO: an order where every edge points forward, existing iff the graph is a DAG - scheduling under dependencies, the backbone of build systems.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a2e1d6a0d8dd4efa60a363c3784e964a987ef12a7c544efa9558775da219da3f"
+    },
+    {
+      "slug": "the-prim",
+      "title": "THE PRIM",
+      "kicker": "the cheapest network that connects everything",
+      "accent": "#9ee0d0",
+      "blurb": "Prim's algorithm (Prim 1957), runnable in THE OCHO: grow a minimum spanning tree by the cheapest leaving edge, proven by the cut property - the cheapest way to span a network, the-union-find's Kruskal twin.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0d480659e90d970d851cd4db6256cea5055d024afd873df982ab796c5b924c27"
+    },
+    {
+      "slug": "the-graph-laplacian",
+      "title": "THE GRAPH LAPLACIAN",
+      "kicker": "a graph turned into a matrix",
+      "accent": "#ffd23f",
+      "blurb": "The graph Laplacian (Kirchhoff; Fiedler 1973), runnable in THE OCHO: L = D - A, symmetric and PSD, its zero eigenvalues counting components - the graph as an operator, powering the-spectral-clustering.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f2557dc8110251a0a97be7c0bc6d8c3796f607b49fe1cba430f62a4ddac3c271"
+    },
+    {
+      "slug": "the-spectral-clustering",
+      "title": "THE SPECTRAL CLUSTERING",
+      "kicker": "cut a graph with an eigenvector",
+      "accent": "#7fe0c0",
+      "blurb": "Spectral clustering (Fiedler; Shi-Malik 2000), runnable in THE OCHO: the Fiedler vector's signs split the graph along its weakest cut - the-graph-laplacian's second eigenvector turned into a partition.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8350570131ce7dc9788980bb1c66e4008ec118d7dbc93b6ccfa4cab05148efb6"
+    },
+    {
+      "slug": "the-betweenness-centrality",
+      "title": "THE BETWEENNESS CENTRALITY",
+      "kicker": "who sits on the most shortest paths",
+      "accent": "#ff7a7a",
+      "blurb": "Betweenness centrality (Freeman 1977), runnable in THE OCHO: the fraction of shortest paths through a node, matched to brute force - who sits on the most shortest paths, the vertex whose loss fractures the network.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c77341ab38c5b80b1cc7bb1cc672bcb089840b49832933cc7ba3fda6034ec971"
+    },
+    {
+      "slug": "the-erdos-renyi",
+      "title": "THE ERDOS RENYI",
+      "kicker": "the baseline random network",
+      "accent": "#9ee06a",
+      "blurb": "The Erdos-Renyi random graph (Erdos and Renyi 1959), runnable in THE OCHO: G(n,p) with a giant component appearing sharply at p = 1/n - the baseline random network, the null model real networks are measured against.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1fbf3ea004d0b2eb1d7f9bf18f92eb0fcb9b2656a4cd7609307393fbe7c684b6"
+    },
+    {
+      "slug": "the-small-world",
+      "title": "THE SMALL WORLD",
+      "kicker": "high clustering, short paths",
+      "accent": "#c8a2ff",
+      "blurb": "The small-world network (Watts and Strogatz 1998), runnable in THE OCHO: a few rewires collapse the path length while clustering stays high - six degrees of separation, between the-erdos-renyi's randomness and a rigid lattice.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "781eab399c0bdc040fddf6f9a6fcbfe43424e8f7b290812b0dae62d4962df888"
+    },
+    {
+      "slug": "the-scale-free",
+      "title": "THE SCALE FREE",
+      "kicker": "a few hubs, because the rich get richer",
+      "accent": "#ffb0d0",
+      "blurb": "The scale-free network (Barabasi and Albert 1999), runnable in THE OCHO: preferential attachment grows a power-law degree distribution k^-3 - why real networks have hubs, the-power-law from a simple local rule.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6271a756237e799de6fe56da07429a9fb9ccb6d4f93cb0383d09add142628f58"
     }
   ],
   "appeals": [
@@ -18304,9 +18394,89 @@
               "icon": "≡",
               "kicker": "binary to decimal with no division at all",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-dijkstra",
+              "title": "THE DIJKSTRA",
+              "accent": "#7fd4ff",
+              "icon": "spawn",
+              "kicker": "the greedy shortest path",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-a-star",
+              "title": "THE A-STAR",
+              "accent": "#ff9e6a",
+              "icon": "boss",
+              "kicker": "Dijkstra with a sense of direction",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-topological-sort",
+              "title": "THE TOPOLOGICAL SORT",
+              "accent": "#c0b0ff",
+              "icon": "grind",
+              "kicker": "an order that respects every dependency",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-prim",
+              "title": "THE PRIM",
+              "accent": "#9ee0d0",
+              "icon": "loot",
+              "kicker": "the cheapest network that connects everything",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-graph-laplacian",
+              "title": "THE GRAPH LAPLACIAN",
+              "accent": "#ffd23f",
+              "icon": "grind",
+              "kicker": "a graph turned into a matrix",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-spectral-clustering",
+              "title": "THE SPECTRAL CLUSTERING",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "cut a graph with an eigenvector",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-betweenness-centrality",
+              "title": "THE BETWEENNESS CENTRALITY",
+              "accent": "#ff7a7a",
+              "icon": "loot",
+              "kicker": "who sits on the most shortest paths",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-erdos-renyi",
+              "title": "THE ERDOS RENYI",
+              "accent": "#9ee06a",
+              "icon": "spawn",
+              "kicker": "the baseline random network",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-small-world",
+              "title": "THE SMALL WORLD",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "high clustering, short paths",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-scale-free",
+              "title": "THE SCALE FREE",
+              "accent": "#ffb0d0",
+              "icon": "boss",
+              "kicker": "a few hubs, because the rich get richer",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 26,
+          "seats": 30,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -31264,7 +31434,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "352c6ca1489fdeef4142357e9c76feef20da5ae7c025fb811ec7052b8422fb19",
+  "fold_root": "512f7ae9d4f4ebb4cb26866ecf23432adfa27de801162430897c9f382fc123b6",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
