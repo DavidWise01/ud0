@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1870,
+    "spheres": 1880,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1864,
+    "spheres_built": 1874,
     "apex": 1
   },
   "keepers": [
@@ -16918,6 +16918,96 @@
       "blurb": "The phase portrait (Poincare), runnable in THE OCHO: the trace-determinant plane classifies every 2D fixed point (node, saddle, spiral, center) from its Jacobian - a system's fate in two numbers, the geometry beneath the-bifurcation.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "dcbd1f1ea583dbe2bb9d9a4c6f77491208114eb9128f80e9d67a7b33c8fe1d59"
+    },
+    {
+      "slug": "the-second-law",
+      "title": "THE SECOND LAW",
+      "kicker": "entropy's arrow of time",
+      "accent": "#7fd4ff",
+      "blurb": "The second law (Clausius 1865), runnable in THE OCHO: heat flows hot to cold and total entropy never decreases, mixing and irreversibility positive - the arrow of time, the-entropy given a direction and the-carnot's ceiling.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "05d8cabe2b6a735fe4eb30bdf4a6552ee13c909866711a3c89bc90e0eb51938f"
+    },
+    {
+      "slug": "the-boltzmann-distribution",
+      "title": "THE BOLTZMANN DISTRIBUTION",
+      "kicker": "energy shared at temperature T",
+      "accent": "#ff9e6a",
+      "blurb": "The Boltzmann distribution (Boltzmann 1877), runnable in THE OCHO: P proportional to exp(-E/kT), normalized, uniform at high T and the ground state at low T - the weight the-partition-function sums and the-softmax borrows.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0d3ceeaef1e933abeb6019a509c211030a1ba74c848b490deea901ee8a7d47b0"
+    },
+    {
+      "slug": "the-partition-function",
+      "title": "THE PARTITION FUNCTION",
+      "kicker": "the sum that knows everything",
+      "accent": "#c0b0ff",
+      "blurb": "The partition function (Gibbs 1902), runnable in THE OCHO: Z = sum exp(-beta E), whose log-derivatives give energy, entropy, and free energy, with C = beta^2 Var(E) - the generating function of statistical mechanics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5408aa3d1af6493766332d8c7fa085427fedf00cca5af665be0c2d20c14bb52a"
+    },
+    {
+      "slug": "the-maxwell-boltzmann",
+      "title": "THE MAXWELL-BOLTZMANN DISTRIBUTION",
+      "kicker": "how fast the molecules move",
+      "accent": "#9ee0d0",
+      "blurb": "The Maxwell-Boltzmann distribution (Maxwell 1860), runnable in THE OCHO: f proportional to v^2 exp(-mv^2/2kT), with v_p < mean < v_rms and (3/2)kT average - the speeds behind the-ideal-gas.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ef740f178cdf403a2875985b17c1dce3d3adc48465f3c46c6ea738b44855cd66"
+    },
+    {
+      "slug": "the-ideal-gas",
+      "title": "THE IDEAL GAS",
+      "kicker": "PV = NkT from bouncing molecules",
+      "accent": "#ffd23f",
+      "blurb": "The ideal gas law (Clapeyron 1834), runnable in THE OCHO: PV = NkT, matching the kinetic-theory pressure with Boyle and Charles - the macroscopic face of the-maxwell-boltzmann's molecules.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4b2253ab952925a7f75bc291db16b6ef1f203512caccde389202b4eda61e6885"
+    },
+    {
+      "slug": "the-heat-equation",
+      "title": "THE HEAT EQUATION",
+      "kicker": "how a hot spot spreads",
+      "accent": "#7fe0c0",
+      "blurb": "The heat equation (Fourier 1822), runnable in THE OCHO: du/dt = alpha u_xx, a Gaussian spreading as sqrt(t) with conserved heat and the maximum principle - the diffusion PDE sharing the-brownian-motion's kernel.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b4aaa6492748ca4671485e937ee96a3e49d800fd938157bde6f7c68935e41cc3"
+    },
+    {
+      "slug": "the-free-energy",
+      "title": "THE FREE ENERGY",
+      "kicker": "energy against entropy",
+      "accent": "#ff7a7a",
+      "blurb": "The free energy (Helmholtz 1882), runnable in THE OCHO: F = U - TS minimized by the Boltzmann distribution, F = -kT lnZ - energy against entropy, the physical twin of the-elbo's variational free energy.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5337e777a74a6894d533efb3eb02145c42f87aca7dcbf891d0c4815f6c86b405"
+    },
+    {
+      "slug": "the-detailed-balance",
+      "title": "THE DETAILED BALANCE",
+      "kicker": "equilibrium as balanced flow",
+      "accent": "#9ee06a",
+      "blurb": "Detailed balance (Onsager 1931), runnable in THE OCHO: pi_i P_ij = pi_j P_ji implies stationarity, sufficient but not necessary - the condition the-metropolis and the-gibbs-sampler are built to satisfy.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0b018bea904155c3251e6b263d2a1779eb3ea01e0d3a944c1e3e314c9270670d"
+    },
+    {
+      "slug": "the-equipartition",
+      "title": "THE EQUIPARTITION THEOREM",
+      "kicker": "half a kT to every square-law mode",
+      "accent": "#c8a2ff",
+      "blurb": "The equipartition theorem (Maxwell 1878), runnable in THE OCHO: (1/2)kT per quadratic degree of freedom, a quartic mode getting (1/4)kT - why the-ideal-gas carries (3/2)kT.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "930e5c30250dcc777a050f86d7d1db60c6dc7a85400891a2e3c81a809aaa71f0"
+    },
+    {
+      "slug": "the-fermi-dirac",
+      "title": "THE FERMI-DIRAC DISTRIBUTION",
+      "kicker": "no two fermions alike",
+      "accent": "#ffb0d0",
+      "blurb": "The Fermi-Dirac distribution (Fermi and Dirac 1926), runnable in THE OCHO: n = 1/(e+1) in [0,1] with a step at the Fermi level - the-boltzmann-distribution for electrons, why metals conduct and matter is solid.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5ba6700b05a00b9c9fa12adc971fbeb321b7bf48b231c199fc9d77a1e2e7c164"
     }
   ],
   "appeals": [
@@ -25261,6 +25351,86 @@
               "icon": "≡",
               "kicker": "three touches, wherever you ask",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-second-law",
+              "title": "THE SECOND LAW",
+              "accent": "#7fd4ff",
+              "icon": "glitch",
+              "kicker": "entropy's arrow of time",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-boltzmann-distribution",
+              "title": "THE BOLTZMANN DISTRIBUTION",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "energy shared at temperature T",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-partition-function",
+              "title": "THE PARTITION FUNCTION",
+              "accent": "#c0b0ff",
+              "icon": "boss",
+              "kicker": "the sum that knows everything",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-maxwell-boltzmann",
+              "title": "THE MAXWELL-BOLTZMANN DISTRIBUTION",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "how fast the molecules move",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ideal-gas",
+              "title": "THE IDEAL GAS",
+              "accent": "#ffd23f",
+              "icon": "grind",
+              "kicker": "PV = NkT from bouncing molecules",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-heat-equation",
+              "title": "THE HEAT EQUATION",
+              "accent": "#7fe0c0",
+              "icon": "spawn",
+              "kicker": "how a hot spot spreads",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-free-energy",
+              "title": "THE FREE ENERGY",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "energy against entropy",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-detailed-balance",
+              "title": "THE DETAILED BALANCE",
+              "accent": "#9ee06a",
+              "icon": "cheat",
+              "kicker": "equilibrium as balanced flow",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-equipartition",
+              "title": "THE EQUIPARTITION THEOREM",
+              "accent": "#c8a2ff",
+              "icon": "grind",
+              "kicker": "half a kT to every square-law mode",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fermi-dirac",
+              "title": "THE FERMI-DIRAC DISTRIBUTION",
+              "accent": "#ffb0d0",
+              "icon": "boss",
+              "kicker": "no two fermions alike",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -32794,7 +32964,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "36e7fe5366f69d9363555b68e58009ba920873a887d0ac2c2582fe5c121bfdae",
+  "fold_root": "ac6893183117fa5c8cd59b75dbd6d3fb66731bc90a09d64f38735e8432030b83",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
