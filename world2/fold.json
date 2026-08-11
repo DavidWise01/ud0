@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1930,
+    "spheres": 1940,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1924,
+    "spheres_built": 1934,
     "apex": 1
   },
   "keepers": [
@@ -17458,6 +17458,96 @@
       "blurb": "Griffith (1921), runnable in THE OCHO: sigma_f = sqrt(2 E gamma / (pi a)), fracture stress falling as 1/sqrt(crack) with a material-constant toughness K_c - the flaw dropping a real solid far below the-stress-strain's ideal strength.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "0b3c200009f171560d919962948037f5057b5e22bb0a30f019b2bd115d75cc31"
+    },
+    {
+      "slug": "the-lorentz-transformation",
+      "title": "THE LORENTZ TRANSFORMATION",
+      "kicker": "space and time re-mix",
+      "accent": "#7fd4ff",
+      "blurb": "Lorentz-Einstein (1905), runnable in THE OCHO: x'=gamma(x-vt), t'=gamma(t-vx/c^2), the boost that keeps (ct)^2-x^2 invariant and forces the-time-dilation and the-length-contraction.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5459e62a250766fa835e5dd232c8846f5b181ba8fa563653c39a9a96658c3159"
+    },
+    {
+      "slug": "the-time-dilation",
+      "title": "THE TIME DILATION",
+      "kicker": "moving clocks run slow",
+      "accent": "#9ee06a",
+      "blurb": "Einstein (1905), runnable in THE OCHO: dt = gamma d_tau, so a muon lives long enough to reach the ground, reciprocal with the-length-contraction and the reason the-twin-paradox is real.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "55cb302da2845a61ee1ec1a70c644791c0b20e88ac48629e30f5a57d915f9399"
+    },
+    {
+      "slug": "the-length-contraction",
+      "title": "THE LENGTH CONTRACTION",
+      "kicker": "moving rods shrink",
+      "accent": "#c8a2ff",
+      "blurb": "FitzGerald-Lorentz-Einstein, runnable in THE OCHO: L = L0/gamma along the motion (transverse intact), the space component of the-lorentz-transformation, reciprocal to the-time-dilation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b3c13021cccd4cc95ddb751ee73377bdef8838ae381814578bc821f27ceba515"
+    },
+    {
+      "slug": "the-relativistic-doppler",
+      "title": "THE RELATIVISTIC DOPPLER",
+      "kicker": "light shifts with motion",
+      "accent": "#ff7a7a",
+      "blurb": "Einstein (1905), runnable in THE OCHO: sqrt((1-beta)/(1+beta)) receding, plus a transverse 1/gamma redshift with no classical analog - the-doppler-effect corrected by the-time-dilation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "85c2590a84a920ae466cf8ea9c0bb48787e188cc6d94654f394de5ef12f54387"
+    },
+    {
+      "slug": "the-mass-energy-equivalence",
+      "title": "THE MASS-ENERGY EQUIVALENCE",
+      "kicker": "mass is frozen energy",
+      "accent": "#ffd23f",
+      "blurb": "Einstein (1905), runnable in THE OCHO: E = mc^2 and E^2 = (pc)^2 + (mc^2)^2, kinetic energy reducing to 0.5 m v^2 at low speed - the invariant mass of the-four-momentum.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "79e53335d35f1997154c53faa67c9b3246ca259ef49663974c89be92966e6c07"
+    },
+    {
+      "slug": "the-relativistic-momentum",
+      "title": "THE RELATIVISTIC MOMENTUM",
+      "kicker": "push forever, never reach c",
+      "accent": "#ff9e6a",
+      "blurb": "Relativistic momentum (Lewis-Tolman 1909), runnable in THE OCHO: p = gamma m v diverging as v->c, conserved in collisions - the spatial part of the-four-momentum feeding the-mass-energy-equivalence.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1733eef8221f394df8a51bda1a4aa4694ecaeaba3c8a75ee0ca06fba565bf195"
+    },
+    {
+      "slug": "the-velocity-addition",
+      "title": "THE VELOCITY ADDITION",
+      "kicker": "speeds don't simply add",
+      "accent": "#7fe0c0",
+      "blurb": "Einstein (1905), runnable in THE OCHO: w = (u+v)/(1+uv/c^2) capped at c (0.9c and 0.9c give 0.9945c), the-lorentz-transformation applied to velocities, why nothing outruns light.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "948e21f0dd5afa8c944fc681d3cb27c5f21cbeea0a5d9a02ef8727e97203661f"
+    },
+    {
+      "slug": "the-spacetime-interval",
+      "title": "THE SPACETIME INTERVAL",
+      "kicker": "the one agreed separation",
+      "accent": "#ffb0d0",
+      "blurb": "Minkowski (1908), runnable in THE OCHO: s^2 = (ct)^2 - x^2 invariant, its sign sorting timelike/spacelike/lightlike, the light cone splitting past from elsewhere - the quantity the-lorentz-transformation preserves.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e207bbe7985c2ae03bc8611ea183bc60f6acd16c5602942e4952bf759b653031"
+    },
+    {
+      "slug": "the-four-momentum",
+      "title": "THE FOUR-MOMENTUM",
+      "kicker": "energy and momentum, one vector",
+      "accent": "#9ee0d0",
+      "blurb": "Minkowski (1908), runnable in THE OCHO: P = (E/c, p) with invariant norm (mc)^2, conserved in every decay - uniting the-mass-energy-equivalence and the-relativistic-momentum.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "682eafb142abe8137a4e80b6feaced2c7165dbc064492a4500f659379cfbc6c1"
+    },
+    {
+      "slug": "the-twin-paradox",
+      "title": "THE TWIN PARADOX",
+      "kicker": "proper time is a path",
+      "accent": "#ffcf5a",
+      "blurb": "Langevin (1911), runnable in THE OCHO: the traveller ages less by 1/gamma, the straight worldline maximizing proper time (verified against bent paths) - the-time-dilation integrated along the-spacetime-interval.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9edbd330835acf53b319d3721fbf2d32957cd661c412a39c745c16b3c0a155be"
     }
   ],
   "appeals": [
@@ -26958,6 +27048,86 @@
               "icon": "≠",
               "kicker": "0.05 apart, and asserted distinct",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lorentz-transformation",
+              "title": "THE LORENTZ TRANSFORMATION",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "space and time re-mix",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-time-dilation",
+              "title": "THE TIME DILATION",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "moving clocks run slow",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-length-contraction",
+              "title": "THE LENGTH CONTRACTION",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "moving rods shrink",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-relativistic-doppler",
+              "title": "THE RELATIVISTIC DOPPLER",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "light shifts with motion",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-mass-energy-equivalence",
+              "title": "THE MASS-ENERGY EQUIVALENCE",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "mass is frozen energy",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-relativistic-momentum",
+              "title": "THE RELATIVISTIC MOMENTUM",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "push forever, never reach c",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-velocity-addition",
+              "title": "THE VELOCITY ADDITION",
+              "accent": "#7fe0c0",
+              "icon": "cheat",
+              "kicker": "speeds don't simply add",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-spacetime-interval",
+              "title": "THE SPACETIME INTERVAL",
+              "accent": "#ffb0d0",
+              "icon": "grind",
+              "kicker": "the one agreed separation",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-four-momentum",
+              "title": "THE FOUR-MOMENTUM",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "energy and momentum, one vector",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-twin-paradox",
+              "title": "THE TWIN PARADOX",
+              "accent": "#ffcf5a",
+              "icon": "spawn",
+              "kicker": "proper time is a path",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 33,
@@ -33814,7 +33984,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "0dfb3f172c79ac3509152594e3387741d03fafba6f21ae3c28f267163e480a3a",
+  "fold_root": "cad48d5311d4383889c704f03120131d61184386f4254b39b8108bbbe72a3bf7",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
