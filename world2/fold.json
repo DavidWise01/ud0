@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1770,
+    "spheres": 1780,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1764,
+    "spheres_built": 1774,
     "apex": 1
   },
   "keepers": [
@@ -16018,6 +16018,96 @@
       "blurb": "Rice's theorem (Rice 1953), runnable in THE OCHO: reduce halting to any non-trivial semantic property to prove it undecidable - the-halting-problem generalized, the ceiling on program analysis.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "b0be1a57b46c9b603dfda67e56729cea4219efc9eb2557bac7ee0e095fa91da1"
+    },
+    {
+      "slug": "the-simply-typed-lambda-calculus",
+      "title": "THE SIMPLY TYPED LAMBDA CALCULUS",
+      "kicker": "types that guarantee no crash",
+      "accent": "#7fd4ff",
+      "blurb": "The simply typed lambda calculus (Church 1940), runnable in THE OCHO: progress and preservation prove a well-typed term never gets stuck - types as a proof of no-crash, the-lambda-calculus made safe and the computational half of the-curry-howard.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d28182b1bab6d5b85155e8ca9b09309edc3fb290f940decfca78fb1d3d8fc22f"
+    },
+    {
+      "slug": "the-curry-howard",
+      "title": "THE CURRY HOWARD CORRESPONDENCE",
+      "kicker": "proofs and programs are the same thing",
+      "accent": "#ff9e6a",
+      "blurb": "The Curry-Howard correspondence (Howard 1969), runnable in THE OCHO: a proof of A implies B IS a function of that type, modus ponens IS application - proofs and programs identified, the bridge from the-natural-deduction to types.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "62f4838657a55c41519443b298242eb70bb7230f3c60ee3333ee32252315c584"
+    },
+    {
+      "slug": "the-hoare-logic",
+      "title": "THE HOARE LOGIC",
+      "kicker": "a proof system for what a program does",
+      "accent": "#c0b0ff",
+      "blurb": "Hoare logic (Hoare 1969), runnable in THE OCHO: {P}C{Q} triples verified exhaustively over the state space, with a loop invariant proving a loop correct - the-natural-deduction for imperative code.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "92ac68159ad514298e4d55ddb8a60a26d299769a87ad183f349352bab7cb9d7e"
+    },
+    {
+      "slug": "the-weakest-precondition",
+      "title": "THE WEAKEST PRECONDITION",
+      "kicker": "verification run backward",
+      "accent": "#9ee0d0",
+      "blurb": "The weakest precondition (Dijkstra 1975), runnable in THE OCHO: wp(x:=e,Q)=Q[x:=e], and {P}C{Q} holds iff P implies wp(C,Q) - the-hoare-logic turned into a backward calculation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6f3e9faa0d138e027d81ba4924dd4d93333800295e485029d41bdcd7793d07b3"
+    },
+    {
+      "slug": "the-natural-deduction",
+      "title": "THE NATURAL DEDUCTION",
+      "kicker": "introduce and eliminate",
+      "accent": "#ffd23f",
+      "blurb": "Natural deduction (Gentzen 1935), runnable in THE OCHO: intro and elim rules each sound over every valuation, affirming-the-consequent rejected - the-syllogism generalized to full propositional logic.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "85353bce556545c98b7c85f82502b5a998630abec2cdf18cb89569986a258f6f"
+    },
+    {
+      "slug": "the-sequent-calculus",
+      "title": "THE SEQUENT CALCULUS",
+      "kicker": "why cut can always be removed",
+      "accent": "#7fe0c0",
+      "blurb": "The sequent calculus (Gentzen 1935), runnable in THE OCHO: left/right rules and cut-elimination to a cut-free proof with the subformula property - the-natural-deduction made symmetric, the source of consistency.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7461d43bcf2ec52adc7090dee560e362d8199224a5e9c736deaa3c13138d0401"
+    },
+    {
+      "slug": "the-model-checking",
+      "title": "THE MODEL CHECKING",
+      "kicker": "explore every state a system can reach",
+      "accent": "#ff7a7a",
+      "blurb": "Model checking (Clarke, Emerson, Sifakis 1981), runnable in THE OCHO: a CTL formula's satisfying states by fixpoint labeling, safety iff no bad state reachable - the-temporal-logic made decidable on a finite graph.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7fb727852aedb930865b79e20acd8f3a14cd8fc83003c490b211b39d51402790"
+    },
+    {
+      "slug": "the-temporal-logic",
+      "title": "THE TEMPORAL LOGIC",
+      "kicker": "a logic that talks about time",
+      "accent": "#9ee06a",
+      "blurb": "Temporal logic (Pnueli 1977), runnable in THE OCHO: X, F, G, U over a path with F p = not G not p - logic about time, the language the-model-checking decides.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4f2e8b4994db8760ef09812875fb807709d4139c827f2ce758b2440a97bf0bdb"
+    },
+    {
+      "slug": "the-binary-decision-diagram",
+      "title": "THE BINARY DECISION DIAGRAM",
+      "kicker": "a canonical form for a boolean function",
+      "accent": "#c8a2ff",
+      "blurb": "The binary decision diagram (Bryant 1986), runnable in THE OCHO: a reduced ordered diagram that is canonical - equal functions iff identical - the-boolean-circuit compressed, how the-model-checking scales symbolically.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8ca245a31dab8d8f2ee62435e86ba3929618411828ff1a879078821812a54251"
+    },
+    {
+      "slug": "the-abstract-interpretation",
+      "title": "THE ABSTRACT INTERPRETATION",
+      "kicker": "compute on shapes, soundly",
+      "accent": "#ffb0d0",
+      "blurb": "Abstract interpretation (Cousot 1977), runnable in THE OCHO: a sound over-approximation with a Galois connection and widening that terminates - proof by computing on shapes, honesty by never claiming more than it covers.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d215c84468916cec60d03ad9fac731c12d0a629092b5c680d9e8ec58f9fb392d"
     }
   ],
   "appeals": [
@@ -18394,9 +18484,89 @@
               "icon": "◔",
               "kicker": "the honesty lives in the part nobody prints",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-simply-typed-lambda-calculus",
+              "title": "THE SIMPLY TYPED LAMBDA CALCULUS",
+              "accent": "#7fd4ff",
+              "icon": "spawn",
+              "kicker": "types that guarantee no crash",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-curry-howard",
+              "title": "THE CURRY HOWARD CORRESPONDENCE",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "proofs and programs are the same thing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hoare-logic",
+              "title": "THE HOARE LOGIC",
+              "accent": "#c0b0ff",
+              "icon": "cheat",
+              "kicker": "a proof system for what a program does",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-weakest-precondition",
+              "title": "THE WEAKEST PRECONDITION",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "verification run backward",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-natural-deduction",
+              "title": "THE NATURAL DEDUCTION",
+              "accent": "#ffd23f",
+              "icon": "grind",
+              "kicker": "introduce and eliminate",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sequent-calculus",
+              "title": "THE SEQUENT CALCULUS",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "why cut can always be removed",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-model-checking",
+              "title": "THE MODEL CHECKING",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "explore every state a system can reach",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-temporal-logic",
+              "title": "THE TEMPORAL LOGIC",
+              "accent": "#9ee06a",
+              "icon": "spawn",
+              "kicker": "a logic that talks about time",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-binary-decision-diagram",
+              "title": "THE BINARY DECISION DIAGRAM",
+              "accent": "#c8a2ff",
+              "icon": "grind",
+              "kicker": "a canonical form for a boolean function",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-abstract-interpretation",
+              "title": "THE ABSTRACT INTERPRETATION",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "compute on shapes, soundly",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 29,
+          "seats": 31,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         }
       ],
@@ -31094,7 +31264,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "55725ce349777d0abb0bb56af8d88a84b18623f3dded68e9fcefeb0bd81f8a17",
+  "fold_root": "352c6ca1489fdeef4142357e9c76feef20da5ae7c025fb811ec7052b8422fb19",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
