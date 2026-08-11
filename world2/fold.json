@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1760,
+    "spheres": 1770,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1754,
+    "spheres_built": 1764,
     "apex": 1
   },
   "keepers": [
@@ -15928,6 +15928,96 @@
       "blurb": "The Bode plot (Bode 1945), runnable in THE OCHO: magnitude and phase versus frequency, -3 dB and -45 degrees at the corner - the-transfer-function across frequency, how gain and phase margins are read.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "4bc69bb371a9912a7f1f000dad5186da1d44f06b5df234e988ed0c8cd43a9d24"
+    },
+    {
+      "slug": "the-turing-machine",
+      "title": "THE TURING MACHINE",
+      "kicker": "a head, a tape, and a table of rules",
+      "accent": "#7fd4ff",
+      "blurb": "The Turing machine (Turing 1936), runnable in THE OCHO: a head, a tape, and a transition table run to a known halting step - computation itself defined, the substrate every complexity class is about.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a698e1c9dcbf0d26840e6e554c46b2e816392aa6a7e030e2ff8bdbf915a0d578"
+    },
+    {
+      "slug": "the-halting-problem",
+      "title": "THE HALTING PROBLEM",
+      "kicker": "no program can decide if every program halts",
+      "accent": "#ff9e6a",
+      "blurb": "The halting problem (Turing 1936), runnable in THE OCHO: Cantor's diagonal turned on the-turing-machine proves no program decides halting for all - the first undecidable problem, the wall the-rice-theorem generalizes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3460065cbb2cb1a6a96a12d91cfc7412afd93175cf77f4fa715a5184ffe03466"
+    },
+    {
+      "slug": "the-p-vs-np",
+      "title": "THE P VERSUS NP",
+      "kicker": "is finding as easy as checking?",
+      "accent": "#c0b0ff",
+      "blurb": "P versus NP (Cook 1971; Levin 1973), runnable in THE OCHO: checking a certificate is poly while brute-force search is exponential, and P=NP is open - the central question, the gap between finding and checking.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "aab24eb8cd9b18270bd92be79c146ee32a882a5c72b3eecd247cda6bc62b3de7"
+    },
+    {
+      "slug": "the-cook-levin-theorem",
+      "title": "THE COOK LEVIN THEOREM",
+      "kicker": "SAT is NP-complete",
+      "accent": "#9ee0d0",
+      "blurb": "The Cook-Levin theorem (Cook 1971; Levin 1973), runnable in THE OCHO: a computation encoded as a CNF satisfiable iff the machine accepts - the first NP-complete problem, SAT the root of every the-karp-reduction.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bbd308fc685e41f5d17dc79584e44940a6d3671ea20ab3e1aa013431b2388361"
+    },
+    {
+      "slug": "the-3-sat",
+      "title": "THE 3-SAT",
+      "kicker": "the canonical NP-complete problem",
+      "accent": "#ffd23f",
+      "blurb": "3-SAT (Karp 1972), runnable in THE OCHO: clause-splitting reduces any CNF to 3 literals preserving satisfiability, while 2-SAT is in P - the workhorse of NP-completeness.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ed3a850ed8f7aaee25c1c546a5d8f53eaa65e0c6dbc205cf4a7c98f749b9d696"
+    },
+    {
+      "slug": "the-karp-reduction",
+      "title": "THE KARP REDUCTION",
+      "kicker": "how hardness travels",
+      "accent": "#7fe0c0",
+      "blurb": "The Karp reduction (Karp 1972), runnable in THE OCHO: a poly map with x in A iff f(x) in B, verified both directions - how hardness travels, the-cook-levin SAT carried to every NP-complete problem.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0bbdc1d3d55ee163c9ad19b1c46e4b431b25823225d62ec6fcd26840ed14b328"
+    },
+    {
+      "slug": "the-np-completeness",
+      "title": "THE NP COMPLETENESS",
+      "kicker": "the hardest problems, all the same",
+      "accent": "#ff7a7a",
+      "blurb": "NP-completeness (Karp 1972), runnable in THE OCHO: clique, independent-set, and vertex-cover are the same problem under complementation - the hardest problems in NP, all equivalent; if one is easy the-p-vs-np collapses.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "48ecd31dd76ac0224ce37e09002357822ece60283234eeb55a90c4abd32adb05"
+    },
+    {
+      "slug": "the-boolean-circuit",
+      "title": "THE BOOLEAN CIRCUIT",
+      "kicker": "computation as a graph of gates",
+      "accent": "#9ee06a",
+      "blurb": "The Boolean circuit (Shannon 1938), runnable in THE OCHO: a DAG of AND/OR/NOT gates computing a function, verified on all 2^n inputs - Shannon's switching algebra (the-algebra) as a complexity model.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f756b81991dd508b5d804f15f14108f20fa30000d65fb4a1197fafdc381e0498"
+    },
+    {
+      "slug": "the-approximation-algorithm",
+      "title": "THE APPROXIMATION ALGORITHM",
+      "kicker": "bound how far off you are",
+      "accent": "#c8a2ff",
+      "blurb": "The approximation algorithm (Johnson 1974), runnable in THE OCHO: greedy vertex-cover is provably <= 2*OPT over all 1088 small graphs - the practical reply to NP-hardness, a bounded-error poly solution.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "583e48eab7c928c23481e6981c69c008ccd625f6d0c4ee2e88fa687f7db739cb"
+    },
+    {
+      "slug": "the-rice-theorem",
+      "title": "THE RICE THEOREM",
+      "kicker": "every non-trivial property is undecidable",
+      "accent": "#ffb0d0",
+      "blurb": "Rice's theorem (Rice 1953), runnable in THE OCHO: reduce halting to any non-trivial semantic property to prove it undecidable - the-halting-problem generalized, the ceiling on program analysis.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b0be1a57b46c9b603dfda67e56729cea4219efc9eb2557bac7ee0e095fa91da1"
     }
   ],
   "appeals": [
@@ -21226,9 +21316,89 @@
               "icon": "∅",
               "kicker": "a bounded specialist declares its own edge",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-turing-machine",
+              "title": "THE TURING MACHINE",
+              "accent": "#7fd4ff",
+              "icon": "spawn",
+              "kicker": "a head, a tape, and a table of rules",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-halting-problem",
+              "title": "THE HALTING PROBLEM",
+              "accent": "#ff9e6a",
+              "icon": "glitch",
+              "kicker": "no program can decide if every program halts",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-p-vs-np",
+              "title": "THE P VERSUS NP",
+              "accent": "#c0b0ff",
+              "icon": "boss",
+              "kicker": "is finding as easy as checking?",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cook-levin-theorem",
+              "title": "THE COOK LEVIN THEOREM",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "SAT is NP-complete",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-3-sat",
+              "title": "THE 3-SAT",
+              "accent": "#ffd23f",
+              "icon": "glitch",
+              "kicker": "the canonical NP-complete problem",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-karp-reduction",
+              "title": "THE KARP REDUCTION",
+              "accent": "#7fe0c0",
+              "icon": "cheat",
+              "kicker": "how hardness travels",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-np-completeness",
+              "title": "THE NP COMPLETENESS",
+              "accent": "#ff7a7a",
+              "icon": "boss",
+              "kicker": "the hardest problems, all the same",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-boolean-circuit",
+              "title": "THE BOOLEAN CIRCUIT",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "computation as a graph of gates",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-approximation-algorithm",
+              "title": "THE APPROXIMATION ALGORITHM",
+              "accent": "#c8a2ff",
+              "icon": "loot",
+              "kicker": "bound how far off you are",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rice-theorem",
+              "title": "THE RICE THEOREM",
+              "accent": "#ffb0d0",
+              "icon": "glitch",
+              "kicker": "every non-trivial property is undecidable",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 29,
+          "seats": 30,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -30924,7 +31094,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "e8bc7934fe7a975f69419282cb99c6df7f5d68c77373564d4f1e1c79afba7930",
+  "fold_root": "55725ce349777d0abb0bb56af8d88a84b18623f3dded68e9fcefeb0bd81f8a17",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
