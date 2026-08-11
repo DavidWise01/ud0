@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1860,
+    "spheres": 1870,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1854,
+    "spheres_built": 1864,
     "apex": 1
   },
   "keepers": [
@@ -16828,6 +16828,96 @@
       "blurb": "The double pendulum, runnable in THE OCHO: coupled Lagrangian equations with a positive Lyapunov exponent so a 1e-8 nudge diverges - deterministic chaos, the-spring-mass's nonlinear cousin.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "59bec7096ae80246de92dcb5d480ac1b6952d5ec2768fdb91ec7769578c6bc47"
+    },
+    {
+      "slug": "the-sir-model",
+      "title": "THE SIR MODEL",
+      "kicker": "an epidemic in three compartments",
+      "accent": "#7fd4ff",
+      "blurb": "The SIR model (Kermack-McKendrick 1927), runnable in THE OCHO: S+I+R conserved, an epidemic iff R0>1, peaking at S/N=1/R0 - the curve behind every outbreak (a model, not medical advice).",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ee161e35ad13a8eb3b723fa5376bf9398c79cc1d7be0e402f9d84f6a23b60a8b"
+    },
+    {
+      "slug": "the-seir-model",
+      "title": "THE SEIR MODEL",
+      "kicker": "add the incubation stage",
+      "accent": "#ff9e6a",
+      "blurb": "The SEIR model (Anderson-May 1991), runnable in THE OCHO: an Exposed latent stage delays the peak while R0 stays beta/gamma - the-sir-model for diseases with an incubation lag.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "531b50eb295647ad462b8d8384526a812b93fb43fa27e3a4d83eb7f19a34cfcd"
+    },
+    {
+      "slug": "the-basic-reproduction-number",
+      "title": "THE BASIC REPRODUCTION NUMBER",
+      "kicker": "the number that decides an outbreak",
+      "accent": "#c0b0ff",
+      "blurb": "The basic reproduction number, runnable in THE OCHO: R0 above 1 is a fire and below 1 a fizzle, with herd immunity at 1-1/R0 - the threshold in the-sir-model, the number that decides an outbreak.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d457428de7c7c670e10cb4196045f68038598e8a5d9617935445ef581549128a"
+    },
+    {
+      "slug": "the-logistic-growth",
+      "title": "THE LOGISTIC GROWTH",
+      "kicker": "growth with a ceiling",
+      "accent": "#9ee0d0",
+      "blurb": "Logistic growth (Verhulst 1838), runnable in THE OCHO: dN/dt=rN(1-N/K), a sigmoid to the carrying capacity with the fastest growth at K/2 - the tame continuous cousin of the-logistic-map's chaos.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b5d42d7c0e91b81e411b5aef723923d929edf8841ce376c44f14f2dbe1a6eff6"
+    },
+    {
+      "slug": "the-competitive-exclusion",
+      "title": "THE COMPETITIVE EXCLUSION",
+      "kicker": "two into one niche will not go",
+      "accent": "#ffd23f",
+      "blurb": "Competitive exclusion (Gause 1934), runnable in THE OCHO: two complete competitors cannot coexist, coexistence needs self-limitation to exceed cross-limitation - the-lotka-volterra competition's verdict.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e1c0298372dfc3be0f047ffe048a948f79c7d65e71392b2ca154cccc06010e12"
+    },
+    {
+      "slug": "the-lorenz-system",
+      "title": "THE LORENZ SYSTEM",
+      "kicker": "the butterfly effect",
+      "accent": "#7fe0c0",
+      "blurb": "The Lorenz system (Lorenz 1963), runnable in THE OCHO: three equations with a bounded aperiodic butterfly attractor, contracting volume yet sensitively dependent - the birth of chaos theory, beside the-double-pendulum.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "83cb9b2984e42aee7a169252315eb8cbad9aad561f0a46fb93f6ba8da7c4a45c"
+    },
+    {
+      "slug": "the-hopf-bifurcation",
+      "title": "THE HOPF BIFURCATION",
+      "kicker": "an oscillation born from stillness",
+      "accent": "#ff7a7a",
+      "blurb": "The Hopf bifurcation (Hopf 1942), runnable in THE OCHO: complex eigenvalues cross the imaginary axis and a stable point sheds a limit cycle - an oscillation born from stillness, the-limit-cycle's origin.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7927fd6da3258d18f84518bd40a20b71e04dede58c9f1ae1efbd61f07628505b"
+    },
+    {
+      "slug": "the-limit-cycle",
+      "title": "THE LIMIT CYCLE",
+      "kicker": "a self-winding oscillation",
+      "accent": "#9ee06a",
+      "blurb": "The limit cycle (van der Pol 1926), runnable in THE OCHO: an isolated attracting closed orbit that trajectories from inside and out spiral onto - a self-sustaining clock, what the-hopf-bifurcation creates.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f0abd80f16378d4e6a6e188e1bbd0053615c9843094a6f34d0d15978f082d629"
+    },
+    {
+      "slug": "the-bifurcation",
+      "title": "THE BIFURCATION",
+      "kicker": "where behavior changes suddenly",
+      "accent": "#c8a2ff",
+      "blurb": "Bifurcation theory (Poincare; Strogatz 1994), runnable in THE OCHO: saddle-node, transcritical, and pitchfork fixed points born, destroyed, or exchanging stability as a knob turns - the qualitative change the-feigenbaum cascades.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2926266102469d648ffaf2f15be1e8ec90ecdc8b0bf0715d3ce5ec882002149a"
+    },
+    {
+      "slug": "the-phase-portrait",
+      "title": "THE PHASE PORTRAIT",
+      "kicker": "a system's fate in two numbers",
+      "accent": "#ffb0d0",
+      "blurb": "The phase portrait (Poincare), runnable in THE OCHO: the trace-determinant plane classifies every 2D fixed point (node, saddle, spiral, center) from its Jacobian - a system's fate in two numbers, the geometry beneath the-bifurcation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "dcbd1f1ea583dbe2bb9d9a4c6f77491208114eb9128f80e9d67a7b33c8fe1d59"
     }
   ],
   "appeals": [
@@ -23794,9 +23884,89 @@
               "icon": "≠",
               "kicker": "one name, a quadrillion values",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sir-model",
+              "title": "THE SIR MODEL",
+              "accent": "#7fd4ff",
+              "icon": "spawn",
+              "kicker": "an epidemic in three compartments",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-seir-model",
+              "title": "THE SEIR MODEL",
+              "accent": "#ff9e6a",
+              "icon": "spawn",
+              "kicker": "add the incubation stage",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-basic-reproduction-number",
+              "title": "THE BASIC REPRODUCTION NUMBER",
+              "accent": "#c0b0ff",
+              "icon": "boss",
+              "kicker": "the number that decides an outbreak",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-logistic-growth",
+              "title": "THE LOGISTIC GROWTH",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "growth with a ceiling",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-competitive-exclusion",
+              "title": "THE COMPETITIVE EXCLUSION",
+              "accent": "#ffd23f",
+              "icon": "glitch",
+              "kicker": "two into one niche will not go",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lorenz-system",
+              "title": "THE LORENZ SYSTEM",
+              "accent": "#7fe0c0",
+              "icon": "glitch",
+              "kicker": "the butterfly effect",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hopf-bifurcation",
+              "title": "THE HOPF BIFURCATION",
+              "accent": "#ff7a7a",
+              "icon": "spawn",
+              "kicker": "an oscillation born from stillness",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-limit-cycle",
+              "title": "THE LIMIT CYCLE",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "a self-winding oscillation",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-bifurcation",
+              "title": "THE BIFURCATION",
+              "accent": "#c8a2ff",
+              "icon": "glitch",
+              "kicker": "where behavior changes suddenly",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-phase-portrait",
+              "title": "THE PHASE PORTRAIT",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "a system's fate in two numbers",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 32,
+          "seats": 34,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         }
       ],
@@ -32624,7 +32794,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "894e961b4e1e5f79b1714dc1fe63f1e1c4bbc34c41d2857f256b67d032af1d61",
+  "fold_root": "36e7fe5366f69d9363555b68e58009ba920873a887d0ac2c2582fe5c121bfdae",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
