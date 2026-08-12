@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 2010,
+    "spheres": 2020,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 2004,
+    "spheres_built": 2014,
     "apex": 1
   },
   "keepers": [
@@ -18178,6 +18178,96 @@
       "blurb": "Gibbs, runnable in THE OCHO: delta S = -nR sum x_i ln x_i for distinct gases, ZERO for identical ones (the Gibbs paradox) - the configurational entropy behind the-clausius-inequality's second law.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "65e93b5b43c29ebe30c8c79f6250ce79715fd82cbdbd1fa4cccf53e5f2f06d52"
+    },
+    {
+      "slug": "the-drude-model",
+      "title": "THE DRUDE MODEL",
+      "kicker": "electrons as a gas",
+      "accent": "#ff7a7a",
+      "blurb": "Drude (1900), runnable in THE OCHO: sigma = n e^2 tau/m giving Ohm's law, mobility e tau/m - the classical free-electron picture beneath the-band-gap and the-hall-effect.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "85626a3a0960efee3b14e4dbe5c0beedea43ec5b70dc718450361dcfdf79f828"
+    },
+    {
+      "slug": "the-band-gap",
+      "title": "THE BAND GAP",
+      "kicker": "the forbidden zone",
+      "accent": "#ffd23f",
+      "blurb": "Band theory, runnable in THE OCHO: a gap Eg sorting metals/semiconductors/insulators with ni ~ exp(-Eg/2kT) - the bands the-semiconductor-doping populates and the-pn-junction exploits.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "73cd388e39393030918876c35c94a01a66249e22c9cd2253c14d083ff0037058"
+    },
+    {
+      "slug": "the-semiconductor-doping",
+      "title": "THE SEMICONDUCTOR DOPING",
+      "kicker": "a few impurities, a big change",
+      "accent": "#9ee06a",
+      "blurb": "Doping (Shockley), runnable in THE OCHO: n-type and p-type with n p = ni^2 mass action (64-sample verified) - the majority/minority carriers the-pn-junction joins and the-hall-effect counts.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e18b025f6a348f983b8b524e21662bf0f27c4c91abf2fea93369d80cc5df75a2"
+    },
+    {
+      "slug": "the-pn-junction",
+      "title": "THE PN JUNCTION",
+      "kicker": "the one-way valve",
+      "accent": "#c8a2ff",
+      "blurb": "Shockley (1949), runnable in THE OCHO: I = I0(exp(qV/kT)-1) rectifying, a depletion region with a built-in potential - joining the-semiconductor-doping's n and p types into the diode.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5769204a03f9ce2e615af2cb00f285ab94f68151579276bc87dcc09c0cfc4c8b"
+    },
+    {
+      "slug": "the-hall-effect",
+      "title": "THE HALL EFFECT",
+      "kicker": "current pushed sideways",
+      "accent": "#ff9e6a",
+      "blurb": "Hall (1879), runnable in THE OCHO: V_H = IB/(nqt) reading carrier density AND sign - the-lorentz-force in a conductor counting the carriers the-semiconductor-doping set.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "35c88a4dbe026f4f9f62f57dd784c73a9c87b1306a20203fa2e2630cc2ce1c42"
+    },
+    {
+      "slug": "the-curie-law",
+      "title": "THE CURIE LAW",
+      "kicker": "magnetism fades with heat",
+      "accent": "#7fe0c0",
+      "blurb": "Curie (1895), runnable in THE OCHO: chi = C/T inverse in temperature, moments aligning against thermal disorder (Langevin) - the paramagnet that below a Curie point becomes the-ferromagnetism.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "392bde496acde9497e13f709f4b3f39d7d762aabff47a69feaea1096986d0b7c"
+    },
+    {
+      "slug": "the-ferromagnetism",
+      "title": "THE FERROMAGNETISM",
+      "kicker": "moments that align themselves",
+      "accent": "#ffb0d0",
+      "blurb": "Weiss (1907), runnable in THE OCHO: spontaneous magnetization below Tc with Curie-Weiss chi = C/(T-Tc) and a hysteresis loop - the-curie-law's paramagnet gone cooperative.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9c1a9246e398ff385a2bb5c00e9b1b307f167892d573876d7cb388dc1c689c9b"
+    },
+    {
+      "slug": "the-meissner-effect",
+      "title": "THE MEISSNER EFFECT",
+      "kicker": "the field pushed out",
+      "accent": "#9ee0d0",
+      "blurb": "Meissner (1933), runnable in THE OCHO: B = 0 inside (chi = -1) below Tc and Hc, screened over a London depth - perfect diamagnetism distinguishing a superconductor from a perfect conductor, explained by the-bcs-theory.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "48a6bf1d37fcbd612f827a38e120ac48cb63905a96c7c9827bde6901d74e806c"
+    },
+    {
+      "slug": "the-bcs-theory",
+      "title": "THE BCS THEORY",
+      "kicker": "electrons that pair",
+      "accent": "#ffcf5a",
+      "blurb": "BCS (1957), runnable in THE OCHO: Cooper pairs from a phonon attraction, a gap 2 Delta = 3.53 kTc, an isotope effect - the microscopic engine behind the-meissner-effect.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4dad5c6e536090a0b51ee9574c13a75ef956c401765ee5c4ac724dc4f05b9c47"
+    },
+    {
+      "slug": "the-seebeck-effect",
+      "title": "THE SEEBECK EFFECT",
+      "kicker": "heat into voltage",
+      "accent": "#7fd4ff",
+      "blurb": "Seebeck (1821), runnable in THE OCHO: V = -S Delta_T with a thermocouple needing two different S, the sign following the carrier as in the-hall-effect - the reverse of the Peltier cooler.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "82a2ed61abfb99140ef401290bce1deea2db9c7ee4d87f6d0ec89da415f3edfc"
     }
   ],
   "appeals": [
@@ -30699,9 +30789,89 @@
               "icon": "⑂",
               "kicker": "correct, and it hangs seven times in nine",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-drude-model",
+              "title": "THE DRUDE MODEL",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "electrons as a gas",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-band-gap",
+              "title": "THE BAND GAP",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "the forbidden zone",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-semiconductor-doping",
+              "title": "THE SEMICONDUCTOR DOPING",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "a few impurities, a big change",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-pn-junction",
+              "title": "THE PN JUNCTION",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "the one-way valve",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hall-effect",
+              "title": "THE HALL EFFECT",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "current pushed sideways",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-curie-law",
+              "title": "THE CURIE LAW",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "magnetism fades with heat",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-ferromagnetism",
+              "title": "THE FERROMAGNETISM",
+              "accent": "#ffb0d0",
+              "icon": "boss",
+              "kicker": "moments that align themselves",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-meissner-effect",
+              "title": "THE MEISSNER EFFECT",
+              "accent": "#9ee0d0",
+              "icon": "spawn",
+              "kicker": "the field pushed out",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-bcs-theory",
+              "title": "THE BCS THEORY",
+              "accent": "#ffcf5a",
+              "icon": "boss",
+              "kicker": "electrons that pair",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-seebeck-effect",
+              "title": "THE SEEBECK EFFECT",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "heat into voltage",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 28,
+          "seats": 31,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -35174,7 +35344,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "9d6d9819817f779a3a4c25c82173a23ea87c274abf12ac71ae3fc722111bff21",
+  "fold_root": "8b29e1a8692a36dd211b08a2bb652eb985d67dc033db73441255be66d7d3411f",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
