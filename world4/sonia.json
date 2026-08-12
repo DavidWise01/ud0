@@ -1,0 +1,67 @@
+{
+  "world": "4",
+  "name": "SONIA",
+  "kicker": "the world that reads the descent by candlelight",
+  "keeper": "SONIA",
+  "keeper_full": "Sofya Semyonovna Marmeladova",
+  "keeper_role": "she who reads Lazarus by candlelight — the girl who keeps the light between",
+  "style": "constructivist · Mir Publishers 1964 paper (ivory · Soviet red · deep blue · gold)",
+  "charter": "World IV — SONIA. The Russian and Soviet content world: mathematics, the novel, the machine, and the weird. Named for Sofya “Sonia” Marmeladova of Dostoevsky's Crime and Punishment — the one who reads Lazarus in the dark room and follows Raskolnikov to Siberia. SONIA flows naturally; she opens with a Russian mathematician on the shape of number itself.",
+  "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
+  "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
+  "sonia_root": "1ca5c97cf7bdd3f03baf5babc86af8b7466df0e5872496078d2e8429ea10f409",
+  "counts": {
+    "spheres": 1,
+    "rooms": 4,
+    "lit": 1,
+    "keepers": 1
+  },
+  "keepers": [
+    {
+      "name": "SONIA",
+      "role": "she who reads the descent by candlelight — Sofya Semyonovna Marmeladova; keeper of World IV",
+      "seal": "d589095b9878219c6a35dd680ec3c5b60407e581d7df973f87d6a373dbc19b23"
+    }
+  ],
+  "rooms": [
+    {
+      "key": "number",
+      "name": "THE NUMBER",
+      "accent": "#a5121a",
+      "note": "Russian & Soviet mathematics — Khinchin, Kolmogorov, Markov, Lyapunov, Lobachevsky, Chebyshev."
+    },
+    {
+      "key": "novel",
+      "name": "THE NOVEL",
+      "accent": "#1d4e79",
+      "note": "Dostoevsky, Tolstoy, Gogol, Bulgakov — the moral engine of the Russian page."
+    },
+    {
+      "key": "machine",
+      "name": "THE MACHINE",
+      "accent": "#9a6b12",
+      "note": "Setun and balanced ternary; Soviet computing; “does Russia have an AI”. The bridge to World III."
+    },
+    {
+      "key": "weird",
+      "name": "THE WEIRD",
+      "accent": "#5f513a",
+      "note": "Russian cosmism, Kozyrev, Tsiolkovsky, the strange edge of the Russian imagination."
+    }
+  ],
+  "spheres": [
+    {
+      "slug": "the-continued-fractions",
+      "title": "THE CONTINUED FRACTION",
+      "room": "number",
+      "kicker": "the best rational, at every depth",
+      "accent": "#a5121a",
+      "stamp": "LIT",
+      "source": "A. Ya. Khinchin, Continued Fractions, Mir Publishers, Moscow, 1964",
+      "url": "https://davidwise01.github.io/ud0/world4/the-continued-fractions.html",
+      "seal": "b5ed859a1c21de028c47575c0af4ae400afbd9ec287749a18e33dd2f18cc8a4b",
+      "blurb": "A. Ya. Khinchin, Continued Fractions (Mir, 1964), runnable in THE OCHO: the Euclidean descent a0 + 1/(a1 + 1/(a2 + ...)) yields the single best rational at every depth. Convergents by the two-term recurrence, the determinant identity p_k q_{k-1} - p_{k-1} q_k = +/-1, the best-approximation bound under 1/q^2, the Gauss-Kuzmin law, and Khinchin's constant K = 2.6854520010 with Levy's constant, all computed live. SONIA opens with the shape of the descent."
+    }
+  ]
+}

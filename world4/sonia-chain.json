@@ -1,0 +1,43 @@
+{
+  "schema": "sonia-chain/1",
+  "world": "IV",
+  "name": "SONIA",
+  "algo": "sha256(name|slug|blurb) folded pairwise (merkle) to a single root",
+  "anchor": "0ROOT.AI//SONIA//WORLD-IV//the-russian-world//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
+  "folded_to": "ROOT_0",
+  "root": "1ca5c97cf7bdd3f03baf5babc86af8b7466df0e5872496078d2e8429ea10f409",
+  "count": 2,
+  "sealed": "2026-08-12",
+  "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
+  "note": "Every World IV inhabitant folds to ROOT_0. Live: the root updates as SONIA grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
+  "leaves": [
+    {
+      "index": 0,
+      "kind": "sphere",
+      "name": "THE CONTINUED FRACTION",
+      "slug": "the-continued-fractions",
+      "seal": "b5ed859a1c21de028c47575c0af4ae400afbd9ec287749a18e33dd2f18cc8a4b",
+      "proof": [
+        {
+          "h": "d589095b9878219c6a35dd680ec3c5b60407e581d7df973f87d6a373dbc19b23",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "kind": "keeper",
+      "name": "SONIA",
+      "slug": "sonia",
+      "seal": "d589095b9878219c6a35dd680ec3c5b60407e581d7df973f87d6a373dbc19b23",
+      "proof": [
+        {
+          "h": "b5ed859a1c21de028c47575c0af4ae400afbd9ec287749a18e33dd2f18cc8a4b",
+          "side": "L"
+        }
+      ]
+    }
+  ],
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}
