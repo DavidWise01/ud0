@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 2000,
+    "spheres": 2010,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1994,
+    "spheres_built": 2004,
     "apex": 1
   },
   "keepers": [
@@ -18088,6 +18088,96 @@
       "blurb": "Newton 1704, Cauchy 1836, runnable in THE OCHO: n(lambda) falling with wavelength so blue bends more, a prism's rainbow opposite in order to the-diffraction-grating.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "bccf3aa379b1980e4846785285fc711ade0c7fbbb66430c7abcdd2237a782fa3"
+    },
+    {
+      "slug": "the-carnot-cycle",
+      "title": "THE CARNOT CYCLE",
+      "kicker": "the perfect engine",
+      "accent": "#ff7a7a",
+      "blurb": "Carnot (1824), runnable in THE OCHO: eta = 1 - Tc/Th the ceiling on every heat engine, reversible with zero entropy generation - the bound the-otto-cycle and the-rankine-cycle fall short of and the-clausius-inequality proves.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "26d5d0eceda80c6932156411890eb6f14fae60572d53a8b4e722255e07ec75b4"
+    },
+    {
+      "slug": "the-otto-cycle",
+      "title": "THE OTTO CYCLE",
+      "kicker": "the gasoline engine",
+      "accent": "#ffd23f",
+      "blurb": "Otto (1876), runnable in THE OCHO: eta = 1 - r^(1-gamma) rising with compression (~0.56 at r=8), adiabats and isochores - a real cycle bounded below the-carnot-cycle, cousin to the-diesel-cycle.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "16c4ce7aead6431f244b5c8bc154a5c5e1281bbe01420bf5d2bd62090aa080b4"
+    },
+    {
+      "slug": "the-diesel-cycle",
+      "title": "THE DIESEL CYCLE",
+      "kicker": "ignite by compression",
+      "accent": "#9ee06a",
+      "blurb": "Diesel (1897), runnable in THE OCHO: eta with a cutoff factor and a constant-pressure burn, reducing to the-otto-cycle at rc=1 - both under the-carnot-cycle.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9828b9b651f1a43cb26a341a65bd55977dcbc11c2290a39d3545397002d28ff0"
+    },
+    {
+      "slug": "the-rankine-cycle",
+      "title": "THE RANKINE CYCLE",
+      "kicker": "the steam power plant",
+      "accent": "#c8a2ff",
+      "blurb": "Rankine (1859), runnable in THE OCHO: eta from enthalpy differences with a tiny pump work and a boiling working fluid - a real cycle under the-carnot-cycle, vapour cousin of the-brayton-cycle.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "288797cc34cd8baecc7a1fb53cb23002a76959f4129d483f49614d748cf2d6e2"
+    },
+    {
+      "slug": "the-brayton-cycle",
+      "title": "THE BRAYTON CYCLE",
+      "kicker": "the jet engine",
+      "accent": "#ff9e6a",
+      "blurb": "Brayton (1872), runnable in THE OCHO: eta = 1 - rp^((1-gamma)/gamma) rising with pressure ratio, constant-pressure heat with a heavy back-work ratio - the gas cousin of the-rankine-cycle.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "809859cafaa0cedfb8e0c06b1859a3c782e098ae75f1cd3397da53b4cbb3a81f"
+    },
+    {
+      "slug": "the-refrigerator",
+      "title": "THE REFRIGERATOR",
+      "kicker": "heat pumped uphill",
+      "accent": "#7fe0c0",
+      "blurb": "The reversed the-carnot-cycle, runnable in THE OCHO: COP_cool = Tc/(Th-Tc) exceeding 1, energy conserved Qh = Qc + W - the cooling twin of the-heat-pump.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "05a384bfa9d495b7f33748448b6617fdd756beffbc611c972146284c7ee0c041"
+    },
+    {
+      "slug": "the-heat-pump",
+      "title": "THE HEAT PUMP",
+      "kicker": "warmth by moving heat",
+      "accent": "#ffb0d0",
+      "blurb": "The heat pump (Kelvin 1852), runnable in THE OCHO: COP_heat = Th/(Th-Tc) = COP_cool + 1, always above a resistive heater's 1 - the heating twin of the-refrigerator.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ddad705ba39d5fa6a4e7df1644fb53e899834578d2f6da39e482b061bdd55959"
+    },
+    {
+      "slug": "the-stirling-engine",
+      "title": "THE STIRLING ENGINE",
+      "kicker": "the regenerator engine",
+      "accent": "#9ee0d0",
+      "blurb": "Stirling (1816), runnable in THE OCHO: isotherms and isochores with a heat-storing regenerator reaching the-carnot-cycle efficiency in the ideal - the closed-cycle counterpoint to the-otto-cycle.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "83ca5ecd845e3f6f3b0473616943e7fcac4fccf73284188108946aec31c89ac2"
+    },
+    {
+      "slug": "the-clausius-inequality",
+      "title": "THE CLAUSIUS INEQUALITY",
+      "kicker": "the second law as an integral",
+      "accent": "#ffcf5a",
+      "blurb": "Clausius (1865), runnable in THE OCHO: closed dQ/T <= 0 (zero reversible), defining entropy as a state function - the inequality that bounds the-carnot-cycle and every engine below it.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2238b9244cbc7a193c592c82d2fc0b9442f966e93018405c3e7348659b96203d"
+    },
+    {
+      "slug": "the-entropy-of-mixing",
+      "title": "THE ENTROPY OF MIXING",
+      "kicker": "disorder from mixing",
+      "accent": "#7fd4ff",
+      "blurb": "Gibbs, runnable in THE OCHO: delta S = -nR sum x_i ln x_i for distinct gases, ZERO for identical ones (the Gibbs paradox) - the configurational entropy behind the-clausius-inequality's second law.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "65e93b5b43c29ebe30c8c79f6250ce79715fd82cbdbd1fa4cccf53e5f2f06d52"
     }
   ],
   "appeals": [
@@ -29116,6 +29206,86 @@
               "icon": "✇",
               "kicker": "the control that fires most often",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-carnot-cycle",
+              "title": "THE CARNOT CYCLE",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "the perfect engine",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-otto-cycle",
+              "title": "THE OTTO CYCLE",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "the gasoline engine",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-diesel-cycle",
+              "title": "THE DIESEL CYCLE",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "ignite by compression",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rankine-cycle",
+              "title": "THE RANKINE CYCLE",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "the steam power plant",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-brayton-cycle",
+              "title": "THE BRAYTON CYCLE",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "the jet engine",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-refrigerator",
+              "title": "THE REFRIGERATOR",
+              "accent": "#7fe0c0",
+              "icon": "cheat",
+              "kicker": "heat pumped uphill",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-heat-pump",
+              "title": "THE HEAT PUMP",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "warmth by moving heat",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-stirling-engine",
+              "title": "THE STIRLING ENGINE",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "the regenerator engine",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-clausius-inequality",
+              "title": "THE CLAUSIUS INEQUALITY",
+              "accent": "#ffcf5a",
+              "icon": "boss",
+              "kicker": "the second law as an integral",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-entropy-of-mixing",
+              "title": "THE ENTROPY OF MIXING",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "disorder from mixing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 35,
@@ -35004,7 +35174,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "9655d3748aeacbcf5c933321d1974b78b9be304db865cd4a5a4999f39f57a358",
+  "fold_root": "9d6d9819817f779a3a4c25c82173a23ea87c274abf12ac71ae3fc722111bff21",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
