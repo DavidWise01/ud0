@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1970,
+    "spheres": 1980,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1964,
+    "spheres_built": 1974,
     "apex": 1
   },
   "keepers": [
@@ -17818,6 +17818,96 @@
       "blurb": "Newton (1687), runnable in THE OCHO: v_esc = sqrt(2GM/r), sqrt(2) times orbital speed, reaching c exactly at the-schwarzschild-radius - the Newtonian shadow of the-event-horizon.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "a37ab5383c1c5e0957a91ce4fcd3549a33fa01c5edd7f804ac829fd647ff7b58"
+    },
+    {
+      "slug": "the-lagrangian",
+      "title": "THE LAGRANGIAN",
+      "kicker": "mechanics from one function",
+      "accent": "#7fd4ff",
+      "blurb": "Lagrange (1788), runnable in THE OCHO: L = T - V with d/dt(dL/dq_dot) = dL/dq reproducing Newton, coordinate-free - the action the-principle-of-least-action extremizes, twin of the-hamiltonian.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "101a48fd0ed0513466ae36acb646fa369142ce56cae03512e50171816f0cbd0d"
+    },
+    {
+      "slug": "the-hamiltonian",
+      "title": "THE HAMILTONIAN",
+      "kicker": "energy generates the flow",
+      "accent": "#9ee06a",
+      "blurb": "Hamilton (1834), runnable in THE OCHO: q_dot = dH/dp, p_dot = -dH/dq conserving H, the closed phase-space orbit - the picture the-phase-space and the-poisson-bracket formalize, Legendre-dual to the-lagrangian.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1c01a6af16a5edae7332ab77747e9712913da3ab19abdf4bcf4c3bd4ea64709a"
+    },
+    {
+      "slug": "the-noethers-theorem",
+      "title": "THE NOETHER THEOREM",
+      "kicker": "symmetry is conservation",
+      "accent": "#c8a2ff",
+      "blurb": "Noether (1918), runnable in THE OCHO: time->energy, translation->momentum, rotation->angular momentum (with a real symmetry-breaking control) - the theorem behind every conservation law in the-lagrangian.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c4c33419f72d5d814c035ff6c211d4431ac44e08b45b02fa1a61711948d95f4d"
+    },
+    {
+      "slug": "the-principle-of-least-action",
+      "title": "THE PRINCIPLE OF LEAST ACTION",
+      "kicker": "nature extremizes the action",
+      "accent": "#ff7a7a",
+      "blurb": "Maupertuis-Euler-Hamilton, runnable in THE OCHO: delta S = 0 selecting the path (verified against wiggled variations), equivalent to the-lagrangian's Euler-Lagrange equation - the variational root of all mechanics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a3c904e612cd62272e698130bfcd454cd96b56a48244c4c4311e622d968247b2"
+    },
+    {
+      "slug": "the-central-force",
+      "title": "THE CENTRAL FORCE",
+      "kicker": "pulled toward a point",
+      "accent": "#ffd23f",
+      "blurb": "Newton, runnable in THE OCHO: conserved angular momentum and the effective potential V + L^2/2mr^2, Kepler's equal areas - a the-lagrangian problem with a cyclic angle.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "458cf64bc695344902fe64e20b43695b9a1c4bc40d4573b5e542186d5327edf7"
+    },
+    {
+      "slug": "the-normal-modes",
+      "title": "THE NORMAL MODES",
+      "kicker": "coupled becomes independent",
+      "accent": "#ff9e6a",
+      "blurb": "Small-oscillation theory, runnable in THE OCHO: diagonalizing the stiffness matrix into normal modes with fixed eigenfrequencies - each a classical the-quantum-harmonic-oscillator, the modes behind the-standing-wave.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "dcf410e90c1d38e8ec853476f9dd094423c5a28a5059dbe55801c922aadea7e9"
+    },
+    {
+      "slug": "the-poisson-bracket",
+      "title": "THE POISSON BRACKET",
+      "kicker": "the algebra of phase space",
+      "accent": "#7fe0c0",
+      "blurb": "Poisson (1809), runnable in THE OCHO: {q,p} = 1 and df/dt = {f,H}, antisymmetric and satisfying Jacobi - the canonical structure of the-hamiltonian, the classical shadow of the quantum commutator.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "22a75fa897b506b86bcb4664fe8af4b7db53c8665c7b2e2425350e007e4ebfcc"
+    },
+    {
+      "slug": "the-phase-space",
+      "title": "THE PHASE SPACE",
+      "kicker": "the space of all states",
+      "accent": "#ffb0d0",
+      "blurb": "Liouville (1838), runnable in THE OCHO: Hamiltonian flow preserving volume (real polygon-area check), incompressible and non-crossing - the arena of the-hamiltonian and the foundation of statistical mechanics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e88264f1c74fbb12426a76e925baa5f28d7ad04d092134382f981c239ee2d8b0"
+    },
+    {
+      "slug": "the-legendre-transformation",
+      "title": "THE LEGENDRE TRANSFORMATION",
+      "kicker": "velocity becomes momentum",
+      "accent": "#9ee0d0",
+      "blurb": "Legendre, runnable in THE OCHO: H = p q_dot - L with p = dL/dq_dot, an involution recovering L - the bridge from the-lagrangian to the-hamiltonian, the same transform behind thermodynamic potentials.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9fe50ac370a920f3d2f9ee0d77aa4c7ab1415724b69426e6eeb8f06b7012b5d0"
+    },
+    {
+      "slug": "the-virial-theorem",
+      "title": "THE VIRIAL THEOREM",
+      "kicker": "kinetic and potential, time-averaged",
+      "accent": "#ffcf5a",
+      "blurb": "Clausius (1870), runnable in THE OCHO: 2<T> = -<sum F.r> giving <T> = (n/2)<V> for V~r^n, the bound-orbit bookkeeping from the-central-force to galaxy masses.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7643676f4a1372d76cefcdd932861a8cc8e96f1441296e7d95e3e630718dce8c"
     }
   ],
   "appeals": [
@@ -32416,6 +32506,86 @@
               "icon": "↻",
               "kicker": "computed from the tree, not supplied by hand",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-lagrangian",
+              "title": "THE LAGRANGIAN",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "mechanics from one function",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hamiltonian",
+              "title": "THE HAMILTONIAN",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "energy generates the flow",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-noethers-theorem",
+              "title": "THE NOETHER THEOREM",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "symmetry is conservation",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-principle-of-least-action",
+              "title": "THE PRINCIPLE OF LEAST ACTION",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "nature extremizes the action",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-central-force",
+              "title": "THE CENTRAL FORCE",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "pulled toward a point",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-normal-modes",
+              "title": "THE NORMAL MODES",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "coupled becomes independent",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-poisson-bracket",
+              "title": "THE POISSON BRACKET",
+              "accent": "#7fe0c0",
+              "icon": "cheat",
+              "kicker": "the algebra of phase space",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-phase-space",
+              "title": "THE PHASE SPACE",
+              "accent": "#ffb0d0",
+              "icon": "spawn",
+              "kicker": "the space of all states",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-legendre-transformation",
+              "title": "THE LEGENDRE TRANSFORMATION",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "velocity becomes momentum",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-virial-theorem",
+              "title": "THE VIRIAL THEOREM",
+              "accent": "#ffcf5a",
+              "icon": "boss",
+              "kicker": "kinetic and potential, time-averaged",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -34494,7 +34664,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "73302a742c8fe6ca2b8f57114969185c08db7a5433503b6853e0bb61880ab802",
+  "fold_root": "dc8b4b2eea28d90e35782aaca163940e5b21927c01ebae1a1c5a48b26d6b980b",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
