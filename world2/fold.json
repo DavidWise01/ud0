@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1980,
+    "spheres": 1990,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1974,
+    "spheres_built": 1984,
     "apex": 1
   },
   "keepers": [
@@ -17908,6 +17908,96 @@
       "blurb": "Clausius (1870), runnable in THE OCHO: 2<T> = -<sum F.r> giving <T> = (n/2)<V> for V~r^n, the bound-orbit bookkeeping from the-central-force to galaxy masses.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "7643676f4a1372d76cefcdd932861a8cc8e96f1441296e7d95e3e630718dce8c"
+    },
+    {
+      "slug": "the-solow-growth",
+      "title": "THE SOLOW GROWTH MODEL",
+      "kicker": "growth and its limits",
+      "accent": "#7fd4ff",
+      "blurb": "Solow (1956), runnable in THE OCHO: k_dot = s f(k) - (n+delta)k converging to a steady state, saving a level effect while technology drives long-run growth - built on the-cobb-douglas production function.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "95f9b8fea0d7444223ecd1cd538b286e750bf198c0f32b54589ee237e31217ff"
+    },
+    {
+      "slug": "the-cobb-douglas",
+      "title": "THE COBB-DOUGLAS FUNCTION",
+      "kicker": "output from two factors",
+      "accent": "#9ee06a",
+      "blurb": "Cobb-Douglas (1928), runnable in THE OCHO: Y = A K^a L^b with a+b=1 giving constant returns and Euler exhaustion (exponents ARE income shares) - the production function inside the-solow-growth.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ef760d7b0895f58296a5a7fd3e4c78646b72b4183c5e58a5e230614949885260"
+    },
+    {
+      "slug": "the-supply-and-demand",
+      "title": "THE SUPPLY AND DEMAND",
+      "kicker": "the cross that sets the price",
+      "accent": "#c8a2ff",
+      "blurb": "Marshall (1890), runnable in THE OCHO: equilibrium where Qd = Qs, comparative statics and tax incidence by elasticity - the market whose responsiveness the-price-elasticity measures.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d17965bd61983db4e3c1ee837768c190baabc86e91a5fdf788d231c297548de1"
+    },
+    {
+      "slug": "the-comparative-advantage",
+      "title": "THE COMPARATIVE ADVANTAGE",
+      "kicker": "worse at everything, still gains",
+      "accent": "#ff7a7a",
+      "blurb": "Ricardo (1817), runnable in THE OCHO: specialize by opportunity cost not absolute skill, trade expanding total output beyond autarky - the counterintuitive engine of the-supply-and-demand across borders.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b6d700ab320b651491426e3b3ef23c8acaa24cc2b34b2cb48ba6053b79a46ecf"
+    },
+    {
+      "slug": "the-is-lm",
+      "title": "THE IS-LM MODEL",
+      "kicker": "goods meet money",
+      "accent": "#ffd23f",
+      "blurb": "Hicks (1937), runnable in THE OCHO: the IS-LM intersection setting output and the interest rate, fiscal vs monetary shifts with crowding-out - the macro frame around the-quantity-theory.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0b687d23bec7a6404c94e69ce4b8c2a6413e2a0162b4001bc1ec941446ec62df"
+    },
+    {
+      "slug": "the-phillips-curve",
+      "title": "THE PHILLIPS CURVE",
+      "kicker": "inflation versus unemployment",
+      "accent": "#ff9e6a",
+      "blurb": "Phillips (1958), runnable in THE OCHO: a downward short-run trade-off that goes vertical at the natural rate once expectations adjust - the labour-market face of the-quantity-theory.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "68d22dc6acbebb5e87a230e536209da9feb566fdc1c3d357d21b710c617a22b6"
+    },
+    {
+      "slug": "the-quantity-theory",
+      "title": "THE QUANTITY THEORY OF MONEY",
+      "kicker": "money and prices",
+      "accent": "#7fe0c0",
+      "blurb": "Fisher (1911), runnable in THE OCHO: MV = PQ making money neutral (double M, double P), inflation as money growth minus output growth - the monetary side of the-is-lm and the-phillips-curve.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4b3aeceb607b8fe433dd29dc615cf8be8079d993c7c5f2410b4ce6e553130029"
+    },
+    {
+      "slug": "the-price-elasticity",
+      "title": "THE PRICE ELASTICITY",
+      "kicker": "how quantity answers price",
+      "accent": "#ffb0d0",
+      "blurb": "Marshall (1890), runnable in THE OCHO: E = (dQ/Q)/(dP/P) with revenue peaking at unit elasticity - the responsiveness that sets tax incidence in the-supply-and-demand.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c7ea06d24d271f493993e18edef9a0123a28beff7431c2f9857a9be5fdf0c22e"
+    },
+    {
+      "slug": "the-gini-coefficient",
+      "title": "THE GINI COEFFICIENT",
+      "kicker": "measuring the gap",
+      "accent": "#9ee0d0",
+      "blurb": "Gini (1912), runnable in THE OCHO: G = twice the Lorenz-curve area (cross-checked against the mean-abs-difference), 0 at equality and 1 at total concentration, rising under a rich-ward transfer - the inequality metric.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "62d43ddf469d53b18dffd6d6bb66bdd13af9da75f444b2233ca5be7e536c0107"
+    },
+    {
+      "slug": "the-discounting",
+      "title": "THE DISCOUNTING",
+      "kicker": "tomorrow's dollar, today",
+      "accent": "#ffcf5a",
+      "blurb": "Fisher (1930), runnable in THE OCHO: PV = sum CF/(1+r)^t with a perpetuity C/r, discounting every future stream - the time-value core beneath the-is-lm's investment.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bab6c4eae0c577789bab9ab2a78a5e5db62356f1bff4f6e0b0164410d96fc660"
     }
   ],
   "appeals": [
@@ -27920,6 +28010,86 @@
               "icon": "⇈",
               "kicker": "generate and propagate, computed all at once",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-solow-growth",
+              "title": "THE SOLOW GROWTH MODEL",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "growth and its limits",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cobb-douglas",
+              "title": "THE COBB-DOUGLAS FUNCTION",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "output from two factors",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-supply-and-demand",
+              "title": "THE SUPPLY AND DEMAND",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "the cross that sets the price",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-comparative-advantage",
+              "title": "THE COMPARATIVE ADVANTAGE",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "worse at everything, still gains",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-is-lm",
+              "title": "THE IS-LM MODEL",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "goods meet money",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-phillips-curve",
+              "title": "THE PHILLIPS CURVE",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "inflation versus unemployment",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-quantity-theory",
+              "title": "THE QUANTITY THEORY OF MONEY",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "money and prices",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-price-elasticity",
+              "title": "THE PRICE ELASTICITY",
+              "accent": "#ffb0d0",
+              "icon": "spawn",
+              "kicker": "how quantity answers price",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gini-coefficient",
+              "title": "THE GINI COEFFICIENT",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "measuring the gap",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-discounting",
+              "title": "THE DISCOUNTING",
+              "accent": "#ffcf5a",
+              "icon": "grind",
+              "kicker": "tomorrow's dollar, today",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 40,
@@ -34664,7 +34834,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "dc8b4b2eea28d90e35782aaca163940e5b21927c01ebae1a1c5a48b26d6b980b",
+  "fold_root": "5302193a4f2ac4c10df617e87aed29a208033c7e8f24d74ce0f82bdec3d1836e",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
