@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 2040,
+    "spheres": 2048,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 2034,
+    "spheres_built": 2042,
     "apex": 1
   },
   "keepers": [
@@ -18448,6 +18448,78 @@
       "blurb": "Wegener 1912, Vine-Matthews 1963, runnable in THE OCHO: sea-floor spreading laying symmetric magnetic stripes, the rate read from stripe width - driven by mantle buoyancy the-isostasy floats the crust on.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "e68e4a46d63874d697e217177e335334339452c02469e4a61ad1ddf1a2ed1414"
+    },
+    {
+      "slug": "the-speed-of-sound",
+      "title": "THE SPEED OF SOUND",
+      "kicker": "how fast sound races",
+      "accent": "#ff7a7a",
+      "blurb": "Newton-Laplace, runnable in THE OCHO: c = sqrt(gamma R T/M) ~343 m/s, adiabatic not isothermal, rising with sqrt(T) - the wave speed setting the-organ-pipe's pitches and the-acoustic-impedance rho c.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5362de564538a549c096a9792a7e2292e4b91263fa6816fdce354faaa68e79b6"
+    },
+    {
+      "slug": "the-sound-intensity",
+      "title": "THE SOUND INTENSITY",
+      "kicker": "loudness on a log ladder",
+      "accent": "#ffd23f",
+      "blurb": "The decibel, runnable in THE OCHO: L = 10 log10(I/I0) with intensity falling as 1/r^2 (-6 dB per doubling), +6 dB for a pressure doubling - the perceptual scale over the-speed-of-sound's waves.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a9f70dc94f5699a111732e1144641bddd5761f7b9459ba6922c43ac62bb5925a"
+    },
+    {
+      "slug": "the-sabine-equation",
+      "title": "THE SABINE EQUATION",
+      "kicker": "the echo of a hall",
+      "accent": "#9ee06a",
+      "blurb": "Sabine (1898), runnable in THE OCHO: T60 = 0.161 V/A, reverberation growing with volume and dying with absorption - the founding law of room acoustics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "425d14e3ef7e439922794446e22b6eb95c2f225e47eef18a1c2aff79aac2b11e"
+    },
+    {
+      "slug": "the-helmholtz-resonator",
+      "title": "THE HELMHOLTZ RESONATOR",
+      "kicker": "the singing bottle",
+      "accent": "#c8a2ff",
+      "blurb": "Helmholtz (1863), runnable in THE OCHO: f = (c/2pi) sqrt(A/(V L)), a mass of neck-air on a spring of cavity-air - a lumped resonator distinct from the-organ-pipe's standing waves.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ef3dbc2099ea4fd1b78dacae45b126f06bc02ec73abf1281df16de223c2b7428"
+    },
+    {
+      "slug": "the-beats",
+      "title": "THE BEATS",
+      "kicker": "two notes throb",
+      "accent": "#ff9e6a",
+      "blurb": "Beats, runnable in THE OCHO: |f1 - f2| the audible beat rate from a product-to-sum envelope, zero at unison - the interference of two of the-speed-of-sound's waves a tuner listens for.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9dc5f45867b548e4d629e4b2f2dee6757c4f02d967fcdba6e707983404c141f5"
+    },
+    {
+      "slug": "the-organ-pipe",
+      "title": "THE ORGAN PIPE",
+      "kicker": "the ringing air column",
+      "accent": "#7fe0c0",
+      "blurb": "The organ pipe, runnable in THE OCHO: open all-harmonics n c/2L versus closed odd-only (2n-1) c/4L an octave lower - standing waves of the-speed-of-sound, the timbre of the-overtone-series in air.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c4253bce11f07c679897fa33243304fcb0a37d3b0e37022792135cd429c7c875"
+    },
+    {
+      "slug": "the-room-modes",
+      "title": "THE ROOM MODES",
+      "kicker": "the room as a resonator",
+      "accent": "#ffb0d0",
+      "blurb": "Rayleigh (1877), runnable in THE OCHO: f = (c/2) sqrt(sum (n/L)^2), axial modes reducing to the-organ-pipe, degenerate in a cube - the 3-D standing waves that make bass uneven.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "602af12888b371700cd055f0e4051a48721501890fa677b10b275bd45ea4e3b6"
+    },
+    {
+      "slug": "the-acoustic-impedance",
+      "title": "THE ACOUSTIC IMPEDANCE",
+      "kicker": "the resistance to sound",
+      "accent": "#9ee0d0",
+      "blurb": "Rayleigh (1877), runnable in THE OCHO: Z = rho c with reflection ((Z2-Z1)/(Z2+Z1))^2, a huge air-water mismatch bouncing 99.9% back - the impedance matching behind every horn, closing the acoustics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d38e3f91336f223f0187b037b592765bd900ddd7a9cd1c9f110a6e9c0f6317db"
     }
   ],
   "appeals": [
@@ -30869,9 +30941,73 @@
               "icon": "≡",
               "kicker": "a way of making everyone wrong in the same direction",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-speed-of-sound",
+              "title": "THE SPEED OF SOUND",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "how fast sound races",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sound-intensity",
+              "title": "THE SOUND INTENSITY",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "loudness on a log ladder",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-sabine-equation",
+              "title": "THE SABINE EQUATION",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "the echo of a hall",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-helmholtz-resonator",
+              "title": "THE HELMHOLTZ RESONATOR",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "the singing bottle",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-beats",
+              "title": "THE BEATS",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "two notes throb",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-organ-pipe",
+              "title": "THE ORGAN PIPE",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "the ringing air column",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-room-modes",
+              "title": "THE ROOM MODES",
+              "accent": "#ffb0d0",
+              "icon": "spawn",
+              "kicker": "the room as a resonator",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-acoustic-impedance",
+              "title": "THE ACOUSTIC IMPEDANCE",
+              "accent": "#9ee0d0",
+              "icon": "boss",
+              "kicker": "the resistance to sound",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 32,
+          "seats": 33,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -35684,7 +35820,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "fa0d26df686c84c40286781fa9fd9bd0649f067c4cb065761f36c0e93ecdb16f",
+  "fold_root": "53a8db5dc5a6b739f9e2ffe179f30e6b6b8d01aea622a14e1b3839a203bd156f",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
