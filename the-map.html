@@ -64,8 +64,9 @@
   for(const n of N){ if(n.x<minx)minx=n.x; if(n.x>maxx)maxx=n.x; if(n.y<miny)miny=n.y; if(n.y>maxy)maxy=n.y; }
   let DPR=Math.min(2,window.devicePixelRatio||1), W=0,H=0;
   let scale=1, ox=0, oy=0;
-  function resize(){ W=cv.clientWidth=innerWidth; H=cv.clientHeight=innerHeight;
-    cv.width=W*DPR; cv.height=H*DPR; fit(); }
+  function resize(){ W=innerWidth; H=innerHeight;
+    cv.style.width=W+'px'; cv.style.height=H+'px';
+    cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR); fit(); }
   function fit(){ const pad=90, gw=maxx-minx, gh=maxy-miny;
     scale=Math.min((W-pad*2)/gw,(H-pad*2)/gh);
     ox=(W-gw*scale)/2 - minx*scale; oy=(H-gh*scale)/2 - miny*scale; draw(); }
