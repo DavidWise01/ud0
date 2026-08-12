@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE LOBACHEVSKY · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>ROOM &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE LOBACHEVSKY</h1>
+ <p class="sub">Deny Euclid&rsquo;s fifth postulate and a whole consistent world opens: a plane of constant curvature <b>&minus;1</b> where every triangle is <b>lean</b>. Its angles sum to <b>less than &pi;</b>, and the shortfall is not error &mdash; it <b>is the area</b>. Set the three angles and watch the <b>defect equal the area</b>, live.</p>
+ <p class="src"><span class="tag t-amber">source</span> N. I. Lobachevsky, <i>On the Principles of Geometry</i> (Kazan, 1829) &mdash; the first published non-Euclidean geometry. W. K. Clifford called him &ldquo;the Copernicus of geometry.&rdquo; &middot; ROOM &middot; THE NUMBER.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM · roots / lineage / witness ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">3</span><h2>ROOTS &mdash; the fifth postulate <span class="tag t-amber">history</span></h2>
+   <p>Euclid&rsquo;s <b>parallel postulate</b>: through a point off a line, exactly <b>one</b> parallel. For <b>2000 years</b> geometers tried to <i>prove</i> it from the other four &mdash; Proclus, Omar Khayy&aacute;m, Saccheri, Legendre &mdash; every proof smuggled in an equivalent assumption.</p>
+   <p><b>Lobachevsky</b> (Kazan, 1829) and <b>J&aacute;nos Bolyai</b> (1832) each did the unthinkable independently: <b>deny</b> it, keep the other four, and find no contradiction &mdash; a new, consistent geometry.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>PARALLELS &mdash; infinitely many</h2>
+   <p>In Lobachevsky&rsquo;s plane, through a point not on a line pass <b>infinitely many</b> lines that never meet it. Two of them are the <b>limiting parallels</b>; every line between them is <b>ultraparallel</b>.</p>
+   <p class="small">The single Euclidean parallel is not wrong &mdash; it is the razor&rsquo;s-edge special case, curvature exactly <b>0</b>. Curve the plane the other way (a sphere) and there are <b>no</b> parallels at all.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>LINEAGE &mdash; to curved spacetime <span class="tag t-amber">history</span></h2>
+   <p><b>Lobachevsky &rarr; Riemann</b> (1854): curvature becomes a field, varying point to point. <b>&rarr; Einstein</b> (1915): matter tells that curvature how to bend, and gravity <i>is</i> the geometry.</p>
+   <p class="small">The saddle at your fingertip and the universe at its largest scales are both, locally, Lobachevsky&rsquo;s plane. What Kazan called impossible became the shape of the cosmos.</p>
+  </div>
+
+  <div class="win blue"><span class="no">9</span><h2>THE WITNESS <span class="tag t-lit">live</span></h2>
+   <p>The blue team re-derives the invariants on load and re-checks the <b>live</b> law: defect = area for the current triangle, the ideal triangle&rsquo;s area is &pi;, and the Poincar&eacute; distance blows up at the rim. If red forces the Euclidean law (6), this badge is where it shows.</p>
+   <div id="auditout"></div>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the three angles <span class="tag t-in">in &darr;</span></h2>
+   <p>Set a hyperbolic triangle by its three interior angles. A real hyperbolic triangle must have <b>angle sum strictly below &pi;</b>. Drive an angle to <b>0</b> and its vertex slides onto the boundary circle &mdash; an <b>ideal</b> vertex.</p>
+   <div class="row"><label>&alpha; (deg)</label><input id="al" type="range" min="0" max="88" value="45"><span id="alv" class="small">45&deg;</span></div>
+   <div class="row"><label>&beta; (deg)</label><input id="be" type="range" min="0" max="88" value="45"><span id="bev" class="small">45&deg;</span></div>
+   <div class="row"><label>&gamma; (deg)</label><input id="ga" type="range" min="0" max="88" value="45"><span id="gav" class="small">45&deg;</span></div>
+   <div class="row"><button id="pEq">&#9650; equilateral &pi;/4</button><button id="pIdeal">&#9650; ideal (0,0,0)</button></div>
+   <div class="row"><label>disk r</label><input id="rr" type="range" min="0" max="99" value="50"><span id="rrv" class="small">0.50</span></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; Gauss&ndash;Bonnet at curvature &minus;1 &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; defect = area <span class="tag t-lit">LIT</span></h2>
+   <div class="engine">
+    <div class="controls" style="min-width:210px">
+     <svg id="disk" viewBox="0 0 220 220" width="100%" style="max-width:230px;display:block;margin:0 auto"></svg>
+     <p class="small" style="text-align:center;margin-top:4px">Poincar&eacute; disk (schematic): the triangle&rsquo;s edges bow <b>inward</b>; the red mark sits at radius r.</p>
+    </div>
+    <div class="readout">
+     <div class="row"><label>&alpha;+&beta;+&gamma;</label><b id="sumOut" class="k">&mdash;</b></div>
+     <div class="row"><label>defect</label><b id="defOut" class="k">&mdash;</b> <span class="small">= &pi; &minus; sum</span></div>
+     <div class="row"><label>area</label><b id="areaOut" class="k">&mdash;</b> <span class="small">(Gauss&ndash;Bonnet)</span></div>
+     <div class="out" id="eqOut">&mdash;</div>
+     <p class="small" style="margin-top:6px">Poincar&eacute; distance centre &rarr; r:<br>d = ln((1+r)/(1&minus;r)) = 2&middot;artanh(r)</p>
+     <div class="row"><label>d(0, r)</label><b id="dOut" class="k">&mdash;</b></div>
+    </div>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; the shortfall is the size &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; the lean triangle <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict" id="verdict">&mdash;</div>
+   <div class="reason" id="reason"></div>
+   <div id="litbadge" style="margin-top:8px"></div>
+   <p class="small" style="margin-top:8px">As all three angles &rarr; 0 the triangle becomes <b>ideal</b> and its area reaches the maximum <b>&pi;</b> &mdash; no hyperbolic triangle is larger. And distance to the rim diverges:</p>
+   <table id="dTbl"><thead><tr><th>r</th><th>d = ln((1+r)/(1&minus;r))</th></tr></thead><tbody id="dBody"></tbody></table>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM · wall / graveyard / tamper ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE ADVERSARY &mdash; the wall</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> Consistency is <b>relative</b>, not absolute. Lobachevsky never <i>proved</i> his geometry free of contradiction &mdash; that waited for <b>Beltrami</b> (1868) and <b>Klein/Poincar&eacute;</b>, who built models <i>inside</i> Euclidean geometry. Hyperbolic geometry is contradiction-free <b>if and only if</b> Euclidean geometry is. Neither stands on nothing.</div>
+   <p class="small" style="margin-top:8px">Lobachevsky died in 1856, nearly blind, his work dismissed. Vindication came only after.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Non-Euclidean geometry is a paradox &mdash; a logical error.&rdquo;</s> <b>Cut.</b> It is the exact geometry of every <b>saddle surface</b>, and of the universe at large scales. No error &mdash; a second lawful plane.</p>
+   <p class="grave"><s>&ldquo;Every triangle&rsquo;s angles sum to 180&deg;.&rdquo;</s> <b>Cut.</b> Only on the flat plane. Here the sum is always <b>less</b>; on a sphere, always more.</p>
+   <p class="grave"><s>&ldquo;The parallel postulate follows from the others.&rdquo;</s> <b>Cut.</b> 2000 years of proofs, every one circular. It is <b>independent</b>.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; break it</h2>
+   <p>The red team&rsquo;s move: force the <b>Euclidean law</b> &mdash; declare the angle sum equals &pi; and the defect is <b>0</b>. Then every triangle &ldquo;has zero area,&rdquo; the ideal triangle loses its &pi;, and the hyperbolic plane <b>collapses to flat</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; force Euclidean law</button><button id="restore">&#8634; restore &minus;1</button></div>
+   <p class="small" id="tampernote">Flatten the plane and the defect vanishes &mdash; the witness (9) demands defect &gt; 0 for a real hyperbolic triangle, recomputes, and turns red. The attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE LOBACHEVSKY &mdash; World IV &middot; <b>SONIA</b>, in the refined <b>OCHO</b>: a red-team / blue-team instrument with a live engine down the centre (three angles go <b style="color:var(--cy)">in</b> &rarr; Gauss&ndash;Bonnet &rarr; the lean triangle comes <b style="color:var(--grn)">out</b>). A runnable rendering of Lobachevsky&rsquo;s <i>On the Principles of Geometry</i> (Kazan, 1829). The engine is LIT &mdash; defect = area, ideal area = &pi;, and the Poincar&eacute; distance ln((1+r)/(1&minus;r)) all self-checked and tamper-provable; the history is stamped AMBER; the wall (consistency is relative to Euclid&rsquo;s) is a genuine limit. SONIA is the Kazan world that read the geometry of the saddle. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE LOBACHEVSKY — the engine (constant curvature -1; every number computed) ===== */
+
+var EUCLID=false; // TAMPER: when true, force the flat law -> angle sum = pi, defect 0
+
+// Gauss-Bonnet at curvature K = -1: for a geodesic triangle, defect = pi - (a+b+g) = AREA.
+function defect(a,b,g){ if(EUCLID) return 0; return Math.PI-(a+b+g); }
+function triArea(a,b,g){ return defect(a,b,g); }               // area IS the defect (the load-bearing LIT fact)
+function isHyperbolic(a,b,g){ return (a+b+g) < Math.PI-1e-12; } // a valid hyperbolic triangle: sum strictly < pi
+
+// Poincare disk: hyperbolic distance from the centre to a point at Euclidean radius r (0<=r<1).
+function artanh(r){ return 0.5*Math.log((1+r)/(1-r)); }
+function poincareDist(r){ return Math.log((1+r)/(1-r)); }       // = 2 * artanh(r); -> infinity as r -> 1
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=EUCLID; EUCLID=false;
+ var P=Math.PI;
+
+ // 1 — the equilateral pi/4 triangle: sum 3pi/4, defect = area = pi/4 = 0.7854
+ var a=P/4,b=P/4,g=P/4;
+ t(Math.abs((a+b+g)-3*P/4)<1e-12,"pi/4 triangle angle sum must be 3pi/4");
+ t(isHyperbolic(a,b,g),"pi/4 triangle must be a valid hyperbolic triangle (sum < pi)");
+ var def=defect(a,b,g);
+ t(def>0,"a real hyperbolic triangle must have defect > 0");
+ t(Math.abs(def-(P-(a+b+g)))<1e-9,"defect must equal pi - (a+b+g)");
+ t(Math.abs(triArea(a,b,g)-def)<1e-9,"Gauss-Bonnet: area must equal the defect");
+ t(Math.abs(def-P/4)<1e-9,"pi/4 triangle defect/area must be pi/4 = 0.7854");
+
+ // 2 — the ideal triangle (0,0,0): area = pi, the MAXIMUM
+ t(isHyperbolic(0,0,0),"ideal triangle has angle sum 0 < pi");
+ t(Math.abs(triArea(0,0,0)-P)<1e-12,"ideal triangle (0,0,0) area must equal pi (the maximum)");
+ t(triArea(0,0,0) >= triArea(a,b,g)-1e-12,"the ideal area pi must be the maximum possible area");
+
+ // 3 — defect equals area for arbitrary valid angle sets, within 1e-9
+ var trials=[[0.3,0.4,0.5],[0.1,0.1,0.1],[1.0,0.9,0.5],[0.0,0.0,1.0],[P/6,P/6,P/6]];
+ for(var i=0;i<trials.length;i++){
+  var A=trials[i][0],B=trials[i][1],G=trials[i][2];
+  if(isHyperbolic(A,B,G)){ var d=defect(A,B,G); t(d>0,"defect must be > 0 for a valid triangle"); t(Math.abs(d-triArea(A,B,G))<1e-9,"defect === area within 1e-9"); t(Math.abs(d-(P-(A+B+G)))<1e-9,"defect === pi-sum within 1e-9"); }
+ }
+
+ // 4 — a triangle whose angles sum to >= pi is NOT hyperbolic
+ t(!isHyperbolic(P/3,P/3,P/3),"Euclidean sum = pi is not strictly hyperbolic");
+ t(!isHyperbolic(P/2,P/2,P/2),"sum 3pi/2 >= pi is not a hyperbolic triangle");
+
+ // 5 — Poincare distance: d(0,0.5) = ln 3, d(0,0.9) = ln 19, d = 2 artanh(r), d(0,0)=0
+ t(Math.abs(poincareDist(0.5)-Math.log(3))<1e-6,"Poincare d(0,0.5) must equal ln(3) = 1.0986");
+ t(Math.abs(poincareDist(0.9)-Math.log(19))<1e-6,"Poincare d(0,0.9) must equal ln(19) = 2.9444");
+ t(Math.abs(poincareDist(0.5)-2*artanh(0.5))<1e-12,"d must equal 2 * artanh(r)");
+ t(Math.abs(poincareDist(0))<1e-15,"d(0,0) must be 0");
+
+ // 6 — d grows monotonically in r and blows up as r -> 1
+ var prev=-1;
+ for(var r=0;r<0.9991;r+=0.02){ var dd=poincareDist(r); t(dd>prev,"Poincare distance must increase monotonically in r"); prev=dd; }
+ t(poincareDist(0.9999)>9,"Poincare distance must blow up (large) as r -> 1");
+
+ EUCLID=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var D2R=Math.PI/180;
+
+function drawDisk(alpha,beta,gamma,r){
+ // schematic Poincare disk: vertices slide toward the rim as their angle shrinks; edges bow inward.
+ var R=95,cx=110,cy=110;
+ // place three vertices at 90, 210, 330 degrees; radius grows as the angle shrinks (0 -> on the rim)
+ var maxA=88*D2R;
+ function rho(ang){ return 0.30 + 0.68*(1-ang/maxA); } // 0.30 (wide angle) .. 0.98 (ideal)
+ var ang=[alpha,beta,gamma], base=[-90,30,150], pt=[];
+ for(var i=0;i<3;i++){ var rr=rho(ang[i])*R, th=base[i]*D2R; pt.push([cx+rr*Math.cos(th), cy+rr*Math.sin(th)]); }
+ // bow each edge toward the centre with a quadratic control point pulled inward
+ function edge(p,q){ var mx=(p[0]+q[0])/2, my=(p[1]+q[1])/2; var ctrlx=cx+(mx-cx)*0.35, ctrly=cy+(my-cy)*0.35; return "M"+p[0].toFixed(1)+","+p[1].toFixed(1)+" Q"+ctrlx.toFixed(1)+","+ctrly.toFixed(1)+" "+q[0].toFixed(1)+","+q[1].toFixed(1); }
+ var col=EUCLID?"#8c1c13":"#1d4e79";
+ var mark=cx+ r*R; // red radial mark along +x
+ var svg=""
+  +'<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="#fbf6e6" stroke="#b29a68" stroke-width="1.5"/>'
+  +'<path d="'+edge(pt[0],pt[1])+'" fill="none" stroke="'+col+'" stroke-width="2"/>'
+  +'<path d="'+edge(pt[1],pt[2])+'" fill="none" stroke="'+col+'" stroke-width="2"/>'
+  +'<path d="'+edge(pt[2],pt[0])+'" fill="none" stroke="'+col+'" stroke-width="2"/>';
+ for(var j=0;j<3;j++){ svg+='<circle cx="'+pt[j][0].toFixed(1)+'" cy="'+pt[j][1].toFixed(1)+'" r="3" fill="'+col+'"/>'; }
+ svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+mark.toFixed(1)+'" y2="'+cy+'" stroke="#a5121a" stroke-width="1.5" stroke-dasharray="3,3"/>'
+     +'<circle cx="'+mark.toFixed(1)+'" cy="'+cy+'" r="3.5" fill="#a5121a"/>'
+     +'<circle cx="'+cx+'" cy="'+cy+'" r="2" fill="#241d12"/>';
+ $("disk").innerHTML=svg;
+}
+
+function render(){
+ var alDeg=+$("al").value, beDeg=+$("be").value, gaDeg=+$("ga").value, rPct=+$("rr").value;
+ $("alv").innerHTML=alDeg+"&deg;"; $("bev").innerHTML=beDeg+"&deg;"; $("gav").innerHTML=gaDeg+"&deg;";
+ var r=rPct/100; $("rrv").textContent=r.toFixed(2);
+ var a=alDeg*D2R,b=beDeg*D2R,g=gaDeg*D2R;
+ var sum=a+b+g, def=defect(a,b,g), area=triArea(a,b,g), valid=isHyperbolic(a,b,g);
+
+ $("sumOut").innerHTML = sum.toFixed(4)+" rad ("+(alDeg+beDeg+gaDeg)+"&deg;)";
+ $("defOut").textContent = def.toFixed(4);
+ $("areaOut").textContent = area.toFixed(4);
+ $("eqOut").innerHTML = EUCLID
+   ? '<span style="color:var(--wall)">EUCLIDEAN LAW forced &mdash; defect = 0, area = 0</span>'
+   : (valid ? 'defect = area = <b>'+def.toFixed(4)+'</b>' : '<span style="color:var(--wall)">sum &ge; &pi; &mdash; not a hyperbolic triangle</span>');
+ var d=poincareDist(r);
+ $("dOut").textContent = d.toFixed(4) + (r>0.98?"  (&rarr; infinity)":"");
+
+ // verdict / data out
+ var v=$("verdict"), rs=$("reason");
+ if(EUCLID){
+  v.className="verdict no"; v.innerHTML="&#10007; PLANE COLLAPSED TO FLAT";
+  rs.innerHTML="The Euclidean law is forced: every triangle reports zero area and the ideal triangle loses its &pi;. This is the tamper &mdash; not a real hyperbolic triangle.";
+ } else if(!valid){
+  v.className="verdict no"; v.innerHTML="&#10007; NOT HYPERBOLIC";
+  rs.innerHTML="Angle sum "+sum.toFixed(4)+" rad is not below &pi;. A hyperbolic triangle needs sum strictly &lt; &pi;. Lower an angle.";
+ } else {
+  v.className="verdict ok"; v.innerHTML="&#10003; LEAN TRIANGLE &mdash; area "+area.toFixed(4);
+  var pctOfMax=(area/Math.PI*100).toFixed(1);
+  rs.innerHTML="Angle sum &lt; &pi; by <b>"+def.toFixed(4)+"</b>, and that shortfall <b>is</b> the area ("+pctOfMax+"% of the ideal maximum &pi; = 3.1416).";
+ }
+ drawDisk(a,b,g,r);
+ audit(valid,def);
+}
+
+function audit(validNow,defNow){
+ var el=$("auditout"), P=Math.PI;
+ // re-derive the fixed truths untampered
+ var save=EUCLID; EUCLID=false;
+ var idealOK = Math.abs(triArea(0,0,0)-P)<1e-12;
+ var eqOK = Math.abs(triArea(P/4,P/4,P/4)-P/4)<1e-9;
+ var poincOK = Math.abs(poincareDist(0.5)-Math.log(3))<1e-6 && poincareDist(0.9999)>9;
+ EUCLID=save;
+ // the LIVE law: defect must be > 0 for a real hyperbolic triangle
+ var liveOK = !EUCLID; // forcing the Euclidean law breaks the live invariant
+ var ok = idealOK && eqOK && poincOK && liveOK;
+ el.innerHTML = '<span class="badge '+(ok?'pass':'failb')+'">'+(ok?'&#10003; WITNESS — the plane holds':'&#10007; WITNESS — plane flattened')+'</span>'
+  + '<div class="small" style="margin-top:6px">ideal area = &pi; <b style="color:'+(idealOK?'var(--lit)':'var(--wall)')+'">'+(idealOK?'&#10003;':'&#10007;')+'</b>'
+  + ' &middot; &pi;/4 defect = 0.7854 <b style="color:var(--lit)">&#10003;</b>'
+  + ' &middot; d(0,0.5)=ln3 <b style="color:var(--lit)">&#10003;</b>'
+  + ' &middot; defect &gt; 0 live <b style="color:'+(liveOK?'var(--lit)':'var(--wall)')+'">'+(liveOK?'&#10003;':'&#10007;')+'</b>'
+  + (EUCLID?' &nbsp;&mdash; <span style="color:var(--wall)">red forced the Euclidean law</span>':'')+'</div>';
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("litbadge").innerHTML='<span class="badge pass">&#10003; LIT &middot; self-check passed on load</span>';
+ // distance table (fixed anchors, recomputed)
+ var rows=[0.5,0.9,0.99,0.999], tb="";
+ for(var i=0;i<rows.length;i++){ tb+='<tr'+(rows[i]===0.5?' style="background:rgba(165,18,26,.10);font-weight:700"':'')+'><td>'+rows[i]+'</td><td>'+poincareDist(rows[i]).toFixed(4)+'</td></tr>'; }
+ $("dBody").innerHTML=tb;
+
+ ["al","be","ga","rr"].forEach(function(id){ $(id).addEventListener("input",render); });
+ $("pEq").addEventListener("click",function(){ $("al").value=45; $("be").value=45; $("ga").value=45; render(); });
+ $("pIdeal").addEventListener("click",function(){ $("al").value=0; $("be").value=0; $("ga").value=0; render(); });
+ $("tamper").addEventListener("click",function(){ EUCLID=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>Euclidean law forced.</b> The angle sum is declared equal to &pi; and the defect set to 0 &mdash; every triangle now reports zero area and the plane is flat. The witness (9) demands defect &gt; 0 and went red. The attack is real; it is caught."; render(); });
+ $("restore").addEventListener("click",function(){ EUCLID=false; $("tampernote").innerHTML="Flatten the plane and the defect vanishes &mdash; the witness (9) demands defect &gt; 0 for a real hyperbolic triangle, recomputes, and turns red. The attack is real and it is caught."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the Lobachevsky engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

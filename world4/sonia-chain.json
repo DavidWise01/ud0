@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//SONIA//WORLD-IV//the-russian-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
   "folded_to": "ROOT_0",
-  "root": "927a4b44353c34ca7609f4a3c8865bd5e2e071db90fd91e20eefd52d59daff5d",
-  "count": 10,
+  "root": "21160edc50c7547fdfe2f5887ec89b08bf1f12a5f24ed41e1d5bd9d5a5d0058e",
+  "count": 15,
   "sealed": "2026-08-12",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World IV inhabitant folds to ROOT_0. Live: the root updates as SONIA grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
@@ -24,15 +24,15 @@
           "side": "R"
         },
         {
-          "h": "1bbb8e719bb0b629c76f0b1da3ccc930eb09e50d4f04746287ffa26a80d96dac",
+          "h": "c17684aa3b5311848b949774b67ce1fc24bd3f3d4ee69650fc97adaa17260544",
           "side": "R"
         },
         {
-          "h": "607a30d145427faa4059ad1628f5bcac1a20f62c0c09f36af8bb36cca92d9d80",
+          "h": "9744ffbf33f4117e38d292102a0226b4e8ac2fe0cb221d009af6bb0a0ad1a80a",
           "side": "R"
         },
         {
-          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
+          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
           "side": "R"
         }
       ]
@@ -49,28 +49,28 @@
           "side": "L"
         },
         {
-          "h": "1bbb8e719bb0b629c76f0b1da3ccc930eb09e50d4f04746287ffa26a80d96dac",
+          "h": "c17684aa3b5311848b949774b67ce1fc24bd3f3d4ee69650fc97adaa17260544",
           "side": "R"
         },
         {
-          "h": "607a30d145427faa4059ad1628f5bcac1a20f62c0c09f36af8bb36cca92d9d80",
+          "h": "9744ffbf33f4117e38d292102a0226b4e8ac2fe0cb221d009af6bb0a0ad1a80a",
           "side": "R"
         },
         {
-          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
+          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
           "side": "R"
         }
       ]
     },
     {
       "index": 2,
-      "kind": "keeper",
-      "name": "SONIA",
-      "slug": "sonia",
-      "seal": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
+      "kind": "sphere",
+      "name": "THE SETUN",
+      "slug": "the-setun",
+      "seal": "dfeb937c267d05d21e20b555e532874eef2299e20bcaa1318b8efa1571ec1139",
       "proof": [
         {
-          "h": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
+          "h": "097723cc3cb1b9bb6045b6a911922a809b0a73f1455b7a892f0089ff67c10f8c",
           "side": "R"
         },
         {
@@ -78,24 +78,24 @@
           "side": "L"
         },
         {
-          "h": "607a30d145427faa4059ad1628f5bcac1a20f62c0c09f36af8bb36cca92d9d80",
+          "h": "9744ffbf33f4117e38d292102a0226b4e8ac2fe0cb221d009af6bb0a0ad1a80a",
           "side": "R"
         },
         {
-          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
+          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
           "side": "R"
         }
       ]
     },
     {
       "index": 3,
-      "kind": "keeper",
-      "name": "KHINCHIN",
-      "slug": "khinchin",
-      "seal": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
+      "kind": "sphere",
+      "name": "THE MARKOV PROPERTY",
+      "slug": "the-markov-property",
+      "seal": "097723cc3cb1b9bb6045b6a911922a809b0a73f1455b7a892f0089ff67c10f8c",
       "proof": [
         {
-          "h": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
+          "h": "dfeb937c267d05d21e20b555e532874eef2299e20bcaa1318b8efa1571ec1139",
           "side": "L"
         },
         {
@@ -103,86 +103,86 @@
           "side": "L"
         },
         {
-          "h": "607a30d145427faa4059ad1628f5bcac1a20f62c0c09f36af8bb36cca92d9d80",
+          "h": "9744ffbf33f4117e38d292102a0226b4e8ac2fe0cb221d009af6bb0a0ad1a80a",
           "side": "R"
         },
         {
-          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
+          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
           "side": "R"
         }
       ]
     },
     {
       "index": 4,
-      "kind": "keeper",
-      "name": "KOLMOGOROV",
-      "slug": "kolmogorov",
-      "seal": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+      "kind": "sphere",
+      "name": "THE LOBACHEVSKY",
+      "slug": "the-lobachevsky",
+      "seal": "6882d41fddd476c53d530a0237d0f351dcaba9a3030528ce99407de5e618d28d",
       "proof": [
         {
-          "h": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+          "h": "403f74c8373c684a1fd319fa85225a056ac69bb6f543876783dbd496c0336f3d",
           "side": "R"
         },
         {
-          "h": "4a51b55271b3c2cd728a3e6d2c2fdbdc207b5e9e92a077d22131486f838c3101",
+          "h": "7531e7b3d24b406cf40d8b0c196820388467746c505e5a66cf9b350efc257e96",
           "side": "R"
         },
         {
-          "h": "a1901acb68dc9ffec0b1fa10a138899ac36e6a92dbc9f8c575a5b0a1c7fe837b",
+          "h": "ecd85f2e6dbcddc7a7ea168c0c3dd221416b1b07241cbccb075a98f95f055b30",
           "side": "L"
         },
         {
-          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
+          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
           "side": "R"
         }
       ]
     },
     {
       "index": 5,
-      "kind": "keeper",
-      "name": "DOSTOEVSKY",
-      "slug": "dostoevsky",
-      "seal": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+      "kind": "sphere",
+      "name": "RUSSIAN COSMISM",
+      "slug": "russian-cosmism",
+      "seal": "403f74c8373c684a1fd319fa85225a056ac69bb6f543876783dbd496c0336f3d",
       "proof": [
         {
-          "h": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+          "h": "6882d41fddd476c53d530a0237d0f351dcaba9a3030528ce99407de5e618d28d",
           "side": "L"
         },
         {
-          "h": "4a51b55271b3c2cd728a3e6d2c2fdbdc207b5e9e92a077d22131486f838c3101",
+          "h": "7531e7b3d24b406cf40d8b0c196820388467746c505e5a66cf9b350efc257e96",
           "side": "R"
         },
         {
-          "h": "a1901acb68dc9ffec0b1fa10a138899ac36e6a92dbc9f8c575a5b0a1c7fe837b",
+          "h": "ecd85f2e6dbcddc7a7ea168c0c3dd221416b1b07241cbccb075a98f95f055b30",
           "side": "L"
         },
         {
-          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
+          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
           "side": "R"
         }
       ]
     },
     {
       "index": 6,
-      "kind": "keeper",
-      "name": "TOLSTOY",
-      "slug": "tolstoy",
-      "seal": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+      "kind": "sphere",
+      "name": "THE MORPHOLOGY OF THE TALE",
+      "slug": "the-morphology-of-the-tale",
+      "seal": "696db9c217660749cae50d08f9e6ddfc8963bfddf5d239fafb73ae4eb72b2959",
       "proof": [
         {
-          "h": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+          "h": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
           "side": "R"
         },
         {
-          "h": "8486bdfbf17a118b499cd2c749d291edffe53313389c03c15bed86518399ccb6",
+          "h": "930b4748ccf78c2f8b9886ef0dd7e34a80828e83142a2263bb3ed3341c2a88b6",
           "side": "L"
         },
         {
-          "h": "a1901acb68dc9ffec0b1fa10a138899ac36e6a92dbc9f8c575a5b0a1c7fe837b",
+          "h": "ecd85f2e6dbcddc7a7ea168c0c3dd221416b1b07241cbccb075a98f95f055b30",
           "side": "L"
         },
         {
-          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
+          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
           "side": "R"
         }
       ]
@@ -190,24 +190,24 @@
     {
       "index": 7,
       "kind": "keeper",
-      "name": "BRUSENTSOV",
-      "slug": "brusentsov",
-      "seal": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+      "name": "SONIA",
+      "slug": "sonia",
+      "seal": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
       "proof": [
         {
-          "h": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+          "h": "696db9c217660749cae50d08f9e6ddfc8963bfddf5d239fafb73ae4eb72b2959",
           "side": "L"
         },
         {
-          "h": "8486bdfbf17a118b499cd2c749d291edffe53313389c03c15bed86518399ccb6",
+          "h": "930b4748ccf78c2f8b9886ef0dd7e34a80828e83142a2263bb3ed3341c2a88b6",
           "side": "L"
         },
         {
-          "h": "a1901acb68dc9ffec0b1fa10a138899ac36e6a92dbc9f8c575a5b0a1c7fe837b",
+          "h": "ecd85f2e6dbcddc7a7ea168c0c3dd221416b1b07241cbccb075a98f95f055b30",
           "side": "L"
         },
         {
-          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
+          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
           "side": "R"
         }
       ]
@@ -215,24 +215,24 @@
     {
       "index": 8,
       "kind": "keeper",
-      "name": "LEBEDEV",
-      "slug": "lebedev",
-      "seal": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+      "name": "KHINCHIN",
+      "slug": "khinchin",
+      "seal": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
       "proof": [
         {
-          "h": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
+          "h": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
           "side": "R"
         },
         {
-          "h": "216589e07a897e4fa1f4ef9cf2370ed4e5a2fa8a066e39b83aeec1419e8454b0",
+          "h": "e0a42a2220ba06145eb7b9f16482c4415e3164bdf441ecd89e010794335dc313",
           "side": "R"
         },
         {
-          "h": "92b54080148257deeb769bfb4552c1fedc91a63ff83234cac5091aadc224f4ab",
+          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
           "side": "R"
         },
         {
-          "h": "921c5ceb026c24399c39a55c3a0a099520abcc8e5dfc5a0aeeb70b878799ea91",
+          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
           "side": "L"
         }
       ]
@@ -240,24 +240,149 @@
     {
       "index": 9,
       "kind": "keeper",
+      "name": "KOLMOGOROV",
+      "slug": "kolmogorov",
+      "seal": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+      "proof": [
+        {
+          "h": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
+          "side": "L"
+        },
+        {
+          "h": "e0a42a2220ba06145eb7b9f16482c4415e3164bdf441ecd89e010794335dc313",
+          "side": "R"
+        },
+        {
+          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "side": "R"
+        },
+        {
+          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "kind": "keeper",
+      "name": "DOSTOEVSKY",
+      "slug": "dostoevsky",
+      "seal": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+      "proof": [
+        {
+          "h": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+          "side": "R"
+        },
+        {
+          "h": "bc7fc1e4e68582257779886da7e0a26aa09d718827480f35f72b6e37a0badbbd",
+          "side": "L"
+        },
+        {
+          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "side": "R"
+        },
+        {
+          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "kind": "keeper",
+      "name": "TOLSTOY",
+      "slug": "tolstoy",
+      "seal": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+      "proof": [
+        {
+          "h": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+          "side": "L"
+        },
+        {
+          "h": "bc7fc1e4e68582257779886da7e0a26aa09d718827480f35f72b6e37a0badbbd",
+          "side": "L"
+        },
+        {
+          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "side": "R"
+        },
+        {
+          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "kind": "keeper",
+      "name": "BRUSENTSOV",
+      "slug": "brusentsov",
+      "seal": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+      "proof": [
+        {
+          "h": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+          "side": "R"
+        },
+        {
+          "h": "3c4269c0623ae0cb40a06aa06edb0be605cca29086a9bb4135b04755ec9cf6f9",
+          "side": "R"
+        },
+        {
+          "h": "f80e29d1e3b9433d59482daea7b4a02c24e1e07aeb6fb4d979d6dd45a3422069",
+          "side": "L"
+        },
+        {
+          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "kind": "keeper",
+      "name": "LEBEDEV",
+      "slug": "lebedev",
+      "seal": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+      "proof": [
+        {
+          "h": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+          "side": "L"
+        },
+        {
+          "h": "3c4269c0623ae0cb40a06aa06edb0be605cca29086a9bb4135b04755ec9cf6f9",
+          "side": "R"
+        },
+        {
+          "h": "f80e29d1e3b9433d59482daea7b4a02c24e1e07aeb6fb4d979d6dd45a3422069",
+          "side": "L"
+        },
+        {
+          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "kind": "keeper",
       "name": "TSIOLKOVSKY",
       "slug": "tsiolkovsky",
       "seal": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
       "proof": [
         {
-          "h": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+          "h": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
+          "side": "R"
+        },
+        {
+          "h": "a1035f3e362e47c944f51b42c49d8334fb511ee6e636a8bdd1d2ea6bb177e1c7",
           "side": "L"
         },
         {
-          "h": "216589e07a897e4fa1f4ef9cf2370ed4e5a2fa8a066e39b83aeec1419e8454b0",
-          "side": "R"
+          "h": "f80e29d1e3b9433d59482daea7b4a02c24e1e07aeb6fb4d979d6dd45a3422069",
+          "side": "L"
         },
         {
-          "h": "92b54080148257deeb769bfb4552c1fedc91a63ff83234cac5091aadc224f4ab",
-          "side": "R"
-        },
-        {
-          "h": "921c5ceb026c24399c39a55c3a0a099520abcc8e5dfc5a0aeeb70b878799ea91",
+          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
           "side": "L"
         }
       ]

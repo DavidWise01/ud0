@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE SETUN · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE MACHINE &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE SETUN</h1>
+ <p class="sub">Moscow State University, 1958: the only computer ever series-produced on <b>balanced ternary</b> &mdash; digits <b>&minus;, 0, +</b> instead of the bit. Negation is free (flip every trit), no sign bit is needed, and base 3 is measurably cheaper to store than base 2. This panel is <b>runnable</b>: convert, negate, add with balanced carry, and read the radix-economy argument live. It is the ternary hinge from <b>SONIA</b> into <b style="color:var(--blue)">World III &middot; THE HALLWAY</b>.</p>
+ <p class="src"><span class="tag t-amber">source</span> N. P. Brusentsov &amp; S. L. Sobolev, <i>Setun</i>, Moscow State University, 1958 &mdash; the small-series ternary machine built 1959, roughly fifty units. Room: <b>THE MACHINE</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; the Setun <span class="tag t-amber">1958</span></h2>
+   <p>Designed by <b>Nikolai Brusentsov</b> at Moscow State University under the mathematician <b>Sergei Sobolev</b>. First working machine <b>1959</b>; about <b class="k">50</b> units were built and shipped across the USSR &mdash; the only <b>series-produced</b> balanced-ternary computer in history.</p>
+   <p class="small">It was reliable, cheap, and used fewer components than binary peers. Production was <b>halted for non-technical reasons</b> &mdash; an administrative decision, not an engineering failure. Its successor, <b>Setun-70</b> (1970), extended the idea and never reached series production either.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE TRIT &mdash; three states, not two</h2>
+   <p>A <b>bit</b> holds two states: 0, 1. A <b>trit</b> holds three: <b class="k">&minus;</b> (&minus;1), <b class="k">0</b>, <b class="k">+</b> (&plus;1). In <i>balanced</i> ternary the digit set is symmetric about zero, so a place value <b>3<sup>k</sup></b> can be subtracted as well as added.</p>
+   <p class="small">One trit carries <b>log&#8322;3 &asymp; 1.585 bits</b> of information. Three symmetric symbols is exactly what makes negation a relabelling and drops the sign bit &mdash; the two facts the engine proves to the right.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>RADIX ECONOMY &mdash; why base 3 <span class="tag t-lit">LIT</span></h2>
+   <p>To store <b>N</b> in base <b>b</b> you pay roughly <b class="k">cost = b &times; (digits)</b> &asymp; (b / ln b) &middot; ln N. The factor <b>b / ln b</b> is minimised at <b>b = e = 2.718</b> &mdash; and <b>3</b> sits closer to <b>e</b> than <b>2</b> does:</p>
+   <p class="small"><b>3 / ln 3 = <span class="k">2.7307</span></b> &nbsp;&lt;&nbsp; <b>2 / ln 2 = <span class="k">2.8854</span></b> &nbsp;(optimum e = 2.7183).</p>
+   <table id="radixTbl"><thead><tr><th>N</th><th>base 2 cost</th><th>base 3 cost</th><th>winner</th></tr></thead><tbody id="radixBody"></tbody></table>
+   <div id="radixbadge" style="margin-top:6px"></div>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; two integers <span class="tag t-in">in &darr;</span></h2>
+   <p>Feed two whole numbers. The engine converts each to a balanced-ternary string of <b>&minus; 0 +</b> by the balanced-remainder rule, negates by flipping trits, and adds them with a <b>balanced carry</b> (carry &plusmn;1 whenever a column sum leaves the range &minus;1&hellip;&plus;1).</p>
+   <div class="row"><label>x =</label><input id="xin" type="number" value="13" style="width:110px"></div>
+   <div class="row"><label>y =</label><input id="yin" type="number" value="5" style="width:110px"></div>
+   <p class="small mut">Range &minus;3000&hellip;3000 keeps the trit table readable; the algorithm has no such limit.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; convert &middot; negate &middot; add &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the ternary engine <span class="tag t-lit">LIT</span></h2>
+   <div class="out" id="btx">&mdash;</div>
+   <p class="small" style="margin-top:2px">x in balanced ternary &mdash; each trit times its place value <b>3<sup>k</sup></b>:</p>
+   <table id="pvTbl"><thead><tr><th>trit</th><th>place 3<sup>k</sup></th><th>value</th></tr></thead><tbody id="pvBody"></tbody></table>
+   <p class="small" style="margin-top:8px"><b>Negation</b> (free &mdash; flip every trit): <span id="negline" class="k">&mdash;</span></p>
+   <p class="small"><b>Addition</b> (balanced carry): <span id="addline" class="k">&mdash;</span></p>
+   <p class="small" style="margin-top:8px;color:var(--blue)"><b>L3 &mdash; Lukasiewicz three-valued logic</b> on {&minus;,0,+}: NOT = &minus;x, AND = min, OR = max.</p>
+   <div class="row"><label>a</label><select id="la"><option value="1">+</option><option value="0">0</option><option value="-1">&minus;</option></select>
+    <label>b</label><select id="lb"><option value="1">+</option><option value="0">0</option><option value="-1" selected>&minus;</option></select></div>
+   <p class="small">NOT a = <b id="l3not" class="k">&mdash;</b> &nbsp;&middot;&nbsp; a AND b = <b id="l3and" class="k">&mdash;</b> &nbsp;&middot;&nbsp; a OR b = <b id="l3or" class="k">&mdash;</b></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the machine emits the sum &amp; the bridge &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; sum &amp; the bridge <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outsum">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>x + y (ternary)</th><th>engine</th><th>decimal</th><th>ok</th></tr></thead><tbody id="witbody"></tbody></table>
+   <div class="wall-note" style="border-left-color:var(--blue);background:rgba(29,78,121,.05);margin-top:10px"><span class="tag t-amber">bridge</span> <b>THE BRIDGE.</b> The trit &minus;,0,+ is the same three-state alphabet that runs <b>World III &middot; THE HALLWAY</b> (ternary logic). SONIA reaches it here: balanced ternary is the arithmetic; L3 is the logic; the door is <a href="https://0root.ai/">https://0root.ai/</a>.</div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE ADVERSARY &mdash; "must be binary"</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The industry settled on two states because a transistor is easiest to build as an on/off switch &mdash; a <b>manufacturing</b> convenience, not a mathematical law. Balanced ternary needs <b>no sign bit</b> (the sign is carried in the digits), and <b>negation is free</b> (relabel + and &minus;). Rounding is symmetric. None of that saved it from the fab-line economics of mass-produced binary parts.</div>
+   <p class="small" style="margin-top:8px">The wall is real: three-level hardware is harder to fabricate and standardise than two-level. Setun proved the arithmetic works; the market proved the switches win.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>"Computers must be binary."</s> <b>Cut.</b> Setun ran for years on balanced ternary. Binary is a hardware choice, not a requirement of computation.</p>
+   <p class="grave"><s>"You need a sign bit for negatives."</s> <b>Cut.</b> Balanced ternary represents negatives natively; &minus;5 is just <b>&minus;++</b>, the trit-flip of +5 = <b>+&minus;&minus;</b>.</p>
+   <p class="grave"><s>"Base 2 is the most efficient radix."</s> <b>Cut &mdash; asymptotically.</b> On radix economy the optimum is e; 3/ln3 = 2.731 beats 2/ln2 = 2.885, so base 3 wins for large N. (Base 2 can still win at small N on the integer digit count &mdash; an honest crossover.)</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; break the carry</h2>
+   <p>The red move: swap the <b>balanced-ternary carry</b> for a <b>binary carry</b> (carry when a digit exceeds 1, base 2) inside the adder. The trit strings still form, but the sums stop matching decimal.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; use binary carry</button><button id="restore">&#8634; restore base-3 carry</button></div>
+   <p class="small" id="tampernote">Break the base-3 carry rule and re-add the known pairs: the witness (5) recomputes each sum against plain decimal arithmetic and turns <b style="color:var(--wall)">red</b>. The attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE SETUN &mdash; World IV &middot; <b>SONIA</b>, room <b>THE MACHINE</b>, in the refined <b>OCHO</b>: blue builds the roots and the radix argument, the machine converts / negates / adds in balanced ternary down the centre, red breaks the carry and is caught. A runnable rendering of Brusentsov &amp; Sobolev&rsquo;s <i>Setun</i> (Moscow State University, 1958) &mdash; conversion, negation, addition, radix economy and L3 logic are LIT and self-checked; the history is AMBER; the fabrication limit is a real WALL. This is the ternary hinge from SONIA into World III &middot; THE HALLWAY. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE SETUN — balanced-ternary engine (every value computed, none looked up) ===== */
+
+var TAMPER=false;   // when true the adder uses a BINARY carry (base 2) instead of the balanced-ternary carry
+
+function tritVal(c){ return c==="+"?1:(c==="-"?-1:0); }
+function tritChar(v){ return v>0?"+":(v<0?"-":"0"); }
+
+// decimal integer -> balanced ternary string of - 0 + (balanced-remainder rule)
+function bt(n){
+ if(n===0) return "0";
+ var s="", x=n;
+ while(x!==0){
+  var r=((x%3)+3)%3;
+  if(r===0){ s="0"+s; x=x/3; }
+  else if(r===1){ s="+"+s; x=(x-1)/3; }
+  else { s="-"+s; x=(x+1)/3; }   // r===2 -> digit -1, carry +1
+ }
+ return s;
+}
+// balanced ternary string -> decimal
+function toDec(s){ var v=0; for(var i=0;i<s.length;i++) v=v*3+tritVal(s.charAt(i)); return v; }
+// negation: flip every trit (this is the whole operation)
+function negate(s){ var o=""; for(var i=0;i<s.length;i++){ var c=s.charAt(i); o+= c==="+"?"-":(c==="-"?"+":"0"); } return o; }
+
+// addition with balanced carry; TAMPER swaps in a wrong (binary) carry rule
+function btAdd(x,y){
+ var res=[], carry=0, i=x.length-1, j=y.length-1;
+ while(i>=0 || j>=0 || carry!==0){
+  var s=(i>=0?tritVal(x.charAt(i)):0)+(j>=0?tritVal(y.charAt(j)):0)+carry;
+  var digit, c;
+  if(TAMPER){                       // BROKEN: base-2 carry (carry when magnitude exceeds 1 by 2)
+   if(s>1){ digit=s-2; c=1; } else if(s<-1){ digit=s+2; c=-1; } else { digit=s; c=0; }
+  } else {                          // CORRECT: balanced-ternary carry (base 3)
+   if(s>1){ digit=s-3; c=1; } else if(s<-1){ digit=s+3; c=-1; } else { digit=s; c=0; }
+  }
+  res.unshift(tritChar(digit)); carry=c; i--; j--;
+ }
+ var str=res.join("").replace(/^0+/,""); if(str==="") str="0"; return str;
+}
+
+// radix economy: cost(b,N) = b * number-of-digits-of-N-in-base-b
+function digitsInBase(N,b){ if(N<=0) return 1; var d=0, x=N; while(x>0){ x=Math.floor(x/b); d++; } return d; }
+function radixCost(b,N){ return b*digitsInBase(N,b); }
+
+// Lukasiewicz L3 three-valued logic on {-1,0,+1}
+function l3not(x){ return x===0?0:-x; }
+function l3and(a,b){ return Math.min(a,b); }
+function l3or(a,b){ return Math.max(a,b); }
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+
+ // 1 — round trip and free negation over -40..40
+ for(var n=-40;n<=40;n++){
+  var s=bt(n);
+  t(/^[+\-0]+$/.test(s),"bt("+n+") must contain only trits - 0 +");
+  t(toDec(s)===n,"round trip decimal->bt->decimal failed for "+n);
+  t(negate(s)===bt(-n),"negate(bt("+n+")) must equal bt("+(-n)+")");
+ }
+ // 2 — the named anchors
+ t(bt(13)==="+++","bt(13) must be +++");
+ t(bt(5)==="+--","bt(5) must be +--");
+ t(bt(-5)==="-++","bt(-5) must be -++");
+ t(bt(0)==="0","bt(0) must be 0");
+
+ // 3 — addition with balanced carry, checked against decimal
+ var pairs=[[13,5],[7,-4],[40,-40],[22,19],[-13,-5],[100,-37]];
+ for(var i=0;i<pairs.length;i++){
+  var a=pairs[i][0], b=pairs[i][1];
+  t(toDec(btAdd(bt(a),bt(b)))===a+b,"btAdd must equal "+a+" + "+b+" = "+(a+b));
+ }
+ // 4 — radix economy: the HONEST crossover. base 2 wins small N, base 3 wins large N; the coefficient favours 3.
+ t(radixCost(2,9) < radixCost(3,9),"base 2 must win at small N (N=9) — the crossover is real, not hidden");
+ t(radixCost(3,1000000) < radixCost(2,1000000),"base 3 must win by N = 1e6");
+ t(radixCost(3,1000000000) < radixCost(2,1000000000),"base 3 must win for large N (1e9)");
+ var c3=3/Math.log(3), c2=2/Math.log(2), ce=Math.E/Math.log(Math.E);
+ t(c3<c2,"3/ln3 must be < 2/ln2");
+ t(Math.abs(c3-2.7307)<1e-3,"3/ln3 must be about 2.7307");
+ t(Math.abs(c2-2.8854)<1e-3,"2/ln2 must be about 2.8854");
+ t(ce<c3 && Math.abs(ce-Math.E)<1e-9,"e/ln(e) = e = 2.7183 must be the optimum, below 3/ln3");
+
+ // 5 — L3 three-valued logic
+ t(l3not(0)===0,"L3 not(0) must be 0");
+ t(l3not(1)===-1 && l3not(-1)===1,"L3 not must flip sign");
+ t(l3and(1,-1)===-1,"L3 and = min: and(1,-1) must be -1");
+ t(l3or(1,-1)===1,"L3 or = max: or(1,-1) must be 1");
+
+ TAMPER=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+
+function clampInt(v){ var n=Math.round(+v)||0; if(n>3000) n=3000; if(n<-3000) n=-3000; return n; }
+
+function renderRadix(){
+ var Ns=[9,1000,1000000,1000000000,1000000000000], rows="";
+ for(var i=0;i<Ns.length;i++){
+  var N=Ns[i], c2=radixCost(2,N), c3=radixCost(3,N), win=c3<c2?"base 3":(c3>c2?"base 2":"tie");
+  rows+="<tr><td>"+N.toLocaleString()+"</td><td>"+c2+"</td><td>"+c3+"</td><td style=\"color:"+(c3<c2?"var(--lit)":"var(--dim)")+"\">"+win+"</td></tr>";
+ }
+ $("radixBody").innerHTML=rows;
+ var asym = radixCost(3,1000000000000) < radixCost(2,1000000000000) && (3/Math.log(3) < 2/Math.log(2));
+ $("radixbadge").innerHTML='<span class="badge '+(asym?"pass":"failb")+'">'+(asym?"base 3 wins on radix economy (large N; 3/ln3 < 2/ln2)":"radix claim broken")+'</span>'
+  +'<div class="small" style="margin-top:5px">Honest crossover: base <b>2</b> wins at small N on the integer digit count; base <b>3</b> pulls ahead as N grows and holds it &mdash; because on the coefficient b/ln&nbsp;b, three sits nearer the optimum e than two does.</div>';
+}
+
+function renderL3(){
+ var a=+$("la").value, b=+$("lb").value, g=function(v){ return v>0?"+":(v<0?"-":"0"); };
+ $("l3not").textContent=g(l3not(a));
+ $("l3and").textContent=g(l3and(a,b));
+ $("l3or").textContent=g(l3or(a,b));
+}
+
+function witness(){
+ var pairs=[[13,5],[7,-4],[22,19],[-13,-5],[100,-37]], rows="", allok=true;
+ for(var i=0;i<pairs.length;i++){
+  var a=pairs[i][0], b=pairs[i][1], got=toDec(btAdd(bt(a),bt(b))), want=a+b, ok=got===want;
+  if(!ok) allok=false;
+  rows+="<tr><td>"+bt(a)+" + "+bt(b)+"</td><td>"+got+"</td><td>"+want+"</td><td style=\"color:"+(ok?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(ok?"ok":"X")+"</td></tr>";
+ }
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'+(allok?"WITNESS - every sum re-checks against decimal":"WITNESS - sums disagree with decimal")+'</span>';
+ return allok;
+}
+
+function render(){
+ var x=clampInt($("xin").value), y=clampInt($("yin").value);
+ var sx=bt(x), sy=bt(y);
+ $("btx").textContent="x = "+x+"  ->  "+sx;
+ // place-value table
+ var rows="";
+ for(var i=0;i<sx.length;i++){
+  var c=sx.charAt(i), k=sx.length-1-i, place=Math.pow(3,k), val=tritVal(c)*place;
+  rows+="<tr><td style=\"font-weight:700;color:var(--red)\">"+c+"</td><td>3^"+k+" = "+place+"</td><td>"+(val>0?"+":"")+val+"</td></tr>";
+ }
+ $("pvBody").innerHTML=rows;
+ var neg=negate(sx);
+ $("negline").innerHTML="negate("+sx+") = <b>"+neg+"</b> = "+toDec(neg)+"  ( = -x = "+(-x)+" )";
+ var sum=btAdd(sx,sy), dec=toDec(sum), want=x+y, ok=dec===want;
+ $("addline").innerHTML=sx+" + "+sy+" = <b>"+sum+"</b> = "+dec;
+ // data out
+ $("outsum").className="verdict "+(ok?"ok":"no");
+ $("outsum").textContent=x+" + "+y+" = "+sum+"  ( "+dec+" )";
+ $("outreason").innerHTML= TAMPER
+  ? '<b style="color:var(--wall)">binary carry engaged</b> - the adder is using base 2 where the law says base 3; the sum '+dec+' no longer equals '+want+"."
+  : "balanced carry: the sum "+dec+" equals the decimal "+want+" exactly.";
+ renderL3(); renderRadix(); witness();
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ var sync=function(){ render(); };
+ ["xin","yin","la","lb"].forEach(function(id){ $(id).addEventListener("input",sync); $(id).addEventListener("change",sync); });
+ $("tamper").addEventListener("click",function(){ TAMPER=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>Binary carry engaged.</b> The adder now carries in base 2 instead of base 3. The trit strings still print, but the witness (5) re-adds the known pairs, compares to decimal, and turns red. The attack is real; it is caught."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false; $("tampernote").innerHTML="Break the base-3 carry rule and re-add the known pairs: the witness (5) recomputes each sum against plain decimal arithmetic and turns <b style='color:var(--wall)'>red</b>. The attack is real and it is caught."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the Setun ternary engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

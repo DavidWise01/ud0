@@ -10,11 +10,11 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "927a4b44353c34ca7609f4a3c8865bd5e2e071db90fd91e20eefd52d59daff5d",
+  "sonia_root": "21160edc50c7547fdfe2f5887ec89b08bf1f12a5f24ed41e1d5bd9d5a5d0058e",
   "counts": {
-    "spheres": 2,
+    "spheres": 7,
     "rooms": 5,
-    "lit": 2,
+    "lit": 7,
     "keepers": 8
   },
   "keepers": [
@@ -147,6 +147,66 @@
       "url": "https://davidwise01.github.io/ud0/world4/gobernet.html",
       "seal": "67d068799355450e8a9b110dbcacdf36d27d00fd1a9d436a37569bc39bc94ccd",
       "blurb": "A governance instrument on communism and socialism in the refined OCHO. The LIT centre is a runnable Leontief material-balance planner (the socialist-calculation math): a productive plan closes (x = (I-A)^-1 d), an over-ambitious one returns impossible negative outputs, tamper-provable. Around it: the roots (utopians to Marx), the lineage (the split of Marxism-Leninism from social democracy), the calculation problem (Mises/Hayek), and an honest good/bad ledger with cited figures (literacy 56 to 87 percent, industrialization; Holodomor ~3.9M, Great Terror ~680-750k, Gulag ~18M, Great Leap Forward ~15-55M). Distinguishes democratic socialism from one-party Marxism-Leninism; takes no side beyond the record."
+    },
+    {
+      "slug": "the-setun",
+      "title": "THE SETUN",
+      "room": "machine",
+      "kicker": "the ternary computer — the trit, not the bit",
+      "accent": "#9a6b12",
+      "stamp": "LIT",
+      "source": "N. P. Brusentsov & S. L. Sobolev, Setun (Moscow State University, 1958)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-setun.html",
+      "seal": "dfeb937c267d05d21e20b555e532874eef2299e20bcaa1318b8efa1571ec1139",
+      "blurb": "Setun (Brusentsov & Sobolev, Moscow State, 1958), the only series-produced balanced-ternary computer, runnable in THE OCHO: convert decimal to balanced ternary (trits -,0,+) and back, negate by flipping every trit, add with balanced carry, and see the radix economy (base 3 beats base 2, 3/ln3 < 2/ln2, e is the optimum) plus Lukasiewicz three-valued logic. The ternary hinge to World III. Tamper-provable."
+    },
+    {
+      "slug": "the-markov-property",
+      "title": "THE MARKOV PROPERTY",
+      "room": "number",
+      "kicker": "memoryless chains — and their stationary distribution",
+      "accent": "#a5121a",
+      "stamp": "LIT",
+      "source": "A. A. Markov (1856-1922); the 1913 Eugene Onegin vowel/consonant study",
+      "url": "https://davidwise01.github.io/ud0/world4/the-markov-property.html",
+      "seal": "097723cc3cb1b9bb6045b6a911922a809b0a73f1455b7a892f0089ff67c10f8c",
+      "blurb": "A. A. Markov's memoryless chains, runnable in THE OCHO: a row-stochastic matrix P and its stationary distribution pi (pi P = pi) found by power iteration from any start, seeded by Markov's own 1913 count of vowels and consonants in Pushkin's Eugene Onegin. Convergence, the memoryless property, the lineage to PageRank / MCMC / hidden Markov models; tamper-provable by breaking row-stochasticity."
+    },
+    {
+      "slug": "the-lobachevsky",
+      "title": "THE LOBACHEVSKY",
+      "room": "number",
+      "kicker": "the geometry where the angles fall short",
+      "accent": "#a5121a",
+      "stamp": "LIT",
+      "source": "N. I. Lobachevsky, On the Principles of Geometry (Kazan, 1829)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-lobachevsky.html",
+      "seal": "6882d41fddd476c53d530a0237d0f351dcaba9a3030528ce99407de5e618d28d",
+      "blurb": "N. I. Lobachevsky's non-Euclidean geometry (Kazan, 1829), runnable in THE OCHO: set a hyperbolic triangle's angles and watch the sum stay below pi with the defect (pi minus the sum) equal to the area (Gauss-Bonnet at curvature -1); the Poincare-disk distance blowing up at the rim; infinitely many parallels through a point. The Copernicus of geometry; the line to Riemann and Einstein. Tamper-provable."
+    },
+    {
+      "slug": "russian-cosmism",
+      "title": "RUSSIAN COSMISM",
+      "room": "weird",
+      "kicker": "conquer death, fill the cosmos",
+      "accent": "#5f513a",
+      "stamp": "LIT",
+      "source": "N. F. Fedorov, The Philosophy of the Common Task (1906); K. E. Tsiolkovsky",
+      "url": "https://davidwise01.github.io/ud0/world4/russian-cosmism.html",
+      "seal": "403f74c8373c684a1fd319fa85225a056ac69bb6f543876783dbd496c0336f3d",
+      "blurb": "Russian cosmism (Fedorov's Common Task, Tsiolkovsky), rendered honestly in THE OCHO: the worldview (conquer death, fill the cosmos) held as AMBER, its literal resurrection marked dead-as-science, its real influence on the space programme LIT. The runnable core is a colonisation-reach computation: a self-replicating wave at speed v fills a volume as t^3 and crosses the galaxy in about 500,000 years at 0.1c, with the faster-than-light wall enforced. Tamper-provable."
+    },
+    {
+      "slug": "the-morphology-of-the-tale",
+      "title": "THE MORPHOLOGY OF THE TALE",
+      "room": "novel",
+      "kicker": "the 31 functions of the wonder-tale",
+      "accent": "#1d4e79",
+      "stamp": "LIT",
+      "source": "V. Ya. Propp, Morphology of the Folktale (Leningrad, 1928)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-morphology-of-the-tale.html",
+      "seal": "696db9c217660749cae50d08f9e6ddfc8963bfddf5d239fafb73ae4eb72b2959",
+      "blurb": "V. Propp's Morphology of the Folktale (1928), runnable in THE OCHO: the wonder-tale reduced to 31 narrative functions in fixed order and 7 dramatis personae, with a valid-tale checker that accepts an in-order subsequence and rejects any reordering (Propp's ordering law); the lineage to Levi-Strauss and Campbell's hero's journey. Russian formalism as a computable grammar; tamper-provable."
     }
   ]
 }

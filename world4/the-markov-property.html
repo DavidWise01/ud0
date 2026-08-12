@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE MARKOV PROPERTY · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE NUMBER &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE MARKOV PROPERTY</h1>
+ <p class="sub">The future forgets the past. Given the <b>present</b> state, the next state is independent of everything before it &mdash; and a chain that forgets still settles down. A row-stochastic matrix <b>P</b> plus <b>power iteration</b> yields the one <b>stationary distribution</b> &pi; with <b>&pi;P = &pi;</b>. It is runnable: edit P, watch any start vector converge to the same &pi;. For the seed chain P = [[0.9,0.1],[0.5,0.5]] the stationary law is <b class="k">&pi; = [5/6, 1/6]</b>, exact, self-checked.</p>
+ <p class="src"><span class="tag t-amber">source</span> A. A. Markov (1856&ndash;1922), 1913 study of vowel/consonant runs in Pushkin&rsquo;s <i>Eugene Onegin</i> &mdash; the first Markov chain fit to real data. Historical figures after B. Hayes, &ldquo;First Links in the Markov Chain,&rdquo; <i>American Scientist</i> 101 (2013). Room &middot; THE NUMBER. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE PROPERTY &mdash; memorylessness</h2>
+   <p>One rule defines everything: <b class="k">P(X&#8345;&#8331;&#8321; = j | X&#8345; = i, past) = P(X&#8345;&#8331;&#8321; = j | X&#8345; = i)</b>. The whole history collapses into the single current state. Row <b>i</b> of P is the departure law from state <b>i</b>; it must sum to 1.</p>
+   <p class="small">The transition graph for the seed chain (V = vowel, C = consonant):</p>
+   <p class="small" style="line-height:1.9"><b style="color:var(--blue)">V</b> &mdash;0.9&rarr; <b style="color:var(--blue)">V</b> &nbsp;&nbsp; <b style="color:var(--blue)">V</b> &mdash;0.1&rarr; <b style="color:var(--red)">C</b><br><b style="color:var(--red)">C</b> &mdash;0.5&rarr; <b style="color:var(--blue)">V</b> &nbsp;&nbsp; <b style="color:var(--red)">C</b> &mdash;0.5&rarr; <b style="color:var(--red)">C</b></p>
+   <p class="small">Sticky V, fair C. Because V holds tighter, the chain spends most of its time in V &mdash; that asymmetry is exactly what &pi; measures. <span class="tag t-lit">LIT</span></p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE LINEAGE &mdash; what grew from it</h2>
+   <p>The stationary vector of a stochastic matrix is one idea with many children:</p>
+   <p class="small"><b>PageRank</b> (1998) &mdash; the web is a chain; a page&rsquo;s rank is its stationary probability. <b>MCMC</b> &mdash; build a chain whose &pi; <i>is</i> the distribution you want to sample, then walk it. <b>Hidden Markov models</b> &mdash; the chain runs unseen; you observe only emissions (speech, genomes, tagging).</p>
+   <p class="small">All of it rests on the same two facts this engine checks: rows sum to 1, and power iteration lands on the fixed point &pi;P = &pi;. <span class="tag t-amber">interpretation</span></p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>THE WITNESS <span class="tag t-lit">live</span></h2>
+   <p>The blue team re-checks the live matrix every render: each row sums to 1, power iteration converged, &pi; sums to 1, and the residual &#8214;&pi;P &minus; &pi;&#8214; is under tolerance. If red corrupts a row (6), this badge is where it dies.</p>
+   <div id="auditout"></div>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the transition matrix <span class="tag t-in">in &darr;</span></h2>
+   <p>Feed a 2&times;2 row-stochastic P. Each row is a departure law and must sum to 1. The seed is the anchor chain; the preset loads Markov&rsquo;s <b>Eugene Onegin</b> counts.</p>
+   <table><thead><tr><th>from \ to</th><th>V</th><th>C</th><th>row sum</th></tr></thead><tbody>
+    <tr><th>V</th><td><input id="p00" type="number" step="0.01" value="0.9" style="width:70px"></td><td><input id="p01" type="number" step="0.01" value="0.1" style="width:70px"></td><td id="rs0" class="k">1.000</td></tr>
+    <tr><th>C</th><td><input id="p10" type="number" step="0.01" value="0.5" style="width:70px"></td><td><input id="p11" type="number" step="0.01" value="0.5" style="width:70px"></td><td id="rs1" class="k">1.000</td></tr>
+   </tbody></table>
+   <div class="row" style="margin-top:8px"><button id="anchor">&#9679; anchor [[.9,.1],[.5,.5]]</button><button id="onegin">&#9635; Markov&rsquo;s Onegin 1913</button></div>
+   <div class="row"><label>start v&#8320;</label>
+    <select id="startpick">
+     <option value="v">[1, 0] &mdash; begin in V</option>
+     <option value="c">[0, 1] &mdash; begin in C</option>
+     <option value="m">[0.3, 0.7] &mdash; a mixed start</option>
+    </select></div>
+   <p class="small" id="oneginnote"></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; power iteration: v &larr; normalize(vP) &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; power iteration <span class="tag t-lit">LIT</span></h2>
+   <p class="small">Start anywhere on the simplex and multiply by P again and again. A memoryless chain forgets its start: the distribution row settles onto &pi;. Every number below is computed on the spot.</p>
+   <table id="iterTbl"><thead><tr><th>step</th><th>P(V)</th><th>P(C)</th><th>&Delta; from prev</th></tr></thead><tbody id="iterBody"></tbody></table>
+   <p class="small" style="margin-top:6px">Converged in <b id="itn" class="k">&mdash;</b> steps. The march no longer moves &mdash; that fixed row is the stationary law.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the fixed point is emitted &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; the stationary &pi; <span class="tag t-out">out &darr;</span></h2>
+   <div class="out" id="piline">&mdash;</div>
+   <div class="reason" id="pireason"></div>
+   <div id="litbadge" style="margin-top:8px"></div>
+   <p class="small" style="margin-top:6px"><b>CONVERGENCE.</b> Any valid start &mdash; V, C, or the mixed vector &mdash; lands on the <i>same</i> &pi;. That independence is the memoryless property made visible: the limit knows nothing of where you began. Residual &#8214;&pi;P &minus; &pi;&#8214; = <b id="resid" class="k">&mdash;</b>.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9705;</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE ROOTS &mdash; Markov vs Nekrasov</h2>
+   <p>P. A. Nekrasov argued the law of large numbers <i>requires independence</i> &mdash; and read free will into the gap. Markov built chains of <b>dependent</b> events that obey the LLN anyway, to refute him. The vowel/consonant runs of <i>Onegin</i> were his proof: letters are far from independent, yet their averages still converge.</p>
+   <div class="wall-note"><span class="tag t-wall">the point</span> Independence is <b>not</b> needed for the law of large numbers. Dependence with a stationary law is enough. Markov invented the chain to win an argument about determinism.</div>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;An LLM is just a Markov chain.&rdquo;</s> <b>Cut, with nuance.</b> A Markov chain has <i>fixed, finite</i> states and a matrix you can print. A transformer conditions on a long, <i>learned, high-dimensional</i> context &mdash; its &ldquo;state&rdquo; is not a symbol but a whole activation. It is not memoryless over tokens. The analogy points somewhere true (next-token from current context) and then breaks.</p>
+   <p class="grave"><s>&ldquo;A stationary chain must be independent.&rdquo;</s> <b>Cut.</b> That was Nekrasov&rsquo;s error &mdash; the whole reason the chain exists.</p>
+   <p class="grave"><s>&ldquo;&pi; depends on where you start.&rdquo;</s> <b>Cut.</b> For an irreducible chain &pi; is unique; the start is forgotten.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; break it</h2>
+   <p>The red team&rsquo;s move: corrupt row C so it sums to <b>1.4</b>, not 1 &mdash; an invalid stochastic matrix. Probability is no longer conserved: the &ldquo;distribution&rdquo; leaks mass, &pi;P stops equalling &pi;, and the residual blows up.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; corrupt row C</button><button id="restore">&#8635; restore</button></div>
+   <p class="small" id="tampernote">Break the row-sum-to-1 law and the witness (7) recomputes: rows no longer sum to 1, &pi; no longer conserves probability, the badge turns red. The attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE MARKOV PROPERTY &mdash; World IV &middot; <b>SONIA</b>, in the refined <b>OCHO</b>: a red-team / blue-team instrument with a pipeline down the centre (a matrix goes <b style="color:var(--cy)">in</b> &rarr; power iteration &rarr; the stationary law comes <b style="color:var(--grn)">out</b>). A runnable rendering of A. A. Markov&rsquo;s memoryless chain &mdash; the engine is LIT (row-stochastic check, power-iteration convergence, &pi;P = &pi; residual, and the anchor &pi; = [5/6, 1/6] all self-checked; the Onegin percentages cited AMBER as history; tamper-provable). Ties THE NUMBER to THE NOVEL through Pushkin. SONIA is the world that counts vowels by candlelight. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE MARKOV PROPERTY — the engine (every number computed, none looked up) ===== */
+
+// row sums of a matrix
+function rowSums(P){ var s=[],i,j; for(i=0;i<P.length;i++){ var r=0; for(j=0;j<P[i].length;j++) r+=P[i][j]; s.push(r); } return s; }
+// is P row-stochastic (every row sums to 1 within tol)?
+function stochastic(P,tol){ tol=(tol===undefined)?1e-9:tol; var s=rowSums(P),i; for(i=0;i<s.length;i++){ if(Math.abs(s[i]-1)>tol) return false; } return true; }
+// left-multiply a row vector by P: (vP)_j = sum_i v_i P_ij
+function step(v,P){ var n=P.length,m=P[0].length,out=[],i,j; for(j=0;j<m;j++){ var t=0; for(i=0;i<n;i++) t+=v[i]*P[i][j]; out.push(t); } return out; }
+// normalize a vector to sum 1
+function norm(v){ var s=0,i,o=[]; for(i=0;i<v.length;i++) s+=v[i]; if(s===0) return v.slice(); for(i=0;i<v.length;i++) o.push(v[i]/s); return o; }
+// power iteration: v <- normalize(vP) until it stops moving. Records the trace.
+function powerIter(P,start,maxit){
+ maxit=maxit||5000; var v=norm(start.slice()), trace=[v.slice()], k;
+ for(k=0;k<maxit;k++){ var nv=norm(step(v,P)); var d=0,i; for(i=0;i<v.length;i++) d=Math.max(d,Math.abs(nv[i]-v[i])); trace.push(nv.slice()); v=nv; if(d<1e-14) break; }
+ return { pi:v, iters:k+1, trace:trace };
+}
+// residual of the eigen-equation: max_j |(piP)_j - pi_j| (uses RAW piP, so a leaky matrix shows here)
+function resid(pi,P){ var pv=step(pi,P),d=0,i; for(i=0;i<pi.length;i++) d=Math.max(d,Math.abs(pv[i]-pi[i])); return d; }
+
+/* ===== fail-loud self-check (runs on the anchor, before any DOM) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+
+ // anchor chain
+ var A=[[0.9,0.1],[0.5,0.5]];
+
+ // 1 — each row of the anchor sums to 1 within 1e-9
+ var rs=rowSums(A);
+ t(Math.abs(rs[0]-1)<1e-9 && Math.abs(rs[1]-1)<1e-9,"anchor rows must each sum to 1 within 1e-9");
+ t(stochastic(A),"anchor P must pass the row-stochastic test");
+
+ // 2 — power iteration converges from three different valid starts
+ var r1=powerIter(A,[1,0]), r2=powerIter(A,[0,1]), r3=powerIter(A,[0.3,0.7]);
+ t(r1.iters>1 && r1.iters<5000,"power iteration must converge (finite steps)");
+
+ // 3 — the result is a probability vector (sums to 1)
+ t(Math.abs(r1.pi[0]+r1.pi[1]-1)<1e-9,"stationary pi must sum to 1");
+
+ // 4 — the result satisfies pi P = pi with residual < 1e-9
+ t(resid(r1.pi,A)<1e-9,"stationary must satisfy piP = pi with residual < 1e-9");
+
+ // 5 — for the anchor, pi[0] is within 1e-6 of 5/6 and pi[1] of 1/6
+ t(Math.abs(r1.pi[0]-5/6)<1e-6,"anchor stationary pi[0] must equal 5/6 (0.833333)");
+ t(Math.abs(r1.pi[1]-1/6)<1e-6,"anchor stationary pi[1] must equal 1/6 (0.166667)");
+
+ // 6 — the stationary distribution is independent of the (valid) start vector
+ t(Math.abs(r1.pi[0]-r2.pi[0])<1e-6,"pi must be independent of start (V vs C)");
+ t(Math.abs(r1.pi[0]-r3.pi[0])<1e-6,"pi must be independent of start (V vs mixed)");
+
+ // 7 — a doubly-uniform chain has the uniform stationary law (sanity)
+ var B=[[0.5,0.5],[0.5,0.5]]; var rb=powerIter(B,[1,0]);
+ t(Math.abs(rb.pi[0]-0.5)<1e-9 && Math.abs(rb.pi[1]-0.5)<1e-9,"doubly-uniform chain must have uniform pi = [0.5,0.5]");
+
+ // 8 — the tamper is genuinely detectable: a corrupted row (sum 1.4) fails the stochastic test
+ var C=[[0.9,0.1],[0.5,0.9]];
+ t(!stochastic(C),"a corrupted matrix with a row summing to 1.4 must FAIL the row-stochastic test");
+
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+
+var TAMPER=false;   // when true, row C is corrupted to sum to 1.4 — the witness must catch it
+
+function readMatrix(){
+ var P=[[+$("p00").value,+$("p01").value],[+$("p10").value,+$("p11").value]];
+ if(TAMPER){ P[1]=[0.5,0.9]; }   // corrupt row C: 0.5 + 0.9 = 1.4, not 1
+ return P;
+}
+function startVec(){
+ var s=$("startpick").value;
+ if(s==="c") return [0,1];
+ if(s==="m") return [0.3,0.7];
+ return [1,0];
+}
+function fmt(x){ return x.toFixed(6); }
+
+function render(){
+ var P=readMatrix();
+ // live row sums
+ var rs=rowSums(P);
+ $("rs0").textContent=rs[0].toFixed(3); $("rs0").style.color=(Math.abs(rs[0]-1)<1e-9)?"var(--red)":"var(--wall)";
+ $("rs1").textContent=rs[1].toFixed(3); $("rs1").style.color=(Math.abs(rs[1]-1)<1e-9)?"var(--red)":"var(--wall)";
+
+ var r=powerIter(P,startVec());
+ // trace table: show up to 8 rows (first few + the settled tail)
+ var tr=r.trace, rows=[];
+ var lim=Math.min(tr.length,9);
+ for(var k=0;k<lim;k++){
+  var prevd = k===0 ? NaN : Math.max(Math.abs(tr[k][0]-tr[k-1][0]),Math.abs(tr[k][1]-tr[k-1][1]));
+  rows.push('<tr'+(k===lim-1?' style="background:rgba(165,18,26,.10);font-weight:700"':'')+'><td>'+k+'</td><td>'+fmt(tr[k][0])+'</td><td>'+fmt(tr[k][1])+'</td><td>'+(k===0?'&mdash;':(prevd<1e-12?'0':prevd.toExponential(2)))+'</td></tr>');
+ }
+ $("iterBody").innerHTML=rows.join("");
+ $("itn").textContent=r.iters;
+
+ var pi=r.pi, rr=resid(pi,P), stoc=stochastic(P), sums=Math.abs(pi[0]+pi[1]-1)<1e-9;
+ $("piline").textContent="pi = [ "+fmt(pi[0])+" , "+fmt(pi[1])+" ]  (P(V), P(C))";
+ $("resid").textContent = rr<1e-12 ? "0" : rr.toExponential(2);
+ var conserved = stoc && sums && rr<1e-6;
+ $("pireason").innerHTML = conserved
+  ? 'Probability conserved: rows sum to 1, &pi; sums to 1, &pi;P = &pi;. This is the unique stationary law.'
+  : '<b style="color:var(--wall)">Probability NOT conserved</b> &mdash; a row does not sum to 1, so &pi;P leaks mass and the fixed point is broken.';
+
+ audit(P,pi,rr,stoc,sums);
+}
+
+function audit(P,pi,rr,stoc,sums){
+ var el=$("auditout");
+ var ok = stoc && sums && rr<1e-6 && !TAMPER;
+ var rowmark = stoc ? '<b style="color:var(--lit)">&#10003;</b>' : '<b style="color:var(--wall)">&#10007;</b>';
+ var residmark = (rr<1e-6) ? '<b style="color:var(--lit)">&#10003;</b>' : '<b style="color:var(--wall)">&#10007;</b>';
+ el.innerHTML = '<span class="badge '+(ok?'pass':'failb')+'">'+(ok?'✓ WITNESS — the chain conserves':'✗ WITNESS — probability leaks')+'</span>'
+  + '<div class="small" style="margin-top:6px">rows sum to 1 '+rowmark+' &middot; &pi; sums to 1 <b style="color:'+(sums?'var(--lit)':'var(--wall)')+'">'+(sums?'✓':'✗')+'</b> &middot; residual &#8214;&pi;P&minus;&pi;&#8214; '+(rr<1e-12?'0':rr.toExponential(2))+' '+residmark
+  + (TAMPER?' &nbsp;&mdash; <span style="color:var(--wall)">red corrupted row C</span>':'')+'</div>';
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("litbadge").innerHTML='<span class="badge pass">✓ LIT · self-check passed on load</span>';
+
+ ["p00","p01","p10","p11","startpick"].forEach(function(id){ $(id).addEventListener("input",render); });
+ $("startpick").addEventListener("change",render);
+
+ $("anchor").addEventListener("click",function(){ TAMPER=false; $("p00").value=0.9; $("p01").value=0.1; $("p10").value=0.5; $("p11").value=0.5; $("oneginnote").textContent=""; render(); });
+
+ $("onegin").addEventListener("click",function(){
+  TAMPER=false;
+  // Markov's 1913 Eugene Onegin transition counts (historical, AMBER) — after Hayes 2013
+  $("p00").value=0.128; $("p01").value=0.872; $("p10").value=0.663; $("p11").value=0.337;
+  $("oneginnote").innerHTML='<span class="tag t-amber">AMBER</span> Markov counted 20,000 letters of <i>Eugene Onegin</i>: ~43.2% vowels. These transition figures are historical; the engine turns them into &pi;(V) &asymp; 0.432 &mdash; matching his count. The <i>numbers</i> are history; the <i>convergence</i> is LIT.';
+  render();
+ });
+
+ $("tamper").addEventListener("click",function(){
+  TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Row C corrupted.</b> C now departs with 0.5 + 0.9 = 1.4, so P is no longer stochastic. Probability is not conserved; the witness (7) recomputed and went red. The attack is real; it is caught.";
+  render();
+ });
+ $("restore").addEventListener("click",function(){
+  TAMPER=false;
+  $("tampernote").innerHTML="Break the row-sum-to-1 law and the witness (7) recomputes: rows no longer sum to 1, &pi; no longer conserves probability, the badge turns red. The attack is real and it is caught.";
+  render();
+ });
+
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the Markov-chain engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>
