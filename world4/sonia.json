@@ -10,18 +10,85 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "1ca5c97cf7bdd3f03baf5babc86af8b7466df0e5872496078d2e8429ea10f409",
+  "sonia_root": "5d6f214b5651b40f6af20bc5c2d5955604ba5c71870209bc05b25bc8e8cbec5d",
   "counts": {
     "spheres": 1,
     "rooms": 4,
     "lit": 1,
-    "keepers": 1
+    "keepers": 8
   },
   "keepers": [
     {
       "name": "SONIA",
-      "role": "she who reads the descent by candlelight — Sofya Semyonovna Marmeladova; keeper of World IV",
-      "seal": "d589095b9878219c6a35dd680ec3c5b60407e581d7df973f87d6a373dbc19b23"
+      "slug": "sonia",
+      "room": "THE NOVEL",
+      "dates": "Crime and Punishment, 1866",
+      "url": "https://davidwise01.github.io/ud0/world4/sonia.html",
+      "role": "keeper of the world — she who reads Lazarus by candlelight; the presiding soul of SONIA (Sofya Semyonovna Marmeladova)",
+      "seal": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321"
+    },
+    {
+      "name": "KHINCHIN",
+      "slug": "khinchin",
+      "room": "THE NUMBER",
+      "dates": "1894-1959",
+      "url": "https://davidwise01.github.io/ud0/world4/khinchin.html",
+      "role": "keeper of THE NUMBER — the seed; the shape of the typical number (Continued Fractions, Mir 1964)",
+      "seal": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475"
+    },
+    {
+      "name": "KOLMOGOROV",
+      "slug": "kolmogorov",
+      "room": "THE NUMBER",
+      "dates": "1903-1987",
+      "url": "https://davidwise01.github.io/ud0/world4/kolmogorov.html",
+      "role": "keeper of THE NUMBER — the axioms beneath probability; complexity, turbulence",
+      "seal": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f"
+    },
+    {
+      "name": "DOSTOEVSKY",
+      "slug": "dostoevsky",
+      "room": "THE NOVEL",
+      "dates": "1821-1881",
+      "url": "https://davidwise01.github.io/ud0/world4/dostoevsky.html",
+      "role": "keeper of THE NOVEL — the psyche; the underground and the crime",
+      "seal": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6"
+    },
+    {
+      "name": "TOLSTOY",
+      "slug": "tolstoy",
+      "room": "THE NOVEL",
+      "dates": "1828-1910",
+      "url": "https://davidwise01.github.io/ud0/world4/tolstoy.html",
+      "role": "keeper of THE NOVEL — the epic; history's calculus",
+      "seal": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e"
+    },
+    {
+      "name": "BRUSENTSOV",
+      "slug": "brusentsov",
+      "room": "THE MACHINE",
+      "dates": "1925-2014",
+      "url": "https://davidwise01.github.io/ud0/world4/brusentsov.html",
+      "role": "keeper of THE MACHINE — Setun and balanced ternary; the hinge to World III",
+      "seal": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905"
+    },
+    {
+      "name": "LEBEDEV",
+      "slug": "lebedev",
+      "room": "THE MACHINE",
+      "dates": "1902-1974",
+      "url": "https://davidwise01.github.io/ud0/world4/lebedev.html",
+      "role": "keeper of THE MACHINE — MESM and BESM; the father of Soviet computing",
+      "seal": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf"
+    },
+    {
+      "name": "TSIOLKOVSKY",
+      "slug": "tsiolkovsky",
+      "room": "THE WEIRD",
+      "dates": "1857-1935",
+      "url": "https://davidwise01.github.io/ud0/world4/tsiolkovsky.html",
+      "role": "keeper of THE WEIRD — cosmism and the rocket equation; the destiny of mind",
+      "seal": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f"
     }
   ],
   "rooms": [
