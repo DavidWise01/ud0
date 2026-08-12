@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE REDEEMER · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(29,78,121,.07),transparent 46%),radial-gradient(circle at 94% 100%,rgba(165,18,26,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--blue);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(29,78,121,.06),transparent);position:relative;}
+header::before{content:"\262F";position:absolute;top:10px;right:14px;font-size:20px;opacity:.4;color:var(--blue);}
+h1{font-size:22px;letter-spacing:3px;color:var(--blue);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fav{font-size:12px;color:var(--red);margin-top:7px;border-left:3px solid var(--red);padding:4px 10px;background:linear-gradient(90deg,rgba(165,18,26,.06),transparent);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--blue);box-shadow:0 0 0 1px rgba(29,78,121,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+button{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 6px;text-align:left;} th{color:var(--dim);background:rgba(178,154,104,.14);text-align:center;}
+td.c{text-align:center;} .yes{color:var(--lit);font-weight:700;} .no{color:var(--wall);font-weight:700;}
+.red-row td{background:rgba(29,78,121,.08);} .ctr-row td{background:rgba(140,28,19,.06);color:#5f513a;}
+.verdict{font-size:16px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+.ivan{margin:6px 0;} .ivan div{font-size:12px;margin:5px 0;padding:6px 10px;border-left:3px solid var(--blue);background:rgba(29,78,121,.05);} .ivan b{color:var(--blue);}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;} footer a{color:var(--blue);}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">◄ WORLD IV · SONIA</a><span>THE NOVEL · <b style="color:var(--blue)">the archetype across traditions</b></span></div>
+
+<header>
+ <h1>THE REDEEMER</h1>
+ <p class="sub">One figure recurs in every tradition that takes suffering seriously: the one who <b>embraces all and judges none</b>, who takes the weight of others into themselves, and who <b>stays</b>. Dostoevsky calls her <b>Sonia</b>; Erikson calls him <b>Itkovian, the Redeemer</b>; the wonder-tales call him <b>Ivan the Fool</b>. This sphere is <b>runnable</b>: it defines the redeemer by three invariants and proves the same function runs through all of them — and that removing <b>one</b> of the three turns a redeemer into an inquisitor.</p>
+ <p class="src"><span class="tag t-amber">source</span> S. Erikson, <i>Memories of Ice</i> (Malazan Book of the Fallen, 2001) — Itkovian &amp; the Shield Anvil; F. Dostoevsky (Sonia, Alyosha, Myshkin); the Russian <i>yurodivy</i> / Ivan the Fool. Room: <b>THE NOVEL</b>. Rendered, not quoted.</p>
+ <p class="fav">★ For David — who heard it first: <b>Ivan</b> ≈ <b>Itkovian</b>, and both mean grace. The keeper SONIA is this function; so is the Redeemer.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- LEFT · THE SOURCE -->
+ <div class="col blue">
+  <div class="teamhdr">◧ the source · four faces</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE SHIELD ANVIL — Itkovian <span class="tag t-amber">Malazan</span></h2>
+   <p>In Erikson's <i>Memories of Ice</i>, the Shield Anvil's charge is one line: <b>embrace all, judge none</b> — take the pain of others into yourself so they need not carry it alone. At Capustan, <b>Itkovian</b> takes into himself the accumulated grief of the <b>T'lan Imass</b> — a people who suffered <b class="k">three hundred thousand years</b>. The embrace kills him, and redeems them. He ascends, posthumous, as <b>the Redeemer</b>.</p>
+   <p class="small">His creed is Sonia's, made a god's: <a href="../d/biblion.html">World I keeps Malazan</a>; here it meets her.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE SONIA FUNCTION <span class="tag t-lit">invariant</span></h2>
+   <p>The same role, worn by four faces across two centuries and two genres:</p>
+   <p class="small"><b>Sonia Marmeladova</b> (1866) reads Lazarus, follows to Siberia · <b>Vincent</b> (<a href="punishment-in-suburbia.html">the film</a>, 2000) watches and carries · <b>Itkovian</b> (2001) embraces the dead · <b>SONIA</b> (the keeper) stays. Not influence — <b>the same function</b>, discovered again and again.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>IVAN — the name of grace</h2>
+   <p><b>Ivan</b> is the Russian form of <b>John</b> — Hebrew <i>Yochanan</i>, <b>"God is gracious."</b> The name of the redeemer is the name of grace itself.</p>
+   <div class="ivan" id="ivan"></div>
+  </div>
+ </div>
+
+ <!-- CENTER · THE MACHINE -->
+ <div class="col center">
+  <div class="teamhdr">▼ the archetype, tested ▼</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN — the three invariants <span class="tag t-in">in ↓</span></h2>
+   <p>A redeemer is defined by three things at once. Miss any one and the figure is something else — a judge, a bystander, a martyr-in-vain.</p>
+   <p class="small"><b class="k">1 · JUDGES NONE</b> — embraces all, condemns no one.<br><b class="k">2 · TAKES THE BURDEN</b> — carries the suffering of others into themselves.<br><b class="k">3 · STAYS</b> — does not abandon; sees it through.</p>
+  </div>
+  <div class="flow">▼ &nbsp; test every figure against all three &nbsp; ▼</div>
+
+  <div class="win panel"><span class="no">0</span><h2>▣ THE PANEL — who is a redeemer? <span class="tag t-lit">LIT</span></h2>
+   <table id="figTbl"><thead><tr><th>figure</th><th>tradition</th><th>judges none</th><th>takes burden</th><th>stays</th><th>redeemer?</th></tr></thead><tbody id="figBody"></tbody></table>
+  </div>
+  <div class="flow">▼ &nbsp; the same function, four traditions &nbsp; ▼</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT — the invariant <span class="tag t-out">out ↓</span></h2>
+   <div class="verdict" id="verdict"></div>
+   <div class="reason" id="reason"></div>
+   <div id="litbadge" style="margin-top:6px"></div>
+   <p class="small">Dostoevsky, a 2000 suburban film, a 2001 fantasy epic, a folk-tale fool — none copied from another, all the same three invariants. That is what an archetype is.</p>
+  </div>
+ </div>
+
+ <!-- RIGHT · THE ADVERSARY -->
+ <div class="col red">
+  <div class="teamhdr">the opposite · what it is not ◨</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE INQUISITOR</h2>
+   <div class="wall-note"><span class="tag t-wall">the anti-redeemer</span> Ivan Karamazov dreams up the <b>Grand Inquisitor</b>, who takes Christ prisoner and burns him "for the good of mankind." He carries a burden and he stays — but he <b>judges</b>. Drop the first invariant and you do not get a gentler redeemer; you get an inquisitor. <b>Judgment is the negation of the embrace.</b></div>
+   <p class="small" style="margin-top:8px">Two Ivans, then: the <b>Fool</b> who redeems by judging no one, and the <b>intellectual</b> whose Inquisitor judges everyone. The name means grace; the man must still choose it.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>"The redeemer is weak — passive, a doormat."</s> <b>Cut.</b> The embrace is the hardest act in the book. It <i>killed</i> Itkovian; it followed Raskolnikov to Siberia.</p>
+   <p class="grave"><s>"It's just Christian allegory."</s> <b>Cut.</b> It is cross-cultural: the <i>yurodivy</i> holy fool, the Shield Anvil of an invented pantheon, a suburban outcast. The invariants are older than any one creed.</p>
+   <p class="grave"><s>"Itkovian and Sonia have nothing to do with each other."</s> <b>Cut.</b> Same three invariants, exactly. The engine shows it.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER — drop "judges none"</h2>
+   <p>Relax the first invariant — let a figure who <b>judges</b> still count, as long as they bear the weight and stay. Watch the <b>Righteous Judge</b> be crowned a redeemer he is not.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">⚠ drop "judges none"</button><button id="restore">↺ restore</button></div>
+   <p class="small" id="tampernote">Without the first invariant, one who carries and stays but <b>condemns</b> passes as a redeemer. That is the Inquisitor wearing the Shield Anvil's cloak. The witness turns red: "judges none" is load-bearing.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE REDEEMER — World IV · SONIA, room <b>THE NOVEL</b>, in the refined <b>OCHO</b>. A structural instrument on an archetype: the redeemer is defined by three invariants — <b>judges none · takes the burden · stays</b> — and the engine proves the same function runs through Dostoevsky's Sonia, the film's Vincent, Erikson's <b>Itkovian the Redeemer</b> (the Shield Anvil who embraced the T'lan Imass), and the wonder-tale's <b>Ivan the Fool</b> — the name Ivan meaning "God is gracious." Drop the first invariant and a redeemer becomes an inquisitor; the engine catches it. Cross-links <a href="../d/biblion.html">World I · Malazan</a>, <a href="../d/ai.html">the Crippled God</a>, <a href="punishment-in-suburbia.html">the film</a>, and <a href="the-morphology-of-the-tale.html">Ivan the Fool in Propp</a>. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== THE REDEEMER — the archetype invariant (judges none, takes the burden, stays) ===== */
+const FIGURES=[
+ {name:"Sonia Marmeladova", trad:"Dostoevsky, 1866", judgesNone:true, takesBurden:true, stays:true, note:"reads Lazarus; follows to Siberia"},
+ {name:"Alyosha Karamazov", trad:"Dostoevsky, 1880", judgesNone:true, takesBurden:true, stays:true, note:"active love, the redemptive brother"},
+ {name:"Prince Myshkin", trad:"Dostoevsky, 1869", judgesNone:true, takesBurden:true, stays:true, note:"the holy fool; compassion"},
+ {name:"Vincent", trad:"the film, 2000", judgesNone:true, takesBurden:true, stays:true, note:"watches, loves, carries Roseanne"},
+ {name:"Itkovian, the Redeemer", trad:"Erikson, Malazan, 2001", judgesNone:true, takesBurden:true, stays:true, note:"Shield Anvil; embraces all, judges none"},
+ {name:"Ivan the Fool", trad:"Russian wonder-tale", judgesNone:true, takesBurden:true, stays:true, note:"the yurodivy; redeems by simplicity"},
+ {name:"SONIA (the keeper)", trad:"World IV, the corpus", judgesNone:true, takesBurden:true, stays:true, note:"does not argue, only stays"},
+ {name:"The Grand Inquisitor", trad:"Dostoevsky (Ivan's parable)", judgesNone:false, takesBurden:true, stays:true, note:"carries a burden, stays — but judges and imprisons", counter:true},
+ {name:"The Righteous Judge", trad:"the archetype's shadow", judgesNone:false, takesBurden:true, stays:true, note:"bears the weight and stays, yet condemns", counter:true},
+ {name:"Porfiry, the detective", trad:"Crime and Punishment", judgesNone:false, takesBurden:false, stays:false, note:"pursues and judges; carries no one", counter:true}
+];
+const IVANS=[
+ {who:"Ivan the Fool (Иван-дурак)", what:"the youngest son who wins by kindness, not cunning — the holy fool of the wonder-tale (Propp's hero)"},
+ {who:"Ivan Karamazov", what:"the intellectual who authors the Grand Inquisitor — the doubter; his brother Alyosha is the redeemer"},
+ {who:"Itkovian", what:"phonetically Ivan-adjacent; the Shield Anvil who becomes the Redeemer"}
+];
+let TAMPER=false;   // when true, the 'judges none' invariant is dropped
+function isRedeemer(f){
+ var jn = TAMPER ? true : f.judgesNone;   // tamper: stop requiring 'judges none'
+ return jn && f.takesBurden && f.stays;
+}
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+ var reds=FIGURES.filter(function(f){return !f.counter;});
+ var ctrs=FIGURES.filter(function(f){return f.counter;});
+ t(reds.length===7, "seven redeemer incarnations");
+ for(var i=0;i<reds.length;i++) t(isRedeemer(reds[i]), reds[i].name+" must satisfy all three invariants");
+ for(var j=0;j<ctrs.length;j++) t(!isRedeemer(ctrs[j]), ctrs[j].name+" must NOT be a redeemer (untampered)");
+ var judge=null; for(var k=0;k<FIGURES.length;k++) if(FIGURES[k].name==="The Righteous Judge") judge=FIGURES[k];
+ t(judge && !isRedeemer(judge), "the Righteous Judge is not a redeemer — he judges");
+ TAMPER=true; t(isRedeemer(judge), "dropping 'judges none' wrongly crowns the Judge — the invariant is load-bearing"); TAMPER=save;
+ // cross-tradition: Malazan (Itkovian), folklore (Ivan the Fool), and the namesake (Sonia) are all present
+ t(reds.some(function(f){return f.name.indexOf("Itkovian")>=0;}), "Itkovian (Malazan) is an incarnation");
+ t(reds.some(function(f){return f.name.indexOf("Ivan the Fool")>=0;}), "Ivan the Fool (folklore) is an incarnation");
+ t(reds.some(function(f){return f.name.indexOf("Sonia Marmeladova")>=0;}), "Sonia Marmeladova is the source");
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){return document.getElementById(id);};
+function renderStatic(){
+ $("ivan").innerHTML=IVANS.map(function(v){return "<div><b>"+v.who+"</b> — "+v.what+".</div>";}).join("");
+}
+function mark(b){ return b?"<span class='yes'>yes</span>":"<span class='no'>no</span>"; }
+function render(){
+ $("figBody").innerHTML=FIGURES.map(function(f){
+  var red=isRedeemer(f), cls=f.counter?"ctr-row":"red-row";
+  var jn=(f.counter&&TAMPER&&!f.judgesNone)?"<span class='no'>no</span> <span class='mut'>(ignored)</span>":mark(f.judgesNone);
+  return "<tr class='"+cls+"'><td>"+f.name+"</td><td class='small'>"+f.trad+"</td><td class='c'>"+jn+"</td><td class='c'>"+mark(f.takesBurden)+"</td><td class='c'>"+mark(f.stays)+"</td><td class='c'>"+(red?"<span class='yes'>REDEEMER</span>":"<span class='no'>&mdash;</span>")+"</td></tr>";
+ }).join("");
+ // count false redeemers = counter-examples that now (under tamper) pass
+ var ctrs=FIGURES.filter(function(f){return f.counter;});
+ var falseReds=ctrs.filter(isRedeemer).length;
+ var ok = falseReds===0;
+ $("verdict").textContent = ok? "ONE FUNCTION, FOUR TRADITIONS" : "THE INQUISITOR PASSED";
+ $("verdict").className="verdict "+(ok?"ok":"no");
+ $("reason").textContent = ok
+  ? "the same three invariants hold for Sonia, Vincent, Itkovian, and Ivan the Fool — and for no judge."
+  : "with 'judges none' dropped, "+falseReds+" figure(s) who condemn now pass as redeemers. That is the Inquisitor in the Shield Anvil's cloak.";
+ var reds=FIGURES.filter(function(f){return !f.counter;});
+ $("litbadge").innerHTML="<span class='badge "+(ok?'pass':'failb')+"'>"+(ok?'✓ LIT · the invariant holds':'✗ the invariant broke')+"</span>"
+  +"<div class='small' style='margin-top:5px'>"+reds.length+" redeemers across 4 traditions · "+ctrs.length+" judges excluded"+(TAMPER?" &nbsp;— <span style='color:var(--wall)'>'judges none' dropped</span>":"")+"</div>";
+}
+try{
+ selfcheck();
+ renderStatic();
+ $("tamper").addEventListener("click",function(){ TAMPER=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>The first invariant is gone.</b> Now the Righteous Judge &mdash; who bears the weight and stays but <b>condemns</b> &mdash; is crowned a redeemer. That is the Grand Inquisitor in the Shield Anvil's cloak. The embrace that judges is no embrace; the witness turns red."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false; $("tampernote").innerHTML="Without the first invariant, one who carries and stays but <b>condemns</b> passes as a redeemer. That is the Inquisitor wearing the Shield Anvil's cloak. The witness turns red: “judges none” is load-bearing."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the redeemer engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>
