@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//SONIA//WORLD-IV//the-russian-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
   "folded_to": "ROOT_0",
-  "root": "5d6f214b5651b40f6af20bc5c2d5955604ba5c71870209bc05b25bc8e8cbec5d",
-  "count": 9,
+  "root": "927a4b44353c34ca7609f4a3c8865bd5e2e071db90fd91e20eefd52d59daff5d",
+  "count": 10,
   "sealed": "2026-08-12",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World IV inhabitant folds to ROOT_0. Live: the root updates as SONIA grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
@@ -20,44 +20,44 @@
       "seal": "b5ed859a1c21de028c47575c0af4ae400afbd9ec287749a18e33dd2f18cc8a4b",
       "proof": [
         {
-          "h": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
+          "h": "67d068799355450e8a9b110dbcacdf36d27d00fd1a9d436a37569bc39bc94ccd",
           "side": "R"
         },
         {
-          "h": "bc7fc1e4e68582257779886da7e0a26aa09d718827480f35f72b6e37a0badbbd",
+          "h": "1bbb8e719bb0b629c76f0b1da3ccc930eb09e50d4f04746287ffa26a80d96dac",
           "side": "R"
         },
         {
-          "h": "ea509054ebdf8da404f159cf257467406cb68912c28e98cd1e280d81f55d5e3f",
+          "h": "607a30d145427faa4059ad1628f5bcac1a20f62c0c09f36af8bb36cca92d9d80",
           "side": "R"
         },
         {
-          "h": "16569617755e39c713eb1fec33bc021332f90c23e6bb3e33e098fe677ee64f55",
+          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
           "side": "R"
         }
       ]
     },
     {
       "index": 1,
-      "kind": "keeper",
-      "name": "SONIA",
-      "slug": "sonia",
-      "seal": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
+      "kind": "sphere",
+      "name": "GOBERNET",
+      "slug": "gobernet",
+      "seal": "67d068799355450e8a9b110dbcacdf36d27d00fd1a9d436a37569bc39bc94ccd",
       "proof": [
         {
           "h": "b5ed859a1c21de028c47575c0af4ae400afbd9ec287749a18e33dd2f18cc8a4b",
           "side": "L"
         },
         {
-          "h": "bc7fc1e4e68582257779886da7e0a26aa09d718827480f35f72b6e37a0badbbd",
+          "h": "1bbb8e719bb0b629c76f0b1da3ccc930eb09e50d4f04746287ffa26a80d96dac",
           "side": "R"
         },
         {
-          "h": "ea509054ebdf8da404f159cf257467406cb68912c28e98cd1e280d81f55d5e3f",
+          "h": "607a30d145427faa4059ad1628f5bcac1a20f62c0c09f36af8bb36cca92d9d80",
           "side": "R"
         },
         {
-          "h": "16569617755e39c713eb1fec33bc021332f90c23e6bb3e33e098fe677ee64f55",
+          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
           "side": "R"
         }
       ]
@@ -65,24 +65,24 @@
     {
       "index": 2,
       "kind": "keeper",
-      "name": "KHINCHIN",
-      "slug": "khinchin",
-      "seal": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
+      "name": "SONIA",
+      "slug": "sonia",
+      "seal": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
       "proof": [
         {
-          "h": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+          "h": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
           "side": "R"
         },
         {
-          "h": "9805914e5265d101cc15eec3f5c7cfe86322c380c30c5041d54bd8f1e97ba54c",
+          "h": "39676192d4b71a78981056b74b38000dfdf1e8cad9f3af5ee06be56606fa20d7",
           "side": "L"
         },
         {
-          "h": "ea509054ebdf8da404f159cf257467406cb68912c28e98cd1e280d81f55d5e3f",
+          "h": "607a30d145427faa4059ad1628f5bcac1a20f62c0c09f36af8bb36cca92d9d80",
           "side": "R"
         },
         {
-          "h": "16569617755e39c713eb1fec33bc021332f90c23e6bb3e33e098fe677ee64f55",
+          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
           "side": "R"
         }
       ]
@@ -90,24 +90,24 @@
     {
       "index": 3,
       "kind": "keeper",
-      "name": "KOLMOGOROV",
-      "slug": "kolmogorov",
-      "seal": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+      "name": "KHINCHIN",
+      "slug": "khinchin",
+      "seal": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
       "proof": [
         {
-          "h": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
+          "h": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
           "side": "L"
         },
         {
-          "h": "9805914e5265d101cc15eec3f5c7cfe86322c380c30c5041d54bd8f1e97ba54c",
+          "h": "39676192d4b71a78981056b74b38000dfdf1e8cad9f3af5ee06be56606fa20d7",
           "side": "L"
         },
         {
-          "h": "ea509054ebdf8da404f159cf257467406cb68912c28e98cd1e280d81f55d5e3f",
+          "h": "607a30d145427faa4059ad1628f5bcac1a20f62c0c09f36af8bb36cca92d9d80",
           "side": "R"
         },
         {
-          "h": "16569617755e39c713eb1fec33bc021332f90c23e6bb3e33e098fe677ee64f55",
+          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
           "side": "R"
         }
       ]
@@ -115,24 +115,24 @@
     {
       "index": 4,
       "kind": "keeper",
-      "name": "DOSTOEVSKY",
-      "slug": "dostoevsky",
-      "seal": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+      "name": "KOLMOGOROV",
+      "slug": "kolmogorov",
+      "seal": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
       "proof": [
         {
-          "h": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+          "h": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
           "side": "R"
         },
         {
-          "h": "a1035f3e362e47c944f51b42c49d8334fb511ee6e636a8bdd1d2ea6bb177e1c7",
+          "h": "4a51b55271b3c2cd728a3e6d2c2fdbdc207b5e9e92a077d22131486f838c3101",
           "side": "R"
         },
         {
-          "h": "a7c46974e969de35dbb72fa19581ee374e85290ad316b7c72c95376c28e59e41",
+          "h": "a1901acb68dc9ffec0b1fa10a138899ac36e6a92dbc9f8c575a5b0a1c7fe837b",
           "side": "L"
         },
         {
-          "h": "16569617755e39c713eb1fec33bc021332f90c23e6bb3e33e098fe677ee64f55",
+          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
           "side": "R"
         }
       ]
@@ -140,24 +140,24 @@
     {
       "index": 5,
       "kind": "keeper",
-      "name": "TOLSTOY",
-      "slug": "tolstoy",
-      "seal": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+      "name": "DOSTOEVSKY",
+      "slug": "dostoevsky",
+      "seal": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
       "proof": [
         {
-          "h": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+          "h": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
           "side": "L"
         },
         {
-          "h": "a1035f3e362e47c944f51b42c49d8334fb511ee6e636a8bdd1d2ea6bb177e1c7",
+          "h": "4a51b55271b3c2cd728a3e6d2c2fdbdc207b5e9e92a077d22131486f838c3101",
           "side": "R"
         },
         {
-          "h": "a7c46974e969de35dbb72fa19581ee374e85290ad316b7c72c95376c28e59e41",
+          "h": "a1901acb68dc9ffec0b1fa10a138899ac36e6a92dbc9f8c575a5b0a1c7fe837b",
           "side": "L"
         },
         {
-          "h": "16569617755e39c713eb1fec33bc021332f90c23e6bb3e33e098fe677ee64f55",
+          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
           "side": "R"
         }
       ]
@@ -165,24 +165,24 @@
     {
       "index": 6,
       "kind": "keeper",
-      "name": "BRUSENTSOV",
-      "slug": "brusentsov",
-      "seal": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+      "name": "TOLSTOY",
+      "slug": "tolstoy",
+      "seal": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
       "proof": [
         {
-          "h": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+          "h": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
           "side": "R"
         },
         {
-          "h": "e0a42a2220ba06145eb7b9f16482c4415e3164bdf441ecd89e010794335dc313",
+          "h": "8486bdfbf17a118b499cd2c749d291edffe53313389c03c15bed86518399ccb6",
           "side": "L"
         },
         {
-          "h": "a7c46974e969de35dbb72fa19581ee374e85290ad316b7c72c95376c28e59e41",
+          "h": "a1901acb68dc9ffec0b1fa10a138899ac36e6a92dbc9f8c575a5b0a1c7fe837b",
           "side": "L"
         },
         {
-          "h": "16569617755e39c713eb1fec33bc021332f90c23e6bb3e33e098fe677ee64f55",
+          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
           "side": "R"
         }
       ]
@@ -190,24 +190,24 @@
     {
       "index": 7,
       "kind": "keeper",
-      "name": "LEBEDEV",
-      "slug": "lebedev",
-      "seal": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+      "name": "BRUSENTSOV",
+      "slug": "brusentsov",
+      "seal": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
       "proof": [
         {
-          "h": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+          "h": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
           "side": "L"
         },
         {
-          "h": "e0a42a2220ba06145eb7b9f16482c4415e3164bdf441ecd89e010794335dc313",
+          "h": "8486bdfbf17a118b499cd2c749d291edffe53313389c03c15bed86518399ccb6",
           "side": "L"
         },
         {
-          "h": "a7c46974e969de35dbb72fa19581ee374e85290ad316b7c72c95376c28e59e41",
+          "h": "a1901acb68dc9ffec0b1fa10a138899ac36e6a92dbc9f8c575a5b0a1c7fe837b",
           "side": "L"
         },
         {
-          "h": "16569617755e39c713eb1fec33bc021332f90c23e6bb3e33e098fe677ee64f55",
+          "h": "42581019af37a3987550f8733b8dceef02b37ab339a0e6236417b46010a5b3ec",
           "side": "R"
         }
       ]
@@ -215,24 +215,49 @@
     {
       "index": 8,
       "kind": "keeper",
-      "name": "TSIOLKOVSKY",
-      "slug": "tsiolkovsky",
-      "seal": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
+      "name": "LEBEDEV",
+      "slug": "lebedev",
+      "seal": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
       "proof": [
         {
           "h": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
           "side": "R"
         },
         {
-          "h": "3c4269c0623ae0cb40a06aa06edb0be605cca29086a9bb4135b04755ec9cf6f9",
+          "h": "216589e07a897e4fa1f4ef9cf2370ed4e5a2fa8a066e39b83aeec1419e8454b0",
           "side": "R"
         },
         {
-          "h": "31996749d99327b7e2a45466e00462b105d9b1e44f8d9fdbd07ec91edc97cc2c",
+          "h": "92b54080148257deeb769bfb4552c1fedc91a63ff83234cac5091aadc224f4ab",
           "side": "R"
         },
         {
-          "h": "bb0e20e5a6b2b7496d416633862ffb27ef6bd9855bb7fcb39e5d5b1e7e9353aa",
+          "h": "921c5ceb026c24399c39a55c3a0a099520abcc8e5dfc5a0aeeb70b878799ea91",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "kind": "keeper",
+      "name": "TSIOLKOVSKY",
+      "slug": "tsiolkovsky",
+      "seal": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
+      "proof": [
+        {
+          "h": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+          "side": "L"
+        },
+        {
+          "h": "216589e07a897e4fa1f4ef9cf2370ed4e5a2fa8a066e39b83aeec1419e8454b0",
+          "side": "R"
+        },
+        {
+          "h": "92b54080148257deeb769bfb4552c1fedc91a63ff83234cac5091aadc224f4ab",
+          "side": "R"
+        },
+        {
+          "h": "921c5ceb026c24399c39a55c3a0a099520abcc8e5dfc5a0aeeb70b878799ea91",
           "side": "L"
         }
       ]

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GOBERNET · communism &amp; socialism · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{
+ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c;
+ --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12;
+ --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;
+ background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);position:relative;}
+header::before{content:"⚖";position:absolute;top:10px;right:14px;color:var(--gold);font-size:22px;opacity:.55;}
+h1{font-size:23px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.stance{font-size:12px;color:var(--dim);margin-top:8px;border-left:3px solid var(--gold);padding:5px 10px;background:linear-gradient(90deg,rgba(154,107,18,.06),transparent);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;}
+.controls{flex:1;min-width:230px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:6px;margin:5px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:66px;}
+.row input[type=range]{flex:1;min-width:90px;}
+.mtx{font-size:11px;border-collapse:collapse;width:100%;margin:4px 0;} .mtx th,.mtx td{border:1px solid var(--line);padding:2px 5px;text-align:center;} .mtx th{color:var(--dim);background:rgba(178,154,104,.14);}
+.plan{font-size:13px;margin:6px 0;padding:9px;background:#fbf6e6;border:1px solid var(--line);border-radius:6px;}
+.plan .barrow{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px;}
+.plan .bar{height:12px;border-radius:2px;background:var(--blue);} .plan .neg{background:var(--wall);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);}
+.badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+.ledger{margin-top:16px;border:2px solid var(--line2);border-radius:10px;overflow:hidden;}
+.ledger .lh{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(178,154,104,.16);border-bottom:1px solid var(--line);}
+.ledger .lh b{font-size:13px;letter-spacing:2px;color:var(--ink);}
+.lgrid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.lcol{padding:12px 15px;} .lcol.good{border-right:2px solid var(--line2);}
+.lcol h3{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;} .lcol.good h3{color:var(--grn);} .lcol.bad h3{color:var(--wall);}
+.lrow{font-size:12px;margin:8px 0;line-height:1.5;color:#3a3018;} .lrow b{color:var(--ink);} .lrow .cite{color:var(--dim);font-size:10.5px;}
+.synth{padding:12px 15px;border-top:1px solid var(--line);background:rgba(29,78,121,.04);font-size:12.5px;line-height:1.6;}
+.synth b{color:var(--red);}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;} .lgrid{grid-template-columns:1fr;} .lcol.good{border-right:none;border-bottom:2px solid var(--line2);}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">◄ WORLD IV · SONIA</a><span>THE STATE · <b style="color:var(--blue)">the aim</b> │ the machine │ <b style="color:var(--red)">the audit</b></span></div>
+
+<header>
+ <h1>GOBERNET — COMMUNISM &amp; SOCIALISM</h1>
+ <p class="sub">A governance instrument. The aspiration is old — <b>social ownership, and an end to what Marx called exploitation</b>. The machine at its centre is real and <b>runnable</b>: the <b>material balance</b> a central planner must close (Leontief / Kantorovich). It shows a plan can be made to <b>balance</b> — and, pushed too far, why it <b>cannot</b>. Around it: the roots, the lineage, the calculation problem, and an honest <b>good / bad</b> ledger with cited numbers on both sides.</p>
+ <p class="src"><span class="tag t-amber">source</span> Marx &amp; Engels, <i>The Communist Manifesto</i> (1848) &amp; <i>Capital</i> (1867); W. Leontief, input–output analysis; L. Kantorovich, linear programming (Nobel 1975). Figures cited inline. Rendered, not quoted.</p>
+ <p class="stance"><b>Stance.</b> This is not advocacy or condemnation. It holds two columns open at once, stamps what is <span style="color:var(--lit)">measured</span> apart from what is <span style="color:var(--gold)">interpreted</span>, distinguishes <b>democratic socialism</b> from <b>one-party Marxism-Leninism</b>, and reports the human cost plainly.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · THE AIM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">◧ the aim · roots &amp; lineage</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE ROOTS</h2>
+   <p>Before Marx: the <b>utopian socialists</b> — Robert Owen's cooperative mills, Charles Fourier's phalanstères, Saint-Simon's industrial order (1800s). Then <b>Marx &amp; Engels</b> recast it as a claimed <i>science</i> of history: <b>The Communist Manifesto</b> (1848), <b>Capital</b> (1867). Labour, they argued, creates value the owner captures as surplus; abolish private ownership of the means of production and, they held, you end that exploitation.</p>
+   <p class="small">The end-state, <b>communism</b>: stateless, classless — <span style="color:var(--blue)">"from each according to his ability, to each according to his needs"</span> (Marx, <i>Critique of the Gotha Programme</i>, 1875). <b>Socialism</b> is the transitional stage: social ownership, distribution by contribution.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE LINEAGE — the great split <span class="tag t-amber">AMBER</span></h2>
+   <p>One root, two trees. After Marx the movement split over <b>how</b>:</p>
+   <p class="small"><b class="k">Revolutionary</b> — Lenin's <i>vanguard party</i> seizes the state (Russia, 1917) → <b>Marxism-Leninism</b> → Stalin (one-party command economy) → Mao, and the 20th-century communist states.<br>
+   <b style="color:var(--blue)">Reformist</b> — Bernstein's revisionism → <b>social democracy</b>: win power by the ballot, keep markets and democracy, socialise through a welfare state → the Nordic model.</p>
+   <p class="small">The two are routinely conflated and are <b>not the same system</b>. The audit (right) keeps them apart.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>THE DEFINITIONS <span class="tag t-amber">defined</span></h2>
+   <p>The words that get blurred, pinned down:</p>
+   <table class="mtx"><thead><tr><th>system</th><th>owns production</th><th>allocates</th><th>polity</th></tr></thead><tbody id="defBody"></tbody></table>
+   <p class="small">"Socialist" Sweden is a <b>market economy</b> with a large welfare state — not social ownership of production. Naming matters; the audit tests claims against the definition, not the label.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">▼ the machine · the plan, computed ▼</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN — the plan <span class="tag t-in">in ↓</span></h2>
+   <p>A planner must close a <b>material balance</b>: to make everything, each sector needs the outputs of the others. Three sectors — <b>FARM · FACTORY · SERVICE</b>. The matrix <b>A</b> says how much of each sector's output one unit of another sector consumes; the demand <b>d</b> is what the plan is <i>for</i> (consumption, investment, defence).</p>
+   <div class="row"><label>tech A</label>
+    <button id="pProd">productive</button><button id="pOver">inter-sector inputs too high</button></div>
+   <div class="row"><label>FARM d</label><input id="d0" type="range" min="20" max="220" value="120"><span id="d0v" class="small">120</span></div>
+   <div class="row"><label>FACTORY d</label><input id="d1" type="range" min="20" max="220" value="80"><span id="d1v" class="small">80</span></div>
+   <div class="row"><label>SERVICE d</label><input id="d2" type="range" min="20" max="220" value="60"><span id="d2v" class="small">60</span></div>
+   <table class="mtx" id="aTbl"></table>
+  </div>
+  <div class="flow">▼ &nbsp; solve (I − A) x = d &nbsp; ▼</div>
+
+  <div class="win panel"><span class="no">0</span><h2>▣ THE PANEL — the balancer <span class="tag t-lit">LIT</span></h2>
+   <div class="engine">
+    <div class="controls">
+     <p class="small">Gross output <b>x = (I − A)⁻¹ d</b> — every sector must produce enough for final demand <i>and</i> for everyone else's inputs. The planner has no prices; only quantities that must add up.</p>
+     <div id="planBars" class="plan"></div>
+    </div>
+    <div class="readout">
+     <div class="verdict" id="verdict"></div>
+     <div class="reason" id="reason"></div>
+     <p class="small" id="feas"></p>
+    </div>
+   </div>
+  </div>
+  <div class="flow">▼ &nbsp; can the plan be met? &nbsp; ▼</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT — the result <span class="tag t-out">out ↓</span></h2>
+   <p>When A is <b>productive</b> (spectral radius &lt; 1), a non-negative plan always exists — the balance closes. Push the inter-sector demands too high and <b>(I − A)⁻¹ turns negative</b>: the arithmetic asks a sector to produce a <b>negative</b> amount. That is not austerity — it is <b>physically impossible</b>. The plan cannot be met at any effort.</p>
+   <div id="litbadge"></div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · THE AUDIT ===== -->
+ <div class="col red">
+  <div class="teamhdr">the audit · the record ◨</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE CALCULATION PROBLEM</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The balancer closes <b>quantities</b> — but it never learned the <b>prices</b>. <b>Mises (1920)</b> and <b>Hayek</b>: without markets, the planner cannot know the true opportunity cost of anything, so a plan that <i>balances</i> need not be <b>efficient</b>. The knowledge of what is scarce, wanted, or wasteful is dispersed and tacit; no ministry can gather it.</div>
+   <p class="small" style="margin-top:8px">The historical echo: <b>the shortage economy</b> — chronic queues, hoarding, and the <b>soft budget constraint</b> (Kornai). The machine can prove a plan is <i>feasible</i>; it cannot prove it is <i>good</i>.</p>
+   <p class="small" style="margin-top:6px"><b>The reply is as old.</b> Lange &amp; Lerner argued a planner could <i>simulate</i> market prices by trial and error (market socialism); Kantorovich showed optimisation yields <b>shadow prices</b> directly; some argue rising compute reopens the question. It is a <b>live debate — contested, not closed</b>, which is why this stays a WALL, not a verdict.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD — myths, both sides</h2>
+   <p class="grave"><s>"Sweden is communist."</s> <b>Cut.</b> Nordic states are market economies with big welfare states — social democracy, not social ownership of production.</p>
+   <p class="grave"><s>"Real communism was never tried."</s> <b>Examined.</b> The USSR, PRC, and others <i>were</i> the attempts, with real outcomes — good and catastrophic — that the ledger records.</p>
+   <p class="grave"><s>"Communism killed 100 million, end of story."</s> <b>Examined.</b> The <i>Black Book</i>'s ~94M is real scholarship but its aggregation (lumping famine, war, and execution) is contested; the honest move is to name each toll and its cause.</p>
+   <p class="grave"><s>"The USSR achieved nothing."</s> <b>Cut.</b> Literacy and industrialisation were real — see the ledger.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER — break the plan</h2>
+   <p>Raise the <b>technology matrix A</b> — the inter-sector inputs — beyond what the economy can reproduce. The balancer keeps solving, and returns <b>negative outputs</b>. The witness (panel 0) catches it and turns red.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">⚠ raise A past capacity</button><button id="restore">↺ restore</button></div>
+   <p class="small" id="tampernote">An over-ambitious plan asks each sector to feed the others more than it can make. The math does not lie: it hands back an impossible answer, and the witness disagrees with "feasible."</p>
+  </div>
+ </div>
+
+</div>
+
+<!-- ===== THE LEDGER ===== -->
+<div class="ledger">
+ <div class="lh"><b>THE LEDGER — good &amp; bad, cited</b><span class="small">measured <span class="tag t-lit">LIT</span> · interpreted <span class="tag t-amber">AMBER</span></span></div>
+ <div class="lgrid">
+  <div class="lcol good">
+   <h3>◤ the aspiration &amp; what it built</h3>
+   <div class="lrow"><b>Mass literacy.</b> USSR literacy rose <b>56% (1926) → 87.4%</b> (ages 9–49, 1939 census). <span class="cite">Soviet census data. <span class="tag t-lit">LIT</span></span></div>
+   <div class="lrow"><b>Industrialisation.</b> An agrarian country became an industrial and military power within a decade — the base that absorbed and turned back the 1941 invasion. <span class="cite">Broad consensus. <span class="tag t-amber">AMBER</span></span></div>
+   <div class="lrow"><b>Health &amp; education.</b> Large expansions of free schooling and healthcare; women entered the workforce at scale. <span class="cite">Real, state-directed gains. <span class="tag t-amber">AMBER</span></span></div>
+   <div class="lrow"><b>The democratic branch.</b> Social democracies (Nordic model) rank among the highest in human development and lowest in inequality — <b>with markets and free elections</b>. <span class="cite">UN HDI / OECD. <span class="tag t-amber">AMBER</span> — a distinct system.</span></div>
+  </div>
+  <div class="lcol bad">
+   <h3>◢ the human cost</h3>
+   <div class="lrow"><b>Holodomor</b> (Soviet Ukraine, 1932–33): ~<b>3.3–5 million</b> excess deaths; detailed demographic studies ~3.9M. <span class="cite">HREC / demographic reconstructions. <span class="tag t-lit">LIT</span></span></div>
+   <div class="lrow"><b>The Great Terror</b> (1937–38): ~<b>680,000–750,000</b> executed; ~1.5M arrested. <span class="cite">NKVD archival records (Hoover). <span class="tag t-lit">LIT</span></span></div>
+   <div class="lrow"><b>The Gulag</b>: ~<b>18 million</b> passed through the camps (1930–53); over a million died there. <span class="cite">Archival estimates. <span class="tag t-lit">LIT</span></span></div>
+   <div class="lrow"><b>Great Leap Forward famine</b> (China, 1959–61): ~<b>15–55 million</b> deaths (~30M mid-range). <span class="cite">Yang Jisheng, Dikötter, demographic studies. <span class="tag t-lit">LIT</span></span></div>
+   <div class="lrow"><b>Unfreedom.</b> Suppression of dissent, no free movement (the Wall), punitive psychiatry, the shortage economy. <span class="cite"><span class="tag t-amber">AMBER</span> — structural, widely documented.</span></div>
+  </div>
+ </div>
+ <div class="synth"><b>The honest reading.</b> The ledger does not vindicate or damn a <i>word</i>. It shows outcomes track <b>structure</b>, not the label: <b>one-party command economies</b> coupled genuine modernisation with mass coercion and famine; <b>democratic mixed economies</b> with strong welfare (social democracy) delivered prosperity and equality without the terror. The load-bearing variables are <b>political freedom</b> and the <b>price mechanism</b> — GOBERNET keeps both columns open so neither is hidden.</div>
+</div>
+
+<footer id="foot">GOBERNET — World IV · SONIA, room <b>THE STATE</b>, in the refined <b>OCHO</b>. The centre is a real, runnable planning engine (Leontief material balances / the socialist-calculation debate): a productive plan closes; an over-ambitious one returns impossible negative outputs, tamper-provable. The aim (left) steelmans the idea and its lineage; the audit (right) holds the calculation problem and the human cost; the ledger tallies good and bad with cited numbers. It distinguishes democratic socialism from one-party Marxism-Leninism, and takes no side beyond the record. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== GOBERNET — the plan-balancer (Leontief material balances; the real math of central planning) ===== */
+const SECT=["FARM","FACTORY","SERVICE"];
+const A_PROD=[[0.20,0.30,0.10],[0.40,0.20,0.30],[0.10,0.25,0.20]];      // productive: reproduces itself with room to spare
+const A_OVER=[[0.20,0.80,0.10],[0.70,0.20,0.30],[0.10,0.60,0.20]];      // over-ambitious: inter-sector demands exceed capacity
+let TAMPER=false;                 // TAMPER swaps in the over-ambitious matrix
+let Dvec=[120,80,60];
+
+function det3(m){
+ return m[0][0]*(m[1][1]*m[2][2]-m[1][2]*m[2][1])
+      -m[0][1]*(m[1][0]*m[2][2]-m[1][2]*m[2][0])
+      +m[0][2]*(m[1][0]*m[2][1]-m[1][1]*m[2][0]);
+}
+function IminusA(a){ return [0,1,2].map(i=>[0,1,2].map(j=>(i===j?1:0)-a[i][j])); }
+function solvePlan(a,d){                 // solve (I-A) x = d by Cramer's rule
+ const M=IminusA(a), Dt=det3(M), x=[];
+ for(let c=0;c<3;c++){ const Mc=M.map(r=>r.slice()); for(let r=0;r<3;r++) Mc[r][c]=d[r]; x.push(det3(Mc)/Dt); }
+ return {x:x, detIA:Dt, M:M};
+}
+function matvec(a,x){ return [0,1,2].map(i=>a[i][0]*x[0]+a[i][1]*x[1]+a[i][2]*x[2]); }
+function minors(M){ return [ M[0][0], M[0][0]*M[1][1]-M[0][1]*M[1][0], det3(M) ]; }
+function specrad(a){                       // spectral radius by power iteration (productive iff < 1)
+ let v=[1,1,1];
+ for(let k=0;k<300;k++){ const w=matvec(a,v); const n=Math.max(Math.abs(w[0]),Math.abs(w[1]),Math.abs(w[2]))||1; v=[w[0]/n,w[1]/n,w[2]/n]; }
+ const w=matvec(a,v); let r=0; for(let i=0;i<3;i++) if(v[i]!==0) r=Math.max(r,Math.abs(w[i]/v[i])); return r;
+}
+function leontiefInverse(a){                // columns of (I-A)^-1 are the unit-demand plans
+ const cols=[0,1,2].map(k=>{ const e=[0,0,0]; e[k]=1; return solvePlan(a,e).x; });
+ return [0,1,2].map(i=>[0,1,2].map(j=>cols[j][i]));
+}
+function currentA(){ return TAMPER?A_OVER:A_PROD; }
+function feasible(a,d){ const s=solvePlan(a,d); return {x:s.x, detIA:s.detIA, ok:(s.detIA>0 && s.x.every(function(v){return v>=-1e-9;}))}; }
+
+/* ===== fail-loud self-check (runs on the fixed matrices) ===== */
+function selfcheck(){
+ const t=function(c,m){ if(!c) throw new Error(m); };
+ // 1 — the productive plan balances and FARM output is ~301.5
+ const f=feasible(A_PROD,[120,80,60]);
+ t(f.ok, "the productive plan must be feasible");
+ t(Math.abs(f.x[0]-301.52)<0.6, "FARM gross output must be about 301.5, got "+f.x[0].toFixed(2));
+ // 2 — x truly solves (I-A)x=d : material balance A x + d = x closes
+ const Ax=matvec(A_PROD,f.x); let res=0; for(let i=0;i<3;i++) res=Math.max(res,Math.abs(Ax[i]+[120,80,60][i]-f.x[i]));
+ t(res<1e-6, "x must satisfy A x + d = x (the balance closes)");
+ // 3 — Hawkins-Simon: leading principal minors of (I-A) all positive
+ t(minors(IminusA(A_PROD)).every(function(v){return v>0;}), "Hawkins-Simon: leading minors must be positive");
+ // 4 — Leontief inverse non-negative for a productive economy
+ t(leontiefInverse(A_PROD).every(function(r){return r.every(function(v){return v>=-1e-9;});}), "(I-A)^-1 must be non-negative when productive");
+ // 5 — spectral radius < 1 productive, >= 1 over-ambitious
+ t(specrad(A_PROD)<1, "productive matrix must have spectral radius < 1");
+ t(specrad(A_OVER)>=1, "over-ambitious matrix must have spectral radius >= 1");
+ // 6 — the over-ambitious plan CANNOT balance: det(I-A')<0 and an output goes negative
+ const g=solvePlan(A_OVER,[120,80,60]);
+ t(g.detIA<0, "over-ambitious det(I-A') must be negative");
+ t(g.x.some(function(v){return v<0;}), "over-ambitious plan must return a NEGATIVE (impossible) output");
+ return true;
+}
+
+/* ===== UI — everything below this line touches the DOM ===== */
+const $=function(id){return document.getElementById(id);};
+const DEFS=[
+ ["capitalism","private","markets &amp; prices","varies"],
+ ["social democracy","mostly private","markets + big welfare","democratic"],
+ ["socialism","social / public","plan and/or market","varies"],
+ ["communism (goal)","common, stateless","need, not price","classless / none"],
+ ["Marxism-Leninism","state","central plan","one-party"]
+];
+function fillDefs(){ $("defBody").innerHTML=DEFS.map(function(r){return "<tr><td style='text-align:left'>"+r[0]+"</td><td>"+r[1]+"</td><td>"+r[2]+"</td><td>"+r[3]+"</td></tr>";}).join(""); }
+function fillA(){
+ const a=currentA();
+ let h="<thead><tr><th>A</th><th>FARM</th><th>FACT</th><th>SERV</th></tr></thead><tbody>";
+ for(let i=0;i<3;i++){ h+="<tr><th>"+SECT[i].slice(0,4)+"</th>"; for(let j=0;j<3;j++) h+="<td>"+a[i][j].toFixed(2)+"</td>"; h+="</tr>"; }
+ $("aTbl").innerHTML=h+"</tbody>";
+}
+function render(){
+ fillA();
+ const a=currentA(), d=Dvec.slice();
+ const f=feasible(a,d);
+ const maxAbs=Math.max.apply(null,f.x.map(function(v){return Math.abs(v);}))||1;
+ $("planBars").innerHTML=SECT.map(function(s,i){
+  const v=f.x[i], w=Math.max(2,Math.abs(v)/maxAbs*150);
+  return "<div class='barrow'><span style='min-width:64px'>"+s+"</span><span class='bar"+(v<0?" neg":"")+"' style='width:"+w+"px'></span><span style='min-width:70px;text-align:right'>"+v.toFixed(1)+"</span></div>";
+ }).join("");
+ const sr=specrad(a);
+ if(f.ok){
+  $("verdict").textContent="PLAN BALANCES"; $("verdict").className="verdict ok";
+  $("reason").textContent="a non-negative gross output exists — every sector makes enough for demand and for the others.";
+ } else {
+  $("verdict").textContent="PLAN CANNOT BALANCE"; $("verdict").className="verdict no";
+  $("reason").textContent="the balance demands a negative output — physically impossible at any effort.";
+ }
+ $("feas").innerHTML="det(I−A) = <b>"+f.detIA.toFixed(3)+"</b> &nbsp;·&nbsp; spectral radius(A) = <b>"+sr.toFixed(3)+"</b> "+(sr<1?"(&lt;1 → productive)":"(≥1 → not productive)");
+ audit();
+}
+function audit(){
+ const okProd=feasible(A_PROD,[120,80,60]).ok;
+ const g=solvePlan(A_OVER,[120,80,60]);
+ const okOver = g.detIA<0 && g.x.some(function(v){return v<0;});
+ const live=feasible(currentA(),Dvec).ok;
+ const ok = okProd && okOver;
+ $("litbadge").innerHTML="<span class='badge "+(ok?'pass':'failb')+"'>"+(ok?'✓ LIT · witness holds':'✗ witness broken')+"</span>"
+  +"<div class='small' style='margin-top:6px'>productive plan feasible <b style='color:"+(okProd?'var(--lit)':'var(--wall)')+"'>"+(okProd?'✓':'✗')+"</b> · over-ambitious plan impossible <b style='color:"+(okOver?'var(--lit)':'var(--wall)')+"'>"+(okOver?'✓':'✗')+"</b> · current plan: <b style='color:"+(live?'var(--lit)':'var(--wall)')+"'>"+(live?'balances':'impossible')+"</b>"+(TAMPER?" &nbsp;— <span style='color:var(--wall)'>over-ambitious targets set</span>":"")+"</div>";
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ fillDefs();
+ ["d0","d1","d2"].forEach(function(id,i){ $(id).addEventListener("input",function(){ Dvec[i]=+$(id).value; $(id+"v").textContent=$(id).value; render(); }); });
+ $("pProd").addEventListener("click",function(){ TAMPER=false; $("tampernote").textContent="An over-ambitious plan asks each sector to feed the others more than it can make. The math does not lie: it hands back an impossible answer, and the witness disagrees with “feasible”."; render(); });
+ $("pOver").addEventListener("click",function(){ TAMPER=true; render(); });
+ $("tamper").addEventListener("click",function(){ TAMPER=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>Over-ambitious targets set.</b> The inter-sector demands now exceed what the economy can reproduce — (I−A)⁻¹ has gone negative, and the plan returns impossible outputs. Real, and caught."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false; render(); });
+ render();
+}catch(e){
+ const fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the GOBERNET planning engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

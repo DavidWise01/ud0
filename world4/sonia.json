@@ -10,11 +10,11 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "5d6f214b5651b40f6af20bc5c2d5955604ba5c71870209bc05b25bc8e8cbec5d",
+  "sonia_root": "927a4b44353c34ca7609f4a3c8865bd5e2e071db90fd91e20eefd52d59daff5d",
   "counts": {
-    "spheres": 1,
-    "rooms": 4,
-    "lit": 1,
+    "spheres": 2,
+    "rooms": 5,
+    "lit": 2,
     "keepers": 8
   },
   "keepers": [
@@ -115,6 +115,12 @@
       "name": "THE WEIRD",
       "accent": "#5f513a",
       "note": "Russian cosmism, Kozyrev, Tsiolkovsky, the strange edge of the Russian imagination."
+    },
+    {
+      "key": "state",
+      "name": "THE STATE",
+      "accent": "#7a1220",
+      "note": "Political economy & governance — communism, socialism, the Soviet experiment, the calculation debate. GOBERNET."
     }
   ],
   "spheres": [
@@ -129,6 +135,18 @@
       "url": "https://davidwise01.github.io/ud0/world4/the-continued-fractions.html",
       "seal": "b5ed859a1c21de028c47575c0af4ae400afbd9ec287749a18e33dd2f18cc8a4b",
       "blurb": "A. Ya. Khinchin, Continued Fractions (Mir, 1964), runnable in THE OCHO: the Euclidean descent a0 + 1/(a1 + 1/(a2 + ...)) yields the single best rational at every depth. Convergents by the two-term recurrence, the determinant identity p_k q_{k-1} - p_{k-1} q_k = +/-1, the best-approximation bound under 1/q^2, the Gauss-Kuzmin law, and Khinchin's constant K = 2.6854520010 with Levy's constant, all computed live. SONIA opens with the shape of the descent."
+    },
+    {
+      "slug": "gobernet",
+      "title": "GOBERNET",
+      "room": "state",
+      "kicker": "communism & socialism — the plan, computed; good & bad, cited",
+      "accent": "#a5121a",
+      "stamp": "LIT",
+      "source": "Marx & Engels (1848/1867); Leontief input-output; Kantorovich (Nobel 1975)",
+      "url": "https://davidwise01.github.io/ud0/world4/gobernet.html",
+      "seal": "67d068799355450e8a9b110dbcacdf36d27d00fd1a9d436a37569bc39bc94ccd",
+      "blurb": "A governance instrument on communism and socialism in the refined OCHO. The LIT centre is a runnable Leontief material-balance planner (the socialist-calculation math): a productive plan closes (x = (I-A)^-1 d), an over-ambitious one returns impossible negative outputs, tamper-provable. Around it: the roots (utopians to Marx), the lineage (the split of Marxism-Leninism from social democracy), the calculation problem (Mises/Hayek), and an honest good/bad ledger with cited figures (literacy 56 to 87 percent, industrialization; Holodomor ~3.9M, Great Terror ~680-750k, Gulag ~18M, Great Leap Forward ~15-55M). Distinguishes democratic socialism from one-party Marxism-Leninism; takes no side beyond the record."
     }
   ]
 }
