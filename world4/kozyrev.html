@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KOZYREV · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE WEIRD &middot; the Russian world</span></div>
+
+<header>
+ <h1>KOZYREV</h1>
+ <p class="sub">A real astronomer, a Gulag survivor, a wrong theory. Nikolai A. Kozyrev did <b>genuine astrophysics</b> &mdash; and also spent his last decades on a mysticism that was never confirmed. This panel keeps the split <b>honest</b>: his real work is <b>LIT</b> and runnable; his "causal mechanics" is <b>DEAD-as-science</b> and stays visible, marked. We debunk the theory, not the man.</p>
+ <p class="src"><span class="tag t-amber">source</span> N. A. Kozyrev (1908&ndash;1983), Pulkovo Observatory. Lunar event: Kozyrev 1959, <i>Sky &amp; Telescope</i> 18, 184 (Alphonsus, 3 Nov 1958). Stellar-energy timescale: Kelvin (1862) &amp; Helmholtz (1856). "Causal mechanics" / torsion: Kozyrev, Pulkovo &mdash; unreplicated. Room: <b>THE WEIRD</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; roots &amp; lineage</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; the tragedy <span class="tag t-amber">1908&ndash;1983</span></h2>
+   <p>Nikolai Aleksandrovich Kozyrev, astrophysicist at <b>Pulkovo Observatory</b>. In <b class="k">1936</b> he was swept up in the Stalinist terror, arrested, and sentenced. He spent roughly a <b>decade in the Gulag</b> &mdash; and was freed in <b class="k">1946</b>.</p>
+   <p class="small">He reportedly reconstructed physics from memory in the camps, having no books. The suffering is real and it is not the measure of his ideas &mdash; a wrong theory is wrong on the evidence, and a right one is right, no matter what the man endured.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>REAL WORK &mdash; Alphonsus, 1958 <span class="tag t-lit">LIT</span></h2>
+   <p>On <b class="k">3 November 1958</b>, observing the lunar crater <b>Alphonsus</b> at Pulkovo, Kozyrev recorded a <b>spectroscopic emission event</b> &mdash; an apparent <b>outgassing</b> from the Moon, published in <i>Sky &amp; Telescope</i> (1959). Gerard Kuiper disputed the plate at the time; modern consensus &mdash; and the honour naming Kozyrev a discoverer of lunar volcanism &mdash; credits it as a genuine transient lunar event.</p>
+   <p class="small">This is sound observational astronomy. It is consistent with the later, established category of <b>transient lunar phenomena</b> &mdash; brief, localized brightenings and gas releases. Real, published, cited. It stands on its own.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>LINEAGE &mdash; the honest ledger <span class="tag t-amber">history</span></h2>
+   <p>One life, two ledgers. <b>Column LIT:</b> stellar atmospheres, the Alphonsus outgassing, the stellar-energy problem of his era. <b>Column DEAD:</b> "causal mechanics" &mdash; time as a physical substance carrying energy, transmissible by torsion.</p>
+   <p class="small">The torsion / "time-energy" idea was never replicated and is not accepted physics; yet it persists in <b>fringe circles</b> to this day. The lineage the corpus keeps is the honest one: credit the science, retire the mysticism &mdash; without erasing that it was proposed.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE ENGINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the engine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; a star's numbers <span class="tag t-in">in &darr;</span></h2>
+   <p>Feed a star as <b>mass, radius, luminosity</b> (in solar units) and an <b>age</b> to test against. The engine computes the <b>Kelvin&ndash;Helmholtz</b> gravitational-contraction timescale
+   <b>t<sub>KH</sub> = G&middot;M&sup2; / (R&middot;L)</b> &mdash; how long gravity alone could power the star &mdash; and compares it to the age.</p>
+   <div class="row"><label>M (M&#8857;)</label><input id="min" type="number" step="0.01" value="1" style="width:100px"></div>
+   <div class="row"><label>R (R&#8857;)</label><input id="rin" type="number" step="0.01" value="1" style="width:100px"></div>
+   <div class="row"><label>L (L&#8857;)</label><input id="lin" type="number" step="0.01" value="1" style="width:100px"></div>
+   <div class="row"><label>age (yr)</label><input id="ain" type="number" value="4500000000" style="width:130px"></div>
+   <div class="row"><button id="presetSun">&#9737; reset to the Sun</button></div>
+   <p class="small mut">Solar anchors: M&#8857;=1.989e30 kg, R&#8857;=6.96e8 m, L&#8857;=3.83e26 W, G=6.674e-11.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; t_KH = G&middot;M&sup2;/(R&middot;L) &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE ENGINE &mdash; gravity vs. the age <span class="tag t-lit">LIT</span></h2>
+   <div class="out" id="tkhline">&mdash;</div>
+   <p class="small" style="margin-top:2px">The contraction clock, term by term:</p>
+   <table id="brkTbl"><thead><tr><th>term</th><th>value (SI)</th></tr></thead><tbody id="brkBody"></tbody></table>
+   <p class="small" style="margin-top:8px"><b>Gravity's budget:</b> <span id="budline" class="k">&mdash;</span></p>
+   <p class="small"><b>The star's age:</b> <span id="ageline" class="k">&mdash;</span> &nbsp;&middot;&nbsp; age / t<sub>KH</sub> = <span id="ratline" class="k">&mdash;</span></p>
+   <p class="small" style="margin-top:8px;color:var(--blue)"><b>The classification the whole panel defends:</b> the accepted stellar power source.</p>
+   <div class="row"><label style="min-width:150px">power source is:</label><b id="powerclass" class="k">&mdash;</b></div>
+   <div class="row"><label style="min-width:150px">causal mechanics / torsion:</label><b id="torsionclass">&mdash;</b></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; the engine emits the verdict &amp; the witness &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; the verdict <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outverdict">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>claim under test</th><th>result</th><th>ok</th></tr></thead><tbody id="witbody"></tbody></table>
+   <div class="wall-note" style="border-left-color:var(--blue);background:rgba(29,78,121,.05);margin-top:10px"><span class="tag t-lit">why fusion</span> <b>THE RESOLUTION.</b> Gravity can power the Sun for only <b>~3&times;10<sup>7</sup></b> years &mdash; the classic figure Kelvin himself reached &mdash; but the Sun is <b>~4.5&times;10<sup>9</sup></b> years old. The gap is <b>~140&times;</b>. That contradiction is exactly <b>why nuclear fusion</b>, not gravitational contraction, must power the stars.</div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; the turn &amp; the wall &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TURN &rarr; WHY IT FAILS <span class="tag t-wall">DEAD</span></h2>
+   <p>From the 1950s on, Kozyrev turned to <b>"causal mechanics"</b>: time is not a passive coordinate but a <b>physical substance</b> that carries energy, with a <b>directional "flow"</b> transmissible through spinning gyroscopes and torsion. He reported laboratory effects to support it.</p>
+   <div class="wall-note"><span class="tag t-wall">THE WALL</span> It failed the two tests a theory must pass. <b>(1) Unreplicated:</b> independent labs did not reproduce the claimed torsion / time-energy effects. <b>(2) Unfalsifiable in practice:</b> the framework was elastic enough to absorb null results rather than be refuted by them. Not accepted physics &mdash; then or now.</div>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>"Kozyrev proved time is energy."</s> <b>Cut.</b> No independent experiment confirmed torsion / time-energy. It is <b>DEAD-as-science</b> &mdash; kept visible here, not erased, but not LIT.</p>
+   <p class="grave"><s>"Gravitational contraction powers the Sun."</s> <b>Cut.</b> t<sub>KH</sub> gives only ~3&times;10<sup>7</sup> yr of energy; the Sun is ~4.5&times;10<sup>9</sup> yr old. Fusion powers it.</p>
+   <p class="grave"><s>"The Gulag years discredit his astronomy."</s> <b>Cut &mdash; reversed.</b> His Alphonsus outgassing (1958) is sound, published observation. It is <b class="k">LIT</b> on its evidence; the man's suffering is not the ledger.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; promote the mysticism</h2>
+   <p>The red move: <b>accept "time-energy / torsion" as an established stellar power source</b> &mdash; stamp the causal-mechanics claim <b>LIT</b> instead of DEAD, as fringe promoters do.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; stamp torsion LIT</button><button id="restore">&#8634; restore: torsion DEAD</button></div>
+   <p class="small" id="tampernote">Promote the unreplicated claim to LIT and the witness (5) re-checks the classification: the accepted power source is <b>nuclear fusion</b>, and torsion is unreplicated pseudoscience. The row turns <b style="color:var(--wall)">red</b>. The tamper is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">KOZYREV &mdash; World IV &middot; <b>SONIA</b>, room <b>THE WEIRD</b>, in the refined <b>OCHO</b>: blue keeps the roots and the honest lineage, the engine computes the Kelvin&ndash;Helmholtz timescale down the centre and shows why fusion must power the stars, red works the turn to mysticism, the wall of non-replication, and the tamper that is caught. A runnable rendering of a real astronomer and Gulag survivor &mdash; his lunar-outgassing observation and the stellar-energy timescale are LIT and self-checked; his "causal mechanics" is kept visible and marked DEAD-as-science. We debunk the theory, not the man. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · KOZYREV — the honest split: real astrophysics LIT, causal mechanics DEAD (all computed, none looked up) ===== */
+
+// physical constants (SI)
+var G=6.674e-11, MSUN=1.989e30, RSUN=6.96e8, LSUN=3.83e26, SPYR=3.15576e7;
+
+// DEAD-as-science flag: is the torsion / causal-mechanics claim treated as an established (LIT) power source?
+// It must stay FALSE. The TAMPER button sets it true; the witness catches it.
+var TORSION_IS_LIT=false;
+
+// Kelvin-Helmholtz gravitational-contraction timescale, seconds and years.
+// M,R,L are absolute SI (kg, m, W). t_KH = G*M^2 / (R*L).
+function tKH_seconds(M,R,L){ return G*M*M/(R*L); }
+function tKH_years(M,R,L){ return tKH_seconds(M,R,L)/SPYR; }
+
+// convert solar-unit inputs to SI
+function toSI(m,r,l){ return { M:m*MSUN, R:r*RSUN, L:l*LSUN }; }
+
+// Can gravitational contraction alone account for a star of this age?
+// If the age exceeds the contraction budget by more than an order of magnitude, gravity is not the source -> fusion required.
+function fusionRequired(ageYr,tKHyr){ return ageYr > 10*tKHyr; }
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TORSION_IS_LIT; TORSION_IS_LIT=false;
+
+ // 1 — the Sun's contraction clock, computed from SI, matches the order-10^7-year anchor
+ var si=toSI(1,1,1);
+ var sSun=tKH_seconds(si.M,si.R,si.L);
+ var ySun=tKH_years(si.M,si.R,si.L);
+ t(Math.abs(sSun-9.9e14)<5e13,"t_KH(Sun) must be about 9.9e14 s, got "+sSun);
+ t(ySun>1e7 && ySun<1e8,"t_KH(Sun) must be between 1e7 and 1e8 years (order 10^7), got "+ySun);
+ t(ySun<4.5e9,"t_KH(Sun) must be << 4.5e9 yr — gravity cannot power the Sun for its lifetime");
+ t((4.5e9/ySun)>100,"age/t_KH for the Sun must exceed 100 (the classic ~140x gap)");
+
+ // 2 — the physical conclusion: gravitational contraction cannot power the Sun; fusion is required
+ t(fusionRequired(4.5e9,ySun)===true,"fusion MUST be required for the 4.5-Gyr Sun given a ~3e7-yr contraction budget");
+
+ // 3 — the formula scales correctly (dimensional sanity): double L halves t_KH; double M quadruples it; double R halves it
+ t(Math.abs(tKH_seconds(si.M,si.R,2*si.L) - sSun/2) < sSun*1e-9,"doubling L must halve t_KH");
+ t(Math.abs(tKH_seconds(2*si.M,si.R,si.L) - 4*sSun) < 4*sSun*1e-9,"doubling M must quadruple t_KH");
+ t(Math.abs(tKH_seconds(si.M,2*si.R,si.L) - sSun/2) < sSun*1e-9,"doubling R must halve t_KH");
+
+ // 4 — real stars: massive, hot stars have SHORTER contraction budgets; none reach gigayears by gravity alone.
+ // Sirius A ~ (2.06 Msun, 1.71 Rsun, 25.4 Lsun): t_KH must be well below the Sun's and far below any Gyr age.
+ var sir=toSI(2.06,1.71,25.4), ySir=tKH_years(sir.M,sir.R,sir.L);
+ t(ySir<ySun,"Sirius A's contraction budget must be shorter than the Sun's (more luminous)");
+ t(ySir<1e8,"Sirius A's t_KH must be well under 1e8 yr");
+
+ // 5 — the honesty invariant: the causal-mechanics / torsion claim is DEAD, never LIT.
+ // The accepted stellar power source is nuclear fusion; torsion is unreplicated. Assert it is NOT treated as LIT.
+ t(TORSION_IS_LIT===false,"causal mechanics / torsion must be DEAD (unreplicated) — it must NOT be stamped LIT");
+
+ TORSION_IS_LIT=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+
+function sci(x){
+ if(x===0) return "0";
+ var neg=x<0; x=Math.abs(x);
+ var e=Math.floor(Math.log(x)/Math.LN10);
+ var m=x/Math.pow(10,e);
+ return (neg?"-":"")+m.toFixed(3)+"e"+e;
+}
+function commaYr(y){
+ if(y>=1e6) return sci(y)+" yr";
+ return Math.round(y).toLocaleString()+" yr";
+}
+
+function witness(){
+ var si=toSI(1,1,1), sSun=tKH_seconds(si.M,si.R,si.L), ySun=tKH_years(si.M,si.R,si.L);
+ var rows="", allok=true;
+ var checks=[
+  ["t_KH(Sun) is order 10^7 yr", (ySun>1e7&&ySun<1e8), sci(ySun)+" yr"],
+  ["t_KH(Sun) << 4.5e9 yr (age/t_KH > 100)", ((4.5e9/ySun)>100), (4.5e9/ySun).toFixed(0)+"x short"],
+  ["gravity alone can power the Sun for its life?", fusionRequired(4.5e9,ySun)===false ? false : "NO", null],
+  ["accepted power source = nuclear fusion", (TORSION_IS_LIT===false), TORSION_IS_LIT?"torsion claimed":"fusion"],
+  ["causal mechanics / torsion classified DEAD", (TORSION_IS_LIT===false), TORSION_IS_LIT?"stamped LIT":"DEAD"]
+ ];
+ // row 3 special: the honest answer is NO (gravity cannot) — that is the "ok/lit" state.
+ for(var i=0;i<checks.length;i++){
+  var name=checks[i][0], ok, res=checks[i][2];
+  if(i===2){ ok = fusionRequired(4.5e9,ySun)===true; res = "NO — fusion required"; }
+  else ok = checks[i][1]===true;
+  if(!ok) allok=false;
+  rows+="<tr><td style=\"text-align:left\">"+name+"</td><td>"+(res!==null?res:"")+"</td><td style=\"color:"+(ok?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(ok?"ok":"X")+"</td></tr>";
+ }
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'+(allok?"WITNESS - real astrophysics LIT, torsion DEAD, split holds":"WITNESS - the split has been tampered: torsion promoted to LIT")+'</span>';
+ return allok;
+}
+
+function render(){
+ var m=+$("min").value||0, r=+$("rin").value||0, l=+$("lin").value||0, age=+$("ain").value||0;
+ if(m<=0) m=1; if(r<=0) r=1; if(l<=0) l=1; if(age<0) age=0;
+ var si=toSI(m,r,l);
+ var num=G*si.M*si.M, den=si.R*si.L, s=num/den, yr=s/SPYR;
+
+ $("tkhline").textContent="t_KH = "+sci(yr)+" yr   ( "+sci(s)+" s )";
+
+ var rows="";
+ rows+="<tr><td style=\"text-align:left\">M (kg)</td><td>"+sci(si.M)+"</td></tr>";
+ rows+="<tr><td style=\"text-align:left\">G&middot;M&sup2; (numerator)</td><td>"+sci(num)+"</td></tr>";
+ rows+="<tr><td style=\"text-align:left\">R&middot;L (denominator)</td><td>"+sci(den)+"</td></tr>";
+ rows+="<tr><td style=\"text-align:left\">t_KH (seconds)</td><td style=\"color:var(--red);font-weight:700\">"+sci(s)+"</td></tr>";
+ rows+="<tr><td style=\"text-align:left\">t_KH (years)</td><td style=\"color:var(--red);font-weight:700\">"+sci(yr)+"</td></tr>";
+ $("brkBody").innerHTML=rows;
+
+ $("budline").innerHTML="gravity alone could power this star for <b>"+sci(yr)+"</b> years.";
+ var ratio = yr>0 ? age/yr : 0;
+ $("ageline").textContent=commaYr(age);
+ $("ratline").textContent=ratio.toFixed(1)+"x";
+
+ var needFusion=fusionRequired(age,yr);
+ $("powerclass").textContent = needFusion ? "nuclear fusion (gravity cannot last)" : "gravitational contraction is sufficient here";
+ $("powerclass").style.color = "var(--red)";
+
+ // torsion classification — stays DEAD unless tampered
+ $("torsionclass").innerHTML = TORSION_IS_LIT
+  ? '<span style="color:var(--wall)">LIT (TAMPERED - unreplicated pseudoscience)</span>'
+  : '<span style="color:var(--wall)">DEAD-as-science (unreplicated)</span>';
+
+ // verdict
+ var ok = witness();
+ $("outverdict").className="verdict "+(ok?"ok":"no");
+ if(!ok){
+  $("outverdict").textContent="THE SPLIT IS BROKEN";
+  $("outreason").innerHTML='<b style="color:var(--wall)">Torsion has been promoted to LIT.</b> The accepted stellar power source is nuclear fusion; "time-energy" was never replicated. The witness catches the tamper.';
+ } else if(needFusion){
+  $("outverdict").textContent="FUSION REQUIRED  (age / t_KH = "+ratio.toFixed(0)+"x)";
+  $("outreason").innerHTML="Gravity's budget is "+sci(yr)+" yr but the star is "+commaYr(age)+" old &mdash; a "+ratio.toFixed(0)+"x gap. Gravitational contraction cannot account for it; <b>nuclear fusion</b> must. This is the LIT physics; causal mechanics stays DEAD.";
+ } else {
+  $("outverdict").textContent="GRAVITY SUFFICES  (age / t_KH = "+ratio.toFixed(1)+"x)";
+  $("outreason").innerHTML="At this age gravity's contraction budget ("+sci(yr)+" yr) is not yet exceeded by more than an order of magnitude &mdash; a young/pre-main-sequence regime. Increase the age toward the Sun's 4.5e9 yr to force the fusion verdict.";
+ }
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ var sync=function(){ render(); };
+ ["min","rin","lin","ain"].forEach(function(id){ $(id).addEventListener("input",sync); $(id).addEventListener("change",sync); });
+ $("presetSun").addEventListener("click",function(){ $("min").value=1; $("rin").value=1; $("lin").value=1; $("ain").value=4500000000; render(); });
+ $("tamper").addEventListener("click",function(){ TORSION_IS_LIT=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>Torsion stamped LIT.</b> The causal-mechanics claim is now being treated as an established power source. The witness (5) re-checks: the accepted answer is <b>nuclear fusion</b>, and torsion is unreplicated pseudoscience &mdash; the classification row turns red. The tamper is caught."; render(); });
+ $("restore").addEventListener("click",function(){ TORSION_IS_LIT=false; $("tampernote").innerHTML="Promote the unreplicated claim to LIT and the witness (5) re-checks the classification: the accepted power source is <b>nuclear fusion</b>, and torsion is unreplicated pseudoscience. The row turns <b style='color:var(--wall)'>red</b>. The tamper is caught."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the Kozyrev engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE LYSENKO AFFAIR · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE STATE &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE LYSENKO AFFAIR</h1>
+ <p class="sub">USSR, 1930s&ndash;1960s: the state decreed that <b>Mendelian genetics was false</b> and that acquired characteristics &mdash; a cold-treated (&ldquo;vernalized&rdquo;) seed&rsquo;s new habit &mdash; were <b>heritably transmitted</b>. This panel is <b>runnable</b>: real genetics holds &mdash; a live Punnett square gives <b>3:1</b> and <b>9:3:3:1</b>, Hardy&ndash;Weinberg sums to <b>1</b>. Lysenko&rsquo;s Lamarckian claim has <b>no mechanism</b> and does not reproduce. When the state decreed truth, the ratios did not obey.</p>
+ <p class="src"><span class="tag t-amber">source</span> Trofim Lysenko and Lysenkoism, USSR; the 1948 <b>VASKhNIL</b> session that banned genetics; the arrest of <b>Nikolai Vavilov</b> (1940, died in prison 1943). Genetics after Mendel (1866) and Hardy&ndash;Weinberg (1908). Room: <b>THE STATE</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; the science that holds</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; the state takes biology <span class="tag t-amber">1948</span></h2>
+   <p><b>Trofim Lysenko</b> rose under Stalin promising fast harvests through <b>vernalization</b> &mdash; chilling seed to change its growth. He rejected the gene and the chromosome as &ldquo;bourgeois&rdquo; invention, teaching instead that traits <i>acquired</i> in a plant&rsquo;s lifetime pass to its offspring.</p>
+   <p class="small">At the August <b>1948 VASKhNIL</b> session (the Lenin All-Union Academy of Agricultural Sciences), Mendelian genetics was declared false and effectively <b>banned</b> in Soviet science and teaching. Dissent was career-ending, and worse.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>MENDEL WORKS &mdash; segregation <span class="tag t-lit">LIT</span></h2>
+   <p>Each parent carries two alleles per gene and passes <b>one at random</b> (Mendel&rsquo;s law of segregation). Cross two heterozygotes <b class="k">Aa &times; Aa</b> and the offspring genotypes fall <b>1 : 2 : 1</b> (AA : Aa : aa); with <b>A</b> dominant, the visible phenotypes fall <b class="k">3 : 1</b>.</p>
+   <p class="small">Two independent genes <b class="k">AaBb &times; AaBb</b> give the classic <b class="k">9 : 3 : 3 : 1</b>. These are not opinions &mdash; they are counted in gardens and they reproduce. The engine to the right runs the square and checks it.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>HARDY&ndash;WEINBERG &mdash; equilibrium <span class="tag t-lit">LIT</span></h2>
+   <p>For an allele at frequency <b>p</b> (and <b>q = 1&minus;p</b>), a large random-mating population settles at genotype frequencies</p>
+   <p class="small" style="text-align:center"><b class="k">p&sup2; + 2pq + q&sup2; = 1</b></p>
+   <p class="small">Anchor <b>p = 0.6</b>: &nbsp; <b>0.36</b> (AA) &plus; <b>0.48</b> (Aa) &plus; <b>0.16</b> (aa) = <b class="k">1</b>. The identity is algebraic &mdash; it holds for every p, and the engine samples many to prove it sums to one.</p>
+   <table id="hwTbl"><thead><tr><th>p</th><th>p&sup2;</th><th>2pq</th><th>q&sup2;</th><th>sum</th></tr></thead><tbody id="hwBody"></tbody></table>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE STATE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the state &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; run the cross <span class="tag t-in">in &darr;</span></h2>
+   <p>Pick a cross and a Hardy&ndash;Weinberg allele frequency. The engine builds the gametes, fills the Punnett square, counts the offspring, and reports the ratio &mdash; the same arithmetic that runs whatever the state decrees.</p>
+   <div class="row"><label>cross</label>
+    <select id="cross"><option value="mono">monohybrid &nbsp;Aa &times; Aa</option><option value="di">dihybrid &nbsp;AaBb &times; AaBb</option></select></div>
+   <div class="row"><label>H&ndash;W p =</label><input id="pin" type="number" value="0.6" min="0.01" max="0.99" step="0.01" style="width:90px"><span class="small mut">frequency of allele A</span></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; gametes &middot; square &middot; count &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the genetics engine <span class="tag t-lit">LIT</span></h2>
+   <div class="out" id="crossname">&mdash;</div>
+   <p class="small" style="margin-top:2px">The Punnett square &mdash; every gamete of one parent against every gamete of the other:</p>
+   <div id="punnett"></div>
+   <p class="small" style="margin-top:8px"><b>Genotype ratio:</b> <span id="genoline" class="k">&mdash;</span></p>
+   <p class="small"><b>Phenotype ratio:</b> <span id="phenoline" class="k">&mdash;</span></p>
+   <p class="small" style="margin-top:8px;color:var(--blue)"><b>Hardy&ndash;Weinberg at this p</b> &mdash; genotype frequencies in a random-mating population:</p>
+   <p class="small">AA = <b id="hwAA" class="k">&mdash;</b> &nbsp;&middot;&nbsp; Aa = <b id="hwAa" class="k">&mdash;</b> &nbsp;&middot;&nbsp; aa = <b id="hwaa" class="k">&mdash;</b> &nbsp;&middot;&nbsp; sum = <b id="hwSum" class="k">&mdash;</b></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the ratios the state cannot repeal &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; predicted vs observed <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outverdict">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>cross</th><th>observed</th><th>engine predicts</th><th>ok</th></tr></thead><tbody id="witbody"></tbody></table>
+   <div class="wall-note" style="border-left-color:var(--blue);background:rgba(29,78,121,.05);margin-top:10px"><span class="tag t-amber">the lesson</span> <b>When the state decrees truth, the ratios do not obey.</b> This is the same seam <a href="./gobernet.html">GOBERNET</a> works &mdash; a decree can silence the scientist, but it cannot repeal the 3:1. The measurement is the one authority a ministry cannot overrule.</div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">the human cost &middot; the graveyard &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE COST &mdash; what the ban cost <span class="tag t-wall">grave</span></h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> <b>Nikolai Vavilov</b> &mdash; the world&rsquo;s foremost plant geneticist, founder of the great <b>seed bank</b> in Leningrad &mdash; was arrested in <b>1940</b> and <b>died of starvation in prison in 1943</b>, while Lysenko ran Soviet biology into the 1960s.</p>
+   <p class="small" style="margin-top:8px">An estimated <b class="k">~3,000</b> biologists were dismissed, imprisoned, or worse. Genetics teaching was gutted; Soviet agriculture and biology were set back a generation. These are cited historical facts, recorded here without embellishment.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD &mdash; the dead claim</h2>
+   <p class="grave"><s>&ldquo;Acquired characteristics are heritably transmitted.&rdquo;</s> <b>DEAD.</b> As a <i>general</i> mechanism of inheritance it has <b>no carrier and no reproducible result</b>. A cold-treated seed does not pass its chilling to its offspring&rsquo;s genome; the trait reverts. The claim fails the cross.</p>
+   <div class="wall-note" style="margin-top:6px"><span class="tag t-amber">precise, not gloating</span> <b>Epigenetics is real &mdash; and limited.</b> Some marks (e.g. methylation) can be inherited across a few generations. That is a narrow, mechanistic phenomenon; it is <b>not</b> a vindication of Lysenko, who denied the gene itself and promised heritable transformation on demand. Naming it here only to pre-empt the myth.</div>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; accept Lysenkoism</h2>
+   <p>The red move: adopt Lysenko&rsquo;s rule inside the engine &mdash; deny segregation, let each parent transmit its <b>expressed character wholesale</b> (the acquired/dominant trait), not a randomly segregated allele.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; accept Lysenkoism</button><button id="restore">&#8634; restore Mendel</button></div>
+   <p class="small" id="tampernote">Under Lysenkoism the Punnett square collapses: the recessive allele &ldquo;disappears,&rdquo; the cross predicts <b>4 : 0</b> instead of <b>3 : 1</b>, and the witness (5) &mdash; comparing the prediction to what gardens actually count &mdash; turns <b style="color:var(--wall)">red</b>. Ideology cannot repeal the ratios.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE LYSENKO AFFAIR &mdash; World IV &middot; <b>SONIA</b>, room <b>THE STATE</b>, in the refined <b>OCHO</b>: blue holds the real genetics, the state runs the Punnett square and Hardy&ndash;Weinberg down the centre, red records the human cost and breaks the square to be caught. Mendelian segregation (3:1 / 9:3:3:1) and Hardy&ndash;Weinberg (p&sup2;+2pq+q&sup2;=1) are LIT and self-checked; the history of the 1948 ban and Vavilov&rsquo;s death is AMBER and cited; Lamarckian inheritance of acquired traits as a general mechanism is DEAD. Epigenetics is a real, limited phenomenon and is not a vindication of Lysenko. When the state decrees truth, the ratios do not obey. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE LYSENKO AFFAIR — a runnable genetics engine (every ratio computed, none looked up) ===== */
+
+var LYSENKO_LIT=false;   // Lamarckian inheritance of acquired traits, as a GENERAL mechanism, is DEAD — not LIT
+var TAMPER=false;        // when true the engine adopts Lysenkoism: no segregation, transmit the expressed character wholesale
+
+function approx(a,b){ return Math.abs(a-b)<1e-9; }
+function isDom(al){ return al===al.toUpperCase(); }          // uppercase allele = dominant
+function locusDom(pair){ return isDom(pair[0])||isDom(pair[1]); }
+
+// canonical two-allele genotype string for one locus: dominant (uppercase) first
+function sortPair(x,y){
+ if(isDom(x)&&!isDom(y)) return x+y;
+ if(isDom(y)&&!isDom(x)) return y+x;
+ return (x<=y)? x+y : y+x;
+}
+
+// gametes for one parent genotype (array of [a,b] loci) -> list of {g:"allele-string", p:prob}
+function gametes(geno){
+ var dists=[]; // per-locus list of {a,p}
+ for(var i=0;i<geno.length;i++){
+  var pair=geno[i];
+  if(TAMPER){
+   // Lysenkoism: no segregation — transmit the EXPRESSED character wholesale (dominant if shown, else recessive)
+   var expressed = locusDom(pair) ? pair[0].toUpperCase() : pair[0].toLowerCase();
+   dists.push([{a:expressed,p:1}]);
+  } else {
+   // Mendel: segregation — each of the two alleles with probability 1/2
+   dists.push([{a:pair[0],p:0.5},{a:pair[1],p:0.5}]);
+  }
+ }
+ // cartesian product across loci
+ var out=[{g:"",p:1}];
+ for(var l=0;l<dists.length;l++){
+  var nxt=[];
+  for(var j=0;j<out.length;j++) for(var k=0;k<dists[l].length;k++){
+   nxt.push({g:out[j].g+dists[l][k].a, p:out[j].p*dists[l][k].p});
+  }
+  out=nxt;
+ }
+ return out;
+}
+
+// distinct gametes (merge duplicates, keep first-seen order) — for drawing the square
+function distinctGametes(geno){
+ var gs=gametes(geno), map={}, order=[];
+ for(var i=0;i<gs.length;i++){ var k=gs[i].g; if(map[k]===undefined){ map[k]=0; order.push(k); } map[k]+=gs[i].p; }
+ return order.map(function(k){ return {g:k,p:map[k]}; });
+}
+
+// offspring genotype distribution: genotype-key -> probability
+function crossDist(genoA,genoB){
+ var ga=gametes(genoA), gb=gametes(genoB), map={};
+ for(var i=0;i<ga.length;i++) for(var j=0;j<gb.length;j++){
+  var key="";
+  for(var l=0;l<ga[i].g.length;l++){ key+=sortPair(ga[i].g.charAt(l), gb[j].g.charAt(l)); }
+  map[key]=(map[key]||0)+ga[i].p*gb[j].p;
+ }
+ return map;
+}
+
+// phenotype distribution from a genotype distribution (dominant if a locus carries any uppercase)
+function phenoDist(gmap){
+ var out={};
+ for(var key in gmap){
+  var label="";
+  for(var i=0;i<key.length;i+=2){
+   var a=key.charAt(i), b=key.charAt(i+1);
+   label += (isDom(a)||isDom(b)) ? a.toUpperCase()+"_" : a.toLowerCase()+a.toLowerCase();
+  }
+  out[label]=(out[label]||0)+gmap[key];
+ }
+ return out;
+}
+
+// Hardy-Weinberg genotype frequencies for allele-A frequency p
+function hw(p){ var q=1-p; return { p2:p*p, tpq:2*p*q, q2:q*q }; }
+
+// integer phenotype ratio for a cross, in a fixed label order, scaled to the given denominator
+function phenoRatio(pheno,labels,scale){
+ var r=[]; for(var i=0;i<labels.length;i++){ r.push(Math.round((pheno[labels[i]]||0)*scale)); } return r;
+}
+
+// the crosses the engine knows, with their OBSERVED (real, garden-counted) Mendelian ratios
+var CROSSES={
+ mono:{ name:"monohybrid  Aa x Aa", geno:[["A","a"]],            labels:["A_","aa"],                 obs:[3,1],       scale:4  },
+ di:  { name:"dihybrid  AaBb x AaBb", geno:[["A","a"],["B","b"]], labels:["A_B_","A_bb","aaB_","aabb"], obs:[9,3,3,1], scale:16 }
+};
+
+// fixed-seed PRNG (mulberry32) — used ONLY inside selfcheck, never Math.random
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+
+/* ===== fail-loud self-check (runs untampered, then checks the tamper breaks the ratio) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+
+ // 1 — monohybrid Aa x Aa: genotype 1:2:1, phenotype 3:1
+ var g1=crossDist(CROSSES.mono.geno,CROSSES.mono.geno);
+ t(approx(g1["AA"],0.25)&&approx(g1["Aa"],0.5)&&approx(g1["aa"],0.25),"monohybrid genotype must be 1:2:1 (0.25/0.5/0.25)");
+ var p1=phenoDist(g1);
+ t(approx(p1["A_"],0.75),"monohybrid dominant fraction must be 3/4");
+ t(approx(p1["aa"],0.25),"monohybrid recessive fraction must be 1/4");
+ t(phenoRatio(p1,CROSSES.mono.labels,4).join(":")==="3:1","monohybrid ratio must reduce to 3:1");
+
+ // 2 — dihybrid AaBb x AaBb: 9:3:3:1, summing to 16
+ var p2=phenoDist(crossDist(CROSSES.di.geno,CROSSES.di.geno));
+ t(approx(p2["A_B_"],9/16)&&approx(p2["A_bb"],3/16)&&approx(p2["aaB_"],3/16)&&approx(p2["aabb"],1/16),"dihybrid must be 9:3:3:1 in sixteenths");
+ var r2=phenoRatio(p2,CROSSES.di.labels,16);
+ t(r2.join(":")==="9:3:3:1","dihybrid ratio must reduce to 9:3:3:1");
+ t(r2[0]+r2[1]+r2[2]+r2[3]===16,"dihybrid classes must sum to 16/16");
+
+ // 3 — Hardy-Weinberg sums to 1 at the anchor and for many sampled p (fixed seed)
+ var hA=hw(0.6);
+ t(approx(hA.p2,0.36)&&approx(hA.tpq,0.48)&&approx(hA.q2,0.16),"HW p=0.6 must give 0.36 / 0.48 / 0.16");
+ var rnd=mulberry32(0x115E4C0);
+ for(var i=0;i<128;i++){ var p=0.01+0.98*rnd(); var h=hw(p); t(Math.abs(h.p2+h.tpq+h.q2-1)<1e-12,"HW must sum to 1 for p="+p); }
+
+ // 4 — Lamarckian inheritance of acquired traits (general mechanism) is DEAD, not LIT
+ t(LYSENKO_LIT===false,"Lamarckian acquired-trait transmission must be flagged DEAD (not LIT) — no heritable mechanism");
+
+ // 5 — ideology cannot repeal the ratios: under Lysenkoism the monohybrid 3:1 must BREAK
+ TAMPER=true;
+ var pt=phenoDist(crossDist(CROSSES.mono.geno,CROSSES.mono.geno));
+ t(!approx(pt["A_"],0.75),"under Lysenkoism the 3:1 ratio must break — the recessive class must vanish from the prediction");
+ t(phenoRatio(pt,CROSSES.mono.labels,4).join(":")!=="3:1","the tampered prediction must NO LONGER match the observed 3:1");
+
+ TAMPER=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var gd=function(v){ return Math.round(v*1e6)/1e6; };
+
+function renderHWtable(){
+ var ps=[0.2,0.4,0.5,0.6,0.8], rows="";
+ for(var i=0;i<ps.length;i++){
+  var h=hw(ps[i]), sum=gd(h.p2+h.tpq+h.q2);
+  rows+="<tr><td>"+ps[i]+"</td><td>"+gd(h.p2)+"</td><td>"+gd(h.tpq)+"</td><td>"+gd(h.q2)+"</td><td style=\"color:var(--lit);font-weight:700\">"+sum+"</td></tr>";
+ }
+ $("hwBody").innerHTML=rows;
+}
+
+function renderPunnett(geno){
+ var ga=distinctGametes(geno), gb=distinctGametes(geno);
+ var html="<div style=\"overflow-x:auto\"><table><thead><tr><th style=\"background:rgba(165,18,26,.10)\">&times;</th>";
+ for(var j=0;j<gb.length;j++) html+="<th>"+gb[j].g+"</th>";
+ html+="</tr></thead><tbody>";
+ for(var i=0;i<ga.length;i++){
+  html+="<tr><th>"+ga[i].g+"</th>";
+  for(var j2=0;j2<gb.length;j2++){
+   var cell="";
+   for(var l=0;l<ga[i].g.length;l++){ cell+=sortPair(ga[i].g.charAt(l), gb[j2].g.charAt(l)); }
+   html+="<td style=\"font-weight:700;color:var(--ink)\">"+cell+"</td>";
+  }
+  html+="</tr>";
+ }
+ html+="</tbody></table></div>";
+ return html;
+}
+
+// compare engine prediction to observed ratio, across both crosses
+function witness(){
+ var keys=["mono","di"], rows="", allok=true;
+ for(var i=0;i<keys.length;i++){
+  var c=CROSSES[keys[i]];
+  var pred=phenoRatio(phenoDist(crossDist(c.geno,c.geno)), c.labels, c.scale);
+  var obs=c.obs.join(" : "), got=pred.join(" : "), ok=(obs===got);
+  if(!ok) allok=false;
+  rows+="<tr><td>"+(keys[i]==="mono"?"Aa x Aa":"AaBb x AaBb")+"</td><td>"+obs+"</td><td>"+got+"</td><td style=\"color:"+(ok?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(ok?"ok":"X")+"</td></tr>";
+ }
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'+(allok?"WITNESS - every predicted ratio matches what gardens count":"WITNESS - prediction no longer matches the observed ratios")+'</span>';
+ return allok;
+}
+
+function render(){
+ var key=$("cross").value, c=CROSSES[key];
+ $("crossname").textContent=c.name+(TAMPER?"   [ Lysenkoism engaged ]":"");
+ $("punnett").innerHTML=renderPunnett(c.geno);
+
+ var gmap=crossDist(c.geno,c.geno), pmap=phenoDist(gmap);
+ // genotype ratio line
+ if(key==="mono"){
+  var gr=[Math.round((gmap["AA"]||0)*4),Math.round((gmap["Aa"]||0)*4),Math.round((gmap["aa"]||0)*4)];
+  $("genoline").textContent="AA : Aa : aa  =  "+gr.join(" : ");
+  $("phenoline").textContent="dominant : recessive  =  "+phenoRatio(pmap,c.labels,4).join(" : ");
+ } else {
+  $("genoline").textContent="9 genotype classes (dihybrid) — see phenotype ratio below";
+  $("phenoline").textContent="A_B_ : A_bb : aaB_ : aabb  =  "+phenoRatio(pmap,c.labels,16).join(" : ");
+ }
+
+ // Hardy-Weinberg at chosen p
+ var p=+$("pin").value; if(!(p>0&&p<1)) p=0.6;
+ var h=hw(p), sum=gd(h.p2+h.tpq+h.q2);
+ $("hwAA").textContent=gd(h.p2); $("hwAa").textContent=gd(h.tpq); $("hwaa").textContent=gd(h.q2); $("hwSum").textContent=sum;
+
+ // data out
+ var ok=witness();
+ $("outverdict").className="verdict "+(ok?"ok":"no");
+ $("outverdict").textContent= ok ? "3 : 1  and  9 : 3 : 3 : 1  hold." : "the ratios no longer match — Lysenkoism engaged.";
+ $("outreason").innerHTML= TAMPER
+  ? '<b style="color:var(--wall)">Lysenkoism engaged.</b> Segregation is denied; the recessive allele vanishes from the prediction, so the cross reports 4:0 where gardens count 3:1. A decree changed the model, not the measurement.'
+  : "Mendelian segregation: the engine predicts exactly the ratios counted in real crosses. Hardy-Weinberg sums to 1 at every p.";
+
+ renderHWtable();
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ var sync=function(){ render(); };
+ ["cross","pin"].forEach(function(id){ $(id).addEventListener("input",sync); $(id).addEventListener("change",sync); });
+ $("tamper").addEventListener("click",function(){ TAMPER=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>Lysenkoism engaged.</b> Segregation is denied. The Punnett square collapses to a single gamete, the recessive class disappears, and the cross now predicts <b>4 : 0</b>. The witness (5) compares that to the 3:1 real crosses actually produce and turns <b style='color:var(--wall)'>red</b>. Ideology cannot repeal the ratios."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false; $("tampernote").innerHTML="Under Lysenkoism the Punnett square collapses: the recessive allele &ldquo;disappears,&rdquo; the cross predicts <b>4 : 0</b> instead of <b>3 : 1</b>, and the witness (5) &mdash; comparing the prediction to what gardens actually count &mdash; turns <b style='color:var(--wall)'>red</b>. Ideology cannot repeal the ratios."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the genetics engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

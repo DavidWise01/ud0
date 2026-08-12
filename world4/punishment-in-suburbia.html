@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRIME &amp; PUNISHMENT IN SUBURBIA · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(29,78,121,.07),transparent 46%),radial-gradient(circle at 94% 100%,rgba(165,18,26,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--blue);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(29,78,121,.06),transparent);position:relative;}
+header::before{content:"\1F3AC";position:absolute;top:10px;right:14px;font-size:20px;opacity:.5;}
+h1{font-size:21px;letter-spacing:2px;color:var(--blue);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fav{font-size:12px;color:var(--red);margin-top:7px;border-left:3px solid var(--red);padding:4px 10px;background:linear-gradient(90deg,rgba(165,18,26,.06),transparent);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--blue);box-shadow:0 0 0 1px rgba(29,78,121,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+button{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 6px;text-align:left;} th{color:var(--dim);background:rgba(178,154,104,.14);text-align:center;}
+td.arw{text-align:center;color:var(--blue);} .sonia-row td{background:rgba(29,78,121,.10);font-weight:700;} .gone td{color:var(--dim);}
+.beats{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;} .beat{font-size:11px;border:1px solid var(--line2);border-radius:20px;padding:3px 10px;background:#fbf6e6;} .beat b{color:var(--blue);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+.sonialine{margin:6px 0;} .sonialine div{font-size:12px;margin:5px 0;padding:6px 10px;border-left:3px solid var(--blue);background:rgba(29,78,121,.05);} .sonialine b{color:var(--blue);}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">◄ WORLD IV · SONIA</a><span>THE NOVEL · <b style="color:var(--blue)">the source</b> │ the mapping │ <b style="color:var(--red)">the changes</b></span></div>
+
+<header>
+ <h1>CRIME &amp; PUNISHMENT IN SUBURBIA</h1>
+ <p class="sub">The novel SONIA is named for, retold in an American suburb. Dostoevsky's <b>Sonia Marmeladova</b> becomes <b>Vincent</b>, the boy who watches and loves and stays — <b>the same function, a new face</b>. This sphere makes the adaptation <b>runnable</b>: the novel-to-film role map is a bijection, the five-beat Dostoevskian skeleton holds in order, and the engine proves that if you <b>strip the redemptive witness</b>, it is only a crime — never <i>Crime and Punishment</i>.</p>
+ <p class="src"><span class="tag t-amber">source</span> <i>Crime + Punishment in Suburbia</i> (2000), dir. Rob Schmidt, wr. Larry Gross — a contemporary fable loosely based on F. Dostoevsky, <i>Crime and Punishment</i> (1866). Cast: Monica Keena, Vincent Kartheiser, Michael Ironside, Ellen Barkin, Jeffrey Wright. Rendered, not quoted.</p>
+ <p class="fav">★ David Lee Wise's favorite film. His own sphere on it lives in <a href="../d/entertainment.html">World I · ENTERTAINMENT</a>; here SONIA reads it through her own name.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- LEFT · THE SOURCE -->
+ <div class="col blue">
+  <div class="teamhdr">◧ the source · novel &amp; film</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE NOVEL — 1866</h2>
+   <p>A poor student, <b>Raskolnikov</b>, murders a pawnbroker to test a theory that great men stand above the law. The theory does not save him from the guilt. <b>Sonia Marmeladova</b> — forced onto the street to feed her family — reads him the raising of Lazarus, and follows him to Siberia. The <b>crime</b> is a page; the <b>punishment</b> is the whole book.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE ADAPTATION — 2000 <span class="tag t-amber">film</span></h2>
+   <p>Rob Schmidt's <i>Crime + Punishment in Suburbia</i> moves it to an American high school. <b>Roseanne</b> (Monica Keena), abused by her stepfather <b>Fred</b> (Michael Ironside), kills him with her boyfriend's help. <b>Vincent</b> (Vincent Kartheiser) — the outsider who watches her, photographs her, narrates — is the one who finally carries her toward the light.</p>
+   <p class="small">Loose, not faithful. Premiered at Sundance, 2000; a contemporary fable, mixed in its reception — and beloved.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>THE SONIA FUNCTION <span class="tag t-lit">invariant</span></h2>
+   <p>One role survives every retelling: <b>the witness who does not judge, only stays</b>, and carries the sinner to confession. She is the reason the corpus keeper is named SONIA.</p>
+   <div class="sonialine" id="soniaLine"></div>
+  </div>
+ </div>
+
+ <!-- CENTER · THE MACHINE -->
+ <div class="col center">
+  <div class="teamhdr">▼ the mapping ▼</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN — two casts <span class="tag t-in">in ↓</span></h2>
+   <p>The novel gives seven roles; the film re-casts them in suburbia. The claim: it is a <b>bijection</b> — each role maps to exactly one, one to one — with a single deliberate deletion. Feed both casts to the engine.</p>
+  </div>
+  <div class="flow">▼ &nbsp; map novel → film &nbsp; ▼</div>
+
+  <div class="win panel"><span class="no">0</span><h2>▣ THE PANEL — the correspondence <span class="tag t-lit">LIT</span></h2>
+   <table id="mapTbl"><thead><tr><th>the novel (1866)</th><th></th><th>the film (2000)</th><th>role</th></tr></thead><tbody id="mapBody"></tbody></table>
+   <p class="small" style="margin-top:8px">The five-beat Dostoevskian skeleton, in order — preserved in both:</p>
+   <div class="beats" id="beats"></div>
+  </div>
+  <div class="flow">▼ &nbsp; is the punishment still there? &nbsp; ▼</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT — the verdict <span class="tag t-out">out ↓</span></h2>
+   <div class="verdict" id="verdict"></div>
+   <div class="reason" id="reason"></div>
+   <div id="litbadge" style="margin-top:6px"></div>
+   <p class="small">A crime story ends at the killing. <i>Crime and Punishment</i> begins there — and needs the witness to finish.</p>
+  </div>
+ </div>
+
+ <!-- RIGHT · THE CHANGES -->
+ <div class="col red">
+  <div class="teamhdr">the changes · what suburbia inverts ◨</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE INVERSIONS</h2>
+   <div class="wall-note"><span class="tag t-wall">LOOSE</span> This is an adaptation that <b>changes the moral</b>. In the novel the victim is an innocent pawnbroker and the crime is a nihilist's cold theory. In the film the victim is a <b>rapist stepfather</b> — so the killing reads as protection, not transgression. The guilt, and the need for the witness, remain; the moral valence flips.</div>
+   <p class="small" style="margin-top:8px">And the <b>detective is gone</b>. There is no Porfiry closing in — the punishment is entirely <b>internal</b>. Guilt is its own investigator.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>"A faithful adaptation of Dostoevsky."</s> <b>Cut.</b> It is a <i>loose fable</i> — the skeleton survives, the flesh is all suburbia.</p>
+   <p class="grave"><s>"Just a teen crime thriller."</s> <b>Cut.</b> It keeps the whole moral skeleton — guilt, the witness, confession, the turn toward life.</p>
+   <p class="grave"><s>"Vincent is a stalker, not a Sonia."</s> <b>Kept, corrected.</b> The film dresses the witness as a watcher — but his function is Marmeladova's exactly: to see, to love, and to stay.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER — strip the witness</h2>
+   <p>Delete the Sonia function — take away the one who watches and loves and carries her to confession. Watch the verdict fall.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">⚠ remove the witness</button><button id="restore">↺ restore</button></div>
+   <p class="small" id="tampernote">Without the redemptive witness there is a killing, a cover-up, a caught girl — a crime. The <i>punishment</i> that redeems is gone, and so is Dostoevsky. The engine agrees.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">CRIME &amp; PUNISHMENT IN SUBURBIA — World IV · SONIA, room <b>THE NOVEL</b>, in the refined <b>OCHO</b>. A structural instrument on adaptation: the novel-to-film role map is a verified bijection, the five-beat Dostoevskian skeleton holds in order, and the engine proves the <b>Sonia function</b> — the witness who does not judge, only stays — is load-bearing: strip it and <i>Crime and Punishment</i> collapses to a crime. The same function runs Dostoevsky's Marmeladova, the film's Vincent, and this world's keeper. David Lee Wise's favorite film; his own take lives in <a href="../d/entertainment.html">World I · ENTERTAINMENT</a>. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== CRIME & PUNISHMENT IN SUBURBIA — the adaptation engine (novel <-> film + the Sonia function) ===== */
+const MAP=[
+ {novel:"Raskolnikov", film:"Roseanne", role:"the one who kills", sonia:false},
+ {novel:"Sonia Marmeladova", film:"Vincent", role:"the redemptive witness — THE SONIA FUNCTION", sonia:true},
+ {novel:"Alyona, the pawnbroker", film:"Fred, the stepfather", role:"the one who is killed", sonia:false},
+ {novel:"Pulcheria / Dunya", film:"Maggie, the mother", role:"the family bound to the crime", sonia:false},
+ {novel:"the co-conspirator", film:"Jimmy, the boyfriend", role:"the accomplice", sonia:false},
+ {novel:"Marmeladov", film:"Chris", role:"the wounded witness at the margin", sonia:false},
+ {novel:"Porfiry, the detective", film:"(absent)", role:"the external investigator — removed", sonia:false}
+];
+const SONIA_LINE=[
+ {telling:"THE NOVEL (Dostoevsky, 1866)", who:"Sonia Marmeladova", act:"reads Raskolnikov the raising of Lazarus, and follows him to Siberia"},
+ {telling:"THE FILM (2000)", who:"Vincent", act:"watches, loves without judging, and carries Roseanne toward confession"},
+ {telling:"THE KEEPER (SONIA, World IV)", who:"SONIA", act:"does not argue, only stays; keeps the world by holding the light"}
+];
+const SKELETON=["TRANSGRESSION","ISOLATION / GUILT","THE WITNESS WHO LOVES","CONFESSION","SUFFERING -> REDEMPTION"];
+let TAMPER=false;   // when true, the Sonia function is stripped
+
+function isBijection(m){
+ var seenN={}, seenF={};
+ for(var i=0;i<m.length;i++){ var r=m[i];
+  if(seenN[r.novel]) return false; seenN[r.novel]=1;
+  if(r.film!=="(absent)"){ if(seenF[r.film]) return false; seenF[r.film]=1; } }
+ return true;
+}
+function soniaInMap(){ for(var i=0;i<MAP.length;i++) if(MAP[i].sonia) return true; return false; }
+function soniaFunctionPresent(){ return !TAMPER && soniaInMap() && SONIA_LINE.length===3; }
+function skeletonInOrder(){
+ var iW=SKELETON.indexOf("THE WITNESS WHO LOVES"), iC=SKELETON.indexOf("CONFESSION"), iR=SKELETON.indexOf("SUFFERING -> REDEMPTION");
+ return iW>=0 && iC>=0 && iR>=0 && iW<iC && iC<iR;   // the witness precedes confession precedes redemption
+}
+function isCrimeAndPunishment(){ return soniaFunctionPresent(); }
+
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ t(isBijection(MAP), "the novel<->film role map must be a bijection (one to one)");
+ t(MAP.length===7, "there are seven corresponding roles");
+ t(soniaInMap(), "the Sonia function (the redemptive witness) is one of the mapped roles");
+ t(SONIA_LINE.length===3, "the Sonia function recurs across three tellings: novel, film, keeper");
+ t(SKELETON.length===5, "the Dostoevskian skeleton has five beats");
+ t(skeletonInOrder(), "the five beats occur in order");
+ // the removed detective (punishment is internal) is present as a deliberate deletion
+ var gone=0; for(var i=0;i<MAP.length;i++) if(MAP[i].film==="(absent)") gone++;
+ t(gone===1, "exactly one role (the detective) is deleted — punishment becomes internal");
+ // WITHOUT the witness it is not Crime AND Punishment; WITH it, it is
+ var save=TAMPER; TAMPER=true; t(!isCrimeAndPunishment(), "strip the witness -> a crime, not Crime AND Punishment"); TAMPER=save;
+ t(isCrimeAndPunishment(), "with the witness present it IS Crime and Punishment");
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){return document.getElementById(id);};
+function renderStatic(){
+ $("soniaLine").innerHTML=SONIA_LINE.map(function(s){return "<div><b>"+s.telling+"</b> — "+s.who+": "+s.act+".</div>";}).join("");
+ $("beats").innerHTML=SKELETON.map(function(b,i){return "<span class='beat'><b>"+(i+1)+"</b> "+b+"</span>";}).join("");
+}
+function render(){
+ $("mapBody").innerHTML=MAP.map(function(r){
+  var cls=r.sonia?"sonia-row":(r.film==="(absent)"?"gone":"");
+  var film=(r.sonia&&TAMPER)?"<s>"+r.film+"</s> — stripped":r.film;
+  return "<tr class='"+cls+"'><td>"+r.novel+"</td><td class='arw'>→</td><td>"+film+"</td><td class='small'>"+r.role+"</td></tr>";
+ }).join("");
+ var ok=isCrimeAndPunishment();
+ $("verdict").textContent = ok?"CRIME AND PUNISHMENT":"ONLY A CRIME";
+ $("verdict").className="verdict "+(ok?"ok":"no");
+ $("reason").textContent = ok
+  ? "the witness is present: guilt → confession → the turn toward life. The punishment redeems."
+  : "the redemptive witness is gone: a killing and a cover-up remain, but nothing carries her back. Dostoevsky is missing.";
+ var bij=isBijection(MAP);
+ $("litbadge").innerHTML="<span class='badge "+(bij?'pass':'failb')+"'>"+(bij?'✓ LIT · bijection holds':'✗ map broken')+"</span>"
+  +"<div class='small' style='margin-top:5px'>7 roles map one-to-one · 1 deletion (the detective) · the Sonia function "+(TAMPER?"<b style='color:var(--wall)'>stripped</b>":"present across 3 tellings")+"</div>";
+}
+try{
+ selfcheck();
+ renderStatic();
+ $("tamper").addEventListener("click",function(){ TAMPER=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>The witness is gone.</b> What remains is a girl who killed and got caught — a crime. The <i>punishment</i> that redeems needed the one who stays; without Sonia, without Vincent, there is no Dostoevsky. The verdict fell, and it is honest."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false; $("tampernote").textContent="Without the redemptive witness there is a killing, a cover-up, a caught girl — a crime. The punishment that redeems is gone, and so is Dostoevsky. The engine agrees."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the adaptation engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

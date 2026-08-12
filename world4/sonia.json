@@ -10,11 +10,11 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "082c07968271243b4dccfc621535ef46d8b0a35f99cc38a5d1593040104fc7bb",
+  "sonia_root": "e0b3905f6650421c30f9b3275224e8be06ef40134f52052471ed1a7df2f5f18a",
   "counts": {
-    "spheres": 12,
+    "spheres": 17,
     "rooms": 5,
-    "lit": 12,
+    "lit": 17,
     "keepers": 8
   },
   "keepers": [
@@ -267,6 +267,66 @@
       "url": "https://davidwise01.github.io/ud0/world4/the-chebyshev-inequality.html",
       "seal": "378829c3e0921a335586e8b8f1fb25e4bea968d7e7f57ae2894f082a6e4a9c7f",
       "blurb": "Pafnuty Chebyshev's inequality (St. Petersburg), runnable in THE OCHO: for ANY distribution, P(|X-mu| >= k sigma) <= 1/k^2 (k=2 -> 25%, k=3 -> 11%), the empirical tail sitting under the bound live; plus Chebyshev polynomials (T_n(cos t) = cos n t, the minimax property) and Bertrand's postulate (a prime in (n,2n], which Chebyshev proved). Markov and Lyapunov were his students. Tamper-provable (drop the square)."
+    },
+    {
+      "slug": "punishment-in-suburbia",
+      "title": "CRIME & PUNISHMENT IN SUBURBIA",
+      "room": "novel",
+      "kicker": "the keeper's own story, retold in suburbia",
+      "accent": "#1d4e79",
+      "stamp": "LIT",
+      "source": "Crime + Punishment in Suburbia (2000), dir. Rob Schmidt; from Dostoevsky (1866)",
+      "url": "https://davidwise01.github.io/ud0/world4/punishment-in-suburbia.html",
+      "seal": "9ce145284a2dc48ae6bb90019f6c0d05bf098917aae3ee5e466b5e4f7f01b29a",
+      "blurb": "David's favorite film, Crime + Punishment in Suburbia (2000), read through the keeper's own name, runnable in THE OCHO: the novel-to-film role map is a verified bijection (Raskolnikov->Roseanne, the pawnbroker->the abusive stepfather, the detective deleted), the five-beat Dostoevskian skeleton holds in order, and the engine proves the SONIA FUNCTION - the witness who does not judge, only stays (Marmeladova->Vincent->SONIA the keeper) - is load-bearing: strip it and Crime and Punishment collapses to a mere crime. Cross-links David's own World I sphere. Tamper-provable."
+    },
+    {
+      "slug": "lyapunov-stability",
+      "title": "LYAPUNOV STABILITY",
+      "room": "number",
+      "kicker": "stability without solving the equation; the exponent of chaos",
+      "accent": "#a5121a",
+      "stamp": "LIT",
+      "source": "A. M. Lyapunov, The General Problem of the Stability of Motion (1892)",
+      "url": "https://davidwise01.github.io/ud0/world4/lyapunov-stability.html",
+      "seal": "0fcce27779ee7c4f4b29a5971fedc4ae592d0c5c359da64670bcbb3aa46e473b",
+      "blurb": "A. M. Lyapunov (Chebyshev's student), runnable in THE OCHO: the direct method - an energy-like V(x)>0 with Vdot<=0 proving stability WITHOUT integrating the ODE (via the Lyapunov equation A^T P + P A = -I, P positive-definite) - and the Lyapunov exponent measuring chaos (logistic map lambda(r=4)=ln2>0, lambda(r=2)<0). The line to control theory and the CLT's Lyapunov condition. Tamper-provable."
+    },
+    {
+      "slug": "the-besm",
+      "title": "THE BESM",
+      "room": "machine",
+      "kicker": "Lebedev's Soviet supercomputer",
+      "accent": "#9a6b12",
+      "stamp": "LIT",
+      "source": "S. A. Lebedev, BESM-6 (1968)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-besm.html",
+      "seal": "d8ae425e2f1dd0ca554a74cf5ff3bce882fd10af098cf43ac164aff5f6e21f5c",
+      "blurb": "S. A. Lebedev's BESM-6 (1968), the workhorse of Soviet science, runnable in THE OCHO: the 48-bit normalized floating-point word round-tripped from decimal, and the instruction pipeline (the 'conveyor' BESM-6 pioneered) whose k-stage speedup N*k/(k+N-1) approaches k as N grows. The MESM->BESM-6->Elbrus lineage; ~1 MIPS. Lebedev is a SONIA keeper; this is his machine. Tamper-provable."
+    },
+    {
+      "slug": "kozyrev",
+      "title": "KOZYREV",
+      "room": "weird",
+      "kicker": "the Gulag astronomer, real work and the time-mysticism",
+      "accent": "#5f513a",
+      "stamp": "LIT",
+      "source": "N. A. Kozyrev (1908-1983), Pulkovo Observatory",
+      "url": "https://davidwise01.github.io/ud0/world4/kozyrev.html",
+      "seal": "f4bcf3b8f3eab707cdd810626c1706844201a5cee429f936cce12f166a81e183",
+      "blurb": "Nikolai Kozyrev (Pulkovo astrophysicist, imprisoned in the Gulag 1936-46), rendered honestly in THE OCHO - one life, two ledgers: LIT, his real astronomy (the 1958 Alphonsus lunar-outgassing observation) and the Kelvin-Helmholtz timescale that shows gravity cannot power the Sun for its ~4.5-billion-year lifetime (fusion required); DEAD-as-science, his causal mechanics / time-as-torsion, never replicated. Debunk the theory, not the man. Tamper-provable."
+    },
+    {
+      "slug": "the-lysenko-affair",
+      "title": "THE LYSENKO AFFAIR",
+      "room": "state",
+      "kicker": "when the state decrees truth, the ratios do not obey",
+      "accent": "#7a1220",
+      "stamp": "LIT",
+      "source": "Trofim Lysenko / Lysenkoism (USSR, 1930s-1960s)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-lysenko-affair.html",
+      "seal": "a844d7295b607553befe7f727e6f7c8f104f5451f3458e0ef35c938a10f45fa3",
+      "blurb": "Lysenkoism (USSR, 1930s-60s), a cautionary tale handled gravely in THE OCHO: LIT, real Mendelian genetics works (a live Punnett square, 3:1 and 9:3:3:1 ratios, Hardy-Weinberg equilibrium); DEAD, Lysenko's Lamarckian inheritance of acquired traits (no mechanism, does not reproduce). The cost cited - the 1948 ban on genetics, ~3000 biologists purged, Nikolai Vavilov dead of starvation in prison in 1943. Epigenetics is not a Lysenko rescue. The lesson ties GOBERNET: decree cannot repeal the ratios. Tamper-provable."
     }
   ]
 }

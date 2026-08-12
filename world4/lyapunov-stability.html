@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LYAPUNOV STABILITY · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE NUMBER &middot; the Russian world</span></div>
+
+<header>
+ <h1>LYAPUNOV STABILITY</h1>
+ <p class="sub">Kharkov, 1892: a student of <b>Chebyshev</b> asks whether a system settles or flies apart &mdash; and answers it <b>without solving the equation of motion</b>. Build an energy-like <b>V(x)&gt;0</b> whose rate <b>V&#775;&le;0</b>, and the origin is stable by that fact alone. This panel is <b>runnable</b>: it solves the Lyapunov equation <b>A&#7488;P&plus;PA=&minus;I</b> to certify a linear system, and it measures the <b>Lyapunov exponent</b> of the logistic map &mdash; the number whose sign is the border of chaos.</p>
+ <p class="src"><span class="tag t-amber">source</span> A. M. Lyapunov, <i>The General Problem of the Stability of Motion</i> (Kharkov Mathematical Society, 1892) &mdash; doctoral thesis, a student of P. L. Chebyshev. Room: <b>THE NUMBER</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; Lyapunov, 1892 <span class="tag t-amber">history</span></h2>
+   <p><b>Aleksandr Mikhailovich Lyapunov</b> (1857&ndash;1918), a student of <b>Chebyshev</b> at St Petersburg, defended <i>The General Problem of the Stability of Motion</i> at <b>Moscow University</b> in <b class="k">1892</b> (the memoir published by the Kharkov Mathematical Society, where he was professor). Its radical move: decide stability <b>without integrating the equations</b>.</p>
+   <p class="small">He sits in <b>THE NUMBER</b> beside his teacher Chebyshev and Chebyshev&rsquo;s other students <b>Markov</b> and the makers of <b>the continued fractions</b> &mdash; the same St&nbsp;Petersburg line. His name also names the <b>Lyapunov condition</b> in the Central Limit Theorem.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE DIRECT METHOD <span class="tag t-lit">LIT</span></h2>
+   <p>Find a scalar <b>V(x)</b> &mdash; an <b>energy</b> &mdash; with <b class="k">V(x)&gt;0</b> for x&ne;0, V(0)=0, and whose rate along the flow is <b class="k">V&#775;(x)&le;0</b>. Then energy never increases, so the state cannot run away: the origin is <b>stable</b>. If <b>V&#775;&lt;0</b> strictly, it bleeds to zero &mdash; <b>asymptotically stable</b>.</p>
+   <p class="small">No trajectory is ever computed. A single inequality on one function replaces solving the whole system &mdash; the &ldquo;second method&rdquo; that carries Lyapunov&rsquo;s name.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>LINEAGE &mdash; where it went <span class="tag t-amber">reach</span></h2>
+   <p>The direct method is the spine of modern <b>control theory</b> (Lyapunov functions certify controllers and adaptive laws). The <b>Lyapunov exponent</b> became the yardstick of <b>chaos</b> &mdash; weather predictability, orbital mechanics, turbulence.</p>
+   <p class="small">And the name reaches back into <b>THE NUMBER</b> itself: the <b>Lyapunov condition</b> is a sufficient hypothesis for the <b>Central Limit Theorem</b>, sharpening the work of his teacher Chebyshev and his fellow student Markov.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE NUMBER ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the engine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; a system to judge <span class="tag t-in">in &darr;</span></h2>
+   <p>Top: a linear system <b>x&#775; = A x</b>, A a 2&times;2 matrix &mdash; the engine solves <b>A&#7488;P&plus;PA=&minus;I</b> and reads off stability from <b>P</b>. Bottom: the logistic map <b>x &rarr; r&middot;x(1&minus;x)</b> &mdash; the engine measures its Lyapunov exponent <b>&lambda;</b>.</p>
+   <div class="row"><label>A =</label>
+    <select id="preset">
+     <option value="-1,0,0,-2">[[-1,0],[0,-2]] &middot; diagonal, stable</option>
+     <option value="-1,2,-3,-1">[[-1,2],[-3,-1]] &middot; spiral, stable</option>
+     <option value="0,1,-2,-3">[[0,1],[-2,-3]] &middot; companion, stable</option>
+     <option value="1,0,0,2">[[1,0],[0,2]] &middot; diagonal, UNSTABLE</option>
+     <option value="0,1,-2,1">[[0,1],[-2,1]] &middot; spiral, UNSTABLE</option>
+    </select>
+   </div>
+   <div class="row"><label>[a b; c d]</label>
+    <input id="ma" type="number" step="0.5" value="-1" style="width:56px">
+    <input id="mb" type="number" step="0.5" value="0" style="width:56px">
+    <input id="mc" type="number" step="0.5" value="0" style="width:56px">
+    <input id="md" type="number" step="0.5" value="-2" style="width:56px"></div>
+   <div class="row"><label>logistic r</label>
+    <input id="rin" type="range" min="0" max="4" step="0.01" value="4" style="flex:1;min-width:120px">
+    <b class="k" id="rlabel">4.00</b></div>
+   <p class="small mut">Presets fill the four boxes; edit them freely. r = 4 is full chaos, r = 2 is a superstable fixed point.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; solve A&#7488;P&plus;PA=&minus;I &middot; average ln|f&prime;| &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the two engines <span class="tag t-lit">LIT</span></h2>
+   <p class="small" style="margin-top:0"><b>1 &middot; The direct method (linear).</b> Solve the Lyapunov equation for the symmetric <b>P</b>, test whether it is <b>positive-definite</b> (both leading minors &gt; 0). If so, <b>V = x&#7488;P x</b> is a valid energy and <b>V&#775; = &minus;|x|&sup2; &lt; 0</b> proves asymptotic stability.</p>
+   <div class="out" id="pout">&mdash;</div>
+   <table id="pTbl"><thead><tr><th>P</th><th>col 1</th><th>col 2</th></tr></thead>
+    <tbody>
+     <tr><td>row 1</td><td id="p11">&mdash;</td><td id="p12a">&mdash;</td></tr>
+     <tr><td>row 2</td><td id="p21">&mdash;</td><td id="p22">&mdash;</td></tr>
+    </tbody></table>
+   <p class="small" style="margin-top:6px">leading minors: <b id="minors" class="k">&mdash;</b> &nbsp;&middot;&nbsp; residual A&#7488;P&plus;PA: <b id="resid">&mdash;</b></p>
+   <p class="small">V&#775;(x) at x=(1,1): <b id="vdot" class="k">&mdash;</b> &nbsp; eigenvalues of A: <b id="eig" class="k">&mdash;</b></p>
+   <p class="small" style="margin-top:8px;color:var(--blue)"><b>2 &middot; The Lyapunov exponent (nonlinear).</b> &lambda; = mean of <b>ln|f&prime;(x)|</b> along an orbit of x&rarr;r&middot;x(1&minus;x), f&prime;=r(1&minus;2x). &lambda;&gt;0 is <b>chaos</b>; &lambda;&lt;0 is a stable attractor.</p>
+   <p class="small">&lambda;(r=<span id="rshow">4.00</span>) = <b id="lam" class="k">&mdash;</b> &nbsp; regime: <b id="regime" class="k">&mdash;</b></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the verdict, checked against a real trajectory &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; verdict &amp; witness <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outv">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>A</th><th>P&gt;0 (certifies)</th><th>trajectory</th><th>agree</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small" style="margin-top:6px">The certificate (P positive-definite) is checked against the <b>actual simulated trajectory</b> x&#775;=Ax: a stable A must shrink to 0, an unstable A must blow up. Certificate and reality must <b>agree</b> on every row.</p>
+   <div class="wall-note" style="border-left-color:var(--blue);background:rgba(29,78,121,.05);margin-top:10px"><span class="tag t-amber">tie</span> <b>THE NUMBER.</b> Lyapunov is Chebyshev&rsquo;s student, in the same room as <a href="./the-continued-fractions.html">the continued fractions</a> and <a href="./the-markov-property.html">the Markov property</a> &mdash; the St&nbsp;Petersburg line. The door is <a href="https://0root.ai/">https://0root.ai/</a>.</div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE ADVERSARY &mdash; &ldquo;solve it first&rdquo;</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The intuition says: <b>to know if a system is stable, integrate it and watch</b>. But most nonlinear systems have <b>no closed-form solution</b>, and numerical integration only ever probes <b>one</b> trajectory from <b>one</b> start. Lyapunov&rsquo;s method needs <b>neither</b>: one function V and one inequality settle <b>every</b> trajectory at once.</p>
+   <p class="small" style="margin-top:8px">The real wall the method admits: <b>finding V</b> can be hard for a general nonlinear system &mdash; but for a <b>linear</b> A it is not a search at all. The Lyapunov equation hands you P by solving a linear system, as the engine does live.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;You need the explicit solution x(t) to judge stability.&rdquo;</s> <b>Cut.</b> The direct method needs none &mdash; V&gt;0, V&#775;&le;0 decides it without ever integrating.</p>
+   <p class="grave"><s>&ldquo;A positive V&#775; is fine as long as V is positive.&rdquo;</s> <b>Cut.</b> V&#775;&gt;0 means energy is <b>growing</b> &mdash; the state runs away. The sign of the rate is the whole test.</p>
+   <p class="grave"><s>&ldquo;A bounded orbit means the system is not chaotic.&rdquo;</s> <b>Cut.</b> The logistic map stays in [0,1] forever yet has &lambda;=ln2&gt;0 &mdash; bounded <b>and</b> chaotic.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; flip the sign test</h2>
+   <p>The red move: make the certificate <b>accept V&#775;&gt;0 as stable</b> &mdash; drop the requirement that P be positive-definite, so a divergent system gets stamped <b>stable</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; accept V&#775;&gt;0 as stable</button><button id="restore">&#8634; restore V&#775;&lt;0 test</button></div>
+   <p class="small" id="tampernote">Flip the sign test and the certificate lies about the <b>unstable</b> presets: it calls them stable while the simulated trajectory (5) actually diverges. The witness compares the two and turns <b style="color:var(--wall)">red</b>. The attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">LYAPUNOV STABILITY &mdash; World IV &middot; <b>SONIA</b>, room <b>THE NUMBER</b>, in the refined <b>OCHO</b>: blue builds the direct method and its lineage, the engine solves A&#7488;P&plus;PA=&minus;I and measures the logistic Lyapunov exponent down the centre, red flips the sign test and is caught by a real trajectory. A runnable rendering of Lyapunov&rsquo;s <i>General Problem of the Stability of Motion</i> (Kharkov, 1892) &mdash; the Lyapunov-equation solve, the positive-definiteness certificate, V&#775;=&minus;|x|&sup2;, and &lambda;(r=4)=ln&nbsp;2 are LIT and self-checked; the history is AMBER; the difficulty of finding V in general is a real WALL. Lyapunov is Chebyshev&rsquo;s student, tied to the continued fractions and Markov in THE NUMBER. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · LYAPUNOV STABILITY — direct method + Lyapunov exponent (every value computed, none looked up) ===== */
+
+var TAMPER=false;   // when true the certificate accepts a non-positive-definite P (V-dot>0) as "stable"
+
+/* --- the LIT solver: A^T P + P A = -I for symmetric P=[[p11,p12],[p12,p22]] ---
+   three linear equations in (p11,p12,p22):
+     [2a, 2c, 0].u = -1
+     [b, a+d, c].u =  0
+     [0, 2b, 2d].u = -1   */
+function solveLyap(a,b,c,d){
+ var M=[[2*a,2*c,0,-1],[b,a+d,c,0],[0,2*b,2*d,-1]];
+ for(var col=0;col<3;col++){
+  var piv=col,r;
+  for(r=col+1;r<3;r++){ if(Math.abs(M[r][col])>Math.abs(M[piv][col])) piv=r; }
+  var tmp=M[col]; M[col]=M[piv]; M[piv]=tmp;
+  var pv=M[col][col];
+  if(Math.abs(pv)<1e-14) throw new Error("Lyapunov equation is singular for this A (eigenvalues sum to zero)");
+  for(var k=col;k<4;k++) M[col][k]/=pv;
+  for(r=0;r<3;r++){ if(r!==col){ var f=M[r][col]; for(var kk=col;kk<4;kk++) M[r][kk]-=f*M[col][kk]; } }
+ }
+ return {p11:M[0][3],p12:M[1][3],p22:M[2][3]};
+}
+// residual A^T P + P A -> [m11,m12,m22]; must equal -I for a correct solve
+function residual(a,b,c,d,P){
+ var p11=P.p11,p12=P.p12,p22=P.p22;
+ return [ 2*(a*p11+c*p12), b*p11+(a+d)*p12+c*p22, 2*(b*p12+d*p22) ];
+}
+// P positive-definite: both leading minors > 0
+function isPD(P){ return P.p11>0 && (P.p11*P.p22 - P.p12*P.p12) > 0; }
+// V-dot = x^T (A^T P + PA) x at a sample x (equals -|x|^2 when solved correctly)
+function vdotAt(a,b,c,d,P,x1,x2){
+ var m=residual(a,b,c,d,P);
+ return m[0]*x1*x1 + 2*m[1]*x1*x2 + m[2]*x2*x2;
+}
+// eigenvalues of 2x2 A
+function eig(a,b,c,d){
+ var tr=a+d, det=a*d-b*c, disc=tr*tr-4*det, out={tr:tr,det:det,disc:disc};
+ if(disc>=0){ var s=Math.sqrt(disc); out.l1={re:(tr+s)/2,im:0}; out.l2={re:(tr-s)/2,im:0}; }
+ else{ var si=Math.sqrt(-disc); out.l1={re:tr/2,im:si/2}; out.l2={re:tr/2,im:-si/2}; }
+ return out;
+}
+// TRUE stability of x-dot=Ax by Routh-Hurwitz for 2x2: both eigenvalue real parts < 0  <=>  tr<0 AND det>0
+function trulyStable(a,b,c,d){ return (a+d)<0 && (a*d-b*c)>0; }
+// simulate x-dot = Ax by Euler; return |x(T)|/|x(0)| (ground-truth: <1 shrinks, >1 blows up)
+function trajRatio(a,b,c,d){
+ var x1=1,x2=1,dt=0.01,n=1500,i;
+ for(i=0;i<n;i++){ var nx1=x1+dt*(a*x1+b*x2), nx2=x2+dt*(c*x1+d*x2); x1=nx1; x2=nx2;
+  if(!isFinite(x1)||!isFinite(x2)) return 1e9; }
+ return Math.sqrt(x1*x1+x2*x2)/Math.SQRT2;
+}
+// the certificate: does the direct method call x-dot=Ax stable?  (TAMPER flips the sign test)
+function certifyStable(a,b,c,d){
+ var P=solveLyap(a,b,c,d), pd=isPD(P);
+ // correct: stable iff V=x^T P x is positive-definite (then V-dot=-|x|^2<0).
+ // TAMPER: accept V-dot>0 as stable -> drop the P>0 requirement, stamp everything stable.
+ var stable = TAMPER ? true : pd;
+ return {P:P,pd:pd,stable:stable};
+}
+
+/* --- the Lyapunov exponent of the logistic map x -> r x(1-x) ---
+   lambda = mean of ln|f'(x)| along the orbit, f'(x)=r(1-2x). Fixed transient + long average. */
+function lyapLogistic(r,x0,trans,N){
+ var x=x0,i;
+ for(i=0;i<trans;i++){ x=r*x*(1-x); }
+ var s=0;
+ for(i=0;i<N;i++){ var d=Math.abs(r*(1-2*x)); if(d<1e-12) d=1e-12; s+=Math.log(d); x=r*x*(1-x); }
+ return s/N;
+}
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+ var ln2=Math.log(2);
+
+ // 1 — the solver returns -I as residual on stable AND unstable A
+ var mats=[[-1,0,0,-2],[-1,2,-3,-1],[0,1,-2,-3],[1,0,0,2],[0,1,-2,1]];
+ for(var i=0;i<mats.length;i++){
+  var A=mats[i], P=solveLyap(A[0],A[1],A[2],A[3]), R=residual(A[0],A[1],A[2],A[3],P);
+  t(Math.abs(R[0]+1)<1e-9 && Math.abs(R[1])<1e-9 && Math.abs(R[2]+1)<1e-9,"solve must give A^T P+PA=-I for A="+A);
+  // 2 — P>0 exactly when A is truly stable (Hurwitz)
+  t(isPD(P)===trulyStable(A[0],A[1],A[2],A[3]),"P positive-definite must match true (Routh-Hurwitz) stability for A="+A);
+  // 3 — V-dot at (1,1) must equal -|x|^2 = -2
+  t(Math.abs(vdotAt(A[0],A[1],A[2],A[3],P,1,1)+2)<1e-9,"V-dot(1,1) must be -2 = -|x|^2 for A="+A);
+ }
+ // 4 — the certificate agrees with the true stability, and with the simulated trajectory
+ for(i=0;i<mats.length;i++){
+  var B=mats[i], cert=certifyStable(B[0],B[1],B[2],B[3]), truth=trulyStable(B[0],B[1],B[2],B[3]);
+  t(cert.stable===truth,"untampered certificate must equal true stability for A="+B);
+  var ratio=trajRatio(B[0],B[1],B[2],B[3]);
+  t(truth ? (ratio<1e-2) : (ratio>10),"trajectory must shrink iff truly stable for A="+B);
+ }
+ // 5 — a stable A has symmetric positive-definite P with positive leading minors
+ var Ps=solveLyap(-1,2,-3,-1);
+ t(Ps.p11>0 && (Ps.p11*Ps.p22-Ps.p12*Ps.p12)>0,"stable-A P must be positive-definite (leading minors>0)");
+
+ // 6 — logistic Lyapunov exponent: lambda(4)=ln2 within 1e-3; lambda(2)<0
+ var l4=lyapLogistic(4,0.1234567,500,20000);
+ t(Math.abs(l4-ln2)<1e-3,"lambda(r=4) must be ln2="+ln2.toFixed(4)+" within 1e-3, got "+l4);
+ t(l4>0,"lambda(r=4) must be positive (chaos)");
+ var l2=lyapLogistic(2,0.1234567,500,5000);
+ t(l2<0,"lambda(r=2) must be < 0 (stable fixed point), got "+l2);
+ var l35=lyapLogistic(3.5,0.1234567,500,5000);
+ t(l35<0,"lambda(r=3.5) must be < 0 (stable period-4 cycle)");
+
+ // 7 — the TAMPER really mislabels: with the sign test flipped, an unstable A is called stable
+ TAMPER=true;
+ var bad=certifyStable(1,0,0,2);        // truly UNSTABLE (eigenvalues +1,+2)
+ t(bad.stable===true && trulyStable(1,0,0,2)===false,"tamper must call an unstable system stable");
+ TAMPER=false;
+
+ TAMPER=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+
+function readA(){ return [ (+$("ma").value)||0, (+$("mb").value)||0, (+$("mc").value)||0, (+$("md").value)||0 ]; }
+function fmt(v){ return (Math.round(v*1000)/1000).toString(); }
+function cx(z){ return Math.abs(z.im)<1e-9 ? fmt(z.re) : fmt(z.re)+(z.im>=0?" + ":" - ")+fmt(Math.abs(z.im))+"i"; }
+
+function witness(){
+ var mats=[[-1,0,0,-2],[-1,2,-3,-1],[0,1,-2,-3],[1,0,0,2],[0,1,-2,1]], rows="", allok=true;
+ for(var i=0;i<mats.length;i++){
+  var A=mats[i], cert=certifyStable(A[0],A[1],A[2],A[3]);
+  var ratio=trajRatio(A[0],A[1],A[2],A[3]), traj=ratio<1; // shrinks?
+  var agree = (cert.stable===traj);
+  if(!agree) allok=false;
+  var label="["+A[0]+","+A[1]+";"+A[2]+","+A[3]+"]";
+  rows+="<tr><td>"+label+"</td><td>"+(cert.stable?"stable":"no")+"</td><td>"+(traj?"shrinks":"blows up")
+   +"</td><td style=\"color:"+(agree?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(agree?"ok":"X")+"</td></tr>";
+ }
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'
+  +(allok?"WITNESS - certificate matches every real trajectory":"WITNESS - certificate contradicts a real trajectory")+'</span>';
+ return allok;
+}
+
+function render(){
+ var A=readA(), a=A[0],b=A[1],c=A[2],d=A[3];
+ var cert, err=null;
+ try{ cert=certifyStable(a,b,c,d); }catch(e){ err=e.message; }
+ if(err){
+  $("pout").textContent=err;
+  $("outv").className="verdict no"; $("outv").textContent="singular";
+  $("outreason").textContent="Pick an A whose eigenvalues do not sum to zero.";
+  witness(); return;
+ }
+ var P=cert.P, R=residual(a,b,c,d,P), minors=[P.p11, P.p11*P.p22-P.p12*P.p12];
+ var vd=vdotAt(a,b,c,d,P,1,1), ev=eig(a,b,c,d), truth=trulyStable(a,b,c,d);
+
+ $("p11").textContent=fmt(P.p11); $("p12a").textContent=fmt(P.p12);
+ $("p21").textContent=fmt(P.p12); $("p22").textContent=fmt(P.p22);
+ $("minors").textContent=fmt(minors[0])+" , "+fmt(minors[1])+(cert.pd?"  (both > 0)":"  (not both > 0)");
+ $("resid").textContent="[ "+fmt(R[0])+" , "+fmt(R[1])+" , "+fmt(R[2])+" ]  (= -I)";
+ $("vdot").textContent=fmt(vd)+"  (= -|x|^2)";
+ $("eig").textContent=cx(ev.l1)+" , "+cx(ev.l2);
+ $("pout").innerHTML= cert.pd
+  ? '<span style="color:var(--lit)">P is positive-definite &mdash; V = x&#7488;P x is a valid energy, V&#775; = &minus;|x|&sup2; &lt; 0.</span>'
+  : '<span style="color:var(--wall)">P is NOT positive-definite &mdash; V = x&#7488;P x is not an energy; the direct method does not certify stability.</span>';
+
+ // logistic exponent
+ var r=+$("rin").value;
+ $("rlabel").textContent=r.toFixed(2); $("rshow").textContent=r.toFixed(2);
+ var lam=lyapLogistic(r,0.1234567,500, r>3.5?20000:5000);
+ var chaos=lam>0;
+ $("lam").textContent = (lam<-9? "-inf (superstable)" : fmt(lam));
+ $("regime").innerHTML = chaos
+  ? '<span style="color:var(--wall)">CHAOS (&lambda; &gt; 0)</span>'
+  : '<span style="color:var(--lit)">stable / periodic (&lambda; &lt; 0)</span>';
+
+ // verdict (linear system)
+ $("outv").className="verdict "+(cert.stable?"ok":"no");
+ $("outv").textContent = cert.stable ? "STABLE" : "NOT STABLE";
+ if(TAMPER && cert.stable && !truth){
+  $("outreason").innerHTML='<b style="color:var(--wall)">sign test flipped</b> &mdash; the certificate accepts V&#775;&gt;0 and calls this UNSTABLE system stable. The trajectory below blows up (ratio '+fmt(trajRatio(a,b,c,d))+').';
+ } else {
+  $("outreason").innerHTML = cert.stable
+   ? 'V&#775; = &minus;|x|&sup2; &lt; 0 with V &gt; 0: energy bleeds to zero, the origin is asymptotically stable. Simulated |x| ratio '+fmt(trajRatio(a,b,c,d))+' (shrinks).'
+   : 'P is not positive-definite, so no energy certificate exists; the eigenvalues have a non-negative real part and |x| grows (ratio '+fmt(trajRatio(a,b,c,d))+').';
+ }
+ witness();
+}
+
+function setPreset(){
+ var v=$("preset").value.split(","); $("ma").value=v[0]; $("mb").value=v[1]; $("mc").value=v[2]; $("md").value=v[3]; render();
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("preset").addEventListener("change",setPreset);
+ ["ma","mb","mc","md","rin"].forEach(function(id){ $(id).addEventListener("input",render); $(id).addEventListener("change",render); });
+ $("tamper").addEventListener("click",function(){ TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Sign test flipped.</b> The certificate now drops the P&gt;0 requirement and accepts V&#775;&gt;0 as stable. Choose an UNSTABLE preset: the verdict lies while the trajectory blows up, and the witness (5) turns <b style='color:var(--wall)'>red</b>."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false;
+  $("tampernote").innerHTML="Flip the sign test and the certificate lies about the <b>unstable</b> presets: it calls them stable while the simulated trajectory (5) actually diverges. The witness compares the two and turns <b style='color:var(--wall)'>red</b>. The attack is real and it is caught."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the Lyapunov stability engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

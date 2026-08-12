@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE BESM · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE MACHINE &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE BESM</h1>
+ <p class="sub">The workhorse of Soviet science made concrete. The <b>BESM-6</b> (1968), last of Sergei Lebedev&rsquo;s <b>BESM</b> line, ran at roughly <b>one million operations per second</b> on a <b>48-bit word</b> with normalized <b>floating point</b>, and it pioneered the <b>conveyor</b> &mdash; instruction pipelining &mdash; in the USSR. This panel is <b>runnable</b>: normalize a decimal into a (sign, exponent, mantissa) triple and round-trip it back, and watch pipeline speedup climb toward the stage count.</p>
+ <p class="src"><span class="tag t-amber">source</span> S. A. Lebedev, the <i>BESM</i> series; <b>BESM-6</b>, 1968, Institute of Precision Mechanics and Computer Engineering, Moscow. Room: <b>THE MACHINE</b>. Lebedev is a SONIA keeper &mdash; this is his machine. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; Lebedev &amp; the BESM <span class="tag t-amber">1950&ndash;68</span></h2>
+   <p>Sergei Alekseevich <b>Lebedev</b> built the USSR&rsquo;s first stored-program machine, the <b>MESM</b> (Kiev, <b>1950</b>), then the <b>BESM</b> series in Moscow. The line culminated in the <b class="k">BESM-6</b> (<b>1968</b>) &mdash; the workhorse of Soviet science for two decades.</p>
+   <p class="small">MESM = <i>Malaya Elektronnaya Schetnaya Mashina</i>, &ldquo;small electronic calculating machine.&rdquo; BESM = <i>Bolshaya</i>&hellip;, &ldquo;large.&rdquo; The BESM-6 was the machine that put Soviet floating-point science on a fast, pipelined footing.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE 48-BIT WORD &mdash; normalized float <span class="tag t-lit">LIT</span></h2>
+   <p>A BESM-6 word is <b class="k">48 bits</b>. A number is stored as a <b>sign</b>, an <b>exponent</b> (characteristic), and a <b>mantissa</b> &mdash; the fraction bits. The mantissa is kept <b>normalized</b>: its leading digit is significant, so the fraction lands in <b>[0.5, 1)</b> and no precision is wasted on leading zeros.</p>
+   <p class="small">value = <b>sign &times; mantissa &times; 2<sup>exp</sup></b>, mantissa &isin; [0.5, 1). The exact bit-field split (mantissa ~40 bits, characteristic sharing the rest) is a <span class="tag t-amber">history</span> detail; the <b>math</b> &mdash; that normalization pins the mantissa into [0.5, 1) and round-trips &mdash; is what the engine proves.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>LINEAGE &mdash; MESM &rarr; BESM-6 &rarr; Elbrus <span class="tag t-amber">AMBER</span></h2>
+   <p>One unbroken line of machines, each Lebedev&rsquo;s or his institute&rsquo;s:</p>
+   <p class="small"><b>MESM</b> (1950) &rarr; <b>BESM-1</b> (1953) &rarr; &hellip; &rarr; <b class="k">BESM-6</b> (1968) &rarr; <b>Elbrus</b> (from 1978). The BESM-6 stayed in production and in service for <b>&gt;20 years</b>; roughly <b>350</b> were built.</p>
+   <p class="small">The pipeline idea (window 0) and the register/associative-memory ideas of the BESM-6 fed directly into the Elbrus superscalar machines that followed.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; a decimal &amp; a pipeline <span class="tag t-in">in &darr;</span></h2>
+   <p>Feed one decimal number. The engine normalizes it into a <b>(sign, exponent, mantissa)</b> triple with the mantissa in <b>[0.5, 1)</b>, then reconstructs the decimal. Set the pipeline <b>k</b> (stages) and <b>N</b> (instructions) to watch the conveyor speedup.</p>
+   <div class="row"><label>x =</label><input id="xin" type="number" step="any" value="3.14159" style="width:130px"></div>
+   <div class="row"><label>stages k =</label><input id="kin" type="number" value="6" style="width:80px"><label style="min-width:0">instr N =</label><input id="nin" type="number" value="1000" style="width:100px"></div>
+   <p class="small mut">The mantissa is quantized to <b>40 bits</b> to model the BESM-6 word; round-trip holds to a relative <b>1e-9</b>, far inside that budget.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; normalize &middot; round-trip &middot; pipeline &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the BESM-6 engine <span class="tag t-lit">LIT</span></h2>
+   <p class="small" style="color:var(--blue);margin-bottom:2px"><b>THE LIT REPRESENTATION</b> &mdash; decimal &rarr; sign / exp / mantissa &rarr; back</p>
+   <div class="out" id="normline">&mdash;</div>
+   <table id="reprTbl"><thead><tr><th>field</th><th>value</th></tr></thead><tbody id="reprBody"></tbody></table>
+   <p class="small" style="margin-top:6px">reconstruct = sign &times; mantissa &times; 2<sup>exp</sup> = <b id="reconline" class="k">&mdash;</b></p>
+   <p class="small">relative round-trip error = <b id="errline" class="k">&mdash;</b></p>
+   <p class="small">integer part in <b>binary</b>: <b id="binline" class="k">&mdash;</b></p>
+
+   <p class="small" style="color:var(--blue);margin:10px 0 2px"><b>PIPELINING</b> &mdash; the conveyor: N instructions in <b>k + N &minus; 1</b> cycles</p>
+   <p class="small">speedup(k, N) = <b>N&middot;k / (k + N &minus; 1)</b> &nbsp;&rarr;&nbsp; <b>k</b> as N grows, never above it.</p>
+   <table id="pipeTbl"><thead><tr><th>N</th><th>serial = N&middot;k</th><th>pipe = k+N&minus;1</th><th>speedup</th></tr></thead><tbody id="pipeBody"></tbody></table>
+   <div id="pipebadge" style="margin-top:6px"></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; the machine emits the round-trip &amp; the bound &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; round-trip &amp; bound <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outv">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>x</th><th>sign&middot;m&middot;2^e</th><th>rel err</th><th>ok</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small" style="margin-top:8px">And the conveyor bound: speedup(<b>6</b>, <b>1000</b>) = 6000/1005 = <b id="anchor" class="k">&mdash;</b>, speedup(6, 1e6) &rarr; <b>6</b> but stays under it. <b>Every witness re-checks live.</b></p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>SPECS &mdash; honestly ~approx <span class="tag t-amber">AMBER</span></h2>
+   <div class="wall-note" style="border-left-color:var(--amber);background:rgba(154,107,18,.06)"><span class="tag t-amber">approx</span> The BESM-6 ran at roughly <b class="k">~1 million ops/sec</b> (~1 MIPS), used on the order of <b>~60,000 transistors</b>, and about <b>~350</b> were built over a ~20-year run. These are <b>round historical figures</b>, not measured here &mdash; hence AMBER, not LIT.</div>
+   <p class="small" style="margin-top:8px">What <i>is</i> LIT is the arithmetic in the centre: the normalized mantissa really lands in [0.5, 1), the round-trip really holds, and the pipeline speedup really is bounded by k. The performance numbers are the machine&rsquo;s reputation; the math is the machine.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;The USSR had no serious computers.&rdquo;</s> <b>Cut.</b> The BESM-6 ran the numerical science of a superpower for over two decades &mdash; hardly a toy.</p>
+   <p class="grave"><s>&ldquo;Pipelining came from the West.&rdquo;</s> <b>Cut &mdash; parallel invention.</b> The BESM-6&rsquo;s <i>conveyor</i> overlapped instruction stages in 1968; the idea was not one nation&rsquo;s.</p>
+   <p class="grave"><s>&ldquo;A k-stage pipeline runs k times faster.&rdquo;</s> <b>Cut.</b> Only in the limit. Fill and drain cost k&minus;1 cycles, so speedup = Nk/(k+N&minus;1) &lt; k for every finite N. The centre proves it; window 8 breaks it.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; claim linear speedup</h2>
+   <p>The red move: replace the pipeline law with the <b>naive linear claim</b> &mdash; speedup = <b>k &times; N</b> &mdash; pretending fill and drain are free. The number balloons past <b>k</b>, which is physically impossible.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; claim speedup = k&middot;N</button><button id="restore">&#8634; restore Nk/(k+N&minus;1)</button></div>
+   <p class="small" id="tampernote">Assert linear speedup and the witness (5) re-checks the bound <b>speedup &le; k</b>: it fails and the badge turns <b style="color:var(--wall)">red</b>. A real pipeline can never beat one result per cycle times its stage count. The attack is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE BESM &mdash; World IV &middot; <b>SONIA</b>, room <b>THE MACHINE</b>, in the refined <b>OCHO</b>: blue raises Lebedev&rsquo;s line and the 48-bit word, the machine normalizes / round-trips a decimal and clocks the conveyor down the centre, red claims a linear speedup and is caught. A runnable rendering of S. A. Lebedev&rsquo;s BESM-6 (1968) &mdash; the normalized floating-point round-trip and the pipeline bound are LIT and self-checked; the ~1 MIPS / ~60k transistors / ~350 built figures are honest AMBER; &ldquo;no serious Soviet computers&rdquo; is a dead claim. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE BESM — BESM-6 floating-point + pipeline engine (every value computed, none looked up) ===== */
+
+var TAMPER=false;   // when true, the pipeline speedup uses the FALSE linear law k*N instead of Nk/(k+N-1)
+var QBITS=40;       // mantissa bits modelling the BESM-6 word
+
+// normalize a decimal into {sign, exp, mant} with mant in [0.5,1), quantized to QBITS
+function normalize(x){
+ if(x===0) return {sign:0, exp:0, mant:0};
+ var sign = x<0 ? -1 : 1;
+ var a = Math.abs(x);
+ var exp = Math.floor(Math.log(a)/Math.LN2) + 1;
+ var mant = a / Math.pow(2, exp);
+ // pin into [0.5,1) against floating rounding at the boundary
+ while(mant >= 1){ mant /= 2; exp++; }
+ while(mant < 0.5){ mant *= 2; exp--; }
+ // quantize the mantissa to QBITS bits (models the finite word)
+ var scale = Math.pow(2, QBITS);
+ mant = Math.round(mant * scale) / scale;
+ if(mant >= 1){ mant /= 2; exp++; }   // rounding may have pushed it to 1.0
+ return {sign:sign, exp:exp, mant:mant};
+}
+// reconstruct the decimal from the triple
+function denormalize(t){ return t.sign * t.mant * Math.pow(2, t.exp); }
+function relErr(x, y){ if(x===0) return Math.abs(y); return Math.abs(x - y) / Math.abs(x); }
+
+// ideal k-stage pipeline: N instructions finish in k+N-1 cycles; serial takes N*k
+function speedup(k, N){
+ if(TAMPER) return k * N;                 // BROKEN: linear, ignores fill/drain
+ return (N * k) / (k + N - 1);            // CORRECT: bounded above by k
+}
+
+// binary string of a non-negative integer
+function toBinary(n){
+ n = Math.floor(Math.abs(n));
+ if(n===0) return "0";
+ var s=""; while(n>0){ s=(n%2)+s; n=Math.floor(n/2); } return s;
+}
+
+// fixed-seed LCG (no Math.random above the marker)
+function lcg(seed){ var s=seed>>>0; return function(){ s=(1664525*s + 1013904223)>>>0; return s/4294967296; }; }
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+
+ // 1 — fixed anchors: normalized mantissa in [0.5,1) and round-trip within relative 1e-9
+ var anchors=[3.14159, 1.0, 0.1, 0.5, 0.999999, 1000000, -2.718281828, 6.02e5, -0.0009765625, 42.0];
+ for(var i=0;i<anchors.length;i++){
+  var x=anchors[i], tr=normalize(x);
+  t(tr.mant>=0.5 && tr.mant<1, "normalized mantissa of "+x+" must lie in [0.5,1), got "+tr.mant);
+  t(relErr(x, denormalize(tr)) < 1e-9, "round-trip of "+x+" must hold to rel 1e-9");
+ }
+ // 2 — random sample across magnitudes (fixed seed): same two invariants
+ var rnd=lcg(0x1968);   // BESM-6 year as the seed
+ for(var j=0;j<400;j++){
+  var mag=Math.pow(10, Math.floor(rnd()*13)-6);     // 1e-6 .. 1e6
+  var val=(rnd()*2-1)*mag;
+  if(val===0) continue;
+  var tt=normalize(val);
+  t(tt.mant>=0.5 && tt.mant<1, "sampled mantissa must be in [0.5,1) for "+val+", got "+tt.mant);
+  t(relErr(val, denormalize(tt)) < 1e-9, "sampled round-trip must hold to rel 1e-9 for "+val);
+ }
+ // 3 — pipeline: speedup < k for finite N, and -> k as N grows (untampered)
+ t(speedup(6,1) === 1, "one instruction: speedup must be exactly 1");
+ t(speedup(6,1000) < 6, "speedup(6,1000) must be below the stage count");
+ t(Math.abs(speedup(6,1000) - 6000/1005) < 1e-12, "speedup(6,1000) must equal 6000/1005");
+ t(speedup(6,1000000) > 5.99 && speedup(6,1000000) < 6, "speedup(6,1e6) must be between 5.99 and 6");
+ // strictly increasing toward the bound
+ var prev=0;
+ var Ns=[1,10,100,1000,100000,1000000];
+ for(var p=0;p<Ns.length;p++){ var sp=speedup(6,Ns[p]); t(sp>=prev,"speedup must be non-decreasing in N"); t(sp<6,"speedup must stay under k=6"); prev=sp; }
+ // bound holds for other stage counts too
+ t(speedup(4,10000) < 4 && speedup(8,10000) < 8, "speedup must be bounded by k for k=4 and k=8");
+
+ // 4 — binary of small integers is correct
+ t(toBinary(42)==="101010", "binary of 42 must be 101010");
+ t(toBinary(6)==="110", "binary of 6 must be 110");
+ t(toBinary(1000000)==="11110100001001000000", "binary of 1e6 must be correct");
+ t(toBinary(0)==="0", "binary of 0 must be 0");
+
+ // 5 — the tamper really breaks the bound (sanity: linear law exceeds k)
+ TAMPER=true; t(speedup(6,1000) > 6, "tampered linear law must exceed k (that is why it is caught)"); TAMPER=false;
+
+ TAMPER=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+function fmt(v){ if(v===0) return "0"; var a=Math.abs(v); if(a>=1e6||a<1e-4) return v.toExponential(6); return (Math.round(v*1e10)/1e10).toString(); }
+
+function renderPanel(){
+ var x=+$("xin").value; if(!isFinite(x)) x=0;
+ var tr=normalize(x), recon=denormalize(tr), err=relErr(x,recon);
+ $("normline").textContent = "x = "+fmt(x)+"  ->  ("+(tr.sign>=0?"+":"-")+", exp "+tr.exp+", m "+fmt(tr.mant)+")";
+ var body="";
+ body+="<tr><td>sign</td><td>"+(tr.sign>0?"+1":(tr.sign<0?"-1":"0"))+"</td></tr>";
+ body+="<tr><td>exponent (2^e)</td><td>"+tr.exp+"</td></tr>";
+ body+="<tr><td>mantissa &isin; [0.5,1)</td><td style=\"color:"+((tr.mant===0)||(tr.mant>=0.5&&tr.mant<1)?"var(--lit)":"var(--wall)")+";font-weight:700\">"+fmt(tr.mant)+"</td></tr>";
+ $("reprBody").innerHTML=body;
+ $("reconline").textContent = fmt(recon);
+ $("errline").innerHTML = '<span style="color:'+(err<1e-9?"var(--lit)":"var(--wall)")+'">'+err.toExponential(3)+(err<1e-9?"  (within 1e-9)":"  (over budget)")+'</span>';
+ var ip=Math.floor(Math.abs(x));
+ $("binline").textContent = (x<0?"-":"")+toBinary(ip)+"  (= "+ip+")";
+
+ // pipeline table for chosen k across growing N
+ var k=Math.max(1, Math.round(+$("kin").value)||6);
+ var baseN=Math.max(1, Math.round(+$("nin").value)||1000);
+ var Ns=[1,10,baseN,baseN*100,1000000], seen={}, rows="", ok=true;
+ for(var i=0;i<Ns.length;i++){
+  var N=Ns[i]; if(seen[N]) continue; seen[N]=1;
+  var serial=N*k, pipe=k+N-1, sp=speedup(k,N), under = sp <= k + 1e-9;
+  if(!under) ok=false;
+  rows+="<tr><td>"+N.toLocaleString()+"</td><td>"+serial.toLocaleString()+"</td><td>"+pipe.toLocaleString()+"</td><td style=\"color:"+(under?"var(--lit)":"var(--wall)")+";font-weight:700\">"+ (Math.round(sp*10000)/10000) +"</td></tr>";
+ }
+ $("pipeBody").innerHTML=rows;
+ $("pipebadge").innerHTML='<span class="badge '+(ok?"pass":"failb")+'">'+(ok?("speedup stays &le; k = "+k+" (the conveyor bound holds)"):("BOUND BROKEN - speedup exceeded k = "+k))+'</span>';
+ return ok;
+}
+
+function witness(){
+ var xs=[3.14159, 0.1, 1000000, -2.71828, 0.0009765625, 6.02e5], rows="", allok=true;
+ for(var i=0;i<xs.length;i++){
+  var x=xs[i], tr=normalize(x), r=denormalize(tr), e=relErr(x,r), ok=(tr.mant>=0.5&&tr.mant<1)&&e<1e-9;
+  if(!ok) allok=false;
+  rows+="<tr><td>"+fmt(x)+"</td><td>"+fmt(r)+"</td><td>"+e.toExponential(2)+"</td><td style=\"color:"+(ok?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(ok?"ok":"X")+"</td></tr>";
+ }
+ // the pipeline bound is part of the witness — tamper trips it here
+ var bound = speedup(6,1000) <= 6 && speedup(6,1000000) <= 6;
+ if(!bound) allok=false;
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'+(allok?"WITNESS - round-trips hold and speedup stays under k":"WITNESS - a bound was violated")+'</span>';
+ return allok;
+}
+
+function render(){
+ var panelOk=renderPanel();
+ var witOk=witness();
+ var sp1000=speedup(6,1000);
+ $("anchor").textContent = (Math.round(sp1000*100000)/100000).toString();
+ var ok = panelOk && witOk;
+ $("outv").className = "verdict "+(ok?"ok":"no");
+ $("outv").textContent = ok ? "round-trip holds · conveyor bounded by k" : "a bound was violated";
+ $("outreason").innerHTML = TAMPER
+  ? '<b style="color:var(--wall)">linear claim engaged</b> - speedup = k&middot;N ignores the k&minus;1 fill/drain cycles and rockets past k; the witness catches it.'
+  : "normalized mantissa in [0.5,1), decimals round-trip within 1e-9, and pipeline speedup stays under the stage count.";
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ var sync=function(){ render(); };
+ ["xin","kin","nin"].forEach(function(id){ $(id).addEventListener("input",sync); $(id).addEventListener("change",sync); });
+ $("tamper").addEventListener("click",function(){ TAMPER=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>Linear claim engaged.</b> speedup is now k&middot;N &mdash; as if fill and drain were free. The witness (5) re-checks speedup &le; k, fails, and the badge turns <b style='color:var(--wall)'>red</b>. No real pipeline beats k results per k cycles. Caught."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false; $("tampernote").innerHTML="Assert linear speedup and the witness (5) re-checks the bound <b>speedup &le; k</b>: it fails and the badge turns <b style='color:var(--wall)'>red</b>. A real pipeline can never beat one result per cycle times its stage count. The attack is caught."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the BESM-6 engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>
