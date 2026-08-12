@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 2030,
+    "spheres": 2040,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 2024,
+    "spheres_built": 2034,
     "apex": 1
   },
   "keepers": [
@@ -18358,6 +18358,96 @@
       "blurb": "Bi & Poo (1998), runnable in THE OCHO: potentiation for pre-before-post and depression for post-before-pre, an exponentially decaying causal window - the timing-based learning rule spiking neurons obey.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "8692125c5911dc4dc0d2ad93060b09a54079d25999e900cdb2c94b005d86485e"
+    },
+    {
+      "slug": "the-isostasy",
+      "title": "THE ISOSTASY",
+      "kicker": "mountains float",
+      "accent": "#ff7a7a",
+      "blurb": "Airy (1855), runnable in THE OCHO: a peak of height h floats on a root h*rho_c/(rho_m-rho_c), equal pressure at the compensation depth - Archimedes for the crust, the buoyancy driving the-plate-tectonics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f08449bc4220b0b8c790ef451507bca5d8eabfacca801724d2254cb785407f51"
+    },
+    {
+      "slug": "the-adiabatic-lapse-rate",
+      "title": "THE ADIABATIC LAPSE RATE",
+      "kicker": "rising air cools",
+      "accent": "#ffd23f",
+      "blurb": "The adiabatic lapse rate, runnable in THE OCHO: Gamma_d = g/cp ~ 9.8 K/km with a smaller moist rate from latent heat - the vertical temperature structure the-barometric-formula's pressure drop drives.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "453b665fa175e3b156d64346a9a57841bd58a0b4830b74d5bfb14e3cc04d791a"
+    },
+    {
+      "slug": "the-greenhouse-effect",
+      "title": "THE GREENHOUSE EFFECT",
+      "kicker": "33 degrees of warmth",
+      "accent": "#9ee06a",
+      "blurb": "Arrhenius (1896), runnable in THE OCHO: T_eff = (S(1-a)/4sigma)^(1/4) ~ 255 K with an absorbing layer lifting the surface ~33 K above it - the radiative balance of a planet, settled physics.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "fcadf5fbd0e28a4ec3e93dfb76752faa5973a40a835bc8ed940d839357dcd643"
+    },
+    {
+      "slug": "the-coriolis-effect",
+      "title": "THE CORIOLIS EFFECT",
+      "kicker": "the sideways veer",
+      "accent": "#c8a2ff",
+      "blurb": "Coriolis (1835), runnable in THE OCHO: f = 2 Omega sin(lat), zero at the equator and deflecting right in the north, a workless rotating-frame force - the twist behind the-geostrophic-balance.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a425c2cbded3c76ed09b8adbbe984b71ce03ffa3688eab8f4c63b9a359feafa8"
+    },
+    {
+      "slug": "the-geostrophic-balance",
+      "title": "THE GEOSTROPHIC BALANCE",
+      "kicker": "wind along the isobars",
+      "accent": "#ff9e6a",
+      "blurb": "Geostrophic balance, runnable in THE OCHO: f v = (1/rho) dP/dn so flow parallels the isobars with low pressure on the left in the north - the-coriolis-effect balancing the pressure push, Buys Ballot's law.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "cb95cae9740af05354345bf24320d5af3bfaebf72d46f7015799eff7075f8b20"
+    },
+    {
+      "slug": "the-seismic-waves",
+      "title": "THE SEISMIC WAVES",
+      "kicker": "x-raying the Earth",
+      "accent": "#7fe0c0",
+      "blurb": "Oldham (1906), runnable in THE OCHO: P faster than S (Poisson-solid ratio sqrt(3)) with S blocked by the liquid core (G=0) - the shadow that revealed the molten outer core, measured on the-richter-scale.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "f9184bf7974c3dbe91d5a99aa186bb55f37ee18fd6cd0017091b7db271f5ce57"
+    },
+    {
+      "slug": "the-richter-scale",
+      "title": "THE RICHTER SCALE",
+      "kicker": "ten times per step",
+      "accent": "#ffb0d0",
+      "blurb": "Richter (1935), runnable in THE OCHO: M = log10(A/A0) with 10x amplitude and 31.6x energy per unit - the logarithmic ruler of the-seismic-waves an earthquake radiates.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e6b6ab03ba30f6472f7c5a777e2bb57bc9495ae8969b411cd2a7a4eba156dcbb"
+    },
+    {
+      "slug": "the-barometric-formula",
+      "title": "THE BAROMETRIC FORMULA",
+      "kicker": "air thins with height",
+      "accent": "#9ee0d0",
+      "blurb": "The barometric formula (Pascal 1648), runnable in THE OCHO: P = P0 exp(-z/H) with H = RT/Mg ~ 8 km, halving every ~5.5 km - hydrostatic balance above the-adiabatic-lapse-rate.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "74b8160715df17794751e71a54c7d68378ebb01d73c7d78791c2eb834de84807"
+    },
+    {
+      "slug": "the-milankovitch-cycles",
+      "title": "THE MILANKOVITCH CYCLES",
+      "kicker": "orbital clocks of the ice ages",
+      "accent": "#ffcf5a",
+      "blurb": "Milankovitch (1941), runnable in THE OCHO: eccentricity ~100 kyr, obliquity ~41 kyr, precession ~23 kyr redistributing sunlight - the pacing of glacial cycles, superposed periodic forcing.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c1bb38a8d771a0590f25c02857c812b3157e16bd6d877dd7254b4af6d9cd0706"
+    },
+    {
+      "slug": "the-plate-tectonics",
+      "title": "THE PLATE TECTONICS",
+      "kicker": "the drifting shell",
+      "accent": "#7fd4ff",
+      "blurb": "Wegener 1912, Vine-Matthews 1963, runnable in THE OCHO: sea-floor spreading laying symmetric magnetic stripes, the rate read from stripe width - driven by mantle buoyancy the-isostasy floats the crust on.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e68e4a46d63874d697e217177e335334339452c02469e4a61ad1ddf1a2ed1414"
     }
   ],
   "appeals": [
@@ -28630,6 +28720,86 @@
               "icon": "⑂",
               "kicker": "compute both answers, throw one away",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-isostasy",
+              "title": "THE ISOSTASY",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "mountains float",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-adiabatic-lapse-rate",
+              "title": "THE ADIABATIC LAPSE RATE",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "rising air cools",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-greenhouse-effect",
+              "title": "THE GREENHOUSE EFFECT",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "33 degrees of warmth",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-coriolis-effect",
+              "title": "THE CORIOLIS EFFECT",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "the sideways veer",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-geostrophic-balance",
+              "title": "THE GEOSTROPHIC BALANCE",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "wind along the isobars",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-seismic-waves",
+              "title": "THE SEISMIC WAVES",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "x-raying the Earth",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-richter-scale",
+              "title": "THE RICHTER SCALE",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "ten times per step",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-barometric-formula",
+              "title": "THE BAROMETRIC FORMULA",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "air thins with height",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-milankovitch-cycles",
+              "title": "THE MILANKOVITCH CYCLES",
+              "accent": "#ffcf5a",
+              "icon": "spawn",
+              "kicker": "orbital clocks of the ice ages",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-plate-tectonics",
+              "title": "THE PLATE TECTONICS",
+              "accent": "#7fd4ff",
+              "icon": "boss",
+              "kicker": "the drifting shell",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 31,
@@ -35514,7 +35684,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "94a6396d03b0f823cf7124ecc6c587412415484195f63b01280729edfc9df99a",
+  "fold_root": "fa0d26df686c84c40286781fa9fd9bd0649f067c4cb065761f36c0e93ecdb16f",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
