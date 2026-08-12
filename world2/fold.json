@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1950,
+    "spheres": 1960,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1944,
+    "spheres_built": 1954,
     "apex": 1
   },
   "keepers": [
@@ -17638,6 +17638,96 @@
       "blurb": "The quantum oscillator, runnable in THE OCHO: E_n = (n + 1/2) hbar omega evenly spaced with a zero-point floor, its Gaussian ground state saturating the-uncertainty-principle - the vibration quantum in matter.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "d2897344e902e7246ea09d2b148443f58a7d3d26e5313046a77251c2dcae1ab4"
+    },
+    {
+      "slug": "the-radioactive-decay",
+      "title": "THE RADIOACTIVE DECAY",
+      "kicker": "a clockwork from randomness",
+      "accent": "#ff7a7a",
+      "blurb": "Rutherford-Soddy (1903), runnable in THE OCHO: N = N0 exp(-lambda t) with a constant half-life ln2/lambda, memoryless per-nucleus death - the exponential law behind the-decay-chain, the-alpha-decay, and the-beta-decay.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ae1899ba1df6c9e3e2c806461f18775a1644e307a7b61c6d01f937139660052f"
+    },
+    {
+      "slug": "the-binding-energy",
+      "title": "THE BINDING ENERGY",
+      "kicker": "the mass that binds",
+      "accent": "#ffd23f",
+      "blurb": "Aston-Einstein, runnable in THE OCHO: B = (Z m_p + N m_n - M)c^2 from real masses, per-nucleon peaking near Fe-56/Ni-62 at ~8.8 MeV - the iron summit the-nuclear-fusion climbs from below and the-nuclear-fission from above.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4b185a912a809ff94548d5c3888259b0aaafa4361c5050391e4e9bfc361f2869"
+    },
+    {
+      "slug": "the-semi-empirical-mass-formula",
+      "title": "THE SEMI-EMPIRICAL MASS FORMULA",
+      "kicker": "the nucleus as a liquid drop",
+      "accent": "#9ee06a",
+      "blurb": "Weizsaecker (1935), runnable in THE OCHO: five terms volume/surface/Coulomb/asymmetry/pairing predicting the-binding-energy curve and the valley of stability the-beta-decay slides toward.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "7088f3ec191af87e197d8c87ff9c0b9c982a88460c45a79f8e03f29ef62bc1e9"
+    },
+    {
+      "slug": "the-alpha-decay",
+      "title": "THE ALPHA DECAY",
+      "kicker": "tunnelling out of the nucleus",
+      "accent": "#c8a2ff",
+      "blurb": "Gamow (1928), runnable in THE OCHO: the-quantum-tunnelling through the Coulomb barrier, the Geiger-Nuttall line making half-life exponentially sensitive to Q - a branch of the-radioactive-decay.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "430e100c1e9c71a0215940afe95a0dda47fd1b4d3e587132c7bf5dfdda369d83"
+    },
+    {
+      "slug": "the-beta-decay",
+      "title": "THE BETA DECAY",
+      "kicker": "a neutron becomes a proton",
+      "accent": "#ff9e6a",
+      "blurb": "Fermi (1934), runnable in THE OCHO: n -> p + e- + antineutrino conserving charge and A, the continuous electron spectrum that demanded the neutrino, sliding down the-semi-empirical-mass-formula's valley.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6c5f1b4dc4551e4b62bc419d80045b615e61d0c6d99fc86e695e5b4e88fa7a2b"
+    },
+    {
+      "slug": "the-nuclear-fission",
+      "title": "THE NUCLEAR FISSION",
+      "kicker": "splitting the heavy nucleus",
+      "accent": "#ffd23f",
+      "blurb": "Bohr-Wheeler (1939), runnable in THE OCHO: fragments climbing to the-binding-energy peak release ~200 MeV, the neutron multiplication k setting criticality - the downhill mirror of the-nuclear-fusion.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d12bc67288ad330228625a69604e000bdf14bd964713b5214d1ef1a83218f44b"
+    },
+    {
+      "slug": "the-nuclear-fusion",
+      "title": "THE NUCLEAR FUSION",
+      "kicker": "merging the light nuclei",
+      "accent": "#7fe0c0",
+      "blurb": "Bethe (1939), runnable in THE OCHO: climbing to the-binding-energy peak from below releases energy, the Coulomb barrier crossed by the-quantum-tunnelling - the uphill mirror that lights the stars.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6bfb782975643ed5339ef3df3e49aa125086b4d66348d095b98eaa9607397f62"
+    },
+    {
+      "slug": "the-decay-chain",
+      "title": "THE DECAY CHAIN",
+      "kicker": "parent feeds daughter",
+      "accent": "#ffb0d0",
+      "blurb": "Bateman (1910), runnable in THE OCHO: the coupled ODEs of a chain (RK4 matching the analytic solution) reaching secular equilibrium with equal activities - the multi-step extension of the-radioactive-decay.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4c9376e6a2b190ec5ef2b22cbe31cfad854ef5093240a86d5c9862cac1073d3a"
+    },
+    {
+      "slug": "the-cross-section",
+      "title": "THE CROSS-SECTION",
+      "kicker": "an effective target area",
+      "accent": "#9ee0d0",
+      "blurb": "The cross-section (Rutherford 1911), runnable in THE OCHO: I = I0 exp(-n sigma x) with mean free path 1/(n sigma) - the interaction probability behind every the-nuclear-fission neutron and the-nuclear-fusion reaction.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3a52797ccfa3668af239f184dd56124b891af1f6081cc9cb5d19372fd3626213"
+    },
+    {
+      "slug": "the-neutrino-oscillation",
+      "title": "THE NEUTRINO OSCILLATION",
+      "kicker": "born one flavour, arrive another",
+      "accent": "#ffcf5a",
+      "blurb": "Pontecorvo (1957), runnable in THE OCHO: P = sin^2(2theta) sin^2(1.27 dm^2 L/E), the flavour swap that proves neutrino mass - the quantum interference of the-wavefunction across kilometres.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "3b4f72a212c43baebd506f086201602b2dc8f30ee184d5c290297155d46ad002"
     }
   ],
   "appeals": [
@@ -29063,6 +29153,86 @@
               "icon": "∩",
               "kicker": "safety was settled by arithmetic before anyone wrote a line",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-radioactive-decay",
+              "title": "THE RADIOACTIVE DECAY",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "a clockwork from randomness",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-binding-energy",
+              "title": "THE BINDING ENERGY",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "the mass that binds",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-semi-empirical-mass-formula",
+              "title": "THE SEMI-EMPIRICAL MASS FORMULA",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "the nucleus as a liquid drop",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-alpha-decay",
+              "title": "THE ALPHA DECAY",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "tunnelling out of the nucleus",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-beta-decay",
+              "title": "THE BETA DECAY",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "a neutron becomes a proton",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-nuclear-fission",
+              "title": "THE NUCLEAR FISSION",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "splitting the heavy nucleus",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-nuclear-fusion",
+              "title": "THE NUCLEAR FUSION",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "merging the light nuclei",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-decay-chain",
+              "title": "THE DECAY CHAIN",
+              "accent": "#ffb0d0",
+              "icon": "spawn",
+              "kicker": "parent feeds daughter",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cross-section",
+              "title": "THE CROSS-SECTION",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "an effective target area",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-neutrino-oscillation",
+              "title": "THE NEUTRINO OSCILLATION",
+              "accent": "#ffcf5a",
+              "icon": "boss",
+              "kicker": "born one flavour, arrive another",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -34154,7 +34324,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "4154ca9b54396653b92613a7aa9cb6a8f9d5870ca9bdd06cd3512dedc131de3d",
+  "fold_root": "869089d2523a75e87354788281f1b010374cf0ba6127c10b0226329f375cd543",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
