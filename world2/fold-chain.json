@@ -8,7 +8,7 @@
   "folded_to": "ROOT_0",
   "root": "53a8db5dc5a6b739f9e2ffe179f30e6b6b8d01aea622a14e1b3839a203bd156f",
   "count": 2056,
-  "sealed": "2026-08-11",
+  "sealed": "2026-08-12",
   "verify": "each leaf carries its own proof: fold the leaf's seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is also fully rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World II inhabitant folds to ROOT_0. Live: the root updates as the world grows, until World II is sealed. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole fold. Superseded the per-inhabitant <slug>.dlw.fold sidecars on 2026-08-06 — same seals, same proofs, same root, one file.",
   "leaves": [
