@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1960,
+    "spheres": 1970,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1954,
+    "spheres_built": 1964,
     "apex": 1
   },
   "keepers": [
@@ -17728,6 +17728,96 @@
       "blurb": "Pontecorvo (1957), runnable in THE OCHO: P = sin^2(2theta) sin^2(1.27 dm^2 L/E), the flavour swap that proves neutrino mass - the quantum interference of the-wavefunction across kilometres.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "3b4f72a212c43baebd506f086201602b2dc8f30ee184d5c290297155d46ad002"
+    },
+    {
+      "slug": "the-schwarzschild-radius",
+      "title": "THE SCHWARZSCHILD RADIUS",
+      "kicker": "the radius of no return",
+      "accent": "#ff7a7a",
+      "blurb": "Schwarzschild (1916), runnable in THE OCHO: r_s = 2GM/c^2 (the Sun ~2.95 km), where the-escape-velocity reaches c - the horizon the-event-horizon draws and the well the-gravitational-time-dilation deepens.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "90f1f6459e14de624cd53f793fe02953436884cfce34444d85a60cc2ba4b8a5b"
+    },
+    {
+      "slug": "the-gravitational-time-dilation",
+      "title": "THE GRAVITATIONAL TIME DILATION",
+      "kicker": "deeper wells run slow",
+      "accent": "#ffd23f",
+      "blurb": "Einstein (1916), runnable in THE OCHO: d_tau/dt = sqrt(1 - r_s/r), frozen at the-schwarzschild-radius, tens of microseconds a day for GPS - the redshift the-gravitational-redshift measures.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e64cb176a215becaa30b11a88f09c45cfcb8da2c80794dffa0b6ce1a4e5b26c7"
+    },
+    {
+      "slug": "the-gravitational-redshift",
+      "title": "THE GRAVITATIONAL REDSHIFT",
+      "kicker": "climbing light reddens",
+      "accent": "#9ee06a",
+      "blurb": "Pound-Rebka (1960), runnable in THE OCHO: z ~ gH/c^2 (2.5e-15 in a 22.5 m tower), the frequency face of the-gravitational-time-dilation, diverging at the-schwarzschild-radius.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8a9fd5708c51fe962000338136cc46eaf4373bbb880f29d09171094bb03b16d1"
+    },
+    {
+      "slug": "the-event-horizon",
+      "title": "THE EVENT HORIZON",
+      "kicker": "the one-way surface",
+      "accent": "#c8a2ff",
+      "blurb": "The event horizon, runnable in THE OCHO: at the-schwarzschild-radius where escape velocity hits c, light cones tipping inward, its area A ~ M^2 never shrinking.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2bfe5e4aa5be7d7aa94aef7e0bda36588f5867fad2df9b273caabf7f470f885d"
+    },
+    {
+      "slug": "the-geodesic",
+      "title": "THE GEODESIC",
+      "kicker": "gravity is geometry",
+      "accent": "#ff9e6a",
+      "blurb": "Einstein (1916), runnable in THE OCHO: free bodies coast on geodesics, the equivalence principle making all masses fall alike (verified against wiggled paths) - the curved-space paths the-perihelion-precession and the-gravitational-lensing bend.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "c0280adb72515699cf175f907744b10624489ced4cd775acb045b41e4b71fb7c"
+    },
+    {
+      "slug": "the-perihelion-precession",
+      "title": "THE PERIHELION PRECESSION",
+      "kicker": "Mercury's turning orbit",
+      "accent": "#7fe0c0",
+      "blurb": "Einstein (1915), runnable in THE OCHO: Delta_phi = 6 pi GM/(a(1-e^2)c^2), 43 arcsec/century closing Le Verrier's gap - a geodesic of curved spacetime, GR's first triumph.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "6fd371ffd3f9f07a4578fd396a4b3576737d7e17a0ae3068f61eb91c4c5168ee"
+    },
+    {
+      "slug": "the-gravitational-lensing",
+      "title": "THE GRAVITATIONAL LENSING",
+      "kicker": "mass bends light",
+      "accent": "#ffb0d0",
+      "blurb": "Einstein 1915, Eddington 1919, runnable in THE OCHO: alpha = 4GM/bc^2, twice the Newtonian value (1.75 arcsec at the Sun), the-geodesic of light forming Einstein rings.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "b251491ab766e98a68d85a39310be142a43ee63401c11b836da8b22dc8feb132"
+    },
+    {
+      "slug": "the-hubble-law",
+      "title": "THE HUBBLE LAW",
+      "kicker": "farther is faster",
+      "accent": "#9ee0d0",
+      "blurb": "Hubble (1929), runnable in THE OCHO: v = H0 d with no centre, the Hubble time 1/H0 ~ 14 Gyr - the expansion the-friedmann-equation governs.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "734c2b4b84454e57e156bb221e0aee3e2cc2dc0ab0289dc69b26cf0be51bd3c9"
+    },
+    {
+      "slug": "the-friedmann-equation",
+      "title": "THE FRIEDMANN EQUATION",
+      "kicker": "the expanding universe's engine",
+      "accent": "#c8a2ff",
+      "blurb": "Friedmann (1922), runnable in THE OCHO: H^2 = (8 pi G/3) rho - kc^2/a^2, the critical density splitting flat from curved - the dynamics under the-hubble-law's expansion.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ff12502d0f26f1bdad8c7f34b743ed251495d51d40f9ee1af1421211fc3169c0"
+    },
+    {
+      "slug": "the-escape-velocity",
+      "title": "THE ESCAPE VELOCITY",
+      "kicker": "the speed to break free",
+      "accent": "#ffcf5a",
+      "blurb": "Newton (1687), runnable in THE OCHO: v_esc = sqrt(2GM/r), sqrt(2) times orbital speed, reaching c exactly at the-schwarzschild-radius - the Newtonian shadow of the-event-horizon.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a37ab5383c1c5e0957a91ce4fcd3549a33fa01c5edd7f804ac829fd647ff7b58"
     }
   ],
   "appeals": [
@@ -33708,9 +33798,89 @@
               "icon": "⊛",
               "kicker": "a perfect hash for the lowest set bit",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-schwarzschild-radius",
+              "title": "THE SCHWARZSCHILD RADIUS",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "the radius of no return",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gravitational-time-dilation",
+              "title": "THE GRAVITATIONAL TIME DILATION",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "deeper wells run slow",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gravitational-redshift",
+              "title": "THE GRAVITATIONAL REDSHIFT",
+              "accent": "#9ee06a",
+              "icon": "cheat",
+              "kicker": "climbing light reddens",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-event-horizon",
+              "title": "THE EVENT HORIZON",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "the one-way surface",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-geodesic",
+              "title": "THE GEODESIC",
+              "accent": "#ff9e6a",
+              "icon": "grind",
+              "kicker": "gravity is geometry",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-perihelion-precession",
+              "title": "THE PERIHELION PRECESSION",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "Mercury's turning orbit",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-gravitational-lensing",
+              "title": "THE GRAVITATIONAL LENSING",
+              "accent": "#ffb0d0",
+              "icon": "grind",
+              "kicker": "mass bends light",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hubble-law",
+              "title": "THE HUBBLE LAW",
+              "accent": "#9ee0d0",
+              "icon": "cheat",
+              "kicker": "farther is faster",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-friedmann-equation",
+              "title": "THE FRIEDMANN EQUATION",
+              "accent": "#c8a2ff",
+              "icon": "grind",
+              "kicker": "the expanding universe's engine",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-escape-velocity",
+              "title": "THE ESCAPE VELOCITY",
+              "accent": "#ffcf5a",
+              "icon": "spawn",
+              "kicker": "the speed to break free",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
-          "seats": 28,
+          "seats": 30,
           "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
         },
         {
@@ -34324,7 +34494,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "869089d2523a75e87354788281f1b010374cf0ba6127c10b0226329f375cd543",
+  "fold_root": "73302a742c8fe6ca2b8f57114969185c08db7a5433503b6853e0bb61880ab802",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
