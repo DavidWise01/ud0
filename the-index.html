@@ -67,9 +67,13 @@ mark{background:rgba(47,198,192,.32);color:#fff;border-radius:3px}
  var apps=[].slice.call(document.querySelectorAll('.appeal'));
  var worlds=[].slice.call(document.querySelectorAll('.world'));
  var TOTAL=sphs.length;
+ function esc(t){return t.replace(/[&<>]/g,function(c){return c==='&'?'&amp;':c==='<'?'&lt;':'&gt;';});}
+ function orig(s){var o=s.getAttribute('data-l');if(o===null){o=s.textContent;s.setAttribute('data-l',o);}return o;}
+ function markHit(s,v){if(s.classList.contains('stew'))return;var t=orig(s),i=t.toLowerCase().indexOf(v);s.innerHTML=i<0?esc(t):esc(t.slice(0,i))+'<mark>'+esc(t.slice(i,i+v.length))+'</mark>'+esc(t.slice(i+v.length));}
+ function clearHit(s){if(s.classList.contains('stew'))return;var o=s.getAttribute('data-l');if(o!==null)s.textContent=o;}
  function run(){
   var v=q.value.trim().toLowerCase();
-  if(!v){ sphs.forEach(function(s){s.classList.remove('empty')});
+  if(!v){ sphs.forEach(function(s){s.classList.remove('empty');clearHit(s);});
     doms.forEach(function(d){d.classList.remove('empty');d.open=false});
     apps.forEach(function(a){a.classList.remove('empty')});
     worlds.forEach(function(w){w.classList.remove('empty')});
@@ -83,7 +87,7 @@ mark{background:rgba(47,198,192,.32);color:#fff;border-radius:3px}
   // stray spheres (World III stewards live outside a .dom)
   sphs.forEach(function(s){ if(!s.closest('.dom')){ s.classList.toggle('empty', s.getAttribute('data-s').indexOf(v)<0); } });
   // 2) roll up visibility from whatever spheres remain shown
-  var hits=0; sphs.forEach(function(s){ if(!s.classList.contains('empty')) hits++; });
+  var hits=0; sphs.forEach(function(s){ if(!s.classList.contains('empty')){ hits++; markHit(s,v); } });
   doms.forEach(function(d){ var vis=!!d.querySelector('.sph:not(.empty)'); d.classList.toggle('empty',!vis); d.open=vis; });
   apps.forEach(function(a){ a.classList.toggle('empty', !a.querySelector('.sph:not(.empty)')); });
   worlds.forEach(function(w){ w.classList.toggle('empty', !w.querySelector('.sph:not(.empty)')); });

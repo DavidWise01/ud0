@@ -29,6 +29,11 @@
     color:var(--ink);white-space:nowrap;transform:translate(-50%,-140%);z-index:9}
   #tip .t{color:var(--am);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
   #hint{bottom:16px;right:16px;font-size:11px;color:var(--mut)}
+  .fitbtn{position:absolute;bottom:46px;right:16px;font:600 12px/1 "Segoe UI",system-ui,sans-serif;letter-spacing:.06em;
+    color:var(--ink);background:rgba(26,11,46,.74);border:1px solid rgba(255,179,71,.32);border-radius:10px;
+    padding:8px 13px;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:.15s;box-shadow:0 6px 20px rgba(0,0,0,.32)}
+  .fitbtn:hover{border-color:var(--am);color:var(--am);transform:translateY(-1px)}
+  .fitbtn:focus-visible{outline:2px solid var(--am);outline-offset:2px}
   kbd{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);
     border-radius:5px;padding:1px 6px;font-size:10.5px}
 </style>
@@ -46,6 +51,7 @@
     <span class="sw" style="color:#b58cff"></span><b>appeal</b> · 8 per world&nbsp;&nbsp;<span class="sw" style="color:#8fd0ff"></span><b>domain</b> · 64 per world<br>
     <span class="sw" style="color:#7d5fb8"></span><b>sphere</b> · a LIT instrument&nbsp;&nbsp;<span class="sw" style="color:#63ffd6"></span><b>lineage</b> thread (World II)
   </div>
+  <button class="fitbtn" id="fitbtn" title="reset the view (F)" aria-label="fit — reset the view">&#10530; fit view</button>
   <div id="hint" class="hud"><kbd>drag</kbd> pan · <kbd>wheel</kbd> zoom · <kbd>click</kbd> open · <kbd>F</kbd> fit</div>
   <div id="tip"><span class="t"></span><br><span class="n"></span></div>
 </div>
@@ -162,6 +168,7 @@
     if(tmode==='pan' && tmoved<10){ const hi=pick(tsx,tsy); if(hi>=0){ showTip(hi, N[hi].x*scale+ox, N[hi].y*scale+oy); openNode(hi); } }
     if(e.touches.length===0){ tmode=null; } },{passive:false});
   addEventListener('keydown',e=>{ if(e.key==='f'||e.key==='F') fit(); });
+  (function(){ var fb=document.getElementById('fitbtn'); if(fb) fb.addEventListener('click',function(e){e.preventDefault();fit();}); })();
   addEventListener('resize',resize);
   resize();
 })();
