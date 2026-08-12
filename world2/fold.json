@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1940,
+    "spheres": 1950,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1934,
+    "spheres_built": 1944,
     "apex": 1
   },
   "keepers": [
@@ -17548,6 +17548,96 @@
       "blurb": "Langevin (1911), runnable in THE OCHO: the traveller ages less by 1/gamma, the straight worldline maximizing proper time (verified against bent paths) - the-time-dilation integrated along the-spacetime-interval.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "9edbd330835acf53b319d3721fbf2d32957cd661c412a39c745c16b3c0a155be"
+    },
+    {
+      "slug": "the-plancks-law",
+      "title": "THE PLANCK LAW",
+      "kicker": "energy comes in lumps",
+      "accent": "#ff7a7a",
+      "blurb": "Planck (1901), runnable in THE OCHO: u ~ nu^3/(exp(h nu/kT)-1), the quantum -1 curing the UV catastrophe and integrating to a T^4 total - the birth of h that the-photoelectric-effect made a particle.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ff6de848a2d38f534f5949f10dc748f12e2057363a606f142dac4cd8fc06347a"
+    },
+    {
+      "slug": "the-photoelectric-effect",
+      "title": "THE PHOTOELECTRIC EFFECT",
+      "kicker": "light is quanta",
+      "accent": "#ffd23f",
+      "blurb": "Einstein (1905), runnable in THE OCHO: KE = hf - phi, linear in frequency with a threshold and energy independent of intensity - the-plancks-law lump made a real photon behind the-bohr-model's jumps.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "65128540e9414b50b5ebca6e6f455c60097657a0be802a7dbe2da081fe504274"
+    },
+    {
+      "slug": "the-bohr-model",
+      "title": "THE BOHR MODEL",
+      "kicker": "the atom in sharp lines",
+      "accent": "#9ee06a",
+      "blurb": "Bohr (1913), runnable in THE OCHO: E_n = -13.6/n^2 eV, the Rydberg-Balmer spectrum (3->2 is 656 nm), quantized orbits the-de-broglie-wavelength explained as standing waves.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d8cace1365f5275123aac32dd3976c73c19d3c03118c315f4f3c4fdc52250312"
+    },
+    {
+      "slug": "the-de-broglie-wavelength",
+      "title": "THE DE BROGLIE WAVELENGTH",
+      "kicker": "matter is a wave",
+      "accent": "#c8a2ff",
+      "blurb": "de Broglie (1924), runnable in THE OCHO: lambda = h/p, the standing wave that fits the-bohr-model's orbits and the wave the-schrodinger-equation obeys.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "eb5473652833ba0acb03dc616ec3550d71e62b6bb1a8ea8900f368909f48cdb5"
+    },
+    {
+      "slug": "the-wavefunction",
+      "title": "THE WAVEFUNCTION",
+      "kicker": "amplitude, then odds",
+      "accent": "#ff9e6a",
+      "blurb": "Born (1926), runnable in THE OCHO: |psi|^2 the probability density, normalized to 1 and interfering by a cross-term - the meaning the-schrodinger-equation's solution carries.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "49df1c6e18d35e1a30f3b1c1b06b22221ae61acfb451bbe5ad580b5d098c6f05"
+    },
+    {
+      "slug": "the-schrodinger-equation",
+      "title": "THE SCHRODINGER EQUATION",
+      "kicker": "the wave equation of QM",
+      "accent": "#7fe0c0",
+      "blurb": "Schroedinger (1926), runnable in THE OCHO: H psi = E psi, the box eigenstates and energies E_n = n^2 pi^2 hbar^2/2mL^2 - the law the-de-broglie-wavelength's waves obey and the-wavefunction solves.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "148f04cf02de893532249ec1f7662f02360bbfb8ae46f739708e5e8e079fd818"
+    },
+    {
+      "slug": "the-uncertainty-principle",
+      "title": "THE UNCERTAINTY PRINCIPLE",
+      "kicker": "sharpness has a floor",
+      "accent": "#ffb0d0",
+      "blurb": "Heisenberg (1927), runnable in THE OCHO: dx dp >= hbar/2 saturated by a Gaussian, the Fourier conjugacy of the-wavefunction's x and p, the zero-point behind the-quantum-harmonic-oscillator.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "4f60b5d3f0c4461580b0cfdce6e3a5b7143ac018ae7b0bd395d8fd9af72413c5"
+    },
+    {
+      "slug": "the-particle-in-a-box",
+      "title": "THE PARTICLE IN A BOX",
+      "kicker": "confinement quantizes",
+      "accent": "#9ee0d0",
+      "blurb": "The particle in a box, runnable in THE OCHO: E_n = n^2 pi^2 hbar^2/2mL^2, standing-wave modes with a nonzero zero-point floor - the simplest solution of the-schrodinger-equation.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0fe2b57c1fbba7aebf89ab9110080babdc655e9b52d5b75ce7052095d276de77"
+    },
+    {
+      "slug": "the-quantum-tunnelling",
+      "title": "THE QUANTUM TUNNELLING",
+      "kicker": "through the wall",
+      "accent": "#c8a2ff",
+      "blurb": "Gamow (1928), runnable in THE OCHO: T ~ exp(-2 kappa a) fading with barrier width, the penetration the-schrodinger-equation allows and the-wavefunction's tail carries, powering alpha decay.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "63549b0e964d2f853d69ba3809c86cd152d31a8a21c7e33b11e32743a6343a07"
+    },
+    {
+      "slug": "the-quantum-harmonic-oscillator",
+      "title": "THE QUANTUM HARMONIC OSCILLATOR",
+      "kicker": "the evenly-rung ladder",
+      "accent": "#ffcf5a",
+      "blurb": "The quantum oscillator, runnable in THE OCHO: E_n = (n + 1/2) hbar omega evenly spaced with a zero-point floor, its Gaussian ground state saturating the-uncertainty-principle - the vibration quantum in matter.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "d2897344e902e7246ea09d2b148443f58a7d3d26e5313046a77251c2dcae1ab4"
     }
   ],
   "appeals": [
@@ -31202,6 +31292,86 @@
               "icon": "∅",
               "kicker": "two zeros that look identical in the output",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-plancks-law",
+              "title": "THE PLANCK LAW",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "energy comes in lumps",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-photoelectric-effect",
+              "title": "THE PHOTOELECTRIC EFFECT",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "light is quanta",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-bohr-model",
+              "title": "THE BOHR MODEL",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "the atom in sharp lines",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-de-broglie-wavelength",
+              "title": "THE DE BROGLIE WAVELENGTH",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "matter is a wave",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-wavefunction",
+              "title": "THE WAVEFUNCTION",
+              "accent": "#ff9e6a",
+              "icon": "boss",
+              "kicker": "amplitude, then odds",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-schrodinger-equation",
+              "title": "THE SCHRODINGER EQUATION",
+              "accent": "#7fe0c0",
+              "icon": "grind",
+              "kicker": "the wave equation of QM",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-uncertainty-principle",
+              "title": "THE UNCERTAINTY PRINCIPLE",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "sharpness has a floor",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-particle-in-a-box",
+              "title": "THE PARTICLE IN A BOX",
+              "accent": "#9ee0d0",
+              "icon": "grind",
+              "kicker": "confinement quantizes",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-quantum-tunnelling",
+              "title": "THE QUANTUM TUNNELLING",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "through the wall",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-quantum-harmonic-oscillator",
+              "title": "THE QUANTUM HARMONIC OSCILLATOR",
+              "accent": "#ffcf5a",
+              "icon": "spawn",
+              "kicker": "the evenly-rung ladder",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 43,
@@ -33984,7 +34154,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "cad48d5311d4383889c704f03120131d61184386f4254b39b8108bbbe72a3bf7",
+  "fold_root": "4154ca9b54396653b92613a7aa9cb6a8f9d5870ca9bdd06cd3512dedc131de3d",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
