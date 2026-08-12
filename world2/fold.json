@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 1990,
+    "spheres": 2000,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 1984,
+    "spheres_built": 1994,
     "apex": 1
   },
   "keepers": [
@@ -17998,6 +17998,96 @@
       "blurb": "Fisher (1930), runnable in THE OCHO: PV = sum CF/(1+r)^t with a perpetuity C/r, discounting every future stream - the time-value core beneath the-is-lm's investment.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "bab6c4eae0c577789bab9ab2a78a5e5db62356f1bff4f6e0b0164410d96fc660"
+    },
+    {
+      "slug": "the-thin-lens",
+      "title": "THE THIN LENS",
+      "kicker": "object to image in one equation",
+      "accent": "#7fd4ff",
+      "blurb": "Thin-lens, runnable in THE OCHO: 1/f = 1/do + 1/di with m = -di/do, real and virtual images - the refraction of the-snell-law shaped into a lens.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bca3e79773ae3f3c446575e359469ba9787fd1cd8f9a8f553be000e7eea8d1ee"
+    },
+    {
+      "slug": "the-diffraction-grating",
+      "title": "THE DIFFRACTION GRATING",
+      "kicker": "slits make a spectrum",
+      "accent": "#9ee06a",
+      "blurb": "Fraunhofer (1821), runnable in THE OCHO: d sin(theta) = m lambda, sharp maxima whose sharpness grows with slit count - the many-slit limit of the-double-slit and the ruler of the-dispersion.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "1893a7d3f26416555ad29a062a0fcd4f07c89ad0cf0530f3eeb1a2bd205a229e"
+    },
+    {
+      "slug": "the-double-slit",
+      "title": "THE DOUBLE SLIT",
+      "kicker": "two beams make bands",
+      "accent": "#c8a2ff",
+      "blurb": "Young (1804), runnable in THE OCHO: d sin(theta) = m lambda with fringe spacing lambda L/d and a cos^2 intensity - the interference that proved light a wave.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "0e93e46496ff5245a1839c349d3518dcb80b0411dc5c1dd160d5bdfad432e228"
+    },
+    {
+      "slug": "the-single-slit",
+      "title": "THE SINGLE SLIT",
+      "kicker": "one slit still spreads",
+      "accent": "#ff7a7a",
+      "blurb": "Fraunhofer diffraction, runnable in THE OCHO: the sinc^2 envelope with minima at a sin(theta) = m lambda and a first side lobe at ~4.7% - the diffraction that limits the-rayleigh-criterion.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ce02ae8eab21aa9394e06b8c0fb013baf097b2666c247a430faf7fc25e69580f"
+    },
+    {
+      "slug": "the-rayleigh-criterion",
+      "title": "THE RAYLEIGH CRITERION",
+      "kicker": "the floor on seeing",
+      "accent": "#ffd23f",
+      "blurb": "Rayleigh (1879), runnable in THE OCHO: theta = 1.22 lambda/D, two Airy disks just resolved when peak meets first minimum - the diffraction limit set by the-single-slit's spreading.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "2421ec3f100d6feb031e8add514e66e547c5572938af87ef2835823acbff68ec"
+    },
+    {
+      "slug": "the-malus-law",
+      "title": "THE MALUS LAW",
+      "kicker": "cosine-squared through a polarizer",
+      "accent": "#ff9e6a",
+      "blurb": "Malus (1809), runnable in THE OCHO: I = I0 cos^2(theta), half for unpolarized light, the three-polarizer paradox (I0/8) - the projection the-brewster-angle produces by reflection.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "a6fa4284226f9741f71cb01510bd7280e4f7c9d0fe7f4d7ede5312ead4421504"
+    },
+    {
+      "slug": "the-brewster-angle",
+      "title": "THE BREWSTER ANGLE",
+      "kicker": "reflection turns polarized",
+      "accent": "#7fe0c0",
+      "blurb": "Brewster (1815), runnable in THE OCHO: tan(theta_B) = n2/n1 where reflected and refracted rays cross at a right angle and R_p vanishes - a special angle of the-fresnel-equations.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ebe0b2ce1c741fcc3654081c423c60589704c07def2d1fbe13bb0c9767530e86"
+    },
+    {
+      "slug": "the-fresnel-equations",
+      "title": "THE FRESNEL EQUATIONS",
+      "kicker": "how much reflects",
+      "accent": "#ffb0d0",
+      "blurb": "Fresnel (1823), runnable in THE OCHO: R_s and R_p with R + T = 1, 4 percent at normal glass, R_p vanishing at the-brewster-angle - the amplitude law behind every lens coating.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "5cab13e5a26f672931515f198729d6af07f09e59803cfb1d74583606b6abbfcc"
+    },
+    {
+      "slug": "the-fabry-perot",
+      "title": "THE FABRY-PEROT",
+      "kicker": "two mirrors, sharp peaks",
+      "accent": "#9ee0d0",
+      "blurb": "Fabry-Perot (1899), runnable in THE OCHO: the Airy transmission with finesse pi sqrt(R)/(1-R), multiple-beam interference sharpening the-double-slit's fringes into laser-grade resonances.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ba6fb87d986cccf4522acfd0cc22f934065080b788173a5d318b6cd4b543f1fe"
+    },
+    {
+      "slug": "the-dispersion",
+      "title": "THE DISPERSION",
+      "kicker": "white light unfolds",
+      "accent": "#ffcf5a",
+      "blurb": "Newton 1704, Cauchy 1836, runnable in THE OCHO: n(lambda) falling with wavelength so blue bends more, a prism's rainbow opposite in order to the-diffraction-grating.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "bccf3aa379b1980e4846785285fc711ade0c7fbbb66430c7abcdd2237a782fa3"
     }
   ],
   "appeals": [
@@ -33533,6 +33623,86 @@
               "icon": "⇄",
               "kicker": "out through two, back as one",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-thin-lens",
+              "title": "THE THIN LENS",
+              "accent": "#7fd4ff",
+              "icon": "grind",
+              "kicker": "object to image in one equation",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-diffraction-grating",
+              "title": "THE DIFFRACTION GRATING",
+              "accent": "#9ee06a",
+              "icon": "boss",
+              "kicker": "slits make a spectrum",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-double-slit",
+              "title": "THE DOUBLE SLIT",
+              "accent": "#c8a2ff",
+              "icon": "cheat",
+              "kicker": "two beams make bands",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-single-slit",
+              "title": "THE SINGLE SLIT",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "one slit still spreads",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-rayleigh-criterion",
+              "title": "THE RAYLEIGH CRITERION",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "the floor on seeing",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-malus-law",
+              "title": "THE MALUS LAW",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "cosine-squared through a polarizer",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-brewster-angle",
+              "title": "THE BREWSTER ANGLE",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "reflection turns polarized",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fresnel-equations",
+              "title": "THE FRESNEL EQUATIONS",
+              "accent": "#ffb0d0",
+              "icon": "grind",
+              "kicker": "how much reflects",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fabry-perot",
+              "title": "THE FABRY-PEROT",
+              "accent": "#9ee0d0",
+              "icon": "spawn",
+              "kicker": "two mirrors, sharp peaks",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-dispersion",
+              "title": "THE DISPERSION",
+              "accent": "#ffcf5a",
+              "icon": "grind",
+              "kicker": "white light unfolds",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 32,
@@ -34834,7 +35004,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "5302193a4f2ac4c10df617e87aed29a208033c7e8f24d74ce0f82bdec3d1836e",
+  "fold_root": "9655d3748aeacbcf5c933321d1974b78b9be304db865cd4a5a4999f39f57a358",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
