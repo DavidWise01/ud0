@@ -6,12 +6,12 @@
   "counts": {
     "appeals": 8,
     "domains": 64,
-    "spheres": 2020,
+    "spheres": 2030,
     "keepers": 8,
     "push": 32,
     "pull": 32,
     "seats": 2048,
-    "spheres_built": 2014,
+    "spheres_built": 2024,
     "apex": 1
   },
   "keepers": [
@@ -18268,6 +18268,96 @@
       "blurb": "Seebeck (1821), runnable in THE OCHO: V = -S Delta_T with a thermocouple needing two different S, the sign following the carrier as in the-hall-effect - the reverse of the Peltier cooler.",
       "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
       "seal": "82a2ed61abfb99140ef401290bce1deea2db9c7ee4d87f6d0ec89da415f3edfc"
+    },
+    {
+      "slug": "the-hodgkin-huxley",
+      "title": "THE HODGKIN-HUXLEY MODEL",
+      "kicker": "the impulse made equations",
+      "accent": "#ff7a7a",
+      "blurb": "Hodgkin-Huxley (1952), runnable in THE OCHO: four coupled ODEs (integrated live) with Na/K gating giving an all-or-none spike - the biophysical root of the-action-potential and the reduced the-fitzhugh-nagumo.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ca2467b7ad888371d37e0b0b3edb76442c65fd69131903609e9ae016ed228dd3"
+    },
+    {
+      "slug": "the-cable-equation",
+      "title": "THE CABLE EQUATION",
+      "kicker": "voltage down a wire",
+      "accent": "#ffd23f",
+      "blurb": "Rall (1959), from Kelvin's telegraph, runnable in THE OCHO: lambda = sqrt(rm/ri) with exp(-x/lambda) decay and tau = rm cm - the passive spread the-hodgkin-huxley's active spike overcomes.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e4922277c70dcc3ab6445b0dceabe1b018b6ee4cd979a6ad77702f3f524850a0"
+    },
+    {
+      "slug": "the-integrate-and-fire",
+      "title": "THE INTEGRATE-AND-FIRE",
+      "kicker": "sum, cross, fire, reset",
+      "accent": "#9ee06a",
+      "blurb": "Lapicque (1907), runnable in THE OCHO: the leaky integrator with a threshold and reset giving a monotone f-I curve - the minimal caricature of the-hodgkin-huxley across computational neuroscience.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ad03d4d802a18884fbfa274e373029710ce445076ce73067730eb30a0d9f516f"
+    },
+    {
+      "slug": "the-fitzhugh-nagumo",
+      "title": "THE FITZHUGH-NAGUMO",
+      "kicker": "the spike in two dimensions",
+      "accent": "#c8a2ff",
+      "blurb": "FitzHugh-Nagumo (1961), runnable in THE OCHO: dv/dt = v - v^3/3 - w + I with a cubic nullcline giving excitability and a Hopf limit cycle - the-hodgkin-huxley reduced to a drawable phase plane.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "eae5dee9854b479da2e519b1316531a371d66fa73f70f8cefa0a63725489dfe9"
+    },
+    {
+      "slug": "the-goldman-equation",
+      "title": "THE GOLDMAN EQUATION",
+      "kicker": "the resting voltage, weighted",
+      "accent": "#ff9e6a",
+      "blurb": "Goldman-Hodgkin-Katz (1943), runnable in THE OCHO: V_m from permeability-weighted ion ratios reducing to Nernst for one ion - the baseline the-hodgkin-huxley's spike departs from.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "9bfc01e148e781e69f512bac1a80fb3306b7651eed48240a5911dfab11d8281c"
+    },
+    {
+      "slug": "the-action-potential",
+      "title": "THE ACTION POTENTIAL",
+      "kicker": "the digital pulse",
+      "accent": "#7fe0c0",
+      "blurb": "The action potential, runnable in THE OCHO: all-or-none, self-propagating at constant amplitude (unlike passive the-cable-equation), sped by myelin - the spike the-hodgkin-huxley generates and the-refractory-period spaces.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "ce740d52ccadb2ce943de12635ae3fd2f32d20b8cd8a331bdc6eacccca35ac1b"
+    },
+    {
+      "slug": "the-refractory-period",
+      "title": "THE REFRACTORY PERIOD",
+      "kicker": "the deafness after the spike",
+      "accent": "#ffb0d0",
+      "blurb": "The refractory period, runnable in THE OCHO: an absolute window capping f_max = 1/t_ref and forcing one-way conduction, from the-hodgkin-huxley's sodium inactivation - spacing the-action-potential.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "62df1631c0971d8cd433534c80a98225fb3efbdf23e42f8d6bfcf24813f9ae29"
+    },
+    {
+      "slug": "the-turing-pattern",
+      "title": "THE TURING PATTERN",
+      "kicker": "structure from diffusion",
+      "accent": "#9ee0d0",
+      "blurb": "Turing (1952), runnable in THE OCHO: a reaction-diffusion system stable when mixed but unstable when the inhibitor out-diffuses the activator - the morphogenesis maths behind stripes and spots.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "04cb623fe2db3137dd1ca72e92379fa61b8b3451d9400398a066f889afce12aa"
+    },
+    {
+      "slug": "the-allometry",
+      "title": "THE ALLOMETRY",
+      "kicker": "life's power law",
+      "accent": "#ffcf5a",
+      "blurb": "Kleiber (1932), runnable in THE OCHO: B ~ M^(3/4) making per-mass metabolism fall as M^(-1/4), heartbeats-per-life roughly invariant - the whole-organism scaling above the single cell.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "e527a6c0d6d865bcc10cc8d2fa842c962fe6ddbab6a73c7ef5789ec37014272a"
+    },
+    {
+      "slug": "the-stdp",
+      "title": "THE STDP",
+      "kicker": "Hebb with a stopwatch",
+      "accent": "#7fd4ff",
+      "blurb": "Bi & Poo (1998), runnable in THE OCHO: potentiation for pre-before-post and depression for post-before-pre, an exponentially decaying causal window - the timing-based learning rule spiking neurons obey.",
+      "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf",
+      "seal": "8692125c5911dc4dc0d2ad93060b09a54079d25999e900cdb2c94b005d86485e"
     }
   ],
   "appeals": [
@@ -35332,6 +35422,86 @@
               "icon": "⤴",
               "kicker": "the highest waits on the lowest",
               "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-hodgkin-huxley",
+              "title": "THE HODGKIN-HUXLEY MODEL",
+              "accent": "#ff7a7a",
+              "icon": "grind",
+              "kicker": "the impulse made equations",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-cable-equation",
+              "title": "THE CABLE EQUATION",
+              "accent": "#ffd23f",
+              "icon": "boss",
+              "kicker": "voltage down a wire",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-integrate-and-fire",
+              "title": "THE INTEGRATE-AND-FIRE",
+              "accent": "#9ee06a",
+              "icon": "grind",
+              "kicker": "sum, cross, fire, reset",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-fitzhugh-nagumo",
+              "title": "THE FITZHUGH-NAGUMO",
+              "accent": "#c8a2ff",
+              "icon": "boss",
+              "kicker": "the spike in two dimensions",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-goldman-equation",
+              "title": "THE GOLDMAN EQUATION",
+              "accent": "#ff9e6a",
+              "icon": "cheat",
+              "kicker": "the resting voltage, weighted",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-action-potential",
+              "title": "THE ACTION POTENTIAL",
+              "accent": "#7fe0c0",
+              "icon": "boss",
+              "kicker": "the digital pulse",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-refractory-period",
+              "title": "THE REFRACTORY PERIOD",
+              "accent": "#ffb0d0",
+              "icon": "cheat",
+              "kicker": "the deafness after the spike",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-turing-pattern",
+              "title": "THE TURING PATTERN",
+              "accent": "#9ee0d0",
+              "icon": "spawn",
+              "kicker": "structure from diffusion",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-allometry",
+              "title": "THE ALLOMETRY",
+              "accent": "#ffcf5a",
+              "icon": "grind",
+              "kicker": "life's power law",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
+            },
+            {
+              "slug": "the-stdp",
+              "title": "THE STDP",
+              "accent": "#7fd4ff",
+              "icon": "boss",
+              "kicker": "Hebb with a stopwatch",
+              "learned": "I-13 v2.0 | net = binds - k | 4 planes, 13 symbols, 12 operants, 5 cortex rules | sha 64881ebf"
             }
           ],
           "seats": 38,
@@ -35344,7 +35514,7 @@
   "domains": [],
   "note": "World II's central DB — the hub reads this live, so counts climb as new appeals/domains/spheres/keepers are built. Regenerate/append this file; nothing else to touch on the page.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
-  "fold_root": "8b29e1a8692a36dd211b08a2bb652eb985d67dc033db73441255be66d7d3411f",
+  "fold_root": "94a6396d03b0f823cf7124ecc6c587412415484195f63b01280729edfc9df99a",
   "genesis": "e8740e2614a48a8aa50af601eb10ab74033e71b43abe536ffd58aef4175b5e55",
   "corpus": {
     "name": "the stage-13 corpus",
