@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//SONIA//WORLD-IV//the-russian-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
   "folded_to": "ROOT_0",
-  "root": "21160edc50c7547fdfe2f5887ec89b08bf1f12a5f24ed41e1d5bd9d5a5d0058e",
-  "count": 15,
+  "root": "082c07968271243b4dccfc621535ef46d8b0a35f99cc38a5d1593040104fc7bb",
+  "count": 20,
   "sealed": "2026-08-12",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World IV inhabitant folds to ROOT_0. Live: the root updates as SONIA grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
@@ -28,11 +28,15 @@
           "side": "R"
         },
         {
-          "h": "9744ffbf33f4117e38d292102a0226b4e8ac2fe0cb221d009af6bb0a0ad1a80a",
+          "h": "8720b32ed06b07b95bb98c1fc44ed27e0b2c0e98ec8c9d182b513436fb79c982",
           "side": "R"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "1c00893f8e4399d5cada81f3d9ca5672ce49421ee297ad26ddf6c47b03e71e0c",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
           "side": "R"
         }
       ]
@@ -53,11 +57,15 @@
           "side": "R"
         },
         {
-          "h": "9744ffbf33f4117e38d292102a0226b4e8ac2fe0cb221d009af6bb0a0ad1a80a",
+          "h": "8720b32ed06b07b95bb98c1fc44ed27e0b2c0e98ec8c9d182b513436fb79c982",
           "side": "R"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "1c00893f8e4399d5cada81f3d9ca5672ce49421ee297ad26ddf6c47b03e71e0c",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
           "side": "R"
         }
       ]
@@ -78,11 +86,15 @@
           "side": "L"
         },
         {
-          "h": "9744ffbf33f4117e38d292102a0226b4e8ac2fe0cb221d009af6bb0a0ad1a80a",
+          "h": "8720b32ed06b07b95bb98c1fc44ed27e0b2c0e98ec8c9d182b513436fb79c982",
           "side": "R"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "1c00893f8e4399d5cada81f3d9ca5672ce49421ee297ad26ddf6c47b03e71e0c",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
           "side": "R"
         }
       ]
@@ -103,11 +115,15 @@
           "side": "L"
         },
         {
-          "h": "9744ffbf33f4117e38d292102a0226b4e8ac2fe0cb221d009af6bb0a0ad1a80a",
+          "h": "8720b32ed06b07b95bb98c1fc44ed27e0b2c0e98ec8c9d182b513436fb79c982",
           "side": "R"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "1c00893f8e4399d5cada81f3d9ca5672ce49421ee297ad26ddf6c47b03e71e0c",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
           "side": "R"
         }
       ]
@@ -124,7 +140,7 @@
           "side": "R"
         },
         {
-          "h": "7531e7b3d24b406cf40d8b0c196820388467746c505e5a66cf9b350efc257e96",
+          "h": "eaaa76ee25a0cfdb70e525c1af6d2141044b5e856b2abc6a103c451dce08962b",
           "side": "R"
         },
         {
@@ -132,7 +148,11 @@
           "side": "L"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "1c00893f8e4399d5cada81f3d9ca5672ce49421ee297ad26ddf6c47b03e71e0c",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
           "side": "R"
         }
       ]
@@ -149,7 +169,7 @@
           "side": "L"
         },
         {
-          "h": "7531e7b3d24b406cf40d8b0c196820388467746c505e5a66cf9b350efc257e96",
+          "h": "eaaa76ee25a0cfdb70e525c1af6d2141044b5e856b2abc6a103c451dce08962b",
           "side": "R"
         },
         {
@@ -157,7 +177,11 @@
           "side": "L"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "1c00893f8e4399d5cada81f3d9ca5672ce49421ee297ad26ddf6c47b03e71e0c",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
           "side": "R"
         }
       ]
@@ -170,7 +194,7 @@
       "seal": "696db9c217660749cae50d08f9e6ddfc8963bfddf5d239fafb73ae4eb72b2959",
       "proof": [
         {
-          "h": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
+          "h": "6b9203d80af5c2a16378240e00471d97d6ff3ecfa757718876903d50e55854f9",
           "side": "R"
         },
         {
@@ -182,17 +206,21 @@
           "side": "L"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "1c00893f8e4399d5cada81f3d9ca5672ce49421ee297ad26ddf6c47b03e71e0c",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
           "side": "R"
         }
       ]
     },
     {
       "index": 7,
-      "kind": "keeper",
-      "name": "SONIA",
-      "slug": "sonia",
-      "seal": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
+      "kind": "sphere",
+      "name": "THE TETRIS",
+      "slug": "the-tetris",
+      "seal": "6b9203d80af5c2a16378240e00471d97d6ff3ecfa757718876903d50e55854f9",
       "proof": [
         {
           "h": "696db9c217660749cae50d08f9e6ddfc8963bfddf5d239fafb73ae4eb72b2959",
@@ -207,182 +235,359 @@
           "side": "L"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "1c00893f8e4399d5cada81f3d9ca5672ce49421ee297ad26ddf6c47b03e71e0c",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
           "side": "R"
         }
       ]
     },
     {
       "index": 8,
-      "kind": "keeper",
-      "name": "KHINCHIN",
-      "slug": "khinchin",
-      "seal": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
+      "kind": "sphere",
+      "name": "THE ONEGIN STANZA",
+      "slug": "the-onegin-stanza",
+      "seal": "176065537e588fd8a56d8f54186a3f93c9b68c729666e87adcb5027766e80d4f",
       "proof": [
         {
-          "h": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+          "h": "d45e9d78a4d7b575c00f9e7ca721e22dd358704e47c4de24a268f2f505401288",
           "side": "R"
         },
         {
-          "h": "e0a42a2220ba06145eb7b9f16482c4415e3164bdf441ecd89e010794335dc313",
+          "h": "3f9f85b70fa96c12c63a075c99ecf1db0156eee8876ca10e799124a3c48b34e6",
           "side": "R"
         },
         {
-          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "h": "3691b302035e1777867fbfc1bff8556394d7b8994bc431b82a6017bcee1bf44b",
           "side": "R"
         },
         {
-          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "h": "e40e6114c8fcd058503d5d285e842690dc877f993cc3dab5262e5113a864f9c5",
           "side": "L"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
         }
       ]
     },
     {
       "index": 9,
-      "kind": "keeper",
-      "name": "KOLMOGOROV",
-      "slug": "kolmogorov",
-      "seal": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+      "kind": "sphere",
+      "name": "THE TUNGUSKA EVENT",
+      "slug": "the-tunguska",
+      "seal": "d45e9d78a4d7b575c00f9e7ca721e22dd358704e47c4de24a268f2f505401288",
       "proof": [
         {
-          "h": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
+          "h": "176065537e588fd8a56d8f54186a3f93c9b68c729666e87adcb5027766e80d4f",
           "side": "L"
         },
         {
-          "h": "e0a42a2220ba06145eb7b9f16482c4415e3164bdf441ecd89e010794335dc313",
+          "h": "3f9f85b70fa96c12c63a075c99ecf1db0156eee8876ca10e799124a3c48b34e6",
           "side": "R"
         },
         {
-          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "h": "3691b302035e1777867fbfc1bff8556394d7b8994bc431b82a6017bcee1bf44b",
           "side": "R"
         },
         {
-          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "h": "e40e6114c8fcd058503d5d285e842690dc877f993cc3dab5262e5113a864f9c5",
           "side": "L"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
         }
       ]
     },
     {
       "index": 10,
-      "kind": "keeper",
-      "name": "DOSTOEVSKY",
-      "slug": "dostoevsky",
-      "seal": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+      "kind": "sphere",
+      "name": "THE MUTUAL AID",
+      "slug": "the-mutual-aid",
+      "seal": "5a0d0d98d8f999eddbee57925927dce59a2236df70e62a709c96d7b825bac691",
       "proof": [
         {
-          "h": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+          "h": "378829c3e0921a335586e8b8f1fb25e4bea968d7e7f57ae2894f082a6e4a9c7f",
           "side": "R"
         },
         {
-          "h": "bc7fc1e4e68582257779886da7e0a26aa09d718827480f35f72b6e37a0badbbd",
+          "h": "daff0170af5cd8edb1b551887c319fb721d5641aff265fd52422ca13a881c9f0",
           "side": "L"
         },
         {
-          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "h": "3691b302035e1777867fbfc1bff8556394d7b8994bc431b82a6017bcee1bf44b",
           "side": "R"
         },
         {
-          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "h": "e40e6114c8fcd058503d5d285e842690dc877f993cc3dab5262e5113a864f9c5",
           "side": "L"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
         }
       ]
     },
     {
       "index": 11,
-      "kind": "keeper",
-      "name": "TOLSTOY",
-      "slug": "tolstoy",
-      "seal": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+      "kind": "sphere",
+      "name": "THE CHEBYSHEV INEQUALITY",
+      "slug": "the-chebyshev-inequality",
+      "seal": "378829c3e0921a335586e8b8f1fb25e4bea968d7e7f57ae2894f082a6e4a9c7f",
       "proof": [
         {
-          "h": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+          "h": "5a0d0d98d8f999eddbee57925927dce59a2236df70e62a709c96d7b825bac691",
           "side": "L"
         },
         {
-          "h": "bc7fc1e4e68582257779886da7e0a26aa09d718827480f35f72b6e37a0badbbd",
+          "h": "daff0170af5cd8edb1b551887c319fb721d5641aff265fd52422ca13a881c9f0",
           "side": "L"
         },
         {
-          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "h": "3691b302035e1777867fbfc1bff8556394d7b8994bc431b82a6017bcee1bf44b",
           "side": "R"
         },
         {
-          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "h": "e40e6114c8fcd058503d5d285e842690dc877f993cc3dab5262e5113a864f9c5",
           "side": "L"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
         }
       ]
     },
     {
       "index": 12,
       "kind": "keeper",
-      "name": "BRUSENTSOV",
-      "slug": "brusentsov",
-      "seal": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+      "name": "SONIA",
+      "slug": "sonia",
+      "seal": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
       "proof": [
         {
-          "h": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+          "h": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
           "side": "R"
         },
         {
-          "h": "3c4269c0623ae0cb40a06aa06edb0be605cca29086a9bb4135b04755ec9cf6f9",
+          "h": "8486bdfbf17a118b499cd2c749d291edffe53313389c03c15bed86518399ccb6",
           "side": "R"
         },
         {
-          "h": "f80e29d1e3b9433d59482daea7b4a02c24e1e07aeb6fb4d979d6dd45a3422069",
+          "h": "10e609565b6ec0adb8afcf0381446ced95f1cc64adccc8dec4ac5ac3e07f81fb",
           "side": "L"
         },
         {
-          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "h": "e40e6114c8fcd058503d5d285e842690dc877f993cc3dab5262e5113a864f9c5",
           "side": "L"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
         }
       ]
     },
     {
       "index": 13,
       "kind": "keeper",
-      "name": "LEBEDEV",
-      "slug": "lebedev",
-      "seal": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+      "name": "KHINCHIN",
+      "slug": "khinchin",
+      "seal": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
       "proof": [
         {
-          "h": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+          "h": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
           "side": "L"
         },
         {
-          "h": "3c4269c0623ae0cb40a06aa06edb0be605cca29086a9bb4135b04755ec9cf6f9",
+          "h": "8486bdfbf17a118b499cd2c749d291edffe53313389c03c15bed86518399ccb6",
           "side": "R"
         },
         {
-          "h": "f80e29d1e3b9433d59482daea7b4a02c24e1e07aeb6fb4d979d6dd45a3422069",
+          "h": "10e609565b6ec0adb8afcf0381446ced95f1cc64adccc8dec4ac5ac3e07f81fb",
           "side": "L"
         },
         {
-          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "h": "e40e6114c8fcd058503d5d285e842690dc877f993cc3dab5262e5113a864f9c5",
           "side": "L"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
         }
       ]
     },
     {
       "index": 14,
       "kind": "keeper",
-      "name": "TSIOLKOVSKY",
-      "slug": "tsiolkovsky",
-      "seal": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
+      "name": "KOLMOGOROV",
+      "slug": "kolmogorov",
+      "seal": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+      "proof": [
+        {
+          "h": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+          "side": "R"
+        },
+        {
+          "h": "1bbb8e719bb0b629c76f0b1da3ccc930eb09e50d4f04746287ffa26a80d96dac",
+          "side": "L"
+        },
+        {
+          "h": "10e609565b6ec0adb8afcf0381446ced95f1cc64adccc8dec4ac5ac3e07f81fb",
+          "side": "L"
+        },
+        {
+          "h": "e40e6114c8fcd058503d5d285e842690dc877f993cc3dab5262e5113a864f9c5",
+          "side": "L"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "kind": "keeper",
+      "name": "DOSTOEVSKY",
+      "slug": "dostoevsky",
+      "seal": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+      "proof": [
+        {
+          "h": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+          "side": "L"
+        },
+        {
+          "h": "1bbb8e719bb0b629c76f0b1da3ccc930eb09e50d4f04746287ffa26a80d96dac",
+          "side": "L"
+        },
+        {
+          "h": "10e609565b6ec0adb8afcf0381446ced95f1cc64adccc8dec4ac5ac3e07f81fb",
+          "side": "L"
+        },
+        {
+          "h": "e40e6114c8fcd058503d5d285e842690dc877f993cc3dab5262e5113a864f9c5",
+          "side": "L"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "kind": "keeper",
+      "name": "TOLSTOY",
+      "slug": "tolstoy",
+      "seal": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+      "proof": [
+        {
+          "h": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+          "side": "R"
+        },
+        {
+          "h": "216589e07a897e4fa1f4ef9cf2370ed4e5a2fa8a066e39b83aeec1419e8454b0",
+          "side": "R"
+        },
+        {
+          "h": "a285969870b17b4813bd5ae39b4cc4ec324e2b1c036b079ca24e4bb3518010d5",
+          "side": "R"
+        },
+        {
+          "h": "8cbacdc85eefeee2ad1b287b34fa790e6feac2d9114f163bd4e95ff92e614c61",
+          "side": "R"
+        },
+        {
+          "h": "e300cb12c4d59523ef3f231d0f4eeade58d07ca9f8da1b4d095515b408cba576",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "kind": "keeper",
+      "name": "BRUSENTSOV",
+      "slug": "brusentsov",
+      "seal": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+      "proof": [
+        {
+          "h": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+          "side": "L"
+        },
+        {
+          "h": "216589e07a897e4fa1f4ef9cf2370ed4e5a2fa8a066e39b83aeec1419e8454b0",
+          "side": "R"
+        },
+        {
+          "h": "a285969870b17b4813bd5ae39b4cc4ec324e2b1c036b079ca24e4bb3518010d5",
+          "side": "R"
+        },
+        {
+          "h": "8cbacdc85eefeee2ad1b287b34fa790e6feac2d9114f163bd4e95ff92e614c61",
+          "side": "R"
+        },
+        {
+          "h": "e300cb12c4d59523ef3f231d0f4eeade58d07ca9f8da1b4d095515b408cba576",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "kind": "keeper",
+      "name": "LEBEDEV",
+      "slug": "lebedev",
+      "seal": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
       "proof": [
         {
           "h": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
           "side": "R"
         },
         {
-          "h": "a1035f3e362e47c944f51b42c49d8334fb511ee6e636a8bdd1d2ea6bb177e1c7",
+          "h": "4a51b55271b3c2cd728a3e6d2c2fdbdc207b5e9e92a077d22131486f838c3101",
           "side": "L"
         },
         {
-          "h": "f80e29d1e3b9433d59482daea7b4a02c24e1e07aeb6fb4d979d6dd45a3422069",
+          "h": "a285969870b17b4813bd5ae39b4cc4ec324e2b1c036b079ca24e4bb3518010d5",
+          "side": "R"
+        },
+        {
+          "h": "8cbacdc85eefeee2ad1b287b34fa790e6feac2d9114f163bd4e95ff92e614c61",
+          "side": "R"
+        },
+        {
+          "h": "e300cb12c4d59523ef3f231d0f4eeade58d07ca9f8da1b4d095515b408cba576",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "kind": "keeper",
+      "name": "TSIOLKOVSKY",
+      "slug": "tsiolkovsky",
+      "seal": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
+      "proof": [
+        {
+          "h": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
           "side": "L"
         },
         {
-          "h": "608f5fea3b18c2c0c4b2b0ee30c9c9f72f561d25cb9d7fd7bb4c5a3971bcb91b",
+          "h": "4a51b55271b3c2cd728a3e6d2c2fdbdc207b5e9e92a077d22131486f838c3101",
+          "side": "L"
+        },
+        {
+          "h": "a285969870b17b4813bd5ae39b4cc4ec324e2b1c036b079ca24e4bb3518010d5",
+          "side": "R"
+        },
+        {
+          "h": "8cbacdc85eefeee2ad1b287b34fa790e6feac2d9114f163bd4e95ff92e614c61",
+          "side": "R"
+        },
+        {
+          "h": "e300cb12c4d59523ef3f231d0f4eeade58d07ca9f8da1b4d095515b408cba576",
           "side": "L"
         }
       ]

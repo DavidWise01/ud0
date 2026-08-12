@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE MUTUAL AID · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.grid{display:grid;gap:2px;} .cell{width:16px;height:16px;border:1px solid var(--line);} .cell.on{background:var(--gold);border-color:var(--line2);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE STATE &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE MUTUAL AID</h1>
+ <p class="sub">Kropotkin&rsquo;s answer to "nature red in tooth and claw": <b>mutual aid</b>, not only competition, is a factor of evolution. This panel is <b>runnable</b> &mdash; it decides <b>Hamilton&rsquo;s rule</b> (an altruistic gene spreads when <b>r&middot;b &gt; c</b>) and plays the <b>repeated Prisoner&rsquo;s Dilemma</b>, where <b>tit-for-tat</b> beats always-defect over many rounds while unconditional cooperation is exploited. The honest edge: cooperation is evolutionarily real only <b>where reciprocity or kinship hold</b>.</p>
+ <p class="src"><span class="tag t-amber">source</span> Peter Kropotkin, <i>Mutual Aid: A Factor of Evolution</i> (1902); the Russian anarcho-communist tradition (Kropotkin, Bakunin). Room: <b>THE STATE</b> &mdash; the anarchist counter to GOBERNET&rsquo;s Marxism. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; Kropotkin <span class="tag t-amber">1902</span></h2>
+   <p><b>Pyotr Kropotkin</b> (1842&ndash;1921): a prince who became the leading theorist of <b>anarcho-communism</b>. A trained geographer, he read Siberian fauna and saw cooperation everywhere &mdash; herds, colonies, mutual defence &mdash; not only Darwin&rsquo;s struggle.</p>
+   <p class="small"><i>Mutual Aid: A Factor of Evolution</i> (1902) was written against the <b>Social Darwinism</b> of Huxley and Spencer, who read nature as pure competition. Alongside <b>Mikhail Bakunin</b> (1814&ndash;1876), Kropotkin anchors the Russian anarchist tradition: no state, federated free association.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE ANARCHIST BRANCH <span class="tag t-amber">the split</span></h2>
+   <p>Both Kropotkin and Marx opposed capitalism; they split on the <b>state</b>. Marx wanted the workers to <b>seize</b> the state (a transitional "dictatorship of the proletariat"). Kropotkin held that the state itself is the machine of domination &mdash; you cannot liberate through it.</p>
+   <p class="small">His alternative was <b>mutual aid</b>: cooperation organised from below, federation without a ruling apparatus. That is the anarchist counter to <b>GOBERNET</b>&rsquo;s Marxism &mdash; same room, <b>THE STATE</b>, opposite verdict. The engine below tests <i>when</i> that cooperation can actually survive.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>LINEAGE &mdash; to Axelrod and after</h2>
+   <p>Kropotkin, <b>1902</b>: cooperation is a real evolutionary factor &mdash; asserted from field observation. The mechanism came later.</p>
+   <p class="small"><b>W. D. Hamilton</b> (1964): kin selection &mdash; <b>r&middot;b &gt; c</b>. <b>Robert Trivers</b> (1971): reciprocal altruism. <b>Robert Axelrod</b>&rsquo;s 1980 computer tournament: <b>tit-for-tat</b>, submitted by Anatol Rapoport, won the repeated Prisoner&rsquo;s Dilemma. Modern evolution-of-cooperation theory (Nowak) formalises exactly what Kropotkin saw &mdash; and bounds it.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE ENGINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the engine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the thesis, made testable <span class="tag t-in">in &darr;</span></h2>
+   <p><b>THE THESIS</b> <span class="tag t-amber">framing</span>: cooperation is a factor of evolution. Two live mechanisms make it testable. <b>Hamilton&rsquo;s rule</b> &mdash; set relatedness <b>r</b>, benefit to the recipient <b>b</b>, cost to the altruist <b>c</b>; the gene spreads when <b>r&middot;b &gt; c</b>.</p>
+   <div class="row"><label>r (kinship)</label><input id="rin" type="number" step="0.1" min="0" max="1" value="0.5" style="width:80px"></div>
+   <div class="row"><label>b (benefit)</label><input id="bin" type="number" step="0.5" value="3" style="width:80px"></div>
+   <div class="row"><label>c (cost)</label><input id="cin" type="number" step="0.5" value="1" style="width:80px"></div>
+   <p class="small" style="margin-top:8px"><b>Reciprocity</b> &mdash; the repeated Prisoner&rsquo;s Dilemma. Pick two strategies and a number of rounds; payoffs are <b>T=5, R=3, P=1, S=0</b>.</p>
+   <div class="row"><label>player A</label><select id="sa"><option value="TFT">TFT (tit-for-tat)</option><option value="ALLD">ALLD (always defect)</option><option value="ALLC">ALLC (always cooperate)</option></select></div>
+   <div class="row"><label>player B</label><select id="sb"><option value="ALLD">ALLD (always defect)</option><option value="TFT">TFT (tit-for-tat)</option><option value="ALLC">ALLC (always cooperate)</option></select></div>
+   <div class="row"><label>rounds N</label><input id="nin" type="number" min="1" max="60" value="10" style="width:80px"></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; decide r&middot;b&gt;c &middot; play the rounds &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; cooperation, decided <span class="tag t-lit">LIT</span></h2>
+   <p class="small" style="margin-bottom:4px;color:var(--blue)"><b>HAMILTON&rsquo;S RULE</b> &mdash; r&middot;b vs c</p>
+   <div class="out" id="hamout">&mdash;</div>
+   <p class="small" id="hamline">&mdash;</p>
+   <p class="small" style="margin-top:10px;color:var(--blue)"><b>REPEATED PRISONER&rsquo;S DILEMMA</b> &mdash; the chosen matchup</p>
+   <div class="out" id="pdout">&mdash;</div>
+   <table id="traceTbl"><thead><tr><th>round</th><th>A move</th><th>B move</th><th>A pts</th><th>B pts</th></tr></thead><tbody id="traceBody"></tbody></table>
+   <p class="small" style="margin-top:8px"><b>All four canonical matchups</b> (N rounds, memory <span id="memstate" class="k">on</span>):</p>
+   <table id="allTbl"><thead><tr><th>match</th><th>A total</th><th>B total</th><th>reading</th></tr></thead><tbody id="allBody"></tbody></table>
+  </div>
+  <div class="flow">&#9660; &nbsp; the engine emits the verdict &amp; the witness &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; is cooperation viable? <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outverdict">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>invariant</th><th>value</th><th>expected</th><th>ok</th></tr></thead><tbody id="witbody"></tbody></table>
+   <div class="wall-note" style="border-left-color:var(--blue);background:rgba(29,78,121,.05);margin-top:10px"><span class="tag t-amber">honest</span> <b>The bounded claim.</b> TFT beats ALLD only because it can <b>remember and punish</b> defection; against ALLD it still <b>loses round one</b>. Mutual aid is real &mdash; but only where reciprocity (memory) or kinship (r&middot;b&gt;c) hold. Remove them and defection wins. The tamper (8) proves it.</div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE ADVERSARY &mdash; "tooth and claw"</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> <b>Social Darwinism.</b> Nature is pure competition; the fittest crush the rest; cooperation is sentiment. This was the reigning read when Kropotkin wrote &mdash; and it is <b>partly right</b>: in a <b>one-shot</b> encounter between strangers, defection strictly dominates. A lone cooperator is exploited every time.</div>
+   <p class="small" style="margin-top:8px">The wall is real and the engine respects it. Kropotkin&rsquo;s error would be to claim cooperation <i>always</i> wins. It does not. It wins <b>where the game repeats</b> (reciprocity) <b>or the players share genes</b> (kinship). Outside those conditions, the adversary is correct.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>"Nature is pure competition."</s> <b>Cut.</b> Mutual aid is measurable: TFT-vs-TFT earns <b>N&middot;R</b> where ALLD-vs-ALLD earns only <b>N&middot;P</b>. Cooperators can out-earn defectors &mdash; when the game repeats.</p>
+   <p class="grave"><s>"Altruism cannot evolve."</s> <b>Cut.</b> Hamilton&rsquo;s rule gives the exact condition: <b>r&middot;b &gt; c</b>. Help kin when relatedness times benefit exceeds your cost, and the gene spreads.</p>
+   <p class="grave"><s>"Cooperation always wins."</s> <b>Cut &mdash; the honest half.</b> ALLC is exploited to the floor by ALLD (<b>N&middot;S</b> vs <b>N&middot;T</b>), and in a one-shot game defection dominates. Cooperation is real, <b>not universal</b>.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; make it one-shot</h2>
+   <p>The red move: strip <b>memory</b> from the game &mdash; make every encounter <b>one-shot</b>. With no future rounds to punish defection, TFT can no longer retaliate; it collapses into a helpless cooperator and is exploited like ALLC.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; remove memory (one-shot)</button><button id="restore">&#8634; restore reciprocity</button></div>
+   <p class="small" id="tampernote">Remove memory and re-run: TFT stops punishing ALLD, its loss stops being bounded to one round, and the witness (5) &mdash; "reciprocity keeps cooperation viable" &mdash; turns <b style="color:var(--wall)">red</b>. Defection wins; mutual aid survives only with reciprocity or kinship.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE MUTUAL AID &mdash; World IV &middot; <b>SONIA</b>, room <b>THE STATE</b>, in the refined <b>OCHO</b>: blue builds Kropotkin&rsquo;s roots, the split from Marx, and the lineage to Axelrod; the engine decides Hamilton&rsquo;s rule and plays the repeated Prisoner&rsquo;s Dilemma down the centre; red raises the "tooth and claw" wall, buries the overclaims, and strips memory to make defection win. Hamilton&rsquo;s rule and the tit-for-tat / always-defect / always-cooperate payoffs are LIT and self-checked; the history is AMBER; the one-shot dominance of defection is a real WALL. Mutual aid is a factor of evolution &mdash; where reciprocity or kinship hold, and not otherwise. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE MUTUAL AID — evolution-of-cooperation engine (every payoff computed, none looked up) ===== */
+
+// repeated Prisoner's Dilemma payoffs (T > R > P > S, and 2R > T + S)
+var T=5, R=3, P=1, S=0;
+var MEMORY=true;   // when false the game is ONE-SHOT: TFT has no past to punish and collapses to a cooperator
+
+// Hamilton's rule: an altruistic gene spreads when relatedness*benefit > cost
+function hamiltonSpread(r,b,c){ return r*b > c; }
+
+// per-round payoff for a pair of moves ("C" cooperate, "D" defect) -> [payoffA, payoffB]
+function payoff(ma,mb){
+ if(ma==="C" && mb==="C") return [R,R];
+ if(ma==="C" && mb==="D") return [S,T];
+ if(ma==="D" && mb==="C") return [T,S];
+ return [P,P];
+}
+
+// a strategy chooses this round's move from the opponent's PREVIOUS move
+function moveOf(strat,oppLast,round){
+ if(strat==="ALLD") return "D";
+ if(strat==="ALLC") return "C";
+ // TFT: cooperate first, then mirror the opponent -- but only if memory exists
+ if(!MEMORY) return "C";          // one-shot: no past move to mirror, so it just cooperates
+ if(round===0) return "C";
+ return oppLast;
+}
+
+// play strat A vs strat B for N rounds; returns totals and the full trace
+function playMatch(sa,sb,N){
+ var totA=0, totB=0, lastA=null, lastB=null, trace=[];
+ for(var r=0;r<N;r++){
+  var ma=moveOf(sa,lastB,r), mb=moveOf(sb,lastA,r);
+  var p=payoff(ma,mb);
+  totA+=p[0]; totB+=p[1];
+  trace.push([r+1,ma,mb,p[0],p[1]]);
+  lastA=ma; lastB=mb;
+ }
+ return { A:totA, B:totB, trace:trace };
+}
+
+/* ===== fail-loud self-check (runs untampered, memory ON) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=MEMORY; MEMORY=true;
+ var N=10;
+
+ // 1 — Hamilton's rule at both named anchors
+ t(hamiltonSpread(0.5,3,1)===true,"Hamilton: (r=0.5,b=3,c=1) gives 1.5>1 -> gene must spread");
+ t(hamiltonSpread(0.5,1,1)===false,"Hamilton: (r=0.5,b=1,c=1) gives 0.5<1 -> gene must NOT spread");
+ t(0.5*3 > 1 && 0.5*1 < 1,"Hamilton arithmetic anchors must hold");
+
+ // 2 — mutual cooperation beats mutual defection
+ var tt=playMatch("TFT","TFT",N);
+ t(tt.A===N*R && tt.B===N*R,"TFT vs TFT must be N*R = "+(N*R)+" each (mutual cooperation)");
+ var dd=playMatch("ALLD","ALLD",N);
+ t(dd.A===N*P && dd.B===N*P,"ALLD vs ALLD must be N*P = "+(N*P)+" each (mutual defection)");
+ t(tt.A > dd.A,"mutual cooperation ("+tt.A+") must beat mutual defection ("+dd.A+")");
+
+ // 3 — unconditional cooperation is exploited by defection
+ var ca=playMatch("ALLC","ALLD",N);
+ t(ca.A===N*S,"ALLC vs ALLD: ALLC must get N*S = "+(N*S)+" (exploited to the floor)");
+ t(ca.B===N*T,"ALLC vs ALLD: ALLD must get N*T = "+(N*T)+" (full exploitation)");
+
+ // 4 — TFT loses AT MOST ONE round to ALLD (bounded loss), and that loss is exactly T - S
+ var ta=playMatch("TFT","ALLD",N);
+ t(ta.A===S+(N-1)*P,"TFT vs ALLD: TFT must be S + (N-1)*P = "+(S+(N-1)*P));
+ t(ta.B===T+(N-1)*P,"TFT vs ALLD: ALLD must be T + (N-1)*P = "+(T+(N-1)*P));
+ t(ta.B - ta.A === (T - S),"TFT vs ALLD: the gap must be exactly one round's (T - S) = "+(T-S)+" -- bounded loss");
+ t(ta.B - ta.A <= (T - S),"TFT must lose at most one round to ALLD");
+
+ // 5 — PD constants are a genuine Prisoner's Dilemma
+ t(T>R && R>P && P>S,"payoffs must satisfy T > R > P > S");
+ t(2*R > T+S,"payoffs must satisfy 2R > T + S (so mutual cooperation beats alternating exploitation)");
+
+ // 6 — the tamper really breaks it: with memory OFF, TFT stops punishing and is exploited like ALLC
+ MEMORY=false;
+ var oneShot=playMatch("TFT","ALLD",N);
+ t(oneShot.A===N*S && oneShot.B===N*T,"one-shot: TFT must collapse to N*S vs N*T (defection dominates)");
+ t(oneShot.B - oneShot.A > (T - S),"one-shot: TFT's loss must NO LONGER be bounded to one round");
+ MEMORY=save;
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+
+function clampNum(v,lo,hi,dflt){ var n=+v; if(isNaN(n)) n=dflt; if(n<lo)n=lo; if(n>hi)n=hi; return n; }
+function moveTxt(m){ return m==="C"?"C":"D"; }
+
+// the witness: recompute the load-bearing invariants live and flag any break
+function witness(N){
+ var tt=playMatch("TFT","TFT",N), dd=playMatch("ALLD","ALLD",N),
+     ca=playMatch("ALLC","ALLD",N), ta=playMatch("TFT","ALLD",N);
+ var checks=[
+  ["TFT-TFT beats ALLD-ALLD", tt.A+" > "+dd.A, "coop > defect", tt.A>dd.A],
+  ["ALLC exploited by ALLD", ca.A+" vs "+ca.B, "N*S vs N*T", ca.A===N*S && ca.B===N*T],
+  ["TFT loss to ALLD bounded", "gap "+(ta.B-ta.A), "<= "+(T-S)+" (one round)", (ta.B-ta.A)<=(T-S)]
+ ];
+ var rows="", allok=true;
+ for(var i=0;i<checks.length;i++){
+  var ok=checks[i][3]; if(!ok) allok=false;
+  rows+="<tr><td style=\"text-align:left\">"+checks[i][0]+"</td><td>"+checks[i][1]+"</td><td>"+checks[i][2]+"</td><td style=\"color:"+(ok?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(ok?"ok":"X")+"</td></tr>";
+ }
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'+(allok?"WITNESS - reciprocity keeps cooperation viable":"WITNESS - reciprocity broken; defection wins")+'</span>';
+ return allok;
+}
+
+function readingFor(name,res,N){
+ if(name==="TFT-TFT") return res.A===N*R?"mutual cooperation (N*R)":"drift";
+ if(name==="ALLD-ALLD") return res.A===N*P?"mutual defection (N*P)":"drift";
+ if(name==="ALLC-ALLD") return "ALLC exploited (N*S vs N*T)";
+ if(name==="TFT-ALLD") return (res.B-res.A)<=(T-S)?"TFT punishes; loss bounded":"TFT exploited; unbounded";
+ return "";
+}
+
+function render(){
+ var r=clampNum($("rin").value,0,1,0.5),
+     b=clampNum($("bin").value,-50,50,3),
+     c=clampNum($("cin").value,-50,50,1),
+     N=Math.round(clampNum($("nin").value,1,60,10)),
+     sa=$("sa").value, sb=$("sb").value;
+
+ // Hamilton's rule
+ var spread=hamiltonSpread(r,b,c), rb=r*b;
+ $("hamout").innerHTML="r&middot;b = "+(+rb.toFixed(3))+"  "+(spread?"&gt;":"&le;")+"  c = "+c+"  &rarr;  <span style=\"color:"+(spread?"var(--lit)":"var(--wall)")+"\">"+(spread?"gene SPREADS":"does NOT spread")+"</span>";
+ $("hamline").innerHTML="relatedness "+r+" &times; benefit "+b+" = "+(+rb.toFixed(3))+", against cost "+c+". The altruistic gene "+(spread?"is favoured by selection.":"is selected against.");
+
+ // repeated PD — the chosen matchup
+ var m=playMatch(sa,sb,N);
+ $("pdout").innerHTML=sa+" total = <span style=\"color:"+(m.A>=m.B?"var(--lit)":"var(--wall)")+"\">"+m.A+"</span>  &middot;  "+sb+" total = <span style=\"color:"+(m.B>=m.A?"var(--lit)":"var(--wall)")+"\">"+m.B+"</span>  ("+N+" rounds)";
+ var tr="", show=m.trace.slice(0,12);
+ for(var i=0;i<show.length;i++){
+  var row=show[i];
+  tr+="<tr><td>"+row[0]+"</td><td style=\"color:"+(row[1]==="C"?"var(--blue)":"var(--red)")+";font-weight:700\">"+row[1]+"</td><td style=\"color:"+(row[2]==="C"?"var(--blue)":"var(--red)")+";font-weight:700\">"+row[2]+"</td><td>"+row[3]+"</td><td>"+row[4]+"</td></tr>";
+ }
+ if(m.trace.length>12) tr+="<tr><td colspan=\"5\" class=\"mut\">... "+(m.trace.length-12)+" more rounds</td></tr>";
+ $("traceBody").innerHTML=tr;
+
+ // all four canonical matchups
+ $("memstate").textContent = MEMORY ? "on" : "OFF";
+ var mats=[["TFT-TFT","TFT","TFT"],["ALLD-ALLD","ALLD","ALLD"],["ALLC-ALLD","ALLC","ALLD"],["TFT-ALLD","TFT","ALLD"]];
+ var ab="";
+ for(var j=0;j<mats.length;j++){
+  var res=playMatch(mats[j][1],mats[j][2],N);
+  ab+="<tr><td style=\"font-weight:700\">"+mats[j][0]+"</td><td>"+res.A+"</td><td>"+res.B+"</td><td style=\"text-align:left\">"+readingFor(mats[j][0],res,N)+"</td></tr>";
+ }
+ $("allBody").innerHTML=ab;
+
+ // DATA OUT — is cooperation viable?
+ var viable=witness(N);
+ $("outverdict").className="verdict "+(viable?"ok":"no");
+ $("outverdict").textContent = viable ? "COOPERATION IS VIABLE" : "COOPERATION COLLAPSES";
+ $("outreason").innerHTML = MEMORY
+  ? "With memory, TFT punishes defection: it out-earns ALLD-vs-ALLD, and its loss to a pure defector is bounded to a single round. Mutual aid holds under reciprocity."
+  : "<b style=\"color:var(--wall)\">One-shot game.</b> No memory means no punishment: TFT collapses into a cooperator and is exploited to the floor. Defection dominates; mutual aid needs reciprocity or kinship.";
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ var sync=function(){ render(); };
+ ["rin","bin","cin","nin","sa","sb"].forEach(function(id){ $(id).addEventListener("input",sync); $(id).addEventListener("change",sync); });
+ $("tamper").addEventListener("click",function(){ MEMORY=false; $("tampernote").innerHTML="<b style='color:var(--wall)'>Memory removed - the game is now one-shot.</b> TFT has no past round to punish, so it collapses into a helpless cooperator. The witness (5) re-runs the matchups: TFT's loss to ALLD is no longer bounded to one round, and the verdict turns <b style='color:var(--wall)'>red</b>. Defection dominates; the adversary was right for this case."; render(); });
+ $("restore").addEventListener("click",function(){ MEMORY=true; $("tampernote").innerHTML="Remove memory and re-run: TFT stops punishing ALLD, its loss stops being bounded to one round, and the witness (5) - \"reciprocity keeps cooperation viable\" - turns <b style='color:var(--wall)'>red</b>. Defection wins; mutual aid survives only with reciprocity or kinship."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the mutual-aid engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

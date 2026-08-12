@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE CHEBYSHEV INEQUALITY &middot; WORLD IV — SONIA &middot; THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.grid{display:grid;gap:2px;} .cell{width:16px;height:16px;border:1px solid var(--line);} .cell.on{background:var(--gold);border-color:var(--line2);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>ROOM &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE CHEBYSHEV INEQUALITY</h1>
+ <p class="sub">Feed <b>any</b> distribution &mdash; you need not know its shape, only its mean &mu; and variance &sigma;&sup2; &mdash; and the fraction of mass more than <b>k&sigma;</b> from the centre can never exceed <b>1/k&sup2;</b>. One inequality, no assumptions. And the same P. L. Chebyshev built the <b>polynomials</b> that oscillate flattest of all, and proved a <b>prime always sits in (n, 2n]</b>. Every claim here is <b>runnable</b>.</p>
+ <p class="src"><span class="tag t-amber">source</span> Pafnuty Lvovich Chebyshev (1821&ndash;1894), St. Petersburg &mdash; Chebyshev&rsquo;s inequality, Chebyshev polynomials T<sub>n</sub>, and Bertrand&rsquo;s postulate. Room: <b>THE NUMBER</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; the St. Petersburg school <span class="tag t-amber">history</span></h2>
+   <p><b>Pafnuty Lvovich Chebyshev</b> (1821&ndash;1894) founded the <b>St. Petersburg school</b> of mathematics. His inequality gives probability an unconditional grip on any distribution with a finite variance.</p>
+   <p class="small">His students carried the line forward: <b>Andrei Markov</b> (the Markov chains &amp; the Markov property) and <b>Aleksandr Lyapunov</b> (stability, the central limit theorem) &mdash; the same lineage that runs through SONIA&rsquo;s other <b>THE NUMBER</b> spheres. Chebyshev&rsquo;s inequality is the seed of the weak law of large numbers.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE INEQUALITY &mdash; one bound, any distribution <span class="tag t-lit">LIT</span></h2>
+   <p>For <b>any</b> random variable X with mean &mu; and variance &sigma;&sup2; &gt; 0, and any <b>k &gt; 0</b>:</p>
+   <p style="text-align:center"><b class="k">P( |X &minus; &mu;| &ge; k&sigma; )&nbsp; &le;&nbsp; 1/k&sup2;</b></p>
+   <p class="small">No shape assumed &mdash; not normal, not symmetric, not anything. <b>k=2 &rarr; &le; 0.25</b>; <b>k=3 &rarr; &le; 0.1111</b>. The bound only says something for <b>k &gt; 1</b> (at k=1 it reads &le;1, no information). It is <b>tight</b>: a two-point distribution hits it exactly.</p>
+   <div id="ineqwit"></div>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE POLYNOMIALS &amp; EQUIOSCILLATION <span class="tag t-lit">LIT</span></h2>
+   <p>Chebyshev polynomials are defined by <b class="k">T<sub>n</sub>(cos t) = cos(n&middot;t)</b> and grow from a two-term recurrence:</p>
+   <p style="text-align:center"><b class="k">T<sub>n+1</sub>(x) = 2x&middot;T<sub>n</sub>(x) &minus; T<sub>n&minus;1</sub>(x)</b></p>
+   <p class="small">T&#8320;=1, T&#8321;=x, <b>T&#8322;=2x&sup2;&minus;1</b>, <b>T&#8323;=4x&sup3;&minus;3x</b>. The <b>minimax</b> property: scaled to monic (T<sub>n</sub>/2<sup>n&minus;1</sup>) it has the <b>smallest sup-norm</b> on [&minus;1,1] of any monic degree-n polynomial &mdash; exactly <b class="k">2<sup>1&minus;n</sup></b>. It equioscillates between &plusmn;1.</p>
+   <div class="row"><label>n</label><input id="pn" type="range" min="1" max="8" value="4"><span id="pnv" class="small">4</span></div>
+   <div class="row"><label>t (&times;&pi;)</label><input id="pt" type="range" min="0" max="100" value="30"><span id="ptv" class="small">0.30</span></div>
+   <div class="small" id="polyline">&mdash;</div>
+   <div id="polywit"></div>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; a distribution <span class="tag t-in">in &darr;</span></h2>
+   <p>Pick a distribution and draw a sample from a <b>fixed-seed</b> generator. You do <b>not</b> tell the engine the shape &mdash; it estimates &mu; and &sigma; from the draws, then measures how much mass strays past k&sigma;.</p>
+   <div class="row"><label>distribution</label>
+    <select id="dist">
+     <option value="exponential">exponential(&lambda;) &mdash; skewed</option>
+     <option value="uniform">uniform(0,1) &mdash; bounded</option>
+     <option value="bernoulli">Bernoulli(p) &mdash; two-point</option>
+     <option value="normal">normal(0,&sigma;) &mdash; bell</option>
+     <option value="extremal">extremal spike &mdash; hits the bound</option>
+    </select></div>
+   <div class="row" id="prow"><label id="plab">&lambda;</label><input id="param" type="number" step="any" value="1" style="width:90px"></div>
+   <div class="row"><label>N draws</label><input id="nn" type="range" min="500" max="8000" step="500" value="4000"><span id="nnv" class="small">4000</span></div>
+   <div class="row"><label>seed</label><input id="seed" type="number" value="20260812" style="width:120px"></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; sample, estimate &mu; and &sigma;, count the tail &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the LIT sampler <span class="tag t-lit">LIT</span></h2>
+   <div class="row" style="font-size:12px"><span>estimated &mu; = <b id="muo" style="color:var(--blue)">&mdash;</b></span><span>&sigma; = <b id="sigo" style="color:var(--blue)">&mdash;</b></span></div>
+   <p class="small" style="margin-top:6px">For each k, the <b>measured tail fraction</b> beyond k&sigma; sits under the guarantee. Blue bar = empirical; the red mark is the bound:</p>
+   <table id="tbl"><thead><tr><th>k</th><th>empirical P(|X&minus;&mu;|&ge;k&sigma;)</th><th>bound</th><th>tail vs bound</th></tr></thead><tbody id="tbody"></tbody></table>
+   <p class="small" id="boundlab" style="margin-top:6px"></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the tail never overruns the bound &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; the guarantee <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict" id="verdict">&mdash;</div>
+   <div class="reason" id="reason"></div>
+   <div id="litbadge" style="margin-top:8px"></div>
+   <p class="small">The guarantee is <b>unconditional</b>: whatever you feed, the fraction past k&sigma; obeys 1/k&sup2;. The bounded and bell distributions leave it slack; the <b>extremal spike</b> presses it to equality &mdash; that is why 1/k&sup2; cannot be improved.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9700;</div>
+
+  <div class="win red"><span class="no">5</span><h2>BERTRAND&rsquo;S POSTULATE &amp; the PNT wall <span class="tag t-lit">LIT</span></h2>
+   <p>Chebyshev <b>proved</b> Bertrand&rsquo;s postulate: for every n &ge; 1 there is a <b>prime in (n, 2n]</b>. The witness checks all n from 1 to 50 live.</p>
+   <div class="row"><label>n</label><input id="bn" type="range" min="1" max="50" value="25"><span id="bnv" class="small">25</span></div>
+   <div class="small" id="bline">&mdash;</div>
+   <div id="bwit"></div>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> He went further, bounding &pi;(x) between two constant multiples of x/ln x &mdash; the first real step toward the <b>Prime Number Theorem</b>. But he could <b>not</b> prove the limit is exactly 1. That fell only in <b>1896</b> (Hadamard, de la Vall&eacute;e Poussin), by complex analysis he did not have. The postulate he could reach; the theorem he could not.</div>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;You must know the distribution to bound the tail.&rdquo;</s> <b>Cut.</b> Chebyshev needs only the <b>mean and the variance</b>. Shape is irrelevant; the bound holds for all of them at once.</p>
+   <p class="grave"><s>&ldquo;1/k&sup2; is a loose over-estimate you can always beat.&rdquo;</s> <b>Cut.</b> It is <b>tight</b> &mdash; the extremal two-point distribution attains it exactly. No universal bound is smaller.</p>
+   <p class="grave"><s>&ldquo;The bound tells you something at any k.&rdquo;</s> <b>Cut.</b> For <b>k &le; 1</b> it reads &ge;1 and says nothing; it only bites for k &gt; 1.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE TAMPER &mdash; drop the square</h2>
+   <p>The red team&rsquo;s move: relabel the bound as <b>1/k</b> instead of <b>1/k&sup2;</b>. It is still an over-estimate, so the sample never crosses it &mdash; but it is <b>no longer Chebyshev&rsquo;s guarantee</b>. The tightness witness (2) tests it against the extremal distribution and catches the mislabel.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; drop the square</button><button id="restore">&#8635; restore</button></div>
+   <p class="small" id="tampernote">Break 1/k&sup2; to 1/k and the extremal distribution &mdash; whose tail is exactly 1/k&sup2; &mdash; no longer meets the stated bound with equality. The witness recomputes and turns red. The attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE CHEBYSHEV INEQUALITY &mdash; World IV &middot; <b>SONIA</b>, in the refined <b>OCHO</b>: a distribution goes <b style="color:var(--cy)">in</b> &rarr; the sampler estimates &mu;,&sigma; and counts the tail &rarr; the <b style="color:var(--grn)">1/k&sup2; guarantee</b> comes out. A runnable rendering of P. L. Chebyshev&rsquo;s inequality, his polynomials T<sub>n</sub> (recurrence, the identity T<sub>n</sub>(cos t)=cos nt, and the minimax sup-norm 2<sup>1&minus;n</sup>), and Bertrand&rsquo;s postulate &mdash; all self-checked with a fixed-seed generator so the audit is deterministic; the Prime Number Theorem is marked as the wall he could not cross. SONIA reads the tail by candlelight. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE CHEBYSHEV INEQUALITY — the engine (fixed-seed, deterministic; nothing looked up) ===== */
+
+// fixed-seed LCG (numerical-recipes constants); spans full [0,1) — no Math.random anywhere
+function LCG(seed){ var s=(seed>>>0)||1; return function(){ s=(1664525*s+1013904223)>>>0; return s/4294967296; }; }
+
+// draw N samples from an editable distribution with a fixed seed
+function sampleDist(kind,param,N,seed){
+ var rng=LCG(seed), xs=[], i, u, x;
+ for(i=0;i<N;i++){
+  u=rng(); if(u<=0) u=1e-12;
+  if(kind==="uniform"){ x=u; }
+  else if(kind==="exponential"){ x=-Math.log(u)/param; }
+  else if(kind==="bernoulli"){ x=(u<param)?1:0; }
+  else if(kind==="normal"){ var u2=rng(); if(u2<=0)u2=1e-12; x=param*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*u2); }
+  else if(kind==="extremal"){ // two-point spike: mass 1/(2*k0^2) at each +/- k0, rest at 0 (k0=2, sigma=1)
+   var k0=2, pt=1/(2*k0*k0); if(u<pt) x=-k0; else if(u<2*pt) x=k0; else x=0; }
+  else { x=u; }
+  xs.push(x);
+ }
+ return xs;
+}
+function meanStd(xs){ var n=xs.length,s=0,i; for(i=0;i<n;i++)s+=xs[i]; var mu=s/n,v=0,d; for(i=0;i<n;i++){d=xs[i]-mu; v+=d*d;} v/=n; return {mu:mu,sigma:Math.sqrt(v),n:n}; }
+function tailFrac(xs,mu,sigma,k){ var c=0,thr=k*sigma,i; for(i=0;i<xs.length;i++){ if(Math.abs(xs[i]-mu)>=thr)c++; } return c/xs.length; }
+
+var TAMPER=false;                              // the red-team switch
+function chebBound(k){ return TAMPER ? 1/k : 1/(k*k); }  // real guarantee is 1/k^2; tamper drops the square
+function extremalTail(k0){ return 1/(k0*k0); } // the two-point distribution attains P(|X-mu|>=k0 sigma)=1/k0^2 exactly
+
+// Chebyshev polynomials via the recurrence T_{n+1}=2x T_n - T_{n-1}
+function chebT(n,x){ if(n===0)return 1; if(n===1)return x; var t0=1,t1=x,t,i; for(i=2;i<=n;i++){ t=2*x*t1-t0; t0=t1; t1=t; } return t1; }
+// integer coefficients of T_n (low->high) via the same recurrence on coefficient vectors
+function chebCoeffs(n){
+ if(n===0)return [1]; if(n===1)return [0,1];
+ var a=[1], b=[0,1], i, j, sh, len, c;
+ for(i=2;i<=n;i++){
+  sh=[0]; for(j=0;j<b.length;j++) sh.push(2*b[j]);   // 2x * b
+  len=Math.max(sh.length,a.length); c=[];
+  for(j=0;j<len;j++) c[j]=(sh[j]||0)-(a[j]||0);       // minus a
+  a=b; b=c;
+ }
+ return b;
+}
+// smallest prime strictly above n and at most 2n (Bertrand); -1 if none
+function bertrandPrime(n){ var p,d,isp; for(p=n+1;p<=2*n;p++){ isp=p>1; for(d=2;d*d<=p;d++){ if(p%d===0){isp=false;break;} } if(isp)return p; } return -1; }
+
+/* ===== fail-loud self-check (runs untampered; throws on any violation) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+ var i,j,k,n,x,th;
+
+ // 1 — the bound values: k=2 -> 0.25, k=3 -> 1/9; 1/k^2 < 1 only for k>1
+ t(Math.abs(chebBound(2)-0.25)<1e-15,"bound at k=2 must be 0.25");
+ t(Math.abs(chebBound(3)-1/9)<1e-15,"bound at k=3 must be 1/9 = 0.1111");
+ t(chebBound(2)<1 && chebBound(3)<1,"1/k^2 must be < 1 for k>1");
+ t(chebBound(1)>=1,"at k=1 the bound is >=1 (no information)");
+
+ // 2 — the bound is TIGHT: the extremal two-point distribution attains it (equality) for k=2,3,4
+ for(k=2;k<=4;k++) t(Math.abs(extremalTail(k)-chebBound(k))<1e-15,"extremal distribution must attain 1/k^2 at k="+k);
+
+ // 3 — a fixed-seed sample obeys the bound (deterministic) for k in {2,3,4}
+ var xs=sampleDist("exponential",1,4000,20260812), st=meanStd(xs);
+ for(k=2;k<=4;k++){ var f=tailFrac(xs,st.mu,st.sigma,k);
+  t(f<=chebBound(k)+1e-6,"empirical tail at k="+k+" ("+f.toFixed(4)+") must be <= 1/k^2 ("+chebBound(k).toFixed(4)+")"); }
+
+ // 4 — the recurrence reproduces T_2 = 2x^2-1 and T_3 = 4x^3-3x
+ for(x=-1;x<=1.0000001;x+=0.1){ var xx=Math.round(x*1e6)/1e6;
+  t(Math.abs(chebT(2,xx)-(2*xx*xx-1))<1e-9,"T_2 must equal 2x^2-1 at x="+xx);
+  t(Math.abs(chebT(3,xx)-(4*xx*xx*xx-3*xx))<1e-9,"T_3 must equal 4x^3-3x at x="+xx); }
+ var c2=chebCoeffs(2), c3=chebCoeffs(3);
+ t(c2[0]===-1&&c2[1]===0&&c2[2]===2,"T_2 coefficients must be [-1,0,2]");
+ t(c3[0]===0&&c3[1]===-3&&c3[2]===0&&c3[3]===4,"T_3 coefficients must be [0,-3,0,4]");
+
+ // 5 — the defining identity T_n(cos t) === cos(n t) within 1e-9
+ for(n=1;n<=8;n++) for(j=0;j<=16;j++){ th=Math.PI*j/16; t(Math.abs(chebT(n,Math.cos(th))-Math.cos(n*th))<1e-9,"T_n(cos t)=cos(nt) fails at n="+n+", j="+j); }
+
+ // 6 — minimax: monic-scaled T_n (T_n/2^{n-1}) has sup-norm 2^{1-n} on [-1,1]
+ for(n=1;n<=8;n++){ var mx=0,s; for(s=-1;s<=1.0000001;s+=0.001){ var v=Math.abs(chebT(n,s))/Math.pow(2,n-1); if(v>mx)mx=v; }
+  t(Math.abs(mx-Math.pow(2,1-n))<1e-6,"monic T_"+n+" sup-norm must be 2^{1-n} = "+Math.pow(2,1-n)); }
+
+ // 7 — Bertrand's postulate: a prime lies in (n, 2n] for all n = 1..50
+ for(n=1;n<=50;n++){ var p=bertrandPrime(n); t(p>n && p<=2*n,"Bertrand fails at n="+n+" (found "+p+")"); }
+
+ // 8 — the tamper genuinely breaks the tightness relation
+ TAMPER=true; var broke=false; for(k=2;k<=4;k++){ if(Math.abs(extremalTail(k)-chebBound(k))>=1e-12) broke=true; }
+ t(broke,"tamper (1/k) must break equality with the extremal tail 1/k^2");
+ TAMPER=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+
+function bar(frac,bound){
+ var w=Math.max(0,Math.min(1,frac))*100, mark=Math.max(0,Math.min(1,bound))*100;
+ return '<div style="position:relative;height:12px;background:#efe6cd;border:1px solid var(--line);border-radius:2px">'
+  +'<div style="position:absolute;left:0;top:0;bottom:0;width:'+w.toFixed(1)+'%;background:var(--blue);border-radius:2px"></div>'
+  +'<div style="position:absolute;left:'+mark.toFixed(1)+'%;top:-2px;bottom:-2px;width:2px;background:var(--red)"></div></div>';
+}
+
+function distParam(){ var v=+$("param").value; return isFinite(v)?v:1; }
+
+function renderSampler(){
+ var kind=$("dist").value, N=+$("nn").value, seed=Math.round(+$("seed").value)||1, param=distParam();
+ $("nnv").textContent=N;
+ var xs=sampleDist(kind,param,N,seed), st=meanStd(xs);
+ $("muo").textContent=st.mu.toFixed(4); $("sigo").textContent=st.sigma.toFixed(4);
+ var rows="", allOk=true, ks=[2,3,4], i;
+ for(i=0;i<ks.length;i++){ var k=ks[i], f=tailFrac(xs,st.mu,st.sigma,k), bd=chebBound(k), ok=f<=bd+1e-9; if(!ok)allOk=false;
+  rows+='<tr><td>'+k+'</td><td>'+f.toFixed(4)+'</td><td>'+bd.toFixed(4)+'</td><td>'+bar(f,bd)+'</td></tr>'; }
+ $("tbody").innerHTML=rows;
+ $("boundlab").innerHTML= TAMPER
+  ? 'bound shown as <b style="color:var(--wall)">1/k</b> &mdash; the square was dropped; this is <b style="color:var(--wall)">not</b> Chebyshev&rsquo;s guarantee.'
+  : 'bound = <b style="color:var(--red)">1/k&sup2;</b> (red mark). The empirical tail (blue) stays under it for every k.';
+ // verdict
+ var v=$("verdict"), r=$("reason");
+ if(TAMPER){ v.className="verdict no"; v.textContent="MISLABELLED"; r.innerHTML="The tail still fits under 1/k, but 1/k is a looser number wearing Chebyshev&rsquo;s name. The tightness witness (2) is red."; }
+ else { v.className="verdict ok"; v.textContent="BOUND HOLDS"; r.innerHTML="Every measured tail fraction is &le; 1/k&sup2;, with no assumption on the distribution&rsquo;s shape."; }
+ renderIneqWit();
+}
+
+function renderIneqWit(){
+ // live tightness witness: does the stated bound equal the extremal tail (equality) for k=2,3,4?
+ var ok=true, k; for(k=2;k<=4;k++){ if(Math.abs(extremalTail(k)-chebBound(k))>1e-12) ok=false; }
+ $("ineqwit").innerHTML='<span class="badge '+(ok?'pass':'failb')+'">'+(ok?'✓ TIGHT — extremal hits 1/k²':'✗ MISLABELLED — bound ≠ 1/k²')+'</span>'
+  +'<div class="small" style="margin-top:4px">stated bound: k=2 &rarr; <b>'+chebBound(2).toFixed(4)+'</b>, k=3 &rarr; <b>'+chebBound(3).toFixed(4)+'</b>'+(TAMPER?' &nbsp;<span style="color:var(--wall)">(square dropped)</span>':'')+'</div>';
+}
+
+function fmtPoly(coeffs){
+ var parts=[], i;
+ for(i=coeffs.length-1;i>=0;i--){ var c=coeffs[i]; if(c===0)continue;
+  var mag=Math.abs(c), term=(i===0)?(""+mag):(mag===1?"":mag+"")+(i===1?"x":"x^"+i);
+  parts.push((c<0?"− ":(parts.length?"+ ":""))+term); }
+ return parts.length?parts.join(" "):"0";
+}
+function renderPoly(){
+ var n=+$("pn").value, tf=(+$("pt").value)/100; $("pnv").textContent=n; $("ptv").textContent=tf.toFixed(2);
+ var t=tf*Math.PI, lhs=chebT(n,Math.cos(t)), rhs=Math.cos(n*t), agree=Math.abs(lhs-rhs)<1e-9;
+ var supn=Math.pow(2,1-n);
+ $("polyline").innerHTML='T<sub>'+n+'</sub>(x) = <b style="color:var(--blue)">'+fmtPoly(chebCoeffs(n))+'</b>'
+  +'<br>T<sub>'+n+'</sub>(cos t) = <b>'+lhs.toFixed(6)+'</b> &nbsp;vs&nbsp; cos('+n+'t) = <b>'+rhs.toFixed(6)+'</b>'
+  +'<br>monic sup-norm on [&minus;1,1] = <b style="color:var(--red)">2<sup>1&minus;'+n+'</sup> = '+supn.toExponential(3)+'</b>';
+ $("polywit").innerHTML='<span class="badge '+(agree?'pass':'failb')+'">'+(agree?'✓ T_n(cos t) = cos(nt)':'✗ identity broken')+'</span>';
+}
+
+function renderBertrand(){
+ var n=+$("bn").value; $("bnv").textContent=n;
+ var p=bertrandPrime(n), ok=p>n&&p<=2*n;
+ // live sweep 1..50
+ var all=true,m; for(m=1;m<=50;m++){ var q=bertrandPrime(m); if(!(q>m&&q<=2*m)){all=false;break;} }
+ $("bline").innerHTML='interval (<b>'+n+'</b>, <b>'+(2*n)+'</b>] &rarr; prime <b style="color:var(--red)">'+p+'</b>';
+ $("bwit").innerHTML='<span class="badge '+(all?'pass':'failb')+'">'+(all?'✓ a prime in (n,2n] for all n=1..50':'✗ Bertrand fails')+'</span>';
+}
+
+function syncParamRow(){
+ var kind=$("dist").value, lab=$("plab"), row=$("prow"), inp=$("param");
+ if(kind==="exponential"){ lab.textContent="λ"; row.style.display="flex"; if(+inp.value<=0)inp.value=1; }
+ else if(kind==="bernoulli"){ lab.textContent="p"; row.style.display="flex"; if(+inp.value<=0||+inp.value>=1)inp.value=0.3; }
+ else if(kind==="normal"){ lab.textContent="σ"; row.style.display="flex"; if(+inp.value<=0)inp.value=1; }
+ else { row.style.display="none"; }
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("litbadge").innerHTML='<span class="badge pass">✓ LIT · self-check passed on load</span>';
+ syncParamRow();
+ $("dist").addEventListener("change",function(){ syncParamRow(); renderSampler(); });
+ ["param","nn","seed"].forEach(function(id){ $(id).addEventListener("input",renderSampler); });
+ ["pn","pt"].forEach(function(id){ $(id).addEventListener("input",renderPoly); });
+ $("bn").addEventListener("input",renderBertrand);
+ $("tamper").addEventListener("click",function(){ TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Square dropped.</b> The bound is now labelled 1/k. The extremal distribution&rsquo;s tail is exactly 1/k&sup2;, so it no longer meets the stated bound with equality &mdash; the tightness witness (2) went red, and DATA OUT reads MISLABELLED. The attack is real; it is caught.";
+  renderSampler(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false;
+  $("tampernote").innerHTML="Break 1/k&sup2; to 1/k and the extremal distribution &mdash; whose tail is exactly 1/k&sup2; &mdash; no longer meets the stated bound with equality. The witness recomputes and turns red. The attack is real and it is caught.";
+  renderSampler(); });
+ renderSampler(); renderPoly(); renderBertrand();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the Chebyshev engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE TETRIS · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.grid{display:grid;gap:2px;} .cell{width:16px;height:16px;border:1px solid var(--line);} .cell.on{background:var(--gold);border-color:var(--line2);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE MACHINE &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE TETRIS</h1>
+ <p class="sub">Moscow, 1984: <b>Alexey Pajitnov</b> writes a falling-block puzzle on an <b>Elektronika 60</b> at the Dorodnitsyn Computing Centre of the USSR Academy of Sciences. The pieces are the <b>tetrominoes</b> &mdash; the seven ways four cells join edge to edge, up to rotation. This panel is <b>runnable</b>: it enumerates the tetrominoes from scratch, proves the counts <b>5 free / 7 one-sided / 19 fixed</b>, and drops pieces onto a small board where a full ten-wide row clears and the rows above fall.</p>
+ <p class="src"><span class="tag t-amber">source</span> Alexey Pajitnov, <i>Tetris</i>, 1984, written on an Elektronika 60. Complexity result: E. Demaine, S. Hohenberger &amp; D. Liben-Nowell, <i>Tetris is Hard, Even to Approximate</i>, 2002. Room: <b>THE MACHINE</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; Pajitnov, 1984 <span class="tag t-amber">1984</span></h2>
+   <p><b>Alexey Pajitnov</b> built the first <i>Tetris</i> at the <b>Dorodnitsyn Computing Centre</b> of the USSR Academy of Sciences, on an <b>Elektronika 60</b> terminal &mdash; the pieces first drawn from bracket characters on a text display. It spread on floppies across Moscow institutes before it had a publisher.</p>
+   <p class="small">Then the <b>Cold-War licensing saga</b>: rights ran through the UK, Japan and the USSR&rsquo;s foreign-trade agency <b>Elorg</b>; disputed sub-licences collided until Nintendo secured the handheld rights and shipped it bundled with the <b class="k">Game Boy, 1989</b>. Pajitnov saw no royalties for years &mdash; the software left the USSR faster than the state could price it.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE 7 PIECES &mdash; I O T S Z J L <span class="tag t-lit">LIT</span></h2>
+   <p>A <b>tetromino</b> is four unit cells joined edge to edge. Count them three ways: <b>free</b> (rotations <i>and</i> reflections identified), <b>one-sided</b> (rotations only), <b>fixed</b> (every rotation distinct). The engine enumerates all four-cell shapes from a single seed and sorts them:</p>
+   <table id="clsTbl"><thead><tr><th>class</th><th>count</th></tr></thead><tbody id="clsBody"></tbody></table>
+   <div id="clsbadge" style="margin-top:6px"></div>
+   <p class="small" style="margin-top:6px">The classic game uses the <b class="k">7 one-sided</b> set &mdash; <b>I O T S Z J L</b>. S/Z and J/L are mirror pairs, so they collapse to <b>5 free</b> shapes; letting every rotation count separately gives <b>19 fixed</b>.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>LINEAGE &mdash; the falling-block genre</h2>
+   <p><i>Tetris</i> founded the <b>falling-block</b> genre and became one of the <b>most-ported games ever written</b> &mdash; onto nearly every computer, console and phone platform that has existed.</p>
+   <p class="small">Its descendants (Columns, Puyo Puyo, Dr. Mario, the endless Tetris variants) all inherit the same core: a bounded well, gravity, and a line that vanishes when full. The mechanic outlived the machine, the company structure, and the country it was written in.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; choose a piece <span class="tag t-in">in &darr;</span></h2>
+   <p>Pick one of the seven one-sided pieces, rotate it, choose a column, and drop. The board is <b>10 wide</b> and seeded with a nearly-full bottom row &mdash; drop the default <b>I</b> at column 3 to complete and clear it.</p>
+   <div class="row"><label>piece</label>
+     <select id="pieceSel"><option>I</option><option>O</option><option>T</option><option>S</option><option>Z</option><option>J</option><option>L</option></select>
+     <button id="rotBtn">&#8635; rotate</button>
+     <span class="small">rot <b id="rotView">0</b></span></div>
+   <div class="row"><label>column</label><input id="colIn" type="number" value="3" min="0" max="9" style="width:70px">
+     <button id="dropBtn">&#9660; drop</button>
+     <button id="resetBtn">&#8634; reset board</button></div>
+   <div class="row"><label>preview</label><div id="prev" class="grid"></div></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; place &middot; settle &middot; clear full rows &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the board <span class="tag t-lit">LIT</span></h2>
+   <div class="engine">
+    <div class="controls" style="flex:0 0 auto;min-width:0">
+     <div id="board" class="grid"></div>
+     <p class="small mut" style="margin-top:6px">10 &times; 8 well. Each piece covers exactly <b>4</b> cells (gold). A hard drop settles the piece on the floor or on what is already stacked.</p>
+    </div>
+    <div class="readout">
+     <div class="out" id="lastAct">board seeded &mdash; drop the I at column 3.</div>
+     <p class="small" style="margin-top:4px"><b>Lines cleared this session:</b> <span class="k" id="lineCount">0</span></p>
+     <p class="small"><b>LINE-CLEAR logic.</b> After a piece settles, every row that is filled across all 10 columns is removed; each row above it drops down by one and an empty row is added at the top. Cells not in a full row are never disturbed.</p>
+    </div>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; the machine re-checks the invariants &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; the witness <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outv">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>piece in the bag</th><th>cells</th><th>= 4 ?</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small" style="margin-top:6px">The witness re-counts the active piece bag on every action: it asserts there are exactly <b>7</b> pieces and each covers exactly <b>4</b> cells, and re-derives <b>5 / 7 / 19</b> from the enumerator. Inject a five-cell shape (window 8) and it turns <b style="color:var(--wall)">red</b>.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>COMPLEXITY &mdash; the wall <span class="tag t-wall">NP-complete</span></h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> <b>Offline Tetris is NP-complete.</b> Even when the <i>entire</i> future piece sequence is known in advance, deciding whether you can (for example) clear a given board, or survive it, is NP-complete &mdash; and hard even to <i>approximate</i>. <b>Demaine, Hohenberger &amp; Liben-Nowell (2002)</b> proved it by reducing 3-Partition to Tetris.</div>
+   <p class="small" style="margin-top:8px">So the toy hides a real wall: there is no known efficient algorithm that plays optimally even with perfect foreknowledge. The falling pieces are a genuine combinatorial-search problem, not a reflex game with a tidy solution.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Tetris is just a toy.&rdquo;</s> <b>Cut.</b> Offline Tetris is NP-complete (Demaine 2002) &mdash; the toy contains an intractable search problem.</p>
+   <p class="grave"><s>&ldquo;There are only 5 tetromino shapes.&rdquo;</s> <b>Cut.</b> Five is the <i>free</i> count; the game uses <b>7</b> one-sided pieces because it does not allow mirroring, and there are <b>19</b> if every rotation is counted.</p>
+   <p class="grave"><s>&ldquo;Soviet software could not compete.&rdquo;</s> <b>Cut.</b> Tetris was a Soviet export that outran its own state &mdash; it shipped worldwide on the Game Boy (1989) and outlived the USSR itself.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; inject a pentomino</h2>
+   <p>The red move: slip a <b>five-cell pentomino</b> into the piece bag. The board still draws, but a Tetris piece is a <i>tetr</i>omino &mdash; four cells, always.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; inject 5-cell piece</button><button id="restore">&#8634; restore the bag</button></div>
+   <p class="small" id="tampernote">Inject the pentomino and the witness (5) re-counts the bag: it now holds <b>8</b> pieces and one covers <b>5</b> cells, so &ldquo;every piece has exactly 4 cells / there are exactly 7 one-sided&rdquo; turns <b style="color:var(--wall)">red</b>. The attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE TETRIS &mdash; World IV &middot; <b>SONIA</b>, room <b>THE MACHINE</b>, in the refined <b>OCHO</b>: blue enumerates the seven pieces and the lineage, the machine drops and clears down the centre, red raises the NP-complete wall and injects a pentomino that is caught. A runnable rendering of Pajitnov&rsquo;s <i>Tetris</i> (1984, Elektronika 60) &mdash; the counts 5 free / 7 one-sided / 19 fixed and the line-clear are computed and self-checked (LIT); the history and licensing saga are AMBER; the NP-completeness of offline Tetris (Demaine 2002) is a real WALL. Iconic Soviet software that outran the state that made it. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE TETRIS — tetromino enumerator + runnable board (every count computed, none looked up) ===== */
+
+// the 7 one-sided pieces, cells as [row,col]
+var PIECES={
+ I:[[0,0],[0,1],[0,2],[0,3]],
+ O:[[0,0],[0,1],[1,0],[1,1]],
+ T:[[0,0],[0,1],[0,2],[1,1]],
+ S:[[0,1],[0,2],[1,0],[1,1]],
+ Z:[[0,0],[0,1],[1,1],[1,2]],
+ J:[[0,0],[1,0],[1,1],[1,2]],
+ L:[[0,2],[1,0],[1,1],[1,2]]
+};
+var PIECE_ORDER=["I","O","T","S","Z","J","L"];
+var PENT=false;   // when true the TAMPER injects a 5-cell pentomino into the active bag
+
+var W=10, H=8;
+
+// --- geometry: translate a cell-set to the origin and sort to a canonical form ---
+function normalize(cells){
+ var minr=1e9,minc=1e9,i;
+ for(i=0;i<cells.length;i++){ if(cells[i][0]<minr) minr=cells[i][0]; if(cells[i][1]<minc) minc=cells[i][1]; }
+ var out=[];
+ for(i=0;i<cells.length;i++) out.push([cells[i][0]-minr, cells[i][1]-minc]);
+ out.sort(function(a,b){ return a[0]-b[0] || a[1]-b[1]; });
+ return out;
+}
+function keyOf(cells){ var c=normalize(cells), s=[], i; for(i=0;i<c.length;i++) s.push(c[i][0]+":"+c[i][1]); return s.join("|"); }
+function hasCell(cells,r,c){ for(var i=0;i<cells.length;i++) if(cells[i][0]===r && cells[i][1]===c) return true; return false; }
+function rot90(cells){ var o=[],i; for(i=0;i<cells.length;i++) o.push([cells[i][1], -cells[i][0]]); return normalize(o); }
+function reflect(cells){ var o=[],i; for(i=0;i<cells.length;i++) o.push([cells[i][0], -cells[i][1]]); return normalize(o); }
+
+// --- enumerate every FIXED polyomino of size n by growing from a single seed ---
+function generateFixed(n){
+ var level={}; level["0:0"]=[[0,0]];
+ var size, k, cells, i, d, r, c, grown, kk;
+ var nb=[[1,0],[-1,0],[0,1],[0,-1]];
+ for(size=1;size<n;size++){
+  var next={};
+  for(k in level){
+   cells=level[k];
+   for(i=0;i<cells.length;i++){
+    for(d=0;d<4;d++){
+     r=cells[i][0]+nb[d][0]; c=cells[i][1]+nb[d][1];
+     if(hasCell(cells,r,c)) continue;
+     grown=cells.concat([[r,c]]);
+     kk=keyOf(grown);
+     if(!next[kk]) next[kk]=normalize(grown);
+    }
+   }
+  }
+  level=next;
+ }
+ var res=[]; for(k in level) res.push(level[k]); return res;
+}
+
+// --- classify a list of fixed shapes into one-sided (rotation) and free (rotation+reflection) classes ---
+function rotKeys(cells){ var ks=[], cur=cells, i; for(i=0;i<4;i++){ ks.push(keyOf(cur)); cur=rot90(cur); } return ks; }
+function oneSidedKey(cells){ var ks=rotKeys(cells); ks.sort(); return ks[0]; }
+function freeKey(cells){ var ks=rotKeys(cells).concat(rotKeys(reflect(cells))); ks.sort(); return ks[0]; }
+function classify(fixedList){
+ var os={}, fr={}, i;
+ for(i=0;i<fixedList.length;i++){ os[oneSidedKey(fixedList[i])]=1; fr[freeKey(fixedList[i])]=1; }
+ var oc=0,fc=0,k; for(k in os) oc++; for(k in fr) fc++;
+ return { fixed:fixedList.length, oneSided:oc, free:fc };
+}
+
+// --- the piece a player controls, rotated r quarter-turns ---
+function pieceCells(name,rot){ var cells=PIECES[name], i; for(i=0;i<(rot%4+4)%4;i++) cells=rot90(cells); return normalize(cells); }
+
+// --- the active bag: 7 pieces, plus a rogue pentomino when tampered ---
+function activeBag(){
+ var b={}, k; for(k in PIECES) b[k]=PIECES[k];
+ if(PENT) b.P=[[0,0],[0,1],[0,2],[0,3],[0,4]];   // a 5-cell I-pentomino, illegal in Tetris
+ return b;
+}
+
+// --- board mechanics ---
+function emptyBoard(){ var b=[],r,c; for(r=0;r<H;r++){ b[r]=[]; for(c=0;c<W;c++) b[r][c]=0; } return b; }
+function cloneBoard(b){ var o=[],r; for(r=0;r<H;r++) o[r]=b[r].slice(); return o; }
+function fits(b,cells,ro,co){
+ for(var i=0;i<cells.length;i++){ var r=cells[i][0]+ro, c=cells[i][1]+co; if(r<0||r>=H||c<0||c>=W) return false; if(b[r][c]) return false; }
+ return true;
+}
+function dropRow(b,cells,co){
+ if(!fits(b,cells,0,co)) return null;   // cannot even enter at the top / out of horizontal bounds
+ var ro=0; while(fits(b,cells,ro+1,co)) ro++;
+ return ro;
+}
+function placePiece(b,cells,ro,co){ var nb=cloneBoard(b),i; for(i=0;i<cells.length;i++) nb[cells[i][0]+ro][cells[i][1]+co]=1; return nb; }
+function zeroRow(){ var r=[],c; for(c=0;c<W;c++) r[c]=0; return r; }
+function clearLines(b){
+ var kept=[], cleared=0, r, c;
+ for(r=0;r<H;r++){ var full=true; for(c=0;c<W;c++){ if(!b[r][c]){ full=false; break; } } if(full) cleared++; else kept.push(b[r].slice()); }
+ while(kept.length<H) kept.unshift(zeroRow());
+ return { board:kept, cleared:cleared };
+}
+function seedBoard(){
+ var b=emptyBoard(), c;
+ for(c=0;c<W;c++){ if(c<3||c>6) b[H-1][c]=1; }   // bottom row full except the 4-wide gap 3..6
+ return b;
+}
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=PENT; PENT=false;
+ var i, rr, k;
+
+ // 1 — the enumerator reproduces the classic tetromino counts
+ var fixedList=generateFixed(4);
+ var cl=classify(fixedList);
+ t(cl.free===5,"there must be exactly 5 FREE tetrominoes, got "+cl.free);
+ t(cl.oneSided===7,"there must be exactly 7 ONE-SIDED tetrominoes, got "+cl.oneSided);
+ t(cl.fixed===19,"there must be exactly 19 FIXED tetrominoes, got "+cl.fixed);
+
+ // 2 — the classic set is exactly I,O,T,S,Z,J,L and each covers 4 cells
+ t(PIECE_ORDER.length===7,"the classic set must have exactly 7 pieces");
+ for(i=0;i<PIECE_ORDER.length;i++) t(PIECES[PIECE_ORDER[i]].length===4, PIECE_ORDER[i]+" must have exactly 4 cells");
+
+ // 3 — the 7 named pieces are 7 DISTINCT one-sided classes, and each is one the enumerator found
+ var named={}; for(i=0;i<PIECE_ORDER.length;i++) named[oneSidedKey(PIECES[PIECE_ORDER[i]])]=1;
+ var nc=0; for(k in named) nc++;
+ t(nc===7,"I,O,T,S,Z,J,L must be 7 distinct one-sided shapes, got "+nc);
+ var genOS={}; for(i=0;i<fixedList.length;i++) genOS[oneSidedKey(fixedList[i])]=1;
+ for(k in named) t(genOS[k]===1,"a named piece class must appear among the enumerated one-sided classes");
+
+ // 4 — a rotation preserves the 4-cell count for every piece and every quarter-turn
+ for(i=0;i<PIECE_ORDER.length;i++) for(rr=0;rr<4;rr++) t(pieceCells(PIECE_ORDER[i],rr).length===4, PIECE_ORDER[i]+" rotation "+rr+" must still cover 4 cells");
+
+ // 5 — line clear removes exactly the full row, shifts the rest down, disturbs nothing else
+ var b=emptyBoard(), c; for(c=0;c<W;c++) b[H-1][c]=1; b[H-3][0]=1;   // one full bottom row + one isolated marker
+ var res=clearLines(b);
+ t(res.cleared===1,"line clear must remove exactly the 1 full row, got "+res.cleared);
+ var filled=0, r2, c2; for(r2=0;r2<H;r2++) for(c2=0;c2<W;c2++) if(res.board[r2][c2]) filled++;
+ t(filled===1,"only the isolated marker may survive (the full 10-wide row is gone), filled="+filled);
+ t(res.board[H-2][0]===1,"the surviving cell must drop down by one into row H-2");
+ for(r2=0;r2<H;r2++){ var f=true; for(c2=0;c2<W;c2++) if(!res.board[r2][c2]) f=false; t(!f,"no full row may remain after a clear"); }
+
+ // 6 — a hard drop settles a piece on the floor and covers 4 cells
+ var sb=emptyBoard(), Icells=pieceCells("I",0), ro=dropRow(sb,Icells,0);
+ t(ro===H-1,"an I piece dropped into an empty well must rest on the floor row");
+ var placed=placePiece(sb,Icells,ro,0), pc=0; for(r2=0;r2<H;r2++) for(c2=0;c2<W;c2++) if(placed[r2][c2]) pc++;
+ t(pc===4,"a placed tetromino must occupy exactly 4 cells");
+
+ // 7 — untampered bag invariant: exactly 7 pieces, each with 4 cells
+ var bag=activeBag(), names=[], nm; for(nm in bag) names.push(nm);
+ t(names.length===7,"untampered bag must hold exactly 7 pieces, got "+names.length);
+ for(i=0;i<names.length;i++) t(bag[names[i]].length===4, names[i]+" in the bag must cover 4 cells");
+
+ PENT=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var BOARD=seedBoard();
+var LINES=0;
+var curRot=0;
+
+function drawGrid(el,cols,rows,onFn){
+ el.style.gridTemplateColumns="repeat("+cols+",16px)";
+ var html="", r, c;
+ for(r=0;r<rows.length;r++) for(c=0;c<cols;c++) html+='<div class="cell'+(onFn(r,c)?" on":"")+'"></div>';
+ el.innerHTML=html;
+}
+
+function renderBoard(){
+ var el=$("board");
+ el.style.gridTemplateColumns="repeat("+W+",16px)";
+ var html="", r, c;
+ for(r=0;r<H;r++) for(c=0;c<W;c++) html+='<div class="cell'+(BOARD[r][c]?" on":"")+'"></div>';
+ el.innerHTML=html;
+}
+
+function renderPreview(){
+ var name=$("pieceSel").value, cells=pieceCells(name,curRot);
+ var maxr=0,maxc=0,i; for(i=0;i<cells.length;i++){ if(cells[i][0]>maxr)maxr=cells[i][0]; if(cells[i][1]>maxc)maxc=cells[i][1]; }
+ var W2=maxc+1, H2=maxr+1, on={}; for(i=0;i<cells.length;i++) on[cells[i][0]+":"+cells[i][1]]=1;
+ var el=$("prev"); el.style.gridTemplateColumns="repeat("+W2+",16px)";
+ var html="", r, c; for(r=0;r<H2;r++) for(c=0;c<W2;c++) html+='<div class="cell'+(on[r+":"+c]?" on":"")+'"></div>';
+ el.innerHTML=html;
+ $("rotView").textContent=curRot;
+}
+
+function witness(){
+ var bag=activeBag(), names=[], nm; for(nm in bag) names.push(nm);
+ var okCount = names.length===7, allFour=true, rows="", i;
+ for(i=0;i<names.length;i++){
+  var n=bag[names[i]].length, ok=n===4; if(!ok) allFour=false;
+  rows+='<tr><td>'+names[i]+'</td><td>'+n+'</td><td style="color:'+(ok?"var(--lit)":"var(--wall)")+';font-weight:700">'+(ok?"ok":"X")+'</td></tr>';
+ }
+ $("witbody").innerHTML=rows;
+ var cl=classify(generateFixed(4));
+ var okClass = cl.free===5 && cl.oneSided===7 && cl.fixed===19;
+ var allok = okCount && allFour && okClass;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'+(allok
+   ?"WITNESS - 7 pieces, each 4 cells; 5 / 7 / 19 re-derived"
+   :"WITNESS - the bag is not seven 4-cell tetrominoes")+'</span>';
+ $("outv").className="verdict "+(allok?"ok":"no");
+ $("outv").textContent= allok ? "5 free  /  7 one-sided  /  19 fixed" : "TETROMINO INVARIANT BROKEN";
+ $("outreason").innerHTML= allok
+   ? "Every piece in the bag covers 4 cells and the enumerator reproduces the three counts."
+   : '<b style="color:var(--wall)">A '+(okCount?"":"non-seven-piece bag; ")+'piece does not cover 4 cells</b> - this is no longer a set of tetrominoes.';
+ return allok;
+}
+
+function refresh(msg){ renderBoard(); renderPreview(); witness(); $("lineCount").textContent=LINES; if(msg) $("lastAct").textContent=msg; }
+
+function doDrop(){
+ var name=$("pieceSel").value, cells=pieceCells(name,curRot);
+ var co=Math.round(+$("colIn").value)||0; if(co<0)co=0; if(co>W-1)co=W-1;
+ var ro=dropRow(BOARD,cells,co);
+ if(ro===null){ refresh("piece "+name+" does not fit at column "+co+" - the top is blocked or it runs off the edge."); return; }
+ BOARD=placePiece(BOARD,cells,ro,co);
+ var res=clearLines(BOARD); BOARD=res.board;
+ if(res.cleared>0){ LINES+=res.cleared; refresh(name+" settled at column "+co+" - "+res.cleared+" full row"+(res.cleared>1?"s":"")+" cleared, rows above fell."); }
+ else refresh(name+" settled at column "+co+" - no full row yet.");
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ // classification tables (blue window 2)
+ var cl=classify(generateFixed(4));
+ $("clsBody").innerHTML=
+   '<tr><td>free (rotation + reflection)</td><td class="k">'+cl.free+'</td></tr>'+
+   '<tr><td>one-sided (rotation only)</td><td class="k">'+cl.oneSided+'</td></tr>'+
+   '<tr><td>fixed (all rotations distinct)</td><td class="k">'+cl.fixed+'</td></tr>';
+ var okCls = cl.free===5 && cl.oneSided===7 && cl.fixed===19;
+ $("clsbadge").innerHTML='<span class="badge '+(okCls?"pass":"failb")+'">'+(okCls?"enumerated from scratch: 5 free / 7 one-sided / 19 fixed":"count mismatch")+'</span>';
+
+ $("pieceSel").addEventListener("change",function(){ curRot=0; renderPreview(); });
+ $("rotBtn").addEventListener("click",function(){ curRot=(curRot+1)%4; renderPreview(); });
+ $("colIn").addEventListener("input",function(){});
+ $("dropBtn").addEventListener("click",doDrop);
+ $("resetBtn").addEventListener("click",function(){ BOARD=seedBoard(); LINES=0; refresh("board reset - drop the I at column 3 to clear the seeded row."); });
+ $("tamper").addEventListener("click",function(){ PENT=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>Pentomino injected.</b> The bag now holds 8 pieces and one covers 5 cells. The witness (5) re-counts and turns <b style='color:var(--wall)'>red</b> - a Tetris piece is four cells, always. The attack is real; it is caught."; refresh("TAMPER - a 5-cell pentomino was injected into the bag."); });
+ $("restore").addEventListener("click",function(){ PENT=false; $("tampernote").innerHTML="Inject the pentomino and the witness (5) re-counts the bag: it now holds <b>8</b> pieces and one covers <b>5</b> cells, so &ldquo;every piece has exactly 4 cells / there are exactly 7 one-sided&rdquo; turns <b style='color:var(--wall)'>red</b>. The attack is real and it is caught."; refresh("bag restored - back to seven 4-cell tetrominoes."); });
+
+ refresh("board seeded - drop the I at column 3 to clear the bottom row.");
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the Tetris tetromino engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

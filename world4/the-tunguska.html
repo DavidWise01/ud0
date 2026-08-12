@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE TUNGUSKA EVENT · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.grid{display:grid;gap:2px;} .cell{width:16px;height:16px;border:1px solid var(--line);} .cell.on{background:var(--gold);border-color:var(--line2);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE WEIRD &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE TUNGUSKA EVENT</h1>
+ <p class="sub">Morning of <b>30 June 1908</b>, over the <b>Podkamennaya Tunguska</b> River, Siberia: the largest impact <b>airburst</b> in recorded history flattened <b>~2,150 km&sup2;</b> of forest &mdash; roughly <b>80 million trees</b> &mdash; and left <b>no crater</b>. This panel is <b>runnable</b>: enter a body&rsquo;s size, density and speed; the engine returns its kinetic energy in <b>megatons</b> and <b>Hiroshimas</b>, and proves the airburst by the one fact the site insists on &mdash; there is no hole in the ground.</p>
+ <p class="src"><span class="tag t-amber">source</span> The Tunguska event, 30 June 1908, Siberia; L. Kulik&rsquo;s 1927 expedition; modern airburst modelling (energy estimates span ~3&ndash;30 MT). Room: <b>THE WEIRD</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; the record &amp; the physics</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; 1908 Siberia <span class="tag t-amber">record</span></h2>
+   <p>At about <b>07:17</b> local time a fireball crossed the Siberian sky and detonated over the taiga near the <b>Podkamennaya Tunguska</b> River. Trees were felled <b>radially outward</b> across <b class="k">~2,150 km&sup2;</b>; at the epicentre they were left <b>standing but stripped</b>. Herders <b>~60 km</b> away were knocked off their feet.</p>
+   <p class="small">Civil war and remoteness delayed science. In <b>1927</b> the mineralogist <b>Leonid Kulik</b> reached the site expecting a meteorite and a crater. He found the flattened forest &mdash; and <b>no crater, no fragment</b>. That absence is the whole puzzle.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE ENERGY &mdash; a ~60 m stone <span class="tag t-lit">LIT</span></h2>
+   <p>Treat the body as a stony sphere, diameter <b>~50&ndash;60 m</b>, density <b>~2200 kg/m&sup3;</b>, entering at <b>~15&ndash;27 km/s</b>. Its mass is <b class="k">~2.5&times;10<sup>8</sup> kg</b> and its kinetic energy <b>KE = &frac12; m v&sup2;</b> lands near <b class="k">5&times;10<sup>16</sup> J &asymp; 12 MT</b>.</p>
+   <p class="small">Studies span <b>3&ndash;30 MT</b> depending on the assumed size, speed and composition &mdash; the centre engine is the same formula, run live. <b>1 MT = 4.184&times;10<sup>15</sup> J.</b> Energy goes as <b>v&sup2;</b>: double the speed, quadruple the blast.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>~1000 HIROSHIMAS &mdash; the scale</h2>
+   <p>The Hiroshima bomb was about <b>15 kilotons</b> = <b>0.015 MT</b>. So <b>12 MT</b> is roughly <b class="k">800&times;</b> Hiroshima; across the <b>3&ndash;30 MT</b> range that is <b>~200 to ~2000</b> Hiroshimas.</p>
+   <p class="small">It arrived over <b>empty taiga</b>. The same burst over a city would have destroyed it outright &mdash; the reason Tunguska is the founding case study of <b>planetary defence</b>.</p>
+   <div id="scalebar"></div>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE ENGINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the airburst engine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the incoming body <span class="tag t-in">in &darr;</span></h2>
+   <p>Set the impactor. The engine computes mass from a sphere, kinetic energy from <b>&frac12; m v&sup2;</b>, converts to megatons and Hiroshimas, scales the flattened area as <b>E<sup>2/3</sup></b>, and asks the deciding question: <b>does this leave a crater?</b></p>
+   <div class="row"><label>diameter</label><input id="din" type="range" min="20" max="120" step="1" value="60" style="flex:1;min-width:120px"><b id="dval" class="k" style="min-width:60px">60 m</b></div>
+   <div class="row"><label>speed</label><input id="vin" type="range" min="11" max="72" step="1" value="20" style="flex:1;min-width:120px"><b id="vval" class="k" style="min-width:70px">20 km/s</b></div>
+   <div class="row"><label>body</label>
+    <select id="rho"><option value="600">icy / cometary &middot; 600</option><option value="2200" selected>stony &middot; 2200</option><option value="7800">iron &middot; 7800</option></select>
+    <span class="small mut">kg/m&sup3;</span></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; mass &middot; &frac12;mv&sup2; &middot; MT &middot; crater? &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE ENGINE &mdash; airburst energy <span class="tag t-lit">LIT</span></h2>
+   <div class="out" id="keout">&mdash;</div>
+   <table id="keTbl"><tbody id="keBody"></tbody></table>
+   <p class="small" style="margin-top:8px"><b>Energy scales as v&sup2;</b> &mdash; same body, three plausible entry speeds:</p>
+   <table id="vTbl"><thead><tr><th>speed</th><th>energy (MT)</th><th>&times; Hiroshima</th></tr></thead><tbody id="vBody"></tbody></table>
+   <p class="small" style="margin-top:8px"><b>Flattened area</b> scales as <b>E<sup>2/3</sup></b> (anchored: 12 MT &rarr; 2,150 km&sup2;): <span id="arealine" class="k">&mdash;</span></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the deciding fact: no crater &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; THE AIRBURST <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outverdict">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>model</th><th>predicts crater</th><th>observed at site</th><th>ok</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small" style="margin-top:8px">Deposit that energy at altitude and the shock front flattens forest over a wide radius while the body <b>ablates and disrupts ~5&ndash;10 km up</b> &mdash; no ground contact, <b>no crater</b>. The absence Kulik found in 1927 is not a missing clue; it <b>is</b> the answer.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; the weird &amp; the wall &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE ADVERSARY &mdash; &ldquo;where is the crater?&rdquo;</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> No crater, no meteorite, an explosion the size of a hydrogen bomb over one of the emptiest places on Earth. Into that vacuum rushed the exotic. The honest limit is real: we <b>never sampled the body</b>. Its exact size, speed and composition &mdash; and whether it was a <b>stony asteroid</b> or a fragment of comet <b>Encke</b> &mdash; are still argued, which is why estimates span <b>3&ndash;30 MT</b>.</div>
+   <p class="small" style="margin-top:8px"><b>Why it matters.</b> Tunguska is the calibration point for <b>planetary defence</b>: a body far too small to see coming, delivering a city-killer with <b>no impact site to warn us</b>. Detection, not deflection, is the hard part.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD &mdash; the weird theories</h2>
+   <p class="grave"><s>Antimatter meteor.</s> <b>Dead.</b> An antimatter chunk would annihilate high in the atmosphere and leave a gamma / isotope signature never found; the energy and tree-fall fit ordinary chemistry-free kinetics.</p>
+   <p class="grave"><s>A mini black hole through the Earth.</s> <b>Dead.</b> It would have punched an exit blast in the North Atlantic &mdash; none recorded &mdash; and the mechanics do not match a single air shock.</p>
+   <p class="grave"><s>Tesla&rsquo;s death-ray / a crashed UFO reactor.</s> <b>Dead.</b> No device, no wreckage, no radiation; folklore, not physics.</p>
+   <p class="small" style="margin-top:6px"><b style="color:var(--lit)">Standing:</b> a <b>stony (or cometary) asteroid airburst</b> at ~10&ndash;15 MT &mdash; consensus, and the only model that predicts <b>exactly no crater</b>. <span class="tag t-lit">LIT</span></p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; force a crater</h2>
+   <p>The red move: replace the <b>airburst</b> model with a <b>ground-impact crater</b> model. The same energy now demands a hole in the ground &mdash; a transient crater of order <b>~1 km</b> &mdash; that Tunguska does not have.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; use ground-impact model</button><button id="restore">&#8634; restore airburst model</button></div>
+   <p class="small" id="tampernote">Switch to the crater model and the witness (5) compares its predicted crater to what the site actually shows &mdash; <b>none</b>. The prediction is off by a kilometre, and the witness turns <b style="color:var(--wall)">red</b>. The airburst is required precisely because there is no crater.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE TUNGUSKA EVENT &mdash; World IV &middot; <b>SONIA</b>, room <b>THE WEIRD</b>, in the refined <b>OCHO</b>: blue lays down the 1908 record and the energy scale, the centre engine computes the kinetic energy of a ~60 m stone and shows why it left no crater, red buries the exotic theories and is caught trying to force one. The energy, the megatonnage, the Hiroshima scale, the E<sup>2/3</sup> area law and the no-crater test are LIT and self-checked; the history is AMBER; the un-sampled body is a real WALL. A genuine mystery met with honest physics. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE TUNGUSKA EVENT — airburst energy engine (every value computed, none looked up) ===== */
+
+var MODEL="airburst";            // when set to "ground" the TAMPER forces a crater-impact model
+
+var MT_J=4.184e15;               // 1 megaton TNT in joules
+var HIRO_MT=0.015;               // Hiroshima ~ 15 kt = 0.015 MT
+var E_TUN_MT=12;                 // reference megatonnage for the flattened-area anchor
+var TUN_AREA=2150;               // km^2 flattened at ~12 MT (the observed anchor)
+var CRATER_REF_MT=10;            // ~10 MT ground impact reference (Meteor Crater ~1.2 km)
+var CRATER_REF_KM=1.2;
+var OBS_CRATER_KM=0;             // Tunguska: no crater observed
+
+function sphereMass(d,rho){ return rho*(4/3)*Math.PI*Math.pow(d/2,3); }   // kg, d in m
+function kineticEnergy(m,v){ return 0.5*m*v*v; }                          // J, v in m/s
+function joulesToMT(J){ return J/MT_J; }
+function hiroshimas(mt){ return mt/HIRO_MT; }
+function flattenArea(J){ return TUN_AREA*Math.pow(joulesToMT(J)/E_TUN_MT,2/3); }   // km^2, area ~ E^(2/3)
+
+// crater diameter: the airburst model deposits energy at altitude and leaves NONE;
+// the ground-impact model scales a transient crater from energy (the TAMPER path).
+function craterKm(J,model){
+ if(model==="airburst") return 0;
+ return CRATER_REF_KM*Math.pow(joulesToMT(J)/CRATER_REF_MT,1/3.4);
+}
+
+/* ===== fail-loud self-check (runs on the LIT airburst model) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var rel=function(a,b){ return Math.abs(a-b)/Math.abs(b); };
+
+ // 1 — KE is exactly 1/2 m v^2
+ var m=sphereMass(60,2200), v=20000;
+ t(kineticEnergy(m,v)===0.5*m*v*v,"KE must equal 0.5*m*v^2");
+
+ // 2 — megaton <-> joule anchor
+ t(rel(1*MT_J,4.184e15)<1e-12,"1 MT must be 4.184e15 J");
+ t(rel(joulesToMT(4.184e15),1)<1e-12,"4.184e15 J must be 1 MT");
+
+ // 3 — the 60 m / 2200 / 20 km-s anchor: mass ~2.5e8 kg, energy in [8,20] MT
+ t(m>2.4e8 && m<2.6e8,"60 m stony sphere mass must be ~2.5e8 kg");
+ var E=kineticEnergy(m,v), Emt=joulesToMT(E);
+ t(Emt>8 && Emt<20,"a 60 m/2200/20 km-s body must yield 8..20 MT (got "+Emt.toFixed(2)+")");
+
+ // 4 — Tunguska is hundreds-to-~1000 Hiroshimas
+ var h=hiroshimas(Emt);
+ t(h>=300 && h<=1000,"scale must be hundreds-to-~1000 Hiroshimas (got "+h.toFixed(0)+")");
+
+ // 5 — energy scales as v^2: double v gives 4x
+ t(rel(kineticEnergy(m,2*v),4*kineticEnergy(m,v))<1e-12,"double v must give 4x energy");
+
+ // 6 — flattened area scales as E^(2/3), anchored at 12 MT -> 2150 km^2
+ t(rel(flattenArea(E_TUN_MT*MT_J),TUN_AREA)<1e-9,"flattenArea at 12 MT must be 2150 km^2");
+ t(rel(flattenArea(2*E)/flattenArea(E),Math.pow(2,2/3))<1e-9,"flattened area must scale as E^(2/3)");
+
+ // 7 — the deciding invariant: the airburst leaves NO crater; a ground model would demand one
+ t(craterKm(E,"airburst")===0,"airburst model must predict no crater");
+ t(craterKm(E,"ground")>1,"ground model must predict a crater over 1 km");
+ t(craterKm(E,"ground")>craterKm(E,"airburst"),"ground crater must exceed airburst crater");
+ // the LIT airburst model matches the observed absence of a crater
+ t(Math.abs(craterKm(E,"airburst")-OBS_CRATER_KM)<0.05,"airburst prediction must match the observed no-crater site");
+
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+
+function fmtMT(mt){ return mt>=100?mt.toFixed(0):(mt>=10?mt.toFixed(1):mt.toFixed(2)); }
+function commas(n){ return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,","); }
+
+function readInputs(){
+ return { d:+$("din").value, v:+$("vin").value, rho:+$("rho").value };
+}
+
+function renderScalebar(){
+ var cells="", on=Math.round(hiroshimas(joulesToMT(kineticEnergy(sphereMass(60,2200),20000)))/40); // ~20 cells = ~800
+ if(on>20) on=20;
+ var html='<div class="grid" style="grid-template-columns:repeat(20,1fr);margin-top:8px">';
+ for(var i=0;i<20;i++){ html+='<div class="cell'+(i<on?" on":"")+'"></div>'; }
+ html+='</div><div class="small" style="margin-top:4px">each square &asymp; <b>40&times;</b> Hiroshima &mdash; the row is <b class="k">~800&times;</b> at the 12 MT estimate</div>';
+ $("scalebar").innerHTML=html;
+}
+
+function renderEngine(){
+ var IN=readInputs();
+ $("dval").textContent=IN.d+" m";
+ $("vval").textContent=IN.v+" km/s";
+ var m=sphereMass(IN.d,IN.rho), v=IN.v*1000, E=kineticEnergy(m,v), Emt=joulesToMT(E), h=hiroshimas(Emt);
+
+ $("keout").textContent="KE = "+fmtMT(Emt)+" MT  ( "+E.toExponential(2)+" J )";
+ var rows="";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">mass = rho &times; 4/3 &pi; r&sup3;</td><td style=\"font-weight:700;color:var(--red)\">"+commas(m)+" kg</td></tr>";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">KE = &frac12; m v&sup2;</td><td style=\"font-weight:700;color:var(--red)\">"+E.toExponential(3)+" J</td></tr>";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">energy in megatons</td><td style=\"font-weight:700;color:var(--red)\">"+fmtMT(Emt)+" MT</td></tr>";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">&times; Hiroshima (15 kt)</td><td style=\"font-weight:700;color:var(--red)\">"+commas(h)+"&times;</td></tr>";
+ $("keBody").innerHTML=rows;
+
+ // v^2 table: same body, three entry speeds
+ var speeds=[15,20,27], vr="";
+ for(var i=0;i<speeds.length;i++){
+  var Ei=kineticEnergy(m,speeds[i]*1000), Mi=joulesToMT(Ei);
+  vr+="<tr><td>"+speeds[i]+" km/s</td><td>"+fmtMT(Mi)+"</td><td>"+commas(hiroshimas(Mi))+"&times;</td></tr>";
+ }
+ $("vBody").innerHTML=vr;
+
+ var area=flattenArea(E);
+ $("arealine").innerHTML=commas(area)+" km&sup2;  ( Tunguska observed: ~2,150 km&sup2; )";
+
+ renderWitness(E,Emt);
+}
+
+function renderWitness(E,Emt){
+ var predicted=craterKm(E,MODEL);
+ var match=Math.abs(predicted-OBS_CRATER_KM)<0.05;
+ var vd=$("outverdict");
+ vd.className="verdict "+(match?"ok":"no");
+ if(MODEL==="airburst"){
+  vd.textContent="AIRBURST &mdash; "+fmtMT(Emt)+" MT, no crater";
+  $("outreason").innerHTML="The energy is deposited in the air; the site shows flattened forest and <b>no crater</b> &mdash; exactly what the airburst model predicts.";
+ } else {
+  vd.textContent="GROUND IMPACT &mdash; demands a "+predicted.toFixed(2)+" km crater";
+  $("outreason").innerHTML='<b style="color:var(--wall)">Model mismatch.</b> A ground impact of '+fmtMT(Emt)+" MT would gouge a crater of order "+predicted.toFixed(2)+" km. Tunguska has <b>none</b> &mdash; the model is wrong for this site.";
+ }
+ var row="<tr><td>"+(MODEL==="airburst"?"airburst":"ground impact")+"</td><td style=\"font-weight:700;color:"+(predicted===0?"var(--lit)":"var(--wall)")+"\">"+(predicted===0?"none (0 km)":("~"+predicted.toFixed(2)+" km"))+"</td><td>none (0 km)</td><td style=\"font-weight:700;color:"+(match?"var(--lit)":"var(--wall)")+"\">"+(match?"ok":"X")+"</td></tr>";
+ $("witbody").innerHTML=row;
+ $("witbadge").innerHTML='<span class="badge '+(match?"pass":"failb")+'">'+(match?"WITNESS - the model matches the no-crater site":"WITNESS - predicted crater is absent from the site")+'</span>';
+ return match;
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ renderScalebar();
+ var sync=function(){ renderEngine(); };
+ ["din","vin","rho"].forEach(function(id){ $(id).addEventListener("input",sync); $(id).addEventListener("change",sync); });
+ $("tamper").addEventListener("click",function(){
+  MODEL="ground";
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Ground-impact model engaged.</b> It now demands a kilometre-scale crater. The witness (5) compares that to the site, finds <b>no crater</b>, and turns <b style='color:var(--wall)'>red</b>. The airburst is required precisely because there is no crater.";
+  renderEngine();
+ });
+ $("restore").addEventListener("click",function(){
+  MODEL="airburst";
+  $("tampernote").innerHTML="Switch to the crater model and the witness (5) compares its predicted crater to what the site actually shows &mdash; <b>none</b>. The prediction is off by a kilometre, and the witness turns <b style='color:var(--wall)'>red</b>. The airburst is required precisely because there is no crater.";
+  renderEngine();
+ });
+ renderEngine();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the Tunguska airburst engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

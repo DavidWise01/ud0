@@ -10,11 +10,11 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "21160edc50c7547fdfe2f5887ec89b08bf1f12a5f24ed41e1d5bd9d5a5d0058e",
+  "sonia_root": "082c07968271243b4dccfc621535ef46d8b0a35f99cc38a5d1593040104fc7bb",
   "counts": {
-    "spheres": 7,
+    "spheres": 12,
     "rooms": 5,
-    "lit": 7,
+    "lit": 12,
     "keepers": 8
   },
   "keepers": [
@@ -207,6 +207,66 @@
       "url": "https://davidwise01.github.io/ud0/world4/the-morphology-of-the-tale.html",
       "seal": "696db9c217660749cae50d08f9e6ddfc8963bfddf5d239fafb73ae4eb72b2959",
       "blurb": "V. Propp's Morphology of the Folktale (1928), runnable in THE OCHO: the wonder-tale reduced to 31 narrative functions in fixed order and 7 dramatis personae, with a valid-tale checker that accepts an in-order subsequence and rejects any reordering (Propp's ordering law); the lineage to Levi-Strauss and Campbell's hero's journey. Russian formalism as a computable grammar; tamper-provable."
+    },
+    {
+      "slug": "the-tetris",
+      "title": "THE TETRIS",
+      "room": "machine",
+      "kicker": "the Soviet game that outran the USSR",
+      "accent": "#9a6b12",
+      "stamp": "LIT",
+      "source": "Alexey Pajitnov, Tetris (Moscow, 1984, Elektronika 60)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-tetris.html",
+      "seal": "6b9203d80af5c2a16378240e00471d97d6ff3ecfa757718876903d50e55854f9",
+      "blurb": "Alexey Pajitnov's Tetris (Moscow, 1984, on an Elektronika 60), runnable in THE OCHO: the tetrominoes classified (5 free, 7 one-sided = I,O,T,S,Z,J,L, 19 fixed), a small board that clears full rows, and the fact that offline Tetris is NP-complete (Demaine 2002). The Soviet game that outran the USSR; tamper-provable by injecting a 5-cell pentomino."
+    },
+    {
+      "slug": "the-onegin-stanza",
+      "title": "THE ONEGIN STANZA",
+      "room": "novel",
+      "kicker": "the novel in verse, as a computable form",
+      "accent": "#1d4e79",
+      "stamp": "LIT",
+      "source": "A. S. Pushkin, Eugene Onegin (1825-1832)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-onegin-stanza.html",
+      "seal": "176065537e588fd8a56d8f54186a3f93c9b68c729666e87adcb5027766e80d4f",
+      "blurb": "Pushkin's Onegin stanza from Eugene Onegin (1825-32), runnable in THE OCHO: the fixed rhyme scheme AbAbCCddEffEgg (6 feminine + 8 masculine lines) validated live, iambic-tetrameter meter, and the lineage to Nabokov and Vikram Seth. THE NOVEL as computable form; complements the-markov-property on the same masterwork. Tamper-provable."
+    },
+    {
+      "slug": "the-tunguska",
+      "title": "THE TUNGUSKA EVENT",
+      "room": "weird",
+      "kicker": "the largest airburst in recorded history",
+      "accent": "#5f513a",
+      "stamp": "LIT",
+      "source": "The Tunguska event, Siberia, 30 June 1908",
+      "url": "https://davidwise01.github.io/ud0/world4/the-tunguska.html",
+      "seal": "d45e9d78a4d7b575c00f9e7ca721e22dd358704e47c4de24a268f2f505401288",
+      "blurb": "The Tunguska airburst (Siberia, 30 June 1908), runnable in THE OCHO: the kinetic energy of a ~60 m stony asteroid at ~20 km/s giving ~10-15 megatons (~1000 Hiroshimas) and ~2,150 km2 of flattened forest, with the no-crater puzzle resolved by an airburst rather than a ground impact. Fringe theories (antimatter, black hole) held dead-as-science; the physics LIT. Tamper-provable."
+    },
+    {
+      "slug": "the-mutual-aid",
+      "title": "THE MUTUAL AID",
+      "room": "state",
+      "kicker": "cooperation as a factor of evolution",
+      "accent": "#7a1220",
+      "stamp": "LIT",
+      "source": "Peter Kropotkin, Mutual Aid: A Factor of Evolution (1902)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-mutual-aid.html",
+      "seal": "5a0d0d98d8f999eddbee57925927dce59a2236df70e62a709c96d7b825bac691",
+      "blurb": "Peter Kropotkin's Mutual Aid (1902), runnable in THE OCHO: the evolution of cooperation as a rebuttal to Social Darwinism - Hamilton's rule (rb > c) and reciprocity (tit-for-tat beats always-defect over repeated rounds, while unconditional cooperation is exploited). The anarchist branch of Russian political thought, counter to GOBERNET's Marxism; honest that mutual aid needs reciprocity or kinship. Tamper-provable (one-shot, defection wins)."
+    },
+    {
+      "slug": "the-chebyshev-inequality",
+      "title": "THE CHEBYSHEV INEQUALITY",
+      "room": "number",
+      "kicker": "any distribution, one guarantee",
+      "accent": "#a5121a",
+      "stamp": "LIT",
+      "source": "Pafnuty Chebyshev (1821-1894), St. Petersburg",
+      "url": "https://davidwise01.github.io/ud0/world4/the-chebyshev-inequality.html",
+      "seal": "378829c3e0921a335586e8b8f1fb25e4bea968d7e7f57ae2894f082a6e4a9c7f",
+      "blurb": "Pafnuty Chebyshev's inequality (St. Petersburg), runnable in THE OCHO: for ANY distribution, P(|X-mu| >= k sigma) <= 1/k^2 (k=2 -> 25%, k=3 -> 11%), the empirical tail sitting under the bound live; plus Chebyshev polynomials (T_n(cos t) = cos n t, the minimax property) and Bertrand's postulate (a prime in (n,2n], which Chebyshev proved). Markov and Lyapunov were his students. Tamper-provable (drop the square)."
     }
   ]
 }

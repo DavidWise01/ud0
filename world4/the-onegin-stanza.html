@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE ONEGIN STANZA · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#a5121a; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(165,18,26,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(165,18,26,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(165,18,26,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(165,18,26,.20);}
+.win.panel{border:1px solid var(--red);box-shadow:0 0 0 1px rgba(165,18,26,.14);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.grid{display:grid;gap:2px;} .cell{width:16px;height:16px;border:1px solid var(--line);} .cell.on{background:var(--gold);border-color:var(--line2);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE NOVEL &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE ONEGIN STANZA</h1>
+ <p class="sub">Pushkin&rsquo;s <i>Eugene Onegin</i> (1825&ndash;1832) is a whole novel written in one repeated 14-line stanza &mdash; the <b>Onegin stanza</b>, or Pushkin sonnet, invented for it. Its rhyme is a <b>fixed program</b>: <b class="k">AbAbCCddEffEgg</b>, capitals feminine, lowercase masculine, every line iambic tetrameter. This panel is <b>runnable</b>: it validates a 14-symbol scheme against that exact law, counts the <b>6 feminine / 8 masculine</b> rhymes, and lays out the meter. THE NOVEL as a computable form.</p>
+ <p class="src"><span class="tag t-amber">source</span> A. S. Pushkin, <i>Eugene Onegin</i> (1825&ndash;1832), a novel in verse &mdash; the Onegin stanza built for it. Room: <b>THE NOVEL</b>. It complements <a href="./the-markov-property.html">the-markov-property</a> (the same <i>Onegin</i> &mdash; its statistics beside its form). Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; the novel in verse <span class="tag t-amber">1825</span></h2>
+   <p>Aleksandr Pushkin composed <i>Eugene Onegin</i> over <b>1823&ndash;1831</b> (published serially <b>1825&ndash;1832</b>, complete in 1833) not as prose but as <b class="k">verse</b> &mdash; a full novel carried in a single repeated stanza he designed for the task. Nearly the entire book (a few passages aside) is built from it.</p>
+   <p class="small">The form is now called the <b>Onegin stanza</b> or the <b>Pushkin sonnet</b>: 14 lines, like a sonnet, but wired to its own fixed rhyme program rather than the Shakespearean or Petrarchan one. The stanza is the engine; the novel is what runs on it.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE SCHEME &mdash; AbAbCCddEffEgg <span class="tag t-lit">LIT</span></h2>
+   <p>Fourteen symbols, five blocks, one order. <b>Capitals = feminine</b> rhyme (stress on the next-to-last syllable), <b>lowercase = masculine</b> (stress on the last).</p>
+   <table id="blkTbl"><thead><tr><th>block</th><th>symbols</th><th>shape</th></tr></thead><tbody id="blkBody"></tbody></table>
+   <p class="small" style="margin-top:6px">Read as <b class="k">AbAb</b> (cross-rhymed quatrain) &middot; <b class="k">CC</b> (couplet) &middot; <b class="k">dd</b> (couplet) &middot; <b class="k">EffE</b> (enclosed quatrain) &middot; <b class="k">gg</b> (closing couplet). Change one letter and it is no longer the Onegin stanza.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>FEMININE vs MASCULINE &mdash; 6 vs 8</h2>
+   <p>Count the case of the 14 symbols. <b>Feminine</b> (uppercase, penultimate stress): <b class="k">A A C C E E</b> = <b>6</b>. <b>Masculine</b> (lowercase, final stress): <b class="k">b b d d f f g g</b> = <b>8</b>. Sum <b>6 + 8 = 14</b>.</p>
+   <div id="gmap" style="margin:6px 0"></div>
+   <p class="small">The pattern always opens on a feminine rhyme and closes on a masculine couplet &mdash; a built-in rise-and-snap that the meter reinforces below.</p>
+  </div>
+
+  <div class="win blue"><span class="no">4</span><h2>THE METER &mdash; iambic tetrameter</h2>
+   <p>Every line runs <b>iambic tetrameter</b>: four iambs, so <b class="k">8 positions</b>, each a <b>weak&ndash;STRONG</b> pair.</p>
+   <div id="meterrow" style="margin:6px 0"></div>
+   <p class="small">weak <b>&rarr;</b> STRONG, four times: <b class="k">da-DUM da-DUM da-DUM da-DUM</b>. A feminine rhyme hangs one unstressed syllable past the 8th position; a masculine rhyme ends exactly on it.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>LINEAGE &mdash; used since <span class="tag t-amber">history</span></h2>
+   <p>The stanza outlived its novel. <b>Vladimir Nabokov</b> wrote <i>The University Poem</i> (1927) in a <i>reversed</i> Onegin stanza and later translated <i>Eugene Onegin</i> with a vast commentary that kept the form in view. <b>Vikram Seth</b> wrote an entire novel, <i>The Golden Gate</i> (1986), <b>entirely</b> in Onegin stanzas &mdash; 590 of them.</p>
+   <p class="small">Others followed (Jon Stallworthy, Diana Burgin&rsquo;s <i>Onegin</i>-form verse). A single fixed 14-line program, portable across languages and centuries &mdash; the mark of a real form, not a one-off.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">&darr;</span><h2>DATA IN &mdash; a 14-symbol scheme <span class="tag t-in">in &darr;</span></h2>
+   <p>Feed a rhyme scheme as letters (uppercase = feminine, lowercase = masculine). The engine checks it against the Onegin law <b>case-sensitively</b>, block by block, and counts the genders.</p>
+   <div class="row"><label>scheme</label><input id="schin" type="text" value="AbAbCCddEffEgg" spellcheck="false" style="width:180px;letter-spacing:2px"></div>
+   <div class="row"><label>presets</label>
+    <select id="preset">
+     <option value="AbAbCCddEffEgg">Onegin stanza</option>
+     <option value="ABABCDCDEFEFGG">Shakespearean sonnet</option>
+     <option value="ABBAABBACDECDE">Petrarchan sonnet</option>
+     <option value="AABBA">limerick</option>
+     <option value="AbAbCCddffEEgg">right letters, wrong order</option>
+    </select></div>
+   <p class="small mut">Type freely &mdash; the validator responds live. Only <b>AbAbCCddEffEgg</b> exactly is the Onegin stanza.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; validate &middot; count &middot; scan meter &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the validator <span class="tag t-lit">LIT</span></h2>
+   <div class="out" id="litverdict">&mdash;</div>
+   <p class="small" style="margin-top:2px">Symbol-by-symbol against the law &mdash; a red cell is where the input diverges from <b>AbAbCCddEffEgg</b>:</p>
+   <table id="cmpTbl"><thead><tr><th>i</th><th>your scheme</th><th>Onegin law</th><th>match</th></tr></thead><tbody id="cmpBody"></tbody></table>
+   <p class="small" style="margin-top:8px"><b>Gender count:</b> feminine <b id="fcnt" class="k">&mdash;</b> &middot; masculine <b id="mcnt" class="k">&mdash;</b> &middot; length <b id="lcnt" class="k">&mdash;</b></p>
+   <div id="cntbadge"></div>
+   <p class="small" style="margin-top:8px;color:var(--blue)"><b>Meter check:</b> iambic tetrameter has <b id="mpos" class="k">&mdash;</b> positions, pattern <span id="mpat" class="k">&mdash;</span>.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the machine emits the verdict &amp; the witness &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">&uarr;</span><h2>DATA OUT &mdash; verdict &amp; witness <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outverdict">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>candidate</th><th>form</th><th>engine</th><th>should be</th><th>ok</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small mut" style="margin-top:6px">The witness re-runs five known forms every render. Onegin accepts; the two other sonnets, the limerick, and the scrambled scheme are all rejected &mdash; and each rejection is checked against what it <i>should</i> be.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE ADVERSARY &mdash; "a sonnet is a sonnet"</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The easy claim: 14 lines that rhyme is a sonnet, so any 14-line rhymed form is "close enough." <b>No.</b> The Onegin stanza is a <b>distinct</b> 14-line form. A Shakespearean sonnet is <b>ABABCDCDEFEFGG</b>; a Petrarchan is <b>ABBAABBA</b> + a sestet. The Onegin order <b>AbAbCCddEffEgg</b> &mdash; and its fixed feminine/masculine alternation &mdash; matches none of them.</div>
+   <p class="small" style="margin-top:8px">The line count coincides; the <b>program</b> does not. Same length is not same form &mdash; the validator to the left rejects every look-alike.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>"A sonnet is a sonnet &mdash; call it Shakespearean."</s> <b>Cut.</b> Shakespearean is ABABCDCDEFEFGG; Onegin is AbAbCCddEffEgg. Different couplet placement, different rhyme order.</p>
+   <p class="grave"><s>"The stanza is just three quatrains and a couplet."</s> <b>Cut.</b> It is a cross quatrain, <i>two</i> couplets, an enclosed quatrain, then a couplet &mdash; AbAb / CC / dd / EffE / gg.</p>
+   <p class="grave"><s>"Case does not matter, only the letters."</s> <b>Cut.</b> Capitals mark feminine rhymes and lowercase masculine; the count is fixed at 6 vs 8. Same letters in the wrong case or wrong order is a different stanza.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; drop the pattern check</h2>
+   <p>The red move: strip the exact-pattern rule from the validator so it accepts <b>any 14-symbol scheme</b> &mdash; length only. Non-Onegin stanzas (Shakespearean, Petrarchan, the scrambled scheme) start passing.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; accept any 14 lines</button><button id="restore">&#8634; restore the law</button></div>
+   <p class="small" id="tampernote">Drop the pattern check and the witness (in DATA OUT) re-tests the known wrong schemes: the 14-symbol impostors now wrongly <b>accept</b>, the witness disagrees with what they should be, and it turns <b style="color:var(--wall)">red</b>. The attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE ONEGIN STANZA &mdash; World IV &middot; <b>SONIA</b>, room <b>THE NOVEL</b>, in the refined <b>OCHO</b>: blue lays out the roots, the scheme, the 6-vs-8 gender count, the meter and the lineage; the machine validates a 14-symbol scheme against AbAbCCddEffEgg case-sensitively down the centre; red argues "a sonnet is a sonnet," buries the look-alikes, and drops the pattern check &mdash; and is caught. A runnable rendering of the stanza Pushkin built for <i>Eugene Onegin</i> (1825&ndash;1832); the scheme, gender count and meter are LIT and self-checked; the history and lineage are AMBER; the form-identity limit is a real WALL. Complements the-markov-property &mdash; the same novel, its form beside its statistics. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE ONEGIN STANZA — rhyme-scheme validator (every value computed, none looked up) ===== */
+
+var SCHEME = "AbAbCCddEffEgg";          // the Onegin stanza: capitals feminine, lowercase masculine
+var METER = ["w","S","w","S","w","S","w","S"];   // iambic tetrameter: 8 positions, weak-STRONG x4
+
+var DROP_PATTERN = false;   // TAMPER: when true the validator drops the exact-pattern rule (length-only)
+
+function isFeminine(ch){ return ch >= "A" && ch <= "Z"; }   // uppercase symbol = feminine rhyme
+function isMasculine(ch){ return ch >= "a" && ch <= "z"; }  // lowercase symbol = masculine rhyme
+
+// exact, case-sensitive membership test for the Onegin stanza
+function isOnegin(s){ return s === SCHEME; }
+
+// the live validator: LIT law is exact match; TAMPER degrades it to length-only
+function accepts(s){ return DROP_PATTERN ? (s.length === 14) : isOnegin(s); }
+
+// count feminine (uppercase) and masculine (lowercase) symbols
+function countGenders(s){
+ var f=0, m=0;
+ for(var i=0;i<s.length;i++){ var c=s.charAt(i); if(isFeminine(c)) f++; else if(isMasculine(c)) m++; }
+ return { fem:f, masc:m };
+}
+
+// five structural blocks of the stanza
+function blocks(s){
+ return [
+  { name:"cross quatrain",   sym:s.substring(0,4),   shape:"AbAb" },
+  { name:"couplet",          sym:s.substring(4,6),   shape:"CC" },
+  { name:"couplet",          sym:s.substring(6,8),   shape:"dd" },
+  { name:"enclosed quatrain",sym:s.substring(8,12),  shape:"EffE" },
+  { name:"closing couplet",  sym:s.substring(12,14), shape:"gg" }
+ ];
+}
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=DROP_PATTERN; DROP_PATTERN=false;
+
+ // 1 — the scheme is exactly 14 symbols
+ t(SCHEME.length===14, "SCHEME must be 14 symbols");
+ t(SCHEME==="AbAbCCddEffEgg", "SCHEME must be AbAbCCddEffEgg exactly");
+
+ // 2 — gender count: 6 feminine + 8 masculine = 14
+ var g=countGenders(SCHEME);
+ t(g.fem===6, "feminine count must be 6 (A A C C E E)");
+ t(g.masc===8, "masculine count must be 8 (b b d d f f g g)");
+ t(g.fem+g.masc===14, "6 + 8 must equal 14");
+
+ // 3 — feminine symbols sit at the fixed indices 0,2,4,5,8,11; masculine fill the rest
+ var femIdx=[0,2,4,5,8,11], k;
+ for(k=0;k<femIdx.length;k++){ t(isFeminine(SCHEME.charAt(femIdx[k])), "index "+femIdx[k]+" must be a feminine (uppercase) symbol"); }
+ var mascIdx=[1,3,6,7,9,10,12,13];
+ for(k=0;k<mascIdx.length;k++){ t(isMasculine(SCHEME.charAt(mascIdx[k])), "index "+mascIdx[k]+" must be a masculine (lowercase) symbol"); }
+
+ // 4 — the validator accepts the Onegin stanza and rejects impostors (case-sensitive, order-sensitive)
+ t(isOnegin("AbAbCCddEffEgg")===true,  "isOnegin(Onegin) must be true");
+ t(isOnegin("AABBA")===false,          "isOnegin(limerick AABBA) must be false");
+ t(isOnegin("ABABCDCDEFEFGG")===false, "isOnegin(Shakespearean sonnet) must be false");
+ t(isOnegin("ABBAABBACDECDE")===false, "isOnegin(Petrarchan sonnet) must be false");
+ t(isOnegin("AbAbCCddffEEgg")===false, "right letters in the wrong order must be rejected");
+ // the scrambled scheme has the SAME 6/8 gender count yet is still not the Onegin stanza — order matters
+ t(countGenders("AbAbCCddffEEgg").fem===6, "scramble still has 6 feminine — proving order, not count, is the test");
+
+ // 5 — iambic tetrameter: 8 positions, strict weak-STRONG alternation
+ t(METER.length===8, "iambic tetrameter must have 8 positions");
+ for(k=0;k<METER.length;k++){ t(METER[k]===(k%2===0?"w":"S"), "position "+k+" must be "+(k%2===0?"weak":"STRONG")); }
+ t(METER.join("")==="wSwSwSwS", "meter must be weak-STRONG four times");
+
+ // 6 — blocks reassemble the exact scheme
+ var b=blocks(SCHEME), joined="";
+ for(k=0;k<b.length;k++){ joined+=b[k].sym; }
+ t(joined===SCHEME, "the five blocks must reassemble AbAbCCddEffEgg");
+
+ DROP_PATTERN=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function renderStatic(){
+ // block table (window 2)
+ var b=blocks(SCHEME), rows="";
+ for(var i=0;i<b.length;i++){
+  rows+="<tr><td style=\"text-align:left\">"+b[i].name+"</td><td style=\"font-weight:700;color:var(--red);letter-spacing:2px\">"+b[i].sym+"</td><td>"+b[i].shape+"</td></tr>";
+ }
+ $("blkBody").innerHTML=rows;
+
+ // gender map (window 3)
+ var gm="";
+ for(i=0;i<SCHEME.length;i++){
+  var c=SCHEME.charAt(i), fem=isFeminine(c);
+  gm+="<span style=\"display:inline-block;min-width:20px;text-align:center;margin:1px;padding:3px 2px;border-radius:4px;font-weight:700;"
+    +(fem?"background:rgba(165,18,26,.14);color:var(--red);border:1px solid var(--red)":"background:rgba(29,78,121,.12);color:var(--blue);border:1px solid #6f97b8")
+    +"\" title=\""+(fem?"feminine":"masculine")+"\">"+c+"</span>";
+ }
+ gm+="<div class=\"small\" style=\"margin-top:5px\"><span style=\"color:var(--red)\">&#9632; feminine (6)</span> &nbsp; <span style=\"color:var(--blue)\">&#9632; masculine (8)</span></div>";
+ $("gmap").innerHTML=gm;
+
+ // meter row (window 4)
+ var mr="";
+ for(i=0;i<METER.length;i++){
+  var strong=METER[i]==="S";
+  mr+="<span style=\"display:inline-block;min-width:30px;text-align:center;margin:1px;padding:4px 3px;border-radius:4px;font-weight:700;"
+    +(strong?"background:rgba(154,107,18,.18);color:var(--gold);border:1px solid var(--line2)":"background:rgba(120,108,76,.10);color:var(--dim);border:1px solid var(--line)")
+    +"\">"+(strong?"DUM":"da")+"</span>";
+  if(i%2===1 && i<METER.length-1) mr+="<span style=\"color:var(--dim)\"> &middot; </span>";
+ }
+ $("meterrow").innerHTML=mr;
+
+ // meter check line in panel
+ $("mpos").textContent=String(METER.length);
+ $("mpat").textContent=METER.join("-");
+}
+
+function witness(){
+ var cases=[
+  ["AbAbCCddEffEgg","Onegin stanza",           true],
+  ["ABABCDCDEFEFGG","Shakespearean sonnet",    false],
+  ["ABBAABBACDECDE","Petrarchan sonnet",       false],
+  ["AABBA","limerick",                          false],
+  ["AbAbCCddffEEgg","right letters, wrong order",false]
+ ];
+ var rows="", allok=true;
+ for(var i=0;i<cases.length;i++){
+  var cand=cases[i][0], name=cases[i][1], want=cases[i][2];
+  var got=accepts(cand);              // uses the LIVE validator (LIT, or TAMPER-degraded)
+  var ok=(got===want);
+  if(!ok) allok=false;
+  rows+="<tr><td style=\"letter-spacing:1px\">"+esc(cand)+"</td><td style=\"text-align:left\">"+name+"</td>"
+     +"<td style=\"font-weight:700;color:"+(got?"var(--lit)":"var(--wall)")+"\">"+(got?"accept":"reject")+"</td>"
+     +"<td>"+(want?"accept":"reject")+"</td>"
+     +"<td style=\"font-weight:700;color:"+(ok?"var(--lit)":"var(--wall)")+"\">"+(ok?"ok":"X")+"</td></tr>";
+ }
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'+(allok?"WITNESS - every known form classifies correctly":"WITNESS - a known form is misclassified")+'</span>';
+ return allok;
+}
+
+function render(){
+ var s=$("schin").value;
+ var law=SCHEME;
+ // symbol-by-symbol comparison table
+ var n=Math.max(s.length, law.length), rows="";
+ for(var i=0;i<n;i++){
+  var a=i<s.length?s.charAt(i):"", l=i<law.length?law.charAt(i):"", match=(a===l && a!=="");
+  rows+="<tr><td>"+i+"</td>"
+     +"<td style=\"font-weight:700\">"+(a===""?"<span class='mut'>&mdash;</span>":esc(a))+"</td>"
+     +"<td>"+(l===""?"<span class='mut'>&mdash;</span>":esc(l))+"</td>"
+     +"<td style=\"font-weight:700;color:"+(match?"var(--lit)":"var(--wall)")+"\">"+(match?"&#10003;":"&#10007;")+"</td></tr>";
+ }
+ $("cmpBody").innerHTML=rows;
+
+ // gender + length counts
+ var g=countGenders(s);
+ $("fcnt").textContent=String(g.fem);
+ $("mcnt").textContent=String(g.masc);
+ $("lcnt").textContent=String(s.length);
+ var countOk = (g.fem===6 && g.masc===8 && s.length===14);
+ $("cntbadge").innerHTML='<span class="badge '+(countOk?"pass":"failb")+'">'+(countOk?"6 feminine + 8 masculine = 14":"gender count is not 6 + 8 = 14")+'</span>';
+
+ // verdict
+ var ok=accepts(s), exact=isOnegin(s);
+ $("litverdict").textContent = (ok?"ACCEPT":"REJECT")+"  -  \""+s+"\"";
+ $("litverdict").style.color = ok?"var(--grn)":"var(--wall)";
+
+ $("outverdict").className="verdict "+(ok?"ok":"no");
+ $("outverdict").textContent = ok?"VALID Onegin stanza":"NOT an Onegin stanza";
+
+ var reason;
+ if(DROP_PATTERN){
+  reason = ok
+   ? "<b style=\"color:var(--wall)\">pattern check dropped</b> - the validator accepted this on length alone ("+s.length+" symbols). Whether it equals the law is: "+(exact?"yes":"<b style='color:var(--wall)'>no</b>")+"."
+   : "even length-only, this is not 14 symbols ("+s.length+").";
+ } else if(ok){
+  reason = "matches AbAbCCddEffEgg exactly - 14 symbols, 6 feminine + 8 masculine, cross / couplet / couplet / enclosed / couplet.";
+ } else {
+  if(s.length!==14) reason = "length is "+s.length+", not 14 - a stanza must be 14 lines.";
+  else if(exact) reason = "matches the law.";
+  else reason = "14 symbols, but the order or case diverges from AbAbCCddEffEgg (see the red cells above).";
+ }
+ $("outreason").innerHTML=reason;
+
+ witness();
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ renderStatic();
+ var sync=function(){ render(); };
+ $("schin").addEventListener("input",sync);
+ $("preset").addEventListener("change",function(){ $("schin").value=$("preset").value; render(); });
+ $("tamper").addEventListener("click",function(){
+  DROP_PATTERN=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Pattern check dropped.</b> The validator now accepts any 14-symbol scheme on length alone. The witness (in DATA OUT) re-tests the known forms: the Shakespearean and Petrarchan sonnets and the scrambled scheme now wrongly <b>accept</b>, disagree with what they should be, and it turns <b style='color:var(--wall)'>red</b>. The attack is real; it is caught.";
+  render();
+ });
+ $("restore").addEventListener("click",function(){
+  DROP_PATTERN=false;
+  $("tampernote").innerHTML="Drop the pattern check and the witness (in DATA OUT) re-tests the known wrong schemes: the 14-symbol impostors now wrongly <b>accept</b>, the witness disagrees with what they should be, and it turns <b style='color:var(--wall)'>red</b>. The attack is real and it is caught.";
+  render();
+ });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the Onegin-stanza validator did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>
