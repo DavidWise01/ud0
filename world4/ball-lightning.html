@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BALL LIGHTNING · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE WEIRD &middot; the Russian world</span></div>
+
+<header>
+ <h1>BALL LIGHTNING</h1>
+ <p class="sub">A luminous sphere the size of a grapefruit, <b>~10&ndash;30&nbsp;cm</b> across, drifts through a room for <b>seconds</b> and vanishes. Reported for centuries, never reliably made to order. This panel is <b>runnable</b>: it holds the plasma <b>cooling time</b>, &tau; = E<sub>thermal</sub>&nbsp;/&nbsp;P<sub>radiated</sub>, and proves the honest thing &mdash; a hot ionised ball would burn out in <b class="k">milliseconds</b>, not seconds, so simple hot plasma is <b>ruled out</b> with <b>no accepted replacement</b>. This is <b>THE WEIRD</b>: the mystery that is still open.</p>
+ <p class="src"><span class="tag t-amber">source</span> Ball lightning (a reported atmospheric phenomenon with no consensus mechanism as of 2026); P. L. Kapitsa, &ldquo;The nature of ball lightning,&rdquo; <i>Doklady Akademii Nauk SSSR</i> 101, 245 (1955) &mdash; the microwave-resonance hypothesis (Kapitsa, Nobel 1978); J. Abrahamson &amp; J. Dinniss, <i>Nature</i> 403, 519 (2000); J. Cen, P. Yuan &amp; S. Xue, <i>Phys. Rev. Lett.</i> 112, 035001 (2014) &mdash; a field spectrum. Room: <b>THE WEIRD</b>. The unsolved case is left honestly open; no mechanism is fabricated.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; the reports &amp; the one hypothesis</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; the reported ball <span class="tag t-amber">record</span></h2>
+   <p>For centuries, credible witnesses &mdash; sailors, pilots, householders &mdash; have described a <b>glowing sphere</b> that appears during or after a thunderstorm, floats or rolls at head height, and ends by <b>fading quietly</b> or <b>bursting with a bang</b>. It can pass through a window, slip down a chimney, or hang in mid-air. It is <b>rare, brief, and hard to catch</b>.</p>
+   <p class="small">Because it will not appear on cue, the archive is <b>eyewitness testimony</b>, not laboratory control. That is why the record is <b>AMBER</b> &mdash; real reports, honestly held, but not a repeatable specimen.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE OBSERVATIONS &mdash; the numbers that recur</h2>
+   <p>Across compiled surveys the portrait is consistent: diameter <b class="k">~10&ndash;30&nbsp;cm</b>; lifetime <b class="k">~1&ndash;10&nbsp;s</b>; a visible glow of roughly <b class="k">order kilowatt</b> (a bright lamp); it moves <b>slowly</b>, near <b>neutral buoyancy</b>, and often radiates <b>little felt heat</b>.</p>
+   <p class="small">These four facts &mdash; small, seconds-long, kilowatt-bright, low-buoyancy &mdash; are what any theory must explain. They are the <b>inputs</b> to the engine at centre. Compiled observation: <b>AMBER</b>.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>KAPITSA &mdash; the external feed <span class="tag t-amber">hypothesis</span></h2>
+   <p>In <b>1955</b>, <b>Pyotr Kapitsa</b> (Nobel 1978, superfluidity) proposed a way past the energy problem: the ball is <b>not</b> living on stored energy at all. An <b>external high-frequency electromagnetic standing wave</b> &mdash; a natural microwave resonance in the storm &mdash; would <b>continuously pump</b> the plasma, keeping it lit like a bulb on a wire.</p>
+   <p class="small">It is an elegant escape from the cooling-time trap &mdash; but the required standing wave has <b>never been reliably detected</b> in the field. One hypothesis, <b>unconfirmed</b>: <b>AMBER</b>, not LIT.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE ENGINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the cooling-time engine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; a hot-plasma ball <span class="tag t-in">in &darr;</span></h2>
+   <p>Suppose the glow <b>is</b> just hot ionised air with <b>no external feed</b>. Set its size, temperature and ionisation. The engine forms the <b>stored thermal energy</b> and the <b>radiated power</b>, then asks: <b>how long can it stay lit?</b></p>
+   <div class="row"><label>radius R</label><input id="rin" type="range" min="0.05" max="0.20" step="0.005" value="0.12" style="flex:1;min-width:120px"><b id="rval" class="k" style="min-width:70px">0.120 m</b></div>
+   <div class="row"><label>temp T</label><input id="tin" type="range" min="3000" max="25000" step="100" value="4000" style="flex:1;min-width:120px"><b id="tval" class="k" style="min-width:70px">4000 K</b></div>
+   <div class="row"><label>log&#8321;&#8320; n</label><input id="nin" type="range" min="19" max="23" step="0.1" value="23" style="flex:1;min-width:120px"><b id="nval" class="k" style="min-width:70px">1e23 /m3</b></div>
+   <div class="row"><label>emissivity &epsilon;</label><input id="ein" type="range" min="0.02" max="1" step="0.01" value="0.02" style="flex:1;min-width:120px"><b id="eval" class="k" style="min-width:70px">0.02</b></div>
+   <div class="row"><label>seen for</label><input id="oin" type="range" min="1" max="10" step="0.5" value="3" style="flex:1;min-width:120px"><b id="oval" class="k" style="min-width:70px">3.0 s</b></div>
+   <p class="small mut">E = 3 n k<sub>B</sub> T &middot; (4/3)&pi;R&sup3; (electron+ion thermal store); P = &epsilon; &sigma; (4&pi;R&sup2;) T&#8308; (graybody radiative loss, a conservative floor &mdash; volume emission and recombination only make it larger). &epsilon;&lt;1 models an optically-thin ball.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; store &divide; loss &middot; cooling time &middot; compare to lifetime &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE ENGINE &mdash; the cooling-time mismatch <span class="tag t-lit">LIT</span></h2>
+   <div class="out" id="engout">&mdash;</div>
+   <table id="engTbl"><tbody id="engBody"></tbody></table>
+   <p class="small" style="margin-top:8px">Closed form: &tau;<sub>cool</sub> = <b>n k<sub>B</sub> R / (&epsilon; &sigma; T&sup3;)</b>. <b>Hotter burns out faster</b> (&tau; &prop; 1/T&sup3;). Every luminous choice lands far below one second:</p>
+   <table id="scanTbl"><thead><tr><th>T (K)</th><th>&tau;<sub>cool</sub> (s)</th><th>vs 1&ndash;10 s</th><th>mismatch</th></tr></thead><tbody id="scanBody"></tbody></table>
+   <p class="small" style="margin-top:8px"><b>The mismatch</b> (lifetime &divide; cooling time): <span id="critline" class="k">&mdash;</span>. A hot ball radiates its heat away <b>~10&sup2;&ndash;10&sup3;&times; faster</b> than it is seen to last. That gap <b>is</b> the open puzzle.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the deciding fact: no feed, no seconds &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; THE OPEN VERDICT <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outverdict">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>&ldquo;simple hot plasma&rdquo;</th><th>bright enough to glow?</th><th>lasts the seconds seen?</th><th>viable?</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small" style="margin-top:8px">To be the answer, a plain hot ball must be <b>both</b> luminous (T&nbsp;&ge;&nbsp;~3000&nbsp;K) <b>and</b> long-lived (&tau; &ge; the seconds observed). It can be one or the other, <b>never both</b>: hot enough to shine means cooled in milliseconds. So the honest verdict is <b>OPEN</b> &mdash; not solved, not debunked.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; the wall &amp; the graveyard &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE OPEN PUZZLE &mdash; the honest wall</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The sibling mysteries of <b>THE WEIRD</b> are <b>closed</b>: Tunguska was a bolide airburst, Dyatlov a delayed slab avalanche, Kola just a very deep hole. Ball lightning is <b>not</b>. As of <b>2026 there is no consensus mechanism</b> and no method that makes a true specimen on demand. That is a real limit, not a missing paragraph.</div>
+   <p class="small" style="margin-top:8px"><b>What we do have.</b> A 2012 <b>field spectrum</b> (Cen, Yuan &amp; Xue, PRL 2014) caught a natural ball and read <b>Si, Fe, Ca</b> lines &mdash; soil elements. Lab <b>plasmoids</b> (microwave cavities, saltwater discharge) mimic pieces of it. Evidence of a real phenomenon &mdash; but <b>no complete theory</b>.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>COMPETING IDEAS &amp; THE GRAVEYARD</h2>
+   <p class="small"><b>Live but unsettled</b> (all <span class="tag t-amber">AMBER</span>):</p>
+   <p class="small" style="margin:2px 0"><b>Abrahamson&ndash;Dinniss (2000):</b> a strike vaporises soil silicon; an oxidising silicon-nanoparticle web glows as it slowly burns &mdash; a <b>chemical</b> store, not stored heat.</p>
+   <p class="small" style="margin:2px 0"><b>Kapitsa microwave feed (1955)</b> and other <b>trapped-field / plasma-shell</b> models &mdash; an <b>external</b> store.</p>
+   <p class="small" style="margin:2px 0"><b>Hydrodynamic vortex / plasma soliton</b> models &mdash; self-confined structure.</p>
+   <p class="grave" style="margin-top:6px"><s>&ldquo;Ball lightning is a myth &mdash; a retinal after-image, or mass hysteria.&rdquo;</s> <b>Dead as the dismissal.</b> A 2012 natural spectrum and repeatable lab plasmoids show a <b>real</b> effect. What is buried is the <b>brush-off</b>, not the reports &mdash; yet no idea earns <b class="k">LIT</b> until a full theory does.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; &ldquo;just hot plasma, solved&rdquo;</h2>
+   <p>The red move: wave the mystery away &mdash; <b>&ldquo;it is only hot ionised air, case closed&rdquo;</b> &mdash; while <b>ignoring the cooling time</b>. The engine calls the bluff: a plasma hot enough to shine drains in <b>~milliseconds</b>, not the <b>seconds</b> witnessed.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; declare it solved</button><button id="restore">&#8634; restore the open verdict</button></div>
+   <p class="small" id="tampernote">Declare it &ldquo;solved by hot plasma&rdquo; and the witness (5) checks whether such a ball could actually last the observed seconds &mdash; it cannot, by orders of magnitude &mdash; so it turns <b style="color:var(--wall)">red</b>. The honest stamp is <b>OPEN</b>, not solved.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">BALL LIGHTNING &mdash; World IV &middot; <b>SONIA</b>, room <b>THE WEIRD</b>, in the refined <b>OCHO</b>: blue lays down the centuries of reports, the recurring numbers, and Kapitsa&rsquo;s 1955 external-feed hypothesis; the centre engine runs the cooling time &tau; = E/P and shows a hot ball burning out in milliseconds against the seconds seen; red holds the honest wall &mdash; no consensus mechanism &mdash; lists the competing AMBER ideas, buries the &ldquo;it is a myth&rdquo; dismissal, and is caught trying to declare the case solved. The cooling-time mismatch and the luminous-or-lasting trap are LIT and self-checked; the reports, Kapitsa, and the competing ideas are AMBER; the absence of a mechanism is a real WALL. THE LESSON: an honest mystery is worth more than a fabricated answer &mdash; the mismatch is real, and the case stays open. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA - BALL LIGHTNING - plasma cooling-time engine (every value computed) ===== */
+
+var CLAIM="open";                 // honest stance. TAMPER sets "plasma-solved" (a claim the cooling time refutes)
+
+var KB=1.380649e-23;              // J/K, Boltzmann
+var SIGMA=5.670374419e-8;         // W/m^2/K^4, Stefan-Boltzmann
+var PI=Math.PI;
+var T_GLOW_MIN=3000;             // K, below this a body does not thermally emit an appreciable visible glow
+
+function sphereVolume(R){ return (4/3)*PI*R*R*R; }
+function surfaceArea(R){ return 4*PI*R*R; }
+
+// stored thermal energy of the ionised sphere (electrons + ions, ~3/2 kT each -> factor 3)
+function thermalEnergy(n,T,R){ return 3*n*KB*T*sphereVolume(R); }
+// radiated power, graybody floor (volume emission + recombination only add to this)
+function radiatedPower(eps,T,R){ return eps*SIGMA*surfaceArea(R)*T*T*T*T; }
+// cooling time tau = E / P  (== n kB R / (eps sigma T^3))
+function coolingTime(n,T,R,eps){ return thermalEnergy(n,T,R)/radiatedPower(eps,T,R); }
+// mismatch: how many times faster it cools than it is seen to last
+function mismatch(n,T,R,eps,Tobs){ return Tobs/coolingTime(n,T,R,eps); }
+
+function isLuminous(T){ return T>=T_GLOW_MIN; }
+// a "simple hot plasma" is a viable answer ONLY if it is both bright enough AND lasts the observed time
+function plasmaViable(n,T,R,eps,Tobs){ return isLuminous(T) && (coolingTime(n,T,R,eps)>=Tobs); }
+// as of 2026 no mechanism is accepted: the phenomenon is OPEN, not solved
+function hasConsensusMechanism(){ return false; }
+// does a stated CLAIM survive the physics?
+function claimHolds(claim,n,T,R,eps,Tobs){
+ if(claim==="plasma-solved"){ return plasmaViable(n,T,R,eps,Tobs); }   // "solved" needs the plasma to actually last
+ if(claim==="open"){ return !plasmaViable(n,T,R,eps,Tobs) && !hasConsensusMechanism(); } // open is warranted: ruled out, no replacement
+ return false;
+}
+
+// fixed-seed PRNG (LCG, full 32-bit span) for the plausibility scan
+function mkRng(seed){ var s=seed>>>0; return function(){ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+
+/* ===== fail-loud self-check (runs on the honest OPEN stance, plausible hot-plasma numbers) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var rel=function(a,b){ return Math.abs(a-b)/Math.abs(b); };
+
+ var n=1e23, T=4000, R=0.12, eps=0.02, Tobs=3;
+
+ // 1 - closed form agrees with E/P
+ t(rel(coolingTime(n,T,R,eps), n*KB*R/(eps*SIGMA*T*T*T))<1e-9,"cooling time must equal n kB R / (eps sigma T^3)");
+
+ // 2 - for plausible hot-plasma numbers tau computes to << 1 s (milliseconds)
+ var tau=coolingTime(n,T,R,eps);
+ t(tau<0.05,"cooling time must be far below 1 s (got "+tau.toFixed(6)+" s)");
+ t(tau<0.01,"cooling time must be of order milliseconds");
+
+ // 3 - the observed lifetime exceeds tau by a large factor (~1e2-1e3)
+ var mm=mismatch(n,T,R,eps,Tobs);
+ t(mm>100,"observed lifetime must exceed the cooling time by >100x (got "+mm.toFixed(0)+")");
+
+ // 4 - hotter cools faster (tau falls with T); denser stores more (tau rises with n)
+ t(coolingTime(n,6000,R,eps)<coolingTime(n,3000,R,eps),"a hotter ball must cool faster");
+ t(coolingTime(2e23,T,R,eps)>coolingTime(1e23,T,R,eps),"a denser ball must store more and cool slower");
+
+ // 5 - the ball IS luminous yet a simple plasma is NOT a viable answer: it cannot last the seconds seen
+ t(isLuminous(T)===true,"the default ball is hot enough to glow");
+ t(plasmaViable(n,T,R,eps,Tobs)===false,"a simple hot plasma must NOT survive the observed lifetime");
+
+ // 6 - the phenomenon is OPEN (not solved, not debunked): no consensus mechanism exists
+ t(hasConsensusMechanism()===false,"there must be NO accepted mechanism -> OPEN");
+ t(claimHolds("open",n,T,R,eps,Tobs)===true,"the OPEN verdict must be warranted");
+ t(claimHolds("plasma-solved",n,T,R,eps,Tobs)===false,"the 'solved by hot plasma' claim must fail");
+
+ // 7 - the mismatch is robust: across the whole plausible range no luminous plasma survives,
+ //     and every case cools far below a second (simple hot plasma ruled out with no replacement)
+ var rng=mkRng(0x1eaf), i;
+ for(i=0;i<400;i++){
+  var Rr=0.05+rng()*(0.20-0.05);
+  var Tr=3000+rng()*(25000-3000);
+  var nr=Math.pow(10,19+rng()*(23-19));
+  var er=0.02+rng()*(1-0.02);
+  var or=1+rng()*(10-1);
+  t(coolingTime(nr,Tr,Rr,er)<0.05,"scan: every hot-plasma ball must cool in <0.05 s");
+  t(plasmaViable(nr,Tr,Rr,er,or)===false,"scan: no luminous plasma may survive its observed lifetime");
+  t(mismatch(nr,Tr,Rr,er,or)>100,"scan: mismatch must stay >100x");
+ }
+
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+function fx(n,d){ return n.toFixed(d===undefined?1:d); }
+function expo(n,d){ return n.toExponential(d===undefined?2:d); }
+
+function readInputs(){
+ return { R:+$("rin").value, T:+$("tin").value, n:Math.pow(10,+$("nin").value), eps:+$("ein").value, Tobs:+$("oin").value, logn:+$("nin").value };
+}
+
+function renderEngine(){
+ var IN=readInputs();
+ $("rval").textContent=fx(IN.R,3)+" m";
+ $("tval").textContent=Math.round(IN.T)+" K";
+ $("nval").textContent="1e"+fx(IN.logn,1)+" /m3";
+ $("eval").textContent=fx(IN.eps,2);
+ $("oval").textContent=fx(IN.Tobs,1)+" s";
+
+ var E=thermalEnergy(IN.n,IN.T,IN.R), P=radiatedPower(IN.eps,IN.T,IN.R), tau=E/P;
+ var mm=IN.Tobs/tau, lum=isLuminous(IN.T);
+
+ $("engout").innerHTML="&tau;<sub>cool</sub> = "+expo(tau,2)+" s  ("+fx(tau*1000,3)+" ms)  &rarr;  "
+   +(tau<IN.Tobs?'<span style="color:var(--wall)">GONE in a flash</span>':'<span style="color:var(--lit)">could persist</span>');
+
+ var rows="";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">E = 3 n k<sub>B</sub> T (4/3)&pi;R&sup3;</td><td style=\"font-weight:700;color:var(--red)\">"+fx(E,1)+" J</td></tr>";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">P = &epsilon; &sigma; 4&pi;R&sup2; T&#8308;</td><td style=\"font-weight:700;color:var(--red)\">"+expo(P,2)+" W</td></tr>";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">&tau; = E / P</td><td style=\"font-weight:700;color:"+(tau<IN.Tobs?"var(--wall)":"var(--lit)")+"\">"+expo(tau,2)+" s</td></tr>";
+ $("engBody").innerHTML=rows;
+
+ // scan across temperature, other params fixed at the current ball
+ var temps=[3000,4000,6000,10000,20000], sr="";
+ for(var i=0;i<temps.length;i++){
+  var Tk=temps[i], tk=coolingTime(IN.n,Tk,IN.R,IN.eps), mk=IN.Tobs/tk;
+  sr+="<tr><td>"+Tk+"</td><td>"+expo(tk,2)+"</td><td style=\"color:var(--wall)\">"+(tk<1?"&lt;&lt; 1 s":"~ 1 s")+"</td><td style=\"font-weight:700;color:var(--red)\">"+expo(mk,1)+"&times;</td></tr>";
+ }
+ $("scanBody").innerHTML=sr;
+
+ $("critline").innerHTML=expo(mm,1)+"&times;  ( lifetime "+fx(IN.Tobs,1)+" s &divide; &tau; "+fx(tau*1000,3)+" ms )";
+
+ renderWitness(IN,tau,mm,lum);
+}
+
+function renderWitness(IN,tau,mm,lum){
+ var vd=$("outverdict"), rl=$("outreason");
+ var viable=plasmaViable(IN.n,IN.T,IN.R,IN.eps,IN.Tobs);   // is a plain hot plasma actually a viable answer? (never, in range)
+ var openWarranted=claimHolds("open",IN.n,IN.T,IN.R,IN.eps,IN.Tobs);
+ var claimOK=claimHolds(CLAIM,IN.n,IN.T,IN.R,IN.eps,IN.Tobs);
+
+ if(CLAIM==="open"){
+  vd.className="verdict "+(openWarranted?"ok":"no");
+  vd.textContent=openWarranted?"OPEN — no accepted mechanism":"(inconsistent)";
+  rl.innerHTML=openWarranted
+   ? 'The ball glows (T&nbsp;&ge;&nbsp;3000&nbsp;K) but cools in <b>'+fx(tau*1000,3)+'&nbsp;ms</b> &mdash; <b>'+expo(mm,1)+'&times;</b> shorter than the '+fx(IN.Tobs,1)+'&nbsp;s seen. Simple hot plasma is <b>ruled out</b>, and no theory replaces it. Honestly <b style="color:var(--lit)">OPEN</b>.'
+   : 'Parameters left the plausible band.';
+ } else {
+  // tamper: someone declared it "solved by hot plasma"
+  vd.className="verdict "+(claimOK?"ok":"no");
+  vd.textContent=claimOK?"(claim holds)":"REFUTED — plasma cannot last";
+  rl.innerHTML=claimOK
+   ? '(unreachable in range)'
+   : '<b style="color:var(--wall)">The claim fails.</b> A ball hot enough to shine drains in <b>'+fx(tau*1000,3)+'&nbsp;ms</b>, not <b>'+fx(IN.Tobs,1)+'&nbsp;s</b> &mdash; off by <b>'+expo(mm,1)+'&times;</b>. Ignoring the cooling time does not close the case.';
+ }
+
+ var glowCell=lum?"yes":"no (too cold)";
+ var lastCell=(tau>=IN.Tobs)?"yes":"no";
+ var row="<tr><td>"+(CLAIM==="plasma-solved"?"declared solved":"as an explanation")+"</td>"
+  +"<td style=\"font-weight:700;color:"+(lum?"var(--lit)":"var(--wall)")+"\">"+glowCell+"</td>"
+  +"<td style=\"font-weight:700;color:"+(tau>=IN.Tobs?"var(--lit)":"var(--wall)")+"\">"+lastCell+"</td>"
+  +"<td style=\"font-weight:700;color:"+(viable?"var(--lit)":"var(--wall)")+"\">"+(viable?"yes":"no")+"</td></tr>";
+ $("witbody").innerHTML=row;
+
+ var pass=(CLAIM==="open") ? openWarranted : claimOK;
+ $("witbadge").innerHTML='<span class="badge '+(pass?"pass":"failb")+'">'
+   +(CLAIM==="open"
+      ? (pass?"WITNESS - hot plasma ruled out, no replacement: genuinely OPEN":"WITNESS - out of range")
+      : "WITNESS - 'solved by hot plasma' breaks by orders of magnitude")
+   +'</span>';
+ return pass;
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ var sync=function(){ renderEngine(); };
+ ["rin","tin","nin","ein","oin"].forEach(function(id){ $(id).addEventListener("input",sync); $(id).addEventListener("change",sync); });
+ $("tamper").addEventListener("click",function(){
+  CLAIM="plasma-solved";
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Declared solved.</b> The witness (5) now asks whether a plasma hot enough to glow could actually last the observed seconds &mdash; it cannot, by <b>orders of magnitude</b> &mdash; so it turns <b style='color:var(--wall)'>red</b>. The cooling time refutes the shortcut; the honest stamp stays <b>OPEN</b>.";
+  renderEngine();
+ });
+ $("restore").addEventListener("click",function(){
+  CLAIM="open";
+  $("tampernote").innerHTML="Declare it &ldquo;solved by hot plasma&rdquo; and the witness (5) checks whether such a ball could actually last the observed seconds &mdash; it cannot, by orders of magnitude &mdash; so it turns <b style='color:var(--wall)'>red</b>. The honest stamp is <b>OPEN</b>, not solved.";
+  renderEngine();
+ });
+ renderEngine();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the ball-lightning cooling-time engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

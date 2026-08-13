@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE MASTER AND MARGARITA · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* local helpers (layout only) */
+.shr td:first-child{color:var(--red);font-weight:700;}
+.shr tr.burned td{color:#a99a75;text-decoration:line-through;}
+.shr tr.burned td:first-child{color:#b8956f;}
+.bt{cursor:pointer;font-size:10px;padding:2px 7px;border:1px solid var(--line2);border-radius:4px;background:#fbf6e6;color:var(--dim);}
+.bt.surv{border-color:var(--lit);color:var(--lit);} .bt.gone{border-color:var(--wall);color:var(--wall);}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE NOVEL &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE MASTER AND MARGARITA</h1>
+ <p class="sub">&ldquo;Manuscripts don&rsquo;t burn&rdquo; (<b>&#1088;&#1091;&#1082;&#1086;&#1087;&#1080;&#1089;&#1080; &#1085;&#1077; &#1075;&#1086;&#1088;&#1103;&#1090;</b>) &mdash; made mechanical. A secret is split into <b>n</b> shares by a degree&#8209;(k&#8722;1) polynomial over a small prime field; any <b class="k">k</b> shares reconstruct it, burn up to <b>n&#8722;k</b> and the manuscript still survives. The <b style="color:var(--blue)">blue team</b> builds the threshold; the <b style="color:var(--red)">red team</b> burns copies and lies below it.</p>
+ <p class="src"><span class="tag t-amber">source</span> Mikhail Bulgakov, <i>The Master and Margarita</i> (written 1928&ndash;1940; first published, censored, in <i>Moskva</i> 1966&ndash;67) &mdash; the theme is literary (<span class="tag t-amber">AMBER</span>); the (k,n) threshold code is <span class="tag t-lit">LIT</span>. Room: <b>THE NOVEL</b>. Rendered as mechanism, not quoted at length.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">3</span><h2>ROOTS &mdash; written in secret <span class="tag t-amber">history</span></h2>
+   <p>Moscow, 1928&ndash;1940: Bulgakov writes his last novel with no hope of print. In <b>1930</b>, in despair, he <b>burned a draft himself</b> &mdash; then began again. He dictated final edits to his wife Elena as he went blind and died in <b>1940</b>.</p>
+   <p>The manuscript survived him. It reached readers in <b>1966&ndash;67</b>, twenty-six years after his death, first in a censored magazine serialization, then in samizdat and abroad in full. Woland&rsquo;s line to the Master &mdash; &ldquo;manuscripts don&rsquo;t burn&rdquo; &mdash; became the book&rsquo;s own history.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE TWO WORLDS <span class="tag t-amber">structure</span></h2>
+   <p>The novel runs on <b>two planes at once</b>: 1930s <b>Moscow</b>, where the devil Woland and his retinue expose a corrupt literary world; and ancient <b>Yershalaim</b>, where Pontius Pilate condemns Yeshua &mdash; a <b>novel within the novel</b>, the very manuscript the Master burned.</p>
+   <p>Both worlds carry the same freight: a written truth that authority wants gone, and cannot quite destroy. The engine below encodes exactly that survival as arithmetic.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>THE THRESHOLD &mdash; recover iff &#8805; k survive <span class="tag t-lit">LIT</span></h2>
+   <p>Split the secret into <b class="k">n = 5</b> shares with a degree&#8209;<b>2</b> polynomial <b>f</b> over <b>F<sub>257</sub></b>, <b>f(0) = s</b>. The theorem: <b>any k = 3</b> shares Lagrange-interpolate back to <b>f(0) = s</b> &mdash; exactly. Fewer than three carry <b>no</b> information about s.</p>
+   <p>So the manuscript &ldquo;does not burn&rdquo; <b>iff at least k of the n copies survive</b>. Burn <b>n&#8722;k = 2</b> and three remain: recovered. Burn a third and only two remain: <b>lost</b>. The witness (9) re-proves this on load.</p>
+  </div>
+
+  <div class="win blue"><span class="no">9</span><h2>THE WITNESS <span class="tag t-lit">live</span></h2>
+   <p>Re-run the threshold live: every one of the <b>10</b> three-share subsets must recover the same secret; a two-share set must leave it <b>undetermined</b> (all 257 values still consistent); all modular inverses must be exact. If red accepts a below-threshold &ldquo;recovery&rdquo; (6), this badge turns red.</p>
+   <div id="auditout"></div>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the secret &amp; its 5 shares <span class="tag t-in">in &#8595;</span></h2>
+   <p>Set a secret <b>s</b> (the &ldquo;manuscript,&rdquo; a number 0&ndash;256). A fixed-seed degree&#8209;2 polynomial <b>f(x)=s + a&#8321;x + a&#8322;x&sup2; (mod 257)</b> produces five shares <b>(i, f(i))</b>. Toggle each share <b>SURVIVES</b> / <b>BURNED</b>.</p>
+   <div class="row"><label>secret s</label><input id="secret" type="number" min="0" max="256" value="42" style="width:80px"><span class="small" id="polyline"></span></div>
+   <table class="shr"><thead><tr><th>share i</th><th>f(i) mod 257</th><th>state</th></tr></thead><tbody id="shrBody"></tbody></table>
+   <div class="row" style="margin-top:8px">
+    <button id="pBurn2">burn 2 &#183; survives</button>
+    <button id="pBurn3">burn 3 &#183; lost</button>
+    <button id="pRestore">&#8635; restore all</button>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; Lagrange-interpolate f(0) from the survivors &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; reconstruct the manuscript <span class="tag t-lit">LIT</span></h2>
+   <p class="small">With <b>k = 3</b> of the 5 shares, the secret is <b>s = &#931;<sub>j</sub> y<sub>j</sub> &#8467;<sub>j</sub>(0)</b>, the Lagrange basis evaluated at 0, all arithmetic mod 257. Below three survivors the sum is not determined by the data.</p>
+   <div class="seq" style="font-size:12.5px;line-height:1.7;margin:8px 0;padding:9px;background:#fbf6e6;border:1px solid var(--line);border-radius:6px;word-break:break-word" id="seqline"></div>
+   <table id="stepTbl"><thead><tr><th>share i</th><th>y = f(i)</th><th>&#8467;<sub>i</sub>(0) mod 257</th><th>y&middot;&#8467;<sub>i</sub>(0)</th></tr></thead><tbody id="stepBody"></tbody></table>
+   <p class="small" style="margin-top:6px">Rule: <b>recover &#8660; at least k = 3 shares survive</b>. Any 3 give the same s; 2 give nothing.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the manuscript survives, or it is lost &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; verdict &amp; lineage <span class="tag t-out">out &#8595;</span></h2>
+   <div class="verdict" id="verdict"></div>
+   <div class="reason" id="reason"></div>
+   <div id="litbadge" style="margin-top:8px"></div>
+   <p class="small" style="margin-top:8px"><b>LINEAGE.</b> &ldquo;Manuscripts don&rsquo;t burn&rdquo; is a claim about <b>redundancy</b>: truth survives if <b>enough copies were made</b>. That is exactly the logic of <a href="samizdat.html">samizdat</a> &mdash; retype it, pass it on, and no single burned copy ends it. The threshold code is the samizdat principle made exact: above k, indestructible; below it, gone.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9705;</div>
+
+  <div class="win red"><span class="no">1</span><h2>BELOW THRESHOLD &mdash; the honest limit <span class="tag t-wall">WALL</span></h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The slogan is <b>not</b> unconditional. With fewer than <b>k = 3</b> surviving shares the manuscript is <b>truly lost</b>: from two shares every one of the 257 possible secrets is still consistent &mdash; there is a valid degree&#8209;2 polynomial through those two points for <b>any</b> f(0). No cleverness recovers it; the information is simply not there.</div>
+   <p class="small" style="margin-top:8px">&ldquo;Manuscripts don&rsquo;t burn&rdquo; holds <b>above</b> the threshold and fails <b>below</b> it. Bulgakov&rsquo;s own line is aspiration; the field arithmetic is where it becomes a theorem &mdash; with its exact boundary.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Burning the only copy destroys the work.&rdquo;</s> <b>Cut &mdash; with redundancy.</b> If the secret was split into n=5 and k=3, burning up to two copies changes nothing; the manuscript survives. <i>Without</i> redundancy (one copy, k=n=1) burning it does end it &mdash; which is why Bulgakov&rsquo;s 1930 fire mattered until he rewrote.</p>
+   <p class="grave"><s>&ldquo;Any surviving fragment is enough.&rdquo;</s> <b>Cut.</b> One or two shares recover nothing. Survival needs <b>k</b>, not one.</p>
+   <p class="grave"><s>&ldquo;More shares handed out &#8658; weaker secret.&rdquo;</s> <b>Cut.</b> Below k, extra shares still reveal <b>nothing</b>; the secret leaks only at the k-th.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; recover from k&#8722;1 <span class="tag t-wall">attack</span></h2>
+   <p>The red move: <b>claim a two-share recovery succeeded.</b> Interpolate f(0) from just <b>2</b> survivors and present the number as &ldquo;the manuscript.&rdquo; It <i>looks</i> like an answer &mdash; but the witness (9) recomputes and finds the secret is <b>underdetermined</b> (all 257 values fit those two shares), so the claim is a fabrication and the badge turns <b style="color:var(--wall)">red</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; accept k&#8722;1 recovery</button><button id="restore2">&#8635; restore</button></div>
+   <p class="small" id="tampernote">Below the threshold the &ldquo;recovered&rdquo; value is just the line through two arbitrary points &mdash; a different secret for every guess at the third. The attack is real, and the witness catches it.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE MASTER AND MARGARITA &mdash; World IV &middot; <b>SONIA</b>, in the refined <b>OCHO</b>: a secret goes <b style="color:var(--cy)">in</b> as a number split into 5 shares &#8594; Lagrange interpolation reconstructs f(0) from any 3 survivors &#8594; the manuscript <b style="color:var(--grn)">survives or is lost</b> comes out. A runnable rendering of Bulgakov&rsquo;s &ldquo;manuscripts don&rsquo;t burn&rdquo; as a (k=3, n=5) Shamir threshold code over F<sub>257</sub> &mdash; the engine is LIT (every 3-subset recovers the same secret, two shares leave it undetermined, all modular inverses exact, self-checked and tamper-provable); the theme is AMBER literary, and the honest limit below the threshold is a WALL. Ties samizdat. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE MASTER AND MARGARITA — the engine (a (k,n) threshold code over F_257, computed) ===== */
+
+var P = 257;   // prime field
+var K = 3;     // threshold: any K shares recover
+var N = 5;     // shares handed out
+var SEED = 20260812;
+
+function mod(a){ a = a % P; if(a < 0) a += P; return a; }
+
+// modular inverse by Fermat's little theorem (P prime): a^(P-2) mod P, for a != 0
+function modinv(a){
+ a = mod(a);
+ var r = 1, b = a, e = P - 2;
+ while(e > 0){ if(e & 1) r = mod(r * b); b = mod(b * b); e = e >> 1; }
+ return r;
+}
+
+// fixed-seed PRNG (LCG) — coefficients are deterministic, no Math.random in the engine
+function lcg(seed){ var s = seed >>> 0; return function(){ s = (s * 1664525 + 1013904223) >>> 0; return s; }; }
+
+// coefficients of f: [c0=s, c1, c2], with c1,c2 fixed by the seed (a2 != 0 so degree is exactly k-1)
+function coeffsFor(secret){
+ var rnd = lcg(SEED);
+ var a1 = (rnd() % (P - 1)) + 1;
+ var a2 = (rnd() % (P - 1)) + 1;
+ return [mod(secret), a1, a2];
+}
+
+// evaluate polynomial (low-to-high coeffs) at x, mod P, via Horner
+function evalPoly(coeffs, x){
+ var acc = 0;
+ for(var i = coeffs.length - 1; i >= 0; i--) acc = mod(acc * x + coeffs[i]);
+ return acc;
+}
+
+// the n shares (i, f(i)) for i = 1..n
+function sharesFor(secret, n){
+ var c = coeffsFor(secret), out = [];
+ for(var i = 1; i <= n; i++) out.push({ x: i, y: evalPoly(c, i) });
+ return out;
+}
+
+// Lagrange interpolation of the polynomial through `points`, evaluated at X (mod P)
+function lagrangeEval(points, X){
+ var acc = 0;
+ for(var j = 0; j < points.length; j++){
+  var num = 1, den = 1;
+  for(var m = 0; m < points.length; m++){
+   if(m === j) continue;
+   num = mod(num * mod(X - points[m].x));
+   den = mod(den * mod(points[j].x - points[m].x));
+  }
+  var lj = mod(num * modinv(den));       // basis polynomial l_j(X)
+  acc = mod(acc + mod(points[j].y * lj));
+ }
+ return acc;
+}
+
+// recover the secret f(0) from a set of shares
+function recoverSecret(points){ return lagrangeEval(points, 0); }
+
+// all k-subsets (by index) of an array
+function combos(arr, k){
+ var res = [];
+ (function go(start, pick){
+  if(pick.length === k){ res.push(pick.slice()); return; }
+  for(var i = start; i < arr.length; i++){ pick.push(arr[i]); go(i + 1, pick); pick.pop(); }
+ })(0, []);
+ return res;
+}
+
+// underdetermination from two shares: how many candidate secrets remain consistent?
+// for each candidate s, the unique degree<=2 poly through (0,s) and the two shares reproduces
+// both shares (Lagrange property) — so EVERY candidate is consistent. Count them.
+function consistentCount2(twoShares){
+ var cnt = 0;
+ for(var s = 0; s < P; s++){
+  var pts = [ {x:0,y:s}, {x:twoShares[0].x,y:twoShares[0].y}, {x:twoShares[1].x,y:twoShares[1].y} ];
+  var ok = (lagrangeEval(pts, twoShares[0].x) === twoShares[0].y)
+        && (lagrangeEval(pts, twoShares[1].x) === twoShares[1].y);
+  if(ok) cnt++;
+ }
+ return cnt;
+}
+
+/* ===== fail-loud self-check ===== */
+function selfcheck(){
+ var t = function(c, m){ if(!c) throw new Error(m); };
+
+ // modular inverses are exact across the whole field
+ for(var a = 1; a < P; a++) t(mod(modinv(a) * a) === 1, "modular inverse wrong for " + a);
+
+ var S = 42;
+ var shares = sharesFor(S, N);
+ t(shares.length === 5, "there must be 5 shares, got " + shares.length);
+
+ // ANY k=3 of the 5 shares recover exactly f(0) = s
+ var subs = combos([0,1,2,3,4], K);
+ t(subs.length === 10, "C(5,3) must be 10, got " + subs.length);
+ for(var i = 0; i < subs.length; i++){
+  var pts = []; for(var j = 0; j < K; j++) pts.push(shares[subs[i][j]]);
+  t(recoverSecret(pts) === S, "3-subset {" + subs[i].join(",") + "} must recover secret " + S);
+ }
+
+ // recovery from >= k survivors (3, 4, 5) all equal s
+ t(recoverSecret(shares.slice(0,3)) === S, "3 survivors must recover s");
+ t(recoverSecret(shares.slice(0,4)) === S, "4 survivors must recover s");
+ t(recoverSecret(shares.slice(0,5)) === S, "5 survivors must recover s");
+
+ // burning n-k = 2 of 5 (a scattered 3 survive) still recovers
+ var survive3 = [shares[0], shares[2], shares[4]];
+ t(recoverSecret(survive3) === S, "burning 2 of 5 — the 3 survivors must recover s");
+
+ // burning a third (only 2 survive): the secret is UNDETERMINED — every value stays consistent
+ var two = [shares[0], shares[1]];
+ var cc = consistentCount2(two);
+ t(cc > 1, "from 2 shares the secret must be underdetermined (>1 consistent), got " + cc);
+ t(cc === P, "from 2 shares ALL " + P + " secrets must remain consistent, got " + cc);
+
+ // the scheme actually depends on the secret (changing s changes the shares)
+ var shares2 = sharesFor(mod(S + 1), N);
+ var moved = false; for(var q = 0; q < N; q++){ if(shares2[q].y !== shares[q].y) moved = true; }
+ t(moved, "changing the secret must change the shares");
+
+ // TAMPER model is real: a 2-share "recovery" is not the true secret in general,
+ // and the two-share set does not pin s down (proven by cc above). A single interpolation
+ // over two points yields SOME value, but a different candidate third point gives a different s.
+ var alt = recoverSecret([ shares[0], shares[1] ]);  // the 2-point line at 0 — an arbitrary answer
+ t(typeof alt === "number", "two-point interpolation must still produce a number (an unjustified one)");
+
+ return true;
+}
+
+/* ===== UI ===== */
+var $ = function(id){ return document.getElementById(id); };
+var secret = 42;
+var burned = [false, false, false, false, false];   // per-share burn state
+var ACCEPT_BELOW = false;                            // TAMPER: accept a k-1 recovery
+
+function currentShares(){ return sharesFor(secret, N); }
+function survivorsOf(shares){ var s = []; for(var i = 0; i < N; i++){ if(!burned[i]) s.push(shares[i]); } return s; }
+
+function renderShares(shares){
+ var body = $("shrBody"), rows = [];
+ for(var i = 0; i < N; i++){
+  var g = burned[i];
+  rows.push("<tr class='" + (g ? "burned" : "") + "'>"
+   + "<td>" + shares[i].x + "</td><td>" + shares[i].y + "</td>"
+   + "<td><span class='bt " + (g ? "gone" : "surv") + "' data-i='" + i + "'>" + (g ? "BURNED" : "SURVIVES") + "</span></td></tr>");
+ }
+ body.innerHTML = rows.join("");
+ var btns = body.getElementsByClassName("bt");
+ for(var b = 0; b < btns.length; b++){
+  btns[b].addEventListener("click", function(){
+   var idx = parseInt(this.getAttribute("data-i"), 10);
+   burned[idx] = !burned[idx];
+   render();
+  });
+ }
+}
+
+function render(){
+ var shares = currentShares();
+ var c = coeffsFor(secret);
+ $("polyline").innerHTML = "f(x) = " + c[0] + " + " + c[1] + "x + " + c[2] + "x&sup2; (mod 257)";
+ renderShares(shares);
+
+ var surv = survivorsOf(shares);
+ var seqEl = $("seqline"), stepBody = $("stepBody");
+
+ // decide which shares the panel uses to interpolate
+ var useSet = null, determined = false, claimBelow = false;
+ if(surv.length >= K){ useSet = surv.slice(0, K); determined = true; }
+ else if(ACCEPT_BELOW && surv.length >= 1){ useSet = surv.slice(0); claimBelow = true; }
+
+ // sequence line
+ var names = [];
+ for(var i = 0; i < surv.length; i++) names.push("(" + surv[i].x + ", " + surv[i].y + ")");
+ seqEl.innerHTML = "<b>survivors:</b> " + (surv.length ? names.join(" &nbsp; ") : "<span class='mut'>none</span>")
+   + " &nbsp;&middot;&nbsp; <b>" + surv.length + " / " + N + "</b> (need k = " + K + ")";
+
+ // step table — show the basis-weighted contributions when we actually interpolate
+ var rows = [];
+ if(useSet){
+  var acc = 0;
+  for(var j = 0; j < useSet.length; j++){
+   var num = 1, den = 1;
+   for(var m = 0; m < useSet.length; m++){
+    if(m === j) continue;
+    num = mod(num * mod(0 - useSet[m].x));
+    den = mod(den * mod(useSet[j].x - useSet[m].x));
+   }
+   var lj = mod(num * modinv(den));
+   var term = mod(useSet[j].y * lj);
+   acc = mod(acc + term);
+   rows.push("<tr><td>" + useSet[j].x + "</td><td>" + useSet[j].y + "</td><td>" + lj + "</td><td>" + term + "</td></tr>");
+  }
+  rows.push("<tr><td colspan='3' style='text-align:right;color:var(--dim)'>&#931; mod 257 =</td><td><b style='color:var(--red)'>" + acc + "</b></td></tr>");
+ } else {
+  rows.push("<tr><td colspan='4' class='mut'>fewer than k = " + K + " shares survive &mdash; nothing to interpolate</td></tr>");
+ }
+ stepBody.innerHTML = rows.join("");
+
+ // verdict
+ var vEl = $("verdict"), rEl = $("reason");
+ if(determined){
+  var s = recoverSecret(useSet);
+  vEl.className = "verdict ok"; vEl.innerHTML = "&#10003; MANUSCRIPT SURVIVES &mdash; s = " + s;
+  rEl.innerHTML = surv.length + " of " + N + " copies survived (&#8805; k). Any " + K + " of them Lagrange-interpolate to <b>f(0) = " + s + "</b>. It does not burn.";
+ } else if(claimBelow){
+  var bogus = recoverSecret(useSet);
+  vEl.className = "verdict no"; vEl.innerHTML = "&#10007; CLAIMED s = " + bogus + " &mdash; UNJUSTIFIED";
+  rEl.innerHTML = "Only " + surv.length + " share(s) survive. This number is the line through them at 0 &mdash; but <b>all 257 secrets</b> fit these shares. The claim is fabricated; the witness catches it.";
+ } else {
+  vEl.className = "verdict no"; vEl.innerHTML = "&#10007; MANUSCRIPT LOST";
+  rEl.innerHTML = "Only " + surv.length + " of " + N + " copies survive (&lt; k = " + K + "). The secret is <b>undetermined</b> &mdash; every one of the 257 values is still consistent. It is truly gone.";
+ }
+
+ audit(shares);
+}
+
+function audit(shares){
+ // re-run the threshold live on the fixed anchors (independent of burn state)
+ var ref = sharesFor(42, N);
+ var subs = combos([0,1,2,3,4], K);
+ var allAgree = true;
+ for(var i = 0; i < subs.length; i++){
+  var pts = []; for(var j = 0; j < K; j++) pts.push(ref[subs[i][j]]);
+  if(recoverSecret(pts) !== 42) allAgree = false;
+ }
+ var cc = consistentCount2([ref[0], ref[1]]);
+ var underdet = (cc === P);
+ var invOk = (mod(modinv(200) * 200) === 1);
+ var ok = allAgree && underdet && invOk && !ACCEPT_BELOW;
+ $("auditout").innerHTML =
+   "<span class='badge " + (ok ? "pass" : "failb") + "'>" + (ok ? "&#10003; WITNESS — the threshold holds" : "&#10007; WITNESS — broken") + "</span>"
+  + "<div class='small' style='margin-top:6px'>all 10 three-subsets agree <b style='color:" + (allAgree ? "var(--lit)" : "var(--wall)") + "'>" + (allAgree ? "&#10003;" : "&#10007;") + "</b>"
+  + " &middot; 2 shares leave " + cc + " secrets consistent <b style='color:" + (underdet ? "var(--lit)" : "var(--wall)") + "'>" + (underdet ? "&#10003;" : "&#10007;") + "</b>"
+  + " &middot; inverses exact <b style='color:" + (invOk ? "var(--lit)" : "var(--wall)") + "'>" + (invOk ? "&#10003;" : "&#10007;") + "</b>"
+  + (ACCEPT_BELOW ? " &nbsp;&mdash; <span style='color:var(--wall)'>red accepts a k&#8722;1 recovery</span>" : "") + "</div>";
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("litbadge").innerHTML = '<span class="badge pass">&#10003; LIT · self-check passed on load</span>';
+
+ $("secret").addEventListener("input", function(){
+  var v = parseInt(this.value, 10);
+  if(isNaN(v)) v = 0;
+  v = ((v % P) + P) % P;
+  secret = v;
+  render();
+ });
+
+ $("pBurn2").addEventListener("click", function(){ burned = [false, true, false, true, false]; render(); });   // 3 survive -> recovers
+ $("pBurn3").addEventListener("click", function(){ burned = [true, true, false, true, false]; render(); });     // 2 survive -> lost
+ $("pRestore").addEventListener("click", function(){ burned = [false, false, false, false, false]; render(); });
+
+ $("tamper").addEventListener("click", function(){
+  ACCEPT_BELOW = true;
+  burned = [true, true, false, true, false];   // force a 2-survivor state to expose the attack
+  $("tampernote").innerHTML = "<b style='color:var(--wall)'>Accepting a k&#8722;1 recovery.</b> The panel now reports a number from just 2 shares as if it were the manuscript &mdash; but all 257 secrets fit those shares, so it is a fabrication. The witness (9) recomputed and went red.";
+  render();
+ });
+ $("restore2").addEventListener("click", function(){
+  ACCEPT_BELOW = false;
+  $("tampernote").innerHTML = "Below the threshold the &ldquo;recovered&rdquo; value is just the line through two arbitrary points &mdash; a different secret for every guess at the third. The attack is real, and the witness catches it.";
+  render();
+ });
+
+ render();
+}catch(e){
+ var fb = $("failb"); fb.style.display = "block";
+ fb.textContent = "FAIL-LOUD — the threshold engine did not check out: " + e.message;
+ throw e;
+}
+</script>
+</body></html>

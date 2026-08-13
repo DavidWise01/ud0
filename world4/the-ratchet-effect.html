@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE RATCHET EFFECT &middot; THE STATE &middot; WORLD IV — SONIA &middot; THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE STATE &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE RATCHET EFFECT</h1>
+ <p class="sub">The perverse incentive of the taut plan, made mechanical. Next period&rsquo;s target ratchets up from this period&rsquo;s output — so the rational manager <b>hides capacity</b>. Rewarding output can suppress it.</p>
+ <p class="src"><span class="tag t-amber">source</span> Joseph Berliner, <i>Factory and Manager in the USSR</i> (1957) documented it; Martin Weitzman, &ldquo;The &lsquo;Ratchet Principle&rsquo; and Performance Incentives,&rdquo; <i>Bell Journal of Economics</i> (1980) formalised it. &nbsp;&middot;&nbsp; ROOM: <b>THE STATE</b> — the planning ratchet as a principal&ndash;agent game.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · roots / mechanism / lineage ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; the incentive &middot; roots &amp; lineage</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE ROOTS</h2>
+   <p>Soviet enterprises ran to a <b>plan</b>, not a market. A manager&rsquo;s bonus turned on <b>meeting the assigned target</b> — the <b>taut plan</b> the ministry set as high as it dared. Berliner&rsquo;s interviews with &eacute;migr&eacute; managers found the target for each year was set by looking at <b>last year&rsquo;s output</b>.</p>
+   <p class="small"><b>Weitzman (1980)</b> gave it a name and a model: the <b class="k">ratchet principle</b>. Because the planner cannot observe true capacity, it infers it from realised output and revises the quota upward — a one-way ratchet the manager learns to game.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>WHY MANAGERS HIDE</h2>
+   <p>The manager knows a plain fact: <b>revealing capacity today raises tomorrow&rsquo;s quota.</b> A record year is punished with a harder target next year — forever. So the optimal move is to <b>meet the target and hoard the slack</b>: produce enough to earn the bonus, never enough to disclose the ceiling.</p>
+   <p class="small">This is not laziness. It is a <b>rational response</b> to being measured against your own past. The engine (centre) computes exactly how much the manager withholds as the ratchet <b>&alpha;</b> tightens.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>THE LINEAGE <span class="tag t-amber">AMBER</span></h2>
+   <p>The ratchet outlived the USSR. It became a founding case in <b>mechanism design</b> and <b>principal&ndash;agent theory</b>: how do you write an incentive when today&rsquo;s performance sets tomorrow&rsquo;s standard?</p>
+   <p class="small">Weitzman&rsquo;s work seeded the &ldquo;<b>new Soviet incentive model</b>&rdquo; (reward a manager for an <i>honest</i> forecast, decoupled from realised output). The same trap recurs everywhere targets are set from history: <b>sales quotas, budget baselines, the &ldquo;use-it-or-lose-it&rdquo; budget</b>.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · the machine ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &middot; the withholding, solved &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN — the ratchet rule <span class="tag t-in">in &#8595;</span></h2>
+   <p>Next period&rsquo;s target is <b>ratcheted up</b> from this period&rsquo;s output:</p>
+   <p class="out" style="text-align:center">target&#8322; = base + &alpha; &middot; output&#8321;</p>
+   <p class="small">&alpha; &isin; [0,1] is the <b>ratchet strength</b>. &alpha;=0 is <b>commitment</b> (the target is fixed, whatever you make). &alpha;&gt;0 means every extra unit today raises tomorrow&rsquo;s quota by &alpha; — a standing tax on being seen to produce.</p>
+   <div class="row"><label>ratchet &alpha;</label><input id="alpha" type="range" min="0" max="1" step="0.05" value="0.5"><span id="alphav" class="small">0.50</span></div>
+   <div class="row"><label>base target</label><input id="base" type="range" min="20" max="120" step="5" value="60"><span id="basev" class="small">60</span></div>
+   <p class="small mut">The manager is rewarded for output, pays a convex <b>effort cost</b>, and pays for the <b>raised future quota</b> the ratchet imposes.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; maximise reward(q) &minus; effortCost(q) &minus; futurePenalty(&alpha;&middot;q) &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL — the optimal withholding <span class="tag t-lit">LIT</span></h2>
+   <div class="engine">
+    <div class="controls">
+     <p class="small">The manager&rsquo;s period-1 payoff is <b>b&middot;q &minus; &frac12;c&middot;q&sup2; &minus; p&middot;&alpha;&middot;q</b>. Setting the derivative to zero gives a closed-form optimum:</p>
+     <p class="out" style="text-align:center">q&#8321;* = (b &minus; p&middot;&alpha;) / c</p>
+     <div id="bars"></div>
+     <p class="small mut" id="searchnote"></p>
+    </div>
+    <div class="readout">
+     <div class="verdict" id="verdict"></div>
+     <div class="reason" id="reason"></div>
+     <table id="tbl"></table>
+     <div id="litbadge"></div>
+    </div>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; what does the ratchet cost the plan? &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT — the ratchet is self-defeating <span class="tag t-out">out &#8595;</span></h2>
+   <p>At <b>&alpha;=0</b> the manager gives <b>full effort</b> to the true optimum q<sub>max</sub>=b/c. Turn the ratchet on and the optimum <b>slides down</b>: q&#8321;* falls, capacity q<sub>max</sub>&minus;q&#8321;* is <b>hoarded</b>, and — because period 2 is unchanged — <b>total output over both periods is strictly less</b> than under commitment.</p>
+   <p class="small">Punishing success with a higher quota <b>suppresses the very output it chases</b>. This is the pathology behind &ldquo;taut plans,&rdquo; chronic under-fulfilment, and <b>pripiski</b> (padded reports).</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · cost / graveyard / tamper ===== -->
+ <div class="col red">
+  <div class="teamhdr">the audit &middot; the cost &#9702;</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE COST</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> A plan built on the ratchet cannot get the truth. Managers withhold, so the ministry <b>chronically over- or under-shoots</b>, and the reported numbers drift from the real ones.</div>
+   <p class="small" style="margin-top:8px">Two documented symptoms follow directly:<br>
+   &middot; <b>Slack-hoarding</b> — capacity kept off the books so next year&rsquo;s quota stays reachable.<br>
+   &middot; <b class="k">Pripiski</b> (&#1087;&#1088;&#1080;&#1087;&#1080;&#1089;&#1082;&#1080;) — outright falsified output, when withholding is not enough to hit the taut target. Ties <a href="./the-potemkin-village.html">the-potemkin-village</a> (why the data lied) and <a href="./gobernet.html">gobernet</a> (the plan that could not price).</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Higher targets get more output — pressure lifts production.&rdquo;</s> <b>Cut.</b> Only if the target is exogenous. When it is <b>ratcheted from your own output</b>, the equilibrium hides capacity: the harder you push, the more the manager withholds. The ratchet suppresses the output it chases.</p>
+   <p class="grave"><s>&ldquo;Managers just needed more discipline.&rdquo;</s> <b>Examined.</b> Withholding is the <i>disciplined, optimal</i> play against a ratchet — not indiscipline. The fault is in the incentive, not the man.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER</h2>
+   <p>Assert the intuition the planners had: <b>&ldquo;rewarding output must raise it &mdash; so the ratchet MAXIMISES total output.&rdquo;</b> The engine holds the real equilibrium against that claim.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; claim the ratchet maximises output</button><button id="restore">&#8635; restore</button></div>
+   <p class="small" id="tampernote">The witness recomputes the equilibrium: under &alpha;&gt;0 the optimal output falls and total output drops below the &alpha;=0 case. The claim contradicts the math, so the witness turns red.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE RATCHET EFFECT — World IV &middot; SONIA, room <b>THE STATE</b>, in the refined <b>OCHO</b>. The centre is a real, runnable two-period principal&ndash;agent model (Berliner 1957; Weitzman 1980): target&#8322; = base + &alpha;&middot;output&#8321;, and the manager&rsquo;s optimal first-period output q&#8321;* = (b &minus; p&alpha;)/c falls monotonically as the ratchet &alpha; rises, so total two-period output under a ratchet is strictly less than under commitment — solved in closed form and confirmed by a deterministic grid search. Punishing success with a higher quota suppresses the output it chases; the pathology behind taut plans, slack-hoarding, and pripiski. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== THE RATCHET EFFECT — a two-period taut-plan model (Berliner 1957; Weitzman 1980) ===== */
+// The manager chooses first-period output q1. Next period's target ratchets up:
+//   target2 = base + alpha*q1        (alpha in [0,1])
+// Period-1 payoff: a reward for output, minus a convex effort cost, minus a penalty for
+// the RAISED FUTURE QUOTA the ratchet imposes (a higher target2 is costly to meet later):
+//   U1(q1) = b*q1 - 0.5*c*q1^2 - p*(alpha*q1)
+// The unique interior optimum (dU1/dq1 = 0):   q1* = (b - p*alpha)/c
+// At alpha=0 this is the TRUE optimum / full effort  qmax = b/c.
+// Period 2 is the last period (no future target to protect), so the manager produces at the
+// true optimum qmax regardless of alpha. Total output = q1*(alpha) + qmax.
+var P = { b:100, c:1, p:40, base:60 };
+
+function qmax(par){ return par.b/par.c; }                               // full-effort true optimum
+function payoff1(q1, alpha, par){ return par.b*q1 - 0.5*par.c*q1*q1 - par.p*alpha*q1; }
+function optimalQ1(alpha, par){                                         // closed-form interior optimum, floored at 0
+ var q = (par.b - par.p*alpha)/par.c;
+ return q<0 ? 0 : q;
+}
+function q2opt(par){ return qmax(par); }                                // last period: produce at the true optimum
+function totalOutput(alpha, par){ return optimalQ1(alpha,par) + q2opt(par); }
+function target2(alpha, q1, par){ return par.base + alpha*q1; }
+function withheld(alpha, par){ var w=qmax(par)-optimalQ1(alpha,par); return w<0?0:w; }
+
+// deterministic grid search over q1 — confirms the closed form with NO randomness
+function argmaxQ1(alpha, par){
+ var best=0, bestU=-1e18, N=4000, hi=2*qmax(par);
+ for(var i=0;i<=N;i++){ var q=hi*i/N; var u=payoff1(q,alpha,par); if(u>bestU){ bestU=u; best=q; } }
+ return best;
+}
+
+/* ===== fail-loud self-check ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var qm = qmax(P);
+ var step = 2*qm/4000;
+ // 1 — at alpha=0 the optimal first-period output is the full-effort true optimum
+ t(Math.abs(optimalQ1(0,P) - qm) < 1e-9, "at alpha=0 the optimal output must equal the true optimum qmax");
+ // 2 — the deterministic grid search agrees with the closed form (no Math.random used)
+ var alphas=[0,0.1,0.25,0.5,0.75,1.0], i;
+ for(i=0;i<alphas.length;i++){
+  t(Math.abs(argmaxQ1(alphas[i],P) - optimalQ1(alphas[i],P)) < step + 1e-6,
+    "grid-search optimum must match the closed form at alpha="+alphas[i]);
+ }
+ // 3 — with a ratchet (alpha>0) the optimal output is STRICTLY LOWER than at alpha=0
+ t(optimalQ1(0.5,P) < qm - 1e-9, "under a ratchet the optimal output must be strictly below full effort");
+ // 4 — the optimal output is monotonically DECREASING in alpha
+ for(i=1;i<alphas.length;i++){
+  t(optimalQ1(alphas[i],P) < optimalQ1(alphas[i-1],P) - 1e-9, "optimal output must strictly decrease as alpha rises");
+ }
+ // 5 — total two-period output under a ratchet is strictly LESS than under commitment (alpha=0)
+ for(i=1;i<alphas.length;i++){
+  t(totalOutput(alphas[i],P) < totalOutput(0,P) - 1e-9, "every ratchet (alpha>0) must yield less total output than alpha=0");
+ }
+ // 6 — a ratchet leaves WITHHELD capacity (slack hoarded above zero)
+ t(withheld(0.6,P) > 1e-6, "a ratchet must leave withheld capacity (slack hoarded)");
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var ALPHA=0.5, TAMPER=false;
+
+function bar(label,val,ref,color){
+ var w=Math.max(2, val/ref*160);
+ return "<div style='display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px'>"
+      +"<span style='min-width:112px'>"+label+"</span>"
+      +"<span style='height:12px;border-radius:2px;background:"+color+";width:"+w+"px'></span>"
+      +"<span style='min-width:52px;text-align:right'>"+val.toFixed(1)+"</span></div>";
+}
+
+function render(){
+ P.base=+$("base").value; ALPHA=+$("alpha").value;
+ $("alphav").textContent=ALPHA.toFixed(2); $("basev").textContent=P.base;
+ var qm=qmax(P);
+ var q1=optimalQ1(ALPHA,P), q1c=optimalQ1(0,P);
+ var tot=totalOutput(ALPHA,P), totc=totalOutput(0,P);
+ var t2=target2(ALPHA,q1,P), wh=withheld(ALPHA,P);
+
+ // shown output uses the honest equilibrium; under TAMPER the display asserts "no withholding"
+ var shownQ1 = TAMPER ? qm : q1;
+ var shownTot = TAMPER ? (qm + q2opt(P)) : tot;
+
+ $("bars").innerHTML =
+   bar("commitment (&alpha;=0)", totc, 2*qm, "var(--blue)")
+ + bar("ratchet (this &alpha;)", shownTot, 2*qm, TAMPER?"var(--wall)":"var(--red)");
+
+ var gs=argmaxQ1(ALPHA,P);
+ $("searchnote").innerHTML="deterministic grid search (4000 pts) argmax q&#8321; = <b>"+gs.toFixed(2)+"</b> &nbsp;=&nbsp; closed form <b>"+q1.toFixed(2)+"</b> &#10003;";
+
+ $("tbl").innerHTML=
+   "<tr><th></th><th>&alpha;=0 commit</th><th>this &alpha;="+ALPHA.toFixed(2)+"</th></tr>"
+ + "<tr><th>optimal output&#8321;</th><td>"+q1c.toFixed(1)+"</td><td>"+(TAMPER?("<s>"+q1.toFixed(1)+"</s> "+qm.toFixed(1)):q1.toFixed(1))+"</td></tr>"
+ + "<tr><th>withheld capacity</th><td>0.0</td><td>"+(TAMPER?"0.0":wh.toFixed(1))+"</td></tr>"
+ + "<tr><th>target&#8322;</th><td>"+P.base.toFixed(1)+"</td><td>"+t2.toFixed(1)+"</td></tr>"
+ + "<tr><th>total output</th><td>"+totc.toFixed(1)+"</td><td>"+shownTot.toFixed(1)+"</td></tr>";
+
+ if(ALPHA<=1e-9){
+  $("verdict").textContent="COMMITMENT — FULL EFFORT"; $("verdict").className="verdict ok";
+  $("reason").textContent="the target is fixed; the manager produces the true optimum q_max and hoards nothing.";
+ } else {
+  $("verdict").textContent="RATCHET — OUTPUT SUPPRESSED"; $("verdict").className="verdict no";
+  $("reason").innerHTML="output slides to "+q1.toFixed(1)+"; "+wh.toFixed(1)+" of capacity is hoarded; total falls by <b>"+(totc-tot).toFixed(1)+"</b> vs commitment.";
+ }
+ audit();
+}
+
+function audit(){
+ // pure re-derivation of the LIT claims, independent of the display
+ var qm=qmax(P);
+ var monoDown=true, totLess=true, as=[0,0.1,0.25,0.5,0.75,1.0], i;
+ for(i=1;i<as.length;i++){
+  if(!(optimalQ1(as[i],P) < optimalQ1(as[i-1],P) - 1e-9)) monoDown=false;
+  if(!(totalOutput(as[i],P) < totalOutput(0,P) - 1e-9)) totLess=false;
+ }
+ var truthFalls = totLess;                              // the ratchet LOWERS total output
+ // the TAMPER asserts the ratchet MAXIMISES total output — the opposite of the truth
+ var claimHolds = TAMPER ? false : true;                // claim "maximises" is refuted by truthFalls
+ var ok = monoDown && truthFalls && claimHolds;
+ $("litbadge").innerHTML =
+   "<span class='badge "+(ok?'pass':'failb')+"'>"+(ok?'&#10003; LIT &middot; witness holds':'&#10007; witness broken')+"</span>"
+ + "<div class='small' style='margin-top:6px'>optimal output falls in &alpha; <b style='color:"+(monoDown?'var(--lit)':'var(--wall)')+"'>"+(monoDown?'&#10003;':'&#10007;')+"</b>"
+ + " &middot; ratchet lowers total output <b style='color:"+(truthFalls?'var(--lit)':'var(--wall)')+"'>"+(truthFalls?'&#10003;':'&#10007;')+"</b>"
+ + (TAMPER?" &nbsp;&mdash; <span style='color:var(--wall)'>claim &lsquo;maximises&rsquo; contradicts the equilibrium: total FALLS</span>":"")+"</div>";
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("alpha").addEventListener("input",render);
+ $("base").addEventListener("input",render);
+ $("tamper").addEventListener("click",function(){
+  TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Claim asserted:</b> &lsquo;rewarding output must raise it.&rsquo; But the manager&rsquo;s best response to a ratchet is to <b>withhold</b> — optimal output falls and total output drops below the &alpha;=0 case. The witness recomputes the equilibrium and disagrees: the ratchet is <b>self-defeating</b>.";
+  render();
+ });
+ $("restore").addEventListener("click",function(){
+  TAMPER=false;
+  $("tampernote").innerHTML="The witness recomputes the equilibrium: under &alpha;&gt;0 the optimal output falls and total output drops below the &alpha;=0 case. The claim contradicts the math, so the witness turns red.";
+  render();
+ });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the RATCHET EFFECT engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE ARNOLD CAT MAP · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style>
+</head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE NUMBER &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE ARNOLD CAT MAP</h1>
+ <div class="sub">A picture stretched, folded, and &mdash; on a pixel grid &mdash; <b>exactly returned</b>. Chaos and recurrence in the same map.</div>
+ <div class="src">Source: V. I. Arnold &amp; A. Avez, <i>Ergodic Problems of Classical Mechanics</i> (1968) &mdash; the toral automorphism M=[[2,1],[1,1]] mod 1. &nbsp;Room: <b>THE NUMBER</b>.</div>
+ <div id="litbadge" style="margin-top:8px"></div>
+</header>
+
+<div class="ocho">
+
+ <!-- ================= LEFT · BLUE ================= -->
+ <div class="col blue">
+  <div class="teamhdr">ROOTS &middot; PROPERTY &middot; LINEAGE</div>
+
+  <div class="win blue"><span class="no">1</span>
+   <h2>Roots &middot; Arnold</h2>
+   <p>Vladimir I. <b>Arnold</b> (1937&ndash;2010), a giant of Soviet mathematics, drew a cat on the unit square and applied one linear map: <b>(x,y) &rarr; (2x+y, x+y) mod 1</b>. Multiply by the matrix <span class="k">M=[[2,1],[1,1]]</span>, wrap around the torus, repeat.</p>
+   <p>The cat shears, wraps, and dissolves into noise. It looks destroyed. It is not: the map is a <b>bijection</b> &mdash; nothing is lost, only rearranged. <span class="tag t-amber">HISTORY</span></p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span>
+   <h2>Area-preserving &middot; det = 1</h2>
+   <p>The determinant of M is <span class="k" id="detshow">det = 2&middot;1 &minus; 1&middot;1 = 1</span>. A linear map with det&nbsp;=&nbsp;1 <b>preserves area</b>: the unit square maps onto the torus with no squeezing, no gap, no overlap.</p>
+   <p>Because area is conserved and the entries are integers, on any N&times;N grid M is a <b>permutation</b> of the cells. This is the seed of everything below. <span class="tag t-lit">LIT</span></p>
+  </div>
+
+  <div class="win blue"><span class="no">6</span>
+   <h2>Lineage</h2>
+   <p>Arnold's hyperbolic toral map became a textbook exemplar of a <b>chaotic yet reversible</b> system, feeding <b>KAM theory</b> (Kolmogorov&ndash;Arnold&ndash;Moser), catastrophe theory, and modern ergodic theory.</p>
+   <p>Today the same permutation is used to <b>scramble images</b> in watermarking and encryption &mdash; because it is guaranteed to unscramble. <span class="tag t-amber">LINEAGE</span></p>
+  </div>
+ </div>
+
+ <!-- ================= CENTER ================= -->
+ <div class="col center">
+  <div class="teamhdr">DATA IN &rarr; THE MAP &rarr; DATA OUT</div>
+
+  <div class="win"><span class="no">&middot;</span>
+   <h2>Data in <span class="tag t-in">IN</span></h2>
+   <p class="small">A recognisable picture on an <b>N&times;N</b> grid, and the map to apply. Small N so the period computes instantly.</p>
+   <div class="row"><label>grid N</label>
+     <select id="npick">
+       <option value="8">8 &times; 8</option>
+       <option value="11" selected>11 &times; 11</option>
+       <option value="16">16 &times; 16</option>
+       <option value="24">24 &times; 24</option>
+     </select>
+     <span class="small">map <b id="matlabel">M = [[2,1],[1,1]]</b></span>
+   </div>
+  </div>
+
+  <div class="flow">&#9660;</div>
+
+  <div class="win panel"><span class="no">3</span>
+   <h2>The engine &middot; scramble &amp; return</h2>
+   <div class="engine">
+    <div class="controls" style="min-width:180px">
+     <canvas id="cv" width="240" height="240" style="width:240px;height:240px;border:1px solid var(--line2);image-rendering:pixelated;background:#fbf6e6;border-radius:4px;"></canvas>
+     <div class="row" style="margin-top:8px">
+      <button id="step">step &rsaquo;</button>
+      <button id="run">run to return</button>
+      <button id="reset">reset (k=0)</button>
+     </div>
+     <div class="out" id="kline">iteration k = 0 of T(N)</div>
+    </div>
+    <div class="readout">
+     <p class="small" style="margin-bottom:4px">Each step re-positions every pixel by M. Watch it scramble &mdash; then, at <b>k = T(N)</b>, snap <b>exactly</b> back to the start.</p>
+     <table>
+      <thead><tr><th>quantity</th><th>value</th></tr></thead>
+      <tbody>
+       <tr><td>det M</td><td id="tdet">1</td></tr>
+       <tr><td>bijection on grid</td><td id="tbij">yes</td></tr>
+       <tr><td>period T(N)</td><td id="tper">&mdash;</td></tr>
+       <tr><td>identical to start?</td><td id="tret">yes (k=0)</td></tr>
+      </tbody>
+     </table>
+     <div id="engnote" class="small" style="margin-top:8px"></div>
+    </div>
+   </div>
+  </div>
+
+  <div class="flow">&#9660;</div>
+
+  <div class="win"><span class="no">4</span>
+   <h2>Chaos &middot; eigenvalue &phi;&sup2; <span class="tag t-lit">LIT</span></h2>
+   <p class="small">The eigenvalues of M multiply to 1 and sum to 3, so they are the roots of &lambda;&sup2;&minus;3&lambda;+1: <b>&lambda; = (3&plusmn;&radic;5)/2</b>. One is below 1 (contracting), the larger is above 1 (stretching).</p>
+   <table>
+    <thead><tr><th>&lambda;&#8331; (contract)</th><th>&lambda;&#8330; (stretch)</th><th>&lambda;&#8330; = &phi;&sup2;?</th><th>Lyapunov ln&lambda;&#8330;</th></tr></thead>
+    <tbody><tr><td id="lmin">&mdash;</td><td id="lmax">&mdash;</td><td id="lphi">&mdash;</td><td id="llyap">&mdash;</td></tr></tbody>
+   </table>
+   <p class="small" style="margin-top:6px">The stretch factor is exactly the golden ratio squared, &phi;&sup2;&nbsp;&asymp;&nbsp;2.618. Nearby points fly apart by that factor each step &mdash; positive Lyapunov exponent, genuine chaos.</p>
+  </div>
+
+  <div class="win"><span class="no">5</span>
+   <h2>Recurrence &middot; the period T(N) <span class="tag t-lit">LIT</span></h2>
+   <p class="small">Because the grid is finite and M is a permutation, iterating M<sup>k</sup> mod N must eventually return to the identity. That smallest k is the <b>discrete period T(N)</b> &mdash; Poincar&eacute; recurrence, made exact and computed, not assumed.</p>
+   <table>
+    <thead><tr><th>N</th><th>T(N)</th><th>M<sup>T</sup> mod N</th></tr></thead>
+    <tbody id="perbody"></tbody>
+   </table>
+   <div class="out" id="perout" style="font-size:12.5px"></div>
+  </div>
+ </div>
+
+ <!-- ================= RIGHT · RED ================= -->
+ <div class="col red">
+  <div class="teamhdr">GRAVEYARD &middot; TAMPER</div>
+
+  <div class="win red"><span class="no">7</span>
+   <h2>Graveyard</h2>
+   <p class="grave"><s>"Chaos means the pattern never repeats."</s></p>
+   <div class="wall-note">On a <b>continuous</b> square the cat map never exactly repeats. But on a <b>finite pixel grid</b> it is a permutation of finitely many cells, so it is <b>exactly periodic</b>: after T(N) steps the scrambled image is restored to the last pixel. <b class="k">Chaos AND recurrence, in the same map.</b> <span class="tag t-lit">CUT</span></div>
+   <p class="small" style="margin-top:8px">The stretching (chaos) and the return (recurrence) are not in tension &mdash; the finiteness of the grid forces both to be true at once.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span>
+   <h2>Tamper</h2>
+   <p class="small">Swap M for <b>D = [[2,0],[0,1]]</b> &mdash; det&nbsp;=&nbsp;2, not area-preserving. Watch the witness go red: on an even grid D collapses two cells onto one (mass collides), so it is <b>not a permutation</b> and <b>never cleanly returns</b>.</p>
+   <div class="row">
+    <button id="tamper">break it (use D, det=2)</button>
+    <button id="restore">restore M</button>
+   </div>
+   <div id="tampout"></div>
+   <div id="witness" style="margin-top:8px"></div>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE ARNOLD CAT MAP &mdash; World IV &middot; <b>SONIA</b>, in the refined <b>OCHO</b>: a blue-team / red-team instrument with a picture that goes <b style="color:var(--cy)">in</b> &rarr; is stretched and folded by M &rarr; and comes <b style="color:var(--grn)">out</b> exactly restored. A runnable rendering of V. I. Arnold's toral automorphism &mdash; the engine is LIT (det&nbsp;M&nbsp;=&nbsp;1, eigenvalues multiplying to 1 and summing to 3 with the larger equal to &phi;&sup2;, grid-bijection, and a computed discrete period T(N) with M<sup>T</sup>&nbsp;&equiv;&nbsp;identity, all self-checked; the history cited AMBER; tamper-provable). Chaos and recurrence hold at once. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE ARNOLD CAT MAP — the engine (every number computed, none looked up) ===== */
+
+// 2x2 integer matrix helpers
+function matMul(A,B){
+ return [[A[0][0]*B[0][0]+A[0][1]*B[1][0], A[0][0]*B[0][1]+A[0][1]*B[1][1]],
+         [A[1][0]*B[0][0]+A[1][1]*B[1][0], A[1][0]*B[0][1]+A[1][1]*B[1][1]]];
+}
+function matModN(A,N){
+ var r=function(v){ v=v%N; return v<0?v+N:v; };
+ return [[r(A[0][0]),r(A[0][1])],[r(A[1][0]),r(A[1][1])]];
+}
+function ident(){ return [[1,0],[0,1]]; }
+function eqMat(A,B){ return A[0][0]===B[0][0]&&A[0][1]===B[0][1]&&A[1][0]===B[1][0]&&A[1][1]===B[1][1]; }
+function det2(A){ return A[0][0]*A[1][1]-A[0][1]*A[1][0]; }
+
+// eigenvalues of a 2x2 matrix from trace & determinant
+function eigen2(A){
+ var tr=A[0][0]+A[1][1], d=det2(A), disc=tr*tr-4*d;
+ var s=Math.sqrt(disc);
+ return { lo:(tr-s)/2, hi:(tr+s)/2 };
+}
+
+// apply the map to one grid point: (x,y) -> M*(x,y) mod N
+function mapPoint(M,x,y,N){
+ var nx=((M[0][0]*x+M[0][1]*y)%N+N)%N;
+ var ny=((M[1][0]*x+M[1][1]*y)%N+N)%N;
+ return [nx,ny];
+}
+
+// is M a bijection (permutation) of the N x N grid? every cell must be hit exactly once.
+function isBijection(M,N){
+ var seen=new Array(N*N); for(var i=0;i<N*N;i++) seen[i]=false;
+ for(var x=0;x<N;x++){ for(var y=0;y<N;y++){
+   var p=mapPoint(M,x,y,N), idx=p[0]*N+p[1];
+   if(seen[idx]) return false;  // collision -> not a permutation
+   seen[idx]=true;
+ }}
+ for(i=0;i<N*N;i++){ if(!seen[i]) return false; }
+ return true;
+}
+
+// discrete period: smallest k>=1 with M^k === identity (mod N); -1 if none within cap
+function period(M,N,cap){
+ cap=cap||100000;
+ var P=matModN(ident(),N), I=ident();
+ for(var k=1;k<=cap;k++){
+   P=matModN(matMul(P,M),N);
+   if(eqMat(P,I)) return k;
+ }
+ return -1;
+}
+
+// M^k mod N by repeated multiplication (k small here)
+function matPowModN(M,k,N){
+ var P=matModN(ident(),N);
+ for(var i=0;i<k;i++) P=matModN(matMul(P,M),N);
+ return P;
+}
+
+// build a recognisable asymmetric N x N picture (palette indices 0..3)
+function makeImage(N){
+ var img=[];
+ for(var x=0;x<N;x++){ img.push([]); for(var y=0;y<N;y++){
+   var v=0;                                   // 0 = background
+   if(x===0||y===0) v=3;                       // gold frame (two edges)
+   if(x>=Math.floor(N/8) && x<Math.floor(N/2) && y>=Math.floor(N/8) && y<Math.floor(N/2)) v=1; // off-centre red block
+   if(x===y) v=2;                              // blue diagonal
+   img[x].push(v);
+ }}
+ return img;
+}
+
+// apply the map once to a whole image (bijection => well defined): new[map(p)] = old[p]
+function applyImage(img,M,N){
+ var out=[]; for(var x=0;x<N;x++){ out.push([]); for(var y=0;y<N;y++) out[x].push(0); }
+ for(var i=0;i<N;i++){ for(var j=0;j<N;j++){
+   var p=mapPoint(M,i,j,N);
+   out[p[0]][p[1]]=img[i][j];
+ }}
+ return out;
+}
+function sameImage(a,b,N){
+ for(var x=0;x<N;x++){ for(var y=0;y<N;y++){ if(a[x][y]!==b[x][y]) return false; } }
+ return true;
+}
+
+/* ===== fail-loud self-check (runs on the anchor, before any DOM) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+
+ var M=[[2,1],[1,1]];
+
+ // 1 — area-preserving: det M = 1
+ t(det2(M)===1,"cat map M must have det = 1 (area-preserving)");
+
+ // 2 — eigenvalues multiply to 1, sum to 3, larger = phi^2
+ var e=eigen2(M);
+ t(Math.abs(e.lo*e.hi-1)<1e-9,"eigenvalues must multiply to 1 (= det)");
+ t(Math.abs(e.lo+e.hi-3)<1e-9,"eigenvalues must sum to 3 (= trace)");
+ var phi=(1+Math.sqrt(5))/2;
+ t(Math.abs(e.hi-phi*phi)<1e-9,"larger eigenvalue must equal phi^2 (~2.618034)");
+ t(Math.log(e.hi)>0,"Lyapunov exponent ln(lambda_max) must be > 0 (chaotic)");
+
+ // 3 — the map is a bijection of small grids (permutation of cells)
+ t(isBijection(M,11),"M must be a bijection on the 11x11 grid");
+ t(isBijection(M,8),"M must be a bijection on the 8x8 grid");
+
+ // 4 — the discrete period exists and M^T === identity
+ var T=period(M,11);
+ t(T>0,"discrete period T(11) must exist");
+ t(eqMat(matPowModN(M,T,11),ident()),"M^T(11) mod 11 must equal the identity");
+ // and iterating the actual image T times restores it exactly
+ var img=makeImage(11), cur=img, k;
+ for(k=0;k<T;k++) cur=applyImage(cur,M,11);
+ t(sameImage(cur,img,11),"iterating the image T(11) times must restore it exactly");
+ // strictly the FIRST return (no earlier k restores it) — recurrence period is exact
+ var early=img, restoredEarly=false;
+ for(k=1;k<T;k++){ early=applyImage(early,M,11); if(sameImage(early,img,11)){ restoredEarly=true; break; } }
+ t(!restoredEarly,"T(11) must be the SMALLEST period (no earlier exact return)");
+
+ // 5 — a det != 1 matrix is NOT a grid bijection (cells collide) on an even grid
+ var D=[[2,0],[0,1]];
+ t(det2(D)===2,"tamper matrix D must have det = 2");
+ t(!isBijection(D,8),"D (det=2) must NOT be a bijection on the even 8x8 grid (cells collide)");
+ t(period(D,8,5000)===-1,"D on the 8x8 grid must have NO period (never cleanly returns)");
+
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var PAL=["#e6dbba","#c30019","#1d4e79","#9a6b12"]; // 0 bg, 1 red, 2 blue, 3 gold
+
+var TAMPER=false;
+var N=11, M=[[2,1],[1,1]], base=null, cur=null, k=0, T=0, timer=null;
+
+function curM(){ return TAMPER ? [[2,0],[0,1]] : [[2,1],[1,1]]; }
+
+function draw(img){
+ var cv=$("cv"), ctx=cv.getContext("2d"), n=img.length, s=cv.width/n;
+ ctx.clearRect(0,0,cv.width,cv.height);
+ for(var x=0;x<n;x++){ for(var y=0;y<n;y++){
+   ctx.fillStyle=PAL[img[x][y]];
+   // x = column, y = row (draw y downward)
+   ctx.fillRect(x*s,y*s,Math.ceil(s),Math.ceil(s));
+ }}
+}
+
+function loadGrid(){
+ stopRun();
+ N=+$("npick").value; M=curM();
+ base=makeImage(N); cur=base; k=0;
+ T=period(M,N, N*N*4);   // -1 if none (tamper collision)
+ draw(cur);
+ refresh();
+}
+
+function refresh(){
+ var d=det2(M), bij=isBijection(M,N), ret=sameImage(cur,base,N);
+ $("matlabel").textContent = "M = [["+M[0][0]+","+M[0][1]+"],["+M[1][0]+","+M[1][1]+"]]";
+ $("tdet").textContent=d; $("tdet").style.color=(d===1)?"var(--lit)":"var(--wall)";
+ $("tbij").innerHTML = bij ? '<b style="color:var(--lit)">yes</b>' : '<b style="color:var(--wall)">no &mdash; cells collide</b>';
+ $("tper").textContent = (T>0)? T : "none";
+ $("tret").innerHTML = ret ? '<b style="color:var(--lit)">yes (k='+k+')</b>' : 'not yet (k='+k+')';
+ $("kline").textContent = "iteration k = "+k+((T>0)?(" of T(N) = "+T):"  (no return)");
+
+ if(TAMPER){
+   $("engnote").innerHTML = 'Map D has <b class="k">det = 2</b>. On this '+N+'&times;'+N+' grid it '+(bij?'happens to stay a bijection':'<b style="color:var(--wall)">collapses cells</b>')+', and '+((T>0)?'':'<b style="color:var(--wall)">never returns to the start</b>')+'. Area is not preserved.';
+ } else {
+   $("engnote").innerHTML = 'det&nbsp;=&nbsp;1, so M is a permutation of all '+(N*N)+' cells. Keep stepping: at <b>k = T(N) = '+T+'</b> the picture is restored <b>exactly</b>.';
+ }
+
+ // chaos row (window 4) — from the true eigenvalues of M (unchanged by grid)
+ var e=eigen2([[2,1],[1,1]]), phi=(1+Math.sqrt(5))/2;
+ $("lmin").textContent=e.lo.toFixed(6); $("lmax").textContent=e.hi.toFixed(6);
+ $("lphi").innerHTML='&phi;&sup2; = '+(phi*phi).toFixed(6)+' &nbsp;<b style="color:var(--lit)">&#10003;</b>';
+ $("llyap").textContent=Math.log(e.hi).toFixed(4)+" > 0";
+ drawWitness(d,bij);
+}
+
+function drawWitness(d,bij){
+ var ok = (d===1) && bij && !TAMPER;
+ $("witness").innerHTML='<span class="badge '+(ok?'pass':'failb')+'">'+(ok
+   ?'&#10003; WITNESS &mdash; det=1: area-preserving, recurrent bijection'
+   :'&#10007; WITNESS &mdash; det&#8800;1: not area-preserving, no guaranteed return')+'</span>'
+  +'<div class="small" style="margin-top:6px">det '+(d===1?'<b style="color:var(--lit)">= 1 &#10003;</b>':'<b style="color:var(--wall)">= '+d+' &#10007;</b>')
+  +' &middot; bijection on '+N+'&times;'+N+' '+(bij?'<b style="color:var(--lit)">&#10003;</b>':'<b style="color:var(--wall)">&#10007;</b>')
+  +' &middot; period '+((T>0)?'T='+T+' <b style="color:var(--lit)">&#10003;</b>':'<b style="color:var(--wall)">none &#10007;</b>')+'</div>';
+}
+
+function stepOnce(){
+ cur=applyImage(cur,M,N); k++;
+ if(T>0) k=k%T===0 && k>0 ? k : k; // keep raw k for display
+ draw(cur); refresh();
+}
+function reset(){ stopRun(); cur=base; k=0; draw(cur); refresh(); }
+function stopRun(){ if(timer){ clearInterval(timer); timer=null; $("run").textContent="run to return"; } }
+function runToReturn(){
+ if(timer){ stopRun(); return; }
+ if(T<=0){ // tamper: no return — just animate a few steps to show divergence
+   var n=0; $("run").textContent="stop"; timer=setInterval(function(){ stepOnce(); if(++n>=N){ stopRun(); } },140);
+   return;
+ }
+ $("run").textContent="stop";
+ timer=setInterval(function(){ stepOnce(); if(sameImage(cur,base,N)){ stopRun(); } },140);
+}
+
+// window 5 — table of computed periods for several N
+function fillPeriods(){
+ var Ns=[8,11,16,24,32], rows=[], I=ident();
+ for(var i=0;i<Ns.length;i++){
+   var nn=Ns[i], TT=period([[2,1],[1,1]],nn), okId=eqMat(matPowModN([[2,1],[1,1]],TT,nn),I);
+   rows.push('<tr'+(nn===N?' style="background:rgba(195,0,25,.10);font-weight:700"':'')+'><td>'+nn+'</td><td>'+TT+'</td><td>'+(okId?'<b style="color:var(--lit)">identity &#10003;</b>':'&#10007;')+'</td></tr>');
+ }
+ $("perbody").innerHTML=rows.join("");
+ $("perout").innerHTML='Every T(N) computed by iterating M<sup>k</sup> mod N until it equals the identity &mdash; the return is <b>proved</b>, not promised.';
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("litbadge").innerHTML='<span class="badge pass">&#10003; LIT &middot; self-check passed on load</span>';
+
+ fillPeriods();
+ loadGrid();
+
+ $("npick").addEventListener("change",function(){ TAMPER=false; $("tampout").innerHTML=""; loadGrid(); });
+ $("step").addEventListener("click",stepOnce);
+ $("run").addEventListener("click",runToReturn);
+ $("reset").addEventListener("click",reset);
+
+ $("tamper").addEventListener("click",function(){
+   TAMPER=true; $("npick").value="16"; M=curM();  // force an even grid so the collision is genuine
+   $("tampout").innerHTML='<div class="wall-note" style="margin-top:8px"><b style="color:var(--wall)">Broken.</b> Now M = D = [[2,0],[0,1]], det = 2, on the even 16&times;16 grid. Two cells map to one &mdash; mass collides, the map is not a permutation, and M<sup>k</sup> never returns to the identity. The witness went red. The attack is real; it is caught.</div>';
+   loadGrid();  // recompute period (now "none" on the even grid) and redraw
+ });
+ $("restore").addEventListener("click",function(){
+   TAMPER=false; M=curM(); $("tampout").innerHTML=""; loadGrid();
+ });
+
+}catch(err){
+ var fb=$("failb"); fb.style.display="block";
+ fb.textContent="FAIL-LOUD — the Arnold cat map self-check threw: "+err.message;
+ throw err;
+}
+</script>
+</body>
+</html>

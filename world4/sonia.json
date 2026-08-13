@@ -10,11 +10,11 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "c5f384176ee3861a19b3bea3575e8e7d4aab586c72c05c3e16193fd5d44610a9",
+  "sonia_root": "cb55e26afdd1c4bf47a46ba487fd76af2fe7ab3f860b0100e0fbbb08e3f0cb90",
   "counts": {
-    "spheres": 33,
+    "spheres": 38,
     "rooms": 5,
-    "lit": 33,
+    "lit": 38,
     "keepers": 8
   },
   "keepers": [
@@ -519,6 +519,66 @@
       "url": "https://davidwise01.github.io/ud0/world4/samizdat.html",
       "seal": "cbba13b8e82741c75f327cbab795e4be875db5d2ab86975293d2e9c4594ad322",
       "blurb": "Samizdat, the Soviet underground copying of banned texts, runnable in THE OCHO: the diffusion of truth as a branching process - each reader a printing press making k copies, reach k^g, and a sharp threshold (supercritical iff k>1, else it dies out with probability 1; Poisson extinction q = e^{k(q-1)}). The inverse of pripiski: the citizens' true signal spreads while the state's constant 'met' carries zero bits. Ties the-potemkin-village. Tamper-provable at k <= 1."
+    },
+    {
+      "slug": "the-arnold-cat-map",
+      "title": "THE ARNOLD CAT MAP",
+      "room": "number",
+      "kicker": "chaos that exactly returns",
+      "accent": "#c30019",
+      "stamp": "LIT",
+      "source": "V. I. Arnold, the cat map (Arnold & Avez, 1968)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-arnold-cat-map.html",
+      "seal": "36d099f5bb5cc3f5d49d681db491aac91de489ec722901b963a654c0a5e8f510",
+      "blurb": "Vladimir Arnold's cat map, runnable in THE OCHO: the toral automorphism (x,y)->(2x+y,x+y) mod 1, area-preserving (det=1) and chaotic (eigenvalue phi^2, exponential stretching) - yet on an N x N pixel grid it is a permutation with a finite PERIOD, so the scrambled image EXACTLY returns (Poincare recurrence, discretised). Chaos and recurrence at once; the line to KAM theory. Tamper-provable by breaking det=1."
+    },
+    {
+      "slug": "the-master-and-margarita",
+      "title": "THE MASTER AND MARGARITA",
+      "room": "novel",
+      "kicker": "manuscripts don't burn, above the threshold",
+      "accent": "#1d4e79",
+      "stamp": "LIT",
+      "source": "Mikhail Bulgakov, The Master and Margarita (1966-67)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-master-and-margarita.html",
+      "seal": "6501fb7db7bc3d86605f04e71b755a35adeb464bedfeee41d632a0c222d827cd",
+      "blurb": "Bulgakov's The Master and Margarita ('manuscripts don't burn'), runnable in THE OCHO: the theme made mechanical as a (k,n) threshold code - a manuscript encoded in n shares over a prime field survives if any k copies remain, and is lost below k. Burn up to n-k and it comes back; burn more and it is truly gone. The honest limit of 'manuscripts don't burn'; ties samizdat (truth survives if enough copies were made). Tamper-provable by recovering below the threshold."
+    },
+    {
+      "slug": "the-tokamak",
+      "title": "THE TOKAMAK",
+      "room": "machine",
+      "kicker": "Soviet fusion; the Lawson triple product",
+      "accent": "#9a6b12",
+      "stamp": "LIT",
+      "source": "Tamm & Sakharov, the tokamak (early 1950s)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-tokamak.html",
+      "seal": "5f4a0da84c789e3f07d29b2989a237d64b94f3703d22dd1fdf40816bd10d6732",
+      "blurb": "The tokamak (Tamm & Sakharov, early 1950s; ITER is one), runnable in THE OCHO: magnetic-confinement fusion and the Lawson criterion - ignition needs the triple product n T tau above ~3e21 keV s/m^3 near 15 keV, because the fusion power (scaling as n^2) must beat the losses. Compute n T tau and see which plasmas ignite. Soviet-invented, still the leading fusion approach. Tamper-provable at ignition below threshold."
+    },
+    {
+      "slug": "ball-lightning",
+      "title": "BALL LIGHTNING",
+      "room": "weird",
+      "kicker": "the honest unsolved one",
+      "accent": "#5f513a",
+      "stamp": "LIT",
+      "source": "Ball lightning; Kapitsa's 1955 hypothesis",
+      "url": "https://davidwise01.github.io/ud0/world4/ball-lightning.html",
+      "seal": "0ff53f305c2ce4b1fb12e0b193ff49a89c1c571ab0ed3cd876d84b85724ff2f7",
+      "blurb": "Ball lightning and Kapitsa's 1955 microwave hypothesis, rendered honestly in THE OCHO as the WEIRD room's genuinely UNSOLVED mystery: a ~10-30 cm glowing sphere lasts SECONDS, but a hot plasma would cool in MILLISECONDS - an order-of-magnitude mismatch (~1000x) that rules out simple hot air and leaves no accepted mechanism. Unlike Tunguska, Dyatlov, and Kola (all resolved), this one stays OPEN. Tamper-provable against 'just hot plasma'."
+    },
+    {
+      "slug": "the-ratchet-effect",
+      "title": "THE RATCHET EFFECT",
+      "room": "state",
+      "kicker": "the plan that suppresses the output it chases",
+      "accent": "#7a1220",
+      "stamp": "LIT",
+      "source": "Berliner; Weitzman (1980), the Soviet planning ratchet",
+      "url": "https://davidwise01.github.io/ud0/world4/the-ratchet-effect.html",
+      "seal": "d29b3b2625021289cc0c40fa79aa16e7ef096fac26177b14acb0e294431a5e49",
+      "blurb": "The Soviet planning ratchet (Berliner; Weitzman 1980), runnable in THE OCHO: when next period's target rises with this period's output (target2 = base + alpha output1), a manager optimally WITHHOLDS - revealing capacity only raises tomorrow's quota, so the ratchet suppresses the very output it chases and total output falls. The pathology behind taut plans, slack-hoarding, and pripiski; ties gobernet and the-potemkin-village. Tamper-provable."
     }
   ]
 }

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE TOKAMAK · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE MACHINE &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE TOKAMAK</h1>
+ <p class="sub">Moscow, early 1950s: Igor <b>Tamm</b> and Andrei <b>Sakharov</b> propose a <b>toroidal magnetic bottle</b> to hold a fusion plasma off the walls &mdash; the <b>tokamak</b>. Whether it ever <b>ignites</b> is not a matter of temperature alone: it is a threshold on the <b>triple product</b> n&middot;T&middot;&tau; &mdash; the <b>Lawson criterion</b>. This panel is <b>runnable</b>: set density, temperature and confinement time, and it computes n&middot;T&middot;&tau; against the D&ndash;T ignition threshold &mdash; and refuses to call a sub-threshold plasma ignited.</p>
+ <p class="src"><span class="tag t-amber">source</span> The tokamak (&#1090;&#1086;&#1088;&#1086;&#1080;&#1076;&#1072;&#1083;&#1100;&#1085;&#1072;&#1103; &#1082;&#1072;&#1084;&#1077;&#1088;&#1072; &#1089; &#1084;&#1072;&#1075;&#1085;&#1080;&#1090;&#1085;&#1099;&#1084;&#1080; &#1082;&#1072;&#1090;&#1091;&#1096;&#1082;&#1072;&#1084;&#1080;, &ldquo;toroidal chamber with magnetic coils&rdquo;) &mdash; Tamm &amp; Sakharov, USSR, early 1950s; still the leading approach to controlled fusion (ITER is a tokamak). Room: <b>THE MACHINE</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; Tamm &amp; Sakharov <span class="tag t-amber">history</span></h2>
+   <p>In the <b class="k">early 1950s</b> at the Kurchatov Institute, <b>Igor Tamm</b> and his student <b>Andrei Sakharov</b> worked out a machine to confine a hot plasma with magnetic fields wound into a <b>torus</b> &mdash; a doughnut. The name <b>&ldquo;tokamak&rdquo;</b> is a Russian acronym: <b>to</b>roidal <b>ka</b>mera, <b>ma</b>gnitnye <b>k</b>atushki &mdash; toroidal chamber, magnetic coils.</p>
+   <p class="small">Fusion needs the plasma at <b>tens of millions of degrees</b> &mdash; hotter than any wall can touch. The tokamak&rsquo;s answer: never let it touch. Hold it in a magnetic cage and let it burn in vacuum.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>MAGNETIC CONFINEMENT <span class="tag t-amber">mechanism</span></h2>
+   <p>A charged particle spirals along a magnetic field line but is hard to push across one. Wrap the field into a <b>closed torus</b> and the plasma has <b>no end to leak out of</b>. A helical twist (toroidal + poloidal field) cancels the drifts that would otherwise fling particles to the wall.</p>
+   <p class="small">So the torus is a <b>bottle with no lid and no floor</b>. But it is a leaky bottle: heat still escapes across the field. How long it holds is the <b>energy-confinement time</b> <b class="k">&tau;</b> &mdash; the third number the engine needs.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>LINEAGE &mdash; where it went <span class="tag t-amber">reach</span></h2>
+   <p>The Soviet <b>T-3</b> tokamak (1968) reported electron temperatures so high that a British team was flown in to check &mdash; and confirmed it. That result made the tokamak the <b>world standard</b>.</p>
+   <p class="small">The line runs <b>T-3 (1968)</b> &rarr; <b>JET</b> (Europe, record fusion energy) &rarr; <b>ITER</b> (under construction, France) &mdash; every one of them a <b>tokamak</b>. Seventy years on, Tamm and Sakharov&rsquo;s torus is still the leading bet for controlled fusion.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the engine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; set the plasma <span class="tag t-in">in &darr;</span></h2>
+   <p>Three numbers decide a D&ndash;T burn: <b>density n</b> (ions per m&sup3;), <b>temperature T</b> (keV), and <b>energy-confinement time &tau;</b> (s). The engine forms the <b class="k">triple product P = n&middot;T&middot;&tau;</b> and compares it to the ignition threshold.</p>
+   <div class="row"><label>n (&times;10&sup2;&#8304;)</label>
+    <input id="nin" type="range" min="0.2" max="4" step="0.1" value="1.0" style="flex:1;min-width:120px"><b class="k" id="nlab">1.0</b></div>
+   <div class="row"><label>T (keV)</label>
+    <input id="tin" type="range" min="2" max="40" step="0.5" value="15" style="flex:1;min-width:120px"><b class="k" id="tlab">15</b></div>
+   <div class="row"><label>&tau; (s)</label>
+    <input id="tauin" type="range" min="0.2" max="5" step="0.1" value="2.0" style="flex:1;min-width:120px"><b class="k" id="taulab">2.0</b></div>
+   <div class="row"><label>preset</label>
+    <select id="preset">
+     <option value="1.0,15,2.0">n1e20, T15, &tau;2 &middot; at threshold</option>
+     <option value="1.0,15,1.0">n1e20, T15, &tau;1 &middot; confinement too short</option>
+     <option value="0.5,15,2.0">n0.5e20, T15, &tau;2 &middot; too thin</option>
+     <option value="1.0,8,2.0">n1e20, T8, &tau;2 &middot; too cold</option>
+     <option value="2.0,15,2.0">n2e20, T15, &tau;2 &middot; well ignited</option>
+    </select></div>
+   <p class="small mut">Ignition threshold set at the optimum <b>T &asymp; 15 keV</b>: n&middot;T&middot;&tau; must exceed <b>~3&times;10&sup2;&sup1; keV&middot;s/m&sup3;</b> <span class="tag t-amber">approx</span>.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; form the triple product &middot; weigh fusion against loss &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the Lawson criterion <span class="tag t-lit">LIT</span></h2>
+   <canvas id="cv" width="520" height="96" style="width:100%;height:96px;border:1px solid var(--line);border-radius:6px;background:#fbf6e6;margin-bottom:6px"></canvas>
+   <p class="small" style="margin-top:0"><span style="color:var(--grn)">&#9646; triple product P = n&middot;T&middot;&tau;</span> &nbsp; <span style="color:var(--red)">&#9553; ignition threshold ~3&times;10&sup2;&sup1;</span> (log scale)</p>
+   <div class="out" id="pout">&mdash;</div>
+   <p class="small">triple product <b id="pval" class="k">&mdash;</b> keV&middot;s/m&sup3; &nbsp;&middot;&nbsp; threshold <b class="k">3.0&times;10&sup2;&sup1;</b> &nbsp;&middot;&nbsp; margin <b id="marg" class="k">&mdash;</b></p>
+   <p class="small">fusion power (&prop; n&sup2;) <b id="pfus" class="k">&mdash;</b> W/m&sup3; &nbsp; loss power (&prop; n&middot;T/&tau;) <b id="ploss" class="k">&mdash;</b> W/m&sup3; <span class="tag t-amber">approx</span></p>
+   <p class="small" style="margin-top:8px;color:var(--wall)"><b>THE LAWSON CRITERION.</b> <span class="tag t-wall">WALL</span> A plasma ignites (self-heating carries the burn, Q&rarr;&infin;) <b>iff n&middot;T&middot;&tau; &ge; threshold</b>. Fusion power grows as <b>n&sup2;</b>; losses grow as <b>n&middot;T/&tau;</b>. Ignition is when the balance tips &mdash; and no amount of one number alone buys it.</p>
+   <p class="small">this plasma: <b id="litverdict" class="k">&mdash;</b></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the verdict, checked against the threshold &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; verdict &amp; witness <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outv">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>n,T,&tau;</th><th>n&middot;T&middot;&tau;</th><th>claim</th><th>physics</th><th>agree</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small" style="margin-top:6px">The claim (&ldquo;ignited&rdquo;) is checked against the threshold on the <b>actual</b> triple product: ignited only if n&middot;T&middot;&tau; &ge; ~3&times;10&sup2;&sup1;. Claim and physics must <b>agree</b> on every row.</p>
+   <div class="wall-note" style="border-left-color:var(--blue);background:rgba(29,78,121,.05);margin-top:10px"><span class="tag t-amber">tie</span> <b>THE MACHINE.</b> The tokamak sits with <a href="./the-water-integrator.html">the water integrator</a>, <a href="./the-setun.html">the Setun</a> and <a href="./the-besm.html">the BESM</a> &mdash; the Soviet machines. The door is <a href="https://0root.ai/">https://0root.ai/</a>.</div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>WHY FUSION IS HARD <span class="tag t-wall">WALL</span></h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> Fusion power scales as <b class="k">n&sup2;</b> &mdash; pack the plasma denser and the reactions climb fast. But the same plasma <b>leaks</b>: heat escapes across the field at a rate <b>n&middot;T/&tau;</b>. You must win the race between the two, and the confinement time <b>&tau;</b> is the number nature fights you on.</div>
+   <p class="small" style="margin-top:8px"><b>THE ADVERSARY.</b> &ldquo;Just make it hotter.&rdquo; But push T too high with the same n and &tau; and you can still fall short of the triple product &mdash; and hotter plasmas are <b>harder to confine</b>. Temperature is one factor of three, not the whole.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Fusion just needs a hotter plasma.&rdquo;</s> <b>Cut.</b> Temperature alone is not enough; ignition is a threshold on the <b>triple product</b> n&middot;T&middot;&tau;. A blazing but thin or leaky plasma still does not ignite.</p>
+   <p class="grave"><s>&ldquo;The tokamak was a Cold-War dead end.&rdquo;</s> <b>Cut.</b> T-3 &rarr; JET &rarr; ITER &mdash; it is still the leading fusion machine on Earth.</p>
+   <p class="grave"><s>&ldquo;Break-even means ignition.&rdquo;</s> <b>Cut.</b> Break-even (Q=1) is far below ignition (Q&rarr;&infin;); the Lawson threshold here is the <b>ignition</b> bar, higher still.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; declare ignition anyway <span class="tag t-wall">attack</span></h2>
+   <p>The red move: take a plasma <b>below</b> the threshold (n&middot;T&middot;&tau; &lt; ~3&times;10&sup2;&sup1;) and <b>claim it ignited</b> &mdash; drop the Lawson check so a leaky, sub-threshold plasma gets stamped burning.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; claim sub-threshold ignition</button><button id="restore">&#8634; restore the Lawson bar</button></div>
+   <p class="small" id="tampernote">Drop the bar and the claim lies about the <b>sub-threshold</b> rows: losses exceed fusion power (Q&lt;1) yet it calls them ignited. The witness compares claim to physics and turns <b style="color:var(--wall)">red</b>. The attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE TOKAMAK &mdash; World IV &middot; <b>SONIA</b>, room <b>THE MACHINE</b>, in the refined <b>OCHO</b>: blue builds Tamm &amp; Sakharov&rsquo;s toroidal magnetic bottle and its lineage to ITER, the engine forms the Lawson triple product down the centre and weighs it against the D&ndash;T ignition threshold, red presses &ldquo;just make it hotter&rdquo; and is caught by a sub-threshold plasma that will not ignite. The triple product n&middot;T&middot;&tau; and its comparison to the ~3&times;10&sup2;&sup1; keV&middot;s/m&sup3; ignition threshold are LIT and self-checked; the standard D&ndash;T figures, the history and the reactivity model are AMBER; the confinement race is a real WALL. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE TOKAMAK — the Lawson criterion: triple product n*T*tau vs D-T ignition (every value computed) ===== */
+
+var TAMPER=false;    // when true the claim drops the Lawson bar and stamps a sub-threshold plasma "ignited"
+var THRESH=3e21;     // D-T ignition threshold on the triple product, keV*s/m^3, at optimum T~15 keV (standard figure)
+var KEVJ=1.602e-16;  // 1 keV in joules
+var EFUS=2.818e-12;  // D-T fusion energy release per reaction, 17.6 MeV in joules
+
+/* --- the triple product: the whole Lawson figure of merit --- */
+function tripleProduct(n,T,tau){ return n*T*tau; }
+
+/* --- true physics: a D-T plasma ignites iff the triple product meets the threshold --- */
+function ignitedTrue(n,T,tau){ return tripleProduct(n,T,tau) >= THRESH*(1-1e-9); }
+
+/* --- D-T reactivity <sigma v>, m^3/s: a simple ~T^2 model good near 10-20 keV (approximate, AMBER) --- */
+function sigmav(T){ return 1.1e-24*T*T; }
+
+/* --- fusion power density, W/m^3: (1/4) n^2 <sigma v> E_fus  ->  scales as n^2 (approximate coeffs, AMBER) --- */
+function fusionPower(n,T){ return 0.25*n*n*sigmav(T)*EFUS; }
+
+/* --- loss power density, W/m^3: thermal energy 3 n T bled over confinement time  ->  scales as n*T/tau (AMBER) --- */
+function lossPower(n,T,tau){ return 3*n*(T*KEVJ)/tau; }
+
+/* --- the CLAIM the machine makes; TAMPER drops the Lawson bar and claims any plasma ignited --- */
+function claimIgnited(n,T,tau){ return TAMPER ? (tripleProduct(n,T,tau)>0) : ignitedTrue(n,T,tau); }
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+ var rel=function(a,b){ return Math.abs(a-b)/Math.abs(b); };
+
+ // 1 — triple product is exactly n*T*tau
+ t(tripleProduct(1e20,15,2)===1e20*15*2,"triple product must be n*T*tau exactly");
+ t(rel(tripleProduct(1e20,15,2),3e21)<1e-9,"n=1e20,T=15,tau=2 must give ~3e21, got "+tripleProduct(1e20,15,2));
+
+ // 2 — the anchor cases: (1e20,15,2) meets/exceeds threshold; (1e20,15,1) does not
+ t(ignitedTrue(1e20,15,2)===true,"(1e20,15,2) at ~3e21 must ignite (>= threshold)");
+ t(rel(tripleProduct(1e20,15,1),1.5e21)<1e-9,"(1e20,15,1) must give ~1.5e21");
+ t(ignitedTrue(1e20,15,1)===false,"(1e20,15,1) below threshold must NOT ignite");
+
+ // 3 — ignition is exactly the threshold predicate: just below fails, at/above passes
+ t(ignitedTrue(1e20,15,2.001)===true,"just above threshold must ignite");
+ t(ignitedTrue(1e20,15,1.999)===false,"just below threshold must not ignite");
+
+ // 4 — fusion power scales as n^2: doubling n MORE than doubles it (exactly quadruples)
+ var f1=fusionPower(1e20,15), f2=fusionPower(2e20,15);
+ t(f2>2*f1,"doubling n must more than double fusion power (n^2 scaling)");
+ t(rel(f2,4*f1)<1e-9,"doubling n must quadruple fusion power exactly (n^2), ratio="+(f2/f1));
+
+ // 5 — loss power scales as n*T/tau: halving tau doubles the loss, doubling n doubles it
+ t(rel(lossPower(1e20,15,1),2*lossPower(1e20,15,2))<1e-9,"halving tau must double loss power");
+ t(rel(lossPower(2e20,15,2),2*lossPower(1e20,15,2))<1e-9,"doubling n must double loss power");
+
+ // 6 — raising n, T, OR tau toward the threshold flips ignition ON (each factor is load-bearing)
+ t(ignitedTrue(0.5e20,15,2)===false && ignitedTrue(1e20,15,2)===true,"raising n flips ignition on");
+ t(ignitedTrue(1e20,7.5,2)===false && ignitedTrue(1e20,15,2)===true,"raising T flips ignition on");
+ t(ignitedTrue(1e20,15,1)===false && ignitedTrue(1e20,15,2)===true,"raising tau flips ignition on");
+
+ // 7 — untampered, claim matches physics on both a sub- and super-threshold case
+ t(claimIgnited(1e20,15,2)===true && claimIgnited(1e20,15,1)===false,"untampered claim must match physics");
+
+ // 8 — TAMPER really mislabels: drop the bar and a sub-threshold (1e20,15,1) plasma is claimed ignited
+ TAMPER=true;
+ t(claimIgnited(1e20,15,1)===true && ignitedTrue(1e20,15,1)===false && tripleProduct(1e20,15,1)<THRESH,
+   "tamper must claim a sub-threshold plasma is ignited");
+ TAMPER=false;
+
+ TAMPER=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+
+function sci(v){
+ if(!isFinite(v)) return "&#8734;";
+ if(v===0) return "0";
+ var e=Math.floor(Math.log10(Math.abs(v))), m=v/Math.pow(10,e);
+ return (Math.round(m*100)/100)+"&times;10<sup>"+e+"</sup>";
+}
+function fx(v,d){ return (Math.round(v*Math.pow(10,d))/Math.pow(10,d)).toFixed(d); }
+
+function drawGauge(P,ignited){
+ var cv=$("cv"), g=cv.getContext("2d"), W=cv.width, H=cv.height;
+ g.clearRect(0,0,W,H);
+ var padL=8,padR=8,padT=30,padB=22, iw=W-padL-padR, barH=H-padT-padB;
+ var lo=20, hi=22.5;                                  // log10 scale 1e20 .. ~3e22
+ var xat=function(val){ var lg=Math.log10(Math.max(1e18,val)); return padL+iw*Math.max(0,Math.min(1,(lg-lo)/(hi-lo))); };
+ // axis
+ g.strokeStyle="#cbb98d"; g.lineWidth=1;
+ g.beginPath(); g.moveTo(padL,padT+barH); g.lineTo(W-padR,padT+barH); g.stroke();
+ // the P bar
+ var px=xat(isFinite(P)?P:1e30);
+ g.fillStyle= ignited ? "rgba(47,109,51,.60)" : "rgba(195,0,25,.40)";
+ g.fillRect(padL,padT,px-padL,barH);
+ g.strokeStyle= ignited ? "#2f6d33" : "#c30019"; g.lineWidth=1.5;
+ g.strokeRect(padL,padT,Math.max(1,px-padL),barH);
+ // threshold line
+ var tx=xat(THRESH);
+ g.strokeStyle="#c30019"; g.lineWidth=2.5; g.beginPath(); g.moveTo(tx,padT-6); g.lineTo(tx,padT+barH+6); g.stroke();
+ g.fillStyle="#c30019"; g.font="bold 11px monospace"; g.fillText("ignition ~3e21",tx-34,padT-12);
+ // ticks
+ g.fillStyle="#7c6c4c"; g.font="10px monospace";
+ var ticks=[1e20,1e21,1e22]; for(var i=0;i<ticks.length;i++){ var xx=xat(ticks[i]); g.fillText("1e"+Math.round(Math.log10(ticks[i])),xx-10,padT+barH+16); }
+ // label
+ g.fillStyle= ignited ? "#2f6d33" : "#8c1c13"; g.font="bold 12px monospace";
+ g.fillText(ignited?"IGNITED":"NO IGNITION", padL+2, padT+barH-4);
+}
+
+function witness(){
+ var cases=[[0.5e20,15,2],[1e20,15,1],[1e20,8,2],[1e20,15,2],[1e20,15,3],[2e20,15,2]], rows="", allok=true;
+ for(var i=0;i<cases.length;i++){
+  var n=cases[i][0],T=cases[i][1],tau=cases[i][2];
+  var claim=claimIgnited(n,T,tau), truth=ignitedTrue(n,T,tau), agree=(claim===truth);
+  if(!agree) allok=false;
+  var label=(n/1e20)+","+T+","+tau;
+  rows+="<tr><td>"+label+"</td><td>"+sci(tripleProduct(n,T,tau))+"</td><td>"+(claim?"ignited":"no")+"</td><td>"+(truth?"ignited":"no")
+   +"</td><td style=\"color:"+(agree?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(agree?"ok":"X")+"</td></tr>";
+ }
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'
+  +(allok?"WITNESS - the claim matches the physics on every plasma":"WITNESS - the claim contradicts the physics")+'</span>';
+ return allok;
+}
+
+function render(){
+ var n=(+$("nin").value)*1e20, T=+$("tin").value, tau=+$("tauin").value;
+ $("nlab").textContent=fx(n/1e20,1); $("tlab").textContent=(T%1===0?T:fx(T,1)); $("taulab").textContent=fx(tau,1);
+
+ var P=tripleProduct(n,T,tau), truth=ignitedTrue(n,T,tau), claim=claimIgnited(n,T,tau);
+ var fus=fusionPower(n,T), los=lossPower(n,T,tau);
+
+ $("pval").innerHTML=sci(P);
+ $("marg").innerHTML=fx(P/THRESH,2)+"&times;";
+ $("pfus").innerHTML=sci(fus);
+ $("ploss").innerHTML=sci(los);
+
+ $("litverdict").innerHTML = truth
+  ? '<span style="color:var(--lit)">n&middot;T&middot;&tau; = '+sci(P)+' &ge; 3&times;10<sup>21</sup> &mdash; IGNITES</span>'
+  : '<span style="color:var(--wall)">n&middot;T&middot;&tau; = '+sci(P)+' &lt; 3&times;10<sup>21</sup> &mdash; below the Lawson bar</span>';
+
+ $("pout").innerHTML = truth
+  ? '<span style="color:var(--lit)">The triple product clears the threshold: self-heating carries the burn (Q&rarr;&infin;). The plasma ignites.</span>'
+  : '<span style="color:var(--wall)">The triple product is short of threshold: losses (n&middot;T/&tau;) outrun fusion power (n&sup2;), Q&lt;1. No ignition.</span>';
+
+ drawGauge(P,truth);
+
+ var solvedForReal = truth;
+ $("outv").className="verdict "+((claim && solvedForReal) ? "ok" : "no");
+ if(TAMPER && claim && !truth){
+  $("outv").innerHTML="&ldquo;IGNITED&rdquo;";
+  $("outv").className="verdict no";
+  $("outreason").innerHTML='<b style="color:var(--wall)">Lawson bar dropped</b> &mdash; the claim calls this plasma ignited, but n&middot;T&middot;&tau; = '+sci(P)+' &lt; 3&times;10<sup>21</sup>: losses beat fusion, Q&lt;1. The witness (5) turns red.';
+ } else if(truth){
+  $("outv").textContent="IGNITES";
+  $("outreason").innerHTML='n&middot;T&middot;&tau; = '+sci(P)+' clears the ~3&times;10<sup>21</sup> threshold (margin '+fx(P/THRESH,2)+'&times;): the D&ndash;T burn is self-sustaining.';
+ } else {
+  $("outv").textContent="NO IGNITION";
+  $("outreason").innerHTML='n&middot;T&middot;&tau; = '+sci(P)+' is only '+fx(P/THRESH,2)+'&times; the threshold. Raise n, T, or &tau; &mdash; no single one alone is enough.';
+ }
+ witness();
+}
+
+function setPreset(){
+ var p=$("preset").value.split(","); $("nin").value=p[0]; $("tin").value=p[1]; $("tauin").value=p[2]; render();
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("nin").addEventListener("input",render);
+ $("tin").addEventListener("input",render);
+ $("tauin").addEventListener("input",render);
+ $("preset").addEventListener("change",setPreset);
+ $("tamper").addEventListener("click",function(){ TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Lawson bar dropped.</b> The claim now stamps every plasma &lsquo;ignited&rsquo; regardless of n&middot;T&middot;&tau;. Choose a sub-threshold preset (short &tau;, thin, or cold): the verdict lies while the physics says Q&lt;1, and the witness (5) turns <b style='color:var(--wall)'>red</b>."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false;
+  $("tampernote").innerHTML="Drop the bar and the claim lies about the <b>sub-threshold</b> rows: losses exceed fusion power (Q&lt;1) yet it calls them ignited. The witness compares claim to physics and turns <b style='color:var(--wall)'>red</b>. The attack is real and it is caught."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the tokamak did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>
