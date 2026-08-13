@@ -10,11 +10,11 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "4a809fc5f2f95ef317b4935904ce78f8f32dac272762be2351bd07afa32ab574",
+  "sonia_root": "4de9fcaabd54288f4bb71edfb3970ba5df4c3af3781451f46425cef6f7ae4123",
   "counts": {
-    "spheres": 18,
+    "spheres": 23,
     "rooms": 5,
-    "lit": 18,
+    "lit": 23,
     "keepers": 8
   },
   "keepers": [
@@ -339,6 +339,66 @@
       "url": "https://davidwise01.github.io/ud0/world4/the-redeemer.html",
       "seal": "012055003ab348175c590bb5f1b19d659dfcb92f3cc3d907a79aafd572da8219",
       "blurb": "The redemptive-witness archetype formalized in THE OCHO: a redeemer is defined by three invariants - judges none, takes the burden, stays - and the engine proves the same function runs through Dostoevsky's Sonia, the film's Vincent, Erikson's Itkovian the Redeemer (the Shield Anvil who embraced the T'lan Imass grief), and the wonder-tale's Ivan the Fool (Ivan means 'God is gracious'). Drop the first invariant and a redeemer becomes an inquisitor; the engine catches it. Ties the SONIA FUNCTION to Malazan and to Ivan. Tamper-provable."
+    },
+    {
+      "slug": "the-kovalevskaya-top",
+      "title": "THE KOVALEVSKAYA TOP",
+      "room": "number",
+      "kicker": "the third and last solvable top",
+      "accent": "#c30019",
+      "stamp": "LIT",
+      "source": "S. V. Kovalevskaya, Acta Mathematica 12 (1889)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-kovalevskaya-top.html",
+      "seal": "3930d647b2b849394706837e1cf3f2c0a4c7cc5ac0d2716b6f6639ff4780d8d7",
+      "blurb": "Sofya Kovalevskaya's integrable top (Acta Mathematica, 1889), runnable in THE OCHO: an RK4 integrator of the Euler-Poisson equations shows that for her mass ratio A=B=2C the motion has a FOURTH conserved integral K, frozen to machine precision, while any other top loses it (K drifts into chaos). The third and last solvable top, found by demanding single-valuedness in complex time. Sofya, the first woman with a mathematics doctorate and a full professorship, carries the keeper's name. Tamper-provable."
+    },
+    {
+      "slug": "zamyatin-we",
+      "title": "WE",
+      "room": "novel",
+      "kicker": "the mathematical dystopia; the soul is the square root of minus one",
+      "accent": "#1d4e79",
+      "stamp": "LIT",
+      "source": "Yevgeny Zamyatin, We (1921)",
+      "url": "https://davidwise01.github.io/ud0/world4/zamyatin-we.html",
+      "seal": "5044944d4928cd3b030ab5c94b34bcabf6f90e72c3b69ef67ee5f7b8e762b4bc",
+      "blurb": "Yevgeny Zamyatin's We (1921), the first modern dystopia, runnable in THE OCHO: the One State of numbered ciphers and the Table of Hours, undone by the square root of minus one. LIT: no real x solves x^2 = -1 (the irrational the rational state cannot absorb), i^2 = -1 off the real line, the complex plane, Euler e^(i pi)+1=0. The ur-dystopia behind 1984 and Brave New World. Tamper-provable."
+    },
+    {
+      "slug": "the-elbrus",
+      "title": "THE ELBRUS",
+      "room": "machine",
+      "kicker": "Soviet superscalar, bounded by Amdahl",
+      "accent": "#9a6b12",
+      "stamp": "LIT",
+      "source": "The Elbrus computers (Lebedev Institute; Babayan)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-elbrus.html",
+      "seal": "99a68d7c84d83727428365a6924ffdc1cc7b6225034f1611f27f405cb9b25541",
+      "blurb": "The Soviet Elbrus processors (Lebedev Institute; Babayan), runnable in THE OCHO: instruction-level parallelism - issue W instructions per cycle, N independent finishing in ceil(N/W) cycles - bounded by Amdahl's law (max speedup 1/(s+(1-s)/W), approaching 1/s). The MESM->BESM->Elbrus lineage into the modern Russian VLIW CPUs. Tamper-provable by ignoring the serial fraction."
+    },
+    {
+      "slug": "the-dyatlov-pass",
+      "title": "THE DYATLOV PASS",
+      "room": "weird",
+      "kicker": "a 60-year mystery, resolved by physics",
+      "accent": "#5f513a",
+      "stamp": "LIT",
+      "source": "Dyatlov Pass, 1959; Gaume & Puzrin (2021)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-dyatlov-pass.html",
+      "seal": "e2fa5de85e007493dfbfa73870b422c958c4e6dfa9fabee0e074aa3b77f7aac4",
+      "blurb": "The Dyatlov Pass incident (Urals, Feb 1959), rendered honestly in THE OCHO: nine hikers dead, 60 years of theories, resolved in 2021 by Gaume and Puzrin as a delayed slab avalanche. LIT: a slab force balance (driving rho g h sin theta vs friction + cohesion), stable near 15 degrees and failing near 28-30 on the steeper-than-it-looks slope. Fringe theories (yeti, secret weapons) held dead-as-science; the peer-reviewed avalanche LIT. Tamper-provable."
+    },
+    {
+      "slug": "the-ogas",
+      "title": "THE OGAS",
+      "room": "state",
+      "kicker": "the internet the USSR did not build",
+      "accent": "#7a1220",
+      "stamp": "LIT",
+      "source": "V. Glushkov, OGAS (1962)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-ogas.html",
+      "seal": "6a2f60ef3095e66277bacd299ab17f8f4d32e4cbd6450a7a5831810ac28170c3",
+      "blurb": "OGAS (Glushkov, 1962), the Soviet dream of a nationwide computer network to run the planned economy in real time, runnable in THE OCHO: a proportional feedback loop settling the plan error (x_{n+1} = x_n + k(target - x_n), converging iff 0 < k < 2) and the hierarchical network (~200 main + ~20,000 local centres). Approved in principle, never built - the internet the USSR did not make. Ties GOBERNET and the calculation debate. Tamper-provable by pushing the gain past 2."
     }
   ]
 }

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DYATLOV PASS · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE WEIRD &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE DYATLOV PASS</h1>
+ <p class="sub">Night of <b>1&ndash;2 February 1959</b>, on the eastern shoulder of <b>Kholat Syakhl</b> in the northern Urals: nine experienced ski-hikers cut out of their tent into a lethal night and died. For sixty years the case was called <b>unexplained</b>. This panel is <b>runnable</b>: it holds a slab-avalanche <b>force balance</b> &mdash; after <b>Gaume &amp; Puzrin (2021)</b> &mdash; and proves that a wind-packed slab over a buried weak layer <b>releases</b> once the local slope crosses a critical angle the terrain hides.</p>
+ <p class="src"><span class="tag t-amber">source</span> The Dyatlov Pass incident, 1&ndash;2 Feb 1959, northern Urals; resolution: J. Gaume &amp; A. M. Puzrin, &ldquo;Mechanisms of slab avalanche release and impact in the Dyatlov Pass incident,&rdquo; <i>Communications Earth &amp; Environment</i> 2, 10 (2021). Room: <b>THE WEIRD</b>. The nine dead are treated with respect; rendered, not sensationalised.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; the record &amp; the physics</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; the pass, Feb 1959 <span class="tag t-amber">record</span></h2>
+   <p>Nine members of an Ural Polytechnic ski group camped on an open slope below <b>Kholat Syakhl</b>. Sometime that night all nine <b>cut the tent open from the inside</b> and left, most without boots, into roughly <b class="k">&minus;25&nbsp;&deg;C</b> and wind. They died on the descent to the treeline; searchers found the abandoned tent on <b>26 February</b>.</p>
+   <p class="small">The Soviet inquiry closed on a phrase that outlived it: death by a <b>&ldquo;compelling natural force.&rdquo;</b> Into that gap poured <b>sixty years</b> of theories. The record is <b>AMBER</b> &mdash; history, honestly held.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE EVIDENCE &mdash; why avalanche was dismissed</h2>
+   <p>Two facts made an avalanche look impossible. First, <b>the tent was not buried</b> &mdash; it stood cut and half-standing, no debris cone. Second, some bodies had <b>severe blunt trauma</b> (fractured ribs, a fractured skull) <b>without</b> external wounds &mdash; injuries that seemed too violent for snow, yet wrong for a fall.</p>
+   <p class="small">The measured slope at the tent read <b>gentle, ~15&deg;</b> &mdash; below any textbook avalanche angle. So for decades the file said: no slab, no debris, no trigger. The evidence is <b>AMBER</b>; the reading of it was the error.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE 2021 RESOLUTION &mdash; a delayed slab <span class="tag t-lit">LIT</span></h2>
+   <p><b>Gaume &amp; Puzrin (2021)</b> closed it with mechanics. Cutting the tent platform into the slope <b>undercut</b> a wind-loaded slab resting on a buried <b>weak layer</b>; hours later the slab <b>released</b> and slid a short way onto the sleepers &mdash; enough for <b>blunt trauma without burial</b>.</p>
+   <p class="small">The key correction: the <b>local</b> slope under the tent was <b class="k">~28&ndash;30&deg;</b>, not the ~15&deg; the terrain shows &mdash; steep enough to fail. Delayed release, small slab, no debris cone. <b>LIT.</b></p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE ENGINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the slab force-balance engine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; slope &amp; slab <span class="tag t-in">in &darr;</span></h2>
+   <p>Set the slope and the snow. The engine forms the <b>driving</b> shear that gravity pulls down the slope and the <b>resisting</b> shear the weak layer offers, then asks the deciding question: <b>does the slab release?</b></p>
+   <div class="row"><label>slope &theta;</label><input id="thin" type="range" min="5" max="45" step="1" value="30" style="flex:1;min-width:120px"><b id="thval" class="k" style="min-width:62px">30&deg;</b></div>
+   <div class="row"><label>slab depth h</label><input id="hin" type="range" min="0.2" max="1.2" step="0.05" value="0.5" style="flex:1;min-width:120px"><b id="hval" class="k" style="min-width:62px">0.50 m</b></div>
+   <div class="row"><label>weak-layer &mu;</label><input id="muin" type="range" min="0.45" max="0.75" step="0.01" value="0.55" style="flex:1;min-width:120px"><b id="muval" class="k" style="min-width:62px">0.55</b></div>
+   <div class="row"><label>cohesion C</label><input id="cin" type="range" min="0" max="60" step="1" value="10" style="flex:1;min-width:120px"><b id="cval" class="k" style="min-width:62px">10 Pa</b></div>
+   <p class="small mut">slab density &rho; = 300 kg/m&sup3; (wind-packed); &mu; = residual friction of the buried weak layer (friction angle ~ arctan&nbsp;&mu;).</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; driving vs resisting &middot; net &middot; critical angle &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE ENGINE &mdash; slab release <span class="tag t-lit">LIT</span></h2>
+   <div class="out" id="engout">&mdash;</div>
+   <table id="engTbl"><tbody id="engBody"></tbody></table>
+   <p class="small" style="margin-top:8px"><b>Driving grows with the slope</b> &mdash; same slab, rising angle. The slab fails where net crosses <b>zero</b>:</p>
+   <table id="scanTbl"><thead><tr><th>&theta;</th><th>driving (Pa)</th><th>resisting (Pa)</th><th>net</th></tr></thead><tbody id="scanBody"></tbody></table>
+   <p class="small" style="margin-top:8px"><b>Critical angle</b> (net = 0): <span id="critline" class="k">&mdash;</span>. At C = 0 it equals <b>arctan&nbsp;&mu;</b> and is <b>independent of slab depth</b> &mdash; a thin slab suffices.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the deciding fact: a slab balances forces &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; THE RELEASE <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outverdict">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>proposed cause</th><th>forces to balance?</th><th>stable 15&deg; / fails ~30&deg;?</th><th>ok</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small" style="margin-top:8px">At <b>~15&deg;</b> the weak layer holds; at the true <b>~28&ndash;30&deg;</b> the driving shear wins and the slab lets go. It slides only a short distance &mdash; enough to injure sleepers, <b>not</b> enough to bury the tent. The absence of a debris cone is not a missing clue; it <b>is</b> the small-slab signature.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; the weird &amp; the wall &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>WHY IT LOOKED IMPOSSIBLE</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The honest limits are real. No one measured the slab that night; the reconstruction rests on the <b>terrain, the snowpack model and the injuries</b>, not a caught avalanche. Three features made it look impossible at the time: a <b>small slab</b> (no towering debris), a <b>delayed release</b> hours after the tent was cut, and <b>no burial</b> of the tent.</div>
+   <p class="small" style="margin-top:8px"><b>Why it matters.</b> Each of those &mdash; small, late, shallow &mdash; is exactly what the 2021 slab model <b>predicts</b>. The very facts once used to rule avalanche out are the fingerprints of this kind of avalanche.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD &mdash; the weird theories</h2>
+   <p class="grave"><s>A yeti / menk attack.</s> <b>Dead.</b> A cryptid provides no forces, no tracks, no mechanism &mdash; nothing a model can weigh against the injuries or the cut tent.</p>
+   <p class="grave"><s>Infrasound &ldquo;panic&rdquo; from Karman vortices.</s> <b>Dead as the cause.</b> It might explain unease, but not the ribs, the skull, or a slab that never buries &mdash; it balances no shear.</p>
+   <p class="grave"><s>A secret Soviet weapon test / aliens.</s> <b>Dead.</b> No device, no debris field, no radiation pattern that fits; folklore, not physics.</p>
+   <p class="small" style="margin-top:6px"><b style="color:var(--lit)">Standing:</b> a <b>delayed slab avalanche</b> on a locally ~28&ndash;30&deg; slope &mdash; peer-reviewed, and the only account that balances the forces. <span class="tag t-lit">LIT</span></p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; a cause with no forces</h2>
+   <p>The red move: swap the slab for a fringe cause &mdash; <b>yeti, secret weapon, &ldquo;paradox.&rdquo;</b> Such a cause offers <b>no driving and no resisting shear</b>, so the engine has <b>nothing to test</b>. A real explanation balances forces; the myth cannot.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; blame the myth</button><button id="restore">&#8634; restore the slab model</button></div>
+   <p class="small" id="tampernote">Blame the myth and the witness (5) has no force balance to check &mdash; it turns <b style="color:var(--wall)">red</b>. The fringe theories are <b>DEAD</b> as science; the slab avalanche is <b>LIT</b>.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE DYATLOV PASS &mdash; World IV &middot; <b>SONIA</b>, room <b>THE WEIRD</b>, in the refined <b>OCHO</b>: blue lays down the 1959 record and the evidence that once ruled avalanche out, the centre engine runs the slab force balance and shows it releasing at the true ~28&ndash;30&deg; slope, red buries the fringe theories and is caught blaming a cause with no forces to test. The driving/resisting balance, the critical-angle law, the depth-independence and the stable-15&deg;/fails-30&deg; witness are LIT and self-checked; the history is AMBER; the un-sampled slab is a real WALL. THE LESSON: a real mystery yields to physics, not myth &mdash; the nine are owed an honest answer, and Gaume &amp; Puzrin (2021) gave one. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA - THE DYATLOV PASS - slab-avalanche force-balance engine (every value computed) ===== */
+
+var CAUSE="slab";                 // "slab" = the LIT model; TAMPER sets "myth" (a cause with no forces)
+
+var G=9.81;                       // m/s^2
+var RHO=300;                      // kg/m^3, wind-packed slab
+
+// shear stresses along the slope (Pa); th in degrees
+function driving(rho,h,th){ return rho*G*h*Math.sin(th*Math.PI/180); }
+function resisting(rho,h,th,mu,C){ return mu*rho*G*h*Math.cos(th*Math.PI/180)+C; }
+function netStress(rho,h,th,mu,C){ return driving(rho,h,th)-resisting(rho,h,th,mu,C); }
+
+// critical angle where net = 0 (bisection on a monotone net over [0,60])
+function criticalAngle(rho,h,mu,C){
+ var lo=0,hi=60,i,mid;
+ for(i=0;i<60;i++){ mid=(lo+hi)/2; if(netStress(rho,h,mid,mu,C)<0) lo=mid; else hi=mid; }
+ return (lo+hi)/2;
+}
+
+// a fringe cause supplies no shear terms: there is nothing to balance
+function forcesDefined(cause){ return cause==="slab"; }
+
+/* ===== fail-loud self-check (runs on the LIT slab model, incident-consistent params) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var rel=function(a,b){ return Math.abs(a-b)/Math.abs(b); };
+
+ var rho=RHO, h=0.5, mu=0.55, C=10;
+
+ // 1 - driving strictly increases with slope over 0..45
+ var a,prev=-1;
+ for(a=0;a<=45;a++){ var dv=driving(rho,h,a); t(dv>prev,"driving must strictly increase with slope"); prev=dv; }
+
+ // 2 - net < 0 (stable) at 15 deg, net > 0 (fails) at 30 deg for the incident-consistent params
+ t(netStress(rho,h,15,mu,C)<0,"net must be < 0 (stable) at 15 deg");
+ t(netStress(rho,h,30,mu,C)>0,"net must be > 0 (fails) at 30 deg");
+
+ // 3 - critical angle where net=0 lies in a plausible 25..35 deg band
+ var thc=criticalAngle(rho,h,mu,C);
+ t(thc>25 && thc<35,"critical angle must lie in 25..35 deg (got "+thc.toFixed(2)+")");
+
+ // 4 - at C=0 the critical angle equals arctan(mu) and is INDEPENDENT of slab depth: a small slab suffices
+ var atanMu=Math.atan(mu)*180/Math.PI;
+ t(rel(criticalAngle(rho,0.5,mu,0),atanMu)<1e-3,"C=0 critical angle must equal arctan(mu)");
+ t(rel(criticalAngle(rho,0.3,mu,0),criticalAngle(rho,1.0,mu,0))<1e-6,"C=0 critical angle must not depend on slab depth");
+ // and the release itself does not require a large slab: a thin slab fails above critical, a thick one no sooner
+ t(netStress(rho,0.3,30,mu,0)>0 && netStress(rho,1.0,30,mu,0)>0,"a thin slab must fail above critical, no burial required");
+
+ // 5 - cohesion only resists: more C -> higher critical angle (never lower)
+ t(criticalAngle(rho,h,mu,40)>criticalAngle(rho,h,mu,0),"added cohesion must raise the critical angle");
+
+ // 6 - the deciding invariant: the slab HAS forces to balance; the myth does not
+ t(forcesDefined("slab")===true,"the slab model must supply a force balance");
+ t(forcesDefined("myth")===false,"a fringe cause must supply NO force balance");
+
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+function fx(n,d){ return n.toFixed(d===undefined?1:d); }
+
+function readInputs(){
+ return { th:+$("thin").value, h:+$("hin").value, mu:+$("muin").value, C:+$("cin").value };
+}
+
+function renderEngine(){
+ var IN=readInputs();
+ $("thval").textContent=IN.th+"\u00b0";
+ $("hval").textContent=fx(IN.h,2)+" m";
+ $("muval").textContent=fx(IN.mu,2);
+ $("cval").textContent=IN.C+" Pa";
+
+ var dv=driving(RHO,IN.h,IN.th), rs=resisting(RHO,IN.h,IN.th,IN.mu,IN.C), nt=dv-rs;
+ var thc=criticalAngle(RHO,IN.h,IN.mu,IN.C);
+ var fails=nt>0;
+
+ $("engout").innerHTML="net = "+(nt>=0?"+":"")+fx(nt)+" Pa  &rarr;  "+(fails?'<span style="color:var(--wall)">SLAB RELEASES</span>':'<span style="color:var(--lit)">stable</span>');
+
+ var rows="";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">driving = &rho; g h sin&theta;</td><td style=\"font-weight:700;color:var(--red)\">"+fx(dv)+" Pa</td></tr>";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">resisting = &mu; &rho; g h cos&theta; + C</td><td style=\"font-weight:700;color:var(--red)\">"+fx(rs)+" Pa</td></tr>";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">net = driving &minus; resisting</td><td style=\"font-weight:700;color:"+(fails?"var(--wall)":"var(--lit)")+"\">"+(nt>=0?"+":"")+fx(nt)+" Pa</td></tr>";
+ $("engBody").innerHTML=rows;
+
+ // scan across angles
+ var angs=[15,20,25,28,30,35], sr="";
+ for(var i=0;i<angs.length;i++){
+  var a=angs[i], d2=driving(RHO,IN.h,a), r2=resisting(RHO,IN.h,a,IN.mu,IN.C), n2=d2-r2;
+  sr+="<tr><td>"+a+"\u00b0</td><td>"+fx(d2)+"</td><td>"+fx(r2)+"</td><td style=\"font-weight:700;color:"+(n2>0?"var(--wall)":"var(--lit)")+"\">"+(n2>=0?"+":"")+fx(n2)+"</td></tr>";
+ }
+ $("scanBody").innerHTML=sr;
+
+ $("critline").innerHTML=fx(thc,1)+"&deg;  ( incident local slope ~ 28&ndash;30&deg; )";
+
+ renderWitness(IN);
+}
+
+function renderWitness(IN){
+ var vd=$("outverdict"), rl=$("outreason"), tested=forcesDefined(CAUSE);
+ // for the real slab model, the witness confirms the incident-consistent behaviour
+ var mu=IN.mu, C=IN.C, h=IN.h;
+ var stable15=netStress(RHO,h,15,mu,C)<0, fails30=netStress(RHO,h,30,mu,C)>0;
+ var reproduces=stable15 && fails30;
+ var ok=tested && reproduces;
+
+ if(!tested){
+  vd.className="verdict no";
+  vd.textContent="NO FORCE BALANCE - a myth cannot be tested";
+  rl.innerHTML='<b style="color:var(--wall)">Nothing to weigh.</b> A yeti, a secret weapon, a &ldquo;paradox&rdquo; supplies no driving and no resisting shear. The engine has no equation to satisfy - the cause is untestable.';
+ } else {
+  var nt=netStress(RHO,h,IN.th,mu,C);
+  vd.className="verdict "+(reproduces?"ok":"no");
+  vd.textContent=(nt>0?"SLAB RELEASE - net +"+fx(nt)+" Pa at "+IN.th+"\u00b0":"STABLE - net "+fx(nt)+" Pa at "+IN.th+"\u00b0");
+  rl.innerHTML=reproduces
+   ? 'The slab model <b>balances forces</b>: it holds near <b>15&deg;</b> and releases near the true <b>28&ndash;30&deg;</b> &mdash; blunt trauma, short slide, no burial.'
+   : '<b style="color:var(--wall)">Off-incident parameters.</b> This snowpack no longer reproduces stable-15&deg; / fails-30&deg;. Restore &mu;&asymp;0.55, C&asymp;10 Pa.';
+ }
+
+ var row="<tr><td>"+(tested?"delayed slab avalanche":"fringe cause (myth)")+"</td>"
+  +"<td style=\"font-weight:700;color:"+(tested?"var(--lit)":"var(--wall)")+"\">"+(tested?"yes":"none")+"</td>"
+  +"<td style=\"font-weight:700;color:"+(tested&&reproduces?"var(--lit)":"var(--wall)")+"\">"+(tested?(reproduces?"yes":"no"):"n/a")+"</td>"
+  +"<td style=\"font-weight:700;color:"+(ok?"var(--lit)":"var(--wall)")+"\">"+(ok?"ok":"X")+"</td></tr>";
+ $("witbody").innerHTML=row;
+ $("witbadge").innerHTML='<span class="badge '+(ok?"pass":"failb")+'">'+(ok?"WITNESS - the slab balances forces and reproduces the incident":"WITNESS - this cause offers no force balance to test")+'</span>';
+ return ok;
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ var sync=function(){ renderEngine(); };
+ ["thin","hin","muin","cin"].forEach(function(id){ $(id).addEventListener("input",sync); $(id).addEventListener("change",sync); });
+ $("tamper").addEventListener("click",function(){
+  CAUSE="myth";
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Myth engaged.</b> The proposed cause supplies no driving and no resisting shear, so the witness (5) has <b>nothing to balance</b> and turns <b style='color:var(--wall)'>red</b>. A real explanation balances forces; the slab does, the myth does not.";
+  renderEngine();
+ });
+ $("restore").addEventListener("click",function(){
+  CAUSE="slab";
+  $("tampernote").innerHTML="Blame the myth and the witness (5) has no force balance to check &mdash; it turns <b style='color:var(--wall)'>red</b>. The fringe theories are <b>DEAD</b> as science; the slab avalanche is <b>LIT</b>.";
+  renderEngine();
+ });
+ renderEngine();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the Dyatlov slab force-balance engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

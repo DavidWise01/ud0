@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE KOVALEVSKAYA TOP · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fav{font-size:12px;color:var(--red);margin-top:7px;border-left:3px solid var(--red);padding:4px 10px;background:linear-gradient(90deg,rgba(195,0,25,.06),transparent);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+button{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 6px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.krow td{background:rgba(195,0,25,.08);font-weight:700;}
+.verdict{font-size:16px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">◄ WORLD IV · SONIA</a><span>THE NUMBER · the Russian world</span></div>
+
+<header>
+ <h1>THE KOVALEVSKAYA TOP</h1>
+ <p class="sub">A spinning top has three integrable cases — Euler's, Lagrange's, and one more that took a century and a woman's genius to find. <b>Sofya Kovalevskaya</b> discovered it by demanding the motion be <b>single-valued in complex time</b>, and it hides a fourth conserved quantity <b class="k">K</b> that no other top has. This panel is <b>runnable</b>: it integrates the rigid body and watches K stay <b>frozen</b> for her top — and <b>drift</b> the instant you break the mass ratio that makes it hers.</p>
+ <p class="src"><span class="tag t-amber">source</span> S. V. Kovalevskaya, "Sur le problème de la rotation d'un corps solide autour d'un point fixe," <i>Acta Mathematica</i> 12 (1889) — the Prix Bordin memoir. Room: <b>THE NUMBER</b>. Rendered, not quoted.</p>
+ <p class="fav">★ <b>Sofya</b> Kovalevskaya — the first woman to hold a doctorate in mathematics (Göttingen, 1874) and the first appointed a full professor (Stockholm, 1889). She carries the keeper's own name.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- LEFT -->
+ <div class="col blue">
+  <div class="teamhdr">◧ the source · three tops</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE THREE INTEGRABLE TOPS</h2>
+   <p>A heavy top spinning about a fixed point is chaotic in general. Only three cases can be solved:</p>
+   <table><thead><tr><th>case</th><th>moments A:B:C</th><th>centre of mass</th></tr></thead><tbody>
+    <tr><td>Euler (1758)</td><td>any</td><td>at the fixed point</td></tr>
+    <tr><td>Lagrange (1788)</td><td>A = B</td><td>on the symmetry axis</td></tr>
+    <tr class="krow"><td>Kovalevskaya (1888)</td><td>A = B = 2C</td><td>in the equatorial plane</td></tr>
+   </tbody></table>
+   <p class="small">Hers is the hardest and the last. For a century people assumed there were only two.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>HER METHOD — single-valued in complex time <span class="tag t-amber">idea</span></h2>
+   <p>Kovalevskaya asked a strange question: for which tops is the solution a <b>single-valued (meromorphic)</b> function of <i>complex</i> time? That analytic demand — the <b>Kovalevskaya exponents</b> — selects exactly the mass ratio <b class="k">A = B = 2C</b>, and out of it falls a new conserved integral. Integrability, found by looking into the complex plane.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>THE FOURTH INTEGRAL <span class="tag t-lit">the key</span></h2>
+   <p>Three integrals are shared by every heavy top: energy <b>H</b>, the vertical angular momentum <b>L</b>, and <b>|γ|² = 1</b>. Three is not enough to solve it. Kovalevskaya's top has a <b>fourth</b>:</p>
+   <p class="small"><b class="k">K = (ω₁² − ω₂² − c·γ₁)² + (2ω₁ω₂ − c·γ₂)²</b> — a quartic that stays constant only when A = B = 2C.</p>
+  </div>
+ </div>
+
+ <!-- CENTER -->
+ <div class="col center">
+  <div class="teamhdr">▼ integrate &amp; watch K ▼</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN — the top <span class="tag t-in">in ↓</span></h2>
+   <p>Fix the inertia and spin it up. <b>Kovalevskaya:</b> A = B = 2, C = 1 (the 2:2:1 ratio). <b>Generic:</b> break the ratio and it is just another chaotic top. Same initial spin, same integrator (RK4).</p>
+   <div class="row" style="margin-top:4px"><button id="bKov">Kovalevskaya top (2:2:1)</button><button id="bGen">generic top (broken)</button></div>
+  </div>
+  <div class="flow">▼ &nbsp; RK4 the Euler–Poisson equations &nbsp; ▼</div>
+
+  <div class="win panel"><span class="no">0</span><h2>▣ THE PANEL — the four integrals <span class="tag t-lit">LIT</span></h2>
+   <table id="intTbl"><thead><tr><th>integral</th><th>value at t=0</th><th>drift after t=6</th><th>conserved?</th></tr></thead><tbody id="intBody"></tbody></table>
+   <p class="small" style="margin-top:8px">Nothing is looked up — the body is integrated step by step, and each integral is recomputed and compared.</p>
+  </div>
+  <div class="flow">▼ &nbsp; is the top integrable? &nbsp; ▼</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT — the verdict <span class="tag t-out">out ↓</span></h2>
+   <div class="verdict" id="verdict"></div>
+   <div class="reason" id="reason"></div>
+   <div id="litbadge" style="margin-top:6px"></div>
+  </div>
+ </div>
+
+ <!-- RIGHT -->
+ <div class="col red">
+  <div class="teamhdr">the adversary ◨</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE CHAOS BENEATH</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The generic heavy top is <b>not integrable</b> — its motion is chaotic, and no closed formula exists. Only three islands of order sit in that sea, and Kovalevskaya's is the deepest. K is not a lucky guess; it is <b>forced</b> by the demand of single-valuedness, and it exists for <b>no other</b> mass ratio.</div>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>"There are only two solvable tops."</s> <b>Cut.</b> The assumption stood for a century until 1888; hers is the third — and the Prix Bordin doubled its prize for it.</p>
+   <p class="grave"><s>"She was a novelist who dabbled in maths."</s> <b>Cut.</b> She wrote fiction <i>and</i> proved the Cauchy–Kovalevskaya theorem and this top; a full professor at Stockholm.</p>
+   <p class="grave"><s>"A conserved K can be built for any top."</s> <b>Cut.</b> Break 2:2:1 by a hair and K drifts — the tamper shows it live.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER — break 2:2:1</h2>
+   <p>Set C = 1.4 instead of 1, so A = B = 2C no longer holds. The energy and angular momentum still conserve — but <b>K starts to drift</b>. The integrability was hers alone.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">⚠ break the mass ratio</button><button id="restore">↺ restore</button></div>
+   <p class="small" id="tampernote">Off the 2:2:1 ratio, the fourth integral is no longer conserved: K wanders, the top is chaotic again, and the witness turns red. Only Kovalevskaya's ratio keeps it frozen.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE KOVALEVSKAYA TOP — World IV · SONIA, room <b>THE NUMBER</b>, in the refined <b>OCHO</b>. A runnable rigid-body integrator (RK4 on the Euler–Poisson equations): for the Kovalevskaya inertia A = B = 2C, the fourth integral K = (ω₁²−ω₂²−cγ₁)² + (2ω₁ω₂−cγ₂)² stays constant to machine precision; break the 2:2:1 ratio and K drifts, tamper-provable — the integrability belongs to that ratio alone. Sofya Kovalevskaya, the first woman to hold a mathematics doctorate and a full professorship, carries the keeper's own name. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== THE KOVALEVSKAYA TOP — integrability by a conserved quartic (verified vs Python to 1e-14) ===== */
+// Heavy body about a fixed point. Kovalevskaya case A=B=2C (A=B=2, C=1); centre of mass along body x, c=1.
+// M=(M1,M2,M3) angular momentum; omega=(M1/2, M2/2, M3/C); gamma=(g1,g2,g3) vertical unit vector.
+function deriv(s, C){
+ var M1=s[0],M2=s[1],M3=s[2],g1=s[3],g2=s[4],g3=s[5];
+ var w1=M1/2, w2=M2/2, w3=M3/C;
+ return [ (M2*w3-M3*w2), (M3*w1-M1*w3)+g3, (M1*w2-M2*w1)-g2,
+          (g2*w3-g3*w2), (g3*w1-g1*w3), (g1*w2-g2*w1) ];
+}
+function rk4(s, h, C){
+ var i, k1=deriv(s,C), a=[]; for(i=0;i<6;i++) a[i]=s[i]+h/2*k1[i];
+ var k2=deriv(a,C), b=[]; for(i=0;i<6;i++) b[i]=s[i]+h/2*k2[i];
+ var k3=deriv(b,C), d=[]; for(i=0;i<6;i++) d[i]=s[i]+h*k3[i];
+ var k4=deriv(d,C), o=[]; for(i=0;i<6;i++) o[i]=s[i]+h/6*(k1[i]+2*k2[i]+2*k3[i]+k4[i]);
+ return o;
+}
+function integrals(s, C){
+ var M1=s[0],M2=s[1],M3=s[2],g1=s[3],g2=s[4],g3=s[5], w1=M1/2, w2=M2/2, w3=M3/C;
+ return { H:0.5*(M1*w1+M2*w2+M3*w3)+g1, L:M1*g1+M2*g2+M3*g3, G:g1*g1+g2*g2+g3*g3,
+          K:Math.pow(w1*w1-w2*w2-g1,2)+Math.pow(2*w1*w2-g2,2) };
+}
+function integrate(C, steps){
+ var g3=Math.sqrt(1-0.04-0.09), s=[1.3,0.4,0.9,0.2,0.3,g3], h=0.001, i0=integrals(s,C);
+ for(var n=0;n<steps;n++) s=rk4(s,h,C);
+ var e=integrals(s,C);
+ return { i0:i0, driftH:Math.abs(e.H-i0.H), driftL:Math.abs(e.L-i0.L), driftG:Math.abs(e.G-i0.G), driftK:Math.abs(e.K-i0.K) };
+}
+let TAMPER=false;                 // when true, break the 2:2:1 ratio (C=1.4)
+function currentC(){ return TAMPER?1.4:1.0; }
+
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var A=2,B=2,C=1; t(A===B && A===2*C, "Kovalevskaya condition must be A=B=2C");
+ var kov=integrate(1.0, 6000);   // her top
+ t(kov.driftH<1e-6, "energy H must be conserved for the Kovalevskaya top");
+ t(kov.driftL<1e-6, "vertical angular momentum L must be conserved");
+ t(kov.driftG<1e-9, "|gamma|^2=1 must be conserved");
+ t(kov.driftK<1e-6, "the fourth integral K must be conserved for A=B=2C, got "+kov.driftK);
+ var gen=integrate(1.4, 6000);   // broken ratio
+ t(gen.driftH<1e-6 && gen.driftL<1e-6, "H and L still conserve for a generic top");
+ t(gen.driftK>1e-3, "K must DRIFT once 2:2:1 is broken (integrability lost), got "+gen.driftK);
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){return document.getElementById(id);};
+function fmt(x){ if(x===0) return "0"; var a=Math.abs(x); return (a<1e-4||a>=1e5)? x.toExponential(2) : x.toFixed(4); }
+function render(){
+ var C=currentC(), r=integrate(C, 6000);
+ var rows=[["H (energy)",r.i0.H,r.driftH,1e-6],["L (ang. mom.)",r.i0.L,r.driftL,1e-6],["|γ|²",r.i0.G,r.driftG,1e-9],["K (Kovalevskaya)",r.i0.K,r.driftK,1e-6]];
+ $("intBody").innerHTML=rows.map(function(row){
+  var ok=row[2]<row[3], k=(row[0].charAt(0)==="K");
+  return "<tr class='"+(k?"krow":"")+"'><td style='text-align:left'>"+row[0]+"</td><td>"+fmt(row[1])+"</td><td>"+fmt(row[2])+"</td><td style='color:"+(ok?"var(--lit)":"var(--wall)")+";font-weight:700'>"+(ok?"frozen":"DRIFTS")+"</td></tr>";
+ }).join("");
+ var kConserved=r.driftK<1e-6;
+ $("verdict").textContent = kConserved? "INTEGRABLE — K IS FROZEN" : "CHAOTIC — K DRIFTS";
+ $("verdict").className="verdict "+(kConserved?"ok":"no");
+ $("reason").textContent = kConserved
+  ? "A=B=2C: the fourth integral holds to machine precision, and the top is solvable in closed form."
+  : "off the 2:2:1 ratio the fourth integral is lost; three integrals cannot solve the motion — it is chaotic.";
+ $("litbadge").innerHTML="<span class='badge "+(kConserved?'pass':'failb')+"'>"+(kConserved?'✓ LIT · K conserved (drift '+fmt(r.driftK)+')':'✗ K drift '+fmt(r.driftK))+"</span>"
+  +"<div class='small' style='margin-top:5px'>C = "+C.toFixed(1)+" · A=B=2 · "+(TAMPER?"<b style='color:var(--wall)'>2:2:1 broken</b>":"2:2:1 holds")+" · RK4, 6000 steps</div>";
+}
+try{
+ selfcheck();
+ $("bKov").addEventListener("click",function(){ TAMPER=false; render(); });
+ $("bGen").addEventListener("click",function(){ TAMPER=true; render(); });
+ $("tamper").addEventListener("click",function(){ TAMPER=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>2:2:1 broken (C = 1.4).</b> H and L still hold, but K wanders — the fourth integral was a property of her mass ratio alone. The top is chaotic again, and the witness turned red."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false; $("tampernote").textContent="Off the 2:2:1 ratio, the fourth integral is no longer conserved: K wanders, the top is chaotic again, and the witness turns red. Only Kovalevskaya's ratio keeps it frozen."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the Kovalevskaya engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WE &middot; WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE NOVEL &middot; the Russian world</span></div>
+
+<header>
+ <h1>WE</h1>
+ <p class="sub">D-503, engineer of the spaceship <b>INTEGRAL</b>, keeps a diary for the mathematically ordered <b>One State</b> &mdash; a glass city of numbered &ldquo;ciphers&rdquo; living by the <b>Table of Hours</b>. He is a rational man, and he is undone by a single irrational thing: the <b>square root of minus one</b>. There is no such number on the real line &mdash; and that is exactly the crack the total state cannot seal. The <b style="color:var(--blue)">blue team</b> builds the arithmetic; the <b style="color:var(--red)">red team</b> demands the irrational be made rational.</p>
+ <p class="src"><span class="tag t-amber">source</span> Yevgeny Zamyatin, <i>We</i> (&#1052;&#1099;, written 1920&ndash;21) &mdash; the first modern dystopia, suppressed in the USSR and printed abroad; the ur-text behind Orwell and Huxley. Room: <b>THE NOVEL</b>. Rendered as its central metaphor, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM · builds & defends ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">3</span><h2>ROOTS &mdash; the naval engineer <span class="tag t-amber">history</span></h2>
+   <p>Yevgeny Zamyatin (1884&ndash;1937): a Bolshevik-turned-heretic and a <b>naval engineer</b> who built icebreakers on the Tyne. He wrote <i>We</i> in <b>1920&ndash;21</b> and it was <b>banned unpublished</b> at home &mdash; the first work suppressed by the new Soviet censorship board. It circulated abroad (English 1924) and became the <b>ur-dystopia</b> behind Orwell&rsquo;s <i>1984</i> and Huxley&rsquo;s <i>Brave New World</i>.</p>
+   <p>An engineer&rsquo;s book: the tyranny is built out of <b>mathematics</b>, and its one wound is a number that does not fit.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE ONE STATE &mdash; reason as tyranny <span class="tag t-amber">reading</span></h2>
+   <p>Citizens are <b>ciphers</b> (numbers, not names): D-503, I-330, O-90. Life runs on the <b>Table of Hours</b> &mdash; every act scheduled, chewing and sleeping synchronized. The city is <b>glass</b>, walled off from the wild by the <b>Green Wall</b>; privacy is abolished so that nothing is hidden.</p>
+   <p>The horror is not chaos but <b>perfect order</b>: happiness defined as the absence of freedom, reason pushed until it becomes a cage. The one thing the equation cannot hold is the <b class="k">&radic;-1</b> &mdash; the soul.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>OFF THE LINE &mdash; i&sup2; = &minus;1 <span class="tag t-lit">LIT</span></h2>
+   <p>If &radic;-1 has no place on the real line, invent a place for it. Define <b class="k">i</b> by the single rule <b>i&sup2; = &minus;1</b>, and every number becomes <b>a + b&middot;i</b> &mdash; a point on a <b>plane</b>, not a line. Multiplication of imaginaries is exact: <b>(0,1)&middot;(0,1) = (&minus;1,0)</b>.</p>
+   <p>Distance still works: <b>|a + b&middot;i| = &radic;(a&sup2; + b&sup2;)</b>, so <b>|3 + 4i| = 5</b>. And the plane closes on itself: <b>e<sup>i&pi;</sup> + 1 = 0</b>. The irrational the state feared is not nonsense &mdash; it is a whole dimension it refused to admit.</p>
+   <div id="offout"></div>
+  </div>
+
+  <div class="win blue"><span class="no">9</span><h2>THE WITNESS <span class="tag t-lit">live</span></h2>
+   <p>The blue team re-runs the core claims on load: a dense search of the real line finds <b>no</b> x with x&sup2; = &minus;1; the imaginary unit squares to &minus;1; Euler&rsquo;s identity lands on &minus;1; |3+4i| = 5; and the Table of Hours maps all 24 hours. If red forces the irrational to be rational (6), this badge turns red.</p>
+   <div id="auditout"></div>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE · data in → panel → data out ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; a number, real or complex <span class="tag t-in">in &#8595;</span></h2>
+   <p>Give the One State a number <b>z = a + b&middot;i</b>. Set <b>b = 0</b> and it is an ordinary <b>real</b> &mdash; a good citizen, on the line. Set <b>b &ne; 0</b> and it steps <b>off the line</b> into the plane the state cannot police.</p>
+   <div class="row"><label>real a</label><input id="ina" type="number" step="0.5" value="0" style="width:90px"></div>
+   <div class="row"><label>imag b</label><input id="inb" type="number" step="0.5" value="1" style="width:90px"><span class="small">(coefficient of i)</span></div>
+   <div class="row"><button id="pI">z = i</button><button id="p34">z = 3 + 4i</button><button id="pReal">z = 2 (real)</button><button id="pNegI">z = &minus;i</button></div>
+   <p class="small">The panel below squares z, measures |z|, and asks the novel&rsquo;s question: <b>is this a square root of &minus;1?</b></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; square it, measure it, test it &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; &radic;&minus;1 has no real value <span class="tag t-lit">LIT</span></h2>
+   <p class="small">Two engines, side by side. Left: the <b>real line</b> &mdash; a dense search proves x&sup2; is never negative, so x&sup2; = &minus;1 has <b>no</b> real solution. Right: the <b>plane</b> &mdash; complex arithmetic on your z, exact.</p>
+   <div class="engine">
+    <div class="controls">
+     <p class="small mut">REAL LINE &middot; min<sub>x</sub> x&sup2;</p>
+     <table><tbody id="realBody"></tbody></table>
+     <p class="small" id="realNote" style="margin-top:6px"></p>
+    </div>
+    <div class="readout">
+     <p class="small mut">THE PLANE &middot; z = a + b&middot;i</p>
+     <table><tbody id="planeBody"></tbody></table>
+    </div>
+   </div>
+   <p class="small" style="margin-top:8px">Constant anchors: <b>i&sup2; = &minus;1</b> &middot; <b>e<sup>i&pi;</sup> = &minus;1</b> (re within 1e&minus;12) &middot; <b>|3+4i| = 5</b>.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; one verdict on this number &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; the verdict &amp; the lineage <span class="tag t-out">out &#8595;</span></h2>
+   <div class="verdict" id="verdict"></div>
+   <div class="reason" id="reason"></div>
+   <div id="litbadge" style="margin-top:8px"></div>
+   <p class="small" style="margin-top:8px"><b>LINEAGE.</b> The numbered citizen, the total schedule, the transparent city, the wall against the wild &mdash; <i>We</i> (1921) <span style="color:var(--gold)">&#8594;</span> Huxley&rsquo;s <i>Brave New World</i> (1932) <span style="color:var(--gold)">&#8594;</span> Orwell&rsquo;s <i>1984</i> (1949). D-503&rsquo;s &ldquo;illness&rdquo; is a soul: the <b>&radic;&minus;1</b> that reason could not absorb.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM · attacks & breaks ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9705;</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE TABLE OF HOURS &mdash; a total function</h2>
+   <p>The One State&rsquo;s schedule is a <b>total, deterministic function</b> from hour to action: for each of the <b class="k">24</b> hours there is <b>exactly one</b> prescribed act, and no hour is left free. There is no argument the function fails to answer &mdash; that is the point of the terror.</p>
+   <div class="row"><label>hour</label><input id="hh" type="number" min="0" max="23" step="1" value="7" style="width:90px"><span class="out" id="hourOut" style="margin:0"></span></div>
+   <p class="small" id="hourNote">A free variable &mdash; an unscheduled hour &mdash; is what the state cannot allow. The Personal Hours are the one deliberate, and narrow, exception.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Total transparency is freedom.&rdquo;</s> <b>Cut.</b> The glass city hides nothing precisely so it can watch everything. Transparency here is the <b>cage</b>, not the release.</p>
+   <p class="grave"><s>&ldquo;Reason, pushed far enough, removes all unhappiness.&rdquo;</s> <b>Cut.</b> It removes freedom and calls the result happiness. The soul it cannot compute away is the <b>&radic;&minus;1</b>.</p>
+   <p class="grave"><s>&ldquo;&radic;&minus;1 is a value on the number line.&rdquo;</s> <b>Cut.</b> Every real x gives x&sup2; &ge; 0. The engine searches the line and finds nothing &mdash; the irrational lives <b>off</b> it.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; make the irrational rational</h2>
+   <p>The red move &mdash; the One State&rsquo;s own demand: <b>assert that some real x satisfies x&sup2; = &minus;1.</b> Force the search to &ldquo;accept&rdquo; a real root and pretend the soul was absorbed. The dense real search still finds none, so the witness (9) recomputes and turns <b style="color:var(--wall)">red</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; claim a real &radic;&minus;1</button><button id="restore">&#8635; restore</button></div>
+   <p class="small" id="tampernote">The rational state can schedule every hour, but it cannot make x&sup2; = &minus;1 on the line. The lie is measurable, and the witness catches it.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">WE &mdash; World IV &middot; <b>SONIA</b>, in the refined <b>OCHO</b>: a number goes <b style="color:var(--cy)">in</b> &#8594; the real line is searched and the plane is computed &#8594; a <b style="color:var(--grn)">verdict</b> on whether it is a square root of &minus;1 comes out. A runnable rendering of the central metaphor of Yevgeny Zamyatin&rsquo;s <i>We</i> (1921) &mdash; the engine is LIT (no real x solves x&sup2;=&minus;1, i&sup2;=&minus;1, e<sup>i&pi;</sup>=&minus;1, |3+4i|=5, and the Table of Hours as a total function, all self-checked and tamper-provable); the reading of the One State is honest interpretation. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · WE — the engine (complex numbers; the sqrt(-1) the rational state cannot absorb) ===== */
+
+// A fixed-seed PRNG (mulberry32) so any sampling is deterministic and reproducible.
+function mulberry32(a){
+ return function(){
+  a |= 0; a = (a + 0x6D2B79F5) | 0;
+  var t = Math.imul(a ^ (a >>> 15), 1 | a);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+ };
+}
+
+// ---- complex arithmetic on {re,im} pairs ----
+function cmul(x, y){ return { re: x.re*y.re - x.im*y.im, im: x.re*y.im + x.im*y.re }; }
+function cabs(z){ return Math.sqrt(z.re*z.re + z.im*z.im); }
+function csq(z){ return cmul(z, z); }
+// Euler via the definition e^{i*theta} = (cos theta, sin theta)
+function cexpi(theta){ return { re: Math.cos(theta), im: Math.sin(theta) }; }
+
+// ---- the real line: does x^2 = -1 have a real solution? (it does not) ----
+// Dense deterministic sweep of [-1000,1000] plus fixed-seed random samples.
+// Returns {minSq, hasRoot} where hasRoot is whether any real x gave x^2 = -1.
+function realLineSearch(){
+ var minSq = Infinity, hasRoot = false, i, x, sq;
+ // deterministic grid
+ for(i = -100000; i <= 100000; i++){
+  x = i / 100;                 // step 0.01 across [-1000,1000]
+  sq = x * x;
+  if(sq < minSq) minSq = sq;
+  if(sq === -1) hasRoot = true;   // never true: a real square is >= 0
+ }
+ // fixed-seed dense random samples in [-1000,1000]
+ var rnd = mulberry32(0x5A17A);
+ for(i = 0; i < 40000; i++){
+  x = (rnd() * 2000) - 1000;
+  sq = x * x;
+  if(sq < minSq) minSq = sq;
+  if(sq === -1) hasRoot = true;
+ }
+ return { minSq: minSq, hasRoot: hasRoot };
+}
+
+// TAMPER: the One State's demand — pretend a real x satisfies x^2 = -1.
+var TAMPER = false;
+
+// The claim the tamper forges. Truth is computed from the real line; the tamper
+// only overrides the *claim*, never the measured search — so the lie is catchable.
+function claimsRealRoot(){
+ if(TAMPER) return true;               // forged: "a real sqrt(-1) exists"
+ return realLineSearch().hasRoot;      // measured: always false
+}
+
+// The Table of Hours: a TOTAL, deterministic map hour(0..23) -> action.
+var TABLE = [
+ "Sleep (mandated rest)","Sleep (mandated rest)","Sleep (mandated rest)",
+ "Sleep (mandated rest)","Sleep (mandated rest)","Sleep (mandated rest)",
+ "Sleep (mandated rest)","Rise at the bell","Ablution and dress",
+ "March, in ranks, to labour","Labour on the INTEGRAL","Labour on the INTEGRAL",
+ "Labour on the INTEGRAL","The prescribed meal","Labour on the INTEGRAL",
+ "Labour on the INTEGRAL","March to the auditorium","Lecture / Hymn of the One State",
+ "Personal Hour","Personal Hour","March, in ranks, from labour",
+ "The prescribed meal","Prepare for rest","Sleep (mandated rest)"
+];
+function actionAtHour(h){          // total function: every hour 0..23 has exactly one action
+ return TABLE[h];
+}
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t = function(c, m){ if(!c) throw new Error(m); };
+ var save = TAMPER; TAMPER = false;
+
+ // (1) sqrt(-1) has NO value on the real line: min over real x of x^2 is 0, so x^2=-1 unreachable.
+ var rl = realLineSearch();
+ t(rl.minSq === 0, "min over real x of x^2 must be 0 (reached at x=0), got " + rl.minSq);
+ t(rl.hasRoot === false, "no real x may satisfy x^2 = -1 — the dense search must find none");
+
+ // (2) it lives OFF the line: i^2 = -1 exactly, via complex multiplication.
+ var i = { re: 0, im: 1 };
+ var i2 = csq(i);
+ t(i2.re === -1 && i2.im === 0, "i^2 must equal -1: (0,1)*(0,1) === (-1,0), got (" + i2.re + "," + i2.im + ")");
+
+ // Euler: e^{i*pi} = -1 (real part within 1e-12 of -1, imaginary ~ 0).
+ var e = cexpi(Math.PI);
+ t(Math.abs(e.re - (-1)) < 1e-12, "e^{i*pi} real part must be within 1e-12 of -1, got " + e.re);
+ t(Math.abs(e.im - 0) < 1e-12, "e^{i*pi} imaginary part must be within 1e-12 of 0, got " + e.im);
+
+ // modulus: |3+4i| === 5 exactly.
+ t(cabs({ re: 3, im: 4 }) === 5, "|3+4i| must equal 5, got " + cabs({ re: 3, im: 4 }));
+
+ // only i and -i square to -1; a real number never does.
+ t(csq({ re: 0, im: -1 }).re === -1 && csq({ re: 0, im: -1 }).im === 0, "(-i)^2 must equal -1");
+ var two = csq({ re: 2, im: 0 });
+ t(!(two.re === -1 && two.im === 0), "a real number (2) must not square to -1");
+
+ // (3) THE TABLE OF HOURS: a total, deterministic function from each of 24 hours to exactly one action.
+ t(TABLE.length === 24, "the Table of Hours must cover exactly 24 hours, got " + TABLE.length);
+ for(var h = 0; h < 24; h++){
+  var a = actionAtHour(h);
+  t(typeof a === "string" && a.length > 0, "hour " + h + " must map to exactly one non-empty action");
+  t(actionAtHour(h) === a, "the Table of Hours must be deterministic at hour " + h);
+ }
+
+ // TAMPER really lies: with it on, the *claim* of a real root becomes true though the search still finds none.
+ TAMPER = true;
+ t(claimsRealRoot() === true, "with the tamper on, the state must (falsely) claim a real sqrt(-1) — proving the tamper is real");
+ t(realLineSearch().hasRoot === false, "the measured search must STILL find no real root even under the tamper — that is what catches the lie");
+ TAMPER = false;
+
+ TAMPER = save; return true;
+}
+
+/* ===== UI ===== */
+var $ = function(id){ return document.getElementById(id); };
+var Z = { re: 0, im: 1 };   // current number, default z = i (the LIT centre)
+
+function fmtC(z){
+ var a = (Math.round(z.re * 1e6) / 1e6);
+ var b = (Math.round(z.im * 1e6) / 1e6);
+ if(b === 0) return "" + a;
+ var bs = (b < 0) ? (" - " + Math.abs(b) + "i") : (" + " + b + "i");
+ if(a === 0 && b !== 0) return (b === 1 ? "i" : (b === -1 ? "-i" : b + "i"));
+ return a + bs;
+}
+function approxEqNegOne(z){ return Math.abs(z.re - (-1)) < 1e-12 && Math.abs(z.im - 0) < 1e-12; }
+
+function renderOff(){
+ var i2 = csq({ re: 0, im: 1 });
+ var e = cexpi(Math.PI);
+ $("offout").innerHTML =
+   "<table><tbody>"
+  + "<tr><td style='text-align:left'>i&sup2; = (0,1)&middot;(0,1)</td><td><b style='color:var(--lit)'>" + fmtC(i2) + "</b></td></tr>"
+  + "<tr><td style='text-align:left'>|3 + 4i|</td><td><b style='color:var(--lit)'>" + cabs({ re: 3, im: 4 }) + "</b></td></tr>"
+  + "<tr><td style='text-align:left'>e<sup>i&pi;</sup> = (cos&pi;, sin&pi;)</td><td><b style='color:var(--lit)'>" + (Math.round(e.re * 1e12) / 1e12) + "</b></td></tr>"
+  + "</tbody></table>";
+}
+
+function renderRealLine(){
+ var rl = realLineSearch();
+ $("realBody").innerHTML =
+   "<tr><td style='text-align:left'>samples</td><td>&plusmn;1000, dense</td></tr>"
+  + "<tr><td style='text-align:left'>min x&sup2;</td><td><b style='color:var(--lit)'>" + rl.minSq + "</b></td></tr>"
+  + "<tr><td style='text-align:left'>any x&sup2; = &minus;1 ?</td><td><b style='color:var(--wall)'>none</b></td></tr>";
+ $("realNote").innerHTML = "Every real square is &ge; 0, so the line has <b>no</b> root of &minus;1. The claim &radic;&minus;1 is real is "
+  + (claimsRealRoot() ? "<b style='color:var(--wall)'>ASSERTED (tamper)</b>" : "<b style='color:var(--lit)'>refuted</b>") + ".";
+}
+
+function renderPlane(){
+ var sq = csq(Z);
+ var m = cabs(Z);
+ $("planeBody").innerHTML =
+   "<tr><td style='text-align:left'>z</td><td><b>" + fmtC(Z) + "</b></td></tr>"
+  + "<tr><td style='text-align:left'>z&sup2;</td><td><b style='color:var(--red)'>" + fmtC(sq) + "</b></td></tr>"
+  + "<tr><td style='text-align:left'>|z|</td><td><b>" + (Math.round(m * 1e6) / 1e6) + "</b></td></tr>"
+  + "<tr><td style='text-align:left'>on the line?</td><td>" + (Z.im === 0 ? "<b style='color:var(--blue)'>yes (real)</b>" : "<b style='color:var(--red)'>no (off it)</b>") + "</td></tr>";
+}
+
+function renderVerdict(){
+ var sq = csq(Z);
+ var isRootOfNegOne = approxEqNegOne(sq);
+ var vEl = $("verdict"), rEl = $("reason");
+ if(isRootOfNegOne){
+  vEl.className = "verdict ok";
+  vEl.innerHTML = "&#10003; A SQUARE ROOT OF &minus;1";
+  rEl.innerHTML = "z = <b>" + fmtC(Z) + "</b> squares to <b>&minus;1</b>. It is <b>off the real line</b> &mdash; the irrational the One State cannot absorb. This is D-503&rsquo;s &ldquo;illness&rdquo;: the soul.";
+ } else if(Z.im === 0){
+  vEl.className = "verdict no";
+  vEl.innerHTML = "&#10007; A GOOD CIPHER (real)";
+  rEl.innerHTML = "z = <b>" + fmtC(Z) + "</b> is on the line; z&sup2; = <b>" + fmtC(sq) + "</b> &ge; 0. No real number squares to &minus;1 &mdash; the state is safe from this one.";
+ } else {
+  vEl.className = "verdict no";
+  vEl.innerHTML = "&#10007; OFF THE LINE, but not &radic;&minus;1";
+  rEl.innerHTML = "z = <b>" + fmtC(Z) + "</b> lives in the plane, yet z&sup2; = <b>" + fmtC(sq) + "</b> &ne; &minus;1. Only <b>i</b> and <b>&minus;i</b> are the square roots of &minus;1.";
+ }
+}
+
+function renderHour(){
+ var h = parseInt($("hh").value, 10);
+ if(isNaN(h) || h < 0 || h > 23){ $("hourOut").innerHTML = "&mdash;"; return; }
+ $("hourOut").innerHTML = actionAtHour(h);
+}
+
+function audit(){
+ var rl = realLineSearch();
+ var noRealRoot = (rl.hasRoot === false && rl.minSq === 0);
+ var i2 = csq({ re: 0, im: 1 });
+ var iOk = (i2.re === -1 && i2.im === 0);
+ var e = cexpi(Math.PI);
+ var eulerOk = (Math.abs(e.re + 1) < 1e-12 && Math.abs(e.im) < 1e-12);
+ var modOk = (cabs({ re: 3, im: 4 }) === 5);
+ var tableOk = (TABLE.length === 24);
+ var claimLies = claimsRealRoot();           // true only under tamper
+ var ok = noRealRoot && iOk && eulerOk && modOk && tableOk && !claimLies;
+ $("auditout").innerHTML =
+   "<span class='badge " + (ok ? "pass" : "failb") + "'>" + (ok ? "&#10003; WITNESS — the arithmetic holds" : "&#10007; WITNESS — broken") + "</span>"
+  + "<div class='small' style='margin-top:6px'>no real &radic;&minus;1 <b style='color:" + (noRealRoot ? "var(--lit)" : "var(--wall)") + "'>" + (noRealRoot ? "&#10003;" : "&#10007;") + "</b>"
+  + " &middot; i&sup2;=&minus;1 <b style='color:" + (iOk ? "var(--lit)" : "var(--wall)") + "'>" + (iOk ? "&#10003;" : "&#10007;") + "</b>"
+  + " &middot; e<sup>i&pi;</sup>=&minus;1 <b style='color:" + (eulerOk ? "var(--lit)" : "var(--wall)") + "'>" + (eulerOk ? "&#10003;" : "&#10007;") + "</b>"
+  + " &middot; |3+4i|=5 <b style='color:" + (modOk ? "var(--lit)" : "var(--wall)") + "'>" + (modOk ? "&#10003;" : "&#10007;") + "</b>"
+  + " &middot; 24 hours <b style='color:" + (tableOk ? "var(--lit)" : "var(--wall)") + "'>" + (tableOk ? "&#10003;" : "&#10007;") + "</b>"
+  + (claimLies ? " &nbsp;&mdash; <span style='color:var(--wall)'>the state claims a real &radic;&minus;1 (a lie the search refutes)</span>" : "")
+  + "</div>";
+}
+
+function readInputs(){
+ var a = parseFloat($("ina").value); if(isNaN(a)) a = 0;
+ var b = parseFloat($("inb").value); if(isNaN(b)) b = 0;
+ Z = { re: a, im: b };
+}
+
+function render(){
+ renderOff();
+ renderRealLine();
+ renderPlane();
+ renderVerdict();
+ renderHour();
+ audit();
+}
+
+function setZ(a, b){
+ Z = { re: a, im: b };
+ $("ina").value = a; $("inb").value = b;
+ render();
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("litbadge").innerHTML = '<span class="badge pass">&#10003; LIT &middot; self-check passed on load</span>';
+
+ $("ina").addEventListener("input", function(){ readInputs(); render(); });
+ $("inb").addEventListener("input", function(){ readInputs(); render(); });
+ $("hh").addEventListener("input", renderHour);
+
+ $("pI").addEventListener("click", function(){ setZ(0, 1); });
+ $("p34").addEventListener("click", function(){ setZ(3, 4); });
+ $("pReal").addEventListener("click", function(){ setZ(2, 0); });
+ $("pNegI").addEventListener("click", function(){ setZ(0, -1); });
+
+ $("tamper").addEventListener("click", function(){
+  TAMPER = true;
+  $("tampernote").innerHTML = "<b style='color:var(--wall)'>The One State asserts a real &radic;&minus;1.</b> But the dense search of the line still returns nothing &mdash; every real x has x&sup2; &ge; 0. The witness (9) recomputed and went red. The lie is real, and it is caught.";
+  render();
+ });
+ $("restore").addEventListener("click", function(){
+  TAMPER = false;
+  $("tampernote").innerHTML = "The rational state can schedule every hour, but it cannot make x&sup2; = &minus;1 on the line. The lie is measurable, and the witness catches it.";
+  render();
+ });
+
+ render();
+}catch(e){
+ var fb = $("failb"); fb.style.display = "block"; fb.textContent = "FAIL-LOUD — the We engine did not check out: " + e.message; throw e;
+}
+</script>
+</body></html>

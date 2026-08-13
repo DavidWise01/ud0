@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE OGAS &middot; the all-state automated system &middot; WORLD IV — SONIA &middot; THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>ROOM &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE OGAS &mdash; THE ALL-STATE AUTOMATED SYSTEM</h1>
+ <p class="sub">Viktor Glushkov&rsquo;s <b>&#1054;&#1043;&#1040;&#1057;</b> (1962&ndash;70s): a nationwide computer network to run the Soviet planned economy <b>in real time</b> &mdash; approved in principle, never built. The centre is genuinely <b>runnable</b>: a proportional control loop that settles a plan target, plus the hierarchical network that would have carried it. It shows exactly <b>when the plan converges</b> and, pushed too far, <b>when it flies apart</b>.</p>
+ <p class="src"><span class="tag t-amber">source</span> V. M. Glushkov, OGAS proposal (1962&ndash;1970s); B. Peters, <i>How Not to Network a Nation</i> (2016); cybernetics rehabilitated in the USSR after Stalin. Room <b>THE STATE</b>. Figures cited inline; rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · ROOTS & LINEAGE ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; roots &middot; lineage &middot; witness</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE ROOTS</h2>
+   <p>Under Stalin, <b>cybernetics</b> was denounced as a &ldquo;bourgeois pseudoscience.&rdquo; After his death it was <b>rehabilitated</b> (mid-1950s), and control theory became respectable. In <b>1962</b>, mathematician <b>Viktor Glushkov</b> proposed <b>OGAS</b> &mdash; a single automated system to <b>manage the whole economy in real time</b>, closing the loop between what was produced and what the plan asked for.</p>
+   <p class="small">The dream was cybernetic: the economy as a controllable system with feedback, not a stack of paper reports arriving a year late. <span class="tag t-amber">AMBER</span> historical framing.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE NETWORK <span class="tag t-amber">~approx</span></h2>
+   <p>Glushkov&rsquo;s architecture was a <b>hierarchy</b>: a top tier of about <b>~200 main computer centres</b> feeding down to roughly <b>~20,000 local centres</b> in factories and regions &mdash; the plan as one live system rather than a filing cabinet.</p>
+   <p class="small">Those counts are proposal-era estimates <span class="tag t-amber">AMBER</span>. The <i>shape</i> is exact and testable: a branching tree of depth <b>D</b> and fan-out <b>b</b> holds <b class="k">(b<sup>D+1</sup>&minus;1)/(b&minus;1)</b> nodes &mdash; computed live in the centre.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>THE LINEAGE <span class="tag t-amber">AMBER</span></h2>
+   <p>OGAS has a twin in Chile: <b>Cybersyn</b> (Stafford Beer, 1971&ndash;73), a smaller real-time control room for a socialist economy &mdash; also killed by politics. And a ghost: the <b>internet the USSR did not build</b>. OGAS predates a civilian internet, yet died while ARPANET (1969) grew.</p>
+   <p class="small">It ties directly to <a href="./gobernet.html">GOBERNET</a> and the <b>socialist calculation debate</b>: a loop can be made to <i>settle a quantity</i>, but settling is not the same as knowing the right target.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE LOOP ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the loop &middot; the plan, controlled &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the plan &amp; the network <span class="tag t-in">in &#8595;</span></h2>
+   <p>A controller nudges the current output <b>x</b> toward a plan <b>target</b> by a fraction of the gap. The <b>gain k</b> sets how hard it pulls. The <b>network</b> is a tree of fan-out <b>b</b>, depth <b>D</b>.</p>
+   <div class="row"><label>target</label><input id="tar" type="range" min="0" max="300" value="200"><span id="tarv" class="small">200</span></div>
+   <div class="row"><label>start x&#8320;</label><input id="x0" type="range" min="0" max="300" value="40"><span id="x0v" class="small">40</span></div>
+   <div class="row"><label>gain k</label><input id="k" type="range" min="0" max="2.6" step="0.05" value="0.5"><span id="kv" class="small">0.50</span></div>
+   <div class="row"><label>fan-out b</label><input id="b" type="range" min="2" max="12" value="10"><span id="bv" class="small">10</span></div>
+   <div class="row"><label>depth D</label><input id="D" type="range" min="1" max="4" value="2"><span id="Dv" class="small">2</span></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; x&#8345;&#8330;&#8321; = x&#8345; + k&middot;(target &minus; x&#8345;) &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the control loop <span class="tag t-lit">LIT</span></h2>
+   <div class="engine">
+    <div class="controls">
+     <p class="small">Each step the error obeys <b class="k">error&#8345;&#8330;&#8321; = (1&minus;k)&middot;error&#8345;</b>. It dies iff <b>|1&minus;k| &lt; 1</b>, i.e. <b>0 &lt; k &lt; 2</b>; at <b>k=1</b> the error is gone in one step; at <b>k &ge; 2</b> it never settles.</p>
+     <table id="iter"></table>
+    </div>
+    <div class="readout">
+     <div class="verdict" id="verdict"></div>
+     <div class="reason" id="reason"></div>
+     <div id="witness"></div>
+    </div>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; does the error die? &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; settling &amp; scale <span class="tag t-out">out &#8595;</span></h2>
+   <p id="outline">&mdash;</p>
+   <p class="small">Stability band: the plan settles for <b class="k">0 &lt; k &lt; 2</b> only &mdash; the one invariant OGAS&rsquo;s controllers would have had to respect. <span class="tag t-lit">LIT</span></p>
+   <div id="nodeline" class="out"></div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · THE AUDIT ===== -->
+ <div class="col red">
+  <div class="teamhdr">the audit &middot; the wall &#9704;</div>
+
+  <div class="win red"><span class="no">1</span><h2>WHY IT DIED</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The machine could close the loop; the <b>ministries would not</b>. A live, transparent system threatened every official whose power lived in the gap between the real numbers and the reported ones. Add the enormous cost, inter-agency turf, and no single patron willing to own it &mdash; and OGAS was <b>approved in principle and never built</b>.</div>
+   <p class="small" style="margin-top:8px">The barrier was not mathematics. The control law works (centre, LIT). The wall was <b>political</b>: transparency is a cost to whoever benefits from opacity.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;The USSR never imagined networked computing.&rdquo;</s> <b>Cut.</b> OGAS (1962) <i>out-ambitioned</i> the early civilian internet &mdash; a nationwide real-time network years before ARPANET (1969) carried its first packets.</p>
+   <p class="grave"><s>&ldquo;A big enough computer would have made the plan work.&rdquo;</s> <b>Examined.</b> The loop settles a <i>chosen</i> target; it never tells you the target is right. See <a href="./gobernet.html">the calculation debate</a>.</p>
+   <p class="grave"><s>&ldquo;It failed because the math was wrong.&rdquo;</s> <b>Cut.</b> The feedback law is correct and stable in-band. It died in committee, not in the equations.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; break stability</h2>
+   <p>Push the gain to <b>k = 2.4</b> and <i>claim the plan still settles</i>. The overshooting controller now amplifies its own error each step &mdash; the numbers grow without bound and the <b>stability witness turns red</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; set k = 2.4, claim it settles</button><button id="restore">&#8635; restore k = 0.5</button></div>
+   <p class="small" id="tampernote">Stability needs <b>0 &lt; k &lt; 2</b>. Claiming a settle at k&ge;2 does not make it so &mdash; the honest witness disagrees, and the error runs away.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE OGAS &mdash; World IV &middot; SONIA, room <b>THE STATE</b>, in the refined <b>OCHO</b>. The centre is a real, runnable proportional-control loop: the plan error obeys error&#8345;&#8330;&#8321; = (1&minus;k)&middot;error&#8345; and settles for 0&lt;k&lt;2, in one step at k=1, and diverges at k&ge;2 &mdash; tamper-provable &mdash; alongside the exact node count of Glushkov&rsquo;s branching network; the roots and lineage are honest history and the ~200/~20,000 centre counts are marked approximate, while the audit records that OGAS died of politics, not mathematics. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== THE OGAS — proportional control of a plan target + the hierarchical network (pure core) ===== */
+function step(x,k,tar){ return x + k*(tar-x); }
+function iterate(x,k,tar,n){ var v=x; for(var i=0;i<n;i++){ v=step(v,k,tar); } return v; }
+function nodes(b,D){ return (Math.pow(b,D+1)-1)/(b-1); }        // branching-b depth-D tree size
+function nodesSum(b,D){ var s=0; for(var i=0;i<=D;i++){ s+=Math.pow(b,i); } return s; } // same, by summation
+function rng(seed){ var s=seed>>>0; return function(){ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+
+/* ===== fail-loud self-check ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c){ throw new Error(m); } };
+ // 1 — the error recursion IS error_{n+1} = (1-k)*error_n, for random x, target, k (fixed seed)
+ var rnd=rng(1964);
+ for(var i=0;i<300;i++){
+  var x=rnd()*400-200, tar=rnd()*400-200, k=rnd()*2.5+0.01;
+  var e0=x-tar, e1=step(x,k,tar)-tar;
+  t(Math.abs(e1-(1-k)*e0)<1e-6,"error_{n+1} must equal (1-k)*error_n");
+ }
+ // 2 — k=0.5 halves the error each step, and drives it to ~0
+ t(Math.abs((iterate(100,0.5,0,1)-0)-50)<1e-9,"k=0.5 must halve the error in one step");
+ t(Math.abs((iterate(100,0.5,0,2)-0)-25)<1e-9,"k=0.5 must quarter the error in two steps");
+ t(Math.abs(iterate(100,0.5,0,50))<1e-3,"k=0.5 must drive the error toward zero");
+ // 3 — k=1 gives error 0 after exactly one step
+ t(Math.abs(iterate(100,1,0,1))<1e-12,"k=1 must zero the error in one step");
+ // 4 — for 0<k<2 the error strictly shrinks each step (sampled, fixed seed)
+ var r2=rng(200270);
+ for(var j=0;j<300;j++){
+  var kk=r2()*1.98+0.01;                 // k in (0.01, 1.99) -> |1-k|<1
+  var xx=r2()*300+5, tt=r2()*300+5;
+  if(Math.abs(xx-tt)<1e-6){ continue; }
+  var a=Math.abs(iterate(xx,kk,tt,3)-tt), bb=Math.abs(iterate(xx,kk,tt,4)-tt);
+  t(bb<a,"for 0<k<2 the |error| must strictly decrease each step");
+ }
+ // 5 — k>=2 does NOT converge: |error| is non-decreasing over many steps
+ t(Math.abs(iterate(100,2,0,25)-0)>=100-1e-9,"k=2 must NOT settle (|error| non-decreasing)");
+ t(Math.abs(iterate(100,2.1,0,5))>100,"k=2.1 must GROW the |error|");
+ t(Math.abs(iterate(100,2.4,0,20))>Math.abs(iterate(100,2.4,0,10)),"k=2.4 must keep growing the |error|");
+ // 6 — the branching tree size: closed form equals the summation, and b=10,D=2 -> 111
+ t(nodes(10,2)===111,"b=10,D=2 must give 111 nodes");
+ t(nodes(2,3)===15,"b=2,D=3 must give 15 nodes");
+ t(nodes(3,1)===4,"b=3,D=1 must give 4 nodes (root + 3)");
+ for(var b=2;b<=12;b++){ for(var d=1;d<=4;d++){ t(Math.abs(nodes(b,d)-nodesSum(b,d))<1e-6,"closed form must equal the summation"); } }
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var TAMPER=false;
+var S={tar:200,x0:40,k:0.5,b:10,D:2};
+
+function classify(k){
+ if(k<=0){ return {ok:false,label:"NO CONTROL",why:"k<=0 never drives x toward the target."}; }
+ if(k<2){ if(Math.abs(k-1)<1e-9){ return {ok:true,label:"SETTLES IN ONE STEP",why:"k=1 -> error is 0 after a single step."}; }
+          return {ok:true,label:"CONVERGES",why:"0<k<2 -> |1-k|<1, so |error| shrinks every step."}; }
+ if(Math.abs(k-2)<1e-9){ return {ok:false,label:"MARGINAL",why:"k=2 -> |error| stays constant, oscillates, never settles."}; }
+ return {ok:false,label:"DIVERGES",why:"k>=2 -> |error| grows without bound."};
+}
+function stepsToSettle(x,k,tar,tol){
+ var e0=Math.abs(x-tar); if(e0<1e-12){ return 0; }
+ var v=x; for(var i=1;i<=200;i++){ v=step(v,k,tar); if(Math.abs(v-tar)<tol*e0){ return i; } }
+ return -1;
+}
+function render(){
+ $("tarv").textContent=S.tar; $("x0v").textContent=S.x0; $("kv").textContent=S.k.toFixed(2);
+ $("bv").textContent=S.b; $("Dv").textContent=S.D;
+ var c=classify(S.k);
+ // iteration table (first steps)
+ var v=S.x0, h="<thead><tr><th>n</th><th>x&#8345;</th><th>error</th></tr></thead><tbody>";
+ for(var n=0;n<=7;n++){
+  var err=v-S.tar;
+  h+="<tr><td>"+n+"</td><td>"+v.toFixed(2)+"</td><td style='color:"+(Math.abs(err)>Math.abs(S.x0-S.tar)+1e-9?"var(--wall)":"var(--ink)")+"'>"+err.toFixed(2)+"</td></tr>";
+  v=step(v,S.k,S.tar);
+ }
+ $("iter").innerHTML=h+"</tbody>";
+ // verdict
+ if(c.ok){ $("verdict").textContent="PLAN "+c.label; $("verdict").className="verdict ok"; }
+ else{ $("verdict").textContent="PLAN "+c.label; $("verdict").className="verdict no"; }
+ $("reason").textContent=c.why;
+ // stability witness — turns red when k is out of the 0<k<2 band
+ $("witness").innerHTML="<span class='badge "+(c.ok?"pass":"failb")+"'>"+(c.ok?"&#10003; stability witness holds":"&#10007; stability witness broken")+"</span>"
+  +"<div class='small' style='margin-top:6px'>|1&minus;k| = <b>"+Math.abs(1-S.k).toFixed(2)+"</b> "+(c.ok?"(&lt;1 &rarr; error dies)":"(&ge;1 &rarr; error survives)")
+  +(TAMPER?" &nbsp;&mdash; <span style='color:var(--wall)'>operator claims &lsquo;still settles&rsquo; &mdash; false</span>":"")+"</div>";
+ // data out
+ if(c.ok){
+  var st=stepsToSettle(S.x0,S.k,S.tar,0.01);
+  $("outline").innerHTML="The error dies as <b>(1&minus;k)<sup>n</sup></b>. It reaches within <b>1%</b> of the target in <b class='k'>"+(st<0?"&gt;200":st)+"</b> step"+(st===1?"":"s")+", finishing at x &rarr; <b>"+S.tar+"</b>.";
+ } else {
+  var g=Math.abs(iterate(S.x0,S.k,S.tar,12)-S.tar);
+  $("outline").innerHTML="<b style='color:var(--wall)'>No settle.</b> After 12 steps the |error| is <b class='k'>"+g.toFixed(1)+"</b> and climbing &mdash; the controller amplifies its own gap. The plan cannot be held.";
+ }
+ var N=nodes(S.b,S.D);
+ $("nodeline").innerHTML="network: fan-out b=<b>"+S.b+"</b>, depth D=<b>"+S.D+"</b> &rarr; <b class='k'>"+N+"</b> nodes = (b<sup>D+1</sup>&minus;1)/(b&minus;1)";
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("tar").addEventListener("input",function(){ S.tar=+this.value; render(); });
+ $("x0").addEventListener("input",function(){ S.x0=+this.value; render(); });
+ $("k").addEventListener("input",function(){ S.k=+this.value; TAMPER=false; render(); });
+ $("b").addEventListener("input",function(){ S.b=+this.value; render(); });
+ $("D").addEventListener("input",function(){ S.D=+this.value; render(); });
+ $("tamper").addEventListener("click",function(){ TAMPER=true; S.k=2.4; $("k").value=2.4;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>k=2.4, &lsquo;still settles&rsquo; claimed.</b> |1&minus;k|=1.4&ge;1, so every step multiplies the error by 1.4 &mdash; it runs away. The stability witness turns red. Real, and caught."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false; S.k=0.5; $("k").value=0.5;
+  $("tampernote").innerHTML="Stability needs <b>0 &lt; k &lt; 2</b>. Claiming a settle at k&ge;2 does not make it so &mdash; the honest witness disagrees, and the error runs away."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — THE OGAS control engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>
