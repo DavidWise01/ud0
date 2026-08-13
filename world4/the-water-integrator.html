@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE WATER INTEGRATOR · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE MACHINE &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE WATER INTEGRATOR</h1>
+ <p class="sub">Moscow, 1936: V. S. Lukyanov builds a computer out of <b>water</b>. Level in a row of glass vessels stands for <b>temperature</b>; water flows between them through calibrated tubes at a rate set by the level <b>difference</b> &mdash; and that is exactly the <b>heat equation</b> u&#7511; = D&middot;u&#8339;&#8339;. This panel is <b>runnable</b>: it steps the machine&rsquo;s mechanism (the explicit <b>FTCS</b> scheme), converges to the analytic solution &mdash; and <b>blows up</b> the moment you open the tubes too wide.</p>
+ <p class="src"><span class="tag t-amber">source</span> V. S. Lukyanov, the hydraulic integrator (&#1075;&#1080;&#1076;&#1088;&#1072;&#1074;&#1083;&#1080;&#1095;&#1077;&#1089;&#1082;&#1080;&#1081; &#1080;&#1085;&#1090;&#1077;&#1075;&#1088;&#1072;&#1090;&#1086;&#1088;), 1936 &mdash; a Soviet analog computer that solved differential equations with the levels and flows of water. Room: <b>THE MACHINE</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; Lukyanov, 1936 <span class="tag t-amber">history</span></h2>
+   <p><b>Vladimir Sergeevich Lukyanov</b> (1902&ndash;1980), a railway engineer, built the first <b>hydraulic integrator</b> in <b class="k">1936</b> to compute the thermal stresses that were cracking concrete in winter track-bed. It was <b>a computer made of water</b>: a lattice of vessels and tubes.</p>
+   <p class="small">Later &ldquo;IGL&rdquo; machines were mass-produced and used for decades on <b>permafrost</b>, <b>dam</b> and mine heat problems &mdash; real engineering, solved by water levels, well into the 1970s.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE ANALOGY <span class="tag t-lit">LIT</span></h2>
+   <p>The machine works because two different physics obey the <b>same equation</b>. Water <b>level</b> h in a vessel plays <b>temperature</b> u. A tube joining two vessels carries a <b>flow</b> proportional to the level <b>difference</b> &mdash; that is <b>heat flux</b>, proportional to the temperature difference (Fourier&rsquo;s law).</p>
+   <p class="small">Conservation of water in each vessel is conservation of heat: <b class="k">u&#7511; = D&middot;u&#8339;&#8339;</b>. The vessel levels, left to settle, trace the temperature field in <b>real time</b>. No numbers are written; the water does the integrating.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>LINEAGE &mdash; where it went <span class="tag t-amber">reach</span></h2>
+   <p>The vessel-and-tube mechanism, written in symbols, is the <b>explicit finite-difference method</b> (FTCS) for the heat equation. The analog machine and the digital scheme are <b>the same algorithm</b> &mdash; one in water, one in silicon.</p>
+   <p class="small">When digital computers arrived, the water drained out but the scheme stayed: every explicit heat solver today is Lukyanov&rsquo;s integrator, and it inherits his <b>stability limit</b> exactly. The analog machine was not a dead end &mdash; it was the <b>prototype</b>.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the engine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; open the tubes <span class="tag t-in">in &darr;</span></h2>
+   <p>A rod on <b>[0,1]</b>, ends held at <b>0</b>, starts hot in the middle: <b>u(x,0)=sin(&pi;x)</b>. The machine steps the field with <b>u&#7522;&#8319;&#8314;&sup1; = u&#7522;&#8319; &plus; r&middot;(u&#7522;&#8331;&#8321; &minus; 2u&#7522; &plus; u&#7522;&#8330;&#8321;)</b>, where <b class="k">r = D&middot;dt/dx&sup2;</b> is how wide you open the tubes per tick.</p>
+   <div class="row"><label>flow r</label>
+    <input id="rin" type="range" min="0.05" max="0.80" step="0.05" value="0.40" style="flex:1;min-width:130px">
+    <b class="k" id="rlabel">0.40</b></div>
+   <div class="row"><label>preset</label>
+    <select id="preset">
+     <option value="0.40">r = 0.40 &middot; converges (tubes safe)</option>
+     <option value="0.50">r = 0.50 &middot; the exact boundary</option>
+     <option value="0.60">r = 0.60 &middot; UNSTABLE (tubes too wide)</option>
+     <option value="0.75">r = 0.75 &middot; violent blow-up</option>
+    </select></div>
+   <p class="small mut">D=1, grid dx=1/20, dt = r&middot;dx&sup2;. The run below takes <b id="nstepshow">200</b> ticks to physical time <b id="tshow">&mdash;</b>.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; let the water settle &middot; step FTCS &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the water integrator runs <span class="tag t-lit">LIT</span></h2>
+   <canvas id="cv" width="520" height="150" style="width:100%;height:150px;border:1px solid var(--line);border-radius:6px;background:#fbf6e6;margin-bottom:6px"></canvas>
+   <p class="small" style="margin-top:0"><span style="color:var(--blue)">&#9646; water level (FTCS)</span> &nbsp; <span style="color:var(--red)">&mdash; analytic sin(&pi;x)&middot;e<sup>&minus;D&pi;&sup2;t</sup></span></p>
+   <div class="out" id="pout">&mdash;</div>
+   <p class="small">peak amplitude: start <b id="a0" class="k">&mdash;</b> &rarr; after run <b id="a1" class="k">&mdash;</b> &nbsp; max seen over run <b id="amax" class="k">&mdash;</b></p>
+   <p class="small">max error vs analytic at t=<span id="terr">&mdash;</span>: <b id="err" class="k">&mdash;</b></p>
+   <p class="small" style="margin-top:8px;color:var(--wall)"><b>STABILITY.</b> <span class="tag t-wall">WALL</span> The water cannot flow faster than the level difference allows. In symbols: the scheme is stable <b>iff r &le; 1/2</b>. Open the tubes wider (r &gt; 1/2) and the smallest ripples are <b>amplified each tick</b> &mdash; the levels oscillate and diverge. This is a physical limit of the real machine, not a bug.</p>
+   <p class="small">this r = <b id="rverdict" class="k">&mdash;</b></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the verdict, checked against the settled water &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; verdict &amp; witness <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outv">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>flow r</th><th>claim</th><th>the water</th><th>agree</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small" style="margin-top:6px">The claim (&ldquo;r &le; 1/2 solves it&rdquo;) is checked against the <b>actual run</b>: a safe r must stay <b>bounded and decay</b>; a too-wide r must <b>blow up</b>. Claim and water must <b>agree</b> on every row.</p>
+   <div class="wall-note" style="border-left-color:var(--blue);background:rgba(29,78,121,.05);margin-top:10px"><span class="tag t-amber">tie</span> <b>THE MACHINE.</b> Lukyanov&rsquo;s water computer sits with <a href="./the-setun.html">the Setun</a>, <a href="./the-besm.html">the BESM</a> and <a href="./the-elbrus.html">the Elbrus</a> &mdash; the Soviet machines. The door is <a href="https://0root.ai/">https://0root.ai/</a>.</div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE ADVERSARY &mdash; &ldquo;faster is better&rdquo;</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The intuition says: to reach the answer sooner, <b>open the tubes wider</b> &mdash; take a bigger step, let more water flow per tick. But the heat equation punishes haste. Beyond <b class="k">r = 1/2</b> the machine no longer damps the shortest wavelength; it <b>amplifies</b> it, and the levels tear themselves apart.</p>
+   <p class="small" style="margin-top:8px"><b>WHY ANALOG.</b> Before digital machines, water <b>integrated PDEs in real time</b> &mdash; you built the geometry, opened the valves, and read the levels. It was slow to set up and hard to reprogram; that is the honest wall, not accuracy.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Analog computing was a dead end.&rdquo;</s> <b>Cut.</b> The water integrator solved real permafrost and dam heat problems for <b>40 years</b>, and FTCS &mdash; its exact digital heir &mdash; runs today.</p>
+   <p class="grave"><s>&ldquo;Take a bigger time-step to finish faster.&rdquo;</s> <b>Cut.</b> Past r = 1/2 the explicit scheme is unconditionally unstable; a bigger step does not finish sooner, it <b>explodes</b>.</p>
+   <p class="grave"><s>&ldquo;A finer grid is always safer.&rdquo;</s> <b>Cut.</b> Halving dx quarters dx&sup2;; to keep r &le; 1/2 you must <b>quarter dt</b> too &mdash; finer space demands far finer time.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; open the tubes, lie about it</h2>
+   <p>The red move: set <b>r &gt; 1/2</b> (open the tubes too wide / step too fast) but <b>claim it still solves the equation</b> &mdash; drop the r &le; 1/2 check so a diverging run gets stamped <b>solved</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; claim r&gt;1/2 still solves</button><button id="restore">&#8634; restore r&le;1/2 limit</button></div>
+   <p class="small" id="tampernote">Drop the limit and the claim lies about the <b>too-wide</b> rows: it calls them solved while the actual water (the run) blows up. The witness compares the two and turns <b style="color:var(--wall)">red</b>. The attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE WATER INTEGRATOR &mdash; World IV &middot; <b>SONIA</b>, room <b>THE MACHINE</b>, in the refined <b>OCHO</b>: blue builds the water&ndash;heat analogy and its lineage, the engine steps the FTCS scheme down the centre and settles to the analytic solution, red opens the tubes too wide and is caught by the diverging water. A runnable rendering of Lukyanov&rsquo;s hydraulic integrator (Moscow, 1936): the FTCS update, convergence to sin(&pi;x)&middot;e<sup>&minus;D&pi;&sup2;t</sup>, and the load-bearing <b>r &le; 1/2</b> stability limit are LIT and self-checked; the history is AMBER; the flow limit is a real WALL. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE WATER INTEGRATOR — Lukyanov's hydraulic integrator as FTCS heat solver (every value computed) ===== */
+
+var TAMPER=false;   // when true the claim drops the r<=1/2 limit and stamps a too-wide (diverging) run as "solved"
+var STAB=0.5;       // the load-bearing fact: FTCS for the heat equation is stable iff r <= 1/2
+var NX=20;          // grid segments on [0,1]; nodes 0..NX, dx = 1/NX
+var DCOEF=1;        // diffusivity D
+
+/* --- fixed-seed PRNG (LCG, full 32-bit span) for the tiny deterministic seed perturbation --- */
+function prng(seed){ var s=(seed>>>0)||1; return function(){ s=(1664525*s+1013904223)>>>0; return s/4294967296; }; }
+
+/* --- initial water levels: u(x,0)=sin(pi x), ends pinned at 0, plus an optional tiny deterministic ripple --- */
+function initField(nx,eps,seed){
+ var rnd=prng(seed), u=new Array(nx+1), i;
+ for(i=0;i<=nx;i++){
+  var x=i/nx;
+  if(i===0||i===nx){ u[i]=0; }                                  // Dirichlet ends
+  else{ u[i]=Math.sin(Math.PI*x) + eps*(2*rnd()-1); }           // hot middle + tiny ripple
+ }
+ return u;
+}
+/* --- ONE tick of the water integrator = the explicit FTCS step, ends held at 0 --- */
+function ftcsStep(u,r){
+ var nx=u.length-1, v=new Array(nx+1), i;
+ v[0]=0; v[nx]=0;
+ for(i=1;i<nx;i++){ v[i]=u[i]+r*(u[i-1]-2*u[i]+u[i+1]); }
+ return v;
+}
+/* --- analytic temperature field: sin(pi x) * e^{-D pi^2 t} --- */
+function analyticField(nx,D,t){
+ var a=new Array(nx+1), i, dec=Math.exp(-D*Math.PI*Math.PI*t);
+ for(i=0;i<=nx;i++){ a[i]=Math.sin(Math.PI*(i/nx))*dec; }
+ return a;
+}
+function maxAbs(u){ var m=0,i; for(i=0;i<u.length;i++){ var a=Math.abs(u[i]); if(!(a<=1e300)) return Infinity; if(a>m) m=a; } return m; }
+function maxDiff(u,a){ var m=0,i; for(i=0;i<u.length;i++){ var d=Math.abs(u[i]-a[i]); if(d>m) m=d; } return m; }
+
+/* --- run the integrator nsteps ticks; track peak amplitude over the whole run --- */
+function runIntegrator(nx,r,D,nsteps,eps,seed){
+ var dx=1/nx, dt=r*dx*dx/D, u=initField(nx,eps,seed), i;
+ var init=maxAbs(u), mx=init, step;
+ for(step=0;step<nsteps;step++){
+  u=ftcsStep(u,r);
+  var m=maxAbs(u); if(m>mx) mx=m;
+ }
+ var fin=maxAbs(u);
+ var blew = (!isFinite(fin)) || (fin>10*init);   // diverged?
+ return { u:u, dt:dt, tFinal:nsteps*dt, initMax:init, finalMax:fin, maxOverRun:mx, blew:blew };
+}
+/* --- max error of a run vs the analytic solution at its final time (only meaningful when stable) --- */
+function runError(nx,r,D,nsteps,eps,seed){
+ var R=runIntegrator(nx,r,D,nsteps,eps,seed);
+ var A=analyticField(nx,D,R.tFinal);
+ return { err:maxDiff(R.u,A), run:R };
+}
+/* --- true physics: stable iff r <= 1/2 --- */
+function stableTrue(r){ return r<=STAB+1e-12; }
+/* --- the CLAIM the machine makes; TAMPER drops the limit and claims everything solves --- */
+function claimSolves(r){ return TAMPER ? true : stableTrue(r); }
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+ var ln=Math.log;
+
+ // 1 — one FTCS tick keeps the Dirichlet ends pinned at 0
+ var u0=initField(NX,0,1), u1=ftcsStep(u0,0.4);
+ t(u1[0]===0 && u1[NX]===0,"FTCS must hold both ends at 0 (Dirichlet)");
+
+ // 2 — CONVERGE: r=0.4 to t=0.02 (20 ticks) tracks the analytic solution within a modest tolerance
+ var conv=runError(NX,0.4,1,20,0,0);           // dt=0.001, t=0.02
+ t(conv.run.tFinal>0.0199 && conv.run.tFinal<0.0201,"convergence run must reach t=0.02");
+ t(conv.err<5e-3,"FTCS r=0.4 must match analytic within 5e-3, got "+conv.err);
+
+ // 3 — the peak follows the analytic decay e^{-D pi^2 t}: numeric peak within 1e-2 of sin(pi/2)*e^{-pi^2 t}
+ var peakAnalytic=Math.exp(-Math.PI*Math.PI*0.02);            // ~0.8209
+ var peakNum=conv.run.u[NX/2];                                 // node at x=0.5
+ t(Math.abs(peakNum-peakAnalytic)<1e-2,"peak must follow e^{-D pi^2 t} within 1e-2 ("+peakNum.toFixed(4)+" vs "+peakAnalytic.toFixed(4)+")");
+
+ // 4 — with r<=1/2 the peak stays BOUNDED and DECREASING over a long run (200 ticks)
+ var safe=runIntegrator(NX,0.4,1,200,1e-6,12345);
+ t(!safe.blew,"r=0.4 must stay bounded over 200 ticks");
+ t(safe.finalMax<safe.initMax,"r=0.4 peak must decrease (energy bleeds out)");
+ t(safe.maxOverRun<=safe.initMax*1.0001,"r=0.4 peak must never exceed its start");
+
+ // 5 — r=0.5 is the EXACT stability boundary: still bounded, does not grow
+ var edge=runIntegrator(NX,0.5,1,200,1e-6,12345);
+ t(!edge.blew,"r=0.5 (boundary) must stay bounded");
+ t(edge.maxOverRun<=edge.initMax*1.0001,"r=0.5 peak must not grow above its start");
+
+ // 6 — r=0.6 (> 1/2) is UNSTABLE: the numerical max amplitude GROWS / diverges over steps
+ var bad=runIntegrator(NX,0.6,1,200,1e-6,12345);
+ t(bad.blew,"r=0.6 (>1/2) must blow up over 200 ticks");
+ t(!(bad.finalMax<=bad.initMax),"r=0.6 final peak must exceed its start (growth)");
+ var worse=runIntegrator(NX,0.75,1,200,1e-6,12345);
+ t(worse.blew,"r=0.75 must blow up harder");
+
+ // 7 — the stability predicate is exactly r<=1/2
+ t(stableTrue(0.4)===true && stableTrue(0.5)===true && stableTrue(0.6)===false && stableTrue(0.5000001)===false,
+   "stability predicate must be r<=1/2 exactly");
+
+ // 8 — TAMPER really mislabels: drop the limit and a diverging r=0.6 run is claimed solved
+ TAMPER=true;
+ t(claimSolves(0.6)===true && stableTrue(0.6)===false && runIntegrator(NX,0.6,1,200,1e-6,12345).blew,
+   "tamper must claim a blowing-up r=0.6 run is solved");
+ TAMPER=false;
+
+ TAMPER=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var RUNSTEPS=200, EPS=1e-6, SEED=12345;
+function fmt(v){ if(!isFinite(v)) return "&#8734;"; return (Math.round(v*1000)/1000).toString(); }
+
+function drawField(u,a,blew){
+ var cv=$("cv"), g=cv.getContext("2d"), W=cv.width, H=cv.height, nx=u.length-1;
+ g.clearRect(0,0,W,H);
+ var padL=6,padR=6,padT=10,padB=14, iw=W-padL-padR, ih=H-padT-padB;
+ var base=padT+ih;                       // u=0 line
+ // grid baseline
+ g.strokeStyle="#cbb98d"; g.lineWidth=1; g.beginPath(); g.moveTo(padL,base); g.lineTo(W-padR,base); g.stroke();
+ var scale=ih/1.15;                       // amplitude 1.0 -> ~0.87 of height
+ var xat=function(i){ return padL + iw*(i/nx); };
+ var yat=function(v){ var y=base - Math.max(-0.05,Math.min(1.15,v))*scale; return y; };
+ // water-level bars (FTCS)
+ var bw=iw/nx*0.62;
+ for(var i=0;i<=nx;i++){
+  var v=u[i]; if(!isFinite(v)) v=1.15;
+  var vy=yat(Math.max(0,v));
+  g.fillStyle="rgba(29,78,121,.55)";
+  g.fillRect(xat(i)-bw/2, vy, bw, base-vy);
+ }
+ // analytic overlay (red line)
+ g.strokeStyle="#c30019"; g.lineWidth=2; g.beginPath();
+ for(i=0;i<=nx;i++){ var yy=yat(a[i]); if(i===0) g.moveTo(xat(i),yy); else g.lineTo(xat(i),yy); }
+ g.stroke();
+ if(blew){ g.fillStyle="#8c1c13"; g.font="bold 14px monospace"; g.fillText("OVERFLOW - the levels tore apart",padL+8,padT+16); }
+}
+
+function witness(){
+ var rs=[0.30,0.40,0.50,0.60,0.70], rows="", allok=true;
+ for(var i=0;i<rs.length;i++){
+  var r=rs[i], claim=claimSolves(r), R=runIntegrator(NX,r,1,RUNSTEPS,EPS,SEED), bounded=!R.blew;
+  var agree=(claim===bounded);
+  if(!agree) allok=false;
+  rows+="<tr><td>"+r.toFixed(2)+"</td><td>"+(claim?"solves":"unstable")+"</td><td>"+(bounded?"bounded":"blows up")
+   +"</td><td style=\"color:"+(agree?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(agree?"ok":"X")+"</td></tr>";
+ }
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'
+  +(allok?"WITNESS - the claim matches the water on every flow":"WITNESS - the claim contradicts the water")+'</span>';
+ return allok;
+}
+
+function render(){
+ var r=+$("rin").value;
+ $("rlabel").textContent=r.toFixed(2);
+ var R=runIntegrator(NX,r,1,RUNSTEPS,EPS,SEED);
+ var A=analyticField(NX,1,R.tFinal);
+ var err=R.blew?Infinity:maxDiff(R.u,A);
+ var truth=stableTrue(r), claim=claimSolves(r);
+
+ $("nstepshow").textContent=RUNSTEPS;
+ $("tshow").textContent="t="+fmt(R.tFinal);
+ $("terr").textContent=fmt(R.tFinal);
+ $("a0").innerHTML=fmt(R.initMax);
+ $("a1").innerHTML=fmt(R.finalMax);
+ $("amax").innerHTML=fmt(R.maxOverRun);
+ $("err").innerHTML=R.blew?'<span style="color:var(--wall)">diverged</span>':fmt(err);
+
+ $("rverdict").innerHTML = truth
+  ? '<span style="color:var(--lit)">r = '+r.toFixed(2)+' &le; 1/2 &mdash; STABLE, the water settles</span>'
+  : '<span style="color:var(--wall)">r = '+r.toFixed(2)+' &gt; 1/2 &mdash; UNSTABLE, the levels amplify</span>';
+
+ $("pout").innerHTML = R.blew
+  ? '<span style="color:var(--wall)">The tubes are too wide: the shortest ripple is amplified each tick and the levels diverge.</span>'
+  : '<span style="color:var(--lit)">The water settles onto sin(&pi;x)&middot;e<sup>&minus;D&pi;&sup2;t</sup> &mdash; max error '+fmt(err)+' at t='+fmt(R.tFinal)+'.</span>';
+
+ drawField(R.u,A,R.blew);
+
+ // verdict
+ var solvedForReal = truth && !R.blew;
+ $("outv").className="verdict "+(claim && solvedForReal ? "ok" : "no");
+ if(TAMPER && claim && !truth){
+  $("outv").textContent="&ldquo;SOLVED&rdquo;";
+  $("outv").className="verdict no";
+  $("outreason").innerHTML='<b style="color:var(--wall)">limit dropped</b> &mdash; the claim calls this too-wide run solved, but the water blew up (peak '+fmt(R.finalMax)+' from '+fmt(R.initMax)+'). The witness (5) turns red.';
+ } else if(truth){
+  $("outv").textContent="SOLVED";
+  $("outreason").innerHTML='r &le; 1/2: the water damps every ripple, converges to the analytic field (error '+fmt(err)+'), peak decays '+fmt(R.initMax)+' &rarr; '+fmt(R.finalMax)+'.';
+ } else {
+  $("outv").textContent="BLOWS UP";
+  $("outreason").innerHTML='r &gt; 1/2 exceeds the flow limit: the shortest wavelength is amplified each tick, peak '+fmt(R.initMax)+' &rarr; '+fmt(R.finalMax)+'. The real machine physically cannot flow this fast.';
+ }
+ witness();
+}
+
+function setPreset(){ $("rin").value=$("preset").value; render(); }
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("rin").addEventListener("input",render);
+ $("rin").addEventListener("change",render);
+ $("preset").addEventListener("change",setPreset);
+ $("tamper").addEventListener("click",function(){ TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Limit dropped.</b> The claim now stamps every run &lsquo;solved&rsquo; regardless of r. Choose a preset with r &gt; 1/2: the verdict lies while the water blows up, and the witness (5) turns <b style='color:var(--wall)'>red</b>."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false;
+  $("tampernote").innerHTML="Drop the limit and the claim lies about the <b>too-wide</b> rows: it calls them solved while the actual water (the run) blows up. The witness compares the two and turns <b style='color:var(--wall)'>red</b>. The attack is real and it is caught."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the water integrator did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

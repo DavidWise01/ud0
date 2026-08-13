@@ -10,11 +10,11 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "180c26b1232e6a10eb2ca85eb835437c775388b5e37c18e451117168a18e48fd",
+  "sonia_root": "c5f384176ee3861a19b3bea3575e8e7d4aab586c72c05c3e16193fd5d44610a9",
   "counts": {
-    "spheres": 28,
+    "spheres": 33,
     "rooms": 5,
-    "lit": 28,
+    "lit": 33,
     "keepers": 8
   },
   "keepers": [
@@ -459,6 +459,66 @@
       "url": "https://davidwise01.github.io/ud0/world4/the-potemkin-village.html",
       "seal": "6ff1de36de7b80245043f0a769136f9531d47b1a9effa95cfe9777231cf041c5",
       "blurb": "The Potemkin village (1787) and Soviet pripiski, runnable in THE OCHO: reported output pinned to the target while the real falls short, the accumulated gap growing until the shelves are empty - and, information-theoretically, a report that always says 'target met' carries zero bits (entropy 0), so it cannot tell success from failure. The facade made mechanical; ties GOBERNET, OGAS, and the OCHO's own fail-loud law. Tamper-provable."
+    },
+    {
+      "slug": "the-maximum-principle",
+      "title": "THE MAXIMUM PRINCIPLE",
+      "room": "number",
+      "kicker": "time-optimal control is bang-bang",
+      "accent": "#c30019",
+      "stamp": "LIT",
+      "source": "L. S. Pontryagin, The Mathematical Theory of Optimal Processes (1961)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-maximum-principle.html",
+      "seal": "8a01cf325ccfd20d670078320fe51be5ed1fd935ab583135dec3483607269617",
+      "blurb": "Pontryagin's maximum principle (1961), runnable in THE OCHO: the time-optimal control of the double integrator is BANG-BANG - u = +/-1 with a single switch on the curve x1 = -x2|x2|/2. The engine integrates it: from (1,0) the origin is reached in minimum time T=2, and no sub-maximal control is faster. From Pontryagin (blinded at 14) to Bellman and modern optimal control. Tamper-provable by exceeding the actuator bound."
+    },
+    {
+      "slug": "dead-souls",
+      "title": "DEAD SOULS",
+      "room": "novel",
+      "kicker": "the census-lag arbitrage, made mechanical",
+      "accent": "#1d4e79",
+      "stamp": "LIT",
+      "source": "Nikolai Gogol, Dead Souls (1842)",
+      "url": "https://davidwise01.github.io/ud0/world4/dead-souls.html",
+      "seal": "8d8fbd487e12f18880dc5a15950f102c9ddba5f2f53580e7f31e78461a78f640",
+      "blurb": "Gogol's Dead Souls (1842), runnable in THE OCHO: Chichikov's census arbitrage made mechanical - dead serfs stay on the tax rolls between censuses, so he buys them for nothing and mortgages them to the state bank, which lends per soul ON THE CENSUS, not per living serf. The arbitrage is the census lag (paper != real); switch the collateral to reality and it collapses. Ties the-potemkin-village. Tamper-provable."
+    },
+    {
+      "slug": "the-water-integrator",
+      "title": "THE WATER INTEGRATOR",
+      "room": "machine",
+      "kicker": "a computer made of water",
+      "accent": "#9a6b12",
+      "stamp": "LIT",
+      "source": "V. S. Lukyanov, the hydraulic integrator (1936)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-water-integrator.html",
+      "seal": "a804db92337c2c2109390a8ba2b3f297b064e0cd8cf74bb913d8e826c22ec728",
+      "blurb": "Lukyanov's hydraulic integrator (1936), runnable in THE OCHO: a computer made of water, where the level is temperature and the flow is heat - solving the heat equation u_t = D u_xx by the explicit FTCS scheme u_i += r(u_{i-1} - 2 u_i + u_{i+1}). It converges to the analytic solution when r <= 1/2 and blows up above it, the physical stability limit the real water respected. Analog computing and its exact digital heir. Tamper-provable at r > 1/2."
+    },
+    {
+      "slug": "the-kola-borehole",
+      "title": "THE KOLA BOREHOLE",
+      "room": "weird",
+      "kicker": "the deepest hole; the gradient and the hoax",
+      "accent": "#5f513a",
+      "stamp": "LIT",
+      "source": "The Kola Superdeep Borehole (1970-1992)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-kola-borehole.html",
+      "seal": "320b3aa9302f8ee6e6072f9845417fc71394a7cb2c20240dd9e7dba3e9b13b8d",
+      "blurb": "The Kola Superdeep Borehole (1970-1992), the deepest hole at 12,262 m, rendered honestly in THE OCHO: the geothermal gradient T(z) = T0 + g z, with Kola hitting ~180C at 12 km - about double the prediction, which is why they stopped (the rock turned plastic). Real findings (no basalt layer, water and microfossils deep) LIT; the 'well to hell' screaming-souls audio a re-dubbed hoax, DEAD. A myth measured, like Dyatlov. Tamper-provable."
+    },
+    {
+      "slug": "samizdat",
+      "title": "SAMIZDAT",
+      "room": "state",
+      "kicker": "banned truth as a branching process",
+      "accent": "#7a1220",
+      "stamp": "LIT",
+      "source": "Samizdat - the Soviet underground press",
+      "url": "https://davidwise01.github.io/ud0/world4/samizdat.html",
+      "seal": "cbba13b8e82741c75f327cbab795e4be875db5d2ab86975293d2e9c4594ad322",
+      "blurb": "Samizdat, the Soviet underground copying of banned texts, runnable in THE OCHO: the diffusion of truth as a branching process - each reader a printing press making k copies, reach k^g, and a sharp threshold (supercritical iff k>1, else it dies out with probability 1; Poisson extinction q = e^{k(q-1)}). The inverse of pripiski: the citizens' true signal spreads while the state's constant 'met' carries zero bits. Ties the-potemkin-village. Tamper-provable at k <= 1."
     }
   ]
 }

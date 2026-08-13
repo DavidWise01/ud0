@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE MAXIMUM PRINCIPLE · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE NUMBER &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE MAXIMUM PRINCIPLE</h1>
+ <p class="sub">Moscow, 1961: <b>Pontryagin</b> &mdash; blinded at fourteen &mdash; proves that to reach a target in <b>minimum time</b>, the optimal control does not ease; it <b>slams to the bounds</b>. This panel is <b>runnable</b>: it integrates the bang&ndash;bang law for the double integrator and measures the minimum time <b>by trajectory</b>, not by a looked-up constant.</p>
+ <p class="src"><span class="tag t-amber">source</span> L. S. Pontryagin, V. G. Boltyanskii, R. V. Gamkrelidze, E. F. Mishchenko, <i>The Mathematical Theory of Optimal Processes</i> (Moscow, 1961; Interscience trans. 1962) &mdash; the maximum principle. Room: <b>THE NUMBER</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; Pontryagin, 1961 <span class="tag t-amber">history</span></h2>
+   <p><b>Lev Semyonovich Pontryagin</b> (1908&ndash;1988) lost his sight at <b class="k">14</b> in a stove explosion; his mother read the mathematics aloud and he worked it in his head, becoming one of the great Soviet topologists. Turning to control, he and his students <b>Boltyanskii</b>, <b>Gamkrelidze</b> and <b>Mishchenko</b> published <i>The Mathematical Theory of Optimal Processes</i> in <b class="k">1961</b>.</p>
+   <p class="small">Its central theorem &mdash; <b>the maximum principle</b> &mdash; founded modern <b>optimal control</b>. He sits in <b>THE NUMBER</b> beside the St&nbsp;Petersburg&ndash;Moscow analysts <a href="./lyapunov-stability.html">Lyapunov</a>, Chebyshev and <a href="./the-markov-property.html">Markov</a>.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE MAXIMUM PRINCIPLE <span class="tag t-lit">LIT</span></h2>
+   <p>Form the <b>Hamiltonian</b> H = p&#8321;x&#8322; &plus; p&#8322;u along the flow, with <b>costate</b> p solving p&#775;&#8321;=0, p&#775;&#8322;=&minus;p&#8321;. To be time-optimal the control must <b>maximise H over u</b> at every instant. Since H is <b>linear in u</b>, the maximiser is forced to a corner:</p>
+   <p><b class="k">u* = sign(p&#8322;)</b> &mdash; i.e. u = &plusmn;1, never in between. p&#8322;(t)=p&#8322;(0)&minus;p&#8321;t is linear, so it changes sign <b>at most once</b>: the optimal control is <b>bang&ndash;bang with a single switch</b>. Smoothness is not merely unhelpful; it is <b>excluded</b>.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>LINEAGE &mdash; where it went <span class="tag t-amber">reach</span></h2>
+   <p>The maximum principle is the <b>necessary condition</b> of optimal control, dual to <b>Bellman&rsquo;s dynamic programming</b> (the sufficient, value-function side, USA, same years). Together they are the two doors into the field.</p>
+   <p class="small">Downstream: aerospace guidance, minimum-fuel and minimum-time trajectories, model-predictive control, and the continuous-time backbone of modern <b>reinforcement learning</b> (the Hamilton&ndash;Jacobi&ndash;Bellman equation, the co-state as the gradient the policy climbs).</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE NUMBER ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the engine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; THE PROBLEM <span class="tag t-in">in &darr;</span></h2>
+   <p>The <b>double integrator</b>: x&#775;&#8321;=x&#8322; (position), x&#775;&#8322;=u (velocity), actuator bound <b class="k">|u|&le;1</b>. Drive a state to the origin <b>(0,0)</b> in <b>minimum time</b>. Pick a start; the engine builds the bang&ndash;bang law and <b>integrates</b> it.</p>
+   <div class="row"><label>start</label>
+    <select id="preset">
+     <option value="1,0">(1, 0) &middot; unit position, at rest &mdash; T=2</option>
+     <option value="4,0">(4, 0) &middot; four out, at rest &mdash; T=4</option>
+     <option value="0.25,0">(0.25, 0) &middot; near, at rest &mdash; T=1</option>
+     <option value="-1,0">(-1, 0) &middot; behind, at rest &mdash; T=2</option>
+     <option value="0,1">(0, 1) &middot; moving, on axis</option>
+     <option value="-0.5,1">(-0.5, 1) &middot; already on the curve</option>
+    </select>
+   </div>
+   <div class="row"><label>x1 , x2</label>
+    <input id="x1" type="number" step="0.25" value="1" style="width:70px">
+    <input id="x2" type="number" step="0.25" value="0" style="width:70px"></div>
+   <p class="small mut">|u|&le;1 is the actuator bound &mdash; the real limit of the machine. r=(1,0) is the canonical anchor: minimum time <b>T=2</b>.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; build u=sign(p&#8322;) &middot; integrate x&#775;=(x&#8322;,u) at fixed dt &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; bang&ndash;bang &amp; the switching curve <span class="tag t-lit">LIT</span></h2>
+   <p class="small" style="margin-top:0"><b>The switching curve.</b> The two arcs that flow into the origin form <b class="k">x&#8321; = &minus;&frac12; x&#8322;|x&#8322;|</b>. <b>Above</b> it drive <b>u=&minus;1</b>; <b>below</b> it drive <b>u=&plus;1</b>; ride it into the origin. One crossing = one switch.</p>
+   <div style="text-align:center;margin:6px 0">
+     <svg id="phase" viewBox="0 0 300 210" width="100%" style="max-width:340px;background:#fbf6e6;border:1px solid var(--line);border-radius:6px"></svg>
+   </div>
+   <div class="out" id="tout">&mdash;</div>
+   <p class="small" style="margin-top:4px">switch at t = <b id="tsw" class="k">&mdash;</b> &nbsp;&middot;&nbsp; switch state <b id="ssw" class="k">&mdash;</b> &nbsp;&middot;&nbsp; switches: <b id="nsw" class="k">&mdash;</b></p>
+   <table id="trajTbl"><thead><tr><th>t</th><th>x&#8321;</th><th>x&#8322;</th><th>u</th></tr></thead><tbody id="trajbody"></tbody></table>
+   <p class="small" style="margin-top:6px">Every row is <b>integrated</b> (Euler, dt=1e-4), not tabulated. For a rest start at position p the theory gives <b>T = 2&radic;p</b>; the engine reaches it by trajectory to &lt;1e-3.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the verdict, checked against slower &amp; illegal controls &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; verdict &amp; witness <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outv">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>control</th><th>bound</th><th>reaches origin</th><th>time</th><th>legal</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small" style="margin-top:6px">The bang&ndash;bang law is compared to a <b>sub-maximal</b> control (|u|=0.5): it is <b>strictly slower</b> &mdash; it does not reach the origin by the bang&ndash;bang time. No <b>|u|&le;1</b> control beats the bang&ndash;bang minimum.</p>
+   <div class="wall-note" style="border-left-color:var(--blue);background:rgba(29,78,121,.05);margin-top:10px"><span class="tag t-amber">tie</span> <b>THE NUMBER.</b> The minimum time is a number won by integration, in the room of <a href="./lyapunov-stability.html">Lyapunov stability</a> and <a href="./the-chebyshev-inequality.html">the Chebyshev inequality</a>. The door is <a href="https://0root.ai/">https://0root.ai/</a>.</div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE ADVERSARY &mdash; &ldquo;ease it in gently&rdquo;</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The intuition says a <b>smooth, gentle</b> control &mdash; taper the effort near the target &mdash; must be best. The maximum principle says the opposite: because H is <b>linear in u</b>, any interior u leaves H un-maximised, so the <b>time-optimal</b> control lives on the boundary <b>|u|=1</b> and switches abruptly. Gentleness costs time.</div>
+   <p class="small" style="margin-top:8px">The engine makes it concrete: the sub-maximal control (|u|=0.5) never overtakes the bang&ndash;bang law &mdash; it arrives late or not at all within the same clock.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Smooth control is always best.&rdquo;</s> <b>Cut.</b> Time-optimal control is <b>bang&ndash;bang</b> &mdash; it slams to &plusmn;1 and switches; the smooth path is strictly slower.</p>
+   <p class="grave"><s>&ldquo;You need to solve the differential equation to find the optimum.&rdquo;</s> <b>Cut.</b> The maximum principle hands you the <b>structure</b> (sign of the costate) before any trajectory is integrated.</p>
+   <p class="grave"><s>&ldquo;More switches must mean a faster path.&rdquo;</s> <b>Cut.</b> For the double integrator the costate is linear &mdash; <b>at most one</b> switch is optimal; extra switches only waste time.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; break the actuator bound</h2>
+   <p>The red move: let the control <b>exceed the bound</b>, |u|=2. Now the machine reaches the origin <b>faster than T=2</b> &mdash; but that time is a <b>lie</b>: it was bought by cheating the limit, not by better control.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; allow |u|=2 (break the bound)</button><button id="restore">&#8634; restore |u|&le;1</button></div>
+   <p class="small" id="tampernote">Break the bound and the engine posts a time <b>below</b> the |u|&le;1 minimum. The witness compares it to the legal minimum, sees the bound violated, and turns <b style="color:var(--wall)">red</b>. Beating T=2 means cheating |u|&le;1, not finding a valid control.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE MAXIMUM PRINCIPLE &mdash; World IV &middot; <b>SONIA</b>, room <b>THE NUMBER</b>, in the refined <b>OCHO</b>: blue builds Pontryagin&rsquo;s Hamiltonian argument and its lineage, the engine integrates the bang&ndash;bang law down the switching curve x&#8321;=&minus;&frac12;x&#8322;|x&#8322;| to the origin in the centre, red eases the control and then breaks the bound and is caught. A runnable rendering of Pontryagin&rsquo;s <i>Mathematical Theory of Optimal Processes</i> (1961): the bang&ndash;bang integration, T=2 from (1,0) with one switch at (0.5,&minus;1), and T=2&radic;p for rest starts are LIT and self-checked by trajectory; the history is AMBER; |u|&le;1 is a real WALL. The minimum time is won by integration, never a magic constant. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE MAXIMUM PRINCIPLE — time-optimal double integrator, minimum time by integration (never looked up) ===== */
+
+var UBOUND=1;   // the actuator bound |u|<=UBOUND; TAMPER raises it to 2 (breaks the real limit)
+
+/* --- the switching function: s>0 above the curve (u=-U), s<0 below (u=+U) ---
+   the two arcs into the origin form x1 = -x2|x2|/(2U); s = x1 + x2|x2|/(2U). */
+function switchFn(x1,x2,U){ return x1 + x2*Math.abs(x2)/(2*U); }
+function optU(x1,x2,U){ return switchFn(x1,x2,U) > 0 ? -U : U; }
+
+/* --- integrate the closed-loop bang-bang law from (x1,x2) at fixed dt.
+   returns minimum time by trajectory, the single switch, and (optionally) the path. --- */
+function integrateBangBang(x1,x2,U,dt,maxT,rec){
+ var t=0, u=optU(x1,x2,U), switches=0, switchT=-1, sx1=0, sx2=0;
+ var reached=false, n=Math.round(maxT/dt), i, k=0, path=rec?[[x1,x2]]:null;
+ for(i=0;i<n;i++){
+  var nx1=x1+dt*x2, nx2=x2+dt*u;
+  x1=nx1; x2=nx2; t+=dt;
+  if(rec && (++k%40===0)) path.push([x1,x2]);
+  // final +U arc rises through x2=0 exactly at the origin
+  if(switches>=1 && u>0 && x2>=0){ reached=true; if(rec) path.push([x1,x2]); break; }
+  var nu=optU(x1,x2,U);
+  if(nu!==u){ switches++; if(switches===1){ switchT=t; sx1=x1; sx2=x2; } u=nu; }
+ }
+ return {T:t, switches:switches, switchT:switchT, switchX1:sx1, switchX2:sx2, reached:reached, x1:x1, x2:x2, path:path};
+}
+
+/* --- a sub-maximal feedback control u = -0.5*sign(x1): weaker than the bound, must be slower --- */
+function integrateSub(x1,x2,dt,T){
+ var n=Math.round(T/dt), i;
+ for(i=0;i<n;i++){
+  var u = -0.5*(x1>0?1:(x1<0?-1:0));
+  var nx1=x1+dt*x2, nx2=x2+dt*u;
+  x1=nx1; x2=nx2;
+ }
+ return {x1:x1, x2:x2, dist:Math.sqrt(x1*x1+x2*x2)};
+}
+
+/* --- the theory value for a start at rest at position p: T = 2*sqrt(p) --- */
+function minTimeRest(p){ return 2*Math.sqrt(Math.abs(p)); }
+
+/* ===== fail-loud self-check (runs at the true bound |u|<=1) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=UBOUND; UBOUND=1;
+ var dt=1e-4;
+
+ // 1 — the anchor: from (1,0), bang-bang reaches the origin at T=2, one switch at t=1, switch state (0.5,-1)
+ var r=integrateBangBang(1,0,1,dt,4,false);
+ t(r.reached,"bang-bang from (1,0) must reach the origin");
+ t(Math.abs(r.T-2)<1e-3,"minimum time from (1,0) must be 2, got "+r.T);
+ t(r.switches===1,"from (1,0) there must be exactly one switch, got "+r.switches);
+ t(Math.abs(r.switchT-1)<2e-3,"the switch must occur at t=1, got "+r.switchT);
+ t(Math.abs(r.switchX1-0.5)<3e-3 && Math.abs(r.switchX2+1)<3e-3,"switch state must be (0.5,-1), got ("+r.switchX1+","+r.switchX2+")");
+
+ // 2 — minimum time grows with |state|: T = 2*sqrt(p) for rest starts, and monotone
+ var cases=[[0.25,1],[1,2],[4,4]];
+ var last=-1;
+ for(var i=0;i<cases.length;i++){
+  var p=cases[i][0], want=cases[i][1];
+  var ri=integrateBangBang(p,0,1,dt,2*want+1,false);
+  t(ri.reached,"rest start ("+p+",0) must reach the origin");
+  t(Math.abs(ri.T-want)<1e-2,"T from ("+p+",0) must be "+want+" (=2*sqrt(p)), got "+ri.T);
+  t(Math.abs(ri.T-minTimeRest(p))<1e-2,"integrated T must match 2*sqrt(p) for p="+p);
+  t(ri.T>last,"minimum time must grow with |state|");
+  last=ri.T;
+ }
+
+ // 3 — the switching curve passes through the origin
+ t(switchFn(0,0,1)===0,"the switching curve x1=-0.5 x2|x2| must pass through the origin");
+
+ // 4 — a sub-maximal control (|u|=0.5) does NOT reach the origin by t=2 (strictly slower)
+ var sub=integrateSub(1,0,dt,2);
+ t(sub.dist>0.5,"sub-maximal control must NOT reach the origin by t=2 (it is strictly slower), dist="+sub.dist);
+
+ // 5 — bang-bang is optimal among legal controls: no |u|<=1 control beats T=2 from (1,0)
+ var legal=integrateBangBang(1,0,1,dt,4,false);
+ t(legal.T>=2-1e-3,"no |u|<=1 control may reach the origin before T=2");
+
+ // 6 — TAMPER: allowing |u|=2 beats the minimum (reaches faster than 2) -> the bound was cheated
+ UBOUND=2;
+ var cheat=integrateBangBang(1,0,2,dt,4,false);
+ t(cheat.reached,"tamper trajectory must reach the origin");
+ t(cheat.T<2-1e-2,"breaking the bound (|u|=2) must reach the origin FASTER than 2, got "+cheat.T);
+ t(cheat.T<legal.T,"the illegal time must undercut the legal minimum");
+ UBOUND=1;
+
+ UBOUND=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+function fmt(v){ return (Math.round(v*1000)/1000).toString(); }
+function readStart(){ return [ (+$("x1").value)||0, (+$("x2").value)||0 ]; }
+
+function drawPhase(path,sx1,sx2){
+ var W=300,H=210, R=4.4;               // world half-range
+ function X(v){ return 150 + (v/R)*140; }
+ function Y(v){ return 105 - (v/R)*95; }
+ var s='';
+ // axes
+ s+='<line x1="0" y1="'+Y(0)+'" x2="300" y2="'+Y(0)+'" stroke="#cbb98d" stroke-width="1"/>';
+ s+='<line x1="'+X(0)+'" y1="0" x2="'+X(0)+'" y2="210" stroke="#cbb98d" stroke-width="1"/>';
+ // switching curve x1 = -0.5*x2*|x2| : sweep x2, plot (x1,x2)
+ var d='', started=false, v;
+ for(v=-R; v<=R; v+=0.06){
+  var cx=-0.5*v*Math.abs(v);
+  d+=(started?'L':'M')+X(cx).toFixed(1)+' '+Y(v).toFixed(1)+' '; started=true;
+ }
+ s+='<path d="'+d+'" fill="none" stroke="#1d4e79" stroke-width="1.6" stroke-dasharray="4 3" opacity="0.85"/>';
+ // trajectory
+ if(path && path.length){
+  var td='';
+  for(var i=0;i<path.length;i++){ td+=(i?'L':'M')+X(path[i][0]).toFixed(1)+' '+Y(path[i][1]).toFixed(1)+' '; }
+  s+='<path d="'+td+'" fill="none" stroke="#c30019" stroke-width="2"/>';
+  var st=path[0];
+  s+='<circle cx="'+X(st[0])+'" cy="'+Y(st[1])+'" r="3.4" fill="#9a6b12"/>';
+ }
+ // switch point + origin
+ if(sx1!==null){ s+='<circle cx="'+X(sx1)+'" cy="'+Y(sx2)+'" r="3.2" fill="#1d4e79"/>'; }
+ s+='<circle cx="'+X(0)+'" cy="'+Y(0)+'" r="3.6" fill="none" stroke="#2f6d33" stroke-width="2"/>';
+ s+='<text x="288" y="'+(Y(0)-4)+'" font-size="9" fill="#7c6c4c" text-anchor="end">x1</text>';
+ s+='<text x="'+(X(0)+4)+'" y="12" font-size="9" fill="#7c6c4c">x2</text>';
+ $("phase").innerHTML=s;
+}
+
+function witness(x1,x2){
+ var dt=1e-4;
+ var legal=integrateBangBang(x1,x2,1,dt,12,false);          // the |u|<=1 minimum
+ var here =integrateBangBang(x1,x2,UBOUND,dt,12,false);      // current bound (tamper -> 2)
+ var sub  =integrateSub(x1,x2,dt,legal.reached?legal.T:12);  // sub-maximal by the legal clock
+ var subReaches = sub.dist<1e-2;
+
+ var rows='', allok=true;
+ // bang-bang at the true bound
+ rows+='<tr><td>bang-bang</td><td>|u|&le;1</td><td>'+(legal.reached?'yes':'no')+'</td><td>'+fmt(legal.T)
+      +'</td><td style="color:var(--lit);font-weight:700">ok</td></tr>';
+ // sub-maximal
+ rows+='<tr><td>sub-maximal</td><td>|u|=0.5</td><td>'+(subReaches?'yes':'<b>no</b>')+'</td><td>'
+      +(subReaches?'&gt; '+fmt(legal.T):'&mdash;')+'</td><td style="color:var(--lit);font-weight:700">ok</td></tr>';
+ // tamper row (only when the bound is broken)
+ if(UBOUND>1){
+  var illegal = here.reached && here.T < legal.T-1e-3;
+  if(illegal) allok=false;
+  rows+='<tr><td style="color:var(--wall)">broken</td><td style="color:var(--wall)">|u|=2</td><td>'+(here.reached?'yes':'no')
+       +'</td><td style="color:var(--wall);font-weight:700">'+fmt(here.T)+'</td>'
+       +'<td style="color:'+(illegal?'var(--wall)':'var(--lit)')+';font-weight:700">'+(illegal?'X':'ok')+'</td></tr>';
+ }
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'
+  +(allok?"WITNESS - the bang-bang time is the minimum under |u|&le;1"
+         :"WITNESS - the posted time beats the minimum by breaking |u|&le;1")+'</span>';
+ return allok;
+}
+
+function render(){
+ var st=readStart(), x1=st[0], x2=st[1];
+ var dt=1e-4;
+ var legal=integrateBangBang(x1,x2,1,dt,12,false);
+ var run  =integrateBangBang(x1,x2,UBOUND,dt,12,true);
+
+ // plot
+ drawPhase(run.path, run.switches>=1?run.switchX1:null, run.switches>=1?run.switchX2:0);
+
+ // headline time
+ $("tout").innerHTML = run.reached
+  ? '<span style="color:'+(UBOUND>1?'var(--wall)':'var(--lit)')+'">minimum time T = '+fmt(run.T)+(UBOUND>1?'  (|u|=2 &mdash; bound broken)':'  (|u|&le;1)')+'</span>'
+  : '<span style="color:var(--wall)">did not reach the origin within the horizon</span>';
+ $("tsw").textContent = run.switches>=1 ? fmt(run.switchT) : "none";
+ $("ssw").textContent = run.switches>=1 ? "("+fmt(run.switchX1)+", "+fmt(run.switchX2)+")" : "—";
+ $("nsw").textContent = run.switches;
+
+ // trajectory table: sample the recorded path
+ var p=run.path||[], rows='', shown=8, step=Math.max(1,Math.floor(p.length/shown));
+ for(var i=0;i<p.length;i+=step){
+  var frac=i/(p.length-1||1), tt=frac*run.T;
+  var s=switchFn(p[i][0],p[i][1],UBOUND), u = s>0?-UBOUND:UBOUND;
+  rows+='<tr><td>'+fmt(tt)+'</td><td>'+fmt(p[i][0])+'</td><td>'+fmt(p[i][1])+'</td><td>'+(u>0?'+':'')+fmt(u)+'</td></tr>';
+ }
+ // last row = origin
+ rows+='<tr><td>'+fmt(run.T)+'</td><td>'+fmt(run.x1)+'</td><td>'+fmt(run.x2)+'</td><td>&mdash;</td></tr>';
+ $("trajbody").innerHTML=rows;
+
+ // verdict
+ var okmin = run.reached;
+ if(UBOUND>1 && run.reached && run.T < legal.T-1e-3){
+  $("outv").className="verdict no";
+  $("outv").textContent="T = "+fmt(run.T)+" — BOUND BROKEN";
+  $("outreason").innerHTML='The engine posts T = '+fmt(run.T)+' &lt; the legal minimum '+fmt(legal.T)
+   +', but only because |u|=2 exceeds the actuator bound. That is not a faster control &mdash; it is a broken limit.';
+ } else if(run.reached){
+  var restNote = (Math.abs(x2)<1e-9) ? ' The theory value 2&radic;p = '+fmt(minTimeRest(x1))+' agrees.' : '';
+  $("outv").className="verdict ok";
+  $("outv").textContent="ORIGIN REACHED — T = "+fmt(run.T);
+  $("outreason").innerHTML='The bang-bang law drives to the switching curve, then rides it into the origin in minimum time under |u|&le;1.'+restNote;
+ } else {
+  $("outv").className="verdict no";
+  $("outv").textContent="not reached";
+  $("outreason").textContent="Increase the horizon or pick a start the engine can bring home.";
+ }
+ witness(x1,x2);
+}
+
+function setPreset(){
+ var v=$("preset").value.split(","); $("x1").value=v[0]; $("x2").value=v[1]; render();
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("preset").addEventListener("change",setPreset);
+ ["x1","x2"].forEach(function(id){ $(id).addEventListener("input",render); $(id).addEventListener("change",render); });
+ $("tamper").addEventListener("click",function(){ UBOUND=2;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Bound broken (|u|=2).</b> The engine now posts a time <b>below</b> the |u|&le;1 minimum. The witness (5) compares it to the legal minimum, sees the actuator bound violated, and turns <b style='color:var(--wall)'>red</b>."; render(); });
+ $("restore").addEventListener("click",function(){ UBOUND=1;
+  $("tampernote").innerHTML="Break the bound and the engine posts a time <b>below</b> the |u|&le;1 minimum. The witness compares it to the legal minimum, sees the bound violated, and turns <b style='color:var(--wall)'>red</b>. Beating T=2 means cheating |u|&le;1, not finding a valid control."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the maximum-principle engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

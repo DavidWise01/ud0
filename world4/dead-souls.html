@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEAD SOULS &middot; the census arbitrage &middot; WORLD IV — SONIA &middot; THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>ROOM &middot; the Russian world</span></div>
+
+<header>
+ <h1>DEAD SOULS</h1>
+ <p class="sub">Chichikov buys <b>deceased serfs</b> still on the tax census &mdash; <b>&#1084;&#1105;&#1088;&#1090;&#1074;&#1099;&#1077; &#1076;&#1091;&#1096;&#1080;</b> (<i>myortvye dushi</i>) &mdash; and mortgages them for real money. The centre is genuinely <b>runnable</b>: it makes the swindle a clean <b>accounting identity</b>, and shows the profit is collateralised by the <b>paper count</b>, not the living. Toggle the basis to reality and the whole scheme <b>collapses to zero</b>.</p>
+ <p class="src"><span class="tag t-amber">source</span> Nikolai Gogol, <i>Dead Souls</i> (&#1052;&#1105;&#1088;&#1090;&#1074;&#1099;&#1077; &#1076;&#1091;&#1096;&#1080;, 1842) &mdash; the <i>poema</i> of the census swindle; the <b>revizskaya skazka</b> (revision census) and the state <b>Board of Guardians</b> that lent per registered soul. Room <b>THE NOVEL</b>. Figures computed live; nothing quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · ROOTS & LINEAGE & WITNESS ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; roots &middot; lineage &middot; witness</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE ROOTS</h2>
+   <p>In <b>1842</b> Nikolai Gogol published <i>Dead Souls</i>, a <i>poema</i> of a swindle. A serf was a <b>&ldquo;soul&rdquo;</b> taxed by the <b>revision census</b> (revizskaya skazka), redrawn only every <b>~15&ndash;20 years</b>. Between revisions a serf could die, yet stay on the rolls &mdash; a <b>dead soul</b> the owner still paid tax on.</p>
+   <p class="small">Chichikov travels the provinces <b>buying these dead souls</b> off landowners for almost nothing &mdash; relieving them of the tax &mdash; so that <i>on paper</i> he owns hundreds of serfs. <span class="tag t-amber">AMBER</span> literary &amp; historical framing.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE SCHEME <span class="tag t-lit">LIT</span></h2>
+   <p>Two moves, both real institutions of the 1840s:</p>
+   <p class="small"><b>1. Buy the dead cheap.</b> A landowner is glad to be rid of the tax on a soul who no longer works; the purchase price is near <b>0</b>.</p>
+   <p class="small"><b>2. Mortgage them at the Board of Guardians.</b> The state lending house advanced a fixed sum <b>per soul on the census</b> &mdash; it did not send an inspector to count the living. So a dead soul, still registered, <b>collateralises a full loan</b>.</p>
+   <p class="small">Profit is the <b>census lag</b> turned into cash. <span class="tag t-lit">LIT</span> mechanism.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>THE LINEAGE <span class="tag t-amber">AMBER</span></h2>
+   <p>The con is <b>paper against real</b>: value claimed from a registered count that reality no longer backs. That shape outlived the serf.</p>
+   <p class="small">Its Soviet heir is <b>&#1087;&#1088;&#1080;&#1087;&#1080;&#1089;&#1082;&#1080;</b> (<i>pripiski</i>) &mdash; padded plan reports where output exists only in the ledger. Both farm the same gap between the roll and the world. Ties <a href="./the-potemkin-village.html">THE POTEMKIN VILLAGE</a> (the reported vs the real).</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE ARBITRAGE, MADE MECHANICAL ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the census arbitrage &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the rolls <span class="tag t-in">in &#8595;</span></h2>
+   <p>The estate holds <b>living</b> serfs and, on the same census, <b>dead</b> souls not yet struck off. Chichikov buys the dead for a total <b>purchase cost</b>; the Board of Guardians lends a fixed <b>loan per soul</b> against every name on the roll.</p>
+   <div class="row"><label>dead souls</label><input id="dead" type="range" min="0" max="500" value="200"><span id="deadv" class="small">200</span></div>
+   <div class="row"><label>living serfs</label><input id="live" type="range" min="0" max="500" value="100"><span id="livev" class="small">100</span></div>
+   <div class="row"><label>loan/soul</label><input id="loan" type="range" min="0" max="400" value="200"><span id="loanv" class="small">200</span> <span class="small">roubles</span></div>
+   <div class="row"><label>cost total</label><input id="cost" type="range" min="0" max="500" value="0"><span id="costv" class="small">0</span> <span class="small">roubles</span></div>
+   <div id="censusline" class="small" style="margin-top:6px"></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; loan = deadSouls &times; loanPerSoul &nbsp; (basis = the census) &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the arbitrage <span class="tag t-lit">LIT</span></h2>
+   <div class="engine">
+    <div class="controls">
+     <p class="small">The identity is exact: <b class="k">arbitrage = deadSouls &times; loanPerSoul &minus; purchaseCost</b>. It is positive because the loan is secured by the <b>registered count</b> &mdash; not by any living serf who could repay it. The dead collateralise as if alive.</p>
+     <table id="cmp"></table>
+    </div>
+    <div class="readout">
+     <div class="verdict" id="verdict"></div>
+     <div class="reason" id="reason"></div>
+     <div id="witness"></div>
+    </div>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; what actually backs the loan? &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; why it works <span class="tag t-out">out &#8595;</span></h2>
+   <p id="outline">&mdash;</p>
+   <div id="collline" class="out"></div>
+   <p class="small" style="margin-top:8px"><b>THE OCHO TIE.</b> The profit is not made from serfs; it is made from the <b>gap</b> between the census and the graveyard. Flip the collateral basis from the <b>roll</b> to <b>reality</b> (living serfs only) and the dead souls back <b>nothing</b> &mdash; the arbitrage falls to <b>&le; 0</b>. Every LIT instrument in this OCHO carries the same switch: the value must survive being measured against the world. <span class="tag t-lit">LIT</span></p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · THE WALL, GRAVEYARD, TAMPER ===== -->
+ <div class="col red">
+  <div class="teamhdr">the wall &middot; graveyard &middot; tamper &#9704;</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE CENSUS LAG &mdash; the wall</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The whole profit lives in <b>one gap</b>: the census says a soul exists; the graveyard says it does not. The revision was redrawn only every <b>~15&ndash;20 years</b>, so for years the paper count and the living count <b>diverge</b> &mdash; and the loan is written against the paper. Chichikov does not farm serfs; he farms the <b>lag</b>.</div>
+   <p class="small" style="margin-top:8px">Close the lag &mdash; strike the dead off the roll, or send an inspector to count the living &mdash; and there is nothing left to mortgage. The exploit is the <b>delay in the record</b>, nothing more.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Chichikov is buying corpses.&rdquo;</s> <b>Cut.</b> He buys <b>titles on a census</b> &mdash; a financial instrument &mdash; not bodies. The bodies are irrelevant; the <b>registered name</b> is the asset.</p>
+   <p class="grave"><s>&ldquo;It only works because banks were foolish.&rdquo;</s> <b>Examined.</b> It works because the loan was <b>collateralised by the roll</b>, not by reality &mdash; a rule, not a blunder. Change the rule and the value is <b class="k">0</b>.</p>
+   <p class="grave"><s>&ldquo;The profit comes from cheap serfs.&rdquo;</s> <b>Cut.</b> The purchase cost is near zero either way; the profit comes from the <b>census lag</b> &mdash; the dead lending as if alive.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; lend against reality</h2>
+   <p>Make the Board of Guardians lend against <b>reality</b> &mdash; living serfs only &mdash; instead of the census. The dead souls now collateralise <b>nothing</b>, the arbitrage falls to <b>&le; 0</b>, and the con&rsquo;s witness (<i>it only works on the paper count</i>) turns <b>red</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; lend against reality (living only)</button><button id="restore">&#8635; restore the census basis</button></div>
+   <p class="small" id="tampernote">Under the census basis the dead lend a full loan each. Switch the basis to reality and the collateral behind the dead vanishes &mdash; the profit was always the paper count.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">DEAD SOULS &mdash; World IV &middot; SONIA, room <b>THE NOVEL</b>, in the refined <b>OCHO</b>. The centre is real and runnable: Gogol&rsquo;s satire reduced to a clean accounting identity, arbitrage = deadSouls&times;loanPerSoul &minus; purchaseCost, positive only because the state Board of Guardians lent a fixed sum per <b>registered</b> soul rather than per living serf &mdash; so with deadSouls=200, loanPerSoul=200, cost&asymp;0 the scheme conjures &asymp;40,000 roubles from names on a census; toggle the collateral basis from the roll to reality and the dead back nothing, the arbitrage collapses to &le; 0, and the witness turns red; the roots and lineage are honest history (the revision census, <i>pripiski</i>, THE POTEMKIN VILLAGE), and the audit records that the exploit is the census lag itself &mdash; the gap between the roll and the graveyard. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== DEAD SOULS — the census arbitrage as a clean accounting identity (pure core) ===== */
+function loanFromDead(deadSouls, loanPerSoul, basis){
+ // the Board of Guardians lends per soul ON THE CENSUS; under a reality basis the dead back nothing
+ return basis==="census" ? deadSouls*loanPerSoul : 0;
+}
+function arbitrage(deadSouls, loanPerSoul, purchaseCost, basis){
+ return loanFromDead(deadSouls, loanPerSoul, basis) - purchaseCost;
+}
+function censusCount(livingSerfs, deadSouls){ return livingSerfs + deadSouls; }
+function lag(deadSouls){ return deadSouls; }   // the paper count exceeds the living by exactly the dead still on the roll
+function rng(seed){ var s=seed>>>0; return function(){ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+
+/* ===== fail-loud self-check ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c){ throw new Error(m); } };
+ var i;
+ // 1 — the anchor: 200 dead souls at 200 roubles/soul, cost ~0, census basis -> 40,000 from nothing
+ t(arbitrage(200,200,0,"census")===40000,"anchor: 200 dead x 200 roubles - 0 must yield 40000 on the census basis");
+ // 2 — same anchor under the REALITY basis: the dead collateralise 0 -> arbitrage <= 0
+ t(arbitrage(200,200,0,"reality")===0,"anchor: on the reality basis the dead back nothing -> arbitrage 0");
+ t(loanFromDead(200,200,"reality")===0,"the dead must collateralise 0 under the reality basis");
+ // 3 — reality basis is ALWAYS a loss or break-even: arbitrage = -cost <= 0, independent of dead/loan
+ var r=rng(1842);
+ for(i=0;i<400;i++){
+  var d=(r()*500)|0, l=(r()*400)|0, c=(r()*500)|0;
+  t(arbitrage(d,l,c,"reality")=== -c,"reality basis arbitrage must equal -purchaseCost");
+  t(arbitrage(d,l,c,"reality")<=0,"reality basis arbitrage must be <= 0");
+ }
+ // 4 — census basis is positive exactly when dead souls collateralise more than they cost
+ for(i=0;i<400;i++){
+  var d2=(r()*500)|0, l2=(r()*400)|0, c2=(r()*500)|0;
+  var a=arbitrage(d2,l2,c2,"census");
+  t(a===d2*l2-c2,"census arbitrage must equal deadSouls*loanPerSoul - cost");
+  if(d2>0 && l2>0 && c2<d2*l2){ t(a>0,"census arbitrage must be > 0 when the loan on the dead exceeds their cost"); }
+ }
+ // 5 — the collapse: toggling the basis from census to reality removes exactly deadSouls*loanPerSoul
+ for(i=0;i<300;i++){
+  var d3=(r()*500)|0, l3=(r()*400)|0, c3=(r()*500)|0;
+  var drop=arbitrage(d3,l3,c3,"census")-arbitrage(d3,l3,c3,"reality");
+  t(drop===d3*l3,"switching basis must remove exactly the loan collateralised by the dead");
+  if(d3>0 && l3>0){ t(drop>0,"with dead souls on the roll the scheme's value depends entirely on the census basis"); }
+ }
+ // 6 — census arbitrage is monotonic increasing in dead souls (more names on the roll -> more loan)
+ for(i=0;i<200;i++){
+  var l4=((r()*400)|0)+1, c4=(r()*500)|0, d4=(r()*400)|0;
+  t(arbitrage(d4+1,l4,c4,"census")-arbitrage(d4,l4,c4,"census")===l4,"each extra dead soul on the census adds exactly one loanPerSoul");
+ }
+ // 7 — with no dead souls there is no arbitrage on either basis beyond the (paid) cost
+ t(arbitrage(0,200,0,"census")===0,"no dead souls, no cost: no arbitrage");
+ t(arbitrage(0,200,50,"census")===-50,"no dead souls but a cost: a straight loss");
+ // 8 — the census count exceeds the living by exactly the dead still on the roll (the lag)
+ for(i=0;i<200;i++){
+  var lv=(r()*500)|0, dd=(r()*500)|0;
+  t(censusCount(lv,dd)-lv===lag(dd),"the census overcounts the living by exactly the dead souls still registered");
+ }
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var TAMPER=false;
+var S={dead:200,live:100,loan:200,cost:0};
+
+function fmt(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,","); }
+
+function render(){
+ $("deadv").textContent=S.dead; $("livev").textContent=S.live; $("loanv").textContent=fmt(S.loan); $("costv").textContent=fmt(S.cost);
+ var basis=TAMPER?"reality":"census";
+ var census=censusCount(S.live,S.dead);
+ var claim=arbitrage(S.dead,S.loan,S.cost,"census");   // the swindle's paper claim
+ var actual=arbitrage(S.dead,S.loan,S.cost,basis);     // value under the active collateral basis
+ var loanC=loanFromDead(S.dead,S.loan,"census");
+ var loanR=loanFromDead(S.dead,S.loan,"reality");
+
+ $("censusline").innerHTML="on the census: <b class='k'>"+fmt(census)+"</b> souls ("+fmt(S.live)+" living + <b>"+fmt(S.dead)+" dead</b>) &mdash; the roll overcounts the living by <b class='k'>"+fmt(lag(S.dead))+"</b>.";
+
+ // comparison table: census basis vs reality basis
+ var h="<thead><tr><th>collateral basis</th><th>loan on dead</th><th>cost</th><th>arbitrage</th></tr></thead><tbody>";
+ h+="<tr><td>the census (roll)</td><td>"+fmt(loanC)+"</td><td>"+fmt(S.cost)+"</td>"
+   +"<td style='color:"+(claim>0?"var(--lit)":"var(--wall)")+";font-weight:700'>"+fmt(claim)+"</td></tr>";
+ h+="<tr><td>reality (living only)</td><td>"+fmt(loanR)+"</td><td>"+fmt(S.cost)+"</td>"
+   +"<td style='color:var(--wall);font-weight:700'>"+fmt(arbitrage(S.dead,S.loan,S.cost,"reality"))+"</td></tr>";
+ $("cmp").innerHTML=h+"</tbody>";
+
+ // verdict follows the ACTIVE basis
+ if(basis==="census"){
+  if(claim>0){
+   $("verdict").textContent="ARBITRAGE — "+fmt(claim)+" ROUBLES"; $("verdict").className="verdict ok";
+   $("reason").textContent=fmt(S.dead)+" dead souls lend "+fmt(loanC)+" roubles against the census, for a cost of "+fmt(S.cost)+": profit "+fmt(claim)+" from names, not people.";
+  } else {
+   $("verdict").textContent="NO PROFIT"; $("verdict").className="verdict no";
+   $("reason").textContent=(S.dead===0?"no dead souls on the roll: there is nothing to mortgage.":"the cost of "+fmt(S.cost)+" exceeds the loan of "+fmt(loanC)+": the scheme does not clear.");
+  }
+ } else {
+  $("verdict").textContent="COLLAPSED — "+fmt(actual); $("verdict").className="verdict no";
+  $("reason").textContent="lending against reality: the "+fmt(S.dead)+" dead souls collateralise 0. The only figure left is the cost "+fmt(S.cost)+" -> arbitrage "+fmt(actual)+".";
+ }
+
+ // witness — the scheme's claimed value must match what the active basis actually delivers
+ var ok=Math.abs(claim-actual)<1e-9;
+ $("witness").innerHTML="<span class='badge "+(ok?"pass":"failb")+"'>"+(ok?"&#10003; witness holds &mdash; the con works on the paper count":"&#10007; witness broken &mdash; the paper value is not real")+"</span>"
+  +"<div class='small' style='margin-top:6px'>claimed <b class='k'>"+fmt(claim)+"</b> vs delivered under <b>"+basis+"</b> basis <b class='k'>"+fmt(actual)+"</b>"
+  +(ok?"":" &nbsp;&mdash; <span style='color:var(--wall)'>gap "+fmt(claim-actual)+" roubles that only ever existed on the census</span>")+"</div>";
+
+ // data out
+ if(basis==="census"){
+  $("outline").innerHTML="The loan is written against the <b>roll</b>: every registered soul &mdash; alive or dead &mdash; is worth <b class='k'>"+fmt(S.loan)+"</b> roubles of credit. The "+fmt(S.dead)+" dead lend <b class='k'>"+fmt(loanC)+"</b> as if they could repay. Nothing behind them but a name.";
+  $("collline").innerHTML="collateral behind the loan: <b class='k'>"+fmt(loanC)+" roubles of registered souls</b> &mdash; of which <b>"+fmt(loanC)+"</b> is backed by the dead.";
+ } else {
+  $("outline").innerHTML="Lending against <b>reality</b>, only the "+fmt(S.live)+" living count. The dead back <b class='k'>0</b>. The "+fmt(claim>0?claim:0)+"-rouble profit was never in the serfs &mdash; it was in the <b>census lag</b>, and closing the lag closes the scheme.";
+  $("collline").innerHTML="collateral behind the dead: <b class='k'>0 roubles</b> &mdash; the arbitrage falls to <b>"+fmt(actual)+"</b>.";
+ }
+}
+
+function draw(){ render(); }
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("dead").addEventListener("input",function(){ S.dead=+this.value; render(); });
+ $("live").addEventListener("input",function(){ S.live=+this.value; render(); });
+ $("loan").addEventListener("input",function(){ S.loan=+this.value; render(); });
+ $("cost").addEventListener("input",function(){ S.cost=+this.value; render(); });
+ $("tamper").addEventListener("click",function(){ TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Basis switched to reality.</b> The Board now lends only against living serfs; the dead souls collateralise <b>0</b>. The arbitrage collapses to &le; 0 and the witness turns red &mdash; proof the profit was the paper count all along. Real, and caught."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false;
+  $("tampernote").innerHTML="Under the census basis the dead lend a full loan each. Switch the basis to reality and the collateral behind the dead vanishes &mdash; the profit was always the paper count."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — DEAD SOULS engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

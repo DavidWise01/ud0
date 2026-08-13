@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAMIZDAT &middot; the branching cascade of banned truth &middot; WORLD IV — SONIA &middot; THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>ROOM &middot; the Russian world</span></div>
+
+<header>
+ <h1>SAMIZDAT</h1>
+ <p class="sub"><b>&#1089;&#1072;&#1084;&#1080;&#1079;&#1076;&#1072;&#1090;</b> (<i>samizdat</i>, &ldquo;self-published&rdquo;) &mdash; the Soviet underground where a censored text was retyped on <b>carbon paper</b>, and each reader who received a copy became a press for the next. The centre is genuinely <b>runnable</b>: it models the spread as a <b>Galton&ndash;Watson branching process</b>, and finds the <b>sharp threshold</b> &mdash; the cascade survives if and only if each copy makes <b>more than one</b>.</p>
+ <p class="src"><span class="tag t-amber">source</span> Samizdat &mdash; clandestine reproduction and hand-to-hand circulation of censored writing (Solzhenitsyn, Sakharov, and the wider dissident milieu); the branching-process threshold: F. Galton &amp; H. W. Watson (1874) and later theory. Room <b>THE STATE</b>. Figures computed live; nothing quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · ROOTS & LINEAGE & WITNESS ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; roots &middot; lineage &middot; witness</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE ROOTS</h2>
+   <p>A banned manuscript could not be printed &mdash; every press was licensed by the state. So it was <b>retyped</b>. A typewriter with carbon sheets makes an original plus a few faint carbons at once: one sitting yields <b>~k legible copies</b>. The credo, attributed to the writer and dissident Vladimir Bukovsky: <i>&ldquo;I write it myself, edit it myself, censor it myself, publish it myself, distribute it myself&hellip;&rdquo;</i></p>
+   <p class="small">Solzhenitsyn&rsquo;s work, Sakharov&rsquo;s essays, and countless smaller texts moved this way &mdash; reader to reader, each recipient free to retype and pass it on. <span class="tag t-amber">AMBER</span> historical framing; the dissidents named are real, no quotations are invented beyond the widely-attributed credo above.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE COPY <span class="tag t-lit">LIT</span></h2>
+   <p>Each reader is a <b>printing press</b>. Give the text to one person; on average that person makes <b class="k">k</b> further copies (retyping, lending, re-carboning), each landing with a new reader who may copy again. This is the <b>offspring</b> of a branching process: one carrier &rarr; <b>k</b> carriers, independently, generation after generation.</p>
+   <p class="small">With Poisson-distributed effort, the number of copies one carrier makes has mean <b class="k">k</b>. The whole cascade is then fixed by that single number &mdash; the <b>copy rate</b>. Measured mechanism, not metaphor.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>THE INVERSE OF PRIPISKI <span class="tag t-amber">AMBER</span></h2>
+   <p>This sphere is the mirror of <a href="./the-potemkin-village.html">THE POTEMKIN VILLAGE</a>. There, the <b>state&rsquo;s</b> signal is a facade &mdash; a report that always says &ldquo;met&rdquo; carries <b>zero bits</b>, an information-free lie broadcast downward.</p>
+   <p class="small">Here the flow reverses: the <b>citizens&rsquo;</b> true signal spreads <b>upward and outward</b> through a network with no centre to seize. Pripiski is false information the state pushes down a single channel; samizdat is true information the people push through a <b>branching</b> one. Ties both spheres in room THE STATE.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE CASCADE, MADE MECHANICAL ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; one copy &rarr; the branching cascade &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the copy rate <span class="tag t-in">in &#8595;</span></h2>
+   <p>Start from <b>one</b> original. Set <b class="k">k</b> = the mean number of legible copies each carrier makes (carbon paper, lending, retyping), and <b>g</b> = how many generations of passing-on to trace. Poisson offspring, mean <b>k</b>.</p>
+   <div class="row"><label>copy rate k</label><input id="k" type="range" min="0.05" max="3" step="0.05" value="1.5"><span id="kv" class="small">1.50</span></div>
+   <div class="row"><label>generations g</label><input id="g" type="range" min="0" max="12" step="1" value="6"><span id="gv" class="small">6</span></div>
+   <p class="small" style="margin-top:4px"><b>k = 1.5</b> &rarr; each carrier makes three copies for every two carriers before them. <b>k = 0.8</b> &rarr; on average fewer than one &mdash; the thread thins out.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; expected copies at generation g = k<sup>g</sup> &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the branching process <span class="tag t-lit">LIT</span></h2>
+   <div class="engine">
+    <div class="controls">
+     <p class="small">Expected reach grows (or shrinks) as <b class="k">k<sup>g</sup></b>. The survival question is decided by the <b>extinction probability</b> <b class="k">q</b> &mdash; the smallest fixed point of the offspring generating function. For Poisson(k), <b class="k">q = e<sup>k(q&minus;1)</sup></b>, solved here by iteration.</p>
+     <table id="iter"></table>
+    </div>
+    <div class="readout">
+     <div class="verdict" id="verdict"></div>
+     <div class="reason" id="reason"></div>
+     <div id="witness"></div>
+    </div>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; does the thread survive, or die out? &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; THE THRESHOLD <span class="tag t-lit">LIT</span></h2>
+   <p id="outline">&mdash;</p>
+   <div id="threshline" class="out"></div>
+   <p class="small" style="margin-top:8px"><b>THE SHARP LINE.</b> The process is <b>supercritical</b> (survives with positive probability) if and only if <b class="k">k &gt; 1</b>, and <b>subcritical</b> (extinct with probability 1) if <b class="k">k &le; 1</b>. There is no gentle slope at the boundary: at <b>k = 1</b> the mean stays flat forever yet the line still dies out. That single inequality is the whole physics of a censored idea. <span class="tag t-lit">LIT</span></p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · THE WALL, GRAVEYARD, TAMPER ===== -->
+ <div class="col red">
+  <div class="teamhdr">the wall &middot; graveyard &middot; tamper &#9704;</div>
+
+  <div class="win red"><span class="no">1</span><h2>RESILIENCE &mdash; the wall</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> Above the threshold the cascade has <b>no centre to raid</b>. There is no master press, no single warehouse, no editorial office &mdash; every carrier holds the whole capacity to reproduce. Seizing any one node, or any hundred, removes a finite branch while the rest keep copying. A supercritical branch <b>regrows from any surviving carrier</b>.</div>
+   <p class="small" style="margin-top:8px">This is why the state fought samizdat with fear of the <b>reader</b>, not the printer: the only way to stop a supercritical cascade is to push <b>k</b> below <b>1</b> &mdash; to make each person too afraid to make even one copy.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Censorship always wins &mdash; the state controls the presses.&rdquo;</s> <b>Cut.</b> Above the copy threshold there <b>is</b> no press to control: the cascade is carried by readers and is unstoppable while <b>k &gt; 1</b>.</p>
+   <p class="grave"><s>&ldquo;A few brave copiers cannot matter against a whole apparatus.&rdquo;</s> <b>Examined.</b> Reach is <b>k<sup>g</sup></b> &mdash; exponential. A small copy rate above one, given generations, floods; the apparatus is racing an exponential.</p>
+   <p class="grave"><s>&ldquo;Enough intimidation and it dies on its own.&rdquo;</s> <b>Kept &mdash; but only below the line.</b> True: drive <b>k &le; 1</b> and the thread goes extinct with probability 1. Intimidation works <b>only</b> by crossing the threshold, not by scale.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; call a dying thread alive</h2>
+   <p>Set the copy rate <b class="k">k &le; 1</b> (heavy censorship, few carriers) but <b>claim the text still spreads</b>. A subcritical branching process goes <b>extinct with probability 1</b>; the honest witness measures the survival probability, finds it <b class="k">0</b>, and the mismatch turns the <b>witness red</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; set k=0.8 and claim it still spreads</button><button id="restore">&#8635; restore honesty</button></div>
+   <p class="small" id="tampernote">Truth needs enough carriers to cross the threshold; below it the state wins by mathematics, not decree. Claiming survival does not raise <b>k</b>.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">SAMIZDAT &mdash; World IV &middot; SONIA, room <b>THE STATE</b>, in the refined <b>OCHO</b>. The centre is real and runnable: the underground copying of banned text is modelled as a Galton&ndash;Watson branching process with mean offspring k, whose expected reach after g generations is exactly k<sup>g</sup>, and whose extinction probability q is the smallest fixed point of the Poisson generating function q = e<sup>k(q&minus;1)</sup>, solved live by iteration and cross-checked against a seeded simulation &mdash; giving the sharp threshold that the cascade survives with positive probability if and only if k &gt; 1 and dies out with probability 1 when k &le; 1; the roots and lineage are honest history, and the audit records that a supercritical cascade has no centre to seize while a subcritical one cannot be saved by any claim of survival. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SAMIZDAT — the branching cascade of banned truth (pure core) ===== */
+var EXT_ITERS=100000;
+function rng(seed){ var s=seed>>>0; return function(){ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+function expReach(k,g){ return Math.pow(k,g); }                                  // expected copies at generation g
+function totalReach(k,g){ var s=0,i; for(i=0;i<=g;i++){ s+=Math.pow(k,i); } return s; }  // cumulative copies through g
+function poissonPGF(q,k){ return Math.exp(k*(q-1)); }                            // offspring generating function for Poisson(k)
+function extinction(k){                                                          // smallest fixed point of q = e^{k(q-1)}
+ var q=0,i; for(i=0;i<EXT_ITERS;i++){ q=Math.exp(k*(q-1)); } return q;
+}
+function isSupercritical(k){ return extinction(k) < 1 - 1e-3; }                  // survives with positive probability
+function survival(k){ var s=1-extinction(k); return s<0?0:s; }
+function samplePoisson(k,rnd){                                                   // Knuth's algorithm, mean k
+ var L=Math.exp(-k),p=1,n=0; do{ n++; p*=rnd(); }while(p>L); return n-1;
+}
+function simExtinctFrac(k,seed,trials,maxGen,cap){                               // seeded branching simulation
+ var rnd=rng(seed),extinct=0,t,gen,pop,i,next;
+ for(t=0;t<trials;t++){
+  pop=1;
+  for(gen=0; gen<maxGen && pop>0 && pop<cap; gen++){
+   next=0; for(i=0;i<pop;i++){ next+=samplePoisson(k,rnd); } pop=next;
+  }
+  if(pop===0){ extinct++; }
+ }
+ return extinct/trials;
+}
+
+/* ===== fail-loud self-check ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c){ throw new Error(m); } };
+ var i,g,k;
+ // 1 -- expected reach at generation g is exactly k^g
+ t(expReach(1.5,0)===1,"reach at g=0 must be 1 (a single original copy)");
+ t(expReach(1.5,1)===1.5,"reach at g=1 must equal k");
+ t(Math.abs(expReach(2,3)-8)<1e-9,"reach k=2,g=3 must be 8 = 2^3");
+ t(Math.abs(expReach(1.5,4)-Math.pow(1.5,4))<1e-12,"reach must equal k^g");
+ // doubling k grows the reach at every generation g>=1
+ for(g=1;g<=6;g++){ for(k=0.5;k<=2.0001;k+=0.5){ t(expReach(2*k,g)>expReach(k,g),"doubling k must grow reach at g="+g); } }
+ // 2 -- the sharp threshold: supercritical iff k>1, subcritical iff k<=1
+ var sup=[1.2,1.5,2,3], sub=[0.3,0.5,0.8,1.0];
+ for(i=0;i<sup.length;i++){ t(isSupercritical(sup[i]),"k>1 must be supercritical: k="+sup[i]); t(extinction(sup[i])<1-1e-3,"extinction<1 for k>1: k="+sup[i]); t(survival(sup[i])>0,"survival must be positive for k>1: k="+sup[i]); }
+ for(i=0;i<sub.length;i++){ t(!isSupercritical(sub[i]),"k<=1 must be subcritical: k="+sub[i]); t(extinction(sub[i])>1-1e-3,"extinction must be ~1 for k<=1: k="+sub[i]); t(survival(sub[i])<1e-3,"survival must be ~0 for k<=1: k="+sub[i]); }
+ // 3 -- q is the fixed point of the Poisson generating function q = e^{k(q-1)}
+ for(i=0;i<sup.length;i++){ var q=extinction(sup[i]); t(Math.abs(q-poissonPGF(q,sup[i]))<1e-5,"q must satisfy q=e^{k(q-1)}: k="+sup[i]); }
+ // 4 -- the named anchors
+ t(Math.abs(extinction(1.5)-0.417)<0.005,"k=1.5 extinction must be ~0.417 (survives)");
+ t(extinction(0.8)>1-1e-3,"k=0.8 must go extinct with probability 1 (q=1)");
+ t(extinction(1.0)>1-1e-3,"k=1 (critical) must go extinct with probability 1 (q=1)");
+ // 5 -- seeded simulation must agree with the analytic extinction probability
+ var emp=simExtinctFrac(1.5,424242,1200,40,1500);
+ t(Math.abs(emp-extinction(1.5))<0.05,"simulated extinction must match analytic q for k=1.5");
+ var emp2=simExtinctFrac(0.8,90210,1000,60,1500);
+ t(emp2>0.98,"subcritical simulation (k=0.8) must go extinct nearly always");
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var TAMPER=false;
+var S={k:1.5,g:6};
+
+function verdictFor(k){
+ if(k>1){ return {label:"SUPERCRITICAL — IT SPREADS",cls:"ok"}; }
+ if(Math.abs(k-1)<1e-9){ return {label:"CRITICAL — DIES OUT (q=1)",cls:"no"}; }
+ return {label:"SUBCRITICAL — DIES OUT",cls:"no"};
+}
+
+function render(){
+ $("kv").textContent=S.k.toFixed(2); $("gv").textContent=S.g;
+ var q=extinction(S.k), surv=survival(S.k), reach=expReach(S.k,S.g), tot=totalReach(S.k,S.g);
+ var sup=isSupercritical(S.k);
+ // generation table
+ var rows=Math.min(8,S.g), h="<thead><tr><th>gen</th><th>expected copies k^g</th><th>&Sigma; reach</th></tr></thead><tbody>", cum=0, n;
+ for(n=0;n<=rows;n++){
+  var c=expReach(S.k,n); cum=totalReach(S.k,n);
+  var col=(S.k>1?"var(--grn)":(Math.abs(S.k-1)<1e-9?"var(--ink)":"var(--wall)"));
+  h+="<tr><td>"+n+"</td><td style='color:"+col+"'>"+(c>=1000?c.toExponential(2):c.toFixed(2))+"</td>"
+    +"<td>"+(cum>=1000?cum.toExponential(2):cum.toFixed(2))+"</td></tr>";
+ }
+ if(S.g>rows){ h+="<tr><td>&hellip;</td><td>"+expReach(S.k,S.g).toExponential(2)+"</td><td>"+totalReach(S.k,S.g).toExponential(2)+"</td></tr>"; }
+ $("iter").innerHTML=h+"</tbody>";
+ // verdict
+ var v=verdictFor(S.k);
+ $("verdict").textContent=v.label; $("verdict").className="verdict "+v.cls;
+ if(sup){
+  $("reason").innerHTML="each carrier makes <b>"+S.k.toFixed(2)+" &gt; 1</b> copies on average: extinction q = <b class='k'>"+q.toFixed(3)+"</b> &lt; 1, so with probability <b>"+surv.toFixed(3)+"</b> the thread never dies.";
+ } else {
+  $("reason").innerHTML="each carrier makes <b>"+S.k.toFixed(2)+" &le; 1</b> copies on average: extinction q = <b class='k'>"+q.toFixed(3)+"</b>, so the thread dies out with probability <b>1</b> whatever the head start.";
+ }
+ // witness -- claimed survival must match the actual math
+ var actualSpreads=sup;
+ var claimSpreads=TAMPER?true:actualSpreads;   // tamper: claim a subcritical thread spreads
+ var ok=(claimSpreads===actualSpreads);
+ $("witness").innerHTML="<span class='badge "+(ok?"pass":"failb")+"'>"+(ok?"&#10003; witness holds &mdash; survival claim honest":"&#10007; witness broken &mdash; dead thread called alive")+"</span>"
+  +"<div class='small' style='margin-top:6px'>survival probability <b class='k'>"+surv.toFixed(3)+"</b> &mdash; "
+  +(actualSpreads?"positive: the cascade is supercritical":"zero: the cascade is subcritical, extinction is certain")
+  +(TAMPER?" &nbsp;&mdash; <span style='color:var(--wall)'>operator claims it still spreads &mdash; false at k="+S.k.toFixed(2)+"</span>":"")+"</div>";
+ // data out -- the threshold
+ if(sup){
+  $("outline").innerHTML="At <b>k = "+S.k.toFixed(2)+"</b> the process sits <b>above</b> the line. Expected reach after <b>"+S.g+"</b> generations is <b class='k'>"+(reach>=1000?reach.toExponential(2):reach.toFixed(2))+"</b> copies from a single original, and the thread survives with probability <b>"+surv.toFixed(3)+"</b>.";
+ } else {
+  $("outline").innerHTML="At <b>k = "+S.k.toFixed(2)+"</b> the process sits <b>on or below</b> the line. Expected reach shrinks toward zero (k^g = <b class='k'>"+reach.toFixed(3)+"</b> at g="+S.g+"), and the thread is extinct with probability <b>1</b>.";
+ }
+ $("threshline").innerHTML="k = <b class='k'>"+S.k.toFixed(2)+"</b> &nbsp; vs &nbsp; threshold <b class='k'>1.00</b> &nbsp;&rarr;&nbsp; "+(sup?"<span style='color:var(--grn)'>survives</span>":"<span style='color:var(--wall)'>dies out</span>")+" &nbsp;(q = "+q.toFixed(3)+")";
+}
+
+function draw(){ render(); }
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("k").addEventListener("input",function(){ S.k=+this.value; TAMPER=false; render(); });
+ $("g").addEventListener("input",function(){ S.g=+this.value; render(); });
+ $("tamper").addEventListener("click",function(){ S.k=0.8; $("k").value=0.8; TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Claim entered: k=0.8 still spreads.</b> The measured survival probability of a subcritical branching process is <b>0</b> &mdash; extinction is certain. The claimed spread does not exist; the witness turns red. Real, and caught."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false; S.k=1.5; $("k").value=1.5;
+  $("tampernote").innerHTML="Truth needs enough carriers to cross the threshold; below it the state wins by mathematics, not decree. Claiming survival does not raise <b>k</b>."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — SAMIZDAT engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>
