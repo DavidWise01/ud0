@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//SONIA//WORLD-IV//the-russian-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
   "folded_to": "ROOT_0",
-  "root": "4de9fcaabd54288f4bb71edfb3970ba5df4c3af3781451f46425cef6f7ae4123",
-  "count": 31,
+  "root": "180c26b1232e6a10eb2ca85eb835437c775388b5e37c18e451117168a18e48fd",
+  "count": 36,
   "sealed": "2026-08-12",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World IV inhabitant folds to ROOT_0. Live: the root updates as SONIA grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
@@ -36,7 +36,11 @@
           "side": "R"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -65,7 +69,11 @@
           "side": "R"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -94,7 +102,11 @@
           "side": "R"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -123,7 +135,11 @@
           "side": "R"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -152,7 +168,11 @@
           "side": "R"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -181,7 +201,11 @@
           "side": "R"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -210,7 +234,11 @@
           "side": "R"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -239,7 +267,11 @@
           "side": "R"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -268,7 +300,11 @@
           "side": "L"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -297,7 +333,11 @@
           "side": "L"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -326,7 +366,11 @@
           "side": "L"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -355,7 +399,11 @@
           "side": "L"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -384,7 +432,11 @@
           "side": "L"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -413,7 +465,11 @@
           "side": "L"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -442,7 +498,11 @@
           "side": "L"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -471,7 +531,11 @@
           "side": "L"
         },
         {
-          "h": "9144162a376e76de1622bd8510ba069bb1a2b92945de5b17a1d93cbf66a477c8",
+          "h": "d1da5a4c466d84973c1ae4cb4ebd89862ba5e0d5b87c82e50520996acd582b44",
+          "side": "R"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
           "side": "R"
         }
       ]
@@ -492,16 +556,20 @@
           "side": "R"
         },
         {
-          "h": "f949d967ef5f983fcc22abbf80db4f39cdf01a2c5b771d57221a0b9575bed480",
+          "h": "4aff3251d80d79423addd04a2cbf0feab443b70f2159a96f86224afe46af9ea8",
           "side": "R"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "65d23a667806741a6896893076fce78b986830b7b374db8cb8366e177221a73a",
           "side": "R"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
@@ -521,16 +589,20 @@
           "side": "R"
         },
         {
-          "h": "f949d967ef5f983fcc22abbf80db4f39cdf01a2c5b771d57221a0b9575bed480",
+          "h": "4aff3251d80d79423addd04a2cbf0feab443b70f2159a96f86224afe46af9ea8",
           "side": "R"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "65d23a667806741a6896893076fce78b986830b7b374db8cb8366e177221a73a",
           "side": "R"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
@@ -550,16 +622,20 @@
           "side": "L"
         },
         {
-          "h": "f949d967ef5f983fcc22abbf80db4f39cdf01a2c5b771d57221a0b9575bed480",
+          "h": "4aff3251d80d79423addd04a2cbf0feab443b70f2159a96f86224afe46af9ea8",
           "side": "R"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "65d23a667806741a6896893076fce78b986830b7b374db8cb8366e177221a73a",
           "side": "R"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
@@ -579,16 +655,20 @@
           "side": "L"
         },
         {
-          "h": "f949d967ef5f983fcc22abbf80db4f39cdf01a2c5b771d57221a0b9575bed480",
+          "h": "4aff3251d80d79423addd04a2cbf0feab443b70f2159a96f86224afe46af9ea8",
           "side": "R"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "65d23a667806741a6896893076fce78b986830b7b374db8cb8366e177221a73a",
           "side": "R"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
@@ -604,7 +684,7 @@
           "side": "R"
         },
         {
-          "h": "4a13d31b9d4ec8cd7337c6c1152be2a323629435eb0f99f818a97c84fad2d90a",
+          "h": "2b925a7bb3b65e1a84d42135afe84343c6484811f4328e4ec9bf04e804650b70",
           "side": "R"
         },
         {
@@ -612,12 +692,16 @@
           "side": "L"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "65d23a667806741a6896893076fce78b986830b7b374db8cb8366e177221a73a",
           "side": "R"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
@@ -633,7 +717,7 @@
           "side": "L"
         },
         {
-          "h": "4a13d31b9d4ec8cd7337c6c1152be2a323629435eb0f99f818a97c84fad2d90a",
+          "h": "2b925a7bb3b65e1a84d42135afe84343c6484811f4328e4ec9bf04e804650b70",
           "side": "R"
         },
         {
@@ -641,12 +725,16 @@
           "side": "L"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "65d23a667806741a6896893076fce78b986830b7b374db8cb8366e177221a73a",
           "side": "R"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
@@ -658,7 +746,7 @@
       "seal": "6a2f60ef3095e66277bacd299ab17f8f4d32e4cbd6450a7a5831810ac28170c3",
       "proof": [
         {
-          "h": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
+          "h": "57b93e4198217d85dc720d379a9d345e089c41b7cbdb079f097c2cf0238b40d8",
           "side": "R"
         },
         {
@@ -670,21 +758,25 @@
           "side": "L"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "65d23a667806741a6896893076fce78b986830b7b374db8cb8366e177221a73a",
           "side": "R"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
     {
       "index": 23,
-      "kind": "keeper",
-      "name": "SONIA",
-      "slug": "sonia",
-      "seal": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
+      "kind": "sphere",
+      "name": "THE TRANSPORTATION PROBLEM",
+      "slug": "the-transportation-problem",
+      "seal": "57b93e4198217d85dc720d379a9d345e089c41b7cbdb079f097c2cf0238b40d8",
       "proof": [
         {
           "h": "6a2f60ef3095e66277bacd299ab17f8f4d32e4cbd6450a7a5831810ac28170c3",
@@ -699,214 +791,411 @@
           "side": "L"
         },
         {
-          "h": "399ab70c6fafab766ddb09f834603b4763b0b647b9d2ae7ebc4af23a2023fe8d",
+          "h": "65d23a667806741a6896893076fce78b986830b7b374db8cb8366e177221a73a",
           "side": "R"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
     {
       "index": 24,
-      "kind": "keeper",
-      "name": "KHINCHIN",
-      "slug": "khinchin",
-      "seal": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
+      "kind": "sphere",
+      "name": "CHEKHOV'S GUN",
+      "slug": "chekhovs-gun",
+      "seal": "5aadbea10a51df01a65a534497f08b1279ca319a871fcd79efa9108d6ed9927e",
       "proof": [
         {
-          "h": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+          "h": "8834c51d0965e40fc15c3dde1ba92fefbe6e6f2afaff0f50932b16d2adda07b7",
           "side": "R"
         },
         {
-          "h": "e0a42a2220ba06145eb7b9f16482c4415e3164bdf441ecd89e010794335dc313",
+          "h": "5813608e652d62a2ab4ed0b86efe0f9c6d149877bc3c362bc297d02b055d15b5",
           "side": "R"
         },
         {
-          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "h": "3691b302035e1777867fbfc1bff8556394d7b8994bc431b82a6017bcee1bf44b",
           "side": "R"
         },
         {
-          "h": "0296f1b8feba080ea732bdd0667db2cfd5f794db6f6153182ab7ab6572a27a61",
+          "h": "522e0ed72d6903b970a3c6f94735945f97c529c614d886faace041e678386bad",
           "side": "L"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
     {
       "index": 25,
-      "kind": "keeper",
-      "name": "KOLMOGOROV",
-      "slug": "kolmogorov",
-      "seal": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+      "kind": "sphere",
+      "name": "KAISSA",
+      "slug": "kaissa",
+      "seal": "8834c51d0965e40fc15c3dde1ba92fefbe6e6f2afaff0f50932b16d2adda07b7",
       "proof": [
         {
-          "h": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
+          "h": "5aadbea10a51df01a65a534497f08b1279ca319a871fcd79efa9108d6ed9927e",
           "side": "L"
         },
         {
-          "h": "e0a42a2220ba06145eb7b9f16482c4415e3164bdf441ecd89e010794335dc313",
+          "h": "5813608e652d62a2ab4ed0b86efe0f9c6d149877bc3c362bc297d02b055d15b5",
           "side": "R"
         },
         {
-          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "h": "3691b302035e1777867fbfc1bff8556394d7b8994bc431b82a6017bcee1bf44b",
           "side": "R"
         },
         {
-          "h": "0296f1b8feba080ea732bdd0667db2cfd5f794db6f6153182ab7ab6572a27a61",
+          "h": "522e0ed72d6903b970a3c6f94735945f97c529c614d886faace041e678386bad",
           "side": "L"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
     {
       "index": 26,
-      "kind": "keeper",
-      "name": "DOSTOEVSKY",
-      "slug": "dostoevsky",
-      "seal": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+      "kind": "sphere",
+      "name": "THE FOX EXPERIMENT",
+      "slug": "the-fox-experiment",
+      "seal": "8e7e771be2740268f91e019c55d25a25ab449ef2b865c9024334ed110d392cbe",
       "proof": [
         {
-          "h": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+          "h": "6ff1de36de7b80245043f0a769136f9531d47b1a9effa95cfe9777231cf041c5",
           "side": "R"
         },
         {
-          "h": "bc7fc1e4e68582257779886da7e0a26aa09d718827480f35f72b6e37a0badbbd",
+          "h": "e5d89ad99c4ed5da907bb70b179cb5dd860aeea38206194cc05130ba690b0a66",
           "side": "L"
         },
         {
-          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "h": "3691b302035e1777867fbfc1bff8556394d7b8994bc431b82a6017bcee1bf44b",
           "side": "R"
         },
         {
-          "h": "0296f1b8feba080ea732bdd0667db2cfd5f794db6f6153182ab7ab6572a27a61",
+          "h": "522e0ed72d6903b970a3c6f94735945f97c529c614d886faace041e678386bad",
           "side": "L"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
     {
       "index": 27,
-      "kind": "keeper",
-      "name": "TOLSTOY",
-      "slug": "tolstoy",
-      "seal": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+      "kind": "sphere",
+      "name": "THE POTEMKIN VILLAGE",
+      "slug": "the-potemkin-village",
+      "seal": "6ff1de36de7b80245043f0a769136f9531d47b1a9effa95cfe9777231cf041c5",
       "proof": [
         {
-          "h": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+          "h": "8e7e771be2740268f91e019c55d25a25ab449ef2b865c9024334ed110d392cbe",
           "side": "L"
         },
         {
-          "h": "bc7fc1e4e68582257779886da7e0a26aa09d718827480f35f72b6e37a0badbbd",
+          "h": "e5d89ad99c4ed5da907bb70b179cb5dd860aeea38206194cc05130ba690b0a66",
           "side": "L"
         },
         {
-          "h": "4bd4bf851a977fb77dca082beb278379ccbf02f50ed5a6599f326772936200e0",
+          "h": "3691b302035e1777867fbfc1bff8556394d7b8994bc431b82a6017bcee1bf44b",
           "side": "R"
         },
         {
-          "h": "0296f1b8feba080ea732bdd0667db2cfd5f794db6f6153182ab7ab6572a27a61",
+          "h": "522e0ed72d6903b970a3c6f94735945f97c529c614d886faace041e678386bad",
           "side": "L"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
     {
       "index": 28,
       "kind": "keeper",
-      "name": "BRUSENTSOV",
-      "slug": "brusentsov",
-      "seal": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+      "name": "SONIA",
+      "slug": "sonia",
+      "seal": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
       "proof": [
         {
-          "h": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+          "h": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
           "side": "R"
         },
         {
-          "h": "3c4269c0623ae0cb40a06aa06edb0be605cca29086a9bb4135b04755ec9cf6f9",
+          "h": "8486bdfbf17a118b499cd2c749d291edffe53313389c03c15bed86518399ccb6",
           "side": "R"
         },
         {
-          "h": "f80e29d1e3b9433d59482daea7b4a02c24e1e07aeb6fb4d979d6dd45a3422069",
+          "h": "ea91d2b11a7ae631420dac35aeff274a63c7c7a9cf1e5a4f1ae31d016af99ea7",
           "side": "L"
         },
         {
-          "h": "0296f1b8feba080ea732bdd0667db2cfd5f794db6f6153182ab7ab6572a27a61",
+          "h": "522e0ed72d6903b970a3c6f94735945f97c529c614d886faace041e678386bad",
           "side": "L"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
     {
       "index": 29,
       "kind": "keeper",
-      "name": "LEBEDEV",
-      "slug": "lebedev",
-      "seal": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
+      "name": "KHINCHIN",
+      "slug": "khinchin",
+      "seal": "85853af0d035cdf0631e93d12e37f17f5df061ca01363e0926b274468893d475",
       "proof": [
         {
-          "h": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+          "h": "84b71d2297e8862afe081f7514f455416bd9d416b20633c34fcf8ea339171321",
           "side": "L"
         },
         {
-          "h": "3c4269c0623ae0cb40a06aa06edb0be605cca29086a9bb4135b04755ec9cf6f9",
+          "h": "8486bdfbf17a118b499cd2c749d291edffe53313389c03c15bed86518399ccb6",
           "side": "R"
         },
         {
-          "h": "f80e29d1e3b9433d59482daea7b4a02c24e1e07aeb6fb4d979d6dd45a3422069",
+          "h": "ea91d2b11a7ae631420dac35aeff274a63c7c7a9cf1e5a4f1ae31d016af99ea7",
           "side": "L"
         },
         {
-          "h": "0296f1b8feba080ea732bdd0667db2cfd5f794db6f6153182ab7ab6572a27a61",
+          "h": "522e0ed72d6903b970a3c6f94735945f97c529c614d886faace041e678386bad",
           "side": "L"
         },
         {
           "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
           "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
         }
       ]
     },
     {
       "index": 30,
       "kind": "keeper",
-      "name": "TSIOLKOVSKY",
-      "slug": "tsiolkovsky",
-      "seal": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
+      "name": "KOLMOGOROV",
+      "slug": "kolmogorov",
+      "seal": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+      "proof": [
+        {
+          "h": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+          "side": "R"
+        },
+        {
+          "h": "1bbb8e719bb0b629c76f0b1da3ccc930eb09e50d4f04746287ffa26a80d96dac",
+          "side": "L"
+        },
+        {
+          "h": "ea91d2b11a7ae631420dac35aeff274a63c7c7a9cf1e5a4f1ae31d016af99ea7",
+          "side": "L"
+        },
+        {
+          "h": "522e0ed72d6903b970a3c6f94735945f97c529c614d886faace041e678386bad",
+          "side": "L"
+        },
+        {
+          "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
+          "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "kind": "keeper",
+      "name": "DOSTOEVSKY",
+      "slug": "dostoevsky",
+      "seal": "0551a6243309f28f7432228bf6ae0d7096de81c4bbb53f5b58fdd7bf5c37fba6",
+      "proof": [
+        {
+          "h": "f70fea70b607ba422cadbb41f428ae5c3ba1c47c8bf88e623e68ca19d287f01f",
+          "side": "L"
+        },
+        {
+          "h": "1bbb8e719bb0b629c76f0b1da3ccc930eb09e50d4f04746287ffa26a80d96dac",
+          "side": "L"
+        },
+        {
+          "h": "ea91d2b11a7ae631420dac35aeff274a63c7c7a9cf1e5a4f1ae31d016af99ea7",
+          "side": "L"
+        },
+        {
+          "h": "522e0ed72d6903b970a3c6f94735945f97c529c614d886faace041e678386bad",
+          "side": "L"
+        },
+        {
+          "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
+          "side": "L"
+        },
+        {
+          "h": "fef65c497aefd64ff05a4b8868f59e5907eb231fb7d702877f033caaea0ee9a7",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "kind": "keeper",
+      "name": "TOLSTOY",
+      "slug": "tolstoy",
+      "seal": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+      "proof": [
+        {
+          "h": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+          "side": "R"
+        },
+        {
+          "h": "216589e07a897e4fa1f4ef9cf2370ed4e5a2fa8a066e39b83aeec1419e8454b0",
+          "side": "R"
+        },
+        {
+          "h": "a285969870b17b4813bd5ae39b4cc4ec324e2b1c036b079ca24e4bb3518010d5",
+          "side": "R"
+        },
+        {
+          "h": "8cbacdc85eefeee2ad1b287b34fa790e6feac2d9114f163bd4e95ff92e614c61",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
+        },
+        {
+          "h": "47cf14fff0486c98b2c3b9c4707e4e6190d9d3bf1492cd3255bfbe5473c13594",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "kind": "keeper",
+      "name": "BRUSENTSOV",
+      "slug": "brusentsov",
+      "seal": "7f3af54382ed9752d18f798443ce2bdcb74d4e9499e900c800c0e5e12b168905",
+      "proof": [
+        {
+          "h": "d592f7cb9c379fda02ad046d8da3e542b0a1d60fb205d74acf9c971aa1eb859e",
+          "side": "L"
+        },
+        {
+          "h": "216589e07a897e4fa1f4ef9cf2370ed4e5a2fa8a066e39b83aeec1419e8454b0",
+          "side": "R"
+        },
+        {
+          "h": "a285969870b17b4813bd5ae39b4cc4ec324e2b1c036b079ca24e4bb3518010d5",
+          "side": "R"
+        },
+        {
+          "h": "8cbacdc85eefeee2ad1b287b34fa790e6feac2d9114f163bd4e95ff92e614c61",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
+        },
+        {
+          "h": "47cf14fff0486c98b2c3b9c4707e4e6190d9d3bf1492cd3255bfbe5473c13594",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "kind": "keeper",
+      "name": "LEBEDEV",
+      "slug": "lebedev",
+      "seal": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
       "proof": [
         {
           "h": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
           "side": "R"
         },
         {
-          "h": "a1035f3e362e47c944f51b42c49d8334fb511ee6e636a8bdd1d2ea6bb177e1c7",
+          "h": "4a51b55271b3c2cd728a3e6d2c2fdbdc207b5e9e92a077d22131486f838c3101",
           "side": "L"
         },
         {
-          "h": "f80e29d1e3b9433d59482daea7b4a02c24e1e07aeb6fb4d979d6dd45a3422069",
+          "h": "a285969870b17b4813bd5ae39b4cc4ec324e2b1c036b079ca24e4bb3518010d5",
+          "side": "R"
+        },
+        {
+          "h": "8cbacdc85eefeee2ad1b287b34fa790e6feac2d9114f163bd4e95ff92e614c61",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
+        },
+        {
+          "h": "47cf14fff0486c98b2c3b9c4707e4e6190d9d3bf1492cd3255bfbe5473c13594",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "kind": "keeper",
+      "name": "TSIOLKOVSKY",
+      "slug": "tsiolkovsky",
+      "seal": "834ba5261e8d7835f089c582853e2c6e54b460244a5a0a0aababcd9cb963640f",
+      "proof": [
+        {
+          "h": "fed2e30fcba00f9cffdb91805a41a21edcbaac9ac1025209ebd10bea441e61bf",
           "side": "L"
         },
         {
-          "h": "0296f1b8feba080ea732bdd0667db2cfd5f794db6f6153182ab7ab6572a27a61",
+          "h": "4a51b55271b3c2cd728a3e6d2c2fdbdc207b5e9e92a077d22131486f838c3101",
           "side": "L"
         },
         {
-          "h": "d52bbd0785cb28569a23d62c78a8ac3848fbe12ef8bb45cc39f495b7af751daa",
+          "h": "a285969870b17b4813bd5ae39b4cc4ec324e2b1c036b079ca24e4bb3518010d5",
+          "side": "R"
+        },
+        {
+          "h": "8cbacdc85eefeee2ad1b287b34fa790e6feac2d9114f163bd4e95ff92e614c61",
+          "side": "R"
+        },
+        {
+          "h": "bcd200c1813ae15deb4ee6c50d462e9f2966fbc745c63110ef31b18e2abc4e2f",
+          "side": "R"
+        },
+        {
+          "h": "47cf14fff0486c98b2c3b9c4707e4e6190d9d3bf1492cd3255bfbe5473c13594",
           "side": "L"
         }
       ]

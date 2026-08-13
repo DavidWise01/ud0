@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KAISSA · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE MACHINE &middot; the Russian world</span></div>
+
+<header>
+ <h1>KAISSA</h1>
+ <p class="sub">Moscow, the Institute of Control Sciences, 1974: the Soviet program <b>Kaissa</b> won the <b>first World Computer Chess Championship</b> in Stockholm. Its heart is <b>game-tree search</b> &mdash; and the load-bearing fact of that search is a proof: <b>alpha-beta returns the exact same value as full minimax</b> while visiting far fewer positions. This panel is <b>runnable</b>: build a fixed-seed game tree, search it both ways, and watch the two values agree while the node counts diverge.</p>
+ <p class="src"><span class="tag t-amber">source</span> Kaissa &mdash; Adelson-Velsky, Arlazarov &amp; Donskoy, Institute of Control Sciences, Moscow; winner of the 1st World Computer Chess Championship, Stockholm 1974; heir to the 1966&ndash;67 US&ndash;USSR correspondence match. Room: <b>THE MACHINE</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; Kaissa <span class="tag t-amber">1974</span></h2>
+   <p>Built at the <b>Institute of Control Sciences</b> in Moscow by <b>Georgy Adelson-Velsky</b>, <b>Vladimir Arlazarov</b> and <b>Anatoly Donskoy</b>. Named for the muse of chess. In <b>Stockholm, 1974</b> it won the <b class="k">first World Computer Chess Championship</b> with a clean 4&ndash;0.</p>
+   <p class="small">Its lineage runs back to the <b>1966&ndash;67</b> US&ndash;USSR correspondence match between an American program (Kotok&ndash;McCarthy) and the Moscow ITEP program &mdash; the Soviet side won. The team also gave computer science the <b>AVL tree</b>. What Kaissa did in hardware, the two windows below prove in mathematics.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>MINIMAX &mdash; the exact game value <span class="tag t-lit">LIT</span></h2>
+   <p>A two-player game is a tree: you (<b>MAX</b>) pick the move that maximises the score; the opponent (<b>MIN</b>) picks the move that minimises it, alternating down to leaf positions with known values. <b>Minimax</b> walks the whole tree and returns the single value both sides are forced into under best play.</p>
+   <p class="small">This value is the ground truth &mdash; the number the position is <i>worth</i>. It is exact but expensive: a tree of branching <b>b</b> and depth <b>d</b> has <b class="k">b<sup>d</sup></b> leaves, and minimax visits every one.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>ALPHA-BETA &mdash; skip the provably-irrelevant <span class="tag t-lit">LIT</span></h2>
+   <p>Carry two bounds down the tree: <b>&alpha;</b> (best MAX can already force) and <b>&beta;</b> (best MIN can already force). The instant a branch proves it cannot change the answer &mdash; <b>&alpha; &ge; &beta;</b> &mdash; it is <b>pruned</b>, unexamined and unmissed.</p>
+   <p class="small">With good move ordering the best case visits only <b class="k">~ 2&middot;b<sup>d/2</sup></b> leaves instead of <b>b<sup>d</sup></b> &mdash; the square-root of the work. Same effort now reaches <b>twice the depth</b>. And crucially: the value it returns is <b>identical</b> to minimax. It skips only what cannot matter.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; a game tree <span class="tag t-in">in &darr;</span></h2>
+   <p>Choose branching <b>b</b> and depth <b>d</b>. A <b>fixed-seed PRNG</b> fills the leaf values, so the tree is fully reproducible &mdash; no <code>Math.random</code>. The same tree is searched by full minimax and by alpha-beta.</p>
+   <div class="row"><label>branching b</label>
+    <select id="bin"><option>2</option><option selected>3</option><option>4</option><option>5</option></select></div>
+   <div class="row"><label>depth d</label>
+    <select id="din"><option>2</option><option>3</option><option selected>4</option></select></div>
+   <div class="row"><label>seed</label><input id="seedin" type="number" value="1974" style="width:110px"></div>
+   <p class="small mut">Leaf count = b<sup>d</sup>. Kept small so the whole tree is walkable in the page; the algorithm has no such limit.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; minimax &middot; alpha-beta &middot; best-ordered &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the search <span class="tag t-lit">LIT</span></h2>
+   <div class="out" id="valline">&mdash;</div>
+   <p class="small" style="margin-top:2px">Both searches on the same fixed tree. The <b>value</b> must agree; the <b>leaves visited</b> need not:</p>
+   <table id="cntTbl"><thead><tr><th>search</th><th>value</th><th>leaves visited</th></tr></thead><tbody id="cntBody"></tbody></table>
+   <p class="small" style="margin-top:8px"><b>Theory for this b, d:</b> <span id="theory" class="k">&mdash;</span></p>
+   <div id="valbadge" style="margin-top:6px"></div>
+   <p class="small" style="margin-top:8px;color:var(--blue)"><b>THE BEST CASE.</b> A best-ordered copy of the same tree (best move first at every node) is searched too &mdash; its leaf count is the Knuth&ndash;Moore minimum <b class="k">b<sup>&lceil;d/2&rceil;</sup> + b<sup>&lfloor;d/2&rfloor;</sup> &minus; 1</b>, the square-root frontier.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; same value, fewer nodes &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; the identity <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outv">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>tree (b,d,seed)</th><th>minimax</th><th>alpha-beta</th><th>=</th></tr></thead><tbody id="witbody"></tbody></table>
+   <div class="wall-note" style="border-left-color:var(--blue);background:rgba(29,78,121,.05);margin-top:10px"><span class="tag t-amber">lineage</span> <b>KAISSA &rarr; DEEP BLUE &rarr; ALPHAZERO.</b> The same search &mdash; minimax with alpha-beta pruning &mdash; carried IBM&rsquo;s Deep Blue past Kasparov in 1997. AlphaZero later swapped exhaustive pruning for a learned policy and value net over Monte-Carlo tree search, but the object of the search is unchanged: the exact game value Kaissa first chased. The door is <a href="https://0root.ai/">https://0root.ai/</a>.</div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE BRANCHING FACTOR &mdash; the wall</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> Chess has a branching factor of about <b class="k">35</b>. Full minimax to depth <b>d</b> costs <b>35<sup>d</sup></b>: depth 4 is <b>1,500,625</b> leaves; depth 8 is <b>2.25&times;10<sup>12</sup></b>. The tree explodes faster than any machine can walk it &mdash; <b>depth is everything</b>, and depth is exactly what the wall denies.</div>
+   <p class="small" style="margin-top:8px">Alpha-beta does not remove the wall &mdash; the game tree is still exponential. It <b>halves the exponent</b>: best case <b>2&middot;35<sup>d/2</sup></b> &mdash; at depth 4, <b class="k">2&middot;35<sup>2</sup>&minus;1 = 2,449</b> leaves instead of 1,500,625. Same budget, twice the horizon. That is the entire game.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>"Pruning changes the answer &mdash; you skipped positions, so you must have missed something."</s> <b>Cut.</b> Alpha-beta returns the <b>exact</b> minimax value. It only ever skips a branch after proving that branch cannot alter the result. The witness below re-runs full minimax and confirms the numbers match, every tree.</p>
+   <p class="grave"><s>"A deeper but pruned search is weaker than a shallow full one."</s> <b>Cut.</b> The pruned search of depth d is the <i>same</i> value as the full search of depth d &mdash; and reaches deeper for the same cost. Strictly better.</p>
+   <p class="grave"><s>"Move ordering is a cosmetic optimisation."</s> <b>Cut.</b> Ordering is what turns b<sup>d</sup> into ~2&middot;b<sup>d/2</sup>. Worst-ordered alpha-beta prunes nothing and degenerates to full minimax &mdash; the whole gain lives in the order.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; prune too early</h2>
+   <p>The red move: cut a branch alpha-beta is <b>not</b> allowed to skip &mdash; prune after the first child even while the rest could still change the value (a cut when &alpha; &lt; &beta;). Leaves visited drop further, but the returned value is now <b>wrong</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; prune too early</button><button id="restore">&#8634; restore legal pruning</button></div>
+   <p class="small" id="tampernote">Break the &alpha;&nbsp;&ge;&nbsp;&beta; cutoff rule and re-search: the witness (5) compares each tree&rsquo;s alpha-beta value against full minimax and turns <b style="color:var(--wall)">red</b>. Legal alpha-beta must equal minimax; an over-eager cut is caught the instant the values disagree.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">KAISSA &mdash; World IV &middot; <b>SONIA</b>, room <b>THE MACHINE</b>, in the refined <b>OCHO</b>: blue lays the roots and the two algorithms, the machine searches one fixed-seed tree by minimax and by alpha-beta down the centre, red raises the branching-factor wall and breaks the pruning rule &mdash; and is caught. A runnable rendering of the Soviet program that won the first World Computer Chess Championship (Stockholm, 1974). The load-bearing fact &mdash; alpha-beta returns the exact minimax value while visiting fewer nodes &mdash; is LIT and self-checked; the history and lineage are AMBER; the combinatorial explosion is a real WALL. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== KAISSA · game-tree search engine (every value computed, none looked up) ===== */
+
+/* fixed-seed PRNG (mulberry32) -- deterministic; no Math.random anywhere above the UI marker */
+function makePRNG(seed){
+ var s=seed>>>0;
+ return function(){
+  s=(s+0x6D2B79F5)>>>0;
+  var t=s;
+  t=Math.imul(t^(t>>>15),t|1);
+  t^=t+Math.imul(t^(t>>>7),t|61);
+  return ((t^(t>>>14))>>>0)/4294967296;
+ };
+}
+
+/* build a full b-ary tree of the given depth; leaves get integer values in -100..100 */
+function buildTree(rng,b,depth){
+ if(depth===0){ return {leaf:true, val:Math.floor(rng()*201)-100}; }
+ var ch=[];
+ for(var k=0;k<b;k++){ ch.push(buildTree(rng,b,depth-1)); }
+ return {leaf:false, children:ch};
+}
+
+/* full minimax -- walks the entire tree; cnt.n counts leaf evaluations */
+function minimax(node,isMax,cnt){
+ if(node.leaf){ cnt.n++; return node.val; }
+ var best=isMax?-Infinity:Infinity;
+ for(var k=0;k<node.children.length;k++){
+  var v=minimax(node.children[k],!isMax,cnt);
+  if(isMax){ if(v>best) best=v; } else { if(v<best) best=v; }
+ }
+ return best;
+}
+
+/* legal alpha-beta -- returns the SAME value as minimax; prunes only on alpha>=beta.
+   BROKEN is the tamper flag: when set, it cuts after the first child even though the
+   branch could still matter (a prune while alpha<beta), so the value goes wrong. */
+function alphabeta(node,isMax,alpha,beta,cnt,BROKEN){
+ if(node.leaf){ cnt.n++; return node.val; }
+ var best,v,k;
+ if(isMax){
+  best=-Infinity;
+  for(k=0;k<node.children.length;k++){
+   v=alphabeta(node.children[k],false,alpha,beta,cnt,BROKEN);
+   if(v>best) best=v;
+   if(best>alpha) alpha=best;
+   if(BROKEN){ if(best>-Infinity) break; }   // ILLEGAL cut: prune after first child
+   else if(alpha>=beta) break;               // legal beta cutoff
+  }
+  return best;
+ } else {
+  best=Infinity;
+  for(k=0;k<node.children.length;k++){
+   v=alphabeta(node.children[k],true,alpha,beta,cnt,BROKEN);
+   if(v<best) best=v;
+   if(best<beta) beta=best;
+   if(BROKEN){ if(best<Infinity) break; }     // ILLEGAL cut
+   else if(alpha>=beta) break;                // legal alpha cutoff
+  }
+  return best;
+ }
+}
+
+/* reorder every node best-move-first (best child leading) -> the optimally ordered tree.
+   returns the node's minimax value so the parent can sort by it. */
+function reorderBest(node,isMax){
+ if(node.leaf){ return node.val; }
+ var scored=[];
+ for(var k=0;k<node.children.length;k++){
+  scored.push({c:node.children[k], v:reorderBest(node.children[k],!isMax)});
+ }
+ scored.sort(function(p,q){ return isMax ? q.v-p.v : p.v-q.v; });
+ var kids=[]; for(var i=0;i<scored.length;i++){ kids.push(scored[i].c); }
+ node.children=kids;
+ return isMax ? scored[0].v : scored[0].v;
+}
+
+/* one full experiment on a fixed (b,d,seed): value + leaf counts for both searches */
+function search(b,d,seed){
+ var t1=buildTree(makePRNG(seed),b,d);
+ var cm={n:0}, mm=minimax(t1,true,cm);
+ var ca={n:0}, ab=alphabeta(t1,true,-Infinity,Infinity,ca,false);
+ var t2=buildTree(makePRNG(seed),b,d); reorderBest(t2,true);
+ var cb={n:0}, abBest=alphabeta(t2,true,-Infinity,Infinity,cb,false);
+ return { mm:mm, ab:ab, mmLeaves:cm.n, abLeaves:ca.n, bestLeaves:cb.n };
+}
+
+/* ===== fail-loud self-check (runs on the LEGAL engine) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+
+ // 1 -- a small hand tree with a KNOWN minimax value.
+ // MAX over [ MIN(3,5), MIN(6,9), MIN(1,2) ] = MAX(3,6,1) = 6.
+ var hand={leaf:false,children:[
+   {leaf:false,children:[{leaf:true,val:3},{leaf:true,val:5}]},
+   {leaf:false,children:[{leaf:true,val:6},{leaf:true,val:9}]},
+   {leaf:false,children:[{leaf:true,val:1},{leaf:true,val:2}]}
+ ]};
+ t(minimax(hand,true,{n:0})===6,"hand tree minimax must be 6");
+ t(alphabeta(hand,true,-Infinity,Infinity,{n:0},false)===6,"hand tree alpha-beta must be 6");
+
+ // 2 -- on many fixed-seed trees: alpha-beta value === minimax value, and it visits <= as many leaves.
+ var cases=[[2,4,12345],[3,4,777],[4,4,999],[5,4,42],[3,3,7],[4,2,5],[2,4,1974]];
+ for(var i=0;i<cases.length;i++){
+  var b=cases[i][0], d=cases[i][1], sd=cases[i][2], r=search(b,d,sd);
+  t(r.ab===r.mm,"alpha-beta must equal minimax on ("+b+","+d+","+sd+")");
+  t(r.abLeaves<=r.mmLeaves,"alpha-beta leaves must be <= minimax leaves on ("+b+","+d+")");
+  t(r.mmLeaves===Math.pow(b,d),"minimax must visit exactly b^d = "+Math.pow(b,d)+" leaves");
+  // best-ordered tree hits the Knuth-Moore minimum exactly
+  var expected=Math.pow(b,Math.ceil(d/2))+Math.pow(b,Math.floor(d/2))-1;
+  t(r.bestLeaves===expected,"best-ordered alpha-beta must visit "+expected+" leaves on ("+b+","+d+")");
+  t(r.bestLeaves<=r.abLeaves+1e-9 && r.bestLeaves<=r.mmLeaves,"best case must be no worse than either");
+ }
+
+ // 3 -- the named chess anchors (b=35): full vs best-case at depth 4.
+ t(Math.pow(35,4)===1500625,"35^4 must be 1,500,625");
+ t(2*Math.pow(35,2)-1===2449,"2*35^2 - 1 must be 2,449 (best-case leaves, d=4)");
+ t(2449 < 1500625,"best-case alpha-beta must be far below full minimax");
+
+ // 4 -- the TAMPER is genuinely detectable: an illegal early cut changes the value on at least one tree.
+ var broke=false;
+ for(var j=0;j<cases.length;j++){
+  var bb=cases[j][0], dd=cases[j][1], ss=cases[j][2];
+  var tt=buildTree(makePRNG(ss),bb,dd);
+  var mmv=minimax(tt,true,{n:0});
+  var badv=alphabeta(tt,true,-Infinity,Infinity,{n:0},true); // BROKEN=true
+  if(badv!==mmv){ broke=true; break; }
+ }
+ t(broke,"the illegal early-cut prune must produce a value that disagrees with minimax");
+
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var TAMPER=false;   // when true, DATA OUT's witness uses the illegal early-cut pruning
+
+function theoryLine(b,d){
+ var full=Math.pow(b,d), best=Math.pow(b,Math.ceil(d/2))+Math.pow(b,Math.floor(d/2))-1;
+ return "full minimax b^d = <b>"+full.toLocaleString()+"</b> leaves &nbsp;&middot;&nbsp; best-ordered "
+   +"b^"+Math.ceil(d/2)+" + b^"+Math.floor(d/2)+" &minus; 1 = <b>"+best.toLocaleString()+"</b> leaves";
+}
+
+function renderPanel(){
+ var b=+$("bin").value, d=+$("din").value, seed=(Math.round(+$("seedin").value)||0)>>>0;
+ var r=search(b,d,seed);
+ $("valline").innerHTML="tree (b="+b+", d="+d+", seed="+seed+") &rarr; game value = <b>"+r.mm+"</b>";
+ var rows="";
+ rows+="<tr><td>full minimax</td><td style=\"color:var(--red);font-weight:700\">"+r.mm+"</td><td>"+r.mmLeaves.toLocaleString()+"</td></tr>";
+ rows+="<tr><td>alpha-beta</td><td style=\"color:var(--red);font-weight:700\">"+r.ab+"</td><td>"+r.abLeaves.toLocaleString()+"</td></tr>";
+ rows+="<tr><td>alpha-beta (best-ordered)</td><td style=\"color:var(--red);font-weight:700\">"+r.mm+"</td><td>"+r.bestLeaves.toLocaleString()+"</td></tr>";
+ $("cntBody").innerHTML=rows;
+ $("theory").innerHTML=theoryLine(b,d);
+ var ok=(r.ab===r.mm)&&(r.abLeaves<=r.mmLeaves);
+ $("valbadge").innerHTML='<span class="badge '+(ok?"pass":"failb")+'">'
+   +(ok?"SAME VALUE, FEWER NODES - alpha-beta = minimax = "+r.mm+", "+r.abLeaves+" leaves vs "+r.mmLeaves:"identity broken")+'</span>';
+}
+
+function witness(){
+ var cases=[[2,4,12345],[3,4,777],[4,4,999],[3,3,7],[2,4,1974]], rows="", allok=true;
+ for(var i=0;i<cases.length;i++){
+  var b=cases[i][0], d=cases[i][1], seed=cases[i][2];
+  var tt=buildTree(makePRNG(seed),b,d);
+  var mm=minimax(tt,true,{n:0});
+  var ab=alphabeta(tt,true,-Infinity,Infinity,{n:0},TAMPER); // TAMPER=true -> illegal early cut
+  var ok=(ab===mm); if(!ok) allok=false;
+  rows+="<tr><td>("+b+", "+d+", "+seed+")</td><td>"+mm+"</td><td style=\"font-weight:700;color:"+(ok?"var(--lit)":"var(--wall)")+"\">"+ab
+    +"</td><td style=\"color:"+(ok?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(ok?"ok":"X")+"</td></tr>";
+ }
+ $("witbody").innerHTML=rows;
+ $("outv").className="verdict "+(allok?"ok":"no");
+ $("outv").textContent=allok?"alpha-beta = minimax  (exact)":"alpha-beta != minimax  (pruned too much)";
+ $("outreason").innerHTML=TAMPER
+   ? '<b style="color:var(--wall)">illegal early cut engaged</b> - branches are pruned while &alpha; &lt; &beta;, so the search returns a value the position is not worth.'
+   : 'every tree: the pruned search returns the same value as the full one - it skipped only what could not matter.';
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'
+   +(allok?"WITNESS - alpha-beta re-checks equal to full minimax, every tree":"WITNESS - alpha-beta disagrees with minimax")+'</span>';
+ return allok;
+}
+
+function render(){ renderPanel(); witness(); }
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ ["bin","din","seedin"].forEach(function(id){
+  $(id).addEventListener("input",render); $(id).addEventListener("change",render);
+ });
+ $("tamper").addEventListener("click",function(){
+  TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Illegal early cut engaged.</b> Alpha-beta now prunes after the first child even while &alpha; &lt; &beta; - a cut it is not allowed to make. The witness (5) re-runs full minimax on every tree and turns <b style='color:var(--wall)'>red</b> wherever the value now disagrees. The attack is real and it is caught.";
+  render();
+ });
+ $("restore").addEventListener("click",function(){
+  TAMPER=false;
+  $("tampernote").innerHTML="Break the &alpha;&nbsp;&ge;&nbsp;&beta; cutoff rule and re-search: the witness (5) compares each tree's alpha-beta value against full minimax and turns <b style='color:var(--wall)'>red</b>. Legal alpha-beta must equal minimax; an over-eager cut is caught the instant the values disagree.";
+  render();
+ });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block";
+ fb.textContent="FAIL-LOUD - the Kaissa search engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

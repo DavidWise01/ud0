@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE POTEMKIN VILLAGE &middot; the reported vs the real &middot; WORLD IV — SONIA &middot; THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>ROOM &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE POTEMKIN VILLAGE</h1>
+ <p class="sub">The <b>facade</b> Grigory Potemkin is said to have raised along the Dnieper for Catherine II&rsquo;s 1787 tour &mdash; and its long Soviet descendant, <b>&#1087;&#1088;&#1080;&#1087;&#1080;&#1089;&#1082;&#1080;</b> (<i>pripiski</i>, padded plan reports). The centre is genuinely <b>runnable</b>: it makes the gap between <b>the reported and the real</b> mechanical, watches the hidden shortfall <b>accumulate</b>, and measures the one hard fact &mdash; a report that always says &ldquo;met&rdquo; carries <b>zero bits</b>.</p>
+ <p class="src"><span class="tag t-amber">source</span> The 1787 Crimean tour and the &ldquo;Potemkin village&rdquo; legend (a facade to impress a sovereign); Soviet <i>pripiski</i> &mdash; falsified production reports under plan pressure; C. E. Shannon, &ldquo;A Mathematical Theory of Communication&rdquo; (1948). Room <b>THE STATE</b>. Figures computed live; nothing quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · ROOTS & LINEAGE & WITNESS ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; roots &middot; lineage &middot; witness</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE ROOTS</h2>
+   <p>In <b>1787</b> Catherine II toured newly annexed Crimea. The legend says her governor <b>Grigory Potemkin</b> ran up <b>painted facades</b> of prosperous villages along the route &mdash; a front with nothing behind it. Whether or not he did, the phrase stuck: a <b>Potemkin village</b> is a false front built to be seen, not lived in.</p>
+   <p class="small">Its Soviet heir is <b>&#1087;&#1088;&#1080;&#1087;&#1080;&#1089;&#1082;&#1080;</b> (<i>pripiski</i>): under pressure to &ldquo;meet the plan,&rdquo; managers <b>padded their production reports</b>. A paper economy grew alongside the real one &mdash; and only the paper one hit its targets. <span class="tag t-amber">AMBER</span> historical framing.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE ENTROPY <span class="tag t-lit">LIT</span></h2>
+   <p>A report is a channel. Its information is <b class="k">H(p) = &minus;p&middot;log&#8322;p &minus; (1&minus;p)&middot;log&#8322;(1&minus;p)</b>, in bits. Slide <b>p</b> = the rate at which the plan is <i>truly</i> met, feeding an <b>honest</b> channel that mirrors reality:</p>
+   <div class="row"><label>true met p</label><input id="p" type="range" min="0" max="1" step="0.01" value="0.5"><span id="pv" class="small">0.50</span></div>
+   <div id="entout" class="small"></div>
+   <p class="small" style="margin-top:8px">A channel that <b>always says &ldquo;met&rdquo;</b> outputs one symbol forever &mdash; entropy <b class="k">0 bits</b>, at every p. It cannot tell success from failure. The honest channel peaks at <b>1 bit</b> when p=0.5.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>THE LINEAGE <span class="tag t-amber">AMBER</span></h2>
+   <p><i>Pripiski</i> did not just embarrass &mdash; they <b>corrupted the numbers the state ran on</b>. Padded reports flowed upward into planning statistics that were then quietly <b>unreliable</b>, so the centre planned against a fiction.</p>
+   <p class="small">This is exactly the data problem that <a href="./the-ogas.html">THE OGAS</a> and <a href="./gobernet.html">GOBERNET</a> were meant to solve: a real-time loop is worthless if its inputs are padded. Honest measurement is the <i>precondition</i> for control &mdash; not an afterthought. Ties both.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE GAP, MADE MECHANICAL ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the reported vs the real &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the padding <span class="tag t-in">in &#8595;</span></h2>
+   <p>Each period the plant makes <b>true</b> units against a plan <b>target</b>. Under pressure it reports <b class="k">R = min(target, true + padding)</b> &mdash; padding is the lie added on paper, capped at the target (you cannot over-report past the plan without inviting a raised quota).</p>
+   <div class="row"><label>target</label><input id="tar" type="range" min="20" max="200" value="100"><span id="tarv" class="small">100</span></div>
+   <div class="row"><label>true out</label><input id="tru" type="range" min="0" max="200" value="60"><span id="truv" class="small">60</span></div>
+   <div class="row"><label>padding</label><input id="pad" type="range" min="0" max="200" value="40"><span id="padv" class="small">40</span></div>
+   <div class="row"><label>periods</label><input id="N" type="range" min="1" max="24" value="12"><span id="Nv" class="small">12</span></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; R&#8345; = min(target, true&#8345; + padding) &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; reported vs real <span class="tag t-lit">LIT</span></h2>
+   <div class="engine">
+    <div class="controls">
+     <p class="small">While <b>true &lt; target</b> and padding covers the shortfall, the report reads <b>exactly target</b> every period &mdash; a perfect record. But the hidden gap <b class="k">R &minus; true = min(target&minus;true, padding)</b> is real, and it <b>accumulates</b>.</p>
+     <table id="iter"></table>
+    </div>
+    <div class="readout">
+     <div class="verdict" id="verdict"></div>
+     <div class="reason" id="reason"></div>
+     <div id="witness"></div>
+    </div>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; where do the missing goods go? &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; the gap is conserved <span class="tag t-out">out &#8595;</span></h2>
+   <p id="outline">&mdash;</p>
+   <div id="cumline" class="out"></div>
+   <p class="small" style="margin-top:8px"><b>THE OCHO TIE.</b> Set padding to <b>0</b> and the gap is zero, the shortfall stands in plain sight, and the channel can finally report failure. That is the whole discipline of this OCHO: every LIT instrument keeps a <b>fail-loud that must make noise</b> &mdash; because a report that can never say &ldquo;no&rdquo; carries no signal at all. <span class="tag t-lit">LIT</span></p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · THE WALL, GRAVEYARD, TAMPER ===== -->
+ <div class="col red">
+  <div class="teamhdr">the wall &middot; graveyard &middot; tamper &#9704;</div>
+
+  <div class="win red"><span class="no">1</span><h2>WHY IT SURFACES &mdash; the wall</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The paper can say &ldquo;met&rdquo; forever; the <b>shelves cannot</b>. Every padded unit is a good that was reported into existence but never made. The accumulated gap <b>sum(R &minus; true)</b> is exactly the pile of goods that does not exist &mdash; and it is <b>conserved</b>. Sooner or later demand reaches an empty shelf, and the truth the report suppressed arrives all at once.</div>
+   <p class="small" style="margin-top:8px">The facade does not remove the shortfall; it only <b>delays and concentrates</b> it. Reality is the auditor that cannot be padded.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;The plan was overfulfilled.&rdquo;</s> <b>Cut.</b> A report pinned to &ldquo;met/overfulfilled&rdquo; regardless of output is a facade &mdash; a constant-success signal is <b>information-free</b> (0 bits, centre).</p>
+   <p class="grave"><s>&ldquo;If every plant reports success, the economy is healthy.&rdquo;</s> <b>Examined.</b> Uniform success is precisely the <b>zero-entropy</b> case: the channel has lost the ability to distinguish a healthy plant from a failing one.</p>
+   <p class="grave"><s>&ldquo;Padding is harmless bookkeeping.&rdquo;</s> <b>Cut.</b> The hidden gap is conserved and accumulates every period; the goods are simply <b>missing</b>, and the shelves prove it.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; call the facade honest</h2>
+   <p>Claim the always-&ldquo;met&rdquo; report is <b>informative and trustworthy</b> &mdash; assert it carries a full bit of signal. The honest witness measures the channel&rsquo;s actual output entropy, finds <b class="k">0 bits</b>, and the mismatch turns the <b>witness red</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; claim the &ldquo;met&rdquo; report is informative</button><button id="restore">&#8635; restore honesty</button></div>
+   <p class="small" id="tampernote">A channel that cannot report failure conveys nothing. Claiming otherwise does not add a bit &mdash; the measured entropy is 0, and the witness disagrees.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE POTEMKIN VILLAGE &mdash; World IV &middot; SONIA, room <b>THE STATE</b>, in the refined <b>OCHO</b>. The centre is real and runnable: the reported figure R = min(target, true + padding) reads exactly the target while true output falls short, the hidden gap min(target&minus;true, padding) is conserved and accumulates every period, and the report channel&rsquo;s information H(p) = &minus;p&middot;log&#8322;p &minus; (1&minus;p)&middot;log&#8322;(1&minus;p) is 0 at p=1 and 1 at p=0.5 &mdash; so a report that always says &ldquo;met&rdquo; carries zero bits and cannot tell success from failure; the roots and lineage are honest history, and the audit records that padding does not erase a shortfall, only delays it until the shelves are empty. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== THE POTEMKIN VILLAGE — the reported vs the real, plus report-channel entropy (pure core) ===== */
+function log2(x){ return Math.log(x)/Math.LN2; }
+function H(p){ if(p<=0){ return 0; } if(p>=1){ return 0; } return -p*log2(p)-(1-p)*log2(1-p); }
+function reported(trueV,padding,target){ return Math.min(target, trueV+padding); }
+function gap(trueV,padding,target){ return reported(trueV,padding,target)-trueV; }       // R - true
+function cumGap(trueV,padding,target,n){ var s=0,i; for(i=0;i<n;i++){ s+=gap(trueV,padding,target); } return s; }
+function shortfall(trueV,target){ return Math.max(0, target-trueV); }
+function channelBits(mode,p){ if(mode==="const"){ return 0; } return H(p); }             // a constant-"met" report: 0 bits
+function rng(seed){ var s=seed>>>0; return function(){ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+
+/* ===== fail-loud self-check ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c){ throw new Error(m); } };
+ var i;
+ // 1 — the hidden gap equals min(target-true, padding) for true<=target, and is non-negative (fixed seed)
+ var r=rng(1787);
+ for(i=0;i<400;i++){
+  var target=r()*200+1;
+  var trueV=r()*target;                 // true in [0, target]
+  var padding=r()*250;
+  var g=gap(trueV,padding,target);
+  t(Math.abs(g-Math.min(target-trueV,padding))<1e-9,"gap must equal min(target-true, padding)");
+  t(g>=-1e-12,"gap must be non-negative when true<=target");
+ }
+ // 2 — reported hits the target while true is below it, when padding covers the shortfall
+ t(reported(60,40,100)===100,"true=60,pad=40,target=100 must report exactly 100 (hits target)");
+ t(60<100,"and true(60) is below target(100): the shortfall is hidden behind the report");
+ t(reported(60,30,100)===90,"padding short of the shortfall must report 90 (< target)");
+ // 3 — honest reporting (padding=0): report equals true, gap is 0, shortfall visible
+ t(reported(60,0,100)===60,"an honest report must equal the true output");
+ t(gap(60,0,100)===0,"an honest report must have zero gap");
+ t(shortfall(60,100)===40,"honest reporting must leave the 40-unit shortfall visible");
+ // 4 — the accumulated gap is non-decreasing in n, and strictly grows while padding hides a shortfall
+ for(i=0;i<200;i++){
+  var tg=r()*200+20, tv=r()*tg, pd=r()*200, n=(r()*20|0)+1;
+  var a=cumGap(tv,pd,tg,n), b=cumGap(tv,pd,tg,n+1);
+  t(b>=a-1e-9,"accumulated gap must be non-decreasing in n");
+  if(gap(tv,pd,tg)>1e-9){ t(b>a+1e-12,"accumulated gap must strictly grow while padding hides a shortfall"); }
+ }
+ t(cumGap(60,40,100,5)===200,"five periods of a 40-unit hidden gap must accumulate to 200");
+ t(cumGap(60,0,100,5)===0,"honest reporting must accumulate zero gap");
+ // 5 — entropy: H(1)=0, H(0)=0, H(0.5)=1 (its maximum), and H(0.5) >= H(p) for all p (fixed seed)
+ t(Math.abs(H(0.5)-1)<1e-12,"H(0.5) must equal 1 bit (its maximum)");
+ t(H(1)===0,"H(1) must be 0 -- a certain outcome carries no information");
+ t(H(0)===0,"H(0) must be 0 -- a certain outcome carries no information");
+ var r2=rng(19480701);
+ for(i=0;i<400;i++){ var p=r2(); t(H(0.5)>=H(p)-1e-9,"H must be maximized at p=0.5"); }
+ // 6 — a constant-"met" report carries 0 bits at every success rate; an honest channel carries H(p)
+ t(channelBits("const",1)===0 && channelBits("const",0.5)===0 && channelBits("const",0)===0,"a constant-'met' report must carry 0 bits at every success rate");
+ t(Math.abs(channelBits("honest",0.5)-1)<1e-12,"an honest channel must carry 1 bit at p=0.5");
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var TAMPER=false;
+var S={tar:100,tru:60,pad:40,N:12,p:0.5};
+
+function renderEnt(){
+ $("pv").textContent=S.p.toFixed(2);
+ var bits=H(S.p);
+ var honest="honest channel: <b class='k'>"+bits.toFixed(3)+"</b> bit"+(Math.abs(bits-1)<1e-9?"":"s");
+ var note=(S.p>=0.999||S.p<=0.001)?" (reality is certain here &mdash; even an honest report has nothing to add)":(Math.abs(S.p-0.5)<1e-9?" (maximum &mdash; the report is fully load-bearing)":"");
+ $("entout").innerHTML=honest+note+"<br><span class='mut'>constant-&ldquo;met&rdquo; channel: <b class='k'>0.000 bits</b> &mdash; the same symbol forever, no matter p.</span>";
+}
+
+function render(){
+ $("tarv").textContent=S.tar; $("truv").textContent=S.tru; $("padv").textContent=S.pad; $("Nv").textContent=S.N;
+ var R=reported(S.tru,S.pad,S.tar), g=gap(S.tru,S.pad,S.tar), short=shortfall(S.tru,S.tar);
+ var hidesAll=(R>=S.tar-1e-9 && S.tru<S.tar-1e-9);   // reads exactly target while truly short
+ var honest=(S.pad<=0);
+ // iteration table (running accumulation)
+ var rows=Math.min(8,S.N), h="<thead><tr><th>t</th><th>true</th><th>R</th><th>gap</th><th>&Sigma;gap</th></tr></thead><tbody>", cum=0, n;
+ for(n=1;n<=rows;n++){
+  cum+=g;
+  h+="<tr><td>"+n+"</td><td>"+S.tru+"</td><td style='color:"+(R>=S.tar-1e-9?"var(--red)":"var(--ink)")+"'>"+R+"</td>"
+    +"<td style='color:"+(g>1e-9?"var(--wall)":"var(--ink)")+"'>"+g+"</td>"
+    +"<td style='color:"+(cum>1e-9?"var(--wall)":"var(--ink)")+"'>"+cum+"</td></tr>";
+ }
+ if(S.N>rows){ h+="<tr><td>&hellip;</td><td>"+S.tru+"</td><td>"+R+"</td><td>"+g+"</td><td>&hellip;</td></tr>"; }
+ $("iter").innerHTML=h+"</tbody>";
+ // verdict
+ if(honest){
+  $("verdict").textContent="HONEST — SHORTFALL VISIBLE"; $("verdict").className="verdict ok";
+  $("reason").textContent=short>0?"padding=0: the report equals the true output, so the "+short+"-unit shortfall is on the record.":"padding=0 and true meets target: nothing to hide.";
+ } else if(hidesAll){
+  $("verdict").textContent="FACADE — GAP HIDDEN"; $("verdict").className="verdict no";
+  $("reason").textContent="report reads exactly "+S.tar+" every period while only "+S.tru+" is made: a perfect paper record over a real shortfall of "+short+".";
+ } else {
+  $("verdict").textContent="PARTLY PADDED"; $("verdict").className="verdict no";
+  $("reason").textContent="padding "+S.pad+" lifts the report to "+R+", still short of target "+S.tar+": the facade is incomplete but the gap is real.";
+ }
+ // integrity witness — honest accounting AND no false information claim
+ var actualBits=hidesAll?channelBits("const",0):channelBits("honest",0.5); // the padded facade is the constant-'met' channel: 0 bits
+ var claimBits=TAMPER?1:actualBits;
+ var ok=Math.abs(claimBits-actualBits)<1e-9;
+ $("witness").innerHTML="<span class='badge "+(ok?"pass":"failb")+"'>"+(ok?"&#10003; witness holds &mdash; accounting honest":"&#10007; witness broken &mdash; false signal claimed")+"</span>"
+  +"<div class='small' style='margin-top:6px'>report channel carries <b class='k'>"+actualBits.toFixed(3)+"</b> bits"
+  +(hidesAll?" (constant &ldquo;met&rdquo; &mdash; cannot report failure)":"")
+  +(TAMPER?" &nbsp;&mdash; <span style='color:var(--wall)'>operator claims 1.000 bit &mdash; false</span>":"")+"</div>";
+ // data out — the gap is conserved
+ var total=cumGap(S.tru,S.pad,S.tar,S.N);
+ if(honest){
+  $("outline").innerHTML="With <b>padding = 0</b> the report is the truth. The gap is <b class='k'>0</b> every period, the shortfall of <b>"+short+"</b> stands on the record, and the channel can say <b>&ldquo;not met.&rdquo;</b>";
+ } else {
+  $("outline").innerHTML="Each period hides <b class='k'>"+g+"</b> unit"+(g===1?"":"s")+". Over <b>"+S.N+"</b> periods the report looks flawless, but the missing goods pile up &mdash; the gap is <b>conserved</b>, not erased.";
+ }
+ $("cumline").innerHTML="accumulated gap after "+S.N+" periods: <b class='k'>&Sigma;(R&minus;true) = "+total+"</b> unit"+(total===1?"":"s")+" reported into existence and never made"+(honest?" (none &mdash; honest)":"");
+}
+
+function draw(){ render(); }
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("p").addEventListener("input",function(){ S.p=+this.value; renderEnt(); });
+ $("tar").addEventListener("input",function(){ S.tar=+this.value; if(S.tru>S.tar){ /* allow true>target too */ } render(); });
+ $("tru").addEventListener("input",function(){ S.tru=+this.value; render(); });
+ $("pad").addEventListener("input",function(){ S.pad=+this.value; TAMPER=false; render(); });
+ $("N").addEventListener("input",function(){ S.N=+this.value; render(); });
+ $("tamper").addEventListener("click",function(){ TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Claim entered: the always-&ldquo;met&rdquo; report is informative.</b> Measured output entropy of a constant channel is <b>0 bits</b>; the claimed 1 bit does not exist. The witness turns red. Real, and caught."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false;
+  $("tampernote").innerHTML="A channel that cannot report failure conveys nothing. Claiming otherwise does not add a bit &mdash; the measured entropy is 0, and the witness disagrees."; render(); });
+ renderEnt(); render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — THE POTEMKIN VILLAGE engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

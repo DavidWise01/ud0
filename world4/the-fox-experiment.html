@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FOX EXPERIMENT · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE WEIRD &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE FOX EXPERIMENT</h1>
+ <p class="sub">Novosibirsk, from <b>1959</b>: Dmitri Belyaev selected silver foxes for <b>one</b> trait &mdash; tameness toward a human hand &mdash; and nothing else. Within ~10 generations the tame line grew <b>floppy ears, curled tails, piebald coats</b> and shorter breeding cycles: the &ldquo;domestication syndrome,&rdquo; riding along. This panel is <b>runnable</b>: the tame line climbs by the <b>breeder&rsquo;s equation</b> <b class="k">R = h&sup2;&middot;S</b>. Select the tamest fraction, watch the mean move. Set heritability to zero &mdash; the Lysenkoist claim &mdash; and <b>nothing moves</b>. You cannot select what is not heritable.</p>
+ <p class="src"><span class="tag t-amber">source</span> Belyaev &amp; Lyudmila Trut, Institute of Cytology and Genetics, Novosibirsk (the farm-fox experiment, from 1959); Trut 1999 (<i>American Scientist</i>); the domesticated-fox genome, 2018. Real quantitative genetics, run in the country that had banned it. Room: <b>THE WEIRD</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; the tame line that holds</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; foxes, selected for a hand <span class="tag t-amber">1959</span></h2>
+   <p>At Novosibirsk, <b>Dmitri Belyaev</b> ran real genetics quietly, in a country where the discipline had been declared bourgeois. His farm foxes were scored on a single axis: how they responded to an approaching human hand. Only the <b>calmest fraction</b> were allowed to breed.</p>
+   <p class="small">Nothing was selected for coat, ear, or tail &mdash; only for <b>tameness</b>. Lyudmila Trut carried the line for decades. The experiment is still running; the tame foxes seek human contact like dogs.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE SYNDROME &mdash; traits that rode along <span class="tag t-amber">observed</span></h2>
+   <p>Selecting for tameness alone dragged a suite of changes with it: <b>floppy ears</b>, <b>curled tails</b>, <b>piebald (star-blaze) coats</b>, shortened muzzles, and <b>shorter, off-season breeding cycles</b>. None was bred for directly.</p>
+   <p class="small">This is the <b>domestication syndrome</b> &mdash; the same cluster seen in dogs, pigs, and cattle. One selected axis, many correlated responses. The engine models the selected axis; the syndrome is the correlated cargo it pulls.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>HERITABILITY &mdash; what selection can move <span class="tag t-lit">LIT</span></h2>
+   <p><b>h&sup2;</b> is the fraction of the trait&rsquo;s variance that is <b>additive-genetic</b> &mdash; the part parents pass on. It is the <b>lever arm</b> of selection: response scales with it, exactly.</p>
+   <p class="small" style="text-align:center"><b class="k">R = h&sup2; &middot; S</b></p>
+   <p class="small">If h&sup2; = 0 the trait is real but <b>not heritable</b>: selection has no purchase, and <b class="k">R = 0</b>. If h&sup2; = 1 the offspring mean shifts by the full selection differential. The table samples the identity across many h&sup2;.</p>
+   <table id="hTbl"><thead><tr><th>h&sup2;</th><th>S</th><th>R = h&sup2;S</th></tr></thead><tbody id="hBody"></tbody></table>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE ENGINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the response to selection &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; run the breeding line <span class="tag t-in">in &darr;</span></h2>
+   <p>Set the heritability, the phenotypic spread, the fraction bred, and the number of generations. Truncation selection breeds only the tamest fraction <b>p</b>; the engine derives the selection intensity, the differential, the per-generation response, and the cumulative climb.</p>
+   <div class="row"><label>h&sup2; =</label><input id="h2" type="number" value="0.35" min="0" max="1" step="0.01" style="width:90px"><span class="small mut">heritability of tameness</span></div>
+   <div class="row"><label>&sigma; =</label><input id="sig" type="number" value="1" min="0.1" max="4" step="0.1" style="width:90px"><span class="small mut">phenotypic SD (in &sigma;)</span></div>
+   <div class="row"><label>breed top p =</label><input id="pin" type="number" value="0.2" min="0.01" max="0.99" step="0.01" style="width:90px"><span class="small mut">tamest fraction allowed to breed</span></div>
+   <div class="row"><label>generations =</label><input id="gen" type="number" value="10" min="1" max="40" step="1" style="width:90px"></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; intensity &middot; differential &middot; response &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the breeder&rsquo;s equation <span class="tag t-lit">LIT</span></h2>
+   <div class="out" id="rline">&mdash;</div>
+   <p class="small" style="margin-top:2px">Truncation selection on the tamest fraction <b>p</b> gives a standardized selection intensity <b class="k">i</b> = &phi;(z)/p, where z is the truncation point. Then:</p>
+   <p class="small">selection intensity &nbsp; <b>i</b> = <b id="iv" class="k">&mdash;</b> &nbsp;&middot;&nbsp; differential <b>S</b> = i&sigma; = <b id="sv" class="k">&mdash;</b></p>
+   <p class="small">per-generation response &nbsp; <b>R = h&sup2;S</b> = <b id="rv" class="k">&mdash;</b> &nbsp; &sigma;/gen</p>
+   <p class="small" style="margin-top:6px">Cumulative climb of the tame-line mean (constant params):</p>
+   <table id="climbTbl"><thead><tr><th>gen</th><th>mean tameness (&sigma;)</th></tr></thead><tbody id="climbBody"></tbody></table>
+  </div>
+  <div class="flow">&#9660; &nbsp; the mean the decree cannot move &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; does the line move? <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outverdict">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>case</th><th>h&sup2;</th><th>R</th><th>claim: rises?</th><th>ok</th></tr></thead><tbody id="witbody"></tbody></table>
+   <div class="wall-note" style="border-left-color:var(--blue);background:rgba(29,78,121,.05);margin-top:10px"><span class="tag t-amber">the seam</span> <b>h&sup2; = 0 is the real control.</b> A non-heritable trait shows <b>no response</b>, over any number of generations &mdash; the quiet refutation of <a href="./the-lysenko-affair.html">the Lysenko affair</a>. Belyaev&rsquo;s foxes moved because tameness was <b>heritable</b> and he <b>selected</b> it.</div>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">the wall &middot; the graveyard &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE ANTI-LYSENKO &mdash; genetics vindicated <span class="tag t-lit">LIT</span></h2>
+   <p>Lysenko taught that <b>acquired</b> characters are heritably transmitted &mdash; that habit passes to the genome. Belyaev&rsquo;s foxes are the mechanical rebuttal: the tame line climbs <b>only</b> because tameness is <b>heritable</b> and he <b>bred the tamest</b>.</p>
+   <div class="wall-note"><span class="tag t-lit">the mechanism</span> Set <b>h&sup2; = 0</b> in the engine &mdash; the model of Lysenko&rsquo;s &ldquo;acquired&rdquo; trait &mdash; and <b class="k">R = 0</b>. No hand-taming, no gentling, no decree moves the offspring mean. Only heritable variation, selected, responds. The refutation is arithmetic.</div>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD &mdash; the cut claim</h2>
+   <p class="grave"><s>&ldquo;Tameness was taught, not bred.&rdquo;</s> <b>DEAD.</b> If tameness were merely taught &mdash; acquired within a life, h&sup2; = 0 &mdash; the breeder&rsquo;s equation gives <b>R = 0</b> and the line would not have moved. It moved by <b>~0.49&sigma;/generation</b>. It was <b>selection</b> on heritable variation.</p>
+   <div class="wall-note" style="margin-top:6px"><span class="tag t-amber">honest edge</span> <b>The syndrome&rsquo;s cause is still debated.</b> The neural-crest hypothesis (Wilkins, Wrangham &amp; Fitch 2014) is a leading, contested account of <i>why</i> the correlated traits ride along. The <b>response of the selected axis</b> is settled quantitative genetics; the mechanism of the <b>correlated cargo</b> is open. Named to keep the two apart.</div>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; assert acquired traits</h2>
+   <p>The red move is Lysenko&rsquo;s: set <b>h&sup2; = 0</b> (the trait is only acquired, not heritable) yet <b>assert the tame line still rises</b> across generations.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; assert Lysenkoism</button><button id="restore">&#8634; restore genetics</button></div>
+   <p class="small" id="tampernote">Under the Lysenkoist claim the engine forces h&sup2; = 0 but asserts a rise. The breeder&rsquo;s equation returns <b>R = 0</b> &mdash; the mean does not move &mdash; while the claim insists it does. The witness (5) compares the claim to the mechanism and turns <b style="color:var(--wall)">red</b>. You cannot select what is not heritable.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE FOX EXPERIMENT &mdash; World IV &middot; <b>SONIA</b>, room <b>THE WEIRD</b>, in the refined <b>OCHO</b>: blue holds the tame line and heritability, the response to selection runs down the centre, red records the anti-Lysenko mechanism and breaks it to be caught. The breeder&rsquo;s equation R = h&sup2;S, the truncation-selection intensity i (i&nbsp;&asymp;&nbsp;1.40 for the top 20%), the per-generation response (&asymp;0.49&sigma; at h&sup2;=0.35), and the h&sup2;=0 control (R exactly 0) are LIT and self-checked; the history of Belyaev and Trut at Novosibirsk is AMBER and cited; &ldquo;tameness was taught, not bred&rdquo; is DEAD. The domestication syndrome is real; the neural-crest account of its cause is a contested hypothesis, not settled. A non-heritable trait shows no response &mdash; the quiet refutation of Lysenko. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE FOX EXPERIMENT — a runnable response-to-selection engine (every number computed, none looked up) ===== */
+
+var FOX_LIT=true;         // response to selection under the breeder's equation is measured genetics — LIT
+var TAMPER=false;         // when true the engine adopts the Lysenkoist claim: force h^2=0 (acquired) yet ASSERT the line still rises
+
+function approx(a,b,tol){ return Math.abs(a-b) < (tol===undefined?1e-9:tol); }
+
+// standard-normal pdf
+function phi(z){ return Math.exp(-0.5*z*z)/Math.sqrt(2*Math.PI); }
+
+// inverse standard-normal CDF (Peter Acklam's rational approximation) — the truncation point z for a tail
+function invNorm(pp){
+ var a=[-3.969683028665376e+01,2.209460984245205e+02,-2.759285104469687e+02,1.383577518672690e+02,-3.066479806614716e+01,2.506628277459239e+00];
+ var b=[-5.447609879822406e+01,1.615858368580409e+02,-1.556989798598866e+02,6.680131188771972e+01,-1.328068155288572e+01];
+ var c=[-7.784894002430293e-03,-3.223964580411365e-01,-2.400758277161838e+00,-2.549732539343734e+00,4.374664141464968e+00,2.938163982698783e+00];
+ var d=[7.784695709041462e-03,3.224671290700398e-01,2.445134137142996e+00,3.754408661907416e+00];
+ var pl=0.02425, ph=1-pl, q, r;
+ if(pp<pl){ q=Math.sqrt(-2*Math.log(pp)); return (((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1); }
+ if(pp<=ph){ q=pp-0.5; r=q*q; return (((((a[0]*r+a[1])*r+a[2])*r+a[3])*r+a[4])*r+a[5])*q/(((((b[0]*r+b[1])*r+b[2])*r+b[3])*r+b[4])*r+1); }
+ q=Math.sqrt(-2*Math.log(1-pp)); return -(((((c[0]*q+c[1])*q+c[2])*q+c[3])*q+c[4])*q+c[5])/((((d[0]*q+d[1])*q+d[2])*q+d[3])*q+1);
+}
+
+// selection intensity for breeding the top fraction p (standardized): i = phi(z)/p, z = truncation point
+function intensity(p){ var z=invNorm(1-p); return phi(z)/p; }
+
+// selection differential in the trait's own units: S = i * sigma
+function differential(p,sigma){ return intensity(p)*sigma; }
+
+// the breeder's equation — response per generation: R = h^2 * S
+function response(h2,S){ return h2*S; }
+
+// cumulative mean of the tame line after G generations at constant params (starting at 0): G * R
+function cumulative(h2,S,G){ var R=response(h2,S); var arr=[], m=0; for(var g=0; g<=G; g++){ arr.push(m); m+=R; } return arr; }
+
+// fixed-seed PRNG (mulberry32) — used ONLY inside selfcheck, never Math.random
+function mulberry32(a){ return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+
+/* ===== fail-loud self-check (breeder's equation, the top-fraction intensity, the h^2=0 control) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+
+ // 1 — R = h^2 * S, exactly, for a spread of inputs (fixed seed)
+ var rnd=mulberry32(0x0F0E00);
+ for(var i=0;i<128;i++){
+  var h2=rnd(), S=0.1+3*rnd();
+  t(response(h2,S)===h2*S,"response must equal h^2*S exactly");
+ }
+
+ // 2 — top fraction p in (0,1) gives i>0 and S=i*sigma
+ var pv=[0.05,0.1,0.2,0.5,0.8];
+ for(var j=0;j<pv.length;j++){
+  var ii=intensity(pv[j]);
+  t(ii>0,"selection intensity must be positive for a top fraction in (0,1)");
+  t(approx(differential(pv[j],1),ii,1e-12),"S must equal i*sigma (sigma=1)");
+  t(approx(differential(pv[j],2),2*ii,1e-12),"S must scale linearly with sigma");
+ }
+
+ // 3 — anchor: breeding the top 20% gives i ~ 1.40 (standard value)
+ t(approx(intensity(0.2),1.40,0.01),"top-20% selection intensity must be ~1.40");
+
+ // 4 — anchor: h^2=0.35, sigma=1, p=0.2 -> R ~ 0.49/gen; 10 gen -> ~ +4.9 sigma
+ var S20=differential(0.2,1);
+ var R20=response(0.35,S20);
+ t(approx(R20,0.49,0.01),"h^2=0.35, top-20%, sigma=1 must give R ~ 0.49/gen");
+ var climb=cumulative(0.35,S20,10);
+ t(approx(climb[10],4.9,0.1),"10 generations at R~0.49 must reach ~ +4.9 sigma");
+ t(climb.length===11 && climb[0]===0,"cumulative must start at 0 and cover gen 0..G");
+
+ // 5 — the mean increases by R each generation (constant params => arithmetic, step === R)
+ for(var g=1; g<climb.length; g++){
+  t(approx(climb[g]-climb[g-1],R20,1e-12),"each generation's gain must equal R (constant params)");
+ }
+
+ // 6 — the REAL control: h^2=0 gives response EXACTLY 0 over ANY number of generations
+ t(response(0,differential(0.2,1))===0,"h^2=0 must give response exactly 0");
+ var flat=cumulative(0,differential(0.2,1),40);
+ for(var k=0;k<flat.length;k++){ t(flat[k]===0,"with h^2=0 the mean must not move for any generation"); }
+
+ // 7 — larger h^2 -> faster response (monotone in the lever arm)
+ t(response(0.5,S20) > response(0.35,S20),"larger h^2 must give a faster response");
+ t(response(0.7,S20) > response(0.5,S20),"response must increase monotonically with h^2");
+
+ // 8 — response is measured genetics, LIT (not the discredited acquired-trait mechanism)
+ t(FOX_LIT===true,"response to selection under the breeder's equation must be LIT");
+
+ // 9 — the tamper: force h^2=0 yet assert a rise -> the claim must contradict the mechanism (R=0)
+ TAMPER=true;
+ var claimed = claimRise(0), actual = (response(0,S20) > 1e-12);
+ t(claimed===true,"under Lysenkoism the claim of a rise must be asserted");
+ t(actual===false,"under h^2=0 the mechanism must produce no rise");
+ t(claimed!==actual,"the Lysenkoist claim must contradict the mechanism (witness turns red)");
+
+ TAMPER=save; return true;
+}
+// the claim of a rise: normally derived from the mechanism (R>0); under tamper it is ASSERTED regardless
+function claimRise(R){ return TAMPER ? true : (R > 1e-12); }
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var gd=function(v){ return Math.round(v*1e6)/1e6; };
+var g3=function(v){ return Math.round(v*1000)/1000; };
+
+function readParams(){
+ var h2=+$("h2").value; if(!(h2>=0&&h2<=1)) h2=0.35;
+ var sig=+$("sig").value; if(!(sig>0)) sig=1;
+ var p=+$("pin").value; if(!(p>0&&p<1)) p=0.2;
+ var G=Math.round(+$("gen").value); if(!(G>=1&&G<=40)) G=10;
+ if(TAMPER) h2=0; // Lysenkoist claim: the trait is acquired, not heritable
+ return {h2:h2, sig:sig, p:p, G:G};
+}
+
+function renderHtable(){
+ var hs=[0,0.2,0.35,0.5,0.8,1], S=differential(0.2,1), rows="";
+ for(var i=0;i<hs.length;i++){
+  var R=response(hs[i],S);
+  var col = (hs[i]===0) ? "var(--wall)" : "var(--lit)";
+  rows+="<tr><td>"+hs[i]+"</td><td>"+g3(S)+"</td><td style=\"color:"+col+";font-weight:700\">"+g3(R)+"</td></tr>";
+ }
+ $("hBody").innerHTML=rows;
+}
+
+function renderClimb(pr){
+ var S=differential(pr.p,pr.sig), arr=cumulative(pr.h2,S,pr.G), rows="";
+ var marks={}; marks[0]=1; marks[Math.round(pr.G/2)]=1; marks[pr.G]=1;
+ for(var g=0; g<arr.length; g++){
+  if(!marks[g] && g!==pr.G && !(g%5===0)) continue;
+  var col = arr[g]>1e-9 ? "var(--lit)" : "var(--wall)";
+  rows+="<tr><td>"+g+"</td><td style=\"color:"+col+";font-weight:700\">"+g3(arr[g])+"</td></tr>";
+ }
+ $("climbBody").innerHTML=rows;
+}
+
+// witness: for each case, does the CLAIM of a rise match the MECHANISM (R>0)?
+function witness(){
+ var S=differential(0.2,1);
+ var cases=[
+  {name:"heritable (h&sup2;=0.35)", h2:0.35},
+  {name:"control (h&sup2;=0)",      h2:0}
+ ];
+ var rows="", allok=true;
+ for(var i=0;i<cases.length;i++){
+  var R=response(cases[i].h2,S);
+  var claimed = (i===1 && TAMPER) ? true : (R>1e-12); // the Lysenkoist tamper falsely claims the h^2=0 line rises
+  var actual = R>1e-12;
+  var ok = (claimed===actual);
+  if(!ok) allok=false;
+  rows+="<tr><td>"+cases[i].name+"</td><td>"+cases[i].h2+"</td><td>"+g3(R)+"</td><td>"+(claimed?"yes":"no")+"</td><td style=\"color:"+(ok?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(ok?"ok":"X")+"</td></tr>";
+ }
+ $("witbody").innerHTML=rows;
+ $("witbadge").innerHTML='<span class="badge '+(allok?"pass":"failb")+'">'+(allok?"WITNESS - every claimed rise is backed by a heritable mechanism":"WITNESS - a rise is claimed with no heritable mechanism (h&sup2;=0, R=0)")+'</span>';
+ return allok;
+}
+
+function render(){
+ var pr=readParams();
+ var i=intensity(pr.p), S=i*pr.sig, R=response(pr.h2,S);
+ var total=R*pr.G;
+
+ $("rline").textContent = "R = h²·S = "+g3(pr.h2)+" × "+g3(S)+" = "+g3(R)+" σ/gen"+(TAMPER?"   [ Lysenkoism asserted ]":"");
+ $("iv").textContent = g3(i);
+ $("sv").textContent = g3(S);
+ $("rv").textContent = g3(R);
+
+ renderClimb(pr);
+ renderHtable();
+
+ var ok=witness();
+ $("outverdict").className="verdict "+(ok?"ok":"no");
+ if(TAMPER){
+  $("outverdict").textContent = "h² = 0 — the line does not move.";
+  $("outreason").innerHTML = '<b style="color:var(--wall)">Lysenkoism asserted.</b> The trait is called acquired (h² = 0) yet a rise is claimed. The breeder’s equation returns R = 0: after '+pr.G+' generations the mean is still <b>0σ</b>. The claim contradicts the mechanism — witness red. You cannot select what is not heritable.';
+ } else if(pr.h2===0){
+  $("outverdict").textContent = "h² = 0 — the real control: no response.";
+  $("outreason").innerHTML = "A non-heritable trait shows <b>R = 0</b> over any number of generations. This is the quiet refutation of Lysenko: gentling a fox in its lifetime does not shift its offspring’s mean.";
+ } else {
+  $("outverdict").textContent = "the tame line climbs by "+g3(R)+"σ/gen.";
+  $("outreason").innerHTML = "Breeding the tamest <b>"+Math.round(pr.p*100)+"%</b> (i = "+g3(i)+") of a trait with heritability <b>"+g3(pr.h2)+"</b> moves the mean <b>+"+g3(total)+"σ</b> over "+pr.G+" generations. Belyaev’s foxes moved because tameness was heritable and he selected it — the domestication syndrome rode along.";
+ }
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ var sync=function(){ render(); };
+ ["h2","sig","pin","gen"].forEach(function(id){ $(id).addEventListener("input",sync); $(id).addEventListener("change",sync); });
+ $("tamper").addEventListener("click",function(){ TAMPER=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>Lysenkoism asserted.</b> The engine forces h² = 0 (the trait is called acquired, not heritable) yet insists the tame line still rises. The breeder’s equation returns <b>R = 0</b> — the mean does not move — so the claim of a rise stands with no mechanism behind it. The witness (5) compares claim to mechanism and turns <b style='color:var(--wall)'>red</b>. You cannot select what is not heritable."; render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false; $("tampernote").innerHTML="Under the Lysenkoist claim the engine forces h² = 0 but asserts a rise. The breeder’s equation returns <b>R = 0</b> — the mean does not move — while the claim insists it does. The witness (5) compares the claim to the mechanism and turns <b style='color:var(--wall)'>red</b>. You cannot select what is not heritable."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the fox-selection engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

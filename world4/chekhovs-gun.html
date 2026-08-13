@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CHEKHOV&rsquo;S GUN · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* local helpers (layout only) */
+.evts{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0;padding:9px;background:#fbf6e6;border:1px solid var(--line);border-radius:6px;min-height:34px;}
+.ev{font-size:11px;letter-spacing:.3px;padding:3px 7px;border:1px solid var(--line2);border-radius:4px;background:#fff;color:var(--ink);white-space:nowrap;}
+.ev.plant{border-color:var(--blue);color:var(--blue);}
+.ev.fire{border-color:var(--gold);color:var(--gold);}
+.ev.bad{border-color:var(--wall);color:var(--wall);background:rgba(140,28,19,.08);font-weight:700;}
+.ctrlgrid{display:flex;flex-direction:column;gap:5px;margin-top:6px;}
+.ctrlrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11.5px;}
+.ctrlrow .en{min-width:132px;color:var(--dim);}
+.mtbl td:first-child{text-align:left;} .mtbl td{font-size:11px;}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE NOVEL &middot; the Russian world</span></div>
+
+<header>
+ <h1>CHEKHOV&rsquo;S GUN</h1>
+ <p class="sub">A gun hung on the wall in Act&nbsp;I <b>must fire</b> by Act&nbsp;III &mdash; and nothing may fire that was never hung. Chekhov&rsquo;s law of <b>narrative economy</b>, made checkable beside Propp: a story is a <b>time-ordered list of events</b>; some <b style="color:var(--blue)">PLANT</b> an element, some <b style="color:var(--gold)">FIRE</b> it. It is <b class="k">economical</b> iff plants and firings form a <b>time-respecting bijection</b> &mdash; every plant fires, nothing fires unplanted, and a plant precedes its firing. The <b style="color:var(--blue)">blue team</b> builds the law; the <b style="color:var(--red)">red team</b> smuggles a dangling gun past it.</p>
+ <p class="src"><span class="tag t-amber">source</span> Anton Chekhov, from his letters, c.1889 &mdash; the pistol formulation appears in his correspondence (e.g. to A.&nbsp;S. Lazarev-Gruzinsky, 1 Nov 1889); the phrasing &ldquo;remove everything that has no relevance to the story&rdquo; is reported by S.&nbsp;Shchukin&rsquo;s memoir. Narrative economy. Room: <b>THE NOVEL</b>. Rendered as structure, not invented.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM · builds & defends ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">3</span><h2>ROOTS &mdash; the economy of the wall <span class="tag t-amber">history</span></h2>
+   <p>Late 1880s, Russia: Chekhov, a working doctor writing tales and one-act plays, keeps telling younger writers the same thing &mdash; a story is not a room you may furnish freely. Everything shown makes a <b>promise</b> to the reader; an unkept promise is a <b>wasted element</b>.</p>
+   <p>The 1889 letter puts it as a <b>loaded rifle on the stage</b> that must go off; the popular paraphrase is the <b>pistol on the wall</b> in the first act that <b>must be fired</b> in a later one &mdash; otherwise it should not hang there at all. The wider maxim, reported by Shchukin: <b>&ldquo;remove everything that has no relevance to the story.&rdquo;</b> Economy, not decoration.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE TWO RULES <span class="tag t-lit">LIT</span></h2>
+   <p>Strip the drama away and the law is two clauses over a list of events:</p>
+   <p><b>(1) Every plant fires.</b> An element shown must be paid off &mdash; no <b>dangling gun</b>.<br>
+   <b>(2) Nothing fires unplanted.</b> A payoff must have been set up &mdash; no <b>deus ex machina</b>.</p>
+   <p>Together they say: the map <b>plant &#8594; fire</b> is a <b class="k">bijection</b> &mdash; onto (rule 1) and one-to-one from real setups (rule 2). The centre engine is exactly that matching.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>TIME &mdash; a plant precedes its firing <span class="tag t-lit">LIT</span></h2>
+   <p>The bijection is not enough: it must <b>respect time</b>. A gun cannot fire in Act&nbsp;I and be hung in Act&nbsp;II. So the matching adds one order constraint: for every element, its <b>plant index &lt; its fire index</b>.</p>
+   <p>The checker walks the story once, left to right, holding open plants; a fire matches only a plant already seen. A fire with no open plant is a fault <i>at that instant</i> &mdash; the time law and the bijection are enforced in the same pass.</p>
+  </div>
+
+  <div class="win blue"><span class="no">9</span><h2>THE WITNESS <span class="tag t-lit">live</span></h2>
+   <p>On load the blue team re-runs the law on four known stories: a matched story is accepted, a dangling-gun story is rejected, a deus-ex-machina story is rejected, a fire-before-plant story is rejected. If red drops rule&nbsp;(1) at window&nbsp;6, this badge is where it turns red.</p>
+   <div id="auditout"></div>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE · data in → panel → data out ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; build a story <span class="tag t-in">in &#8595;</span></h2>
+   <p>A story is events in <b>time order</b>. Append a <b style="color:var(--blue)">plant</b> or a <b style="color:var(--gold)">fire</b> of any element; order is exactly the order you add them. Presets load the four canonical shapes.</p>
+   <div class="evts" id="story"></div>
+   <div class="ctrlgrid" id="ctrls"></div>
+   <div class="row" style="margin-top:8px">
+    <button id="pValid">matched</button>
+    <button id="pDangle">dangling gun</button>
+    <button id="pDeus">deus ex machina</button>
+    <button id="pEarly">fire before plant</button>
+   </div>
+   <div class="row"><button id="undo">&#8630; remove last</button><button id="clearb">&#8635; clear</button></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; walk the events in the order given &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; is it economical? <span class="tag t-lit">LIT</span></h2>
+   <p class="small">One pass. Each <b>plant</b> is held open; each <b>fire</b> must close an open plant of the same element. A fire with none open is a fault the instant it fires; any plant still open at the end is a dangling gun.</p>
+   <table id="stepTbl"><thead><tr><th>t</th><th>event</th><th>element</th><th>ok?</th></tr></thead><tbody id="stepBody"></tbody></table>
+   <p class="small" style="margin-top:6px"><b>The matching</b> (plant &#8594; fire):</p>
+   <table class="mtbl" id="matchTbl"><tbody id="matchBody"></tbody></table>
+  </div>
+  <div class="flow">&#9660; &nbsp; the checker emits one verdict &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; the verdict &amp; its lineage <span class="tag t-out">out &#8595;</span></h2>
+   <div class="verdict" id="verdict"></div>
+   <div class="reason" id="reason"></div>
+   <div id="litbadge" style="margin-top:8px"></div>
+   <p class="small" style="margin-top:8px"><b>LINEAGE.</b> Chekhov&rsquo;s economy <span style="color:var(--gold)">&#8594;</span> Propp&rsquo;s <a href="the-morphology-of-the-tale.html">functions</a> (the plant/fire pairing is a promise-and-payoff, as <i>villainy</i>&#8594;<i>liquidation</i> is a Propp pair) <span style="color:var(--gold)">&#8594;</span> the screenwriter&rsquo;s <b>setup / payoff</b>. A matched story above is the shape all three certify: nothing shown is wasted, nothing paid off was unearned.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM · attacks & breaks ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9705;</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE RED HERRING &mdash; the disclosed blank</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> The checker owes a firing to <b>every</b> plant. But detective fiction runs a lawful <b>red herring</b>: a clue shown to <i>mislead</i>, never paid off &mdash; and that is not cheating, because the genre <b>discloses</b> the contract (some clues are decoys). A disclosed blank is a <b>different promise</b>, not a dangling gun. The economy checker models Chekhov&rsquo;s strict theatre, where the promise is always payoff; it does not model the detective&rsquo;s looser one.</div>
+   <p class="small" style="margin-top:8px">So the engine is exact on Chekhov&rsquo;s contract and silent on the herring&rsquo;s. Read its verdict inside that contract, not outside it.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Realism means include everything &mdash; life is full of irrelevant detail.&rdquo;</s> <b>Cut.</b> Chekhov&rsquo;s realism is <i>ruthless economy</i>: the detail that goes nowhere is removed, not kept for texture. The wall must earn its gun.</p>
+   <p class="grave"><s>&ldquo;A twist is best when nothing set it up.&rdquo;</s> <b>Cut.</b> That is <i>deus ex machina</i> &mdash; rule&nbsp;(2) forbids it. A payoff with no plant is a cheat, not a surprise.</p>
+   <p class="grave"><s>&ldquo;The gun is just a metaphor; it proves nothing.&rdquo;</s> <b>Cut.</b> It reduces to a <b>time-respecting bijection</b> on events &mdash; and the panel runs it live.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; break it</h2>
+   <p>The red move: <b>drop rule (1).</b> Allow dangling guns &mdash; stop requiring that every plant fire. Now a story that hangs a gun and <b>never fires it</b> passes as &ldquo;economical.&rdquo; Chekhov forbids exactly that wasted element, so the witness (9), which demands the dangling story be rejected, turns <b style="color:var(--wall)">red</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; allow dangling guns</button><button id="restore">&#8635; restore</button></div>
+   <p class="small" id="tampernote">With rule&nbsp;(1) dropped, &ldquo;economical?&rdquo; degenerates into &ldquo;did every firing have a setup?&rdquo; &mdash; the unfired gun on the wall stops counting as waste. The attack is real, and the witness catches it.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">CHEKHOV&rsquo;S GUN &mdash; World IV &middot; <b>SONIA</b>, in the refined <b>OCHO</b>: a story goes <b style="color:var(--cy)">in</b> as a time-ordered list of plants and firings &#8594; the checker matches each in one pass &#8594; an <b style="color:var(--grn)">economical / not-economical</b> verdict comes out. A runnable rendering of Anton Chekhov&rsquo;s principle of narrative economy (from his letters, c.1889) &mdash; the engine is LIT (the two rules as a time-respecting bijection: every plant fires, nothing fires unplanted, a plant precedes its firing, all self-checked and tamper-provable); the strict-economy contract is exact, and the disclosed red herring is honestly out of its scope. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA &middot; CHEKHOV'S GUN &mdash; the engine (narrative economy, computed) ===== */
+
+// The elements that may hang on the wall. Each is a "gun": it may be planted and later fired.
+var ELEMENTS = [
+ {g:"g1", name:"the gun on the wall"},
+ {g:"g2", name:"the sealed letter"},
+ {g:"g3", name:"the loose floorboard"}
+];
+
+// A story is a time-ordered list of events. An event PLANTS or FIRES one element.
+// event = {kind:"plant"|"fire", g:"g1"}
+function P(g){ return {kind:"plant", g:g}; }
+function F(g){ return {kind:"fire",  g:g}; }
+
+var KNOWN = {};
+for (var _i=0;_i<ELEMENTS.length;_i++) KNOWN[ELEMENTS[_i].g]=true;
+
+// TAMPER: when true, rule (1) is dropped &mdash; a dangling gun (unfired plant) is allowed.
+var TAMPER = false;
+
+// Walk the story once. Hold each plant open; a fire closes an open plant of the same element
+// (that closure encodes plant-index < fire-index: the time law). Report every fault and the
+// plants left open at the end (dangling guns). This IS the time-respecting bijection.
+function check(story){
+ var open = {};          // g -> STACK of indices of unfired plants (event-strict; no silent overwrite)
+ var steps = [];         // per-event annotation, in time order
+ var faults = [];        // faults, in time order: {t, type, g}
+ var pairs = [];         // matched pairs: {g, plant, fire}
+ for(var i=0;i<story.length;i++){
+  var ev = story[i];
+  if(!KNOWN[ev.g]){ faults.push({t:i,type:"UNKNOWN",g:ev.g}); steps.push({ev:ev,ok:false,note:"unknown element"}); continue; }
+  if(ev.kind==="plant"){
+   if(!open[ev.g]) open[ev.g] = [];
+   open[ev.g].push(i);            // every plant event is tracked, even a repeat of the same element
+   steps.push({ev:ev, ok:true, note:"hung on the wall"});
+  } else {                // fire
+   if(open[ev.g] && open[ev.g].length>0){
+    pairs.push({g:ev.g, plant:open[ev.g].pop(), fire:i});
+    steps.push({ev:ev, ok:true, note:"fires its plant"});
+   } else {
+    // no open plant: never-planted payoff, payoff before its setup, or a re-fire
+    var pAny = firstIndexOf(story,"plant",ev.g,i);   // any plant at all, and where
+    if(pAny.at<0){ faults.push({t:i,type:"DEUS",g:ev.g}); steps.push({ev:ev,ok:false,note:"deus ex machina: never planted"}); }
+    else if(pAny.at>i){ faults.push({t:i,type:"EARLY",g:ev.g}); steps.push({ev:ev,ok:false,note:"fires before it was planted"}); }
+    else { faults.push({t:i,type:"DOUBLE",g:ev.g}); steps.push({ev:ev,ok:false,note:"already discharged"}); }
+   }
+  }
+ }
+ var dangling = [];      // any plant event still on a stack at the end is a dangling gun
+ for(var g in open){ if(open.hasOwnProperty(g)){ for(var j=0;j<open[g].length;j++) dangling.push({g:g, plant:open[g][j]}); } }
+ return {steps:steps, faults:faults, pairs:pairs, dangling:dangling};
+}
+
+// find a plant of g anywhere in the story (used only to name a fault's cause)
+function firstIndexOf(story, kind, g, notAt){
+ for(var i=0;i<story.length;i++){ if(story[i].kind===kind && story[i].g===g && i!==notAt) return {at:i}; }
+ return {at:-1};
+}
+
+// The verdict. Empty is not a story. A fire fault fails always. A dangling gun fails unless TAMPER.
+function verdict(story){
+ if(!story || story.length===0) return {code:"EMPTY", valid:false};
+ var r = check(story);
+ if(r.faults.length>0){ var f=r.faults[0]; return {code:f.type, valid:false, t:f.t, g:f.g, r:r}; }
+ if(!TAMPER && r.dangling.length>0){ var d=r.dangling[0]; return {code:"DANGLE", valid:false, g:d.g, t:d.plant, r:r}; }
+ return {code:"OK", valid:true, r:r};
+}
+function isEconomical(story){ return verdict(story).valid; }
+
+/* ===== fixed-seed PRNG (deterministic LCG; the engine calls no platform RNG) ===== */
+function mkrng(seed){ var s=seed>>>0; return function(){ s=(1664525*s+1013904223)>>>0; return s/4294967296; }; }
+
+/* ===== fail-loud self-check (runs untampered on the anchors) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+
+ // count anchor
+ t(ELEMENTS.length===3, "there must be exactly 3 elements, got "+ELEMENTS.length);
+
+ // ANCHOR: plant g1,g2 then fire g1,g2 (in order) is VALID
+ var matched=[P("g1"),P("g2"),F("g1"),F("g2")];
+ t(isEconomical(matched)===true, "matched story [plant g1,g2; fire g1,g2] must be ECONOMICAL");
+ // and its matching is a bijection: two pairs, each fire after its plant, counts equal
+ var rm=check(matched);
+ t(rm.pairs.length===2 && rm.faults.length===0 && rm.dangling.length===0, "matched story must yield 2 clean pairs");
+ for(var q=0;q<rm.pairs.length;q++) t(rm.pairs[q].plant < rm.pairs[q].fire, "every pair must have plant before fire");
+
+ // ANCHOR: plant g1,g2 but fire only g1 leaves a DANGLING gun (invalid)
+ var dangle=[P("g1"),P("g2"),F("g1")];
+ var vd=verdict(dangle);
+ t(vd.valid===false && vd.code==="DANGLE", "dangling-gun story must be flagged DANGLE");
+
+ // ANCHOR: fire g3 never planted is DEUS EX MACHINA (invalid)
+ var deus=[P("g1"),F("g1"),F("g3")];
+ var ve=verdict(deus);
+ t(ve.valid===false && ve.code==="DEUS", "unplanted firing must be flagged DEUS");
+
+ // ANCHOR: fire before plant violates TIME (invalid)
+ var early=[F("g1"),P("g1")];
+ var vt=verdict(early);
+ t(vt.valid===false && vt.code==="EARLY", "fire-before-plant must be flagged EARLY");
+
+ // empty is not a story
+ t(isEconomical([])===false, "an empty story must be rejected");
+ // single matched pair is economical
+ t(isEconomical([P("g1"),F("g1")])===true, "a single planted-and-fired gun must be ECONOMICAL");
+
+ // TIME is enforced within the bijection: same multiset, wrong order, still fails
+ t(isEconomical([F("g1"),F("g2"),P("g1"),P("g2")])===false, "all fires before all plants must fail (time)");
+
+ // seeded property test: plant k guns then fire a permutation of them -> always ECONOMICAL
+ // (all plants precede all fires, so a time-respecting bijection always exists)
+ var rng=mkrng(0x5017);
+ for(var trial=0; trial<40; trial++){
+  var k=2+((rng()*2)|0);              // 2 or 3 elements
+  var ids=["g1","g2","g3"].slice(0,k);
+  var st=[]; var e;
+  for(e=0;e<k;e++) st.push(P(ids[e]));
+  var perm=ids.slice();
+  for(var a=perm.length-1;a>0;a--){ var b=(rng()*(a+1))|0; var tmp=perm[a]; perm[a]=perm[b]; perm[b]=tmp; }
+  for(e=0;e<k;e++) st.push(F(perm[e]));
+  t(isEconomical(st)===true, "seeded matched story #"+trial+" must be ECONOMICAL");
+  // now fire the FIRST element before planting anything -> must fail as EARLY
+  var broken=[F(ids[0])].concat(st);
+  t(isEconomical(broken)===false, "seeded early-fire story #"+trial+" must fail");
+ }
+
+ // TAMPER really drops rule (1): the dangling story now (wrongly) passes; time faults still fail
+ TAMPER=true;
+ t(isEconomical(dangle)===true, "with rule (1) dropped, the dangling gun must (wrongly) pass &mdash; proving the tamper is real");
+ t(isEconomical(early)===false, "tamper drops only rule (1): fire-before-plant must still fail");
+ t(isEconomical(deus)===false,  "tamper drops only rule (1): deus ex machina must still fail");
+ TAMPER=false;
+
+ TAMPER=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var story=[P("g1"),P("g2"),F("g1"),F("g2")];   // current story, in time order
+
+function nameOf(g){ for(var i=0;i<ELEMENTS.length;i++){ if(ELEMENTS[i].g===g) return ELEMENTS[i].name; } return "?"; }
+
+function renderControls(){
+ var html="";
+ for(var i=0;i<ELEMENTS.length;i++){
+  var e=ELEMENTS[i];
+  html+="<div class='ctrlrow'><span class='en'>"+e.g+" &middot; "+e.name+"</span>"
+      +"<button data-k='plant' data-g='"+e.g+"'>&#9650; plant</button>"
+      +"<button data-k='fire' data-g='"+e.g+"'>&#9670; fire</button></div>";
+ }
+ $("ctrls").innerHTML=html;
+ var btns=$("ctrls").getElementsByTagName("button");
+ for(var b=0;b<btns.length;b++){
+  btns[b].addEventListener("click",function(){
+   var k=this.getAttribute("data-k"), g=this.getAttribute("data-g");
+   story.push(k==="plant"?P(g):F(g));
+   render();
+  });
+ }
+}
+
+function render(){
+ var r=check(story);
+ var v=verdict(story);
+
+ // story chips, marking the faulting event (or the first dangling plant)
+ var faultAt = (v.code!=="OK" && v.code!=="EMPTY" && typeof v.t==="number") ? v.t : -2;
+ var chips=[];
+ for(var i=0;i<story.length;i++){
+  var ev=story[i];
+  var cls = ev.kind==="plant"?"plant":"fire";
+  var bad = (i===faultAt);
+  var sym = ev.kind==="plant"?"&#9650;":"&#9670;";
+  chips.push("<span class='ev "+cls+(bad?" bad":"")+"'>"+sym+" "+ev.kind+" "+ev.g+"</span>");
+ }
+ $("story").innerHTML = story.length ? chips.join("") : "<span class='mut'>no events &mdash; append a plant or a fire below</span>";
+
+ // step table
+ var rows=[];
+ for(var j=0;j<r.steps.length;j++){
+  var s=r.steps[j];
+  var mark = s.ok ? "<b style='color:var(--lit)'>&#10003;</b>" : "<b style='color:var(--wall)'>&#10007;</b>";
+  rows.push("<tr><td>"+(j+1)+"</td><td style='color:"+(s.ev.kind==="plant"?"var(--blue)":"var(--gold)")+"'>"+s.ev.kind+"</td><td style='text-align:left'>"+s.ev.g+" &middot; "+nameOf(s.ev.g)+"</td><td>"+mark+" <span class='mut' style='font-size:10px'>"+s.note+"</span></td></tr>");
+ }
+ $("stepBody").innerHTML = rows.length ? rows.join("") : "<tr><td colspan='4' class='mut'>&mdash;</td></tr>";
+
+ // matching table
+ var mrows=[];
+ for(var p=0;p<r.pairs.length;p++){
+  var pr=r.pairs[p];
+  mrows.push("<tr><td>"+pr.g+" &middot; "+nameOf(pr.g)+"</td><td>plant@"+(pr.plant+1)+" &#8594; fire@"+(pr.fire+1)+"</td><td><b style='color:var(--lit)'>matched</b></td></tr>");
+ }
+ for(var dg=0; dg<r.dangling.length; dg++){
+  var dd=r.dangling[dg];
+  var dcls = TAMPER ? "var(--amber)" : "var(--wall)";
+  var dlab = TAMPER ? "dangling (allowed)" : "DANGLING GUN";
+  mrows.push("<tr><td>"+dd.g+" &middot; "+nameOf(dd.g)+"</td><td>plant@"+(dd.plant+1)+" &#8594; <b style='color:"+dcls+"'>never fired</b></td><td><b style='color:"+dcls+"'>"+dlab+"</b></td></tr>");
+ }
+ for(var fq=0; fq<r.faults.length; fq++){
+  var ff=r.faults[fq];
+  var lbl = ff.type==="DEUS"?"unplanted firing":ff.type==="EARLY"?"fired before plant":ff.type==="DOUBLE"?"re-fired":"unknown";
+  mrows.push("<tr><td>"+ff.g+" &middot; "+nameOf(ff.g)+"</td><td>fire@"+(ff.t+1)+" &#8594; <b style='color:var(--wall)'>no open plant</b></td><td><b style='color:var(--wall)'>"+lbl+"</b></td></tr>");
+ }
+ $("matchBody").innerHTML = mrows.length ? mrows.join("") : "<tr><td colspan='3' class='mut'>no pairs yet</td></tr>";
+
+ // verdict
+ var vEl=$("verdict"), rEl=$("reason");
+ if(v.code==="EMPTY"){
+  vEl.className="verdict no"; vEl.textContent="&mdash; EMPTY";
+  rEl.textContent="A story needs at least one event.";
+ } else if(v.valid){
+  vEl.className="verdict ok"; vEl.innerHTML="&#10003; ECONOMICAL";
+  rEl.innerHTML = TAMPER
+   ? "<b style='color:var(--wall)'>rule (1) dropped</b> &mdash; accepted although dangling guns were not required to fire; economy was not fully checked."
+   : "The "+r.pairs.length+" plant"+(r.pairs.length===1?"":"s")+" all fire, every firing had an earlier plant, and the matching respects time. Nothing shown is wasted.";
+ } else {
+  vEl.className="verdict no";
+  if(v.code==="DANGLE"){ vEl.innerHTML="&#10007; DANGLING GUN"; rEl.innerHTML="<b>"+v.g+" &middot; "+nameOf(v.g)+"</b> is hung (plant@"+(v.t+1)+") but never fired &mdash; rule (1) violated: a shown element made a promise it never kept."; }
+  else if(v.code==="DEUS"){ vEl.innerHTML="&#10007; DEUS EX MACHINA"; rEl.innerHTML="<b>"+v.g+" &middot; "+nameOf(v.g)+"</b> fires at t="+(v.t+1)+" with no earlier plant &mdash; rule (2) violated: a payoff with no setup."; }
+  else if(v.code==="EARLY"){ vEl.innerHTML="&#10007; FIRED BEFORE PLANTED"; rEl.innerHTML="<b>"+v.g+" &middot; "+nameOf(v.g)+"</b> fires at t="+(v.t+1)+" before its plant &mdash; the time law is violated: a plant must precede its firing."; }
+  else if(v.code==="DOUBLE"){ vEl.innerHTML="&#10007; FIRED TWICE"; rEl.innerHTML="<b>"+v.g+" &middot; "+nameOf(v.g)+"</b> fires again at t="+(v.t+1)+" with no open plant &mdash; it was already discharged."; }
+  else { vEl.innerHTML="&#10007; NOT A STORY"; rEl.textContent="An event names an unknown element."; }
+ }
+ audit();
+}
+
+function audit(){
+ // re-run the four anchors live (respecting the current TAMPER state)
+ var acceptsMatched = (isEconomical([P("g1"),P("g2"),F("g1"),F("g2")])===true);
+ var rejectsDangle  = (isEconomical([P("g1"),P("g2"),F("g1")])===false);
+ var rejectsDeus    = (isEconomical([P("g1"),F("g1"),F("g3")])===false);
+ var rejectsEarly   = (isEconomical([F("g1"),P("g1")])===false);
+ var ok = acceptsMatched && rejectsDangle && rejectsDeus && rejectsEarly && !TAMPER;
+ $("auditout").innerHTML =
+   "<span class='badge "+(ok?"pass":"failb")+"'>"+(ok?"&#10003; WITNESS &mdash; the economy law holds":"&#10007; WITNESS &mdash; broken")+"</span>"
+  +"<div class='small' style='margin-top:6px'>matched accepted <b style='color:"+(acceptsMatched?"var(--lit)":"var(--wall)")+"'>"+(acceptsMatched?"&#10003;":"&#10007;")+"</b> &middot; dangling rejected <b style='color:"+(rejectsDangle?"var(--lit)":"var(--wall)")+"'>"+(rejectsDangle?"&#10003;":"&#10007;")+"</b> &middot; deus rejected <b style='color:"+(rejectsDeus?"var(--lit)":"var(--wall)")+"'>"+(rejectsDeus?"&#10003;":"&#10007;")+"</b> &middot; early rejected <b style='color:"+(rejectsEarly?"var(--lit)":"var(--wall)")+"'>"+(rejectsEarly?"&#10003;":"&#10007;")+"</b>"
+  +(TAMPER?" &nbsp;&mdash; <span style='color:var(--wall)'>red dropped rule (1)</span>":"")+"</div>";
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ renderControls();
+ $("litbadge").innerHTML='<span class="badge pass">&#10003; LIT &middot; self-check passed on load</span>';
+
+ $("pValid").addEventListener("click",function(){ story=[P("g1"),P("g2"),F("g1"),F("g2")]; render(); });
+ $("pDangle").addEventListener("click",function(){ story=[P("g1"),P("g2"),F("g1")]; render(); });
+ $("pDeus").addEventListener("click",function(){ story=[P("g1"),F("g1"),F("g3")]; render(); });
+ $("pEarly").addEventListener("click",function(){ story=[F("g1"),P("g1")]; render(); });
+ $("undo").addEventListener("click",function(){ if(story.length) story.pop(); render(); });
+ $("clearb").addEventListener("click",function(){ story=[]; render(); });
+
+ $("tamper").addEventListener("click",function(){
+  TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Rule (1) dropped.</b> Dangling guns are now allowed. The story that hangs a gun and never fires it passes as ECONOMICAL, and the witness (9) recomputed and went red. The attack is real; it is caught.";
+  render();
+ });
+ $("restore").addEventListener("click",function(){
+  TAMPER=false;
+  $("tampernote").innerHTML="With rule&nbsp;(1) dropped, &ldquo;economical?&rdquo; degenerates into &ldquo;did every firing have a setup?&rdquo; &mdash; the unfired gun on the wall stops counting as waste. The attack is real, and the witness catches it.";
+  render();
+ });
+
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD &mdash; the Chekhov engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

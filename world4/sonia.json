@@ -10,11 +10,11 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "4de9fcaabd54288f4bb71edfb3970ba5df4c3af3781451f46425cef6f7ae4123",
+  "sonia_root": "180c26b1232e6a10eb2ca85eb835437c775388b5e37c18e451117168a18e48fd",
   "counts": {
-    "spheres": 23,
+    "spheres": 28,
     "rooms": 5,
-    "lit": 23,
+    "lit": 28,
     "keepers": 8
   },
   "keepers": [
@@ -399,6 +399,66 @@
       "url": "https://davidwise01.github.io/ud0/world4/the-ogas.html",
       "seal": "6a2f60ef3095e66277bacd299ab17f8f4d32e4cbd6450a7a5831810ac28170c3",
       "blurb": "OGAS (Glushkov, 1962), the Soviet dream of a nationwide computer network to run the planned economy in real time, runnable in THE OCHO: a proportional feedback loop settling the plan error (x_{n+1} = x_n + k(target - x_n), converging iff 0 < k < 2) and the hierarchical network (~200 main + ~20,000 local centres). Approved in principle, never built - the internet the USSR did not make. Ties GOBERNET and the calculation debate. Tamper-provable by pushing the gain past 2."
+    },
+    {
+      "slug": "the-transportation-problem",
+      "title": "THE TRANSPORTATION PROBLEM",
+      "room": "number",
+      "kicker": "Kantorovich's optimal transport, and its dual",
+      "accent": "#c30019",
+      "stamp": "LIT",
+      "source": "L. V. Kantorovich (1939); Nobel 1975",
+      "url": "https://davidwise01.github.io/ud0/world4/the-transportation-problem.html",
+      "seal": "57b93e4198217d85dc720d379a9d345e089c41b7cbdb079f097c2cf0238b40d8",
+      "blurb": "L. V. Kantorovich's optimal transport (1939; Nobel 1975), runnable in THE OCHO: the assignment problem solved by brute force over all permutations, with Kantorovich duality (potentials u_i + v_j <= C_ij, max dual = min primal) proving the optimum. From the 1939 plywood-trust problem to the Monge-Kantorovich theory and the Wasserstein distance; the real math of central planning. Ties GOBERNET. Tamper-provable."
+    },
+    {
+      "slug": "chekhovs-gun",
+      "title": "CHEKHOV'S GUN",
+      "room": "novel",
+      "kicker": "narrative economy, made checkable",
+      "accent": "#1d4e79",
+      "stamp": "LIT",
+      "source": "Anton Chekhov, letters (c.1889)",
+      "url": "https://davidwise01.github.io/ud0/world4/chekhovs-gun.html",
+      "seal": "5aadbea10a51df01a65a534497f08b1279ca319a871fcd79efa9108d6ed9927e",
+      "blurb": "Chekhov's principle of narrative economy (from his letters, c.1889), runnable in THE OCHO: a story is a list of plants and firings, well-formed iff every planted gun fires and nothing fires unplanted (a time-respecting bijection). A dangling gun or a deus ex machina is flagged. Russian narrative economy as a computable checker, beside Propp. Tamper-provable by allowing dangling guns."
+    },
+    {
+      "slug": "kaissa",
+      "title": "KAISSA",
+      "room": "machine",
+      "kicker": "the first world computer chess champion, 1974",
+      "accent": "#9a6b12",
+      "stamp": "LIT",
+      "source": "Kaissa, Institute of Control Sciences, Moscow (1974)",
+      "url": "https://davidwise01.github.io/ud0/world4/kaissa.html",
+      "seal": "8834c51d0965e40fc15c3dde1ba92fefbe6e6f2afaff0f50932b16d2adda07b7",
+      "blurb": "Kaissa, the Soviet chess program that won the first World Computer Chess Championship (Stockholm, 1974), runnable in THE OCHO: minimax and alpha-beta on a game tree - alpha-beta returns the identical value while pruning provably-irrelevant branches, so its best case visits about b^(d/2) leaves instead of b^d and searches twice as deep (chess branching ~35). The line to Deep Blue and AlphaZero. Tamper-provable when an unsound cut changes the value."
+    },
+    {
+      "slug": "the-fox-experiment",
+      "title": "THE FOX EXPERIMENT",
+      "room": "weird",
+      "kicker": "selecting for tameness, and the domestication syndrome",
+      "accent": "#5f513a",
+      "stamp": "LIT",
+      "source": "D. Belyaev, silver-fox experiment, Novosibirsk (from 1959)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-fox-experiment.html",
+      "seal": "8e7e771be2740268f91e019c55d25a25ab449ef2b865c9024334ed110d392cbe",
+      "blurb": "Dmitri Belyaev's silver-fox experiment (Novosibirsk, from 1959), runnable in THE OCHO: selecting only for tameness produced the domestication syndrome (floppy ears, curled tails) within ~10 generations, modelled by the breeder's equation R = h^2 S - and with heritability h^2 = 0 nothing responds, the quiet refutation of Lysenko. Real genetics run under a hostile regime; ties the-lysenko-affair. Tamper-provable."
+    },
+    {
+      "slug": "the-potemkin-village",
+      "title": "THE POTEMKIN VILLAGE",
+      "room": "state",
+      "kicker": "the facade, and the report that carries zero bits",
+      "accent": "#7a1220",
+      "stamp": "LIT",
+      "source": "Potemkin (1787); Soviet pripiski",
+      "url": "https://davidwise01.github.io/ud0/world4/the-potemkin-village.html",
+      "seal": "6ff1de36de7b80245043f0a769136f9531d47b1a9effa95cfe9777231cf041c5",
+      "blurb": "The Potemkin village (1787) and Soviet pripiski, runnable in THE OCHO: reported output pinned to the target while the real falls short, the accumulated gap growing until the shelves are empty - and, information-theoretically, a report that always says 'target met' carries zero bits (entropy 0), so it cannot tell success from failure. The facade made mechanical; ties GOBERNET, OGAS, and the OCHO's own fail-loud law. Tamper-provable."
     }
   ]
 }
