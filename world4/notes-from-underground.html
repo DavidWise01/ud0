@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOTES FROM UNDERGROUND &middot; WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE NOVEL &middot; the Russian world</span></div>
+
+<header>
+ <h1>NOTES FROM UNDERGROUND</h1>
+ <p class="sub">The <b>Underground Man</b> &mdash; sick, spiteful, unattractive &mdash; writes from his corner against the <b>Crystal Palace</b> of rational egoism: the promise that once a person is shown their true advantage they <b>must</b> act on it, &ldquo;like a piano key or an organ stop.&rdquo; His whole revolt is one move: at the very same state he will act <b>against</b> his advantage, precisely to prove he is not a key. The <b style="color:var(--blue)">blue team</b> builds the egoist as a clean function; the <b style="color:var(--red)">red team</b> insists the man is just another utility table.</p>
+ <p class="src"><span class="tag t-amber">source</span> Fyodor Dostoevsky, <i>Notes from Underground</i> (&#1047;&#1072;&#1087;&#1080;&#1089;&#1082;&#1080; &#1080;&#1079; &#1087;&#1086;&#1076;&#1087;&#1086;&#1083;&#1100;&#1103;, 1864) &mdash; a reply to Chernyshevsky&rsquo;s <i>What Is to Be Done?</i>. Room: <b>THE NOVEL</b>. The philosophy is interpretation; only one narrow formal fact is claimed LIT.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM · builds & defends ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">3</span><h2>ROOTS &mdash; the man in the corner <span class="tag t-amber">history</span></h2>
+   <p>Fyodor Dostoevsky (1821&ndash;1881) opens with a nameless narrator: &ldquo;I am a sick man &hellip; I am a spiteful man.&rdquo; A retired clerk of forty, festering in his <b>corner</b> in Petersburg, he addresses a hostile reader who is never there.</p>
+   <p>The book is a direct <b>reply to Chernyshevsky</b>&rsquo;s <i>What Is to Be Done?</i> (1863), whose heroes act only on enlightened self-interest. Dostoevsky answers: give me a man who will spit on his own advantage, just to be free.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>WELL-DEFINEDNESS &mdash; the egoist is a function <span class="tag t-lit">LIT</span></h2>
+   <p>Model the rational egoist as a <b>total function</b> <b class="k">U: State &rarr; Action</b>: for each state there is <b>exactly one</b> forced action &mdash; the piano key. A function is well-defined <b>iff</b> every input maps to exactly one output.</p>
+   <p>The egoist policy passes the check: 4 states, each with a single action, <b>max branches = 1</b>. It IS a function &mdash; a lawful lookup table.</p>
+   <div id="wdout"></div>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>CAPRICE &mdash; one input, two outputs <span class="tag t-lit">LIT</span></h2>
+   <p>The Underground Man&rsquo;s move: at the <b>same</b> state <b class="k">s0</b> he keeps both actions &mdash; take the advantage <b>and</b> refuse it from spite. The relation now contains <b>(s0, advantageous)</b> and <b>(s0, spiteful)</b> with the two distinct.</p>
+   <p>The same check FLAGS the doubled key: <b>s0 &rarr; {A, B}</b>, <b>branch count = 2</b>. A one-to-two mapping is <b>not a function</b> &mdash; and the second branch is <b>&ge; 1 free bit</b> (log&#8322;2) the closed table cannot encode.</p>
+   <div id="cpout"></div>
+  </div>
+
+  <div class="win blue"><span class="no">9</span><h2>THE WITNESS <span class="tag t-lit">live</span></h2>
+   <p>The blue team re-runs the core claims on load: the egoist lookup is a valid function (max branches 1); the caprice relation FAILS well-definedness at s0 (branches 2); the closed table returns 4 (not 5); and inserting a second value at one key raises the branch count 1&rarr;2 (&ge; 1 free bit). If red claims the man is &ldquo;just a utility function&rdquo; (6), this badge turns red.</p>
+   <div id="auditout"></div>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE · data in → panel → data out ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; a policy, and a state <span class="tag t-in">in &#8595;</span></h2>
+   <p>Feed the machine a policy. <b>EGOIST U</b> is the total function &mdash; one state, one forced action. <b>CAPRICE R</b> is the Underground Man&rsquo;s relation &mdash; it keeps a <b>second</b> action at s0.</p>
+   <div class="row"><button id="pEgo">policy = EGOIST U</button><button id="pCap">policy = CAPRICE R</button></div>
+   <div class="row"><label>look up</label>
+     <select id="sel">
+      <option value="s0">s0 &mdash; advantage is shown to him</option>
+      <option value="s1">s1 &mdash; a clear profit is offered</option>
+      <option value="s2">s2 &mdash; the Crystal Palace is opened</option>
+      <option value="s3">s3 &mdash; an insult, freshly given</option>
+     </select>
+   </div>
+   <div id="lookout" class="small"></div>
+   <p class="small">The panel below runs the well-definedness check on the chosen policy and asks the novel&rsquo;s question: <b>is this a function?</b></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; check every input for exactly one output &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; function vs. non-function <span class="tag t-lit">LIT</span></h2>
+   <p class="small">Two engines, side by side. Left: the <b>EGOIST</b> &mdash; every state has one action, so it is a function. Right: your chosen policy fed to the same check &mdash; a doubled key makes it <b>not</b> a function.</p>
+   <div class="engine">
+    <div class="controls">
+     <p class="small mut">EGOIST U &middot; a total function</p>
+     <div id="egoBody"></div>
+    </div>
+    <div class="readout">
+     <p class="small mut">CHOSEN POLICY &middot; run the check</p>
+     <div id="relBody"></div>
+    </div>
+   </div>
+   <p class="small" style="margin-top:8px">Arithmetic anchor: the closed table stays <b class="k">2&times;2 = 4</b> (one value). Insert a second value &mdash; <b>2&times;2 = 5</b> &mdash; and the key <b>2&times;2</b> now has 2 branches: a one-to-two map, formally not a function.</p>
+   <div id="arithBody"></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; one verdict on this policy &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; the verdict &amp; the lineage <span class="tag t-out">out &#8595;</span></h2>
+   <div class="verdict" id="verdict"></div>
+   <div class="reason" id="reason"></div>
+   <div id="litbadge" style="margin-top:8px"></div>
+   <p class="small" style="margin-top:8px"><b>LINEAGE.</b> The man who refuses his own advantage <span style="color:var(--gold)">&#8594;</span> Nietzsche&rsquo;s will over reason <span style="color:var(--gold)">&#8594;</span> existentialism <span style="color:var(--gold)">&#8594;</span> Zamyatin&rsquo;s One State and the &radic;&minus;1 it cannot absorb (<a href="./zamyatin-we.html">zamyatin-we</a>). The anti-determinist thread: a self that will not close over any table.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM · attacks & breaks ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9705;</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE CRYSTAL PALACE &mdash; the piano key <span class="tag t-amber">reading</span></h2>
+   <p>Chernyshevsky&rsquo;s dream: rational egoism. Know your true advantage and you <b>must</b> act on it &mdash; man reduced to &ldquo;a piano key or an organ stop.&rdquo; History becomes a table you can precompute; the <b>Crystal Palace</b> is the finished, transparent, wholly reasonable world.</p>
+   <div class="row"><label>state</label><input id="pk" type="text" value="s0" style="width:80px"><span class="out" id="pkOut" style="margin:0"></span></div>
+   <p class="small">In the Palace, every state has exactly one forced key. The Underground Man&rsquo;s whole objection is that he can, at s0, strike a <b>different</b> key &mdash; and there is no table that holds both.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;2&times;2 = 4, so man is a piano key.&rdquo;</s> <b>Cut.</b> The arithmetic is fine; the inference is not. Caprice is a one-to-two map at s0 &mdash; formally not a function &mdash; so no closed table contains it.</p>
+   <p class="grave"><s>&ldquo;The Underground Man is just another utility function.&rdquo;</s> <b>Cut.</b> A function needs one output per input. His relation carries two at s0; the well-definedness check refuses it.</p>
+   <p class="grave"><s>&ldquo;Shown his advantage, he must take it.&rdquo;</s> <b>Cut.</b> &ldquo;Two times two is five is sometimes a most charming little thing&rdquo; &mdash; the free bit he inserts to prove he is no key.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; call the man a function <span class="tag t-wall">limit</span></h2>
+   <p>The red move &mdash; the Palace&rsquo;s own demand: <b>assert that the caprice relation is a valid function</b> (fully predictable). Feed his relation to the check anyway; the doubled key <b>s0 &rarr; {A, B}</b> makes it NOT a function, so the witness (9) recomputes and turns <b style="color:var(--wall)">red</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; claim caprice is a function</button><button id="restore">&#8635; restore</button></div>
+   <p class="small" id="tampernote">The Palace can schedule the egoist perfectly, but it cannot make a one-to-two map into a function. The lie is measurable, and the witness catches it.</p>
+   <div class="wall-note">The LIT is only the narrow formal fact: <b>a one-to-two mapping is not a function</b>. The freedom-of-the-will reading around it is <b>AMBER</b> interpretation, not a proof.</div>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">NOTES FROM UNDERGROUND &mdash; World IV &middot; <b>SONIA</b>, in the refined <b>OCHO</b>: a policy goes <b style="color:var(--cy)">in</b> &#8594; the well-definedness check is run &#8594; a <b style="color:var(--grn)">verdict</b> on whether it is a function comes out. The LIT is a single narrow formal claim &mdash; the egoist policy is a function, the caprice relation (s0 &rarr; two distinct actions) is not, the closed table returns 4 not 5, and a one-to-two map injects &ge; 1 free bit &mdash; all self-checked and tamper-provable; the free-will reading of Dostoevsky is honest interpretation (AMBER). Ties zamyatin-we and the anti-determinist thread. The two quoted phrases are real. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · NOTES FROM UNDERGROUND — the engine (function vs non-function; the caprice a table cannot close over) ===== */
+
+// A fixed-seed PRNG (mulberry32) so any sampling is deterministic and reproducible.
+function mulberry32(a){
+ return function(){
+  a |= 0; a = (a + 0x6D2B79F5) | 0;
+  var t = Math.imul(a ^ (a >>> 15), 1 | a);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+ };
+}
+
+// ---- the states of the Underground Man, and the egoist's one forced action each ----
+var STATES = ["s0", "s1", "s2", "s3"];
+var STATE_LABEL = {
+ s0: "advantage is shown to him",
+ s1: "a clear profit is offered",
+ s2: "the Crystal Palace is opened",
+ s3: "an insult, freshly given"
+};
+var EGO_ACTION = {
+ s0: "take the advantage",
+ s1: "pocket the profit",
+ s2: "enter, contented",
+ s3: "swallow it, reasonably"
+};
+// the second output the Underground Man keeps at s0 — the caprice
+var SPITE = "refuse it, to prove he is no key";
+
+// EGOIST U: a total function State -> Action (each state, exactly one action).
+function egoistPairs(){
+ return [["s0", EGO_ACTION.s0], ["s1", EGO_ACTION.s1], ["s2", EGO_ACTION.s2], ["s3", EGO_ACTION.s3]];
+}
+// CAPRICE R: the egoist plus a SECOND action at s0 — one input, two outputs.
+function capricePairs(){
+ var p = egoistPairs();
+ p.push(["s0", SPITE]);
+ return p;
+}
+
+// ---- well-definedness, event-strict: each key keeps a LIST of its distinct outputs ----
+// (a list, not a single slot, so a reachable second output cannot silently overwrite the first)
+function wellDefined(pairs){
+ var keys = [], lists = {}, i, j, k, v, seen;
+ for(i = 0; i < pairs.length; i++){
+  k = pairs[i][0]; v = pairs[i][1];
+  if(!lists.hasOwnProperty(k)){ lists[k] = []; keys.push(k); }
+  seen = false;
+  for(j = 0; j < lists[k].length; j++){ if(lists[k][j] === v) seen = true; }
+  if(!seen) lists[k].push(v);
+ }
+ var doubledKey = null, maxBranches = 0, n;
+ for(i = 0; i < keys.length; i++){
+  n = lists[keys[i]].length;
+  if(n > maxBranches) maxBranches = n;
+  if(n > 1 && doubledKey === null) doubledKey = keys[i];
+ }
+ return { ok: (doubledKey === null), doubledKey: doubledKey, maxBranches: maxBranches, keys: keys, lists: lists };
+}
+function branchCount(pairs, key){
+ var w = wellDefined(pairs);
+ return w.lists.hasOwnProperty(key) ? w.lists[key].length : 0;
+}
+// a b-way branch injects log2(b) free bits; 1 branch = 0 bits, 2 branches = 1 bit.
+function freeBits(branches){ return branches <= 1 ? 0 : Math.log(branches) / Math.log(2); }
+
+// ---- the arithmetic table: closed at 2*2 = 4, or with a second value inserted ----
+function arithClosed(){ return 2 * 2; }                 // = 4, the table stays closed
+function arithPairs(closed){
+ var p = [["2*2", "4"]];
+ if(!closed) p.push(["2*2", "5"]);                       // insert a SECOND value at one key
+ return p;
+}
+
+// TAMPER: the Palace's demand — pretend the caprice relation is a valid function.
+var TAMPER = false;
+
+// The claim the tamper forges. Truth is measured by the check; the tamper overrides
+// only the CLAIM, never the measured well-definedness — so the lie is catchable.
+function stateClaimsFunction(){
+ if(TAMPER) return true;                                 // forged: "the Underground Man is just a function"
+ return wellDefined(capricePairs()).ok;                  // measured: always false
+}
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t = function(c, m){ if(!c) throw new Error(m); };
+ var save = TAMPER; TAMPER = false;
+ var s;
+
+ // (1) the egoist lookup is a VALID function: every state maps to exactly one action.
+ var we = wellDefined(egoistPairs());
+ t(we.ok === true, "the egoist policy must be a well-defined function");
+ t(we.maxBranches === 1, "every state must map to exactly one action, got max branches " + we.maxBranches);
+ t(we.keys.length === 4, "the egoist must cover exactly 4 states, got " + we.keys.length);
+ for(s = 0; s < STATES.length; s++){
+  t(branchCount(egoistPairs(), STATES[s]) === 1, "state " + STATES[s] + " must map to exactly one action");
+ }
+
+ // (2) the caprice relation is NOT a function: the doubled key s0 -> two distinct actions.
+ var wc = wellDefined(capricePairs());
+ t(wc.ok === false, "the caprice relation must FAIL well-definedness");
+ t(wc.doubledKey === "s0", "the doubled key must be s0, got " + wc.doubledKey);
+ t(branchCount(capricePairs(), "s0") === 2, "s0 must map to exactly two distinct actions under caprice");
+
+ // (3) you cannot EXTEND the egoist function to also emit the spiteful action at s0
+ //     without breaking well-definedness — the check flips to fail.
+ var ext = egoistPairs(); ext.push(["s0", SPITE]);
+ t(wellDefined(ext).ok === false, "extending the egoist to also emit spite at s0 must break well-definedness");
+ t(wellDefined(ext).doubledKey === "s0", "the break must occur at s0");
+
+ // (4) the closed arithmetic table returns 4 (not 5); inserting a second value at one key
+ //     raises the branch count 1 -> 2, which is >= 1 free bit.
+ t(arithClosed() === 4, "the closed table must return 4, got " + arithClosed());
+ t(arithClosed() !== 5, "the closed table must not return 5");
+ t(branchCount(arithPairs(true), "2*2") === 1, "closed: 2*2 must have exactly one value");
+ t(branchCount(arithPairs(false), "2*2") === 2, "inserting 5 at 2*2 must raise the branch count to 2");
+ t(freeBits(1) === 0, "a single-valued key injects 0 free bits");
+ t(freeBits(2) === 1, "a one-to-two map injects exactly 1 free bit (log2 of 2 branches)");
+
+ // (5) determinism: fixed-seed sampling of state lookups must never drift the egoist off single-valued.
+ var rnd = mulberry32(0x0DD5);
+ for(var q = 0; q < 2000; q++){
+  var pick = STATES[Math.floor(rnd() * STATES.length)];
+  t(branchCount(egoistPairs(), pick) === 1, "egoist must stay single-valued at " + pick + " under sampling");
+ }
+
+ // TAMPER really lies: with it on the state CLAIMS caprice is a function, though the
+ // measured check still finds the doubled key at s0 — that is what catches the lie.
+ TAMPER = true;
+ t(stateClaimsFunction() === true, "with the tamper on, the state must (falsely) claim the caprice relation is a function");
+ t(wellDefined(capricePairs()).ok === false, "the measured check must STILL flag the doubled key even under the tamper");
+ TAMPER = false;
+
+ TAMPER = save; return true;
+}
+
+/* ===== UI ===== */
+var $ = function(id){ return document.getElementById(id); };
+var REL = "caprice";        // current policy fed to the panel; default = the Underground Man's relation
+var SEL = "s0";             // current state looked up
+
+function relPairs(rel){ return rel === "caprice" ? capricePairs() : egoistPairs(); }
+
+function relTable(pairs){
+ var w = wellDefined(pairs), html, i, k, outs, n;
+ html = "<table><thead><tr><th>state (input)</th><th>action(s) (output)</th><th>br.</th></tr></thead><tbody>";
+ for(i = 0; i < w.keys.length; i++){
+  k = w.keys[i]; outs = w.lists[k]; n = outs.length;
+  html += "<tr><td>" + k + "</td><td style='text-align:left'>"
+        + outs.join(" <b style='color:var(--red)'>/</b> ")
+        + "</td><td><b style='color:" + (n > 1 ? "var(--wall)" : "var(--lit)") + "'>" + n + "</b></td></tr>";
+ }
+ html += "</tbody></table>";
+ return html;
+}
+
+function renderWelldef(){
+ var w = wellDefined(egoistPairs());
+ $("wdout").innerHTML = relTable(egoistPairs())
+  + "<span class='badge pass' style='margin-top:6px'>&#10003; VALID FUNCTION &middot; max branches " + w.maxBranches + "</span>";
+}
+
+function renderCaprice(){
+ var w = wellDefined(capricePairs());
+ var bc = branchCount(capricePairs(), "s0");
+ $("cpout").innerHTML = relTable(capricePairs())
+  + "<div class='small' style='margin-top:6px'>doubled key <b class='k'>" + w.doubledKey + "</b> &middot; branches <b style='color:var(--wall)'>" + bc + "</b> &middot; free bits <b style='color:var(--lit)'>" + freeBits(bc) + "</b></div>"
+  + "<span class='badge failb' style='margin-top:6px'>&#10007; NOT A FUNCTION &middot; s0 &rarr; two outputs</span>";
+}
+
+function renderLookup(){
+ var w = wellDefined(relPairs(REL));
+ var outs = w.lists[SEL] || [];
+ var n = outs.length;
+ $("lookout").innerHTML = "policy <b>" + (REL === "caprice" ? "CAPRICE R" : "EGOIST U")
+  + "</b> at <b>" + SEL + "</b> (&ldquo;" + STATE_LABEL[SEL] + "&rdquo;) &rarr; "
+  + "<b style='color:" + (n > 1 ? "var(--wall)" : "var(--lit)") + "'>"
+  + outs.join(" <b style='color:var(--red)'>/</b> ") + "</b>"
+  + (n > 1 ? " &nbsp;<span style='color:var(--wall)'>(" + n + " outputs &mdash; not a function here)</span>"
+           : " &nbsp;<span style='color:var(--lit)'>(1 output)</span>");
+}
+
+function renderPanel(){
+ $("egoBody").innerHTML = relTable(egoistPairs());
+ $("relBody").innerHTML = relTable(relPairs(REL));
+ $("arithBody").innerHTML =
+   "<table><thead><tr><th>table</th><th>key</th><th>value(s)</th><th>br.</th></tr></thead><tbody>"
+  + "<tr><td>closed</td><td>2&times;2</td><td><b style='color:var(--lit)'>4</b></td><td><b style='color:var(--lit)'>1</b></td></tr>"
+  + "<tr><td>+ inserted</td><td>2&times;2</td><td>4 <b style='color:var(--red)'>/</b> 5</td><td><b style='color:var(--wall)'>2</b></td></tr>"
+  + "</tbody></table>";
+}
+
+function renderVerdict(){
+ var w = wellDefined(relPairs(REL));
+ var vEl = $("verdict"), rEl = $("reason");
+ if(w.ok){
+  vEl.className = "verdict ok";
+  vEl.innerHTML = "&#10003; A FUNCTION (a piano key)";
+  rEl.innerHTML = "EGOIST U: each state has exactly one action, max branches <b>" + w.maxBranches + "</b>. It reduces cleanly to a deterministic lookup &mdash; the Crystal Palace can precompute it.";
+ } else {
+  var bc = branchCount(relPairs(REL), w.doubledKey);
+  vEl.className = "verdict no";
+  vEl.innerHTML = "&#10007; NOT A FUNCTION (the free bit)";
+  rEl.innerHTML = "CAPRICE R: the key <b class='k'>" + w.doubledKey + "</b> carries <b>" + bc + "</b> distinct actions. A one-to-two map is not well-defined &mdash; no single deterministic U reproduces it, and it injects <b>&ge; " + freeBits(bc) + "</b> free bit the closed table cannot encode.";
+ }
+}
+
+function renderPalace(){
+ var key = ($("pk").value || "").trim();
+ var w = wellDefined(egoistPairs());
+ if(w.lists.hasOwnProperty(key)){
+  $("pkOut").innerHTML = w.lists[key][0];
+ } else {
+  $("pkOut").innerHTML = "&mdash; (no such state; try s0..s3)";
+ }
+}
+
+function audit(){
+ var egoOk = wellDefined(egoistPairs()).ok === true && wellDefined(egoistPairs()).maxBranches === 1;
+ var wc = wellDefined(capricePairs());
+ var caprNotFn = (wc.ok === false && wc.doubledKey === "s0" && branchCount(capricePairs(), "s0") === 2);
+ var arithOk = (arithClosed() === 4 && arithClosed() !== 5);
+ var bitOk = (freeBits(1) === 0 && freeBits(2) === 1);
+ var claimLies = stateClaimsFunction();          // true only under tamper
+ var ok = egoOk && caprNotFn && arithOk && bitOk && !claimLies;
+ $("auditout").innerHTML =
+   "<span class='badge " + (ok ? "pass" : "failb") + "'>" + (ok ? "&#10003; WITNESS — the check holds" : "&#10007; WITNESS — broken") + "</span>"
+  + "<div class='small' style='margin-top:6px'>egoist is a function <b style='color:" + (egoOk ? "var(--lit)" : "var(--wall)") + "'>" + (egoOk ? "&#10003;" : "&#10007;") + "</b>"
+  + " &middot; caprice NOT a function <b style='color:" + (caprNotFn ? "var(--lit)" : "var(--wall)") + "'>" + (caprNotFn ? "&#10003;" : "&#10007;") + "</b>"
+  + " &middot; 2&times;2=4 not 5 <b style='color:" + (arithOk ? "var(--lit)" : "var(--wall)") + "'>" + (arithOk ? "&#10003;" : "&#10007;") + "</b>"
+  + " &middot; 1&rarr;2 = 1 free bit <b style='color:" + (bitOk ? "var(--lit)" : "var(--wall)") + "'>" + (bitOk ? "&#10003;" : "&#10007;") + "</b>"
+  + (claimLies ? " &nbsp;&mdash; <span style='color:var(--wall)'>the state claims caprice is a function (a lie the check refutes)</span>" : "")
+  + "</div>";
+}
+
+function render(){
+ renderWelldef();
+ renderCaprice();
+ renderLookup();
+ renderPanel();
+ renderVerdict();
+ renderPalace();
+ audit();
+}
+
+function setRel(rel){
+ REL = rel;
+ render();
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("litbadge").innerHTML = '<span class="badge pass">&#10003; LIT &middot; self-check passed on load</span>';
+
+ $("pEgo").addEventListener("click", function(){ setRel("egoist"); });
+ $("pCap").addEventListener("click", function(){ setRel("caprice"); });
+ $("sel").addEventListener("change", function(){ SEL = $("sel").value; renderLookup(); });
+ $("pk").addEventListener("input", renderPalace);
+
+ $("tamper").addEventListener("click", function(){
+  TAMPER = true;
+  $("tampernote").innerHTML = "<b style='color:var(--wall)'>The Palace asserts the caprice relation is a function.</b> But the well-definedness check still finds the doubled key <b>s0 &rarr; {A, B}</b> &mdash; two outputs at one input. The witness (9) recomputed and went red. The lie is real, and it is caught.";
+  render();
+ });
+ $("restore").addEventListener("click", function(){
+  TAMPER = false;
+  $("tampernote").innerHTML = "The Palace can schedule the egoist perfectly, but it cannot make a one-to-two map into a function. The lie is measurable, and the witness catches it.";
+  render();
+ });
+
+ render();
+}catch(e){
+ var fb = $("failb"); fb.style.display = "block"; fb.textContent = "FAIL-LOUD — the Notes from Underground engine did not check out: " + e.message; throw e;
+}
+</script>
+</body></html>

@@ -10,11 +10,11 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "cb55e26afdd1c4bf47a46ba487fd76af2fe7ab3f860b0100e0fbbb08e3f0cb90",
+  "sonia_root": "a06b9f5fac8402d8a6aea8704cfec66ee8dca21a3460a57dd368c60815952cfa",
   "counts": {
-    "spheres": 38,
+    "spheres": 43,
     "rooms": 5,
-    "lit": 38,
+    "lit": 43,
     "keepers": 8
   },
   "keepers": [
@@ -579,6 +579,66 @@
       "url": "https://davidwise01.github.io/ud0/world4/the-ratchet-effect.html",
       "seal": "d29b3b2625021289cc0c40fa79aa16e7ef096fac26177b14acb0e294431a5e49",
       "blurb": "The Soviet planning ratchet (Berliner; Weitzman 1980), runnable in THE OCHO: when next period's target rises with this period's output (target2 = base + alpha output1), a manager optimally WITHHOLDS - revealing capacity only raises tomorrow's quota, so the ratchet suppresses the very output it chases and total output falls. The pathology behind taut plans, slack-hoarding, and pripiski; ties gobernet and the-potemkin-village. Tamper-provable."
+    },
+    {
+      "slug": "the-pontryagin-maximum-principle",
+      "title": "THE PONTRYAGIN MAXIMUM PRINCIPLE",
+      "room": "number",
+      "kicker": "optimal control is bang-bang",
+      "accent": "#c30019",
+      "stamp": "LIT",
+      "source": "Pontryagin, Boltyanskii, Gamkrelidze & Mishchenko, The Mathematical Theory of Optimal Processes (1961)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-pontryagin-maximum-principle.html",
+      "seal": "f5c58f87aa7386b6ac0b39f3ca418ea95da23f09a5b6dd78756687284fa4de25",
+      "blurb": "Pontryagin's Maximum Principle (Lev Pontryagin, blind from 14; announced 1956), runnable in THE OCHO on the minimum-time double integrator: the Hamiltonian H=1+p_x v+p_v u, costate p_x'=0 and p_v'=-p_x so p_v is affine, and maximizing H over |u|<=1 forces u*=-sign(p_v) - BANG-BANG control with at most one switch, switching curve x=-0.5 v|v|, min time T*=2 sqrt|x0|. Tamper-provable: an interior control is never time-optimal because H is linear in u."
+    },
+    {
+      "slug": "notes-from-underground",
+      "title": "NOTES FROM UNDERGROUND",
+      "room": "novel",
+      "kicker": "caprice is not a function",
+      "accent": "#1d4e79",
+      "stamp": "LIT",
+      "source": "Fyodor Dostoevsky, Notes from Underground (1864)",
+      "url": "https://davidwise01.github.io/ud0/world4/notes-from-underground.html",
+      "seal": "7bd99e0943eda69460abbe1aa55280000d03b82a07ba6268a63250f4d3a49871",
+      "blurb": "Dostoevsky's Notes from Underground (1864) against rational egoism's 'piano key', runnable in THE OCHO as function vs non-function: the rational egoist is a total function State->Action (one state, one forced act), but the Underground Man's caprice maps the SAME state to two actions - advantageous and spiteful - so it is formally NOT a function and cannot be reduced to any deterministic utility table. The philosophy is AMBER; the narrow fact (a one-to-two map is not a function) is LIT. Ties zamyatin-we. Tamper-provable."
+    },
+    {
+      "slug": "kolmogorov-complexity",
+      "title": "KOLMOGOROV COMPLEXITY",
+      "room": "machine",
+      "kicker": "most strings are incompressible",
+      "accent": "#9a6b12",
+      "stamp": "LIT",
+      "source": "A. N. Kolmogorov, Three approaches to the quantitative definition of information (1965)",
+      "url": "https://davidwise01.github.io/ud0/world4/kolmogorov-complexity.html",
+      "seal": "e9530ffced21e70e681694ce2ac19a95fae77990ab12f4745ce28d5f9385a979",
+      "blurb": "Kolmogorov complexity K(x) = the shortest program that outputs x (Kolmogorov 1965; also Solomonoff, Chaitin), runnable in THE OCHO: there are 2^n strings of length n but only 2^n-1 shorter programs, so by counting MOST n-bit strings are incompressible (fraction compressible by c bits < 2^(1-c)); a real compressor is only an upper bound (RLE shrinks a periodic string, not a random one); and K itself is UNCOMPUTABLE (a WALL). Tamper-provable: no lossless coder shrinks every input (pigeonhole). Ties keeper Kolmogorov."
+    },
+    {
+      "slug": "the-yamal-craters",
+      "title": "THE YAMAL CRATERS",
+      "room": "weird",
+      "kicker": "the explained one (a gas blowout)",
+      "accent": "#5f513a",
+      "stamp": "LIT",
+      "source": "The Yamal gas-emission craters, West Siberia (GEC-1 found 2014)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-yamal-craters.html",
+      "seal": "7600e0a328b06a173e803a43a3c5b328d2901d357433e2b882c85ce501b9e480",
+      "blurb": "The Yamal Peninsula craters (first found 2014), rendered in THE OCHO as the WEIRD room's EXPLAINED mystery (the mirror of ball-lightning's OPEN): a deep shaft ringed by ejected frozen blocks with a rim methane spike, modelled as a pressure blowout - gas from dissociating hydrates and cryopegs builds beneath a frozen cap until P_gas >= P_atm + rho g h + sigma_t and the cap ruptures. The pressure-threshold physics is LIT (field numbers AMBER); the meteor/impact origin is DEAD. Tamper-provable: an impact leaves shock ejecta, not radial frozen blocks."
+    },
+    {
+      "slug": "the-soft-budget-constraint",
+      "title": "THE SOFT BUDGET CONSTRAINT",
+      "room": "state",
+      "kicker": "bail out losers, manufacture shortage",
+      "accent": "#7a1220",
+      "stamp": "LIT",
+      "source": "Janos Kornai, Economics of Shortage (1980); 'The Soft Budget Constraint' (1986)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-soft-budget-constraint.html",
+      "seal": "ec4b5818b29626ac704916941cdfb88933853a7b96a7f0c41b72b62671ccfc94",
+      "blurb": "Kornai's soft budget constraint, runnable in THE OCHO: under a HARD budget a loss-making firm exits, so survivors are efficient and demand stays within supply; under a SOFT budget the state bails everyone (subsidy = sum of deficits > 0), inefficient firms persist, average efficiency falls, and because no one fears loss aggregate input demand exceeds supply - a chronic SHORTAGE. The soft constraint funds losers and manufactures the shortage it meant to relieve. Ties gobernet and the-ratchet-effect. Tamper-provable."
     }
   ]
 }

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE SOFT BUDGET CONSTRAINT &middot; THE STATE &middot; WORLD IV — SONIA &middot; THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE STATE &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE SOFT BUDGET CONSTRAINT</h1>
+ <p class="sub">Why the socialist firm never fears bankruptcy — and why that manufactures the queue. When the state always bails out the loser, <b>every firm survives</b>, efficiency falls, and demand outruns supply into chronic <b>shortage</b>.</p>
+ <p class="src"><span class="tag t-amber">source</span> J&aacute;nos Kornai, <i>Economics of Shortage</i> (1980) &amp; &ldquo;The Soft Budget Constraint,&rdquo; <i>Kyklos</i> (1986) — the Hungarian economist&rsquo;s account of hoarding and chronic shortage. &nbsp;&middot;&nbsp; ROOM: <b>THE STATE</b> — the budget constraint as the discipline the plan removed.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · roots / mechanism / lineage ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; the constraint &middot; roots &amp; lineage</div>
+
+  <div class="win blue"><span class="no">1</span><h2>THE ROOTS</h2>
+   <p>J&aacute;nos <b>Kornai</b> watched Hungary&rsquo;s socialist economy and asked a plain question: what disciplines a firm? In a market, the answer is the <b>budget constraint</b> — cover your costs from your revenue, or go bankrupt and exit.</p>
+   <p class="small">In <i>Economics of Shortage</i> (1980) he named the socialist firm&rsquo;s condition the <b class="k">soft budget constraint</b>: the state absorbs the deficit through subsidies, soft credit, and price relief. The firm <b>never fears bankruptcy</b> — so it never has to stop.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>HARD vs SOFT</h2>
+   <p>A <b>HARD</b> budget constraint: a firm survives only if <b>revenue &ge; cost</b> — otherwise it exits. The threat is real, so managers economise and only efficient firms persist.</p>
+   <p class="small">A <b>SOFT</b> budget constraint: the state covers any deficit, so <b>every firm survives</b> on a bailout <b>S&nbsp;=&nbsp;&Sigma; max(0, cost &minus; revenue)</b>. Loss makes no difference to survival, so no firm restrains its appetite for inputs. The engine (centre) runs both regimes on the <b>same</b> deterministic firm set.</p>
+  </div>
+
+  <div class="win blue"><span class="no">6</span><h2>THE LINEAGE <span class="tag t-amber">AMBER</span></h2>
+   <p>The idea outlived the USSR. The <b>SBC</b> became a founding concept of <b>transition economics</b> — the syndrome to break when moving from plan to market.</p>
+   <p class="small">It generalised far past socialism: modern <b>&ldquo;too big to fail&rdquo;</b> bank bailouts are a soft budget constraint; so is the perennially rescued state enterprise. It sits inside <b>principal&ndash;agent theory</b>, the same incentive-pathology thread as <a href="./gobernet.html">gobernet</a> and <a href="./the-ratchet-effect.html">the-ratchet-effect</a>.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · the machine ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &middot; the shortage, solved &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN — the firms &amp; the two rules <span class="tag t-in">in &#8595;</span></h2>
+   <p>A fixed, deterministic set of <b>N</b> firms. Each has a productivity <b>&pi; = revenue / cost</b> and an <b>input demand</b> (its slice of the shared supply). The supply pool is sized to the efficient plan.</p>
+   <p class="out" style="text-align:center">HARD: survive iff &pi; &ge; 1 &nbsp;&middot;&nbsp; SOFT: all survive, S = &Sigma; deficits</p>
+   <div class="row"><label>firms N</label><input id="n" type="range" min="6" max="16" step="2" value="12"><span id="nv" class="small">12</span></div>
+   <p class="small mut">Firm set is generated by a <b>fixed-seed</b> PRNG — no randomness at load. Productivity &pi;&lt;1 means the firm loses money; the state either lets it exit (hard) or pays its deficit (soft).</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; cull the losers, or bail them all? &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL — discipline vs the queue <span class="tag t-lit">LIT</span></h2>
+   <div class="engine">
+    <div class="controls">
+     <p class="small">Same firms, two budget rules. HARD removes every &pi;&lt;1 firm; the survivors&rsquo; input demand fits the supply. SOFT keeps everyone on subsidy S; their combined demand overruns supply.</p>
+     <div id="bars"></div>
+     <p class="small mut" id="firmnote"></p>
+    </div>
+    <div class="readout">
+     <div class="verdict" id="verdict"></div>
+     <div class="reason" id="reason"></div>
+     <table id="tbl"></table>
+     <div id="litbadge"></div>
+    </div>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; what does softening the constraint cost? &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT — the soft constraint funds losers <span class="tag t-out">out &#8595;</span></h2>
+   <p>Under <b>HARD</b> budgets the loss-makers exit: survivors are the efficient firms (average &pi; rises), the subsidy bill is <b>zero</b>, and aggregate input demand stays <b>within supply</b> — no shortage.</p>
+   <p class="small">Under <b>SOFT</b> budgets nothing exits: the subsidy <b>S &gt; 0</b> funds the losers, average productivity <b>falls</b> to the whole-population mean, and because no firm fears loss the combined input demand <b>exceeds supply</b> &mdash; a positive <b class="k">shortage</b>, the queue. The constraint meant to relieve hardship <b>manufactures the shortage</b>.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · cost / graveyard / tamper ===== -->
+ <div class="col red">
+  <div class="teamhdr">the audit &middot; the honest cost &#9702;</div>
+
+  <div class="win red"><span class="no">5</span><h2>THE SHORTAGE</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> A firm that cannot fail has no reason to economise on inputs. When every firm behaves that way, the sum of their demands overruns the plan&rsquo;s supply — and the gap appears as the <b>chronic queue</b>.</div>
+   <p class="small" style="margin-top:8px"><b>Even-handed:</b> hard budgets have real human costs too. Exit is not costless — a bankrupt firm means <b>lost jobs</b>. Kornai&rsquo;s claim is not that hardness is painless; it is that <b>softness is not free</b> either — it is paid in lower efficiency and a standing shortage. Ties <a href="./the-potemkin-village.html">the-potemkin-village</a> (why the numbers lied).</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Subsidising firms just protects jobs — no downside.&rdquo;</s> <b>Cut.</b> The subsidy is strictly positive and it keeps the <b>inefficient</b> alive; average productivity falls and their input demand crowds the supply. It funds losers and <b>manufactures shortage</b> — the cost is real, just hidden in the queue.</p>
+   <p class="grave"><s>&ldquo;Softening the budget constraint raises output.&rdquo;</s> <b>Examined.</b> It raises the number of <i>surviving</i> firms, not welfare: the extra output is loss-making, paid for by subsidy, and the demand it adds is exactly what tips supply into shortage.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE TAMPER</h2>
+   <p>Assert the planner&rsquo;s hope: <b>&ldquo;bailouts are costless and softening the constraint raises output with no downside.&rdquo;</b> The witness recomputes the ledger against that claim.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; claim bailouts are costless</button><button id="restore">&#8635; restore</button></div>
+   <p class="small" id="tampernote">The witness recomputes: the subsidy bill S is strictly &gt; 0, average efficiency falls, and input demand exceeds supply, so the shortage rises. The claim contradicts the ledger and the witness turns red.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE SOFT BUDGET CONSTRAINT — World IV &middot; SONIA, room <b>THE STATE</b>, in the refined <b>OCHO</b>. The centre runs Kornai&rsquo;s soft budget constraint (Kornai 1980, 1986) on one fixed, deterministic set of firms: under a HARD budget every loss-making firm (&pi;&lt;1) exits, so survivors are efficient and aggregate input demand stays within supply (shortage &le; 0); under a SOFT budget all firms survive on a subsidy S = &Sigma; max(0, cost &minus; revenue) &gt; 0, average productivity falls, and combined demand exceeds supply into a positive shortage. Even-handed: hard budgets carry real human costs (exit means lost jobs) — the claim is only that softness is not free. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== THE SOFT BUDGET CONSTRAINT — Kornai's shortage economy, made mechanical (Kornai 1980, 1986) ===== */
+// A fixed, deterministic set of N firms. Each firm i has:
+//   cost_i     : the inputs (and money) it consumes to produce  (also its input demand)
+//   pi_i       : productivity = revenue / cost  ( pi>=1 profitable, pi<1 loss-making )
+//   revenue_i  : pi_i * cost_i
+//   deficit_i  : max(0, cost_i - revenue_i)     ( > 0 exactly for the loss-makers )
+// HARD budget: a firm survives iff revenue >= cost  (profit >= 0, i.e. pi >= 1); losers EXIT.
+// SOFT budget: EVERY firm survives, its deficit paid by a state subsidy S = sum of deficits.
+// Supply pool SUP is sized to the efficient plan = the input demand of the HARD survivors.
+// Under HARD, aggregate demand = SUP exactly (shortage = 0). Under SOFT, the loss-makers'
+// demand is added on top, so aggregate demand > SUP: a positive shortage (the queue).
+//
+// deterministic, fixed-seed PRNG (linear congruential) -- NO Math.random anywhere in the engine.
+function makeFirms(N){
+ var s = 20240117 >>> 0;              // fixed seed
+ var f = [];
+ for(var i=0;i<N;i++){
+  s = (Math.imul(s,1103515245) + 12345) & 0x7fffffff; var u1 = s/0x7fffffff;
+  s = (Math.imul(s,1103515245) + 12345) & 0x7fffffff; var u2 = s/0x7fffffff;
+  var pi   = 0.55 + u1*0.9;            // productivity ratio in [0.55,1.45); threshold 1
+  var cost = 8 + Math.floor(u2*14);    // input demand 8..21
+  var rev  = pi*cost;
+  f.push({ pi:pi, cost:cost, rev:rev, deficit: Math.max(0, cost - rev) });
+ }
+ return f;
+}
+function survivorsHard(firms){                       // HARD: survive iff revenue >= cost
+ var out=[]; for(var i=0;i<firms.length;i++){ if(firms[i].rev >= firms[i].cost) out.push(firms[i]); } return out;
+}
+function lossMakers(firms){
+ var out=[]; for(var i=0;i<firms.length;i++){ if(firms[i].rev < firms[i].cost) out.push(firms[i]); } return out;
+}
+function subsidySoft(firms){                          // S = sum of deficits ( >0 iff a loss-maker exists )
+ var s=0; for(var i=0;i<firms.length;i++){ s += firms[i].deficit; } return s;
+}
+function avgProd(list){
+ if(list.length===0) return 0; var s=0,i; for(i=0;i<list.length;i++){ s+=list[i].pi; } return s/list.length;
+}
+function inputDemand(list){                           // aggregate input demand = sum of costs
+ var s=0,i; for(i=0;i<list.length;i++){ s+=list[i].cost; } return s;
+}
+function supplyCap(firms){                            // plan sizes supply to the efficient (HARD-survivor) demand
+ return inputDemand(survivorsHard(firms));
+}
+function shortageHard(firms){ return inputDemand(survivorsHard(firms)) - supplyCap(firms); } // = 0
+function shortageSoft(firms){ return inputDemand(firms)            - supplyCap(firms); }      // = sum of loser demand
+
+/* ===== fail-loud self-check ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var Ns=[6,8,10,12,14,16], k;
+ for(k=0;k<Ns.length;k++){
+  var firms=makeFirms(Ns[k]);
+  var surv=survivorsHard(firms), losers=lossMakers(firms);
+  // 0 -- the set has at least one loss-maker AND at least one survivor (a real culling exists)
+  t(losers.length>=1, "the deterministic firm set must contain a loss-maker (N="+Ns[k]+")");
+  t(surv.length>=1,   "the deterministic firm set must contain a survivor (N="+Ns[k]+")");
+  // 1 -- every HARD survivor has profit >= 0 (revenue >= cost), and every loss-maker is removed
+  for(var i=0;i<surv.length;i++){ t(surv[i].rev >= surv[i].cost - 1e-9, "a HARD survivor must have revenue >= cost"); }
+  for(var j=0;j<losers.length;j++){ t(surv.indexOf(losers[j])===-1, "a HARD budget must remove every loss-maker"); }
+  // 2 -- the SOFT subsidy S = sum of deficits is strictly > 0 (a loss-maker exists)
+  t(subsidySoft(firms) > 1e-9, "the soft-budget subsidy must be strictly positive when a firm loses money");
+  // 3 -- average survivor productivity under HARD is strictly greater than under SOFT (which keeps everyone)
+  t(avgProd(surv) > avgProd(firms) + 1e-9, "HARD survivors must be strictly more productive on average than the whole soft-budget population");
+  // 4 -- shortage <= 0 under HARD, strictly > 0 under SOFT
+  t(shortageHard(firms) <= 1e-9,  "under a HARD budget aggregate demand must not exceed supply (shortage <= 0)");
+  t(shortageSoft(firms) > 1e-9,   "under a SOFT budget aggregate demand must exceed supply (shortage > 0)");
+  // 5 -- the soft shortage is exactly the loss-makers' input demand added on top
+  t(Math.abs(shortageSoft(firms) - inputDemand(losers)) < 1e-6, "the shortage under SOFT must equal the loss-makers' input demand");
+ }
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var N=12, TAMPER=false;
+
+function bar(label,val,ref,color){
+ var w=Math.max(2, val/ref*150);
+ return "<div style='display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px'>"
+      +"<span style='min-width:120px'>"+label+"</span>"
+      +"<span style='height:12px;border-radius:2px;background:"+color+";width:"+w+"px'></span>"
+      +"<span style='min-width:46px;text-align:right'>"+val.toFixed(0)+"</span></div>";
+}
+
+function render(){
+ N=+$("n").value; $("nv").textContent=N;
+ var firms=makeFirms(N);
+ var surv=survivorsHard(firms), losers=lossMakers(firms);
+ var sub=subsidySoft(firms);
+ var apH=avgProd(surv), apS=avgProd(firms);
+ var sup=supplyCap(firms);
+ var demH=inputDemand(surv), demS=inputDemand(firms);
+ var shH=shortageHard(firms), shS=shortageSoft(firms);
+
+ // under TAMPER the DISPLAY asserts the false claim: bailouts costless, no shortage
+ var shownSub = TAMPER ? 0 : sub;
+ var shownShS = TAMPER ? 0 : shS;
+ var shownDemS = TAMPER ? sup : demS;
+
+ $("bars").innerHTML =
+   bar("supply pool", sup, demS, "var(--gold)")
+ + bar("HARD demand (survivors)", demH, demS, "var(--blue)")
+ + bar("SOFT demand (all firms)", shownDemS, demS, TAMPER?"var(--gold)":"var(--red)");
+
+ $("firmnote").innerHTML="N="+N+" firms &middot; <b>"+surv.length+"</b> profitable ("+String.fromCharCode(960)+"&ge;1), <b>"+losers.length+"</b> loss-making ("+String.fromCharCode(960)+"&lt;1). Supply is sized to the "+surv.length+" efficient firms.";
+
+ $("tbl").innerHTML=
+   "<tr><th></th><th>HARD budget</th><th>SOFT budget</th></tr>"
+ + "<tr><th>firms surviving</th><td>"+surv.length+" / "+N+"</td><td>"+N+" / "+N+"</td></tr>"
+ + "<tr><th>subsidy S</th><td>0.0</td><td>"+(TAMPER?("<s>"+sub.toFixed(1)+"</s> 0.0"):sub.toFixed(1))+"</td></tr>"
+ + "<tr><th>avg productivity "+String.fromCharCode(960)+"</th><td>"+apH.toFixed(3)+"</td><td>"+apS.toFixed(3)+"</td></tr>"
+ + "<tr><th>input demand</th><td>"+demH.toFixed(0)+"</td><td>"+shownDemS.toFixed(0)+"</td></tr>"
+ + "<tr><th>supply</th><td>"+sup.toFixed(0)+"</td><td>"+sup.toFixed(0)+"</td></tr>"
+ + "<tr><th>shortage</th><td>"+shH.toFixed(0)+"</td><td>"+(TAMPER?("<s>"+shS.toFixed(0)+"</s> 0"):("<b class='k'>+"+shS.toFixed(0)+"</b>"))+"</td></tr>";
+
+ // the on-load DISPLAY (SOFT regime is the pathology) agrees with the LIT stamp
+ $("verdict").textContent="SOFT BUDGET — SHORTAGE MANUFACTURED"; $("verdict").className="verdict no";
+ $("reason").innerHTML="the bailout funds "+losers.length+" losers (S="+sub.toFixed(1)+"), average "+String.fromCharCode(960)+" falls "+apH.toFixed(3)+" &rarr; "+apS.toFixed(3)+", and demand overruns supply by <b>+"+shS.toFixed(0)+"</b> &mdash; the queue. HARD budgets cull the losers and leave <b>no</b> shortage.";
+ audit();
+}
+
+function audit(){
+ // pure re-derivation of the LIT claims, independent of the display
+ var firms=makeFirms(N);
+ var subPos   = subsidySoft(firms) > 1e-9;                                   // soft subsidy strictly positive
+ var effFalls = avgProd(survivorsHard(firms)) > avgProd(firms) + 1e-9;       // hard survivors more efficient
+ var hardOK   = shortageHard(firms) <= 1e-9;                                 // no shortage under hard
+ var softShort= shortageSoft(firms) > 1e-9;                                  // shortage under soft
+ // the TAMPER asserts bailouts are costless (S=0, no shortage) -- contradicts subPos & softShort
+ var claimHolds = TAMPER ? false : true;
+ var ok = subPos && effFalls && hardOK && softShort && claimHolds;
+ $("litbadge").innerHTML =
+   "<span class='badge "+(ok?'pass':'failb')+"'>"+(ok?'&#10003; LIT &middot; witness holds':'&#10007; witness broken')+"</span>"
+ + "<div class='small' style='margin-top:6px'>subsidy S &gt; 0 <b style='color:"+(subPos?'var(--lit)':'var(--wall)')+"'>"+(subPos?'&#10003;':'&#10007;')+"</b>"
+ + " &middot; efficiency falls under soft <b style='color:"+(effFalls?'var(--lit)':'var(--wall)')+"'>"+(effFalls?'&#10003;':'&#10007;')+"</b>"
+ + " &middot; hard: no shortage <b style='color:"+(hardOK?'var(--lit)':'var(--wall)')+"'>"+(hardOK?'&#10003;':'&#10007;')+"</b>"
+ + " &middot; soft: shortage &gt; 0 <b style='color:"+(softShort?'var(--lit)':'var(--wall)')+"'>"+(softShort?'&#10003;':'&#10007;')+"</b>"
+ + (TAMPER?" &nbsp;&mdash; <span style='color:var(--wall)'>claim &lsquo;bailouts costless&rsquo; contradicts the ledger: S&gt;0 and the shortage RISES</span>":"")+"</div>";
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("n").addEventListener("input",render);
+ $("tamper").addEventListener("click",function(){
+  TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Claim asserted:</b> &lsquo;bailouts are costless and softening the constraint raises output with no downside.&rsquo; But the subsidy bill S is strictly positive and the loss-makers&rsquo; input demand crowds the supply, so average efficiency <b>falls</b> and the shortage <b>rises</b>. The witness recomputes the ledger and disagrees: the soft budget constraint <b>funds losers and manufactures shortage</b>.";
+  render();
+ });
+ $("restore").addEventListener("click",function(){
+  TAMPER=false;
+  $("tampernote").innerHTML="The witness recomputes: the subsidy bill S is strictly &gt; 0, average efficiency falls, and input demand exceeds supply, so the shortage rises. The claim contradicts the ledger and the witness turns red.";
+  render();
+ });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the SOFT BUDGET CONSTRAINT engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>
