@@ -6,7 +6,7 @@
   "anchor": "0ROOT.AI//I13//WORLD-V//the-i13-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "folded_to": "ROOT_0",
-  "root": "87288a9d1f471ac24cdfbec5ba8d6298499f33b2fc397399e4b367dddae0ae82",
+  "root": "f8b8029033adfda4797e2808fdc8074f0acb96c64eb710a7bf1783bb0bad942c",
   "count": 2,
   "sealed": "2026-08-17",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
@@ -20,7 +20,7 @@
       "seal": "cb231d41472ab7c25a5d7ded560d9ad4b0e65859f1579b0202352b4b27926df2",
       "proof": [
         {
-          "h": "ba9ead2fdb519e2bf117f5ff3bbacfbd786418ad6d783002021656628f7cdad1",
+          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
           "side": "R"
         }
       ]
@@ -28,9 +28,9 @@
     {
       "index": 1,
       "kind": "keeper",
-      "name": "THE CORTEX",
-      "slug": "the-cortex",
-      "seal": "ba9ead2fdb519e2bf117f5ff3bbacfbd786418ad6d783002021656628f7cdad1",
+      "name": "SONNY 5",
+      "slug": "sonny-5",
+      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
       "proof": [
         {
           "h": "cb231d41472ab7c25a5d7ded560d9ad4b0e65859f1579b0202352b4b27926df2",

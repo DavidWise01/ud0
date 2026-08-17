@@ -1,9 +1,9 @@
 {
   "world": 5,
   "name": "WORLD V",
-  "title": "THE I-13 WORLD",
-  "keeper": "THE CORTEX",
-  "keeper_note": "provisional — the five-rule governing core of I-13; David Lee Wise to confirm the keeper/name of World V (tbd).",
+  "title": "SONNY 5",
+  "keeper": "SONNY 5",
+  "keeper_note": "SONNY 5 - named by David Lee Wise for Sonny (I, Robot) and Johnny 5 (Short Circuit); no attached meaning. The keeper of World V, the I-13 world.",
   "tagline": "David Lee Wise's I-13 — a 13-symbol alphabet counted (not designed) from programs, a five-rule cortex with no learned parameters, and a bracket cosmos [g[u[p[(...)]]]]. New names for old ideas, measured where measurable.",
   "accent": "#a855f7",
   "author": "David Lee Wise / ROOT0 / TriPod LLC",
@@ -55,9 +55,9 @@
   ],
   "keepers": [
     {
-      "name": "THE CORTEX",
-      "role": "the five-rule governing core of I-13 (VETO, -I, DEPTH, IDEMPOTENCE, ADDRESS); provisional keeper of World V, tbd",
-      "seal": "ba9ead2fdb519e2bf117f5ff3bbacfbd786418ad6d783002021656628f7cdad1"
+      "name": "SONNY 5",
+      "role": "keeper of World V, the I-13 world; named for Sonny (I, Robot) and Johnny 5 (Short Circuit), no attached meaning",
+      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8"
     }
   ],
   "counts": {
@@ -66,6 +66,7 @@
     "lit": 1,
     "keepers": 1
   },
-  "i13_root": "87288a9d1f471ac24cdfbec5ba8d6298499f33b2fc397399e4b367dddae0ae82",
-  "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd"
+  "i13_root": "f8b8029033adfda4797e2808fdc8074f0acb96c64eb710a7bf1783bb0bad942c",
+  "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
+  "theme": "the I-13 world"
 }
