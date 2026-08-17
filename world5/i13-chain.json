@@ -1,0 +1,43 @@
+{
+  "schema": "i13-chain/1",
+  "world": "V",
+  "name": "THE I-13 WORLD",
+  "algo": "sha256(name|slug|blurb) folded pairwise (merkle) to a single root",
+  "anchor": "0ROOT.AI//I13//WORLD-V//the-i13-world//David Lee Wise (ROOT0)//with AVAN",
+  "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
+  "folded_to": "ROOT_0",
+  "root": "87288a9d1f471ac24cdfbec5ba8d6298499f33b2fc397399e4b367dddae0ae82",
+  "count": 2,
+  "sealed": "2026-08-17",
+  "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
+  "note": "Every World V inhabitant folds to ROOT_0. Live: the root updates as the I-13 world grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
+  "leaves": [
+    {
+      "index": 0,
+      "kind": "sphere",
+      "name": "THE GALAXITON",
+      "slug": "the-galaxiton",
+      "seal": "cb231d41472ab7c25a5d7ded560d9ad4b0e65859f1579b0202352b4b27926df2",
+      "proof": [
+        {
+          "h": "ba9ead2fdb519e2bf117f5ff3bbacfbd786418ad6d783002021656628f7cdad1",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "kind": "keeper",
+      "name": "THE CORTEX",
+      "slug": "the-cortex",
+      "seal": "ba9ead2fdb519e2bf117f5ff3bbacfbd786418ad6d783002021656628f7cdad1",
+      "proof": [
+        {
+          "h": "cb231d41472ab7c25a5d7ded560d9ad4b0e65859f1579b0202352b4b27926df2",
+          "side": "L"
+        }
+      ]
+    }
+  ],
+  "author": "David Lee Wise / ROOT0 / TriPod LLC"
+}

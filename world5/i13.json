@@ -1,0 +1,71 @@
+{
+  "world": 5,
+  "name": "WORLD V",
+  "title": "THE I-13 WORLD",
+  "keeper": "THE CORTEX",
+  "keeper_note": "provisional — the five-rule governing core of I-13; David Lee Wise to confirm the keeper/name of World V (tbd).",
+  "tagline": "David Lee Wise's I-13 — a 13-symbol alphabet counted (not designed) from programs, a five-rule cortex with no learned parameters, and a bracket cosmos [g[u[p[(...)]]]]. New names for old ideas, measured where measurable.",
+  "accent": "#a855f7",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC",
+  "rooms": [
+    {
+      "key": "alphabet",
+      "name": "THE ALPHABET",
+      "accent": "#22d3ee",
+      "blurb": "THE TWELVE + I — twelve verbs counted (not designed) from 649,634 AST nodes across 504 Python stdlib files, four planes of three at 83.26% coverage, plus the declaration keyword I. The ranking reproduces independently."
+    },
+    {
+      "key": "law",
+      "name": "THE LAW",
+      "accent": "#4ade80",
+      "blurb": "net = binds - k, total for every opcode with no unstated scope; control is depth-indexed, not address-indexed; single-pass validation, one pass per region, ratio 1.0000."
+    },
+    {
+      "key": "cortex",
+      "name": "THE CORTEX",
+      "accent": "#a855f7",
+      "blurb": "Five rules, no learned parameters and no gradient path — VETO, -I (pressure + the drain), DEPTH, IDEMPOTENCE, ADDRESS. Deterministic bounded state; the governing core."
+    },
+    {
+      "key": "freeze",
+      "name": "THE FREEZE",
+      "accent": "#ffd24a",
+      "blurb": "H1.0-FINAL — the frozen, hashed, self-testing release (verify 10/10): VH1 ternary ladder 1.3.9.27.81, and VH2 CUBI, a ternary controller over a [[5,1,3]] protected qubit with the tempting rank-3 hypothesis honestly rejected."
+    },
+    {
+      "key": "galaxiton",
+      "name": "THE GALAXITON",
+      "accent": "#ff4fd8",
+      "blurb": "The bracket cosmos — [g[u[p[(...)]]]] = galaxy . universe . world . core; the corpus's own nesting written in I-13, held at the recursion cap of three."
+    }
+  ],
+  "spheres": [
+    {
+      "slug": "the-galaxiton",
+      "title": "THE GALAXITON",
+      "room": "galaxiton",
+      "kicker": "[g[u[p[(...)]]]] - the bracket cosmos",
+      "accent": "#a855f7",
+      "stamp": "LIT",
+      "source": "I-13 rev 2 teaching brief; H1.0-FINAL freeze (verified 10/10)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-galaxiton.html",
+      "seal": "cb231d41472ab7c25a5d7ded560d9ad4b0e65859f1579b0202352b4b27926df2",
+      "blurb": "An I-13 OCHO: eight still seats around a live cross-connect galaxy. The cortex bracket surface [g[u[p[(...)]]]] = galaxy . universe . world . core, parsed live (balance, depth, the ladder), held at the recursion cap of three, timed single-pass. New names for old ideas - LIT where measured, AMBER for the naming, DEAD for a new cosmology. Tamper-provable: a fourth namespace violates DEPTH."
+    }
+  ],
+  "keepers": [
+    {
+      "name": "THE CORTEX",
+      "role": "the five-rule governing core of I-13 (VETO, -I, DEPTH, IDEMPOTENCE, ADDRESS); provisional keeper of World V, tbd",
+      "seal": "ba9ead2fdb519e2bf117f5ff3bbacfbd786418ad6d783002021656628f7cdad1"
+    }
+  ],
+  "counts": {
+    "spheres": 1,
+    "rooms": 5,
+    "lit": 1,
+    "keepers": 1
+  },
+  "i13_root": "87288a9d1f471ac24cdfbec5ba8d6298499f33b2fc397399e4b367dddae0ae82",
+  "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd"
+}
