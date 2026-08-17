@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE NOMENKLATURA &middot; THE STATE &middot; WORLD IV — SONIA &middot; THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>ROOM &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE NOMENKLATURA</h1>
+ <p class="sub">Room: <b>THE STATE</b>. The Party&rsquo;s list of names &mdash; and what a list picked for <b>loyalty</b> does to a ruling layer&rsquo;s <b>competence</b>. The centre is a real, runnable <b>adverse-selection</b> model: merit picks the ablest, loyalty picks the most reliable, and the gap between them is <span style="color:var(--lit)">measured</span>.</p>
+ <p class="src"><span class="tag t-amber">source</span> The <i>nomenklatura</i> &mdash; the Communist Party&rsquo;s list of key posts filled by politically-approved appointees, and the privileged class that held them. Analysed by Michael Voslensky, <i>Nomenklatura: The Soviet Ruling Class</i> (1980). Rendered, not quoted. Ties: <a href="gobernet.html">gobernet</a> &middot; <a href="the-ratchet-effect.html">the-ratchet-effect</a> &middot; <a href="the-soft-budget-constraint.html">the-soft-budget-constraint</a>.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · THE AIM / ROOTS ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; roots &middot; lineage &middot; the claim</div>
+
+  <div class="win blue"><span class="no">3</span><h2>THE ROOTS</h2>
+   <p><b>Nomenklatura</b> is literally a <b>list of names</b> (from Latin <i>nomenclatura</i>). In the Soviet system it was the register of <b>key posts</b> &mdash; ministries, factories, universities, the army, the press &mdash; that could only be filled by candidates the <b>Party</b> had vetted and approved.</p>
+   <p>To hold a nomenklatura post was to enter a <b>privileged class</b>: special shops, dachas, foreign travel. Michael Voslensky, a defector from inside it, named it <i>the Soviet ruling class</i> (1980) &mdash; a self-perpetuating elite selected by the centre, for the centre.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>LOYALTY vs COMPETENCE</h2>
+   <p>The mechanism in one line: posts are filled by <b>political reliability</b>, not <b>merit</b>. A candidate&rsquo;s value to the appointer is measured by <b class="k">loyalty l</b> &mdash; will they obey, protect the patron, never threaten &mdash; more than by <b>competence c</b>, the ability to actually do the job.</p>
+   <p>When <i>l</i> and <i>c</i> are the same thing, no harm done. The pathology begins the moment they <b>come apart</b> &mdash; when the most loyal are not the most able, and the list still picks by loyalty.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>LINEAGE <span class="tag t-amber">AMBER</span></h2>
+   <p>This is a named idea in economics and political science, not a Soviet curiosity:</p>
+   <p class="small"><b>Adverse selection</b> (Akerlof) &mdash; a selection rule optimising the wrong signal degrades the pool. <b>Principal&ndash;agent</b> theory &mdash; the agent (appointee) is chosen for alignment to the principal, not output. <b>Patronage &amp; &ldquo;negative selection&rdquo;</b> &mdash; documented across autocracies and machine politics well beyond the USSR.</p>
+   <p class="small">The mechanism <b>outlived</b> the state that made it famous. Any organisation that promotes for deference over ability re-runs it.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &middot; the list, computed &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the candidate pool <span class="tag t-in">in &#8595;</span></h2>
+   <p>A <b>fixed pool of 200 candidates</b>, each with a competence <b>c</b> and a loyalty <b>l</b>, drawn once from a seeded generator (deterministic &mdash; reload and it is identical). The regime sets how loyalty relates to competence.</p>
+   <div class="row"><label>regime</label>
+    <button id="rPos">imperfect (l &asymp; c + noise)</button><button id="rInd">independent</button><button id="rAnti">yes-men (anti)</button></div>
+   <div class="row"><label>posts k</label><input id="kSl" type="range" min="4" max="40" value="12"><span id="kv" class="small">12</span></div>
+   <p class="small mut" id="poolLine"></p>
+  </div>
+  <div class="flow">&#9660; &nbsp; merit = top-k by c &nbsp;|&nbsp; loyalty = top-k by l &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; the competence gap <span class="tag t-lit">LIT</span></h2>
+   <div class="engine">
+    <div class="controls">
+     <p class="small">Two selection rules over the same pool. <b>MERIT</b> takes the top-k by competence. <b>LOYALTY</b> (the nomenklatura) takes the top-k by loyalty. Compare the <b>mean competence</b> of each set against the pool average.</p>
+     <div id="gapBars" class="plan"></div>
+    </div>
+    <div class="readout">
+     <div class="verdict" id="verdict"></div>
+     <div class="reason" id="reason"></div>
+     <p class="small" id="nums"></p>
+     <div id="litbadge"></div>
+    </div>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; now let each loyal cohort pick the next &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; the ratchet down <span class="tag t-out">out &#8595;</span></h2>
+   <p>Let each cohort of loyal appointees choose its successors <b>by loyalty</b>, from candidates no abler than the average incumbent (a patron rarely hires a rival). Competence <b>ratchets down</b>, cohort by cohort &mdash; while merit selection stays flat. The ruling layer decays in capability. <span class="tag t-lit">LIT</span></p>
+   <div id="ratBars" class="plan"></div>
+   <p class="small" id="ratLine"></p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · THE AUDIT ===== -->
+ <div class="col red">
+  <div class="teamhdr">the audit &middot; the record &#9702;</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE VALUE OF LOYALTY <span class="tag t-wall">WALL</span></h2>
+   <div class="wall-note"><span class="tag t-wall">even-handed</span> Loyalty is <b>not</b> worthless. Cohesion, trust, and predictable coordination have real value &mdash; a team of brilliant defectors can fail where a loyal one holds. Some weight on reliability is rational.</div>
+   <p class="small" style="margin-top:8px">The pathology is not loyalty; it is loyalty <b>overriding</b> competence &mdash; when the signal being optimised (obedience) is not the signal the job needs (ability), and the two have come apart. This model measures exactly that gap; it does not claim loyalty is a vice.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Loyal cadres are the best cadres &mdash; selecting for loyalty also gets you competence.&rdquo;</s> <b>Cut.</b> Only true when loyalty and competence are perfectly aligned. The moment they part &mdash; and in yes-men selection they anti-align &mdash; loyalty selection <b>forfeits</b> competence: its mean falls below merit, and below the pool itself.</p>
+   <p class="grave"><s>&ldquo;The list is neutral &mdash; it just fills posts.&rdquo;</s> <b>Examined.</b> A list is a <b>selection rule</b>. Which signal it sorts on is the whole story; sorting on loyalty is not neutral.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; assert the myth</h2>
+   <p>Press the claim the system told itself: <b>&ldquo;loyalty selection also gets the best competence.&rdquo;</b> The witness checks it against the real pool &mdash; loyalty&rsquo;s mean competence is <b>below</b> merit&rsquo;s (and, for yes-men, below the pool) &mdash; and turns <b>red</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; assert &ldquo;loyal = best&rdquo;</button><button id="restore">&#8635; restore</button></div>
+   <p class="small" id="tampernote">The claim is falsifiable against the data. The nomenklatura trades competence for loyalty; asserting otherwise makes the witness disagree with the arithmetic.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE NOMENKLATURA &mdash; World IV &middot; SONIA, room <b>THE STATE</b>, in the refined <b>OCHO</b>. The centre is a real, runnable adverse-selection model on a fixed deterministic pool: merit selection beats loyalty selection in mean competence whenever the two signals are imperfectly correlated, loyalty selection falls below the pool average under yes-men (anti-correlation), and iterated loyalty selection drives a non-increasing competence trajectory while merit stays flat &mdash; all tamper-provable. Even-handed: loyalty and cohesion have real value; the pathology is loyalty overriding competence. Ties gobernet, the-ratchet-effect, the-soft-budget-constraint. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== THE NOMENKLATURA — adverse selection made mechanical (a fixed pool; merit vs loyalty selection) ===== */
+var NPOOL=200;
+
+/* mulberry32 seeded PRNG -> [0,1) : fully deterministic, no nondeterministic source */
+function mkrng(seed){
+ var a=seed>>>0;
+ return function(){
+  a|=0; a=(a+0x6D2B79F5)|0;
+  var t=Math.imul(a^(a>>>15),1|a);
+  t=(t+Math.imul(t^(t>>>7),61|t))^t;
+  return ((t^(t>>>14))>>>0)/4294967296;
+ };
+}
+/* standard normal via Box-Muller (deterministic given the rng) */
+function gaussFrom(rng){
+ var u=0,v=0;
+ while(u===0){ u=rng(); }
+ while(v===0){ v=rng(); }
+ return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+}
+/* build a FIXED pool: competence c, loyalty l correlated with c by rho (+ independent noise) */
+function buildPool(seed,rho){
+ var rng=mkrng(seed>>>0), pool=[], i;
+ for(i=0;i<NPOOL;i++){
+  var zc=gaussFrom(rng), zn=gaussFrom(rng);
+  var zl=rho*zc + Math.sqrt(Math.max(0,1-rho*rho))*zn;
+  pool.push({ i:i, c:50+15*zc, l:50+15*zl });
+ }
+ return pool;
+}
+/* top-k by a key; deterministic index tie-break; returns exactly k when pool has >= k */
+function topk(pool,key,k){
+ var arr=pool.slice().sort(function(a,b){ if(b[key]!==a[key]){ return b[key]-a[key]; } return a.i-b.i; });
+ return arr.slice(0,k);
+}
+function meanKey(set,key){ var s=0,i; for(i=0;i<set.length;i++){ s+=set[i][key]; } return s/set.length; }
+
+/* the ratchet: each cohort of loyal appointees selects the next by loyalty, from candidates
+   no abler than the AVERAGE incumbent (ceiling = previous cohort mean competence).
+   By construction every successor's c <= ceiling, so the cohort mean is non-increasing. */
+function ratchetTrajectory(pool,k,gens){
+ var traj=[], ceiling=Infinity, g;
+ for(g=0;g<gens;g++){
+  var adm=pool.filter(function(x){ return x.c<=ceiling; });
+  if(adm.length<k){ break; }
+  var cohort=topk(adm,"l",k);
+  var mc=meanKey(cohort,"c");
+  traj.push(mc);
+  ceiling=mc;
+ }
+ return traj;
+}
+
+/* fixed pools used by the self-check and the default display */
+var SEED=1337, KFIX=12;
+var POOL_POS=buildPool(SEED,0.30);   /* imperfect positive correlation */
+var POOL_IND=buildPool(SEED,0.00);   /* loyalty independent of competence */
+var POOL_ANTI=buildPool(SEED,-0.60); /* yes-men: loyalty anti-correlated with competence */
+
+/* ===== fail-loud self-check (runs on the fixed pools) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c){ throw new Error(m); } };
+
+ /* 0 — selection is a well-defined top-k: exactly k distinct indices */
+ var mk=topk(POOL_POS,"c",KFIX);
+ t(mk.length===KFIX, "merit selection must return exactly k members");
+ var seen={}; var d; for(d=0;d<mk.length;d++){ t(!seen[mk[d].i], "top-k indices must be distinct"); seen[mk[d].i]=1; }
+
+ /* 1 — imperfect correlation: mean competence(merit) STRICTLY GREATER than loyalty */
+ var meritPos=meanKey(topk(POOL_POS,"c",KFIX),"c");
+ var loyalPos=meanKey(topk(POOL_POS,"l",KFIX),"c");
+ t(meritPos>loyalPos+1e-9, "merit mean competence must strictly exceed loyalty mean when c,l imperfectly correlated");
+
+ /* 2 — yes-men (anti-correlation): loyalty-selected mean competence BELOW the pool average */
+ var poolAvg=meanKey(POOL_ANTI,"c");
+ var loyalAnti=meanKey(topk(POOL_ANTI,"l",KFIX),"c");
+ t(loyalAnti<poolAvg-1e-9, "under anti-correlation, loyalty-selected mean competence must fall below the pool average");
+ var meritAnti=meanKey(topk(POOL_ANTI,"c",KFIX),"c");
+ t(meritAnti>loyalAnti+1e-9, "merit must still strictly exceed loyalty under anti-correlation");
+
+ /* 3 — the ratchet: iterated loyalty selection gives a monotonically non-increasing trajectory,
+        strictly decreasing somewhere, and merit stays at or above every cohort throughout */
+ var traj=ratchetTrajectory(POOL_POS,KFIX,6);
+ t(traj.length>=3, "the ratchet must yield several cohorts");
+ var nonInc=true, strict=false, g;
+ for(g=1;g<traj.length;g++){
+  if(traj[g]>traj[g-1]+1e-9){ nonInc=false; }
+  if(traj[g]<traj[g-1]-1e-9){ strict=true; }
+ }
+ t(nonInc, "iterated loyalty selection must be non-increasing in competence");
+ t(strict, "the trajectory must strictly decrease at least once (a real ratchet)");
+ for(g=0;g<traj.length;g++){ t(meritPos>=traj[g]-1e-9, "merit selection must stay at or above every loyal cohort"); }
+
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var REGIME="pos";        /* pos | ind | anti */
+var KLIVE=12;
+var CLAIM_BEST=false;    /* TAMPER: assert "loyalty selection also gets the best competence" */
+
+function livePool(){ if(REGIME==="anti"){ return POOL_ANTI; } if(REGIME==="ind"){ return POOL_IND; } return POOL_POS; }
+function regimeName(){ if(REGIME==="anti"){ return "yes-men (anti-correlated)"; } if(REGIME==="ind"){ return "independent"; } return "imperfect (positive)"; }
+
+function bar(label,val,ref,neg,tone){
+ var w=Math.max(2, Math.abs(val)/ref*150);
+ var col = neg ? "var(--wall)" : (tone||"var(--blue)");
+ return "<div class='barrow' style='display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px'>"
+  +"<span style='min-width:92px'>"+label+"</span>"
+  +"<span style='height:12px;border-radius:2px;background:"+col+";width:"+w+"px'></span>"
+  +"<span style='min-width:56px;text-align:right'>"+val.toFixed(1)+"</span></div>";
+}
+
+function render(){
+ var pool=livePool(), k=KLIVE;
+ var meritSet=topk(pool,"c",k), loyalSet=topk(pool,"l",k);
+ var meritC=meanKey(meritSet,"c"), loyalC=meanKey(loyalSet,"c"), poolC=meanKey(pool,"c");
+ var gap=meritC-loyalC;
+
+ $("poolLine").innerHTML="pool of "+NPOOL+" &middot; regime: <b>"+regimeName()+"</b> &middot; k = "+k+" &middot; pool mean competence = <b>"+poolC.toFixed(1)+"</b> (fixed seed "+SEED+")";
+
+ var ref=Math.max(meritC,loyalC,poolC)||1;
+ $("gapBars").innerHTML=
+   bar("MERIT (top-k c)",meritC,ref,false,"var(--blue)")
+  +bar("LOYALTY (top-k l)",loyalC,ref,false,"var(--red)")
+  +bar("pool average",poolC,ref,false,"var(--gold)");
+
+ if(gap>1e-9){
+  $("verdict").textContent="LOYALTY LOSES COMPETENCE"; $("verdict").className="verdict ok";
+  $("reason").textContent="the loyalty-selected set is strictly less competent than the merit-selected set.";
+ } else {
+  $("verdict").textContent="NO GAP (l == c here)"; $("verdict").className="verdict no";
+  $("reason").textContent="loyalty and competence coincide in this pool; the list costs nothing.";
+ }
+ var belowPool = loyalC < poolC-1e-9;
+ $("nums").innerHTML="merit = <b>"+meritC.toFixed(1)+"</b> &middot; loyalty = <b style='color:var(--red)'>"+loyalC.toFixed(1)+"</b> &middot; gap = <b>"+gap.toFixed(1)+"</b>"
+  +(belowPool?" &middot; <b style='color:var(--wall)'>loyalty is BELOW the pool average</b>":"");
+
+ /* witness: the LIT claim = merit strictly beats loyalty; under yes-men loyalty is below pool.
+    The TAMPER asserts the opposite ("loyal = best"), which the data refutes -> red. */
+ var invariantHolds = gap>1e-9;
+ var witnessOk = CLAIM_BEST ? false : invariantHolds;
+ var msg = CLAIM_BEST
+   ? "&#10007; CLAIM REFUTED &middot; loyal &ne; best"
+   : (invariantHolds ? "&#10003; LIT &middot; witness holds" : "&#10007; witness broken");
+ $("litbadge").innerHTML="<span class='badge "+(witnessOk?"pass":"failb")+"'>"+msg+"</span>"
+  +"<div class='small' style='margin-top:6px'>"
+  +(CLAIM_BEST
+     ? "asserted <b>loyalty selection = best competence</b>; the pool says loyalty ("+loyalC.toFixed(1)+") &lt; merit ("+meritC.toFixed(1)+")"+(belowPool?" &lt; pool ("+poolC.toFixed(1)+")":"")+" &mdash; <b style='color:var(--wall)'>false</b>."
+     : "merit &gt; loyalty <b style='color:var(--lit)'>&#10003;</b>"+(REGIME==="anti"?" &middot; loyalty &lt; pool average <b style='color:var(--lit)'>&#10003;</b>":""))
+  +"</div>";
+
+ /* the ratchet output */
+ var traj=ratchetTrajectory(pool,k,6);
+ var rref=Math.max.apply(null,traj.concat([meritC]))||1;
+ var html="";
+ var g; for(g=0;g<traj.length;g++){ html+=bar("cohort "+g,traj[g],rref,false, g===0?"var(--red)":"var(--wall)"); }
+ html+=bar("MERIT (flat)",meritC,rref,false,"var(--blue)");
+ $("ratBars").innerHTML=html;
+ var nonInc=true; var gg; for(gg=1;gg<traj.length;gg++){ if(traj[gg]>traj[gg-1]+1e-9){ nonInc=false; } }
+ var drop = traj.length>1 ? (traj[0]-traj[traj.length-1]) : 0;
+ $("ratLine").innerHTML="competence falls <b>"+traj[0].toFixed(1)+" &rarr; "+traj[traj.length-1].toFixed(1)+"</b> over "+traj.length+" cohorts (drop "+drop.toFixed(1)+") &middot; non-increasing <b style='color:"+(nonInc?"var(--lit)":"var(--wall)")+"'>"+(nonInc?"&#10003;":"&#10007;")+"</b> &middot; merit holds at <b>"+meritC.toFixed(1)+"</b>";
+}
+
+function setRegime(r){ REGIME=r; render(); }
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("rPos").addEventListener("click",function(){ setRegime("pos"); });
+ $("rInd").addEventListener("click",function(){ setRegime("ind"); });
+ $("rAnti").addEventListener("click",function(){ setRegime("anti"); });
+ $("kSl").addEventListener("input",function(){ KLIVE=+$("kSl").value; $("kv").textContent=$("kSl").value; render(); });
+ $("tamper").addEventListener("click",function(){
+  CLAIM_BEST=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Claim asserted.</b> &ldquo;Loyal cadres are the best cadres.&rdquo; The witness measured it against the pool and it is <b>false</b>: loyalty selection is strictly less competent than merit. The nomenklatura trades competence for loyalty.";
+  render();
+ });
+ $("restore").addEventListener("click",function(){
+  CLAIM_BEST=false;
+  $("tampernote").textContent="The claim is falsifiable against the data. The nomenklatura trades competence for loyalty; asserting otherwise makes the witness disagree with the arithmetic.";
+  render();
+ });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the NOMENKLATURA adverse-selection engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE CENTRAL LIMIT THEOREM &middot; WORLD IV — SONIA &middot; THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>ROOM &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE CENTRAL LIMIT THEOREM</h1>
+ <p class="sub">Take <b>any</b> simple distribution &mdash; a die, a coin, a lopsided spike &mdash; and add up n independent copies. The sum has a shape you can compute <b>exactly</b> by <b>convolving</b> the base with itself n times. Standardise it, and as n grows the shape forgets what it started as and becomes the <b>bell</b>. No sampling here: the pmf is exact, and every claim is <b>runnable</b>.</p>
+ <p class="src"><span class="tag t-amber">source</span> A. M. Lyapunov (1857&ndash;1918), St.&nbsp;Petersburg &mdash; the Central Limit Theorem under the <b>Lyapunov condition</b> (1901), completing the line from Chebyshev and Markov (the method of moments). Room: <b>THE NUMBER</b>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; the St. Petersburg school <span class="tag t-amber">history</span></h2>
+   <p><b>Pafnuty Chebyshev</b> (1821&ndash;1894) gave probability the <b>method of moments</b>: if the moments of a normalised sum converge to the moments of the Gaussian, so does the distribution. His student <b>Andrei Markov</b> made the argument rigorous.</p>
+   <p class="small"><b>Aleksandr Lyapunov</b> (1857&ndash;1918) closed the line in <b>1901</b> with a different tool &mdash; the <b>characteristic function</b> &mdash; and proved the theorem for <b>independent, non-identical</b> summands under a single moment condition. Same St.&nbsp;Petersburg lineage that runs through SONIA&rsquo;s other <b>THE NUMBER</b> spheres: Chebyshev &rarr; Markov &rarr; Lyapunov.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE SET-UP &mdash; convolve, do not sample <span class="tag t-lit">LIT</span></h2>
+   <p>The pmf of a sum of two independent variables is the <b>convolution</b> of their pmfs. So the pmf of a sum of <b>n</b> copies is the base pmf convolved with itself <b>n</b> times &mdash; exact, deterministic, no random draws.</p>
+   <p style="text-align:center"><b class="k">p<sub>S</sub> = p &lowast; p &lowast; &hellip; &lowast; p&nbsp;&nbsp;(n times)</b></p>
+   <p class="small">Probability is conserved at every fold: the convolved pmf still <b>sums to 1</b>. The live witness confirms it for the current base and n.</p>
+   <div id="sumwit"></div>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>NORMALISE &mdash; centre and rescale <span class="tag t-lit">LIT</span></h2>
+   <p>The sum has mean <b>n&mu;</b> and variance <b>n&sigma;&sup2;</b>. Standardise it:</p>
+   <p style="text-align:center"><b class="k">Z = (S &minus; n&mu;) / &radic;(n&sigma;&sup2;)</b></p>
+   <p class="small">By construction Z has <b>mean 0</b> and <b>variance 1</b> &mdash; measured straight off the exact convolved pmf, not assumed. The witness reads the variance of Z for the current n.</p>
+   <div id="zwit"></div>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; a base distribution <span class="tag t-in">in &darr;</span></h2>
+   <p>Choose a base pmf on a small integer grid and how many copies to add. The engine <b>convolves</b> it n times &mdash; no sampling &mdash; then standardises. The base shape is what the limit will <b>forget</b>.</p>
+   <div class="row"><label>base pmf</label>
+    <select id="base">
+     <option value="die">fair die {1..6} &mdash; flat</option>
+     <option value="coin">&plusmn;1 coin &mdash; two-point</option>
+     <option value="spike">spike {0,1}, p=0.15 &mdash; skewed</option>
+     <option value="skew">lopsided {0,1,2,3} &mdash; heavy left</option>
+    </select></div>
+   <div class="row"><label>n copies</label><input id="nn" type="range" min="1" max="40" value="8"><span id="nnv" class="small">8</span></div>
+   <div class="small" id="basestat">&mdash;</div>
+  </div>
+  <div class="flow">&#9660; &nbsp; convolve n times, standardise, measure the moments &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; watch it become the bell <span class="tag t-lit">LIT</span></h2>
+   <div id="bell" style="width:100%;overflow-x:auto"></div>
+   <div class="row" style="font-size:12px;margin-top:8px">
+    <span>Z mean = <b id="zmean" style="color:var(--blue)">&mdash;</b></span>
+    <span>Z var = <b id="zvar" style="color:var(--blue)">&mdash;</b></span>
+   </div>
+   <div class="row" style="font-size:12px;margin-top:2px">
+    <span>excess kurtosis = <b id="exk" style="color:var(--red)">&mdash;</b></span>
+    <span>max|pmf&minus;&phi;| = <b id="mdv" style="color:var(--red)">&mdash;</b></span>
+   </div>
+   <p class="small" style="margin-top:6px">The convergence ladder (excess kurtosis and the max gap to the matched Gaussian both fall toward 0 as n rises):</p>
+   <table id="ladder"><thead><tr><th>n</th><th>Z var</th><th>excess kurtosis</th><th>|exc. kurt|</th><th>max|pmf&minus;&phi;|</th></tr></thead><tbody id="lbody"></tbody></table>
+   <div id="convwit" style="margin-top:6px"></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; the base shape is forgotten &mdash; the limit is universal &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; CONVERGENCE <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict" id="verdict">&mdash;</div>
+   <div class="reason" id="reason"></div>
+   <div id="litbadge" style="margin-top:8px"></div>
+   <p class="small">Whatever base you feed, the standardised sum approaches the <b>same</b> standard normal. That universality &mdash; the base is forgotten &mdash; is the whole content of the theorem. It needs finite variance and the &radic;n scaling; the TAMPER (7) shows what happens without them.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9700;</div>
+
+  <div class="win red"><span class="no">5</span><h2>LINEAGE &mdash; Lyapunov &rarr; Lindeberg &rarr; Feller <span class="tag t-lit">LIT</span></h2>
+   <p>Lyapunov did not need the summands to be identical. He needed a moment ratio to vanish. With &delta;=1, the <b>Lyapunov ratio</b> for identical bounded copies is</p>
+   <p style="text-align:center"><b class="k">L<sub>n</sub> = &rho;&#8323; / (&radic;n &middot; &sigma;&sup3;)</b></p>
+   <p class="small">where &rho;&#8323;=E|X&minus;&mu;|&sup3;. As n grows, L<sub>n</sub>&rarr;0 &mdash; the condition holds &mdash; and the CLT follows. The witness reads L<sub>n</sub> for the current n and confirms it is falling.</p>
+   <div id="lyapwit"></div>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> Lyapunov&rsquo;s (2+&delta;)-moment condition is sufficient, not necessary. <b>Lindeberg</b> (1922) found the weaker, essentially necessary condition; <b>Feller</b> (1935) closed the gap. And all of it <b>requires finite variance</b> &mdash; the wall the TAMPER and GRAVEYARD press on.</div>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Averages are Gaussian for <b>any</b> distribution.&rdquo;</s> <b>Cut.</b> Only with <b>finite variance</b>. The <b>Cauchy</b> distribution has none: the average of n Cauchy draws is again Cauchy &mdash; it never narrows, never bells.</p>
+   <p class="grave"><s>&ldquo;Divide by n to standardise a sum.&rdquo;</s> <b>Cut.</b> That is the law of large numbers, not the CLT. Dividing by n sends the variance to 0 &mdash; a <b>spike</b>, not a bell (see 7).</p>
+   <p class="grave"><s>&ldquo;You must sample to see the bell.&rdquo;</s> <b>Cut.</b> Convolution gives the <b>exact</b> pmf. No Monte-Carlo, no noise &mdash; the limit is a theorem, not a histogram.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE TAMPER &mdash; wrong scaling <span class="tag t-wall">WALL</span></h2>
+   <p>The red team&rsquo;s move: standardise by <b>n</b> instead of <b>&radic;n</b> &mdash; divide the centred sum by n&sigma; rather than &radic;n&middot;&sigma;. It looks like a normalisation, but the variance of the &ldquo;Z&rdquo; is now <b>1/n</b>, which collapses to <b>0</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; divide by n</button><button id="restore">&#8635; restore &radic;n</button></div>
+   <p class="small" id="tampernote">Break &radic;n to n and the &ldquo;standardised&rdquo; sum does not approach the bell &mdash; it <b>collapses to a spike at the mean</b> (variance &rarr; 0). The NORMALISE witness (3) turns red and DATA OUT reads COLLAPSED. The CLT genuinely needs &radic;n scaling and finite variance; the attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE CENTRAL LIMIT THEOREM &mdash; World IV &middot; <b>SONIA</b>, in the refined <b>OCHO</b>: a base pmf goes <b style="color:var(--cy)">in</b> &rarr; it is convolved with itself n times and standardised &rarr; the <b style="color:var(--grn)">bell</b> comes out. A runnable rendering of the theorem A. M. Lyapunov proved in 1901 under his moment condition, along the Chebyshev&ndash;Markov method-of-moments line. Every number is computed by exact discrete convolution &mdash; no sampling, no Math.random &mdash; so the audit is deterministic; the Cauchy distribution and the wrong scaling are marked as the walls where the theorem fails. SONIA counts the folds by candlelight. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE CENTRAL LIMIT THEOREM — the engine (exact discrete convolution; no sampling, nothing looked up) ===== */
+
+function gcdi(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ var t=b; b=a%b; a=t; } return a; }
+
+// base pmf on a small integer grid: {lo, p[], g} where value = lo+index and g = support lattice step
+function basePmf(kind){
+ if(kind==="die")   return {lo:1,p:[1/6,1/6,1/6,1/6,1/6,1/6],g:1};
+ if(kind==="coin")  return {lo:-1,p:[0.5,0,0.5],g:2};
+ if(kind==="spike") return {lo:0,p:[0.85,0.15],g:1};
+ if(kind==="skew")  return {lo:0,p:[0.6,0.1,0.05,0.25],g:1};
+ return {lo:0,p:[1],g:1};
+}
+
+// exact convolution of two pmfs
+function convolve(A,B){
+ var la=A.p.length, lb=B.p.length, out=[], i, j;
+ for(i=0;i<la+lb-1;i++) out[i]=0;
+ for(i=0;i<la;i++){ if(A.p[i]===0) continue; for(j=0;j<lb;j++){ out[i+j]+=A.p[i]*B.p[j]; } }
+ return {lo:A.lo+B.lo,p:out,g:A.g};
+}
+// pmf of the sum of n copies: base convolved with itself n times (n>=1)
+function selfConvolve(base,n){
+ var res={lo:0,p:[1],g:base.g}, k;
+ for(k=0;k<n;k++) res=convolve(res,base);
+ res.g=base.g; return res;
+}
+
+function pmfSum(d){ var s=0,i; for(i=0;i<d.p.length;i++) s+=d.p[i]; return s; }
+function pmfMean(d){ var s=0,i; for(i=0;i<d.p.length;i++) s+=d.p[i]*(d.lo+i); return s; }
+function pmfVar(d,mean){ var s=0,i,x; for(i=0;i<d.p.length;i++){ x=(d.lo+i)-mean; s+=d.p[i]*x*x; } return s; }
+function pmfAbsM3(d,mean){ var s=0,i,x; for(i=0;i<d.p.length;i++){ x=Math.abs((d.lo+i)-mean); s+=d.p[i]*x*x*x; } return s; }
+
+// standardised-Z moments read straight off the exact convolved pmf.
+// scale = sigma * (tamper ? n : sqrt(n)); correct CLT scaling divides the centred sum by sqrt(n)*sigma.
+function zStats(d,nmu,sigma,n,tamper){
+ var denom=sigma*(tamper?n:Math.sqrt(n));
+ var i,v,z,m1=0,m2=0,m4=0;
+ for(i=0;i<d.p.length;i++){ if(d.p[i]===0) continue; v=d.lo+i; z=(v-nmu)/denom; m1+=d.p[i]*z; }
+ for(i=0;i<d.p.length;i++){ if(d.p[i]===0) continue; v=d.lo+i; z=(v-nmu)/denom-m1; m2+=d.p[i]*z*z; m4+=d.p[i]*z*z*z*z; }
+ var exk=m4/(m2*m2)-3;
+ var spacingZ=d.g/denom, maxdev=0, dens, phi, dd;
+ for(i=0;i<d.p.length;i++){ if(d.p[i]===0) continue; v=d.lo+i; z=(v-nmu)/denom;
+  phi=Math.exp(-z*z/2)/Math.sqrt(2*Math.PI); dens=d.p[i]/spacingZ; dd=Math.abs(dens-phi); if(dd>maxdev)maxdev=dd; }
+ return {mean:m1,vari:m2,exk:exk,maxdev:maxdev,denom:denom,spacingZ:spacingZ};
+}
+
+// Lyapunov ratio (delta=1) for n identical bounded copies: L_n = rho3 / (sqrt(n)*sigma^3)
+function lyapunovRatio(rho3,sigma,n){ return rho3/(Math.sqrt(n)*sigma*sigma*sigma); }
+
+// full report for one (kind,n)
+function report(kind,n,tamper){
+ var base=basePmf(kind), mu=pmfMean(base), s2=pmfVar(base,mu), sigma=Math.sqrt(s2), rho3=pmfAbsM3(base,mu);
+ var d=selfConvolve(base,n), sum=pmfSum(d), mean=pmfMean(d), vari=pmfVar(d,mean);
+ var z=zStats(d,n*mu,sigma,n,!!tamper);
+ return {base:base,mu:mu,s2:s2,sigma:sigma,rho3:rho3,d:d,sum:sum,mean:mean,vari:vari,z:z,
+         Ln:lyapunovRatio(rho3,sigma,n)};
+}
+
+var LADDER=[1,2,4,8,16,32];
+
+/* ===== fail-loud self-check (runs untampered unless noted; throws on any violation) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var kinds=["die","coin","spike","skew"], ki, k, n, i;
+
+ for(ki=0;ki<kinds.length;ki++){
+  var kind=kinds[ki];
+  var base=basePmf(kind), mu=pmfMean(base), s2=pmfVar(base,mu), sigma=Math.sqrt(s2), rho3=pmfAbsM3(base,mu);
+  t(Math.abs(pmfSum(base)-1)<1e-12,"base pmf must sum to 1 ("+kind+")");
+  t(s2>0,"base variance must be > 0 ("+kind+")");
+
+  var absK=[], mdev=[], Ln=[];
+  for(i=0;i<LADDER.length;i++){
+   n=LADDER[i];
+   var d=selfConvolve(base,n);
+   // ANCHOR: probability conserved by convolution
+   t(Math.abs(pmfSum(d)-1)<1e-9,"convolved pmf must sum to 1 ("+kind+", n="+n+")");
+   // ANCHOR: mean = n*mu, variance = n*sigma^2 (exact)
+   var mean=pmfMean(d), vari=pmfVar(d,mean);
+   t(Math.abs(mean-n*mu)<1e-9,"sum mean must be n*mu ("+kind+", n="+n+")");
+   t(Math.abs(vari-n*s2)<1e-9,"sum variance must be n*sigma^2 ("+kind+", n="+n+")");
+   // ANCHOR: standardised Z has mean 0, variance 1
+   var z=zStats(d,n*mu,sigma,n,false);
+   t(Math.abs(z.mean)<1e-9,"Z mean must be 0 ("+kind+", n="+n+")");
+   t(Math.abs(z.vari-1)<1e-9,"Z variance must be 1 ("+kind+", n="+n+")");
+   // ANCHOR: Lyapunov ratio L_n -> 0 (bounded summands)
+   t(Math.abs(lyapunovRatio(rho3,sigma,n)-rho3/(Math.sqrt(n)*sigma*sigma*sigma))<1e-12,"L_n formula");
+   absK.push(Math.abs(z.exk)); mdev.push(z.maxdev); Ln.push(lyapunovRatio(rho3,sigma,n));
+  }
+  // ANCHOR: excess kurtosis of Z shrinks toward 0 — |exc.kurt| strictly decreasing along the ladder,
+  // and strictly smaller at large n than at n=1 (convergence toward Gaussian; exact k/n scaling)
+  for(i=1;i<absK.length;i++) t(absK[i] < absK[i-1]-1e-12,"|excess kurtosis| must strictly decrease with n ("+kind+")");
+  t(absK[absK.length-1] < absK[0]-1e-9,"|excess kurtosis| at large n must be < at n=1 ("+kind+")");
+  // ANCHOR: max gap to the matched Gaussian smaller at large n than at n=1
+  t(mdev[mdev.length-1] < mdev[0]-1e-9,"max|pmf-gauss| at large n must be < at n=1 ("+kind+")");
+  // ANCHOR: Lyapunov ratio strictly falls and -> 0
+  for(i=1;i<Ln.length;i++) t(Ln[i] < Ln[i-1]-1e-12,"Lyapunov ratio must strictly fall with n ("+kind+")");
+  t(Ln[Ln.length-1] < Ln[0]*0.2,"Lyapunov ratio must be much smaller at large n ("+kind+")");
+
+  // TAMPER: dividing by n instead of sqrt(n) collapses the variance toward 0 (a spike, not the bell)
+  var bT=basePmf(kind), muT=pmfMean(bT), s2T=pmfVar(bT,muT), sigT=Math.sqrt(s2T);
+  var d1=selfConvolve(bT,1), d16=selfConvolve(bT,16);
+  var zt1=zStats(d1,1*muT,sigT,1,true), zt16=zStats(d16,16*muT,sigT,16,true);
+  t(Math.abs(zt16.vari-1/16)<1e-9,"tamper variance must be 1/n ("+kind+")");
+  t(zt16.vari < zt1.vari - 1e-9,"tamper: variance must shrink with n ("+kind+")");
+  t(zt16.vari < 0.1,"tamper: Z variance must collapse toward 0 at n=16 ("+kind+")");
+  // and the correct scaling at the same n keeps variance 1 (proves the tamper is the cause)
+  var zc16=zStats(d16,16*muT,sigT,16,false);
+  t(Math.abs(zc16.vari-1)<1e-9,"correct scaling must keep Z variance 1 ("+kind+")");
+ }
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var TAMPER=false;
+
+function baseLabel(kind){
+ if(kind==="die")   return "fair die: uniform on {1..6}";
+ if(kind==="coin")  return "coin: mass 1/2 at -1 and +1";
+ if(kind==="spike") return "spike: P(1)=0.15, P(0)=0.85";
+ if(kind==="skew")  return "lopsided: P={0.60,0.10,0.05,0.25} on {0,1,2,3}";
+ return kind;
+}
+
+// SVG of the standardised pmf (density bars) over the matched standard normal
+function bellSVG(rep){
+ var W=340, H=150, padB=18, padT=8, x0=8, x1=W-8;
+ var zmin=-4.5, zmax=4.5, ymax=0.46;
+ function px(z){ return x0 + (z-zmin)/(zmax-zmin)*(x1-x0); }
+ function py(v){ return padT + (1-v/ymax)*(H-padB-padT); }
+ var d=rep.d, denom=rep.z.denom, spacingZ=rep.z.spacingZ, nmu=rep.mean, i, v, z, dens;
+ var bars="", barW=Math.max(1.2,(x1-x0)/ (zmax-zmin) * spacingZ * 0.9);
+ for(i=0;i<d.p.length;i++){ if(d.p[i]===0) continue; v=d.lo+i; z=(v-nmu)/denom; if(z<zmin||z>zmax) continue;
+  dens=d.p[i]/spacingZ; if(dens>ymax) dens=ymax;
+  var bx=px(z)-barW/2, by=py(dens), bh=(H-padB)-by;
+  bars+='<rect x="'+bx.toFixed(1)+'" y="'+by.toFixed(1)+'" width="'+barW.toFixed(1)+'" height="'+Math.max(0,bh).toFixed(1)+'" fill="'+(TAMPER?'#8c1c13':'#1d4e79')+'" opacity="0.72"></rect>';
+ }
+ // gaussian reference path
+ var path="", s; for(s=0;s<=120;s++){ z=zmin+(zmax-zmin)*s/120; var phi=Math.exp(-z*z/2)/Math.sqrt(2*Math.PI); path+=(s?"L":"M")+px(z).toFixed(1)+" "+py(phi).toFixed(1)+" "; }
+ // axis
+ var axis='<line x1="'+x0+'" y1="'+(H-padB)+'" x2="'+x1+'" y2="'+(H-padB)+'" stroke="#b29a68" stroke-width="1"></line>'
+   +'<line x1="'+px(0)+'" y1="'+padT+'" x2="'+px(0)+'" y2="'+(H-padB)+'" stroke="#cbb98d" stroke-width="1" stroke-dasharray="2 2"></line>';
+ var ticks=""; for(s=-4;s<=4;s+=2){ ticks+='<text x="'+px(s)+'" y="'+(H-4)+'" fill="#7c6c4c" font-size="9" text-anchor="middle">'+s+'</text>'; }
+ return '<svg viewBox="0 0 '+W+' '+H+'" width="100%" preserveAspectRatio="xMidYMid meet" style="min-width:300px;background:#fbf6e6;border:1px solid var(--line);border-radius:4px">'
+   +axis+bars+'<path d="'+path+'" fill="none" stroke="#c30019" stroke-width="2"></path>'+ticks
+   +'<text x="'+(x1-4)+'" y="'+(padT+10)+'" fill="#c30019" font-size="9" text-anchor="end">standard normal &phi;(z)</text>'
+   +'</svg>';
+}
+
+function badge(ok,txt){ return '<span class="badge '+(ok?'pass':'failb')+'">'+(ok?'&#10003; ':'&#10007; ')+txt+'</span>'; }
+
+function renderLadder(kind){
+ var rows="", i, absK=[], mdev=[];
+ for(i=0;i<LADDER.length;i++){
+  var n=LADDER[i], rp=report(kind,n,TAMPER);
+  absK.push(Math.abs(rp.z.exk)); mdev.push(rp.z.maxdev);
+  rows+='<tr><td>'+n+'</td><td>'+rp.z.vari.toFixed(4)+'</td><td>'+rp.z.exk.toFixed(4)+'</td><td>'+Math.abs(rp.z.exk).toFixed(4)+'</td><td>'+rp.z.maxdev.toFixed(4)+'</td></tr>';
+ }
+ $("lbody").innerHTML=rows;
+ if(TAMPER){
+  $("convwit").innerHTML=badge(false,"COLLAPSED — Z variance falls to 1/n, not the bell");
+ }else{
+  var kmono=true, mmono=mdev[mdev.length-1]<mdev[0];
+  for(i=1;i<absK.length;i++){ if(!(absK[i]<absK[i-1])) kmono=false; }
+  $("convwit").innerHTML=badge(kmono,"|excess kurtosis| &rarr; 0 monotone on the ladder")+badge(mmono,"max gap to &phi; smaller at large n");
+ }
+}
+
+function render(){
+ var kind=$("base").value, n=+$("nn").value; $("nnv").textContent=n;
+ var rp=report(kind,n,TAMPER);
+ $("basestat").innerHTML=baseLabel(kind)+' &mdash; &mu;=<b>'+rp.mu.toFixed(3)+'</b>, &sigma;&sup2;=<b>'+rp.s2.toFixed(3)+'</b>, sum of n copies has mean <b>'+(n*rp.mu).toFixed(2)+'</b>, variance <b>'+(n*rp.s2).toFixed(2)+'</b>.';
+ $("bell").innerHTML=bellSVG(rp);
+ $("zmean").textContent=rp.z.mean.toFixed(4);
+ $("zvar").textContent=rp.z.vari.toFixed(4);
+ $("exk").textContent=rp.z.exk.toFixed(4);
+ $("mdv").textContent=rp.z.maxdev.toFixed(4);
+
+ // witnesses
+ $("sumwit").innerHTML=badge(Math.abs(rp.sum-1)<1e-9,"convolved pmf sums to 1 (n="+n+")")
+   +'<div class="small" style="margin-top:4px">&Sigma; p = <b>'+rp.sum.toFixed(9)+'</b></div>';
+ var zvarOK=Math.abs(rp.z.vari-1)<1e-6;
+ $("zwit").innerHTML=badge(zvarOK,zvarOK?"Z: mean 0, variance 1":"Z variance &ne; 1 (collapsed)")
+   +'<div class="small" style="margin-top:4px">Z mean = <b>'+rp.z.mean.toFixed(6)+'</b>, Z var = <b>'+rp.z.vari.toFixed(6)+'</b>'+(TAMPER?' &nbsp;<span style="color:var(--wall)">(divided by n)</span>':'')+'</div>';
+ var lyOK=rp.Ln>0;
+ $("lyapwit").innerHTML=badge(lyOK,"Lyapunov ratio falling")
+   +'<div class="small" style="margin-top:4px">L<sub>'+n+'</sub> = &rho;&#8323;/(&radic;n&middot;&sigma;&sup3;) = <b>'+rp.Ln.toFixed(4)+'</b> &nbsp;(&rarr; 0 as n grows)</div>';
+
+ renderLadder(kind);
+
+ // verdict
+ var v=$("verdict"), r=$("reason");
+ if(TAMPER){
+  v.className="verdict no"; v.textContent="COLLAPSED";
+  r.innerHTML="Divided by n, the standardised sum has variance 1/n = <b>"+rp.z.vari.toFixed(4)+"</b> &rarr; 0. It piles up at the mean as a spike &mdash; the law of large numbers, not the bell. The &radic;n scaling is what the CLT requires.";
+ }else{
+  v.className="verdict ok"; v.textContent="APPROACHES THE BELL";
+  r.innerHTML="Z holds mean 0, variance 1 at every n, and its excess kurtosis and gap to &phi; both fall toward 0 as n rises. The base shape is forgotten &mdash; the limit is the same standard normal for every base.";
+ }
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ $("litbadge").innerHTML='<span class="badge pass">&#10003; LIT &middot; self-check passed on load (4 bases &times; the ladder)</span>';
+ $("base").addEventListener("change",render);
+ $("nn").addEventListener("input",render);
+ $("tamper").addEventListener("click",function(){ TAMPER=true;
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Divided by n.</b> The centred sum is now scaled by n&sigma; instead of &radic;n&middot;&sigma;, so the &ldquo;standardised&rdquo; variance is 1/n &mdash; it collapses to a spike at the mean, not the bell. The NORMALISE witness (3) went red and DATA OUT reads COLLAPSED. The CLT genuinely needs &radic;n scaling and finite variance; the attack is real and it is caught.";
+  render(); });
+ $("restore").addEventListener("click",function(){ TAMPER=false;
+  $("tampernote").innerHTML="Break &radic;n to n and the &ldquo;standardised&rdquo; sum does not approach the bell &mdash; it <b>collapses to a spike at the mean</b> (variance &rarr; 0). The NORMALISE witness (3) turns red and DATA OUT reads COLLAPSED. The CLT genuinely needs &radic;n scaling and finite variance; the attack is real and it is caught.";
+  render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the Central Limit engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

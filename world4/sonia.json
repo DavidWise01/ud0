@@ -10,11 +10,11 @@
   "bridge": "ternary → World III · THE HALLWAY. Russia's unique computing heritage is balanced ternary: SETUN (N. P. Brusentsov & S. L. Sobolev, Moscow State University, 1958) — the only series-produced ternary computer. Ternary is the hinge where Russia and the number three become one gesture; the ternary machinery homes in World III, its history in SONIA.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC — with AVAN",
   "genesis": "c600aecec4d8f5db48efb34696fcd454e40aebd729eb1e273308da62b4358fe4",
-  "sonia_root": "a06b9f5fac8402d8a6aea8704cfec66ee8dca21a3460a57dd368c60815952cfa",
+  "sonia_root": "e1cec856c9df6092a052eeec013563ddae297c7049504efbb0ff67772077f9c5",
   "counts": {
-    "spheres": 43,
+    "spheres": 48,
     "rooms": 5,
-    "lit": 43,
+    "lit": 48,
     "keepers": 8
   },
   "keepers": [
@@ -639,6 +639,66 @@
       "url": "https://davidwise01.github.io/ud0/world4/the-soft-budget-constraint.html",
       "seal": "ec4b5818b29626ac704916941cdfb88933853a7b96a7f0c41b72b62671ccfc94",
       "blurb": "Kornai's soft budget constraint, runnable in THE OCHO: under a HARD budget a loss-making firm exits, so survivors are efficient and demand stays within supply; under a SOFT budget the state bails everyone (subsidy = sum of deficits > 0), inefficient firms persist, average efficiency falls, and because no one fears loss aggregate input demand exceeds supply - a chronic SHORTAGE. The soft constraint funds losers and manufactures the shortage it meant to relieve. Ties gobernet and the-ratchet-effect. Tamper-provable."
+    },
+    {
+      "slug": "the-central-limit-theorem",
+      "title": "THE CENTRAL LIMIT THEOREM",
+      "room": "number",
+      "kicker": "why so many things are bell-shaped",
+      "accent": "#c30019",
+      "stamp": "LIT",
+      "source": "A. M. Lyapunov, the CLT under the Lyapunov condition (1901)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-central-limit-theorem.html",
+      "seal": "53eb4b58addf9738cc7bf13a4183631b9e6558bc9dfbedef6e2a5f3e495eecf7",
+      "blurb": "Lyapunov's Central Limit Theorem (1901), completing the Chebyshev-Markov line, runnable in THE OCHO by EXACT discrete convolution: sum n independent copies of a base distribution (convolve its pmf n times), normalize by sqrt(n sigma^2), and watch the shape approach the standard normal - excess kurtosis -> 0, the base shape forgotten. Mean 0, variance 1 by construction; the limit is universal. Tamper-provable: normalize by n instead of sqrt(n) and it collapses to a spike, not a bell."
+    },
+    {
+      "slug": "bakhtin-dialogism",
+      "title": "BAKHTIN AND DIALOGISM",
+      "room": "novel",
+      "kicker": "the many-voiced novel",
+      "accent": "#1d4e79",
+      "stamp": "LIT",
+      "source": "Mikhail Bakhtin, Problems of Dostoevsky's Poetics (1929; expanded 1963)",
+      "url": "https://davidwise01.github.io/ud0/world4/bakhtin-dialogism.html",
+      "seal": "4dda020d67ad7f6a569e92c157630f4e9054c50fb82ec7a79b50b565055a631b",
+      "blurb": "Bakhtin's polyphonic novel (Problems of Dostoevsky's Poetics, 1929/1963), runnable in THE OCHO: a scene modelled as voices + stances + who-addresses-whom, with polyphony = (>=2 distinct UNMERGED voice-stances) AND (none reducible to the author) AND (the address graph is not a star). A Karamazov-like scene is polyphonic; a didactic tract monologizes. The literary theory is AMBER; the partition-and-graph structure is LIT. Bakhtin theorized keeper Dostoevsky himself. Tamper-provable."
+    },
+    {
+      "slug": "the-mir-computer",
+      "title": "THE MIR COMPUTER",
+      "room": "machine",
+      "kicker": "symbolic math in the 1960s",
+      "accent": "#9a6b12",
+      "stamp": "LIT",
+      "source": "Glushkov's Institute of Cybernetics, Kyiv - MIR-1 (1965), MIR-2 (1969)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-mir-computer.html",
+      "seal": "740dc723cfc5d6218a7f28cde89d5db5754a8a162193920259213b40b2df4515",
+      "blurb": "Glushkov's MIR (Kyiv; MIR-1 1965, MIR-2 1969), a machine with a high-level language (Analitik) and SYMBOLIC computation, runnable in THE OCHO as an exact symbolic differentiator: parse an expression tree and apply the power/sum/PRODUCT rules to return the exact derivative, verified coefficient-for-coefficient and against a central finite difference. A numeric machine only approximates; the MIR did analytic mathematics in the 1960s. Ties Glushkov and OGAS. Tamper-provable: break the product rule to u'v' and the check fails."
+    },
+    {
+      "slug": "the-kola-superdeep-borehole",
+      "title": "THE KOLA SUPERDEEP BOREHOLE",
+      "room": "weird",
+      "kicker": "debunk the hoax, keep the science",
+      "accent": "#5f513a",
+      "stamp": "LIT",
+      "source": "The Kola Superdeep Borehole (1970-1992), 12,262 m",
+      "url": "https://davidwise01.github.io/ud0/world4/the-kola-superdeep-borehole.html",
+      "seal": "d72a92f4f7183f013d6af6799c01818b3b04bbe326790e3c5872bab73180bec0",
+      "blurb": "The Kola Superdeep Borehole (1970-1992), 12,262 m - the deepest artificial point on Earth - rendered in THE OCHO as a debunk-the-hoax, keep-the-science sphere: the 'Well to Hell' recording of screams is a documented HOAX (DEAD), but the real results are stranger - about 180 C at the bottom (far above the extrapolated ~100 C) and free water at depth, while the hole is only 0.19% of Earth's radius, nowhere near the mantle. The thermal/hydrological physics is LIT. Tamper-provable: the depth cannot reach the mantle."
+    },
+    {
+      "slug": "the-nomenklatura",
+      "title": "THE NOMENKLATURA",
+      "room": "state",
+      "kicker": "loyalty over competence, and the decay",
+      "accent": "#7a1220",
+      "stamp": "LIT",
+      "source": "The nomenklatura (Michael Voslensky, Nomenklatura, 1980)",
+      "url": "https://davidwise01.github.io/ud0/world4/the-nomenklatura.html",
+      "seal": "b009b7b603bc9eafd0253c54c10d110e3b299617201410d21fee13f49e7f130a",
+      "blurb": "The nomenklatura - the Party's list of key posts filled by LOYALTY over competence - runnable in THE OCHO as adverse selection: with a fixed candidate pool, the mean competence of the loyalty-selected set is strictly below the merit-selected set (and below the pool average when loyalty anti-correlates with competence), and iterating (loyal cohorts pick loyal successors) ratchets average competence down. Ties gobernet, the-ratchet-effect, the-soft-budget-constraint. Tamper-provable: selecting for loyalty forfeits competence."
     }
   ]
 }

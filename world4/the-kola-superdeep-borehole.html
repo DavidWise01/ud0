@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE KOLA SUPERDEEP BOREHOLE · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE WEIRD &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE KOLA SUPERDEEP BOREHOLE</h1>
+ <p class="sub">On the Kola Peninsula, Soviet drillers spent <b>1970&ndash;1992</b> boring the deepest hole ever made: <b>12,262&nbsp;m</b> &mdash; the deepest artificial point on Earth. The internet remembers the <b class="k">&ldquo;Well to Hell&rdquo;</b> tape of screaming souls. That tape is a <b>documented hoax</b>. This panel is <b>runnable</b>: it computes the fraction of the planet actually drilled (<b class="k">~0.19%</b> of Earth&rsquo;s radius) and shows the crust was <b class="k">too hot</b> &mdash; ~180&nbsp;&deg;C where a shallow-gradient line predicts ~100&nbsp;&deg;C. This is <b>THE WEIRD</b>: kill the legend, keep the stranger science.</p>
+ <p class="src"><span class="tag t-amber">source</span> Kola Superdeep Borehole SG-3, Kola Peninsula (drilled 1970&ndash;1992; final depth 12,262&nbsp;m); Ye. A. Kozlovsky (ed.), <i>The Superdeep Well of the Kola Peninsula</i> (Springer, 1987) &mdash; bottom temperature ~180&nbsp;&deg;C, free water at depth, no granite&ndash;basalt (Conrad) transition. The &ldquo;Well to Hell&rdquo; scream recording is a documented hoax (spread via a 1989 tract and a US tabloid; the audio was traced to a horror-film soundtrack). Room: <b>THE WEIRD</b>. Contrast: <b>yamal</b> EXPLAINED, <b>ball-lightning</b> OPEN, <b>kola</b> HOAX-debunked-with-real-science.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; the hole, the readings, the lineage</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; the deepest hole <span class="tag t-amber">record</span></h2>
+   <p>Begun in <b>1970</b> on the <b>Kola Peninsula</b> near Murmansk, borehole <b>SG-3</b> was a pure science project &mdash; not for oil, but to sample the deep <b>continental crust</b> of the Baltic Shield. By <b>1979</b> it passed the previous record; by <b>1989</b> it reached <b class="k">12,262&nbsp;m</b>. Rising heat and plastic, flowing rock stopped it in <b>1992</b>.</p>
+   <p class="small">12.262&nbsp;km is the <b>deepest artificial point on Earth</b> &mdash; a real, dated, documented achievement. Historical record: <b>AMBER</b>.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>THE OBSERVATIONS &mdash; what the hole found</h2>
+   <p>The surprises were not supernatural but geological: the temperature at the bottom was <b class="k">~180&nbsp;&deg;C</b>, far above the ~100&nbsp;&deg;C a shallow-gradient line predicted; <b>free water</b> was squeezed from minerals kilometres down where none should flow; the expected <b>granite-to-basalt</b> change (the <b>Conrad</b> boundary) simply <b>was not there</b>; and ancient <b>microfossils</b> turned up ~6&nbsp;km deep.</p>
+   <p class="small">Four honest findings &mdash; hotter, wetter, no basalt, fossils &mdash; are the <b>inputs</b> to the engine at centre. Compiled field data: <b>AMBER</b>.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>LINEAGE &mdash; deep-crust geophysics <span class="tag t-amber">theory</span></h2>
+   <p>Kola turned a textbook picture into data. The <b>Conrad discontinuity</b> &mdash; long read as a granite&rarr;basalt compositional layer &mdash; was <b>reinterpreted</b>: at Kola it was a <b>metamorphic / fracture</b> boundary, not a change of rock type. The <b>geothermal gradient</b> steepened with depth, forcing better crustal heat-flow models.</p>
+   <p class="small">These are advances in <b>deep-crust geophysics</b> &mdash; a real result, not a portal. Interpretation: <b>AMBER</b>, resting on the LIT measurements at centre.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE ENGINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the scratch-and-heat engine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the depth &amp; the gradient <span class="tag t-in">in &darr;</span></h2>
+   <p>Feed the engine the hole&rsquo;s <b>depth</b>, the <b>surface temperature</b>, and the <b>shallow geothermal gradient</b> measured near the top. It forms two honest numbers: <b>how much of the planet</b> the hole crosses, and <b>how hot</b> a straight line predicts at the bottom &mdash; then compares that line to the <b class="k">~180&nbsp;&deg;C</b> actually logged.</p>
+   <div class="row"><label>depth z</label><input id="zin" type="range" min="1" max="12.262" step="0.001" value="12.262" style="flex:1;min-width:120px"><b id="zval" class="k" style="min-width:82px">12.262 km</b></div>
+   <div class="row"><label>surface T&#8320;</label><input id="t0in" type="range" min="-10" max="10" step="0.5" value="0" style="flex:1;min-width:120px"><b id="t0val" class="k" style="min-width:82px">0 &deg;C</b></div>
+   <div class="row"><label>shallow g</label><input id="gin" type="range" min="5" max="12" step="0.05" value="8.16" style="flex:1;min-width:120px"><b id="gval" class="k" style="min-width:82px">8.16 &deg;C/km</b></div>
+   <div class="row"><label>observed T</label><input id="tobin" type="range" min="120" max="220" step="1" value="180" style="flex:1;min-width:120px"><b id="tobval" class="k" style="min-width:82px">180 &deg;C</b></div>
+   <p class="small mut">Earth radius R&#8853; = 6,371&nbsp;km (fixed). Fraction drilled f = z / R&#8853;. Naive extrapolation T&#8342;&#8341;&#8339;&#8342; = T&#8320; + g&middot;z. Observed gradient g&#8340;&#8331;&#8342; = (T&#8342;&#8331;&#8331; &minus; T&#8320;) / z. Mantle (Baltic-shield Moho) begins near <b>35&nbsp;km</b>.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; fraction of the radius &middot; line vs. reading &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE ENGINE &mdash; scratch &amp; heat <span class="tag t-lit">LIT</span></h2>
+   <div class="out" id="engout">&mdash;</div>
+   <table id="engBody2"><tbody id="engBody"></tbody></table>
+
+   <p class="small" style="margin-top:10px"><b>STILL JUST A SCRATCH</b> <span class="tag t-lit">LIT</span> &mdash; the fraction of Earth&rsquo;s radius reached:</p>
+   <div class="out" id="scratchout" style="font-size:13px">&mdash;</div>
+   <div class="small" id="scratchnote"></div>
+
+   <p class="small" style="margin-top:10px"><b>TOO HOT</b> <span class="tag t-lit">LIT</span> &mdash; the shallow line under the real reading:</p>
+   <table id="heatTbl"><thead><tr><th>z (km)</th><th>naive line (&deg;C)</th><th>observed-gradient model (&deg;C)</th></tr></thead><tbody id="heatBody"></tbody></table>
+   <p class="small" style="margin-top:6px" id="gradline">&mdash;</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the deciding facts: shallow, and hotter than the line &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; THE VERDICT <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outverdict">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <table id="witTbl"><thead><tr><th>claim under test</th><th>reached the mantle?</th><th>screams = evidence?</th><th>holds?</th></tr></thead><tbody id="witbody"></tbody></table>
+   <p class="small" style="margin-top:8px">The honest reading: the hole is a <b>0.19% scratch</b> that never nears the mantle, and the &ldquo;screams&rdquo; tape is a <b>hoax</b>. The <b>real</b> results &mdash; excess heat, deep water, absent basalt &mdash; are <b class="k">LIT</b>. Verdict: <b>HOAX debunked, science kept</b>.</p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; the graveyard, the wall, the tamper &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>THE GRAVEYARD &mdash; the Well to Hell</h2>
+   <p class="grave"><s>&ldquo;The drill broke into a cavern; a microphone lowered into the heat recorded the <b>screams of the damned</b>. The Soviets sealed the hole in terror.&rdquo;</s></p>
+   <p class="small" style="margin-top:4px"><b class="k">DEAD.</b> The recording is a <b>documented hoax</b> &mdash; it spread from a 1989 tract and a US tabloid, and the &ldquo;scream&rdquo; audio was later traced to a <b>looped horror-film soundtrack</b>. What is buried is the <b>legend</b>, not the borehole: SG-3 is real, its readings are real, the cavern of the damned never existed.</p>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE WALL &mdash; the mantle is untouched</h2>
+   <div class="wall-note"><span class="tag t-wall">WALL</span> Even the deepest hole ever drilled reaches <b>~0.19%</b> of the way to the centre and stays entirely within the <b>crust</b>. The <b>mantle</b> &mdash; let alone the core, let alone any &ldquo;hell&rdquo; &mdash; is <b>nowhere near</b>. Depth beats a wall of <b>heat and plastic rock</b>, not a door.</div>
+   <p class="small" style="margin-top:8px">This is a real limit, not a missing paragraph: rock at 180&nbsp;&deg;C flows and closes the bore, and drill strings cannot survive much deeper. The mystery of the deep Earth stays <b>above</b> the drill, read only by <b>seismology</b>.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; &ldquo;it reached hell&rdquo;</h2>
+   <p>The red move: revive the legend &mdash; <b>&ldquo;the borehole broke into the mantle and recorded the screams&rdquo;</b>. The engine calls it: the hole is a <b>0.19% scratch</b> nowhere near the mantle, and the audio is a <b>debunked hoax</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; claim it reached hell</button><button id="restore">&#8634; restore the honest verdict</button></div>
+   <p class="small" id="tampernote">Assert &ldquo;reached the mantle and recorded screams&rdquo; and the witness (5) checks the fraction drilled and the hoax flag &mdash; the depth cannot reach the mantle and the tape is not evidence &mdash; so it turns <b style="color:var(--wall)">red</b>. The deep results are thermal and hydrological science, not the supernatural.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE KOLA SUPERDEEP BOREHOLE &mdash; World IV &middot; <b>SONIA</b>, room <b>THE WEIRD</b>, in the refined <b>OCHO</b>: blue lays down the dated hole (1970&ndash;1992, 12,262&nbsp;m), the four field findings, and the deep-crust lineage; the centre engine computes the fraction of Earth&rsquo;s radius drilled (~0.19%, still just a scratch) and shows a shallow-gradient line under-predicting the ~180&nbsp;&deg;C actually logged (the crust is hotter with depth than the naive model); red buries the &ldquo;Well to Hell&rdquo; scream tape as a documented hoax, holds the wall that the mantle is untouched, and is caught trying to revive the legend. The fraction and the heat mismatch are LIT and self-checked; the record and interpretation are AMBER; the mantle-is-unreached limit is a real WALL; the screams are DEAD. THE LESSON: debunk the hoax, keep the science &mdash; the true story of the deepest hole is stranger than the legend. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA - THE KOLA SUPERDEEP BOREHOLE - scratch-and-heat engine (every value computed) ===== */
+
+var CLAIM="science";              // honest stance. TAMPER sets "reached-hell" (a claim the depth + hoax flag refute)
+
+var EARTH_RADIUS_KM=6371;         // km, mean Earth radius
+var CRUST_MOHO_KM=35;             // km, approx depth to the mantle (Moho) under the Baltic Shield
+var KOLA_DEPTH_KM=12.262;         // km, final depth of SG-3 (the anchor)
+
+// fraction of Earth's radius reached by a hole of depth z (km)
+function fractionDrilled(zKm){ return zKm/EARTH_RADIUS_KM; }
+// does the hole reach the mantle?
+function reachesMantle(zKm){ return zKm>=CRUST_MOHO_KM; }
+// naive linear extrapolation of temperature to depth z using the SHALLOW gradient
+function naiveTemp(T0,gShallow,zKm){ return T0+gShallow*zKm; }
+// the gradient IMPLIED by the observed bottom temperature over the full depth
+function observedGradient(T0,Tobs,zKm){ return (Tobs-T0)/zKm; }
+// temperature from a straight line using the OBSERVED gradient (reproduces Tobs at z by construction)
+function observedModelTemp(T0,Tobs,zKm,z){ return T0+observedGradient(T0,Tobs,zKm)*z; }
+// does the shallow line UNDER-predict the observed bottom temperature?
+function underPredicts(T0,gShallow,zKm,Tobs){ return naiveTemp(T0,gShallow,zKm)<Tobs; }
+// is the true (observed) gradient steeper than the shallow one?
+function gradientExceeds(T0,gShallow,zKm,Tobs){ return observedGradient(T0,Tobs,zKm)>gShallow; }
+
+// the "Well to Hell" scream recording is a documented HOAX: it is NOT evidence of anything
+function screamsAreEvidence(){ return false; }
+// the thermal / hydrological / no-basalt results are REAL
+function deepResultsReal(){ return true; }
+
+// does a stated CLAIM survive the physics + the record?
+function claimHolds(claim,T0,gShallow,zKm,Tobs){
+ if(claim==="science"){
+  // honest: shallow line under-predicts, true gradient steeper, still a scratch, no mantle, hoax not evidence, real results stand
+  return underPredicts(T0,gShallow,zKm,Tobs)
+      && gradientExceeds(T0,gShallow,zKm,Tobs)
+      && !reachesMantle(zKm)
+      && !screamsAreEvidence()
+      && deepResultsReal();
+ }
+ if(claim==="reached-hell"){
+  // legend: needs the hole to reach the mantle AND the screams to be evidence -> both false
+  return reachesMantle(zKm) && screamsAreEvidence();
+ }
+ return false;
+}
+
+// fixed-seed PRNG (LCG, full 32-bit span) for the robustness scan
+function mkRng(seed){ var s=seed>>>0; return function(){ s=(s*1664525+1013904223)>>>0; return s/4294967296; }; }
+
+/* ===== fail-loud self-check (runs on the honest anchors: 12.262 km, ~180 C) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var rel=function(a,b){ return Math.abs(a-b)/Math.abs(b); };
+
+ var z=KOLA_DEPTH_KM, T0=0, g=8.16, Tobs=180;
+
+ // 1 - the fraction drilled computes to ~0.001925 and is well under 0.2% of the radius
+ var f=fractionDrilled(z);
+ t(rel(f, 12262/6371000)<1e-12,"fraction must equal z/R_earth (12262 m / 6371000 m)");
+ t(f<0.002,"fraction must be under 0.2% of Earth's radius (got "+(f*100).toFixed(4)+"%)");
+ t(f>0.0019,"fraction must be ~0.19% (got "+(f*100).toFixed(4)+"%)");
+
+ // 2 - the deepest hole does NOT reach the mantle
+ t(reachesMantle(z)===false,"12.262 km must NOT reach the mantle (Moho ~35 km)");
+
+ // 3 - the shallow-gradient line UNDER-predicts the observed ~180 C
+ var Tn=naiveTemp(T0,g,z);
+ t(Tn<Tobs,"shallow-gradient line must under-predict the observed bottom temperature");
+ t(Tn<120,"the ~8 C/km shallow line must land near ~100 C, not near 180 C (got "+Tn.toFixed(1)+")");
+
+ // 4 - the observed gradient is steeper than the shallow one
+ t(gradientExceeds(T0,g,z,Tobs)===true,"the observed gradient must exceed the shallow gradient");
+ t(observedGradient(T0,Tobs,z)>g,"observed gradient must be > shallow gradient");
+
+ // 5 - a straight line on the OBSERVED gradient reproduces ~180 C at the bottom
+ t(rel(observedModelTemp(T0,Tobs,z,z),Tobs)<1e-9,"observed-gradient model must reproduce Tobs at depth z");
+
+ // 6 - the screams tape is a HOAX (not evidence); the deep results are REAL
+ t(screamsAreEvidence()===false,"the 'screams' recording must be marked HOAX / not evidence");
+ t(deepResultsReal()===true,"the heat/water/no-basalt results must be marked REAL");
+
+ // 7 - the honest SCIENCE claim holds; the LEGEND claim fails
+ t(claimHolds("science",T0,g,z,Tobs)===true,"the honest science verdict must hold");
+ t(claimHolds("reached-hell",T0,g,z,Tobs)===false,"the 'reached hell' legend must fail");
+
+ // 8 - robustness: across a plausible band the hole stays a sub-0.2% scratch that never reaches the mantle,
+ //     and a shallow gradient (5-12 C/km) always under-predicts the observed reading (150-200 C)
+ var rng=mkRng(0xC01A), i;
+ for(i=0;i<400;i++){
+  var zr=1+rng()*(KOLA_DEPTH_KM-1);
+  var T0r=-8+rng()*16;
+  var gr=5+rng()*(12-5);
+  var Tor=150+rng()*(200-150);
+  t(fractionDrilled(zr)<0.002,"scan: every drilled depth must stay under 0.2% of the radius");
+  t(reachesMantle(zr)===false,"scan: no plausible hole reaches the mantle");
+  t(underPredicts(T0r,gr,zr,Tor)===true,"scan: shallow gradient must under-predict the observed temp");
+  t(gradientExceeds(T0r,gr,zr,Tor)===true,"scan: observed gradient must exceed the shallow one");
+ }
+
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+function fx(n,d){ return n.toFixed(d===undefined?1:d); }
+
+function readInputs(){
+ return { z:+$("zin").value, T0:+$("t0in").value, g:+$("gin").value, Tobs:+$("tobin").value };
+}
+
+function renderEngine(){
+ var IN=readInputs();
+ $("zval").textContent=fx(IN.z,3)+" km";
+ $("t0val").textContent=fx(IN.T0,1)+"&nbsp;&deg;C";
+ $("gval").textContent=fx(IN.g,2)+"&nbsp;&deg;C/km";
+ $("tobval").textContent=Math.round(IN.Tobs)+"&nbsp;&deg;C";
+
+ var f=fractionDrilled(IN.z);
+ var Tn=naiveTemp(IN.T0,IN.g,IN.z);
+ var gObs=observedGradient(IN.T0,IN.Tobs,IN.z);
+ var deficit=IN.Tobs-Tn;
+
+ $("engout").innerHTML="depth <b>"+fx(IN.z,3)+" km</b> &rarr; fraction <b>"+(f*100).toFixed(4)+"%</b> of R&#8853; &middot; shallow line <b>"+fx(Tn,1)+"&nbsp;&deg;C</b> vs observed <b>"+Math.round(IN.Tobs)+"&nbsp;&deg;C</b>";
+
+ var rows="";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">f = z / R&#8853;</td><td style=\"font-weight:700;color:var(--red)\">"+(f*100).toFixed(4)+" %</td></tr>";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">reaches mantle (&ge;35 km)?</td><td style=\"font-weight:700;color:"+(reachesMantle(IN.z)?"var(--wall)":"var(--lit)")+"\">"+(reachesMantle(IN.z)?"yes":"no")+"</td></tr>";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">shallow line T&#8320;+g&middot;z</td><td style=\"font-weight:700;color:var(--red)\">"+fx(Tn,1)+"&nbsp;&deg;C</td></tr>";
+ rows+="<tr><td style=\"text-align:left;color:var(--dim)\">observed gradient (T&#8342;&#8331;&#8331;&minus;T&#8320;)/z</td><td style=\"font-weight:700;color:var(--red)\">"+fx(gObs,2)+"&nbsp;&deg;C/km</td></tr>";
+ $("engBody").innerHTML=rows;
+
+ // STILL JUST A SCRATCH
+ $("scratchout").innerHTML="f = "+fx(IN.z,3)+" / "+EARTH_RADIUS_KM+" = <b>"+(f*100).toFixed(4)+"%</b> &mdash; "
+   +(f<0.002?'<span style="color:var(--lit)">still just a scratch</span>':'<span style="color:var(--wall)">deep</span>');
+ $("scratchnote").innerHTML="The deepest hole ever drilled crosses <b>"+(f*100).toFixed(3)+"%</b> of the "+EARTH_RADIUS_KM+" km to the centre. To reach the mantle it would need <b>"+fx(CRUST_MOHO_KM/IN.z,1)+"&times;</b> its depth; the core is <b>"+Math.round(EARTH_RADIUS_KM/IN.z)+"&times;</b> deeper.";
+
+ // TOO HOT: naive line vs observed-gradient model at a few depths
+ var depths=[3,6,9,IN.z], hr="";
+ for(var i=0;i<depths.length;i++){
+  var dz=depths[i];
+  if(dz>IN.z) dz=IN.z;
+  var tn=naiveTemp(IN.T0,IN.g,dz), tm=observedModelTemp(IN.T0,IN.Tobs,IN.z,dz);
+  hr+="<tr><td>"+fx(dz,2)+"</td><td>"+fx(tn,1)+"</td><td style=\"font-weight:700;color:var(--red)\">"+fx(tm,1)+"</td></tr>";
+ }
+ $("heatBody").innerHTML=hr;
+
+ $("gradline").innerHTML="At the bottom the shallow line predicts <b>"+fx(Tn,1)+"&nbsp;&deg;C</b> but the log reads <b class=\"k\">"+Math.round(IN.Tobs)+"&nbsp;&deg;C</b> &mdash; a <b style=\"color:var(--wall)\">"+fx(deficit,0)+"&nbsp;&deg;C</b> deficit. The true gradient (<b>"+fx(gObs,2)+"</b>) beats the shallow one (<b>"+fx(IN.g,2)+"</b>&nbsp;&deg;C/km): the crust is <b>hotter with depth than a straight line predicts</b>.";
+
+ renderWitness(IN,f);
+}
+
+function renderWitness(IN,f){
+ var vd=$("outverdict"), rl=$("outreason");
+ var sciWarranted=claimHolds("science",IN.T0,IN.g,IN.z,IN.Tobs);
+ var claimOK=claimHolds(CLAIM,IN.T0,IN.g,IN.z,IN.Tobs);
+
+ if(CLAIM==="science"){
+  vd.className="verdict "+(sciWarranted?"ok":"no");
+  vd.textContent=sciWarranted?"HOAX DEBUNKED - science kept":"(inconsistent)";
+  rl.innerHTML=sciWarranted
+   ? 'A <b>'+(f*100).toFixed(3)+'%</b> scratch that never nears the mantle; the &ldquo;screams&rdquo; tape is a <b>hoax</b>. The <b>real</b> surprises &mdash; ~'+Math.round(IN.Tobs)+'&nbsp;&deg;C heat above the shallow line, deep water, absent basalt &mdash; stand as <b style="color:var(--lit)">LIT</b> science.'
+   : 'Parameters left the plausible band.';
+ } else {
+  vd.className="verdict "+(claimOK?"ok":"no");
+  vd.textContent=claimOK?"(claim holds)":"REFUTED - no mantle, no screams";
+  rl.innerHTML=claimOK
+   ? '(unreachable in range)'
+   : '<b style="color:var(--wall)">The legend fails.</b> The hole reaches only <b>'+(f*100).toFixed(3)+'%</b> of the radius &mdash; the mantle sits far below <b>'+CRUST_MOHO_KM+'&nbsp;km</b> &mdash; and the &ldquo;screams&rdquo; recording is a <b>documented hoax</b>, not evidence.';
+ }
+
+ var reachCell=reachesMantle(IN.z)?"yes":"no";
+ var screamCell=screamsAreEvidence()?"yes":"no";
+ var row="<tr><td>"+(CLAIM==="reached-hell"?"reached hell":"honest science")+"</td>"
+  +"<td style=\"font-weight:700;color:"+(reachesMantle(IN.z)?"var(--wall)":"var(--lit)")+"\">"+reachCell+"</td>"
+  +"<td style=\"font-weight:700;color:"+(screamsAreEvidence()?"var(--wall)":"var(--lit)")+"\">"+screamCell+"</td>"
+  +"<td style=\"font-weight:700;color:"+(claimOK?"var(--lit)":"var(--wall)")+"\">"+(claimOK?"yes":"no")+"</td></tr>";
+ $("witbody").innerHTML=row;
+
+ var pass=(CLAIM==="science") ? sciWarranted : claimOK;
+ $("witbadge").innerHTML='<span class="badge '+(pass?"pass":"failb")+'">'
+   +(CLAIM==="science"
+      ? (pass?"WITNESS - hoax debunked, thermal + hydrological science stands: LIT":"WITNESS - out of range")
+      : "WITNESS - 'reached hell' breaks: 0.19% scratch, no mantle, hoax tape")
+   +'</span>';
+ return pass;
+}
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ var sync=function(){ renderEngine(); };
+ ["zin","t0in","gin","tobin"].forEach(function(id){ $(id).addEventListener("input",sync); $(id).addEventListener("change",sync); });
+ $("tamper").addEventListener("click",function(){
+  CLAIM="reached-hell";
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Legend revived.</b> The witness (5) now checks the fraction drilled and the hoax flag &mdash; the hole is a <b>0.19% scratch</b> that never reaches the mantle, and the tape is a <b>documented hoax</b> &mdash; so it turns <b style='color:var(--wall)'>red</b>. The deep results are thermal and hydrological science, not the supernatural.";
+  renderEngine();
+ });
+ $("restore").addEventListener("click",function(){
+  CLAIM="science";
+  $("tampernote").innerHTML="Assert &ldquo;reached the mantle and recorded screams&rdquo; and the witness (5) checks the fraction drilled and the hoax flag &mdash; the depth cannot reach the mantle and the tape is not evidence &mdash; so it turns <b style='color:var(--wall)'>red</b>. The deep results are thermal and hydrological science, not the supernatural.";
+  renderEngine();
+ });
+ renderEngine();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD - the Kola scratch-and-heat engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

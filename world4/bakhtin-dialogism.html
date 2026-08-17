@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BAKHTIN AND DIALOGISM · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE NOVEL &middot; the Russian world</span></div>
+
+<header>
+ <h1>BAKHTIN AND DIALOGISM</h1>
+ <p class="sub">Dostoevsky did not write mouthpieces. His characters are <b>autonomous, unmerged voices</b> that argue with each other and with him and are never resolved. Bakhtin called this the <b>polyphonic novel</b>. This sphere makes it structural: tag a scene's utterances by <b>voice</b>, <b>stance</b> and who they <b>address</b>, then measure whether the voices are unmerged and whether they speak to each other rather than only up to the author.</p>
+ <p class="src"><span class="tag t-amber">source</span> Mikhail Bakhtin, <i>Problems of Dostoevsky&rsquo;s Poetics</i> (1929; expanded 1963). Room: <b>THE NOVEL</b>. The literary theory is interpretation (AMBER); the partition-and-graph structure is measured (LIT). No quotations fabricated.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- LEFT · ROOTS / LINEAGE / WITNESS -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; roots &middot; lineage &middot; witness</div>
+
+  <div class="win blue"><span class="no">3</span><h2>ROOTS &mdash; Bakhtin, 1929/1963 <span class="tag t-amber">history</span></h2>
+   <p>Mikhail <b>Bakhtin</b> wrote the first version in <b>1929</b>, on the edge of arrest and near-erasure under Soviet censorship; he revised and expanded it in <b>1963</b>. Its claim: Dostoevsky invented a genuinely new kind of novel &mdash; one where the author does not stand above the characters and pronounce a verdict, but lets a <b>plurality of independent consciousnesses</b> sound together, <b>unmerged</b>.</p>
+   <p class="small">He named the form <b>polyphonic</b>, borrowing the word for many independent melodic lines. The theory is <b>interpretation</b>; stamp it AMBER. What this sphere measures is only the structure underneath it.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>MONOLOGY vs POLYPHONY <span class="tag t-amber">the claim</span></h2>
+   <p><b>Monologic:</b> one authoritative voice. The others are subordinated &mdash; their stances <b>reduce to</b> the author&rsquo;s thesis, and every utterance addresses the single authorial centre. A didactic tract, an allegory with a moral.</p>
+   <p><b>Polyphonic:</b> two or more voices whose stances are <b>distinct and unmerged</b> (no voice&rsquo;s stance is a relabelling of another&rsquo;s), who <b>address each other</b> &mdash; the talk is between them, not only up to the author. Dostoevsky, at his own admission, does not settle who is right.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>LINEAGE <span class="tag t-amber">after Bakhtin</span></h2>
+   <p>From this book runs a whole line: the <b>dialogic imagination</b>, <b>heteroglossia</b>, later <b>reader-response</b> and <b>discourse analysis</b> &mdash; all the idea that meaning lives <i>between</i> voices, not inside one.</p>
+   <p class="small">In-world it ties the keeper <a href="dostoevsky.html">DOSTOEVSKY</a> himself &mdash; whom Bakhtin theorised &mdash; and the two most unmerged voices in the canon: <a href="the-redeemer.html">the Grand Inquisitor</a> (Ivan&rsquo;s parable, never refuted by argument) and the underground man of <a href="notes-from-underground.html">Notes from Underground</a> (a voice that will not be summed up).</p>
+  </div>
+ </div>
+
+ <!-- CENTER · THE LIT ENGINE -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the engine &middot; measure the polyphony &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the scene as utterances <span class="tag t-in">in &darr;</span></h2>
+   <p>A scene is a <b>list</b> of utterances, each tagged <code>{voice, stance, addresses}</code>. Two scenes are loaded:</p>
+   <p class="small"><b class="k">THE KARAMAZOV SCENE</b> &mdash; Ivan (rebellion), Alyosha (grace), the Inquisitor (authority): three distinct stances, the author holds none of them, and Ivan and Alyosha address each other.<br><b class="k">THE DIDACTIC TRACT</b> &mdash; Pupil, Objector, Chorus: every voice restates one thesis and every utterance addresses the author.</p>
+   <div class="row"><label>drive out:</label>
+    <select id="pick"><option value="poly">THE KARAMAZOV SCENE</option><option value="mono">THE DIDACTIC TRACT</option></select>
+   </div>
+  </div>
+  <div class="flow">&#9660; &nbsp; partition into voices &middot; build the address graph &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; polyphony, computed <span class="tag t-lit">LIT</span></h2>
+   <table id="tbl"><thead><tr><th>scene</th><th>voices</th><th>distinct<br>unmerged</th><th>reciprocal<br>edge?</th><th>effective<br>classes</th><th>polyphonic?</th></tr></thead><tbody id="tblBody"></tbody></table>
+   <p class="small" style="margin-top:7px">polyphony &nbsp;=&nbsp; (distinct unmerged voice-stances &ge; 2) &nbsp;<b>AND</b>&nbsp; (none reducible to the author&rsquo;s stance) &nbsp;<b>AND</b>&nbsp; (address graph is not a star). All three, or it is monologic.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; the two load-bearing witnesses &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; the verdict <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict" id="verdict"></div>
+   <div class="reason" id="reason"></div>
+   <div id="badges" style="margin-top:6px"></div>
+   <p class="small" style="margin-top:6px"><b>UNMERGED VOICES</b> <span class="tag t-lit">LIT</span> &mdash; &ge;2 irreducible stance-classes. <b>DIALOGISM</b> <span class="tag t-lit">LIT</span> &mdash; the graph has a mutual edge, not a pure star. Both green, and the scene is polyphonic.</p>
+  </div>
+ </div>
+
+ <!-- RIGHT · ADVERSARY / WALL / GRAVEYARD / TAMPER -->
+ <div class="col red">
+  <div class="teamhdr">the authorial voice &middot; the wall &#9704;</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE AUTHORIAL VOICE <span class="tag t-wall">subordination</span></h2>
+   <div class="wall-note"><span class="tag t-wall">the monologising move</span> Let the author reach down and make every character&rsquo;s stance equal his own thesis, and have everyone address him. The voices stop answering each other; they answer only up. Distinct stances collapse; the address graph becomes a <b>star</b>. The novel <b>monologises</b>.</div>
+   <p class="small" style="margin-top:8px">This is exactly what Bakhtin says Dostoevsky refuses to do. The Inquisitor is never put down by an authorial reply &mdash; only by Alyosha&rsquo;s silent kiss, which answers <i>as a voice</i>, not as a verdict.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Characters are the author&rsquo;s mouthpieces &mdash; each one argues the writer&rsquo;s point.&rdquo;</s> <b>Cut.</b> In the polyphonic novel the voices are <b>autonomous and unresolved</b>; the author&rsquo;s own view is one voice among them, not the tribunal above them.</p>
+   <p class="grave"><s>&ldquo;A great novel speaks with one clear moral voice.&rdquo;</s> <b>Cut.</b> That is the monologic tract. Its opposite &mdash; unmerged voices addressing each other &mdash; is what the engine stamps LIT.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; force the authorial thesis</h2>
+   <p>Subordinate every voice in the Karamazov scene to the author&rsquo;s thesis: overwrite each stance, point each address at the author. Watch the polyphony count collapse and the novel monologise.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; subordinate all voices</button><button id="restore">&#8634; restore</button></div>
+   <p class="small" id="tampernote">With every stance forced to the author&rsquo;s and every address aimed at the centre, the distinct unmerged voices collapse to <b>one</b> and the graph becomes a star. UNMERGED VOICES and DIALOGISM both turn red: Dostoevsky&rsquo;s polyphony needs voices that stay unsubordinated.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">BAKHTIN AND DIALOGISM &mdash; World IV &middot; SONIA, room <b>THE NOVEL</b>, in the refined <b>OCHO</b>. A structural instrument on Bakhtin&rsquo;s polyphonic novel: a scene is a list of utterances tagged by voice, stance and address, and polyphony is defined as &ge;2 distinct unmerged voice-stances, none reducible to the author&rsquo;s, over an address graph that is not a star. The literary theory is AMBER interpretation; the partition and the graph are LIT. Subordinate every voice to the author&rsquo;s thesis and the novel monologises &mdash; the engine catches it. Cross-links the keeper <a href="dostoevsky.html">DOSTOEVSKY</a>, <a href="the-redeemer.html">the Grand Inquisitor</a>, and <a href="notes-from-underground.html">Notes from Underground</a>. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== BAKHTIN AND DIALOGISM — polyphony as a partition + a non-star address graph ===== */
+var AUTHORLESS = "(no authorial thesis)";
+var CENTRE = "AUTHOR";   // the single authorial address-centre
+
+var POLY = {
+ name:"THE KARAMAZOV SCENE",
+ authorStance: AUTHORLESS,
+ thesis:"the author's thesis",
+ utterances:[
+  {voice:"Ivan",      stance:"rebellion", addresses:"Alyosha"},
+  {voice:"Alyosha",   stance:"grace",     addresses:"Ivan"},
+  {voice:"Ivan",      stance:"rebellion", addresses:"Inquisitor"},
+  {voice:"Inquisitor",stance:"authority", addresses:"Alyosha"},
+  {voice:"Alyosha",   stance:"grace",     addresses:"Inquisitor"}
+ ]
+};
+var MONO = {
+ name:"THE DIDACTIC TRACT",
+ authorStance:"the thesis",
+ thesis:"the thesis",
+ utterances:[
+  {voice:"Pupil",   stance:"the thesis", addresses:CENTRE},
+  {voice:"Objector",stance:"the thesis", addresses:CENTRE},
+  {voice:"Chorus",  stance:"the thesis", addresses:CENTRE}
+ ]
+};
+
+function uniq(a){ var o=[],i; for(i=0;i<a.length;i++){ if(o.indexOf(a[i])<0) o.push(a[i]); } return o; }
+
+function voicesOf(scene){ var v=[],i; for(i=0;i<scene.utterances.length;i++) v.push(scene.utterances[i].voice); return uniq(v); }
+
+// the voice tagging is a well-defined partition: each utterance in exactly one voice class
+function partitionOK(scene){
+ var vs=voicesOf(scene), total=0, i, j;
+ for(i=0;i<vs.length;i++){
+  var c=0;
+  for(j=0;j<scene.utterances.length;j++){ if(scene.utterances[j].voice===vs[i]) c++; }
+  if(c<1) return false;
+  total+=c;
+ }
+ // every utterance carries exactly one (non-empty) voice that is in the class list
+ for(j=0;j<scene.utterances.length;j++){
+  var u=scene.utterances[j];
+  if(typeof u.voice!=="string"||u.voice==="") return false;
+  if(vs.indexOf(u.voice)<0) return false;
+ }
+ return total===scene.utterances.length;
+}
+
+// stance of a voice (a voice holds one consciousness's position; assert consistency)
+function stanceOfVoice(scene,v){
+ var s=null,i;
+ for(i=0;i<scene.utterances.length;i++){
+  var u=scene.utterances[i];
+  if(u.voice===v){ if(s===null) s=u.stance; else if(s!==u.stance) throw new Error("voice "+v+" carries two stances — not a single consciousness"); }
+ }
+ return s;
+}
+
+// distinct unmerged stance-classes that are NOT reducible to the author's stance
+function irreducibleStances(scene){
+ var vs=voicesOf(scene), out=[], i;
+ for(i=0;i<vs.length;i++){ var s=stanceOfVoice(scene,vs[i]); if(s!==scene.authorStance && out.indexOf(s)<0) out.push(s); }
+ return out;
+}
+function polyphonyCount(scene){ return irreducibleStances(scene).length; }
+function subordinatedExist(scene){
+ var vs=voicesOf(scene), i;
+ for(i=0;i<vs.length;i++){ if(stanceOfVoice(scene,vs[i])===scene.authorStance) return true; }
+ return false;
+}
+// subordinated voices collapse into the single authorial class
+function effectiveClasses(scene){ return polyphonyCount(scene) + (subordinatedExist(scene)?1:0); }
+
+// directed address edges among voices (drop self-loops)
+function edgesOf(scene){
+ var e=[],i;
+ for(i=0;i<scene.utterances.length;i++){
+  var u=scene.utterances[i];
+  if(u.addresses && u.addresses!==u.voice) e.push([u.voice,u.addresses]);
+ }
+ return e;
+}
+function hasEdge(e,a,b){ var i; for(i=0;i<e.length;i++){ if(e[i][0]===a && e[i][1]===b) return true; } return false; }
+// a reciprocal (mutual) edge between two voices — neither one being the authorial centre
+function hasReciprocal(scene){
+ var e=edgesOf(scene), i;
+ for(i=0;i<e.length;i++){
+  var a=e[i][0], b=e[i][1];
+  if(a===CENTRE || b===CENTRE) continue;
+  if(a!==b && hasEdge(e,b,a)) return true;
+ }
+ return false;
+}
+// a star: every edge points at one single target (the authorial centre), and no reciprocity
+function isStar(scene){
+ var e=edgesOf(scene), i, targets=[];
+ if(e.length===0) return false;
+ for(i=0;i<e.length;i++) if(targets.indexOf(e[i][1])<0) targets.push(e[i][1]);
+ return targets.length===1 && !hasReciprocal(scene);
+}
+
+// LIT: polyphony holds iff >=2 distinct unmerged voice-stances AND a non-star (reciprocal) address graph
+function isPolyphonic(scene){ return polyphonyCount(scene)>=2 && hasReciprocal(scene); }
+
+// merging one voice's stance into another (subordination of one line to another)
+function mergeStance(scene,fromS,intoS){
+ var n={name:scene.name,authorStance:scene.authorStance,thesis:scene.thesis,utterances:[]}, i;
+ for(i=0;i<scene.utterances.length;i++){
+  var u=scene.utterances[i];
+  n.utterances.push({voice:u.voice, stance:(u.stance===fromS?intoS:u.stance), addresses:u.addresses});
+ }
+ return n;
+}
+// the tamper: force every stance to the author's thesis and every address to the centre
+function subordinateAll(scene){
+ var th=scene.thesis, n={name:scene.name,authorStance:th,thesis:th,utterances:[]}, i;
+ for(i=0;i<scene.utterances.length;i++){
+  var u=scene.utterances[i];
+  n.utterances.push({voice:u.voice, stance:th, addresses:CENTRE});
+ }
+ return n;
+}
+
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ // well-defined partition
+ t(partitionOK(POLY), "Karamazov scene must be a well-defined voice partition");
+ t(partitionOK(MONO), "didactic tract must be a well-defined voice partition");
+ // the polyphonic scene: >=2 distinct unmerged voices AND a reciprocal edge
+ t(polyphonyCount(POLY)===3, "Karamazov scene has 3 distinct unmerged stance-classes");
+ t(polyphonyCount(POLY)>=2, "polyphony needs >=2 distinct unmerged voice-stances");
+ t(hasReciprocal(POLY)===true, "Ivan and Alyosha address each other — a reciprocal edge");
+ t(isStar(POLY)===false, "the Karamazov address graph is not a star");
+ t(isPolyphonic(POLY)===true, "the Karamazov scene is polyphonic");
+ // the monologic scene: collapses to one effective class, star graph, not polyphonic
+ t(polyphonyCount(MONO)===0, "the tract has no stance irreducible to the author");
+ t(effectiveClasses(MONO)===1, "the tract's effective stance-classes collapse to 1 (all reduce to the author)");
+ t(isStar(MONO)===true, "the tract's address graph is a star into the author");
+ t(hasReciprocal(MONO)===false, "the tract has no mutual edge — voices only address the author");
+ t(isPolyphonic(MONO)===false, "the didactic tract is monologic, not polyphonic");
+ // merging one voice into another strictly REDUCES the polyphony count
+ var merged=mergeStance(POLY,"authority","rebellion");
+ t(polyphonyCount(merged)===2, "merging the Inquisitor into Ivan leaves 2 distinct stances");
+ t(polyphonyCount(merged) < polyphonyCount(POLY), "subordinating one voice strictly reduces the polyphony count");
+ // the tamper: subordinate all voices -> monologises
+ var tam=subordinateAll(POLY);
+ t(polyphonyCount(tam)===0, "forcing the authorial thesis collapses every unmerged voice");
+ t(effectiveClasses(tam)===1, "the tampered scene collapses to one authorial class");
+ t(isStar(tam)===true, "the tampered scene's address graph becomes a star");
+ t(isPolyphonic(tam)===false, "subordinating all voices monologises the novel");
+ return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){return document.getElementById(id);};
+var TAMPERED=false;
+function activePoly(){ return TAMPERED ? subordinateAll(POLY) : POLY; }
+function yn(b){ return b?"<span style='color:var(--lit);font-weight:700'>yes</span>":"<span style='color:var(--wall);font-weight:700'>no</span>"; }
+function sceneRow(scene,litClass){
+ var poly=isPolyphonic(scene);
+ return "<tr><td style='text-align:left'><b>"+scene.name+"</b><div class='small'>"+voicesOf(scene).join(", ")+"</div></td>"
+  +"<td>"+voicesOf(scene).length+"</td>"
+  +"<td>"+polyphonyCount(scene)+"</td>"
+  +"<td>"+yn(hasReciprocal(scene))+"</td>"
+  +"<td>"+effectiveClasses(scene)+"</td>"
+  +"<td>"+(poly?"<span style='color:var(--lit);font-weight:700'>POLYPHONIC</span>":"<span style='color:var(--wall);font-weight:700'>monologic</span>")+"</td></tr>";
+}
+function render(){
+ var ap=activePoly();
+ $("tblBody").innerHTML = sceneRow(ap) + sceneRow(MONO);
+ // DATA OUT is driven by the selected scene
+ var sel=$("pick").value, drv = sel==="mono" ? MONO : ap;
+ var unmerged = polyphonyCount(drv)>=2;
+ var dialogic = hasReciprocal(drv);
+ var poly = isPolyphonic(drv);
+ $("verdict").textContent = poly ? "POLYPHONIC — voices unmerged, addressing each other" : "MONOLOGIC — one voice, the rest subordinated";
+ $("verdict").className = "verdict "+(poly?"ok":"no");
+ $("reason").textContent = poly
+  ? "The "+drv.name.toLowerCase().replace("the ","")+" carries "+polyphonyCount(drv)+" distinct unmerged stance-classes, none reducible to the author's, over an address graph with a mutual edge."
+  : "The "+drv.name.toLowerCase().replace("the ","")+" collapses to "+effectiveClasses(drv)+" effective stance-class over a star address graph — every voice reduces to the author.";
+ $("badges").innerHTML =
+   "<span class='badge "+(unmerged?"pass":"failb")+"'>"+(unmerged?"✓":"✗")+" UNMERGED VOICES &middot; "+polyphonyCount(drv)+" irreducible</span>"
+  +"<span class='badge "+(dialogic?"pass":"failb")+"'>"+(dialogic?"✓":"✗")+" DIALOGISM &middot; "+(dialogic?"mutual edge":"star only")+"</span>";
+}
+try{
+ selfcheck();
+ $("pick").addEventListener("change",render);
+ $("tamper").addEventListener("click",function(){
+  TAMPERED=true; $("pick").value="poly";
+  $("tampernote").innerHTML="<b style='color:var(--wall)'>Every voice now carries the author's thesis and addresses only the centre.</b> The distinct unmerged voices collapse to <b>one</b>; the graph is a star. UNMERGED VOICES and DIALOGISM both turn red &mdash; the polyphony is gone. That is the authorial verdict Dostoevsky refuses.";
+  render();
+ });
+ $("restore").addEventListener("click",function(){
+  TAMPERED=false;
+  $("tampernote").innerHTML="With every stance forced to the author&rsquo;s and every address aimed at the centre, the distinct unmerged voices collapse to <b>one</b> and the graph becomes a star. UNMERGED VOICES and DIALOGISM both turn red: Dostoevsky&rsquo;s polyphony needs voices that stay unsubordinated.";
+  render();
+ });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the dialogism engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>

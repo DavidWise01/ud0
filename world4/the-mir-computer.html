@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE MIR COMPUTER · WORLD IV — SONIA · THE OCHO</title>
+<style>
+:root{ --paper:#efe6cd; --paper2:#e6dbba; --panel:#f6efda; --ink:#241d12; --dim:#7c6c4c; --line:#cbb98d; --line2:#b29a68; --red:#c30019; --blue:#1d4e79; --gold:#9a6b12; --lit:#2f6d33; --amber:#9a6b12; --wall:#8c1c13; --cy:#0f6b6b; --grn:#2f6d33; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--paper);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background-image:radial-gradient(circle at 8% 0,rgba(195,0,25,.06),transparent 46%),radial-gradient(circle at 94% 100%,rgba(29,78,121,.06),transparent 46%);}
+a{color:var(--red);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:2px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--red);text-decoration:none;font-weight:700;} .top a:hover{color:var(--blue);}
+header{border:2px solid var(--red);border-radius:8px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(195,0,25,.05),transparent);}
+h1{font-size:22px;letter-spacing:3px;color:var(--red);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--red);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--blue);}
+.fail{display:none;background:var(--wall);color:#fff;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--blue);border:1px solid #6f97b8;background:rgba(29,78,121,.08);}
+.red .teamhdr{color:var(--red);border:1px solid #c98c8c;background:rgba(195,0,25,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(154,107,18,.09);}
+.win{background:var(--paper2);border:1px solid var(--line);border-radius:8px;padding:14px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:700;color:rgba(120,108,76,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#3a3018;} .win b{color:#241d12;} .win .k{color:var(--red);font-weight:700;}
+.win.blue{border-left:3px solid var(--blue);} .win.blue h2{color:var(--blue);} .win.blue .no{color:rgba(29,78,121,.22);}
+.win.red{border-right:3px solid var(--red);} .win.red h2{color:var(--red);} .win.red .no{color:rgba(195,0,25,.20);}
+.win.panel{border:1px solid var(--red);background:var(--panel);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0 -3px;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--wall);border-color:var(--wall);}
+.t-in{color:var(--cy);border-color:var(--cy);} .t-out{color:var(--grn);border-color:var(--grn);}
+select,button,input{font-family:inherit;font-size:12.5px;background:#fbf6e6;color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--red);color:var(--red);}
+.engine{display:flex;gap:16px;flex-wrap:wrap;} .controls{flex:1;min-width:220px;} .readout{flex:1;min-width:230px;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:14px;color:var(--red);font-weight:700;margin-top:6px;}
+.grid{display:grid;gap:1px;} .cell{width:12px;height:12px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(178,154,104,.14);}
+.verdict{font-size:17px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--grn);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(47,109,51,.15);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(140,28,19,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .mut{color:var(--dim);}
+.grave{color:#5f513a;font-size:12px;} .grave s{color:#8b7c5f;} .grave b{color:var(--red);}
+.wall-note{border-left:3px solid var(--wall);padding:6px 10px;background:rgba(140,28,19,.05);font-size:12px;margin-top:6px;}
+footer{margin-top:22px;padding-top:12px;border-top:2px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+/* ===== SONIA neon edge ===== */
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+header{box-shadow:0 0 15px color-mix(in srgb,var(--red) 14%,transparent);}
+.win.red{box-shadow:0 0 12px color-mix(in srgb,var(--red) 20%,transparent);}
+.win.panel{box-shadow:0 0 0 1px color-mix(in srgb,var(--red) 20%,transparent),0 0 10px color-mix(in srgb,var(--red) 11%,transparent);}
+.tag.t-lit,.badge.pass{box-shadow:0 0 7px color-mix(in srgb,var(--lit) 26%,transparent);}
+.tag.t-wall,.badge.failb{box-shadow:0 0 7px color-mix(in srgb,var(--wall) 30%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD IV &middot; SONIA</a><span>THE MACHINE &middot; the Russian world</span></div>
+
+<header>
+ <h1>THE MIR COMPUTER</h1>
+ <p class="sub">The machine that did <b>algebra, not just arithmetic</b>. The <b>MIR</b> (&#1052;&#1048;&#1056; &mdash; <i>Mashina dlya Inzhenernykh Raschyotov</i>, &ldquo;machine for engineering calculations&rdquo;) &mdash; <b>MIR-1</b> (1965), <b>MIR-2</b> (1969) &mdash; from V. M. Glushkov&rsquo;s Institute of Cybernetics in Kyiv carried a high-level language, <b>Analitik</b>, close to the hardware, and manipulated <b>formulae</b> symbolically. This panel is <b>runnable</b>: parse an expression over x, differentiate it <b>exactly</b> with the power, sum and <b>product</b> rules, then check the answer two ways.</p>
+ <p class="src"><span class="tag t-amber">source</span> The <i>MIR</i> series, Institute of Cybernetics, Academy of Sciences of the Ukrainian SSR, Kyiv, under V.&nbsp;M.&nbsp;Glushkov; MIR-1 (1965), MIR-2 (1969), input language <b>Analitik</b>. Room: <b>THE MACHINE</b>. Glushkov also designed <b>OGAS</b> &mdash; see <a href="the-ogas.html">the-ogas</a>. Rendered, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- ===== LEFT · BLUE TEAM ===== -->
+ <div class="col blue">
+  <div class="teamhdr">&#9702; blue team &middot; builds &amp; defends</div>
+
+  <div class="win blue"><span class="no">1</span><h2>ROOTS &mdash; Glushkov, Kyiv &amp; Analitik <span class="tag t-amber">1965&ndash;69</span></h2>
+   <p>Viktor Mikhailovich <b>Glushkov</b>&rsquo;s <b>Institute of Cybernetics</b> in <b>Kyiv</b> designed the <b class="k">MIR-1</b> (<b>1965</b>) for engineering offices, teaching and research, then the <b class="k">MIR-2</b> (<b>1969</b>). Each carried a <b>high-level language close to the hardware</b> &mdash; the MIR-2&rsquo;s was called <b>Analitik</b>.</p>
+   <p class="small">MIR = <i>Mashina dlya Inzhenernykh Raschyotov</i>. Analitik developed the built-in language of the MIR-1 and added the formulation of tasks as <b>analytic transformations of formulae</b> &mdash; algebra done in firmware.</p>
+  </div>
+
+  <div class="win blue"><span class="no">2</span><h2>ANALYTIC, NOT JUST NUMERIC <span class="tag t-lit">the point</span></h2>
+   <p>A desk calculator returns a <b>number</b>. The MIR returned a <b>formula</b>. It manipulated fractions, polynomials, <b>derivatives</b> and integrals as <b>symbols</b> &mdash; exact, not rounded &mdash; in hardware, in the 1960s.</p>
+   <p class="small">That is the difference this sphere makes concrete: <b class="k">d/dx</b> as an <b>exact symbolic transform</b> with integer coefficients, next to the finite-difference a numeric machine is stuck with. The engine in the centre does the symbolic thing.</p>
+  </div>
+
+  <div class="win blue"><span class="no">3</span><h2>LINEAGE &mdash; toward computer algebra <span class="tag t-amber">AMBER</span></h2>
+   <p>Symbolic computation on a machine &rarr; the <b>computer algebra systems</b> (Reduce, Macsyma, later Mathematica / Maple) that do exactly what Analitik reached for: transform expressions, not just evaluate them.</p>
+   <p class="small">And Glushkov himself &rarr; <b>OGAS</b>, the proposed nationwide economic-computing network. The MIR is one machine in that larger cybernetic project. Cross-link: <a href="the-ogas.html">the-ogas</a>.</p>
+  </div>
+ </div>
+
+ <!-- ===== CENTER · THE MACHINE ===== -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; an expression over x <span class="tag t-in">in &darr;</span></h2>
+   <p>Type a small expression in x &mdash; integer coefficients, sums, products, and non-negative integer powers. The engine <b>parses it into a tree</b>, then differentiates that tree symbolically.</p>
+   <div class="row"><label>load:</label>
+    <select id="examples">
+     <option value="(x^2)*(x^3)">(x^2)*(x^3)  &rarr; product rule</option>
+     <option value="3*x^3 + 2*x^2 - 5*x + 7" selected>3x^3 + 2x^2 - 5x + 7</option>
+     <option value="(x+1)*(x+1)">(x+1)*(x+1)</option>
+     <option value="(2*x - 3)*(x^2 + 1)">(2x-3)(x^2+1)</option>
+     <option value="x^5 - x">x^5 - x</option>
+     <option value="(x^2+1)^3">(x^2+1)^3</option>
+     <option value="42">42  (a constant)</option>
+    </select>
+   </div>
+   <div class="row"><label>f(x) =</label><input id="exprin" type="text" value="3*x^3 + 2*x^2 - 5*x + 7" style="width:230px"></div>
+   <p class="small mut">Allowed: <b>x</b>, integers, <b>+ &minus; *</b>, <b>^n</b> (n &ge; 0), parentheses. The result is always a polynomial with <b>integer coefficients</b> &mdash; no rounding anywhere in the symbolic step.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; parse &middot; differentiate &middot; check twice &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE PANEL &mdash; symbolic d/dx <span class="tag t-lit">LIT</span></h2>
+   <p class="small" style="color:var(--blue);margin-bottom:2px"><b>THE RULES</b> &mdash; applied to the tree, exactly:</p>
+   <p class="small" style="margin:0 0 4px">d/dx(c)=<b>0</b> &middot; d/dx(x)=<b>1</b> &middot; power <b>d/dx(x<sup>n</sup>)=n&middot;x<sup>n&minus;1</sup></b> &middot; sum is <b>linear</b> &middot; product <b class="k">d(uv)=u&#39;v+uv&#39;</b>.</p>
+   <div class="out" id="fline">&mdash;</div>
+   <p class="small" style="margin-top:4px">symbolic derivative <b>f&#39;(x)</b> = <b id="dline" class="k">&mdash;</b></p>
+
+   <p class="small" style="color:var(--blue);margin:10px 0 2px"><b>CHECK 1 &mdash; coefficient-for-coefficient</b> vs the known analytic answer</p>
+   <table id="coefTbl"><thead><tr><th>power</th><th>symbolic d/dx</th><th>analytic</th><th>=</th></tr></thead><tbody id="coefBody"></tbody></table>
+   <div id="coefbadge" style="margin-top:6px"></div>
+
+   <p class="small" style="color:var(--blue);margin:10px 0 2px"><b>CHECK 2 &mdash; against a central finite difference</b> (f(x+h)&minus;f(x&minus;h))/2h</p>
+   <table id="fdTbl"><thead><tr><th>x</th><th>f&#39;(x) symbolic</th><th>central diff</th><th>|err|</th></tr></thead><tbody id="fdBody"></tbody></table>
+   <p class="small" style="margin-top:6px">halving h shrinks the error by <b>~4&times;</b> &mdash; order <b>h<sup>2</sup></b>: <b id="orderline" class="k">&mdash;</b></p>
+   <div id="fdbadge" style="margin-top:6px"></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; the machine emits an exact formula &mdash; checked two ways &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">5</span><h2>DATA OUT &mdash; the exact derivative <span class="tag t-out">out &darr;</span></h2>
+   <div class="verdict ok" id="outv">&mdash;</div>
+   <div class="reason" id="outreason"></div>
+   <div id="witbadge" style="margin-top:6px"></div>
+   <p class="small" style="margin-top:8px">Anchor: <b>d/dx(x^3)</b> = <b id="a1" class="k">&mdash;</b> &middot; product rule on <b>(x^2)(x^3)</b> = <b id="a2" class="k">&mdash;</b> (= d/dx x^5) &middot; <b>d/dx(42)</b> = <b id="a3" class="k">&mdash;</b>. <b>Every witness re-checks live.</b></p>
+  </div>
+ </div>
+
+ <!-- ===== RIGHT · RED TEAM ===== -->
+ <div class="col red">
+  <div class="teamhdr">red team &middot; attacks &amp; breaks &#9702;</div>
+
+  <div class="win red"><span class="no">6</span><h2>WHY IT MATTERED <span class="tag t-amber">AMBER</span></h2>
+   <p>An <b>engineer&rsquo;s</b> machine that did the algebra a slide rule and a calculator could not &mdash; a step toward the personal <b>workstation</b>: high-level language, close to the hardware, on a desk.</p>
+   <div class="wall-note" style="border-left-color:var(--amber);background:rgba(154,107,18,.06)"><span class="tag t-amber">anecdote</span> A widely-repeated story says <b>IBM bought a MIR-1</b> (around 1967&ndash;68) to study its microprogrammed high-level architecture. Often retold, hard to source cleanly &mdash; so it stays <b>AMBER</b>, not LIT. The <b>math</b> in the centre is what is proven; this is reputation.</div>
+  </div>
+
+  <div class="win red"><span class="no">7</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>&ldquo;Computers only crunch numbers.&rdquo;</s> <b>Cut.</b> The MIR did <b>exact symbolic mathematics</b> &mdash; derivatives of formulae, not decimals &mdash; in firmware in the 1960s. The centre reproduces it and checks it.</p>
+   <p class="grave"><s>&ldquo;Symbolic algebra started with 1980s desktop software.&rdquo;</s> <b>Cut &mdash; earlier.</b> Analitik on the MIR-2 (1969) transformed formulae in hardware a decade before the home CAS.</p>
+   <p class="grave"><s>&ldquo;A finite difference is as good as a derivative.&rdquo;</s> <b>Cut.</b> It only <i>approximates</i> &mdash; error O(h<sup>2</sup>), never exact. The symbolic answer is <b>exact</b>. Check 2 shows the gap shrink but never close.</p>
+  </div>
+
+  <div class="win red"><span class="no">8</span><h2>THE TAMPER &mdash; the freshman product rule</h2>
+   <p>The red move: replace the product rule with the classic <b>freshman error</b> &mdash; <b class="k">d(uv)=u&#39;&middot;v&#39;</b> (multiply the derivatives) instead of <b>u&#39;v+uv&#39;</b>.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; use d(uv)=u&#39;v&#39;</button><button id="restore">&#8634; restore u&#39;v+uv&#39;</button></div>
+   <p class="small" id="tampernote">Engage it and the derivative of <b>(x^2)(x^3)</b> becomes 2x&middot;3x^2 = <b>6x^3</b> instead of <b>5x^4</b>. Both checks break: the coefficients stop matching the analytic answer and the finite difference disagrees. The witness (5) turns <b style="color:var(--wall)">red</b>. The product rule is <b>u&#39;v+uv&#39;</b>, not u&#39;v&#39;. Caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE MIR COMPUTER &mdash; World IV &middot; <b>SONIA</b>, room <b>THE MACHINE</b>, in the refined <b>OCHO</b>: blue raises Glushkov&rsquo;s Kyiv machine and Analitik&rsquo;s analytic transforms, the machine parses an expression and differentiates it symbolically &mdash; power, sum and product rules, exact integer coefficients &mdash; then checks the answer coefficient-for-coefficient and against a central finite difference down the centre, red swaps in the freshman product rule and is caught. A runnable rendering of the MIR (MIR-1 1965, MIR-2 1969, Institute of Cybernetics, Kyiv): the symbolic differentiation is LIT and self-checked two ways; the &ldquo;IBM bought a MIR-1&rdquo; story is honest AMBER; &ldquo;computers only crunch numbers&rdquo; is a dead claim. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+/* ===== SONIA · THE MIR COMPUTER — symbolic differentiation engine (Analitik, made runnable; every coefficient computed, none looked up) ===== */
+
+var TAMPER=false;   // when true, the product rule uses the FALSE freshman law u'*v' instead of u'v+uv'
+
+/* --- expression tree constructors ---
+   node kinds: {t:'c',v}  {t:'x'}  {t:'+',a,b}  {t:'*',a,b}  {t:'^',a,n}   */
+function C(v){ return {t:'c', v:v}; }
+function X(){ return {t:'x'}; }
+function ADD(a,b){ return {t:'+', a:a, b:b}; }
+function MUL(a,b){ return {t:'*', a:a, b:b}; }
+function POW(a,n){ return {t:'^', a:a, n:n}; }
+
+/* --- tokenizer --- */
+function tokenize(s){
+ var toks=[], i=0, n=s.length;
+ while(i<n){
+  var ch=s.charAt(i);
+  if(ch===' '||ch==='\t'){ i++; continue; }
+  if(ch>='0'&&ch<='9'){ var j=i; while(j<n && s.charAt(j)>='0' && s.charAt(j)<='9') j++; toks.push({k:'num', v:parseInt(s.substring(i,j),10)}); i=j; continue; }
+  if(ch==='x'||ch==='X'){ toks.push({k:'x'}); i++; continue; }
+  if(ch==='+'||ch==='-'||ch==='*'||ch==='^'||ch==='('||ch===')'){ toks.push({k:ch}); i++; continue; }
+  throw new Error("bad character '"+ch+"' in expression");
+ }
+ return toks;
+}
+
+/* --- recursive-descent parser: expr := term (('+'|'-') term)* ; term := factor (('*'|juxtapose) factor)* ; factor := ('-')? base ('^' int)? ; base := num | x | '(' expr ')' --- */
+function parse(s){
+ var toks=tokenize(s), pos=0;
+ function peek(){ return pos<toks.length ? toks[pos] : null; }
+ function eat(){ return toks[pos++]; }
+ function startsFactor(tk){ return tk && (tk.k==='num' || tk.k==='x' || tk.k==='(' || tk.k==='-'); }
+ function parseBase(){
+  var tk=peek();
+  if(!tk) throw new Error("unexpected end of expression");
+  if(tk.k==='num'){ eat(); return C(tk.v); }
+  if(tk.k==='x'){ eat(); return X(); }
+  if(tk.k==='('){ eat(); var e=parseExpr(); var cl=peek(); if(!cl||cl.k!==')') throw new Error("missing ')'"); eat(); return e; }
+  throw new Error("expected a number, x, or '('");
+ }
+ function parseFactor(){
+  var neg=false;
+  while(peek() && peek().k==='-'){ neg=!neg; eat(); }   // leading unary minus
+  var base=parseBase();
+  if(peek() && peek().k==='^'){ eat(); var e=peek(); if(!e||e.k!=='num') throw new Error("'^' must be followed by a non-negative integer"); eat(); if(e.v<0) throw new Error("negative power not allowed"); base=POW(base, e.v); }
+  return neg ? MUL(C(-1), base) : base;
+ }
+ function parseTerm(){
+  var node=parseFactor();
+  while(true){
+   var tk=peek();
+   if(tk && tk.k==='*'){ eat(); node=MUL(node, parseFactor()); continue; }
+   if(startsFactor(tk) && !(tk.k==='-')){ node=MUL(node, parseFactor()); continue; } // implicit multiply (3x, x(x+1))
+   break;
+  }
+  return node;
+ }
+ function parseExpr(){
+  var node=parseTerm();
+  while(true){
+   var tk=peek();
+   if(tk && tk.k==='+'){ eat(); node=ADD(node, parseTerm()); continue; }
+   if(tk && tk.k==='-'){ eat(); node=ADD(node, MUL(C(-1), parseTerm())); continue; }
+   break;
+  }
+  return node;
+ }
+ var tree=parseExpr();
+ if(pos!==toks.length) throw new Error("unexpected token at end of expression");
+ return tree;
+}
+
+/* --- symbolic differentiation: the RULES --- */
+function diff(node){
+ switch(node.t){
+  case 'c': return C(0);                                   // d/dx(c) = 0
+  case 'x': return C(1);                                   // d/dx(x) = 1
+  case '+': return ADD(diff(node.a), diff(node.b));        // sum rule (linear)
+  case '*':                                                // PRODUCT rule
+   if(TAMPER) return MUL(diff(node.a), diff(node.b));       // BROKEN freshman: u'*v'
+   return ADD(MUL(diff(node.a), node.b), MUL(node.a, diff(node.b))); // CORRECT: u'v + uv'
+  case '^':                                                // power rule (with chain): n * a^(n-1) * a'
+   if(node.n===0) return C(0);
+   if(node.n===1) return diff(node.a);
+   return MUL(MUL(C(node.n), POW(node.a, node.n-1)), diff(node.a));
+ }
+ throw new Error("unknown node kind");
+}
+
+/* --- flatten any tree to an integer-coefficient polynomial [c0,c1,c2,...] (exact) --- */
+function pTrim(p){ var q=p.slice(); while(q.length>1 && q[q.length-1]===0) q.pop(); return q; }
+function pAdd(a,b){ var n=Math.max(a.length,b.length), r=[]; for(var i=0;i<n;i++) r[i]=(a[i]||0)+(b[i]||0); return pTrim(r); }
+function pMul(a,b){ var r=[]; for(var i=0;i<a.length+b.length-1;i++) r[i]=0; for(var i=0;i<a.length;i++) for(var j=0;j<b.length;j++) r[i+j]+=a[i]*b[j]; return pTrim(r); }
+function pPow(a,n){ var r=[1]; for(var i=0;i<n;i++) r=pMul(r,a); return pTrim(r); }
+function polyOf(node){
+ switch(node.t){
+  case 'c': return [node.v];
+  case 'x': return [0,1];
+  case '+': return pAdd(polyOf(node.a), polyOf(node.b));
+  case '*': return pMul(polyOf(node.a), polyOf(node.b));
+  case '^': return pPow(polyOf(node.a), node.n);
+ }
+ throw new Error("unknown node kind");
+}
+/* --- the KNOWN analytic derivative of a polynomial: d/dx sum c_i x^i = sum i*c_i x^(i-1) --- */
+function pDeriv(p){ if(p.length<=1) return [0]; var r=[]; for(var i=1;i<p.length;i++) r[i-1]=i*p[i]; return pTrim(r); }
+function pEq(a,b){ a=pTrim(a); b=pTrim(b); if(a.length!==b.length) return false; for(var i=0;i<a.length;i++) if(a[i]!==b[i]) return false; return true; }
+function pEval(p,x){ var s=0; for(var i=p.length-1;i>=0;i--) s=s*x + p[i]; return s; }
+function centralDiff(p,x,h){ return (pEval(p,x+h) - pEval(p,x-h)) / (2*h); }
+
+/* --- fixed-seed LCG (no Math.random above the marker) --- */
+function lcg(seed){ var s=seed>>>0; return function(){ s=(1664525*s + 1013904223)>>>0; return s/4294967296; }; }
+
+/* ===== fail-loud self-check (runs untampered) ===== */
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ var save=TAMPER; TAMPER=false;
+
+ // 1 — d/dx(x^3) === 3x^2 exactly (coefficients)
+ t(pEq(polyOf(diff(parse("x^3"))), [0,0,3]), "d/dx(x^3) must equal 3x^2 = [0,0,3]");
+ // 2 — product rule: d/dx((x^2)*(x^3)) === 5x^4 (= d/dx x^5)
+ t(pEq(polyOf(diff(parse("(x^2)*(x^3)"))), [0,0,0,0,5]), "product rule on (x^2)(x^3) must give 5x^4 = [0,0,0,0,5]");
+ // 3 — d/dx of a constant is 0
+ t(pEq(polyOf(diff(parse("42"))), [0]), "d/dx(constant) must be 0");
+ t(pEq(polyOf(diff(parse("x"))), [1]), "d/dx(x) must be 1");
+ // 4 — sum rule is additive: d(a+b) == d(a)+d(b)
+ var a=parse("3*x^3 - 2*x"), b=parse("x^2 + 7");
+ t(pEq(polyOf(diff(ADD(a,b))), pAdd(polyOf(diff(a)), polyOf(diff(b)))), "sum rule must be additive");
+
+ // 5 — CHECK 1 for a battery of expressions: symbolic derivative == analytic poly-derivative, coefficient-for-coefficient
+ var exprs=["3*x^3 + 2*x^2 - 5*x + 7","(x+1)*(x+1)","(2*x - 3)*(x^2 + 1)","x^5 - x","(x^2+1)^3","(x^2)*(x^3)","x^4","-(x^3)","5"];
+ for(var i=0;i<exprs.length;i++){
+  var tr=parse(exprs[i]);
+  var sym=polyOf(diff(tr));            // differentiate the TREE, then flatten
+  var ana=pDeriv(polyOf(tr));          // flatten, then differentiate the polynomial (known answer)
+  t(pEq(sym, ana), "symbolic d/dx must match analytic answer for "+exprs[i]);
+  // integer coefficients only (no rounding)
+  for(var c=0;c<sym.length;c++) t(sym[c]===Math.round(sym[c]), "coefficients must be integers for "+exprs[i]);
+ }
+ // 5b — fixed-seed random polynomials: same coefficient-for-coefficient agreement
+ var rnd=lcg(0x1969);   // MIR-2 year as the seed
+ for(var s=0;s<200;s++){
+  var deg=1+Math.floor(rnd()*5), p=[];
+  for(var d=0;d<=deg;d++) p[d]=Math.floor(rnd()*13)-6;   // integer coeffs in [-6,6]
+  if(p[deg]===0) p[deg]=1;
+  // build a tree c0 + c1*x + c2*x^2 + ... and check
+  var tree=C(p[0]);
+  for(var d2=1;d2<=deg;d2++) tree=ADD(tree, MUL(C(p[d2]), POW(X(), d2)));
+  t(pEq(polyOf(diff(tree)), pDeriv(p)), "sampled polynomial derivative must match analytic answer");
+ }
+
+ // 6 — CHECK 2: symbolic derivative agrees with a central finite difference, error O(h^2)
+ var pf=polyOf(parse("(x^2)*(x^3)"));   // f = x^5
+ var pd=polyOf(diff(parse("(x^2)*(x^3)")));  // f' = 5x^4 (symbolic)
+ var x0=1.3;
+ var eh  = Math.abs(pEval(pd,x0) - centralDiff(pf,x0,1e-3));
+ var e2h = Math.abs(pEval(pd,x0) - centralDiff(pf,x0,2e-3));
+ t(eh < 1e-2, "symbolic derivative must agree with the central difference (err small)");
+ t(e2h > eh, "coarser h must give a larger error");
+ var ratio = e2h/eh;               // ~ (2h)^2 / h^2 = 4 for an O(h^2) method
+ t(ratio > 3.5 && ratio < 4.5, "central-difference error must fall as h^2 (ratio ~4), got "+ratio);
+ // agreement across several points
+ var xs=[-1.7,-0.4,0.9,2.1];
+ for(var q=0;q<xs.length;q++) t(Math.abs(pEval(pd,xs[q]) - centralDiff(pf,xs[q],1e-3)) < 1e-2, "finite-difference agreement must hold at x="+xs[q]);
+
+ // 7 — the tamper really breaks BOTH checks (that is why it is caught)
+ TAMPER=true;
+ var badSym=polyOf(diff(parse("(x^2)*(x^3)")));     // freshman: 2x*3x^2 = 6x^3
+ t(!pEq(badSym, pDeriv(pf)), "tampered product rule must stop matching the analytic answer");
+ t(pEq(badSym, [0,0,0,6]), "tampered product rule must yield 6x^3 = [0,0,0,6]");
+ t(Math.abs(pEval(badSym,x0) - centralDiff(pf,x0,1e-3)) > 1e-2, "tampered derivative must disagree with the finite difference");
+ TAMPER=false;
+
+ TAMPER=save; return true;
+}
+
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+
+function polyToStr(p){
+ p=pTrim(p);
+ var parts=[];
+ for(var i=p.length-1;i>=0;i--){
+  var c=p[i]; if(c===0) continue;
+  var mag=Math.abs(c), sign=c<0?"-":"+";
+  var body;
+  if(i===0) body=""+mag;
+  else{ var xp = (i===1) ? "x" : ("x^"+i); body=(mag===1?"":mag)+xp; }
+  parts.push({s:sign, b:body});
+ }
+ if(parts.length===0) return "0";
+ var out=(parts[0].s==="-"?"-":"")+parts[0].b;
+ for(var k=1;k<parts.length;k++) out+=" "+parts[k].s+" "+parts[k].b;
+ return out;
+}
+
+function render(){
+ var src=$("exprin").value;
+ var tree, err=null;
+ try{ tree=parse(src); }catch(e){ err=e.message; }
+
+ if(err){
+  $("fline").innerHTML='<span style="color:var(--wall)">parse error: '+err+'</span>';
+  $("dline").textContent="—";
+  $("coefBody").innerHTML=""; $("fdBody").innerHTML="";
+  $("coefbadge").innerHTML='<span class="badge failb">CANNOT PARSE — fix the expression</span>';
+  $("fdbadge").innerHTML=""; $("orderline").textContent="—";
+  $("outv").className="verdict no"; $("outv").textContent="no expression";
+  $("outreason").textContent="Enter a valid expression in x."; $("witbadge").innerHTML="";
+  refreshAnchors();
+  return;
+ }
+
+ var fp=polyOf(tree);
+ var symp=polyOf(diff(tree));       // symbolic derivative, flattened
+ var anap=pDeriv(fp);               // known analytic answer
+ $("fline").textContent = "f(x) = " + polyToStr(fp);
+ $("dline").textContent = polyToStr(symp);
+
+ // CHECK 1 table — coefficient-for-coefficient
+ var deg=Math.max(symp.length, anap.length), body="", allmatch=true;
+ for(var i=deg-1;i>=0;i--){
+  var s=symp[i]||0, a=anap[i]||0, ok=(s===a); if(!ok) allmatch=false;
+  if(s===0 && a===0) continue;
+  body+="<tr><td>x^"+i+"</td><td>"+s+"</td><td>"+a+"</td><td style=\"color:"+(ok?"var(--lit)":"var(--wall)")+";font-weight:700\">"+(ok?"=":"&ne;")+"</td></tr>";
+ }
+ if(body==="") body="<tr><td>—</td><td>0</td><td>0</td><td style=\"color:var(--lit)\">=</td></tr>";
+ $("coefBody").innerHTML=body;
+ $("coefbadge").innerHTML='<span class="badge '+(allmatch?"pass":"failb")+'">'+(allmatch?"EXACT — symbolic d/dx matches the analytic answer, coefficient-for-coefficient":"MISMATCH — the symbolic result is not the derivative")+'</span>';
+
+ // CHECK 2 table — central finite difference at several x
+ var xs=[-1.3, 0.7, 1.5, 2.4], fdok=true, frows="";
+ for(var j=0;j<xs.length;j++){
+  var x=xs[j], sy=pEval(symp,x), cd=centralDiff(fp,x,1e-3), e=Math.abs(sy-cd), ok=(e<1e-2); if(!ok) fdok=false;
+  frows+="<tr><td>"+x+"</td><td>"+round(sy)+"</td><td>"+round(cd)+"</td><td style=\"color:"+(ok?"var(--lit)":"var(--wall)")+";font-weight:700\">"+e.toExponential(1)+"</td></tr>";
+ }
+ $("fdBody").innerHTML=frows;
+ // order-h^2 demonstration at a fixed point
+ var xo=1.5, e1=Math.abs(pEval(symp,xo)-centralDiff(fp,xo,2e-3)), e2=Math.abs(pEval(symp,xo)-centralDiff(fp,xo,1e-3));
+ var ratStr = (e2>1e-13) ? (Math.round((e1/e2)*100)/100)+"×" : "exact (linear/quadratic f)";
+ $("orderline").textContent = "err(2h)/err(h) = "+ratStr;
+ $("fdbadge").innerHTML='<span class="badge '+(fdok?"pass":"failb")+'">'+(fdok?"AGREES — symbolic f&#39;(x) tracks the finite difference to O(h²)":"DISAGREES — symbolic result diverges from the numeric slope")+'</span>';
+
+ // DATA OUT verdict
+ var ok = allmatch && fdok;
+ $("outv").className="verdict "+(ok?"ok":"no");
+ $("outv").textContent = ok ? "exact symbolic derivative · verified two ways" : "the derivative failed a check";
+ $("outreason").innerHTML = TAMPER
+  ? '<b style="color:var(--wall)">freshman product rule engaged</b> — d(uv)=u&#39;v&#39; drops the u&#39;v+uv&#39; cross terms; the coefficients stop matching and the finite difference disagrees. Caught.'
+  : "f&#39;(x) = "+polyToStr(symp)+" — integer coefficients, no rounding; matches the analytic answer exactly and the central finite difference to O(h²).";
+ $("witbadge").innerHTML='<span class="badge '+(ok?"pass":"failb")+'">'+(ok?"WITNESS — symbolic d/dx is exact and both checks pass":"WITNESS — a check was violated")+'</span>';
+
+ refreshAnchors();
+}
+
+function refreshAnchors(){
+ $("a1").textContent = polyToStr(polyOf(diff(parse("x^3"))));
+ $("a2").textContent = polyToStr(polyOf(diff(parse("(x^2)*(x^3)"))));
+ $("a3").textContent = polyToStr(polyOf(diff(parse("42"))));
+}
+
+function round(v){ return Math.abs(v)>=1e6||(v!==0&&Math.abs(v)<1e-4) ? v.toExponential(3) : (Math.round(v*1e6)/1e6); }
+
+/* ===== boot ===== */
+try{
+ selfcheck();
+ var sync=function(){ render(); };
+ $("exprin").addEventListener("input", sync);
+ $("exprin").addEventListener("change", sync);
+ $("examples").addEventListener("change", function(){ $("exprin").value=this.value; render(); });
+ $("tamper").addEventListener("click", function(){ TAMPER=true; $("tampernote").innerHTML="<b style='color:var(--wall)'>Freshman rule engaged.</b> d(uv) is now u&#39;&middot;v&#39; — so (x^2)(x^3) differentiates to 2x&middot;3x^2 = <b>6x^3</b> instead of <b>5x^4</b>. CHECK 1 coefficients stop matching the analytic answer and CHECK 2 disagrees with the finite difference; the witness (5) turns <b style='color:var(--wall)'>red</b>. The product rule is <b>u&#39;v+uv&#39;</b>, not u&#39;v&#39;. Caught."; render(); });
+ $("restore").addEventListener("click", function(){ TAMPER=false; $("tampernote").innerHTML="Engage it and the derivative of <b>(x^2)(x^3)</b> becomes 2x&middot;3x^2 = <b>6x^3</b> instead of <b>5x^4</b>. Both checks break: the coefficients stop matching the analytic answer and the finite difference disagrees. The witness (5) turns <b style='color:var(--wall)'>red</b>. The product rule is <b>u&#39;v+uv&#39;</b>, not u&#39;v&#39;. Caught."; render(); });
+ render();
+}catch(e){
+ var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — the MIR symbolic-differentiation engine did not check out: "+e.message; throw e;
+}
+</script>
+</body></html>
