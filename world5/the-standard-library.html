@@ -114,11 +114,11 @@ r1 = 270369         # xorshift32 -- impossible before bitwise</div>
 
 <!-- THE LINE NOT CROSSED -->
 <div class="panel">
-  <h2>THE LINE NOT CROSSED <span class="n">what a library cannot honestly add</span></h2>
-  <p>Two recommendations are <b>not</b> here, on purpose. They are not additions on top of the 13 symbols &mdash; they change what I-13 <i>is</i>, and that is the author&rsquo;s call to make on the record, not a library function to slip in:</p>
-  <div class="wall"><b>arbitrary-precision integers</b> &mdash; dart 032 (Rabin&ndash;Miller) runs, but only until f64 loses exactness past <b>2&#8309;&#179;</b>. Real cryptographic sizes need bignum, which is a new value kind, not a function.</div>
-  <div class="wall"><b>a bounded aggregate / array</b> &mdash; the recurring &ldquo;aggregate wall&rdquo; behind darts 017, 018, 021, 028 and more. I-13&rsquo;s machine is deliberately <b>pure scalar f64, no memory model</b>. An array is the biggest departure any dart has asked for.</div>
-  <p style="margin-top:9px">Recorded, not smuggled. A minimal language grows most honestly by <b>refusing</b> as clearly as it accepts.</p>
+  <h2>THE AUTHOR&rsquo;S CALLS <span class="n">one held, one crossed</span></h2>
+  <p>Some recommendations are not additions on top of the 13 symbols &mdash; they change what I-13 <i>is</i>, so they are the author&rsquo;s call to make on the record, not a library function to slip in. Two reached that line:</p>
+  <div class="wall"><b>arbitrary-precision integers</b> &mdash; darts <b>032, 035, 036, 041</b> all land here: exact arithmetic past f64&rsquo;s <b>2&#8309;&#179;</b> ceiling. A new value kind, not a function &mdash; <b>still withheld</b>.</div>
+  <div class="wall" style="border-left-color:var(--good)"><b>a bounded array &mdash; DECIDED &amp; ADDED</b> (2026-08-17). The recurring &ldquo;aggregate wall&rdquo; (darts 017/018/021/028) was the author&rsquo;s other call &mdash; made <b style="color:var(--good)">yes</b>. I-13 now has a <b>bounded, checked, value-semantics array</b> (three new opcodes, ISA 15&rarr;18; <span class="kg">spec/ARRAY.md</span>), and the <b>Sieve of Eratosthenes runs in real I-13</b> &mdash; 8 primes below 20. The first non-scalar I-13 value.</div>
+  <p style="margin-top:9px">Recorded, not smuggled &mdash; and when the author decides <b>yes</b>, it is built and proven (130 tests still green). A minimal language grows most honestly by refusing, and accepting, <b>on the record</b>.</p>
 </div>
 
 <footer>
