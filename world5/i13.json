@@ -778,6 +778,74 @@
       "url": "https://davidwise01.github.io/ud0/world5/the-abstraction-algorithm.html",
       "seal": "96d2b0d0f22627b6400010d93893cc67513d6eb4181f7a73b4fd08933ee89311",
       "blurb": "David's own formulation of the corpus as a closed-loop abstraction algorithm, made to run: r0{[point.vector..voxel]} ~> {vector(in),(i13),vector(out)} ~> voxel field, (/ \\ | \\ /) ~> voxel field vector (multiverse) ~> r0. ROOT0 is the origin AND the sink; the five worlds seed vectors; I-13 is the transfer function - a rotation+contraction whose cos/sin are the stdlib bounded Taylor; the outputs fill a voxel field that spirals through the diamond crossing where the worlds meet, spans the multiverse, and folds back to the Merkle root. Real WebGL2, 31,540 voxels, every one a real I-13 map step: vector(3,1) -> i13 -> (1.98105637530, 2.13059044349), verified equal to the canonical compiler to all 16 digits, so the field IS the I-13 output, not a picture of it. The loop closes where it began: r0 -> r0."
+    },
+    {
+      "slug": "the-hamming-seven-four",
+      "title": "THE HAMMING (7,4) CODE",
+      "dartno": "038",
+      "version": "v0.07",
+      "credit": "Richard W. Hamming, Bell Labs, 1950",
+      "source": "Richard Hamming, 1950",
+      "i13_recommend": "nothing new - a NO-WALL payoff: the bitwise ask (darts 001/029) now carries real error-correcting codes; general Hamming(n,k) over long messages would want a bit-array",
+      "blurb": "A code that corrects its own single-bit errors: pack 4 data bits with 3 parity bits at the power-of-two positions so that if any one of the 7 flips, three parity checks spell out - in binary - exactly which bit went wrong. It RUNS in real I-13 on the bitwise operators this campaign integrated (^, >>, &): a 7-bit word's parity, p_ok=0 (clean) vs p_err=1 (a flip), verified. Credit: Richard Hamming, Bell Labs 1950, invented in fury at a relay computer that crashed every unattended weekend and dumped the whole job - 'if the machine can detect an error, why can't it locate and correct it?' The (7,4) code and the Hamming distance began coding theory. A no-wall and a payoff: the bitwise ask now carries real error correction.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 038 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-hamming-seven-four.html",
+      "seal": "ad73ea4c3674f53965ee7eeb6c759347b41e4e2f5cae30e8f2b60412d5347d6e"
+    },
+    {
+      "slug": "the-reflected-binary",
+      "title": "THE REFLECTED BINARY (GRAY) CODE",
+      "dartno": "039",
+      "version": "v0.07",
+      "credit": "Frank Gray (name, 1953); Emile Baudot (the code, 1878)",
+      "source": "Frank Gray, 1953",
+      "i13_recommend": "nothing new - a clean no-wall; the defining formula of Gray code is one bitwise line I-13 evaluates correctly, the smallest proof the bitwise integration landed",
+      "blurb": "Count in binary and crossing 7->8 four bits flip at once (0111->1000); if they arrive at slightly different instants a sensor reads garbage. The Gray (reflected binary) code reorders the counts so exactly ONE bit changes between neighbours - and the whole thing is one line, gray(n) = n ^ (n>>1), which I-13 now computes (gray of 4,5,6,7 = 6,7,5,4, verified). Credit is a naming accident: named for Frank Gray (Bell Labs, patent 1953) but Emile Baudot used a reflected binary code in his 1878 telegraph, and the single-change ordering is in the centuries-old Baguenaudier (Chinese rings) puzzle. A clean no-wall - the smallest proof the bitwise integration was correct.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 039 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-reflected-binary.html",
+      "seal": "584ac4d7cf5726769654b8f904b56998d2fdddb0a9146097b8b0d979bf533c0a"
+    },
+    {
+      "slug": "the-floyd-cycle",
+      "title": "FLOYD'S CYCLE DETECTION",
+      "dartno": "040",
+      "version": "v0.07",
+      "credit": "attributed to Robert W. Floyd (unsourced); Brent's variant 1980",
+      "source": "attributed to R. W. Floyd via Knuth",
+      "i13_recommend": "nothing new - a no-wall that showcases I-13's fit for constant-memory (no-heap) algorithms; the explicit depth bound is the language's honesty showing",
+      "blurb": "Follow a sequence where each value points to the next; it must eventually loop, but finding where using almost no memory takes a trick: two walkers, tortoise (one step) and hare (two steps), are guaranteed to meet inside the loop. It runs in I-13 as plain recursion carrying the two positions (meet=2, verified). The credit is a mystery, the inverse of this campaign's usual bug: called 'Floyd's cycle detection', but Robert Floyd apparently never published it - the attribution traces to Knuth (TAOCP) with no citation, and no Floyd paper has been found; it seems to be folklore pinned to a famous name. Richard Brent published a genuinely faster, properly-cited variant in 1980. The honest label is 'the tortoise and the hare', after Aesop. A no-wall that showcases I-13's real strength: constant-memory algorithms need no heap, which I-13 does not have by design.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 040 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-floyd-cycle.html",
+      "seal": "12ebc18363d957164fcd4ff22673353de5d19d401191b6ee471434ee571a6813"
+    },
+    {
+      "slug": "the-karatsuba-algorithm",
+      "title": "THE KARATSUBA ALGORITHM",
+      "dartno": "041",
+      "version": "v0.07",
+      "credit": "Anatoly Karatsuba, 1960 (refuting Kolmogorov)",
+      "source": "Anatoly Karatsuba, 1960",
+      "i13_recommend": "arbitrary-precision integers (the withheld one) - Karatsuba's whole purpose is huge numbers past f64's 2^53; the 4th dart to land on bignum (with 032/035/036), the campaign's clearest architectural signal",
+      "blurb": "Everyone multiplies long numbers with n^2 digit-products; in 1960 a 23-year-old showed three multiplications per split suffice instead of four, turning n^2 into ~n^1.585 - and disproved his professor's conjecture in a week. The recursion runs in real I-13 (Karatsuba split of 1234*5678 = 7006652 = direct, verified) via %, /, and recursion. Credit given generously: Andrey Kolmogorov conjectured multiplication requires Omega(n^2) at a Moscow seminar; Anatoly Karatsuba, 23, found the three-multiply split within a week, disproving it; Kolmogorov wrote it up himself in 1962 UNDER KARATSUBA'S NAME, and Karatsuba only learned it was published from the reprints mailed to him. It opened fast algorithms (Toom-Cook, Schonhage-Strassen, Harvey-van der Hoeven 2019). The recommend is the WITHHELD arbitrary-precision integers - and Karatsuba is the sharpest case yet: it exists FOR thousand-digit numbers where it beats schoolbook, but on f64's ~15 exact digits there is nothing big enough to be worth it. Darts 032, 035, 036 and now 041 all land on bignum - four independent darts, the clearest architectural signal the campaign has produced.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 041 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-karatsuba-algorithm.html",
+      "seal": "7475674d4d5933cebee7c780265cefc276a72a73411b4d0f59885a0f99a32dda"
     }
   ],
   "keepers": [
@@ -788,13 +856,13 @@
     }
   ],
   "counts": {
-    "spheres": 45,
+    "spheres": 49,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
-    "darts": 37
+    "darts": 41
   },
-  "i13_root": "c010a0da9fba417e9b2772f4b7be35775862204589e2875f6dca94e7150fcbef",
+  "i13_root": "20dd6813a1aebaab3eb3ee27a14c653cb8d4b30f4e71ccf859d054792efdd751",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

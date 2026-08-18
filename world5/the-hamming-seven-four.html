@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE HAMMING (7,4) CODE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:17px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:100px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi.bad{color:var(--bad);border-color:rgba(255,90,106,.4);}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.bits{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0;}
+.b{width:42px;height:42px;border:1px solid var(--line);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:17px;cursor:pointer;background:rgba(62,240,255,.06);position:relative;transition:.1s;}
+.b:hover{border-color:var(--orange);} .b.on{color:var(--good);border-color:rgba(89,255,176,.5);box-shadow:0 0 8px rgba(89,255,176,.25);}
+.b.par{background:rgba(217,180,90,.08);} .b .pos{position:absolute;top:2px;left:4px;font-size:8px;color:var(--dim);}
+.b.flip{border-color:var(--bad);box-shadow:0 0 10px rgba(255,90,106,.5);color:var(--bad);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+table{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px;}
+td,th{padding:4px 8px;border-bottom:1px solid rgba(62,240,255,.14);text-align:left;}
+th{color:var(--dim);font-size:10px;letter-spacing:1px;text-transform:uppercase;}
+.chg{color:var(--orange);font-weight:700;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 038 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE HAMMING (7,4) CODE <span class="c">find your own mistake</span></h1>
+  <p class="sub">A code that <b>corrects its own errors</b>: pack 4 data bits with 3 parity bits so that if <b>any one</b> of the 7 flips, three parity checks spell out &mdash; in binary &mdash; <b>exactly which bit</b> went wrong. Born of a man&rsquo;s fury at a machine that crashed every weekend. And it <b>runs in real I-13</b>, on the very bitwise operators this campaign asked for.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">three parity checks locate one flip</span></h2>
+  <p>Bits sit in positions 1&ndash;7. Parity bits at the <b>powers of two</b> (1, 2, 4) each cover a set of positions. Flip any single bit and click it &mdash; the three checks read out its position in binary. <span class="tag t-demo">live demo</span></p>
+  <div class="bits" id="bits"></div>
+  <div class="row">
+    <button id="fresh" class="dartbtn">&#9192; fresh codeword</button>
+    <span id="say" class="res" style="margin:0">click a bit to flip it &mdash; watch the syndrome find it</span>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">invented in anger, on a weekend</span></h2>
+  <p class="myth">Not a cool abstract result &mdash; a working engineer, <s>calmly theorizing</s>, actually <b>furious</b> at a machine. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1947&ndash;49</b> &middot; <span class="who">Richard Hamming</span> at Bell Labs runs jobs on a relay computer over the weekend, unattended. It hits an error, dumps the job, and <b>wastes the whole weekend</b>. Twice in a row.<br>
+    <b>&ldquo;Damn it, if the machine can detect an error, why can&rsquo;t it locate the position and correct it?&rdquo;</b> &mdash; so he set out to make it.<br>
+    <b>1950</b> &middot; he publishes <i>Error detecting and error correcting codes</i>; the <b>(7,4)</b> code and the <b>Hamming distance</b> are born &mdash; the start of coding theory.<br>
+    <b>note</b> &middot; the paper was delayed by a Bell patent filing; <span class="who">Hamming</span> was annoyed by that too.
+  </div>
+  <p style="margin-top:10px">Every QR code, every RAM ECC, every deep-space transmission descends from a man who refused to lose another weekend. <span class="tag t-open">foundational</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the bitwise ask, powering error correction</span></h2>
+  <p>The whole scheme is <b>XOR parity</b> and <b>bit extraction</b> &mdash; the exact operators darts <b>001</b> and <b>029</b> asked for and that were integrated. Now it runs:</p>
+  <div class="code">def bit(I n, I i) { -> (n >> i) & 1 }
+def parity(I n) { -> bit(n,0) ^ bit(n,1) ^ ... ^ bit(n,6) }</div>
+  <div class="evi good">$ i13 run hamming.i13     # bitwise on main
+p_ok  = 0     # 1010101 -> even parity, clean
+p_err = 1     # 1010111 -> odd parity, a bit flipped</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; a no-wall, and a payoff. The bitwise operators the darts converged on (001 fast-inverse-sqrt, 029 Nim) do not just enable a game and a hack; they carry <b>real error-correcting codes</b>. This is the recommend loop paying a dividend: an ask, integrated, now doing load-bearing work.<br>
+    <b>Honest note:</b> a general Hamming(n,k) over long messages would want a bit-array, the recurring aggregate wall &mdash; but the (7,4) core, the thing that made coding theory, runs on the counted 13 symbols plus the merged bitwise.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var bitsEl=document.getElementById("bits"), say=document.getElementById("say");
+  var word=[0,0,0,0,0,0,0]; // positions 1..7 -> index 0..6
+  function setParity(){
+    // data at positions 3,5,6,7 (idx 2,4,5,6); parity at 1,2,4 (idx 0,1,3)
+    word[0]=word[2]^word[4]^word[6];       // p1 covers 3,5,7
+    word[1]=word[2]^word[5]^word[6];       // p2 covers 3,6,7
+    word[3]=word[4]^word[5]^word[6];       // p4 covers 5,6,7
+  }
+  function fresh(){ for(var i=0;i<7;i++) word[i]= (i===2||i===4||i===5||i===6)? (Math.random()<0.5?1:0):0; setParity(); flip=-1; draw(); say.innerHTML="click a bit to flip it &mdash; watch the syndrome find it"; }
+  var flip=-1;
+  function draw(){
+    bitsEl.innerHTML="";
+    for(var i=0;i<7;i++){
+      var d=document.createElement("div"); d.className="b"+(word[i]?" on":"")+((i===0||i===1||i===3)?" par":"")+(i===flip?" flip":"");
+      d.innerHTML='<span class="pos">'+(i+1)+(i===0||i===1||i===3?"p":"")+'</span>'+word[i];
+      (function(i){ d.onclick=function(){ word[i]^=1; flip=i; check(); }; })(i);
+      bitsEl.appendChild(d);
+    }
+  }
+  function check(){
+    var s1=word[0]^word[2]^word[4]^word[6];
+    var s2=word[1]^word[2]^word[5]^word[6];
+    var s4=word[3]^word[4]^word[5]^word[6];
+    var syn=s1*1+s2*2+s4*4;
+    draw();
+    if(syn===0) say.innerHTML='<span class="true">no error</span> &mdash; all three parity checks pass.';
+    else say.innerHTML='syndrome = '+s4+''+s2+''+s1+' (binary) = position <span class="err">'+syn+'</span> &mdash; the code located the flip. Flip it back to correct.';
+  }
+  document.getElementById("fresh").onclick=fresh;
+  fresh();
+})();
+
+</script>
+
+<footer>
+  <b>DART 038 &middot; THE HAMMING (7,4) CODE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Richard W. Hamming</b> (Bell Labs, 1950), out of frustration with a relay computer that failed on unattended weekends. History via <a href="https://en.wikipedia.org/wiki/Hamming(7,4)">Wikipedia: Hamming(7,4)</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main). Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
