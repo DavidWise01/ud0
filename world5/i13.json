@@ -923,14 +923,14 @@
       "credit": "Shimbel 1955 / Ford 1956 / Moore 1957 / Bellman 1958 (name honors only 2 of 4)",
       "source": "Ford 1956; Bellman 1958",
       "i13_recommend": "nothing new - a clean no-wall on the bounded array; Bellman-Ford is dynamic programming over a table, and the array IS the table (edge relaxation folded over the distance array)",
-      "blurb": "Find the shortest route through a network by one stubbornly simple operation, edge relaxation: for every edge u->v of weight w, if dist[u]+w < dist[v], lower dist[v]; sweep all edges V-1 times and the distances settle to the true shortest paths - even with NEGATIVE edges, where Dijkstra fails, and it detects negative cycles. It RUNS in real I-13 over the new array (distB=2 via 0->2->1, verified). Credit is shared four ways: Alfonso Shimbel 1955 (earliest), Lester Ford Jr. 1956, Edward F. Moore 1957 (the BFS variant), Richard Bellman 1958 (who coined 'dynamic programming'); the name honors only two. It is dynamic programming over a table, and the bounded array is exactly that table.",
+      "blurb": "Find the shortest route through a network by one stubbornly simple operation, edge relaxation: for every edge u->v of weight w, if dist[u]+w < dist[v], lower dist[v]; sweep all edges V-1 times and the distances settle to the true shortest paths - even with NEGATIVE edges, where Dijkstra fails, and it detects negative cycles. It RUNS in real I-13 over the new array (distB=2 via 0->2->1, verified). Credit is shared four ways: Alfonso Shimbel 1955 (earliest), Lester Ford Jr. 1956, Edward F. Moore 1959 (the BFS variant, presented 1957), Richard Bellman 1958 (who coined 'dynamic programming'); the name honors only two. It is dynamic programming over a table, and the bounded array is exactly that table.",
       "room": "darts",
       "accent": "#3ef0ff",
       "stamp": "DEMO",
       "kind": "dart",
       "kicker": "dart 046 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-bellman-ford-algorithm.html",
-      "seal": "2a60adb687fb7ec455835335f21d9b68c649cf4679a21c1f2b8bd5549fa2eb9e"
+      "seal": "3cfce861df4357951941832dff64cd19b0cce3c63e9185b2eb879b79f4da893a"
     },
     {
       "slug": "the-chinese-remainder-theorem",
@@ -940,14 +940,14 @@
       "credit": "Sunzi Suanjing 3rd-5th c. CE; Qin Jiushao 1247; Gauss 1801",
       "source": "Sunzi Suanjing, 3rd-5th c. CE",
       "i13_recommend": "nothing new - a no-wall standing entirely on the merged % (darts 010/027/032); one of the oldest algorithms thrown, home on the modulo; cryptographic scale waits on the withheld bignum",
-      "blurb": "'There are things whose number we do not know; counted by threes, two remain; by fives, three; by sevens, two. How many?' Sunzi's 1,600-year-old riddle, whose answer - that a number is pinned down by its remainders - runs modern cryptography (RSA's CRT decryption). It RUNS in real I-13 on the merged %, and returns the ancient answer 23 (mod 105). Credit is genuinely Chinese and genuinely ancient: Sunzi Suanjing (Master Sun's Mathematical Classic, 3rd-5th c. CE) posed and answered it; Aryabhata used a related method (kuttaka) in 6th-c. India; Qin Jiushao gave the general 'Da Yan' algorithm in 1247; Gauss formalized it in Disquisitiones Arithmeticae (1801), 1,500 years after Sunzi. Cryptographic scale hits the withheld bignum ceiling; the method is exact and ancient, only the scale waits.",
+      "blurb": "'There are things whose number we do not know; counted by threes, two remain; by fives, three; by sevens, two. How many?' Sunzi's 1,600-year-old riddle, whose answer - that a number is pinned down by its remainders - runs modern cryptography (RSA's CRT decryption). It RUNS in real I-13 on the merged %, and returns the ancient answer 23 (mod 105). Credit is genuinely Chinese and genuinely ancient: Sunzi Suanjing (Master Sun's Mathematical Classic, 3rd-5th c. CE) posed and answered it; Aryabhata used a related method (kuttaka) in 5th-6th-c. India (Aryabhatiya, 499 CE); Qin Jiushao gave the general 'Da Yan' algorithm in 1247; Gauss formalized it in Disquisitiones Arithmeticae (1801), 1,500 years after Sunzi. Cryptographic scale hits the withheld bignum ceiling; the method is exact and ancient, only the scale waits.",
       "room": "darts",
       "accent": "#3ef0ff",
       "stamp": "DEMO",
       "kind": "dart",
       "kicker": "dart 047 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-chinese-remainder-theorem.html",
-      "seal": "4902dbb7b8f20696090ceb18475483d1b471c453a0f18499e3054712791209b2"
+      "seal": "8144cf686ffc072830602158ffba1a1d5d71d9d94a648477b793576f7ca96b31"
     },
     {
       "slug": "the-disjoint-set",
@@ -998,7 +998,7 @@
     "keepers": 1,
     "darts": 49
   },
-  "i13_root": "2a12153799e3c8f1ab1621c37ce4b004bb0ae6493fd17a68a2e8da86e9469679",
+  "i13_root": "6273a6588eb307cf59bb30792b7103b5373c8e9f177a0753aff3ea4317977757",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
