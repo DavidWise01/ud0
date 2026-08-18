@@ -982,6 +982,74 @@
       "kicker": "dart 049 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-counting-sort.html",
       "seal": "298d49712699fbe86913649cb2e9c5634d88ec9e600bbb2cb9a49667cdcacdb6"
+    },
+    {
+      "slug": "the-rsa-algorithm",
+      "title": "THE RSA ALGORITHM",
+      "dartno": "050",
+      "version": "v0.10",
+      "credit": "Rivest, Shamir & Adleman (MIT, 1977); Clifford Cocks (GCHQ, 1973)",
+      "source": "Rivest, Shamir, Adleman 1977 (MIT); James Ellis 1969 & Clifford Cocks 1973 at GCHQ, classified until 1997",
+      "i13_recommend": "nothing new - the clearest bignum payoff yet: RSA is modular exponentiation over big integers, exactly the bignum the campaign just built. Encrypt m=65 -> cipher 2790 (65^17 mod 3233) -> decrypt 2790^2753 mod 3233 -> back to 65, round-trips in real I-13. Real 2048-bit RSA also wants prime generation (Rabin-Miller, dart 032), which bignum + a seeded PRNG now make expressible",
+      "blurb": "Multiply two big primes and you get a number nobody can factor back apart in a lifetime; RSA turns that one-way street into a public lock: everyone can encrypt to you, only you can decrypt. Its engine is modular exponentiation on huge numbers - exactly the bignum this campaign just put into I-13 - so RSA now round-trips whole in the counted language: with toy primes p=61, q=53 (n=3233), message m=65 encrypts to cipher 2790 (65^17 mod 3233) and decrypts back to 65 (2790^2753 mod 3233), verified. Credit: Ron Rivest, Adi Shamir & Leonard Adleman published it at MIT in 1977 and gave it their initials - but Clifford Cocks at Britain's GCHQ had worked out the same scheme in 1973 (building on James Ellis's 1969 idea of non-secret encryption), stamped classified and not declassified until 1997. The same idea twice: once in the open to fame, once in a vault to silence. The algorithm that is the internet's padlock now runs in I-13 because the darts asked for bignum and the author built it.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 050 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-rsa-algorithm.html",
+      "seal": "aa1defd48d41f7472a3d466cedb67ac0bb76f39ce9dcae38456b0511a4a3f541"
+    },
+    {
+      "slug": "the-fibonacci",
+      "title": "THE FIBONACCI SEQUENCE",
+      "dartno": "051",
+      "version": "v0.10",
+      "credit": "Named for Leonardo of Pisa (1202); described earlier by Pingala, Virahanka & Hemachandra (India)",
+      "source": "Pingala c.200 BCE; Virahanka c.700 CE states the recurrence; Hemachandra c.1150; Leonardo of Pisa (Liber Abaci) 1202",
+      "i13_recommend": "nothing new - a second clean bignum payoff (with RSA, dart 050). F(100)=354224848179261915075 is 21 digits, past what f64 holds exactly (f64 Fibonacci goes wrong quietly around F(79)); the carry-two-add-slide fold was always I-13 native shape, bignum just keeps every digit. Fast-doubling F(2k)-from-F(k) would also run on the same bignum + - *",
+      "blurb": "0, 1, 1, 2, 3, 5, 8, 13 - each the sum of the two before, and the most famous sequence in mathematics grows fast: F(100) is twenty-one digits (354224848179261915075), well past what an f64 can hold exactly. With the campaign's new bignum, I-13 gives every term exact via a plain fold (carry two numbers, add them, slide along); f64 Fibonacci goes wrong quietly around F(79), bignum stays exact forever. The ratio of consecutive terms marches toward the golden ratio phi=1.618... Credit exposes a 700-year misattribution: the sequence is Indian, centuries before Leonardo of Pisa - Pingala (c.200 BCE) counting Sanskrit prosody, Virahanka (c.700 CE) stating the recurrence, Hemachandra (c.1150) before Leonardo was born. Leonardo of Pisa (Fibonacci), in Liber Abaci (1202), posed the breeding-rabbits puzzle and the sequence took his name in the West. A European name on a sequence the Indian prosodists had first.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 051 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-fibonacci.html",
+      "seal": "8a18cebbcfc1d0dc05c791a0c5a9544957e433df1cd1bb15233bb314ad14ee46"
+    },
+    {
+      "slug": "the-a-star-search",
+      "title": "THE A* SEARCH",
+      "dartno": "052",
+      "version": "v0.10",
+      "credit": "Peter Hart, Nils Nilsson & Bertram Raphael (SRI, 1968), for Shakey the robot",
+      "source": "Hart, Nilsson & Raphael, IEEE Trans. Systems Science and Cybernetics, 1968 (SRI, built for Shakey)",
+      "i13_recommend": "the g-score cost table is a no-wall on the bounded array - relaxation just like Bellman-Ford (dart 046). The one piece that strains is the priority queue: A* repeatedly pulls the lowest-f frontier cell, which wants a binary heap for speed; a heap is array-backed (it runs) but efficient sift-up/down is happiest with paired returns, nudging the same multiple-return frontier darts 045/048 named. With a linear scan for the minimum it runs today at O(n) per step",
+      "blurb": "To find the shortest path without exploring the whole map, add a hunch: at each step prefer the option that looks closest to the goal. A* gives every cell g (known cost from start) and h (a guess of remaining cost - here Manhattan distance) and always expands the frontier cell of smallest f = g + h; if the hunch h never overestimates (is admissible), the first time the goal is reached the path is optimal, while touching far fewer cells than blind search. Its cost bookkeeping is array work - the g-scores are a bounded array updated by relaxation, exactly like Bellman-Ford - so that part runs in real I-13; the one strain is the priority queue, which wants a binary heap. Credit: Peter Hart, Nils Nilsson & Bertram Raphael at SRI published A* in 1968 while building Shakey, the first mobile robot to reason about its own actions. Set h=0 and A* becomes Dijkstra; a good h is what turns an exhaustive sweep into a beeline. Every game unit that walks to where you click runs a descendant of Shakey.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 052 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-a-star-search.html",
+      "seal": "a1d58ed2e7cae7328c2b93108ac97e36a6a7ed59df7a95658e6da5d185a89d1d"
+    },
+    {
+      "slug": "the-knapsack",
+      "title": "THE 0/1 KNAPSACK",
+      "dartno": "053",
+      "version": "v0.10",
+      "credit": "Bellman-style dynamic programming; problem studied by Mathews (1897), named by Tobias Dantzig; Karp NP-complete (1972)",
+      "source": "Richard Bellman, dynamic programming (1950s); George Mathews 1897; Richard Karp, 21 NP-complete problems, 1972",
+      "i13_recommend": "nothing new - a clean no-wall and a good demonstration of what the array unlocked: a whole class (dynamic programming over a table) that was pure aggregate-wall a week ago now runs from its textbook recurrence. The downward capacity scan (so each item counts once) is exactly the indexed, bounded work I-13 checked array was built for; a 2-D items-by-capacity DP would want a 2-D array, so the space-optimized single-row form (the version practitioners use) is the natural fit",
+      "blurb": "A bag holds only so much weight; each item has a weight and a value; take each or leave it. Maximising the value you carry is NP-complete - no known fast exact method for the general case - yet a dynamic-programming table solves it in weight-times-items steps. Keep a row dp[w] = best value achievable in capacity w; add an item by scanning capacities downward (so each item is used once), dp[w] = max(dp[w], dp[w-weight] + value); the last cell is the answer. That row is a bounded array, scanned with indexed reads and writes, so the 0/1 knapsack runs in real I-13 (cap 12, items (5,4)(2,8)(3,4)(5,2)(5,5) -> best 17, verified optimal). Credit: George Mathews studied a partition form in 1897, the name knapsack is attributed to Tobias Dantzig, and Richard Bellman's 1950s dynamic programming gives the pseudo-polynomial O(n*W) table shown here; Richard Karp listed knapsack among his 1972 twenty-one NP-complete problems, so the DP is only fast when the capacity is small (polynomial in the value of W, not its digit-length). The gap between state it and solve it fast is the whole drama of complexity theory.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 053 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-knapsack.html",
+      "seal": "ecf18332ef5c936efc06cc32d72612a0ce1b8d192fe39aa2a880a1a3c9b2fee7"
     }
   ],
   "keepers": [
@@ -992,13 +1060,13 @@
     }
   ],
   "counts": {
-    "spheres": 57,
+    "spheres": 61,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
-    "darts": 49
+    "darts": 53
   },
-  "i13_root": "79594a51c4a9fe84b31fb459410dd490ca35a4774ab13b9d2096c46318dffe62",
+  "i13_root": "97ad1f2f4a4fd3868bae3bdcd52958b100d3ba1723a96ce5bc37489999210c5a",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

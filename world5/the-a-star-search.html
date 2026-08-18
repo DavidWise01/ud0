@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE A* SEARCH &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:80px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.grid{display:grid;gap:2px;margin:10px 0;} .gc{aspect-ratio:1;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;}
+.dp{display:flex;gap:2px;flex-wrap:wrap;margin:8px 0;} .dpc{width:34px;height:30px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--cyan);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 052 &middot; a helldive at the net</span></div>
+<header>
+  <h1>A* SEARCH <span class="c">a hunch that never lies</span></h1>
+  <p class="sub">To find the shortest path without exploring the whole map, add a <b>hunch</b>: at each step prefer the option that <i>looks</i> closest to the goal. If the hunch never overestimates, A* is guaranteed to find the true shortest path &mdash; while touching far fewer cells than blind search. Its cost bookkeeping is array work, which <b>runs in real I-13</b>.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">f = g + h : cost-so-far plus a hunch</span></h2>
+  <p>Each cell gets <b>g</b> (known cost from start) and <b>h</b> (a guess of cost to goal &mdash; here Manhattan distance). Always expand the frontier cell with the smallest <b>f = g + h</b>. Because h never overestimates, the first time the goal is reached, it is optimal. Watch it aim. <span class="tag t-demo">live demo</span></p>
+  <div class="grid" id="grid" style="grid-template-columns:repeat(16,1fr)"></div>
+  <div class="row">
+    <button id="go" class="dartbtn">&#9192; search</button>
+    <button id="maze">new maze</button>
+    <span id="say" class="res" style="margin:0"></span>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">born to move a robot across a room</span></h2>
+  <p class="myth">Taught as pure theory &mdash; it was built to make a <s>chess program</s> real robot stop bumping into things. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1968</b> &middot; <span class="who">Peter Hart</span>, <span class="who">Nils Nilsson</span> &amp; <span class="who">Bertram Raphael</span> at SRI publish A* while building <span class="who">Shakey</span>, the first mobile robot to reason about its own actions.<br>
+    <b>the guarantee</b> &middot; if the heuristic h is <b>admissible</b> (never overestimates the true remaining cost), A* returns an optimal path; if also <b>consistent</b>, it never re-expands a node.<br>
+    <b>the family</b> &middot; set h = 0 and A* <b>becomes Dijkstra</b>; a good h is what turns an exhaustive sweep into a beeline. Nilsson went on to help found the field of AI itself.
+  </div>
+  <p style="margin-top:10px">Every game unit that walks to where you click is running a descendant of Shakey. <span class="tag t-open">everywhere</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the cost table runs; the frontier wants a heap</span></h2>
+  <p>A*&rsquo;s <b>g-scores</b> are an array, updated by relaxation just like Bellman&ndash;Ford (dart 046). That part runs:</p>
+  <div class="evi good">$ i13 run astar.i13     # relax g over a grid-graph array
+gStart_to_3 = 3     # best cost start -> node 3 (via 0-1-2-3)
+gStart_to_4 = 4</div>
+  <div class="rec">
+    <b>Recommend:</b> the cost bookkeeping is a <b>no-wall on the array</b>. The one piece that strains is the <b>priority queue</b> &mdash; A* repeatedly pulls the lowest-f frontier cell, which wants a <b>binary heap</b> for speed. A heap is array-backed (it runs), but efficient sift-up/down is happiest with in-place swaps and paired returns &mdash; nudging the same <b>multiple-return</b> frontier darts 045/048 named.<br>
+    <b>Honest note:</b> with a linear scan for the minimum (no heap), A* runs today, just at O(n) per step. The array made the map expressible; a heap type would make it fast.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var W=16,H=8, gridEl=document.getElementById("grid"), say=document.getElementById("say");
+  var wall=[], start=[0,0], goal=[W-1,H-1];
+  function newMaze(){ wall=[]; for(var i=0;i<W*H;i++) wall.push(Math.random()<0.18?1:0);
+    // keep the corners and their immediate neighbours open so a path almost always exists
+    var clear=[0,1,W,W-1,W-2,2*W-1,W*H-1,W*H-2,W*(H-1)-1,W*H-1-W,W*H-2-W];
+    clear.forEach(function(i){ if(i>=0&&i<W*H) wall[i]=0; });
+    draw(null); say.innerHTML="start (green) -> goal (gold)"; }
+  function h(x,y){ return Math.abs(x-goal[0])+Math.abs(y-goal[1]); }
+  function astar(){
+    var g={}, came={}, open=[[0,0]], gk=function(x,y){return x+","+y;};
+    g[gk(0,0)]=0; var visited={}, expanded=0;
+    while(open.length){
+      // pull lowest f (linear scan = the 'no heap' honest note)
+      var bi=0,bf=1e9; for(var i=0;i<open.length;i++){ var c=open[i], f=g[gk(c[0],c[1])]+h(c[0],c[1]); if(f<bf){bf=f;bi=i;} }
+      var cur=open.splice(bi,1)[0]; var ck=gk(cur[0],cur[1]);
+      if(visited[ck]) continue; visited[ck]=1; expanded++;
+      if(cur[0]===goal[0]&&cur[1]===goal[1]) break;
+      var nb=[[1,0],[-1,0],[0,1],[0,-1]];
+      for(var d=0;d<4;d++){ var nx=cur[0]+nb[d][0], ny=cur[1]+nb[d][1];
+        if(nx<0||ny<0||nx>=W||ny>=H||wall[ny*W+nx]) continue;
+        var nk=gk(nx,ny), ng=g[ck]+1;
+        if(!(nk in g)||ng<g[nk]){ g[nk]=ng; came[nk]=ck; open.push([nx,ny]); }
+      }
+    }
+    // reconstruct
+    var path={}, k=gk(goal[0],goal[1]);
+    if(k in came || (goal[0]===0&&goal[1]===0)){ while(k){ path[k]=1; k=came[k]; } }
+    draw({visited:visited, path:path});
+    say.innerHTML = (gk(goal[0],goal[1]) in path) ? 'reached goal, expanded <span class="true">'+expanded+'</span> of '+(W*H)+' cells' : '<span class="err">no path</span> (expanded '+expanded+')';
+  }
+  function draw(state){
+    gridEl.innerHTML="";
+    for(var y=0;y<H;y++) for(var x=0;x<W;x++){
+      var c=document.createElement("div"); c.className="gc"; var k=x+","+y;
+      var bg="rgba(20,30,50,.5)";
+      if(wall[y*W+x]) bg="#0a0f1a";
+      if(state&&state.visited&&state.visited[k]) bg="rgba(62,240,255,.18)";
+      if(state&&state.path&&state.path[k]) bg="rgba(255,138,61,.7)";
+      if(x===0&&y===0) bg="var(--good)"; if(x===goal[0]&&y===goal[1]) bg="var(--gold)";
+      c.style.background=bg; gridEl.appendChild(c);
+    }
+  }
+  document.getElementById("go").onclick=astar;
+  document.getElementById("maze").onclick=newMaze;
+  newMaze();
+})();
+
+</script>
+
+<footer>
+  <b>DART 052 &middot; THE A* SEARCH</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Peter Hart, Nils Nilsson &amp; Bertram Raphael</b> (SRI, 1968), for <b>Shakey the robot</b>. History via <a href="https://en.wikipedia.org/wiki/A*_search_algorithm">Wikipedia: A*</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which now has a bounded array <b>and arbitrary-precision integers</b>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
