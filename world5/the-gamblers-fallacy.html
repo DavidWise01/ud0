@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Gambler's Fallacy — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:110px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:210px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.evg{font-size:11.5px;color:var(--good);background:rgba(0,0,0,.35);border:1px solid rgba(89,255,176,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+/* coin ribbon + streak table */
+.ribbon{display:flex;flex-wrap:wrap;gap:2px;margin:10px 0;line-height:0;}
+.cell{width:11px;height:16px;border-radius:2px;}
+.cH{background:var(--cyan);box-shadow:0 0 5px rgba(62,240,255,.5);}
+.cT{background:var(--orange);box-shadow:0 0 5px rgba(255,138,61,.45);}
+.cell.hot{outline:1px solid var(--gold);outline-offset:1px;}
+.legend{font-size:10.5px;color:var(--dim);letter-spacing:1px;}
+.legend .sw{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin:0 3px 0 10px;}
+table.st{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:6px;}
+table.st th,table.st td{border:1px solid var(--line);padding:5px 8px;text-align:right;}
+table.st th{color:var(--cyan);text-transform:uppercase;letter-spacing:1px;font-size:10px;font-weight:400;text-align:right;}
+table.st td:first-child,table.st th:first-child{text-align:left;color:var(--gold);}
+.bar{position:relative;height:12px;border:1px solid var(--line);border-radius:3px;background:rgba(0,0,0,.4);overflow:hidden;min-width:120px;}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));}
+.bar .fifty{position:absolute;top:-2px;bottom:-2px;left:50%;width:1px;background:var(--gold);box-shadow:0 0 6px var(--gold);}
+.mono{font-size:11.5px;color:#bcd6ee;}
+.big{font-size:20px;color:var(--good);text-shadow:0 0 10px rgba(89,255,176,.4);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 014 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>THE GAMBLER'S FALLACY <span class="c">black 26&times;</span></h1>
+  <p class="sub">A dart thrown into the dark landed on the oldest lie a casino tells &mdash; that a long run of red makes black <b>due</b>. On <b>18 August 1913</b> a Monte&nbsp;Carlo wheel hit black twenty-six times running while gamblers bet fortunes on red. We flip a fair coin ten thousand times to <b>prove the coin has no memory</b>, credit who first caught the error, and ask what <b>I-13</b> &mdash; a language with <i>no</i> randomness at all &mdash; should learn from it. One dart, three prongs.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">independence &middot; the coin has no memory</span></h2>
+  <p>The fallacy predicts that after a run of the same side, the <b>opposite</b> side becomes more likely &mdash; and more so the longer the run. The truth: each flip is <b>independent</b>. We flip a fair coin many times and measure the one number that settles it &mdash; <b>after a run of exactly R identical results, how often did the very next flip continue the run?</b> If the coin were "due" to break, that number would sink below 50%. It does not. <span class="tag t-demo">live demo</span></p>
+  <div class="row">
+    <label style="color:var(--dim)">flips =</label><input id="n" value="10000" spellcheck="false">
+    <button id="go">flip the coin</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+  </div>
+  <div class="legend">last 120 flips<span class="sw cH"></span>heads<span class="sw cT"></span>tails<span class="sw" style="background:transparent;outline:1px solid var(--gold)"></span>longest streak</div>
+  <div class="ribbon" id="ribbon"></div>
+  <div class="steps" id="steps"></div>
+  <p class="mono" style="margin-top:12px">After a run of length R, did the next flip <span class="k">continue</span> the run? Fair coin says <span class="kg">50%</span> at every R &mdash; the bar sits on the gold line. The fallacy's rising claim never shows up.</p>
+  <table class="st" id="tbl"><thead><tr><th>run length R</th><th>samples</th><th>continued</th><th>continue&nbsp;%</th><th>reality vs. the 50% line</th><th>fallacy&nbsp;said</th></tr></thead><tbody></tbody></table>
+  <div class="res" id="res"></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">The name says <s>Monte&nbsp;Carlo invented it</s> &mdash; the casino only gave it a stage. The error was described in print <b>117 years earlier</b>, and the deepest version of the point is older still. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1796</b> &middot; <span class="who">Pierre-Simon Laplace</span>, <i>A Philosophical Essay on Probabilities</i> &mdash; the <b>earliest documented description</b>: expectant fathers who believed that a month of many sons born nearby made their own child likelier to be a daughter. Same error, no wheel.<br>
+    <b>1763 &rarr; on</b> &middot; the underlying law is <span class="who">independence</span> (Bayes, then Laplace) &mdash; past outcomes leave the next probability untouched.<br>
+    <b>18 Aug 1913</b> &middot; <span class="who">Monte&nbsp;Carlo Casino</span> &mdash; roulette landed on <b>black 26 times in a row</b> (odds &asymp; <span class="kg">1 in 68.4 million</span>). Gamblers piled onto red, sure it was overdue, and <b>lost millions of francs</b>. The event lent the fallacy its second name.
+  </div>
+  <p style="margin-top:10px">The name "<b>Monte&nbsp;Carlo fallacy</b>" traces to this 1913 run; the source does <b>not credit a specific person</b> with coining the phrase, so I won't invent one. The <b>first clear description belongs to Laplace, 1796</b> &mdash; not to the casino, and not to any single 20th-century author. <span class="tag t-open">who coined "Monte Carlo fallacy": open</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">what the galaxy should learn</span></h2>
+  <p>This dart is <b>about randomness itself</b> &mdash; the demo above needs a random source to show independence. I-13 has <b>none</b>: it is deterministic by design, with no <span class="k">random</span> builtin. I proved the lack on the live compiler:</p>
+  <div class="evi" id="evi">$ i13 run rand.i13
+rand.i13:1:8  E0202 unknown function `random`     &larr; no entropy source exists</div>
+  <p>The wrong fix would be to bolt on hardware entropy &mdash; that would <b>break replay</b>. The right fix is the one every honest simulation uses: a <b>seeded PRNG</b>. Deterministic, reproducible, and its <i>entire</i> future lives in one visible number &mdash; the seed. A seeded generator needs modular arithmetic <span class="k">(a&middot;x + c) % m</span>. The frozen v2.1 brief lists <span class="k">BinOp</span> as <span class="k">+ &minus; * /</span> only &mdash; no <span class="k">%</span>. But the <b>live shared-clone has already evolved past the brief</b>: <span class="k">Mod</span> is now a <b>BinOp discriminant</b> (<span class="kg">ast.rs:39</span> &mdash; <span class="k">Add, Sub, Mul, Div, Mod</span>), <b>zero new alphabet symbols spent</b>. So I built a real one and ran it:</p>
+  <div class="code">def next(I x) {          // Park-Miller MINSTD, a seeded PRNG
+    I a &lt;- 16807
+    I m &lt;- 2147483647
+    I y &lt;- a * x
+    I r &lt;- y % m         // the modulo the brief said I-13 lacked
+    -&gt; r
+}</div>
+  <div class="evg" id="evg">$ i13 run minstd.i13        (seed = 1, run twice)
+s1 = 16807   s2 = 282475249   s3 = 1622650073   s4 = 984943658   s5 = 1144108930
+s1 = 16807   s2 = 282475249   s3 = 1622650073   s4 = 984943658   s5 = 1144108930
+&rarr; the canonical Park-Miller sequence, BIT-IDENTICAL across runs. A seeded PRNG runs on I-13 TODAY.</div>
+  <div class="rec">
+    <b>Recommend &mdash; ADD:</b> nothing. The one piece a seeded PRNG needs, <span class="k">%</span>, is <b>already in the live BinOp as a new discriminant</b> &mdash; exactly the "zero new alphabet symbols" move the corpus keeps proposing. Ship a tiny <span class="k">minstd.i13</span> in the examples as the sanctioned entropy source; do <b>not</b> add hardware randomness.<br>
+    <b>Recommend &mdash; the honest tradeoff:</b> <span class="k">Constant</span> is <b>f64-only</b>, so the modulo is exact only while <span class="k">a&middot;x</span> stays under 2&#8309;&sup3;. MINSTD's worst case is &asymp;3.6&times;10&sup1;&sup3; &mdash; comfortably exact. A 64-bit LCG (multiplier ~6.4&times;10&sup1;&#8312;) would <b>silently lose precision</b> and is <i>not</i> safe until I-13 grows an integer type. State that ceiling next to the example.<br>
+    <b>The deeper point &mdash; RECEIPT discipline:</b> the gambler imagines the wheel carries a <i>hidden debt</i> ("black is due"). I-13 is the exact opposite failure mode, and it is the <b>right</b> one: it has <b>no hidden child state</b> to carry a debt forward &mdash; the PRNG's whole future is the visible seed, and <b>deterministic outputs survive replay while hidden state dies</b>. The wheel has no memory; neither does I-13; the gambler only wished it did.
+  </div>
+</div>
+
+<footer>
+  <b>DART 014 &middot; THE GAMBLER'S FALLACY</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied. First clear description credited to <b>Pierre-Simon Laplace</b>, <i>A Philosophical Essay on Probabilities</i> (<b>1796</b>); the 26-in-a-row roulette run occurred at the <b>Monte&nbsp;Carlo Casino on 18 August 1913</b>. Who first coined "Monte Carlo fallacy" is left open &mdash; no source names a person, so none is invented. History &amp; figures via <a href="https://en.wikipedia.org/wiki/Gambler%27s_fallacy">Wikipedia: Gambler's fallacy</a>. The seeded generator is the <b>Park-Miller MINSTD</b> LCG (Park &amp; Miller, 1988). I-13 by David Lee Wise / ROOT0; the <span class="kg">E0202</span> lack, the <span class="kg">Mod</span> BinOp, and the MINSTD sequence were all measured on the live shared-clone compiler. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var MAXR=6;
+  function clampN(v){ v=Math.floor(v); if(!(v>=100)) v=100; if(v>2000000) v=2000000; return v; }
+
+  function simulate(n){
+    // fair coin: 1=heads, 0=tails
+    var last=[];                     // last 120 for the ribbon
+    var prev=-1, run=0;
+    var cont=new Array(MAXR+1).fill(0), brk=new Array(MAXR+1).fill(0);
+    var heads=0, longest=0, longSide=1;
+    // memoryless cross-check: P(next=heads | prev)
+    var afterH_h=0, afterH_n=0, afterT_h=0, afterT_n=0;
+    for(var i=0;i<n;i++){
+      var f = Math.random()<0.5 ? 1:0;
+      if(f) heads++;
+      if(prev!==-1){
+        var r = run>MAXR?MAXR:run;
+        if(f===prev) cont[r]++; else brk[r]++;
+        if(prev===1){ afterH_n++; if(f===1) afterH_h++; }
+        else       { afterT_n++; if(f===1) afterT_h++; }
+      }
+      if(f===prev){ run++; } else { run=1; }
+      if(run>longest){ longest=run; longSide=f; }
+      prev=f;
+      if(i>=n-120) last.push(f);
+    }
+    return {n:n,heads:heads,tails:n-heads,longest:longest,longSide:longSide,
+            cont:cont,brk:brk,last:last,
+            pH_afterH: afterH_n?afterH_h/afterH_n:0, pH_afterT: afterT_n?afterT_h/afterT_n:0};
+  }
+
+  function pct(x){ return (x*100).toFixed(2)+"%"; }
+
+  function render(res){
+    // ribbon: mark the tail-end longest streak if visible
+    var rib=document.getElementById("ribbon"); rib.innerHTML="";
+    var L=res.last, hotStart=-1;
+    // find longest run within the shown window, highlight it
+    var bestLen=0,bestS=0,cs=0,cl=0;
+    for(var j=0;j<L.length;j++){ if(j&&L[j]===L[j-1]){cl++;} else {cl=1;cs=j;} if(cl>bestLen){bestLen=cl;bestS=cs;} }
+    for(var k=0;k<L.length;k++){
+      var d=document.createElement("div");
+      d.className="cell "+(L[k]?"cH":"cT")+((k>=bestS&&k<bestS+bestLen&&bestLen>=4)?" hot":"");
+      rib.appendChild(d);
+    }
+    // steps summary
+    document.getElementById("steps").innerHTML=
+      '<div><span class="lbl">flips</span> <span class="val">'+res.n.toLocaleString()+'</span></div>'+
+      '<div><span class="lbl">heads / tails</span> <span class="val">'+res.heads.toLocaleString()+' / '+res.tails.toLocaleString()+'</span> <span class="err">('+pct(res.heads/res.n)+' heads)</span></div>'+
+      '<div><span class="lbl">longest streak observed</span> <span class="val">'+res.longest+'&times; '+(res.longSide?'heads':'tails')+'</span> <span class="err">(streaks are normal, not signals)</span></div>'+
+      '<div><span class="lbl">P(heads | last was heads)</span> <span class="val">'+pct(res.pH_afterH)+'</span></div>'+
+      '<div><span class="lbl">P(heads | last was tails)</span> <span class="val">'+pct(res.pH_afterT)+'</span> <span class="err">&mdash; the two match: no memory</span></div>';
+    // streak table
+    var tb=document.querySelector("#tbl tbody"); tb.innerHTML="";
+    var fallacyClaim=["","~45%","~40%","~33%","~25%","~17%","&lt;12%"]; // the fallacy's escalating (wrong) prediction for CONTINUE%
+    for(var r=1;r<=MAXR;r++){
+      var s=res.cont[r]+res.brk[r];
+      var rate=s?res.cont[r]/s:0;
+      var w=Math.max(0,Math.min(100,rate*100));
+      var lbl=(r===MAXR?(r+"+"):(""+r));
+      var tr=document.createElement("tr");
+      tr.innerHTML='<td>R = '+lbl+'</td>'+
+        '<td>'+s.toLocaleString()+'</td>'+
+        '<td>'+res.cont[r].toLocaleString()+'</td>'+
+        '<td class="val" style="color:var(--good)">'+(s?pct(rate):"&mdash;")+'</td>'+
+        '<td><div class="bar"><i style="width:'+w.toFixed(1)+'%"></i><span class="fifty"></span></div></td>'+
+        '<td style="color:var(--bad)">'+fallacyClaim[r]+'</td>';
+      tb.appendChild(tr);
+    }
+    // verdict
+    var spread=Math.abs(res.pH_afterH-res.pH_afterT)*100;
+    document.getElementById("res").innerHTML=
+      'Verdict: continue-% sits on the <span class="true">50% line</span> at every run length; the fallacy’s falling column is fiction. '+
+      'Memory test spread = <span class="err">'+spread.toFixed(2)+' pts</span> — <span class="true">the coin has no memory.</span>';
+  }
+
+  function run(){
+    var n=clampN(parseFloat(document.getElementById("n").value));
+    document.getElementById("n").value=n;
+    render(simulate(n));
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("n").addEventListener("keydown",function(e){ if(e.key==="Enter") run(); });
+  document.getElementById("dart").onclick=function(){
+    var choices=[500,1000,2500,10000,50000,200000];
+    document.getElementById("n").value=choices[Math.floor(Math.random()*choices.length)];
+    run();
+  };
+  run();
+})();
+</script>
+</body>
+</html>

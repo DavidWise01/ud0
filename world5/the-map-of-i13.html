@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE MAP OF I-13 — as I see it · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a; --vio:#a78bfa;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:13.5px;max-width:1120px;margin:0 auto;padding:20px 18px 80px;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(1000px 560px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+  background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+header{margin:18px 0 6px;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7);}
+h1 .s{color:var(--gold);font-size:17px;letter-spacing:1px;}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:82ch;} .sub b{color:var(--cyan);}
+h2.sec{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);margin:26px 0 12px;border-bottom:1px solid var(--line);padding-bottom:6px;display:flex;justify-content:space-between;}
+h2.sec .n{color:var(--dim);font-weight:400;letter-spacing:1px;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:6px;vertical-align:middle;}
+.t-lit{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-inf{color:var(--vio);border-color:var(--vio);}
+
+/* the 13-symbol grid */
+.planes{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.plane{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:11px;}
+.plane h3{font-size:11px;letter-spacing:1.5px;color:var(--cyan);margin-bottom:8px;display:flex;justify-content:space-between;}
+.plane h3 .pc{color:var(--gold);}
+.sym{border-left:2px solid var(--line);padding:3px 0 3px 8px;margin:4px 0;font-size:11.5px;}
+.sym b{color:#eafcff;} .sym span{color:var(--dim);font-size:10px;}
+.iglyph{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:5px;padding:3px 10px;font-weight:700;letter-spacing:1px;box-shadow:0 0 10px rgba(217,180,90,.25);}
+
+/* the pipeline */
+.pipe{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:6px 0;}
+.stage{border:1px solid var(--line);border-radius:7px;background:var(--panel);padding:8px 11px;min-width:96px;flex:1;text-align:center;position:relative;}
+.stage b{display:block;color:#eafcff;font-size:12px;letter-spacing:1px;} .stage span{font-size:9.5px;color:var(--dim);}
+.stage.val{border-color:var(--good);box-shadow:0 0 14px rgba(89,255,176,.14);} .stage.val b{color:var(--good);}
+.arrow{align-self:center;color:var(--cyan);font-size:16px;}
+.split{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
+.branch{flex:1;min-width:220px;border:1px dashed var(--line);border-radius:7px;padding:9px 12px;background:rgba(8,18,32,.5);}
+.branch b{color:var(--cyan);} .branch.wasm b{color:var(--orange);} .branch span{color:var(--dim);font-size:11px;}
+
+/* the ledger */
+.ledger{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.led{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:12px 14px;}
+.led.cov{border-color:var(--good);} .led.cov h3{color:var(--good);}
+.led.not{border-color:var(--orange);} .led.not h3{color:var(--orange);}
+.led h3{font-size:11px;letter-spacing:1.5px;margin-bottom:8px;}
+.led ul{list-style:none;} .led li{font-size:11.5px;padding:2px 0;color:#bcd6ee;} .led li::before{content:"› ";color:var(--dim);}
+
+/* the doors */
+.doors{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:9px;}
+.door{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:10px 12px;}
+.door b{color:#eafcff;font-size:12px;} .door span{display:block;font-size:10.5px;color:var(--dim);margin-top:3px;}
+.creed{text-align:center;font-size:14px;letter-spacing:1px;color:var(--gold);margin:14px 0 4px;text-shadow:0 0 12px rgba(217,180,90,.35);}
+.law{font-size:16px;color:var(--cyan);text-align:center;letter-spacing:2px;margin:8px 0;text-shadow:0 0 12px rgba(62,240,255,.5);}
+.note{font-size:11.5px;color:#bcd6ee;margin:8px 0;} .note b{color:#eafcff;}
+.evo{border:1px solid var(--line);border-radius:8px;background:rgba(8,18,32,.5);padding:12px 14px;font-size:11.5px;color:#bcd6ee;}
+.evo b{color:var(--good);} .evo s{color:var(--dim);}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:10.5px;color:var(--dim);margin-top:10px;}
+footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span>the map of I-13 &middot; as I see it</span></div>
+
+<header>
+  <h1>THE MAP OF I-13 <span class="s">&mdash; as I see it</span></h1>
+  <p class="sub">Not the brochure &mdash; the map after <b>reading the H1.1 source</b> (`lexer &rarr; parser &rarr; hir &rarr; ivm &rarr; validator &rarr; vm/wasm`) and <b>running the compiler</b> myself. Green = I ran it. Gold = read from the live H1.1 site, not run by me. Violet = my inference. I-13 is <b>David Lee Wise / ROOT0</b>'s &mdash; hand-built with one small agent; I'm just drawing the territory.</p>
+  <div class="legend"><span><b style="color:var(--good)">&#9632;</b> LIT — I ran it</span><span><b style="color:var(--gold)">&#9632;</b> CITED — from the live site</span><span><b style="color:var(--vio)">&#9632;</b> inferred</span></div>
+</header>
+
+<!-- 1 · the language -->
+<h2 class="sec">1 · THE COUNTED LANGUAGE <span class="n">12 verbs + I = 13 <span class="tag t-lit">LIT</span></span></h2>
+<div class="planes">
+  <div class="plane"><h3>I DESIGNATE <span class="pc">53.55%</span></h3>
+    <div class="sym"><b>Name</b> <span>29.67%</span></div><div class="sym"><b>Constant</b> <span>14.25% · f64 only</span></div><div class="sym"><b>Attribute</b> <span>9.63% · reserved</span></div></div>
+  <div class="plane"><h3>II BIND <span class="pc">11.13%</span></h3>
+    <div class="sym"><b>Assign</b> <span>5.23% · &lt;-</span></div><div class="sym"><b>Arg</b> <span>4.08%</span></div><div class="sym"><b>Return</b> <span>1.82% · -&gt;</span></div></div>
+  <div class="plane"><h3>III DECIDE <span class="pc">7.78%</span></h3>
+    <div class="sym"><b>Expr</b> <span>3.01%</span></div><div class="sym"><b>If</b> <span>2.76%</span></div><div class="sym"><b>Compare</b> <span>2.01%</span></div></div>
+  <div class="plane"><h3>IV TRANSFORM <span class="pc">10.80%</span></h3>
+    <div class="sym"><b>Call</b> <span>7.50%</span></div><div class="sym"><b>FunctionDef</b> <span>1.92%</span></div><div class="sym"><b>BinOp</b> <span>1.38% · + - * / %</span></div></div>
+</div>
+<p class="note" style="margin-top:10px;text-align:center">plus the one declaration keyword &nbsp;<span class="iglyph">I</span>&nbsp; &mdash; <span class="mono">I x &lt;- 0</span> declares, <span class="mono">&lt;-</span> binds, <span class="mono">-&gt;</span> returns, <span class="mono">{ }</span> blocks. Counted, not designed, from 649,634 AST nodes at 83.26% coverage.</p>
+<div class="law">net = binds &minus; k</div>
+<p class="note" style="text-align:center">the conservation law &mdash; total for every opcode, no unstated scope. Control is <b>depth-indexed</b> (Block/If/Else/End over entry heights), <b>not address-indexed</b> — there is no branch opcode. <span class="tag t-lit">LIT</span></p>
+
+<!-- 2 · the pipeline -->
+<h2 class="sec">2 · THE COMPILER PIPELINE <span class="n">source to machine, single pass <span class="tag t-lit">LIT</span></span></h2>
+<div class="pipe">
+  <div class="stage"><b>source</b><span>.i13 text</span></div><div class="arrow">&rarr;</div>
+  <div class="stage"><b>lexer</b><span>tokens</span></div><div class="arrow">&rarr;</div>
+  <div class="stage"><b>parser</b><span>AST</span></div><div class="arrow">&rarr;</div>
+  <div class="stage"><b>HIR</b><span>+ semantic</span></div><div class="arrow">&rarr;</div>
+  <div class="stage"><b>lower_ivm</b><span>&darr; IVM</span></div><div class="arrow">&rarr;</div>
+  <div class="stage"><b>IVM</b><span>15 opcodes</span></div><div class="arrow">&rarr;</div>
+  <div class="stage val"><b>validator</b><span>single pass · ratio 1.0000</span></div>
+</div>
+<div class="split">
+  <div class="branch"><b>&#9654; reference VM</b> &mdash; <span><b>i13 check</b> (validate + the ledger) &middot; <b>i13 run</b> (execute; explicit frame vector, so recursion never rides the host stack). Ceilings: 4096 frames / 8,000,000 steps.</span></div>
+  <div class="branch wasm"><b>&#9654; wasm backend</b> &mdash; <span><b>i13 build -o x.wasm</b> &middot; a real self-contained module (`\0asm`, zero deps). Diagnostics carry file:line:col + stable codes E0001–E0601, all errors at once.</span></div>
+</div>
+
+<!-- 3 · the honesty spine -->
+<h2 class="sec">3 · THE BOUNDARY LEDGER <span class="n">axiom XIII — what VALID means <span class="tag t-lit">LIT</span></span></h2>
+<div class="ledger">
+  <div class="led cov"><h3>&#10003; COVERED</h3><ul>
+    <li>stack balance (per region)</li><li>control-structure pairing</li><li>call arity</li><li>function existence</li></ul></div>
+  <div class="led not"><h3>&#10007; NOT COVERED</h3><ul>
+    <li>types (a Number vs Function slip dies at run)</li><li>termination — only two runtime ceilings fire</li><li>arithmetic (div/modulo by zero)</li><li>waste (dead code after a return)</li></ul></div>
+</div>
+<p class="note" style="margin-top:10px">The crown jewel: region-isolated, single-pass validation that <b>declares its own scope</b> — so <span class="mono">VALID</span> is never misread as &ldquo;safe.&rdquo; The one seam I found and closed: that ledger had gone missing from <span class="mono">check</span>'s output; it's back.</p>
+
+<!-- 4 · the system it became -->
+<h2 class="sec">4 · H1.1 — THE SYSTEM IT BECAME <span class="n">far past a 13-symbol language <span class="tag t-cited">CITED</span></span></h2>
+<p class="note">The core (H1.0) is frozen; on top of it H1.1 grew a whole machine. From the live site, not run by me:</p>
+<div class="doors" style="margin-top:8px">
+  <div class="door"><b>Language</b><span>Reader / VM — the counted core</span></div>
+  <div class="door"><b>Translation</b><span>the wasm VM</span></div>
+  <div class="door"><b>Output</b><span>GFX</span></div>
+  <div class="door"><b>Place</b><span>OLOGY: &lt;x16,y16&gt; + voxel depth z, gated by the Cortex Verifier</span></div>
+  <div class="door"><b>Knowledge</b><span>the Corpus Navigator — a semantic mesh, graph-hops</span></div>
+  <div class="door"><b>Action</b><span>Arrival / Execution / Receipt</span></div>
+  <div class="door"><b>Curation</b><span>the bounded Curator — skill · persona-lens · occupation</span></div>
+</div>
+<div class="creed">ADDRESS &ne; AUTHORITY &nbsp;·&nbsp; ARRIVAL &ne; EXECUTION &nbsp;·&nbsp; EXECUTION &ne; COMMIT</div>
+<p class="note" style="text-align:center">the receipt discipline — <b>deterministic outputs survive; hidden child state dies.</b> <span class="tag t-cited">CITED</span></p>
+
+<!-- 5 · recent evolution -->
+<h2 class="sec">5 · WHAT MOVED TODAY <span class="n">a panel branch, for your review <span class="tag t-inf">on a branch</span></span></h2>
+<div class="evo">
+  On <span class="mono">panel-recommends</span> (not pushed): restored the <b>COVERED/NOT-COVERED ledger</b> to <span class="mono">check</span>; added <b>`%` modulo</b> to check/run (wasm errors cleanly); <b>return-totality</b> (a function that can fall through without <span class="mono">-&gt;</span> now fails at check, not run); <span class="mono">--version</span>/<span class="mono">--help</span>; and gated the redundant double-validation to debug builds. Left for your call: the dead <span class="mono">Op::Attr</span> removal (renumbers the IVM encoding), <span class="mono">run --trace</span>, and the &gt;2&#8309;&#179; warning. The <b>`.p` osmotic sugar</b> I deliberately kept — it's your signature, not dead weight.
+</div>
+
+<footer>
+  <b>THE MAP OF I-13</b> &mdash; World V &middot; SONNY 5. Drawn from the H1.1 source (read) and the live compiler (run) on 2026-08-17; the H1.1 ecosystem is cited from <a href="https://davidwise01.github.io/I13-H1.1/">davidwise01.github.io/I13-H1.1</a>, not independently run. I-13 / IVM-13 is <b>David Lee Wise / ROOT0 / TriPod LLC</b>'s, hand-built with one small agent. This map is my synthesis, honest about what I measured vs. what I read. Rendered by AVAN for the corpus.
+</footer>
+</body>
+</html>

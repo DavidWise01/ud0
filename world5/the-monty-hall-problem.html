@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Monty Hall Problem — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+label{color:var(--dim);}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:96px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi.ok{color:var(--good);border-color:rgba(89,255,176,.35);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* doors */
+.doors{display:flex;gap:14px;margin:12px 0 4px;flex-wrap:wrap;}
+.door{position:relative;width:104px;height:132px;border:2px solid var(--line);border-radius:6px;background:linear-gradient(180deg,rgba(62,240,255,.07),rgba(62,240,255,.02));cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .12s,box-shadow .12s,background .12s;}
+.door:hover{border-color:var(--orange);box-shadow:0 0 14px rgba(255,138,61,.35);}
+.door .num{position:absolute;top:6px;left:8px;font-size:11px;color:var(--dim);letter-spacing:1px;}
+.door .knob{position:absolute;right:12px;top:50%;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px var(--gold);}
+.door .face{font-size:34px;opacity:0;transition:opacity .2s;}
+.door.open{cursor:default;background:rgba(0,0,0,.35);border-color:var(--dim);}
+.door.open:hover{box-shadow:none;}
+.door.open .face{opacity:1;} .door.open .knob{opacity:0;}
+.door.picked{border-color:var(--cyan);box-shadow:0 0 16px rgba(62,240,255,.5);}
+.door.win{border-color:var(--good);box-shadow:0 0 18px rgba(89,255,176,.55);}
+.door.disabled{cursor:default;}
+.hint{font-size:12px;color:var(--gold);min-height:20px;margin:4px 0 8px;}
+.tally{font-size:11.5px;color:var(--dim);margin-top:6px;}
+.tally b{color:var(--cyan);}
+/* converge bars */
+.mc{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px;}
+.mccol{flex:1;min-width:230px;}
+.mccol h3{font-size:11px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;margin-bottom:6px;}
+.mccol.stay h3{color:var(--gold);} .mccol.switch h3{color:var(--good);}
+.bigpct{font-size:30px;letter-spacing:1px;}
+.mccol.stay .bigpct{color:var(--gold);text-shadow:0 0 12px rgba(217,180,90,.4);}
+.mccol.switch .bigpct{color:var(--good);text-shadow:0 0 12px rgba(89,255,176,.4);}
+.bigpct .sm{font-size:12px;color:var(--dim);}
+.track{height:16px;border:1px solid var(--line);border-radius:4px;margin-top:8px;position:relative;overflow:hidden;background:rgba(0,0,0,.4);}
+.track .fill{position:absolute;left:0;top:0;height:100%;box-shadow:0 0 10px currentColor;transition:width .18s;}
+.mccol.stay .fill{background:linear-gradient(90deg,var(--gold),var(--orange));color:var(--gold);}
+.mccol.switch .fill{background:linear-gradient(90deg,var(--cyan),var(--good));color:var(--good);}
+.track .tgt{position:absolute;top:-3px;bottom:-3px;width:2px;background:#fff;opacity:.75;box-shadow:0 0 6px #fff;}
+.tgtlbl{font-size:10px;color:var(--dim);margin-top:4px;}
+.count{font-size:11.5px;color:var(--dim);margin-top:10px;}
+.count b{color:var(--cyan);}
+.spark{width:100%;height:44px;display:block;margin-top:8px;border:1px solid var(--line);border-radius:4px;background:rgba(0,0,0,.3);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 013 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>THE MONTY HALL PROBLEM <span class="c">2/3</span></h1>
+  <p class="sub">A dart thrown into the dark abstract landed on the puzzle that broke a thousand PhDs&rsquo; intuitions: three doors, one prize, you pick one, the host opens a losing door &mdash; and now <b>switching wins twice as often as staying</b>. We prove it by <b>Monte-Carlo</b> &mdash; simulate the game live and watch STAY and SWITCH converge to <b>1/3</b> and <b>2/3</b>. Then we credit who <b>actually</b> posed it, and ask what <b>I-13</b> &mdash; a machine that owns <b>no dice</b> &mdash; should learn from a proof made of pure chance.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">Monte-Carlo &middot; play a few, then run 100,000</span></h2>
+  <p>Your first pick is right only <b>1/3</b> of the time. When the host (who knows) reveals a losing door, that door&rsquo;s 1/3 doesn&rsquo;t vanish &mdash; it <b>collapses onto the one unopened door you didn&rsquo;t pick</b>. Stay and you keep your 1/3; switch and you inherit the other 2/3. Don&rsquo;t take the argument on faith &mdash; <b>play it</b>, then let the machine play it a hundred thousand times. <span class="tag t-demo">live demo</span></p>
+
+  <div class="hint" id="hint">Pick a door.</div>
+  <div class="doors" id="doors"></div>
+  <div class="row">
+    <button id="reset">&#9654; new game</button>
+    <span class="tally" id="tally">by hand &mdash; STAY wins: <b id="hStayW">0</b>/<b id="hStayN">0</b> &middot; SWITCH wins: <b id="hSwW">0</b>/<b id="hSwN">0</b></span>
+  </div>
+
+  <div class="code">pick   = random_door(0..2)
+prize  = random_door(0..2)
+open   = a door that is NOT pick and NOT prize   // host knows; reveals a goat
+switch = the remaining unopened door
+STAY  wins  &hArr;  pick   == prize
+SWITCH wins &hArr;  switch == prize</div>
+
+  <div class="row" style="margin-top:12px">
+    <label>games =</label><input id="T" value="100000" spellcheck="false">
+    <button id="run" class="dartbtn">&#9192; run the Monte-Carlo</button>
+  </div>
+  <div class="mc">
+    <div class="mccol stay">
+      <h3>STAY strategy</h3>
+      <div class="bigpct"><span id="stayPct">--</span><span class="sm"> win</span></div>
+      <div class="track"><span class="fill" id="stayFill" style="width:0%"></span><span class="tgt" id="stayTgt" style="left:33.33%"></span></div>
+      <div class="tgtlbl">white line = 1/3 = 33.33%</div>
+    </div>
+    <div class="mccol switch">
+      <h3>SWITCH strategy</h3>
+      <div class="bigpct"><span id="swPct">--</span><span class="sm"> win</span></div>
+      <div class="track"><span class="fill" id="swFill" style="width:0%"></span><span class="tgt" id="swTgt" style="left:66.66%"></span></div>
+      <div class="tgtlbl">white line = 2/3 = 66.66%</div>
+    </div>
+  </div>
+  <canvas class="spark" id="spark" width="960" height="44"></canvas>
+  <div class="count" id="count">Convergence of SWITCH win-rate as games accumulate &mdash; the curve settles onto 2/3.</div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">The problem carries a TV host&rsquo;s name, so people assume <s>Monty Hall invented it</s>. He hosted the show it was named for &mdash; he did not pose it, and he once told a reporter the real game was more about reading the contestant than the math. The person who actually wrote it down is much less famous. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1889</b> &middot; <span class="who">Joseph Bertrand</span> &mdash; <i>Bertrand&rsquo;s box paradox</i> (<i>Calcul des probabilit&eacute;s</i>): the same trap, three boxes of coins. The deep ancestor.<br>
+    <b>1959</b> &middot; <span class="who">Martin Gardner</span> &mdash; the mathematically <b>equivalent</b> <i>Three Prisoners problem</i>, in <i>Scientific American</i>&rsquo;s &ldquo;Mathematical Games.&rdquo;<br>
+    <b>1975</b> &middot; <span class="who">Steve Selvin</span> &mdash; poses it in two letters to <i>The American Statistician</i>, and in the second letter <b>coins the name &ldquo;the Monty Hall problem,&rdquo;</b> after the host of <i>Let&rsquo;s Make a Deal</i>. This is the origin of the problem as we know it.<br>
+    <b>1990</b> &middot; <span class="who">Marilyn vos Savant</span> &mdash; answers reader Craig F. Whitaker in <i>Parade</i> (&ldquo;Ask Marilyn&rdquo;): <b>switch.</b> ~10,000 readers wrote in &mdash; nearly <b>1,000 with PhDs</b> &mdash; insisting she was wrong. She was right.<br>
+    <b>1991</b> &middot; <span class="who">Paul Erd&#337;s</span>, one of history&rsquo;s greatest mathematicians, refused to believe it &mdash; and was convinced only after being shown a <b>Monte-Carlo simulation</b>, the very method in the panel above.
+  </div>
+  <p style="margin-top:10px"><b>The fine print that matters:</b> the 2/3 result holds under the <i>standard</i> assumptions &mdash; the host <b>always</b> opens a losing door, <b>knows</b> where the prize is, and picks <b>at random</b> among losers when you happened to pick the car. Change those (a host who only offers a switch when you&rsquo;re winning) and the answer changes. That ambiguity, not bad math, is why so many smart people dug in. <span class="tag t-open">open</span></p>
+  <p style="margin-top:6px;font-size:11.5px;color:var(--dim)">Source: <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">Wikipedia: Monty Hall problem</a>.</p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a proof made of chance, in a machine with none</span></h2>
+  <p>The whole proof above <b>is</b> randomness &mdash; &ldquo;pick = random door, prize = random door,&rdquo; a hundred thousand times. I-13 has no such source. I asked the live compiler; it refused &mdash; proven, not asserted:</p>
+  <div class="evi" id="evi">i13 run  z_rand.i13  =&gt;  z_rand.i13:1:8  E0202 unknown function `random`   (no entropy primitive; no builtins at all)
+grep -riE "rand|entropy|thread_rng|getrandom|SystemTime"  src/  =&gt;  0 hits   (no clock, no OS entropy anywhere in the source)</div>
+  <p><b>Do NOT add ambient randomness</b> &mdash; a bare <span class="k">random()</span> would pull entropy from the clock or OS and break the one thing I-13 is: a deterministic machine whose receipts reproduce byte-for-byte. The honest fix is the same as <a href="./reservoir-sampling.html">DART 005 (reservoir sampling)</a> hit: <b>lift entropy to an explicit, seeded input</b> &mdash; a caller-supplied <span class="k">seed</span> advanced by a small PRNG. Same seed &rArr; same games &rArr; same receipt.</p>
+
+  <p style="margin-top:10px"><b>And here the form evolves &mdash; because the recommendation already landed.</b> DART 005 proved a seeded LCG was blocked by one missing operator: I-13 had no <span class="k">%</span> (modulo), which every PRNG needs to wrap. It recommended adding modulo as <b>a new <span class="k">BinOp</span> discriminant &mdash; zero new alphabet symbols</b>. I checked the live compiler today. <b>That fix is in.</b> <span class="tag t-demo">live demo</span></p>
+  <div class="evi ok" id="evi2">i13 run  z_mod.i13   =&gt;  a = 17 · b = 5 · c = 2            //  17 % 5 = 2   — modulo now WORKS in the reference VM
+src/compiler/lexer.rs   =&gt;  b'%' =&gt; TokenKind::Percent
+src/compiler/parser.rs  =&gt;  TokenKind::Percent =&gt; BinaryOp::Mod   (precedence 3)   // exactly the "new BinOp discriminant, no new symbol" DART 005 asked for
+i13 run  z_lcg.i13  (run 1) =&gt;  r = 1406932606
+i13 run  z_lcg.i13  (run 2) =&gt;  r = 1406932606                   //  a full seeded LCG step — reproduces BYTE-FOR-BYTE</div>
+  <div class="rec">
+    <b>Recommend (updated):</b> the language now has what a seeded PRNG needs. Ship a tiny standard <b>seeded LCG in pure I-13</b> &mdash; <span class="k">seed &larr; (seed &middot; 1103515245 + 12345) % 2^31</span> &mdash; and thread the seed as a normal parameter. That buys back <b>every Monte-Carlo method</b> (Monty Hall, reservoir sampling, &pi;-by-darts, MCMC) <i>honestly</i>: randomness becomes <b>data the caller supplies</b>, never a hidden power of the machine, and every experiment is re-runnable to the same receipt.<br><br>
+    <b>The one remaining honest cost.</b> Modulo lives in the reference VM (<span class="k">i13 run</span>) but <b>not yet in the wasm backend</b> &mdash; the source says so plainly: <i>&ldquo;modulo (%) is not yet supported in the wasm backend; use i13 run for now&rdquo;</i> (<span class="k">wasm.rs</span>). So the seeded sampler runs today under the reference VM and is the next thing to wire into <span class="k">build</span>.<br><br>
+    <b>Tradeoff (stated plainly):</b> I-13&rsquo;s identity is a <i>counted</i> 13-symbol alphabet and a strictly deterministic core. The modulo already added spent <b>a BinOp discriminant, not a symbol</b> &mdash; the counted 13 stay 13 &mdash; and it protects the load-bearing property (determinism) while buying back a whole family of methods. Keep the determinism; make entropy an <i>input</i>, never a <i>primitive</i>. That trade is now paid for.
+  </div>
+</div>
+
+<footer>
+  <b>DART 013 &middot; THE MONTY HALL PROBLEM</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied. Posed and named by <b>Steve Selvin</b> (1975, <i>The American Statistician</i>), after host <b>Monty Hall</b> of <i>Let&rsquo;s Make a Deal</i>; brought to fame &mdash; and vindicated against ~1,000 PhDs &mdash; by <b>Marilyn vos Savant</b> (1990, <i>Parade</i>); with priors in <b>Bertrand&rsquo;s box</b> (1889) and <b>Martin Gardner&rsquo;s</b> Three Prisoners (1959); and <b>Paul Erd&#337;s</b> convinced only by simulation. History &amp; figures via <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">Wikipedia: Monty Hall problem</a>. I-13 by David Lee Wise / ROOT0; the incapacity (E0202) and the now-landed modulo fix (17 % 5 = 2, and a seeded LCG reproducing byte-for-byte) were measured on the live compiler today. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var FACE_GOAT="🐐", FACE_CAR="🚗"; // goat, car
+
+  // ---------- play by hand ----------
+  var state=null; // {prize,pick,opened,phase}
+  var hStayW=0,hStayN=0,hSwW=0,hSwN=0;
+  var doorsEl=$("doors");
+
+  function buildDoors(){
+    doorsEl.innerHTML="";
+    for(var d=0;d<3;d++){
+      var el=document.createElement("div");
+      el.className="door"; el.setAttribute("data-d",String(d));
+      el.innerHTML='<span class="num">DOOR '+(d+1)+'</span><span class="knob"></span><span class="face"></span>';
+      el.onclick=(function(idx){return function(){onDoor(idx);};})(d);
+      doorsEl.appendChild(el);
+    }
+  }
+  function doorEl(d){ return doorsEl.querySelector('[data-d="'+d+'"]'); }
+  function face(d){ return doorEl(d).querySelector(".face"); }
+
+  function newGame(){
+    state={ prize:Math.floor(Math.random()*3), pick:-1, opened:-1, phase:"pick" };
+    buildDoors();
+    $("hint").innerHTML="Pick a door.";
+  }
+
+  function onDoor(d){
+    if(!state) return;
+    if(state.phase==="pick"){
+      state.pick=d;
+      // host opens a door that is not the pick and not the prize
+      var opts=[];
+      for(var i=0;i<3;i++){ if(i!==state.pick && i!==state.prize) opts.push(i); }
+      state.opened=opts[Math.floor(Math.random()*opts.length)];
+      state.phase="decide";
+      doorEl(d).classList.add("picked");
+      var od=doorEl(state.opened);
+      od.classList.add("open","disabled"); face(state.opened).textContent=FACE_GOAT;
+      var other=[0,1,2].filter(function(x){return x!==state.pick && x!==state.opened;})[0];
+      $("hint").innerHTML='Host opens <b>DOOR '+(state.opened+1)+'</b> &mdash; a goat &#128016;. Your door is <span class="k">DOOR '+(state.pick+1)+'</span>. '+
+        'Click <span class="k">DOOR '+(state.pick+1)+'</span> to <b>STAY</b>, or <span style="color:var(--good)">DOOR '+(other+1)+'</span> to <b>SWITCH</b>.';
+    } else if(state.phase==="decide"){
+      if(d===state.opened) return; // can't choose the open goat door
+      var switched = (d!==state.pick);
+      // reveal all
+      for(var i=0;i<3;i++){
+        var el=doorEl(i);
+        if(!el.classList.contains("open")){ el.classList.add("open"); face(i).textContent = (i===state.prize)?FACE_CAR:FACE_GOAT; }
+        el.classList.add("disabled");
+      }
+      var won = (d===state.prize);
+      if(won) doorEl(d).classList.add("win");
+      // tally
+      if(switched){ hSwN++; if(won)hSwW++; } else { hStayN++; if(won)hStayW++; }
+      $("hStayW").textContent=hStayW; $("hStayN").textContent=hStayN;
+      $("hSwW").textContent=hSwW; $("hSwN").textContent=hSwN;
+      $("hint").innerHTML=(switched?"You <b>SWITCHED</b> &mdash; ":"You <b>STAYED</b> &mdash; ")+
+        (won?'<span style="color:var(--good)">WON the car &#128663;!</span>':'<span style="color:var(--bad)">goat &#128016;. No car.</span>')+
+        ' &nbsp;<span style="color:var(--dim)">Click &ldquo;new game&rdquo; to play again.</span>';
+      state.phase="done";
+    }
+  }
+
+  // ---------- Monte-Carlo ----------
+  var spark=$("spark"), sctx=spark.getContext("2d");
+
+  function playOne(){
+    var prize=Math.floor(Math.random()*3);
+    var pick =Math.floor(Math.random()*3);
+    // stay wins iff pick==prize ; switch wins iff pick!=prize (host+switch logic collapses to this)
+    var stayWin = (pick===prize);
+    return stayWin; // switchWin = !stayWin
+  }
+
+  function runMany(){
+    var T=Math.max(1000,Math.min(2000000,parseInt($("T").value,10)||0));
+    $("T").value=T;
+    var stayWins=0;
+    // record switch-rate curve at ~180 sample points for the sparkline
+    var pts=[], marks=180, every=Math.max(1,Math.floor(T/marks));
+    for(var t=1;t<=T;t++){
+      if(playOne()) stayWins++;
+      if(t%every===0 || t===T){ pts.push((t-stayWins)/t); } // switch win-rate so far
+    }
+    var stayRate=stayWins/T, swRate=1-stayRate;
+    $("stayPct").textContent=(stayRate*100).toFixed(2)+"%";
+    $("swPct").textContent=(swRate*100).toFixed(2)+"%";
+    $("stayFill").style.width=(stayRate*100).toFixed(2)+"%";
+    $("swFill").style.width=(swRate*100).toFixed(2)+"%";
+    $("count").innerHTML='Over <b>'+T.toLocaleString()+'</b> games &mdash; STAY won <b>'+(stayRate*100).toFixed(2)+
+      '%</b> (target 33.33%), SWITCH won <b>'+(swRate*100).toFixed(2)+'%</b> (target 66.66%). '+
+      'The curve below is SWITCH&rsquo;s win-rate settling onto <span style="color:var(--good)">2/3</span> as games pile up.';
+    drawSpark(pts);
+  }
+
+  function drawSpark(pts){
+    var W=spark.width,H=spark.height;
+    sctx.clearRect(0,0,W,H);
+    // y maps [0.4 .. 0.9] -> [H..0] to zoom on the interesting band
+    var lo=0.40, hi=0.90;
+    function y(v){ return H-((v-lo)/(hi-lo))*H; }
+    // 2/3 target line
+    sctx.strokeStyle="rgba(255,255,255,.35)"; sctx.setLineDash([4,4]); sctx.lineWidth=1;
+    sctx.beginPath(); sctx.moveTo(0,y(2/3)); sctx.lineTo(W,y(2/3)); sctx.stroke(); sctx.setLineDash([]);
+    // 1/3? no, curve is switch-rate; keep one guide
+    // curve
+    sctx.strokeStyle="#59ffb0"; sctx.lineWidth=1.6; sctx.beginPath();
+    for(var i=0;i<pts.length;i++){
+      var xx=pts.length>1 ? (i/(pts.length-1))*W : 0;
+      var yy=y(Math.max(lo,Math.min(hi,pts[i])));
+      if(i===0)sctx.moveTo(xx,yy); else sctx.lineTo(xx,yy);
+    }
+    sctx.stroke();
+    // glow dot at end
+    if(pts.length){
+      var ex=W, ey=y(Math.max(lo,Math.min(hi,pts[pts.length-1])));
+      sctx.fillStyle="#59ffb0"; sctx.shadowColor="#59ffb0"; sctx.shadowBlur=8;
+      sctx.beginPath(); sctx.arc(ex-2,ey,2.5,0,Math.PI*2); sctx.fill(); sctx.shadowBlur=0;
+    }
+  }
+
+  $("reset").onclick=newGame;
+  $("run").onclick=runMany;
+  $("T").addEventListener("keydown",function(e){ if(e.key==="Enter") runMany(); });
+
+  // boot
+  newGame();
+  runMany();
+})();
+</script>
+</body>
+</html>

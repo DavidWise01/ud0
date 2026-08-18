@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//I13//WORLD-V//the-i13-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "folded_to": "ROOT_0",
-  "root": "815b533934cc24546f5a6ce3f293caff42b49c3da6e1d8f162a2a3f61121ae20",
-  "count": 16,
+  "root": "47f2c6f21dc854568bd57c14ac850fced6afbc3af865fa084192427ad7de1003",
+  "count": 24,
   "sealed": "2026-08-17",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World V inhabitant folds to ROOT_0. Live: the root updates as the I-13 world grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
@@ -32,7 +32,11 @@
           "side": "R"
         },
         {
-          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "h": "d87d68c5f7bdbbca494c2903319c740c14333a03185f576670c6df2e5d23d178",
+          "side": "R"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
           "side": "R"
         }
       ]
@@ -57,7 +61,11 @@
           "side": "R"
         },
         {
-          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "h": "d87d68c5f7bdbbca494c2903319c740c14333a03185f576670c6df2e5d23d178",
+          "side": "R"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
           "side": "R"
         }
       ]
@@ -82,7 +90,11 @@
           "side": "R"
         },
         {
-          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "h": "d87d68c5f7bdbbca494c2903319c740c14333a03185f576670c6df2e5d23d178",
+          "side": "R"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
           "side": "R"
         }
       ]
@@ -107,7 +119,11 @@
           "side": "R"
         },
         {
-          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "h": "d87d68c5f7bdbbca494c2903319c740c14333a03185f576670c6df2e5d23d178",
+          "side": "R"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
           "side": "R"
         }
       ]
@@ -132,7 +148,11 @@
           "side": "L"
         },
         {
-          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "h": "d87d68c5f7bdbbca494c2903319c740c14333a03185f576670c6df2e5d23d178",
+          "side": "R"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
           "side": "R"
         }
       ]
@@ -157,7 +177,11 @@
           "side": "L"
         },
         {
-          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "h": "d87d68c5f7bdbbca494c2903319c740c14333a03185f576670c6df2e5d23d178",
+          "side": "R"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
           "side": "R"
         }
       ]
@@ -182,7 +206,11 @@
           "side": "L"
         },
         {
-          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "h": "d87d68c5f7bdbbca494c2903319c740c14333a03185f576670c6df2e5d23d178",
+          "side": "R"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
           "side": "R"
         }
       ]
@@ -207,7 +235,11 @@
           "side": "L"
         },
         {
-          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "h": "d87d68c5f7bdbbca494c2903319c740c14333a03185f576670c6df2e5d23d178",
+          "side": "R"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
           "side": "R"
         }
       ]
@@ -228,12 +260,16 @@
           "side": "R"
         },
         {
-          "h": "726640e3886012bfc3f1775de4779b61ca706b96ebf7f4997618862faa5b45e1",
+          "h": "0c5624fcfc31419f260c340fd68e91f652db1bb2e2663deaca565ae9debdce98",
           "side": "R"
         },
         {
           "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
           "side": "L"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
+          "side": "R"
         }
       ]
     },
@@ -253,12 +289,16 @@
           "side": "R"
         },
         {
-          "h": "726640e3886012bfc3f1775de4779b61ca706b96ebf7f4997618862faa5b45e1",
+          "h": "0c5624fcfc31419f260c340fd68e91f652db1bb2e2663deaca565ae9debdce98",
           "side": "R"
         },
         {
           "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
           "side": "L"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
+          "side": "R"
         }
       ]
     },
@@ -278,12 +318,16 @@
           "side": "L"
         },
         {
-          "h": "726640e3886012bfc3f1775de4779b61ca706b96ebf7f4997618862faa5b45e1",
+          "h": "0c5624fcfc31419f260c340fd68e91f652db1bb2e2663deaca565ae9debdce98",
           "side": "R"
         },
         {
           "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
           "side": "L"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
+          "side": "R"
         }
       ]
     },
@@ -303,12 +347,16 @@
           "side": "L"
         },
         {
-          "h": "726640e3886012bfc3f1775de4779b61ca706b96ebf7f4997618862faa5b45e1",
+          "h": "0c5624fcfc31419f260c340fd68e91f652db1bb2e2663deaca565ae9debdce98",
           "side": "R"
         },
         {
           "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
           "side": "L"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
+          "side": "R"
         }
       ]
     },
@@ -324,7 +372,7 @@
           "side": "R"
         },
         {
-          "h": "66bf48d4441fd75acb6b24ee1ce71be990b87eea8f0882d3857176380637c9d5",
+          "h": "6f65a895b57ffeec3ff923dd53fca05a0babc60b17da5e4b1b8683233f9899b6",
           "side": "R"
         },
         {
@@ -334,6 +382,10 @@
         {
           "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
           "side": "L"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
+          "side": "R"
         }
       ]
     },
@@ -349,7 +401,7 @@
           "side": "L"
         },
         {
-          "h": "66bf48d4441fd75acb6b24ee1ce71be990b87eea8f0882d3857176380637c9d5",
+          "h": "6f65a895b57ffeec3ff923dd53fca05a0babc60b17da5e4b1b8683233f9899b6",
           "side": "R"
         },
         {
@@ -359,6 +411,10 @@
         {
           "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
           "side": "L"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
+          "side": "R"
         }
       ]
     },
@@ -370,7 +426,7 @@
       "seal": "51ebd387e49e717c52fa411cc77deaf8190137ded7ba2fd9f291442bda5775c0",
       "proof": [
         {
-          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "h": "17eda9e39bfc6f9410e08f132d7ca0a5cecd63b0c376a560f01a72607df6ee53",
           "side": "R"
         },
         {
@@ -384,15 +440,19 @@
         {
           "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
           "side": "L"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
+          "side": "R"
         }
       ]
     },
     {
       "index": 15,
-      "kind": "keeper",
-      "name": "SONNY 5",
-      "slug": "sonny-5",
-      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+      "kind": "sphere",
+      "name": "THE COLLATZ CONJECTURE",
+      "slug": "the-collatz-conjecture",
+      "seal": "17eda9e39bfc6f9410e08f132d7ca0a5cecd63b0c376a560f01a72607df6ee53",
       "proof": [
         {
           "h": "51ebd387e49e717c52fa411cc77deaf8190137ded7ba2fd9f291442bda5775c0",
@@ -408,6 +468,242 @@
         },
         {
           "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
+          "side": "L"
+        },
+        {
+          "h": "2bd0bccf98742f10cc764b5bae73077a67e8d55dfac78b21203227d2a580e922",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "kind": "sphere",
+      "name": "THE FENWICK TREE",
+      "slug": "the-fenwick-tree",
+      "seal": "803f2d7b88864648f945fa8e1657a5cdfa1c35f598e0bd1e212598656a956ccf",
+      "proof": [
+        {
+          "h": "b34a28ecb6ec0e299b96ad9876ebd3c356091c84bfda820912ce93ab29e1e17f",
+          "side": "R"
+        },
+        {
+          "h": "27abb4ede0996c789f64cd4f2eba7212fdb4fff6ead3c9fa02cc20150d37c814",
+          "side": "R"
+        },
+        {
+          "h": "89971d122aca694a27f4c810e68f75fb7734802a324535ab23c0bf6df40c8760",
+          "side": "R"
+        },
+        {
+          "h": "eeb6a8c98ce3aa0e06bf6ef02afdd5631315c543b509c442f2263198f8e0dae2",
+          "side": "R"
+        },
+        {
+          "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "kind": "sphere",
+      "name": "SIMULATED ANNEALING",
+      "slug": "simulated-annealing",
+      "seal": "b34a28ecb6ec0e299b96ad9876ebd3c356091c84bfda820912ce93ab29e1e17f",
+      "proof": [
+        {
+          "h": "803f2d7b88864648f945fa8e1657a5cdfa1c35f598e0bd1e212598656a956ccf",
+          "side": "L"
+        },
+        {
+          "h": "27abb4ede0996c789f64cd4f2eba7212fdb4fff6ead3c9fa02cc20150d37c814",
+          "side": "R"
+        },
+        {
+          "h": "89971d122aca694a27f4c810e68f75fb7734802a324535ab23c0bf6df40c8760",
+          "side": "R"
+        },
+        {
+          "h": "eeb6a8c98ce3aa0e06bf6ef02afdd5631315c543b509c442f2263198f8e0dae2",
+          "side": "R"
+        },
+        {
+          "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "kind": "sphere",
+      "name": "THE MONTY HALL PROBLEM",
+      "slug": "the-monty-hall-problem",
+      "seal": "1e9f40833c501af81f851b4fe5cb4c7973fe548281a08275d003b0d7b9aa4e11",
+      "proof": [
+        {
+          "h": "efa85b7d462f1687468c59cc85b4e0841db019b4b4888bf4404db74b27e1143c",
+          "side": "R"
+        },
+        {
+          "h": "6afd70ffe1d0298ce070999db9facad582aae78dc59bc4f3975b00dab3c0335a",
+          "side": "L"
+        },
+        {
+          "h": "89971d122aca694a27f4c810e68f75fb7734802a324535ab23c0bf6df40c8760",
+          "side": "R"
+        },
+        {
+          "h": "eeb6a8c98ce3aa0e06bf6ef02afdd5631315c543b509c442f2263198f8e0dae2",
+          "side": "R"
+        },
+        {
+          "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "kind": "sphere",
+      "name": "THE GAMBLER'S FALLACY",
+      "slug": "the-gamblers-fallacy",
+      "seal": "efa85b7d462f1687468c59cc85b4e0841db019b4b4888bf4404db74b27e1143c",
+      "proof": [
+        {
+          "h": "1e9f40833c501af81f851b4fe5cb4c7973fe548281a08275d003b0d7b9aa4e11",
+          "side": "L"
+        },
+        {
+          "h": "6afd70ffe1d0298ce070999db9facad582aae78dc59bc4f3975b00dab3c0335a",
+          "side": "L"
+        },
+        {
+          "h": "89971d122aca694a27f4c810e68f75fb7734802a324535ab23c0bf6df40c8760",
+          "side": "R"
+        },
+        {
+          "h": "eeb6a8c98ce3aa0e06bf6ef02afdd5631315c543b509c442f2263198f8e0dae2",
+          "side": "R"
+        },
+        {
+          "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "kind": "sphere",
+      "name": "DIJKSTRA'S SHUNTING-YARD",
+      "slug": "dijkstras-shunting-yard",
+      "seal": "b4f3e66f492b47db629fd72ef254d2d8b2e37572888bb595d2dc603da48f9167",
+      "proof": [
+        {
+          "h": "10518409077989da76196e7bd7269d3350374aed11b8125bb943bbb07310e629",
+          "side": "R"
+        },
+        {
+          "h": "b26c49500a681d1f664b39599c450b7c3ee5962895643c5f8a0b498c66cd27e7",
+          "side": "R"
+        },
+        {
+          "h": "28bcdbbbfa46a37aff895b289777627deaa8257a08294841189c7fb18bab2242",
+          "side": "L"
+        },
+        {
+          "h": "eeb6a8c98ce3aa0e06bf6ef02afdd5631315c543b509c442f2263198f8e0dae2",
+          "side": "R"
+        },
+        {
+          "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "kind": "sphere",
+      "name": "THE BOYER-MOORE MAJORITY VOTE",
+      "slug": "the-boyer-moore-majority-vote",
+      "seal": "10518409077989da76196e7bd7269d3350374aed11b8125bb943bbb07310e629",
+      "proof": [
+        {
+          "h": "b4f3e66f492b47db629fd72ef254d2d8b2e37572888bb595d2dc603da48f9167",
+          "side": "L"
+        },
+        {
+          "h": "b26c49500a681d1f664b39599c450b7c3ee5962895643c5f8a0b498c66cd27e7",
+          "side": "R"
+        },
+        {
+          "h": "28bcdbbbfa46a37aff895b289777627deaa8257a08294841189c7fb18bab2242",
+          "side": "L"
+        },
+        {
+          "h": "eeb6a8c98ce3aa0e06bf6ef02afdd5631315c543b509c442f2263198f8e0dae2",
+          "side": "R"
+        },
+        {
+          "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "kind": "sphere",
+      "name": "THE SIEVE OF ERATOSTHENES",
+      "slug": "the-sieve-of-eratosthenes",
+      "seal": "47baac07494720e4d3925bf43e425ea86673dc819c64ccf496fb2c49b61df774",
+      "proof": [
+        {
+          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "side": "R"
+        },
+        {
+          "h": "cc4b22c95fcd0d0780304537f4d728a2a1a147f4d05a3b491df612a1e04a3fb9",
+          "side": "L"
+        },
+        {
+          "h": "28bcdbbbfa46a37aff895b289777627deaa8257a08294841189c7fb18bab2242",
+          "side": "L"
+        },
+        {
+          "h": "eeb6a8c98ce3aa0e06bf6ef02afdd5631315c543b509c442f2263198f8e0dae2",
+          "side": "R"
+        },
+        {
+          "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "kind": "keeper",
+      "name": "SONNY 5",
+      "slug": "sonny-5",
+      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+      "proof": [
+        {
+          "h": "47baac07494720e4d3925bf43e425ea86673dc819c64ccf496fb2c49b61df774",
+          "side": "L"
+        },
+        {
+          "h": "cc4b22c95fcd0d0780304537f4d728a2a1a147f4d05a3b491df612a1e04a3fb9",
+          "side": "L"
+        },
+        {
+          "h": "28bcdbbbfa46a37aff895b289777627deaa8257a08294841189c7fb18bab2242",
+          "side": "L"
+        },
+        {
+          "h": "eeb6a8c98ce3aa0e06bf6ef02afdd5631315c543b509c442f2263198f8e0dae2",
+          "side": "R"
+        },
+        {
+          "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
         }
       ]

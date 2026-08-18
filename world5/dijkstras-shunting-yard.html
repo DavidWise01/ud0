@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shunting-Yard — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:220px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+button:disabled{opacity:.35;cursor:default;box-shadow:none;border-color:var(--line);color:var(--dim);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--good);background:rgba(0,0,0,.35);border:1px solid rgba(89,255,176,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+/* --- shunting-yard viz --- */
+.yard{display:grid;grid-template-columns:1fr;gap:10px;margin-top:12px;}
+.lane{border:1px solid var(--line);border-radius:6px;background:rgba(0,0,0,.28);padding:9px 11px;min-height:52px;}
+.lane .cap{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:7px;display:flex;justify-content:space-between;}
+.lane .cap b{color:var(--cyan);letter-spacing:1px;}
+.tokens{display:flex;gap:6px;flex-wrap:wrap;align-items:center;min-height:26px;}
+.chip{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 8px;border-radius:5px;font-size:13px;font-weight:700;border:1px solid var(--line);background:rgba(62,240,255,.06);color:var(--ink);}
+.chip.num{color:var(--gold);border-color:rgba(217,180,90,.55);background:rgba(217,180,90,.08);}
+.chip.op{color:var(--cyan);border-color:rgba(62,240,255,.55);}
+.chip.par{color:var(--orange);border-color:rgba(255,138,61,.5);}
+.chip.cur{outline:2px solid var(--orange);box-shadow:0 0 12px rgba(255,138,61,.5);}
+.chip.done{opacity:.32;}
+.chip.pop{color:var(--good);border-color:var(--good);box-shadow:0 0 10px rgba(89,255,176,.4);}
+.lane.out .cap b{color:var(--good);} .lane.stk .cap b{color:var(--cyan);}
+.stkwrap{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:6px;flex-wrap:wrap;}
+.act{font-size:12px;color:#bcd6ee;margin-top:10px;min-height:20px;}
+.act b{color:var(--orange);} .act .rpn{color:var(--good);letter-spacing:1px;}
+.prectab{font-size:11px;color:var(--dim);margin-top:8px;}
+.prectab span{color:var(--cyan);}
+.mini{font-size:11px;color:var(--dim);margin-top:6px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 015 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>DIJKSTRA&rsquo;S SHUNTING-YARD <span class="c">3 + 4 &times; 2 &rarr; 3 4 2 &times; +</span></h1>
+  <p class="sub">A dart thrown at the oldest question a parser faces: <b>how do you know &lowast; binds before +</b> without recursion or guessing? Dijkstra&rsquo;s answer &mdash; a single <b>operator stack</b> and a <b>precedence rule</b> &mdash; shunts tokens like railway cars into output-vs-siding until the expression comes out in postfix. We show it working, credit who built it, and ask what <b>I-13</b> should learn. This one ends in a handshake, not a gap.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">one stack &middot; one precedence rule &middot; infix &rarr; RPN</span></h2>
+  <p>Read tokens left to right. A <b>number</b> goes straight to <b class="k">output</b>. An <b>operator</b> waits on the <b class="k">stack</b> &mdash; but first it evicts any operator already there of <i>higher-or-equal</i> precedence (left-associative), because those must apply first. Parentheses open a sub-yard. At the end, drain the stack. The output is <b>Reverse Polish</b>, ready to evaluate with a second tiny stack. <span class="tag t-demo">live demo</span></p>
+  <div class="prectab">precedence in this demo (matched to I-13&rsquo;s own table): <span>+ &minus;</span> = 2 &nbsp;&middot;&nbsp; <span>&lowast; / %</span> = 3 &nbsp;&middot;&nbsp; all left-associative &nbsp;&middot;&nbsp; <span>( )</span> group</div>
+  <div class="row">
+    <label style="color:var(--dim)">infix =</label><input id="expr" value="3 + 4 * 2" spellcheck="false">
+    <button id="run">shunt it &rarr; RPN</button>
+    <button id="step">step</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+  </div>
+
+  <div class="yard">
+    <div class="lane">
+      <div class="cap"><span>INPUT &mdash; tokens read left to right</span><b id="cap-in"></b></div>
+      <div class="tokens" id="lane-input"></div>
+    </div>
+    <div class="lane stk">
+      <div class="cap"><span>OPERATOR STACK &mdash; the siding (top = left)</span><b id="cap-stk"></b></div>
+      <div class="tokens stkwrap" id="lane-stack"></div>
+    </div>
+    <div class="lane out">
+      <div class="cap"><span>OUTPUT QUEUE &mdash; the RPN, in order</span><b id="cap-out"></b></div>
+      <div class="tokens" id="lane-output"></div>
+    </div>
+  </div>
+  <div class="act" id="act"></div>
+  <div class="res" id="res"></div>
+  <div class="mini">Watch the moment &lowast; arrives on the empty siding while + waits &mdash; and the moment a lower-precedence + <i>cannot</i> evict the &lowast; sitting on it, so &lowast; reaches output first. That eviction test <b>is</b> operator precedence.</div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">This one is refreshingly <b>undisputed</b>. No <s>folk hero</s> stole the credit here &mdash; the author named it himself, in print, with a picture of a rail yard. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>Nov 1961</b> &middot; <span class="who">Edsger W. Dijkstra</span> (Mathematisch Centrum, Amsterdam) publishes it in the report <i>&ldquo;ALGOL 60 Translation&rdquo;</i> (MR 34/35), as part of building an ALGOL 60 translator for the <b>Electrologica X1</b>.<br>
+    &middot; He called it the <b>&ldquo;shunting-yard&rdquo;</b> algorithm himself &mdash; the operator stack is the siding a locomotive shunts cars onto to reorder a train.<br>
+    &middot; It is the classic answer to <b>operator precedence</b>: convert infix to postfix (RPN) in one linear pass, no grammar recursion required.<br>
+    <b>lineage</b> &middot; postfix / <span class="who">Reverse Polish</span> itself traces to <span class="who">Jan &Lstrok;ukasiewicz</span> (Polish notation, 1920s); Dijkstra&rsquo;s contribution is the <i>conversion</i>, not the notation.
+  </div>
+  <p style="margin-top:10px">What&rsquo;s worth flagging as <b>context, not dispute</b>: precedence-<i>climbing</i> / Pratt parsing (Vaughan Pratt, 1973) is a different, recursive route to the same result. Many modern parsers &mdash; <b>including I-13&rsquo;s</b> &mdash; use the climbing form. Same precedence semantics, different bookkeeping. <span class="tag t-open">context</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a dart that credits a strength</span></h2>
+  <p>Most darts find a wall in I-13 and prove it. This one found a <b>door already open</b>. Shunting-yard is a way to resolve operator precedence &mdash; and I-13&rsquo;s parser <i>already does exactly this</i>. I read the source: <span class="k">src/compiler/parser.rs</span> is a precedence-climbing parser with an explicit infix table:</p>
+  <div class="code">// src/compiler/parser.rs :: infix_info()
+Plus    =&gt; (2, Add)     Minus =&gt; (2, Sub)     // precedence 2
+Star    =&gt; (3, Mul)     Slash =&gt; (3, Div)     // precedence 3
+Percent =&gt; (3, Mod)                            // % slotted in at 3
+// expression(min_prec): pop-or-recurse exactly when prec &gt;= min_prec
+// &mdash; the same eviction test shunting-yard runs against its stack.</div>
+  <p>That is not a coincidence resembling Dijkstra &mdash; it is the same idea in its recursive dress. I ran the <b>live compiler</b> to confirm the precedence actually resolves the way the table promises &mdash; proven, not asserted:</p>
+  <div class="evi" id="evi">$ i13 run prec.i13     (top-level binds print their values)
+  no_parens = 11        // 3 + 4 * 2   -> * first, NOT 14
+  parens    = 14        // (3 + 4) * 2 -> parens override
+  mod_slots = 7         // 3 + 17 % 5 * 2  ->  17%5=2, *2=4, +3=7
+RUN OK · 20 step(s) · peak stack 3 · call depth 0</div>
+  <div class="rec">
+    <b>Recommend:</b> <span class="kg">no change needed here &mdash; this is I-13&rsquo;s parser.</span> The lesson runs the other way: the recent <span class="k">%</span> (<span class="k">Percent &rarr; Mod</span>) addition dropped straight into precedence level 3 next to <span class="k">&lowast;</span> and <span class="k">/</span> &mdash; a <b>new BinOp discriminant, zero new alphabet symbols</b>, exactly the cheapest-fix move earlier darts kept recommending. The <code>mod_slots = 7</code> run above is that addition working. When a future operator wants in, the shape is already proven: pick a precedence row, add a discriminant, keep the alphabet at 13.<br>
+    <b>Tradeoff (honest):</b> there isn&rsquo;t one to pay here. Celebrating a strength costs I-13 nothing &mdash; and it names the seam future darts should reuse rather than reinvent. The one boundary to keep watching is that this table lives in the parser, outside the counted-alphabet census; growth here is measured in <i>discriminants</i>, and stays free of the 13-symbol budget only as long as that holds.
+  </div>
+</div>
+
+<footer>
+  <b>DART 015 &middot; DIJKSTRA&rsquo;S SHUNTING-YARD</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied. The algorithm is <b>Edsger W. Dijkstra&rsquo;s</b> (Mathematisch Centrum, November 1961, in the report on an ALGOL 60 translator for the Electrologica X1); postfix notation itself is <b>Jan &Lstrok;ukasiewicz&rsquo;s</b> (1920s). History &amp; figures via <a href="https://en.wikipedia.org/wiki/Shunting_yard_algorithm">Wikipedia: Shunting yard algorithm</a>. The precedence table and the three <span class="kg">prec.i13</span> results were read and run on the live I-13 compiler (<span class="kg">src/compiler/parser.rs</span>). I-13 by David Lee Wise / ROOT0. Rendered by AVAN for the corpus. A dart, a demo, a handshake.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var PREC = { "+":2, "-":2, "*":3, "/":3, "%":3 };
+  var input=document.getElementById("expr");
+  var laneIn=document.getElementById("lane-input"), laneStk=document.getElementById("lane-stack"), laneOut=document.getElementById("lane-output");
+  var capIn=document.getElementById("cap-in"), capStk=document.getElementById("cap-stk"), capOut=document.getElementById("cap-out");
+  var act=document.getElementById("act"), res=document.getElementById("res");
+
+  function tokenize(s){
+    var toks=[], i=0, n=s.length;
+    while(i<n){
+      var c=s[i];
+      if(c===" "||c==="\t"){ i++; continue; }
+      if(/[0-9.]/.test(c)){ var j=i; while(j<n && /[0-9.]/.test(s[j])) j++; toks.push({t:"num",v:s.slice(i,j)}); i=j; continue; }
+      if("+-*/%".indexOf(c)>=0){ toks.push({t:"op",v:c}); i++; continue; }
+      if(c==="("){ toks.push({t:"lp",v:"("}); i++; continue; }
+      if(c===")"){ toks.push({t:"rp",v:")"}); i++; continue; }
+      return {err:"unexpected character '"+c+"'"};
+    }
+    return {toks:toks};
+  }
+
+  // Build a list of frames. Each frame = snapshot after one action.
+  function shunt(toks){
+    var frames=[], out=[], stk=[];
+    function snap(cur, note, popIdx){
+      frames.push({ cur:cur, note:note, out:out.slice(), stk:stk.slice(), popIdx:(popIdx==null?-1:popIdx) });
+    }
+    snap(0, "start &mdash; read tokens left to right", -1);
+    for(var i=0;i<toks.length;i++){
+      var tk=toks[i];
+      if(tk.t==="num"){ out.push(tk.v); snap(i, "number <b>"+tk.v+"</b> &rarr; straight to output", -1); }
+      else if(tk.t==="op"){
+        while(stk.length && stk[stk.length-1]!=="(" && PREC[stk[stk.length-1]]>=PREC[tk.v]){
+          var popped=stk.pop(); out.push(popped);
+          snap(i, "<b>"+tk.v+"</b> (prec "+PREC[tk.v]+") evicts <b>"+popped+"</b> (prec "+PREC[popped]+", &ge;) &rarr; output", out.length-1);
+        }
+        stk.push(tk.v); snap(i, "<b>"+tk.v+"</b> waits on the operator stack", -1);
+      }
+      else if(tk.t==="lp"){ stk.push("("); snap(i, "<b>(</b> opens a sub-yard on the stack", -1); }
+      else if(tk.t==="rp"){
+        while(stk.length && stk[stk.length-1]!=="("){ var p=stk.pop(); out.push(p); snap(i, "<b>)</b> drains <b>"+p+"</b> &rarr; output until <b>(</b>", out.length-1); }
+        if(stk.length && stk[stk.length-1]==="(") { stk.pop(); snap(i, "<b>)</b> discards the matching <b>(</b>", -1); }
+      }
+    }
+    while(stk.length){ var q=stk.pop(); out.push(q); snap(-1, "end &mdash; drain stack: <b>"+q+"</b> &rarr; output", out.length-1); }
+    snap(-1, "done. RPN ready to evaluate.", -1);
+    return frames;
+  }
+
+  function evalRPN(out){
+    var st=[];
+    for(var i=0;i<out.length;i++){
+      var t=out[i];
+      if(PREC[t]!==undefined){
+        var b=st.pop(), a=st.pop();
+        if(a===undefined||b===undefined) return {err:"malformed expression"};
+        var r = t==="+"?a+b : t==="-"?a-b : t==="*"?a*b : t==="/"?a/b : a%b;
+        st.push(r);
+      } else { st.push(parseFloat(t)); }
+    }
+    if(st.length!==1) return {err:"malformed expression"};
+    return {v:st[0]};
+  }
+
+  function fmt(n){ if(!isFinite(n)) return String(n); return (Math.round(n*1e9)/1e9).toString(); }
+
+  var TOKS=[], FRAMES=[], fi=0;
+
+  function chip(txt, cls){ return '<span class="chip '+cls+'">'+txt+'</span>'; }
+  function tokClass(tk){ return tk.t==="num"?"num":(tk.t==="op"?"op":"par"); }
+
+  function render(){
+    var f=FRAMES[fi];
+    // input lane: mark consumed vs current
+    var html="";
+    for(var i=0;i<TOKS.length;i++){
+      var cls=tokClass(TOKS[i]);
+      // consumed if index < the current token being processed, or if we are past end
+      var consumed = (f.cur<0) ? true : (i < f.cur) ;
+      var isCur = (i===f.cur);
+      html+=chip(TOKS[i].v.replace("*","&lowast;"), cls+(isCur?" cur":"")+(consumed&&!isCur?" done":""));
+    }
+    laneIn.innerHTML=html || '<span style="color:var(--dim)">&mdash;</span>';
+    // stack lane (row-reversed so top-of-stack shows on the left)
+    var sh="";
+    for(var s=0;s<f.stk.length;s++){ var v=f.stk[s]; sh+=chip(v==="("?"(":v.replace("*","&lowast;"), v==="("?"par":"op"); }
+    laneStk.innerHTML=sh || '<span style="color:var(--dim)">empty</span>';
+    // output lane
+    var oh="";
+    for(var o=0;o<f.out.length;o++){ var ov=f.out[o]; var isP=(o===f.popIdx); var oc=(PREC[ov]!==undefined?"op":"num"); oh+=chip(ov.replace("*","&lowast;"), oc+(isP?" pop":"")); }
+    laneOut.innerHTML=oh || '<span style="color:var(--dim)">&mdash;</span>';
+    // captions
+    capIn.textContent=(f.cur<0?TOKS.length:Math.min(f.cur+ (fi>0?0:0),TOKS.length))+"/"+TOKS.length+" read";
+    capStk.textContent=f.stk.length+" deep";
+    capOut.textContent=f.out.length+" out";
+    act.innerHTML='<b>step '+fi+'/'+(FRAMES.length-1)+'</b> &mdash; '+f.note;
+    // result only when at last frame
+    if(fi===FRAMES.length-1){
+      var rpn=f.out.join(" ");
+      var ev=evalRPN(f.out);
+      if(ev.err){ res.innerHTML='RPN = <span class="rpn" style="color:var(--good)">'+rpn.replace(/\*/g,"&lowast;")+'</span> &mdash; <span class="err">'+ev.err+'</span>'; }
+      else { res.innerHTML='RPN = <span class="true" style="letter-spacing:1px">'+rpn.replace(/\*/g,"&lowast;")+'</span> &nbsp;&rarr;&nbsp; evaluates to <span class="true">'+fmt(ev.v)+'</span>'; }
+    } else { res.innerHTML=""; }
+    document.getElementById("step").disabled=(fi>=FRAMES.length-1);
+  }
+
+  function build(){
+    res.innerHTML="";
+    var tz=tokenize(input.value);
+    if(tz.err){ TOKS=[]; FRAMES=[{cur:-1,note:tz.err,out:[],stk:[],popIdx:-1}]; fi=0; laneIn.innerHTML='<span style="color:var(--bad)">'+tz.err+'</span>'; laneStk.innerHTML=""; laneOut.innerHTML=""; act.innerHTML=""; document.getElementById("step").disabled=true; return false; }
+    if(!tz.toks.length){ laneIn.innerHTML='<span style="color:var(--dim)">enter an expression</span>'; return false; }
+    TOKS=tz.toks; FRAMES=shunt(TOKS); fi=0; render(); return true;
+  }
+
+  document.getElementById("run").onclick=function(){ if(build()){ fi=FRAMES.length-1; render(); } };
+  document.getElementById("step").onclick=function(){
+    if(!FRAMES.length || fi>=FRAMES.length-1){ if(!build()) return; fi=0; render(); return; }
+    fi++; render();
+  };
+  input.addEventListener("keydown",function(e){ if(e.key==="Enter"){ if(build()){ fi=FRAMES.length-1; render(); } } });
+  document.getElementById("dart").onclick=function(){
+    // throw a dart: build a small random infix expression with mixed precedence + maybe parens
+    var nums=function(){ return String(Math.floor(Math.random()*18)+2); };
+    var ops=["+","-","*","/","%"];
+    var op=function(){ return ops[Math.floor(Math.random()*ops.length)]; };
+    var e;
+    if(Math.random()<0.5){ e=nums()+" "+op()+" "+nums()+" "+op()+" "+nums(); }
+    else { e=nums()+" "+op()+" ( "+nums()+" "+op()+" "+nums()+" ) "+op()+" "+nums(); }
+    input.value=e;
+    if(build()){ fi=FRAMES.length-1; render(); }
+  };
+
+  build();
+})();
+</script>
+</body>
+</html>

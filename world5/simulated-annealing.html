@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulated Annealing — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:90px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.35);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* dart 012 additions */
+canvas{width:100%;height:230px;display:block;border:1px solid var(--line);border-radius:6px;background:rgba(0,0,0,.35);margin-top:6px;}
+.hud{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:10px;}
+.cell{border:1px solid var(--line);border-radius:5px;padding:7px 9px;background:rgba(0,0,0,.25);}
+.cell .lbl{color:var(--dim);font-size:10px;letter-spacing:1px;text-transform:uppercase;}
+.cell .v{font-size:15px;color:var(--cyan);}
+.cell.best{border-color:var(--good);} .cell.best .v{color:var(--good);}
+.cell.greedy{border-color:var(--bad);} .cell.greedy .v{color:var(--bad);}
+.cell.temp .v{color:var(--gold);}
+.legend{font-size:11px;color:var(--dim);margin-top:8px;}
+.legend .sw{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:middle;margin:0 4px 0 10px;}
+.decis{font-size:11.5px;margin-top:8px;color:var(--dim);white-space:pre-wrap;height:74px;overflow:hidden;border-left:2px solid var(--line);padding-left:12px;}
+.decis .ac{color:var(--good);} .decis .rj{color:var(--orange);} .decis .up{color:var(--bad);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 012 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>SIMULATED ANNEALING <span class="c">e<sup>&minus;&Delta;E/T</sup></span></h1>
+  <p class="sub">A dart into the dark abstract landed on the trick that lets a search <b>climb out of a hole</b>. Borrowed from how metal cools, it sometimes accepts a <b>worse</b> move &mdash; with probability <b>e<sup>&minus;&Delta;E/T</sup></b> &mdash; then lowers the temperature until it settles. We show the <b>technique</b> (watch it beat greedy), credit who <b>actually</b> made it, and ask what <b>I-13</b> should learn. Three prongs, one dart.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">accept worse moves, cool the temperature</span></h2>
+  <p>Minimize a bumpy 1-D landscape. <b>Greedy</b> (red) only ever steps downhill &mdash; it dies in the first valley it meets. <b>Annealing</b> (cyan) proposes random jumps; a jump uphill by &Delta;E is still taken with probability <b>e<sup>&minus;&Delta;E/T</sup></b>. As <span class="kg">T</span> cools the jumps get pickier, and the walk settles in the deepest valley it found. <span class="tag t-demo">live demo</span></p>
+  <div class="code">propose  x' = x + step&middot;randn()
+&Delta;E = f(x') &minus; f(x)
+if &Delta;E &lt; 0        -> accept              // downhill: always
+else accept with P = e^(&minus;&Delta;E / T)      // uphill: sometimes
+T <- T &times; cool                              // 0 &lt; cool &lt; 1</div>
+  <div class="row">
+    <label style="color:var(--dim)">start x =</label><input id="x0" value="1.4" spellcheck="false">
+    <label style="color:var(--dim)">T&#8320; =</label><input id="t0" value="3.0" spellcheck="false">
+    <label style="color:var(--dim)">cool =</label><input id="cool" value="0.985" spellcheck="false">
+    <button id="go">&#9654; anneal</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+  </div>
+  <canvas id="cv" width="960" height="230"></canvas>
+  <div class="legend">
+    <span class="sw" style="background:#3ef0ff"></span>current &amp; annealing best
+    <span class="sw" style="background:#ff5a6a"></span>greedy (stuck)
+    <span class="sw" style="background:#d9b45a"></span>true global min (grid scan)
+  </div>
+  <div class="hud">
+    <div class="cell temp"><div class="lbl">temperature T</div><div class="v" id="hT">&mdash;</div></div>
+    <div class="cell"><div class="lbl">current f(x)</div><div class="v" id="hCur">&mdash;</div></div>
+    <div class="cell best"><div class="lbl">annealing best</div><div class="v" id="hBest">&mdash;</div></div>
+    <div class="cell greedy"><div class="lbl">greedy stuck at</div><div class="v" id="hGreedy">&mdash;</div></div>
+  </div>
+  <div class="decis" id="decis"></div>
+  <div class="res" id="res"></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">Simulated annealing is usually credited to one 1983 paper &mdash; and that team <i>did</i> coin the name. But this is a <b>convergent discovery</b>: at least four groups arrived independently, and the accept rule itself is older still. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1953</b> &middot; <span class="who">Metropolis, Rosenbluth, Rosenbluth, Teller &amp; Teller</span> (Los Alamos) &mdash; the <b>Metropolis algorithm</b>: accept an uphill move with probability e<sup>&minus;&Delta;E/T</sup>. The engine annealing rides on. <i>J. Chem. Phys.</i><br>
+    <b>1970</b> &middot; <span class="who">Martin Pincus</span> &mdash; a Monte-Carlo route to constrained minima. An early, often-overlooked precursor.<br>
+    <b>1979&ndash;81</b> &middot; <span class="who">Khachaturyan, Semenovskaya &amp; Vainshtein</span> &mdash; the same cooling idea for crystallography, independently.<br>
+    <b>1983</b> &middot; <span class="who">Scott Kirkpatrick, C. Daniel Gelatt &amp; Mario P. Vecchi</span> (IBM) &mdash; <b>named it &ldquo;simulated annealing,&rdquo;</b> framed it as general optimization, solved chip layout &amp; TSP. <i>Science</i> <b>220</b>, 671.<br>
+    <b>1985</b> &middot; <span class="who">Vlado &#268;ern&yacute;</span> (Comenius Univ., Bratislava) &mdash; <b>independently</b> discovered the same method for the travelling salesman. <i>J. Optim. Theory Appl.</i>
+  </div>
+  <p style="margin-top:10px">So the honest line: the <b>name and the popular framing</b> are Kirkpatrick&ndash;Gelatt&ndash;Vecchi (1983); the <b>method</b> was co-discovered by &#268;ern&yacute; (1985) and foreshadowed by Pincus and by Khachaturyan&rsquo;s group; the <b>accept probability</b> is Metropolis et&nbsp;al. (1953). Calling it &ldquo;Kirkpatrick&rsquo;s algorithm&rdquo; flat-out is the common over-simplification. <span class="tag t-open">open</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">seeded, not ambient</span></h2>
+  <p>Annealing needs two things I-13 seems to lack: a source of <b>randomness</b> (the probabilistic accept) and <b>exp()</b>. I asked the real compiler. The first result is a <b>refusal</b>, and it is the right one &mdash; proven, not asserted:</p>
+  <div class="evi" id="evi">$ i13 run t_random.i13
+t_random.i13:1:8  E0202 unknown function `random`     (no ambient randomness)
+$ i13 run t_exp.i13
+t_exp.i13:1:8     E0202 unknown function `exp`         (no transcendental builtin)</div>
+  <p>The tempting fix is &ldquo;add <span class="k">random()</span> and <span class="k">exp()</span> as builtins.&rdquo; <b>Don&rsquo;t</b> &mdash; at least not <span class="ko">random()</span>. The whole method is expressible <b>today</b>, deterministically, with a <b>seeded</b> PRNG written in the language itself. I built one (a 31-bit LCG) plus a Taylor <span class="k">exp</span>, and ran it <b>twice</b>:</p>
+  <div class="evi good" id="evi2">$ i13 run t_anneal.i13     (seeded LCG + Taylor exp, pure I-13)
+  s1 = 1250496027   u1 = 0.5823075897060335
+  s2 = 1116302080   u2 = 0.5198186635971069
+  s3 = 1964818176   u3 = 0.9149397611618042
+  e  = 0.6065321180555555      (true e^-0.5 = 0.6065306597...  6-digit match)
+run #2  ->  byte-identical.  deterministic. a receipt, not a coin-flip.</div>
+  <div class="rec">
+    <b>Recommend &mdash; REMOVE nothing, ADD sparingly:</b><br>
+    &bull; <b>Keep <span class="ko">random()</span> rejected.</b> <span class="k">E0202</span> is a <i>feature</i>. Ambient randomness would break I-13&rsquo;s determinism and its receipt discipline &mdash; two runs must agree. Standardize instead a <b>seeded PRNG library def</b> (the LCG above): the seed is an explicit operand, so the entropy is <i>on the tape</i> and every draw is reproducible.<br>
+    &bull; <b>Ship <span class="k">exp</span> as a library def</b>, not a builtin &mdash; the Taylor version already lands within 2&times;10<sup>&minus;6</sup>. Zero new alphabet symbols, zero new opcodes.<br>
+    &bull; <b>Bonus, measured:</b> the brief says &ldquo;no <span class="k">%</span>.&rdquo; The live binary <b>disagrees</b> &mdash; <span class="k">7 % 3</span> checks VALID and runs to <span class="k">1</span>. A <b>modulo BinOp discriminant has already landed</b>, which is exactly what makes the LCG&rsquo;s <span class="k">mod 2^31</span> possible. The compiler evolved past the doc; the doc should catch up.<br>
+    <b>Tradeoff (honest):</b> a seeded PRNG is only as &ldquo;random&rdquo; as its generator &mdash; an LCG has real spectral flaws and is unfit for cryptography. For optimization that is fine, and the win is total: annealing runs on I-13 <i>as shipped</i>, and the recurring galaxy law holds &mdash; <b>seeded, not ambient.</b>
+  </div>
+</div>
+
+<footer>
+  <b>DART 012 &middot; SIMULATED ANNEALING</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied. Named &amp; popularized by <b>S. Kirkpatrick, C. D. Gelatt &amp; M. P. Vecchi</b>, <i>Science</i> <b>220</b> (1983) 671&ndash;680; co-discovered independently by <b>Vlado &#268;ern&yacute;</b> (1985); accept rule from <b>Metropolis et&nbsp;al.</b> (1953); precursors <b>Pincus</b> (1970) and <b>Khachaturyan et&nbsp;al.</b> (1979&ndash;81). History &amp; figures via <a href="https://en.wikipedia.org/wiki/Simulated_annealing">Wikipedia: Simulated annealing</a>. I-13 by <b>David Lee Wise / ROOT0</b>; the <span class="kg">E0202</span> refusal and the seeded-PRNG receipt above were measured on the live compiler at <span class="kg">i13-shared-clone/target/debug/i13</span>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  // ---- the bumpy landscape: a bowl modulated by cosine ripples (many local minima) ----
+  function f(x){ return 0.18*(x-5)*(x-5) - 1.15*Math.cos(2.6*x) - 0.55*Math.sin(1.7*x); }
+  var LO=0, HI=10;
+
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d");
+  var W=cv.width, H=cv.height, PAD=14;
+
+  // find drawing bounds + true global min by fine grid scan (reference, "cited"->measured live)
+  function scan(){
+    var ymin=1e9,ymax=-1e9,gx=LO,gy=1e9;
+    for(var i=0;i<=2000;i++){ var x=LO+(HI-LO)*i/2000, y=f(x); if(y<ymin)ymin=y; if(y>ymax)ymax=y; if(y<gy){gy=y;gx=x;} }
+    return {ymin:ymin,ymax:ymax,gx:gx,gy:gy};
+  }
+  var B=scan();
+  function sx(x){ return PAD + (x-LO)/(HI-LO)*(W-2*PAD); }
+  function sy(y){ return PAD + (y-B.ymin)/(B.ymax-B.ymin)*(H-2*PAD); }
+
+  function drawCurve(cur, best, greedy){
+    ctx.clearRect(0,0,W,H);
+    // grid
+    ctx.strokeStyle="rgba(62,240,255,.08)"; ctx.lineWidth=1;
+    for(var gxp=0;gxp<=10;gxp++){ var px=sx(gxp); ctx.beginPath(); ctx.moveTo(px,0); ctx.lineTo(px,H); ctx.stroke(); }
+    // curve
+    ctx.strokeStyle="rgba(62,240,255,.55)"; ctx.lineWidth=2; ctx.beginPath();
+    for(var i=0;i<=600;i++){ var x=LO+(HI-LO)*i/600, X=sx(x), Y=sy(f(x)); if(i===0)ctx.moveTo(X,Y); else ctx.lineTo(X,Y); }
+    ctx.stroke();
+    function dot(x,color,r){ ctx.fillStyle=color; ctx.beginPath(); ctx.arc(sx(x),sy(f(x)),r,0,7); ctx.fill(); }
+    // true global (gold ring)
+    ctx.strokeStyle="#d9b45a"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(sx(B.gx),sy(B.gy),7,0,7); ctx.stroke();
+    if(greedy!=null) dot(greedy,"#ff5a6a",5);
+    if(best!=null){ ctx.strokeStyle="#59ffb0"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(sx(best),sy(f(best)),6,0,7); ctx.stroke(); }
+    if(cur!=null) dot(cur,"#3ef0ff",5);
+  }
+  drawCurve(null,null,null);
+
+  // ---- greedy descent: step to lower neighbour until stuck (a local minimum) ----
+  function greedy(x0){
+    var x=x0, h=0.02;
+    for(var it=0;it<4000;it++){
+      var fx=f(x), l=f(x-h), r=f(x+h);
+      if(l<fx && l<=r) x=Math.max(LO,x-h);
+      else if(r<fx) x=Math.min(HI,x+h);
+      else break;
+    }
+    return x;
+  }
+
+  // ---- simulated annealing (Math.random is welcome HERE — this is the demo, not I-13) ----
+  function randn(){ // Box-Muller
+    var u=1-Math.random(), v=Math.random();
+    return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);
+  }
+  var timer=null;
+  function stopTimer(){ if(timer){ clearInterval(timer); timer=null; } }
+
+  function run(){
+    stopTimer();
+    var x0=parseFloat(document.getElementById("x0").value);
+    var T=parseFloat(document.getElementById("t0").value);
+    var cool=parseFloat(document.getElementById("cool").value);
+    if(!(x0>=LO&&x0<=HI)){ x0=Math.random()*10; }
+    if(!(T>0)) T=3.0;
+    if(!(cool>0&&cool<1)) cool=0.985;
+
+    var gStuck=greedy(x0);
+    var x=x0, best=x0, T0=T, iter=0, acc=0, rej=0, uphillTaken=0;
+    var decis=document.getElementById("decis"); decis.innerHTML="";
+    var log=[];
+
+    document.getElementById("hGreedy").textContent=f(gStuck).toFixed(4)+"  (x="+gStuck.toFixed(2)+")";
+    document.getElementById("res").innerHTML="";
+
+    timer=setInterval(function(){
+      // one annealing step
+      var step=0.6+2.2*(T/T0);              // proposals shrink as we cool
+      var xp=x + step*randn();
+      if(xp<LO)xp=LO; if(xp>HI)xp=HI;
+      var dE=f(xp)-f(x), take=false, why="";
+      if(dE<0){ take=true; why='<span class="ac">accept &darr; &Delta;E='+dE.toFixed(3)+'</span>'; }
+      else{
+        var P=Math.exp(-dE/T);
+        if(Math.random()<P){ take=true; uphillTaken++; why='<span class="up">accept &uarr; &Delta;E=+'+dE.toFixed(3)+'  P='+P.toFixed(3)+'</span>'; }
+        else { why='<span class="rj">reject &uarr; &Delta;E=+'+dE.toFixed(3)+'  P='+P.toFixed(3)+'</span>'; }
+      }
+      if(take){ x=xp; acc++; if(f(x)<f(best)) best=x; } else rej++;
+      T*=cool; iter++;
+
+      log.unshift("T="+T.toFixed(3)+"  "+why);
+      if(log.length>4)log.pop();
+      decis.innerHTML=log.join("\n");
+
+      document.getElementById("hT").textContent=T.toFixed(4);
+      document.getElementById("hCur").textContent=f(x).toFixed(4)+"  (x="+x.toFixed(2)+")";
+      document.getElementById("hBest").textContent=f(best).toFixed(4)+"  (x="+best.toFixed(2)+")";
+      drawCurve(x,best,gStuck);
+
+      if(T<0.01 || iter>900){
+        stopTimer();
+        var gapA=f(best)-B.gy, gapG=f(gStuck)-B.gy;
+        document.getElementById("res").innerHTML=
+          'annealing best <span class="true">'+f(best).toFixed(4)+'</span> (gap '+gapA.toFixed(4)+' from true global '+
+          '<span class="kg">'+B.gy.toFixed(4)+'</span>) &mdash; greedy stuck at <span class="err">'+f(gStuck).toFixed(4)+
+          '</span> (gap '+gapG.toFixed(4)+'). '+ (gapA<gapG-1e-3 ? 'Annealing <b>escaped</b> the trap; '+uphillTaken+' uphill moves accepted.' : 'This run tied greedy &mdash; throw another dart.');
+      }
+    }, 22);
+  }
+
+  document.getElementById("go").onclick=run;
+  document.getElementById("dart").onclick=function(){
+    document.getElementById("x0").value=(Math.random()*3+0.4).toFixed(2); // start in a left trap
+    document.getElementById("t0").value=(2+Math.random()*3).toFixed(1);
+    run();
+  };
+  // first paint of a static frame with greedy shown
+  (function(){ var g=greedy(1.4); drawCurve(1.4,null,g); document.getElementById("hGreedy").textContent=f(g).toFixed(4)+"  (x="+g.toFixed(2)+")"; })();
+})();
+</script>
+</body>
+</html>
