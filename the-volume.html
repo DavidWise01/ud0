@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>THE VOLUME &middot; the ud0 corpus as one space</title>
+<title>THE VOLUME &middot; the ud0 corpus, folded into a diamond</title>
 <style>
 :root{
   --ink:#f1eaff; --dim:#b9a8e6; --violet:#a855f7; --gold:#ffb020; --red:#e6303b;
@@ -19,20 +19,21 @@ html,body{height:100%;overflow:hidden;background:#0b0620;color:var(--ink);
 .hud{position:fixed;pointer-events:none;}
 #top{top:0;left:0;right:0;padding:16px 20px;background:linear-gradient(#0b0620cc,transparent);}
 #top h1{font-size:19px;letter-spacing:5px;color:#fff;text-shadow:0 0 14px rgba(168,133,247,.7);}
-#top .sub{font-size:11.5px;color:var(--dim);letter-spacing:1px;margin-top:4px;}
-#top .pal{font-size:13px;letter-spacing:2px;color:var(--cyan);margin-top:7px;text-shadow:0 0 10px rgba(62,240,255,.4);}
-#legend{left:20px;bottom:18px;width:290px;background:var(--panel);border:1px solid var(--line);
+#top .sub{font-size:11.5px;color:var(--dim);letter-spacing:.5px;margin-top:4px;max-width:70ch;}
+#top .pal{font-size:12.5px;letter-spacing:1.5px;color:var(--cyan);margin-top:7px;text-shadow:0 0 10px rgba(62,240,255,.4);}
+#legend{left:20px;bottom:18px;width:300px;background:var(--panel);border:1px solid var(--line);
   border-radius:9px;padding:13px 15px;backdrop-filter:blur(5px);box-shadow:0 0 24px rgba(0,0,0,.5);}
 .wrow{display:flex;align-items:center;gap:9px;margin:5px 0;font-size:11.5px;}
 .dot{width:11px;height:11px;border-radius:2px;flex:0 0 auto;box-shadow:0 0 8px currentColor;}
-.wn{color:#fff;min-width:74px;letter-spacing:1px;}
-.wc{color:var(--dim);min-width:78px;font-size:10.5px;}
+.wn{color:#fff;min-width:66px;letter-spacing:.5px;}
+.ax{color:var(--dim);min-width:52px;font-size:10px;}
+.wc{color:var(--dim);min-width:74px;font-size:10.5px;text-align:right;}
 .bar{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;}
 .bar i{display:block;height:100%;border-radius:3px;box-shadow:0 0 8px currentColor;}
 #legend .tot{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);font-size:10.8px;color:var(--dim);line-height:1.7;}
 #legend .tot b{color:#fff;} #legend .tot .hot{color:var(--gold);}
-#addr{right:20px;top:18px;width:260px;background:var(--panel);border:1px solid var(--line);
-  border-radius:9px;padding:12px 14px;backdrop-filter:blur(5px);font-size:11px;color:var(--dim);line-height:1.65;}
+#addr{right:20px;top:18px;width:262px;background:var(--panel);border:1px solid var(--line);
+  border-radius:9px;padding:12px 14px;backdrop-filter:blur(5px);font-size:11px;color:var(--dim);line-height:1.62;}
 #addr b{color:var(--cyan);} #addr .g{color:var(--violet);} #addr code{color:#fff;}
 #ctl{right:20px;bottom:18px;font-size:10.5px;color:var(--dim);letter-spacing:1px;text-align:right;}
 #ctl b{color:var(--violet);}
@@ -45,25 +46,25 @@ html,body{height:100%;overflow:hidden;background:#0b0620;color:var(--ink);
 <div class="hud" id="top">
   <a href="./" style="pointer-events:auto;color:var(--violet);font-size:11px;letter-spacing:2px;text-decoration:none">&#9668; UNIVERSE DAVID 0</a>
   <h1>THE VOLUME</h1>
-  <div class="sub">the ud0 corpus as one addressable space &middot; 4,180 spheres placed by world</div>
-  <div class="pal">[ W1 &middot; W2 &#8214; W3 &#8214; W4 &middot; W5 ]</div>
+  <div class="sub">the ud0 corpus as one space &mdash; the palindrome <b>folded at its pivot</b> into a diamond, four worlds crossing at <b>(0,0)</b>.</div>
+  <div class="pal">[ W1 &middot; W2 &#8214; W3 &#8214; W4 &middot; W5 ] &nbsp;&#8594;&nbsp; &#9671; crossing at the hallway</div>
 </div>
 
 <div class="hud" id="legend">
-  <div class="wrow"><span class="dot" style="color:#a855f7;background:#a855f7"></span><span class="wn">W1 CORPUS</span><span class="wc">2,049 / 2048</span><span class="bar"><i style="color:#a855f7;background:#a855f7;width:100%"></i></span></div>
-  <div class="wrow"><span class="dot" style="color:#ffb020;background:#ffb020"></span><span class="wn">W2 FOLD</span><span class="wc">2,048 / 2048</span><span class="bar"><i style="color:#ffb020;background:#ffb020;width:100%"></i></span></div>
-  <div class="wrow"><span class="dot" style="color:#e8e8f0;background:#e8e8f0"></span><span class="wn">W3 HALLWAY</span><span class="wc">the ( : ) pivot</span><span class="bar"><i style="color:#e8e8f0;background:#e8e8f0;width:100%"></i></span></div>
-  <div class="wrow"><span class="dot" style="color:#e6303b;background:#e6303b"></span><span class="wn">W4 SONIA</span><span class="wc">48 / 2048</span><span class="bar"><i style="color:#e6303b;background:#e6303b;width:2.3%"></i></span></div>
-  <div class="wrow"><span class="dot" style="color:#3ef0ff;background:#3ef0ff"></span><span class="wn">W5 SONNY 5</span><span class="wc">35 / 2048</span><span class="bar"><i style="color:#3ef0ff;background:#3ef0ff;width:1.7%"></i></span></div>
-  <div class="tot"><b>4,180</b> spheres built &middot; <b>2,246</b> live pages<br>
-  left wing <b>4,097</b> vs right wing <span class="hot">83</span> &mdash; the palindrome&rsquo;s live tension, resolved by growth toward <b>8,192</b>.</div>
+  <div class="wrow"><span class="dot" style="color:#a855f7;background:#a855f7"></span><span class="wn">W1 CORPUS</span><span class="ax">west</span><span class="bar"><i style="color:#a855f7;background:#a855f7;width:100%"></i></span><span class="wc">2,049</span></div>
+  <div class="wrow"><span class="dot" style="color:#3ef0ff;background:#3ef0ff"></span><span class="wn">W5 SONNY5</span><span class="ax">east</span><span class="bar"><i style="color:#3ef0ff;background:#3ef0ff;width:1.7%"></i></span><span class="wc">35</span></div>
+  <div class="wrow"><span class="dot" style="color:#ffb020;background:#ffb020"></span><span class="wn">W2 FOLD</span><span class="ax">north</span><span class="bar"><i style="color:#ffb020;background:#ffb020;width:100%"></i></span><span class="wc">2,048</span></div>
+  <div class="wrow"><span class="dot" style="color:#e6303b;background:#e6303b"></span><span class="wn">W4 SONIA</span><span class="ax">south</span><span class="bar"><i style="color:#e6303b;background:#e6303b;width:2.3%"></i></span><span class="wc">48</span></div>
+  <div class="wrow"><span class="dot" style="color:#e8e8f0;background:#e8e8f0"></span><span class="wn">W3 HALLWAY</span><span class="ax">(0,0)</span><span class="bar" style="background:none;color:var(--dim);font-size:10px;flex:1">the ternary crossing</span></div>
+  <div class="tot"><b>4,180</b> spheres &middot; <b>2,247</b> live pages &middot; each arm &#8594; <b>2,048</b><br>
+  two full arms (<b>4,097</b>) vs two sprouts (<span class="hot">83</span>) &mdash; the diamond is <b>lopsided by construction</b>; it squares up as W4 &amp; W5 grow to <b>8,192</b>.</div>
 </div>
 
 <div class="hud" id="addr">
-  <b>OLOGY address</b> &mdash; every voxel has one:<br>
-  <span class="g">g</span>[<span class="g">u</span>[<span class="g">p</span>[<code>core</code>]]]<br>
-  <span style="font-size:10px">galaxy . universe . world . core</span><br>
-  the galaxiton: the volume is <b>g</b>, each world a <b>u</b>, each tower a <b>p</b>, each sphere a <b>core</b>.
+  <b>the fold</b> &mdash; a palindrome creased at its pivot:<br>
+  <code>W1 &middot; W2 | W3 | W4 &middot; W5</code><br>
+  the two mirror-pairs become the two <b>diagonals</b> &mdash; <span class="g">W1&#8596;W5</span> and <span class="g">W2&#8596;W4</span> &mdash; and they cross where they always did, at the hallway <b>(0,0)</b>.<br>
+  <span style="font-size:10px">address: <span class="g">g</span>[<span class="g">u</span>[<span class="g">p</span>[<code>core</code>]]] &middot; galaxy . universe . world . core</span>
 </div>
 
 <div class="hud" id="ctl"><b>drag</b> orbit &middot; <b>scroll</b> zoom &middot; auto-rotates</div>
@@ -76,7 +77,6 @@ html,body{height:100%;overflow:hidden;background:#0b0620;color:var(--ink);
   if(!gl){ document.getElementById("fail").style.display="grid"; return; }
 
   // ---- minimal mat4 (column-major) ----
-  function m4id(){return new Float32Array([1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1]);}
   function m4mul(a,b){var o=new Float32Array(16);for(var c=0;c<4;c++)for(var r=0;r<4;r++){var s=0;for(var k=0;k<4;k++)s+=a[k*4+r]*b[c*4+k];o[c*4+r]=s;}return o;}
   function m4persp(fovy,asp,n,f){var t=1/Math.tan(fovy/2),o=new Float32Array(16);o[0]=t/asp;o[5]=t;o[10]=(f+n)/(n-f);o[11]=-1;o[14]=(2*f*n)/(n-f);return o;}
   function sub(a,b){return [a[0]-b[0],a[1]-b[1],a[2]-b[2]];}
@@ -103,12 +103,11 @@ html,body{height:100%;overflow:hidden;background:#0b0620;color:var(--ink);
   in vec3 vN; in vec3 vCol; in float vGlow; in vec3 vW;
   out vec4 frag;
   void main(){
-    vec3 L=normalize(vec3(0.5,0.9,0.35));
+    vec3 L=normalize(vec3(0.45,0.92,0.30));
     float d=max(dot(normalize(vN),L),0.0);
-    vec3 amb=vec3(0.24,0.16,0.42);                 // violet ambient (not-black)
-    vec3 col=vCol*(amb + d*0.95) + vCol*vGlow*0.6; // lambert + emissive glow
-    // subtle top-brighten so towers read as lit from above
-    col += vCol*0.10*clamp(vW.y*0.03,0.0,1.0);
+    vec3 amb=vec3(0.24,0.16,0.42);
+    vec3 col=vCol*(amb + d*0.95) + vCol*vGlow*0.6;
+    col += vCol*0.10*clamp(vW.y*0.05,0.0,1.0);
     frag=vec4(col,1.0);
   }`;
   var lineVS=`#version 300 es
@@ -120,7 +119,7 @@ html,body{height:100%;overflow:hidden;background:#0b0620;color:var(--ink);
   var uVP=gl.getUniformLocation(pCube,"uVP"), uScale=gl.getUniformLocation(pCube,"uScale");
   var uVPl=gl.getUniformLocation(pLine,"uVP"), uColl=gl.getUniformLocation(pLine,"uCol");
 
-  // ---- cube geometry (24 verts, 36 idx, per-face normals) ----
+  // ---- cube geometry ----
   function cube(){
     var p=[], n=[], idx=[], faces=[
       [[-1,-1, 1],[1,-1, 1],[1,1, 1],[-1,1, 1],[0,0,1]],
@@ -134,39 +133,45 @@ html,body{height:100%;overflow:hidden;background:#0b0620;color:var(--ink);
   }
   var C=cube();
 
-  // ---- the worlds (REAL counts from the DBs) ----
-  var S=0.40;                      // cell spacing
-  var WORLDS=[
-    {k:"W1",count:2049,cap:2048,col:[0.66,0.33,0.97],x:-9.0},
-    {k:"W2",count:2048,cap:2048,col:[1.00,0.69,0.13],x:-4.5},
-    {k:"W3",count:3,   cap:3,   x:0.0,pivot:true},
-    {k:"W4",count:48,  cap:2048,col:[0.90,0.19,0.23],x:4.5},
-    {k:"W5",count:35,  cap:2048,col:[0.24,0.94,1.00],x:9.0}
+  // ---- the diamond: four arms crossing at (0,0), each toward its 2048 vertex ----
+  var CAP=2048, CS=8, STEP=0.34;              // 8x8 cross-section = 64 per segment -> 32 segments = 2048
+  var SEG=CS*CS;
+  var LFULL=(CAP/SEG)*STEP + STEP;            // radial length of a FULL arm (~11.2)
+  // dir = radial direction (unit); the two mirror-pairs are the two axes.
+  var ARMS=[
+    {k:"W1",count:2049,col:[0.66,0.33,0.97],dir:[-1,0,0]},   // west
+    {k:"W5",count:35,  col:[0.24,0.94,1.00],dir:[ 1,0,0]},   // east   (W1<->W5)
+    {k:"W2",count:2048,col:[1.00,0.69,0.13],dir:[0,0,-1]},   // north
+    {k:"W4",count:48,  col:[0.90,0.19,0.23],dir:[0,0, 1]}    // south  (W2<->W4)
   ];
-  var FOOT=8;                      // 8x8 footprint -> 64 per layer -> 32 layers = 2048 cap
-  function rand(i){ var s=Math.sin(i*12.9898)*43758.5453; return s-Math.floor(s); } // deterministic jitter
+  function rand(i){ var s=Math.sin(i*12.9898)*43758.5453; return s-Math.floor(s); }
 
   var offs=[], cols=[], glows=[];
-  WORLDS.forEach(function(w){
-    if(w.pivot){ // ternary pivot: 3 stacked cubes, -1/0/+1 = red/grey/cyan, bright
-      var pv=[[0.90,0.22,0.26],[0.72,0.72,0.80],[0.24,0.94,1.00]];
-      for(var t=0;t<3;t++){ offs.push(w.x,(t+0.5)*S*1.4+0.2,0); cols.push(pv[t][0],pv[t][1],pv[t][2]); glows.push(0.9); }
-      return;
-    }
-    for(var i=0;i<w.count;i++){
-      var layer=Math.floor(i/(FOOT*FOOT)), within=i%(FOOT*FOOT);
-      var cx=within%FOOT, cz=Math.floor(within/FOOT);
-      var jx=(rand(i+w.x*7)-0.5)*0.05, jz=(rand(i*3+w.x)-0.5)*0.05;
-      offs.push(w.x + (cx-(FOOT-1)/2)*S + jx, layer*S + S*0.5, (cz-(FOOT-1)/2)*S + jz);
-      var b=0.55+0.45*rand(i*5+1);                 // per-voxel brightness
-      cols.push(w.col[0]*b, w.col[1]*b, w.col[2]*b);
-      glows.push(0.25+0.35*rand(i*2));
+  ARMS.forEach(function(a){
+    var alongX = a.dir[0]!==0;
+    var wAx = alongX ? [0,0,1] : [1,0,0];     // lateral (width) axis, perpendicular to dir
+    for(var i=0;i<a.count;i++){
+      var seg=Math.floor(i/SEG), within=i%SEG, wx=within%CS, wy=Math.floor(within/CS);
+      var along=(seg+1)*STEP + STEP*0.5;
+      var lat=(wx-(CS-1)/2)*STEP;
+      var hy=wy*STEP + STEP*0.5;
+      var jx=(rand(i+seg*7)-0.5)*0.04;
+      offs.push(a.dir[0]*along + wAx[0]*lat + jx,
+                hy,
+                a.dir[2]*along + wAx[2]*lat + jx);
+      var b=0.55+0.45*rand(i*5+1);
+      cols.push(a.col[0]*b, a.col[1]*b, a.col[2]*b);
+      glows.push(0.22+0.34*rand(i*2));
     }
   });
+  // W3 pivot: a bright ternary trit at the crossing (0,0)
+  var pv=[[0.90,0.22,0.26],[0.74,0.74,0.82],[0.24,0.94,1.00]];
+  for(var t=0;t<3;t++){ offs.push(0,(t+0.5)*STEP*1.5+STEP*0.5,0); cols.push(pv[t][0],pv[t][1],pv[t][2]); glows.push(0.95); }
+
   var N=offs.length/3;
   offs=new Float32Array(offs); cols=new Float32Array(cols); glows=new Float32Array(glows);
 
-  // ---- VAO for instanced cubes ----
+  // ---- VAO ----
   var vao=gl.createVertexArray(); gl.bindVertexArray(vao);
   function buf(loc,data,size,div){var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);
     gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,size,gl.FLOAT,false,0,0);if(div)gl.vertexAttribDivisor(loc,div);return b;}
@@ -175,47 +180,45 @@ html,body{height:100%;overflow:hidden;background:#0b0620;color:var(--ink);
   buf(2,offs,3,1); buf(3,cols,3,1); buf(4,glows,1,1);
   gl.bindVertexArray(null);
 
-  // ---- capacity wireframe boxes (8x8x32 target volume per big world) ----
-  function boxLines(cx,h){
-    var hw=FOOT*S/2, x0=cx-hw,x1=cx+hw,z0=-hw,z1=hw,y0=0,y1=h;
-    var v=[[x0,y0,z0],[x1,y0,z0],[x1,y0,z1],[x0,y0,z1],[x0,y1,z0],[x1,y1,z0],[x1,y1,z1],[x0,y1,z1]];
-    var e=[0,1,1,2,2,3,3,0, 4,5,5,6,6,7,7,4, 0,4,1,5,2,6,3,7]; var out=[];
-    for(var i=0;i<e.length;i++){out.push(v[e[i]][0],v[e[i]][1],v[e[i]][2]);}
-    return out;
-  }
+  // ---- lines: the target diamond (2 levels) + the two crossing diagonals + ground grid ----
   var lines=[];
-  WORLDS.forEach(function(w){ if(w.pivot)return; lines=lines.concat(boxLines(w.x, w.cap/(FOOT*FOOT)*S)); });
+  var hy2=(CS/2)*STEP;                          // mid-beam height for the upper diamond
+  var V=[[LFULL,0,0],[0,0,LFULL],[-LFULL,0,0],[0,0,-LFULL]]; // the four vertices (N-E-S-W order for a ring)
+  function ring(h){ for(var i=0;i<4;i++){ var a=V[i],b=V[(i+1)%4]; lines.push(a[0],h,a[2], b[0],h,b[2]); } }
+  var diamondStart=0; ring(0); ring(hy2);       // diamond outline at base + mid
+  // the two diagonals (the crossing) through (0,0)
+  lines.push(-LFULL,0,0, LFULL,0,0,  0,0,-LFULL, 0,0,LFULL);
+  var diamondEnd=lines.length/3;
   // ground grid
-  var G=22, gy=0; for(var i=-G;i<=G;i+=2){ lines.push(-G,gy,i, G,gy,i, i,gy,-G, i,gy,G); }
+  var G=13; for(var i=-G;i<=G;i+=2){ lines.push(-G,0,i, G,0,i, i,0,-G, i,0,G); }
   lines=new Float32Array(lines);
   var lvao=gl.createVertexArray();gl.bindVertexArray(lvao);
   var lb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,lb);gl.bufferData(gl.ARRAY_BUFFER,lines,gl.STATIC_DRAW);
   gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,3,gl.FLOAT,false,0,0);gl.bindVertexArray(null);
-  var gridStart=WORLDS.filter(function(w){return !w.pivot;}).length*24; // box verts before grid
 
-  // ---- camera / orbit ----
-  var theta=-0.9, phi=0.42, radius=30, target=[0,5,0], autor=true;
+  // ---- camera ----
+  var theta=-0.7, phi=0.62, radius=30, target=[0,1.5,0], autor=true;
   var drag=false, px=0, py=0;
   canvas.addEventListener("mousedown",function(e){drag=true;autor=false;px=e.clientX;py=e.clientY;});
   window.addEventListener("mouseup",function(){drag=false;});
   window.addEventListener("mousemove",function(e){ if(!drag)return; theta-=(e.clientX-px)*0.006; phi+=(e.clientY-py)*0.006;
-    phi=Math.max(-1.3,Math.min(1.45,phi)); px=e.clientX; py=e.clientY; });
-  canvas.addEventListener("wheel",function(e){ e.preventDefault(); radius*=(1+Math.sign(e.deltaY)*0.08); radius=Math.max(10,Math.min(70,radius)); },{passive:false});
-  // touch
+    phi=Math.max(0.05,Math.min(1.45,phi)); px=e.clientX; py=e.clientY; });
+  canvas.addEventListener("wheel",function(e){ e.preventDefault(); radius*=(1+Math.sign(e.deltaY)*0.08); radius=Math.max(9,Math.min(70,radius)); },{passive:false});
   canvas.addEventListener("touchstart",function(e){drag=true;autor=false;px=e.touches[0].clientX;py=e.touches[0].clientY;},{passive:true});
   canvas.addEventListener("touchend",function(){drag=false;});
   canvas.addEventListener("touchmove",function(e){ if(!drag)return; var t=e.touches[0]; theta-=(t.clientX-px)*0.006; phi+=(t.clientY-py)*0.006;
-    phi=Math.max(-1.3,Math.min(1.45,phi)); px=t.clientX; py=t.clientY; },{passive:true});
+    phi=Math.max(0.05,Math.min(1.45,phi)); px=t.clientX; py=t.clientY; },{passive:true});
 
   function resize(){ var d=Math.min(window.devicePixelRatio||1,2);
-    canvas.width=window.innerWidth*d; canvas.height=window.innerHeight*d;
+    canvas.width=Math.max(1,window.innerWidth*d); canvas.height=Math.max(1,window.innerHeight*d);
     gl.viewport(0,0,canvas.width,canvas.height); }
   window.addEventListener("resize",resize); resize();
+  var ro=new ResizeObserver(resize); ro.observe(canvas);
 
   gl.enable(gl.DEPTH_TEST); gl.clearColor(0.043,0.024,0.086,1.0);
 
   function frame(){
-    if(autor) theta+=0.0016;
+    if(autor) theta+=0.0015;
     var eye=[target[0]+radius*Math.cos(phi)*Math.cos(theta), target[1]+radius*Math.sin(phi), target[2]+radius*Math.cos(phi)*Math.sin(theta)];
     var proj=m4persp(1.02, canvas.width/canvas.height, 0.1, 300);
     var view=m4look(eye,target,[0,1,0]);
@@ -223,21 +226,18 @@ html,body{height:100%;overflow:hidden;background:#0b0620;color:var(--ink);
 
     gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
 
-    // lines (grid + capacity boxes)
     gl.useProgram(pLine); gl.uniformMatrix4fv(uVPl,false,VP); gl.bindVertexArray(lvao);
-    gl.uniform4f(uColl,0.40,0.28,0.62,0.5); gl.drawArrays(gl.LINES,gridStart,lines.length/3-gridStart); // grid, dim violet
-    gl.uniform4f(uColl,0.55,0.42,0.85,0.85); gl.drawArrays(gl.LINES,0,gridStart);                        // boxes, brighter
+    gl.uniform4f(uColl,0.40,0.28,0.62,0.45); gl.drawArrays(gl.LINES,diamondEnd,lines.length/3-diamondEnd); // grid
+    gl.uniform4f(uColl,0.62,0.50,0.92,0.9);  gl.drawArrays(gl.LINES,diamondStart,diamondEnd-diamondStart);  // diamond + diagonals
 
-    // instanced voxels
-    gl.useProgram(pCube); gl.uniformMatrix4fv(uVP,false,VP); gl.uniform1f(uScale,S*0.82);
+    gl.useProgram(pCube); gl.uniformMatrix4fv(uVP,false,VP); gl.uniform1f(uScale,STEP*0.82);
     gl.bindVertexArray(vao);
     gl.drawElementsInstanced(gl.TRIANGLES,C.i.length,gl.UNSIGNED_SHORT,0,N);
 
     requestAnimationFrame(frame);
   }
   frame();
-  // expose for verification
-  window.__VOLUME={voxels:N, worlds:WORLDS.map(function(w){return {k:w.k,count:w.count};})};
+  window.__VOLUME={voxels:N, lfull:LFULL, arms:ARMS.map(function(a){return {k:a.k,count:a.count};})};
 })();
 </script>
 </body>
