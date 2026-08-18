@@ -914,6 +914,74 @@
       "kicker": "dart 045 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-quicksort.html",
       "seal": "1e852cfcf8fc3bc3431adf2d66ff0bcc8d525b450e48f192b7017fc0ccdb58ca"
+    },
+    {
+      "slug": "the-bellman-ford-algorithm",
+      "title": "THE BELLMAN-FORD ALGORITHM",
+      "dartno": "046",
+      "version": "v0.09",
+      "credit": "Shimbel 1955 / Ford 1956 / Moore 1957 / Bellman 1958 (name honors only 2 of 4)",
+      "source": "Ford 1956; Bellman 1958",
+      "i13_recommend": "nothing new - a clean no-wall on the bounded array; Bellman-Ford is dynamic programming over a table, and the array IS the table (edge relaxation folded over the distance array)",
+      "blurb": "Find the shortest route through a network by one stubbornly simple operation, edge relaxation: for every edge u->v of weight w, if dist[u]+w < dist[v], lower dist[v]; sweep all edges V-1 times and the distances settle to the true shortest paths - even with NEGATIVE edges, where Dijkstra fails, and it detects negative cycles. It RUNS in real I-13 over the new array (distB=2 via 0->2->1, verified). Credit is shared four ways: Alfonso Shimbel 1955 (earliest), Lester Ford Jr. 1956, Edward F. Moore 1957 (the BFS variant), Richard Bellman 1958 (who coined 'dynamic programming'); the name honors only two. It is dynamic programming over a table, and the bounded array is exactly that table.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 046 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-bellman-ford-algorithm.html",
+      "seal": "2a60adb687fb7ec455835335f21d9b68c649cf4679a21c1f2b8bd5549fa2eb9e"
+    },
+    {
+      "slug": "the-chinese-remainder-theorem",
+      "title": "THE CHINESE REMAINDER THEOREM",
+      "dartno": "047",
+      "version": "v0.09",
+      "credit": "Sunzi Suanjing 3rd-5th c. CE; Qin Jiushao 1247; Gauss 1801",
+      "source": "Sunzi Suanjing, 3rd-5th c. CE",
+      "i13_recommend": "nothing new - a no-wall standing entirely on the merged % (darts 010/027/032); one of the oldest algorithms thrown, home on the modulo; cryptographic scale waits on the withheld bignum",
+      "blurb": "'There are things whose number we do not know; counted by threes, two remain; by fives, three; by sevens, two. How many?' Sunzi's 1,600-year-old riddle, whose answer - that a number is pinned down by its remainders - runs modern cryptography (RSA's CRT decryption). It RUNS in real I-13 on the merged %, and returns the ancient answer 23 (mod 105). Credit is genuinely Chinese and genuinely ancient: Sunzi Suanjing (Master Sun's Mathematical Classic, 3rd-5th c. CE) posed and answered it; Aryabhata used a related method (kuttaka) in 6th-c. India; Qin Jiushao gave the general 'Da Yan' algorithm in 1247; Gauss formalized it in Disquisitiones Arithmeticae (1801), 1,500 years after Sunzi. Cryptographic scale hits the withheld bignum ceiling; the method is exact and ancient, only the scale waits.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 047 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-chinese-remainder-theorem.html",
+      "seal": "4902dbb7b8f20696090ceb18475483d1b471c453a0f18499e3054712791209b2"
+    },
+    {
+      "slug": "the-disjoint-set",
+      "title": "UNION-FIND (THE DISJOINT SET)",
+      "dartno": "048",
+      "version": "v0.09",
+      "credit": "Galler & Fischer 1964; Tarjan's inverse-Ackermann analysis 1975",
+      "source": "Galler & Fischer 1964",
+      "i13_recommend": "basic union-find is a no-wall on the array, but PATH COMPRESSION wants find() to return (root, rewired array) = the MULTIPLE-RETURN wall - a 2nd dart after quicksort-045 to land on it; open frontiers: multiple return (045/048) + bignum",
+      "blurb": "Track who belongs to which group as groups keep merging - connected components, Kruskal's spanning trees - answering 'same group?' in almost constant time, from ONE array of parent pointers. Basic union-find RUNS in real I-13 on the new array (union 0-1, 2-3, 1-3; then 0 and 2 share a set, 0 and 5 don't, verified). Credit: Bernard Galler & Michael Fischer described it 1964 (for a FORTRAN equivalence problem); Robert Tarjan proved in 1975 that m operations cost O(m*alpha(n)) with union-by-rank + path compression, alpha the inverse Ackermann function (effectively <= 4 for any n in the universe) - a famously tight, hard-won bound. But path compression wants find() to return BOTH the root AND the rewired array - two values - the exact MULTIPLE-RETURN wall quicksort (dart 045) hit. A second independent dart lands on it: the signal it is real. Open frontiers now: multiple return (045, 048) and bignum (032/035/041/047).",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 048 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-disjoint-set.html",
+      "seal": "da4f6f18598a2d6c091a28611b5f77c9e6f42ad14eea0e845f0d7e3e52f40e90"
+    },
+    {
+      "slug": "the-counting-sort",
+      "title": "THE COUNTING SORT",
+      "dartno": "049",
+      "version": "v0.09",
+      "credit": "Harold H. Seward, 1954",
+      "source": "Harold H. Seward, 1954 (MIT thesis)",
+      "i13_recommend": "nothing new - the MOST NATURAL fit for a bounded array: counting sort needs an array sized to a known bound (the value range), which is exactly what I-13's array is; no comparisons, just indexed writes into a bounded table",
+      "blurb": "Every sort you've seen compares pairs of elements, and no comparison sort can beat n log n. Counting sort never compares anything: it tallies how many of each value there are, then reads them out in order - linear time when the values live in a known range, and the PERFECT fit for I-13's bounded array, whose length is fixed and known. It RUNS in real I-13 (sort [4,2,7,2,0,5,2,9] -> 0,2,2,2,4,5,7,9, verified) via a tally array (one bucket per value) and an output array, both bounded. Credit: Harold H. Seward, 1954 MIT master's thesis (which also introduced radix sort) - sorting by distribution, not comparison, stepping outside the decision-tree model that forces Omega(n log n) on comparison sorts. Of all the array darts, this is the most natural fit: where quicksort strained against the language, counting sort fits it like a glove - no comparisons, just indexed writes into a bounded table.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 049 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-counting-sort.html",
+      "seal": "298d49712699fbe86913649cb2e9c5634d88ec9e600bbb2cb9a49667cdcacdb6"
     }
   ],
   "keepers": [
@@ -924,13 +992,13 @@
     }
   ],
   "counts": {
-    "spheres": 53,
+    "spheres": 57,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
-    "darts": 45
+    "darts": 49
   },
-  "i13_root": "116e0cd44527f79b5ec97bba01caf67331aea0983d95546d87a42266192dd64e",
+  "i13_root": "2a12153799e3c8f1ab1621c37ce4b004bb0ae6493fd17a68a2e8da86e9469679",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
