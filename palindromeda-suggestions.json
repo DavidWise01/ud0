@@ -1,0 +1,133 @@
+{
+  "schema": "palindromeda-suggestions/1",
+  "name": "PALINDROMEDA'S SUGGESTION BOX",
+  "of": "the five-world palindrome corpus [ W1 | W2 || W3 || W4 | W5 ]",
+  "running": true,
+  "note": "Append-only. Nothing is deleted; landed and declined items stay visible with their stamp. This file is the machine store; palindromeda-suggestion-box.html renders it.",
+  "author": "David Lee Wise / ROOT0 / TriPod LLC (with AVAN)",
+  "updated": "2026-08-18",
+  "count": 11,
+  "suggestions": [
+    {
+      "id": "PS-001",
+      "raised": "2026-08-12",
+      "target": "World V / I-13 compiler",
+      "world": "V",
+      "kind": "frontier",
+      "status": "held",
+      "raised_by": "the darts: 045 quicksort, 048 union-find, 052 A*",
+      "title": "Multiple return (a tuple / pair value)",
+      "detail": "Three darts independently hit the same wall: quicksort's in-place partition wants to return (pivot-index, rewired array); union-find's path compression wants (root, rewired array); A*'s heap sift wants to swap a pair. I-13 returns one value. This is the last withheld frontier -- and, unlike bitwise/array/bignum which were ADDITIONS on top of the 13 counted symbols, changing what a return IS touches the value model, so it is the author's architectural call, flagged here, not smuggled in."
+    },
+    {
+      "id": "PS-002",
+      "raised": "2026-08-14",
+      "target": "World V / I-13 compiler",
+      "world": "V",
+      "kind": "feature",
+      "status": "landed",
+      "raised_by": "the darts: 016 Boyer-Moore, 017 sieve, 018 brainfuck, + many",
+      "title": "A bounded array",
+      "detail": "Repeatedly the darts needed an indexed, fixed-length store (a sieve's flags, a tape, a DP row). LANDED: Value::Array is a handle into a per-run arena (keeps Value: Copy, no refactor); bounded literal [a,b,c]; checked indexing (E0501 on out-of-range); value-semantics functional update v[i]<-e. Three opcodes, OPCODE_COUNT 15->18. Proven by the live sieve dart."
+    },
+    {
+      "id": "PS-003",
+      "raised": "2026-08-15",
+      "target": "World V / I-13 compiler",
+      "world": "V",
+      "kind": "feature",
+      "status": "landed",
+      "raised_by": "the darts: 032 Rabin-Miller, 035 Diffie-Hellman",
+      "title": "Arbitrary-precision integers (bignum)",
+      "detail": "Two crypto darts flagged f64's 53-bit ceiling as the wall. LANDED: Value::Bignum is a handle into an arena of sign-magnitude BigInt (base 2^32); big(x) intrinsic lowers to one ToBig op; Bin/Cmp dispatch on runtime type so no new arithmetic opcodes and the validator is unchanged (OPCODE_COUNT 18->19). Verified exact vs node BigInt. It paid off immediately in 050 RSA (round-trips) and 051 Fibonacci (F(100) exact)."
+    },
+    {
+      "id": "PS-004",
+      "raised": "2026-08-18",
+      "target": "World V / I-13 compiler",
+      "world": "V",
+      "kind": "feature",
+      "status": "open",
+      "raised_by": "dart 053 knapsack",
+      "title": "A 2-D array (items x capacity)",
+      "detail": "The full knapsack DP is a 2-D table; the corpus array is 1-D, so the dart uses the space-optimized single-row form (which is what practitioners use anyway). Worth considering: a genuine 2-D array, or arrays-of-array-handles, would let the textbook 2-D recurrences run verbatim. Low urgency -- the 1-D form is honest and correct."
+    },
+    {
+      "id": "PS-005",
+      "raised": "2026-08-18",
+      "target": "World V / I-13 compiler",
+      "world": "V",
+      "kind": "performance",
+      "status": "open",
+      "raised_by": "dart 052 A*",
+      "title": "A binary-heap / priority-queue type",
+      "detail": "A* pulls the lowest-f frontier cell every step. It RUNS today with a linear scan for the minimum (O(n) per step). A binary heap would make it O(log n). A heap is array-backed (so it already runs), but efficient sift-up/down is happiest with in-place swaps and paired returns -- so this is really a downstream want of PS-001 (multiple-return)."
+    },
+    {
+      "id": "PS-006",
+      "raised": "2026-08-18",
+      "target": "World V / I-13 stdlib",
+      "world": "V",
+      "kind": "feature",
+      "status": "open",
+      "raised_by": "dart 050 RSA",
+      "title": "Prime generation at scale (Rabin-Miller over bignum)",
+      "detail": "Real 2048-bit RSA needs to GENERATE large probable primes, not just use toy ones. With bignum (PS-003) and the seeded PRNG already in the stdlib, a Rabin-Miller primality routine is now EXPRESSIBLE in I-13 -- it just has not been written as a std/*.i13 entry yet. A concrete, bounded next addition."
+    },
+    {
+      "id": "PS-007",
+      "raised": "2026-08-18",
+      "target": "World V / I-13 stdlib",
+      "world": "V",
+      "kind": "feature",
+      "status": "open",
+      "raised_by": "dart 051 Fibonacci",
+      "title": "Fast-doubling Fibonacci in the stdlib",
+      "detail": "F(2k) and F(2k+1) can be computed from F(k) with a handful of bignum + - * operations -- O(log n) instead of O(n). It needs nothing new (bignum is enough), so it is a small, satisfying stdlib entry that would let F(1,000,000) return without a million iterations."
+    },
+    {
+      "id": "PS-008",
+      "raised": "2026-08-18",
+      "target": "World V / I-13 wasm backend",
+      "world": "V",
+      "kind": "gap",
+      "status": "open",
+      "raised_by": "the campaign build",
+      "title": "Bring the wasm backend to parity with the VM",
+      "detail": "Array and bignum landed in the interpreter (VM) path; the wasm codegen currently errors cleanly on Array/Bignum rather than emitting them, so the VM is ahead of wasm. Either extend wasm codegen to cover the new value kinds, or document the VM-only scope explicitly so the gap is disclosed, not silent."
+    },
+    {
+      "id": "PS-009",
+      "raised": "2026-08-10",
+      "target": "Corpus-wide",
+      "world": "*",
+      "kind": "structure",
+      "status": "open",
+      "raised_by": "the incomplete-spheres audit",
+      "title": "Content pass on the shell spheres",
+      "detail": "An audit found roughly 119 spheres that return HTTP 200 but ship no real instrument or content -- they load, but they are shells. A content-depth pass should either bring each to LIT (a real, verified instrument) or honestly retire it. Deferred, but tracked here so it is not forgotten."
+    },
+    {
+      "id": "PS-010",
+      "raised": "2026-08-08",
+      "target": "World II / THE FOLD",
+      "world": "II",
+      "kind": "docs",
+      "status": "considered",
+      "raised_by": "the World II FOLD audit",
+      "title": "Document THE FOLD's four by-design shapes inline",
+      "detail": "Four intentional shapes in World II read like drift to a fresh auditor (they are not -- each has a proof). A short inline note per shape, at the shape, would stop every future audit from re-flagging the same four and having to re-derive that they are deliberate."
+    },
+    {
+      "id": "PS-011",
+      "raised": "2026-08-18",
+      "target": "This box itself",
+      "world": "*",
+      "kind": "meta",
+      "status": "landed",
+      "raised_by": "David Lee Wise (ROOT0)",
+      "title": "The box is itself revisable -- and running",
+      "detail": "David asked for a RUNNING suggestion box open to revisions of any part of Palindromeda, the box included. v0 gives each item a provenance (who raised it), a status lifecycle (open -> considered -> held / landed / declined), and append-only history -- nothing is deleted, closed items stay visible with their stamp. Next revisions on the table: a public submission form, and per-item discussion threads. Meta by design: the box eats its own suggestions."
+    }
+  ]
+}

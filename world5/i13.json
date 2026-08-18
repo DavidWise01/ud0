@@ -991,14 +991,14 @@
       "credit": "Rivest, Shamir & Adleman (MIT, 1977); Clifford Cocks (GCHQ, 1973)",
       "source": "Rivest, Shamir, Adleman 1977 (MIT); James Ellis 1969 & Clifford Cocks 1973 at GCHQ, classified until 1997",
       "i13_recommend": "nothing new - the clearest bignum payoff yet: RSA is modular exponentiation over big integers, exactly the bignum the campaign just built. Encrypt m=65 -> cipher 2790 (65^17 mod 3233) -> decrypt 2790^2753 mod 3233 -> back to 65, round-trips in real I-13. Real 2048-bit RSA also wants prime generation (Rabin-Miller, dart 032), which bignum + a seeded PRNG now make expressible",
-      "blurb": "Multiply two big primes and you get a number nobody can factor back apart in a lifetime; RSA turns that one-way street into a public lock: everyone can encrypt to you, only you can decrypt. Its engine is modular exponentiation on huge numbers - exactly the bignum this campaign just put into I-13 - so RSA now round-trips whole in the counted language: with toy primes p=61, q=53 (n=3233), message m=65 encrypts to cipher 2790 (65^17 mod 3233) and decrypts back to 65 (2790^2753 mod 3233), verified. Credit: Ron Rivest, Adi Shamir & Leonard Adleman published it at MIT in 1977 and gave it their initials - but Clifford Cocks at Britain's GCHQ had worked out the same scheme in 1973 (building on James Ellis's 1969 idea of non-secret encryption), stamped classified and not declassified until 1997. The same idea twice: once in the open to fame, once in a vault to silence. The algorithm that is the internet's padlock now runs in I-13 because the darts asked for bignum and the author built it.",
+      "blurb": "Multiply two big primes and you get a number nobody can factor back apart in a lifetime; RSA turns that one-way street into a public lock: everyone can encrypt to you, only you can decrypt. Its engine is modular exponentiation on huge numbers - exactly the bignum this campaign just put into I-13 - so RSA now round-trips whole in the counted language: with toy primes p=61, q=53 (n=3233), message m=65 encrypts to cipher 2790 (65^17 mod 3233) and decrypts back to 65 (2790^2753 mod 3233), verified. Credit: Ron Rivest, Adi Shamir & Leonard Adleman introduced it at MIT in 1977 (an MIT memo and Martin Gardner column that year; the formal CACM paper followed in 1978) and gave it their initials - but Clifford Cocks at Britain's GCHQ had worked out the same scheme in 1973 (building on James Ellis's 1969 idea of non-secret encryption), stamped classified and not declassified until 1997. The same idea twice: once in the open to fame, once in a vault to silence. The algorithm that is the internet's padlock now runs in I-13 because the darts asked for bignum and the author built it.",
       "room": "darts",
       "accent": "#3ef0ff",
       "stamp": "DEMO",
       "kind": "dart",
       "kicker": "dart 050 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-rsa-algorithm.html",
-      "seal": "aa1defd48d41f7472a3d466cedb67ac0bb76f39ce9dcae38456b0511a4a3f541"
+      "seal": "9e99ba04cc39286737e6d9983d297344f4c90c1d9aadf8fa8cc50e4068cef660"
     },
     {
       "slug": "the-fibonacci",
@@ -1066,7 +1066,7 @@
     "keepers": 1,
     "darts": 53
   },
-  "i13_root": "97ad1f2f4a4fd3868bae3bdcd52958b100d3ba1723a96ce5bc37489999210c5a",
+  "i13_root": "4bf82450325cd3ddcb0cf5039f89940e6d207c9d98489c6473e850b44396d964",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
