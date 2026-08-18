@@ -678,6 +678,22 @@
       "kicker": "dart 033 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-box-muller.html",
       "seal": "843bd701a4b919023d9b897913f2fa56427bfdf9c756d3c77ae0d531d87913fb"
+    },
+    {
+      "slug": "the-standard-library",
+      "title": "THE STANDARD LIBRARY",
+      "room": "darts",
+      "kicker": "milestone - the darts came home",
+      "accent": "#59ffb0",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "version": "v0.05",
+      "credit": "the SONNY 5 dart campaign; I-13 by David Lee Wise / ROOT0",
+      "source": "std/*.i13 on DavidWise01/I13-H1.1",
+      "i13_recommend": "(this IS the integration of the recommends)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-standard-library.html",
+      "seal": "bcd725c8f32fe0a23f6d1b65124b68a40cf9e0f4615efd41ffa808fc97dabe25",
+      "blurb": "The place where the dart campaign's I-13 recommendations that are ADDITIONS ON TOP of the 13 counted symbols (not changes to them) actually land in the language. A standard library written IN I-13, verified on the canonical compiler: sqrt by Newton (dart 026), exp/sin/cos/ln by bounded Taylor (darts 009/031/033), a seeded PRNG as MINSTD LCG (darts 004/030) and Marsaglia xorshift32, gcd and modexp via the merged % (darts 027/032). Plus the one interpreter change of the batch: bitwise operators & | ^ << >> added as new BinOp discriminants (the % pattern, zero new alphabet symbols) for darts 001 and 029 - the full 130-test suite still passes. Two recommends are deliberately withheld as the author's architectural call, not library work: arbitrary-precision integers and a bounded aggregate/array type. The loop closes: measure the wall, recommend, integrate, clear it."
     }
   ],
   "keepers": [
@@ -688,13 +704,13 @@
     }
   ],
   "counts": {
-    "spheres": 39,
+    "spheres": 40,
     "rooms": 6,
-    "lit": 6,
+    "lit": 7,
     "keepers": 1,
     "darts": 33
   },
-  "i13_root": "c448bacaa82e29f6634e16c73241ae4464c9129b439a76121c1e6e9e35cd65f2",
+  "i13_root": "4ab7a008b355a5224fd65e4df5d45559fe6800f1b5eb5b378e82c669117ebeca",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

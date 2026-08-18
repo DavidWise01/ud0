@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE STANDARD LIBRARY &mdash; the darts came home &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.tag0{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--good);border:1px solid var(--good);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(89,255,176,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:17px;letter-spacing:1px;}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:78ch;}
+.sub b{color:var(--cyan);}
+.loop{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:14px 0 4px;font-size:11px;letter-spacing:1px;color:var(--dim);}
+.loop span{border:1px solid var(--line);border-radius:4px;padding:4px 9px;color:#bcd6ee;}
+.loop span.hot{border-color:var(--good);color:var(--good);box-shadow:0 0 8px rgba(89,255,176,.25);}
+.loop b{color:var(--orange);font-size:14px;}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+table{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:4px;}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid rgba(62,240,255,.14);vertical-align:top;}
+th{color:var(--dim);font-weight:400;letter-spacing:1px;text-transform:uppercase;font-size:10px;}
+td .fn{color:var(--good);} td .val{color:#9fe8ff;} td .darts{color:var(--gold);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.evi{font-size:11.5px;color:var(--good);background:rgba(0,0,0,.4);border:1px solid rgba(89,255,176,.4);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:10px 0;}
+input[type=range]{flex:1;min-width:180px;accent-color:var(--cyan);}
+button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--cyan);border:1px solid var(--line);border-radius:5px;padding:6px 12px;cursor:pointer;letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+select{font-family:inherit;background:rgba(62,240,255,.08);color:var(--gold);border:1px solid var(--line);border-radius:5px;padding:6px 9px;}
+.res{font-size:14px;margin-top:8px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.wall{color:#bcd6ee;border-left:2px solid var(--bad);padding-left:12px;margin-top:8px;font-size:12px;}
+.wall b{color:var(--bad);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="tag0">&#9679; THE LOOP CLOSES</span></div>
+
+<header>
+  <h1>THE STANDARD LIBRARY <span class="c">the darts came home</span></h1>
+  <p class="sub">Every dart in this world ends with a <b>recommendation for I-13</b>. That was never decoration &mdash; it is a spec. This page is where the recommendations that were <b>additions on top of the 13 counted symbols</b> (not changes to them) actually <b>land in the language</b>. The core stays fixed; the reach grows around it. Written in I-13, run on the real compiler.</p>
+  <div class="loop">
+    <span>a dart hits a <b style="color:var(--bad)">wall</b></span><b>&#8594;</b>
+    <span>it names a <b>recommend</b></span><b>&#8594;</b>
+    <span class="hot">the recommend is <b style="color:var(--good)">integrated</b></span><b>&#8594;</b>
+    <span>the next dart <b>clears the wall</b></span>
+  </div>
+</header>
+
+<!-- THE LIBRARY -->
+<div class="panel">
+  <h2>THE LIBRARY <span class="n">written in I-13 &middot; verified on the compiler</span></h2>
+  <p>None of these touched the interpreter. Each is an ordinary I-13 program &mdash; bounded recursion over the four arithmetic operators (and, for the PRNGs, <span class="k">%</span> and the new bitwise ops). Run any of them: <span class="k">i13 run std/exp.i13</span>.</p>
+  <table>
+    <tr><th>function</th><th>method</th><th>uses</th><th>verified output</th><th>asked by</th></tr>
+    <tr><td><span class="fn">sqrt(x)</span></td><td>Newton</td><td>+ &minus; * /</td><td><span class="val">sqrt(2) = 1.414213562373095</span></td><td class="darts">026</td></tr>
+    <tr><td><span class="fn">exp(x)</span></td><td>Taylor (Horner)</td><td>+ &minus; * /</td><td><span class="val">exp(1) = 2.718281828459045</span></td><td class="darts">009 &middot; 031 &middot; 033</td></tr>
+    <tr><td><span class="fn">sin(x), cos(x)</span></td><td>Taylor</td><td>+ &minus; * /</td><td><span class="val">sin(1) = 0.8414709848078965</span></td><td class="darts">031 &middot; 033</td></tr>
+    <tr><td><span class="fn">ln(x)</span></td><td>2&middot;atanh((x&minus;1)/(x+1))</td><td>+ &minus; * /</td><td><span class="val">ln(2) = 0.6931471805599453</span></td><td class="darts">031 &middot; 033</td></tr>
+    <tr><td><span class="fn">rng (LCG)</span></td><td>MINSTD</td><td>* %</td><td><span class="val">lcg(1) = 16807, 282475249, &hellip;</span></td><td class="darts">004 &middot; 030</td></tr>
+    <tr><td><span class="fn">rng (xorshift32)</span></td><td>Marsaglia</td><td>^ &lt;&lt; &gt;&gt; &amp;</td><td><span class="val">xs32(1) = 270369, 67634689</span></td><td class="darts">004 &middot; 030</td></tr>
+    <tr><td><span class="fn">gcd(a,b)</span></td><td>Euclid (remainder)</td><td>%</td><td><span class="val">gcd(1071,462) = 21</span></td><td class="darts">027</td></tr>
+    <tr><td><span class="fn">modexp(b,e,m)</span></td><td>square &amp; multiply</td><td>* %</td><td><span class="val">modexp(2,10,1000) = 24</span></td><td class="darts">032</td></tr>
+  </table>
+</div>
+
+<!-- LIVE: the bound is a choice -->
+<div class="panel">
+  <h2>WHY A BOUND IS A CHOICE <span class="n">watch a Taylor series converge</span></h2>
+  <p>I-13 has no loop &mdash; iteration is <b>bounded recursion</b>, so every stdlib series runs a <b>fixed</b> number of terms. That is not a weakness; it is the same discipline as the rest of the language: total, analyzable, no unbounded work hidden anywhere. Slide the term count and watch the value walk onto the true answer, then stop earning digits. <span class="tag0" style="font-size:9px">live</span></p>
+  <div class="row">
+    <label style="color:var(--dim)">function</label>
+    <select id="fn"><option value="exp">exp(1) &rarr; e</option><option value="sin">sin(1)</option><option value="cos">cos(1)</option><option value="ln">ln(2)</option></select>
+    <label style="color:var(--dim)">terms</label><input id="terms" type="range" min="1" max="20" value="6">
+    <span id="tn" class="kg">6</span>
+  </div>
+  <canvas id="cv" width="960" height="180"></canvas>
+  <div class="res" id="res"></div>
+</div>
+
+<!-- THE ONE COMPILER CHANGE -->
+<div class="panel i13">
+  <h2>THE ONE INTERPRETER CHANGE <span class="n">bitwise &mdash; the % pattern again</span></h2>
+  <p>Two functions above (and two darts &mdash; <b>001</b> fast inverse square root, <b>029</b> Nim) needed something the four operators cannot give cleanly: <b>bitwise</b>. So <span class="k">&amp; | ^ &lt;&lt; &gt;&gt;</span> were added to the compiler as new <b>BinOp discriminants</b> &mdash; the exact shape as the earlier <span class="k">%</span>, spending <b>zero new alphabet symbols</b>. Operands are read as 64-bit integers (exact within &plusmn;2&#8309;&#179;). It runs:</p>
+  <div class="evi">$ i13 run bitwise.i13
+nimsum = 0          # 3 ^ 5 ^ 6  -- Nim's nim-sum (dart 029), now native
+shifted = 512       # 1024 &gt;&gt; 1
+shl = 256           # 1 &lt;&lt; 8
+$ i13 run std/rng_xorshift.i13
+r1 = 270369         # xorshift32 -- impossible before bitwise</div>
+  <p>The full existing test suite still passes &mdash; <b>130 tests, 0 failed</b>. The counted core did not move; five operators joined the two levels of precedence already there.</p>
+</div>
+
+<!-- THE LINE NOT CROSSED -->
+<div class="panel">
+  <h2>THE LINE NOT CROSSED <span class="n">what a library cannot honestly add</span></h2>
+  <p>Two recommendations are <b>not</b> here, on purpose. They are not additions on top of the 13 symbols &mdash; they change what I-13 <i>is</i>, and that is the author&rsquo;s call to make on the record, not a library function to slip in:</p>
+  <div class="wall"><b>arbitrary-precision integers</b> &mdash; dart 032 (Rabin&ndash;Miller) runs, but only until f64 loses exactness past <b>2&#8309;&#179;</b>. Real cryptographic sizes need bignum, which is a new value kind, not a function.</div>
+  <div class="wall"><b>a bounded aggregate / array</b> &mdash; the recurring &ldquo;aggregate wall&rdquo; behind darts 017, 018, 021, 028 and more. I-13&rsquo;s machine is deliberately <b>pure scalar f64, no memory model</b>. An array is the biggest departure any dart has asked for.</div>
+  <p style="margin-top:9px">Recorded, not smuggled. A minimal language grows most honestly by <b>refusing</b> as clearly as it accepts.</p>
+</div>
+
+<footer>
+  <b>THE STANDARD LIBRARY</b> &mdash; World V &middot; SONNY 5. The I-13 recommendations from the dart campaign that are additions on top of the counted 13 symbols, now landed: a stdlib written in I-13 (<span class="kg">std/*.i13</span>) plus one interpreter change (bitwise operators). Every value shown was measured on the canonical H1.1 compiler and is reproduced in <span class="kg">std/README.md</span> at <a href="https://github.com/DavidWise01/I13-H1.1">DavidWise01/I13-H1.1</a>. I-13 by David Lee Wise / ROOT0 / TriPod LLC; library assembled by AVAN from the darts. The loop closes: measure the wall, recommend, integrate, clear it.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  // JS mirrors of the I-13 stdlib series, so the convergence shown IS the stdlib's.
+  function expN(x,n){ var s=0,t=1; for(var k=0;k<n;k++){ s+=t; t=t*x/(k+1); } return s; }
+  function sinN(x,n){ var s=0,t=x,k=0; for(var i=0;i<n;i++){ s+=t; t=-t*x*x/((2*k+2)*(2*k+3)); k++; } return s; }
+  function cosN(x,n){ var s=0,t=1,k=0; for(var i=0;i<n;i++){ s+=t; t=-t*x*x/((2*k+1)*(2*k+2)); k++; } return s; }
+  function lnN(x,n){ var y=(x-1)/(x+1),s=0,yp=y; for(var j=0;j<n;j++){ s+=yp/(2*j+1); yp=yp*y*y; } return 2*s; }
+  var FN={exp:{f:expN,x:1,truth:Math.E,label:"e"},sin:{f:sinN,x:1,truth:Math.sin(1),label:"sin 1"},
+          cos:{f:cosN,x:1,truth:Math.cos(1),label:"cos 1"},ln:{f:lnN,x:2,truth:Math.log(2),label:"ln 2"}};
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), W=cv.width, H=cv.height;
+  var fnSel=document.getElementById("fn"), terms=document.getElementById("terms"), tn=document.getElementById("tn"), res=document.getElementById("res");
+  function fmt(v){ return (Math.round(v*1e12)/1e12).toString(); }
+  function draw(){
+    var key=fnSel.value, cfg=FN[key], N=parseInt(terms.value,10); tn.textContent=N;
+    ctx.fillStyle="#03040a"; ctx.fillRect(0,0,W,H);
+    // true line
+    var truth=cfg.truth;
+    ctx.strokeStyle="rgba(217,180,90,.9)"; ctx.setLineDash([5,4]); ctx.beginPath(); ctx.moveTo(0,H/2); ctx.lineTo(W,H/2); ctx.stroke(); ctx.setLineDash([]);
+    // partial sums 1..20 as a curve approaching the mid-line
+    var maxN=20, pad=30;
+    var vals=[]; for(var k=1;k<=maxN;k++) vals.push(cfg.f(cfg.x,k));
+    var span=0; for(var k=0;k<maxN;k++) span=Math.max(span,Math.abs(vals[k]-truth)); span=span||1;
+    ctx.strokeStyle="rgba(62,240,255,.85)"; ctx.lineWidth=2; ctx.beginPath();
+    for(var k=0;k<maxN;k++){ var x=pad+(W-2*pad)*k/(maxN-1); var y=H/2 - (vals[k]-truth)/span*(H/2-20); if(k===0)ctx.moveTo(x,y); else ctx.lineTo(x,y); }
+    ctx.stroke();
+    // dots; highlight current N
+    for(var k=0;k<maxN;k++){ var x=pad+(W-2*pad)*k/(maxN-1); var y=H/2 - (vals[k]-truth)/span*(H/2-20);
+      ctx.fillStyle=(k+1===N)?"#ff8a3d":"rgba(62,240,255,.5)"; ctx.beginPath(); ctx.arc(x,y,(k+1===N)?5:2.5,0,7); ctx.fill(); }
+    var v=cfg.f(cfg.x,N), err=Math.abs(v-truth);
+    res.innerHTML=N+' terms &middot; <span class="val" style="color:var(--cyan)">'+fmt(v)+'</span> vs true '+cfg.label+' = <span class="true">'+fmt(truth)+'</span> &middot; error <span class="err">'+(err<1e-12?"0 (machine)":err.toExponential(1))+'</span>';
+  }
+  fnSel.onchange=function(){ terms.value=Math.min(20,Math.max(4,parseInt(terms.value,10))); draw(); };
+  terms.oninput=draw; draw();
+})();
+</script>
+</body>
+</html>
