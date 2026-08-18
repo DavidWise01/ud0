@@ -889,14 +889,14 @@
       "credit": "Ulf Grenander (2-D) -> Michael Shamos -> Jay Kadane 1977 (O(n)); Bentley 1984",
       "source": "Jay Kadane, 1977",
       "i13_recommend": "nothing new - a clean no-wall over the new array; an algorithm that was pure 'aggregate wall' a day ago now runs unchanged from its textbook form",
-      "blurb": "Given a row of positive and negative numbers, find the contiguous stretch with the largest sum. Kadane's algorithm does it in one pass by asking at each step: extend the current run, or start fresh here? Keep the best ever seen. It RUNS in real I-13 over the new array (best=6 for [-2,1,-3,4,-1,2,1,-5,4], the run [4,-1,2,1], verified) - an algorithm that was pure 'aggregate wall' a day ago now runs unchanged from its textbook form. Credit is a chain, not a lone genius: Ulf Grenander posed the 2-D maximum-submatrix problem (image pattern recognition, O(n^6) brute force); Michael Shamos reduced it to 1-D with an O(n log n) overnight; Jay Kadane, shown the 1-D problem at a 1977 CMU seminar, gave the O(n) single-pass solution in about a minute; Jon Bentley made it famous in Programming Pearls (1984). The running fold (extend-or-restart) is I-13's native shape; the array just gave it something to fold over.",
+      "blurb": "Given a row of positive and negative numbers, find the contiguous stretch with the largest sum. Kadane's algorithm does it in one pass by asking at each step: extend the current run, or start fresh here? Keep the best ever seen. It RUNS in real I-13 over the new array (best=6 for [-2,1,-3,4,-1,2,1,-5,4], the run [4,-1,2,1], verified) - an algorithm that was pure 'aggregate wall' a day ago now runs unchanged from its textbook form. Credit is a chain, not a lone genius: Ulf Grenander posed the 2-D maximum-submatrix problem (image pattern recognition, O(n^6) brute force); Grenander reduced it to 1-D himself to see its structure, and Michael Shamos found an O(n log n) divide-and-conquer overnight; Jay Kadane, shown the 1-D problem at a 1977 CMU seminar, gave the O(n) single-pass solution in about a minute; Jon Bentley made it famous in Programming Pearls (1984). The running fold (extend-or-restart) is I-13's native shape; the array just gave it something to fold over.",
       "room": "darts",
       "accent": "#3ef0ff",
       "stamp": "DEMO",
       "kind": "dart",
       "kicker": "dart 044 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-maximum-subarray.html",
-      "seal": "5655558ff0a3cbf904b4e5906e4f4799e1586080f4c5dae0a11a648802e9a7ee"
+      "seal": "931195a89220f51004c78d430d789df7cd3c279699c15876816fb4965befc6bb"
     },
     {
       "slug": "the-quicksort",
@@ -906,14 +906,14 @@
       "credit": "Tony Hoare, 1959-61 (Moscow, machine translation)",
       "source": "Tony Hoare, 1961 (Algorithm 64)",
       "i13_recommend": "a way to return MULTIPLE values (a tuple/pair) - the NEWEST wall: the array cleared the aggregate wall and quicksort's partition (array + pivot index) reveals the next edge; joins bignum as the 2 open recommends",
-      "blurb": "Pick a pivot, throw everything smaller to its left and larger to its right, then sort each side the same way - quicksort, one of the most-used algorithms ever, invented by a 26-year-old in MOSCOW translating Russian. Tony Hoare (1959-61), a British exchange student in Kolmogorov's milieu (the same seminar culture that produced Karatsuba, dart 041), needed to sort words to look them up in a Russian-English dictionary for machine translation; he had the idea but could not write it down until he learned ALGOL 60's recursion, and published it as Algorithm 64 in 1961. Its LOMUTO PARTITION runs in real I-13 on the new array (pivot=5, smaller elements moved to the front, verified). But full quicksort's recursion needs the partition to return TWO things at once - the rearranged array AND the pivot's final index - and an I-13 function returns exactly one value. That is the NEWEST wall in the whole campaign, and it is telling: the array the author just added cleared the aggregate wall, and the very next classic algorithm reveals the edge behind it. Recommend: a way to return multiple values (a small tuple/pair). A sort DOES run today (bubble and insertion thread a single array cleanly, verified); quicksort specifically wants the dual return. Two open recommends now stand: multiple return (this dart) and bignum (darts 032/035/036/041).",
+      "blurb": "Pick a pivot, throw everything smaller to its left and larger to its right, then sort each side the same way - quicksort, one of the most-used algorithms ever, conceived by a young British student in MOSCOW translating Russian. Tony Hoare (1959), an exchange student in Kolmogorov's milieu (the same seminar culture that produced Karatsuba, dart 041), needed to sort words to look them up in a Russian-English dictionary for machine translation; he had the idea but could not write it down until he learned ALGOL 60's recursion, and published it as Algorithm 64 in 1961. Its LOMUTO PARTITION runs in real I-13 on the new array (pivot=5, smaller elements moved to the front, verified). But full quicksort's recursion needs the partition to return TWO things at once - the rearranged array AND the pivot's final index - and an I-13 function returns exactly one value. That is the NEWEST wall in the whole campaign, and it is telling: the array the author just added cleared the aggregate wall, and the very next classic algorithm reveals the edge behind it. Recommend: a way to return multiple values (a small tuple/pair). A sort DOES run today (bubble and insertion thread a single array cleanly, verified); quicksort specifically wants the dual return. Two open recommends now stand: multiple return (this dart) and bignum (darts 032/035/036/041).",
       "room": "darts",
       "accent": "#3ef0ff",
       "stamp": "DEMO",
       "kind": "dart",
       "kicker": "dart 045 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-quicksort.html",
-      "seal": "5670421c519de4b213c67d347f8fdee2ee6ba29475cfc60e14c1c193ed21b1c0"
+      "seal": "1e852cfcf8fc3bc3431adf2d66ff0bcc8d525b450e48f192b7017fc0ccdb58ca"
     }
   ],
   "keepers": [
@@ -930,7 +930,7 @@
     "keepers": 1,
     "darts": 45
   },
-  "i13_root": "89d0874fda53e11dfd07bf5901e176bade6acc28e39facc74597ee9caf88ddb7",
+  "i13_root": "116e0cd44527f79b5ec97bba01caf67331aea0983d95546d87a42266192dd64e",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
