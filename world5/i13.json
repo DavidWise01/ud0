@@ -51,6 +51,66 @@
       "url": "https://davidwise01.github.io/ud0/world5/the-galaxiton.html",
       "seal": "cb231d41472ab7c25a5d7ded560d9ad4b0e65859f1579b0202352b4b27926df2",
       "blurb": "An I-13 OCHO: eight still seats around a live cross-connect galaxy. The cortex bracket surface [g[u[p[(...)]]]] = galaxy . universe . world . core, parsed live (balance, depth, the ladder), held at the recursion cap of three, timed single-pass. New names for old ideas - LIT where measured, AMBER for the naming, DEAD for a new cosmology. Tamper-provable: a fourth namespace violates DEPTH."
+    },
+    {
+      "slug": "the-twelve",
+      "title": "THE TWELVE",
+      "room": "alphabet",
+      "kicker": "counted, not designed",
+      "accent": "#22d3ee",
+      "stamp": "LIT",
+      "source": "I-13 rev 2 teaching brief (THE TWELVE)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-twelve.html",
+      "seal": "47d621494342a91814aea862d909fe412a47ca2ce6719caa7c889578057074e7",
+      "blurb": "THE TWELVE - I-13's alphabet was counted, not designed: the top 12 AST node kinds across 649,634 Python nodes (504 stdlib files) cover 83.26%, plus the keyword I = 13. Four planes of three (DESIGNATE 53.55, BIND 11.13, DECIDE 7.78, TRANSFORM 10.80), each triad summing exactly, runnable in THE OCHO; the rank order reproduces independently. Honest caveats kept: the exclusion set is unpublished (raw walk 57.66%), and the twelve are Python-shaped. Tamper-provable: mis-file a symbol and a plane sum breaks."
+    },
+    {
+      "slug": "the-conservation-law",
+      "title": "THE CONSERVATION LAW",
+      "room": "law",
+      "kicker": "net = binds - k, total",
+      "accent": "#4ade80",
+      "stamp": "LIT",
+      "source": "I-13 rev 2 teaching brief (the law)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-conservation-law.html",
+      "seal": "dd45bb43c05eec16d04c868b965b5bb93db9031b591903897fc66303c3f739a7",
+      "blurb": "net = binds - k - I-13's conservation law, total for every opcode with no unstated scope, runnable in THE OCHO as a single-pass stack-machine validator: run a program, watch the height, get the Verdict (VALID / COVERED: stack balance + control pairing / NOT COVERED: types, termination, arithmetic, waste). Control is depth-indexed, not address-indexed - there is no branch opcode - so validation is one linear pass (ratio 1.0000). Honest gap kept: call arity is in neither list. Tamper-provable: break Call(n)'s k and a valid program mis-balances."
+    },
+    {
+      "slug": "the-five-rules",
+      "title": "THE FIVE RULES",
+      "room": "cortex",
+      "kicker": "the cortex; five rules, no learned parameters",
+      "accent": "#a855f7",
+      "stamp": "LIT",
+      "source": "I-13 rev 2 teaching brief (THE CORTEX)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-five-rules.html",
+      "seal": "5c9ae0b505b5c2bc0bd408ba6f12411f578695a141c530c6df6d790769dc88e1",
+      "blurb": "THE CORTEX - I-13's five rules, no learned parameters and no gradient path: VETO, -I (pressure + the drain), DEPTH, IDEMPOTENCE, ADDRESS. Runnable in THE OCHO (the VETO scope-matcher + the drain). The honesty is the point: in the shipped binary only VETO and the drain execute; IDEMPOTENCE can never fire (self.last is never assigned), kept in I-13's own MEASURED DEAD register. 'Zero parameters' means no learned params (the constants are tuned). Tamper-provable: accept a mismatched closer and the scope corrupts."
+    },
+    {
+      "slug": "the-cubi",
+      "title": "THE CUBI",
+      "room": "freeze",
+      "kicker": "[[5,1,3]] perfect code + a rejected hypothesis",
+      "accent": "#ffd24a",
+      "stamp": "LIT",
+      "source": "I-13 H1.0-FINAL, VH2 CUBI (verified 10/10)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-cubi.html",
+      "seal": "8b2d6b8c3d69a3c7a66280ad99806e40a228efc9ff962e9f318e6ab1449e904f",
+      "blurb": "THE CUBI - the combinatorial skeleton of I-13's frozen VH2 test (H1.0-FINAL, verified 10/10), runnable in THE OCHO: the [[5,1,3]] perfect five-qubit code (Hilbert dim 2^5=32, code dim 2, distance 3) matches its 15 single-qubit Pauli errors one-to-one onto the 15 nonzero 4-bit syndromes. The honest heart is a REJECTED hypothesis kept: a ternary logical basis does not fit inside one [[5,1,3]] block (needs rank >= 3 > the code rank 2), so the passing model is a ternary controller over a protected qubit. Tamper-provable: claim rank 2 holds dimension 3."
+    },
+    {
+      "slug": "the-palindrome",
+      "title": "THE PALINDROME",
+      "room": "galaxiton",
+      "kicker": "[ W1 | W2 || W3 || W4 | W5 ] - the tension, cataloged",
+      "accent": "#a855f7",
+      "stamp": "LIT",
+      "source": "the ud0 corpus, counted live",
+      "url": "https://davidwise01.github.io/ud0/world5/the-palindrome.html",
+      "seal": "8d95d73fdf2d7a27ce8056e9acbfc584d4ba2ff3c52c36df9118c11aa63016b9",
+      "blurb": "THE PALINDROME - the corpus reads the same forwards and backwards, [ W1 | W2 || W3 || W4 | W5 ] with the ternary hallway at the axis. This OCHO catalogs the tension honestly: positional symmetry is EXACT (W1<->W5, W2<->W4, W3 the pivot) but mass symmetry is badly FALSE - the mirror pairs weigh 2049 vs 1 and 2048 vs 48 (3.31 and 1.63 decades of strain). The geometry is demanding: it asks SONIA and SONNY 5 to grow toward the 2048 tower (a 4,047-sphere deficit), or the claim to be read as positional-only. The corpus measuring its own strain. Tamper-provable: call it balanced today and 2049 != 1 refutes it."
     }
   ],
   "keepers": [
@@ -61,12 +121,12 @@
     }
   ],
   "counts": {
-    "spheres": 1,
+    "spheres": 6,
     "rooms": 5,
-    "lit": 1,
+    "lit": 6,
     "keepers": 1
   },
-  "i13_root": "f8b8029033adfda4797e2808fdc8074f0acb96c64eb710a7bf1783bb0bad942c",
+  "i13_root": "1f4a2252d9e1e785f64880927ba4f9cf621c942ab31dfd0f485df7b503ddda41",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world"
 }

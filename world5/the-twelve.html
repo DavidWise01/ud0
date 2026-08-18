@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE TWELVE &middot; the alphabet &middot; SONNY 5</title>
+<style>
+:root{ --void:#1c0b46; --void2:#150838; --panel:rgba(255,255,255,.055); --panel2:rgba(255,255,255,.09); --ink:#f1eaff; --dim:#b9a8e6; --line:rgba(168,133,247,.34); --line2:rgba(168,133,247,.6); --violet:#a855f7; --cyan:#22d3ee; --pink:#ff4fd8; --gold:#ffd24a; --lit:#4ade80; --amber:#f9a83a; --wall:#ff6b8a; --grn:#4ade80; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;} .top a:hover{color:var(--pink);}
+header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);}
+h1{font-size:22px;letter-spacing:3px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--pink);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--cyan);}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
+.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);} .win.blue .no{color:rgba(34,211,238,.22);}
+.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);} .win.red .no{color:rgba(255,79,216,.22);}
+.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);box-shadow:0 0 6px rgba(74,222,128,.35);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
+select,button,input{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--pink);color:#fff;}
+input{color:var(--gold);}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,85,247,.14);}
+.verdict{font-size:16px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--lit);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+</style>
+</head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span>THE ALPHABET &middot; the I-13 world</span></div>
+
+<header>
+  <h1>THE TWELVE</h1>
+  <p class="sub">The alphabet of I-13 was <b>not designed &mdash; it was counted</b>: rank the AST node kinds of 504 Python&nbsp;3.12 stdlib files by frequency and the top twelve verbs cover <b>83.26%</b>; add the declaration keyword <b>I</b> and you have thirteen symbols, four planes of exactly three.</p>
+  <p class="src"><span class="tag t-amber">source</span> I-13 &middot; THE TWELVE (rev 2 teaching brief; H1.0-FINAL freeze), David Lee Wise / ROOT0 / TriPod LLC. Census: <b>649,634</b> AST nodes across <b>504</b> stdlib files, Python 3.12; rank order reproduces on 3.11. Room: <b>THE ALPHABET</b> &middot; World V, the I-13 world. Rendered, not asserted.</p>
+</header>
+
+<div class="ocho">
+
+  <!-- ================= LEFT: ROOTS / PLANES / LINEAGE ================= -->
+  <div class="col blue">
+    <div class="teamhdr">roots &middot; planes &middot; lineage</div>
+
+    <div class="win blue"><span class="no">1</span>
+      <h2>ROOTS &mdash; counted, not designed</h2>
+      <p>Walk the abstract syntax trees of <b>504</b> Python&nbsp;3.12 stdlib files &mdash; <b class="k">649,634</b> nodes &mdash; and rank the node kinds by how often they occur. The alphabet is whatever <i>rises to the top</i>. Nobody chose the twelve; frequency did.</p>
+      <p>The claim is falsifiable and it holds: the <b>rank order reproduces independently on Python&nbsp;3.11</b>. <span class="tag t-lit">reproduced</span></p>
+    </div>
+
+    <div class="win blue"><span class="no">2</span>
+      <h2>THE FOUR PLANES</h2>
+      <p>The twelve fall into four planes of exactly three &mdash; each verb a role in a forward pass of code:</p>
+      <p><b class="k">I DESIGNATE</b> &mdash; Name &middot; Constant &middot; Attribute (name a thing)<br>
+         <b class="k">II BIND</b> &mdash; Assign &middot; Arg &middot; Return (hand a value on)<br>
+         <b class="k">III DECIDE</b> &mdash; Expr &middot; If &middot; Compare (branch)<br>
+         <b class="k">IV TRANSFORM</b> &mdash; Call &middot; FunctionDef &middot; BinOp (make new value)</p>
+      <p class="small">Three per plane, four planes &mdash; twelve. Plus <b>I</b> = thirteen. <span class="tag t-lit">4&times;3+1</span></p>
+    </div>
+
+    <div class="win blue"><span class="no">3</span>
+      <h2>LINEAGE</h2>
+      <p>Where the <i>ideas</i> behind the verbs first appear, per the brief &mdash; attribution is history, not measurement:</p>
+      <p class="small"><b>Lovelace 1843</b> &mdash; Name, Constant, Assign, If, Compare (the Note&nbsp;G engine).<br>
+      <b>Church 1932</b> &mdash; Call, FunctionDef (the &lambda;-calculus).<br>
+      <b>Frege 1879</b> &mdash; Arg (the Begriffsschrift argument-place).</p>
+      <p class="small">These are <b>credited, not claimed</b>, and some are disputed in the brief itself. <span class="tag t-amber">history &mdash; some disputed</span></p>
+    </div>
+  </div>
+
+  <!-- ================= CENTER: DATA IN -> LIT ENGINE -> DATA OUT ================= -->
+  <div class="col center">
+    <div class="teamhdr">data in &rarr; the lit engine &rarr; data out</div>
+
+    <div class="win"><span class="no">4</span>
+      <h2>DATA IN &mdash; the census</h2>
+      <p>Pick a plane; read its three counted verbs and their live running sum against the published subtotal.</p>
+      <div class="row"><label>plane</label>
+        <select id="planeSel">
+          <option value="I DESIGNATE">I DESIGNATE</option>
+          <option value="II BIND">II BIND</option>
+          <option value="III DECIDE">III DECIDE</option>
+          <option value="IV TRANSFORM">IV TRANSFORM</option>
+        </select>
+      </div>
+      <div class="out" id="inOut"></div>
+    </div>
+
+    <div class="flow">&#9660;</div>
+
+    <div class="win panel">
+      <h2 style="color:var(--gold);border-color:var(--line2)">&#9733; THE LIT ENGINE &mdash; the frequency table</h2>
+      <p class="small">Every triad sums to its subtotal <b>exactly</b> (integer hundredths of a percent, no float). The four subtotals sum to 8326. <b>Block</b> is the container, not one of the twelve.</p>
+      <table id="censusTbl">
+        <tr><th>plane</th><th>three verbs (count)</th><th>&Sigma;</th><th>target</th><th>witness</th></tr>
+      </table>
+      <div id="witBadge"></div>
+      <p class="small" style="margin-top:7px">Rank&nbsp;1 is <b class="k">Name</b> at <b>2967</b> (29.67%). Sort desc and Name leads &mdash; asserted on load.</p>
+    </div>
+
+    <div class="flow">&#9660;</div>
+
+    <div class="win"><span class="no">5</span>
+      <h2>DATA OUT &mdash; coverage</h2>
+      <table>
+        <tr><th>plane</th><th>share</th></tr>
+        <tr><td style="text-align:left">I DESIGNATE</td><td class="k">53.55%</td></tr>
+        <tr><td style="text-align:left">II BIND</td><td class="k">11.13%</td></tr>
+        <tr><td style="text-align:left">III DECIDE</td><td class="k">7.78%</td></tr>
+        <tr><td style="text-align:left">IV TRANSFORM</td><td class="k">10.80%</td></tr>
+        <tr><td style="text-align:left"><b>12 verbs</b></td><td><b>83.26%</b></td></tr>
+        <tr><td style="text-align:left"><b>+ I</b></td><td><b>= 13 symbols</b></td></tr>
+      </table>
+      <div id="outOut" class="out"></div>
+      <p class="small" style="margin-top:6px">Coverage is over an <i>unpublished</i> exclusion set. Raw <span class="k">ast.walk</span> = <b>57.66%</b> (Load alone is 25%). The 83.26% is honest only <i>with</i> that caveat. <span class="tag t-amber">excluded set unpublished</span></p>
+    </div>
+  </div>
+
+  <!-- ================= RIGHT: WALL / GRAVEYARD / TAMPER ================= -->
+  <div class="col red">
+    <div class="teamhdr">wall &middot; graveyard &middot; tamper</div>
+
+    <div class="win red"><span class="no">6</span>
+      <h2>THE WALL &mdash; honest limits</h2>
+      <p>&bull; The <b>exclusion set is unpublished.</b> The 83.26% is quoted over a set of node kinds the brief does not fully list; the raw walk is 57.66%. <span class="tag t-wall">wall</span></p>
+      <p>&bull; <b>One language.</b> The twelve were counted over Python only. The <i>mechanism</i> (count, rank, cover) is general &mdash; tested across 7 languages &mdash; but <b>these twelve are Python-shaped</b>. <span class="tag t-amber">one language</span></p>
+      <p>&bull; <b>THE CONTAINER.</b> <span class="k">Block</span> is the most structural node yet is <b>not</b> one of the twelve &mdash; it holds verbs, it is not a verb. 12 + I = 13 is the whole name. <span class="tag t-lit">by construction</span></p>
+    </div>
+
+    <div class="win red"><span class="no">7</span>
+      <h2>GRAVEYARD &mdash; DEAD, kept visible</h2>
+      <p class="grave"><s>&ldquo;The alphabet was designed.&rdquo;</s> &mdash; <b>DEAD.</b> It was <b>counted</b>, frequency-ranked from 649,634 nodes. Design plays no part. <span class="tag t-dead">disproven</span></p>
+      <p class="grave"><s>&ldquo;83.26% of all Python code.&rdquo;</s> &mdash; <b>DEAD.</b> It is 83.27% over <i>some excluded set</i>; the raw walk is 57.66%. The bigger number needs the caveat or it is a lie. <span class="tag t-dead">retracted</span></p>
+      <p class="small">I-13 keeps a MEASURED DEAD register. These stay on the page &mdash; a retracted claim is not erased. <span class="tag t-wall">DEAD kept</span></p>
+    </div>
+
+    <div class="win red"><span class="no">8</span>
+      <h2>TAMPER &mdash; break a real rule</h2>
+      <p>The reference <span class="k">ast.rs</span> today <b>mis-files Call</b> under DESIGNATE (a real bug in the brief's own tool). Reproduce it: move <b>Call (750)</b> from TRANSFORM into DESIGNATE.</p>
+      <div class="row"><button id="tamper">&#9888; mis-file Call &rarr; DESIGNATE</button><button id="restore">&#8634; restore</button></div>
+      <div class="out" id="tampOut"></div>
+      <p class="small">DESIGNATE then sums to <b>6105</b> (61.05%) &ne; its header 5355. The witness (each triad must equal its subtotal) turns <b>red</b>. <span class="tag t-lit">it must fail</span></p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <b>THE TWELVE</b> &mdash; World V &middot; the I-13 world, in the refined <b>OCHO</b>: an alphabet <i>counted</i> from 649,634 AST nodes, not designed. The left column shows the roots and the credited lineage; the centre is the live census &mdash; four planes of three, every triad summing to its subtotal exactly, 8326 = 83.26%; the right column keeps the walls (unpublished exclusion set, one language, the raw 57.66%) and the DEAD register visible, and lets you reproduce the real Call mis-filing bug until the witness goes red.
+  <div style="margin-top:8px">
+    <span class="badge pass">the frequency table &amp; every triad sum &middot; LIT (counted)</span>
+    <span class="badge" style="background:rgba(249,168,58,.14);color:var(--amber);border:1px solid var(--amber)">lineage attributions &amp; the 83.26% over an unpublished set &middot; AMBER</span>
+    <span class="badge failb">&ldquo;designed&rdquo; &middot; &ldquo;of all Python&rdquo; &middot; DEAD (kept)</span>
+  </div>
+  <div style="margin-top:8px">&#10003; selfcheck runs on load and <b>throws</b> on any violation; the on-load witness is all green under a LIT stamp. Honesty is the whole game &mdash; no caveat laundered away. David Lee Wise (ROOT0) with AVAN.</div>
+</footer>
+
+<script>
+"use strict";
+/* =========================================================================
+   THE TWELVE — headless engine (pure). Everything above the UI marker is
+   free of the page DOM; selfcheck() throws on any violation. The census is
+   an event-strict LIST: plane membership is recomputed by scanning the list,
+   never read from a single per-plane slot, so a mis-filed verb cannot hide.
+   ========================================================================= */
+
+/* ---- the census: the twelve verbs, counted (integer hundredths of a %) ---- */
+var CENSUS = [
+  {sym:"Name",        count:2967},
+  {sym:"Constant",    count:1425},
+  {sym:"Attribute",   count:963},
+  {sym:"Assign",      count:523},
+  {sym:"Arg",         count:408},
+  {sym:"Return",      count:182},
+  {sym:"Expr",        count:301},
+  {sym:"If",          count:276},
+  {sym:"Compare",     count:201},
+  {sym:"Call",        count:750},
+  {sym:"FunctionDef", count:192},
+  {sym:"BinOp",       count:138}
+];
+
+/* ---- CANON: the correct filing of each verb to its plane ---- */
+var CANON = {
+  "Name":"I DESIGNATE","Constant":"I DESIGNATE","Attribute":"I DESIGNATE",
+  "Assign":"II BIND","Arg":"II BIND","Return":"II BIND",
+  "Expr":"III DECIDE","If":"III DECIDE","Compare":"III DECIDE",
+  "Call":"IV TRANSFORM","FunctionDef":"IV TRANSFORM","BinOp":"IV TRANSFORM"
+};
+
+var PLANE_ORDER = ["I DESIGNATE","II BIND","III DECIDE","IV TRANSFORM"];
+var SUBTOTALS   = { "I DESIGNATE":5355, "II BIND":1113, "III DECIDE":778, "IV TRANSFORM":1080 };
+var GRAND       = 8326;   /* 12 verbs = 83.26% */
+
+/* ---- count lookup by list scan (no map slot) ---- */
+function countOf(sym){
+  for(var i=0;i<CENSUS.length;i++){ if(CENSUS[i].sym===sym) return CENSUS[i].count; }
+  return null;
+}
+
+/* ---- membership by scanning the census list against a filing ---- */
+function membersOf(plane, filing){
+  var m=[], i, s;
+  for(i=0;i<CENSUS.length;i++){ s=CENSUS[i].sym; if(filing[s]===plane) m.push(s); }
+  return m;
+}
+
+/* ---- the witness: each plane's triad must sum to its published subtotal ---- */
+function witness(filing){
+  var out=[], i, j, p, mem, s;
+  for(i=0;i<PLANE_ORDER.length;i++){
+    p=PLANE_ORDER[i]; mem=membersOf(p,filing); s=0;
+    for(j=0;j<mem.length;j++){ s+=countOf(mem[j]); }
+    out.push({ plane:p, members:mem, sum:s, target:SUBTOTALS[p], ok:(s===SUBTOTALS[p]) });
+  }
+  return out;
+}
+
+function allWitnessOk(w){ var i; for(i=0;i<w.length;i++){ if(!w[i].ok) return false; } return true; }
+
+/* ---- clone a filing so TAMPER never mutates CANON ---- */
+function cloneFiling(f){ var g={}, k; for(k in f){ if(f.hasOwnProperty(k)) g[k]=f[k]; } return g; }
+
+/* ---- the tamper: mis-file Call from TRANSFORM into DESIGNATE (as ast.rs does) ---- */
+function misfileCall(base){ var g=cloneFiling(base); g["Call"]="I DESIGNATE"; return g; }
+
+/* ---- ranking desc: the alphabet sorted by frequency ---- */
+function rankedDesc(){
+  var a=CENSUS.slice();
+  a.sort(function(x,y){ return y.count-x.count; });
+  return a;
+}
+
+function grandTotal(){ var s=0,i; for(i=0;i<CENSUS.length;i++) s+=CENSUS[i].count; return s; }
+function hasSym(sym){ var i; for(i=0;i<CENSUS.length;i++){ if(CENSUS[i].sym===sym) return true; } return false; }
+
+/* ---- fail-loud selfcheck: throws on any violation ---- */
+function selfcheck(){
+  function t(c,m){ if(!c) throw new Error("SELFCHECK: "+m); }
+
+  /* 1) twelve verbs exactly; Block is NOT one of them (it is the container) */
+  t(CENSUS.length===12, "must be twelve verbs, got "+CENSUS.length);
+  t(hasSym("Block")===false, "Block must NOT be counted among the twelve");
+
+  /* 2) four planes; each canonical triad has exactly three and sums to its subtotal */
+  var i, w=witness(CANON), grand=0;
+  t(w.length===4, "must be four planes, got "+w.length);
+  for(i=0;i<w.length;i++){
+    t(w[i].members.length===3, w[i].plane+" must hold exactly three, holds "+w[i].members.length);
+    t(w[i].sum===w[i].target, w[i].plane+" triad sums to "+w[i].sum+" not "+w[i].target);
+    grand+=w[i].sum;
+  }
+  t(allWitnessOk(w)===true, "canonical witness must be all green on load");
+
+  /* 3) the four subtotals sum to 8326 = 83.26%; census grand total agrees */
+  t(grand===GRAND, "four subtotals must sum to 8326, got "+grand);
+  t(grandTotal()===GRAND, "census counts must total 8326, got "+grandTotal());
+
+  /* 4) 12 verbs + I = 13 symbols */
+  t(CENSUS.length+1===13, "twelve verbs plus I must be thirteen");
+
+  /* 5) ranked desc: Name is rank 1 at 2967 (29.67%) */
+  var r=rankedDesc();
+  t(r[0].sym==="Name" && r[0].count===2967, "rank 1 must be Name(2967)");
+
+  /* 6) the tamper MUST be detectable: mis-filing Call breaks a plane sum */
+  var wt=witness(misfileCall(CANON));
+  t(allWitnessOk(wt)===false, "mis-filing Call must break the witness");
+  for(i=0;i<wt.length;i++){
+    if(wt[i].plane==="I DESIGNATE"){ t(wt[i].sum===6105, "mis-filed DESIGNATE must sum to 6105, got "+wt[i].sum); }
+  }
+
+  return true;
+}
+
+/* ===== UI ===== */
+(function(){
+  try{
+    selfcheck();
+
+    var $=function(id){ return document.getElementById(id); };
+
+    /* live, mutable filing — starts canonical (green) */
+    var FILING = cloneFiling(CANON);
+
+    function pct(n){ return (n/100).toFixed(2)+"%"; }
+
+    /* --- centre panel: render the census table + witness from current FILING --- */
+    function renderCensus(){
+      var w=witness(FILING), tbl=$("censusTbl"), i, j, rows="";
+      rows += '<tr><th>plane</th><th>three verbs (count)</th><th>&Sigma;</th><th>target</th><th>witness</th></tr>';
+      for(i=0;i<w.length;i++){
+        var mem=w[i].members, parts=[];
+        for(j=0;j<mem.length;j++){ parts.push(mem[j]+"("+countOf(mem[j])+")"); }
+        var ok=w[i].ok;
+        rows += '<tr>'
+          + '<td style="text-align:left;color:var(--cyan)">'+w[i].plane+'</td>'
+          + '<td style="text-align:left;font-size:10px">'+parts.join(" &middot; ")+'</td>'
+          + '<td style="color:'+(ok?"var(--lit)":"var(--wall)")+';font-weight:700">'+w[i].sum+'</td>'
+          + '<td>'+w[i].target+'</td>'
+          + '<td style="font-weight:800;color:'+(ok?"var(--lit)":"var(--wall)")+'">'+(ok?"&#10003;":"&#10007;")+'</td>'
+          + '</tr>';
+      }
+      tbl.innerHTML=rows;
+
+      var all=allWitnessOk(w);
+      $("witBadge").innerHTML = all
+        ? '<span class="badge pass">&#10003; WITNESS GREEN &middot; every triad = its subtotal &middot; 8326 = 83.26% &middot; <b>LIT</b></span>'
+        : '<span class="badge failb">&#10007; WITNESS RED &middot; a triad no longer equals its subtotal &middot; the LIT claim is broken</span>';
+    }
+
+    /* --- DATA IN: chosen plane's three verbs + running sum vs subtotal --- */
+    function renderIn(){
+      var p=$("planeSel").value, mem=membersOf(p,FILING), i, s=0, lines=[];
+      for(i=0;i<mem.length;i++){ s+=countOf(mem[i]); lines.push(mem[i]+" = "+countOf(mem[i])); }
+      var ok=(s===SUBTOTALS[p]);
+      $("inOut").innerHTML = lines.join(" &nbsp;+&nbsp; ")
+        + '<br>&Sigma; = <b style="color:'+(ok?"var(--lit)":"var(--wall)")+'">'+s+'</b> ('+pct(s)+')'
+        + ' vs subtotal <b>'+SUBTOTALS[p]+'</b> ('+pct(SUBTOTALS[p])+') '
+        + (ok?'<span class="tag t-lit">match</span>':'<span class="tag t-dead">mis-filed</span>');
+    }
+
+    /* --- DATA OUT: overall coverage from current FILING --- */
+    function renderOut(){
+      var w=witness(FILING), i, grand=0, allok=allWitnessOk(w);
+      for(i=0;i<w.length;i++){ grand+=w[i].sum; }
+      var r=rankedDesc();
+      $("outOut").innerHTML = 'twelve verbs &Sigma; = <b>'+grandTotal()+'</b> ('+pct(grandTotal())+') &middot; + I = <b>13</b> symbols'
+        + '<br>rank&nbsp;1 = <b class="k">'+r[0].sym+'</b> ('+r[0].count+', '+pct(r[0].count)+')'
+        + '<br>plane subtotals &Sigma; = <b style="color:'+(allok?"var(--lit)":"var(--wall)")+'">'+grand+'</b> '
+        + (allok? '&middot; <span class="tag t-lit">coverage LIT</span>'
+                : '&middot; <span class="tag t-dead">filing broken &mdash; subtotals no longer 8326-consistent</span>');
+    }
+
+    function renderAll(){ renderCensus(); renderIn(); renderOut(); }
+
+    $("planeSel").onchange=renderIn;
+
+    /* --- TAMPER / restore --- */
+    $("tamper").onclick=function(){
+      FILING=misfileCall(CANON);
+      renderAll();
+      $("tampOut").innerHTML='<span style="color:var(--wall);font-weight:700">&#9888; Call mis-filed into DESIGNATE.</span> '
+        + 'DESIGNATE now = Name+Constant+Attribute+Call = <b>6105</b> (61.05%) &ne; 5355 &middot; TRANSFORM drops to 330 &ne; 1080. Witness RED.';
+    };
+    $("restore").onclick=function(){
+      FILING=cloneFiling(CANON);
+      renderAll();
+      $("tampOut").innerHTML='<span style="color:var(--lit);font-weight:700">&#8634; restored.</span> Call is back under TRANSFORM &mdash; every triad = its subtotal, witness green.';
+    };
+
+    renderAll();
+    $("tampOut").innerHTML='canonical filing &mdash; witness green. Press the button to reproduce the ast.rs bug.';
+
+  }catch(e){
+    var fb=document.getElementById("failb");
+    if(fb){ fb.style.display="block"; fb.textContent="FAIL-LOUD — "+e.message; }
+    throw e;
+  }
+})();
+</script>
+</body>
+</html>

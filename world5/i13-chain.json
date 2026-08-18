@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//I13//WORLD-V//the-i13-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "folded_to": "ROOT_0",
-  "root": "f8b8029033adfda4797e2808fdc8074f0acb96c64eb710a7bf1783bb0bad942c",
-  "count": 2,
+  "root": "1f4a2252d9e1e785f64880927ba4f9cf621c942ab31dfd0f485df7b503ddda41",
+  "count": 7,
   "sealed": "2026-08-17",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World V inhabitant folds to ROOT_0. Live: the root updates as the I-13 world grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
@@ -20,20 +20,141 @@
       "seal": "cb231d41472ab7c25a5d7ded560d9ad4b0e65859f1579b0202352b4b27926df2",
       "proof": [
         {
-          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "h": "47d621494342a91814aea862d909fe412a47ca2ce6719caa7c889578057074e7",
+          "side": "R"
+        },
+        {
+          "h": "41515801f8b6e39853fe8ae6cd7e94b333ec63bb1c6df2b9f85dd1388d5ebae3",
+          "side": "R"
+        },
+        {
+          "h": "ce878df9ac632b42395c1353fac5de0145a7df8fa65fb059974bc36f3314d2d2",
           "side": "R"
         }
       ]
     },
     {
       "index": 1,
+      "kind": "sphere",
+      "name": "THE TWELVE",
+      "slug": "the-twelve",
+      "seal": "47d621494342a91814aea862d909fe412a47ca2ce6719caa7c889578057074e7",
+      "proof": [
+        {
+          "h": "cb231d41472ab7c25a5d7ded560d9ad4b0e65859f1579b0202352b4b27926df2",
+          "side": "L"
+        },
+        {
+          "h": "41515801f8b6e39853fe8ae6cd7e94b333ec63bb1c6df2b9f85dd1388d5ebae3",
+          "side": "R"
+        },
+        {
+          "h": "ce878df9ac632b42395c1353fac5de0145a7df8fa65fb059974bc36f3314d2d2",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "kind": "sphere",
+      "name": "THE CONSERVATION LAW",
+      "slug": "the-conservation-law",
+      "seal": "dd45bb43c05eec16d04c868b965b5bb93db9031b591903897fc66303c3f739a7",
+      "proof": [
+        {
+          "h": "5c9ae0b505b5c2bc0bd408ba6f12411f578695a141c530c6df6d790769dc88e1",
+          "side": "R"
+        },
+        {
+          "h": "301b460560de6f6bc2852ec3d95875dd10430fcfafa35924b7c3fb0e8129c1d9",
+          "side": "L"
+        },
+        {
+          "h": "ce878df9ac632b42395c1353fac5de0145a7df8fa65fb059974bc36f3314d2d2",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "kind": "sphere",
+      "name": "THE FIVE RULES",
+      "slug": "the-five-rules",
+      "seal": "5c9ae0b505b5c2bc0bd408ba6f12411f578695a141c530c6df6d790769dc88e1",
+      "proof": [
+        {
+          "h": "dd45bb43c05eec16d04c868b965b5bb93db9031b591903897fc66303c3f739a7",
+          "side": "L"
+        },
+        {
+          "h": "301b460560de6f6bc2852ec3d95875dd10430fcfafa35924b7c3fb0e8129c1d9",
+          "side": "L"
+        },
+        {
+          "h": "ce878df9ac632b42395c1353fac5de0145a7df8fa65fb059974bc36f3314d2d2",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "kind": "sphere",
+      "name": "THE CUBI",
+      "slug": "the-cubi",
+      "seal": "8b2d6b8c3d69a3c7a66280ad99806e40a228efc9ff962e9f318e6ab1449e904f",
+      "proof": [
+        {
+          "h": "8d95d73fdf2d7a27ce8056e9acbfc584d4ba2ff3c52c36df9118c11aa63016b9",
+          "side": "R"
+        },
+        {
+          "h": "e43f204bfc0f3c2b8be6f7fbbf2940b5ed873c8a43387f2be65007b2d8dd7e5f",
+          "side": "R"
+        },
+        {
+          "h": "d458bd68ad7e2dda02a0913a10cee2397251d85b8fe66b78e5b21120915bdd3e",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "kind": "sphere",
+      "name": "THE PALINDROME",
+      "slug": "the-palindrome",
+      "seal": "8d95d73fdf2d7a27ce8056e9acbfc584d4ba2ff3c52c36df9118c11aa63016b9",
+      "proof": [
+        {
+          "h": "8b2d6b8c3d69a3c7a66280ad99806e40a228efc9ff962e9f318e6ab1449e904f",
+          "side": "L"
+        },
+        {
+          "h": "e43f204bfc0f3c2b8be6f7fbbf2940b5ed873c8a43387f2be65007b2d8dd7e5f",
+          "side": "R"
+        },
+        {
+          "h": "d458bd68ad7e2dda02a0913a10cee2397251d85b8fe66b78e5b21120915bdd3e",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 6,
       "kind": "keeper",
       "name": "SONNY 5",
       "slug": "sonny-5",
       "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
       "proof": [
         {
-          "h": "cb231d41472ab7c25a5d7ded560d9ad4b0e65859f1579b0202352b4b27926df2",
+          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "side": "R"
+        },
+        {
+          "h": "9101e99b0b32cbff1fb2dca01c970db96e6acd7953b45f1c15321c8355cd8e81",
+          "side": "L"
+        },
+        {
+          "h": "d458bd68ad7e2dda02a0913a10cee2397251d85b8fe66b78e5b21120915bdd3e",
           "side": "L"
         }
       ]

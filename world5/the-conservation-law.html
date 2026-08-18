@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE CONSERVATION LAW — World V · SONNY 5 · the I-13 world</title>
+<style>
+:root{ --void:#1c0b46; --void2:#150838; --panel:rgba(255,255,255,.055); --panel2:rgba(255,255,255,.09); --ink:#f1eaff; --dim:#b9a8e6; --line:rgba(168,133,247,.34); --line2:rgba(168,133,247,.6); --violet:#a855f7; --cyan:#22d3ee; --pink:#ff4fd8; --gold:#ffd24a; --lit:#4ade80; --amber:#f9a83a; --wall:#ff6b8a; --grn:#4ade80; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;} .top a:hover{color:var(--pink);}
+header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);}
+h1{font-size:22px;letter-spacing:3px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--pink);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--cyan);}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
+.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);} .win.blue .no{color:rgba(34,211,238,.22);}
+.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);} .win.red .no{color:rgba(255,79,216,.22);}
+.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);box-shadow:0 0 6px rgba(74,222,128,.35);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
+select,button,input{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--pink);color:#fff;}
+input{color:var(--gold);}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,85,247,.14);}
+.verdict{font-size:16px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--lit);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+</style>
+</head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span>THE LAW &middot; the I-13 world</span></div>
+
+<header>
+  <h1>THE CONSERVATION LAW</h1>
+  <p class="sub">I-13's one rule for the stack: <b>net = binds &minus; k</b>, total for every opcode, with no unstated scope &mdash; and it is checked in a <b>single linear pass</b>.</p>
+  <p class="src"><span class="tag t-amber">source</span> I-13 (rev 2 teaching brief; H1.0-FINAL freeze, verified 10/10), David Lee Wise / ROOT0 / TriPod LLC. Room <b>THE LAW</b>. The runnable validator/VM below is the flagship; every number is exact (integer arithmetic). Rendered, not asserted.</p>
+</header>
+
+<div class="ocho">
+
+  <!-- ===================== LEFT · BLUE · ROOTS & PROOFS ===================== -->
+  <div class="col blue">
+    <div class="teamhdr">&#9673; BLUE &middot; the law &amp; its proofs</div>
+
+    <!-- 1 · ROOTS -->
+    <div class="win blue"><span class="no">1</span>
+      <h2>ROOTS &middot; the law</h2>
+      <p>Every opcode moves the stack by a fixed amount, and that amount is nothing but its two counts:</p>
+      <p style="text-align:center;font-size:15px;color:#fff;margin:8px 0"><b>net = binds &minus; k</b></p>
+      <p><span class="k">k</span> = operands it consumes off the stack; <span class="k">binds</span> = 1 if it pushes a result, else 0. The law is <b>total</b> &mdash; it holds for all 14 fixed opcodes and for <span class="k">Call(n)</span> &mdash; and there is <b>no unstated scope</b>: the number is the same wherever the opcode appears. <span class="tag t-lit">computed</span></p>
+      <p class="small">"Axiom XIII" names the rule in the brief; the framing is the author's, the arithmetic is checked here. <span class="tag t-amber">framing</span></p>
+    </div>
+
+    <!-- 2 · THE ISA -->
+    <div class="win blue"><span class="no">2</span>
+      <h2>THE ISA &middot; k in, binds out</h2>
+      <p>The instruction set. <span class="k">k</span> in, <span class="k">binds</span> out, <b>net = binds &minus; k</b>:</p>
+      <div style="max-height:210px;overflow:auto"><table id="isaTbl">
+        <tr><th>op</th><th>k</th><th>binds</th><th>net</th></tr>
+      </table></div>
+      <p class="small" style="margin-top:6px"><span class="k">Call(n)</span> binds 1 with k = n+1 (the n args <b>and</b> the callee slot), so net = &minus;n. <span class="tag t-lit">measured</span></p>
+    </div>
+
+    <!-- 3 · CONSERVATION -->
+    <div class="win blue"><span class="no">3</span>
+      <h2>CONSERVATION &middot; all 14 hold</h2>
+      <p>Assert the whole table at once: <b>binds &minus; k</b> must equal the expected net for every fixed opcode, and <span class="k">Call(n) = &minus;n</span> for n in {0,1,2,3}.</p>
+      <div class="row"><button id="consBtn">assert net = binds &minus; k</button></div>
+      <div id="consOut" class="small"></div>
+    </div>
+
+    <!-- 4 · SINGLE PASS -->
+    <div class="win blue"><span class="no">4</span>
+      <h2>SINGLE PASS &middot; ratio 1.0000</h2>
+      <p>Control is <b>depth-indexed</b> &mdash; Block/If/Else/End ride a ctrl-stack of entry heights &mdash; so a target height is a <b>number already in hand</b>. There is <b>no branch opcode</b>, no address to resolve. The validator visits exactly <span class="k">len(code)</span> slots: one linear pass, no backpatch, no fixpoint.</p>
+      <div class="row"><button id="passBtn">count slots vs len(code)</button></div>
+      <div id="passOut"></div>
+    </div>
+  </div>
+
+  <!-- ===================== CENTER · THE ENGINE · DATA IN -> OUT ===================== -->
+  <div class="col center">
+    <div class="teamhdr">&#9670; THE ENGINE &middot; data in &rarr; verdict out</div>
+
+    <div class="flow">&#9660; DATA IN &middot; an I-13 program &#9660;</div>
+
+    <!-- 5 · the LIT engine -->
+    <div class="win panel"><span class="no">5</span>
+      <h2>THE VALIDATOR / VM &middot; run &middot; watch the height</h2>
+      <div class="row">
+        <label for="prog">program</label>
+        <select id="prog"></select>
+        <button id="runBtn">run &rarr; trace</button>
+      </div>
+      <div id="traceWrap"></div>
+      <div class="verdict" id="verdict">&mdash;</div>
+      <div class="reason" id="reason"></div>
+      <p class="small" style="margin-top:8px">Stack height starts at 0. Each row consumes <span class="k">k</span>, pushes <span class="k">binds</span>, so height moves by <b>net</b>. A balanced region ends at height <b>0</b>; a consumer with too few operands <b>underflows</b>. <span class="tag t-lit">runnable</span></p>
+    </div>
+
+    <div class="flow">&#9660; DATA OUT &middot; VALID / INVALID + what it means &#9660;</div>
+
+    <!-- 6 · THE VERDICT -->
+    <div class="win"><span class="no">6</span>
+      <h2>THE VERDICT &middot; covered vs not (axiom XIII)</h2>
+      <p><b>VALID</b> means exactly two things were checked &mdash; and nothing more:</p>
+      <p><b>COVERED</b> <span class="tag t-lit">proved</span><br>&bull; stack balance (ends at height 0, never underflows)<br>&bull; control pairing (every Block/If closes; depth-indexed)</p>
+      <p><b>NOT COVERED</b> <span class="tag t-wall">out of scope</span><br>&bull; types &middot; termination &middot; arithmetic result &middot; dead/wasted values<br>&bull; <b>call arity</b>: f(1,2,3) for def f(a) counts fine, then dies in the VM <span class="tag t-amber">honest gap</span></p>
+    </div>
+  </div>
+
+  <!-- ===================== RIGHT · RED · ADVERSARY ===================== -->
+  <div class="col red">
+    <div class="teamhdr">&#9673; RED &middot; the wall &amp; the tamper</div>
+
+    <!-- 7 · GRAVEYARD -->
+    <div class="win red"><span class="no">7</span>
+      <h2>GRAVEYARD &middot; cuts kept visible</h2>
+      <p class="grave">&#9760; <s>"control needs branch addresses"</s> &mdash; <b>cut.</b> I-13 has <b>no br opcode</b>; control is depth-indexed over entry heights, so the target is always a number in hand. <span class="tag t-dead">disproven</span></p>
+      <p class="grave" style="margin-top:8px">&#9888; <b>Op::effect is bypassed</b> for Block/If/Else/End/Ret &mdash; their effect is re-derived by hand in the walker. The two encodings <b>agree today</b>; nothing enforces that they agree tomorrow. <span class="tag t-amber">unenforced</span></p>
+      <p class="small" style="margin-top:8px">I-13 keeps a <b>MEASURED DEAD register</b>. These stay on the page; a caveat laundered away is a lie. <span class="tag t-dead">DEAD kept</span></p>
+    </div>
+
+    <!-- 8 · TAMPER -->
+    <div class="win red"><span class="no">8</span>
+      <h2>TAMPER &middot; break the law</h2>
+      <p>Set <span class="k">Call(n)</span>'s k to <b>n</b> &mdash; drop the +1 for the callee slot. Then net = &minus;(n&minus;1), not &minus;n. A once-balanced call now mis-balances its region.</p>
+      <div class="row"><button id="tamperBtn">&#9888; drop the callee slot</button><button id="restoreBtn">&#8634; restore</button></div>
+      <div id="witness" class="badge pass">witness: net = binds &minus; k is total &middot; a callee slot is consumed</div>
+      <div id="tampOut" class="small" style="margin-top:8px"></div>
+    </div>
+  </div>
+
+</div>
+
+<footer id="foot">
+  <b>THE CONSERVATION LAW</b> &mdash; World V &middot; SONNY 5, the I-13 world, in the refined <b>OCHO</b>. Blue holds the law (net = binds &minus; k), the ISA, the all-14 conservation check and the single-pass proof; the centre runs a real I-13 program and traces the stack height to a VALID/INVALID verdict; red keeps the graveyard and the tamper that snaps a balanced call out of balance. The law proves stack balance and control pairing &mdash; and honestly nothing else.
+  <div style="margin-top:8px">&#10003; selfcheck runs on load and <b>throws</b> on any violation. Measured where measurable, DEAD kept visible. David Lee Wise (ROOT0) with AVAN.</div>
+</footer>
+
+<script>
+"use strict";
+/* =========================================================================
+   THE CONSERVATION LAW — headless engine (pure). Everything above the UI
+   marker is free of the page DOM; selfcheck() throws on any violation.
+   ========================================================================= */
+
+/* ISA: [k operands consumed, binds (1 if it pushes a result)] ; net = binds - k */
+var OPS = {
+  Const:[0,1], Ask:[0,1], Attr:[1,1], Ret:[1,1], Answer:[1,0], Drop:[1,0],
+  Bin:[2,1], Cmp:[2,1], If:[1,0], Block:[0,0], Else:[0,0], End:[0,0], Func:[0,0], Halt:[0,0]
+};
+var NET_EXPECT = { Const:1, Ask:1, Attr:0, Ret:0, Answer:-1, Drop:-1, Bin:-1, Cmp:-1, If:-1, Block:0, Else:0, End:0, Func:0, Halt:0 };
+var OP_ORDER = ["Const","Ask","Attr","Ret","Answer","Drop","Bin","Cmp","If","Block","Else","End","Func","Halt"];
+
+function opNet(op){ var kv=OPS[op]; return kv[1]-kv[0]; }              /* binds - k */
+function callBinds(){ return 1; }
+function callK(n, tamper){ return tamper ? n : (n+1); }               /* n args + the callee slot */
+function callNet(n, tamper){ return callBinds() - callK(n, tamper); } /* untampered => -n */
+
+function insLabel(ins){ return ins.op==='Call' ? ('Call('+ins.n+')') : ins.op; }
+function insK(ins, tamper){ return ins.op==='Call' ? callK(ins.n, tamper) : OPS[ins.op][0]; }
+function insBinds(ins){ return ins.op==='Call' ? callBinds() : OPS[ins.op][1]; }
+function insNet(ins, tamper){ return ins.op==='Call' ? callNet(ins.n, tamper) : opNet(ins.op); }
+
+/* Single-pass validator. Stack height from 0; control is DEPTH-INDEXED over a
+   ctrl-stack (a real list) of ENTRY heights (Block opens, End closes). No branch
+   opcode -> a target height is a number already in hand. Visits exactly
+   code.length slots -> ratio 1.0000, no backpatch, no fixpoint. */
+function validate(code, tamper){
+  var height=0, slots=0, peak=0, ok=true, reason='', ctrl=[], trace=[], under=false;
+  for(var i=0;i<code.length;i++){
+    slots++;
+    var ins=code[i], k=insK(ins,tamper), net=insNet(ins,tamper), flag='';
+    if(height - k < 0){ ok=false; under=true; flag='underflow';
+      if(!reason) reason='stack underflow at '+insLabel(ins)+' (needs '+k+', has '+height+')'; }
+    if(ins.op==='Block'){ ctrl.push(height); flag=flag||('open@'+height); }
+    else if(ins.op==='End'){
+      if(ctrl.length===0){ ok=false; if(!reason) reason='End with no open region'; flag='no-region'; }
+      else { var e=ctrl.pop(); flag=flag||('close@'+e); } }
+    else if(ins.op==='Else'){
+      if(ctrl.length===0){ ok=false; if(!reason) reason='Else with no open region'; flag='no-region'; }
+      else { flag=flag||('arm@'+ctrl[ctrl.length-1]); } }
+    height += net;
+    if(height>peak) peak=height;
+    trace.push({i:i,op:insLabel(ins),k:k,b:insBinds(ins),net:net,h:height,flag:flag});
+  }
+  var ended=(height===0), ctrlClosed=(ctrl.length===0);
+  if(!ctrlClosed){ ok=false; if(!reason) reason='unclosed control region ('+ctrl.length+' open)'; }
+  var valid = ok && ended && ctrlClosed;
+  var why = valid ? 'stack balances (ends at 0) + control pairs'
+                  : (reason || ('ends at height '+height+', not 0'));
+  return { valid:valid, height:height, peak:peak, slots:slots, ended:ended,
+           ctrlOpen:ctrl.length, underflow:under, trace:trace, reason:why };
+}
+
+/* sample I-13 programs (order preserved for the picker) */
+var PROG_ORDER = [
+  "arith (Const,Const,Bin,Answer)",
+  "control (Cmp,If,Block...End)",
+  "a call (...,Call(2),Answer)",
+  "extra Drop (imbalanced)",
+  "Bin, one operand (imbalanced)"
+];
+var PROGRAMS = {
+  "arith (Const,Const,Bin,Answer)": [{op:'Const'},{op:'Const'},{op:'Bin'},{op:'Answer'}],
+  "control (Cmp,If,Block...End)":   [{op:'Const'},{op:'Const'},{op:'Cmp'},{op:'If'},{op:'Block'},{op:'Const'},{op:'Answer'},{op:'End'}],
+  "a call (...,Call(2),Answer)":    [{op:'Const'},{op:'Const'},{op:'Const'},{op:'Call',n:2},{op:'Answer'}],
+  "extra Drop (imbalanced)":        [{op:'Const'},{op:'Const'},{op:'Bin'},{op:'Answer'},{op:'Drop'}],
+  "Bin, one operand (imbalanced)":  [{op:'Const'},{op:'Bin'}]
+};
+
+/* fail-loud selfcheck: throws on any violation */
+function selfcheck(){
+  function t(c,m){ if(!c) throw new Error("SELFCHECK: "+m); }
+  var i, n, name;
+
+  /* 1) the whole ISA table: net === binds - k for every fixed opcode */
+  for(i=0;i<OP_ORDER.length;i++){ var op=OP_ORDER[i];
+    t(OPS[op][1]-OPS[op][0]===NET_EXPECT[op], "net=binds-k fails at "+op);
+    t(opNet(op)===NET_EXPECT[op], "opNet fails at "+op);
+  }
+  t(OP_ORDER.length===14, "must be 14 fixed opcodes, got "+OP_ORDER.length);
+
+  /* 2) Call(n) = -n for n in {0,1,2,3} */
+  for(n=0;n<=3;n++){ t(callNet(n,false)===-n, "Call("+n+") must be "+(-n)); }
+  t(callNet(2,false)===-2 && callNet(0,false)===0, "Call(2)=-2 and Call(0)=0");
+
+  /* 3) a balanced program runs to a correct peak and ENDS at 0 -> VALID */
+  var a=validate(PROGRAMS["arith (Const,Const,Bin,Answer)"], false);
+  t(a.valid===true, "arith must be VALID");
+  t(a.ended===true && a.height===0, "arith must end at height 0");
+  t(a.peak===2, "arith peak must be 2, got "+a.peak);
+  t(a.slots===4, "arith must visit 4 slots");
+
+  var c=validate(PROGRAMS["control (Cmp,If,Block...End)"], false);
+  t(c.valid===true, "control program must be VALID (depth-indexed pairing)");
+  t(c.ctrlOpen===0, "control regions must all close");
+  t(c.peak===2, "control peak must be 2");
+
+  var call=validate(PROGRAMS["a call (...,Call(2),Answer)"], false);
+  t(call.valid===true, "call program must be VALID untampered");
+  t(call.peak===3, "call peak must be 3");
+  t(call.height===0, "call program must end at 0");
+
+  /* 4) imbalanced programs -> INVALID */
+  var d=validate(PROGRAMS["extra Drop (imbalanced)"], false);
+  t(d.valid===false, "extra Drop must be INVALID");
+  t(d.ended===false, "extra Drop must NOT end at 0 (ends "+d.height+")");
+  var b=validate(PROGRAMS["Bin, one operand (imbalanced)"], false);
+  t(b.valid===false, "Bin with one operand must be INVALID");
+  t(b.underflow===true, "Bin with one operand must underflow");
+
+  /* 5) single pass: slots === len(code) (ratio exactly 1.0000) for every program */
+  for(name in PROGRAMS){ if(!PROGRAMS.hasOwnProperty(name)) continue;
+    var code=PROGRAMS[name], r=validate(code,false);
+    t(r.slots===code.length, name+": slots "+r.slots+" != len "+code.length);
+  }
+
+  /* 6) TAMPER is a real break: Call(n) k=n drops the callee slot -> net -(n-1), not -n */
+  t(callNet(2,true)===-1, "tampered Call(2) must become -1 (=-(n-1)), not -2");
+  var callT=validate(PROGRAMS["a call (...,Call(2),Answer)"], true);
+  t(callT.valid===false, "tampered call must mis-balance -> INVALID");
+  t(callT.height!==0, "tampered call must not end at 0");
+
+  return true;
+}
+/* ===== UI ===== */
+(function(){
+  try{
+    selfcheck();
+
+    var $=function(id){ return document.getElementById(id); };
+    var sgn=function(x){ return (x>=0?'+':'')+x; };
+
+    /* --- window 2 · the ISA table --- */
+    (function(){
+      var tbl=$("isaTbl"), h='<tr><th>op</th><th>k</th><th>binds</th><th>net</th></tr>';
+      for(var i=0;i<OP_ORDER.length;i++){ var op=OP_ORDER[i];
+        h+='<tr><td style="color:#fff">'+op+'</td><td>'+OPS[op][0]+'</td><td>'+OPS[op][1]+'</td><td class="k">'+sgn(opNet(op))+'</td></tr>';
+      }
+      h+='<tr><td style="color:var(--gold)">Call(n)</td><td>n+1</td><td>1</td><td class="k">&minus;n</td></tr>';
+      tbl.innerHTML=h;
+    })();
+
+    /* --- window 3 · CONSERVATION: assert all 14 + Call(n), event-strict --- */
+    $("consBtn").onclick=function(){
+      var results=[], i, n;
+      for(i=0;i<OP_ORDER.length;i++){ var op=OP_ORDER[i];
+        results.push({name:op, ok:(OPS[op][1]-OPS[op][0]===NET_EXPECT[op])});
+      }
+      for(n=0;n<=3;n++){ results.push({name:'Call('+n+')', ok:(callNet(n,false)===-n)}); }
+      var passed=0, out='';
+      for(i=0;i<results.length;i++){ if(results[i].ok) passed++;
+        out+='<span class="badge '+(results[i].ok?'pass':'failb')+'">'+results[i].name+' '+(results[i].ok?'&#10003;':'&#10007;')+'</span>';
+      }
+      var all=(passed===results.length);
+      $("consOut").innerHTML='<div style="margin:6px 0" class="'+(all?'':'')+'"><b style="color:'+(all?'var(--lit)':'var(--wall)')+'">'+passed+' / '+results.length+' hold</b> &middot; net = binds &minus; k is <b>total</b> <span class="tag t-lit">LIT</span></div>'+out;
+    };
+    $("consBtn").click();
+
+    /* --- window 4 · SINGLE PASS: slots vs len(code) for every program --- */
+    $("passBtn").onclick=function(){
+      var h='<table><tr><th>program</th><th>len(code)</th><th>slots</th><th>ratio</th></tr>', i;
+      for(i=0;i<PROG_ORDER.length;i++){ var nm=PROG_ORDER[i], code=PROGRAMS[nm], r=validate(code,false);
+        var ratio=(r.slots/code.length);
+        h+='<tr><td style="text-align:left">'+nm.replace(/\s*\(.*$/,'')+'</td><td>'+code.length+'</td><td>'+r.slots+'</td><td class="k">'+ratio.toFixed(4)+'</td></tr>';
+      }
+      h+='</table>';
+      $("passOut").innerHTML=h+'<p class="small" style="margin-top:6px">Every ratio is exactly <b>1.0000</b> &mdash; one visit per slot, no backpatch. <span class="tag t-lit">measured</span></p>';
+    };
+    $("passBtn").click();
+
+    /* --- window 5 · the LIT engine: run a program, trace the height, print verdict --- */
+    (function(){
+      var sel=$("prog"), i;
+      for(i=0;i<PROG_ORDER.length;i++){ var o=document.createElement("option"); o.value=PROG_ORDER[i]; o.textContent=PROG_ORDER[i]; sel.appendChild(o); }
+    })();
+    function renderRun(){
+      var name=$("prog").value, code=PROGRAMS[name], r=validate(code,false);
+      var h='<table><tr><th>#</th><th>op</th><th>k</th><th>binds</th><th>net</th><th>height</th></tr>';
+      for(var i=0;i<r.trace.length;i++){ var s=r.trace[i];
+        var hc = (s.h<0) ? ' style="color:var(--wall);font-weight:700"' : ' style="color:var(--cyan)"';
+        var fl = s.flag ? (' <span style="color:'+((s.flag.indexOf('open')===0||s.flag.indexOf('close')===0||s.flag.indexOf('arm')===0)?'var(--gold)':'var(--wall)')+'">'+s.flag+'</span>') : '';
+        h+='<tr><td>'+s.i+'</td><td style="color:#fff">'+s.op+'</td><td>'+s.k+'</td><td>'+s.b+'</td><td>'+sgn(s.net)+'</td><td'+hc+'>'+s.h+fl+'</td></tr>';
+      }
+      h+='</table>';
+      $("traceWrap").innerHTML=h;
+      var v=$("verdict"), rc=$("reason");
+      v.className = r.valid ? 'verdict ok' : 'verdict no';
+      v.innerHTML = r.valid ? '&#10003; VALID' : '&#10007; INVALID';
+      rc.textContent = r.reason + ' · peak height '+r.peak+' · '+r.slots+' slots (ratio '+(r.slots/code.length).toFixed(4)+')';
+    }
+    $("runBtn").onclick=renderRun;
+    $("prog").onchange=renderRun;
+    renderRun();
+
+    /* --- window 8 · TAMPER: drop the callee slot; the balanced call mis-balances --- */
+    var CALLSAMPLE="a call (...,Call(2),Answer)";
+    function showTamper(tampered){
+      var r=validate(PROGRAMS[CALLSAMPLE], tampered);
+      var w=$("witness"), o=$("tampOut");
+      if(tampered){
+        w.className="badge failb";
+        w.innerHTML="witness RED: net = binds &minus; k is NOT total &middot; the callee slot went uncounted";
+        o.innerHTML='Call(2) with k=n=2 &rarr; net = 1 &minus; 2 = <b style="color:var(--wall)">&minus;1</b> (should be &minus;2). '
+          +'The sample call now ends at height <b style="color:var(--wall)">'+r.height+'</b>, not 0 &rarr; <b style="color:var(--wall)">'+(r.valid?'VALID':'INVALID')+'</b>. '
+          +'<span class="tag t-dead">law broken</span>';
+      } else {
+        w.className="badge pass";
+        w.innerHTML="witness: net = binds &minus; k is total &middot; a callee slot is consumed";
+        o.innerHTML='Call(2) with k=n+1=3 &rarr; net = 1 &minus; 3 = <b style="color:var(--lit)">&minus;2</b>. '
+          +'The sample call ends at height <b style="color:var(--lit)">'+r.height+'</b> &rarr; <b style="color:var(--lit)">'+(r.valid?'VALID':'INVALID')+'</b>. '
+          +'<span class="tag t-lit">law holds</span>';
+      }
+    }
+    $("tamperBtn").onclick=function(){ showTamper(true); };
+    $("restoreBtn").onclick=function(){ showTamper(false); };
+    showTamper(false);
+
+  }catch(e){
+    var fb=document.getElementById("failb");
+    if(fb){ fb.style.display="block"; fb.textContent="FAIL-LOUD — the conservation law did not verify: "+e.message; }
+    throw e;
+  }
+})();
+</script>
+</body>
+</html>

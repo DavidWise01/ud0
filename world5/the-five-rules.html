@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FIVE RULES &middot; WORLD V &mdash; SONNY 5 &middot; THE OCHO</title>
+<style>
+:root{ --void:#1c0b46; --void2:#150838; --panel:rgba(255,255,255,.055); --panel2:rgba(255,255,255,.09); --ink:#f1eaff; --dim:#b9a8e6; --line:rgba(168,133,247,.34); --line2:rgba(168,133,247,.6); --violet:#a855f7; --cyan:#22d3ee; --pink:#ff4fd8; --gold:#ffd24a; --lit:#4ade80; --amber:#f9a83a; --wall:#ff6b8a; --grn:#4ade80; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;} .top a:hover{color:var(--pink);}
+header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);}
+h1{font-size:22px;letter-spacing:3px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--pink);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--cyan);}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
+.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);} .win.blue .no{color:rgba(34,211,238,.22);}
+.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);} .win.red .no{color:rgba(255,79,216,.22);}
+.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);box-shadow:0 0 6px rgba(74,222,128,.35);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
+select,button,input{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--pink);color:#fff;}
+input{color:var(--gold);}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,85,247,.14);}
+.verdict{font-size:16px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--lit);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+</style></head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span>THE CORTEX &middot; the I-13 world</span></div>
+
+<header>
+ <h1>THE FIVE RULES</h1>
+ <p class="sub">THE CORTEX holds what a fixed window cannot &mdash; a <b>stack</b>, a <b>debt</b>, a <b>plane</b>, an <b>identity</b>, a <b>counter</b> &mdash; with <b>no learned parameters and no gradient path</b>. Two of the five are genuinely <b>runnable</b> down the centre: the <b>VETO</b> scope-matcher accepts a closer iff it matches the top open scope, and the <b>DRAIN</b> emits exactly the outstanding closers at once. The honesty is the whole game &mdash; I-13 keeps a <b>measured DEAD register</b>, so this board shows which rules actually execute and which never fire.</p>
+ <p class="src"><span class="tag t-amber">source</span> I-13, THE CORTEX &mdash; five rules (rev 2 teaching brief &sect;6; H1.0-FINAL freeze), David Lee Wise / ROOT0 / TriPod LLC. Rendered from the brief&rsquo;s own register, not quoted.</p>
+</header>
+
+<div class="ocho">
+
+ <!-- LEFT · BLUE · roots / the five / lineage -->
+ <div class="col blue">
+  <div class="teamhdr">&#9703; roots &middot; the five &middot; lineage</div>
+
+  <div class="win blue"><span class="no">3</span><h2>ROOTS &mdash; THE CORTEX</h2>
+   <p>A fixed attention window is <b>bounded</b>: past a horizon it forgets. THE CORTEX is the keeper-room that holds five pieces of state a window drops &mdash; a <b class="k">stack</b> of open scopes, a <b class="k">debt</b> of outstanding closers, a <b class="k">plane</b> already paid for, an <b class="k">identity</b>, and a <b class="k">counter</b>.</p>
+   <p>It is <b>deterministic</b> and <b>bounded</b>: same input, same state, with <b>no learned parameters and no gradient path</b>. Nothing here is trained &mdash; the rules are wired, not fit.</p>
+  </div>
+
+  <div class="win blue"><span class="no">5</span><h2>THE FIVE</h2>
+   <p><b>(1) VETO</b> <span class="tag t-lit">LIT</span> &mdash; the only legal closer is the one matching the top open scope, or <i>none</i>.</p>
+   <p><b>(2) &minus;I + DRAIN</b> <span class="tag t-lit">LIT</span> &mdash; pressure grows as <span class="k">1.5&middot;ln(1+age)</span>; THE DRAIN emits every outstanding closer at once.</p>
+   <p><b>(3) DEPTH</b> <span class="tag t-amber">mech</span> &mdash; refuse a plane already paid for.</p>
+   <p><b>(4) IDEMPOTENCE</b> <span class="tag t-dead">DEAD</span> &mdash; I am I; a no-op cannot repeat.</p>
+   <p><b>(5) ADDRESS</b> <span class="tag t-dead">DEAD</span> &mdash; the substrate writes it.</p>
+   <p class="small">The math of all five is real. Which ones the shipped binary actually <i>calls</i> is a separate, measured question &mdash; answered right and below.</p>
+  </div>
+
+  <div class="win blue"><span class="no">7</span><h2>LINEAGE &mdash; "zero parameters" <span class="tag t-amber">AMBER</span></h2>
+   <p>"Zero parameters" means <b>no learned parameters</b> and <b>no gradient path</b> &mdash; it does <b>not</b> mean no constants. The rules carry tuned constants: <span class="k">1.5</span> (pressure gain), <span class="k">min(8)</span> (the idempotent clamp), <span class="k">min(12)</span> (the depth cap).</p>
+   <p>So the claim is honest but narrow: the CORTEX learns nothing and back-propagates nothing &mdash; yet three numbers were <i>chosen</i>. That is convention, not measurement, and it stays amber.</p>
+   <div id="lineageout"></div>
+  </div>
+ </div>
+
+ <!-- CENTER · the machine · in → engine → out -->
+ <div class="col center">
+  <div class="teamhdr">&#9660; the machine &#9660;</div>
+
+  <div class="win panel"><span class="no">4</span><h2>DATA IN &mdash; the token stream <span class="tag t-amber">in &darr;</span></h2>
+   <p>Feed a stream of scopes. Openers <span class="k">( [ { &lt;</span> push; closers <span class="k">) ] } &gt;</span> ask to close. The question the CORTEX answers, token by token: is this closer the one matching the <b>top open scope</b>?</p>
+   <div class="row"><label>stream</label><input id="stream" size="22" value="([{<>}])"></div>
+   <div class="row"><button id="pBal">&rarr; balanced</button><button id="pMis">&rarr; mismatch</button><button id="pOpen">&rarr; unclosed</button></div>
+   <p class="small">Anything that is not a bracket is skipped. Edit freely &mdash; every verdict below is computed on the spot.</p>
+  </div>
+  <div class="flow">&#9660; &nbsp; feed the stream into THE CORTEX &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">0</span><h2>&#9635; THE ENGINE &mdash; VETO + DRAIN <span class="tag t-lit">LIT</span></h2>
+   <p class="small">VETO walks the stream, keeping a <b>stack</b> of open scopes. A closer is accepted iff it matches the top &mdash; otherwise it is <b class="k">vetoed</b> (refused, stack untouched). This is a stack, not one slot per bracket, so no reachable input silently breaks the claim.</p>
+   <table id="trace"><thead><tr><th>#</th><th>tok</th><th>action</th><th>stack after</th></tr></thead><tbody id="tracebody"></tbody></table>
+   <div class="out" id="vetoline"></div>
+  </div>
+  <div class="flow">&#9660; &nbsp; THE DRAIN empties the debt at once &nbsp; &#9660;</div>
+
+  <div class="win panel"><span class="no">8</span><h2>DATA OUT &mdash; what executes <span class="tag t-lit">out &darr;</span></h2>
+   <p>THE DRAIN emits <b>exactly</b> the outstanding closers, LIFO, leaving the stack empty. Below: the debt, the &minus;I pressure per open scope (<span class="tag t-amber">amber</span> &mdash; the <span class="k">1.5</span> gain is tuned), and the drained closers.</p>
+   <div class="verdict" id="verdict"></div>
+   <div class="reason" id="drainline"></div>
+   <table id="ptbl"><thead><tr><th>open scope</th><th>age</th><th>1.5&middot;ln(1+age)</th><th>closer</th></tr></thead><tbody id="ptbody"></tbody></table>
+   <div id="litbadge"></div>
+   <p class="small">In the shipped binary only <b class="k">VETO</b> and <b class="k">DRAIN</b> have call sites &mdash; LIT for those two. The other three are present in source and never invoked (see right).</p>
+  </div>
+ </div>
+
+ <!-- RIGHT · red · dead register / graveyard / tamper -->
+ <div class="col red">
+  <div class="teamhdr">the dead register &middot; graveyard &middot; tamper &#9704;</div>
+
+  <div class="win red"><span class="no">1</span><h2>THE DEAD REGISTER</h2>
+   <p><b>IDEMPOTENCE can never fire.</b> In the shipped rule <span class="k">self.last</span> is never assigned, so it compares against a permanent <span class="k">None</span> and the guard always returns true &mdash; the de-dup branch is taken unconditionally and the rule performs no work.</p>
+   <p><b>ADDRESS is a flat sensor.</b> <span class="k">self.run</span> is never assigned &rarr; sensor <span class="k">dim 5 = constant 0</span>. It reads the same forever.</p>
+   <div id="deadout"></div>
+   <p class="small">This is I-13&rsquo;s <b>own measured register</b>. The mechanisms are real; the wiring is not. Kept visible, never laundered.</p>
+  </div>
+
+  <div class="win red"><span class="no">2</span><h2>THE GRAVEYARD</h2>
+   <p class="grave"><s>"All five rules run."</s> <b>Cut.</b> Only VETO + DRAIN execute in the shipped binary; three have no call site &mdash; DEAD, from I-13&rsquo;s own register.</p>
+   <p class="grave"><s>"Zero parameters means no constants."</s> <b>Kept, corrected.</b> It means no <i>learned</i> params + no gradient path; 1.5 / min(8) / min(12) are tuned.</p>
+   <p class="grave"><s>"A single slot per bracket is enough."</s> <b>Cut.</b> Nested scopes need a <i>stack</i> &mdash; one slot loses depth and a reachable input breaks the match.</p>
+  </div>
+
+  <div class="win red"><span class="no">6</span><h2>THE TAMPER &mdash; break VETO</h2>
+   <p>The red move: let VETO <b>accept a non-matching closer</b>. An open scope then closes against the wrong opener and the stack corrupts &mdash; the witness (below) turns red.</p>
+   <div class="row" style="margin-top:6px"><button id="tamper">&#9888; accept wrong closers</button><button id="restore">&#8635; restore</button></div>
+   <div id="witout"></div>
+   <p class="small" id="tampernote">VETO&rsquo;s law: only the matching closer, or none. Break it and a mismatched stream reports "clean" while the correct matcher refuses &mdash; the attack is real and it is caught.</p>
+  </div>
+ </div>
+
+</div>
+
+<footer id="foot">THE FIVE RULES &mdash; World V &middot; SONNY 5, the I-13 world, in the refined <b>OCHO</b>: a stream goes <b style="color:var(--gold)">in</b>, VETO matches scopes on a stack, THE DRAIN empties the debt <b style="color:var(--gold)">out</b>. The engine is LIT for the two rules that actually execute (VETO + DRAIN, self-checked exact and tamper-provable); DEPTH is a real mechanism, and IDEMPOTENCE + ADDRESS are kept in the measured DEAD register exactly as I-13 records them &mdash; never presented as live. David Lee Wise (ROOT0) with AVAN.</footer>
+
+<script>
+"use strict";
+// THE FIVE RULES — THE CORTEX. Pure engine; no learned parameters, no gradient path.
+// Scope pairs (opener -> matching closer) and the inverse (closer -> required opener).
+var PAIRS={"(":")","[":"]","{":"}","<":">"};
+var CLOSERS={")":"(","]":"[","}":"{",">":"<"};
+function isOpener(t){ return Object.prototype.hasOwnProperty.call(PAIRS,t); }
+function isCloser(t){ return Object.prototype.hasOwnProperty.call(CLOSERS,t); }
+// RULE 1 — VETO: a closer is accepted iff it matches the top open scope; else refused (or, under tamper, wrongly accepted).
+function veto(tokens,tamper){
+ var stack=[],events=[],vetoed=0,i;
+ for(i=0;i<tokens.length;i++){
+  var tok=tokens[i];
+  if(isOpener(tok)){ stack.push(tok); events.push({tok:tok,act:"open",stk:stack.slice()}); }
+  else if(isCloser(tok)){
+   var top=stack.length?stack[stack.length-1]:null;
+   var match=(top!==null && CLOSERS[tok]===top);
+   if(match){ stack.pop(); events.push({tok:tok,act:"close",stk:stack.slice()}); }
+   else if(tamper){ if(stack.length) stack.pop(); events.push({tok:tok,act:"wrong-close",stk:stack.slice()}); }
+   else { vetoed++; events.push({tok:tok,act:"veto",stk:stack.slice()}); }
+  } else { events.push({tok:tok,act:"skip",stk:stack.slice()}); }
+ }
+ return {stack:stack,events:events,vetoed:vetoed};
+}
+// RULE 2 — THE DRAIN: emit exactly the outstanding closers, LIFO. Emits stack.length closers, leaving the debt empty.
+function drain(stack){ var out=[],i; for(i=stack.length-1;i>=0;i--) out.push(PAIRS[stack[i]]); return out; }
+// RULE 3 — DEPTH: refuse a plane already paid for (mechanism runnable; not wired in the shipped binary).
+function depthGate(entered,plane){ if(entered.indexOf(plane)!==-1) return false; entered.push(plane); return true; }
+// RULE 4 — IDEMPOTENCE (the true math): a no-op clamp. clamp8(clamp8(x)) === clamp8(x). Constant min(8) is tuned.
+function clamp8(x){ return x<8?x:8; }
+// --- The MEASURED DEAD register: a faithful model of the shipped CORTEX (rev 2, H1.0-FINAL). ---
+var CALLSITES=["VETO","DRAIN"];        // measured: only these two are invoked in the binary
+var LEARNED_PARAMS=0;                   // no learned parameters
+var CONSTANTS=[1.5,8,12];               // tuned constants exist — "zero params" is NOT "zero constants"
+var SHIPPED_LAST=null;                  // self.last is never assigned -> permanent None
+// The shipped IDEMPOTENCE guard compares op against the permanent-None self.last and takes the
+// dedup branch unconditionally, so the rule never fires as intended. Modeled: a constant false.
+function shippedIdempotenceFires(op){ return op===SHIPPED_LAST ? false : false; }
+// self.run is never assigned -> ADDRESS sensor dim 5 is a constant 0.
+function sensorDim5(){ return 0; }
+// fail-loud self-check — throws on any violation; asserts the LIVE mechanisms AND the DEAD facts.
+function selfcheck(){
+ var t=function(c,m){ if(!c) throw new Error(m); };
+ // VETO — matching accepted, mismatched refused
+ var a=veto("()".split(""),false);
+ t(a.stack.length===0 && a.vetoed===0,"VETO must accept the matching closer and empty the stack");
+ var b=veto("(]".split(""),false);
+ t(b.vetoed===1 && b.stack.length===1 && b.stack[0]==="(","VETO must REFUSE a mismatched closer and leave the scope open");
+ // DRAIN — open k scopes, emit exactly k closers, and those closers close everything
+ var r=veto("(([{".split(""),false);
+ t(r.stack.length===4,"four opens must leave four outstanding scopes");
+ var d=drain(r.stack);
+ t(d.length===4,"the drain must emit exactly the outstanding count");
+ var back=veto("(([{".split("").concat(d),false);
+ t(back.stack.length===0 && back.vetoed===0,"the drained closers must close every open scope, LIFO");
+ // DEPTH — refuse a plane already entered
+ var e=[];
+ t(depthGate(e,3)===true,"DEPTH must admit a fresh plane");
+ t(depthGate(e,3)===false,"DEPTH must refuse a plane already paid for");
+ // IDEMPOTENCE (true math) — a no-op applied twice equals applied once
+ t(clamp8(clamp8(20))===clamp8(20),"the no-op must be idempotent");
+ t(clamp8(clamp8(5))===clamp8(5) && clamp8(5)===5,"applying the no-op twice === applying it once");
+ // LINEAGE — "zero parameters" = no LEARNED params (boolean), NOT no constants
+ t(LEARNED_PARAMS===0,"there must be zero LEARNED parameters");
+ t(CONSTANTS.length>0,"there ARE tuned constants — the claim is no-learned-params, not no-constants");
+ // WHAT EXECUTES — only VETO and DRAIN have call sites
+ t(CALLSITES.length===2 && CALLSITES.indexOf("VETO")!==-1 && CALLSITES.indexOf("DRAIN")!==-1,"exactly VETO and DRAIN execute in the shipped binary");
+ // THE DEAD REGISTER — asserted as what it IS, not laundered away
+ t(shippedIdempotenceFires("x")===false && shippedIdempotenceFires("y")===false,"shipped IDEMPOTENCE never fires (self.last is a permanent None)");
+ t(sensorDim5()===0,"ADDRESS sensor dim 5 is a constant 0 (self.run never assigned)");
+ // TAMPER — with VETO accepting wrong closers, a mismatched stream is corrupted, not refused
+ var honest=veto("([)]".split(""),false);
+ var broken=veto("([)]".split(""),true);
+ t(honest.vetoed>0,"honest VETO refuses the mismatched closers in ([)]");
+ t(broken.vetoed===0 && broken.stack.length!==honest.stack.length,"tampered VETO wrongly accepts wrong closers and corrupts the stack");
+ return true;
+}
+/* ===== UI ===== */
+var $=function(id){ return document.getElementById(id); };
+var TAMPER=false;
+function actClass(act){ if(act==="close"||act==="open") return "var(--lit)"; if(act==="veto") return "var(--wall)"; if(act==="wrong-close") return "var(--wall)"; return "var(--dim)"; }
+function actLabel(act){ if(act==="open") return "push"; if(act==="close") return "close &#10003;"; if(act==="veto") return "VETO &#10007;"; if(act==="wrong-close") return "WRONG &#9888;"; return "skip"; }
+function render(){
+ var toks=$("stream").value.split("");
+ var res=veto(toks,TAMPER);
+ // trace
+ var rows="",i;
+ for(i=0;i<res.events.length;i++){ var ev=res.events[i];
+  rows+='<tr><td>'+(i+1)+'</td><td style="color:var(--gold)">'+esc(ev.tok)+'</td>'
+   +'<td style="color:'+actClass(ev.act)+'">'+actLabel(ev.act)+'</td>'
+   +'<td style="color:var(--dim)">'+(ev.stk.length?esc(ev.stk.join("")):"&middot;")+'</td></tr>';
+ }
+ if(!rows) rows='<tr><td colspan="4" style="color:var(--dim)">no tokens</td></tr>';
+ $("tracebody").innerHTML=rows;
+ var open=res.stack.length;
+ $("vetoline").innerHTML='VETO refused <b style="color:'+(res.vetoed?"var(--wall)":"var(--lit)")+'">'+res.vetoed+'</b> closer'+(res.vetoed===1?"":"s")+' &nbsp;&middot;&nbsp; outstanding debt: <b class="k">'+open+'</b> open scope'+(open===1?"":"s");
+ // drain + pressure
+ var closers=drain(res.stack);
+ var clean=(open===0 && res.vetoed===0);
+ $("verdict").textContent = clean?"CLEAN — debt zero, nothing vetoed":(res.vetoed&&!TAMPER?"REFUSED — "+res.vetoed+" closer(s) vetoed":"DEBT — "+open+" outstanding");
+ $("verdict").className="verdict "+(clean?"ok":"no");
+ $("drainline").innerHTML="THE DRAIN emits <b class='k'>"+closers.length+"</b> closer"+(closers.length===1?"":"s")+" at once: <b style='color:var(--gold)'>"+(closers.length?esc(closers.join("")):"(nothing outstanding)")+"</b> &mdash; stack then empty.";
+ // per-scope -I pressure (age = tokens from the scope's open index to the end)
+ var openIdx=[],depth=0,j;
+ // recompute open positions honestly from the honest walk of the stack that survived
+ // find, for each surviving open scope, the index where it was pushed (last unmatched opens)
+ var st=[],idxs=[];
+ for(j=0;j<res.events.length;j++){ var e2=res.events[j];
+  if(e2.act==="open"){ st.push(e2.tok); idxs.push(j); }
+  else if(e2.act==="close"||e2.act==="wrong-close"){ if(st.length){ st.pop(); idxs.pop(); } }
+ }
+ var total=res.events.length;
+ var prows="";
+ for(j=0;j<st.length;j++){
+  var age=total-1-idxs[j]; if(age<0) age=0;
+  var p=(1.5*Math.log(1+age));
+  prows+='<tr><td style="color:var(--gold)">'+esc(st[j])+'</td><td>'+age+'</td><td style="color:var(--amber)">'+p.toFixed(3)+'</td><td style="color:var(--cyan)">'+esc(PAIRS[st[j]])+'</td></tr>';
+ }
+ if(!prows) prows='<tr><td colspan="4" style="color:var(--dim)">debt is empty</td></tr>';
+ $("ptbody").innerHTML=prows;
+ // witness (tamper-aware)
+ renderWitness();
+}
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function renderWitness(){
+ // the live witness: compare honest VETO vs the currently-live matcher on a known mismatch
+ var honest=veto("([)]".split(""),false);
+ var live=veto("([)]".split(""),TAMPER);
+ var caught = honest.vetoed>0;                 // honest law: mismatches are refused
+ var corrupted = TAMPER && live.vetoed===0;     // tampered: no refusal, wrong closes accepted
+ var ok = !TAMPER;
+ $("witout").innerHTML='<span class="badge '+(ok?"pass":"failb")+'">'+(ok?"&#10003; WITNESS — VETO holds: matching closer, or none":"&#10007; WITNESS — VETO broken: wrong closers accepted")+'</span>'
+  +'<div class="small" style="margin-top:6px">on <b>([)]</b> &mdash; honest VETO refuses <b style="color:var(--lit)">'+honest.vetoed+'</b>, leaves <b>'+honest.stack.length+'</b> open; live matcher refuses <b style="color:'+(corrupted?"var(--wall)":"var(--lit)")+'">'+live.vetoed+'</b>, leaves <b>'+live.stack.length+'</b>'+(corrupted?' &mdash; <span style="color:var(--wall)">stack corrupted, reports clean when it is not</span>':'')+'.</div>';
+}
+function renderStatic(){
+ // LINEAGE readout
+ $("lineageout").innerHTML='<div class="small" style="margin-top:2px">learned params: <b style="color:var(--lit)">'+LEARNED_PARAMS+'</b> &nbsp;&middot;&nbsp; gradient path: <b style="color:var(--lit)">none</b> &nbsp;&middot;&nbsp; tuned constants: <b style="color:var(--amber)">'+CONSTANTS.join(", ")+'</b></div>';
+ // DEAD register readout
+ $("deadout").innerHTML='<div class="small" style="margin-top:2px">shipped IDEMPOTENCE fires: <b style="color:var(--wall)">never</b> (self.last = None) &nbsp;&middot;&nbsp; ADDRESS sensor dim 5: <b style="color:var(--wall)">'+sensorDim5()+'</b> (constant)</div>'
+  +'<span class="badge failb" style="margin-top:6px">&#9760; DEAD &mdash; present in source, never fires</span>';
+}
+function boot(){
+ try{
+  selfcheck();
+  $("litbadge").innerHTML='<span class="badge pass">&#10003; LIT &middot; self-check passed on load &mdash; VETO + DRAIN exact, tamper-provable</span>';
+  renderStatic();
+  render();
+  $("stream").addEventListener("input",render);
+  $("pBal").addEventListener("click",function(){ $("stream").value="([{<>}])"; TAMPER=false; syncTamperNote(); render(); });
+  $("pMis").addEventListener("click",function(){ $("stream").value="([)]"; render(); });
+  $("pOpen").addEventListener("click",function(){ $("stream").value="((([{"; render(); });
+  $("tamper").addEventListener("click",function(){ TAMPER=true; syncTamperNote(); render(); });
+  $("restore").addEventListener("click",function(){ TAMPER=false; syncTamperNote(); render(); });
+ }catch(e){
+  var fb=$("failb"); fb.style.display="block"; fb.textContent="FAIL-LOUD — THE FIVE RULES did not check out: "+e.message; throw e;
+ }
+}
+function syncTamperNote(){
+ $("tampernote").innerHTML = TAMPER
+  ? '<b style="color:var(--wall)">VETO broken.</b> Wrong closers are now accepted &mdash; a scope closes against the wrong opener, the stack corrupts, and a mismatched stream reports "clean". The witness went red. The attack is real; it is caught.'
+  : 'VETO&rsquo;s law: only the matching closer, or none. Break it and a mismatched stream reports "clean" while the correct matcher refuses &mdash; the attack is real and it is caught.';
+}
+boot();
+</script>
+</body></html>

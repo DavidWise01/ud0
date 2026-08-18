@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE CUBI &middot; World V &middot; SONNY 5</title>
+<style>
+:root{ --void:#1c0b46; --void2:#150838; --panel:rgba(255,255,255,.055); --panel2:rgba(255,255,255,.09); --ink:#f1eaff; --dim:#b9a8e6; --line:rgba(168,133,247,.34); --line2:rgba(168,133,247,.6); --violet:#a855f7; --cyan:#22d3ee; --pink:#ff4fd8; --gold:#ffd24a; --lit:#4ade80; --amber:#f9a83a; --wall:#ff6b8a; --grn:#4ade80; }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;} .top a:hover{color:var(--pink);}
+header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);}
+h1{font-size:22px;letter-spacing:3px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;} .sub b{color:var(--pink);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;} .src a{color:var(--cyan);}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;}
+.col{display:flex;flex-direction:column;gap:12px;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
+.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);} .win.blue .no{color:rgba(34,211,238,.22);}
+.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);} .win.red .no{color:rgba(255,79,216,.22);}
+.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);box-shadow:0 0 6px rgba(74,222,128,.35);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
+select,button,input{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;} button:hover{border-color:var(--pink);color:#fff;}
+input{color:var(--gold);}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);min-width:74px;}
+.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,85,247,.14);}
+.verdict{font-size:16px;font-weight:700;letter-spacing:1px;margin:8px 0 2px;} .verdict.ok{color:var(--lit);} .verdict.no{color:var(--wall);}
+.reason{font-size:12px;color:var(--dim);}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 6px 0 0;}
+.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
+h1{text-shadow:0 0 10px color-mix(in srgb,currentColor 45%,transparent);}
+</style>
+</head>
+<body>
+
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span>THE FREEZE &middot; the I-13 world</span></div>
+
+<header>
+  <h1>THE CUBI</h1>
+  <div class="sub">The combinatorial skeleton of the frozen VH2 test: a ternary controller over a <b>[[5,1,3]]</b> perfect code &mdash; and a hypothesis kept honest by rejecting it.</div>
+  <div class="src">SOURCE: I-13 <b>H1.0-FINAL</b>, the VH2 CUBI hypothesis test (verified 10/10) &middot; ROOM: <b>THE FREEZE</b> &middot; renders exact counts + the rejection, not a complex-amplitude QEC sim.</div>
+</header>
+
+<div id="failb" class="fail"></div>
+
+<div class="ocho">
+
+  <!-- ============ LEFT: roots / code / lineage (blue) ============ -->
+  <div class="col blue">
+    <div class="teamhdr">roots &middot; the code &middot; lineage</div>
+
+    <!-- 1 -->
+    <div class="win blue"><span class="no">1</span>
+      <h2>ROOTS</h2>
+      <p>I-13 <b>H1.0-FINAL</b> &mdash; a frozen, hashed release. Its VH2 <b>CUBI</b> hypothesis test ran and was <b>verified 10/10</b>: the counting below is the skeleton that survived.</p>
+      <p class="small">This seat carries no fidelities of its own; it fixes what the freeze asserts and hands the counts to the centre. <span class="tag t-amber">cited from the freeze</span></p>
+    </div>
+
+    <!-- 2 -->
+    <div class="win blue"><span class="no">2</span>
+      <h2>THE CODE</h2>
+      <p>The perfect five-qubit code <b>[[5,1,3]]</b>: <span class="k">5</span> physical qubits, Hilbert dimension <span class="k">2<sup>5</sup> = 32</span>; the logical (code) space has dimension <span class="k">2</span> (rank 2); distance <span class="k">3</span>.</p>
+      <table><tr><th>quantity</th><th>value</th></tr>
+        <tr><td>physical qubits n</td><td class="k" id="cN">5</td></tr>
+        <tr><td>Hilbert dim 2<sup>5</sup></td><td class="k" id="cDim">32</td></tr>
+        <tr><td>code dim (rank)</td><td class="k" id="cCode">2</td></tr>
+        <tr><td>distance d</td><td class="k" id="cD">3</td></tr>
+        <tr><td>corrects &fnof;((d&minus;1)/2)</td><td class="k" id="cCor">1</td></tr>
+      </table>
+      <p class="small" style="margin-top:6px">Distance 3 corrects <b>any</b> single-qubit error. <span class="tag t-lit">computed</span></p>
+    </div>
+
+    <!-- 3 -->
+    <div class="win blue"><span class="no">3</span>
+      <h2>LINEAGE</h2>
+      <p>The perfect five-qubit code is <b>Laflamme, Miquel, Paz &amp; Zurek, 1996</b> &mdash; the smallest code correcting an arbitrary single-qubit error.</p>
+      <p>The amplitude-level fidelities of <span class="k">1.0</span> are <b>cited from the frozen VH2 test</b> (verified 10/10), not re-simulated here. <span class="tag t-amber">cited, verified 10/10</span></p>
+      <p class="small">Ties: quantum-linear-algebra &middot; the transmon universe.</p>
+    </div>
+  </div>
+
+  <!-- ============ CENTER: DATA IN -> engine -> DATA OUT ============ -->
+  <div class="col center">
+    <div class="teamhdr">data in &rarr; the lit engine &rarr; data out</div>
+
+    <!-- 4 · DATA IN -->
+    <div class="win"><span class="no">4</span>
+      <h2>THE PASSING MODEL &middot; data in</h2>
+      <p>The model that <b>survived</b>: a <b>3-mode ternary CONTROLLER</b> governing <b>one</b> protected <span class="mono">[[5,1,3]]</span> qubit. The controller is dimension 3; the protected register stays rank 2.</p>
+      <p class="small">Inject one single-qubit error and route it through the engine &mdash; the code turns it into a syndrome:</p>
+      <div class="row">
+        <label>qubit</label>
+        <select id="qsel"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select>
+        <label style="min-width:auto">Pauli</label>
+        <select id="psel"><option>X</option><option>Y</option><option>Z</option></select>
+        <button id="injbtn">route &rarr;</button>
+      </div>
+      <div class="out" id="injout"></div>
+    </div>
+
+    <div class="flow">&#9660;</div>
+
+    <!-- CENTER ENGINE PANEL -->
+    <div class="win panel">
+      <h2 style="color:var(--gold);border-color:var(--line2)">&#9673; THE LIT ENGINE &middot; count &amp; match</h2>
+      <p>Count the errors; count the syndromes; check the matching. Exact integers &mdash; no amplitudes.</p>
+      <table>
+        <tr><th>set</th><th>count</th></tr>
+        <tr><td>single-qubit Paulis (5&times;3)</td><td class="k" id="ePauli">15</td></tr>
+        <tr><td>stabilizer generators (n&minus;k)</td><td class="k" id="eGen">4</td></tr>
+        <tr><td>nonzero 4-bit syndromes (2<sup>4</sup>&minus;1)</td><td class="k" id="eSyn">15</td></tr>
+      </table>
+      <div class="row"><button id="matchbtn">verify the perfect matching (15 &harr; 15)</button></div>
+      <div class="out" id="matchout"></div>
+      <div id="badges" style="margin-top:4px"></div>
+    </div>
+
+    <div class="flow">&#9660;</div>
+
+    <!-- 5 · DATA OUT -->
+    <div class="win"><span class="no">5</span>
+      <h2>PERFECT CODE &middot; data out</h2>
+      <p>The <b>15 single-qubit Paulis</b> map <b>one-to-one</b> onto the <b>15 nonzero syndromes</b> &mdash; every nonzero syndrome used exactly once, none left over. That is what &ldquo;perfect&rdquo; means. <span class="tag t-lit">matching, LIT</span></p>
+      <div id="tblout"></div>
+    </div>
+  </div>
+
+  <!-- ============ RIGHT: rejected model / graveyard / tamper (red) ============ -->
+  <div class="col red">
+    <div class="teamhdr">rejected &middot; graveyard &middot; tamper</div>
+
+    <!-- 6 -->
+    <div class="win red"><span class="no">6</span>
+      <h2>THE REJECTED MODEL</h2>
+      <p>The model that <b>failed</b>: a ternary (dimension-3) logical basis <b>inside one [[5,1,3]] block</b>. To hold three orthogonal logical states it needs rank <span class="k">&ge; 3</span> &mdash; but the code space is rank <span class="k">2</span>.</p>
+      <div class="out" id="rejout"></div>
+      <p class="small" style="margin-top:6px"><b>3 &gt; 2 is impossible.</b> The ternary basis does not fit inside the block. <span class="tag t-dead">tested &amp; disproven</span></p>
+    </div>
+
+    <!-- 7 -->
+    <div class="win red"><span class="no">7</span>
+      <h2>GRAVEYARD</h2>
+      <p class="grave"><s>&ldquo;Ternary logic lives inside the 5-qubit code.&rdquo;</s></p>
+      <p class="grave"><b>REJECTED</b> &mdash; a rank-2 code cannot carry a dimension-3 basis (2 &lt; 3). The corpus <b>keeps</b> the falsification rather than hiding it.</p>
+      <p class="small">I-13 runs a MEASURED DEAD register; this headstone stays lit. <span class="tag t-dead">DEAD kept</span></p>
+    </div>
+
+    <!-- 8 -->
+    <div class="win red"><span class="no">8</span>
+      <h2>TAMPER</h2>
+      <p>Claim the ternary (dim-3) basis <b>fits</b> inside the block &mdash; that rank 2 suffices for dimension 3:</p>
+      <div class="row"><button id="tamper">&#9888; assert 3 fits in rank 2</button><button id="restore">&#8634; restore</button></div>
+      <div class="out" id="tampout"></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <b>THE CUBI</b> &mdash; the honest heart is the rejected hypothesis, kept: a rank-2 code cannot hold a dimension-3 basis, so the passing model is a ternary controller <i>over</i> one protected qubit, never <i>inside</i> it. The perfect matching (15&harr;15) and the rejection (rank 3 &gt; 2) are the LIT payloads; the amplitude-level fidelities of 1.0 are AMBER, cited from the freeze. David Lee Wise (ROOT0) with AVAN.
+</footer>
+
+<script>
+"use strict";
+/* =========================================================================
+   THE CUBI — headless engine (pure). Everything above the UI marker is free
+   of the page DOM; selfcheck() throws on any violation. Integer arithmetic
+   only, no floats, no randomness.
+   ========================================================================= */
+
+/* ---- integer powers of two (no Math.pow float path) ---- */
+function pow2(n){ var r=1,i; for(i=0;i<n;i++){ r*=2; } return r; }
+
+/* ---- the [[5,1,3]] code facts ---- */
+var CODE = { n:5, k:1, d:3, codeDim:2, codeRank:2 };
+var GENERATORS = CODE.n - CODE.k;   // stabilizer generators = 4
+var TERNARY_RANK = 3;               // rank a dimension-3 logical basis demands
+
+/* corrects floor((d-1)/2) with integer shift ---- */
+function corrects(d){ return (d-1)>>1; }
+
+/* does a ternary (dim-3) basis fit inside a code of the given rank? ---- */
+function fitsTernaryInside(codeRank, ternaryRank){ return ternaryRank<=codeRank; }
+
+/* ---- the five-qubit code stabilizer generators, as symplectic (x,z) pairs ----
+   g1 = X Z Z X I   g2 = I X Z Z X   g3 = X I X Z Z   g4 = Z X I X Z            */
+var GEN = [
+  [[1,0],[0,1],[0,1],[1,0],[0,0]],
+  [[0,0],[1,0],[0,1],[0,1],[1,0]],
+  [[1,0],[0,0],[1,0],[0,1],[0,1]],
+  [[0,1],[1,0],[0,0],[1,0],[0,1]]
+];
+/* single-qubit Pauli as (x,z): X=(1,0) Y=(1,1) Z=(0,1) ---- */
+var PAULI = { X:[1,0], Y:[1,1], Z:[0,1] };
+var PAULI_TYPES = ["X","Y","Z"];
+
+/* symplectic inner product mod 2: 1 iff the two Paulis anticommute ---- */
+function anticommute(a,b){ return ((a[0]*b[1]+a[1]*b[0])&1); }
+
+/* the 4-bit syndrome of a single-qubit error at `qubit` of type `ptype`.
+   The error is identity off `qubit`, so only that column of each generator
+   contributes. Bit i = do E and generator i anticommute? ---- */
+function errorSyndrome(qubit, ptype){
+  var e=PAULI[ptype], s=0, i;
+  for(i=0;i<GEN.length;i++){ s=(s<<1)|anticommute(e, GEN[i][qubit]); }
+  return s;
+}
+
+/* the full list of 15 single-qubit errors and their syndromes ---- */
+function allSyndromes(){
+  var list=[], q, ti;
+  for(q=0;q<CODE.n;q++){
+    for(ti=0;ti<PAULI_TYPES.length;ti++){
+      var p=PAULI_TYPES[ti];
+      list.push({ q:q, p:p, s:errorSyndrome(q,p) });
+    }
+  }
+  return list;
+}
+
+/* ---- fail-loud selfcheck: throws on any violation ---- */
+function selfcheck(){
+  function t(c,m){ if(!c) throw new Error("SELFCHECK: "+m); }
+  var i;
+
+  // 1) Hilbert dimension and code dimension
+  t(pow2(CODE.n)===32, "Hilbert dim 2^5 must be 32, got "+pow2(CODE.n));
+  t(CODE.codeDim===2 && CODE.codeRank===2, "code space must be dimension/rank 2");
+
+  // 2) single-qubit Pauli count = n*3 = 15
+  t(CODE.n*3===15, "single-qubit Paulis (5*3) must be 15, got "+(CODE.n*3));
+
+  // 3) stabilizer generators = n - k = 4
+  t(GENERATORS===4, "stabilizer generators (n-k) must be 4, got "+GENERATORS);
+
+  // 4) nonzero 4-bit syndromes = 2^4 - 1 = 15
+  t(pow2(GENERATORS)-1===15, "nonzero 4-bit syndromes (2^4-1) must be 15, got "+(pow2(GENERATORS)-1));
+
+  // 5) the count identity: 15 Paulis == 15 syndromes
+  t(CODE.n*3===pow2(GENERATORS)-1, "counts must agree: 15 Paulis vs 15 syndromes");
+
+  // 6) THE PERFECT MATCHING (event-strict buckets, not one slot per key):
+  //    every single-qubit error lands in a distinct nonzero bucket; bucket 0 empty.
+  var buckets=new Array(16); for(i=0;i<16;i++){ buckets[i]=0; }
+  var list=allSyndromes();
+  t(list.length===15, "must enumerate exactly 15 single-qubit errors, got "+list.length);
+  for(i=0;i<list.length;i++){
+    var s=list[i].s;
+    t(s>=1 && s<=15, "every single-qubit error must give a nonzero 4-bit syndrome, got "+s+" for "+list[i].p+"@"+list[i].q);
+    buckets[s]++;
+  }
+  t(buckets[0]===0, "the zero syndrome must belong to NO single-qubit error");
+  for(i=1;i<=15;i++){ t(buckets[i]===1, "syndrome "+i+" must be used exactly once (perfect matching), got "+buckets[i]); }
+
+  // 7) distance 3 corrects exactly one single-qubit error
+  t(corrects(CODE.d)===1, "distance 3 must correct exactly 1 error, got "+corrects(CODE.d));
+
+  // 8) THE REJECTION: a ternary (dim-3) basis does NOT fit inside a rank-2 block
+  t(TERNARY_RANK>CODE.codeRank, "ternary needs rank 3 > code rank 2");
+  t(fitsTernaryInside(CODE.codeRank, TERNARY_RANK)===false, "ternary basis must NOT fit inside the [[5,1,3]] block");
+
+  return true;
+}
+
+/* ===== UI ===== */
+(function(){
+  try{
+    selfcheck();
+
+    var $=function(id){ return document.getElementById(id); };
+    function synStr(s){ var b="",i; for(i=GENERATORS-1;i>=0;i--){ b+=((s>>i)&1); } return b; }
+
+    /* --- reflect the code facts (display AGREES with the LIT stamp) --- */
+    $("cN").textContent=CODE.n;
+    $("cDim").textContent=pow2(CODE.n);
+    $("cCode").textContent=CODE.codeDim;
+    $("cD").textContent=CODE.d;
+    $("cCor").textContent=corrects(CODE.d);
+    $("ePauli").textContent=CODE.n*3;
+    $("eGen").textContent=GENERATORS;
+    $("eSyn").textContent=pow2(GENERATORS)-1;
+
+    /* --- the rejected model, computed live --- */
+    function renderReject(claimRank){
+      var need=TERNARY_RANK, have=(claimRank===undefined?CODE.codeRank:claimRank);
+      var fits=fitsTernaryInside(have, need);
+      $("rejout").innerHTML = fits
+        ? '<span class="verdict no">&#10007; ASSERTED FIT</span><span class="reason"> &mdash; needs rank '+need+', claimed rank '+have+' &mdash; but '+need+' &gt; '+CODE.codeRank+' is impossible</span>'
+        : '<span class="verdict no">&#10007; DOES NOT FIT</span><span class="reason"> &mdash; needs rank '+need+' &gt; code rank '+have+'. The hypothesis is <b>REJECTED</b>.</span>';
+    }
+    renderReject();
+
+    /* --- DATA IN: inject one error, route it to a syndrome --- */
+    function inject(){
+      var q=parseInt($("qsel").value,10), p=$("psel").value;
+      var s=errorSyndrome(q,p);
+      $("injout").innerHTML='<span class="k">'+p+'</span> on qubit <span class="k">'+q+'</span> &rarr; syndrome <b>'+synStr(s)+'</b> (='+s+') &middot; nonzero &amp; unique &rarr; <span style="color:var(--lit)">correctable</span>';
+    }
+    $("injbtn").onclick=inject; inject();
+
+    /* --- ENGINE: verify the perfect matching, event-strict --- */
+    function verifyMatching(){
+      var list=allSyndromes();
+      var buckets=new Array(16), i; for(i=0;i<16;i++){ buckets[i]=0; }
+      for(i=0;i<list.length;i++){ buckets[list[i].s]++; }
+      var ok=true, dup=0, zero=buckets[0];
+      for(i=1;i<=15;i++){ if(buckets[i]!==1){ ok=false; if(buckets[i]>1) dup++; } }
+      ok = ok && (zero===0) && (list.length===15);
+      $("matchout").innerHTML = ok
+        ? '<span class="verdict ok">&#10003; PERFECT MATCH</span><span class="reason"> &mdash; 15 single-qubit Paulis &harr; 15 nonzero syndromes, each used once; zero-syndrome empty.</span>'
+        : '<span class="verdict no">&#10007; NOT PERFECT</span><span class="reason"> &mdash; '+dup+' collision(s), zero-bucket '+zero+'.</span>';
+      $("badges").innerHTML = ok
+        ? '<span class="badge pass">PASSING MODEL &middot; ternary controller over 1 protected qubit</span><span class="badge failb">REJECTED MODEL &middot; ternary basis inside the block</span>'
+        : '<span class="badge failb">ENGINE BROKE &mdash; see fail-loud</span>';
+      return ok;
+    }
+    $("matchbtn").onclick=verifyMatching; verifyMatching();
+
+    /* --- DATA OUT: the full 15-row matching table --- */
+    function renderTable(){
+      var list=allSyndromes();
+      var seen=new Array(16), i; for(i=0;i<16;i++){ seen[i]=false; }
+      var html='<table><tr><th>#</th><th>error</th><th>syndrome</th><th>=</th></tr>';
+      for(i=0;i<list.length;i++){
+        var e=list[i]; seen[e.s]=true;
+        html+='<tr><td>'+(i+1)+'</td><td class="k">'+e.p+'&middot;q'+e.q+'</td><td>'+synStr(e.s)+'</td><td>'+e.s+'</td></tr>';
+      }
+      html+='</table>';
+      $("tblout").innerHTML=html;
+    }
+    renderTable();
+
+    /* --- TAMPER: assert the dim-3 basis fits inside the rank-2 block --- */
+    var tampered=false;
+    function showTamper(){
+      if(tampered){
+        // claim rank 2 suffices for dimension 3 -> recompute the witness, it turns red
+        renderReject(3);            // pretend the code carries rank 3
+        $("rejout").innerHTML='<span class="verdict no">&#10007; TAMPERED</span><span class="reason"> &mdash; claim: rank 2 holds a dim-3 basis. But required rank <b>3 &gt; 2</b> (the code rank). Impossible &mdash; the witness is <b class="no">red</b>.</span>';
+        $("tampout").innerHTML='<span style="color:var(--wall)">&#10007; VIOLATION</span> &middot; asserting 3 &le; 2 &mdash; the rejected hypothesis cannot be laundered into a pass.';
+        $("badges").innerHTML='<span class="badge failb">CLAIM FALSE &middot; 3 &gt; 2</span>';
+      } else {
+        renderReject();
+        $("tampout").innerHTML='<span style="color:var(--lit)">&#10003; restored</span> &middot; ternary needs rank 3 &gt; 2 &mdash; kept honest as REJECTED.';
+        verifyMatching();
+      }
+    }
+    $("tamper").onclick=function(){ tampered=true; showTamper(); };
+    $("restore").onclick=function(){ tampered=false; showTamper(); };
+
+  }catch(e){
+    var fb=document.getElementById("failb");
+    if(fb){ fb.style.display="block"; fb.textContent="FAIL-LOUD — THE CUBI did not verify: "+e.message; }
+    throw e;
+  }
+})();
+</script>
+</body>
+</html>

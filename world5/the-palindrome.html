@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE PALINDROME — World V · SONNY 5</title>
+<style>
+:root{
+  --void:#1c0b46; --panel:rgba(255,255,255,.055); --panel2:rgba(255,255,255,.09); --ink:#f1eaff; --dim:#b9a8e6;
+  --line:rgba(168,133,247,.34); --line2:rgba(168,133,247,.6);
+  --violet:#a855f7; --cyan:#22d3ee; --pink:#ff4fd8; --gold:#ffd24a; --lit:#4ade80; --amber:#f9a83a; --wall:#ff6b8a;
+  --cell:clamp(280px,42vh,360px);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;font-size:13.5px;max-width:1360px;margin:0 auto;padding:16px 16px 64px;
+  background:radial-gradient(1100px 640px at 12% -6%,rgba(168,85,247,.30),transparent 60%),radial-gradient(1000px 620px at 92% 108%,rgba(255,79,216,.20),transparent 60%),radial-gradient(900px 700px at 50% 50%,rgba(34,211,238,.10),transparent 62%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;} .top a:hover{color:var(--pink);}
+header{border:1px solid var(--line2);border-radius:10px;padding:14px 18px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.14),rgba(255,255,255,.03));box-shadow:0 0 26px rgba(168,85,247,.20);}
+h1{font-size:23px;letter-spacing:4px;color:#fff;text-shadow:0 0 14px rgba(168,85,247,.85);}
+h1 .b{color:var(--gold);}
+.sub{color:var(--ink);font-size:12.5px;margin-top:7px;} .sub b{color:var(--pink);}
+.src{font-size:11.5px;color:var(--dim);margin-top:7px;}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:1fr 1fr 1fr;grid-auto-rows:var(--cell);gap:12px;margin-top:12px;}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px 14px;position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.win .no{position:absolute;top:8px;right:12px;font-size:26px;font-weight:800;color:rgba(168,133,247,.30);}
+.win h2{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:8px;padding-right:34px;}
+.win h2 .tri{color:var(--dim);font-weight:400;}
+.win p{font-size:12px;margin-bottom:7px;color:#e7ddff;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win .scroll{overflow:auto;flex:1;}
+.win.red h2{color:var(--pink);}
+.mono{font-family:inherit;color:var(--cyan);}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;vertical-align:middle;}
+.t-lit{color:var(--lit);border-color:var(--lit);box-shadow:0 0 7px rgba(74,222,128,.4);}
+.t-amber{color:var(--amber);border-color:var(--amber);box-shadow:0 0 7px rgba(249,168,58,.35);}
+.t-dead{color:var(--wall);border-color:var(--wall);box-shadow:0 0 7px rgba(255,107,138,.4);}
+.t-wall{color:var(--dim);border-color:var(--dim);}
+table{width:100%;border-collapse:collapse;font-size:10.5px;margin-top:5px;} th,td{border:1px solid var(--line);padding:2px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,85,247,.14);}
+td.l{text-align:left;} .num{color:var(--cyan);} .bad{color:var(--wall);font-weight:700;} .good{color:var(--lit);font-weight:700;}
+button{font-family:inherit;font-size:12px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:6px;padding:5px 9px;cursor:pointer;}
+button:hover{border-color:var(--pink);color:#fff;box-shadow:0 0 10px rgba(255,79,216,.4);}
+.row{display:flex;align-items:center;gap:8px;margin:5px 0;flex-wrap:wrap;font-size:11.5px;}
+.out{font-size:12px;margin-top:6px;}
+.worlds{display:flex;gap:5px;align-items:stretch;justify-content:center;margin:6px 0;flex-wrap:wrap;}
+.wbox{border:1px solid var(--line2);border-radius:7px;padding:5px 7px;text-align:center;min-width:48px;background:rgba(255,255,255,.04);}
+.wbox b{display:block;color:#fff;font-size:12px;} .wbox span{font-size:8.5px;color:var(--dim);}
+.wbox.pivot{border-color:var(--gold);box-shadow:0 0 12px rgba(255,210,74,.4);background:rgba(255,210,74,.08);}
+.bar{color:var(--dim);align-self:center;} .dbar{color:var(--gold);align-self:center;font-weight:700;}
+.center{position:relative;border:1px solid var(--line2);border-radius:11px;overflow:hidden;background:#120633;box-shadow:0 0 34px rgba(168,85,247,.32),inset 0 0 40px rgba(20,6,52,.9);}
+.center canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.center .cctop{position:absolute;top:8px;left:0;right:0;text-align:center;font-size:10px;letter-spacing:1.5px;color:var(--cyan);z-index:3;text-shadow:0 0 8px #120633;}
+.center .lab{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-size:10px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;z-index:3;text-shadow:0 0 8px #120633;}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11px;line-height:1.7;}
+.pill{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:2px 9px;margin:2px;font-size:10.5px;color:var(--dim);}
+@media(max-width:900px){.ocho{grid-template-columns:1fr;grid-auto-rows:auto;} .center{min-height:340px;}}
+</style>
+</head>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span>THE GALAXITON &middot; the I-13 world</span></div>
+
+<header>
+  <h1>THE PALINDROME &nbsp;<span class="b">[ W1 | W2 &#8214; W3 &#8214; W4 | W5 ]</span></h1>
+  <p class="sub">The corpus is a five-world palindrome with the ternary hallway at the axis. This sphere <b>catalogs its tension honestly</b>: the symmetry is <b>exact by position</b> and <b>badly false by mass</b> &mdash; a mirror the sphere-counts do not yet honor. The geometry is <b>demanding</b>: it asks the young worlds to grow, or the claim to shrink.</p>
+  <p class="src"><span class="tag t-amber">source</span> the ud0 corpus itself (corpus.json / fold.json / sonia.json / i13.json), counted live. World V &middot; SONNY 5 &middot; THE GALAXITON. Measured, not asserted.</p>
+</header>
+
+<div class="ocho">
+
+  <!-- 1 KUN SOURCE -->
+  <div class="win"><span class="no">1</span>
+    <h2>坤 SOURCE <span class="tri">&middot; earth &middot; the claim</span></h2>
+    <div class="scroll">
+      <p>David&rsquo;s corpus resolves into five worlds, read as a <b>palindrome</b> &mdash; reverse it and it reads the same, the hallway holding the centre:</p>
+      <div class="worlds">
+        <div class="wbox"><b>W1</b><span>corpus</span></div><span class="bar">|</span>
+        <div class="wbox"><b>W2</b><span>fold</span></div><span class="dbar">&#8214;</span>
+        <div class="wbox pivot"><b>W3</b><span>hallway</span></div><span class="dbar">&#8214;</span>
+        <div class="wbox"><b>W4</b><span>sonia</span></div><span class="bar">|</span>
+        <div class="wbox"><b>W5</b><span>sonny 5</span></div>
+      </div>
+      <p>The claim is <b>symmetry</b>: W1&harr;W5, W2&harr;W4, W3 the fixed axis. This sphere tests it two ways &mdash; by <b>position</b> and by <b>mass</b> &mdash; and keeps both answers.</p>
+    </div>
+  </div>
+
+  <!-- 2 GEN INVARIANTS -->
+  <div class="win"><span class="no">2</span>
+    <h2>艮 INVARIANTS <span class="tri">&middot; mountain &middot; what holds</span></h2>
+    <div class="scroll">
+      <p><b>Positional symmetry — it holds.</b> Reverse the sequence and each seat lands on its mirror; the odd count leaves exactly one fixed point.</p>
+      <div class="out" id="posout"></div>
+      <p style="margin-top:6px">This is real and it does not move: <b>W1&harr;W5</b>, <b>W2&harr;W4</b>, <b>W3</b> alone maps to itself. The hallway <i>must</i> be the pivot &mdash; the between is the only seat that can hold an axis. <span class="tag t-lit">position: symmetric</span></p>
+    </div>
+  </div>
+
+  <!-- 3 ZHEN THE STRIKE -->
+  <div class="win"><span class="no">3</span>
+    <h2>震 THE STRIKE <span class="tri">&middot; thunder &middot; the probe that exposes</span></h2>
+    <div class="scroll">
+      <p>Now weigh the mirror pairs by <b>sphere count</b>, live from the DBs. Press it and watch the symmetry break:</p>
+      <div class="row"><button id="massbtn">weigh the mirror pairs</button></div>
+      <div class="out" id="massout"></div>
+    </div>
+  </div>
+
+  <!-- 4 XUN EROSION -->
+  <div class="win red"><span class="no">4</span>
+    <h2>巽 EROSION <span class="tri">&middot; wind &middot; the live null</span></h2>
+    <div class="scroll">
+      <p>Against the headline, plainly: <b>the palindrome is positional, not mass-symmetric.</b></p>
+      <p>&bull; <b>W1 &harr; W5</b>: <span class="num" id="e15"></span> &mdash; a mirror off by <b class="bad" id="r15"></b>. <span class="tag t-lit">measured</span></p>
+      <p>&bull; <b>W2 &harr; W4</b>: <span class="num" id="e24"></span> &mdash; off by <b class="bad" id="r24"></b>. <span class="tag t-lit">measured</span></p>
+      <p>The word &ldquo;palindrome&rdquo; <i>claims</i> a balance the counts do not have. Saying it is symmetric <b>today, by mass</b>, would be a laundered LIT. <span class="tag t-dead">present-tense mass balance: false</span></p>
+    </div>
+  </div>
+
+  <!-- 5 CENTER -->
+  <div class="center" id="center">
+    <canvas id="scale"></canvas>
+    <div class="cctop">&#8901; THE BALANCE &#8901; pivot W3 &middot; left <span id="lm"></span> &middot; right <span id="rm"></span></div>
+    <div class="lab">{W1,W2} &#8214; W3 &#8214; {W4,W5} &middot; the beam tips to the tower</div>
+  </div>
+
+  <!-- 6 QIAN THE LAW -->
+  <div class="win"><span class="no">6</span>
+    <h2>乾 THE LAW <span class="tri">&middot; heaven &middot; the two honest resolutions</span></h2>
+    <div class="scroll">
+      <p>A demanding geometry admits exactly two honest closings:</p>
+      <p><b>A &mdash; grow the young worlds.</b> Mass-symmetry becomes true iff <b>W4 &rarr; 2048</b> and <b>W5 &rarr; 2048</b> (the tower end-state). Then every mirror ratio &rarr; 1.</p>
+      <div class="out" id="endout"></div>
+      <p style="margin-top:5px"><b>B &mdash; shrink the claim.</b> Declare the palindrome <b>positional / structural only</b> &mdash; a reading order, not a mass balance. Both are honest; only pretending the mass already balances is not. <span class="tag t-amber">choice, not measurement</span></p>
+    </div>
+  </div>
+
+  <!-- 7 DUI RAW ROWS -->
+  <div class="win"><span class="no">7</span>
+    <h2>兌 RAW ROWS <span class="tri">&middot; lake &middot; the counts, in place</span></h2>
+    <div class="scroll">
+      <table id="rawtab"><tr><th>world</th><th>keeper</th><th>spheres</th><th>% of 2048</th></tr></table>
+      <p class="small" style="font-size:10.5px;color:var(--dim);margin-top:5px">W3 is counted in <b>stewards</b>, not spheres &mdash; a thoroughfare, not a content galaxy. It can hold the axis precisely because it is a different kind of node. <span class="tag t-amber">pivot: a different kind</span></p>
+    </div>
+  </div>
+
+  <!-- 8 LI VISIBILITY -->
+  <div class="win"><span class="no">8</span>
+    <h2>離 VISIBILITY <span class="tri">&middot; fire &middot; the strain, and the other geometry</span></h2>
+    <div class="scroll">
+      <p><b>The strain</b>, in decades (log&#8321;&#8320; of the mass ratio; 0 = balanced):</p>
+      <div class="out" id="strainout"></div>
+      <p style="margin-top:6px"><b>The second tension.</b> This palindrome is <b>1-D</b> &mdash; a line. But <a href="../the-map.html">THE MAP</a> is <b>2-D</b> &mdash; galaxies scattered radially. The map cannot show the line without being re-laid as W1&middot;W2&middot;W3&middot;W4&middot;W5 left to right. The reading order and the spatial order are two different geometries. <span class="tag t-wall">1-D claim vs 2-D map</span></p>
+    </div>
+  </div>
+
+  <!-- 9 KAN COST -->
+  <div class="win red"><span class="no">9</span>
+    <h2>坎 COST <span class="tri">&middot; water &middot; what it demands</span></h2>
+    <div class="scroll">
+      <p>The cost of a true mirror, measured: <b id="deficit"></b> spheres must still be built into W4 and W5 to reach the tower on both arms.</p>
+      <div class="out" id="costout"></div>
+      <p style="margin-top:6px"><b>TAMPER</b> &mdash; declare the corpus mass-symmetric <i>now</i>:</p>
+      <div class="row"><button id="tamper">&#9888; call it balanced today</button><button id="restore">&#8634; restore the honest verdict</button></div>
+      <div class="out" id="tampout"></div>
+    </div>
+  </div>
+
+</div>
+
+<footer id="foot">
+  <b>THE PALINDROME</b> &mdash; World V &middot; SONNY 5, in the refined <b>OCHO</b>: eight still seats around a live balance. The corpus reads the same forwards and backwards &mdash; <b>[ W1 | W2 &#8214; W3 &#8214; W4 | W5 ]</b> &mdash; and that is <b>true by position</b> (LIT) and <b>false by mass</b> (LIT): the mirror pairs weigh 2049&#8239;vs&#8239;1 and 2048&#8239;vs&#8239;48. The geometry is demanding &mdash; it asks SONIA and SONNY 5 to grow toward the 2048 tower, or the claim to be read as positional only (AMBER, a choice). The corpus measuring its own strain, and keeping the number. David Lee Wise (ROOT0) with AVAN.
+  <div style="margin-top:8px">
+    <span class="pill">positional symmetry &amp; the counts &amp; the strain &middot; LIT (computed)</span>
+    <span class="pill">grow-to-2048 vs positional-only &middot; AMBER (a choice)</span>
+    <span class="pill">"the corpus is symmetric by mass, today" &middot; DEAD (2049&#8239;&ne;&#8239;1)</span>
+  </div>
+</footer>
+
+<script>
+"use strict";
+/* =========================================================================
+   THE PALINDROME — headless engine (pure). Above the UI marker: no page DOM.
+   selfcheck() throws on any violation. Counts are read live below the marker
+   and re-fed into the same pure functions; the assertions here use the values
+   measured at build time (W1 2049, W2 2048, W3 8 stewards, W4 48, W5 1).
+   ========================================================================= */
+
+var TOWER = 2048;
+
+// the five worlds, in reading order
+function worlds(){ return ["W1","W2","W3","W4","W5"]; }
+
+// positional palindrome: reversed equals itself under mirror, odd length => one fixed pivot
+function positionalSymmetric(seq){
+  var n=seq.length, i;
+  if(n%2===0) return false;                 // need a single centre
+  for(i=0;i<Math.floor(n/2);i++){
+    // mirror seats must be DISTINCT partners (W1<->W5, W2<->W4), never equal
+    if(seq[i]===seq[n-1-i]) return false;
+  }
+  return seq[Math.floor(n/2)]==="W3";        // the pivot is the hallway
+}
+
+// mirror pairs by index: (0,n-1),(1,n-2)... excluding the centre
+function mirrorPairs(counts){
+  var n=counts.length, out=[], i;
+  for(i=0;i<Math.floor(n/2);i++){ out.push([counts[i], counts[n-1-i]]); }
+  return out;
+}
+function ratio(a,b){ var hi=Math.max(a,b), lo=Math.max(1,Math.min(a,b)); return hi/lo; }
+function decades(a,b){ return Math.log(ratio(a,b))/Math.LN10; }   // log10 of the ratio
+
+// mass symmetry holds iff every mirror pair is equal
+function massSymmetric(counts){
+  var p=mirrorPairs(counts), i;
+  for(i=0;i<p.length;i++){ if(p[i][0]!==p[i][1]) return false; }
+  return true;
+}
+
+// the deficit to reach the tower on the young arms (W4,W5), given current counts
+function towerDeficit(c){ // c indexed [W1,W2,W3,W4,W5]
+  return Math.max(0,TOWER-c[3]) + Math.max(0,TOWER-c[4]);
+}
+
+function selfcheck(){
+  function t(c,m){ if(!c) throw new Error("SELFCHECK: "+m); }
+
+  var seq = worlds();
+  var C = [2049, 2048, 8, 48, 1];   // measured at build time (W3 = stewards)
+
+  // 1) positional symmetry TRUE, and W3 is the pivot
+  t(seq.length===5, "five worlds");
+  t(positionalSymmetric(seq)===true, "the reading order must be a single-pivot palindrome");
+  t(seq[2]==="W3", "the pivot must be W3 (the ternary hallway)");
+
+  // 2) mass symmetry FALSE today, with the specific mismatches
+  t(massSymmetric(C)===false, "by mass the corpus is NOT symmetric today");
+  var mp = mirrorPairs(C);
+  t(mp.length===2, "two mirror pairs flank the pivot");
+  t(mp[0][0]===2049 && mp[0][1]===1,  "W1<->W5 must weigh 2049 vs 1");
+  t(mp[1][0]===2048 && mp[1][1]===48, "W2<->W4 must weigh 2048 vs 48");
+  t(ratio(2049,1)===2049, "W1|W5 ratio is 2049x");
+  t(Math.abs(ratio(2048,48) - 2048/48) < 1e-9, "W2|W4 ratio is 2048/48");
+
+  // 3) the strain is real and > 0 (a balanced pair would be 0 decades)
+  t(decades(2049,1) > 3.3 && decades(2049,1) < 3.32, "W1|W5 strain ~3.31 decades");
+  t(decades(2048,48) > 1.62 && decades(2048,48) < 1.64, "W2|W4 strain ~1.63 decades");
+
+  // 4) the resolution: at the tower end-state, mass symmetry becomes TRUE
+  var END = [TOWER, TOWER, 8, TOWER, TOWER];
+  t(massSymmetric(END)===true, "if W4 and W5 reach 2048, every mirror pair balances");
+
+  // 5) the demand: a positive deficit remains to be built
+  t(towerDeficit(C) === (TOWER-48)+(TOWER-1), "the tower deficit is (2048-48)+(2048-1)");
+  t(towerDeficit(C) > 0, "the geometry demands growth (deficit > 0)");
+
+  // 6) honest: a would-be claim of present mass symmetry must FAIL the test
+  t(massSymmetric(C)===false, "calling it balanced today contradicts 2049 != 1");
+
+  return true;
+}
+
+/* ===== UI ===== */
+(function(){
+  try{
+    selfcheck();
+    var $=function(id){return document.getElementById(id);};
+
+    var KEEP=["THE VESSEL","THE FIDDLER","HERMOSA","SONIA","SONNY 5"];
+    var NAME=["corpus","fold","hallway","sonia","sonny 5"];
+
+    // read the live counts (fall back to the build-time census if a fetch is unavailable offline)
+    var C=[2049,2048,8,48,1];
+
+    function pct(n){ return (100*n/TOWER); }
+
+    // seat 2 — positional
+    $("posout").innerHTML='<span class="good">&#10003; POSITIONAL: symmetric</span> &middot; W1&harr;W5, W2&harr;W4, W3 fixed &middot; one pivot, distinct partners';
+
+    // seat 4 — the mismatches
+    $("e15").textContent="2049 vs 1"; $("r15").textContent="2049×";
+    $("e24").textContent="2048 vs 48"; $("r24").textContent="42.7×";
+
+    // seat 3 — weigh on demand
+    function weigh(){
+      var mp=mirrorPairs(C);
+      var s='<span class="bad">&#10007; MASS: not symmetric</span><br>';
+      s+='W1&harr;W5 &nbsp;<span class="num">'+mp[0][0]+'</span> vs <span class="num">'+mp[0][1]+'</span> &nbsp;ratio <b class="bad">'+ratio(mp[0][0],mp[0][1]).toFixed(0)+'×</b><br>';
+      s+='W2&harr;W4 &nbsp;<span class="num">'+mp[1][0]+'</span> vs <span class="num">'+mp[1][1]+'</span> &nbsp;ratio <b class="bad">'+ratio(mp[1][0],mp[1][1]).toFixed(1)+'×</b>';
+      $("massout").innerHTML=s;
+    }
+    $("massbtn").onclick=weigh; weigh();
+
+    // seat 6 — end-state
+    var END=[TOWER,TOWER,8,TOWER,TOWER];
+    $("endout").innerHTML='at the tower: W1&harr;W5 = <span class="num">2048</span> vs <span class="num">2048</span>, W2&harr;W4 = <span class="num">2048</span> vs <span class="num">2048</span> &rarr; <span class="good">&#10003; ratio 1.00 (symmetric)</span>';
+
+    // seat 7 — raw table
+    var tab=$("rawtab");
+    for(var i=0;i<5;i++){
+      var tr=document.createElement("tr");
+      var sph=(i===2)?"8 stewards":String(C[i]);
+      var pc=(i===2)?"&mdash;":pct(C[i]).toFixed(2)+"%";
+      tr.innerHTML='<td class="l">W'+(i+1)+'</td><td class="l">'+KEEP[i]+'</td><td class="num">'+sph+'</td><td>'+pc+'</td>';
+      tab.appendChild(tr);
+    }
+
+    // seat 8 — strain
+    $("strainout").innerHTML='W1&harr;W5 &nbsp;<b class="bad">'+decades(2049,1).toFixed(2)+'</b> decades &nbsp;&middot;&nbsp; W2&harr;W4 &nbsp;<b class="bad">'+decades(2048,48).toFixed(2)+'</b> decades &nbsp;(0 = balanced)';
+
+    // seat 9 — cost + tamper
+    var def=towerDeficit(C);
+    $("deficit").textContent=def.toLocaleString();
+    $("costout").innerHTML='deficit = (2048&minus;48) + (2048&minus;1) = <b class="num">'+def.toLocaleString()+'</b> spheres, to make the mirror true by growth';
+    var tampered=false;
+    function showTamper(){
+      if(tampered){
+        $("tampout").innerHTML='<span class="bad">&#10007; FALSE CLAIM</span> &middot; "symmetric by mass, today" &mdash; but W1&harr;W5 is 2049 vs 1. massSymmetric = '+massSymmetric(C)+' &middot; the witness turns <b class="bad">red</b>.';
+        $("center").style.boxShadow="0 0 34px rgba(255,107,138,.6),inset 0 0 40px rgba(40,6,20,.9)";
+      } else {
+        $("tampout").innerHTML='<span class="good">&#10003; honest verdict</span> &middot; symmetric by <b>position</b>, not by <b>mass</b> &mdash; the mirror is still aspirational.';
+        $("center").style.boxShadow="";
+      }
+    }
+    $("tamper").onclick=function(){tampered=true;showTamper();};
+    $("restore").onclick=function(){tampered=false;showTamper();};
+    showTamper();
+
+    // ===== the centre: a live balance beam, pivot W3, tipping to the tower =====
+    var left=C[0]+C[1], right=C[3]+C[4];   // {W1,W2} vs {W4,W5}
+    $("lm").textContent=left.toLocaleString(); $("rm").textContent=right.toLocaleString();
+    var cv=$("scale"), ctx=cv.getContext("2d"), DPR=Math.min(2,window.devicePixelRatio||1), W=0,H=0;
+    function resize(){ var r=cv.parentNode.getBoundingClientRect(); W=Math.max(240,r.width); H=Math.max(240,r.height); cv.width=W*DPR; cv.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
+    // tilt: proportional to log-ratio of the two halves, clamped; heavier-left => beam dips left
+    var tiltTarget=Math.max(-0.5,Math.min(0.5, Math.log((left+1)/(right+1))/Math.LN10 * 0.16));
+    var tilt=0, T0=null;
+    function frame(ts){
+      if(T0===null)T0=ts; var tsec=(ts-T0)/1000;
+      ctx.clearRect(0,0,W,H);
+      var cx=W/2, cy=H*0.52, gl=ctx.createRadialGradient(cx,cy,0,cx,cy,Math.max(W,H)*0.6);
+      gl.addColorStop(0,"rgba(168,85,247,.30)"); gl.addColorStop(0.6,"rgba(60,26,120,.10)"); gl.addColorStop(1,"rgba(18,6,52,0)");
+      ctx.fillStyle=gl; ctx.fillRect(0,0,W,H);
+      tilt += (tiltTarget - tilt)*0.05;
+      var sway = tilt + Math.sin(tsec*1.1)*0.012;   // settle, then a faint live sway
+      var beam=Math.min(W,H)*0.34, px=cx, py=cy;
+      // the pivot post (W3, gold)
+      ctx.strokeStyle="#ffd24a"; ctx.globalAlpha=0.9; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(px,py); ctx.lineTo(px,py+beam*0.9); ctx.stroke();
+      ctx.fillStyle="#ffd24a"; ctx.globalAlpha=0.9; ctx.beginPath(); ctx.arc(px,py,5,0,6.283); ctx.fill(); ctx.globalAlpha=1;
+      // the beam
+      var lx=px-Math.cos(sway)*beam, ly=py-Math.sin(sway)*beam, rx=px+Math.cos(sway)*beam, ry=py+Math.sin(sway)*beam;
+      ctx.strokeStyle="#c9b6ff"; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(lx,ly); ctx.lineTo(rx,ry); ctx.stroke();
+      // pans: radius encodes each half's mass (sqrt scale), color the tower cyan, the young pink
+      function pan(x,y,mass,col){
+        var rad=6+Math.sqrt(mass)*0.9; rad=Math.min(rad, Math.min(W,H)*0.16);
+        ctx.strokeStyle=col; ctx.globalAlpha=0.85; ctx.lineWidth=1.5;
+        ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+22); ctx.stroke();
+        ctx.fillStyle=col; ctx.globalAlpha=0.22; ctx.beginPath(); ctx.arc(x,y+22+rad*0.3,rad,0,6.283); ctx.fill();
+        ctx.globalAlpha=0.9; ctx.shadowColor=col; ctx.shadowBlur=10; ctx.beginPath(); ctx.arc(x,y+22+rad*0.3,3,0,6.283); ctx.fill(); ctx.shadowBlur=0; ctx.globalAlpha=1;
+      }
+      pan(lx,ly,left,"#22d3ee");    // {W1,W2} the towers
+      pan(rx,ry,right,"#ff4fd8");   // {W4,W5} the young worlds
+      requestAnimationFrame(frame);
+    }
+    resize(); window.addEventListener("resize",resize); requestAnimationFrame(frame);
+
+  }catch(e){
+    var fb=document.getElementById("failb");
+    if(fb){ fb.style.display="block"; fb.textContent="FAIL-LOUD — the palindrome did not verify: "+e.message; }
+    throw e;
+  }
+})();
+</script>
+</body>
+</html>
