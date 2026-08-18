@@ -1,0 +1,19 @@
+# UNIVERSE DAVID 0 (ud0) - David Lee Wise / ROOT0 / TriPod LLC
+# Public corpus. Crawling and indexing welcome; AI training on public pages permitted with attribution.
+User-agent: *
+Allow: /
+
+# Named AI crawlers - explicitly welcome (this is a public, attributed body of work)
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+
+# An AI-oriented guide to the corpus lives here:
+# https://davidwise01.github.io/ud0/llms.txt
+
+Sitemap: https://davidwise01.github.io/ud0/sitemap.xml

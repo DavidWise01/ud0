@@ -542,6 +542,74 @@
       "url": "https://davidwise01.github.io/ud0/world5/the-lindenmayer-system.html",
       "seal": "d8bb9760bd6ab26333bda0e1c0cd577b0c77c72362971132a84ad8ab48900508",
       "blurb": "L-systems: parallel string rewriting (F -> F+F-F-F+F) grown from an axiom, drawn as turtle graphics - fractal plants and curves. String rewriting is the heart, which I-13 cannot hold (no strings). But the honest parallel: I-13 IS a symbol system with rewrite-like lowering (source -> AST -> IVM), so the concept is native; only the runtime string value is the wall."
+    },
+    {
+      "slug": "the-newton-raphson-method",
+      "title": "NEWTON-RAPHSON METHOD",
+      "dartno": "026",
+      "version": "v0.04",
+      "credit": "Isaac Newton (1669) / Joseph Raphson (1690) / Thomas Simpson (1740)",
+      "source": "Newton / Raphson / Simpson, 1669-1740",
+      "i13_recommend": "a statically-bounded loop (times N) so numeric iteration does not consume the 4096-frame recursion budget - a convenience, since everything here already runs on real I-13",
+      "blurb": "Root-finding by tangent lines: stand on the curve, slide down the tangent to where it crosses zero, repeat - the correct digits double each step. A rare NO-WALL dart: real I-13 computes sqrt(2) to full f64 precision (root2 = 1.414213562373095), verified on the canonical H1.1 compiler via bounded recursion at call depth 21. The honest recommend is a statically-bounded loop so iteration stops eating the frame budget - a convenience, not new power; do not invent a wall that is not there. Credit is a three-way tangle: Newton (1669, unpublished till 1711), Raphson (1690, into print first - hence the hyphen), Simpson (1740, the derivative form everyone actually uses).",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 026 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-newton-raphson-method.html",
+      "seal": "57aefbb00077fdf2e26a24e5b38b9a8f388306fd97d2aa9c7a283b6e3eb47dfa"
+    },
+    {
+      "slug": "the-euclidean-algorithm",
+      "title": "THE EUCLIDEAN ALGORITHM",
+      "dartno": "027",
+      "version": "v0.04",
+      "credit": "Euclid, Elements VII, c. 300 BC (older: Pythagorean anthyphairesis)",
+      "source": "Euclid, c. 300 BC",
+      "i13_recommend": "% (modulo) - already built and tested on branch panel-recommends as bin::MOD, zero new alphabet symbols; turns Euclid's O(a+b) subtraction descent into O(log)",
+      "blurb": "The greatest common divisor by repeated reduction - often called the oldest algorithm still in daily use. Euclid's ORIGINAL subtraction form runs unchanged in real I-13 (gcd(1071,462)=21, 252 steps, verified on the canonical compiler); the modern remainder form needs one operator, a mod b, which on main is an unexpected character but which the I-13 language panel already added as bin::MOD on branch panel-recommends (the full test suite passes). Recorded by Euclid in Elements VII (c.300 BC) but older still - Pythagorean anthyphairesis, reciprocal subtraction on lengths, alluded to by Aristotle before him.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 027 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-euclidean-algorithm.html",
+      "seal": "e3e9c350b2e10d60bcba6be0fc2339f11bcc0e1123853c166aba5bcccfdd1451"
+    },
+    {
+      "slug": "perlin-noise",
+      "title": "PERLIN NOISE",
+      "dartno": "028",
+      "version": "v0.04",
+      "credit": "Ken Perlin, 1983 (developed on Disney's TRON; Academy Award 1997)",
+      "source": "Ken Perlin, 1983",
+      "i13_recommend": "a bounded aggregate (fixed-size array, compile-time length, checked indexing) - or an on-record decision to declare aggregates permanently NOT COVERED; the most-requested feature across the whole dart campaign",
+      "blurb": "The gradient noise that gave computer graphics its first believable clouds, marble, and terrain - invented by Ken Perlin WHILE working on Disney's TRON (1982), published at SIGGRAPH 1985, and given an Academy Award for Technical Achievement in 1997. World V is a TRON world, and this is where its look was born. A live animating field in TRON cyan and gold. It stands on a 256-entry permutation table, duplicated to 512 and indexed by hashed coordinates to pick each grid point's gradient - an array, the aggregate wall, which I-13 cannot express (check reports the unexpected character '['). The recommend is not 'add arrays' but 'decide, on the record, whether bounded aggregates are in scope, or declare them permanently NOT COVERED'.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 028 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/perlin-noise.html",
+      "seal": "be75b7b5581e97da5a54824b9899cb928374ad1bc6880fad82e1abd4e6016fc8"
+    },
+    {
+      "slug": "the-nim-game",
+      "title": "THE GAME OF NIM",
+      "dartno": "029",
+      "version": "v0.04",
+      "credit": "Charles L. Bouton, 1901 (generalized by Sprague 1935 & Grundy 1939)",
+      "source": "Charles Bouton, 1901",
+      "i13_recommend": "bitwise operators (^ & | >>) as new BinOp discriminants, zero new alphabet symbols - the SECOND dart to ask for bitwise (dart 001, fast inverse square root, was first); convergence is a signal",
+      "blurb": "The first game ever completely solved by mathematics: take any number of tokens from one row, last to take wins. Charles Bouton (Harvard, 1901) named the game and proved the winning rule - the nim-sum, the bitwise XOR of the heap sizes, where zero means the player to move loses under perfect play. Playable live against a perfect machine. The entire theory is one XOR, which I-13 lacks (check reports the unexpected character '^') - the same bitwise wall that dart 001, the fast inverse square root, hit independently. Two darts converging on bitwise is a signal, not a coincidence. Sprague (1935) and Grundy (1939) later showed every impartial game reduces to a single Nim heap.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 029 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-nim-game.html",
+      "seal": "3c46e97e1a206c57cc9805e041fbdc8bafadd634ccdd21a896f17cf8f4671766"
     }
   ],
   "keepers": [
@@ -552,13 +620,13 @@
     }
   ],
   "counts": {
-    "spheres": 31,
+    "spheres": 35,
     "rooms": 6,
     "lit": 6,
     "keepers": 1,
-    "darts": 25
+    "darts": 29
   },
-  "i13_root": "34676e2483f6becca3e8562f2768f0f45703abab823be7b865af842891fde7ab",
+  "i13_root": "d2a588eb55a79696c2b4c8c0352a28658d05caea3d3abbf86ea0b745170cb6b5",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

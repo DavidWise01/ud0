@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//I13//WORLD-V//the-i13-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "folded_to": "ROOT_0",
-  "root": "34676e2483f6becca3e8562f2768f0f45703abab823be7b865af842891fde7ab",
-  "count": 32,
+  "root": "d2a588eb55a79696c2b4c8c0352a28658d05caea3d3abbf86ea0b745170cb6b5",
+  "count": 36,
   "sealed": "2026-08-17",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World V inhabitant folds to ROOT_0. Live: the root updates as the I-13 world grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
@@ -36,7 +36,11 @@
           "side": "R"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -65,7 +69,11 @@
           "side": "R"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -94,7 +102,11 @@
           "side": "R"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -123,7 +135,11 @@
           "side": "R"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -152,7 +168,11 @@
           "side": "R"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -181,7 +201,11 @@
           "side": "R"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -210,7 +234,11 @@
           "side": "R"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -239,7 +267,11 @@
           "side": "R"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -268,7 +300,11 @@
           "side": "L"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -297,7 +333,11 @@
           "side": "L"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -326,7 +366,11 @@
           "side": "L"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -355,7 +399,11 @@
           "side": "L"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -384,7 +432,11 @@
           "side": "L"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -413,7 +465,11 @@
           "side": "L"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -442,7 +498,11 @@
           "side": "L"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -471,7 +531,11 @@
           "side": "L"
         },
         {
-          "h": "abfadc50a1dba189c818e2327bc3b12bf5ea5ad477344ad5c930ba0e41131ccb",
+          "h": "72d2a946f5ac86ac848cc908ec22ebfb1ef170a43f543630a8f7faab6bafdd29",
+          "side": "R"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
           "side": "R"
         }
       ]
@@ -496,12 +560,16 @@
           "side": "R"
         },
         {
-          "h": "7ece0fe6f8c97b99e2ff8001d2eff328f4451cb99bc239118818f2dc1bcc4e8e",
+          "h": "f79b6063202f040d1265f06bb8a55e2471b206cc9e61c2a8b80e495cad9e3cbf",
           "side": "R"
         },
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -525,12 +593,16 @@
           "side": "R"
         },
         {
-          "h": "7ece0fe6f8c97b99e2ff8001d2eff328f4451cb99bc239118818f2dc1bcc4e8e",
+          "h": "f79b6063202f040d1265f06bb8a55e2471b206cc9e61c2a8b80e495cad9e3cbf",
           "side": "R"
         },
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -554,12 +626,16 @@
           "side": "R"
         },
         {
-          "h": "7ece0fe6f8c97b99e2ff8001d2eff328f4451cb99bc239118818f2dc1bcc4e8e",
+          "h": "f79b6063202f040d1265f06bb8a55e2471b206cc9e61c2a8b80e495cad9e3cbf",
           "side": "R"
         },
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -583,12 +659,16 @@
           "side": "R"
         },
         {
-          "h": "7ece0fe6f8c97b99e2ff8001d2eff328f4451cb99bc239118818f2dc1bcc4e8e",
+          "h": "f79b6063202f040d1265f06bb8a55e2471b206cc9e61c2a8b80e495cad9e3cbf",
           "side": "R"
         },
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -612,12 +692,16 @@
           "side": "L"
         },
         {
-          "h": "7ece0fe6f8c97b99e2ff8001d2eff328f4451cb99bc239118818f2dc1bcc4e8e",
+          "h": "f79b6063202f040d1265f06bb8a55e2471b206cc9e61c2a8b80e495cad9e3cbf",
           "side": "R"
         },
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -641,12 +725,16 @@
           "side": "L"
         },
         {
-          "h": "7ece0fe6f8c97b99e2ff8001d2eff328f4451cb99bc239118818f2dc1bcc4e8e",
+          "h": "f79b6063202f040d1265f06bb8a55e2471b206cc9e61c2a8b80e495cad9e3cbf",
           "side": "R"
         },
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -670,12 +758,16 @@
           "side": "L"
         },
         {
-          "h": "7ece0fe6f8c97b99e2ff8001d2eff328f4451cb99bc239118818f2dc1bcc4e8e",
+          "h": "f79b6063202f040d1265f06bb8a55e2471b206cc9e61c2a8b80e495cad9e3cbf",
           "side": "R"
         },
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -699,12 +791,16 @@
           "side": "L"
         },
         {
-          "h": "7ece0fe6f8c97b99e2ff8001d2eff328f4451cb99bc239118818f2dc1bcc4e8e",
+          "h": "f79b6063202f040d1265f06bb8a55e2471b206cc9e61c2a8b80e495cad9e3cbf",
           "side": "R"
         },
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -724,7 +820,7 @@
           "side": "R"
         },
         {
-          "h": "db9aa63cf7e1647aae5a49c503889539d3ca62985823958284afd58811150419",
+          "h": "2b7664c0675dbfc93155ff9080aee27905fe9842d917378464519187257c0cb7",
           "side": "R"
         },
         {
@@ -734,6 +830,10 @@
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -753,7 +853,7 @@
           "side": "R"
         },
         {
-          "h": "db9aa63cf7e1647aae5a49c503889539d3ca62985823958284afd58811150419",
+          "h": "2b7664c0675dbfc93155ff9080aee27905fe9842d917378464519187257c0cb7",
           "side": "R"
         },
         {
@@ -763,6 +863,10 @@
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -782,7 +886,7 @@
           "side": "L"
         },
         {
-          "h": "db9aa63cf7e1647aae5a49c503889539d3ca62985823958284afd58811150419",
+          "h": "2b7664c0675dbfc93155ff9080aee27905fe9842d917378464519187257c0cb7",
           "side": "R"
         },
         {
@@ -792,6 +896,10 @@
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -811,7 +919,7 @@
           "side": "L"
         },
         {
-          "h": "db9aa63cf7e1647aae5a49c503889539d3ca62985823958284afd58811150419",
+          "h": "2b7664c0675dbfc93155ff9080aee27905fe9842d917378464519187257c0cb7",
           "side": "R"
         },
         {
@@ -821,6 +929,10 @@
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -836,7 +948,7 @@
           "side": "R"
         },
         {
-          "h": "d03905889e1247bc39814676c97254f7e042e32caf56831969bb1818f7e0b1de",
+          "h": "9f961a69285cdb4198bb15bbf3f2f5683579b75c7cd919e0757278cb0667435a",
           "side": "R"
         },
         {
@@ -850,6 +962,10 @@
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -865,7 +981,7 @@
           "side": "L"
         },
         {
-          "h": "d03905889e1247bc39814676c97254f7e042e32caf56831969bb1818f7e0b1de",
+          "h": "9f961a69285cdb4198bb15bbf3f2f5683579b75c7cd919e0757278cb0667435a",
           "side": "R"
         },
         {
@@ -879,6 +995,10 @@
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
@@ -890,7 +1010,7 @@
       "seal": "d8bb9760bd6ab26333bda0e1c0cd577b0c77c72362971132a84ad8ab48900508",
       "proof": [
         {
-          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "h": "57aefbb00077fdf2e26a24e5b38b9a8f388306fd97d2aa9c7a283b6e3eb47dfa",
           "side": "R"
         },
         {
@@ -908,15 +1028,19 @@
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
           "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
         }
       ]
     },
     {
       "index": 31,
-      "kind": "keeper",
-      "name": "SONNY 5",
-      "slug": "sonny-5",
-      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+      "kind": "sphere",
+      "name": "NEWTON-RAPHSON METHOD",
+      "slug": "the-newton-raphson-method",
+      "seal": "57aefbb00077fdf2e26a24e5b38b9a8f388306fd97d2aa9c7a283b6e3eb47dfa",
       "proof": [
         {
           "h": "d8bb9760bd6ab26333bda0e1c0cd577b0c77c72362971132a84ad8ab48900508",
@@ -936,6 +1060,142 @@
         },
         {
           "h": "8494202dd47fe2e70d8261376755f61d7130ec523271635193c39e5f15f101a6",
+          "side": "L"
+        },
+        {
+          "h": "cb2a183f20ebf8ce3bd7b6377b004a68faaac631fc18549049206deeaec5345c",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "kind": "sphere",
+      "name": "THE EUCLIDEAN ALGORITHM",
+      "slug": "the-euclidean-algorithm",
+      "seal": "e3e9c350b2e10d60bcba6be0fc2339f11bcc0e1123853c166aba5bcccfdd1451",
+      "proof": [
+        {
+          "h": "be75b7b5581e97da5a54824b9899cb928374ad1bc6880fad82e1abd4e6016fc8",
+          "side": "R"
+        },
+        {
+          "h": "9a9ac71fd1afb9eec3ed9b9f37e2fb122f617206d989d32da0d81a7fbee3703b",
+          "side": "R"
+        },
+        {
+          "h": "46e8fd487786266398a0bbd590b297533f783e63bd74bc9a92963b1f7eb50286",
+          "side": "R"
+        },
+        {
+          "h": "9648d5b6e912dfdd27acf3f31d3acb70947c5df546c61a98994e8b4859f50a3f",
+          "side": "R"
+        },
+        {
+          "h": "7e97f97086d402bfd43cbc4a23148c6f034ad1aa8a1bbf1cab8dea5adf6830ba",
+          "side": "R"
+        },
+        {
+          "h": "e41e222e5be8bd5384cf1f87ddf185f5bca68b893c87baca25257059c081c8b4",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "kind": "sphere",
+      "name": "PERLIN NOISE",
+      "slug": "perlin-noise",
+      "seal": "be75b7b5581e97da5a54824b9899cb928374ad1bc6880fad82e1abd4e6016fc8",
+      "proof": [
+        {
+          "h": "e3e9c350b2e10d60bcba6be0fc2339f11bcc0e1123853c166aba5bcccfdd1451",
+          "side": "L"
+        },
+        {
+          "h": "9a9ac71fd1afb9eec3ed9b9f37e2fb122f617206d989d32da0d81a7fbee3703b",
+          "side": "R"
+        },
+        {
+          "h": "46e8fd487786266398a0bbd590b297533f783e63bd74bc9a92963b1f7eb50286",
+          "side": "R"
+        },
+        {
+          "h": "9648d5b6e912dfdd27acf3f31d3acb70947c5df546c61a98994e8b4859f50a3f",
+          "side": "R"
+        },
+        {
+          "h": "7e97f97086d402bfd43cbc4a23148c6f034ad1aa8a1bbf1cab8dea5adf6830ba",
+          "side": "R"
+        },
+        {
+          "h": "e41e222e5be8bd5384cf1f87ddf185f5bca68b893c87baca25257059c081c8b4",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "kind": "sphere",
+      "name": "THE GAME OF NIM",
+      "slug": "the-nim-game",
+      "seal": "3c46e97e1a206c57cc9805e041fbdc8bafadd634ccdd21a896f17cf8f4671766",
+      "proof": [
+        {
+          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "side": "R"
+        },
+        {
+          "h": "b4d6750b23503314dd7f12eb5e3e401547023e009fb9a325fedfa1525dacd44d",
+          "side": "L"
+        },
+        {
+          "h": "46e8fd487786266398a0bbd590b297533f783e63bd74bc9a92963b1f7eb50286",
+          "side": "R"
+        },
+        {
+          "h": "9648d5b6e912dfdd27acf3f31d3acb70947c5df546c61a98994e8b4859f50a3f",
+          "side": "R"
+        },
+        {
+          "h": "7e97f97086d402bfd43cbc4a23148c6f034ad1aa8a1bbf1cab8dea5adf6830ba",
+          "side": "R"
+        },
+        {
+          "h": "e41e222e5be8bd5384cf1f87ddf185f5bca68b893c87baca25257059c081c8b4",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "kind": "keeper",
+      "name": "SONNY 5",
+      "slug": "sonny-5",
+      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+      "proof": [
+        {
+          "h": "3c46e97e1a206c57cc9805e041fbdc8bafadd634ccdd21a896f17cf8f4671766",
+          "side": "L"
+        },
+        {
+          "h": "b4d6750b23503314dd7f12eb5e3e401547023e009fb9a325fedfa1525dacd44d",
+          "side": "L"
+        },
+        {
+          "h": "46e8fd487786266398a0bbd590b297533f783e63bd74bc9a92963b1f7eb50286",
+          "side": "R"
+        },
+        {
+          "h": "9648d5b6e912dfdd27acf3f31d3acb70947c5df546c61a98994e8b4859f50a3f",
+          "side": "R"
+        },
+        {
+          "h": "7e97f97086d402bfd43cbc4a23148c6f034ad1aa8a1bbf1cab8dea5adf6830ba",
+          "side": "R"
+        },
+        {
+          "h": "e41e222e5be8bd5384cf1f87ddf185f5bca68b893c87baca25257059c081c8b4",
           "side": "L"
         }
       ]

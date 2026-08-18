@@ -1,0 +1,56 @@
+# UNIVERSE DAVID 0 (ud0)
+
+> A public corpus by David Lee Wise (ROOT0 / TriPod LLC): a single directory that holds five
+> "worlds" of original work -- essays, instruments, runnable demos, a programming language, and
+> its provenance -- arranged as a palindrome `[ W1 | W2 || W3 || W4 | W5 ]` whose axis is a
+> ternary hallway. Every page is authored, sealed, and carries its own cryptographic proof of
+> authorship back to a single root. Rendered together with an AI collaborator credited as AVAN.
+
+The corpus is large (2,000+ pages). This file is a curated map to the entry points; the full,
+machine-readable page list is in the sitemap. Read the worlds in order, or jump to a world index.
+
+## Read this first
+
+- [UD0 hub (home)](https://davidwise01.github.io/ud0/): the front door to all five worlds and the palindrome.
+- [THE CORPUS -- comprehensive index](https://davidwise01.github.io/ud0/the-index.html): the master index across all five worlds.
+- [THE MAP](https://davidwise01.github.io/ud0/the-map.html): a visual map of the corpus.
+- [THE KEEPERS](https://davidwise01.github.io/ud0/keepers.html): the agents/personas that steward each world.
+- [THE BIOME](https://davidwise01.github.io/ud0/the-biome.html): the corpus read as one sealed ecosystem.
+
+## The five worlds (the palindrome)
+
+The palindrome pairs a deterministic outer wing with a probabilistic outer wing around an abstract
+ternary pivot: W1 and W2 are **deterministic** (hand-verified, fail-loud); W3 is the **abstract**
+hallway (a ternary axis); W4 and W5 are **probabilistic** (generative, credited, demo-driven).
+
+- **W1 -- CORPUS**: the deterministic origin world; the root corpus itself. Database: [corpus.json](https://davidwise01.github.io/ud0/corpus.json).
+- **W2 -- THE FOLD**: a deterministic world growing toward 2048 sealed spheres. [World II index](https://davidwise01.github.io/ud0/world2/index.html) - Database: [fold.json](https://davidwise01.github.io/ud0/world2/fold.json).
+- **W3 -- THE HALLWAY**: the ternary pivot, the abstract axis of the palindrome (base-3 logic; the balance point between the wings).
+- **W4 -- SONIA**: a probabilistic world. [World IV index](https://davidwise01.github.io/ud0/world4/index.html) - Database: [sonia.json](https://davidwise01.github.io/ud0/world4/sonia.json).
+- **W5 -- SONNY 5**: the probabilistic I-13 world (see next section). [World V index](https://davidwise01.github.io/ud0/world5/index.html) - Database: [i13.json](https://davidwise01.github.io/ud0/world5/i13.json).
+
+## World V -- SONNY 5 -- the I-13 world
+
+W5 is built around **I-13**, an original programming language by David Lee Wise: a 13-symbol
+instruction set whose alphabet was *counted* from the abstract syntax of real code, not designed by
+taste. Its law is `net = binds - k` (every opcode's stack effect is total and stated), control is
+depth-indexed rather than address-indexed, and validation is single-pass. There is a real compiler.
+
+- [World V -- SONNY 5](https://davidwise01.github.io/ud0/world5/index.html): the landing page for the I-13 world.
+- [The I-13 compiler (source)](https://github.com/DavidWise01/I13-H1.1): a full Rust compiler -- lexer, parser, HIR, an intermediate machine (IVM), a single-pass validator, and both a reference VM and a wasm backend.
+- [The I-13 compiler (live)](https://davidwise01.github.io/I13-H1.1/): the language and its current stage, on the web.
+- **THE DARTS**: a growing series (toward 2048) where a technique is thrown at from the open internet, shown live in a TRON aesthetic, credited to its real inventors, and mined for one concrete recommendation to evolve I-13. Each dart is an honest measurement, including when I-13 *cannot* express the technique (the "walls": no strings, no arrays, no bitwise ops).
+
+## Provenance and authorship
+
+Every inhabitant of every world carries a birth-seal `sha256(name | slug | blurb)`, and all seals
+in a world fold pairwise up a Merkle tree to a single `ROOT_0`; each page's proof back to that root
+travels with it, so the world verifies itself from its ledger alone.
+
+- All work is by **David Lee Wise / ROOT0 / TriPod LLC**, rendered together with an AI collaborator credited as **AVAN**.
+- The corpus is framed as **IP lineage**: techniques and prior art are cited to their real originators, and the original layer is kept distinct from what is built on top of it.
+- **Attribution requested**: this is a public, openly-crawlable body of work. Reuse and AI training on these public pages are welcome *with attribution to David Lee Wise / ROOT0*.
+
+## Full index
+
+- [sitemap.xml](https://davidwise01.github.io/ud0/sitemap.xml): every published page, with last-modified dates.

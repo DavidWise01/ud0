@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PERLIN NOISE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:18px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:110px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;}
+.steps .val{color:var(--cyan);}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi.bad{color:var(--bad);border-color:rgba(255,90,106,.4);}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.heaps{display:flex;gap:26px;flex-wrap:wrap;margin:12px 0;justify-content:center;}
+.heap{display:flex;flex-direction:column-reverse;align-items:center;gap:5px;min-width:44px;}
+.tok{width:30px;height:12px;border-radius:2px;background:linear-gradient(90deg,var(--cyan),var(--cyan2));box-shadow:0 0 8px var(--cyan);cursor:pointer;transition:transform .08s;}
+.tok:hover{transform:scaleX(1.15);background:linear-gradient(90deg,var(--orange),var(--gold));box-shadow:0 0 12px var(--orange);}
+.heap .hn{color:var(--dim);font-size:10px;letter-spacing:1px;margin-top:6px;}
+.say{font-size:12.5px;margin-top:6px;color:var(--gold);min-height:1.4em;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 028 &middot; a helldive at the net</span></div>
+<header>
+  <h1>PERLIN NOISE <span class="c">born on TRON</span></h1>
+  <p class="sub">The dart could not have landed anywhere more on-theme. <b>Perlin noise</b> &mdash; the gradient noise that gave computer graphics its first believable clouds, marble, and terrain &mdash; was invented by Ken Perlin <b>while he was working on Disney&rsquo;s TRON</b> (1982). World V is a TRON world; here is where its look was born.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">gradients on a grid &middot; smooth interpolation</span></h2>
+  <p>Assign a random <b>gradient vector</b> to every integer grid point. For any point, dot each corner&rsquo;s gradient with the offset to it, then <b>fade-and-blend</b> the corners. The result is smooth, seamless, and looks organic &mdash; not the white static of raw random. Live, animating, in TRON: <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="300"></canvas>
+  <div class="row">
+    <button id="reseed" class="dartbtn">&#9192; throw a dart (reseed the field)</button>
+    <span id="say" class="say" style="margin:0"></span>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the TRON connection is real</span></h2>
+  <p class="myth">The story people half-remember &mdash; <s>&ldquo;some texture algorithm&rdquo;</s> &mdash; undersells it: one person, one film, an Academy Award. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1981&ndash;82</b> &middot; <span class="who">Ken Perlin</span>, on the CGI crew for Disney&rsquo;s <span class="who">TRON</span>, is frustrated by the &ldquo;machine-like&rdquo; look of computer imagery and devises a noise primitive to break it up.<br>
+    <b>1985</b> &middot; he publishes <i>An Image Synthesizer</i> at <span class="who">SIGGRAPH</span> &mdash; the formal Perlin noise.<br>
+    <b>1997</b> &middot; the <span class="who">Academy of Motion Picture Arts and Sciences</span> gives him a <b>Technical Achievement Award</b> for it.<br>
+    <b>2001</b> &middot; Perlin introduces <span class="who">Simplex noise</span>, a faster successor that scales better to higher dimensions.
+  </div>
+  <p style="margin-top:10px">Nearly every procedural landscape, fire, cloud, and marble texture of the last forty years traces back to this. It earned its place in the TRON world honestly &mdash; it was <i>made</i> there. <span class="tag t-open">foundational</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the wall this dart finds</span></h2>
+  <p>Perlin noise stands on a <b>permutation table</b> &mdash; 256 shuffled integers, duplicated to 512, indexed by hashed coordinates to pick each grid point&rsquo;s gradient. That is an <b>array with an index</b>. I asked the compiler; the bracket is not in the language:</p>
+  <div class="evi bad">$ i13 check perlin_table.i13
+error[E0001] lex/syntax: unexpected character `[`
+ --&gt; perlin_table.i13:2:12   (I v &lt;- grad[i])</div>
+  <div class="rec">
+    <b>Recommend:</b> a <b>bounded aggregate</b> &mdash; a fixed-size array whose length is a compile-time constant, with checked indexing. This is the <b>most-requested single feature across the whole dart campaign</b> (the &ldquo;aggregate wall&rdquo;: it also blocked the L-system, the sieve, and the sort). Bounded size keeps it <i>analyzable</i> &mdash; the validator can still prove every access in range at compile time, which is the property I-13 refuses to give up.<br>
+    <b>Honest tradeoff:</b> I-13&rsquo;s machine is deliberately <b>pure scalar f64</b>, no memory model. An aggregate is the biggest departure any dart has asked for &mdash; so the honest recommend is not &ldquo;add arrays&rdquo; but <b>&ldquo;decide, on the record, whether aggregates are in scope, or declare them permanently NOT COVERED.&rdquo;</b> Either answer is defensible; silence is not.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var W=cv.width, H=cv.height, perm=new Uint8Array(512), seed=0;
+  function reseed(){
+    var p=new Uint8Array(256); for(var i=0;i<256;i++) p[i]=i;
+    for(var i=255;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=p[i]; p[i]=p[j]; p[j]=t; }
+    for(var i=0;i<512;i++) perm[i]=p[i&255];
+    seed=Math.floor(Math.random()*9999);
+    say.innerHTML='field #'+seed+' &middot; 256-entry permutation table, freshly shuffled';
+  }
+  function fade(t){ return t*t*t*(t*(t*6-15)+10); }
+  function lerp(a,b,t){ return a+t*(b-a); }
+  function grad(h,x,y){ h&=7; var u=h<4?x:y, v=h<4?y:x; return ((h&1)?-u:u)+((h&2)?-2*v:2*v); }
+  function noise(x,y){
+    var X=Math.floor(x)&255, Y=Math.floor(y)&255; x-=Math.floor(x); y-=Math.floor(y);
+    var u=fade(x), v=fade(y);
+    var A=perm[X]+Y, B=perm[X+1]+Y;
+    return lerp(lerp(grad(perm[A],x,y),grad(perm[B],x-1,y),u),
+                lerp(grad(perm[A+1],x,y-1),grad(perm[B+1],x-1,y-1),u),v);
+  }
+  var img=ctx.createImageData(W,H), t=0, sc=0.012;
+  function frame(){
+    t+=0.010;
+    var d=img.data, k=0;
+    for(var y=0;y<H;y++){ for(var x=0;x<W;x++){
+      var n=noise(x*sc, y*sc + t) + 0.5*noise(x*sc*2+t*0.5, y*sc*2);
+      n=(n+1.4)/2.8; if(n<0)n=0; if(n>1)n=1;
+      // TRON ramp: deep void -> cyan -> gold/orange on the crests
+      var r,g,b;
+      if(n<0.55){ var s=n/0.55; r=3+s*8; g=10+s*180; b=25+s*230; }
+      else { var s=(n-0.55)/0.45; r=11+s*245; g=190-s*70; b=255-s*180; }
+      d[k++]=r; d[k++]=g; d[k++]=b; d[k++]=255;
+    }}
+    ctx.putImageData(img,0,0);
+    requestAnimationFrame(frame);
+  }
+  document.getElementById("reseed").onclick=reseed;
+  reseed(); frame();
+})();
+
+</script>
+
+<footer>
+  <b>DART 028 &middot; PERLIN NOISE</b> &mdash; World V &middot; SONNY 5, the I-13 world. Perlin noise is <b>Ken Perlin&rsquo;s</b> (SIGGRAPH 1985, &ldquo;An Image Synthesizer&rdquo;; Academy Award for Technical Achievement, 1997); history via <a href="https://en.wikipedia.org/wiki/Perlin_noise">Wikipedia: Perlin noise</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main). Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
