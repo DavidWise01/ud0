@@ -6,9 +6,9 @@
   "anchor": "0ROOT.AI//I13//WORLD-V//the-i13-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "folded_to": "ROOT_0",
-  "root": "60a4403050811af7d6be0030b9755c58e2e43c058c3e0d34d3785f80db67cf5e",
-  "count": 36,
-  "sealed": "2026-08-17",
+  "root": "c448bacaa82e29f6634e16c73241ae4464c9129b439a76121c1e6e9e35cd65f2",
+  "count": 40,
+  "sealed": "2026-08-18",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World V inhabitant folds to ROOT_0. Live: the root updates as the I-13 world grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
   "leaves": [
@@ -40,7 +40,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -73,7 +73,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -106,7 +106,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -139,7 +139,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -172,7 +172,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -205,7 +205,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -238,7 +238,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -271,7 +271,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -304,7 +304,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -337,7 +337,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -370,7 +370,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -403,7 +403,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -436,7 +436,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -469,7 +469,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -502,7 +502,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -535,7 +535,7 @@
           "side": "R"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -568,7 +568,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -601,7 +601,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -634,7 +634,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -667,7 +667,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -700,7 +700,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -733,7 +733,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -766,7 +766,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -799,7 +799,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -832,7 +832,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -865,7 +865,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -898,7 +898,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -931,7 +931,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -964,7 +964,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -997,7 +997,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -1030,7 +1030,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -1063,7 +1063,7 @@
           "side": "L"
         },
         {
-          "h": "4d25659b467cd57b4504779be04c4420de1088381272723589e9138970487dcf",
+          "h": "a9c36be16f6d4dd4f5121a72c31999ce94727f660f290d7326d3960e9de45d71",
           "side": "R"
         }
       ]
@@ -1080,19 +1080,19 @@
           "side": "R"
         },
         {
-          "h": "89c51c47dd804372a2d6dd062217adcebc1569c39bf903e8d03a99496dbab384",
+          "h": "feb40a8f42a2dac6e5c7c9fa1f8211b78e81b0180f2294cb794f7d37839b34e6",
           "side": "R"
         },
         {
-          "h": "9a5f70e8594938eeba40f131a741d7f8f4dde998d0a370c979ad14f54f036fee",
+          "h": "79ab96fbaae9b848c64fb345b969d3a01c78b8edaa7f2078b19b610596f5951b",
           "side": "R"
         },
         {
-          "h": "dac30265d109e046bfa0248b253fb7ce598cd144f67b71babf278e88d344dfab",
+          "h": "e672c3add77119616520bf5ac4418536f2a564cb46c0ede85b8ae3f83ba9d79b",
           "side": "R"
         },
         {
-          "h": "42805cf88fef40dce858895291aab508aa2f3225f3aafc634572068d14f965f2",
+          "h": "15f696d29faceb435048a7cb3e1a54841180150215deb8d348a6afb69d0f61d6",
           "side": "R"
         },
         {
@@ -1113,19 +1113,19 @@
           "side": "L"
         },
         {
-          "h": "89c51c47dd804372a2d6dd062217adcebc1569c39bf903e8d03a99496dbab384",
+          "h": "feb40a8f42a2dac6e5c7c9fa1f8211b78e81b0180f2294cb794f7d37839b34e6",
           "side": "R"
         },
         {
-          "h": "9a5f70e8594938eeba40f131a741d7f8f4dde998d0a370c979ad14f54f036fee",
+          "h": "79ab96fbaae9b848c64fb345b969d3a01c78b8edaa7f2078b19b610596f5951b",
           "side": "R"
         },
         {
-          "h": "dac30265d109e046bfa0248b253fb7ce598cd144f67b71babf278e88d344dfab",
+          "h": "e672c3add77119616520bf5ac4418536f2a564cb46c0ede85b8ae3f83ba9d79b",
           "side": "R"
         },
         {
-          "h": "42805cf88fef40dce858895291aab508aa2f3225f3aafc634572068d14f965f2",
+          "h": "15f696d29faceb435048a7cb3e1a54841180150215deb8d348a6afb69d0f61d6",
           "side": "R"
         },
         {
@@ -1142,7 +1142,7 @@
       "seal": "8f7dc1498f58f7c9b9bbfe74bb61d4bb47dbed5c8b191984f8f7d4109feae641",
       "proof": [
         {
-          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "h": "cc597c6fc7aa946bfe1566b816c59df0a3ed797c7db9247d4388b6408ac6b095",
           "side": "R"
         },
         {
@@ -1150,15 +1150,15 @@
           "side": "L"
         },
         {
-          "h": "9a5f70e8594938eeba40f131a741d7f8f4dde998d0a370c979ad14f54f036fee",
+          "h": "79ab96fbaae9b848c64fb345b969d3a01c78b8edaa7f2078b19b610596f5951b",
           "side": "R"
         },
         {
-          "h": "dac30265d109e046bfa0248b253fb7ce598cd144f67b71babf278e88d344dfab",
+          "h": "e672c3add77119616520bf5ac4418536f2a564cb46c0ede85b8ae3f83ba9d79b",
           "side": "R"
         },
         {
-          "h": "42805cf88fef40dce858895291aab508aa2f3225f3aafc634572068d14f965f2",
+          "h": "15f696d29faceb435048a7cb3e1a54841180150215deb8d348a6afb69d0f61d6",
           "side": "R"
         },
         {
@@ -1169,10 +1169,10 @@
     },
     {
       "index": 35,
-      "kind": "keeper",
-      "name": "SONNY 5",
-      "slug": "sonny-5",
-      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+      "kind": "sphere",
+      "name": "BUFFON'S NEEDLE",
+      "slug": "buffons-needle",
+      "seal": "cc597c6fc7aa946bfe1566b816c59df0a3ed797c7db9247d4388b6408ac6b095",
       "proof": [
         {
           "h": "8f7dc1498f58f7c9b9bbfe74bb61d4bb47dbed5c8b191984f8f7d4109feae641",
@@ -1183,15 +1183,147 @@
           "side": "L"
         },
         {
-          "h": "9a5f70e8594938eeba40f131a741d7f8f4dde998d0a370c979ad14f54f036fee",
+          "h": "79ab96fbaae9b848c64fb345b969d3a01c78b8edaa7f2078b19b610596f5951b",
           "side": "R"
         },
         {
-          "h": "dac30265d109e046bfa0248b253fb7ce598cd144f67b71babf278e88d344dfab",
+          "h": "e672c3add77119616520bf5ac4418536f2a564cb46c0ede85b8ae3f83ba9d79b",
           "side": "R"
         },
         {
-          "h": "42805cf88fef40dce858895291aab508aa2f3225f3aafc634572068d14f965f2",
+          "h": "15f696d29faceb435048a7cb3e1a54841180150215deb8d348a6afb69d0f61d6",
+          "side": "R"
+        },
+        {
+          "h": "29c74a75d02295dfac67d84a014f2c877c637fb2bde03845f830d018223b661b",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "kind": "sphere",
+      "name": "THE METROPOLIS-HASTINGS ALGORITHM",
+      "slug": "the-metropolis-hastings",
+      "seal": "ae9731f8574a8564082c221aaa218ea614a79c7c80e32b9191fe6c8035c829f1",
+      "proof": [
+        {
+          "h": "58fe225cb641d1108ad79639aa719427c715972a69be9f14c1d4963806301ded",
+          "side": "R"
+        },
+        {
+          "h": "d8c8d704cc198bcc787022f0cbd35a88c719eda73a21bd5381969ace6b000385",
+          "side": "R"
+        },
+        {
+          "h": "36e3509ab9a4818586ce422a1ea243622ead4b7cb977a04ba1653085370e6cd5",
+          "side": "L"
+        },
+        {
+          "h": "e672c3add77119616520bf5ac4418536f2a564cb46c0ede85b8ae3f83ba9d79b",
+          "side": "R"
+        },
+        {
+          "h": "15f696d29faceb435048a7cb3e1a54841180150215deb8d348a6afb69d0f61d6",
+          "side": "R"
+        },
+        {
+          "h": "29c74a75d02295dfac67d84a014f2c877c637fb2bde03845f830d018223b661b",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "kind": "sphere",
+      "name": "THE RABIN-MILLER PRIMALITY TEST",
+      "slug": "the-rabin-miller",
+      "seal": "58fe225cb641d1108ad79639aa719427c715972a69be9f14c1d4963806301ded",
+      "proof": [
+        {
+          "h": "ae9731f8574a8564082c221aaa218ea614a79c7c80e32b9191fe6c8035c829f1",
+          "side": "L"
+        },
+        {
+          "h": "d8c8d704cc198bcc787022f0cbd35a88c719eda73a21bd5381969ace6b000385",
+          "side": "R"
+        },
+        {
+          "h": "36e3509ab9a4818586ce422a1ea243622ead4b7cb977a04ba1653085370e6cd5",
+          "side": "L"
+        },
+        {
+          "h": "e672c3add77119616520bf5ac4418536f2a564cb46c0ede85b8ae3f83ba9d79b",
+          "side": "R"
+        },
+        {
+          "h": "15f696d29faceb435048a7cb3e1a54841180150215deb8d348a6afb69d0f61d6",
+          "side": "R"
+        },
+        {
+          "h": "29c74a75d02295dfac67d84a014f2c877c637fb2bde03845f830d018223b661b",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "kind": "sphere",
+      "name": "THE BOX-MULLER TRANSFORM",
+      "slug": "the-box-muller",
+      "seal": "843bd701a4b919023d9b897913f2fa56427bfdf9c756d3c77ae0d531d87913fb",
+      "proof": [
+        {
+          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "side": "R"
+        },
+        {
+          "h": "9b7328fd1ec6aaf348f04dafe0746c1647cedbdde1548e53796b2d9e08587223",
+          "side": "L"
+        },
+        {
+          "h": "36e3509ab9a4818586ce422a1ea243622ead4b7cb977a04ba1653085370e6cd5",
+          "side": "L"
+        },
+        {
+          "h": "e672c3add77119616520bf5ac4418536f2a564cb46c0ede85b8ae3f83ba9d79b",
+          "side": "R"
+        },
+        {
+          "h": "15f696d29faceb435048a7cb3e1a54841180150215deb8d348a6afb69d0f61d6",
+          "side": "R"
+        },
+        {
+          "h": "29c74a75d02295dfac67d84a014f2c877c637fb2bde03845f830d018223b661b",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "kind": "keeper",
+      "name": "SONNY 5",
+      "slug": "sonny-5",
+      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+      "proof": [
+        {
+          "h": "843bd701a4b919023d9b897913f2fa56427bfdf9c756d3c77ae0d531d87913fb",
+          "side": "L"
+        },
+        {
+          "h": "9b7328fd1ec6aaf348f04dafe0746c1647cedbdde1548e53796b2d9e08587223",
+          "side": "L"
+        },
+        {
+          "h": "36e3509ab9a4818586ce422a1ea243622ead4b7cb977a04ba1653085370e6cd5",
+          "side": "L"
+        },
+        {
+          "h": "e672c3add77119616520bf5ac4418536f2a564cb46c0ede85b8ae3f83ba9d79b",
+          "side": "R"
+        },
+        {
+          "h": "15f696d29faceb435048a7cb3e1a54841180150215deb8d348a6afb69d0f61d6",
           "side": "R"
         },
         {

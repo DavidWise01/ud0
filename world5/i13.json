@@ -610,6 +610,74 @@
       "kicker": "dart 029 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-nim-game.html",
       "seal": "8f7dc1498f58f7c9b9bbfe74bb61d4bb47dbed5c8b191984f8f7d4109feae641"
+    },
+    {
+      "slug": "buffons-needle",
+      "title": "BUFFON'S NEEDLE",
+      "dartno": "030",
+      "version": "v0.05",
+      "credit": "Comte de Buffon (posed 1733, solved 1777); Monte Carlo named by Ulam & Metropolis, 1940s",
+      "source": "Georges-Louis Leclerc, Comte de Buffon, 1777",
+      "i13_recommend": "a seeded PRNG as an ordinary I-13 function (dart 004 asked too - 2 darts converge); keeps determinism while unlocking the whole Monte Carlo family",
+      "blurb": "The dart campaign's own metaphor, from 1777: drop needles on a lined floor, count how many cross a line, and pi falls out of pure chance - the FIRST Monte Carlo method, ~170 years before Metropolis named it (for the casino where Ulam's uncle gambled; von Neumann designed the first ENIAC run, coded by Metropolis and Klara von Neumann). Given the crossing count, pi is one division and I-13 computes it on main (pi = 3.1416902..., verified); but the random throw itself is the wall - I-13 has no randomness at all, by design. Recommend a seeded PRNG (dart 004 asked too), keeping determinism while unlocking Monte Carlo. Credit: Buffon posed 1733, solved 1777 in Essai d'arithmetique morale; Laplace 1812 noted it estimates pi.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 030 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/buffons-needle.html",
+      "seal": "cc597c6fc7aa946bfe1566b816c59df0a3ed797c7db9247d4388b6408ac6b095"
+    },
+    {
+      "slug": "the-metropolis-hastings",
+      "title": "THE METROPOLIS-HASTINGS ALGORITHM",
+      "dartno": "031",
+      "version": "v0.05",
+      "credit": "Metropolis, A. Rosenbluth, M. Rosenbluth, A. Teller, E. Teller (1953); Hastings (1970) - code by Arianna Rosenbluth",
+      "source": "Metropolis et al. 1953; Hastings 1970",
+      "i13_recommend": "a transcendental library WRITTEN IN I-13 (exp/ln/sin/cos as bounded Taylor sums of + - * /, zero new opcodes) plus the seeded PRNG",
+      "blurb": "How to sample a distribution you can only score, never invert: take a random walk that accepts good steps always and bad steps sometimes, and the walk's footprints reproduce the distribution - the engine of modern Bayesian statistics. The honest-credit story: the 1953 paper's real coder was Arianna W. Rosenbluth, who wrote the actual MANIAC code and ran the computations; Marshall Rosenbluth (physics; a key weighting insight came from Edward Teller) recalled 'we never had a single scientific discussion with him' about Metropolis, who ran the computer lab. Her authorship was under-credited for half a century before being restored. W. K. Hastings generalized it in 1970. I-13 walls: exp (E0202 unknown function) and randomness - recommend a transcendental library written IN I-13 (exp/ln/sin/cos are bounded Taylor sums of the four arithmetic ops, zero new opcodes) plus the seeded PRNG.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 031 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-metropolis-hastings.html",
+      "seal": "ae9731f8574a8564082c221aaa218ea614a79c7c80e32b9191fe6c8035c829f1"
+    },
+    {
+      "slug": "the-rabin-miller",
+      "title": "THE RABIN-MILLER PRIMALITY TEST",
+      "dartno": "032",
+      "version": "v0.05",
+      "credit": "Gary Miller (1976, deterministic under ERH) & Michael Rabin (1980, randomized)",
+      "source": "Miller 1976; Rabin 1980",
+      "i13_recommend": "arbitrary-precision integers (f64 overflows past 2^53) + a seeded PRNG for witnesses; modexp itself now RUNS thanks to the merged %",
+      "blurb": "Tell if a huge number is prime without factoring it: interrogate it with random witnesses; each honest witness that fails to expose it halves your doubt (false-prime chance below 4^-k). It never proves primality, only makes composite-ness astronomically unlikely - and it correctly catches Carmichael numbers like 561 that fool the Fermat test (verified in the live demo, witness a=337). The engine is modular exponentiation, which NOW RUNS in real I-13 because the % this campaign recommended just merged to main (2^10 mod 1000 = 24, verified). The last walls: arbitrary-precision integers (f64 overflows past 2^53) and a seeded PRNG for witnesses. Credit: Gary Miller 1976 (deterministic under the unproven Extended Riemann Hypothesis); Michael Rabin 1980 (unconditional randomized); Solovay-Strassen 1977; AKS 2002 (deterministic, but Rabin-Miller still ships). The second dart, after Collatz (010), where the campaign's own recommend landed and made an algorithm run.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 032 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-rabin-miller.html",
+      "seal": "58fe225cb641d1108ad79639aa719427c715972a69be9f14c1d4963806301ded"
+    },
+    {
+      "slug": "the-box-muller",
+      "title": "THE BOX-MULLER TRANSFORM",
+      "dartno": "033",
+      "version": "v0.05",
+      "credit": "George E. P. Box & Mervin E. Muller, 1958",
+      "source": "Box & Muller, 1958",
+      "i13_recommend": "the transcendental stdlib in I-13 (ln, cos) - sqrt already runs via Newton (dart 026); additions on top of the 13 symbols, not changes to them",
+      "blurb": "Randomness comes flat (uniform between 0 and 1); the bell curve that runs statistics does not. Box-Muller is the exact transform from two uniforms to two independent standard normals: r = sqrt(-2 ln u1), z0 = r cos(2 pi u2), z1 = r sin(2 pi u2) - it works because a 2-D Gaussian is radially symmetric (Rayleigh-distributed radius, uniform angle). I-13 already computes one of the three functions: the square root, via the Newton dart (026), to full f64 precision with no new primitive. The other two, ln and cos, are the same transcendental wall Metropolis (031) hit (E0202 unknown function). Recommend the transcendental stdlib written in I-13 (CORDIC was dart 009; Newton gives sqrt) - additions on top of the 13 symbols, not changes to them. Credit: George E. P. Box and Mervin E. Muller, a one-page 1958 note; Marsaglia's polar form drops the sin/cos by rejection sampling.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 033 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-box-muller.html",
+      "seal": "843bd701a4b919023d9b897913f2fa56427bfdf9c756d3c77ae0d531d87913fb"
     }
   ],
   "keepers": [
@@ -620,13 +688,13 @@
     }
   ],
   "counts": {
-    "spheres": 35,
+    "spheres": 39,
     "rooms": 6,
     "lit": 6,
     "keepers": 1,
-    "darts": 29
+    "darts": 33
   },
-  "i13_root": "60a4403050811af7d6be0030b9755c58e2e43c058c3e0d34d3785f80db67cf5e",
+  "i13_root": "c448bacaa82e29f6634e16c73241ae4464c9129b439a76121c1e6e9e35cd65f2",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
