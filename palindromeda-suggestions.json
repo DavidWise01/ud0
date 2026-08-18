@@ -6,7 +6,7 @@
   "note": "Append-only. Nothing is deleted; landed and declined items stay visible with their stamp. This file is the machine store; palindromeda-suggestion-box.html renders it.",
   "author": "David Lee Wise / ROOT0 / TriPod LLC (with AVAN)",
   "updated": "2026-08-18",
-  "count": 11,
+  "count": 14,
   "suggestions": [
     {
       "id": "PS-001",
@@ -117,6 +117,39 @@
       "raised_by": "the World II FOLD audit",
       "title": "Document THE FOLD's four by-design shapes inline",
       "detail": "Four intentional shapes in World II read like drift to a fresh auditor (they are not -- each has a proof). A short inline note per shape, at the shape, would stop every future audit from re-flagging the same four and having to re-derive that they are deliberate."
+    },
+    {
+      "id": "PS-014",
+      "raised": "2026-08-18",
+      "target": "World V / I-13 compiler",
+      "world": "V",
+      "kind": "feature",
+      "status": "open",
+      "raised_by": "dart 056 Pascal's triangle",
+      "title": "Arrays of bignum (compose array x bignum)",
+      "detail": "The array (an f64 arena) and bignum (an arena handle) both landed this campaign, but they DO NOT compose: an array's elements must be plain numbers, so an array literal of bignums is rejected with error E0501 'MakeArray requires a plain number here, got a bignum'. Pascal's triangle is the first dart to hit the seam -- small rows run in an f64 array (C(10,5)=252, verified), but a triangle to arbitrary depth needs entries that are themselves bignum handles. It touches what an array ELEMENT may be, so it is an author-level call: flagged here, not smuggled. The clean fix is an array of Values (or a parallel bignum-array kind)."
+    },
+    {
+      "id": "PS-012",
+      "raised": "2026-08-18",
+      "target": "World V / I-13 stdlib",
+      "world": "V",
+      "kind": "feature",
+      "status": "landed",
+      "raised_by": "dart 057 Gauss-Legendre",
+      "title": "Integer square root over bignum",
+      "detail": "Gauss-Legendre computes pi by the arithmetic-geometric mean, which needs a square root at high precision. LANDED as std/bignum_isqrt.i13: Newton's integer method (x -> (x + n/x)/2 until it stops decreasing) written in I-13 over the existing big() value -- NO compiler change, just + / < and recursion, landing on floor(sqrt(n)) exactly. Verified vs node BigInt: isqrt(10^36)=10^18, isqrt(2*10^36)=1414213562373095048. A 'needs bignum sqrt' wall clearing as a library file, not a language change -- exactly the build-on-top pattern."
+    },
+    {
+      "id": "PS-013",
+      "raised": "2026-08-18",
+      "target": "World V / I-13 stdlib",
+      "world": "V",
+      "kind": "feature",
+      "status": "open",
+      "raised_by": "dart 057 Gauss-Legendre",
+      "title": "Fixed-point reals over bignum (scaled integers)",
+      "detail": "The deeper want behind PS-012: the AGM iteration lives in the REALS, but I-13's bignum is integers. Record pi computations represent pi as a scaled integer (pi * 10^k) and do fixed-point add/mul/div/sqrt on it. With bignum + isqrt (PS-012) both present, a small fixed-point wrapper (a scale factor + rounded division) would let Gauss-Legendre run for real to arbitrary digits in I-13 -- no interpreter change, one more library layer. Open: not yet written."
     },
     {
       "id": "PS-011",

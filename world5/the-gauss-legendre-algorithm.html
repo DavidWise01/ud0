@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE GAUSS-LEGENDRE ALGORITHM &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:80px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.grid{display:grid;gap:2px;margin:10px 0;} .gc{aspect-ratio:1;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:9px;}
+.mx{border-collapse:collapse;font-size:10px;margin:8px 0;overflow-x:auto;display:block;}
+.mx td{border:1px solid var(--line);min-width:20px;height:19px;text-align:center;color:#bcd6ee;padding:0 2px;}
+.mx td.hd{color:var(--gold);border:none;font-weight:700;}
+.mx td.best{background:rgba(255,138,61,.75);color:#fff;font-weight:700;}
+.mx td.pth{background:rgba(62,240,255,.28);color:#eafcff;}
+.tri{display:flex;flex-direction:column;align-items:center;gap:3px;margin:10px 0;}
+.pr{display:flex;gap:6px;justify-content:center;flex-wrap:nowrap;}
+.pc{min-width:18px;text-align:center;color:#9fe8ff;font-size:11px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 057 &middot; a helldive at the net</span></div>
+<header>
+  <h1>GAUSS-LEGENDRE <span class="c">pi, its digits doubling</span></h1>
+  <p class="sub">Take the <b>average</b> of two numbers and their <b>geometric mean</b>, again and again; they rush together astonishingly fast. Feed the right starting pair and that <b>arithmetic-geometric mean</b> spits out <b>&pi;</b> &mdash; with the count of correct digits <b>doubling every step</b>. It is the algorithm behind record &pi; computations, and its engine is a <b>square root at huge precision</b> &mdash; which the campaign just built for I-13.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">a &larr; (a+b)/2, b &larr; &radic;(ab), correct &pi;</span></h2>
+  <p>Start a=1, b=1/&radic;2, t=&frac14;, p=1. Each step: a becomes their average, b becomes their <b>geometric mean</b> &radic;(ab), and t, p track a correction. Then <b>&pi; &asymp; (a+b)&sup2; / 4t</b>. The convergence is <b>quadratic</b> &mdash; the number of correct digits doubles each iteration (1, 3, 8, 19, 41, &hellip;). Watch it, and watch an ordinary f64 run out of room. <span class="tag t-demo">live demo</span></p>
+  <div class="steps" id="out"></div>
+  <div class="row"><button id="go" class="dartbtn">&#9192; iterate the AGM</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">named for the dead, found by the living, and one forgotten</span></h2>
+  <p class="myth">Called &ldquo;Gauss-Legendre&rdquo; &mdash; yet neither Gauss nor Legendre ever wrote it as a &pi; <s>algorithm</s>, and a 1924 predecessor is almost never named. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1785 / 1799</b> &middot; <span class="who">Lagrange</span> had the AGM iteration; <span class="who">Gauss</span> rediscovered it and (diary, May 1799) saw it &ldquo;will certainly open up a new field of analysis&rdquo; &mdash; elliptic functions. <span class="who">Legendre</span> supplied the relation between elliptic integrals.<br>
+    <b>1924</b> &middot; <span class="who">Louis V. King</span> states essentially this &pi;-from-AGM formula &mdash; a <b>~50-year</b> priority almost always omitted from the name.<br>
+    <b>1975&ndash;76</b> &middot; <span class="who">Richard Brent</span> (ANU, <i>J. ACM</i>) and <span class="who">Eugene Salamin</span> (<i>Math. Comp.</i>) <b>independently</b> assemble it into a quadratic &pi; algorithm &mdash; a clean, well-documented co-discovery.<br>
+    <b>records</b> &middot; <span class="who">Kanada</span>&rsquo;s group used it for billions of digits; only ~30 iterations reach a billion, so the cost is each step&rsquo;s full-precision multiply and <b>square root</b>.
+  </div>
+  <p style="margin-top:10px">Gauss had every piece and never built the algorithm; the name honours the identities, not the &pi; machine. <span class="tag t-open">Gauss/Legendre-Lagrange, King, Brent-Salamin</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">names a wall &mdash; and the campaign half-crosses it in the same breath</span></h2>
+  <p>The demo above is f64, so it <b>stalls near 15 digits</b> at iteration 3. To go further needs bignum &mdash; and a <b>square root at bignum precision</b>. So this dart, first, surfaces the want:</p>
+  <div class="evi good">$ i13 run bignum_isqrt.i13    # integer sqrt over bignum, written IN I-13 (no compiler change)
+isqrt(10^36)   = 1000000000000000000
+isqrt(2*10^36) = 1414213562373095048     # = floor(sqrt(2)*10^18), exact</div>
+  <div class="rec">
+    <b>Recommend:</b> a want <b>named and half-filled at once</b>. The AGM&rsquo;s once-per-step &radic;(ab) is the load-bearing primitive f64 lacks at scale; the campaign just added <b>std/bignum_isqrt.i13</b> (Newton&rsquo;s integer method over the existing bignum &mdash; <b>no interpreter change</b>) &mdash; suggestion-box <b>PS-012, landed</b>. The remaining piece is <b>fixed-point reals</b> (scaled integers) to carry &pi;&rsquo;s fractional part &mdash; box <b>PS-013, open</b>. With both, Gauss-Legendre runs to arbitrary digits in pure I-13.<br>
+    <b>The loop:</b> a dart names a wall, the stdlib clears half of it, the box records both &mdash; the corpus revising itself in one move.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var PI="3.14159265358979323846264338327950288419716939937510";
+  function run(){
+    var a=1, b=1/Math.sqrt(2), t=0.25, p=1;
+    var rows="";
+    for(var i=1;i<=4;i++){
+      var an=(a+b)/2, bn=Math.sqrt(a*b), tn=t-p*(a-an)*(a-an); var pn=2*p;
+      a=an;b=bn;t=tn;p=pn;
+      var pi=(a+b)*(a+b)/(4*t);
+      var ps=pi.toFixed(15);
+      var d=0; for(var j=0;j<ps.length&&j<PI.length;j++){ if(ps[j]===PI[j]) d++; else break; }
+      var note=(i>=3)?' <span class="err">(f64 saturated ~15 digits)</span>':'';
+      rows+='<div><span class="lbl">after '+i+' iteration'+(i>1?'s':'')+'</span> <span class="val">'+ps+'</span> <span style="color:var(--dim)">('+(d-1)+' correct digits)</span>'+note+'</div>';
+    }
+    out.innerHTML=rows;
+    say.innerHTML='true &pi; = <span class="true">'+PI.slice(0,17)+'&hellip;</span> &middot; each step roughly <b>doubles</b> the correct digits &mdash; until f64 runs out at ~15. Iterations 4+ (41, 84, 171&hellip; digits) need <b>bignum</b> and its <b>square root</b>.';
+  }
+  document.getElementById("go").onclick=run;
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 057 &middot; THE GAUSS-LEGENDRE ALGORITHM</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Richard Brent &amp; Eugene Salamin</b>, independently in 1975/76; the name honours <b>Gauss</b>&rsquo;s AGM and <b>Legendre</b>&rsquo;s relation. History via <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Legendre_algorithm">Wikipedia: Gauss-Legendre</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which now has a bounded array, arbitrary-precision integers, <b>and an integer square root over bignum</b>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

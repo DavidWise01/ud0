@@ -1050,6 +1050,74 @@
       "kicker": "dart 053 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-knapsack.html",
       "seal": "ecf18332ef5c936efc06cc32d72612a0ce1b8d192fe39aa2a880a1a3c9b2fee7"
+    },
+    {
+      "slug": "the-smith-waterman",
+      "title": "THE SMITH-WATERMAN ALGORITHM",
+      "dartno": "054",
+      "version": "v0.11",
+      "credit": "Temple Smith & Michael Waterman (1981, at Los Alamos); efficient O(mn) affine form by Osamu Gotoh (1982); descends from Needleman-Wunsch (1970)",
+      "source": "Smith & Waterman, J. Mol. Biol. 147:195-197, 1981 (received 14 July 1980); Gotoh 1982; Needleman & Wunsch 1970",
+      "i13_recommend": "presses PS-004 (a 2-D array) in the suggestion box: each H-matrix row is a bounded array and the best local score is a running scalar max over it (verified on the compiler: amax over a row = 13, matching the demo) -- not a heap, and scores stay small so no bignum. What the 1-D form cannot give is the traceback (recovering the aligned letters), which wants the full 2-D grid or a 2-D pointer table kept. Rolling one row is the same space-saver knapsack-053 used.",
+      "blurb": "Two long sequences may share only a short stretch; Smith-Waterman finds the single best-matching subsegment by filling a grid of scores and clamping every negative cell to zero -- so a match can begin and end anywhere. That zero-clamp is the whole innovation over Needleman-Wunsch's 1970 global alignment, and it is genuinely Smith & Waterman's (a 3-page letter in J. Mol. Biol., 1981, written at Los Alamos; a note added in proof credits Walter Goad, a GenBank co-founder, with an independent version). Careful credit: the fast O(mn) affine-gap form that all real tools run is Osamu Gotoh's (1982), properly Smith-Waterman-Gotoh -- the 1981 paper's general-gap form was ~O(n^3); and BLAST (1990) is a fast heuristic APPROXIMATION of Smith-Waterman, not the exact thing. In real I-13 the score row is a bounded array and the best cell is a running scalar max (verified: amax = 13); the 2-D grid needed for traceback is the open want PS-004. Michael Waterman is the Waterman of Lander-Waterman genome statistics -- a profile once headlined his path from cattle rancher to genomics pioneer.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 054 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-smith-waterman.html",
+      "seal": "1e5b59227aa0abac5dc3ebc74b8a6cb952c27782e18cfdea8624d051df2f94df"
+    },
+    {
+      "slug": "the-dijkstra-shortest-path",
+      "title": "DIJKSTRA'S SHORTEST PATH",
+      "dartno": "055",
+      "version": "v0.11",
+      "credit": "Edsger W. Dijkstra (conceived 1956, published 1959); the same method independently in Leyzorek et al. (1957); the fast heap versions are Williams (1964) / Fredman-Tarjan (1984)",
+      "source": "Dijkstra, 'A Note on Two Problems in Connexion with Graphs', Numerische Mathematik 1:269-271, 1959; the cafe anecdote is verbatim from Dijkstra's own oral-history interview (Frana, CACM/IEEE Annals, 2001)",
+      "i13_recommend": "presses PS-005 (a binary heap / priority queue): extract-min is a linear scan over dist[] (verified on the compiler: amin over an array = 2, the nearest unsettled node), which a heap makes O(log n). The honest twist: I-13 today runs the AUTHENTIC Dijkstra -- his own 1959 algorithm WAS the O(V^2) linear scan; the binary heap is Williams (1964), a later graft. The relax step is dart 046's array-relax. The natural return is (distance map, predecessor tree) -- a fourth nudge toward the multiple-return frontier, with quicksort-045, union-find-048, A*-052.",
+      "blurb": "Find the cheapest route through a weighted map by always settling the nearest unfinished place, then relaxing its neighbours; for non-negative weights it is greedy AND exact -- the first time a place is settled its distance is final. Dijkstra conceived it in 1956, shopping in Amsterdam with his fiancee Ria: tired, they sat for coffee and in about twenty minutes, without pencil or paper, he designed the shortest-path algorithm -- a demo for the ARMAC computer (Rotterdam to Groningen, the Dutch map reduced to 64 cities so a city number fit in 6 bits). In his words: 'Eventually, that algorithm became, to my great amazement, one of the cornerstones of my fame' -- he rated his programming-methodology work higher. Credit is tangled: Leyzorek, Gray, Johnson et al. described the same method independently in 1957, and the paper's first result (a spanning tree) rediscovered Jarnik's 1930 method, the one usually miscalled Prim's. The fast O(E log V) 'Dijkstra' relies on a binary heap Dijkstra never used (Williams, 1964); his own 1959 version is the O(V^2) linear scan. In real I-13 the extract-min runs as a linear scan over the dist[] array (verified: amin = 2) and the relax is dart 046's -- so the array runs the authentic Dijkstra; the heap is the open optimization PS-005.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 055 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-dijkstra-shortest-path.html",
+      "seal": "5ad688b9cac4e7b8ba020f4342631db0b16f574592c85a703a23c274fef3f1e0"
+    },
+    {
+      "slug": "the-pascals-triangle",
+      "title": "PASCAL'S TRIANGLE",
+      "dartno": "056",
+      "version": "v0.11",
+      "credit": "a 700-year misattribution: Pingala/Halayudha (India), Al-Karaji & Omar Khayyam (Persia), Jia Xian & Yang Hui (China); 'Pascal's triangle' is a Western honorific retrofitted by Montmort (1708)",
+      "source": "Pingala c.200 BCE / Halayudha 10th c.; Al-Karaji c.1000 & Khayyam c.1100; Jia Xian 11th c. / Yang Hui 1261; Pascal's Traite du triangle arithmetique composed 1654, published posthumously 1665; name coined by Montmort 1708",
+      "i13_recommend": "a GENUINELY NEW want -- suggestion-box PS-014. Small rows run in an f64 array (verified on the compiler: C(10,5)=252, C(10,2)=45), but the big rows need bignum entries and the compiler rejects an array of bignums (error E0501 'MakeArray requires a plain number here, got a bignum'). The array (an f64 arena) and bignum (an arena handle) both landed this campaign but DO NOT COMPOSE -- Pascal is the first dart to hit that seam. It touches what an array element may be, so it is an author-level call: flagged, not smuggled.",
+      "blurb": "Start with 1s down the edges; every inside number is the sum of the two above it, and out falls the whole of combinatorics -- the binomial coefficients C(n,k), the counts of how many ways to choose. The name is a 700-year misattribution: the triangle appears in India (Pingala c.200 BCE, and Halayudha's 10th-century Meru-prastaara, the 'staircase of Mount Meru'), in Persia (Al-Karaji c.1000 and Omar Khayyam c.1100 -- in Iran it is Khayyam's triangle), and in China (Jia Xian in the 11th century, tabulated by Yang Hui in 1261 -- there it is Yang Hui's triangle), and was printed in Europe by Apianus (1527) and Tartaglia before Blaise Pascal was born; 'Pascal's triangle' is a Western honorific retrofitted by Montmort in 1708, decades after Pascal died, for the organizer, not the originator. In real I-13 this dart finds a real edge: small rows run in an f64 array (verified C(10,5)=252), but the big rows need bignum entries and the compiler rejects an array of bignums (E0501) -- the array and bignum both landed this campaign yet do not yet compose, the open want PS-014.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 056 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-pascals-triangle.html",
+      "seal": "2c0bcae8d7ff0a0adcf96c89035a34079df1c99d915608f483e9ee8cfc9ea334"
+    },
+    {
+      "slug": "the-gauss-legendre-algorithm",
+      "title": "THE GAUSS-LEGENDRE ALGORITHM",
+      "dartno": "057",
+      "version": "v0.11",
+      "credit": "Richard Brent & Eugene Salamin, independently in 1975/76; the name honours Gauss's arithmetic-geometric mean and Legendre's relation; Lagrange (1785) had the AGM; Louis V. King (1924) had the pi formula ~50 years early",
+      "source": "Salamin, Math. Comp. 30:565-570, 1976; Brent, J. ACM 23:242-251, 1976; Gauss's AGM (diary 1799, after Lagrange 1785); Louis V. King 1924",
+      "i13_recommend": "names a wall and half-crosses it in the same breath. The AGM's once-per-step sqrt(ab) is the load-bearing primitive f64 lacks at scale (the demo saturates near 15 digits at iteration 3) -- so the campaign added std/bignum_isqrt.i13 (Newton's integer method over the existing bignum, NO compiler change; verified isqrt(2*10^36)=1414213562373095048, floor(sqrt(2)*10^18)) = suggestion-box PS-012, landed. The remaining piece is fixed-point reals (scaled integers) to carry pi's fractional part = PS-013, open. A dart names a want, the stdlib clears half of it, the box records both.",
+      "blurb": "Take the average of two numbers and their geometric mean, again and again, and they rush together astonishingly fast; feed the right starting pair (a=1, b=1/sqrt(2), t=1/4, p=1) and that arithmetic-geometric mean spits out pi via (a+b)^2/4t, with the count of correct digits DOUBLING every step (1, 3, 8, 19, 41, ...). It is the engine behind record pi computations. The name is doubly generous: neither Gauss nor Legendre ever wrote it as a pi algorithm (the label honours Gauss's AGM-to-elliptic-integral link and Legendre's relation), Lagrange had the AGM iteration in 1785 before Gauss's 1791 rediscovery, and Louis V. King stated essentially this pi formula in 1924 -- a ~50-year priority almost never named. Richard Brent (J. ACM, 1976) and Eugene Salamin (Math. Comp., 1976) independently assembled it into the quadratic pi algorithm, a clean documented co-discovery. In real I-13 the demo is f64 and stalls near 15 digits at iteration 3; going further needs bignum and a square root at bignum precision, which the campaign built as std/bignum_isqrt.i13 (verified isqrt(2*10^36)=1414213562373095048) -- PS-012 landed -- leaving fixed-point reals (PS-013) as the last piece.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 057 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-gauss-legendre-algorithm.html",
+      "seal": "a0a5e586ff55e45f40d5ad41a9b98a1181e5371a078c9ee99d278c8c6c9c829a"
     }
   ],
   "keepers": [
@@ -1060,13 +1128,13 @@
     }
   ],
   "counts": {
-    "spheres": 61,
+    "spheres": 65,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
-    "darts": 53
+    "darts": 57
   },
-  "i13_root": "4bf82450325cd3ddcb0cf5039f89940e6d207c9d98489c6473e850b44396d964",
+  "i13_root": "b1a84e7d2340941c34d4b8a80cdc5753870c9c5a8ef2eb5b43a219bce0b6364d",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
