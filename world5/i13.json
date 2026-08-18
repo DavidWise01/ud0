@@ -762,6 +762,22 @@
       "kicker": "dart 037 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-barnsley-fern.html",
       "seal": "c39affe9e473b412fd46239015b4926b6ff20b893fe1e9664218124e3ab2b583"
+    },
+    {
+      "slug": "the-abstraction-algorithm",
+      "title": "THE ABSTRACTION ALGORITHM",
+      "room": "darts",
+      "kicker": "milestone - r0 -> r0",
+      "accent": "#ffb020",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "version": "v0.06",
+      "credit": "David Lee Wise / ROOT0 (the formulation); I-13 as the transfer function",
+      "source": "r0{[point.vector..voxel]} ~> {vector(in),(i13),vector(out)} ~> voxel field ~> r0",
+      "i13_recommend": "(none - this IS the corpus's abstraction loop expressed THROUGH i13 as the transfer function)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-abstraction-algorithm.html",
+      "seal": "96d2b0d0f22627b6400010d93893cc67513d6eb4181f7a73b4fd08933ee89311",
+      "blurb": "David's own formulation of the corpus as a closed-loop abstraction algorithm, made to run: r0{[point.vector..voxel]} ~> {vector(in),(i13),vector(out)} ~> voxel field, (/ \\ | \\ /) ~> voxel field vector (multiverse) ~> r0. ROOT0 is the origin AND the sink; the five worlds seed vectors; I-13 is the transfer function - a rotation+contraction whose cos/sin are the stdlib bounded Taylor; the outputs fill a voxel field that spirals through the diamond crossing where the worlds meet, spans the multiverse, and folds back to the Merkle root. Real WebGL2, 31,540 voxels, every one a real I-13 map step: vector(3,1) -> i13 -> (1.98105637530, 2.13059044349), verified equal to the canonical compiler to all 16 digits, so the field IS the I-13 output, not a picture of it. The loop closes where it began: r0 -> r0."
     }
   ],
   "keepers": [
@@ -772,13 +788,13 @@
     }
   ],
   "counts": {
-    "spheres": 44,
+    "spheres": 45,
     "rooms": 6,
-    "lit": 7,
+    "lit": 8,
     "keepers": 1,
     "darts": 37
   },
-  "i13_root": "b1448304bfadf538a86081e5c35be8b85aaa0a70dddc65b1a1d253acf1174512",
+  "i13_root": "c010a0da9fba417e9b2772f4b7be35775862204589e2875f6dca94e7150fcbef",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
