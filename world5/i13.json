@@ -694,6 +694,74 @@
       "url": "https://davidwise01.github.io/ud0/world5/the-standard-library.html",
       "seal": "bcd725c8f32fe0a23f6d1b65124b68a40cf9e0f4615efd41ffa808fc97dabe25",
       "blurb": "The place where the dart campaign's I-13 recommendations that are ADDITIONS ON TOP of the 13 counted symbols (not changes to them) actually land in the language. A standard library written IN I-13, verified on the canonical compiler: sqrt by Newton (dart 026), exp/sin/cos/ln by bounded Taylor (darts 009/031/033), a seeded PRNG as MINSTD LCG (darts 004/030) and Marsaglia xorshift32, gcd and modexp via the merged % (darts 027/032). Plus the one interpreter change of the batch: bitwise operators & | ^ << >> added as new BinOp discriminants (the % pattern, zero new alphabet symbols) for darts 001 and 029 - the full 130-test suite still passes. Two recommends are deliberately withheld as the author's architectural call, not library work: arbitrary-precision integers and a bounded aggregate/array type. The loop closes: measure the wall, recommend, integrate, clear it."
+    },
+    {
+      "slug": "the-logistic-chaos",
+      "title": "THE LOGISTIC MAP",
+      "dartno": "034",
+      "version": "v0.06",
+      "credit": "Verhulst 1838 (logistic); Robert May 1976 (chaos); Mitchell Feigenbaum 1978 (universality)",
+      "source": "Robert May, Nature, 1976",
+      "i13_recommend": "nothing new for the math - a genuine no-wall; only the bifurcation plot needs the withheld aggregate/array",
+      "blurb": "One line, x -> r*x*(1-x): turn the single knob r and a settling population splits - 1 point, 2, 4, 8, then chaos at r~3.5699. The road to chaos carries a universal number, Feigenbaum's delta = 4.6692016..., the same for a huge class of maps. Pure arithmetic, so I-13 RUNS the dynamics (r=3.2 settles to 0.513, r=3.9 goes chaotic, verified); only the bifurcation PLOT needs an array (the recurring aggregate wall). A genuine no-wall for the math. Credit: Verhulst's logistic equation 1838; Robert May's 1976 Nature paper 'Simple mathematical models with very complicated dynamics' made the chaos famous; Mitchell Feigenbaum found the universality in 1978.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 034 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-logistic-chaos.html",
+      "seal": "eed7a4b071045c01f619735f1202e31b9179fe792ea950779d7ae777bb205ce2"
+    },
+    {
+      "slug": "the-diffie-hellman-merkle",
+      "title": "DIFFIE-HELLMAN-MERKLE KEY EXCHANGE",
+      "dartno": "035",
+      "version": "v0.06",
+      "credit": "Diffie, Hellman & Merkle (1976); Malcolm Williamson, GCHQ (1974, classified)",
+      "source": "Diffie & Hellman, New Directions in Cryptography, 1976",
+      "i13_recommend": "arbitrary-precision integers (the withheld one) for cryptographic prime sizes past f64's 2^53; the protocol itself now RUNS via the stdlib modexp",
+      "blurb": "Two strangers shouting across a room where everyone hears end up sharing a secret no eavesdropper can compute - public-key cryptography's founding trick. Thanks to the % and stdlib modexp this campaign put into I-13, it RUNS in real I-13: g=5, p=23, Alice a=6, Bob b=15 -> both derive the same shared secret 2 (verified). The honest-credit story is double: Martin Hellman said it 'ought to be called Diffie-Hellman-Merkle' (Ralph Merkle's parallel 1974/1978 work dropped from the name), and Malcolm Williamson at GCHQ discovered it secretly in 1974 (classified until 1997), after colleagues Ellis and Cocks. The one remaining wall is the deliberately-withheld arbitrary-precision integers: toy primes work exactly, real 2048-bit DH exceeds f64's 2^53. Third dart (after Collatz-010 and Rabin-Miller-032) where the campaign's own recommend made it run.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 035 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-diffie-hellman-merkle.html",
+      "seal": "f32de14d366a98af3f31922cc3166b3108fdd2d4fb0c52c0fa886ff2ec1112a8"
+    },
+    {
+      "slug": "the-towers-of-hanoi",
+      "title": "THE TOWERS OF HANOI",
+      "dartno": "036",
+      "version": "v0.06",
+      "credit": "Edouard Lucas, 1883",
+      "source": "Edouard Lucas, 1883",
+      "i13_recommend": "arbitrary-precision integers for exact large move counts (2^64-1 past f64); otherwise a no-wall celebration of I-13's native recursion",
+      "blurb": "Move a stack of disks between pegs, never a big one on a small one - the purest recursion there is, and exactly I-13's home turf. It always takes 2^n-1 moves, provably minimal, and I-13 runs it natively (moves(20)=1048575, verified). A rare dart where the wall is not I-13's but f64's: the temple's 64 golden disks need 2^64-1, past f64's exact range, so the count loses its last digits - the gentlest possible argument for the withheld arbitrary-precision integers. Credit: Edouard Lucas invented it in 1883, sold under the anagram pseudonym 'N. Claus de Siam'; the Benares legend of 64 disks ending the world (~585 billion years at one move a second) was marketing attached to a Victorian toy.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 036 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-towers-of-hanoi.html",
+      "seal": "3c05497dee850c0ef3184348b09515a86d3142e6fa80487d5331c868850af704"
+    },
+    {
+      "slug": "the-barnsley-fern",
+      "title": "THE BARNSLEY FERN",
+      "dartno": "037",
+      "version": "v0.06",
+      "credit": "Michael Barnsley, Fractals Everywhere, 1988",
+      "source": "Michael Barnsley, 1988",
+      "i13_recommend": "the withheld aggregate/array - only for drawing the 40,000 points; the chaos-game dynamics run via the stdlib PRNG",
+      "blurb": "Throw a point, pick one of four stretch-and-rotate rules at random, apply it, plot, repeat - and from pure chance plus four little matrices a fern grows, every frond exact. Because I-13 gained a seeded PRNG last turn (std/rng_lcg.i13, MINSTD), the chaos game RUNS: the map-chooser is the verified LCG and the affine maps are just + and *. The only wall left is drawing - the fern is 40,000 plotted points, a pixel array (the recurring aggregate wall, same verdict as the logistic map 034 and Perlin 028). The loop feeds on itself: darts 004/030 asked for a seeded PRNG -> integrated -> this chaos game runs. Credit: Michael Barnsley, Fractals Everywhere 1988; the IFS, the chaos game, and the collage theorem behind fractal image compression; the fern's four maps carry probabilities 1%, 85%, 7%, 7%.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 037 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-barnsley-fern.html",
+      "seal": "c39affe9e473b412fd46239015b4926b6ff20b893fe1e9664218124e3ab2b583"
     }
   ],
   "keepers": [
@@ -704,13 +772,13 @@
     }
   ],
   "counts": {
-    "spheres": 40,
+    "spheres": 44,
     "rooms": 6,
     "lit": 7,
     "keepers": 1,
-    "darts": 33
+    "darts": 37
   },
-  "i13_root": "4ab7a008b355a5224fd65e4df5d45559fe6800f1b5eb5b378e82c669117ebeca",
+  "i13_root": "b1448304bfadf538a86081e5c35be8b85aaa0a70dddc65b1a1d253acf1174512",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

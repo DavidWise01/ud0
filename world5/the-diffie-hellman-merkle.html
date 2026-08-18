@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DIFFIE&ndash;HELLMAN&ndash;MERKLE KEY EXCHANGE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:18px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:90px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+input[type=range]{flex:1;min-width:150px;accent-color:var(--cyan);width:auto;}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;}
+.steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi.bad{color:var(--bad);border-color:rgba(255,90,106,.4);}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);} .t-run{color:var(--good);border-color:var(--good);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.pegs{display:flex;justify-content:space-around;align-items:flex-end;height:150px;margin:10px 0;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 035 &middot; a helldive at the net</span></div>
+<header>
+  <h1>DIFFIE&ndash;HELLMAN&ndash;MERKLE <span class="c">a shared secret in the open</span></h1>
+  <p class="sub">Two strangers, shouting across a crowded room where everyone hears every word, end up <b>knowing a secret number that no eavesdropper can compute</b>. That is public-key cryptography&rsquo;s founding trick &mdash; and thanks to the <b>%</b> and the <b>modexp</b> this campaign put into I-13 last turn, it <b>runs in real I-13</b> now.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">mix public + private, one-way</span></h2>
+  <p>Agree on a base <b>g</b> and prime <b>p</b> in public. Each picks a secret (Alice <b>a</b>, Bob <b>b</b>), sends <b>g<sup>secret</sup> mod p</b> across the open channel, then raises what they received to their own secret. Both land on <b>g<sup>ab</sup> mod p</b> &mdash; the eavesdropper, seeing only g, p, g<sup>a</sup>, g<sup>b</sup>, cannot get there (the discrete-log problem). <span class="tag t-demo">live demo</span></p>
+  <div class="row">
+    <label>g</label><input id="g" value="5"><label>p</label><input id="p" value="23">
+    <label>Alice a</label><input id="a" value="6"><label>Bob b</label><input id="b" value="15">
+    <button id="go" class="dartbtn">&#9192; exchange</button>
+  </div>
+  <div class="steps" id="out"></div>
+  <div class="res" id="res"></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">two names on it, and two more left off</span></h2>
+  <p class="myth">It is &ldquo;Diffie&ndash;Hellman&rdquo; &mdash; but Hellman himself asked that it be called <s>Diffie&ndash;Hellman</s> <b>Diffie&ndash;Hellman&ndash;Merkle</b>, and a fourth man had done it years earlier in secret. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1974</b> &middot; <span class="who">Malcolm Williamson</span> at Britain&rsquo;s <span class="who">GCHQ</span> works out the same key exchange &mdash; <b>classified</b>, unpublished until <b>1997</b>. (His colleagues James Ellis and Clifford Cocks had already done non-secret encryption and RSA in secret.)<br>
+    <b>1976</b> &middot; <span class="who">Whitfield Diffie</span> &amp; <span class="who">Martin Hellman</span> publish <i>New Directions in Cryptography</i> &mdash; the public birth of public-key crypto.<br>
+    <b>the missing name</b> &middot; <span class="who">Ralph Merkle</span>&rsquo;s puzzle work (1974, published 1978) was the parallel invention; <span class="who">Hellman</span> later insisted the scheme <b>&ldquo;ought to be called Diffie&ndash;Hellman&ndash;Merkle.&rdquo;</b> This dart uses that name.
+  </div>
+  <p style="margin-top:10px">Two independent public inventors, a third who shares the credit by the second&rsquo;s own request, and a fourth silenced by secrecy. Credit where it is due. <span class="tag t-open">restored</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the integration paid off &mdash; it runs</span></h2>
+  <p>The entire exchange is <b>modular exponentiation</b>, which I-13 gained when the campaign&rsquo;s <span class="k">%</span> merged and the stdlib <span class="k">modexp</span> landed. Both sides derive the <b>same</b> secret, for real:</p>
+  <div class="evi good">$ i13 run dh.i13          # std/modexp, on main
+A = 8                       # 5^6  mod 23  (Alice public)
+B = 19                      # 5^15 mod 23  (Bob public)
+shared_from_A = 2           # 19^6  mod 23
+shared_from_B = 2           # 8^15  mod 23   -> they MATCH</div>
+  <div class="rec">
+    <b>Recommend:</b> the one remaining wall is the <b>deliberately withheld</b> one &mdash; <b>arbitrary-precision integers</b>. Toy primes (p=23) work exactly; real Diffie&ndash;Hellman uses 2048-bit primes, far past f64&rsquo;s 2&#8309;&#179;, so exactness dies. That is the honest boundary: I-13 demonstrates the <i>protocol</i> perfectly and cannot reach <i>cryptographic</i> sizes without a new value kind &mdash; the author&rsquo;s call, recorded in <span class="kg">std/README.md</span>, not smuggled in as a library.<br>
+    <b>The loop, visible:</b> a wall in an earlier dart &#8594; the <span class="k">%</span> recommend &#8594; integrated &#8594; this dart runs. Third time (after Collatz and Rabin&ndash;Miller).
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  function modexp(b,e,m){ var r=1; b=b%m; while(e>0){ if(e&1) r=(r*b)%m; b=(b*b)%m; e=Math.floor(e/2);} return r; }
+  function run(){
+    var g=parseInt(document.getElementById("g").value,10), p=parseInt(document.getElementById("p").value,10),
+        a=parseInt(document.getElementById("a").value,10), b=parseInt(document.getElementById("b").value,10);
+    var out=document.getElementById("out"), res=document.getElementById("res");
+    if(!(g>1&&p>2&&a>0&&b>0)){ out.innerHTML='<span style="color:var(--bad)">need g&gt;1, p&gt;2 (prime), a,b&gt;0.</span>'; res.innerHTML=""; return; }
+    if(p>94906265){ out.innerHTML='<span style="color:var(--bad)">keep p under ~9.5e7 so p*p stays exact in doubles (the same f64 wall I-13 hits).</span>'; res.innerHTML=""; return; }
+    var A=modexp(g,a,p), B=modexp(g,b,p), sa=modexp(B,a,p), sb=modexp(A,b,p);
+    out.innerHTML=
+      '<div><span class="lbl">public: g, p</span> <span class="val">'+g+', '+p+'</span> (everyone sees these)</div>'+
+      '<div><span class="lbl">Alice sends A = g^a mod p</span> <span class="val">'+A+'</span></div>'+
+      '<div><span class="lbl">Bob sends B = g^b mod p</span> <span class="val">'+B+'</span></div>'+
+      '<div><span class="lbl">Alice computes B^a mod p</span> <span class="val">'+sa+'</span></div>'+
+      '<div><span class="lbl">Bob computes A^b mod p</span> <span class="val">'+sb+'</span></div>';
+    res.innerHTML = (sa===sb) ? 'shared secret = <span class="true">'+sa+'</span> &mdash; both sides agree, and an eavesdropper with only g,p,A,B cannot compute it.' : '<span class="err">mismatch (p should be prime)</span>';
+  }
+  document.getElementById("go").onclick=run;
+  ["g","p","a","b"].forEach(function(id){ document.getElementById(id).addEventListener("keydown",function(e){ if(e.key==="Enter") run(); }); });
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 035 &middot; DIFFIE&ndash;HELLMAN&ndash;MERKLE KEY EXCHANGE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Whitfield Diffie &amp; Martin Hellman</b> (1976), with <b>Ralph Merkle</b> (whom Hellman said belongs in the name); discovered secretly first by <b>Malcolm Williamson</b> at GCHQ (1974). History via <a href="https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange">Wikipedia: Diffie&ndash;Hellman</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main). Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
