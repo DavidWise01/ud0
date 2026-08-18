@@ -551,14 +551,14 @@
       "credit": "Isaac Newton (1669) / Joseph Raphson (1690) / Thomas Simpson (1740)",
       "source": "Newton / Raphson / Simpson, 1669-1740",
       "i13_recommend": "a statically-bounded loop (times N) so numeric iteration does not consume the 4096-frame recursion budget - a convenience, since everything here already runs on real I-13",
-      "blurb": "Root-finding by tangent lines: stand on the curve, slide down the tangent to where it crosses zero, repeat - the correct digits double each step. A rare NO-WALL dart: real I-13 computes sqrt(2) to full f64 precision (root2 = 1.414213562373095), verified on the canonical H1.1 compiler via bounded recursion at call depth 21. The honest recommend is a statically-bounded loop so iteration stops eating the frame budget - a convenience, not new power; do not invent a wall that is not there. Credit is a three-way tangle: Newton (1669, unpublished till 1711), Raphson (1690, into print first - hence the hyphen), Simpson (1740, the derivative form everyone actually uses).",
+      "blurb": "Root-finding by tangent lines: stand on the curve, slide down the tangent to where it crosses zero, repeat - the correct digits double each step. A rare NO-WALL dart: real I-13 computes sqrt(2) to full f64 precision (root2 = 1.414213562373095), verified on the canonical H1.1 compiler via bounded recursion at call depth 21. The honest recommend is a statically-bounded loop so iteration stops eating the frame budget - a convenience, not new power; do not invent a wall that is not there. Credit is a three-way tangle: Newton (1669, unpublished till 1711), Raphson (1690, cleaner recursive form, ahead of Newton's OWN works; Wallis put the method into print first, 1685), Simpson (1740, the derivative form everyone actually uses).",
       "room": "darts",
       "accent": "#3ef0ff",
       "stamp": "DEMO",
       "kind": "dart",
       "kicker": "dart 026 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-newton-raphson-method.html",
-      "seal": "57aefbb00077fdf2e26a24e5b38b9a8f388306fd97d2aa9c7a283b6e3eb47dfa"
+      "seal": "b3e75e35947ceeb36229bc877836c455d5d72f799e2bedeb888a5a74539d350c"
     },
     {
       "slug": "the-euclidean-algorithm",
@@ -602,14 +602,14 @@
       "credit": "Charles L. Bouton, 1901 (generalized by Sprague 1935 & Grundy 1939)",
       "source": "Charles Bouton, 1901",
       "i13_recommend": "bitwise operators (^ & | >>) as new BinOp discriminants, zero new alphabet symbols - the SECOND dart to ask for bitwise (dart 001, fast inverse square root, was first); convergence is a signal",
-      "blurb": "The first game ever completely solved by mathematics: take any number of tokens from one row, last to take wins. Charles Bouton (Harvard, 1901) named the game and proved the winning rule - the nim-sum, the bitwise XOR of the heap sizes, where zero means the player to move loses under perfect play. Playable live against a perfect machine. The entire theory is one XOR, which I-13 lacks (check reports the unexpected character '^') - the same bitwise wall that dart 001, the fast inverse square root, hit independently. Two darts converging on bitwise is a signal, not a coincidence. Sprague (1935) and Grundy (1939) later showed every impartial game reduces to a single Nim heap.",
+      "blurb": "The founding game of combinatorial game theory - the first ever given a complete mathematical theory: take any number of tokens from one row, last to take wins. Charles Bouton (Harvard, 1901) named the game and proved the winning rule - the nim-sum, the bitwise XOR of the heap sizes, where zero means the player to move loses under perfect play. Playable live against a perfect machine. The entire theory is one XOR, which I-13 lacks (check reports the unexpected character '^') - the same bitwise wall that dart 001, the fast inverse square root, hit independently. Two darts converging on bitwise is a signal, not a coincidence. Sprague (1935) and Grundy (1939) later showed every impartial game reduces to a single Nim heap.",
       "room": "darts",
       "accent": "#3ef0ff",
       "stamp": "DEMO",
       "kind": "dart",
       "kicker": "dart 029 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-nim-game.html",
-      "seal": "3c46e97e1a206c57cc9805e041fbdc8bafadd634ccdd21a896f17cf8f4671766"
+      "seal": "8f7dc1498f58f7c9b9bbfe74bb61d4bb47dbed5c8b191984f8f7d4109feae641"
     }
   ],
   "keepers": [
@@ -626,7 +626,7 @@
     "keepers": 1,
     "darts": 29
   },
-  "i13_root": "d2a588eb55a79696c2b4c8c0352a28658d05caea3d3abbf86ea0b745170cb6b5",
+  "i13_root": "60a4403050811af7d6be0030b9755c58e2e43c058c3e0d34d3785f80db67cf5e",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
