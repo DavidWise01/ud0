@@ -84,7 +84,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
   <h2>HISTORY &amp; CREDIT <span class="n">two algorithms, one pair of names</span></h2>
   <p class="myth">&ldquo;Boyer-Moore&rdquo; names <s>one</s> two different algorithms by the same pair &mdash; this 1977 search AND the 1981 majority vote (dart 016). <span class="tag t-cited">cited</span></p>
   <div class="chain">
-    <b>~1975 / 1977</b> &middot; <span class="who">Robert Boyer</span> &amp; <span class="who">J Strother Moore</span>, at SRI, invent right-to-left skipping and publish &ldquo;A fast string searching algorithm.&rdquo; Equal, joint credit &mdash; no priority dispute.<br>
+    <b>~1975 / 1977</b> &middot; <span class="who">Robert Boyer</span> (at SRI) &amp; <span class="who">J Strother Moore</span> (at Xerox PARC) invent right-to-left skipping and publish &ldquo;A fast string searching algorithm.&rdquo; Equal, joint credit &mdash; a two-lab collaboration, no priority dispute.<br>
     <b>same year</b> &middot; <span class="who">Knuth, Morris &amp; Pratt</span> publish KMP (1977); it was KMP who first <b>proved the linear bound</b> for the pattern-absent case, not Boyer-Moore.<br>
     <b>1979 / 1980</b> &middot; <span class="who">Galil</span> makes it <b>worst-case linear</b>; <span class="who">Rytter</span> fixes the good-suffix preprocessing, which was <b>buggy as printed</b> in 1977; <span class="who">Horspool</span> strips it to the bad-character rule alone &mdash; the variant most greps ship.<br>
     <b>property</b> &middot; a <b>longer</b> pattern searches <b>faster</b> &mdash; the bad-character jump can skip up to the whole pattern length at once.
@@ -133,7 +133,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 </script>
 
 <footer>
-  <b>DART 061 &middot; THE BOYER-MOORE STRING SEARCH</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Robert Boyer &amp; J Strother Moore</b> (SRI, ~1975, published 1977) &mdash; &ldquo;J&rdquo; is Moore&rsquo;s whole first name. &ldquo;Sublinear&rdquo; is average-case; <b>Galil</b> (1979) made it worst-case linear. History via <a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm">Wikipedia: Boyer-Moore</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which now has a bounded array, arbitrary-precision integers, an integer square root over bignum, and an <b>i13 log</b> spot-awareness command. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+  <b>DART 061 &middot; THE BOYER-MOORE STRING SEARCH</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Robert Boyer</b> (SRI) &amp; <b>J Strother Moore</b> (Xerox PARC), ~1975, published 1977 &mdash; &ldquo;J&rdquo; is Moore&rsquo;s whole first name. &ldquo;Sublinear&rdquo; is average-case; <b>Galil</b> (1979) made it worst-case linear. History via <a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm">Wikipedia: Boyer-Moore</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which now has a bounded array, arbitrary-precision integers, an integer square root over bignum, and an <b>i13 log</b> spot-awareness command. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
 </footer>
 </body>
 </html>
