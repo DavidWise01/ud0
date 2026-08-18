@@ -14449,7 +14449,7 @@ __TOPJIT__
 <div class="kixrow">
 <a class="kix" href="keepers.html">&#9635; the keeper index <span class="v">FOUNDATION v.01</span></a>
 <a class="kix" href="the-map.html">&#9672; THE MAP <span class="v">5 WORLDS</span></a>
-<a class="kix" href="the-index.html">&#9776; THE INDEX <span class="v">4,151 SPHERES</span></a>
+<a class="kix" href="the-index.html">&#9776; THE INDEX <span class="v">4,160 SPHERES</span></a>
 </div>
 <input class="filter" id="q" type="text" placeholder="filter the domains · press /" autocomplete="off" aria-label="filter the domains">
 </header>

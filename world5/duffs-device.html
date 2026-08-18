@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Duff's Device — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:110px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* --- demo-specific --- */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
+@media(max-width:640px){.cmp{grid-template-columns:1fr;}}
+.card{border:1px solid var(--line);border-radius:6px;padding:11px 13px;background:rgba(0,0,0,.25);}
+.card.naive{border-color:rgba(111,139,168,.5);}
+.card.duff{border-color:var(--gold);box-shadow:inset 0 0 22px rgba(217,180,90,.06);}
+.card h3{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:8px;}
+.card.duff h3{color:var(--gold);}
+.big{font-size:22px;color:#eafcff;text-shadow:0 0 12px rgba(62,240,255,.4);}
+.card.duff .big{color:var(--gold);text-shadow:0 0 12px rgba(217,180,90,.4);}
+.metric{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px dotted rgba(62,240,255,.12);}
+.metric span:first-child{color:var(--dim);} .metric span:last-child{color:var(--cyan);}
+.card.duff .metric span:last-child{color:var(--gold);}
+.factor{font-size:13px;color:var(--good);margin-top:9px;text-align:center;letter-spacing:1px;}
+.verify{font-size:12px;color:var(--good);margin-top:8px;}
+.verify.bad{color:var(--bad);}
+.ladder{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin-top:12px;align-items:center;}
+.lrung{display:flex;align-items:center;gap:9px;border:1px solid rgba(62,240,255,.2);border-radius:4px;padding:4px 9px;font-size:11.5px;color:#9fbdd6;background:rgba(0,0,0,.2);transition:all .18s;}
+.lrung .cs{color:var(--dim);min-width:56px;}
+.lrung .op{color:#9fe8ff;}
+.lrung.on{border-color:var(--gold);color:#fff;background:rgba(217,180,90,.12);box-shadow:0 0 12px rgba(217,180,90,.35);}
+.lrung.on .cs{color:var(--gold);}
+.lrung.skip{opacity:.34;}
+.lmark{font-size:14px;color:var(--gold);min-width:18px;text-align:center;}
+.loopnote{grid-column:1 / -1;font-size:11px;color:var(--dim);text-align:center;margin-top:4px;letter-spacing:1px;}
+.enter{color:var(--good);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 002 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>DUFF&rsquo;S DEVICE <span class="c">switch &times; do-while</span></h1>
+  <p class="sub">A dart into the dark abstract landed on the most infamous loop in C &mdash; a <b>switch statement threaded straight through a do-while</b>, so the loop body falls THROUGH the case labels and copies N items in <b>&lceil;N/8&rceil;</b> passes. We run it, count the branches it deletes, credit who <b>actually</b> wrote it, and ask what <b>I-13</b> should learn. Three prongs, one dart.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">unroll by 8 &middot; jump into the middle</span></h2>
+  <p>Unroll the copy 8&times;, then handle the <b>remainder</b> not with a separate cleanup loop but by <b>jumping into the middle</b> of the unrolled body via the switch. Case labels sit <i>between</i> statements; execution enters at <span class="k">case&nbsp;N&nbsp;%&nbsp;8</span> and falls through the rest, then the do-while wraps it. <span class="tag t-demo">live demo</span></p>
+  <div class="code">n = (count + 7) / 8;          /* number of passes            */
+switch (count % 8) {          /* one indexed jump = the entry */
+case 0:  do { *to = *from++;
+case 7:       *to = *from++;
+case 6:       *to = *from++;
+case 5:       *to = *from++;
+case 4:       *to = *from++;
+case 3:       *to = *from++;
+case 2:       *to = *from++;
+case 1:       *to = *from++;
+         } while (--n &gt; 0);
+}</div>
+  <p>Both copiers below actually run in your browser on a real array of length N. We instrument every branch and prove the outputs are <b>byte-identical</b>.</p>
+  <div class="row">
+    <label style="color:var(--dim)">N =</label><input id="n" value="1000" spellcheck="false">
+    <button id="go">copy &amp; count branches</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+  </div>
+  <div class="cmp">
+    <div class="card naive">
+      <h3>naive &mdash; one at a time</h3>
+      <div class="big" id="nBack">&mdash;</div>
+      <div style="font-size:10px;color:var(--dim);letter-spacing:1px;margin-bottom:6px">loop back-edges taken</div>
+      <div class="metric"><span>passes / iterations</span><span id="nIter">&mdash;</span></div>
+      <div class="metric"><span>loop-condition tests</span><span id="nTest">&mdash;</span></div>
+      <div class="metric"><span>indexed jumps</span><span id="nJump">&mdash;</span></div>
+    </div>
+    <div class="card duff">
+      <h3>Duff &mdash; 8-way unrolled</h3>
+      <div class="big" id="dBack">&mdash;</div>
+      <div style="font-size:10px;color:var(--gold);letter-spacing:1px;margin-bottom:6px;opacity:.8">loop back-edges taken</div>
+      <div class="metric"><span>passes / iterations</span><span id="dIter">&mdash;</span></div>
+      <div class="metric"><span>loop-condition tests</span><span id="dTest">&mdash;</span></div>
+      <div class="metric"><span>indexed jumps</span><span id="dJump">&mdash;</span></div>
+    </div>
+  </div>
+  <div class="factor" id="factor"></div>
+  <div class="verify" id="verify"></div>
+  <div class="ladder" id="ladder"></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">No myth to bust on the author &mdash; the name is honest. It really was <b><span class="who">Tom Duff</span></b>, and he really did devise it. What people forget is <i>why</i> and <i>how legal</i> it is. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>Nov 1983</b> &middot; <span class="who">Tom Duff</span>, at <span class="who">Lucasfilm</span>, is copying an array of shorts into a single <b>memory-mapped I/O register</b> to feed a real-time animation program. He needs the copy faster.<br>
+    <b>the move</b> &middot; he unrolls the loop 8&times; and folds the remainder INTO the unrolled body by dropping <span class="who">case labels between the statements</span> &mdash; leaning on two C rules at once: a <b>switch may place case labels anywhere</b> in its body, and <b>execution falls through</b> a case with no break.<br>
+    <b>1988</b> &middot; Duff writes it up in a now-famous email (&ldquo;Duff&rsquo;s Device&rdquo;), posted to Usenet. Others name it after him.
+  </div>
+  <p style="margin-top:10px">On the fall-through that makes it work, Duff himself hedged: &ldquo;<span class="kg">this code forms some sort of argument in that debate, but I&rsquo;m not sure whether it&rsquo;s for or against.</span>&rdquo; It is <b>valid C</b> (relaxed switch + fall-through), but it violates <b>MISRA C</b> and strict compilers like <b>CompCert</b> reject it. <span class="tag t-cited">cited</span></p>
+  <p style="margin-top:6px">Still <b>open</b>: whether it&rsquo;s a <i>win</i> today. When it was removed from the <span class="kg">XFree86</span> server (v4.0) the binary shrank and throughput <i>rose</i> &mdash; modern CPUs and compilers often unroll better on their own. The technique is timeless; the payoff is hardware-dependent. <span class="tag t-open">open</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a line the language draws on purpose</span></h2>
+  <p>Duff&rsquo;s Device is built from exactly the two things I-13 does not have: a <b>switch</b> and <b>fall-through into the middle of a loop</b>. I asked the real I-13 compiler. It refuses both &mdash; proven, not asserted:</p>
+  <div class="evi" id="evi">$ i13 check switch.i13
+switch.i13:2:10  E0102 expected expression      &larr; no `switch` keyword; it parses `switch` as a Name and chokes
+$ i13 check mod.i13     ( I r &lt;- n % 8 )
+mod.i13:2:10     E0001 unexpected character `%`  &larr; no `%`, so you cannot even form `count % 8`
+$ i13 run copy.i13      ( I blocks &lt;- n / 8 )
+RUN OK · n = 17 · blocks = 2.125                &larr; only + - * / on f64; the division is fine, the dispatch is impossible</div>
+  <div class="rec">
+    <b>Recommend &mdash; a REMOVE / a boundary I-13 forbids on purpose.</b> The <span class="k">%</span> lack is real, and its cheapest honest fix is a new <b>BinOp discriminant</b> (zero new alphabet symbols, the same move used for other operators). But <i>that fix does not unlock Duff&rsquo;s Device</i>. The heart of the technique is the <b>indexed jump</b> &mdash; <span class="k">switch(count % 8)</span> lands control at a computed address <i>inside</i> a loop body. That is <b>address-indexed control</b>, and it collides head-on with I-13&rsquo;s crown jewel:<br>
+    <p style="margin:8px 0;color:#9fe8ff;border-left:2px solid var(--gold);padding-left:11px">&ldquo;Control is <b>depth-indexed, not address-indexed.</b> With a saved entry height the target is always a number already in hand, so validation is one linear pass.&rdquo;</p>
+    Add a computed jump and that guarantee dies: the stack height at the landing point now depends on <i>how you arrived</i>, so there is no single number to check and single-pass validation is gone. So the honest recommendation is <b>not</b> to add switch/computed-goto. Mark Duff&rsquo;s Device as <b>structurally inexpressible by design</b> &mdash; a technique that reveals, precisely, the line I-13 chose to draw.<br>
+    <b>Tradeoff (honest):</b> I-13 gives up an entire family of remainder-folding / jump-into-the-middle optimizations. In exchange it keeps a validator that is provably one pass with no backpatch. Given I-13&rsquo;s stated identity, that trade is the whole point &mdash; this is the rare dart whose lesson is <i>keep the wall</i>.
+  </div>
+</div>
+
+<footer>
+  <b>DART 002 &middot; DUFF&rsquo;S DEVICE</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied; the canonical device is by <b>Tom Duff</b> (Lucasfilm, November 1983), written up 1988. The quote is Duff&rsquo;s own. History &amp; figures via <a href="https://en.wikipedia.org/wiki/Duff%27s_device">Wikipedia: Duff&rsquo;s device</a>. The two refusals (<span class="kg">E0102</span> on <code>switch</code>, <span class="kg">E0001</span> on <code>%</code>) were measured on the live I-13 compiler. I-13 by David Lee Wise / ROOT0. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var $=function(id){return document.getElementById(id);};
+
+  // ---- naive copy: one item per iteration, fully instrumented ----
+  function naiveCopy(src){
+    var dst=new Array(src.length), tests=0, back=0, i=0;
+    while(true){ tests++; if(!(i<src.length)) break; dst[i]=src[i]; i++; back++; }
+    return {dst:dst, back:back, tests:tests, iter:src.length, jumps:0};
+  }
+
+  // ---- Duff's device: 8-way unroll, remainder via one indexed entry ----
+  function duffCopy(src){
+    var n=src.length;
+    var dst=new Array(n), si=0, di=0;
+    if(n<=0) return {dst:dst, back:0, tests:0, iter:0, jumps:0, rem:0, entry:8};
+    var passes=Math.floor((n+7)/8);       // ceil(N/8)
+    var rem=n%8;                          // switch(count % 8)
+    var first=(rem===0)?8:rem;            // items in the partial first pass
+    var jumps=1;                          // the single indexed dispatch
+    var tests=0, back=0, left=passes, toCopy=first;
+    do{
+      for(var j=0;j<toCopy;j++){ dst[di]=src[si]; di++; si++; }
+      toCopy=8;
+      tests++;                            // while(--n > 0) evaluated
+      left--;
+      if(left>0){ back++; }               // back-edge only when we actually loop
+    }while(left>0);
+    return {dst:dst, back:back, tests:tests, iter:passes, jumps:jumps, rem:rem, entry:(rem===0?0:rem)};
+  }
+
+  function identical(a,b){ if(a.length!==b.length) return false; for(var i=0;i<a.length;i++){ if(a[i]!==b[i]) return false; } return true; }
+
+  function ladder(rem){
+    // canonical order: case 0 (top of do), then 7,6,5,4,3,2,1
+    var order=[0,7,6,5,4,3,2,1];
+    var entry=(rem===0)?0:rem;
+    var started=false, html="";
+    for(var idx=0; idx<order.length; idx++){
+      var cs=order[idx];
+      var isEntry=(cs===entry);
+      if(isEntry) started=true;
+      var cls="lrung"+(isEntry?" on":"")+(started?"":" skip");
+      var mark=isEntry?"&#9654;":"";
+      var enterTxt=isEntry?' <span class="enter">&larr; enter here (N%8='+rem+')</span>':"";
+      html+='<div class="lmark">'+mark+'</div>';
+      html+='<div class="'+cls+'"><span class="cs">case '+cs+':</span><span class="op">*to = *from++;</span>'+enterTxt+'</div>';
+    }
+    html+='<div class="loopnote">&#8629; do { &hellip; } while(--n &gt; 0) &mdash; the back-edge wraps case 1 up to case 0</div>';
+    return html;
+  }
+
+  function fmt(x){ return x.toLocaleString('en-US'); }
+
+  function run(){
+    var N=parseInt($("n").value,10);
+    if(!(N>0)){ N=1; }
+    if(N>2000000){ N=2000000; $("n").value=N; }   // keep the browser happy
+    // build a source array we can verify against
+    var src=new Array(N);
+    for(var i=0;i<N;i++){ src[i]=(i*2654435761 & 0xffff); }   // pseudo payload, deterministic
+
+    var a=naiveCopy(src), b=duffCopy(src);
+
+    $("nBack").textContent=fmt(a.back);
+    $("nIter").textContent=fmt(a.iter);
+    $("nTest").textContent=fmt(a.tests);
+    $("nJump").textContent=fmt(a.jumps);
+
+    $("dBack").textContent=fmt(b.back);
+    $("dIter").textContent=fmt(b.iter);
+    $("dTest").textContent=fmt(b.tests);
+    $("dJump").textContent=fmt(b.jumps);
+
+    var factor=(b.back===0)?a.back:(a.back/b.back);
+    $("factor").innerHTML='back-edges cut '+fmt(a.back)+' &rarr; '+fmt(b.back)+
+      ' &nbsp;&mdash;&nbsp; <b style="color:var(--good)">'+factor.toFixed(1)+'&times; fewer</b> loop wraps, remainder ('+b.rem+') folded in with one indexed jump';
+
+    var ok=identical(a.dst,b.dst) && identical(a.dst,src);
+    var v=$("verify");
+    if(ok){ v.className="verify"; v.innerHTML='&#10003; both copiers produced byte-identical output &mdash; all '+fmt(N)+' items copied, remainder handled with no separate cleanup loop.'; }
+    else { v.className="verify bad"; v.innerHTML='&#10007; outputs differ &mdash; bug in the demo.'; }
+
+    $("ladder").innerHTML=ladder(b.rem);
+  }
+
+  $("go").onclick=run;
+  $("n").addEventListener("keydown",function(e){ if(e.key==="Enter") run(); });
+  $("dart").onclick=function(){
+    // helldive: a random N across a wide range so the remainder N%8 varies
+    var mag=Math.pow(10, Math.random()*5);      // ~1 .. 1e5
+    var N=Math.max(1, Math.floor(mag*(0.4+Math.random())) + Math.floor(Math.random()*8));
+    $("n").value=N;
+    run();
+  };
+  run();
+})();
+</script>
+</body>
+</html>

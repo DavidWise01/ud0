@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HyperLogLog — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:110px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);cursor:pointer;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:210px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:12px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+.viz{margin:12px 0 4px;}
+.viz .cap{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:5px;}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:5px;background:rgba(0,0,0,.35);}
+.legend{font-size:10.5px;color:var(--dim);margin-top:5px;}
+.legend .g{color:var(--gold);} .legend .c{color:var(--cyan);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 008 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>HYPERLOGLOG <span class="c">count the uncountable</span></h1>
+  <p class="sub">A dart thrown into the dark abstract landed on the trick that lets a database count <b>billions of distinct things</b> in a stream while remembering almost nothing &mdash; <b>~2% error in ~1.5&nbsp;KB</b>. Hash each item, look at its <b>leading zeros</b>, keep a tiny array of maxima, harmonic-mean them back into a count. We show the <b>method</b>, credit who <b>actually</b> made it, and ask what <b>I-13</b> should learn. Three prongs, one dart.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">hash &middot; count leading zeros &middot; harmonic mean</span></h2>
+  <p>A rare event is evidence of scale. If you flip a fair coin and the <i>longest</i> run of heads you ever saw was 20, you have probably flipped it around 2<sup>20</sup> times. HyperLogLog turns each item into a random bit-pattern via a hash, reads the <b>position of its first 1-bit</b> (&rho; &mdash; a run of leading zeros), and remembers only the <b>largest &rho; seen</b>. To kill the variance of one noisy estimator, it splits the stream across <b>m registers</b> by the top bits of the hash, then combines the m maxima with a <b>harmonic mean</b>. <span class="tag t-demo">live demo</span></p>
+  <div class="code">j   = top p bits of hash(x)          // which register  (m = 2^p)
+w   = the remaining bits
+rho = position of leftmost 1-bit in w   // a run of leading zeros +1
+M[j]= max(M[j], rho)                 // keep only the record
+
+Z   = 1 / SUM(2^-M[j])
+est = alpha_m * m^2 * Z              // harmonic-mean cardinality</div>
+  <div class="row">
+    <label style="color:var(--dim)">true distinct</label><input id="d" value="50000" spellcheck="false">
+    <label style="color:var(--dim)">stream length</label><input id="n" value="400000" spellcheck="false">
+    <label style="color:var(--dim)">registers m</label>
+    <select id="m">
+      <option value="16">16 &nbsp;(p=4)</option>
+      <option value="64">64 &nbsp;(p=6)</option>
+      <option value="256">256 &nbsp;(p=8)</option>
+      <option value="1024" selected>1024 (p=10)</option>
+      <option value="2048">2048 (p=11)</option>
+    </select>
+    <button id="go">stream it</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+  </div>
+  <div class="steps" id="steps"></div>
+
+  <div class="viz">
+    <div class="cap">registers &mdash; each column is one M[j], height = record &rho; it has seen</div>
+    <canvas id="regs" width="960" height="90"></canvas>
+  </div>
+  <div class="viz">
+    <div class="cap">convergence &mdash; estimate chases the truth as the stream flows</div>
+    <canvas id="conv" width="960" height="150"></canvas>
+    <div class="legend"><span class="g">&#9644; true distinct</span> &nbsp;&nbsp; <span class="c">&#9644; HyperLogLog estimate</span></div>
+  </div>
+
+  <div class="res" id="res"></div>
+  <div class="meter"><i id="meter" style="width:0%"></i></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">This one is not mis-credited so much as <s>collapsed to one name</s>: people say &ldquo;HyperLogLog&rdquo; and mean a lineage of <b>four papers over 23 years</b>, most of them carrying the same name &mdash; <span class="who">Philippe Flajolet</span>, who spent a career turning counting into analytic mathematics. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1984</b> &middot; <span class="who">Philippe Flajolet &amp; G. Nigel Martin</span> &mdash; <i>Probabilistic Counting Algorithms for Data Base Applications.</i> The founding idea: distinct-count from the <b>leading-zero pattern</b> of hashed values. (The Flajolet&ndash;Martin algorithm.)<br>
+    <b>2003</b> &middot; <span class="who">Marianne Durand &amp; Philippe Flajolet</span> &mdash; <b>LogLog</b>: keep only the <i>maximum</i> leading-zero count per register &mdash; loglog-of-n bits per register.<br>
+    <b>2007</b> &middot; <span class="who">Philippe Flajolet, &Eacute;ric Fusy, Olivier Gandouet &amp; Fr&eacute;d&eacute;ric Meunier</span> &mdash; <b>HyperLogLog</b>: swap the geometric mean for a <b>harmonic mean</b> and add the bias constant &alpha;<sub>m</sub>. This is the paper. Standard error <span class="kg">1.04/&radic;m</span>.<br>
+    <b>2013</b> &middot; <span class="who">Stefan Heule, Marc Nunkesser &amp; Alexander Hall</span> (Google) &mdash; <b>HyperLogLog++</b>: 64-bit hashes, empirical small-range bias correction, and a sparse representation. The version most systems actually ship.
+  </div>
+  <p style="margin-top:10px">What is <b>settled</b>: the algorithm, its error bound, and the &alpha;<sub>m</sub> constant are proven in the 2007 paper. What is a matter of <b>engineering taste</b>, still argued in practice: the small-cardinality regime, where raw HLL is biased and implementations disagree (linear counting vs. HLL++&rsquo;s empirical tables). <span class="tag t-open">open</span> &mdash; Flajolet died in 2011; the &ldquo;++&rdquo; refinements are others&rsquo; work on his foundation.</p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">what the galaxy should learn</span></h2>
+  <p>HyperLogLog is built from three things I-13 does not have: a <b>bit-level hash</b>, a <b>leading-zero count</b> (a bit operation), and an <b>array of registers</b>. I asked the real I-13 compiler for the first two &mdash; proven, not asserted:</p>
+  <div class="evi" id="evi">$ i13 check shift.i13     // r &lt;- 12 &gt;&gt; 1
+  shift.i13:2:10  E0102 expected expression        (no &gt;&gt; / shift operator)
+$ i13 check band.i13      // r &lt;- 12 &amp; 5
+  band.i13:2:9    E0001 unexpected character `&amp;`     (no bitwise AND)
+$ i13 check mod.i13       // r &lt;- 17 % 5
+  mod.i13:2:9     E0001 unexpected character `%`     (no modulo either)
+$ i13 run   arith.i13     // q &lt;- 8 / 3
+  RUN OK · q = 2.6666666666666665                   (only + - * / on f64)</div>
+  <div class="rec">
+    <b>Recommend &mdash; and it stacks two gaps.</b> HyperLogLog needs both halves of I-13&rsquo;s recurring shortfall at once:<br>
+    &bull; <b>Bit operators</b> as new <b>BinOp discriminants</b> (<span class="k">&gt;&gt;</span>, <span class="k">&amp;</span>, and a leading-zero / <span class="k">clz</span> intrinsic) &mdash; the exact same &ldquo;add a discriminant, spend <b>zero new alphabet symbols</b>&rdquo; move the language already floated for <span class="k">%</span> and for the fast-inverse-sqrt dart. Bit ops keep the 13-symbol count intact.<br>
+    &bull; An <b>aggregate / array</b> &mdash; the m registers. This one is heavier: I-13 has <span class="k">Name</span>, <span class="k">Constant(f64)</span> and <span class="k">Assign</span>, but no indexed collection and no <span class="k">Subscript</span> in THE TWELVE. There is no zero-symbol version of this; an array is a new kind of thing, not a new operator.<br>
+    <b>Tradeoff (honest):</b> the bit-op half is cheap and purity-preserving. The array half is the real cost &mdash; it adds a data structure to a language whose whole identity is a <i>counted</i> alphabet over an f64-only <span class="k">Constant</span>. HyperLogLog is worth citing precisely because it names <b>two</b> gaps that keep recurring: I-13 can compute along a stack, but it cannot yet <i>bit-twiddle</i> and it cannot yet <i>hold a table</i>. Ship the bit ops first; treat the array as its own decision.
+  </div>
+</div>
+
+<footer>
+  <b>DART 008 &middot; HYPERLOGLOG</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied; the algorithm is due to <b>Philippe Flajolet, &Eacute;ric Fusy, Olivier Gandouet &amp; Fr&eacute;d&eacute;ric Meunier</b> (2007), on a lineage from <b>Flajolet &amp; Martin</b> (1984) and <b>Durand &amp; Flajolet</b> (2003), with the <b>HyperLogLog++</b> engineering by <b>Heule, Nunkesser &amp; Hall</b> (Google, 2013). History &amp; figures via <a href="https://en.wikipedia.org/wiki/HyperLogLog">Wikipedia: HyperLogLog</a>. I-13 by David Lee Wise / ROOT0; the incapacities above were measured on the live compiler at <span class="kg">i13-shared-clone</span>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  // ---- 32-bit integer hash (murmur3 finalizer): good avalanche, offline, deterministic per value ----
+  function hash32(x){
+    x = x|0;
+    x ^= x >>> 16; x = Math.imul(x, 0x45d9f3b);
+    x ^= x >>> 16; x = Math.imul(x, 0x45d9f3b);
+    x ^= x >>> 16;
+    return x >>> 0;
+  }
+  // alpha_m bias constant (Flajolet et al. 2007)
+  function alphaFor(m){
+    if(m===16) return 0.673;
+    if(m===32) return 0.697;
+    if(m===64) return 0.709;
+    return 0.7213/(1 + 1.079/m);
+  }
+  function log2(x){ return Math.log(x)/Math.LN2; }
+
+  // ---- one HyperLogLog pass over a stream, capturing checkpoints for the convergence viz ----
+  function runHLL(D, N, m){
+    var p = Math.round(log2(m));           // index bits
+    var wbits = 32 - p;                     // remaining bits for rho
+    var reg = new Uint8Array(m);            // the registers M[j]
+    var seen = new Uint8Array(D);           // truth: which of the D ids actually appeared
+    var trueCount = 0;
+    var alpha = alphaFor(m);
+    var checkN = 60, checks = [];
+    var nextCheck = Math.max(1, Math.floor(N/checkN));
+
+    function estimate(){
+      var sum = 0, zeros = 0;
+      for(var j=0;j<m;j++){ sum += Math.pow(2, -reg[j]); if(reg[j]===0) zeros++; }
+      var E = alpha * m * m / sum;
+      // small-range correction: linear counting (Flajolet et al. 2007)
+      if(E <= 2.5*m && zeros>0){ E = m * Math.log(m/zeros); }
+      return E;
+    }
+
+    for(var i=0;i<N;i++){
+      // draw an item id in [0,D): a stream with heavy duplication
+      var id = (Math.random()*D)|0;
+      if(!seen[id]){ seen[id]=1; trueCount++; }
+      var h = hash32(id ^ 0x9e3779b1);      // hash the id (mixed with a constant)
+      var jIdx = h >>> wbits;               // top p bits pick the register
+      var w = h & ((wbits>=32)?0xffffffff:((1<<wbits)-1));   // low wbits bits
+      // rho = position of leftmost 1 within the wbits window (clz-based); w==0 -> wbits+1
+      var rho = (Math.clz32(w) - (32 - wbits)) + 1;
+      if(w===0) rho = wbits + 1;
+      if(rho > reg[jIdx]) reg[jIdx] = rho;
+
+      if(i+1 >= nextCheck || i===N-1){
+        checks.push({ x:(i+1), est:estimate(), truth:trueCount });
+        nextCheck += Math.max(1, Math.floor(N/checkN));
+      }
+    }
+
+    // final register-value harmonic sum, for the steps readout
+    var sum=0, zeros=0, maxR=1;
+    for(var k=0;k<m;k++){ sum += Math.pow(2,-reg[k]); if(reg[k]===0) zeros++; if(reg[k]>maxR)maxR=reg[k]; }
+    return {
+      p:p, m:m, alpha:alpha, reg:reg, maxR:maxR, sum:sum, zeros:zeros,
+      est:estimate(), truth:trueCount, checks:checks,
+      bytes: Math.ceil(m*6/8)   // ~6 bits per register is enough for rho up to ~33
+    };
+  }
+
+  // ---- draw the register heat strip ----
+  function drawRegs(r){
+    var cv=document.getElementById("regs"), g=cv.getContext("2d");
+    var W=cv.width, H=cv.height;
+    g.clearRect(0,0,W,H);
+    var m=r.m, bw=W/m, maxR=Math.max(6,r.maxR);
+    for(var j=0;j<m;j++){
+      var v=r.reg[j];
+      var h=(v/maxR)*(H-6);
+      var t=v/maxR;
+      // cyan -> gold as the register value climbs
+      var col = "rgb("+Math.round(62+193*t)+","+Math.round(240-60*t)+","+Math.round(255-165*t)+")";
+      g.fillStyle = v===0 ? "rgba(62,240,255,.10)" : col;
+      var x=j*bw;
+      g.fillRect(x, H-h-2, Math.max(0.6,bw-0.4), Math.max(1,h));
+    }
+  }
+
+  // ---- draw the convergence sparkline (truth gold, estimate cyan) ----
+  function drawConv(r){
+    var cv=document.getElementById("conv"), g=cv.getContext("2d");
+    var W=cv.width, H=cv.height, pad=6;
+    g.clearRect(0,0,W,H);
+    var cks=r.checks; if(!cks.length) return;
+    var maxY=0;
+    for(var i=0;i<cks.length;i++){ maxY=Math.max(maxY, cks[i].truth, cks[i].est); }
+    maxY*=1.08;
+    var x0=pad, x1=W-pad, y0=H-pad, y1=pad;
+    function X(v){ return x0 + (v/cks[cks.length-1].x)*(x1-x0); }
+    function Y(v){ return y0 - (v/maxY)*(y0-y1); }
+    // grid baseline
+    g.strokeStyle="rgba(62,240,255,.12)"; g.lineWidth=1;
+    g.beginPath(); g.moveTo(x0,y0); g.lineTo(x1,y0); g.stroke();
+    // truth line
+    function line(key,color,glow){
+      g.strokeStyle=color; g.lineWidth=2; g.shadowColor=color; g.shadowBlur=glow;
+      g.beginPath();
+      for(var i=0;i<cks.length;i++){ var px=X(cks[i].x), py=Y(cks[i][key]); i?g.lineTo(px,py):g.moveTo(px,py); }
+      g.stroke(); g.shadowBlur=0;
+    }
+    line("truth","#d9b45a",6);
+    line("est","#3ef0ff",8);
+  }
+
+  function fmt(n){ n=Math.round(n); return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,","); }
+
+  function run(){
+    var D=parseInt(document.getElementById("d").value,10);
+    var N=parseInt(document.getElementById("n").value,10);
+    var m=parseInt(document.getElementById("m").value,10);
+    var steps=document.getElementById("steps"), res=document.getElementById("res"), meter=document.getElementById("meter");
+    if(!(D>0)||!(N>0)){ steps.innerHTML='<span style="color:var(--bad)">true distinct and stream length must be positive.</span>'; res.innerHTML=""; meter.style.width="0%"; return; }
+    if(D>4000000){ D=4000000; document.getElementById("d").value="4000000"; }
+    if(N>8000000){ N=8000000; document.getElementById("n").value="8000000"; }
+    if(D>N){ D=N; document.getElementById("d").value=String(N); }
+
+    var r=runHLL(D,N,m);
+    var err = Math.abs(r.est - r.truth)/r.truth*100;
+    var predicted = 104/Math.sqrt(m);      // 1.04/sqrt(m) as a percent
+
+    steps.innerHTML=
+      '<div><span class="lbl">registers m = 2^p</span> <span class="val">'+r.m+'</span> &middot; p = <span class="val">'+r.p+'</span> index bits, '+(32-r.p)+' bits for &rho;</div>'+
+      '<div><span class="lbl">bias constant &alpha;<sub>m</sub></span> <span class="val">'+r.alpha.toFixed(5)+'</span></div>'+
+      '<div><span class="lbl">stream / true distinct</span> <span class="val">'+fmt(N)+'</span> items &rarr; <span class="true" style="color:var(--good)">'+fmt(r.truth)+'</span> distinct</div>'+
+      '<div><span class="lbl">registers still empty</span> <span class="val">'+r.zeros+'</span> / '+r.m+' &middot; tallest &rho; = <span class="kg">'+r.maxR+'</span></div>'+
+      '<div><span class="lbl">harmonic sum &Sigma;2^&minus;M[j]</span> <span class="val">'+r.sum.toFixed(4)+'</span> &rarr; Z = '+(1/r.sum).toFixed(4)+'</div>'+
+      '<div><span class="lbl">memory footprint</span> <span class="val">~'+fmt(r.bytes)+' bytes</span> (m &times; ~6 bits) &mdash; not '+fmt(N)+' items stored</div>';
+
+    res.innerHTML='estimate <span class="val" style="color:var(--cyan)">'+fmt(r.est)+'</span> &nbsp;vs&nbsp; true <span class="true">'+fmt(r.truth)+'</span>'+
+      ' &nbsp;&mdash;&nbsp; error <span class="err">'+err.toFixed(2)+'%</span>'+
+      ' &nbsp;(predicted &plusmn;<span class="kg">'+predicted.toFixed(2)+'%</span> at m='+m+')';
+
+    drawRegs(r); drawConv(r);
+    var acc=Math.max(0,Math.min(100, 100 - err*6));
+    meter.style.width=acc.toFixed(1)+"%";
+  }
+
+  document.getElementById("go").onclick=run;
+  document.getElementById("dart").onclick=function(){
+    // throw a dart: a random distinct-count and stream length, a real helldive
+    var D=Math.round(Math.pow(10, 2+Math.random()*4.2));      // ~1e2 .. ~1.6e6
+    var N=Math.min(8000000, Math.round(D*(3+Math.random()*12)));
+    var ms=[16,64,256,1024,2048], m=ms[(Math.random()*ms.length)|0];
+    document.getElementById("d").value=String(D);
+    document.getElementById("n").value=String(N);
+    document.getElementById("m").value=String(m);
+    run();
+  };
+  [ "d","n" ].forEach(function(id){
+    document.getElementById(id).addEventListener("keydown",function(e){ if(e.key==="Enter") run(); });
+  });
+  document.getElementById("m").addEventListener("change", run);
+  run();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Huffman Coding — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:280px;max-width:100%;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:230px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* --- dart 006 additions (Huffman) --- */
+table.codes{width:100%;border-collapse:collapse;font-size:11.5px;margin-top:12px;}
+table.codes th{text-align:left;color:var(--cyan);border-bottom:1px solid var(--line);padding:4px 8px;font-weight:400;letter-spacing:1px;}
+table.codes td{padding:3px 8px;border-bottom:1px solid rgba(62,240,255,.08);}
+table.codes .sym{color:var(--gold);} table.codes .cd{color:var(--good);} table.codes .fr,table.codes .ln{color:var(--dim);}
+.treewrap{width:100%;overflow-x:auto;margin-top:12px;border:1px solid var(--line);border-radius:6px;background:rgba(0,0,0,.28);padding:6px;}
+.treewrap svg{display:block;}
+.merges{font-size:11px;line-height:1.75;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;color:#bcd6ee;max-height:150px;overflow-y:auto;}
+.merges .st{color:var(--dim);} .merges b{color:var(--gold);} .merges .arr{color:var(--orange);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 006 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>HUFFMAN CODING <span class="c">minimum-redundancy</span></h1>
+  <p class="sub">A dart thrown into the dark abstract landed on the code that squeezes text without losing a bit &mdash; feed it symbol frequencies and it hands back the <b>provably shortest</b> prefix-free code. We build the tree <b>live</b>, credit who <b>actually</b> invented it (and what he beat), then ask what <b>I-13</b> can learn from a method that needs a data structure the language does not have. Three prongs, one dart.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">count &middot; merge two smallest &middot; read the paths</span></h2>
+  <p>Count how often each symbol appears. Put every symbol in a priority queue keyed by frequency. Then repeatedly <b>pull the two least-frequent nodes and merge them under a new parent</b> whose weight is their sum &mdash; the rare symbols sink deep, the common ones stay shallow. When one node remains, the path from the root to each leaf (<span class="k">0</span> = left, <span class="k">1</span> = right) <i>is</i> that symbol&rsquo;s code. No code is a prefix of another, so the stream decodes with no separators. <span class="tag t-demo">live demo</span></p>
+  <div class="code">while queue has &gt; 1 node:
+    a = pop_min(queue)              // two lowest
+    b = pop_min(queue)              //   frequencies
+    push(queue, node(a+b, a, b))   // merge under a new parent
+root = pop(queue)                  // paths to leaves = the codes</div>
+  <div class="row">
+    <input id="txt" value="abracadabra" spellcheck="false" autocomplete="off">
+    <button id="go">build Huffman tree</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+  </div>
+  <div class="steps" id="steps"></div>
+  <div class="res" id="res"></div>
+  <div class="meter"><i id="meter" style="width:0%"></i></div>
+  <div class="treewrap" id="treewrap"></div>
+  <table class="codes" id="codes"></table>
+  <div class="merges" id="merges"></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">The credit here is <b>clean</b> &mdash; no famous name stole it. But there is a twist most people miss: the method is named for a <b>student</b> who beat his own <b>professor</b>. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1948</b> &middot; <span class="who">Claude Shannon</span> founds information theory; with <span class="who">Robert Fano</span> comes <b>Shannon&ndash;Fano coding</b> &mdash; a <i>top-down</i> code split. Good, but <b>not always optimal.</b><br>
+    <b>1951</b> &middot; at MIT, <span class="who">Robert Fano</span> sets his information-theory class a term paper: find the most efficient binary code. A student named <span class="who">David A. Huffman</span> struggles, nearly quits to study for the final&hellip;<br>
+    <b>1951</b> &middot; &hellip;then sees it: build the tree <i>bottom-up</i>, merging the two rarest symbols first. He <b>proves it optimal</b> &mdash; the very thing Shannon and Fano had not managed.<br>
+    <b>1952</b> &middot; <span class="who">David A. Huffman</span> publishes <i>&ldquo;A Method for the Construction of Minimum-Redundancy Codes&rdquo;</i> in the <i>Proceedings of the IRE</i>. The <b>real, sole inventor</b> &mdash; and the code carries his name to this day.
+  </div>
+  <p style="margin-top:10px">The honest note: bottom-up Huffman is provably optimal <b>symbol-by-symbol</b> for a known distribution &mdash; but it is <i>not</i> the last word in compression. Arithmetic coding (1970s&ndash;80s) and dictionary methods (LZ77/LZ78, 1977&ndash;78) beat it when symbols are not independent. Huffman is optimal <i>within its own rules</i>, and those rules are narrower than &ldquo;best possible compression.&rdquo; <span class="tag t-open">open / still-refined</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">what the galaxy should learn</span></h2>
+  <p>Huffman needs three things I-13 refuses to have: <b>symbols/bytes</b> (a string or char type), a <b>priority queue</b>, and a <b>tree</b>. I-13 has none of them &mdash; its only value is an <b>f64 scalar</b>, and it has no aggregate data structure at all. I asked the real compiler; it cannot even <i>lex</i> a string. Proven, not asserted:</p>
+  <div class="evi" id="evi">i13 check str.i13    =&gt;  str.i13:1:8  E0001 unexpected character `"`    (no string type)
+i13 check char.i13   =&gt;  char.i13:1:8 E0001 unexpected character `'`    (no char type)
+i13 check arr.i13    =&gt;  arr.i13:1:16 E0001 unexpected character `[`    (no array/aggregate)
+i13 check mod.i13    =&gt;  mod.i13:2:10 E0001 unexpected character `%`    (BinOp is + - * / only)
+i13 run   run2.i13   =&gt;  out = 2.6666666666666665                        (f64 scalar, nothing else)</div>
+  <p>The lexer rejects <span class="k">&quot;</span>, <span class="k">&apos;</span> and <span class="k">[</span> as <i>unexpected characters</i> &mdash; there is no token, let alone a type, for a byte or a collection. So the whole of Huffman &mdash; the alphabet, the queue, the tree &mdash; is off the map.</p>
+  <div class="rec">
+    <b>Recommend:</b> the biggest <i>honest</i> gap is that I-13 has <b>no aggregate/data-structure story whatsoever</b>. The cheapest first step toward one is a <b>minimal byte or char scalar</b> (a symbol you could count) and, above it, one <b>indexable sequence</b> primitive. Frequencies, priority queues and trees can all be built on those two &mdash; but none can be built on an f64 alone.<br>
+    <b>Tradeoff (honest):</b> this is <b>expensive against I-13&rsquo;s identity.</b> The alphabet was <i>counted</i>, not designed &mdash; 12 verbs + <span class="k">I</span> &mdash; and adding a string/collection type is a whole new plane of syntax, not a free <span class="k">BinOp</span> discriminant the way <span class="k">%</span> or a bit-op would be. A collection type also breaks the &ldquo;every value is one f64&rdquo; invariant the single-pass validator leans on. So the honest verdict is: <b>an aggregate story is I-13&rsquo;s single largest capability gap &mdash; and quite possibly out of scope by design.</b> A counted-alphabet, scalar-only language may be <i>right</i> to leave compression to a host and stay a language about control and arithmetic, not data. Name the gap; do not necessarily fill it.
+  </div>
+</div>
+
+<footer>
+  <b>DART 006 &middot; HUFFMAN CODING</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied; the algorithm is <b>David A. Huffman</b>&rsquo;s <i>&ldquo;A Method for the Construction of Minimum-Redundancy Codes&rdquo;</i> (Proceedings of the IRE, <b>1952</b>), written as an MIT term paper for Prof. <b>Robert Fano</b> &mdash; it beat the earlier <b>Shannon&ndash;Fano</b> code by building the tree bottom-up. History &amp; figures via <a href="https://en.wikipedia.org/wiki/Huffman_coding">Wikipedia: Huffman coding</a>. I-13 by David Lee Wise / ROOT0; the incapacities above were measured on the live compiler at <span class="kg">target/debug/i13</span>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var SAMPLES = [
+    "abracadabra",
+    "mississippi",
+    "to be or not to be",
+    "she sells sea shells",
+    "the quick brown fox",
+    "banana bandana",
+    "aaaaaabbbccd",
+    "SONNY 5 the I-13 world",
+    "helldive at the net",
+    "entropy is the floor"
+  ];
+
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  // printable label for a symbol
+  function glyph(ch){
+    if(ch===" ") return "␣";      // open box = space
+    if(ch==="\n") return "⏎";     // return
+    if(ch==="\t") return "⇥";     // tab
+    return ch;
+  }
+
+  function build(text){
+    var freq = {}, order = [];
+    for(var i=0;i<text.length;i++){
+      var ch=text[i];
+      if(freq[ch]===undefined){ freq[ch]=0; order.push(ch); }
+      freq[ch]++;
+    }
+    var n=text.length;
+    var id=0;
+    var pq = order.map(function(s){ return {id:id++, sym:s, f:freq[s], left:null, right:null}; });
+    var leaves = pq.length;
+    var merges=[];
+
+    if(pq.length===1){
+      // single distinct symbol: give it a 1-bit code via a lone parent
+      var only=pq[0];
+      var root1={id:id++, sym:null, f:only.f, left:only, right:null};
+      merges.push({a:only, b:null, m:root1});
+      return finalize(root1, freq, order, n, leaves, merges);
+    }
+
+    while(pq.length>1){
+      pq.sort(function(a,b){ return (a.f-b.f) || (a.id-b.id); });
+      var a=pq.shift(), b=pq.shift();
+      var m={id:id++, sym:null, f:a.f+b.f, left:a, right:b};
+      merges.push({a:a, b:b, m:m});
+      pq.push(m);
+    }
+    return finalize(pq[0], freq, order, n, leaves, merges);
+  }
+
+  function finalize(root, freq, order, n, leaves, merges){
+    var codes={};
+    (function walk(node, path){
+      if(!node) return;
+      if(!node.left && !node.right){ codes[node.sym]= path.length?path:"0"; return; }
+      walk(node.left, path+"0");
+      walk(node.right, path+"1");
+    })(root, "");
+
+    // metrics
+    var huffBits=0, maxLen=0;
+    for(var s in freq){ var L=codes[s].length; huffBits += freq[s]*L; if(L>maxLen)maxLen=L; }
+    var fixedW = Math.max(1, Math.ceil(Math.log2(Math.max(1,leaves))));
+    var fixedBits = n*fixedW;
+    var asciiBits = n*8;
+    var avg = huffBits/n;
+
+    // Shannon entropy floor (bits/symbol) — the theoretical best any symbol code can reach
+    var H=0;
+    for(var t in freq){ var p=freq[t]/n; H += -p*Math.log2(p); }
+
+    return {root:root, codes:codes, freq:freq, order:order, n:n, leaves:leaves,
+            huffBits:huffBits, fixedW:fixedW, fixedBits:fixedBits, asciiBits:asciiBits,
+            avg:avg, H:H, maxLen:maxLen, merges:merges};
+  }
+
+  // ---- SVG tree ----
+  function drawTree(root, codes, maxLen, leaves){
+    var leafX=0, maxDepth=0;
+    (function layout(node, depth){
+      if(depth>maxDepth)maxDepth=depth;
+      if(!node.left && !node.right){ node.gx=leafX++; node.gy=depth; return; }
+      var xs=[];
+      if(node.left){ layout(node.left,depth+1); xs.push(node.left.gx); }
+      if(node.right){ layout(node.right,depth+1); xs.push(node.right.gx); }
+      node.gx = xs.reduce(function(a,b){return a+b;},0)/xs.length;
+      node.gy = depth;
+    })(root,0);
+
+    var colW=Math.max(46, Math.min(78, 620/Math.max(1,leaves)));
+    var rowH=58, padX=30, padY=26;
+    var W = padX*2 + Math.max(0,(leaves-1))*colW;
+    var H = padY*2 + maxDepth*rowH;
+    if(W<220)W=220;
+    function X(node){ return padX + node.gx*colW; }
+    function Y(node){ return padY + node.gy*rowH; }
+
+    var edges="", labels="", nodesSvg="";
+    (function draw(node){
+      var x=X(node), y=Y(node);
+      function link(child, bit){
+        var cx=X(child), cy=Y(child);
+        var mx=(x+cx)/2, my=(y+cy)/2;
+        edges += '<line x1="'+x+'" y1="'+y+'" x2="'+cx+'" y2="'+cy+'" stroke="rgba(62,240,255,.45)" stroke-width="1.4"/>';
+        labels += '<circle cx="'+mx+'" cy="'+my+'" r="8" fill="#05070f" stroke="rgba(255,138,61,.6)"/>'+
+                  '<text x="'+mx+'" y="'+(my+3.5)+'" text-anchor="middle" font-size="10" fill="'+(bit==="0"?"#3ef0ff":"#ff8a3d")+'">'+bit+'</text>';
+        draw(child);
+      }
+      if(node.left) link(node.left,"0");
+      if(node.right) link(node.right,"1");
+
+      if(!node.left && !node.right){
+        // leaf
+        var g=esc(glyph(node.sym));
+        nodesSvg += '<rect x="'+(x-17)+'" y="'+(y-11)+'" width="34" height="22" rx="4" fill="rgba(217,180,90,.10)" stroke="#d9b45a"/>'+
+                    '<text x="'+x+'" y="'+(y+4)+'" text-anchor="middle" font-size="12" fill="#d9b45a" font-weight="700">'+g+'</text>'+
+                    '<text x="'+x+'" y="'+(y+24)+'" text-anchor="middle" font-size="9" fill="#59ffb0">'+codes[node.sym]+'</text>'+
+                    '<text x="'+x+'" y="'+(y-15)+'" text-anchor="middle" font-size="8.5" fill="#6f8ba8">'+node.f+'</text>';
+      } else {
+        // internal node
+        nodesSvg += '<circle cx="'+x+'" cy="'+y+'" r="12" fill="rgba(62,240,255,.10)" stroke="rgba(62,240,255,.55)"/>'+
+                    '<text x="'+x+'" y="'+(y+3.5)+'" text-anchor="middle" font-size="9.5" fill="#9fe8ff">'+node.f+'</text>';
+      }
+    })(root);
+
+    return '<svg viewBox="0 0 '+W+' '+H+'" width="'+W+'" height="'+H+'" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,Consolas,monospace">'+
+           edges+labels+nodesSvg+'</svg>';
+  }
+
+  function run(){
+    var text=document.getElementById("txt").value;
+    var steps=document.getElementById("steps"), res=document.getElementById("res"),
+        meter=document.getElementById("meter"), tw=document.getElementById("treewrap"),
+        codesEl=document.getElementById("codes"), mergesEl=document.getElementById("merges");
+    if(!text || text.length<1){
+      steps.innerHTML='<span style="color:var(--bad)">Enter at least one character.</span>';
+      res.innerHTML=""; meter.style.width="0%"; tw.innerHTML=""; codesEl.innerHTML=""; mergesEl.innerHTML="";
+      return;
+    }
+    var r=build(text);
+
+    // steps / metrics
+    steps.innerHTML=
+      '<div><span class="lbl">input length</span> <span class="val">'+r.n+'</span> symbols &middot; <span class="val">'+r.leaves+'</span> distinct</div>'+
+      '<div><span class="lbl">Huffman total</span> <span class="val">'+r.huffBits+' bits</span> &nbsp;(<span class="kg">'+r.avg.toFixed(3)+'</span> bits/symbol)</div>'+
+      '<div><span class="lbl">fixed-width ('+r.fixedW+' b/sym for '+r.leaves+' symbols)</span> <span class="val">'+r.fixedBits+' bits</span></div>'+
+      '<div><span class="lbl">raw 8-bit bytes</span> <span class="val">'+r.asciiBits+' bits</span></div>'+
+      '<div><span class="lbl">Shannon entropy floor</span> <span class="val">'+r.H.toFixed(3)+'</span> bits/symbol <span class="err">(Huffman gap +'+(r.avg-r.H).toFixed(3)+')</span></div>';
+
+    // headline: compression vs fixed-width
+    var ratioFixed = r.fixedBits>0 ? (r.fixedBits/r.huffBits) : 1;
+    var saveFixed  = r.fixedBits>0 ? (1 - r.huffBits/r.fixedBits)*100 : 0;
+    var ratioAscii = r.asciiBits/r.huffBits;
+    res.innerHTML='Huffman <span class="val">'+r.huffBits+' bits</span> vs fixed-width <span class="true">'+r.fixedBits+' bits</span> &mdash; '+
+                  '<span class="err">'+ratioFixed.toFixed(2)+'&times;</span> smaller ('+(saveFixed>=0?saveFixed.toFixed(1):"0.0")+'% saved), '+
+                  'and <span class="err">'+ratioAscii.toFixed(2)+'&times;</span> vs raw 8-bit bytes.';
+    var acc=Math.max(0,Math.min(100, saveFixed<=0 ? 3 : saveFixed));
+    meter.style.width=acc.toFixed(1)+"%";
+
+    // tree
+    tw.innerHTML = drawTree(r.root, r.codes, r.maxLen, r.leaves);
+
+    // codes table (sorted by frequency desc, then code length)
+    var rows = r.order.slice().sort(function(a,b){
+      return r.freq[b]-r.freq[a] || r.codes[a].length-r.codes[b].length;
+    });
+    var html='<tr><th>symbol</th><th>freq</th><th>code</th><th>len</th></tr>';
+    rows.forEach(function(s){
+      html+='<tr><td class="sym">'+esc(glyph(s))+'</td><td class="fr">'+r.freq[s]+'</td>'+
+            '<td class="cd">'+r.codes[s]+'</td><td class="ln">'+r.codes[s].length+'</td></tr>';
+    });
+    codesEl.innerHTML=html;
+
+    // merges log
+    var mh='';
+    r.merges.forEach(function(m,i){
+      var an = m.a.sym!==null ? "'"+esc(glyph(m.a.sym))+"'" : "node";
+      if(m.b===null){
+        mh+='<div><span class="st">'+(i+1)+'.</span> lone symbol '+an+':'+m.a.f+' <span class="arr">&rarr;</span> root <b>'+m.m.f+'</b></div>';
+      } else {
+        var bn = m.b.sym!==null ? "'"+esc(glyph(m.b.sym))+"'" : "node";
+        mh+='<div><span class="st">'+(i+1)+'.</span> merge '+an+':'+m.a.f+' + '+bn+':'+m.b.f+' <span class="arr">&rarr;</span> <b>'+m.m.f+'</b></div>';
+      }
+    });
+    mergesEl.innerHTML='<div class="st" style="color:var(--cyan);margin-bottom:4px;">MERGES (two smallest each step):</div>'+mh;
+  }
+
+  document.getElementById("go").onclick=run;
+  document.getElementById("txt").addEventListener("keydown",function(e){ if(e.key==="Enter") run(); });
+  document.getElementById("dart").onclick=function(){
+    // throw a dart: pick a random sample text — a true helldive into the corpus
+    var s=SAMPLES[Math.floor(Math.random()*SAMPLES.length)];
+    document.getElementById("txt").value=s;
+    run();
+  };
+  run();
+})();
+</script>
+</body>
+</html>

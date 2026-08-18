@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reservoir Sampling — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+label{color:var(--dim);}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:70px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* reservoir viz */
+.res-strip{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0;}
+.slot{width:40px;height:40px;border:1px solid var(--line);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gold);background:rgba(62,240,255,.05);transition:background .12s,box-shadow .12s,border-color .12s;}
+.slot.hit{background:rgba(255,138,61,.22);border-color:var(--orange);box-shadow:0 0 12px rgba(255,138,61,.5);color:#fff;}
+.incoming{display:inline-block;min-width:34px;text-align:center;color:var(--cyan);border:1px solid var(--line);border-radius:4px;padding:2px 6px;background:rgba(62,240,255,.08);}
+.log{font-size:11.5px;line-height:1.85;max-height:210px;overflow-y:auto;border-left:2px solid var(--line);padding-left:12px;margin-top:10px;color:#bcd6ee;}
+.log .keep{color:var(--good);} .log .rep{color:var(--orange);} .log .drop{color:var(--dim);}
+.log .idx{color:var(--gold);}
+/* frequency bars */
+.bars{margin-top:12px;}
+.bar-row{display:flex;align-items:center;gap:8px;margin:2px 0;font-size:11px;}
+.bar-row .name{color:var(--dim);min-width:58px;text-align:right;}
+.bar-track{flex:1;height:12px;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:3px;position:relative;overflow:hidden;}
+.bar-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 8px var(--cyan);}
+.bar-target{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--orange);box-shadow:0 0 6px var(--orange);}
+.bar-row .pct{color:var(--cyan);min-width:52px;}
+.legend{font-size:10.5px;color:var(--dim);margin-top:8px;}
+.legend b{color:var(--orange);}
+.verdict{font-size:12.5px;margin-top:10px;} .verdict .ok{color:var(--good);} .verdict .warn{color:var(--orange);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 005 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>RESERVOIR SAMPLING <span class="c">k / i</span></h1>
+  <p class="sub">A dart thrown into the dark abstract landed on the trick that draws a <b>fair sample from a stream you never finish reading</b> &mdash; unknown length, one pass, O(k) memory. Keep the first k; then let the i-th arrival kick out a random survivor with probability <b>k/i</b>. We show the <b>technique</b> live, credit who <b>actually</b> made it, and ask what <b>I-13</b> should learn &mdash; a language that, by construction, <b>owns no dice</b>.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">one pass &middot; O(k) memory &middot; Algorithm R</span></h2>
+  <p>Fill the reservoir with the first <b>k</b> items. For every later item <b>i</b> (counting from 1), draw <b>j = random in [1..i]</b>. If <b>j &le; k</b>, item i <span class="ko">replaces</span> reservoir slot j; otherwise it is <span class="drop">dropped</span>. That&rsquo;s it &mdash; and it is <i>provably uniform</i>: every one of the i items so far ends up held with probability exactly k/i. <span class="tag t-demo">live demo</span></p>
+  <div class="code">reservoir[0..k] = first k items
+for i = k+1, k+2, ... (item index, 1-based):
+    j = random_int(1, i)          // uses a RANDOM source
+    if j &lt;= k: reservoir[j-1] = item_i   // replace
+    else:       drop item_i               // keep reservoir</div>
+  <div class="row">
+    <label>stream N =</label><input id="N" value="12" spellcheck="false">
+    <label>reservoir k =</label><input id="k" value="3" spellcheck="false">
+    <button id="one">&#9654; single pass (step log)</button>
+  </div>
+  <div class="row">
+    <label>the reservoir:</label><span class="res-strip" id="strip"></span>
+  </div>
+  <div class="log" id="log"></div>
+
+  <div class="row" style="margin-top:14px">
+    <label>trials =</label><input id="T" value="50000" spellcheck="false">
+    <button id="many" class="dartbtn">&#9192; run many &mdash; prove it&rsquo;s uniform</button>
+  </div>
+  <p style="font-size:11.5px;color:var(--dim);margin:6px 0 0">Empirical chance each item survives to the final sample. Cyan bar = measured; <b class="ko">orange line</b> = the uniform target <b>k/N</b>. Fair means every bar hugs the line.</p>
+  <div class="bars" id="bars"></div>
+  <div class="verdict" id="verdict"></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">It is loosely credited to <s>Vitter</s> or <s>Knuth</s> because that is where most people first read it. Both carried and sharpened it &mdash; neither is the origin, and the famous one-line <b>Algorithm R</b> is a third person&rsquo;s. Here is the honest chain. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1962</b> &middot; <span class="who">C.T. Fan, Mervin E. Muller &amp; Ivan Rezucha</span> &mdash; the foundational idea: sequential item-by-item selection for a fixed sample from a stream (<i>J. Amer. Stat. Assoc.</i>). The origin.<br>
+    <b>&le;1981</b> &middot; <span class="who">Alan G. Waterman</span> &mdash; the compact <b>Algorithm R</b> (the k/i replacement rule shown above), recorded and attributed to him by <span class="who">Donald Knuth</span> in <i>TAOCP</i> Vol. 2. Independently rediscovered by <span class="who">McLeod &amp; Bellhouse (1983)</span>.<br>
+    <b>1985</b> &middot; <span class="who">Jeffrey S. Vitter</span> &mdash; <i>&ldquo;Random Sampling with a Reservoir&rdquo;</i> (<i>ACM TOMS</i>): popularised the <b>name</b>, and gave the faster skip-based Algorithms X / Y / Z that jump past most items.
+  </div>
+  <p style="margin-top:10px">So: <b>Algorithm R is Waterman&rsquo;s</b> (via Knuth), the <b>concept is Fan, Muller &amp; Rezucha&rsquo;s</b> (1962), and the <b>name and the fast variants are Vitter&rsquo;s</b> (1985). Wikipedia notes Algorithm R can also be read as a variant of the Fisher&ndash;Yates shuffle. What is <b>open</b>: pre-1962 folklore is hard to pin &mdash; the pattern is simple enough that it was likely reinvented at many desks before it was ever written down. <span class="tag t-open">open</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a machine with no dice</span></h2>
+  <p>Reservoir sampling <b>cannot exist without a random source</b> &mdash; the whole method is &ldquo;draw j = random in [1..i].&rdquo; I-13 has no such source. This is not a gap I asserted; I asked the live compiler and it refused &mdash; proven, not assumed:</p>
+  <div class="evi" id="evi">i13 run  rand_call.i13  =&gt;  rand_call.i13:1:8  E0202 unknown function `random`   (no entropy primitive)
+i13 run  rand2.i13      =&gt;  rand2.i13:1:8      E0202 unknown function `rand`     (no builtins AT ALL — every call must resolve to a `def`)
+i13 check mod.i13       =&gt;  mod.i13:3:10       E0001 unexpected character `%`     (the k/i bucket needs modulo; there is none)
+i13 run  det.i13  (twice) =&gt;  out = 42  ·  out = 42   (deterministic by construction — same input, same receipt)
+grep -riE "rand|entropy|SystemTime|thread_rng|getrandom" src/  =&gt;  0 hits   (no clock, no OS entropy anywhere in the source)</div>
+  <div class="rec">
+    <b>Do NOT add ambient randomness.</b> A bare <span class="k">random()</span> primitive would pull entropy from the clock or the OS &mdash; and that would <b>break the one thing I-13 is</b>: a deterministic machine whose receipts reproduce byte-for-byte (<i>&ldquo;deterministic outputs survive&rdquo;</i>). Two runs of <span class="k">det.i13</span> both print 42 precisely because nothing non-deterministic can enter. Spend that and the receipt discipline is gone.<br><br>
+    <b>Instead: lift entropy to an explicit, seeded input.</b> Let the caller thread a <span class="k">seed</span> value; advance it in-language with a small LCG and read <span class="k">j</span> off it. Randomness becomes <i>data the caller supplies</i>, not a hidden power of the machine &mdash; so <b>same seed &rArr; same sample &rArr; same receipt</b>. Determinism is fully preserved; the sampler is reproducible on demand and freely re-seedable.<br><br>
+    <b>The one honest cost.</b> A seeded LCG needs wrap-around, i.e. <b>modulo</b> &mdash; and <span class="k">mod.i13</span> proves I-13 has no <span class="k">%</span> (E0001). The cheapest fix is the same move the fast-inverse-square-root dart proposed: add <b>modulo as a new <span class="k">BinOp</span> discriminant</b>, spending <b>zero new alphabet symbols</b> (the counted 13 stay 13; only the operator table grows). <br>
+    <b>Tradeoff (stated plainly):</b> I-13&rsquo;s identity is a <i>counted</i> 13-symbol alphabet and a strictly deterministic core &mdash; and here the two pull opposite ways. The seeded-PRNG design <b>protects the determinism</b> (the load-bearing property) at a <b>small cost to the counted-alphabet purity</b> (one extra BinOp discriminant, no new symbol). That is the design-respecting trade: keep the determinism, make entropy an <i>input</i>, never a <i>primitive</i>.
+  </div>
+</div>
+
+<footer>
+  <b>DART 005 &middot; RESERVOIR SAMPLING</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied. <span class="kg">Algorithm R</span> is credited to <b>Alan G. Waterman</b> (via <b>Knuth</b>, <i>TAOCP</i> Vol. 2), on a lineage from <b>Fan, Muller &amp; Rezucha (1962)</b>; the name and fast variants are <b>Jeffrey S. Vitter (1985)</b>. History &amp; figures via <a href="https://en.wikipedia.org/wiki/Reservoir_sampling">Wikipedia: Reservoir sampling</a>. I-13 by David Lee Wise / ROOT0; the incapacities above were measured on the live H1.1 compiler (E0202 / E0001, and a source-tree grep with zero entropy hits). Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var $=function(id){return document.getElementById(id);};
+
+  function readNK(){
+    var N=Math.max(1,Math.min(400,parseInt($("N").value,10)||0));
+    var k=Math.max(1,Math.min(N,parseInt($("k").value,10)||0));
+    $("N").value=N; $("k").value=k;
+    return {N:N,k:k};
+  }
+
+  // ---- single pass with a step log ------------------------------------
+  function singlePass(){
+    var nk=readNK(), N=nk.N, k=nk.k;
+    var strip=$("strip"), log=$("log");
+    var res=[];
+    var lines=[];
+    for(var i=1;i<=N;i++){
+      var item=i; // item labelled by its 1-based arrival index
+      if(i<=k){
+        res.push(item);
+        lines.push('<div><span class="idx">item '+item+'</span> &rarr; fill slot '+i+' <span class="keep">[reservoir '+res.join(',')+']</span></div>');
+      } else {
+        var j=Math.floor(Math.random()*i)+1;  // 1..i
+        if(j<=k){
+          var kicked=res[j-1];
+          res[j-1]=item;
+          lines.push('<div><span class="idx">item '+item+'</span> &middot; j='+j+' &le; k &rarr; <span class="rep">REPLACE slot '+j+'</span> (out: '+kicked+') <span class="keep">['+res.join(',')+']</span></div>');
+        } else {
+          lines.push('<div><span class="idx">item '+item+'</span> &middot; j='+j+' &gt; k &rarr; <span class="drop">drop</span></div>');
+        }
+      }
+    }
+    // render final reservoir strip
+    strip.innerHTML="";
+    for(var s=0;s<k;s++){
+      var d=document.createElement("span");
+      d.className="slot hit"; d.textContent=res[s];
+      strip.appendChild(d);
+    }
+    log.innerHTML=lines.join("");
+    log.scrollTop=log.scrollHeight;
+  }
+
+  // ---- many trials: empirical selection frequency ---------------------
+  function reservoirSample(N,k){
+    // returns an array of the k survivor item-indices (1..N)
+    var res=new Array(k);
+    for(var i=1;i<=N;i++){
+      if(i<=k){ res[i-1]=i; }
+      else{
+        var j=Math.floor(Math.random()*i)+1;
+        if(j<=k){ res[j-1]=i; }
+      }
+    }
+    return res;
+  }
+
+  function runMany(){
+    var nk=readNK(), N=nk.N, k=nk.k;
+    var T=Math.max(1000,Math.min(2000000,parseInt($("T").value,10)||0));
+    $("T").value=T;
+    var counts=new Array(N+1); for(var z=0;z<=N;z++)counts[z]=0;
+    for(var t=0;t<T;t++){
+      var s=reservoirSample(N,k);
+      for(var m=0;m<k;m++){ counts[s[m]]++; }
+    }
+    var target=k/N;                    // uniform expectation per item
+    var bars=$("bars"); bars.innerHTML="";
+    var maxObs=0, worst=0;
+    for(var i=1;i<=N;i++){ var f=counts[i]/T; if(f>maxObs)maxObs=f; }
+    var scaleMax=Math.max(maxObs,target)*1.15;
+    for(var i=1;i<=N;i++){
+      var f=counts[i]/T;
+      var dev=Math.abs(f-target)/target*100; if(dev>worst)worst=dev;
+      var row=document.createElement("div"); row.className="bar-row";
+      var fillW=(f/scaleMax*100).toFixed(2);
+      var tgtL=(target/scaleMax*100).toFixed(2);
+      row.innerHTML=
+        '<span class="name">item '+i+'</span>'+
+        '<span class="bar-track"><span class="bar-fill" style="width:'+fillW+'%"></span>'+
+        '<span class="bar-target" style="left:'+tgtL+'%"></span></span>'+
+        '<span class="pct">'+(f*100).toFixed(2)+'%</span>';
+      bars.appendChild(row);
+    }
+    var vd=$("verdict");
+    var okClass = worst<3.5 ? "ok" : "warn";
+    vd.innerHTML='target k/N = <b class="ko">'+(target*100).toFixed(3)+'%</b> for every item &mdash; '+
+      'largest deviation across '+N+' items: <span class="'+okClass+'">'+worst.toFixed(2)+'%</span> over '+T.toLocaleString()+' trials. '+
+      (worst<3.5?'<span class="ok">Uniform — as proven.</span>':'<span class="warn">(raise trials to tighten the estimate.)</span>');
+  }
+
+  $("one").onclick=singlePass;
+  $("many").onclick=runMany;
+  [$("N"),$("k")].forEach(function(el){ el.addEventListener("keydown",function(e){ if(e.key==="Enter") singlePass(); }); });
+  $("T").addEventListener("keydown",function(e){ if(e.key==="Enter") runMany(); });
+
+  // boot
+  singlePass();
+  runMany();
+})();
+</script>
+</body>
+</html>

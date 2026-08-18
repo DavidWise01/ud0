@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ackermann Function — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:74px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.eviok{color:var(--good);border-color:rgba(89,255,176,.35);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* Ackermann table */
+table.ack{border-collapse:collapse;font-size:11.5px;margin:10px 0;width:100%;}
+table.ack th,table.ack td{border:1px solid var(--line);padding:5px 8px;text-align:right;}
+table.ack th{color:var(--cyan);background:rgba(62,240,255,.06);letter-spacing:1px;}
+table.ack td.rowh{color:var(--orange);font-weight:700;text-align:center;background:rgba(255,138,61,.06);}
+table.ack td .v{color:#eafcff;} table.ack td .c{color:var(--dim);font-size:9.5px;display:block;}
+table.ack td.hot{color:var(--bad);}
+.legend{font-size:10.5px;color:var(--dim);margin-top:4px;}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 007 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>THE ACKERMANN FUNCTION <span class="c">A(4,2) = 2<sup>65536</sup>&minus;3</span></h1>
+  <p class="sub">A dart into the abstract landed on the first function ever shown to be <b>computable but not primitive recursive</b> &mdash; a total function that outruns every simple loop. Two nested recursions and it detonates: <b>A(4,2) has 19,729 digits</b>. We compute it live, credit who <b>actually</b> built it, and let the real <b>I-13</b> compiler tell us what its safety ledger has been hiding. One dart, three prongs.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">nested recursion &middot; watch the call count blow up</span></h2>
+  <p>Three rules. No loop, no bound you can write with loops. Every step either lowers <b>m</b> or, holding <b>m</b>, feeds A back into its own second argument &mdash; a recursion whose <i>depth</i> is itself computed by recursion. <span class="tag t-demo">live demo</span></p>
+  <div class="code">A(0, n)     = n + 1
+A(m+1, 0)   = A(m, 1)
+A(m+1, n+1) = A(m, A(m+1, n))     // the inner call decides how deep the outer goes</div>
+  <p>Table computed live in JS &mdash; each cell shows the value and, below it, the number of <span class="k">A( )</span> calls it took. Watch the call count explode down and to the right.</p>
+  <div style="overflow-x:auto"><table class="ack" id="grid"></table></div>
+  <p class="legend">Cells stop at a self-imposed budget of <b>8,000,000 calls</b> / <b>depth 4096</b> &mdash; the same two ceilings the I-13 runtime enforces (prong 3). A red cell hit the wall.</p>
+
+  <div class="row" style="margin-top:12px">
+    <label style="color:var(--dim)">m =</label><input id="m" value="3" spellcheck="false">
+    <label style="color:var(--dim)">n =</label><input id="n" value="6" spellcheck="false">
+    <button id="go">compute A(m,n)</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+  </div>
+  <div class="steps" id="steps"></div>
+  <div class="res" id="res"></div>
+  <div class="meter"><i id="meter" style="width:0%"></i></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">Everyone says <s>&ldquo;the Ackermann function&rdquo;</s> and pictures the two-line, two-argument version. That version <b>is not Ackermann&rsquo;s</b>. His was a three-argument monster; the clean two-argument form almost everyone actually uses was built by <b>two other people</b>, and a fourth mathematician got there first with a different function. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1927</b> &middot; <span class="who">Gabriel Sudan</span> (Romania, a Hilbert student) publishes the <b>Sudan function</b> &mdash; the <i>first</i> published example of a total computable, non&#8209;primitive&#8209;recursive function. Chronologically earliest; almost always forgotten.<br>
+    <b>1928</b> &middot; <span class="who">Wilhelm Ackermann</span> (Hilbert student) publishes his function to settle Hilbert&rsquo;s conjecture that not every computable function is primitive recursive. His original is <b>three arguments</b>, &phi;(m,&nbsp;n,&nbsp;p).<br>
+    <b>1930s&ndash;1950s</b> &middot; <span class="who">R&oacute;zsa P&eacute;ter</span> and <span class="who">Raphael M. Robinson</span> reduce it to the <b>two-argument A(m,&nbsp;n)</b> now printed in every textbook. <b>The famous form is theirs, not Ackermann&rsquo;s.</b>
+  </div>
+  <p style="margin-top:10px">Honest naming: the two-argument function should be called the <span class="kg">Ackermann&ndash;P&eacute;ter function</span>, and the whole idea has a legitimate prior claim in <span class="kg">Sudan</span>. The single name &ldquo;Ackermann&rdquo; is a convenient simplification the field settled on.</p>
+  <p style="margin-top:6px">What is <b>not</b> in dispute: A(m,n) is total (defined for all m,n&#8805;0), computable (the rules above compute it), and provably <b>not primitive recursive</b> &mdash; it eventually exceeds <i>every</i> primitive-recursive function, so no fixed nest of counted loops can bound it. Row values: A(1,n)=n+2, A(2,n)=2n+3, A(3,n)=2<sup>n+3</sup>&minus;3, and A(4,n) is a tower of powers of two. <span class="tag t-open">open</span> whether the earliest &ldquo;Sudan vs Ackermann&rdquo; priority deserves a shared name is a matter of taste, not fact.</p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">turn a disclaimer into a contract</span></h2>
+  <p>I-13&rsquo;s single-pass <span class="k">Verdict</span> honestly prints <b>NOT COVERED: types, termination, arithmetic, waste</b>. Ackermann is the perfect probe for &ldquo;termination NOT COVERED,&rdquo; because it is <i>guaranteed</i> to terminate mathematically yet is unbounded in practice. So I wrote it in real I-13 and ran it on the live compiler. It checks clean, small args run, and larger args hit <b>two hard ceilings that actually FIRE</b> &mdash; proven, not asserted:</p>
+
+  <div class="evi eviok" id="eviok">$ i13 check ackermann.i13
+VALID &middot; IVM 15 ops &middot; 2 region(s) &middot; peak stack 6      &lt;- termination is NOT COVERED, yet it validates
+
+$ i13 run ackermann.i13        # A(2,3), A(3,3), A(3,4)
+RUN OK &middot; 191922 step(s) &middot; peak stack 6 &middot; call depth 127
+a23 = 9        a32 = 61        a34 = 125          &lt;- correct: A(3,n)=2^(n+3)-3</div>
+
+  <div class="evi" id="evi">$ i13 run ackermann.i13        # A(3,6)  ->  still OK, but 2.58M steps
+RUN OK &middot; 2583996 step(s) &middot; peak stack 6 &middot; call depth 511   (OUT = 509)
+
+$ i13 run ackermann.i13        # A(3,7)  ->  WIDE ceiling fires
+ackermann.i13:3:8  E0502 reference VM exceeded 8000000 steps
+
+$ i13 run ackermann.i13        # A(4,1)  ->  WIDE ceiling fires
+ackermann.i13:2:24 E0502 reference VM exceeded 8000000 steps
+
+$ i13 run deep.i13             # linear recursion down(5000)  ->  DEEP ceiling fires
+deep.i13:3:8       E0503 reference VM exceeded 4096 frames</div>
+
+  <p>So &ldquo;termination NOT COVERED&rdquo; is not really a void &mdash; the runtime has <b>two operational safety ceilings</b>: <span class="k">E0503 &middot; 4096 frames</span> (deep / recursion depth) and <span class="k">E0502 &middot; 8,000,000 steps</span> (wide / total work). Ackermann, being step-heavy, trips the <b>WIDE</b> one; plain deep recursion trips the <b>DEEP</b> one. Both are real and both fired above.</p>
+  <div class="rec">
+    <b>Recommend &mdash; ADD (no new alphabet symbols):</b> declare these two numbers in the <span class="k">Verdict</span> boundary ledger itself. Replace the vague line <span class="ko">&ldquo;NOT COVERED: termination&rdquo;</span> with an operational contract: <span class="k">&ldquo;termination NOT PROVEN at check time; ENFORCED at run time by two ceilings &mdash; &#8804;4096 call frames (E0503) and &#8804;8,000,000 steps (E0502).&rdquo;</span> That is a documentation/verdict change &mdash; <b>zero new BinOp discriminants, zero new alphabet symbols</b>, fully inside I-13&rsquo;s counted-13 identity.<br>
+    <b>Recommend &mdash; the honest asterisk:</b> the brief&rsquo;s own §10.5 warns that a <i>tail-recursive</i> loop can abort near ~1,300 iterations while the 8M-step limit &ldquo;never fires.&rdquo; My measurements show the ceilings <i>do</i> fire for genuinely non-tail recursion like Ackermann &mdash; so the ledger should name <b>which</b> ceiling guards <b>which</b> shape, not claim a single blanket bound.<br>
+    <b>Tradeoff (honest):</b> this is pure honesty, not power &mdash; it removes nothing and adds no expressiveness. The cost is only that I-13 must publicly commit to two magic constants (4096, 8,000,000) as part of its contract rather than hiding them as reference-VM implementation details. For a language whose entire pitch is <i>&ldquo;an exact ledger with no unstated scope&rdquo;</i> (axiom XIII), stating the ceilings is not a compromise &mdash; it is the axiom applied to itself.
+  </div>
+</div>
+
+<footer>
+  <b>DART 007 &middot; THE ACKERMANN FUNCTION</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied. Function due to <b>Wilhelm Ackermann</b> (1928, 3-argument); the famous 2-argument form is the <b>Ackermann&ndash;P&eacute;ter</b> function (<b>R&oacute;zsa P&eacute;ter</b> &amp; <b>Raphael M. Robinson</b>); earliest such function is <b>Gabriel Sudan</b>&rsquo;s (1927). History &amp; figures via <a href="https://en.wikipedia.org/wiki/Ackermann_function">Wikipedia: Ackermann function</a>. I-13 by <b>David Lee Wise / ROOT0</b>; the check/run outputs and both ceiling errors (E0502 / E0503) were measured on the live compiler at <span class="kg">i13-shared-clone</span>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var CALL_CAP = 8000000, DEPTH_CAP = 4096;   // mirror I-13's E0502 / E0503
+
+  // Ackermann with a call counter, a depth tracker, and the two ceilings.
+  // Returns {v, calls, depth, wall} where wall is null | "steps" | "frames".
+  function ack(m0, n0){
+    var calls = 0, maxDepth = 0, wall = null;
+    function rec(m, n, d){
+      if(wall) return 0;
+      calls++;
+      if(d > maxDepth) maxDepth = d;
+      if(d >= DEPTH_CAP){ wall = "frames"; return 0; }
+      if(calls >= CALL_CAP){ wall = "steps"; return 0; }
+      if(m === 0) return n + 1;
+      if(n === 0) return rec(m - 1, 1, d + 1);
+      var inner = rec(m, n - 1, d + 1);
+      if(wall) return 0;
+      return rec(m - 1, inner, d + 1);
+    }
+    var v = rec(m0, n0, 1);
+    return {v:v, calls:calls, depth:maxDepth, wall:wall};
+  }
+
+  function group(x){ return x.toLocaleString("en-US"); }
+
+  // ---- the live table: m = 0..3, n = 0..7 ----
+  function buildGrid(){
+    var mMax = 3, nMax = 7, t = document.getElementById("grid");
+    var html = "<tr><th>m &#92; n</th>";
+    for(var n=0;n<=nMax;n++) html += "<th>"+n+"</th>";
+    html += "</tr>";
+    for(var m=0;m<=mMax;m++){
+      html += "<tr><td class='rowh'>"+m+"</td>";
+      for(var nn=0;nn<=nMax;nn++){
+        var r = ack(m, nn);
+        if(r.wall){
+          html += "<td class='hot'>&#9888;<span class='c'>"+r.wall+"</span></td>";
+        }else{
+          html += "<td><span class='v'>"+group(r.v)+"</span><span class='c'>"+group(r.calls)+" calls</span></td>";
+        }
+      }
+      html += "</tr>";
+    }
+    t.innerHTML = html;
+  }
+
+  function closed(m,n){ // known closed forms for the honesty cross-check
+    if(m===0) return n+1;
+    if(m===1) return n+2;
+    if(m===2) return 2*n+3;
+    if(m===3) return Math.pow(2,n+3)-3;
+    return null;
+  }
+
+  function run(){
+    var m = parseInt(document.getElementById("m").value,10);
+    var n = parseInt(document.getElementById("n").value,10);
+    var out = document.getElementById("steps"), res = document.getElementById("res"), meter = document.getElementById("meter");
+    if(!(m>=0) || !(n>=0)){ out.innerHTML='<span style="color:var(--bad)">m and n must be non-negative integers.</span>'; res.innerHTML=""; meter.style.width="0%"; return; }
+    var r = ack(m,n);
+    var cf = closed(m,n);
+    var lines =
+      '<div><span class="lbl">A('+m+','+n+')</span> <span class="val">'+(r.wall?"&mdash; unreachable":group(r.v))+'</span></div>'+
+      '<div><span class="lbl">A( ) calls made</span> <span class="val">'+group(r.calls)+'</span></div>'+
+      '<div><span class="lbl">max recursion depth</span> <span class="val">'+group(r.depth)+'</span></div>';
+    if(cf!==null && !r.wall){
+      var ok = (cf===r.v);
+      lines += '<div><span class="lbl">closed form '+(m===3?'2^(n+3)&minus;3':m===2?'2n+3':m===1?'n+2':'n+1')+'</span> <span class="'+(ok?'val':'')+'" style="color:'+(ok?'var(--good)':'var(--bad)')+'">'+group(cf)+(ok?'  &#10003; matches live recursion':'  MISMATCH')+'</span></div>';
+    }
+    out.innerHTML = lines;
+
+    if(r.wall){
+      var code = r.wall==="frames" ? "E0503 &middot; exceeded 4096 frames (DEEP)" : "E0502 &middot; exceeded 8,000,000 steps (WIDE)";
+      res.innerHTML = 'the explosion hit the wall &mdash; <span class="err">'+code+'</span>, the same ceiling I-13 enforces';
+      meter.style.background="rgba(255,90,106,.25)";
+      meter.style.width="100%";
+    }else{
+      res.innerHTML = 'A('+m+','+n+') = <span class="true">'+group(r.v)+'</span> &nbsp;in&nbsp; <span class="val">'+group(r.calls)+'</span> calls, depth <span class="val">'+group(r.depth)+'</span>';
+      // log-scaled meter of call count against the 8M budget
+      var frac = Math.min(1, Math.log10(r.calls+1)/Math.log10(CALL_CAP));
+      meter.style.background="";
+      meter.style.width=(frac*100).toFixed(1)+"%";
+    }
+  }
+
+  buildGrid();
+  document.getElementById("go").onclick = run;
+  ["m","n"].forEach(function(id){
+    document.getElementById(id).addEventListener("keydown",function(e){ if(e.key==="Enter") run(); });
+  });
+  document.getElementById("dart").onclick = function(){
+    // throw a dart at (m,n): biased toward the interesting cliff edge
+    var m = Math.floor(Math.random()*4);            // 0..3
+    var nMaxByM = [12, 12, 200, 9][m];              // where it stays reachable-ish
+    var n = Math.floor(Math.random()*(nMaxByM+1));
+    document.getElementById("m").value = m;
+    document.getElementById("n").value = n;
+    run();
+  };
+  run();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bresenham's Line — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:64px;text-align:center;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* dart 003 additions — the grid */
+.gridwrap{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;}
+canvas{background:#03050c;border:1px solid var(--line);border-radius:6px;box-shadow:inset 0 0 40px rgba(62,240,255,.05);image-rendering:pixelated;touch-action:none;cursor:crosshair;max-width:100%;}
+.legend{font-size:11px;color:var(--dim);line-height:1.9;min-width:170px;}
+.legend .sw{display:inline-block;width:11px;height:11px;border-radius:2px;vertical-align:-1px;margin-right:6px;}
+.sw.px{background:var(--cyan);box-shadow:0 0 8px var(--cyan);}
+.sw.fl{background:var(--orange);}
+.sw.ep{background:var(--gold);box-shadow:0 0 8px var(--gold);}
+.log{font-size:11px;line-height:1.65;margin-top:12px;overflow-x:auto;}
+.log table{border-collapse:collapse;white-space:nowrap;}
+.log th{color:var(--dim);text-align:right;padding:2px 10px 5px;font-weight:400;border-bottom:1px solid var(--line);letter-spacing:1px;}
+.log td{text-align:right;padding:2px 10px;color:#bcd6ee;}
+.log td.step{color:var(--good);} .log td.hold{color:var(--dim);}
+.log tr.now td{background:rgba(62,240,255,.08);}
+.stat{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:11.5px;}
+.stat div{color:var(--dim);} .stat b{color:var(--cyan);font-size:15px;display:block;}
+.stat .warn b{color:var(--orange);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 003 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>BRESENHAM&rsquo;S LINE <span class="c">error &plusmn; step</span></h1>
+  <p class="sub">A dart thrown into the dark abstract landed on the algorithm that draws a straight line on a pixel grid using <b>nothing but integer add and compare</b> &mdash; no floats, no division, no <b>y = mx + b</b>. We light the pixels live, credit who <b>actually</b> made it, and find a deep irony waiting for <b>I-13</b>: a language with only floats would run the anti-float algorithm in floats. Three prongs, one dart.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">an integer error term decides the step</span></h2>
+  <p>Walk the <b>major axis</b> one pixel at a time. Carry an <b>integer</b> error term <span class="k">D</span>. Each step, subtract <span class="k">2&middot;dy</span>; when <span class="k">D</span> would cross zero, step the <b>minor axis</b> too and add <span class="k">2&middot;dx</span> back. The float line <span class="ko">y = mx + b</span> is never computed &mdash; the sign of an integer <i>is</i> the decision. Drag either endpoint, or throw a dart. <span class="tag t-demo">live demo</span></p>
+  <div class="code">D = 2*dy - dx                    // integer, once
+for x in x0..x1:
+    plot(x, y)
+    if D &gt; 0: y += sy;  D -= 2*dx   // step minor axis
+    D += 2*dy                      // every column</div>
+  <div class="gridwrap">
+    <canvas id="cv" width="480" height="320"></canvas>
+    <div class="legend">
+      <div><span class="sw px"></span>Bresenham pixel (integer)</div>
+      <div><span class="sw fl"></span>true float line y=mx+b</div>
+      <div><span class="sw ep"></span>endpoint &mdash; <i>drag me</i></div>
+      <div style="margin-top:10px;color:var(--dim)">The orange line is the ideal geometry. The cyan pixels are what a purely-integer machine lights &mdash; and they hug it exactly, having never touched a float.</div>
+      <div style="margin-top:10px;">
+        <label style="color:var(--dim)">A</label>
+        (<input id="x0" value="2">,<input id="y0" value="3">)
+      </div>
+      <div style="margin-top:6px;">
+        <label style="color:var(--dim)">B</label>
+        (<input id="x1" value="19">,<input id="y1" value="11">)
+      </div>
+      <div class="row" style="margin-top:8px;">
+        <button id="go">draw</button>
+        <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+      </div>
+    </div>
+  </div>
+  <div class="stat" id="stat"></div>
+  <div class="log" id="log"></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">This one is refreshingly <b>uncontested</b>. One name, one lab, one plotter. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1962</b> &middot; <span class="who">Jack Elton Bresenham</span>, in the computation lab at <b>IBM&rsquo;s San Jose development lab</b>, drives a <b>Calcomp plotter</b> attached to an <b>IBM 1401</b> through the 1407 typewriter console. By his own account the algorithm was <b>&ldquo;in production use by summer 1962.&rdquo;</b><br>
+    <b>1963</b> &middot; presented at the <span class="who">ACM National Convention</span> in Denver.<br>
+    <b>1965</b> &middot; published as <i>&ldquo;Algorithm for computer control of a digital plotter&rdquo;</i> in the <span class="who">IBM Systems Journal</span> &mdash; the paper the world cites.
+  </div>
+  <p style="margin-top:10px">No disputed authorship, no predecessor to name plainly &mdash; unusually clean provenance for a piece of code this famous. The <b>&ldquo;Bresenham&rdquo; family</b> (midpoint circle, ellipse) came later and carries his name by extension, not because he wrote all of them. What&rsquo;s genuinely <b>open</b>: the same integer-decision idea was arrived at independently for circles and by others for anti-aliased variants (Wu), so &ldquo;Bresenham&rdquo; is now a technique-family label as much as one 1962 procedure. <span class="tag t-open">open</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the anti-float algorithm, run in floats</span></h2>
+  <p>Here is the irony this dart exists for. Bresenham&rsquo;s <b>entire value</b> is being <b>integer-only</b> &mdash; exact, fast, no rounding. But I-13&rsquo;s <span class="k">Constant</span> is <b>f64 and nothing else</b>: no integer type at all. So I-13 <i>can</i> run Bresenham &mdash; it needs only <span class="k">+ &minus; *</span> and compare, which I-13 has &mdash; but every &ldquo;integer&rdquo; error term is secretly a float. The algorithm works, and in the same breath defeats its own reason to exist. Measured on the live compiler, not asserted:</p>
+  <div class="evi" id="evi">i13 run  prec.i13    =&gt;  I b &lt;- 9007199254740993   prints  b = 9007199254740992
+                         (2^53 + 1 is UNREPRESENTABLE in f64 — the literal silently rounds down)
+i13 run  intdiv.i13  =&gt;  7 / 2  prints  q = 3.5      (division is float; there is no integer 3)
+i13 check mod.i13    =&gt;  mod.i13:3:10  E0001 unexpected character `%`   (no remainder either)</div>
+  <p>For a small line every coordinate is well under 2^53, so f64 holds it <i>exactly</i> and I-13&rsquo;s Bresenham lights the correct pixels &mdash; the demo above would render identically. The danger is invisible: cross 2^53 (a large canvas, a tiled address, an accumulated counter) and the error term stops being exact, and <b>nothing warns you</b> &mdash; the run just prints <span class="k">RUN OK</span>.</p>
+  <div class="rec">
+    <b>Recommend &mdash; a diagnostic, not a new operator.</b> Bresenham needs no <span class="k">&gt;&gt;</span>, no <span class="k">%</span>, no new <span class="k">BinOp</span>: add / subtract / compare already suffice. What it needs is an <b>integer-domain diagnostic</b> &mdash; extend <span class="k">Verdict</span> with one line: <i>&ldquo;every value stayed an exact integer below 2^53.&rdquo;</i> That is a <b>new report row, zero new alphabet symbols</b>, and it fits I-13&rsquo;s existing habit of <span class="kg">Verdict</span> naming its own boundaries (COVERED / NOT COVERED). It turns the silent 2^53 cliff into a stamped, honest result.<br>
+    <b>Tradeoff (honest):</b> a <i>real</i> integer type would give exactness for free but would break the counted &ldquo;<span class="k">Constant</span> is f64 only&rdquo; identity and add machinery to the 13-symbol purity. The diagnostic is the cheaper, truer move: it doesn&rsquo;t change what I-13 <i>is</i>, it just makes I-13 <b>admit</b> when a float has stopped behaving like an integer &mdash; the same gap the language panel flagged, answered in I-13&rsquo;s own grain.
+  </div>
+</div>
+
+<footer>
+  <b>DART 003 &middot; BRESENHAM&rsquo;S LINE</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied; the <span class="kg">line-rasterisation</span> algorithm is by <b>Jack Elton Bresenham</b> (IBM, 1962; published IBM Systems Journal, 1965). History &amp; figures via <a href="https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm">Wikipedia: Bresenham&rsquo;s line algorithm</a>. The f64-only incapacity above was measured on the live I-13 compiler (<span class="k">2^53+1 &rarr; 2^53</span>, <span class="k">7/2 = 3.5</span>, <span class="k">%</span> rejected). I-13 by David Lee Wise / ROOT0. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d");
+  var COLS=24, ROWS=16;                 // logical grid
+  var cell=cv.width/COLS;               // 20px cells
+  var A={x:2,y:3}, B={x:19,y:11};
+  var drag=null;
+
+  function clampC(v,hi){ v=Math.round(v); return v<0?0:(v>hi?hi:v); }
+
+  // integer Bresenham, all octants; returns lit points + per-step error log (major-axis form)
+  function bres(x0,y0,x1,y1){
+    var dx=Math.abs(x1-x0), dy=Math.abs(y1-y0);
+    var sx=x0<x1?1:-1, sy=y0<y1?1:-1;
+    var pts=[], log=[];
+    var steep = dy>dx;                  // decide major axis for a clean log
+    // Use the symmetric all-octant form for plotting; build a readable major-axis log separately.
+    var err=dx-dy, x=x0, y=y0, guard=0;
+    while(true){
+      pts.push([x,y]);
+      if(x===x1 && y===y1) break;
+      var e2=2*err, mv=0;
+      if(e2 > -dy){ err-=dy; x+=sx; mv|=1; }
+      if(e2 <  dx){ err+=dx; y+=sy; mv|=2; }
+      if(++guard>5000) break;
+    }
+    // readable major-axis error log (integer D), matching the code snippet.
+    // stepped[i] = did the minor axis step when entering column i (i.e. the
+    // decision taken at column i-1). D is an exact integer at every row.
+    var mdx = steep?dy:dx, mdy = steep?dx:dy;   // major, minor spans (magnitudes)
+    var D=2*mdy-mdx, out=[];
+    for(var j=0;j<=mdx;j++){
+      out.push({i:j, D:D, stepped:false});
+      var doStep = D>0;                // decision for the NEXT column
+      if(doStep){ D-=2*mdx; }
+      D+=2*mdy;
+      out[j].nextStep = doStep;
+    }
+    for(var g=1;g<out.length;g++){ out[g].stepped = out[g-1].nextStep; }
+    return {pts:pts, log:out, dx:dx, dy:dy, steep:steep, mdx:mdx, mdy:mdy};
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    // grid
+    ctx.strokeStyle="rgba(62,240,255,.10)"; ctx.lineWidth=1;
+    for(var i=0;i<=COLS;i++){ ctx.beginPath(); ctx.moveTo(i*cell+.5,0); ctx.lineTo(i*cell+.5,cv.height); ctx.stroke(); }
+    for(var j=0;j<=ROWS;j++){ ctx.beginPath(); ctx.moveTo(0,j*cell+.5); ctx.lineTo(cv.width,j*cell+.5); ctx.stroke(); }
+
+    var r=bres(A.x,A.y,B.x,B.y);
+
+    // lit Bresenham pixels (cyan, glowing)
+    ctx.shadowColor="#3ef0ff"; ctx.shadowBlur=8; ctx.fillStyle="#3ef0ff";
+    for(var p=0;p<r.pts.length;p++){
+      var px=r.pts[p][0], py=r.pts[p][1];
+      ctx.fillRect(px*cell+2, py*cell+2, cell-4, cell-4);
+    }
+    ctx.shadowBlur=0;
+
+    // true float line y=mx+b, through cell CENTERS (orange)
+    ctx.strokeStyle="#ff8a3d"; ctx.lineWidth=1.6;
+    ctx.beginPath();
+    ctx.moveTo((A.x+.5)*cell,(A.y+.5)*cell);
+    ctx.lineTo((B.x+.5)*cell,(B.y+.5)*cell);
+    ctx.stroke();
+
+    // endpoints (gold)
+    [A,B].forEach(function(P){
+      ctx.shadowColor="#d9b45a"; ctx.shadowBlur=10; ctx.fillStyle="#d9b45a";
+      ctx.beginPath(); ctx.arc((P.x+.5)*cell,(P.y+.5)*cell,cell*0.34,0,7); ctx.fill();
+      ctx.shadowBlur=0;
+    });
+
+    // stats
+    var m = r.dx===0 ? Infinity : (B.y-A.y)/(B.x-A.x);
+    var mStr = isFinite(m)? m.toPrecision(12) : "∞ (vertical)";
+    document.getElementById("stat").innerHTML=
+      '<div>pixels lit<b>'+r.pts.length+'</b></div>'+
+      '<div>float slope m = dy/dx<b class="ko">'+mStr+'</b></div>'+
+      '<div>integer ops / column<b>2 add, 1 compare</b></div>'+
+      '<div class="warn">float ops used by Bresenham<b>0</b></div>';
+
+    // step log (major-axis integer error term)
+    var rows='', L=r.log, maxShow=Math.min(L.length,16);
+    for(var s=0;s<maxShow;s++){
+      var e=L[s];
+      var stepCell = e.stepped ? '<td class="step">+1</td>' : '<td class="hold">hold</td>';
+      rows+='<tr><td>'+e.i+'</td><td>'+e.D+'</td>'+stepCell+'</tr>';
+    }
+    if(L.length>maxShow) rows+='<tr><td colspan="3" style="color:var(--dim)">… '+(L.length-maxShow)+' more columns</td></tr>';
+    document.getElementById("log").innerHTML=
+      '<table><thead><tr><th>col (major)</th><th>error term D (int)</th><th>minor step?</th></tr></thead><tbody>'+rows+'</tbody></table>';
+
+    document.getElementById("x0").value=A.x; document.getElementById("y0").value=A.y;
+    document.getElementById("x1").value=B.x; document.getElementById("y1").value=B.y;
+  }
+
+  // pointer drag to move nearest endpoint
+  function cellAt(ev){
+    var rect=cv.getBoundingClientRect();
+    var sx=cv.width/rect.width, sy=cv.height/rect.height;
+    var cx=(ev.clientX-rect.left)*sx, cy=(ev.clientY-rect.top)*sy;
+    return {x:clampC(cx/cell-0.5,COLS-1), y:clampC(cy/cell-0.5,ROWS-1)};
+  }
+  cv.addEventListener("pointerdown",function(ev){
+    var c=cellAt(ev);
+    var dA=(c.x-A.x)*(c.x-A.x)+(c.y-A.y)*(c.y-A.y);
+    var dB=(c.x-B.x)*(c.x-B.x)+(c.y-B.y)*(c.y-B.y);
+    drag = dA<=dB ? A : B;
+    drag.x=c.x; drag.y=c.y; draw();
+    cv.setPointerCapture(ev.pointerId);
+  });
+  cv.addEventListener("pointermove",function(ev){
+    if(!drag) return;
+    var c=cellAt(ev); drag.x=c.x; drag.y=c.y; draw();
+  });
+  cv.addEventListener("pointerup",function(){ drag=null; });
+
+  function fromInputs(){
+    A.x=clampC(parseFloat(document.getElementById("x0").value)||0,COLS-1);
+    A.y=clampC(parseFloat(document.getElementById("y0").value)||0,ROWS-1);
+    B.x=clampC(parseFloat(document.getElementById("x1").value)||0,COLS-1);
+    B.y=clampC(parseFloat(document.getElementById("y1").value)||0,ROWS-1);
+    draw();
+  }
+  document.getElementById("go").onclick=fromInputs;
+  ["x0","y0","x1","y1"].forEach(function(id){
+    document.getElementById(id).addEventListener("keydown",function(e){ if(e.key==="Enter") fromInputs(); });
+  });
+  document.getElementById("dart").onclick=function(){
+    A.x=Math.floor(Math.random()*COLS); A.y=Math.floor(Math.random()*ROWS);
+    B.x=Math.floor(Math.random()*COLS); B.y=Math.floor(Math.random()*ROWS);
+    // avoid a degenerate zero-length line
+    if(A.x===B.x && A.y===B.y){ B.x=(B.x+5)%COLS; }
+    draw();
+  };
+  draw();
+})();
+</script>
+</body>
+</html>

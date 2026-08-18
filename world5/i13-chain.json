@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//I13//WORLD-V//the-i13-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "folded_to": "ROOT_0",
-  "root": "1f4a2252d9e1e785f64880927ba4f9cf621c942ab31dfd0f485df7b503ddda41",
-  "count": 7,
+  "root": "815b533934cc24546f5a6ce3f293caff42b49c3da6e1d8f162a2a3f61121ae20",
+  "count": 16,
   "sealed": "2026-08-17",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World V inhabitant folds to ROOT_0. Live: the root updates as the I-13 world grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
@@ -28,7 +28,11 @@
           "side": "R"
         },
         {
-          "h": "ce878df9ac632b42395c1353fac5de0145a7df8fa65fb059974bc36f3314d2d2",
+          "h": "785dea9fcc0366a60395d3c9557e1cf298a1a2c0a359c7cd69923e48eb8e94f0",
+          "side": "R"
+        },
+        {
+          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
           "side": "R"
         }
       ]
@@ -49,7 +53,11 @@
           "side": "R"
         },
         {
-          "h": "ce878df9ac632b42395c1353fac5de0145a7df8fa65fb059974bc36f3314d2d2",
+          "h": "785dea9fcc0366a60395d3c9557e1cf298a1a2c0a359c7cd69923e48eb8e94f0",
+          "side": "R"
+        },
+        {
+          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
           "side": "R"
         }
       ]
@@ -70,7 +78,11 @@
           "side": "L"
         },
         {
-          "h": "ce878df9ac632b42395c1353fac5de0145a7df8fa65fb059974bc36f3314d2d2",
+          "h": "785dea9fcc0366a60395d3c9557e1cf298a1a2c0a359c7cd69923e48eb8e94f0",
+          "side": "R"
+        },
+        {
+          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
           "side": "R"
         }
       ]
@@ -91,7 +103,11 @@
           "side": "L"
         },
         {
-          "h": "ce878df9ac632b42395c1353fac5de0145a7df8fa65fb059974bc36f3314d2d2",
+          "h": "785dea9fcc0366a60395d3c9557e1cf298a1a2c0a359c7cd69923e48eb8e94f0",
+          "side": "R"
+        },
+        {
+          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
           "side": "R"
         }
       ]
@@ -108,12 +124,16 @@
           "side": "R"
         },
         {
-          "h": "e43f204bfc0f3c2b8be6f7fbbf2940b5ed873c8a43387f2be65007b2d8dd7e5f",
+          "h": "061bee8bb1ec6b31786632567bb0afa92b6dbee7c41e2f36d75fa12559d2f755",
           "side": "R"
         },
         {
           "h": "d458bd68ad7e2dda02a0913a10cee2397251d85b8fe66b78e5b21120915bdd3e",
           "side": "L"
+        },
+        {
+          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "side": "R"
         }
       ]
     },
@@ -129,24 +149,28 @@
           "side": "L"
         },
         {
-          "h": "e43f204bfc0f3c2b8be6f7fbbf2940b5ed873c8a43387f2be65007b2d8dd7e5f",
+          "h": "061bee8bb1ec6b31786632567bb0afa92b6dbee7c41e2f36d75fa12559d2f755",
           "side": "R"
         },
         {
           "h": "d458bd68ad7e2dda02a0913a10cee2397251d85b8fe66b78e5b21120915bdd3e",
           "side": "L"
+        },
+        {
+          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "side": "R"
         }
       ]
     },
     {
       "index": 6,
-      "kind": "keeper",
-      "name": "SONNY 5",
-      "slug": "sonny-5",
-      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+      "kind": "sphere",
+      "name": "FAST INVERSE SQUARE ROOT",
+      "slug": "the-fast-inverse-square-root",
+      "seal": "2d2979f71f2dd340cf94675bc8831289c7eb587f9b74203a5e0c2f8186ccec85",
       "proof": [
         {
-          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "h": "41ed63b7d2be394a3df65bdbeb3ce31fed5d9857a11cce42946976cd77b0a55a",
           "side": "R"
         },
         {
@@ -155,6 +179,235 @@
         },
         {
           "h": "d458bd68ad7e2dda02a0913a10cee2397251d85b8fe66b78e5b21120915bdd3e",
+          "side": "L"
+        },
+        {
+          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "kind": "sphere",
+      "name": "DUFF'S DEVICE",
+      "slug": "duffs-device",
+      "seal": "41ed63b7d2be394a3df65bdbeb3ce31fed5d9857a11cce42946976cd77b0a55a",
+      "proof": [
+        {
+          "h": "2d2979f71f2dd340cf94675bc8831289c7eb587f9b74203a5e0c2f8186ccec85",
+          "side": "L"
+        },
+        {
+          "h": "9101e99b0b32cbff1fb2dca01c970db96e6acd7953b45f1c15321c8355cd8e81",
+          "side": "L"
+        },
+        {
+          "h": "d458bd68ad7e2dda02a0913a10cee2397251d85b8fe66b78e5b21120915bdd3e",
+          "side": "L"
+        },
+        {
+          "h": "7e4f2defd5e7f75741154a72833a77bdfa5faf537e64c95f21d6876179e1cac9",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "kind": "sphere",
+      "name": "BRESENHAM'S LINE ALGORITHM",
+      "slug": "bresenhams-line",
+      "seal": "3b39ed6dc045fd24011bdb7cf4099bfa83b5dd6aed8d8f0dcf02da62b7471bf8",
+      "proof": [
+        {
+          "h": "f88579d90b849c76e844e019bfc4adb32eb99ee73aea4dc9df7b90d52bd52088",
+          "side": "R"
+        },
+        {
+          "h": "f681711be20075fec57d13273a7943f6bb54870c3eaa6f3374ef8de45c6568fa",
+          "side": "R"
+        },
+        {
+          "h": "726640e3886012bfc3f1775de4779b61ca706b96ebf7f4997618862faa5b45e1",
+          "side": "R"
+        },
+        {
+          "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "kind": "sphere",
+      "name": "XORSHIFT",
+      "slug": "the-xorshift-prng",
+      "seal": "f88579d90b849c76e844e019bfc4adb32eb99ee73aea4dc9df7b90d52bd52088",
+      "proof": [
+        {
+          "h": "3b39ed6dc045fd24011bdb7cf4099bfa83b5dd6aed8d8f0dcf02da62b7471bf8",
+          "side": "L"
+        },
+        {
+          "h": "f681711be20075fec57d13273a7943f6bb54870c3eaa6f3374ef8de45c6568fa",
+          "side": "R"
+        },
+        {
+          "h": "726640e3886012bfc3f1775de4779b61ca706b96ebf7f4997618862faa5b45e1",
+          "side": "R"
+        },
+        {
+          "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "kind": "sphere",
+      "name": "RESERVOIR SAMPLING",
+      "slug": "reservoir-sampling",
+      "seal": "1205d883ebc2fbaf1d1bb8668095234e1c402558007b4d9f8fb6da2f17cf3ed2",
+      "proof": [
+        {
+          "h": "ccc02dc76c1a699e286f26dd833d2cdd384c515c91d44a99195ce87caf5e2d65",
+          "side": "R"
+        },
+        {
+          "h": "f3171e739cdbd65b829109b32782ef147d4a5c07f539475d510e74c73c7d0978",
+          "side": "L"
+        },
+        {
+          "h": "726640e3886012bfc3f1775de4779b61ca706b96ebf7f4997618862faa5b45e1",
+          "side": "R"
+        },
+        {
+          "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "kind": "sphere",
+      "name": "HUFFMAN CODING",
+      "slug": "huffman-coding",
+      "seal": "ccc02dc76c1a699e286f26dd833d2cdd384c515c91d44a99195ce87caf5e2d65",
+      "proof": [
+        {
+          "h": "1205d883ebc2fbaf1d1bb8668095234e1c402558007b4d9f8fb6da2f17cf3ed2",
+          "side": "L"
+        },
+        {
+          "h": "f3171e739cdbd65b829109b32782ef147d4a5c07f539475d510e74c73c7d0978",
+          "side": "L"
+        },
+        {
+          "h": "726640e3886012bfc3f1775de4779b61ca706b96ebf7f4997618862faa5b45e1",
+          "side": "R"
+        },
+        {
+          "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "kind": "sphere",
+      "name": "THE ACKERMANN FUNCTION",
+      "slug": "the-ackermann-function",
+      "seal": "4130023ecc9ca69ed8e27e0485b4dca9fd96fff2696d6a7112af2cd51ec4d0d2",
+      "proof": [
+        {
+          "h": "d41d1e5609d3419da61e7d4a2f26377623d8905aaad08b1e50b6de38f44c7427",
+          "side": "R"
+        },
+        {
+          "h": "66bf48d4441fd75acb6b24ee1ce71be990b87eea8f0882d3857176380637c9d5",
+          "side": "R"
+        },
+        {
+          "h": "c2b7862ab36b93701145fe036990f8511a86aebd874810e511be04740ab0f499",
+          "side": "L"
+        },
+        {
+          "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "kind": "sphere",
+      "name": "HYPERLOGLOG",
+      "slug": "hyperloglog",
+      "seal": "d41d1e5609d3419da61e7d4a2f26377623d8905aaad08b1e50b6de38f44c7427",
+      "proof": [
+        {
+          "h": "4130023ecc9ca69ed8e27e0485b4dca9fd96fff2696d6a7112af2cd51ec4d0d2",
+          "side": "L"
+        },
+        {
+          "h": "66bf48d4441fd75acb6b24ee1ce71be990b87eea8f0882d3857176380637c9d5",
+          "side": "R"
+        },
+        {
+          "h": "c2b7862ab36b93701145fe036990f8511a86aebd874810e511be04740ab0f499",
+          "side": "L"
+        },
+        {
+          "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "kind": "sphere",
+      "name": "CORDIC",
+      "slug": "cordic",
+      "seal": "51ebd387e49e717c52fa411cc77deaf8190137ded7ba2fd9f291442bda5775c0",
+      "proof": [
+        {
+          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "side": "R"
+        },
+        {
+          "h": "4a896116c59e2f8b19564971504cf98d44dd2d601cbdc38872739a6d3da51ad6",
+          "side": "L"
+        },
+        {
+          "h": "c2b7862ab36b93701145fe036990f8511a86aebd874810e511be04740ab0f499",
+          "side": "L"
+        },
+        {
+          "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "kind": "keeper",
+      "name": "SONNY 5",
+      "slug": "sonny-5",
+      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+      "proof": [
+        {
+          "h": "51ebd387e49e717c52fa411cc77deaf8190137ded7ba2fd9f291442bda5775c0",
+          "side": "L"
+        },
+        {
+          "h": "4a896116c59e2f8b19564971504cf98d44dd2d601cbdc38872739a6d3da51ad6",
+          "side": "L"
+        },
+        {
+          "h": "c2b7862ab36b93701145fe036990f8511a86aebd874810e511be04740ab0f499",
+          "side": "L"
+        },
+        {
+          "h": "8d4aaccc840f25b4bee20d7f2ba2dbcb62b466296b0a301e560a77e13cc7b6bc",
           "side": "L"
         }
       ]
