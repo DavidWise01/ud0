@@ -1134,6 +1134,74 @@
       "url": "https://davidwise01.github.io/ud0/world5/the-spot-awareness-log.html",
       "blurb": "I-13 learns to watch itself. At David's request, the canonical compiler now writes i13log.txt -- a spot-awareness log whose shape IS the program's natural hierarchy: I (uppercase) is a dominant scope, a frame, on the outside that contains; i (lowercase) is a subordinate spot, one instruction, on the inside, what falls out of I just by executing. Indent is containment (outside shallow, inside deep); a call opens a new I one level deeper; the running stack height on each i line is the balance invariant, watched live as it is held spot to spot. A new i13 log command on the canonical H1.1 compiler (src/compiler/spotlog.rs) rides the same read-only observer as trace, so it cannot alter execution, only witness it. Verified on straight-line, call, and deeply recursive programs (fac(3,1)=6 nests I/i to depth 3, 40 spots aware, balance held to the last spot); all 45 compiler tests pass. The language did not change; I-13 only learned to say where it is.",
       "seal": "5df073c2475b363a5c1dd1cb79da8c16e0d75ecf8086d416f046ebccd9ebbb59"
+    },
+    {
+      "slug": "the-flood-fill",
+      "title": "THE FLOOD FILL",
+      "dartno": "058",
+      "version": "v0.12",
+      "credit": "No confirmed inventor: Shoup's SuperPaint auto-fill (~mid-1970s) is the earliest guess; Lieberman published an area fill (1978); Alvy Ray Smith's 1979 'tint fill' is a refinement, not the invention; Heckbert's scanline seed fill (1990) is canonical",
+      "source": "Shoup SuperPaint ~1973-76 (Xerox PARC); Lieberman SIGGRAPH 1978; Smith 'Tint Fill' SIGGRAPH 1979 (NYIT); Heckbert Graphics Gems 1990; the online history blurb is Glassner's 2001 IEEE column",
+      "i13_recommend": "the recursive fill is recursion + an indexed array, a no-wall (a 1-D flood runs: out[0]=9, out[3]=0, filling the contiguous run and stopping at the boundary). The real 2-D flood keeps a stack/queue of coordinate PAIRS, and the scanline form pushes span 4-tuples: that is the array-of-pairs the box began naming with FFT and Pascal (a PS-014 relative). The naive recursive form also overflows a real call stack on big regions, where I-13's 4096-frame ceiling (E0503) would fire - the honest boundary the language declares",
+      "blurb": "Click a region and it fills: flood fill spreads a colour outward through every same-coloured neighbour until it hits a different colour - the paint-bucket tool, and literally the same traversal as BFS/DFS on a grid and as single-component connected-component labelling. It has NO confirmed inventor: Dick Shoup's SuperPaint at Xerox PARC (~mid-1970s, the first frame-buffer paint system) had an auto-fill that is the leading guess for the earliest fill routine; Henry Lieberman published an area fill in 1978, before Alvy Ray Smith's 1979 'tint fill' - which is an anti-aliased soft fill (it keeps a pixel's value while retinting, an ancestor of alpha compositing), a refinement and NOT the invention it is often credited as; Paul Heckbert's 1990 span-stack scanline seed fill is the version most code silently copies. (The famous online 'history of flood fill' blurb is Andrew Glassner's 2001 column, not Smith's paper.) In real I-13 the recursion + array runs (a 1-D flood fills the run and stops at the boundary, verified out[0]=9, out[3]=0); the real 2-D frontier keeps a stack of coordinate pairs - the array-of-pairs the suggestion box has begun to name - and a naive recursive fill would hit the 4096-frame ceiling on a big region.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 058 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-flood-fill.html",
+      "seal": "41d9f858efc91608f3501be554f44cec755a45d0ff7b62742d55f461343f8ee3"
+    },
+    {
+      "slug": "the-fast-fourier-transform",
+      "title": "THE FAST FOURIER TRANSFORM",
+      "dartno": "059",
+      "version": "v0.12",
+      "credit": "Named for Cooley & Tukey (1965) - but Gauss had it in 1805, before Fourier's own 1822 transform; independently rediscovered a dozen times (Runge 1903, Danielson-Lanczos 1942). Stigler's law",
+      "source": "Cooley & Tukey, Math. Comp. 19:297-301, 1965; Gauss 1805 (unpublished Latin, printed 1866); Runge 1903; Danielson & Lanczos 1942; full history by Heideman, Johnson & Burrus 1984",
+      "i13_recommend": "the FFT presses TWO box frontiers. Its data is an array of COMPLEX, and I-13 arrays hold f64, so complex must be an array-of-pairs (or two parallel real arrays, which works today) - a PS-014 relative. And each butterfly takes two complex in and gives two complex out: a MULTIPLE-RETURN, the last withheld frontier (now named by darts 045, 048, 052, 055, and here). The butterfly's complex multiply runs on f64 pairs (verified cr=-5, ci=10 for (3+4i)(1+2i), like Mandelbrot-019); twiddle factors are cos/sin from the stdlib. Expressible today with two parallel arrays; a complex/pair value + multiple-return would make it read like the textbook",
+      "blurb": "Any signal is a sum of pure waves, and the Fourier transform finds which; done naively it costs N^2 steps, but the FFT splits the problem in half again and again to do it in N log N - for a million samples, a ~50,000-fold reduction, a speedup so large it made whole fields possible (Gilbert Strang calls it the most important numerical algorithm of our lifetime). The name is the textbook case of Stigler's law: James Cooley and John Tukey published the general form in 1965 (Tukey supplied the insight, Cooley wrote the code, Richard Garwin was the catalyst, and its rediscovery was driven by the Cold-War need to detect Soviet nuclear tests from seismometer data), but Carl Friedrich Gauss had the algorithm in 1805 - before Fourier even published the transform in 1822 - buried in unpublished Latin notes printed only in 1866, and it was rediscovered by Runge (1903) and Danielson-Lanczos (1942, the butterfly by hand for X-ray crystallography) in between. In real I-13 a complex number is two reals (as Mandelbrot-019 showed), so a butterfly's complex multiply runs (verified (3+4i)(1+2i) = -5+10i); the FFT presses two frontiers at once - complex data wants an array-of-pairs, and the butterfly's two-in-two-out is a multiple-return - with twiddles from the stdlib trig.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 059 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-fast-fourier-transform.html",
+      "seal": "6434f160231071b243578a2b8514255450dd8b2d98ef809b949d73ac4d1cf238"
+    },
+    {
+      "slug": "the-de-bruijn-sequence",
+      "title": "THE DE BRUIJN SEQUENCE",
+      "dartno": "060",
+      "version": "v0.12",
+      "credit": "Named for Nicolaas de Bruijn (1946) - but Camille Flye Sainte-Marie proved the binary case in 1894 (52 years earlier), and the count was Posthumus's 1944 conjecture; de Bruijn himself acknowledged the priority in 1975. Bit-scan: Leiserson, Prokop & Randall (MIT, 1998)",
+      "source": "Flye Sainte-Marie 1894; Posthumus 1944; de Bruijn 1946 & van Aardenne-Ehrenfest-de Bruijn 1951; Pingala's gana system c.600-200 BCE (the mnemonic itself is medieval, NOT Pingala or Panini); Leiserson-Prokop-Randall 1998",
+      "i13_recommend": "a real, subtle wall. The bit-scan's first step - isolate the lowest set bit with v & -v (two's complement) - runs in real I-13 on the integrated bitwise ops (verified low=4 from 12, lw=16 from 80). But it finishes with a perfect-hash MULTIPLY by a magic constant then a shift, and that product (0x077CB531 * a power of two) reaches ~2^62, past f64's exact range (2^53), and relies on wrapping mod 2^32. I-13's * is f64 (no wraparound), so the magic multiply cannot be done exactly: it wants a fixed-width MODULAR multiply (or bignum). The sequence generation itself runs (a 1-D array + the bitwise ops) for small n; the distinct-sequence count is bignum past n=4",
+      "blurb": "A cyclic string of 0s and 1s in which every n-bit pattern appears exactly once as a sliding window - maximal overlap, zero waste - powering keypad-cracking, absolute position encoders, and a famously branch-free trick to find the lowest set bit of a word. The name is a 52-year misattribution: Nicolaas de Bruijn proved the binary count in 1946 and the object took his name, but Camille Flye Sainte-Marie had proved the binary existence and count in 1894, and even the formula de Bruijn proved was Cornelis Posthumus's 1944 conjecture (the general k-ary result came with van Aardenne-Ehrenfest in 1951); to his credit de Bruijn acknowledged Sainte-Marie's priority in 1975. There is an ancient thread - Pingala's gana system in Sanskrit prosody (c.600-200 BCE) - but the specific order-3 mnemonic is a medieval crystallization, NOT Pingala's own words and NOT Panini, so those popular claims are folklore. The branch-free bit-scan is Leiserson, Prokop & Randall (MIT, 1998). In real I-13 the low-bit isolate v & -v runs on the integrated bitwise ops (verified low=4), and small sequences generate on a 1-D array + bitwise; the famous magic-hash multiply is a genuine wall - the product overflows f64's exact range and needs a wrap-around 32-bit multiply the language does not yet have.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 060 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-de-bruijn-sequence.html",
+      "seal": "38f2c5cf88ac548db712a17112624f06d16b756b59c186faa2f656c18d55e7e1"
+    },
+    {
+      "slug": "the-boyer-moore-string-search",
+      "title": "THE BOYER-MOORE STRING SEARCH",
+      "dartno": "061",
+      "version": "v0.12",
+      "credit": "Robert Boyer & J Strother Moore (SRI, ~1975, published 1977) - 'J' is Moore's whole first name. 'Sublinear' is average-case; Galil (1979) made it worst-case linear, Rytter (1980) fixed the buggy good-suffix preprocessing, Horspool (1980) stripped it to the bad-character rule",
+      "source": "Boyer & Moore, 'A fast string searching algorithm', CACM 20(10):762-772, 1977 (SRI); Knuth-Morris-Pratt 1977; Galil 1979; Rytter 1980; Horspool 1980",
+      "i13_recommend": "nothing new for the search itself - the bad-character table is a bounded array indexed by character (the rightmost position of each symbol), the good-suffix table an integer array of length m+1, and the scan is indexed reads with single-character equality, all f64-representable and no bitwise/bignum (unlike the Bitap/Shift-Or cousin). The one awkward piece is the OUTPUT: the natural return is a list of match positions (or first-match / -1), so an array-return / multiple-return is the only frontier it touches - the same one the box already tracks",
+      "blurb": "To find a word in a page most methods crawl left to right; Boyer-Moore reads the PATTERN right-to-left and, on a mismatch, jumps the window forward - often past whole stretches of text it never looks at - so a longer pattern makes the search FASTER (the bad-character rule can skip up to the whole pattern length at once). Robert Boyer and J Strother Moore invented right-to-left skipping at SRI around 1975 and published it in 1977 ('J' is Moore's entire first name, not an abbreviation); it is equal joint credit with no priority dispute. Two honest caveats: 'Boyer-Moore' names TWO different algorithms by the same pair - this 1977 search AND the 1981 majority vote (dart 016) - which are constantly confused; and 'sublinear' is the expected case, not the worst (the original is O(nm) when the pattern recurs; the pattern-absent linear bound was actually KMP's, Galil made it worst-case linear in 1979, and the good-suffix preprocessing printed in 1977 was buggy until Rytter fixed it in 1980; Horspool's 1980 bad-character-only variant is what most greps ship). In real I-13 the skip tables are bounded arrays of small integers and the scan is indexed reads plus character equality - a clean fit, no bitwise or bignum needed; the only awkward piece is that the natural output is a list of match positions, which wants the array-return / multiple-return frontier the box tracks (demo: 3 matches of MOORE in 15 alignments where a naive crawl would take 47).",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 061 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-boyer-moore-string-search.html",
+      "seal": "9d354aa6fe91df08fdccee7a95a37166a2ead6283b9b07578d10cb79166925d5"
     }
   ],
   "keepers": [
@@ -1144,13 +1212,13 @@
     }
   ],
   "counts": {
-    "spheres": 66,
+    "spheres": 70,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
-    "darts": 57
+    "darts": 61
   },
-  "i13_root": "ffbe8bdc4bb1b64c4219597b485a03dbf4c2728e63dce1178809f2cf8a2c4fd9",
+  "i13_root": "0db901881eb6ca48b57466d9dedb57d7df33bbd2856978a8b07c3b6467e94e7a",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE BOYER-MOORE STRING SEARCH &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.grid{display:grid;gap:1px;margin:10px 0;} .gc{aspect-ratio:1;border-radius:1px;cursor:pointer;}
+.seq{font-family:inherit;font-size:15px;letter-spacing:3px;color:var(--gold);word-break:break-all;margin:8px 0;}
+.win{display:inline-block;font-size:10px;color:#9fe8ff;border:1px solid var(--line);border-radius:3px;padding:1px 5px;margin:2px;}
+.win.dup{color:var(--bad);border-color:var(--bad);}
+.bm{font-family:inherit;font-size:14px;letter-spacing:2px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;}
+.bm .hit{color:var(--good);} .bm .cur{color:var(--orange);} .bm .dim{color:var(--dim);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 061 &middot; a helldive at the net</span></div>
+<header>
+  <h1>BOYER-MOORE <span class="c">read the pattern backwards, skip ahead</span></h1>
+  <p class="sub">To find a word in a page, most methods crawl left to right. Boyer-Moore reads the <b>pattern</b> right-to-left and, on a mismatch, <b>jumps the window forward</b> &mdash; often past whole stretches of text it never even looks at. A longer pattern makes it <b>faster</b>. Its skip tables are arrays, so it runs in I-13; its natural output is a <b>list of matches</b>.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">bad-character rule: jump on a mismatch</span></h2>
+  <p>Align the pattern; compare from its <b>right end</b> leftward. On a mismatch, look at the text character that failed: shift the pattern so its last occurrence of that character lines up (or past it entirely if absent). Watch the window leap. <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>pattern</label><input id="pat" value="MOORE"><button id="go" class="dartbtn">&#9192; search</button></div>
+  <div class="bm" id="bm"></div>
+  <div class="res" id="say"></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">two algorithms, one pair of names</span></h2>
+  <p class="myth">&ldquo;Boyer-Moore&rdquo; names <s>one</s> two different algorithms by the same pair &mdash; this 1977 search AND the 1981 majority vote (dart 016). <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>~1975 / 1977</b> &middot; <span class="who">Robert Boyer</span> &amp; <span class="who">J Strother Moore</span>, at SRI, invent right-to-left skipping and publish &ldquo;A fast string searching algorithm.&rdquo; Equal, joint credit &mdash; no priority dispute.<br>
+    <b>same year</b> &middot; <span class="who">Knuth, Morris &amp; Pratt</span> publish KMP (1977); it was KMP who first <b>proved the linear bound</b> for the pattern-absent case, not Boyer-Moore.<br>
+    <b>1979 / 1980</b> &middot; <span class="who">Galil</span> makes it <b>worst-case linear</b>; <span class="who">Rytter</span> fixes the good-suffix preprocessing, which was <b>buggy as printed</b> in 1977; <span class="who">Horspool</span> strips it to the bad-character rule alone &mdash; the variant most greps ship.<br>
+    <b>property</b> &middot; a <b>longer</b> pattern searches <b>faster</b> &mdash; the bad-character jump can skip up to the whole pattern length at once.
+  </div>
+  <p style="margin-top:10px">&ldquo;Sublinear&rdquo; is the expected case; the original is O(nm) worst-case when the pattern recurs. <span class="tag t-open">two Boyer-Moores</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">skip tables are arrays; matches want a list</span></h2>
+  <p>The bad-character rule is a lookup <b>array</b> indexed by character &mdash; the rightmost position of each symbol in the pattern. On the bounded array with checked indexing, that table and the scan run:</p>
+  <div class="evi good"># bad-character table (rightmost index in "MOORE"), then max-shift on a mismatch
+# M:0  O:2  R:3  E:4  (others: -1)  ->  skip = max(1, j - table[c])</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new for the search itself</b> &mdash; the skip tables are bounded arrays of small integers, the scan is indexed reads and single-character equality, all f64-representable. What is slightly awkward is the <b>output</b>: the natural return is a <b>list of match positions</b> (or first-match / &minus;1), so an <b>array-return / multiple-return</b> is the only piece that wants a frontier the box already tracks.<br>
+    <b>Note:</b> unlike the bitwise Bitap/Shift-Or cousin, classic Boyer-Moore needs <b>no bitwise and no bignum</b> &mdash; just the array. A clean fit, output aside.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var TEXT="THE MOORE THAT BOYER AND MOORE WROTE, MOORE OR LESS";
+  var patEl=document.getElementById("pat"), bmEl=document.getElementById("bm"), say=document.getElementById("say");
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function run(){
+    var P=(patEl.value||"MOORE").toUpperCase(), T=TEXT, m=P.length, n=T.length;
+    if(m===0||m>n){ say.textContent="pattern too long"; bmEl.textContent=""; return; }
+    var last={}; for(var i=0;i<m;i++) last[P[i]]=i;
+    var hits=[], aligns=0, s=0;
+    while(s<=n-m){ aligns++;
+      var j=m-1; while(j>=0 && P[j]===T[s+j]) j--;
+      if(j<0){ hits.push(s); s+=1; } else { var lo=(last[T[s+j]]===undefined)?-1:last[T[s+j]]; s+=Math.max(1, j-lo); }
+    }
+    // render: text with matches highlighted
+    var marks=new Array(n).fill(0); hits.forEach(function(h){ for(var i=0;i<m;i++) marks[h+i]=1; });
+    var html=""; for(var i=0;i<n;i++){ var ch=esc(T[i]===" "?"\u00b7":T[i]); html+= marks[i] ? '<span class="hit">'+ch+'</span>' : '<span class="dim">'+ch+'</span>'; }
+    bmEl.innerHTML=html;
+    say.innerHTML='found <span class="true">'+hits.length+'</span> match'+(hits.length===1?'':'es')+' of "'+esc(P)+'" in <span class="true">'+aligns+'</span> alignments (a left-to-right crawl would take '+(n-m+1)+')';
+  }
+  document.getElementById("go").onclick=run;
+  patEl.addEventListener("keydown",function(e){ if(e.key==="Enter") run(); });
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 061 &middot; THE BOYER-MOORE STRING SEARCH</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Robert Boyer &amp; J Strother Moore</b> (SRI, ~1975, published 1977) &mdash; &ldquo;J&rdquo; is Moore&rsquo;s whole first name. &ldquo;Sublinear&rdquo; is average-case; <b>Galil</b> (1979) made it worst-case linear. History via <a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_string-search_algorithm">Wikipedia: Boyer-Moore</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which now has a bounded array, arbitrary-precision integers, an integer square root over bignum, and an <b>i13 log</b> spot-awareness command. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

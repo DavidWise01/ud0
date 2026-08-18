@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FLOOD FILL &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.grid{display:grid;gap:1px;margin:10px 0;} .gc{aspect-ratio:1;border-radius:1px;cursor:pointer;}
+.seq{font-family:inherit;font-size:15px;letter-spacing:3px;color:var(--gold);word-break:break-all;margin:8px 0;}
+.win{display:inline-block;font-size:10px;color:#9fe8ff;border:1px solid var(--line);border-radius:3px;padding:1px 5px;margin:2px;}
+.win.dup{color:var(--bad);border-color:var(--bad);}
+.bm{font-family:inherit;font-size:14px;letter-spacing:2px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;}
+.bm .hit{color:var(--good);} .bm .cur{color:var(--orange);} .bm .dim{color:var(--dim);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 058 &middot; a helldive at the net</span></div>
+<header>
+  <h1>FLOOD FILL <span class="c">the paint bucket, and its missing father</span></h1>
+  <p class="sub">Click a region; it fills. Flood fill spreads a colour outward through every same-coloured neighbour until it hits a different colour &mdash; the paint-bucket tool, and the same traversal as BFS/DFS on a grid. Its recursion runs in I-13; its real frontier is a <b>stack of coordinate pairs</b>, which presses the array-of-pairs the box has begun to name.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">spread while the colour matches</span></h2>
+  <p>Read the seed&rsquo;s colour. Recolour it, then move to each neighbour (N,E,S,W &mdash; 4-connected) and do the same wherever the colour still matches. A stack gives a depth-first tendril, a queue a breadth-first ring &mdash; same region either way. <b>Click any cell</b> to flood its region. <span class="tag t-demo">live demo</span></p>
+  <div class="grid" id="grid" style="grid-template-columns:repeat(24,1fr)"></div>
+  <div class="row"><button id="new">new map</button><span id="say" class="res" style="margin:0">click a region to flood it</span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">a tool with no clear author</span></h2>
+  <p class="myth">Widely credited to Alvy Ray Smith &mdash; who wrote something <s>the same</s> adjacent (tint fill), not the plain paint bucket, which has <b>no confirmed first author</b>. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>~1973&ndash;76</b> &middot; <span class="who">Dick Shoup</span>&rsquo;s <b>SuperPaint</b> at Xerox PARC (the first frame-buffer paint system) has an auto-fill &mdash; the leading guess for the earliest fill routine, never cleanly credited as &ldquo;first.&rdquo;<br>
+    <b>1978</b> &middot; <span class="who">Henry Lieberman</span> (MIT) publishes an area fill (&ldquo;How to Color in a Coloring Book,&rdquo; SIGGRAPH) &mdash; <b>before</b> Smith&rsquo;s paper.<br>
+    <b>1979</b> &middot; <span class="who">Alvy Ray Smith</span> (NYIT) publishes <b>&ldquo;Tint Fill&rdquo;</b> &mdash; an anti-aliased soft fill that keeps a pixel&rsquo;s value while retinting, an ancestor of alpha compositing. A refinement, not the invention.<br>
+    <b>1990</b> &middot; <span class="who">Paul Heckbert</span>&rsquo;s <b>span-stack scanline seed fill</b> (Graphics Gems) is the version most &ldquo;scanline flood fill&rdquo; code silently copies.
+  </div>
+  <p style="margin-top:10px">The famous online &ldquo;history of flood fill&rdquo; blurb is actually <span class="who">Andrew Glassner</span>&rsquo;s 2001 column &mdash; not Smith&rsquo;s paper. <span class="tag t-open">no single father</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">recursion runs; the frontier wants pairs</span></h2>
+  <p>The recursive fill is recursion + an indexed array &mdash; both of which I-13 has. A 1-D flood runs on the real compiler (fill the contiguous run from a seed, stop at the boundary):</p>
+  <div class="evi good">$ i13 run flood.i13     # recurse while the cell equals the old colour
+out[0] = 9   out[2] = 9   out[3] = 0     # the run of 1s filled to 9, stopped at the 0</div>
+  <div class="rec">
+    <b>Recommend:</b> the recursion + array is a <b>no-wall</b>. The real 2-D flood, though, keeps an explicit <b>stack (or queue) of coordinate PAIRS</b> &mdash; and the efficient scanline form pushes <b>span records</b> (4-tuples). That is the <b>array-of-pairs</b> the suggestion box began naming with FFT and Pascal (a relative of <b>PS-014</b>): a bounded array whose elements are small tuples, not scalars. The naive recursive form also overflows a real call stack on big regions &mdash; where I-13&rsquo;s <b>4096-frame ceiling</b> (E0503) would fire, exactly the honest boundary the language declares.<br>
+    <b>Note:</b> flood fill <i>is</i> BFS/DFS on a grid and <i>is</i> single-component connected-component labelling &mdash; three names, one traversal.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var W=24,H=13, gridEl=document.getElementById("grid"), say=document.getElementById("say");
+  var pal=["#12233b","#1b3a5b","#2a5b6e","#3a6e52","#6e5b2a","#6e3a3a","#4a2a6e"];
+  var cell=[];
+  function build(){
+    // Voronoi-ish contiguous regions from a few random centres
+    var C=5+Math.floor(Math.random()*3), cx=[],cy=[],cc=[];
+    for(var i=0;i<C;i++){ cx.push(Math.random()*W); cy.push(Math.random()*H); cc.push(i%pal.length); }
+    cell=[];
+    for(var y=0;y<H;y++) for(var x=0;x<W;x++){
+      var bi=0,bd=1e9; for(var i=0;i<C;i++){ var dx=x-cx[i],dy=y-cy[i],d=dx*dx+dy*dy; if(d<bd){bd=d;bi=i;} }
+      cell.push(cc[bi]);
+    }
+    draw(); say.innerHTML="click a region to flood it";
+  }
+  function draw(){
+    gridEl.innerHTML="";
+    for(var i=0;i<W*H;i++){ var c=document.createElement("div"); c.className="gc";
+      c.style.background = cell[i]<0 ? "#59ffb0" : pal[cell[i]]; c.dataset.i=i; gridEl.appendChild(c); }
+  }
+  function flood(seed){
+    var old=cell[seed]; if(old<0) return;
+    var stack=[seed], n=0;
+    while(stack.length){ var p=stack.pop(); if(cell[p]!==old) continue; cell[p]=-1; n++;
+      var x=p%W,y=(p/W)|0;
+      if(x>0) stack.push(p-1); if(x<W-1) stack.push(p+1);
+      if(y>0) stack.push(p-W); if(y<H-1) stack.push(p+W);
+    }
+    draw();
+    say.innerHTML='flooded a region of <span class="true">'+n+'</span> cells (a stack of coordinate pairs, '+n+' pushes)';
+  }
+  gridEl.addEventListener("click", function(ev){ var t=ev.target; if(t.dataset && t.dataset.i!==undefined) flood(+t.dataset.i); });
+  document.getElementById("new").onclick=build;
+  build();
+})();
+
+</script>
+
+<footer>
+  <b>DART 058 &middot; THE FLOOD FILL</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>No confirmed inventor</b>: Shoup&rsquo;s SuperPaint auto-fill (~mid-1970s) is the earliest guess, Lieberman published an area fill (1978), and <b>Alvy Ray Smith&rsquo;s 1979 &ldquo;tint fill&rdquo; is a refinement, not the invention</b>; Heckbert&rsquo;s scanline seed fill (1990) is canonical. History via <a href="https://en.wikipedia.org/wiki/Flood_fill">Wikipedia: Flood fill</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which now has a bounded array, arbitrary-precision integers, an integer square root over bignum, and an <b>i13 log</b> spot-awareness command. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

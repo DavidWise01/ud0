@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FAST FOURIER TRANSFORM &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.grid{display:grid;gap:1px;margin:10px 0;} .gc{aspect-ratio:1;border-radius:1px;cursor:pointer;}
+.seq{font-family:inherit;font-size:15px;letter-spacing:3px;color:var(--gold);word-break:break-all;margin:8px 0;}
+.win{display:inline-block;font-size:10px;color:#9fe8ff;border:1px solid var(--line);border-radius:3px;padding:1px 5px;margin:2px;}
+.win.dup{color:var(--bad);border-color:var(--bad);}
+.bm{font-family:inherit;font-size:14px;letter-spacing:2px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;}
+.bm .hit{color:var(--good);} .bm .cur{color:var(--orange);} .bm .dim{color:var(--dim);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 059 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE FFT <span class="c">Gauss had it in 1805</span></h1>
+  <p class="sub">Any signal is a sum of pure waves; the Fourier transform finds which. Done naively it costs <b>N&sup2;</b> steps; the FFT does it in <b>N log N</b> by splitting the problem in half again and again &mdash; a speedup so large it made whole fields possible. Its data is <b>complex</b> (two reals), and its butterfly hands back <b>two outputs at once</b> &mdash; pressing the array-of-pairs and multiple-return the box lists.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">split in half, combine with a twiddle</span></h2>
+  <p>Split the samples into evens and odds, transform each half, then combine with a <b>twiddle factor</b> (a point on the unit circle). Recurse, and N&sup2; collapses to N log N. Below: a signal built from a few pure frequencies, and its <b>spectrum</b> &mdash; the peaks name the frequencies. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="240"></canvas>
+  <div class="row"><button id="go" class="dartbtn">&#9192; new signal</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the textbook case of Stigler&rsquo;s law</span></h2>
+  <p class="myth">&ldquo;Cooley-Tukey, 1965&rdquo; &mdash; the algorithm was independently invented at least a <s>couple</s> dozen times before them, first by Gauss. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1805</b> &middot; <span class="who">Carl Friedrich Gauss</span> writes the fast method in unpublished Latin notes &mdash; <b>before Fourier published the transform</b> (1822). Printed only in 1866, it was invisible to the field.<br>
+    <b>1903 / 1942</b> &middot; <span class="who">Runge</span>, then <span class="who">Danielson &amp; Lanczos</span> (for X-ray crystallography) derive the doubling/butterfly by hand &mdash; a near-miss on a Nobel-scale idea, 23 years early.<br>
+    <b>1965</b> &middot; <span class="who">James Cooley</span> (IBM) &amp; <span class="who">John Tukey</span> (Princeton) publish the general form &mdash; at the exact moment digital computers made it transformative. <span class="who">Richard Garwin</span> was the catalyst; Tukey supplied the insight, Cooley wrote the code.<br>
+    <b>1984</b> &middot; <span class="who">Heideman, Johnson &amp; Burrus</span> assemble the full multiple-discovery history and restore Gauss.
+  </div>
+  <p style="margin-top:10px">Its modern rediscovery was driven by the Cold-War need to detect Soviet nuclear tests from seismometer data &mdash; corroborated, not folklore. <span class="tag t-open">Gauss, 1805</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">complex data, two-output butterflies</span></h2>
+  <p>A complex number is <b>two reals</b> (as Mandelbrot-019 already showed), so the butterfly&rsquo;s complex multiply runs in real I-13 &mdash; e.g. (3+4i)(1+2i):</p>
+  <div class="evi good">$ i13 run cmul.i13     # one butterfly's complex multiply, on f64 pairs
+cr = -5   ci = 10     # (3+4i)(1+2i) = -5 + 10i</div>
+  <div class="rec">
+    <b>Recommend:</b> the FFT presses <b>two</b> box frontiers at once. Its data is an <b>array of complex</b> &mdash; and I-13 arrays hold f64, so complex must be an <b>array-of-pairs</b> (or two parallel real arrays, which works today). And each <b>butterfly takes two complex in, gives two complex out</b> &mdash; a <b>multiple-return</b>, the last withheld frontier (now named by darts 045, 048, 052, 055, and here). Twiddle factors are cos/sin from the stdlib.<br>
+    <b>Runs today:</b> with two parallel f64 arrays and each butterfly writing its two outputs separately, the transform is expressible now; a complex/pair value and multiple-return would make it read like the textbook.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var N=64;
+  function dft(re){ var mag=[]; for(var k=0;k<N/2;k++){ var rr=0,ii=0; for(var t=0;t<N;t++){ var a=-2*Math.PI*k*t/N; rr+=re[t]*Math.cos(a); ii+=re[t]*Math.sin(a);} mag.push(Math.sqrt(rr*rr+ii*ii)); } return mag; }
+  function run(){
+    var freqs=[], nf=2+Math.floor(Math.random()*2);
+    for(var i=0;i<nf;i++) freqs.push(1+Math.floor(Math.random()*(N/2-2)));
+    var re=[]; for(var t=0;t<N;t++){ var s=0; for(var f=0;f<nf;f++) s+=Math.sin(2*Math.PI*freqs[f]*t/N)/nf; re.push(s); }
+    var mag=dft(re), mx=Math.max.apply(null,mag)||1;
+    ctx.clearRect(0,0,cv.width,cv.height);
+    // waveform (top half)
+    ctx.strokeStyle="rgba(62,240,255,.8)"; ctx.beginPath();
+    for(var t=0;t<N;t++){ var x=t/(N-1)*cv.width, y=60 - re[t]*45; if(t===0)ctx.moveTo(x,y); else ctx.lineTo(x,y); } ctx.stroke();
+    ctx.fillStyle="rgba(111,139,168,.9)"; ctx.font="11px monospace"; ctx.fillText("signal (time)",8,16); ctx.fillText("spectrum (frequency)",8,140);
+    // spectrum bars (bottom)
+    var bw=cv.width/(N/2);
+    for(var k=0;k<N/2;k++){ var h=mag[k]/mx*90, peak=mag[k]>mx*0.5;
+      ctx.fillStyle= peak ? "rgba(255,138,61,.95)" : "rgba(62,240,255,.35)";
+      ctx.fillRect(k*bw+1, 230-h, bw-2, h);
+    }
+    say.innerHTML='frequencies <span class="true">'+freqs.sort(function(a,b){return a-b;}).join(", ")+'</span> &middot; the spectrum peaks name them';
+  }
+  document.getElementById("go").onclick=run;
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 059 &middot; THE FAST FOURIER TRANSFORM</b> &mdash; World V &middot; SONNY 5, the I-13 world. Named for <b>Cooley &amp; Tukey (1965)</b> &mdash; but <b>Gauss had it in 1805</b>, before Fourier&rsquo;s own 1822 transform; rediscovered a dozen times (Runge 1903, Danielson&ndash;Lanczos 1942). History via <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Wikipedia: FFT</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which now has a bounded array, arbitrary-precision integers, an integer square root over bignum, and an <b>i13 log</b> spot-awareness command. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
