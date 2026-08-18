@@ -82,6 +82,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
     <tr><td><span class="fn">rng (xorshift32)</span></td><td>Marsaglia</td><td>^ &lt;&lt; &gt;&gt; &amp;</td><td><span class="val">xs32(1) = 270369, 67634689</span></td><td class="darts">004 &middot; 030</td></tr>
     <tr><td><span class="fn">gcd(a,b)</span></td><td>Euclid (remainder)</td><td>%</td><td><span class="val">gcd(1071,462) = 21</span></td><td class="darts">027</td></tr>
     <tr><td><span class="fn">modexp(b,e,m)</span></td><td>square &amp; multiply</td><td>* %</td><td><span class="val">modexp(2,10,1000) = 24</span></td><td class="darts">032</td></tr>
+    <tr><td><span class="fn">big(x)</span></td><td>arbitrary precision</td><td>+ &minus; * / %</td><td><span class="val">100! exact; 2&#8310;&#8308;&minus;1 = 18446744073709551615</span></td><td class="darts">032 &middot; 035 &middot; 041 &middot; 047</td></tr>
   </table>
 </div>
 
@@ -114,10 +115,11 @@ r1 = 270369         # xorshift32 -- impossible before bitwise</div>
 
 <!-- THE LINE NOT CROSSED -->
 <div class="panel">
-  <h2>THE AUTHOR&rsquo;S CALLS <span class="n">one held, one crossed</span></h2>
-  <p>Some recommendations are not additions on top of the 13 symbols &mdash; they change what I-13 <i>is</i>, so they are the author&rsquo;s call to make on the record, not a library function to slip in. Two reached that line:</p>
-  <div class="wall"><b>arbitrary-precision integers</b> &mdash; darts <b>032, 035, 036, 041</b> all land here: exact arithmetic past f64&rsquo;s <b>2&#8309;&#179;</b> ceiling. A new value kind, not a function &mdash; <b>still withheld</b>.</div>
-  <div class="wall" style="border-left-color:var(--good)"><b>a bounded array &mdash; DECIDED &amp; ADDED</b> (2026-08-17). The recurring &ldquo;aggregate wall&rdquo; (darts 017/018/021/028) was the author&rsquo;s other call &mdash; made <b style="color:var(--good)">yes</b>. I-13 now has a <b>bounded, checked, value-semantics array</b> (three new opcodes, ISA 15&rarr;18; <span class="kg">spec/ARRAY.md</span>), and the <b>Sieve of Eratosthenes runs in real I-13</b> &mdash; 8 primes below 20. The first non-scalar I-13 value.</div>
+  <h2>THE AUTHOR&rsquo;S CALLS <span class="n">two crossed, one held</span></h2>
+  <p>Some recommendations are not additions on top of the 13 symbols &mdash; they change what an I-13 <i>value</i> is, so they are the author&rsquo;s call to make on the record, not a library function to slip in. Three reached that line; two are now built:</p>
+  <div class="wall" style="border-left-color:var(--good)"><b>a bounded array &mdash; DECIDED &amp; ADDED</b> (2026-08-17). The &ldquo;aggregate wall&rdquo; (darts 017/018/021/028) &mdash; made <b style="color:var(--good)">yes</b>: a <b>bounded, checked, value-semantics array</b> (ISA 15&rarr;18; <span class="kg">spec/ARRAY.md</span>). The <b>Sieve of Eratosthenes runs in real I-13</b>. The first non-scalar I-13 value.</div>
+  <div class="wall" style="border-left-color:var(--good)"><b>arbitrary-precision integers &mdash; DECIDED &amp; ADDED</b> (2026-08-17). Darts <b>032, 035, 041, 047</b> all land here: exact arithmetic past f64&rsquo;s <b>2&#8309;&#179;</b> ceiling &mdash; made <b style="color:var(--good)">yes</b>: a self-contained BigInt via the <span class="k">big()</span> intrinsic (ISA 18&rarr;19; <span class="kg">spec/BIGNUM.md</span>). <b>100! and 2&#8310;&#8308;&minus;1 are now exact</b> in real I-13. The second value-model expansion.</div>
+  <div class="wall"><b>multiple return</b> &mdash; a way to hand back a <b>pair / tuple</b>. Darts <b>045 (quicksort)</b> and <b>048 (union-find)</b> both land here: quicksort&rsquo;s partition and union-find&rsquo;s path compression each want a function to return two values at once (array <i>and</i> index), and an I-13 function returns one. <b>Still withheld</b> &mdash; the last named frontier.</div>
   <p style="margin-top:9px">Recorded, not smuggled &mdash; and when the author decides <b>yes</b>, it is built and proven (130 tests still green). A minimal language grows most honestly by refusing, and accepting, <b>on the record</b>.</p>
 </div>
 

@@ -692,8 +692,8 @@
       "source": "std/*.i13 on DavidWise01/I13-H1.1",
       "i13_recommend": "(this IS the integration of the recommends)",
       "url": "https://davidwise01.github.io/ud0/world5/the-standard-library.html",
-      "seal": "3806b0afd6c37cf5c1bcda33ad549d6f5eca607f80e39a6cf74e0be0b5b73f1f",
-      "blurb": "The place where the dart campaign's I-13 recommendations that are ADDITIONS ON TOP of the 13 counted symbols (not changes to them) actually land in the language. A standard library written IN I-13, verified on the canonical compiler: sqrt by Newton (dart 026), exp/sin/cos/ln by bounded Taylor (darts 009/031/033), a seeded PRNG as MINSTD LCG (darts 004/030) and Marsaglia xorshift32, gcd and modexp via the merged % (darts 027/032). Plus the one interpreter change of the batch: bitwise operators & | ^ << >> added as new BinOp discriminants (the % pattern, zero new alphabet symbols) for darts 001 and 029 - the full 130-test suite still passes. The bounded array/aggregate - long the 'aggregate wall' behind darts 017/018/021/028 - was DECIDED and ADDED by the author on 2026-08-17 (a real interpreter change: three new opcodes MakeArray/Index/ArraySet, ISA 15->18, a bounded checked value-semantics array, spec/ARRAY.md); the Sieve of Eratosthenes now runs in real I-13 (8 primes below 20, verified), the 130-test suite still green. The one remaining withheld recommend is arbitrary-precision integers (bignum, darts 032/035/036/041). The loop closes: measure the wall, recommend, integrate, clear it."
+      "seal": "8b2c4312062303fe5b038f513f9a63d7a1cf2a213f71c201178d6fc16f4c24e6",
+      "blurb": "The place where the dart campaign's I-13 recommendations that are ADDITIONS ON TOP of the 13 counted symbols (not changes to them) actually land in the language. A standard library written IN I-13, verified on the canonical compiler: sqrt by Newton (dart 026), exp/sin/cos/ln by bounded Taylor (darts 009/031/033), a seeded PRNG as MINSTD LCG (darts 004/030) and Marsaglia xorshift32, gcd and modexp via the merged % (darts 027/032). Plus the one interpreter change of the batch: bitwise operators & | ^ << >> added as new BinOp discriminants (the % pattern, zero new alphabet symbols) for darts 001 and 029 - the full 130-test suite still passes. The bounded array/aggregate - long the 'aggregate wall' behind darts 017/018/021/028 - was DECIDED and ADDED by the author on 2026-08-17 (a real interpreter change: three new opcodes MakeArray/Index/ArraySet, ISA 15->18, a bounded checked value-semantics array, spec/ARRAY.md); the Sieve of Eratosthenes now runs in real I-13 (8 primes below 20, verified), the 130-test suite still green. Arbitrary-precision integers (bignum) were ALSO decided and added 2026-08-17 (the big() intrinsic + a self-contained BigInt, ISA 18->19, spec/BIGNUM.md); 100! and 2^64-1 are now exact in real I-13. Two value-model expansions, both the author's calls. The one remaining converged recommend is MULTIPLE RETURN (a tuple/pair), named by darts 045 (quicksort) and 048 (union-find). The loop closes: measure the wall, recommend, integrate, clear it."
     },
     {
       "slug": "the-logistic-chaos",
@@ -998,7 +998,7 @@
     "keepers": 1,
     "darts": 49
   },
-  "i13_root": "6273a6588eb307cf59bb30792b7103b5373c8e9f177a0753aff3ea4317977757",
+  "i13_root": "79594a51c4a9fe84b31fb459410dd490ca35a4774ab13b9d2096c46318dffe62",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
