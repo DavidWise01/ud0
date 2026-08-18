@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Levenshtein Distance — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.res{font-size:15px;margin-top:12px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.ok{font-size:11.5px;color:var(--good);background:rgba(0,0,0,.35);border:1px solid rgba(89,255,176,.3);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+/* --- DP matrix viz --- */
+.mwrap{overflow-x:auto;margin:10px 0 4px;padding-bottom:4px;}
+table.lev{border-collapse:collapse;margin:0 auto;font-size:12px;}
+.lev td,.lev th{width:30px;height:30px;text-align:center;vertical-align:middle;border:1px solid rgba(62,240,255,.16);color:var(--dim);transition:background .12s,color .12s,box-shadow .12s;}
+.lev th{color:var(--gold);font-weight:700;text-shadow:0 0 8px rgba(217,180,90,.4);border-color:rgba(217,180,90,.22);}
+.lev th.corner{color:var(--dim);border-color:rgba(62,240,255,.16);}
+.lev td.eps{color:var(--dim);}
+.lev td.num{color:#9fe8ff;}
+.lev td.cur{background:rgba(255,138,61,.30);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.7) inset;}
+.lev td.path{background:rgba(62,240,255,.18);color:#eafcff;box-shadow:0 0 10px rgba(62,240,255,.5) inset;text-shadow:0 0 8px var(--cyan);}
+.lev td.endcell{background:rgba(89,255,176,.22);color:#eafcff;box-shadow:0 0 12px rgba(89,255,176,.6) inset;}
+.legend{font-size:10.5px;color:var(--dim);text-align:center;letter-spacing:1px;margin-top:2px;}
+.legend b{color:var(--cyan);} .legend .p{color:var(--gold);}
+/* alignment */
+.align{display:flex;gap:3px;flex-wrap:wrap;justify-content:center;margin:12px 0 2px;}
+.col{display:flex;flex-direction:column;align-items:center;gap:2px;border:1px solid rgba(62,240,255,.14);border-radius:4px;padding:3px 4px;min-width:22px;background:rgba(0,0,0,.25);}
+.col span{font-size:13px;line-height:1.2;}
+.col .aa{color:var(--gold);} .col .bb{color:var(--cyan);}
+.col .op{font-size:9px;font-weight:700;letter-spacing:0;}
+.col.match .op{color:var(--good);} .col.match{border-color:rgba(89,255,176,.35);}
+.col.sub .op{color:var(--orange);} .col.sub{border-color:rgba(255,138,61,.4);background:rgba(255,138,61,.08);}
+.col.ins .op{color:var(--cyan);} .col.ins{border-color:rgba(62,240,255,.4);}
+.col.del .op{color:var(--bad);} .col.del{border-color:rgba(255,90,106,.4);}
+.opkey{font-size:10.5px;color:var(--dim);text-align:center;margin-top:6px;letter-spacing:1px;}
+.opkey .m{color:var(--good);} .opkey .s{color:var(--orange);} .opkey .i{color:var(--cyan);} .opkey .d{color:var(--bad);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 021 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>THE LEVENSHTEIN DISTANCE <span class="c">min edits, one matrix</span></h1>
+  <p class="sub">A dart into the net came back holding the little grid that every spell-checker, DNA aligner and <b>diff</b> tool secretly runs: the fewest single-character <b>insert / delete / substitute</b> moves to turn one string into another &mdash; found by filling a table where each cell is the best of its three neighbors. We show the <b>method live</b>, credit who <b>actually</b> built it, and stack it against two <b>I-13</b> walls. Three prongs, one dart.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">fill the grid &middot; walk the min path</span></h2>
+  <p>Cell <span class="k">d[i][j]</span> = cheapest way to edit the first <span class="k">i</span> letters of A into the first <span class="k">j</span> letters of B. It is the smallest of three moves from its neighbors: <span class="ko">delete</span> (cell above +1), <span class="k">insert</span> (cell left +1), or <span class="kg">match / substitute</span> (cell up-left, +0 if the letters agree else +1). The answer sits in the bottom-right corner; walk backward to recover the alignment. <span class="tag t-demo">live demo</span></p>
+  <div class="code">d[i][j] = min( d[i-1][j] + 1,            // delete A[i]
+               d[i][j-1] + 1,            // insert B[j]
+               d[i-1][j-1] + (A[i]==B[j] ? 0 : 1) )   // match / sub</div>
+  <div class="row">
+    <label style="color:var(--dim)">A =</label><input id="a" value="kitten" maxlength="14" spellcheck="false" autocomplete="off">
+    <label style="color:var(--dim)">B =</label><input id="b" value="sitting" maxlength="14" spellcheck="false" autocomplete="off">
+    <button id="go">fill the matrix</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+  </div>
+  <div class="mwrap"><table class="lev" id="mtx"></table></div>
+  <div class="legend">rows = <b>A</b> (down = <span style="color:var(--orange)">delete</span>) &middot; cols = <b>B</b> (right = <span style="color:var(--cyan)">insert</span>) &middot; diagonal = <span style="color:var(--gold)">match / sub</span> &middot; <span class="p">gold path</span> = one optimal edit script</div>
+  <div class="res" id="res"></div>
+  <div class="align" id="align"></div>
+  <div class="opkey" id="opkey"></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">The name honors one man, but the <b>metric</b> and the <b>algorithm that computes it</b> are two different inventions by different people &mdash; and the fast table method was <s>invented once</s> re-discovered independently at least four times, in coding theory, speech, and biology, within a decade. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1965</b> &middot; <span class="who">Vladimir I. Levenshtein</span> (Keldysh Institute, USSR) &mdash; <b>defines the metric</b> in a coding-theory paper on codes that correct deletions, insertions and reversals. Russian 1965; English translation <b>1966</b>. He defined <i>what</i> the distance is &mdash; not the efficient way to compute it.<br>
+    <b>1968</b> &middot; <span class="who">Taras K. Vintsyuk</span> &mdash; the same dynamic-programming alignment, independently, for <b>speech recognition</b>.<br>
+    <b>1970</b> &middot; <span class="who">Saul Needleman &amp; Christian Wunsch</span> &mdash; the same DP grid, independently, for <b>global sequence alignment</b> in molecular biology.<br>
+    <b>1974</b> &middot; <span class="who">Robert A. Wagner &amp; Michael J. Fischer</span> &mdash; &ldquo;The String-to-String Correction Problem&rdquo; (<i>Journal of the ACM</i>). This is the clean <b>O(mn)</b> table method taught today &mdash; the <i>how</i> behind Levenshtein&rsquo;s <i>what</i>.
+  </div>
+  <p style="margin-top:10px">The common miscredit: people say &ldquo;the Levenshtein <i>algorithm</i>&rdquo; as if Levenshtein handed us the matrix. He handed us the <b>definition</b>; the matrix is Wagner&ndash;Fischer&rsquo;s (and Vintsyuk&rsquo;s, and Needleman&ndash;Wunsch&rsquo;s). <b>Still open:</b> there is no single &ldquo;first&rdquo; inventor of the edit-distance DP &mdash; it is a textbook case of independent multiple discovery, so any single-name credit for the <i>algorithm</i> is a simplification. <span class="tag t-open">open</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">two walls, stacked</span></h2>
+  <p>This technique leans on two things I-13 does not have, so it stacks <b>two walls</b> at once. I proved both on the live compiler &mdash; measured, not asserted.</p>
+  <p><b>Wall 1 &mdash; there is no string or char.</b> <span class="k">Constant</span> is <span class="kg">f64</span> only; a string or char literal never even lexes:</p>
+  <div class="evi" id="evi1">$ i13 check str.i13     # I s &lt;- "cat"
+str.i13:1:8   E0001 unexpected character `"`
+$ i13 check char.i13    # I c &lt;- 'a'
+char.i13:1:8  E0001 unexpected character `'`   (exit 1)</div>
+  <p><b>Wall 2 &mdash; there is no aggregate / 2-D array.</b> The DP needs a matrix; I-13 has no array literal and no subscript &mdash; the <span class="k">[</span> and <span class="k">]</span> are not in the alphabet at all:</p>
+  <div class="evi" id="evi2">$ i13 check arr.i13     # I a &lt;- [1, 2, 3]
+arr.i13:1:8   E0001 unexpected character `[`
+$ i13 check idx.i13     # I v &lt;- a[1]
+idx.i13:2:9   E0001 unexpected character `[`   (exit 1)</div>
+  <p>What it <i>does</i> have &mdash; f64 arithmetic over declared scalars &mdash; runs clean, which is the whole point of the boundary:</p>
+  <div class="ok" id="evi3">$ i13 run ok.i13        # d &lt;- n - m ;  dd &lt;- d * d
+RUN OK &middot; 12 step(s) &middot; peak stack 2 &middot; call depth 0
+n = 7 &middot; m = 3 &middot; d = 4 &middot; dd = 16   (exit 0)</div>
+  <div class="rec">
+    <b>Recommend:</b> a <b>string/char type</b> and a real <b>array</b> (aggregate + subscript) would unlock this whole family &mdash; edit distance, diff, search, DNA alignment. But flag it honestly: <b>this is expensive, not a cheap add.</b> Unlike the bit-op darts (a new <span class="k">BinOp</span> discriminant costs <i>zero</i> new alphabet symbols), strings and arrays each demand a <b>new value kind</b> plus <b>new AST node kinds</b> &mdash; a string literal, an aggregate literal, and a subscript operator. The 13-symbol alphabet was <i>counted</i>, and the census deliberately excluded exactly these container/index nodes. So adding them is real alphabet growth against the counting identity.<br>
+    <b>Verdict (honest):</b> the string+array gap is most likely a <b>deliberate scope boundary</b>, not an oversight to patch. The cheapest in-scope path that keeps the alphabet fixed is the one <span class="kg">examples/core.i13</span> already uses on purpose &mdash; pass the values <b>explicitly as scalar parameters</b> rather than indexing an array (its own comment: &ldquo;No arrays/records are assumed&rdquo;). Keep I-13 numeric; let the host hold the strings.
+  </div>
+</div>
+
+<footer>
+  <b>DART 021 &middot; THE LEVENSHTEIN DISTANCE</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied. Metric defined by <b>Vladimir I. Levenshtein</b> (1965/66); the standard O(mn) dynamic-programming computation is <b>Wagner &amp; Fischer</b> (1974), independently anticipated by <b>Vintsyuk</b> (1968) and <b>Needleman &amp; Wunsch</b> (1970) &mdash; a multiple discovery, not a single author. History &amp; figures via <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Wikipedia: Levenshtein distance</a> and <a href="https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm">Wagner&ndash;Fischer algorithm</a>. The two incapacities above were measured on the live I-13 compiler (check/run). I-13 by <b>David Lee Wise / ROOT0</b>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var A=document.getElementById("a"), B=document.getElementById("b");
+  var mtx=document.getElementById("mtx"), res=document.getElementById("res");
+  var alignEl=document.getElementById("align"), opkey=document.getElementById("opkey");
+  var token=0;
+
+  function esc(c){ return c===" " ? "·" : c; }
+
+  // full DP table
+  function build(a,b){
+    var m=a.length,n=b.length,d=[],i,j;
+    for(i=0;i<=m;i++){ d[i]=[]; d[i][0]=i; }
+    for(j=0;j<=n;j++){ d[0][j]=j; }
+    for(i=1;i<=m;i++) for(j=1;j<=n;j++){
+      var cost=a[i-1]===b[j-1]?0:1;
+      d[i][j]=Math.min(d[i-1][j]+1, d[i][j-1]+1, d[i-1][j-1]+cost);
+    }
+    return d;
+  }
+
+  // backtrace: diagonal-first, returns path cells + ops
+  function trace(a,b,d){
+    var i=a.length,j=b.length,path={},ops=[];
+    path[i+","+j]=1;
+    while(i>0||j>0){
+      if(i>0&&j>0){
+        var cost=a[i-1]===b[j-1]?0:1;
+        if(d[i][j]===d[i-1][j-1]+cost){
+          ops.unshift(cost===0?{t:"match",a:a[i-1],b:b[j-1]}:{t:"sub",a:a[i-1],b:b[j-1]});
+          i--;j--; path[i+","+j]=1; continue;
+        }
+      }
+      if(i>0 && d[i][j]===d[i-1][j]+1){ ops.unshift({t:"del",a:a[i-1],b:"-"}); i--; path[i+","+j]=1; continue; }
+      ops.unshift({t:"ins",a:"-",b:b[j-1]}); j--; path[i+","+j]=1;
+    }
+    return {path:path,ops:ops};
+  }
+
+  // render table skeleton; fillTo = number of body cells revealed (row-major over i>=1,j>=1)
+  function render(a,b,d,path,fillTo,curKey){
+    var m=a.length,n=b.length,html="",i,j;
+    // header row
+    html+="<tr><th class='corner'></th><th class='corner'>&#949;</th>";
+    for(j=0;j<n;j++) html+="<th>"+esc(b[j])+"</th>";
+    html+="</tr>";
+    var revealed=0;
+    for(i=0;i<=m;i++){
+      html+="<tr>";
+      html+="<th>"+(i===0?"&#949;":esc(a[i-1]))+"</th>";
+      for(j=0;j<=n;j++){
+        var seed=(i===0||j===0);
+        var show=seed;
+        if(!seed){ if(revealed<fillTo) show=true; revealed++; }
+        var key=i+","+j;
+        var cls="num";
+        if(seed) cls="eps";
+        if(show && path && path[key]) cls="path";
+        if(i===m && j===n && show && path && path[key]) cls="endcell";
+        if(key===curKey) cls="cur";
+        html+="<td class='"+cls+"'>"+(show? d[i][j] : "")+"</td>";
+      }
+      html+="</tr>";
+    }
+    mtx.innerHTML=html;
+  }
+
+  function showResult(a,b,d,tr){
+    var dist=d[a.length][b.length];
+    res.innerHTML="edit distance <span class='true'>"+dist+"</span> &nbsp;&mdash;&nbsp; turn <span class='kg'>"+(a||"ε")+"</span> into <span class='k'>"+(b||"ε")+"</span> in "+dist+" move"+(dist===1?"":"s")+".";
+    var cols="";
+    for(var k=0;k<tr.ops.length;k++){
+      var o=tr.ops[k], sym={match:"|",sub:"S",ins:"I",del:"D"}[o.t];
+      cols+="<div class='col "+o.t+"'>"+
+        "<span class='aa'>"+esc(o.a)+"</span>"+
+        "<span class='op'>"+sym+"</span>"+
+        "<span class='bb'>"+esc(o.b)+"</span></div>";
+    }
+    alignEl.innerHTML=cols;
+    opkey.innerHTML="<span class='m'>| match</span> &nbsp; <span class='s'>S substitute</span> &nbsp; <span class='i'>I insert</span> &nbsp; <span class='d'>D delete</span> &nbsp;&middot;&nbsp; top row = A, bottom = B";
+  }
+
+  // instant (no animation) — used while typing
+  function instant(){
+    var a=A.value, b=B.value, d=build(a,b), tr=trace(a,b,d);
+    render(a,b,d,tr.path,1e9,null);
+    showResult(a,b,d,tr);
+  }
+
+  // animated fill
+  function animate(){
+    var a=A.value, b=B.value, d=build(a,b), tr=trace(a,b,d);
+    var total=a.length*b.length, my=++token;
+    res.innerHTML="filling the matrix&hellip;"; alignEl.innerHTML=""; opkey.innerHTML="";
+    if(total===0){ instant(); return; }
+    var delay=Math.max(14, Math.min(70, Math.round(1100/total)));
+    var step=0;
+    // map linear step -> (i,j) in body, row-major
+    function tick(){
+      if(my!==token) return;              // superseded
+      step++;
+      if(step>total){
+        render(a,b,d,tr.path,1e9,null);
+        showResult(a,b,d,tr);
+        return;
+      }
+      var idx=step-1, i=Math.floor(idx/b.length)+1, j=(idx%b.length)+1;
+      render(a,b,d,null,step,i+","+j);
+      setTimeout(tick,delay);
+    }
+    render(a,b,d,null,0,null);
+    setTimeout(tick,delay);
+  }
+
+  var WORDS=["kitten","sitting","flaw","lawn","gumbo","gambol","tron","trace","program","grid",
+             "light","cycle","recognizer","identity","distance","sonny","corpus","helldive",
+             "abstract","vector","cortex","kernel","glyph","matrix","cyan","neon","levenshtein",
+             "saturday","sunday","intention","execution","book","back","fold","world","helix"];
+
+  document.getElementById("go").onclick=animate;
+  document.getElementById("dart").onclick=function(){
+    var i=Math.floor(Math.random()*WORDS.length), j;
+    do{ j=Math.floor(Math.random()*WORDS.length); }while(j===i);
+    A.value=WORDS[i].slice(0,14); B.value=WORDS[j].slice(0,14);
+    animate();
+  };
+  A.addEventListener("input",instant);
+  B.addEventListener("input",instant);
+  A.addEventListener("keydown",function(e){ if(e.key==="Enter") animate(); });
+  B.addEventListener("keydown",function(e){ if(e.key==="Enter") animate(); });
+
+  animate();   // first paint animates the classic kitten -> sitting
+})();
+</script>
+</body>
+</html>

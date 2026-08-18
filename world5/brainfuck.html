@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brainfuck — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:140px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+
+/* --- brainfuck tape machine (dart 018 additions, same TRON palette) --- */
+.prog{font-size:16px;letter-spacing:2px;line-height:1.7;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;margin:8px 0;word-break:break-all;min-height:44px;}
+.prog span{color:#6f8ba8;padding:0 1px;border-radius:3px;}
+.prog span.br{color:var(--gold);}
+.prog span.io{color:var(--orange);}
+.prog span.ip{background:var(--cyan);color:#05070f;box-shadow:0 0 12px var(--cyan);font-weight:700;}
+.prog span.done{background:var(--good);color:#05070f;}
+.tapewrap{overflow-x:auto;padding:6px 2px 10px;}
+.tape{display:flex;gap:4px;min-width:min-content;}
+.cell{flex:0 0 auto;width:40px;text-align:center;border:1px solid var(--line);border-radius:5px;background:rgba(62,240,255,.05);padding:5px 0 4px;position:relative;}
+.cell .idx{font-size:9px;color:var(--dim);display:block;line-height:1;}
+.cell .v{font-size:15px;color:var(--cyan);display:block;line-height:1.3;}
+.cell .ch{font-size:8px;color:var(--gold);display:block;line-height:1;height:10px;}
+.cell.dp{border-color:var(--orange);background:rgba(255,138,61,.12);box-shadow:0 0 14px rgba(255,138,61,.45);}
+.cell.dp .v{color:#fff;}
+.cell.nz .v{color:var(--good);}
+.regs{display:flex;gap:18px;flex-wrap:wrap;font-size:11.5px;margin:8px 0 2px;}
+.regs span{color:var(--dim);} .regs b{color:var(--cyan);}
+.out{font-size:15px;letter-spacing:1px;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:8px 12px;margin-top:8px;color:var(--good);min-height:34px;white-space:pre-wrap;word-break:break-all;}
+.out .lbl{color:var(--dim);font-size:10px;letter-spacing:2px;display:block;margin-bottom:2px;}
+.presets{gap:6px;} .presets button{font-size:11px;padding:5px 9px;}
+.pinput{width:100%;color:var(--gold);letter-spacing:1px;}
+.eightcmd{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:5px;font-size:11px;margin-top:6px;}
+.eightcmd div{border:1px solid var(--line);border-radius:4px;padding:4px 8px;background:rgba(0,0,0,.25);}
+.eightcmd b{color:var(--orange);font-size:13px;}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 018 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>BRAINFUCK <span class="c">&gt; &lt; + &minus; . , [ ]</span></h1>
+  <p class="sub">A dart thrown into the abstract landed on the most extreme language ever shipped &mdash; <b>eight</b> single-character instructions over a tape of memory cells, and it is still <b>Turing-complete</b>. We run a real interpreter live, credit who <b>actually</b> built it, and ask what <b>I-13</b> &mdash; whose alphabet was <i>counted</i>, not designed &mdash; should learn from the minimalist that <i>was</i> designed. Three prongs, one dart.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">a tape &middot; a pointer &middot; eight verbs</span></h2>
+  <p>The whole machine: an array of 8-bit cells (the <span class="ko">tape</span>), one <span class="ko">data pointer</span> into it, and an <span class="k">instruction pointer</span> walking the code. <span class="k">&gt;&lt;</span> move the data pointer, <span class="k">+&minus;</span> change the cell under it (wrapping 255&harr;0), <span class="ko">.</span> emits it as a character, <span class="ko">,</span> reads one, and <span class="kg">[ ]</span> is a while-nonzero loop. That is the entire language. <span class="tag t-demo">live demo</span></p>
+  <div class="eightcmd">
+    <div><b>&gt;</b> data pointer right</div>
+    <div><b>&lt;</b> data pointer left</div>
+    <div><b>+</b> cell + 1 (wrap)</div>
+    <div><b>&minus;</b> cell &minus; 1 (wrap)</div>
+    <div><b>.</b> output cell as char</div>
+    <div><b>,</b> input one byte</div>
+    <div><b>[</b> jump past ] if cell 0</div>
+    <div><b>]</b> jump back to [ if cell &ne;0</div>
+  </div>
+  <div class="row presets" style="margin-top:12px">
+    <label style="color:var(--dim)">load:</label>
+    <button data-p="+++&gt;++++[&lt;+&gt;-]&lt;">add 3 + 4</button>
+    <button data-p="++++++++[&gt;++++++++&lt;-]&gt;+.">emit &lsquo;A&rsquo;</button>
+    <button data-p="+++++[&gt;+++++&lt;-]&gt;">multiply 5 &times; 5</button>
+    <button data-p="++++++++[&gt;++++[&gt;++&gt;+++&gt;+++&gt;+&lt;&lt;&lt;&lt;-]&gt;+&gt;+&gt;-&gt;&gt;+[&lt;]&lt;-]&gt;&gt;.&gt;---.+++++++..+++.&gt;&gt;.&lt;-.&lt;.+++.------.--------.&gt;&gt;+.&gt;++.">Hello World!</button>
+  </div>
+  <div class="row"><input class="pinput" id="src" spellcheck="false" value="+++>++++[<+>-]<"></div>
+  <div class="prog" id="prog"></div>
+  <div class="tapewrap"><div class="tape" id="tape"></div></div>
+  <div class="regs" id="regs"></div>
+  <div class="out" id="out"><span class="lbl">OUTPUT</span><span id="outtext"></span></div>
+  <div class="row" style="margin-top:12px">
+    <button id="run">&#9654; run</button>
+    <button id="step">&#9193; step</button>
+    <button id="reset">&#8635; reset</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+    <label style="color:var(--dim);font-size:11px">speed</label>
+    <input type="range" id="speed" min="1" max="60" value="22" style="width:120px;padding:0">
+  </div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">Unlike most darts, authorship here is <b>not</b> disputed &mdash; only the name gets bowdlerized (<s>brainf***</s>) and the language dismissed as a toy. It is a deliberate <b>Turing tarpit</b>: minimal by design, yet able to compute anything. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1964</b> &middot; <span class="who">Corrado B&ouml;hm</span> publishes <b>P&prime;&prime;</b> (&ldquo;P double prime&rdquo;) &mdash; an early single-entry/single-exit formulation, sequence + iteration only. The <b>theoretical parent</b>: Brainfuck is a dialect of it.<br>
+    <b>1993</b> &middot; <span class="who">Wouter van Oortmerssen</span> writes <b>FALSE</b>, whose <b>1024-byte</b> compiler is the direct inspiration &mdash; the goal was to beat it.<br>
+    <b>1993</b> &middot; <span class="who">Urban M&uuml;ller</span>, a Swiss student, ships <b>Brainfuck</b>: a <b>296-byte</b> compiler in Motorola&nbsp;68000 assembly on the <b>Amiga</b>, uploaded to <b>Aminet</b>. A later version hit <b>240 bytes</b>. The README dared: <i>&ldquo;Who can program anything useful with it? :)&rdquo;</i><br>
+    <b>since</b> &middot; the canonical &ldquo;write an interpreter&rdquo; exercise &mdash; the one on the tape above is the classic <b>Hello World!</b> from the esolang commons.
+  </div>
+  <p style="margin-top:10px">Lineage note, from inside this corpus: the <b>i-13 repo already ships a faithful <span class="kg">P&prime;&prime; &rarr; Brainfuck</span> translator</b> (<span class="k">skills/p-prime-prime</span>), running on the same verified BF engine &mdash; the capstone of its esolang branch (P&prime;&prime; &rarr; Brainfuck &rarr; Malbolge). What is still <b>open</b>: whether M&uuml;ller derived the exact tape size (30,000 cells) by design or convenience. <span class="tag t-open">open</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the mirror of minimalism</span></h2>
+  <p>A perfect mirror. Brainfuck has <b>8 designed</b> instructions; I-13 has <b>13 counted</b> symbols &mdash; <i>designed</i>-minimalism versus <i>measured</i>-minimalism. But Brainfuck&rsquo;s entire model is a <b>tape</b>: an array with a moving pointer, mutable indexed memory. I-13 has <b>no way to express that</b> &mdash; no arrays, no subscript, no indexed store. I asked the real compiler. It cannot &mdash; proven, not asserted:</p>
+  <div class="evi" id="evi">$ i13 check array.i13      # I x &lt;- a[0]
+  array.i13:2:9   E0001 unexpected character `[`
+  array.i13:2:11  E0001 unexpected character `]`
+
+$ i13 check tapewrite.i13  # t[3] &lt;- 5
+  tapewrite.i13:2:2  E0001 unexpected character `[`
+  tapewrite.i13:2:4  E0001 unexpected character `]`
+
+$ i13 run ok2.i13          # scalars are fine: add(2,3)
+  RUN OK · 12 step(s) · peak stack 3      r = 5</div>
+  <p style="margin-top:6px">The subscript characters <span class="kg">[ ]</span> are not in the counted alphabet at all &mdash; the lexer rejects them before parsing. Compare the <b>cheap</b> fix from DART&nbsp;001 (bit-ops as a BinOp discriminant): that move has <b>already landed</b> &mdash; <span class="k">%</span> is now live, no new alphabet symbol spent:</p>
+  <div class="evi" id="evi2" style="color:var(--good);border-color:rgba(89,255,176,.35)">$ i13 run mod2.i13         # I b &lt;- a % 5   (a = 17)
+  RUN OK · 6 step(s)      a = 17   b = 2      # 17 % 5 = 2  ✓ modulo is live now</div>
+  <div class="rec">
+    <b>Recommend &mdash; and this one is a NO, on purpose.</b> A tape is <i>not</i> another BinOp discriminant. It is a whole new <b>aggregate value kind</b> (I-13&rsquo;s <span class="k">Constant</span> is <b>f64 only</b>), two new lexical tokens (<span class="kg">[ ]</span>, breaking the counted 13-symbol alphabet), and a <b>mutable indexed store</b> &mdash; which cuts against the single-pass, region-isolated stack machine whose whole strength is that state cannot leak across a region. The honest move is the <b>cheapest</b> one: <b>declare the lack</b>. Add &ldquo;<i>indexed aggregates / mutable arrays</i>&rdquo; to <span class="k">Verdict</span>&rsquo;s <b>NOT COVERED</b> line, exactly as axiom&nbsp;XIII already requires it to name its own boundaries. A stated absence is a scope decision; a silent one is a gap.<br>
+    <b>Tradeoff (honest):</b> if representation-level work ever <i>is</i> in scope, the minimum viable addition is <b>one</b> fixed indexed aggregate (a <span class="k">Vec&lt;f64&gt;</span> value + an <span class="k">at</span> accessor) &mdash; real new machinery, paid for in purity, not a free discriminant like <span class="k">%</span> was. Until then, I-13 is right to stay a language of <i>named scalars</i>, and should say so out loud.
+  </div>
+</div>
+
+<footer>
+  <b>DART 018 &middot; BRAINFUCK</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied; Brainfuck is by <b>Urban M&uuml;ller</b> (1993), inspired by <b>FALSE</b> (<b>Wouter van Oortmerssen</b>, 1993) and descended from <b>P&prime;&prime;</b> (<b>Corrado B&ouml;hm</b>, 1964). Authorship is <i>not</i> disputed. History &amp; figures via <a href="https://en.wikipedia.org/wiki/Brainfuck">Wikipedia: Brainfuck</a> and <a href="https://en.wikipedia.org/wiki/P%E2%80%B2%E2%80%B2">Wikipedia: P&prime;&prime;</a>; the P&prime;&prime;&rarr;BF translator lineage lives in this corpus at <span class="kg">i-13/skills/p-prime-prime</span>. I-13 by David Lee Wise / ROOT0; the incapacities above were measured on the live i13 0.1.0 compiler (IVM 15 opcodes). Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var TAPE=24;
+  var srcEl=document.getElementById("src"), progEl=document.getElementById("prog"),
+      tapeEl=document.getElementById("tape"), regsEl=document.getElementById("regs"),
+      outEl=document.getElementById("outtext"), speedEl=document.getElementById("speed");
+  var code="", bmap={}, tape=new Uint8Array(TAPE), dp=0, ip=0, steps=0, out="", running=false, timer=null, halted=false;
+  var MAXSTEPS=2000000;
+
+  function clean(s){ return s.replace(/[^><+\-.,\[\]]/g,""); }
+  function buildBmap(c){
+    var st=[], m={};
+    for(var i=0;i<c.length;i++){
+      if(c[i]==="[") st.push(i);
+      else if(c[i]==="]"){ var j=st.pop(); if(j!==undefined){ m[i]=j; m[j]=i; } }
+    }
+    return m;
+  }
+  function load(){
+    stop();
+    code=clean(srcEl.value);
+    bmap=buildBmap(code);
+    tape=new Uint8Array(TAPE); dp=0; ip=0; steps=0; out=""; halted=(code.length===0);
+    render();
+  }
+  function cls(ch){ if(ch==="["||ch==="]") return "br"; if(ch==="."||ch===",") return "io"; return ""; }
+  function render(){
+    // program with instruction pointer
+    var ph="";
+    for(var i=0;i<code.length;i++){
+      var c=code[i], extra=cls(c);
+      var here = (i===ip && !halted) ? " ip" : (halted && i===code.length-1 ? "" : "");
+      ph += '<span class="'+extra+here+'">'+esc(c)+'</span>';
+    }
+    if(code.length===0) ph='<span style="color:var(--dim)">(empty program)</span>';
+    progEl.innerHTML=ph;
+    // tape
+    var th="";
+    for(var k=0;k<TAPE;k++){
+      var v=tape[k], isdp=(k===dp), nz=(v!==0);
+      var ch=(v>=33&&v<=126)?String.fromCharCode(v):"";
+      th += '<div class="cell'+(isdp?" dp":"")+(nz?" nz":"")+'">'+
+            '<span class="idx">'+k+'</span>'+
+            '<span class="v">'+v+'</span>'+
+            '<span class="ch">'+(ch===""?"&nbsp;":esc(ch))+'</span></div>';
+    }
+    tapeEl.innerHTML=th;
+    // registers
+    regsEl.innerHTML=
+      '<span>IP <b>'+(halted?code.length:ip)+'</b> / '+code.length+'</span>'+
+      '<span>DP <b>'+dp+'</b></span>'+
+      '<span>cell[DP] <b>'+tape[dp]+'</b></span>'+
+      '<span>steps <b>'+steps+'</b></span>'+
+      '<span>'+(halted?'<b style="color:var(--good)">HALTED</b>':'<b style="color:var(--orange)">ready</b>')+'</span>';
+    outEl.textContent=out;
+  }
+  function esc(c){ return c==="<"?"&lt;":c===">"?"&gt;":c==="&"?"&amp;":c; }
+
+  function step(){
+    if(halted || ip>=code.length){ halted=true; stop(); render(); return false; }
+    var c=code[ip];
+    switch(c){
+      case ">": dp=(dp+1)%TAPE; break;
+      case "<": dp=(dp-1+TAPE)%TAPE; break;
+      case "+": tape[dp]=(tape[dp]+1)&255; break;
+      case "-": tape[dp]=(tape[dp]-1)&255; break;
+      case ".": { var v=tape[dp]; out += (v===10?"\n":String.fromCharCode(v)); break; }
+      case ",": tape[dp]=0; break;                       // no stdin here: read as 0 (EOF=0)
+      case "[": if(tape[dp]===0) ip=bmap[ip]; break;
+      case "]": if(tape[dp]!==0) ip=bmap[ip]; break;
+    }
+    ip++; steps++;
+    if(ip>=code.length){ halted=true; }
+    if(steps>=MAXSTEPS){ halted=true; out+="  [step ceiling hit]"; }
+    return !halted;
+  }
+  function tick(){
+    // run several micro-steps per frame for speed, but repaint once
+    var budget=Math.max(1, Math.round((+speedEl.value)/3));
+    var alive=true;
+    for(var i=0;i<budget && alive;i++){ alive=step(); }
+    render();
+    if(!alive){ stop(); }
+  }
+  function play(){
+    if(halted) load();          // restart if finished
+    if(running) return;
+    running=true;
+    var interval=Math.max(8, 320/(+speedEl.value));
+    timer=setInterval(tick, interval);
+    document.getElementById("run").innerHTML="&#10073;&#10073; pause";
+  }
+  function stop(){
+    running=false; if(timer){ clearInterval(timer); timer=null; }
+    var rb=document.getElementById("run"); if(rb) rb.innerHTML="&#9654; run";
+  }
+
+  document.getElementById("run").onclick=function(){ running?stop():play(); };
+  document.getElementById("step").onclick=function(){ stop(); if(halted) load(); step(); render(); };
+  document.getElementById("reset").onclick=function(){ load(); };
+  srcEl.addEventListener("input", load);
+  document.querySelectorAll(".presets button").forEach(function(b){
+    b.onclick=function(){ srcEl.value=b.getAttribute("data-p"); load(); };
+  });
+  document.getElementById("dart").onclick=function(){
+    var picks=document.querySelectorAll(".presets button");
+    var p=picks[Math.floor(Math.random()*picks.length)];   // a real helldive: random program
+    srcEl.value=p.getAttribute("data-p"); load(); play();
+  };
+
+  load();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dancing Links — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:140px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+button:disabled{opacity:.4;cursor:default;box-shadow:none;border-color:var(--line);color:var(--dim);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* ---- dancing-links matrix viz ---- */
+.mwrap{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;}
+.mtx{display:inline-block;border:1px solid var(--line);border-radius:6px;padding:10px 12px;background:rgba(0,0,0,.28);overflow-x:auto;}
+.grid{display:grid;grid-template-columns:34px repeat(7,30px);gap:4px;}
+.hc{height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;border-bottom:1px solid var(--line);}
+.hc.cnr{color:var(--dim);font-size:9px;letter-spacing:0;}
+.col{color:var(--cyan);font-weight:700;transition:all .28s;}
+.col.cov{color:var(--dim);opacity:.32;text-decoration:line-through;}
+.col.focus{color:#fff;text-shadow:0 0 10px var(--cyan);transform:translateY(-1px);}
+.rl{height:28px;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gold);font-weight:700;transition:all .28s;}
+.rl.rem{opacity:.3;text-decoration:line-through;color:var(--dim);}
+.rl.sol{color:var(--good);text-shadow:0 0 10px var(--good);}
+.cell{height:28px;display:flex;align-items:center;justify-content:center;border-radius:4px;font-size:11px;transition:all .3s;}
+.cell.e{color:rgba(111,139,168,.22);}
+.cell.one{background:rgba(62,240,255,.15);border:1px solid var(--line);color:var(--cyan);box-shadow:inset 0 0 8px rgba(62,240,255,.22);}
+.cell.one.dim{background:rgba(18,28,42,.4);border-color:rgba(62,240,255,.07);color:var(--dim);opacity:.35;box-shadow:none;text-decoration:line-through;}
+.cell.one.sol{background:rgba(89,255,176,.17);border-color:var(--good);color:var(--good);box-shadow:0 0 12px rgba(89,255,176,.38);}
+.cell.one.foc{border-color:#fff;box-shadow:0 0 14px var(--cyan);}
+.mside{flex:1;min-width:240px;}
+.mmsg{font-size:12px;color:#cfe9ff;min-height:38px;margin-top:2px;}
+.mmsg .kk{color:var(--cyan);} .mmsg .gg{color:var(--good);} .mmsg .oo{color:var(--orange);} .mmsg .bb{color:var(--bad);}
+.counters{display:flex;gap:14px;flex-wrap:wrap;font-size:10.5px;color:var(--dim);margin-top:12px;text-transform:uppercase;letter-spacing:1px;}
+.counters b{color:var(--gold);font-size:15px;display:block;letter-spacing:0;}
+.solline{font-size:13px;color:var(--good);margin-top:10px;min-height:18px;}
+.solline .set{color:#eafcff;font-weight:700;letter-spacing:1px;}
+.legend{font-size:10.5px;color:var(--dim);margin-top:10px;line-height:1.8;}
+.legend .sw{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:middle;margin:0 3px 0 8px;}
+.rng{width:120px;accent-color:var(--cyan);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 023 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>DANCING LINKS <span class="c">Algorithm X &middot; DLX</span></h1>
+  <p class="sub">A dart thrown into the dark abstract landed on Knuth&rsquo;s prettiest trick: store a constraint matrix as <b>circular doubly-linked lists</b> so a column and its rows can be pulled out and&mdash;on backtrack&mdash;snapped back in, in O(1). The links <b>dance</b>. We solve a real <b>exact cover</b> live, credit who actually invented it, and ask what <b>I-13</b> should learn. Three prongs, one dart.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">exact cover &middot; cover / uncover &middot; the links dance</span></h2>
+  <p><b>Exact cover:</b> pick a set of rows so every column is covered by <b>exactly one</b> chosen row. The whole matrix is a torus of pointers &mdash; each 1 links to its neighbours up/down/left/right, columns ring back to a root. To try a row, <span class="k">cover</span> its columns (unlink them and every conflicting row); to undo, <span class="k">uncover</span> in reverse and the pointers <i>relink exactly</i>. No copying, no rebuild. <span class="tag t-demo">live demo</span></p>
+  <div class="code">// cover(c): unlink column c and every row that touches it
+c.R.L = c.L ;  c.L.R = c.R
+for each row i down column c:
+  for each node j across row i:  j.D.U = j.U ;  j.U.D = j.D   // pull j out
+// uncover(c): the SAME walk, reversed &mdash; pointers snap back into place
+for each row i up column c:
+  for each node j back across row i:  j.D.U = j ;  j.U.D = j</div>
+  <p style="font-size:12px;">Instance below (Knuth&rsquo;s classic <span class="kg">6&times;7</span>): rows <b>A&ndash;F</b> are subsets of columns <b>1&ndash;7</b>. Algorithm X always covers the column with the <b>fewest 1s</b> (Knuth&rsquo;s <i>S</i> heuristic), tries each row in it, and backtracks on a dead end. Watch the cells unlink (dim) and relink (light up). Unique answer: <span class="kg">{B, D, F}</span>.</p>
+  <div class="mwrap">
+    <div class="mtx"><div class="grid" id="grid"></div>
+      <div class="legend">
+        <span class="sw" style="background:rgba(62,240,255,.5);border:1px solid var(--line)"></span>active 1
+        <span class="sw" style="background:rgba(18,28,42,.8);border:1px solid rgba(62,240,255,.15)"></span>unlinked
+        <span class="sw" style="background:rgba(89,255,176,.6)"></span>chosen (solution)
+      </div>
+    </div>
+    <div class="mside">
+      <div class="mmsg" id="mmsg">Press <b>solve</b> to watch Algorithm X dance through the matrix.</div>
+      <div class="solline" id="solline"></div>
+      <div class="counters">
+        <span>covers<b id="cCov">0</b></span>
+        <span>uncovers<b id="cUnc">0</b></span>
+        <span>steps<b id="cStep">0</b></span>
+        <span>backtracks<b id="cBt">0</b></span>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button id="solve">&#9654; solve</button>
+        <button id="step">step</button>
+        <button id="reset">reset</button>
+      </div>
+      <div class="row">
+        <button id="shuffle" class="dartbtn">&#9192; shuffle rows (random) &amp; re-solve</button>
+      </div>
+      <div class="row" style="font-size:11px;color:var(--dim)">
+        speed <input type="range" id="speed" class="rng" min="60" max="900" value="420">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">The name and the fame belong to Knuth &mdash; but the <b>idea</b> is older, and Knuth is the first to say so in print. The <s>&ldquo;Knuth invented dancing links&rdquo;</s> shorthand drops the people he explicitly credits. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1979</b> &middot; <span class="who">Hiroshi Hitotsumatsu &amp; K&#333;hei Noshita</span> &mdash; <b>invent the unlink/relink trick</b> on doubly-linked lists (a node remembers its neighbours, so removal is reversible). This is the dance itself.<br>
+    <b>1972</b> &middot; the reversible-remove idea has roots in earlier list work; Knuth traces the lineage in his paper&rsquo;s notes.<br>
+    <b>2000</b> &middot; <span class="who">Donald E. Knuth</span> &mdash; publishes <i>&ldquo;Dancing Links&rdquo;</i>, <b>names</b> the technique, pairs it with his <b>Algorithm X</b> for exact cover, and <b>credits Hitotsumatsu &amp; Noshita by name</b>. It is his paper that made it famous.
+  </div>
+  <p style="margin-top:10px">So: <b>Algorithm X and the &ldquo;dancing links&rdquo; name</b> are Knuth (2000); the <b>underlying O(1) reversible unlink</b> is <b>Hitotsumatsu &amp; Noshita (1979)</b>, credited by Knuth himself. Honest phrasing keeps both. <span class="tag t-cited">cited</span></p>
+  <p style="margin-top:6px;font-size:11.5px;color:var(--dim)">Still <b>open</b>: exactly how far back the reversible-delete idea goes in the linked-list literature is a matter of citation archaeology; Knuth&rsquo;s notes give the earliest pointers he found. <span class="tag t-open">open</span> &nbsp;Source: <a href="https://en.wikipedia.org/wiki/Dancing_Links">Wikipedia: Dancing Links</a>.</p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">what the galaxy should learn</span></h2>
+  <p>Dancing Links is <b>pure pointers</b>: circular doubly-linked lists, mutated in place, restored by aliasing. I-13 has <b>no references, no linked structures, no mutable aggregates</b> &mdash; only <span class="k">f64</span> scalars and functions. I asked the real I-13 compiler to build even a single linked node. It cannot &mdash; proven, not asserted:</p>
+  <div class="evi" id="evi">i13 check node.i13   =&gt;  node.i13:2:1  E0201 attribute assignment `.next` is recognized
+                          but has no executable I13 v0.1 semantics   (cannot attach a link/pointer)
+i13 check array.i13  =&gt;  array.i13:1:9 E0001 unexpected character `[`   (no aggregate literal)
+i13 check index.i13  =&gt;  index.i13:2:10 E0001 unexpected character `[`  (no subscript into a structure)
+i13 run   ok.i13     =&gt;  x = 42                          (every value is a bare f64 scalar)</div>
+  <p style="font-size:11.5px;color:var(--dim)">Even the language&rsquo;s own reference program says so out loud &mdash; <span class="kg">examples/core.i13</span> routes eight channels by <b>passing all eight as explicit scalar parameters</b>, with the comment: <i>&ldquo;No arrays/records are assumed.&rdquo;</i> The author already codes <i>around</i> the missing aggregate.</p>
+  <div class="rec">
+    <b>Recommend &mdash; deliberate scope call:</b> a <b>reference / linked aggregate is a genuinely new <i>kind of value</i></b>, not a new operator. The last dart (fast inverse square root) wanted bit-ops &mdash; a cheap fix, a new <span class="k">BinOp</span> discriminant, <b>zero new alphabet symbols</b>. This is <b>not</b> that. A pointer needs a heap, an allocation verb, a value type that isn&rsquo;t <span class="k">f64</span>, and <b>aliasing + in-place mutation</b> &mdash; the exact thing that breaks I-13&rsquo;s conserved law <span class="kg">net = binds &minus; k</span> and its single-pass validator (aliased mutation has no static stack balance).<br>
+    <b>The honest call is: do NOT add it.</b> Keep I-13 scalar-pure. Dancing Links is the clean proof of what a linked language <i>buys</i> (O(1) reversible structure) and what it <i>costs</i> (shared mutable references &mdash; precisely what I-13 forbids by construction). If linked structures are ever wanted, that is a <b>different language</b>, and this dart is the receipt for the decision. Credit Knuth&rsquo;s elegance honestly; decline it deliberately.
+  </div>
+</div>
+
+<footer>
+  <b>DART 023 &middot; DANCING LINKS</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied; the exact-cover instance is Knuth&rsquo;s classic <span class="kg">6&times;7</span>. <b>Algorithm X</b> and the &ldquo;dancing links&rdquo; name are <b>Donald E. Knuth</b> (paper <i>&ldquo;Dancing Links&rdquo;</i>, 2000); the underlying O(1) reversible unlink is <b>Hiroshi Hitotsumatsu &amp; K&#333;hei Noshita</b> (1979), credited by Knuth himself &mdash; history &amp; figures via <a href="https://en.wikipedia.org/wiki/Dancing_Links">Wikipedia: Dancing Links</a>. I-13 by David Lee Wise / ROOT0; the incapacities above were measured on the live I-13 compiler (target/debug/i13). Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  // ---- the exact-cover instance (Knuth's classic 6x7) ------------------
+  var COLS=[1,2,3,4,5,6,7];
+  var BASE=[
+    {name:'A',cols:[1,4,7]},
+    {name:'B',cols:[1,4]},
+    {name:'C',cols:[4,5,7]},
+    {name:'D',cols:[3,5,6]},
+    {name:'E',cols:[2,3,6,7]},
+    {name:'F',cols:[2,7]}
+  ];
+  var rows=BASE.map(function(r){return {name:r.name,cols:r.cols.slice()};});
+
+  // ---- build a real dancing-links (toroidal) structure -----------------
+  function build(){
+    var root={name:'h',row:-1}; root.L=root; root.R=root; root.C=root;
+    var heads={};
+    COLS.forEach(function(n){
+      var c={name:n,size:0,row:-2}; c.U=c; c.D=c;
+      c.L=root.L; c.R=root; root.L.R=c; root.L=c; c.C=c;
+      heads[n]=c;
+    });
+    rows.forEach(function(rw){
+      var first=null;
+      rw.cols.forEach(function(n){
+        var col=heads[n];
+        var node={row:rw.name,C:col};
+        node.D=col; node.U=col.U; col.U.D=node; col.U=node; col.size++;
+        if(first===null){ node.L=node; node.R=node; first=node; }
+        else { node.L=first.L; node.R=first; first.L.R=node; first.L=node; }
+      });
+    });
+    return {root:root,heads:heads};
+  }
+
+  // ---- Algorithm X, recording a frame at every dance move --------------
+  function solveTrace(){
+    var d=build(), root=d.root;
+    var frames=[];
+    var coveredCols={}, removedRows={};   // sets via objects
+    var sol=[];
+    var m={cov:0,unc:0,step:0,bt:0};
+
+    function coveredSet(){ var s={}; for(var k in coveredCols) if(coveredCols[k]) s[k]=1; return s; }
+    function removedSet(){ var s={}; for(var k in removedRows) if(removedRows[k]>0) s[k]=1; return s; }
+    function snap(msg,focusCol,focusRow){
+      frames.push({
+        cov:coveredSet(), rem:removedSet(), sol:sol.slice(),
+        fc:(focusCol===undefined?null:focusCol),
+        fr:(focusRow===undefined?null:focusRow),
+        msg:msg,
+        m:{cov:m.cov,unc:m.unc,step:m.step,bt:m.bt}
+      });
+    }
+    function cover(c){
+      c.R.L=c.L; c.L.R=c.R;
+      for(var i=c.D;i!==c;i=i.D){
+        for(var j=i.R;j!==i;j=j.R){ j.D.U=j.U; j.U.D=j.D; j.C.size--; }
+        removedRows[i.row]=(removedRows[i.row]||0)+1;
+      }
+      coveredCols[c.name]=1; m.cov++;
+    }
+    function uncover(c){
+      for(var i=c.U;i!==c;i=i.U){
+        removedRows[i.row]=(removedRows[i.row]||0)-1;
+        for(var j=i.L;j!==i;j=j.L){ j.C.size++; j.D.U=j; j.U.D=j; }
+      }
+      c.R.L=c; c.L.R=c;
+      coveredCols[c.name]=0; m.unc++;
+    }
+
+    function search(){
+      m.step++;
+      if(root.R===root){ snap('<span class="gg">exact cover found &mdash; every column covered exactly once.</span>'); return true; }
+      // choose column with fewest 1s (Knuth's S heuristic)
+      var c=null, best=1e9;
+      for(var t=root.R;t!==root;t=t.R){ if(t.size<best){ best=t.size; c=t; } }
+      if(c.size===0){ snap('column <span class="bb">'+c.name+'</span> has <span class="bb">0</span> options &mdash; dead end, must backtrack.',c.name); return false; }
+      snap('pick column <span class="kk">'+c.name+'</span> (fewest options: '+c.size+') &rarr; cover it.',c.name);
+      cover(c);
+      snap('covered column <span class="kk">'+c.name+'</span> &mdash; conflicting rows unlink.',c.name);
+      for(var r=c.D;r!==c;r=r.D){
+        sol.push(r.row);
+        snap('try row <span class="gg">'+r.row+'</span> in solution; pin its other columns.',c.name,r.row);
+        for(var j=r.R;j!==r;j=j.R) cover(j.C);
+        if(search()) return true;
+        for(var j2=r.L;j2!==r;j2=j2.L) uncover(j2.C);
+        sol.pop();
+        m.bt++;
+        snap('row <span class="oo">'+r.row+'</span> failed &mdash; <span class="oo">uncover</span>: pointers snap back.',c.name,r.row);
+      }
+      uncover(c);
+      snap('exhausted column <span class="kk">'+c.name+'</span> &mdash; uncover and return.',c.name);
+      return false;
+    }
+    snap('start: full matrix, every 1 linked into the torus.');
+    search();
+    return frames;
+  }
+
+  // ---- rendering -------------------------------------------------------
+  var grid=document.getElementById('grid');
+  var mmsg=document.getElementById('mmsg'), solline=document.getElementById('solline');
+  var cCov=document.getElementById('cCov'), cUnc=document.getElementById('cUnc'), cStep=document.getElementById('cStep'), cBt=document.getElementById('cBt');
+
+  function render(f){
+    var html='<div class="hc cnr">DLX</div>';
+    COLS.forEach(function(n){
+      var cls='hc col'; if(f.cov[n]) cls+=' cov'; if(f.fc===n) cls+=' focus';
+      html+='<div class="'+cls+'">'+n+'</div>';
+    });
+    rows.forEach(function(rw){
+      var inSol=f.sol.indexOf(rw.name)>=0, rem=!!f.rem[rw.name];
+      var rlc='rl'; if(inSol) rlc+=' sol'; else if(rem) rlc+=' rem';
+      html+='<div class="'+rlc+'">'+rw.name+'</div>';
+      COLS.forEach(function(n){
+        var has=rw.cols.indexOf(n)>=0;
+        if(!has){ html+='<div class="cell e">&middot;</div>'; return; }
+        var cls='cell one';
+        if(inSol) cls+=' sol';
+        else if(rem||f.cov[n]) cls+=' dim';
+        if(f.fr===rw.name && f.fc===n) cls+=' foc';
+        html+='<div class="'+cls+'">1</div>';
+      });
+    });
+    grid.innerHTML=html;
+    mmsg.innerHTML=f.msg;
+    cCov.textContent=f.m.cov; cUnc.textContent=f.m.unc; cStep.textContent=f.m.step; cBt.textContent=f.m.bt;
+    if(f.sol.length){
+      solline.innerHTML='partial / final set: <span class="set">{ '+f.sol.slice().sort().join(', ')+' }</span>';
+    } else { solline.innerHTML=''; }
+  }
+
+  // ---- playback --------------------------------------------------------
+  var frames=[], idx=0, timer=null, playing=false;
+  var bSolve=document.getElementById('solve'), bStep=document.getElementById('step'),
+      bReset=document.getElementById('reset'), bShuf=document.getElementById('shuffle'),
+      speed=document.getElementById('speed');
+
+  function stop(){ if(timer){clearTimeout(timer);timer=null;} playing=false; bSolve.innerHTML='&#9654; solve'; }
+  function fresh(){ stop(); frames=solveTrace(); idx=0; render(frames[0]); }
+  function show(i){ idx=Math.max(0,Math.min(frames.length-1,i)); render(frames[idx]); }
+
+  function tick(){
+    if(idx>=frames.length-1){ stop(); return; }
+    show(idx+1);
+    timer=setTimeout(tick, parseInt(speed.value,10));
+  }
+  bSolve.onclick=function(){
+    if(playing){ stop(); return; }
+    if(idx>=frames.length-1) idx=0;
+    playing=true; bSolve.innerHTML='&#10073;&#10073; pause';
+    timer=setTimeout(tick, 60);
+  };
+  bStep.onclick=function(){ stop(); show(idx+1); };
+  bReset.onclick=function(){ stop(); idx=0; render(frames[0]); };
+  bShuf.onclick=function(){
+    // Fisher-Yates over row ORDER (presentation only) — solution is invariant
+    for(var i=rows.length-1;i>0;i--){ var k=Math.floor(Math.random()*(i+1)); var t=rows[i]; rows[i]=rows[k]; rows[k]=t; }
+    fresh();
+    // auto-play the reshuffled solve
+    bSolve.onclick();
+  };
+
+  fresh();
+})();
+</script>
+</body>
+</html>

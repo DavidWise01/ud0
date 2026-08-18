@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conway&rsquo;s Game of Life — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:140px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* --- Life demo additions --- */
+.stage{border:1px solid var(--line);border-radius:6px;background:#03050c;box-shadow:inset 0 0 40px rgba(62,240,255,.06);margin-top:10px;overflow:hidden;}
+#life{display:block;width:100%;height:auto;image-rendering:pixelated;cursor:crosshair;background:#03050c;}
+.hud{display:flex;gap:18px;flex-wrap:wrap;font-size:12px;margin-top:10px;}
+.hud .cell{border:1px solid var(--line);border-radius:5px;padding:6px 12px;background:rgba(0,0,0,.35);}
+.hud .cell .lbl{color:var(--dim);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;display:block;}
+.hud .cell .num{color:var(--cyan);font-size:17px;letter-spacing:1px;}
+.hud .cell .num.o{color:var(--orange);} .hud .cell .num.g{color:var(--gold);}
+button.on{border-color:var(--good);color:var(--good);box-shadow:0 0 12px rgba(89,255,176,.35);}
+.hint{color:var(--dim);font-size:11px;margin-top:6px;}
+.rule{font-size:12px;color:var(--gold);letter-spacing:1px;}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 020 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>CONWAY&rsquo;S GAME OF LIFE <span class="c">B3 / S23</span></h1>
+  <p class="sub">A dart landed on the most famous cellular automaton ever written &mdash; a grid where every cell lives or dies by <b>counting its eight neighbours</b>, and from two rules emerge gliders, guns, and a proven <b>universal computer</b>. We run it live, credit who <b>actually</b> made it, and ask what a <b>deliberately bounded</b> machine like I-13 should learn from a machine with no bound at all.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">count neighbours &middot; born on 3 &middot; survive on 2 or 3</span></h2>
+  <p>Each cell looks at its <b>8 neighbours</b> and applies one law: a dead cell with exactly <b>3</b> live neighbours is <span class="k">born</span>; a live cell with <b>2 or 3</b> survives; anything else <span class="ko">dies</span>. No cell knows the whole board &mdash; the pattern is not steered, it <i>emerges</i>. Seed a shape and press <b>run</b>. <span class="tag t-demo">live demo</span></p>
+  <div class="code">next(cell) = 1  if  neighbours==3                 // birth
+           = cell  if  neighbours==2               // survive
+           = 0  otherwise                          // death / overcrowding</div>
+  <div class="row">
+    <button id="run">&#9654; run</button>
+    <button id="step">step &#8227;</button>
+    <button id="seedGlider">glider</button>
+    <button id="seedGun" class="dartbtn">glider gun</button>
+    <button id="seedSoup">random soup</button>
+    <button id="clear">clear</button>
+    <span class="rule">rule B3/S23</span>
+  </div>
+  <div class="stage"><canvas id="life" width="640" height="360"></canvas></div>
+  <div class="hud">
+    <div class="cell"><span class="lbl">generation</span><span class="num g" id="gen">0</span></div>
+    <div class="cell"><span class="lbl">population</span><span class="num o" id="pop">0</span></div>
+    <div class="cell"><span class="lbl">grid</span><span class="num" id="dims">&mdash;</span></div>
+    <div class="cell"><span class="lbl">state</span><span class="num" id="state">paused</span></div>
+  </div>
+  <p class="hint">Click any cell to toggle it. The grid wraps at its edges (a torus). The <span class="kg">glider gun</span> fires an endless stream of gliders &mdash; the discovery that first proved a Life pattern can grow forever.</p>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">It is <b>not</b> mis-credited &mdash; the name says it plainly &mdash; but almost everything <i>famous inside it</i> was found by someone else, and that part gets forgotten. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1970</b> &middot; <span class="who">John Horton Conway</span> (Univ. of Cambridge) devises the rule <b>B3/S23</b>, tuning it by hand so growth is neither trivially bounded nor trivially explosive.<br>
+    <b>Oct 1970</b> &middot; <span class="who">Martin Gardner</span> publishes it in his <b>&ldquo;Mathematical Games&rdquo;</b> column in <span class="who">Scientific American</span> &mdash; the article that made it a phenomenon.<br>
+    <b>1970</b> &middot; the <b>glider</b> is spotted by <span class="who">Richard K. Guy</span> in Conway&rsquo;s group &mdash; not by Conway himself.<br>
+    <b>Nov 1970</b> &middot; <span class="who">Bill Gosper</span>&rsquo;s team at MIT builds the <b>glider gun</b>, winning Conway&rsquo;s $50 prize by proving a pattern can grow <i>without bound</i>.<br>
+    <b>2000&ndash;2010</b> &middot; <span class="who">Paul Rendell</span> constructs an explicit <b>Turing machine</b> inside Life; <span class="who">Paul Chapman</span> (2002) builds a universal register machine &mdash; Life is <b>Turing-complete</b>.
+  </div>
+  <p style="margin-top:10px">What is <b>settled</b>: the automaton is universal &mdash; gliders carry signals, collisions make AND/OR/NOT gates. What stays <b>open</b>: no small finite bound governs it &mdash; whether an arbitrary pattern ever dies out is <i>undecidable</i>, a direct corollary of that same universality. <span class="tag t-open">open</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">what the bounded machine should learn</span></h2>
+  <p>Life&rsquo;s whole state is a <b>2-D grid &mdash; an array</b>. Every step reads and rewrites that aggregate in place. I asked the real I-13 compiler to hold one. It cannot &mdash; there is no array, no subscript, not even the characters for them. Proven, not asserted:</p>
+  <div class="evi" id="evi">$ i13 check grid.i13     // I row &lt;- [0, 1, 0]
+  grid.i13:1:10  E0001 unexpected character `[`
+  grid.i13:1:18  E0001 unexpected character `]`
+
+$ i13 check index.i13    // I c &lt;- g[1]
+  index.i13:2:9   E0001 unexpected character `[`
+  index.i13:2:11  E0001 unexpected character `]`
+
+$ i13 run scalar.i13     // I c &lt;- a + b   (control: scalars DO work)
+  RUN OK · 8 step(s) · peak stack 2 · call depth 0
+  c = 5</div>
+  <p style="font-size:12px;color:var(--dim)">Even I-13&rsquo;s own <span class="kg">core.i13</span> hits this wall: to route 8 channels it must pass <b>eight separate scalar parameters</b>, with the comment <i>&ldquo;No arrays/records are assumed.&rdquo;</i> A grid of thousands of cells has no such workaround.</p>
+  <div class="rec">
+    <b>Recommend &mdash; ADD a grid/array aggregate value.</b> This is the honest ask: not a new operator but a genuinely <b>new kind of value</b>, standing against I-13&rsquo;s <span class="k">f64</span>-only scalar identity. It is the single largest capability Life demands and I-13 lacks &mdash; a mutable aggregate with indexed read/write. Do it as a boxed handle so the counted 13-symbol alphabet is untouched: <span class="k">Const</span> a length, one new BinOp discriminant for <span class="k">index</span> (zero new alphabet symbols, the language&rsquo;s standard move), one for <span class="k">store</span>.<br>
+    <b>The deeper lesson &mdash; and why you might REFUSE.</b> Life is Turing-complete: two local rules with <i>no ceiling</i> compute anything, and pay for it with undecidability &mdash; you cannot prove a pattern halts. I-13 is the <b>opposite design stance</b>: 4096 frames, 8,000,000 steps, depth-indexed control, deterministic. Those ceilings are the point &mdash; they are what make single-pass validation total. Adding unbounded mutable memory buys Life&rsquo;s power at the cost of Life&rsquo;s <i>unanalysability</i>. The honest recommendation is therefore <b>bounded</b>: add a <b>fixed-length</b> array (a `Const` size, no growth), keeping the aggregate but not the infinity.<br>
+    <b>Tradeoff (honest):</b> a fixed grid still breaks the pure f64-scalar identity and adds a heap-ish value the abstract machine currently refuses. Worth it only if aggregate data &mdash; images, grids, tables &mdash; is in scope. If I-13 is to stay a scalar governor, the right answer is to <i>keep saying no</i>, and to say <i>why</i> in the spec: no arrays, by choice.
+  </div>
+</div>
+
+<footer>
+  <b>DART 020 &middot; CONWAY&rsquo;S GAME OF LIFE</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied. The Game of Life is <b>John Horton Conway</b>&rsquo;s (1970), popularised by <b>Martin Gardner</b> in <i>Scientific American</i>, Oct 1970; the glider is <b>Richard K. Guy</b>&rsquo;s, the glider gun <b>Bill Gosper</b>&rsquo;s (1970), and Turing-completeness was demonstrated by <b>Paul Rendell</b> and <b>Paul Chapman</b>. History &amp; figures via <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">Wikipedia: Conway&rsquo;s Game of Life</a>. The array incapacity above was measured on the live i13 compiler (i13 0.1.0 · IVM 15 opcodes). I-13 by David Lee Wise / ROOT0. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var CW=80, CH=45, PX=8;            // grid columns, rows, pixel size
+  var canvas=document.getElementById("life");
+  var ctx=canvas.getContext("2d");
+  canvas.width=CW*PX; canvas.height=CH*PX;
+  var cur=new Uint8Array(CW*CH), nxt=new Uint8Array(CW*CH);
+  var gen=0, running=false, raf=null, acc=0, lastT=0, STEP_MS=70;
+
+  var $gen=document.getElementById("gen"), $pop=document.getElementById("pop"),
+      $dims=document.getElementById("dims"), $state=document.getElementById("state"),
+      $run=document.getElementById("run");
+  $dims.textContent=CW+"×"+CH;
+
+  function idx(x,y){ return y*CW+x; }
+
+  function population(){ var n=0; for(var i=0;i<cur.length;i++) n+=cur[i]; return n; }
+
+  function draw(){
+    ctx.fillStyle="#03050c"; ctx.fillRect(0,0,canvas.width,canvas.height);
+    // faint grid lines
+    ctx.strokeStyle="rgba(62,240,255,.06)"; ctx.lineWidth=1;
+    for(var gx=0;gx<=CW;gx++){ ctx.beginPath(); ctx.moveTo(gx*PX+.5,0); ctx.lineTo(gx*PX+.5,canvas.height); ctx.stroke(); }
+    for(var gy=0;gy<=CH;gy++){ ctx.beginPath(); ctx.moveTo(0,gy*PX+.5); ctx.lineTo(canvas.width,gy*PX+.5); ctx.stroke(); }
+    // live cells
+    for(var y=0;y<CH;y++){
+      for(var x=0;x<CW;x++){
+        if(cur[idx(x,y)]){
+          ctx.fillStyle="#3ef0ff";
+          ctx.shadowColor="#3ef0ff"; ctx.shadowBlur=6;
+          ctx.fillRect(x*PX+1,y*PX+1,PX-2,PX-2);
+          ctx.shadowBlur=0;
+        }
+      }
+    }
+  }
+
+  function step(){
+    // toroidal wrap; count 8 neighbours; apply B3/S23
+    for(var y=0;y<CH;y++){
+      var yu=(y-1+CH)%CH, yd=(y+1)%CH;
+      for(var x=0;x<CW;x++){
+        var xl=(x-1+CW)%CW, xr=(x+1)%CW;
+        var n = cur[idx(xl,yu)]+cur[idx(x,yu)]+cur[idx(xr,yu)]
+              + cur[idx(xl,y )]              +cur[idx(xr,y )]
+              + cur[idx(xl,yd)]+cur[idx(x,yd)]+cur[idx(xr,yd)];
+        var c=cur[idx(x,y)];
+        nxt[idx(x,y)] = (n===3 || (n===2 && c)) ? 1 : 0;
+      }
+    }
+    var t=cur; cur=nxt; nxt=t;
+    gen++;
+    hud(); draw();
+  }
+
+  function hud(){
+    $gen.textContent=gen;
+    $pop.textContent=population();
+    $state.textContent = running ? "running" : "paused";
+    $state.style.color = running ? "var(--good)" : "var(--dim)";
+  }
+
+  function clearAll(){ cur.fill(0); nxt.fill(0); gen=0; hud(); draw(); }
+
+  function put(list, ox, oy){
+    for(var i=0;i<list.length;i++){
+      var x=(list[i][0]+ox+CW)%CW, y=(list[i][1]+oy+CH)%CH;
+      cur[idx(x,y)]=1;
+    }
+  }
+
+  var GLIDER=[[1,0],[2,1],[0,2],[1,2],[2,2]];
+  // Gosper glider gun (Bill Gosper, 1970), column/row coordinates
+  var GUN=[
+    [0,4],[0,5],[1,4],[1,5],
+    [10,4],[10,5],[10,6],[11,3],[11,7],[12,2],[12,8],[13,2],[13,8],[14,5],
+    [15,3],[15,7],[16,4],[16,5],[16,6],[17,5],
+    [20,2],[20,3],[20,4],[21,2],[21,3],[21,4],[22,1],[22,5],
+    [24,0],[24,1],[24,5],[24,6],
+    [34,2],[34,3],[35,2],[35,3]
+  ];
+
+  function seedGlider(){ clearAll(); put(GLIDER, 3, 3); draw(); hud(); }
+  function seedGun(){ clearAll(); put(GUN, 5, 4); draw(); hud(); }
+  function seedSoup(){
+    cur.fill(0);
+    for(var i=0;i<cur.length;i++){ if(Math.random()<0.28) cur[i]=1; }
+    gen=0; draw(); hud();
+  }
+
+  function loop(t){
+    if(!running) return;
+    if(!lastT) lastT=t;
+    acc += t-lastT; lastT=t;
+    if(acc>=STEP_MS){ step(); acc=0; }
+    raf=requestAnimationFrame(loop);
+  }
+  function start(){ running=true; $run.classList.add("on"); $run.innerHTML="&#10073;&#10073; pause"; lastT=0; acc=0; raf=requestAnimationFrame(loop); hud(); }
+  function stop(){ running=false; $run.classList.remove("on"); $run.innerHTML="&#9654; run"; if(raf) cancelAnimationFrame(raf); hud(); }
+  function toggleRun(){ running?stop():start(); }
+
+  // click to toggle a cell
+  canvas.addEventListener("click", function(e){
+    var r=canvas.getBoundingClientRect();
+    var sx=canvas.width/r.width, sy=canvas.height/r.height;
+    var x=Math.floor((e.clientX-r.left)*sx/PX), y=Math.floor((e.clientY-r.top)*sy/PX);
+    if(x<0||x>=CW||y<0||y>=CH) return;
+    cur[idx(x,y)] ^= 1;
+    draw(); hud();
+  });
+
+  $run.onclick=toggleRun;
+  document.getElementById("step").onclick=function(){ if(running) stop(); step(); };
+  document.getElementById("seedGlider").onclick=function(){ stop(); seedGlider(); };
+  document.getElementById("seedGun").onclick=function(){ stop(); seedGun(); };
+  document.getElementById("seedSoup").onclick=function(){ stop(); seedSoup(); };
+  document.getElementById("clear").onclick=function(){ stop(); clearAll(); };
+
+  seedGun();      // open on the glider gun — the headline pattern
+})();
+</script>
+</body>
+</html>

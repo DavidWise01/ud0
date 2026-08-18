@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Godel Numbering — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:200px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.35);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* --- godel-specific viz --- */
+.tower{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin:12px 0 4px;}
+.brick{border:1px solid var(--line);border-radius:6px;background:rgba(62,240,255,.05);padding:8px 10px;text-align:center;min-width:64px;}
+.brick .p{font-size:11px;color:var(--dim);}
+.brick .pw{font-size:17px;color:var(--gold);line-height:1.2;}
+.brick .pw sup{color:var(--cyan);font-size:11px;}
+.brick .eq{font-size:11px;color:var(--good);margin-top:3px;}
+.brick.off{opacity:.4;}
+.gnum{font-size:22px;color:#eafcff;letter-spacing:1px;text-shadow:0 0 12px rgba(62,240,255,.5);word-break:break-all;}
+.gnum.over{color:var(--bad);text-shadow:0 0 12px rgba(255,90,106,.5);}
+.factorline{font-size:12px;line-height:2;font-family:inherit;}
+.factorline .op{color:var(--dim);} .factorline .hit{color:var(--good);} .factorline .miss{color:var(--dim);}
+.chip{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:4px;padding:1px 7px;margin:0 3px;font-size:11px;}
+.warn53{font-size:11.5px;color:var(--bad);border:1px solid rgba(255,90,106,.4);border-radius:5px;padding:7px 10px;margin-top:8px;background:rgba(255,90,106,.06);display:none;}
+.warn53.show{display:block;}
+.hint{color:var(--dim);font-size:11px;}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 024 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>GODEL NUMBERING <span class="c">2^a &middot; 3^b &middot; 5^c &hellip;</span></h1>
+  <p class="sub">A dart thrown into the dark abstract landed on the trick that let arithmetic <b>talk about itself</b>: number every symbol, then fold a whole sequence into <b>one integer</b> by prime powers. Because factorization is unique, that integer decodes back <b>exactly</b> &mdash; a lossless round-trip made of nothing but multiplication and division. We show the <b>method</b>, credit who <b>actually</b> found it, and ask what <b>I-13</b> &mdash; a <i>counted</i> language &mdash; should learn from being encodable in its own numbers. Three prongs, one dart.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">encode by primes &middot; decode by factoring</span></h2>
+  <p>Give each symbol a small code. To encode the sequence, raise the <b>k-th prime</b> to the <b>k-th code</b> and multiply: <span class="k">G = 2<sup>a</sup>&middot;3<sup>b</sup>&middot;5<sup>c</sup>&middot;7<sup>d</sup>&hellip;</span> To <b>decode</b>, factor G back out: count how many times 2 divides it (that is <i>a</i>), then 3 (that is <i>b</i>), and so on. Unique factorization guarantees exactly one answer comes back. <span class="tag t-demo">live demo</span></p>
+  <div class="row">
+    <label style="color:var(--dim)">codes =</label><input id="seq" value="1 0 2" spellcheck="false">
+    <button id="go">encode &amp; decode</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart</button>
+  </div>
+  <p class="hint">Space-separated small non-negative integers, e.g. <span class="k">3 1 2</span>. In the I-13 flavour a code is a symbol&rsquo;s rank in the 13-symbol alphabet.</p>
+
+  <div class="tower" id="tower"></div>
+  <div class="gnum" id="gnum"></div>
+  <div class="warn53" id="warn53">&#9888; This Godel number exceeds <b>2<sup>53</sup> = 9,007,199,254,740,992</b> &mdash; the last integer an f64 holds exactly. Past here the decode below is only <i>believable</i>, not guaranteed. See prong 3.</div>
+
+  <div class="steps"><b style="color:var(--cyan)">DECODE</b> &mdash; factor G back into its sequence:</div>
+  <div class="factorline" id="factor"></div>
+  <div class="res" id="res"></div>
+  <div class="meter"><i id="meter" style="width:0%"></i></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">Attribution here is <b>not</b> disputed. The prime-power encoding is <b>Kurt Godel</b>&rsquo;s, from his <b>1931</b> paper on the incompleteness of formal systems. He built it so that statements <i>about</i> proofs could be rewritten as statements <i>about</i> numbers &mdash; the move that let a formal system speak its own name. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>~300 BC</b> &middot; <span class="who">Euclid</span> &mdash; <i>Elements</i> proves every integer factors into primes. The uniqueness (the load-bearing fact) is later.<br>
+    <b>1801</b> &middot; <span class="who">Carl Friedrich Gauss</span> &mdash; <i>Disquisitiones Arithmeticae</i> states and proves the <b>fundamental theorem of arithmetic</b>: that factorization is <b>unique</b>. This is what makes decode exact.<br>
+    <b>1931</b> &middot; <span class="who">Kurt Godel</span> &mdash; <b>encodes symbols, formulas, and whole proofs as single integers via 2<sup>a</sup>&middot;3<sup>b</sup>&middot;5<sup>c</sup>&hellip;</b> in <i>&Uuml;ber formal unentscheidbare S&auml;tze der Principia Mathematica und verwandter Systeme I</i>. The real author.<br>
+    <b>since</b> &middot; the idea generalises &mdash; any injective code-of-sequences works (pairing functions, etc.); the prime scheme is Godel&rsquo;s original and the most transparent.
+  </div>
+  <p style="margin-top:10px">What is fairly called <b>open</b>: Godel numbering is <i>a</i> scheme, not <i>the</i> scheme &mdash; the incompleteness result does not depend on primes specifically, only on <i>some</i> effective, invertible coding. Primes are chosen for clarity, not necessity. <span class="tag t-open">open / a choice, not a law</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a counted language, encodable in its own count</span></h2>
+  <p>This one is <b>deeply self-referential</b>: I-13 has <b>13 symbols</b>, so I-13&rsquo;s own alphabet can be Godel-numbered &mdash; a counted language folded into a single number. So I asked the live <b>H1.1</b> compiler whether it can run the round-trip. Measured, not asserted:</p>
+
+  <p><b>Encode needs only multiplication</b> &mdash; and I-13 <i>has</i> <span class="k">*</span>. A real <span class="k">.i13</span> that encodes the sequence <span class="k">[1,0,2]</span> as 2<sup>1</sup>&middot;3<sup>0</sup>&middot;5<sup>2</sup> via a recursive <span class="k">pow</span> and three multiplies:</p>
+  <div class="evi good">$ i13 run godel.i13
+RUN OK &middot; 94 step(s) &middot; peak stack 4 &middot; call depth 3
+two = 2
+three = 1
+five = 25
+g = 50                      &lt;- Godel number of [1,0,2], built with * alone</div>
+
+  <p><b>Decode needs division and remainder</b> &mdash; and <span class="k">%</span> <b>just landed</b>. The panel&rsquo;s modulo proposal is no longer a branch: it runs in the shipped binary. The mod-based divisibility test at the heart of factoring:</p>
+  <div class="evi good">$ i13 run decode.i13
+RUN OK &middot; 14 step(s) &middot; peak stack 2 &middot; call depth 0
+g = 50
+byTwo = 0                   &lt;- 50 % 2 == 0, so 2 divides G  (peel a factor)
+byFive = 0                  &lt;- 50 % 5 == 0, so 5 divides G
+peel = 10                   &lt;- 50 / 5, one factor of 5 removed</div>
+  <p>So the operators are <b>all present</b>: encode by <span class="k">*</span>, decode by <span class="k">%</span> and <span class="k">/</span>. I-13 can already <i>express</i> the whole Godel round-trip. The wall is not an operator.</p>
+
+  <p><b>The wall is f64 exactness.</b> Godel numbers explode past <b>2<sup>53</sup></b> almost immediately &mdash; and f64 (I-13&rsquo;s <i>only</i> number type) stops counting exactly there. Proven on the live compiler at a modest 2<sup>54</sup>:</p>
+  <div class="evi">$ i13 run f64limit.i13
+RUN OK &middot; 996 step(s) &middot; peak stack 4 &middot; call depth 55
+big   = 18014398509481984   &lt;- 2^54, a small Godel number
+plus1 = 18014398509481984   &lt;- big + 1 ... the +1 VANISHED
+lost  = 0                   &lt;- (big+1) - big == 0   (should be 1)
+odd   = 0                   &lt;- (big+1) % 2 == 0     (should be 1: it is odd!)</div>
+  <p>That last line is the danger: the decode&rsquo;s own tool, <span class="k">%</span>, now <b>lies</b>. An odd Godel number reports as even, so the factoring silently walks off the true sequence &mdash; and nothing warns you.</p>
+
+  <div class="rec">
+    <b>Recommend &mdash; ADD an integer-exactness diagnostic, not a bignum.</b> The cheapest honest fix costs <b>zero new alphabet symbols</b>: a <span class="k">NOT&nbsp;COVERED</span> ledger line, and/or a runtime flag, that fires the moment a value crosses <span class="k">|x| &gt; 2<sup>53</sup></span> &mdash; the exact boundary where f64 stops being an integer. The demo above already implements it (the red banner); the language should too. It ties I-13&rsquo;s three facts together in one instrument: a <i>counted</i> identity that invites Godel-numbering, the <i>new</i> <span class="k">%</span> that makes decode expressible, and the <i>f64-only</i> <span class="k">Constant</span> that makes it unsafe past 2<sup>53</sup>.<br>
+    <b>Do NOT add arbitrary-precision integers for this.</b> True Godel decode of anything non-trivial wants bignum &mdash; but a bignum type shatters the <i>f64-only</i> purity, touching the type system, the VM, and the counted alphabet at once. The honest trade: I-13 buys <b>small-case Godel round-trips</b> for free (already runnable) plus <b>a warning it can trust</b> for one discriminant-sized diagnostic; it does <b>not</b> buy <b>real proof-arithmetic</b> until it is willing to stop being f64-only. For a language whose whole claim is a counted 13-symbol alphabet, knowing <i>when your number stopped being exact</i> is worth far more than the ability to count higher.
+  </div>
+</div>
+
+<footer>
+  <b>DART 024 &middot; GODEL NUMBERING</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied. The prime-power encoding is <b>Kurt Godel</b>&rsquo;s, from <i>&Uuml;ber formal unentscheidbare S&auml;tze der Principia Mathematica und verwandter Systeme I</i> (<b>1931</b>, <i>Monatshefte f&uuml;r Mathematik und Physik</i>, vol. 38); its exactness rests on the <b>fundamental theorem of arithmetic</b> (uniqueness proved by <b>Gauss</b>, 1801; existence in <b>Euclid</b>). History &amp; figures via <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Wikipedia: G&ouml;del numbering</a>. The encode (g=50), the mod-decode, and the 2<sup>54</sup> exactness break (odd%2 = 0) were all measured on the live H1.1 compiler build. I-13 by David Lee Wise / ROOT0. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var PRIMES=[2,3,5,7,11,13,17,19,23,29,31,37];
+  var TWO53=9007199254740992;
+
+  function parseSeq(s){
+    var parts=String(s).trim().split(/\s+/).filter(function(t){return t.length;});
+    var out=[];
+    for(var i=0;i<parts.length;i++){
+      var v=parseInt(parts[i],10);
+      if(!isFinite(v)||v<0||String(v)!==parts[i]) return null;
+      out.push(v);
+    }
+    if(!out.length||out.length>PRIMES.length) return null;
+    return out;
+  }
+
+  function ipow(b,e){ var r=1; for(var i=0;i<e;i++) r*=b; return r; }
+
+  function encode(seq){
+    var g=1, bricks=[];
+    for(var k=0;k<seq.length;k++){
+      var p=PRIMES[k], e=seq[k], term=ipow(p,e);
+      g*=term;
+      bricks.push({p:p,e:e,term:term});
+    }
+    return {g:g,bricks:bricks};
+  }
+
+  // decode by trial factoring — the real method
+  function decode(g){
+    var out=[], steps=[], n=g, k=0;
+    while(n>1 && k<PRIMES.length){
+      var p=PRIMES[k], c=0, hits=[];
+      while(n%p===0){ n=n/p; c++; }
+      out.push(c);
+      steps.push({p:p,c:c});
+      k++;
+      // stop trailing zero-exponent primes once nothing remains
+      if(n<=1) break;
+    }
+    return {seq:out,steps:steps};
+  }
+
+  function fmtGroups(n){
+    // thousands separators for readability
+    var s=String(n);
+    return s.replace(/\B(?=(\d{3})+(?!\d))/g,",");
+  }
+
+  function run(){
+    var seq=parseSeq(document.getElementById("seq").value);
+    var tower=document.getElementById("tower"), gnum=document.getElementById("gnum"),
+        warn=document.getElementById("warn53"), factor=document.getElementById("factor"),
+        res=document.getElementById("res"), meter=document.getElementById("meter");
+    if(!seq){
+      tower.innerHTML=""; gnum.innerHTML='<span style="color:var(--bad);font-size:13px">Enter 1 to 12 small non-negative integers, space-separated.</span>';
+      warn.className="warn53"; factor.innerHTML=""; res.innerHTML=""; meter.style.width="0%"; return;
+    }
+    var enc=encode(seq);
+
+    // tower bricks
+    var th="";
+    for(var k=0;k<enc.bricks.length;k++){
+      var b=enc.bricks[k], off=(b.e===0)?" off":"";
+      th+='<div class="brick'+off+'"><div class="p">prime #'+(k+1)+'</div>'+
+          '<div class="pw">'+b.p+'<sup>'+b.e+'</sup></div>'+
+          '<div class="eq">= '+fmtGroups(b.term)+'</div></div>';
+      if(k<enc.bricks.length-1) th+='<div style="align-self:center;color:var(--dim);font-size:18px">&times;</div>';
+    }
+    tower.innerHTML=th;
+
+    var over=enc.g>TWO53;
+    gnum.className="gnum"+(over?" over":"");
+    gnum.innerHTML='G = '+fmtGroups(enc.g);
+    warn.className="warn53"+(over?" show":"");
+
+    // decode
+    var dec=decode(enc.g);
+    var fl="";
+    for(var i=0;i<dec.steps.length;i++){
+      var s=dec.steps[i];
+      var cls=(s.c>0)?"hit":"miss";
+      fl+='<div><span class="op">divide out '+s.p+':</span> <span class="'+cls+'">'+s.c+' time'+(s.c===1?"":"s")+'</span> &rarr; exponent of '+s.p+' is <span class="chip">'+s.c+'</span></div>';
+    }
+    factor.innerHTML=fl;
+
+    // round-trip check (pad decoded with trailing zeros stripped by decode's early-stop)
+    var back=dec.seq.slice();
+    // decode stops at n<=1, so trailing zero exponents are dropped — compare on the meaningful prefix
+    var trimmed=seq.slice();
+    while(trimmed.length && trimmed[trimmed.length-1]===0) trimmed.pop();
+    var ok=(back.length===trimmed.length);
+    if(ok) for(var j=0;j<back.length;j++){ if(back[j]!==trimmed[j]){ ok=false; break; } }
+
+    res.innerHTML='decoded &rarr; <span class="true">['+dec.seq.join(", ")+']</span> &nbsp;'+
+      (ok? '<span class="true">&#10003; round-trip exact</span>'
+         : '<span class="err">&#10007; mismatch (see the 2<sup>53</sup> warning)</span>')+
+      (over? ' &nbsp;<span class="err">&mdash; but G &gt; 2<sup>53</sup>, so f64 cannot be trusted here</span>' : '');
+    meter.style.width=(over?35:100)+"%";
+    meter.style.background = over
+      ? "linear-gradient(90deg,var(--orange),var(--bad))"
+      : "linear-gradient(90deg,var(--cyan),var(--good))";
+  }
+
+  document.getElementById("go").onclick=run;
+  document.getElementById("seq").addEventListener("keydown",function(e){ if(e.key==="Enter") run(); });
+  document.getElementById("dart").onclick=function(){
+    // throw a dart: a short readable sequence of small codes
+    var len=2+Math.floor(Math.random()*3);      // 2..4 symbols
+    var seq=[];
+    for(var i=0;i<len;i++) seq.push(Math.floor(Math.random()*4)); // codes 0..3
+    if(seq[0]===0) seq[0]=1+Math.floor(Math.random()*3);          // keep first prime present
+    document.getElementById("seq").value=seq.join(" ");
+    run();
+  };
+  run();
+})();
+</script>
+</body>
+</html>

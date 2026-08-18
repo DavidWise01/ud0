@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soundex — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,textarea{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:170px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+textarea{width:100%;color:var(--gold);min-height:78px;resize:vertical;line-height:1.7;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi .ok{color:var(--good);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* soundex-specific */
+.legend{font-size:10.5px;color:var(--dim);display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 2px;}
+.legend span b{font-weight:700;}
+.glyphrow{display:flex;flex-wrap:wrap;gap:3px;align-items:flex-end;}
+.gl{display:inline-flex;flex-direction:column;align-items:center;min-width:16px;font-size:13px;}
+.gl .ch{font-weight:700;}
+.gl .rl{font-size:9px;line-height:1.1;margin-top:1px;}
+.r-first .ch{color:var(--gold);text-shadow:0 0 8px rgba(217,180,90,.5);} .r-first .rl{color:var(--gold);}
+.r-digit .ch{color:var(--cyan);text-shadow:0 0 8px rgba(62,240,255,.4);} .r-digit .rl{color:var(--cyan);}
+.r-vowel .ch{color:var(--dim);} .r-vowel .rl{color:var(--dim);}
+.r-hw .ch{color:#8a6bd0;} .r-hw .rl{color:#8a6bd0;}
+.r-dup .ch{color:var(--bad);text-decoration:line-through;} .r-dup .rl{color:var(--bad);}
+table.grp{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;}
+table.grp td,table.grp th{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:middle;}
+table.grp th{color:var(--cyan);font-size:10.5px;letter-spacing:1px;text-transform:uppercase;}
+table.grp .code4{color:var(--gold);font-weight:700;font-size:14px;letter-spacing:2px;}
+table.grp tr.match{background:rgba(89,255,176,.06);}
+table.grp .names b{color:var(--good);}
+.hit{display:inline-block;font-size:9px;color:var(--good);border:1px solid var(--good);border-radius:3px;padding:0 6px;margin-left:6px;letter-spacing:1px;}
+.one{color:var(--dim);}
+.livebox{margin-top:8px;font-size:13px;}
+.livebox .big{font-size:18px;color:var(--gold);letter-spacing:3px;font-weight:700;}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 022 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>SOUNDEX <span class="c">R163 = R163</span></h1>
+  <p class="sub">A dart thrown into the dark abstract landed on the oldest name-matching trick in the file cabinet &mdash; a <b>phonetic hash</b> that spells a name by its <b>sound</b>, so <b>Robert</b> and <b>Rupert</b> collide on <b>R163</b> and a census clerk finds the card either way. We show the <b>method</b>, credit who <b>actually</b> patented it, and ask what <b>I-13</b> should learn. One dart, three prongs.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">keep first letter &middot; map by articulation &middot; drop vowels &amp; dups</span></h2>
+  <p>Keep the first letter as a letter. Map each following consonant to a digit by <b>where the mouth makes it</b> (labials&rarr;1, gutturals/sibilants&rarr;2, dentals&rarr;3, l&rarr;4, nasals&rarr;5, r&rarr;6). Drop vowels. Collapse runs of the same digit. <b>h</b> and <b>w</b> are transparent &mdash; they don&rsquo;t break a collapse. Pad or cut to <b>one letter + three digits</b>. <span class="tag t-demo">live demo</span></p>
+  <div class="code">B F P V &rarr; 1     C G J K Q S X Z &rarr; 2     D T &rarr; 3     L &rarr; 4     M N &rarr; 5     R &rarr; 6
+A E I O U (Y) &rarr; dropped (they SEPARATE equal digits)      H W &rarr; transparent (they do NOT)</div>
+
+  <div class="legend">
+    <span class="r-first"><b>&#9632;</b> first letter (kept)</span>
+    <span class="r-digit"><b>&#9632;</b> coded digit</span>
+    <span class="r-vowel"><b>&#9632;</b> vowel / dropped</span>
+    <span class="r-hw"><b>&#9632;</b> h,w transparent</span>
+    <span class="r-dup"><b>&#9632;</b> collapsed / overflow</span>
+  </div>
+
+  <p style="margin-top:10px">A cabinet of names &mdash; one per line. Encode them, and the ones that <b>sound alike land in the same drawer</b>:</p>
+  <textarea id="names" spellcheck="false">Robert
+Rupert
+Rubin
+Ashcraft
+Ashcroft
+Tymczak
+Honeyman
+Pfister
+Wise
+Weiss
+Wize
+Gauss
+Ghosh</textarea>
+  <div class="row">
+    <button id="go">encode the cabinet</button>
+    <button id="dart" class="dartbtn">&#9192; throw a dart (random name)</button>
+  </div>
+  <table class="grp" id="grp"></table>
+
+  <p style="margin-top:14px">Or type any single name and watch the per-character classification live &mdash; this is <b>pure string work</b>, letter by letter:</p>
+  <div class="row">
+    <label style="color:var(--dim)">name =</label><input id="one" value="Wisniewski" spellcheck="false">
+    <span style="color:var(--dim);font-size:12px">&rarr; code</span> <span class="livebox"><span class="big" id="onecode">&mdash;</span></span>
+  </div>
+  <div class="glyphrow" id="onerow" style="margin-top:6px"></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">People meet Soundex inside a database (<code>SOUNDEX()</code> ships in SQL Server, Oracle, PostgreSQL&rsquo;s <code>fuzzystrmatch</code>) and assume it&rsquo;s a <s>1970s computing invention</s>. It is not &mdash; it predates the electronic computer by a generation. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1918</b> &middot; <span class="who">Robert C. Russell</span> files the first patent (<span class="kg">US&nbsp;1,261,167</span>) &mdash; a hand method for filing names by sound on index cards.<br>
+    <b>1922</b> &middot; <span class="who">Robert C. Russell &amp; Margaret King Odell</span> extend it in a second patent (<span class="kg">US&nbsp;1,435,663</span>). The two of them are the real inventors.<br>
+    <b>1927</b> &middot; <span class="who">Rand Kardex Bureau, Inc.</span> registers the <b>SOUNDEX</b> trademark.<br>
+    <b>1930s</b> &middot; a variant, <b>American Soundex</b>, is used by the <span class="who">U.S. WPA / National Archives</span> to index the 1880&ndash;1920 censuses by surname &mdash; the use that made it famous.<br>
+    <b>today</b> &middot; <span class="who">NARA</span> still publishes the canonical coding rules (General Information Leaflet&nbsp;55).
+  </div>
+  <p style="margin-top:10px">Commonly <b>mis-credited</b>: Soundex is often attributed vaguely to &ldquo;the Census Bureau&rdquo; or to whatever database vendor a programmer met it through &mdash; erasing <span class="who">Russell</span> and <span class="who">Odell</span>. The inventors are named on the patents; say their names. <span class="tag t-cited">cited</span></p>
+  <p style="margin-top:8px">What&rsquo;s <b>open / debated</b>: the exact treatment of <b>Y</b> and of vowel-separated repeats varies between implementations, which is why <code>SOUNDEX()</code> in two databases can disagree on a hard name. Soundex is also known to be <i>weak</i> &mdash; it&rsquo;s Anglo-centric and coarse &mdash; which is why <span class="who">NYSIIS</span> (1970), <span class="who">Daitch&ndash;Mokotoff</span> (1985) and <span class="who">Metaphone</span> (1990) were built to replace it. <span class="tag t-open">open</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">what the galaxy should learn</span></h2>
+  <p>Every step above is <b>string work</b>: read a character, ask &ldquo;what letter is this&rdquo;, branch on its class. I-13 has <b>no strings and no chars</b> &mdash; its one literal type, <code>Constant</code>, is <b>f64 only</b>. So this technique is not <i>hard</i> in I-13; it is <b>unspeakable</b>. I proved it on the real compiler &mdash; the source that just wants to name &ldquo;Robert&rdquo; will not even parse:</p>
+  <div class="evi" id="evi">$ i13 check s.i13          # source:  I s &lt;- "Robert"
+s.i13:1:8  E0001 unexpected character `"`
+s.i13:1:15 E0001 unexpected character `"`
+EXIT=1                     &mdash; the double-quote is not in the alphabet; there is no string token
+
+$ i13 run n.i13            # source:  I a &lt;- 66 / I b &lt;- a * 2
+<span class="ok">RUN OK</span> &middot; 6 step(s) &middot; peak stack 2
+<span class="ok">a = 66     b = 132</span>       &mdash; numbers are all it will hold</div>
+  <div class="rec">
+    <b>Recommend (honest, and NOT the cheap fix):</b> to reach text at all, I-13 would need a genuine <b>string / char type</b> &mdash; a new <code>Constant</code> variant carrying bytes, a lexer token for quotes, and at minimum a per-character <b>classify</b> and <b>index</b> operation. That is a <i>type-system</i> change, not a spare <b>BinOp</b> discriminant. Earlier darts could patch a missing operator (<span class="k">%</span>, <span class="k">&gt;&gt;</span>) for <b>zero new alphabet symbols</b>; this one cannot &mdash; text needs a new kind of value, and the whole point of the 13-symbol census is that new kinds of value are exactly what it excludes.<br>
+    <b>So the real recommendation is a scope ruling, not a bug fix:</b> decide whether I-13 is a <i>numeric-scalar</i> language on purpose. If yes, string algorithms like Soundex are permanently and honestly out of range &mdash; and that&rsquo;s fine; the counted alphabet earned its purity. If text is ever in scope, it&rsquo;s a deliberate second literal type, paid for in full, not smuggled in as an operator.<br>
+    <b>Tradeoff (honest):</b> a string type buys a whole universe (parsing, hashing, phonetics) but breaks the cleanest thing about I-13 &mdash; that a <code>Constant</code> is one <code>f64</code> and the alphabet was <i>counted</i>, not designed. Soundex is the clarifying case: not a lack to fill, but a border to name.
+  </div>
+</div>
+
+<footer>
+  <b>DART 022 &middot; SOUNDEX</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique shown, not copied. Soundex was invented and patented by <b>Robert C. Russell</b> (US 1,261,167, 1918) and <b>Robert C. Russell &amp; Margaret King Odell</b> (US 1,435,663, 1922); the American Soundex census index and NARA&rsquo;s coding rules came later. History &amp; figures via <a href="https://en.wikipedia.org/wiki/Soundex">Wikipedia: Soundex</a> (NARA General Information Leaflet 55 for the canonical rules). The string-literal parse failure and the numeric run above were measured on the live I-13 compiler (<code>i13 check</code> / <code>i13 run</code>). I-13 by David Lee Wise / ROOT0. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var CODE={B:'1',F:'1',P:'1',V:'1',C:'2',G:'2',J:'2',K:'2',Q:'2',S:'2',X:'2',Z:'2',D:'3',T:'3',L:'4',M:'5',N:'5',R:'6'};
+
+  // returns {code, steps:[{ch,role,out}], clean}
+  function soundex(raw){
+    var s=String(raw||"").toUpperCase().replace(/[^A-Z]/g,'');
+    if(!s) return {code:'', steps:[], clean:''};
+    var steps=[], first=s[0], result=first, prev=CODE[first]||'0';
+    steps.push({ch:first, role:'first', out:''});
+    for(var i=1;i<s.length;i++){
+      var c=s[i], d=CODE[c];
+      if(c==='H'||c==='W'){ steps.push({ch:c,role:'hw',out:''}); continue; }   // transparent
+      if(d){
+        if(d!==prev && result.length<4){ result+=d; steps.push({ch:c,role:'digit',out:d}); }
+        else { steps.push({ch:c,role:'dup',out:d}); }                          // collapse or overflow
+        prev=d;
+      } else {                                                                 // A E I O U Y
+        steps.push({ch:c,role:'vowel',out:''});
+        prev='0';
+      }
+    }
+    while(result.length<4) result+='0';
+    return {code:result.slice(0,4), steps:steps, clean:s};
+  }
+
+  function esc(x){ return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  function glyphs(steps){
+    var lbl={first:'&#8226;',digit:'',vowel:'&ndash;',hw:'~',dup:'&times;'};
+    var h='';
+    for(var i=0;i<steps.length;i++){
+      var st=steps[i], sub = st.role==='digit'||st.role==='dup' ? st.out : lbl[st.role];
+      h+='<span class="gl r-'+st.role+'"><span class="ch">'+esc(st.ch)+'</span><span class="rl">'+sub+'</span></span>';
+    }
+    return h;
+  }
+
+  // cabinet: encode all, group by code
+  function encodeCabinet(){
+    var lines=document.getElementById("names").value.split(/\r?\n/).map(function(s){return s.trim();}).filter(function(s){return s.length;});
+    var map={};   // code -> [{name,steps}]
+    lines.forEach(function(name){
+      var r=soundex(name);
+      if(!r.code) return;
+      (map[r.code]=map[r.code]||[]).push({name:name, steps:r.steps});
+    });
+    var codes=Object.keys(map).sort();
+    var rows='<tr><th>code</th><th>names in this drawer</th><th>breakdown (first name)</th></tr>';
+    codes.forEach(function(code){
+      var arr=map[code], isMatch=arr.length>1;
+      var nm=arr.map(function(a){ return isMatch? '<b>'+esc(a.name)+'</b>' : '<span class="one">'+esc(a.name)+'</span>'; }).join(', ');
+      var hit=isMatch? '<span class="hit">MATCH &times;'+arr.length+'</span>' : '';
+      rows+='<tr'+(isMatch?' class="match"':'')+'>'+
+            '<td class="code4">'+esc(code)+'</td>'+
+            '<td class="names">'+nm+hit+'</td>'+
+            '<td><div class="glyphrow">'+glyphs(arr[0].steps)+'</div></td></tr>';
+    });
+    document.getElementById("grp").innerHTML=rows;
+  }
+
+  function encodeOne(){
+    var r=soundex(document.getElementById("one").value);
+    document.getElementById("onecode").innerHTML = r.code || '&mdash;';
+    document.getElementById("onerow").innerHTML = glyphs(r.steps);
+  }
+
+  // a bank of surnames to throw a dart at
+  var BANK=["Lloyd","Llewellyn","Pfeiffer","Xavier","Czajkowski","OBrien","VanDerBerg","Schwarzenegger",
+            "Nguyen","Kowalczyk","Featherstonehaugh","Cholmondeley","MacDonald","McDonald","Yamamoto",
+            "Villanueva","Zhang","Jiang","Kaczmarek","Rzeszowski","Bhattacharya","Sinclair","StClair",
+            "Wojciechowski","Huang","Gutierrez","Guttierez","Catherine","Katherine","Kathryn",
+            "Robert","Rupert","Ashcroft","Ashcraft"];
+
+  document.getElementById("go").onclick=encodeCabinet;
+  document.getElementById("one").addEventListener("input",encodeOne);
+  document.getElementById("dart").onclick=function(){
+    var name=BANK[Math.floor(Math.random()*BANK.length)];
+    var ta=document.getElementById("names");
+    ta.value = (ta.value.replace(/\s+$/,'') + "\n" + name);
+    document.getElementById("one").value=name;
+    encodeCabinet(); encodeOne();
+    ta.scrollTop=ta.scrollHeight;
+  };
+
+  encodeCabinet();
+  encodeOne();
+})();
+</script>
+</body>
+</html>

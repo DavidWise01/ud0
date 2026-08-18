@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Mandelbrot Set — a dart · SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:19px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:74ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:140px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.steps{font-size:12px;line-height:1.9;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:190px;}
+.steps .val{color:var(--cyan);}
+.bits{font-size:11px;letter-spacing:1px;color:var(--gold);word-break:break-all;}
+.res{font-size:15px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.meter{height:8px;border:1px solid var(--line);border-radius:4px;margin-top:8px;overflow:hidden;background:rgba(0,0,0,.4);}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));box-shadow:0 0 10px var(--cyan);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.9;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:var(--bad);background:rgba(0,0,0,.35);border:1px solid rgba(255,90,106,.35);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.35);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+/* --- demo-specific --- */
+.canvaswrap{position:relative;margin-top:10px;border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 0 20px rgba(62,240,255,.12) inset;background:#05070f;}
+#fractal{display:block;width:100%;height:auto;cursor:crosshair;image-rendering:pixelated;}
+.hud{position:absolute;left:8px;bottom:8px;font-size:10.5px;letter-spacing:1px;color:var(--gold);background:rgba(5,7,15,.72);border:1px solid var(--line);border-radius:4px;padding:4px 8px;pointer-events:none;max-width:calc(100% - 16px);}
+.hud b{color:var(--cyan);}
+.legend{display:flex;align-items:center;gap:8px;font-size:10.5px;color:var(--dim);margin-top:8px;flex-wrap:wrap;}
+.ramp{height:10px;width:220px;border:1px solid var(--line);border-radius:3px;
+  background:linear-gradient(90deg,#0a2a55,#3ef0ff 28%,#d9b45a 60%,#ff8a3d 82%,#eafcff);}
+.viewbtns{gap:8px;}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 019 &middot; a helldive at the net</span></div>
+
+<header>
+  <h1>THE MANDELBROT SET <span class="c">z &rarr; z&sup2; + c</span></h1>
+  <p class="sub">A dart thrown into the dark abstract of the internet landed on the most famous object in mathematics &mdash; a shape drawn only by <b>iterating a single line</b>, infinitely intricate at every zoom. We render it <b>live</b>, credit who <b>actually</b> first drew it, and find a rare thing: a technique with <b>no wall</b> for <b>I-13</b>. Three prongs, one dart.</p>
+</header>
+
+<!-- PRONG 1: THE TECHNIQUE (live demo) -->
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">iterate &middot; watch for escape &middot; colour by count</span></h2>
+  <p>For each complex point <span class="k">c</span>, start at <span class="k">z = 0</span> and iterate <span class="k">z &rarr; z&sup2; + c</span>. If <span class="k">|z|</span> ever passes <span class="kg">2</span> it will run to infinity &mdash; <b>c escapes</b>, and we colour it by <b>how many steps that took</b>. If it never escapes (up to a cap), c is <b>in the set</b> &mdash; painted void. Written in real complex arithmetic, one square and one add per step. <span class="tag t-demo">live demo</span></p>
+  <div class="code">z = 0
+repeat:
+    z = z*z + c            // one complex square, one complex add
+    if |z| &gt; 2: return step   // escaped -- colour = step count
+return IN_SET              // never escaped -- paint void</div>
+  <div class="row viewbtns">
+    <button class="viewbtn" data-view="full">&#9635; full set</button>
+    <button class="viewbtn" data-view="seahorse">seahorse valley</button>
+    <button class="viewbtn" data-view="elephant">elephant valley</button>
+    <button class="viewbtn" data-view="triple">triple spiral</button>
+    <button id="zoomout" class="dartbtn">&#9192; zoom out</button>
+  </div>
+  <div class="canvaswrap">
+    <canvas id="fractal" width="560" height="400"></canvas>
+    <div class="hud" id="hud">click to zoom &middot; hover to read c and its escape count</div>
+  </div>
+  <div class="legend">
+    <span>escape count:</span>
+    <span style="color:var(--cyan)">fast</span>
+    <div class="ramp"></div>
+    <span style="color:var(--orange)">slow</span>
+    <span style="color:var(--dim)">&middot; black = never escaped (in the set)</span>
+  </div>
+  <div class="res" id="res" style="margin-top:12px"></div>
+</div>
+
+<!-- PRONG 2: HISTORY & CREDIT -->
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">credit where it is due</span></h2>
+  <p class="myth">The internet says <s>Benoit Mandelbrot discovered it</s>. Not quite &mdash; the set is <b>named for</b> him, and he made it famous, but the <b>first picture</b> was drawn by two other mathematicians two years before his. Credit splits three ways. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1905&ndash;1920s</b> &middot; <span class="who">Pierre Fatou &amp; Gaston Julia</span> (France) &mdash; found the iteration theory of <span class="k">z&sup2;+c</span> long before anyone could <i>see</i> it. The bedrock.<br>
+    <b>1978</b> &middot; <span class="who">Robert W. Brooks &amp; Peter Matelski</span> &mdash; <b>first defined and drew the set</b>, in a study of Kleinian groups. The first picture. Rarely credited.<br>
+    <b>1 March 1980</b> &middot; <span class="who">Benoit Mandelbrot</span> at IBM&rsquo;s T.&nbsp;J. Watson Research Center &mdash; first <b>visualised it in detail</b> and brought it to the world.<br>
+    <b>1985</b> &middot; <span class="who">Adrien Douady &amp; John H. Hubbard</span> &mdash; proved its core properties (connectedness) and <b>named it in Mandelbrot&rsquo;s honour.</b>
+  </div>
+  <p style="margin-top:10px">So the honest line: <b>Fatou/Julia</b> supplied the math, <b>Brooks &amp; Matelski</b> drew it first (1978), <b>Mandelbrot</b> made it visible and famous (1980), <b>Douady &amp; Hubbard</b> proved it and gave it his name (1985). What is still <b>open</b>: whether the boundary is <i>locally connected</i> (the MLC conjecture) remains <b>unproven</b>. <span class="tag t-open">open</span></p>
+</div>
+
+<!-- PRONG 3: RECOMMEND FOR I-13 -->
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a rare no-wall dart</span></h2>
+  <p>Most darts hit a wall in I-13. This one <b>credits its strength</b>. A complex number is just <b>two f64 scalars</b> <span class="k">(re, im)</span>, and one Mandelbrot step is pure arithmetic:</p>
+  <div class="code">z&sup2; + c  =  ( re*re &minus; im*im + cre ,  2*re*im + cim )</div>
+  <p>That uses only <span class="k">+ &minus; *</span> &mdash; every operator I-13 <b>has</b>. Iteration is recursion, which I-13 has. So the escape test for <b>one point</b> compiles and <b>runs</b> on the real compiler &mdash; measured, not asserted:</p>
+  <div class="code">def esc(I re, I im, I cre, I cim, I n) {
+    if n &gt;= MAX { -&gt; n }
+    if re*re + im*im &gt; 4 { -&gt; n }          // |z|&sup2; &gt; 4  ==  |z| &gt; 2
+    -&gt; esc(re*re &minus; im*im + cre, 2*re*im + cim, cre, cim, n + 1)
+}</div>
+  <div class="evi good">i13 run mandelbrot.i13  =&gt;  RUN OK &middot; 8196 step(s) &middot; peak stack 7 &middot; call depth 102
+    escape_count( 0.6,  0.6) = 3      (escapes in 3 steps -- outside)
+    escape_count(-0.5,  0.0) = 100    (hits MAX -- inside the cardioid)
+    escape_count(0.35, 0.35) = 100    (bounded to the cap -- in the set)</div>
+  <p>The compute is <b>already there</b>. The one wall is <b>output</b>: to render a <i>grid</i> of points you need an array or a canvas to write pixels into &mdash; and I-13 has neither. It has no array type at all:</p>
+  <div class="evi">i13 check arr.i13  =&gt;  arr.i13:1:11  E0001 unexpected character `[`   (no array literal)
+                          arr.i13:1:19  E0001 unexpected character `]`</div>
+  <div class="rec">
+    <b>Recommend: ADD nothing to the language.</b> No new <b>BinOp</b>, no new alphabet symbol &mdash; the escape test is expressible today, and this dart is the counter-example that proves the counted alphabet is not always too thin. The honest gap is <b>I/O, not compute</b>: a whole-image render needs a framebuffer (an array the host can read back, or a pixel-write capability on the host&rsquo;s side of the channel fence). That belongs to the <b>host</b>, not the 13-symbol core &mdash; the same split <span class="k">core.i13</span> already draws (&ldquo;I-13 owns the routing law; the host owns I/O only&rdquo;).<br>
+    <b>Tradeoff (honest):</b> keeping output in the host preserves the counted-alphabet purity &mdash; the price is that I-13 alone computes <i>one point at a time</i> and can only hand back scalar bindings; the picture is assembled outside. For a language whose identity is a <i>counted</i> 12-verbs-plus-<span class="k">I</span> alphabet, that is the right trade: <b>credit the compute, name only the I/O gap.</b>
+  </div>
+</div>
+
+<footer>
+  <b>DART 019 &middot; THE MANDELBROT SET</b> &mdash; World V &middot; SONNY 5, the I-13 world. Technique rendered, not copied. First defined and drawn by <b>Robert W. Brooks &amp; Peter Matelski</b> (1978); visualised in detail by <b>Benoit Mandelbrot</b> at IBM (1 March 1980); named and proven by <b>Adrien Douady &amp; John H. Hubbard</b> (1985), on the complex-dynamics bedrock of <b>Fatou &amp; Julia</b> (1900s&ndash;1920s). History &amp; figures via <a href="https://en.wikipedia.org/wiki/Mandelbrot_set">Wikipedia: Mandelbrot set</a>. I-13 by <b>David Lee Wise / ROOT0</b>; the escape-count above ran on the live compiler at <span class="kg">target/debug/i13</span>, and the array wall was measured, not asserted. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  var cv=document.getElementById("fractal"), ctx=cv.getContext("2d");
+  var W=cv.width, H=cv.height;
+  var hud=document.getElementById("hud"), res=document.getElementById("res");
+
+  // views: center (cre,cim) + half-width in the real axis
+  var VIEWS={
+    full:     {cx:-0.6,   cy:0.0,     half:1.85, name:"full set"},
+    seahorse: {cx:-0.745, cy:0.1130,  half:0.028, name:"seahorse valley"},
+    elephant: {cx:0.2820, cy:0.0100,  half:0.055, name:"elephant valley"},
+    triple:   {cx:-0.0885,cy:0.6545,  half:0.020, name:"triple-spiral valley"}
+  };
+  var view={cx:VIEWS.full.cx, cy:VIEWS.full.cy, half:VIEWS.full.half, name:VIEWS.full.name};
+
+  // colour ramp stops (RGB), matched to the TRON palette
+  var STOPS=[
+    [0.00,  10, 42, 85],   // deep blue
+    [0.28,  62,240,255],   // cyan
+    [0.60, 217,180, 90],   // gold
+    [0.82, 255,138, 61],   // orange
+    [1.00, 234,252,255]    // pale
+  ];
+  function ramp(t){
+    if(t<=0) return STOPS[0].slice(1);
+    if(t>=1) return STOPS[STOPS.length-1].slice(1);
+    for(var i=1;i<STOPS.length;i++){
+      if(t<=STOPS[i][0]){
+        var a=STOPS[i-1], b=STOPS[i];
+        var f=(t-a[0])/(b[0]-a[0]);
+        return [ a[1]+(b[1]-a[1])*f, a[2]+(b[2]-a[2])*f, a[3]+(b[3]-a[3])*f ];
+      }
+    }
+    return STOPS[STOPS.length-1].slice(1);
+  }
+
+  function maxIterFor(half){
+    // deeper zoom -> more iterations, so fine filaments stay resolved
+    var it = Math.round(110 + 45*Math.max(0, Math.log(1.85/half)/Math.LN10)*2.2);
+    return Math.min(700, Math.max(110, it));
+  }
+
+  // smooth escape count for one c; returns {n, esc} where n is fractional
+  function escape(cre, cim, maxIter){
+    var zr=0, zi=0, zr2=0, zi2=0, i=0;
+    while(i<maxIter && zr2+zi2<=64){       // radius 8 for smoother bands
+      zi = 2*zr*zi + cim;
+      zr = zr2 - zi2 + cre;
+      zr2 = zr*zr; zi2 = zi*zi;
+      i++;
+    }
+    if(i>=maxIter) return {n:maxIter, esc:false, mag:zr2+zi2};
+    // normalized iteration count (continuous colouring)
+    var mag=Math.sqrt(zr2+zi2);
+    var nu = i + 1 - Math.log(Math.log(mag)/Math.LN2)/Math.LN2;
+    return {n:nu, esc:true, mag:mag};
+  }
+
+  // integer escape count with radius 2 (matches the I-13 program exactly)
+  function escapeCount(cre, cim, maxIter){
+    var zr=0, zi=0, i=0;
+    while(i<maxIter){
+      if(zr*zr+zi*zi > 4) return i;
+      var nzr = zr*zr - zi*zi + cre;
+      var nzi = 2*zr*zi + cim;
+      zr=nzr; zi=nzi; i++;
+    }
+    return maxIter;
+  }
+
+  function render(){
+    var maxIter=maxIterFor(view.half);
+    var halfX=view.half, halfY=view.half*H/W;
+    var img=ctx.createImageData(W,H), d=img.data;
+    var p=0;
+    for(var py=0;py<H;py++){
+      var cim = view.cy + (0.5 - py/H)*2*halfY;
+      for(var px=0;px<W;px++){
+        var cre = view.cx + (px/W - 0.5)*2*halfX;
+        var e=escape(cre,cim,maxIter);
+        var r,g,b;
+        if(!e.esc){ r=5; g=7; b=15; }        // in set -> void
+        else{
+          var t=Math.sqrt(e.n/maxIter);      // sqrt to spread the low bands
+          var c=ramp(t); r=c[0]|0; g=c[1]|0; b=c[2]|0;
+        }
+        d[p++]=r; d[p++]=g; d[p++]=b; d[p++]=255;
+      }
+    }
+    ctx.putImageData(img,0,0);
+    res.innerHTML='view: <span class="true">'+view.name+'</span> &middot; center c = <span class="val" style="color:var(--gold)">('+
+      view.cx.toFixed(4)+', '+view.cy.toFixed(4)+'i)</span> &middot; span <span class="val" style="color:var(--cyan)">'+
+      (2*halfX).toPrecision(3)+'</span> &middot; max iterations <span class="val" style="color:var(--cyan)">'+maxIter+'</span>';
+  }
+
+  function pixelToC(ev){
+    var rect=cv.getBoundingClientRect();
+    var px=(ev.clientX-rect.left)/rect.width;
+    var py=(ev.clientY-rect.top)/rect.height;
+    var halfX=view.half, halfY=view.half*H/W;
+    return { cre: view.cx + (px-0.5)*2*halfX, cim: view.cy + (0.5-py)*2*halfY };
+  }
+
+  cv.addEventListener("mousemove", function(ev){
+    var c=pixelToC(ev);
+    var maxIter=maxIterFor(view.half);
+    var n=escapeCount(c.cre,c.cim,maxIter);
+    var tail = (n>=maxIter)
+      ? '<b>never escaped</b> (in the set, up to '+maxIter+')'
+      : 'escaped at <b>'+n+'</b> step'+(n===1?'':'s');
+    hud.innerHTML='c = ('+c.cre.toFixed(5)+', '+c.cim.toFixed(5)+'i) &middot; '+tail;
+  });
+  cv.addEventListener("mouseleave", function(){
+    hud.innerHTML="click to zoom &middot; hover to read c and its escape count";
+  });
+  cv.addEventListener("click", function(ev){
+    var c=pixelToC(ev);
+    view.cx=c.cre; view.cy=c.cim; view.half=view.half/2.6; view.name="custom zoom";
+    render();
+  });
+
+  var btns=document.querySelectorAll(".viewbtn");
+  for(var i=0;i<btns.length;i++){
+    btns[i].addEventListener("click", function(){
+      var v=VIEWS[this.getAttribute("data-view")];
+      view={cx:v.cx, cy:v.cy, half:v.half, name:v.name};
+      render();
+    });
+  }
+  document.getElementById("zoomout").addEventListener("click", function(){
+    view.half=Math.min(2.6, view.half*2.6);
+    if(view.name.indexOf("custom")<0) view.name="custom zoom";
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
