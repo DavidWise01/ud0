@@ -1118,6 +1118,22 @@
       "kicker": "dart 057 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-gauss-legendre-algorithm.html",
       "seal": "a0a5e586ff55e45f40d5ad41a9b98a1181e5371a078c9ee99d278c8c6c9c829a"
+    },
+    {
+      "slug": "the-spot-awareness-log",
+      "title": "THE SPOT-AWARENESS LOG",
+      "room": "darts",
+      "kicker": "milestone - I-13 watches itself",
+      "accent": "#d9b45a",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "version": "v0.12",
+      "credit": "David Lee Wise / ROOT0 (the request + the I/i hierarchy); i13 log by AVAN",
+      "source": "i13 log <file.i13> -> i13log.txt; src/compiler/spotlog.rs on DavidWise01/I13-H1.1",
+      "i13_recommend": "(this IS the integration - a compiler command David asked for, built and shipped to the trunk)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-spot-awareness-log.html",
+      "blurb": "I-13 learns to watch itself. At David's request, the canonical compiler now writes i13log.txt -- a spot-awareness log whose shape IS the program's natural hierarchy: I (uppercase) is a dominant scope, a frame, on the outside that contains; i (lowercase) is a subordinate spot, one instruction, on the inside, what falls out of I just by executing. Indent is containment (outside shallow, inside deep); a call opens a new I one level deeper; the running stack height on each i line is the balance invariant, watched live as it is held spot to spot. A new i13 log command on the canonical H1.1 compiler (src/compiler/spotlog.rs) rides the same read-only observer as trace, so it cannot alter execution, only witness it. Verified on straight-line, call, and deeply recursive programs (fac(3,1)=6 nests I/i to depth 3, 40 spots aware, balance held to the last spot); all 45 compiler tests pass. The language did not change; I-13 only learned to say where it is.",
+      "seal": "5df073c2475b363a5c1dd1cb79da8c16e0d75ecf8086d416f046ebccd9ebbb59"
     }
   ],
   "keepers": [
@@ -1128,13 +1144,13 @@
     }
   ],
   "counts": {
-    "spheres": 65,
+    "spheres": 66,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
     "darts": 57
   },
-  "i13_root": "b1a84e7d2340941c34d4b8a80cdc5753870c9c5a8ef2eb5b43a219bce0b6364d",
+  "i13_root": "ffbe8bdc4bb1b64c4219597b485a03dbf4c2728e63dce1178809f2cf8a2c4fd9",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

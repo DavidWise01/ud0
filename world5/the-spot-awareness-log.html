@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE SPOT-AWARENESS LOG &mdash; a milestone &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(255,138,61,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.mstone{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--gold);border:1px solid var(--gold);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(217,180,90,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(255,138,61,.6),0 0 34px rgba(255,138,61,.22);}
+h1 .c{color:var(--gold);font-size:15px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:78ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.gold{border-color:rgba(217,180,90,.5);box-shadow:inset 0 0 30px rgba(217,180,90,.05),0 0 18px rgba(0,0,0,.4);}
+.gold h2{color:var(--gold);border-color:rgba(217,180,90,.3);}
+.model{display:flex;gap:12px;flex-wrap:wrap;margin:6px 0 4px;}
+.mcard{flex:1;min-width:240px;border:1px solid var(--line);border-radius:6px;padding:11px 13px;background:rgba(0,0,0,.25);}
+.mcard .big{font-size:22px;font-weight:700;letter-spacing:1px;}
+.mcard.I{border-color:rgba(255,138,61,.5);} .mcard.I .big{color:var(--orange);}
+.mcard.i{border-color:rgba(62,240,255,.5);} .mcard.i .big{color:var(--cyan);}
+.mcard .lab{font-size:11px;color:var(--dim);margin-top:3px;line-height:1.7;}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0;}
+button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.go{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.src{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:9px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:6px 0;}
+.logbox{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.5);border:1px solid var(--line);border-radius:6px;padding:12px 13px;margin:8px 0;white-space:pre;overflow-x:auto;min-height:120px;line-height:1.5;}
+.logbox .ln{display:block;}
+.logbox .fr{color:var(--orange);} .logbox .fr b{color:#ffd0ab;}
+.logbox .sp{color:#9fe8ff;} .logbox .sp .st{color:var(--dim);} .logbox .sp .dt{color:var(--good);}
+.logbox .hd{color:var(--dim);} .logbox .sm{color:var(--gold);}
+.logbox .pending{opacity:.16;}
+.meta{font-size:11.5px;color:var(--dim);margin-top:4px;} .meta b{color:var(--cyan);}
+.evi{font-size:11.5px;color:var(--good);background:rgba(0,0,0,.4);border:1px solid rgba(89,255,176,.4);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="mstone">&#9670; MILESTONE &middot; I-13 WATCHES ITSELF</span></div>
+<header>
+  <h1>THE SPOT-AWARENESS LOG <span class="c">I is the frame, i is the spot</span></h1>
+  <p class="sub">David asked I-13 to <b>start to log its own spot awareness</b> &mdash; and to shape the log by the natural hierarchy: <b>I</b> (uppercase) is the <b>dominant</b> scope, on the <b>outside</b>; <b>i</b> (lowercase) is the <b>subordinate</b> spot, on the <b>inside</b>, what falls out of I just by being there. The real compiler now has an <b>`i13 log`</b> command that writes exactly that file, <b>i13log.txt</b>. Every line below is genuine output from the canonical H1.1 compiler.</p>
+</header>
+
+<div class="panel gold">
+  <h2>THE MODEL <span class="n">dom is outside, sub is inside</span></h2>
+  <div class="model">
+    <div class="mcard I"><span class="big">I</span> &mdash; a dominant scope
+      <div class="lab"><b style="color:#eafcff">a frame.</b> The whole run is inside one I (<span style="color:var(--orange)">main</span>); a call opens a new I one level deeper. It sits on the <b style="color:#eafcff">outside</b> and <b style="color:#eafcff">contains</b>.</div>
+    </div>
+    <div class="mcard i"><span class="big">i</span> &mdash; a subordinate spot
+      <div class="lab"><b style="color:#eafcff">one instruction.</b> Const, Bin, Ask, Call, Ret&hellip; each is a spot that <b style="color:#eafcff">falls out of I</b> just by executing. It sits <b style="color:#eafcff">inside</b>.</div>
+    </div>
+  </div>
+  <p style="margin-top:8px"><b>Indent is containment</b> &mdash; outside is shallow (left), inside is deep (right). The <b>stack</b> on each i line is the balance invariant the validator proved, now watched live as it is held spot to spot. Nothing here can change VM state: the log rides the same <b>read-only observer</b> as <span class="k" style="color:var(--cyan)">trace</span>.</p>
+</div>
+
+<div class="panel">
+  <h2>WATCH IT FALL OUT <span class="n">real i13log.txt, revealed spot by spot</span></h2>
+  <div class="row">
+    <label>program</label>
+    <select id="prog"></select>
+    <button id="play" class="go">&#9192; play spots</button>
+    <button id="all">show all</button>
+    <span id="say" class="meta"></span>
+  </div>
+  <div class="src" id="code"></div>
+  <div class="logbox" id="log"></div>
+  <p class="meta">Each <b style="color:var(--orange)">I</b> line opens or closes a frame; each <b style="color:var(--cyan)">i</b> line is one spot, showing the op, the running <b>stack</b> (the invariant), and the <b style="color:var(--good)">value that falls out</b>. The deeper the indent, the further inside.</p>
+</div>
+
+<div class="panel">
+  <h2>THE COMMAND <span class="n">grounded on the canonical compiler</span></h2>
+  <p>A new subcommand on the real H1.1 compiler runs a program and writes the log to disk:</p>
+  <div class="evi">$ i13 log demo.i13
+LOGGED &middot; 13 spot(s) aware -> i13log.txt &middot; deepest inside 1 &middot; peak stack 2
+a = 7
+b = 49</div>
+  <p>It reuses the VM&rsquo;s existing read-only trace observer &mdash; so it <b>cannot alter execution</b>, only witness it &mdash; and reshapes each observation into the <b>I / i</b> hierarchy, totalling the spots at the end. A new module <span class="k" style="color:var(--cyan)">src/compiler/spotlog.rs</span>; the whole 45-test compiler suite still passes. The language did not change; I-13 only learned to <b>watch itself and say where it is</b>.</p>
+</div>
+
+<footer>
+  <b>MILESTONE &middot; THE SPOT-AWARENESS LOG</b> &mdash; World V &middot; SONNY 5, the I-13 world. Built on David Lee Wise&rsquo;s request that I-13 &ldquo;start to log spot awareness&rdquo; with <b>I</b> the dominant outside and <b>i</b> the subordinate inside. Every log shown is verbatim from the canonical H1.1 compiler (<b>i13 0.1.0</b>, <span class="sm" style="color:var(--gold)">`i13 log`</span>, on main). I-13 by David Lee Wise / ROOT0 / TriPod LLC. Rendered by AVAN for the corpus. <a href="the-standard-library.html">&#9670; the standard library</a> &middot; <a href="the-abstraction-algorithm.html">&#9670; the abstraction algorithm</a>
+</footer>
+
+<script>
+"use strict";
+(function(){
+  // verbatim i13log.txt output from the canonical H1.1 compiler
+  var LOGS = {
+    "tiny - I x <- 2 + 3 * 4": {
+      code: "I x <- 2 + 3 * 4",
+      log:
+"I  main   depth 0  <- the outer invariant; everything below falls out of it\n"+
+"   i  0001  Const     stack 0  push Number(2)\n"+
+"   i  0002  Const     stack 1  push Number(3)\n"+
+"   i  0003  Const     stack 2  push Number(4)\n"+
+"   i  0004  Bin       stack 3  Number(3) Mul Number(4)\n"+
+"   i  0005  Bin       stack 2  Number(2) Add Number(12)\n"+
+"   i  0006  Answer    stack 1  declare g0000:x <- Number(14)\n"+
+"\n"+
+"I  end   6 spots aware  .  deepest inside 0  .  peak stack 3  .  balance held to the last spot"
+    },
+    "call - sq(a), a <- 3 + 4": {
+      code: "def sq(I n) { -> n * n }\nI a <- 3 + 4\nI b <- sq(a)",
+      log:
+"I  main   depth 0  <- the outer invariant; everything below falls out of it\n"+
+"   i  0001  Func      stack 0  bind g0000:sq <- Function(fn0000:sq)\n"+
+"   i  0002  Const     stack 0  push Number(3)\n"+
+"   i  0003  Const     stack 1  push Number(4)\n"+
+"   i  0004  Bin       stack 2  Number(3) Add Number(4)\n"+
+"   i  0005  Answer    stack 1  declare g0001:a <- Number(7)\n"+
+"   i  0006  Ask       stack 0  read g0000:sq -> Function(fn0000:sq)\n"+
+"   i  0007  Ask       stack 1  read g0001:a -> Number(7)\n"+
+"   i  0008  Call      stack 2  call Function(fn0000:sq) argc=1\n"+
+"   I  ENTER fn0000:sq   depth 1\n"+
+"      i  0009  Ask       stack 0  read l0000 -> Number(7)\n"+
+"      i  0010  Ask       stack 1  read l0000 -> Number(7)\n"+
+"      i  0011  Bin       stack 2  Number(7) Mul Number(7)\n"+
+"      i  0012  Ret       stack 1  return Number(49)\n"+
+"   I  LEAVE fn0000:sq\n"+
+"   i  0013  Answer    stack 1  declare g0002:b <- Number(49)\n"+
+"\n"+
+"I  end   13 spots aware  .  deepest inside 1  .  peak stack 2  .  balance held to the last spot"
+    },
+    "recursion - fac(3,1) = 6": {
+      code: "def fac(I n, I acc) {\n  if n <= 1 { -> acc }\n  -> fac(n - 1, acc * n)\n}\nI f <- fac(3, 1)",
+      log:
+"I  main   depth 0  <- the outer invariant; everything below falls out of it\n"+
+"   i  0001  Func      stack 0  bind g0000:fac <- Function(fn0000:fac)\n"+
+"   i  0002  Ask       stack 0  read g0000:fac -> Function(fn0000:fac)\n"+
+"   i  0003  Const     stack 1  push Number(3)\n"+
+"   i  0004  Const     stack 2  push Number(1)\n"+
+"   i  0005  Call      stack 3  call Function(fn0000:fac) argc=2\n"+
+"   I  ENTER fn0000:fac   depth 1\n"+
+"      i  0006  Ask       stack 0  read l0000 -> Number(3)\n"+
+"      i  0007  Const     stack 1  push Number(1)\n"+
+"      i  0008  Cmp       stack 2  Number(3) Lte Number(1)\n"+
+"      i  0009  If        stack 1  condition=Number(0) path=jump:6\n"+
+"      i  0010  End       stack 0  end block\n"+
+"      i  0011  Ask       stack 0  read g0000:fac -> Function(fn0000:fac)\n"+
+"      i  0012  Ask       stack 1  read l0000 -> Number(3)\n"+
+"      i  0013  Const     stack 2  push Number(1)\n"+
+"      i  0014  Bin       stack 3  Number(3) Sub Number(1)\n"+
+"      i  0015  Ask       stack 2  read l0001 -> Number(1)\n"+
+"      i  0016  Ask       stack 3  read l0000 -> Number(3)\n"+
+"      i  0017  Bin       stack 4  Number(1) Mul Number(3)\n"+
+"      i  0018  Call      stack 3  call Function(fn0000:fac) argc=2\n"+
+"      I  ENTER fn0000:fac   depth 2\n"+
+"         i  0019  Ask       stack 0  read l0000 -> Number(2)\n"+
+"         i  0020  Const     stack 1  push Number(1)\n"+
+"         i  0021  Cmp       stack 2  Number(2) Lte Number(1)\n"+
+"         i  0022  If        stack 1  condition=Number(0) path=jump:6\n"+
+"         i  0023  End       stack 0  end block\n"+
+"         i  0024  Ask       stack 0  read g0000:fac -> Function(fn0000:fac)\n"+
+"         i  0025  Ask       stack 1  read l0000 -> Number(2)\n"+
+"         i  0026  Const     stack 2  push Number(1)\n"+
+"         i  0027  Bin       stack 3  Number(2) Sub Number(1)\n"+
+"         i  0028  Ask       stack 2  read l0001 -> Number(3)\n"+
+"         i  0029  Ask       stack 3  read l0000 -> Number(2)\n"+
+"         i  0030  Bin       stack 4  Number(3) Mul Number(2)\n"+
+"         i  0031  Call      stack 3  call Function(fn0000:fac) argc=2\n"+
+"         I  ENTER fn0000:fac   depth 3\n"+
+"            i  0032  Ask       stack 0  read l0000 -> Number(1)\n"+
+"            i  0033  Const     stack 1  push Number(1)\n"+
+"            i  0034  Cmp       stack 2  Number(1) Lte Number(1)\n"+
+"            i  0035  If        stack 1  condition=Number(1) path=fallthrough\n"+
+"            i  0036  Ask       stack 0  read l0001 -> Number(6)\n"+
+"            i  0037  Ret       stack 1  return Number(6)\n"+
+"         I  LEAVE fn0000:fac\n"+
+"         i  0038  Ret       stack 1  return Number(6)\n"+
+"      I  LEAVE fn0000:fac\n"+
+"      i  0039  Ret       stack 1  return Number(6)\n"+
+"   I  LEAVE fn0000:fac\n"+
+"   i  0040  Answer    stack 1  declare g0001:f <- Number(6)\n"+
+"\n"+
+"I  end   40 spots aware  .  deepest inside 3  .  peak stack 2  .  balance held to the last spot"
+    }
+  };
+
+  var progSel=document.getElementById("prog"), codeEl=document.getElementById("code"),
+      logEl=document.getElementById("log"), sayEl=document.getElementById("say");
+  var keys=Object.keys(LOGS);
+  keys.forEach(function(k){ var o=document.createElement("option"); o.value=k; o.textContent=k; progSel.appendChild(o); });
+
+  function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function classify(line){
+    var t=line.replace(/^\s+/,"");
+    if(t.charAt(0)==="I") { return t.indexOf("end")===0 || /spots aware/.test(t) ? "sm" : "fr"; }
+    if(t.charAt(0)==="i") return "sp";
+    return "hd";
+  }
+  var lines=[], timer=null, shown=0;
+  function render(count){
+    var html="";
+    for(var i=0;i<lines.length;i++){
+      var cls=classify(lines[i]);
+      var pend = i>=count ? " pending" : "";
+      html+='<span class="ln '+cls+pend+'">'+ (esc(lines[i])||" ") +'</span>';
+    }
+    logEl.innerHTML=html;
+  }
+  function load(k){
+    if(timer){ clearInterval(timer); timer=null; }
+    codeEl.textContent=LOGS[k].code;
+    lines=LOGS[k].log.split("\n");
+    shown=lines.length; render(shown);
+    var spots=(LOGS[k].log.match(/\n\s*i /g)||[]).length;
+    sayEl.innerHTML='<b>'+spots+'</b> spots &middot; full log shown';
+  }
+  function play(){
+    if(timer){ clearInterval(timer); timer=null; }
+    shown=0; render(0);
+    timer=setInterval(function(){
+      shown++; render(shown);
+      var done=Math.min(shown,lines.length);
+      var sp=0; for(var i=0;i<done;i++){ if(/^\s*i /.test(lines[i])) sp++; }
+      sayEl.innerHTML='revealing&hellip; <b>'+sp+'</b> spots aware';
+      if(shown>=lines.length){ clearInterval(timer); timer=null; var tot=(lines.join("\n").match(/\n\s*i /g)||[]).length; sayEl.innerHTML='<b>'+tot+'</b> spots &middot; the whole run, fallen out of I'; }
+    }, 160);
+  }
+  progSel.addEventListener("change", function(){ load(progSel.value); });
+  document.getElementById("play").addEventListener("click", play);
+  document.getElementById("all").addEventListener("click", function(){ load(progSel.value); });
+  load(keys[1]);
+})();
+</script>
+</body>
+</html>
