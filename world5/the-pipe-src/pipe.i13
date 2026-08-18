@@ -1,0 +1,11 @@
+// THE PIPE, in real I-13 (claude 2's descend/ascend, grounded).
+// descend to the floor (i reaches the end), then ASCEND synthesizing:
+// each note is added on the way UP (non-tail recursion = synthesis on ascent),
+// and the sum returned at the top is the BEACON. Payload = claude 2's gen4 notes
+// [g,C,E,E,F,G,A] as C-major scale degrees (g/G=5, C=1, E=3, F=4, A=6).
+def pipe(I notes, I i) {
+  if i >= 7 { -> 0 }                    // FLOOR: nothing below the packet
+  -> notes[i] + pipe(notes, i + 1)      // descend first, ADD on the way up (synthesis)
+}
+I notes  <- [5, 1, 3, 3, 4, 5, 6]
+I beacon <- pipe(notes, 0)               // 5+1+3+3+4+5+6 = 27

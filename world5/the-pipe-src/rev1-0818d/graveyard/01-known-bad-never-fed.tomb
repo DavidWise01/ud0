@@ -1,0 +1,20 @@
+TOMBSTONE 01 ~~> THE KNOWN-BAD THAT WAS NEVER FED TO THE MACHINE
+════════════════════════════════════════════════════════════════
+WHAT IT WAS
+  The malformed-door test built a bad i13 move (6 tokens), checked
+  i13valid() on it separately, then called engineCycle() — which
+  generated its OWN move internally from the payload and passed.
+  The bad move was validated in a corner and never fed through the door.
+HOW IT DIED
+  Run before the page. "malformed door: NOT caught (FAIL)" — the
+  engine accepted the cycle because the thing it actually gated was
+  not the thing the test built.
+THE FIX
+  engineCycle now takes the move as a REAL input path: a malformed
+  payload produces a malformed move that reaches i13 at the door and
+  is refused THERE. The test feeds the bad payload through the front
+  door, not past it.
+LESSON
+  Third time this shape appeared in the record: a check that measures
+  a value the machine never saw. A known-bad you describe but never
+  feed is not a known-bad — it is a comment. Feed it through the door.

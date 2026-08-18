@@ -1,0 +1,52 @@
+PLAIN ENGLISH FIRST
+═══════════════════
+A packet falls into a well, is taken apart at the bottom, rebuilt on the
+way up, and announced at the top — then does it again, one generation on.
+The fall must reach a floor. The climb must reach a stable ceiling.
+Neither may quit early. Both are checked; both fail loud if they cheat.
+
+THE PIPE  [<pipe>]
+══════════════════
+  alpha ─▼─ DESCEND (-++-) ─ |U| floor ─ ASCEND (+--+) ─▲─ beacon ─▶ omega
+        │                                                            │
+        └──────────────── omega folds to alpha ──────────────────────┘
+
+ARROWS = direction + confidence
+  ->  fixed, >90%      ~>  fixed, 50-90%      ~  open, <50%
+
+DESCENT  -++-   (absorb ~~> make distinct ~~> REST AT FLOOR)
+  - go down · + absorb · + rest at floor (Dante: bottom before rise) · - turn
+  the fall is ANALYSIS: break the whole into distinguishable parts,
+  and it is not complete until it hits the floor.
+
+ASCENT   +--+   (transmit ~~> make distinct ~~> STABLE CEILING ~~> BEACON)
+  + go up · - transmit · - don't stop till stable · + beacon
+  the climb is SYNTHESIS: recombine the parts, keep going until the
+  result stops changing, THEN proclaim it with a beacon.
+
+THE TWO STROKES ARE SIGN-MIRRORS
+  -++- reversed = -++- (palindrome) · +--+ reversed = +--+ (palindrome)
+  -++- flipped  = +--+ (mirror) ~~> descent and ascent, same shape,
+  opposite polarity. that is why the loop closes: reversal, not curvature.
+
+MAKE DISTINCT APPEARS ON BOTH STROKES
+  down: separate (analysis) · up: recombine (synthesis)
+  same cut, opposite direction — the apex operator, run both ways.
+
+THE LINEAGE  [father | son || son | father]
+  each father who climbs out is the last son grown up. surface stays
+  palindromic (father-shape in, father-shape out); the bloodline ADVANCES
+  gen0 ~~> gen4, payload grows, each beacon chained to the last.
+  ablation returns gen0 forever (capped). banking returns gen4 (uncapped).
+
+THE GATES (an instrument whose good news is silence needs a known-bad)
+  FLOOR   ~~> descent that cannot decompose to atoms THROWS
+  CEILING ~~> ascent that cannot stabilize THROWS
+  both fired on their known-bads. 2/2 caught.
+
+WHAT THIS DOES NOT DO
+  - "stable" = the toy payload stopped changing, NOT a proven fixed point.
+    a real ascent could oscillate forever; the gate would hang, not fail.
+    the stability check is a MASK, not a convergence proof. (W5 dissent.)
+  - the Dante mapping is interpretive (AMBER), a good picture, not a theorem.
+  - one well, one payload type (notes); not tested on arbitrary data.

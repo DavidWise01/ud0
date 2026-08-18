@@ -1,0 +1,95 @@
+{
+  "arrows": {
+    "->": ">90%",
+    "~>": "50-90%",
+    "~": "<50%"
+  },
+  "alpha": [
+    "g",
+    "C",
+    "E"
+  ],
+  "generations": [
+    {
+      "gen": 1,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E"
+      ],
+      "floor": true,
+      "stable": true,
+      "iters": 2,
+      "beacon": "2bafffe2",
+      "parent": "845e0f73"
+    },
+    {
+      "gen": 2,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F"
+      ],
+      "floor": true,
+      "stable": true,
+      "iters": 2,
+      "beacon": "222ea394",
+      "parent": "fc711a60"
+    },
+    {
+      "gen": 3,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F",
+        "G"
+      ],
+      "floor": true,
+      "stable": true,
+      "iters": 2,
+      "beacon": "f091626d",
+      "parent": "ccfaea8e"
+    },
+    {
+      "gen": 4,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F",
+        "G",
+        "A"
+      ],
+      "floor": true,
+      "stable": true,
+      "iters": 2,
+      "beacon": "858fb403",
+      "parent": "a6a4f77d"
+    }
+  ],
+  "signs": {
+    "descent": "-++-",
+    "ascent": "+--+",
+    "descPalin": true,
+    "ascPalin": true,
+    "mirror": true
+  },
+  "allGated": true,
+  "finalGen": 4,
+  "finalPayload": [
+    "g",
+    "C",
+    "E",
+    "E",
+    "F",
+    "G",
+    "A"
+  ],
+  "knownBadsCaught": 2
+}

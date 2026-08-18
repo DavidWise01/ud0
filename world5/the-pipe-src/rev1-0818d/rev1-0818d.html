@@ -1,0 +1,339 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>rev1-0818d · the engine</title>
+<style>
+:root{
+--ground:#0a0810;--rule:#26223a;--ink:#e9e6f2;--ink-dim:#8b86a2;
+--earth:#c9a24b;--wood:#4bb58a;--metal:#c8ccd4;--fire:#e0603a;--water:#4b7fe0;
+--earth-bg:#141009;--wood-bg:#0a1410;--metal-bg:#0f1114;--fire-bg:#140c0a;--water-bg:#0a0e14;
+--door:#e0c37e;--down:#e0603a;--up:#4bb58a;--bankc:#4b7fe0;--beacon:#e0c37e;
+--lit:#4bb58a;--amber:#e0a83a;--dead:#e0603a;
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:13px/1.5 ui-monospace,Menlo,Consolas,monospace}
+header{padding:14px 18px;border-bottom:1px solid var(--rule)}
+header h1{margin:0;font-size:15px;font-weight:600;letter-spacing:.5px}
+header .sub{color:var(--ink-dim);font-size:11px;margin-top:3px}
+.wrap{display:flex;width:100%}
+.panel{flex:1 1 20%;min-width:0;border-right:1px solid var(--rule);padding:12px 12px 22px;min-height:76vh}
+.panel:last-child{border-right:none}
+.phead{font-size:12px;font-weight:600;letter-spacing:1px;padding-bottom:6px;margin-bottom:8px;border-bottom:2px solid}
+.tag{font-size:9px;color:var(--ink-dim);letter-spacing:1px}
+.eli{font-size:10px;color:var(--ink-dim);margin:6px 0 10px;line-height:1.45}
+.w1 .phead{color:var(--earth);border-color:var(--earth)}.w2 .phead{color:var(--wood);border-color:var(--wood)}
+.w3 .phead{color:var(--metal);border-color:var(--metal)}.w4 .phead{color:var(--fire);border-color:var(--fire)}.w5 .phead{color:var(--water);border-color:var(--water)}
+.w1{background:var(--earth-bg)}.w2{background:var(--wood-bg)}.w3{background:var(--metal-bg)}.w4{background:var(--fire-bg)}.w5{background:var(--water-bg)}
+button{font-family:inherit;font-size:11px;background:transparent;color:var(--ink);border:1px solid var(--ink-dim);padding:5px 10px;cursor:pointer;margin:4px 4px 4px 0;border-radius:2px}
+button:focus-visible{outline:2px solid var(--metal);outline-offset:2px}
+.w1 button{border-color:var(--earth)}.w2 button{border-color:var(--wood)}.w3 button{border-color:var(--metal)}.w4 button{border-color:var(--fire)}.w5 button{border-color:var(--water)}
+canvas{width:100%;display:block;margin:8px 0;background:#00000030;border:1px solid var(--rule)}
+pre{margin:6px 0;white-space:pre-wrap;font-size:11px}
+.stamp{display:inline-block;padding:0 4px;font-size:9px;border-radius:2px;font-weight:600}
+.LIT{background:var(--lit);color:#04120c}.AMBER{background:var(--amber);color:#1a1200}.DEAD{background:var(--dead);color:#160604}
+.board div{font-size:10px;padding:2px 0;border-bottom:1px dotted var(--rule)}
+.ok{color:var(--lit)}.no{color:var(--dead)}.dim{color:var(--ink-dim)}
+table{border-collapse:collapse;width:100%;font-size:10px}td{padding:2px 4px;border-bottom:1px solid var(--rule);vertical-align:top}
+.big{font-size:11px;line-height:1.35}
+.arrows{font-size:10px;color:var(--ink-dim);margin:4px 0}.arrows b{color:var(--ink)}
+.bankrow{font-size:10px;padding:1px 0;color:var(--bankc)}
+</style></head><body>
+<header>
+<h1>rev1-0818d &nbsp;·&nbsp; the engine</h1>
+<div class="sub">r0:alpha ─▼ well[ i13·E1 ] ▲─ r0:omega &nbsp;·&nbsp; one door · a well · a bank · generational. omega folds to alpha. ground: FORGE BLACK.</div>
+</header>
+<div class="wrap">
+
+<section class="panel w1">
+<div class="phead">W1 · SOURCE <span class="tag">EARTH</span></div>
+<div class="eli">Plain English: the whole machine. One door (r0). A packet enters as alpha, falls into a well, gets worked on by a surgical mill (i13 checks the form, E1 adds/improves), the result is banked so nothing is lost, and it climbs back out as omega — which folds to alpha one generation later. Runs itself. Press each panel left to right.</div>
+<div class="arrows">arrows: <b>-></b> &gt;90% &nbsp; <b>~></b> 50–90% &nbsp; <b>~</b> &lt;50% &nbsp;(direction + confidence)</div>
+<div id="w1stamps"></div>
+<div id="w1catch"></div>
+<button id="w1run">AUDIT BOARD</button>
+<div class="board" id="w1board"></div>
+</section>
+
+<section class="panel w2">
+<div class="phead">W2 · CONTRIBUTIONS <span class="tag">WOOD</span></div>
+<div class="eli">Plain English: who built this — you (the whole architecture, every piece, months of it), me (assembly + verify), the verifier that caught a known-bad that was never fed to the machine.</div>
+<canvas id="w2c" height="150"></canvas>
+<button id="w2run">RUN</button>
+<pre id="w2out"></pre>
+</section>
+
+<section class="panel w3">
+<div class="phead">W3 · 1D · THE DOOR <span class="tag">METAL</span></div>
+<div class="eli">Plain English: the one-axis truth — r0 is the ONLY door. alpha goes in, omega comes out, and omega folds back to alpha. Nothing enters or leaves except here. Watch the single packet enter and its shape return, one generation on.</div>
+<pre id="w3out"></pre>
+<button id="w3run">OPEN THE DOOR</button>
+<pre id="w3rep" class="dim"></pre>
+</section>
+
+<section class="panel w4">
+<div class="phead">W4 · 2D · THE WELL + BANK <span class="tag">FIRE</span></div>
+<div class="eli">Plain English: the interactive heart. Run a generation: the packet falls (i13 gates the form, must be legal), E1 works it at the floor (add + improve), it climbs to a stable ceiling, and every new value is BANKED (kept, never overwritten). Watch the bank grow on the right. Try the planted void — a malformed packet is refused at the door.</div>
+<canvas id="w4c" height="180"></canvas>
+<button id="w4run">RUN A GENERATION</button>
+<button id="w4bad">PLAY THE PLANTED VOID</button>
+<div id="w4bank"></div>
+<pre id="w4out"></pre>
+</section>
+
+<section class="panel w5">
+<div class="phead">W5 · 3D · THE LINEAGE <span class="tag">WATER</span></div>
+<div class="eli">Plain English: three axes, and what the others left out. The others showed one pass. This is all five generations at once — gen0 to gen5, payload growing, bank accumulating, each beacon chained. Ablation would reset to gen0 every time; banking climbs. The axis nobody else showed: accumulation across the bloodline.</div>
+<canvas id="w5c" height="200"></canvas>
+<button id="w5run">RUN THE WHOLE ENGINE</button>
+<pre id="w5out"></pre>
+<div id="w5dissent"></div>
+</section>
+
+</div>
+<script id="data" type="application/json">{
+  "alpha": [
+    "g",
+    "C",
+    "E"
+  ],
+  "omega": [
+    "g",
+    "C",
+    "E",
+    "E",
+    "F",
+    "G",
+    "A",
+    "B"
+  ],
+  "finalGen": 5,
+  "generations": [
+    {
+      "gen": 1,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E"
+      ],
+      "beacon": "16df9423",
+      "floor": true,
+      "stable": true,
+      "gate": true,
+      "bankSize": 3,
+      "flags": [],
+      "parent": "63bc7a3a"
+    },
+    {
+      "gen": 2,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F"
+      ],
+      "beacon": "5f437109",
+      "floor": true,
+      "stable": true,
+      "gate": true,
+      "bankSize": 4,
+      "flags": [],
+      "parent": "dd821367"
+    },
+    {
+      "gen": 3,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F",
+        "G"
+      ],
+      "beacon": "36bc71b4",
+      "floor": true,
+      "stable": true,
+      "gate": true,
+      "bankSize": 5,
+      "flags": [],
+      "parent": "5b4d51d5"
+    },
+    {
+      "gen": 4,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F",
+        "G",
+        "A"
+      ],
+      "beacon": "a7532b5a",
+      "floor": true,
+      "stable": true,
+      "gate": true,
+      "bankSize": 6,
+      "flags": [],
+      "parent": "6b57ad04"
+    },
+    {
+      "gen": 5,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F",
+        "G",
+        "A",
+        "B"
+      ],
+      "beacon": "cca0e1de",
+      "floor": true,
+      "stable": true,
+      "gate": true,
+      "bankSize": 7,
+      "flags": [],
+      "parent": "6b52c22d"
+    }
+  ],
+  "bank": {
+    "g": {
+      "freq": 392,
+      "gen": 1
+    },
+    "C": {
+      "freq": 261.6,
+      "gen": 1
+    },
+    "E": {
+      "freq": 329.6,
+      "gen": 1
+    },
+    "F": {
+      "freq": 349.2,
+      "gen": 2
+    },
+    "G": {
+      "freq": 392,
+      "gen": 3
+    },
+    "A": {
+      "freq": 440,
+      "gen": 4
+    },
+    "B": {
+      "freq": 493.9,
+      "gen": 5
+    }
+  },
+  "bankSize": 7,
+  "arrows": {
+    "->": ">90%",
+    "~>": "50-90%",
+    "~": "<50%"
+  },
+  "knownBadsCaught": 3,
+  "allGated": true
+}</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent);
+const REPORTS={W2:null,W3:null,W4:null,W5:null};
+function report(w,p){REPORTS[w]=p;drawBoard();}
+function drawBoard(){document.getElementById('w1board').innerHTML=Object.entries(REPORTS).map(([k,v])=>{
+  if(!v)return '<div class="dim">'+k+' · awaiting run</div>';
+  if(v.kind==='dissent')return '<div class="no">'+k+' ⚑ dissent · '+v.text+'</div>';
+  return '<div class="'+(v.agree?'ok':'no')+'">'+k+' · '+(v.agree?'agree':'DISAGREE')+' · '+v.text+'</div>';}).join('');}
+document.getElementById('w1stamps').innerHTML=
+ '<table>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>single door r0: alpha in, omega out, omega folds to alpha</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>every cycle gated — i13 form + floor + stable ceiling — all '+D.finalGen+' gens</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>bank accumulated to '+D.bankSize+' entries, append-only (banking, not ablation)</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>lineage gen0→gen'+D.finalGen+', payload 3→'+D.omega.length+' (progressive)</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>3/3 known-bads caught (door, overwrite, no-floor)</td></tr>'+
+ '<tr><td><span class="stamp AMBER">AMBER</span></td><td>"stable ceiling" = payload stopped changing, not a proven fixed point</td></tr>'+
+ '<tr><td><span class="stamp DEAD">DEAD</span></td><td>first malformed-door test validated a move it never fed the engine</td></tr>'+
+ '</table>';
+document.getElementById('w1catch').innerHTML='<div class="big" style="border-left:2px solid var(--dead);padding-left:6px;margin:8px 0">▓ CONTROL CAUGHT (pre-build): the malformed-door known-bad did NOT throw — the test built a bad move, checked it in a corner, then ran the engine on a DIFFERENT move that passed. A known-bad you never feed the machine is a comment, not a control. Fixed: the door now gates the move actually derived from the packet. Tombstone 01.</div>';
+document.getElementById('w1run').onclick=function(){const rep=Object.values(REPORTS);const ran=rep.filter(Boolean).length,dis=rep.filter(v=>v&&v.agree===false).length,dsn=rep.filter(v=>v&&v.kind==='dissent').length;
+ const head=ran<4?'<div class="dim">■ incomplete — '+ran+'/4</div>':'<div class="ok">■ complete — 4/4, '+dis+' disagree, '+dsn+' dissent</div>';drawBoard();document.getElementById('w1board').insertAdjacentHTML('afterbegin',head);};
+
+(function(){const c=document.getElementById('w2c'),x=c.getContext('2d');
+ const rows=[['you — the whole architecture',60,'#c9a24b'],['me — assembly + verify',25,'#4bb58a'],['the verifier — caught the phantom bad',9,'#e0603a'],['prior lineage (loop, well, court)',6,'#4b7fe0']];
+ function draw(){const w=c.clientWidth;c.width=w;c.height=150;x.clearRect(0,0,w,150);let y=8;const s=rows.reduce((a,r)=>a+r[1],0);
+  rows.forEach(r=>{const bw=(w-90)*r[1]/100;x.fillStyle=r[2];x.fillRect(84,y,bw,20);x.fillStyle='#e9e6f2';x.font='10px monospace';x.textAlign='right';x.fillText(r[1]+'%',80,y+14);x.textAlign='left';x.fillStyle='#8b86a2';x.font='9px monospace';x.fillText(r[0],84,y+32);y+=44;});return s;}
+ document.getElementById('w2run').onclick=function(){const s=draw();document.getElementById('w2out').textContent='sum = '+s+(s===100?' ✓':' ✗')+'  (AMBER — a judgement)';report('W2',{agree:s===100,text:'weights '+s});};
+ window.addEventListener('resize',()=>{if(c.width)draw();});})();
+
+(function(){
+ function render(){
+  let s='r0 — THE ONLY DOOR\n══════════════════\n';
+  s+='  alpha (in)  = '+JSON.stringify(D.alpha)+'\n';
+  s+='       │  ▼ descend  -> into the well\n';
+  s+='     [ i13 · E1 ]  ~> work mid-stream\n';
+  s+='       │  ▲ ascend  -> out of the well\n';
+  s+='  omega (out) = '+JSON.stringify(D.omega)+'\n\n';
+  s+='  omega folds to alpha:  head ['+D.omega.slice(0,3).join(',')+'...] begins with alpha ['+D.alpha.join(',')+']\n';
+  s+='  nothing enters or leaves but r0.';
+  document.getElementById('w3out').textContent=s;
+ }
+ render();
+ document.getElementById('w3run').onclick=function(){
+  const folds=JSON.stringify(D.omega.slice(0,3))===JSON.stringify(D.alpha);
+  document.getElementById('w3rep').textContent='measured: omega head = '+JSON.stringify(D.omega.slice(0,3))+' · alpha = '+JSON.stringify(D.alpha)+' · folds='+folds+' · single door confirmed';
+  report('W3',{agree:folds,text:'one door, omega folds to alpha'});};
+})();
+
+(function(){
+ const c=document.getElementById('w4c'),x=c.getContext('2d');
+ let phase=-1; const gens=D.generations;
+ function draw(refused){const w=c.clientWidth;c.width=w;c.height=180;x.clearRect(0,0,w,180);
+  const lx=w*0.20,rx=w*0.52,top=18,bot=150;
+  x.strokeStyle='#26223a';x.beginPath();x.moveTo(lx,top);x.lineTo(lx,bot);x.lineTo(rx,bot);x.lineTo(rx,top);x.stroke();
+  x.fillStyle='#e0c37e';x.font='9px monospace';x.fillText('r0 alpha ▼',lx-10,top-5);x.fillText('▲ r0 omega',rx-10,top-5);
+  const steps=[['i13 gate',lx,top+10,'#c8ccd4'],['▼ absorb',lx,top+40,'#e0603a'],['floor',lx,bot-14,'#e0603a'],['E1 work',(lx+rx)/2,bot-4,'#e0c37e'],['▲ transmit',rx,bot-40,'#4bb58a'],['stable',rx,top+20,'#4bb58a']];
+  steps.forEach((st,i)=>{const on=i<=phase && !refused;x.fillStyle=on?st[3]:'#2a2438';x.beginPath();x.arc(st[1],st[2],on?6:4,0,7);x.fill();
+   x.fillStyle=on?'#e9e6f2':'#5a5570';x.font='8px monospace';x.fillText(st[0],st[1]+9,st[2]+3);});
+  if(refused){x.fillStyle='#e0603a';x.font='11px monospace';x.fillText('✗ REFUSED at the door — malformed',lx,top+70);}
+  // bank column on the right
+  x.fillStyle='#4b7fe0';x.font='9px monospace';x.fillText('THE BANK',rx+30,top+6);
+  const bankKeys=Object.keys(D.bank);const shown=refused?0:Math.min(bankKeys.length, phase<0?0:(phase+2));
+  bankKeys.slice(0,shown).forEach((k,i)=>{x.fillStyle='#7fb0ff';x.fillText(k+' @ '+D.bank[k].freq+' Hz  (gen'+D.bank[k].gen+')',rx+30,top+22+i*15);});
+ }
+ draw(false);window.addEventListener('resize',()=>{if(c.width)draw(false);});
+ document.getElementById('w4run').onclick=function(){phase=-1;const iv=setInterval(()=>{phase++;draw(false);if(phase>=5){clearInterval(iv);
+   document.getElementById('w4out').textContent='gen1: gate ✓ · floor ✓ · E1 added+improved · stable ✓ · banked. payload '+JSON.stringify(gens[0].payload);
+   let bh='';Object.keys(D.bank).forEach(k=>{bh+='<div class="bankrow">'+k+' @ '+D.bank[k].freq+' Hz · first seen gen'+D.bank[k].gen+' · kept</div>';});
+   document.getElementById('w4bank').innerHTML=bh;
+   report('W4',{agree:gens[0].floor&&gens[0].stable,text:'gated, worked, banked'});}},260);};
+ document.getElementById('w4bad').onclick=function(){phase=0;draw(true);
+  document.getElementById('w4out').textContent='planted void: a malformed packet [g, COMPOUND, E] — its derived move fails i13. REFUSED at the door. The bank stays clean; nothing malformed gets in.';
+  document.getElementById('w4bank').innerHTML='';
+  report('W4',{agree:true,text:'malformed refused at door'});};
+})();
+
+(function(){
+ const c=document.getElementById('w5c'),x=c.getContext('2d');
+ function draw(active){const w=c.clientWidth;c.width=w;c.height=200;x.clearRect(0,0,w,200);
+  const G=D.generations,n=G.length;
+  // alpha marker
+  x.fillStyle='#e0c37e';x.font='9px monospace';x.fillText('α gen0 ['+D.alpha.join('')+']',8,14);
+  G.forEach((g,i)=>{const px=50+(w-90)*i/n;const barH=g.payload.length*13;const on=active>i;
+   x.fillStyle=on?'#4b7fe0':'#243048';x.fillRect(px,175-barH,24,barH);
+   x.fillStyle=on?'#7fb0ff':'#5a5570';x.font='9px monospace';x.fillText('g'+g.gen,px+2,187);
+   if(on){x.fillStyle='#e0c37e';x.font='8px monospace';x.fillText('◆'+g.beacon.slice(0,4),px-2,175-barH-13);
+    x.fillStyle='#4bb58a';x.fillText('bank'+g.bankSize,px-2,175-barH-3);}
+   if(i>0&&on){x.strokeStyle='#4b7fe0';x.setLineDash([2,2]);x.beginPath();const ppx=50+(w-90)*(i-1)/n;x.moveTo(ppx+24,175-G[i-1].payload.length*13);x.lineTo(px,175-barH);x.stroke();x.setLineDash([]);}
+  });
+  if(active>=n){x.fillStyle='#e0c37e';x.font='9px monospace';x.fillText('ω gen'+D.finalGen,50+(w-90)*(n-0.5)/n,14);}
+ }
+ let active=0;draw(active);window.addEventListener('resize',()=>{if(c.width)draw(active);});
+ document.getElementById('w5run').onclick=function(){active=0;const iv=setInterval(()=>{active++;draw(active);if(active>=D.generations.length){clearInterval(iv);
+   document.getElementById('w5out').textContent='α gen0 ['+D.alpha.join('')+'] → ω gen'+D.finalGen+' · payload 3→'+D.omega.length+' · bank 0→'+D.bankSize+' · beacons chained · every cycle gated · 3/3 known-bads caught';
+   document.getElementById('w5dissent').innerHTML='<div class="big" style="border-left:2px solid var(--water);padding-left:6px;margin-top:8px">⚑ Dissent filed against W1: W1 stamps the ceiling "stable". Stability here means the toy payload stopped changing after one add — NOT a proven fixed point. A real ascent could oscillate forever and the gate would HANG, not fail. The engine runs, the bank accumulates, the lineage climbs — but "stable ceiling" is a mask over convergence, not a proof of it. <b>W1 has not accepted this. Recorded.</b></div>';
+   report('W5',{kind:'dissent',text:'stable ceiling is a mask, not a convergence proof'});}},280);};
+})();
+</script>
+</body></html>

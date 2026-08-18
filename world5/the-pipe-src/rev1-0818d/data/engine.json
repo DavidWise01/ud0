@@ -1,0 +1,148 @@
+{
+  "alpha": [
+    "g",
+    "C",
+    "E"
+  ],
+  "omega": [
+    "g",
+    "C",
+    "E",
+    "E",
+    "F",
+    "G",
+    "A",
+    "B"
+  ],
+  "finalGen": 5,
+  "generations": [
+    {
+      "gen": 1,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E"
+      ],
+      "beacon": "16df9423",
+      "floor": true,
+      "stable": true,
+      "gate": true,
+      "bankSize": 3,
+      "flags": [],
+      "parent": "63bc7a3a"
+    },
+    {
+      "gen": 2,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F"
+      ],
+      "beacon": "5f437109",
+      "floor": true,
+      "stable": true,
+      "gate": true,
+      "bankSize": 4,
+      "flags": [],
+      "parent": "dd821367"
+    },
+    {
+      "gen": 3,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F",
+        "G"
+      ],
+      "beacon": "36bc71b4",
+      "floor": true,
+      "stable": true,
+      "gate": true,
+      "bankSize": 5,
+      "flags": [],
+      "parent": "5b4d51d5"
+    },
+    {
+      "gen": 4,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F",
+        "G",
+        "A"
+      ],
+      "beacon": "a7532b5a",
+      "floor": true,
+      "stable": true,
+      "gate": true,
+      "bankSize": 6,
+      "flags": [],
+      "parent": "6b57ad04"
+    },
+    {
+      "gen": 5,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F",
+        "G",
+        "A",
+        "B"
+      ],
+      "beacon": "cca0e1de",
+      "floor": true,
+      "stable": true,
+      "gate": true,
+      "bankSize": 7,
+      "flags": [],
+      "parent": "6b52c22d"
+    }
+  ],
+  "bank": {
+    "g": {
+      "freq": 392,
+      "gen": 1
+    },
+    "C": {
+      "freq": 261.6,
+      "gen": 1
+    },
+    "E": {
+      "freq": 329.6,
+      "gen": 1
+    },
+    "F": {
+      "freq": 349.2,
+      "gen": 2
+    },
+    "G": {
+      "freq": 392,
+      "gen": 3
+    },
+    "A": {
+      "freq": 440,
+      "gen": 4
+    },
+    "B": {
+      "freq": 493.9,
+      "gen": 5
+    }
+  },
+  "bankSize": 7,
+  "arrows": {
+    "->": ">90%",
+    "~>": "50-90%",
+    "~": "<50%"
+  },
+  "knownBadsCaught": 3,
+  "allGated": true
+}

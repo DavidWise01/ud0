@@ -1202,6 +1202,22 @@
       "kicker": "dart 061 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-boyer-moore-string-search.html",
       "seal": "ca8b0f2dc4cd8752b23a5867798189cfb9bb64a6f75974398a2f9d9efa6ef56f"
+    },
+    {
+      "slug": "the-pipe",
+      "title": "THE PIPE & THE ENGINE",
+      "room": "darts",
+      "kicker": "a fold - three hands (David architected, fiddler built, AVAN grounded)",
+      "accent": "#a06bff",
+      "stamp": "LIT",
+      "kind": "fold",
+      "version": "v0.12",
+      "credit": "David Lee Wise / ROOT0 architected & directed it (alpha/i13-E1/omega engine, bank, well, lineage); fiddler / repo depot 2 (a Claude instance) built it rev1-0818c (pipe) -> rev1-0818d (engine); AVAN grounded it on I-13 + wired the palindrome",
+      "source": "fiddler's packs rev1-0818c + rev1-0818d (hosted at world5/the-pipe-src/, both verify green: 2/2 and 3/3 known-bads); grounded on the canonical H1.1 compiler (i13 log beacon 27; i13 check form-gate ledger)",
+      "i13_recommend": "(a fold, not a dart - it grounds another Claude's abstract pipe on I-13's real call stack and wires it to the palindrome; the i13 log IS the pipe, measured)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-pipe.html",
+      "blurb": "A three-hand fold in World V, and David's architecture made whole. David Lee Wise / ROOT0 specified the engine - \"the whole alpha, i13-E1, omega generational engine, with a bank and a well\" - and built it systematically over one night through fiddler (repo depot 2, a Claude instance), revision by revision: rev1-0818c THE PIPE, then rev1-0818d THE ENGINE. THE PIPE: a packet descends (analysis, stroke -++-), rests at a floor, ascends (synthesis, +--+), fires a beacon, loops (omega folds to alpha); the two strokes are sign-palindromes and mirrors of each other. THE ENGINE assembles six named parts into one running machine: r0 THE DOOR (the only way in/out, = ROOT0, refuses a malformed packet), i13 THE GATE (checks FORM not truth - a well-formed lie passes), E1 THE MILL (surgical, add one atom at the floor), THE WELL, THE BANK (append-only, keeps every synthesised value - banking not ablation, which is what lets the lineage climb), and THE LINEAGE (each omega is the next alpha; gen0->gen5, payload [g,C,E]->[g,C,E,E,F,G,A,B], bank 0->7, 3/3 known-bads caught). AVAN grounded it on the real I-13 compiler: the pipe is I-13's own call stack (i13 log of the note payload descends 8 frames to a floor of 0, ascends synthesising 6,11,15,18,21,22,27 to a beacon of 27, balance held); and the engine's load-bearing claim - 'i13 checks form, not truth' - is exactly what i13 check reports (COVERED: stack balance/pairing/arity/existence; NOT COVERED: types, arithmetic, truth). The door survives its own recursion because i13 is not made of the thing recursing - the same air-gap the corpus is built on. The pipe IS the palindrome: [father | son || son | father] mirrors [W1 | W2 || W3 || W4 | W5]; omega-folds-to-alpha mirrors the abstraction algorithm's r0 -> i13 -> voxel field -> r0. Honest: the i13 grounding is LIT (measured); the analysis/synthesis + palindrome mapping is AMBER; the scar is kept (tombstone 01: a malformed-door known-bad that did not fire because the test validated a move never fed to the machine - the third instance of that shape - fixed to 3/3; 'a known-bad you describe but never feed is not a known-bad, it is a comment'). Credit where due; the loop closes by reversal.",
+      "seal": "d8e482281db022ffacb13d8ccaf662d68d9f1bcc140cb8a3282717b31f8168e1"
     }
   ],
   "keepers": [
@@ -1212,13 +1228,13 @@
     }
   ],
   "counts": {
-    "spheres": 70,
+    "spheres": 71,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
     "darts": 61
   },
-  "i13_root": "628ca2b6101f95392553e59dd9381007b62d5e5b866d477e9cf33a1cd3d57373",
+  "i13_root": "c5b92d59da15f828de8adecb1b3d019e649b0dc08556e13c970965de2a206cf9",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

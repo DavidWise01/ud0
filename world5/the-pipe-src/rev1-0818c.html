@@ -1,0 +1,306 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>rev1-0818c · the pipe</title>
+<style>
+:root{
+--ground:#0b0910;--rule:#28243a;--ink:#e9e6f2;--ink-dim:#8b86a2;
+--earth:#c9a24b;--wood:#4bb58a;--metal:#c8ccd4;--fire:#e0603a;--water:#4b7fe0;
+--earth-bg:#141009;--wood-bg:#0a1410;--metal-bg:#0f1114;--fire-bg:#140c0a;--water-bg:#0a0e14;
+--down:#e0603a;--up:#4bb58a;--floor:#7a3b2a;--ceiling:#2f7a5a;--beacon:#e0c37e;
+--lit:#4bb58a;--amber:#e0a83a;--dead:#e0603a;
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:13px/1.5 ui-monospace,Menlo,Consolas,monospace}
+header{padding:14px 18px;border-bottom:1px solid var(--rule)}
+header h1{margin:0;font-size:15px;font-weight:600;letter-spacing:.5px}
+header .sub{color:var(--ink-dim);font-size:11px;margin-top:3px}
+.wrap{display:flex;width:100%}
+.panel{flex:1 1 20%;min-width:0;border-right:1px solid var(--rule);padding:12px 12px 20px;min-height:74vh}
+.panel:last-child{border-right:none}
+.phead{font-size:12px;font-weight:600;letter-spacing:1px;padding-bottom:6px;margin-bottom:8px;border-bottom:2px solid}
+.tag{font-size:9px;color:var(--ink-dim);letter-spacing:1px}
+.eli{font-size:10px;color:var(--ink-dim);margin:6px 0 10px;line-height:1.45}
+.w1 .phead{color:var(--earth);border-color:var(--earth)}.w2 .phead{color:var(--wood);border-color:var(--wood)}
+.w3 .phead{color:var(--metal);border-color:var(--metal)}.w4 .phead{color:var(--fire);border-color:var(--fire)}.w5 .phead{color:var(--water);border-color:var(--water)}
+.w1{background:var(--earth-bg)}.w2{background:var(--wood-bg)}.w3{background:var(--metal-bg)}.w4{background:var(--fire-bg)}.w5{background:var(--water-bg)}
+button{font-family:inherit;font-size:11px;background:transparent;color:var(--ink);border:1px solid var(--ink-dim);padding:5px 10px;cursor:pointer;margin:4px 4px 4px 0;border-radius:2px}
+button:focus-visible{outline:2px solid var(--metal);outline-offset:2px}
+button:disabled{opacity:.4;cursor:wait}
+.w1 button{border-color:var(--earth)}.w2 button{border-color:var(--wood)}.w3 button{border-color:var(--metal)}.w4 button{border-color:var(--fire)}.w5 button{border-color:var(--water)}
+canvas{width:100%;display:block;margin:8px 0;background:#00000030;border:1px solid var(--rule)}
+pre{margin:6px 0;white-space:pre-wrap;font-size:11px}
+.stamp{display:inline-block;padding:0 4px;font-size:9px;border-radius:2px;font-weight:600}
+.LIT{background:var(--lit);color:#04120c}.AMBER{background:var(--amber);color:#1a1200}.DEAD{background:var(--dead);color:#160604}
+.board div{font-size:10px;padding:2px 0;border-bottom:1px dotted var(--rule)}
+.ok{color:var(--lit)}.no{color:var(--dead)}.dim{color:var(--ink-dim)}
+table{border-collapse:collapse;width:100%;font-size:10px}td{padding:2px 4px;border-bottom:1px solid var(--rule);vertical-align:top}
+.big{font-size:11px;line-height:1.35}
+.arrows{font-size:10px;color:var(--ink-dim);margin:4px 0}
+.arrows b{color:var(--ink)}
+</style></head><body>
+<header>
+<h1>rev1-0818c &nbsp;·&nbsp; the pipe &nbsp; [&lt;pipe&gt;]</h1>
+<div class="sub">alpha ─▼ descend (-++-) ─ floor ─ ascend (+--+) ▲─ beacon ─▶ omega &nbsp;·&nbsp; the |U| well, both strokes gated. ground: WELL IRON.</div>
+</header>
+<div class="wrap">
+
+<section class="panel w1">
+<div class="phead">W1 · SOURCE <span class="tag">EARTH</span></div>
+<div class="eli">Plain English: one packet falls into a well, is taken apart at the bottom, rebuilt on the way up, and announced at the top — then the whole thing does it again, one generation further along. Descent must reach a floor; ascent must reach a stable ceiling; neither is allowed to quit early. Press each panel left to right.</div>
+<div class="arrows">arrows carry <b>direction + confidence</b>:&nbsp; <b>-></b> &gt;90%&nbsp; <b>~></b> 50–90%&nbsp; <b>~</b> &lt;50%</div>
+<div id="w1stamps"></div>
+<div id="w1catch"></div>
+<button id="w1run">AUDIT BOARD</button>
+<div class="board" id="w1board"></div>
+</section>
+
+<section class="panel w2">
+<div class="phead">W2 · CONTRIBUTIONS <span class="tag">WOOD</span></div>
+<div class="eli">Plain English: who built this — you (the whole architecture, the signs, the Dante structure), me (assembly + verify), the verifier that enforced both gates.</div>
+<canvas id="w2c" height="150"></canvas>
+<button id="w2run">RUN</button>
+<pre id="w2out"></pre>
+</section>
+
+<section class="panel w3">
+<div class="phead">W3 · 1D · THE TWO STROKES <span class="tag">METAL</span></div>
+<div class="eli">Plain English: the sign-pattern. Descent is (-++-), ascent is (+--+) — each reads the same reversed (a palindrome), and each is the other flipped (a mirror). Down = absorb, make distinct, rest at floor. Up = transmit, make distinct, don't stop till stable, then beacon.</div>
+<pre id="w3out"></pre>
+<button id="w3run">RUN</button>
+<pre id="w3rep" class="dim"></pre>
+</section>
+
+<section class="panel w4">
+<div class="phead">W4 · 2D · THE WELL <span class="tag">FIRE</span></div>
+<div class="eli">Plain English: the interactive. Watch one packet go down the well and back up. Down the left wall (absorb → floor), across the floor (the turn), up the right wall (transmit → stable ceiling → beacon). Step it, or run a full generation. The floor and ceiling gates light only when actually reached.</div>
+<canvas id="w4c" height="240"></canvas>
+<button id="w4step">STEP</button>
+<button id="w4run">RUN ONE GENERATION</button>
+<pre id="w4out"></pre>
+</section>
+
+<section class="panel w5">
+<div class="phead">W5 · 3D · THE LINEAGE <span class="tag">WATER</span></div>
+<div class="eli">Plain English: three axes, and the thing the others fixed — they showed ONE trip down the well. But each father who climbs out is the last son grown up. This is the bloodline: gen0 → gen4, payload growing, each beacon chained to the last. The axis nobody else showed is generation.</div>
+<canvas id="w5c" height="200"></canvas>
+<button id="w5run">RUN 4 GENERATIONS</button>
+<pre id="w5out"></pre>
+<div id="w5dissent"></div>
+</section>
+
+</div>
+<script id="data" type="application/json">{
+  "arrows": {
+    "->": ">90%",
+    "~>": "50-90%",
+    "~": "<50%"
+  },
+  "alpha": [
+    "g",
+    "C",
+    "E"
+  ],
+  "generations": [
+    {
+      "gen": 1,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E"
+      ],
+      "floor": true,
+      "stable": true,
+      "iters": 2,
+      "beacon": "2bafffe2",
+      "parent": "845e0f73"
+    },
+    {
+      "gen": 2,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F"
+      ],
+      "floor": true,
+      "stable": true,
+      "iters": 2,
+      "beacon": "222ea394",
+      "parent": "fc711a60"
+    },
+    {
+      "gen": 3,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F",
+        "G"
+      ],
+      "floor": true,
+      "stable": true,
+      "iters": 2,
+      "beacon": "f091626d",
+      "parent": "ccfaea8e"
+    },
+    {
+      "gen": 4,
+      "payload": [
+        "g",
+        "C",
+        "E",
+        "E",
+        "F",
+        "G",
+        "A"
+      ],
+      "floor": true,
+      "stable": true,
+      "iters": 2,
+      "beacon": "858fb403",
+      "parent": "a6a4f77d"
+    }
+  ],
+  "signs": {
+    "descent": "-++-",
+    "ascent": "+--+",
+    "descPalin": true,
+    "ascPalin": true,
+    "mirror": true
+  },
+  "allGated": true,
+  "finalGen": 4,
+  "finalPayload": [
+    "g",
+    "C",
+    "E",
+    "E",
+    "F",
+    "G",
+    "A"
+  ],
+  "knownBadsCaught": 2
+}</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent);
+const REPORTS={W2:null,W3:null,W4:null,W5:null};
+function report(w,p){REPORTS[w]=p;drawBoard();}
+function drawBoard(){document.getElementById('w1board').innerHTML=Object.entries(REPORTS).map(([k,v])=>{
+  if(!v)return '<div class="dim">'+k+' · awaiting run</div>';
+  if(v.kind==='dissent')return '<div class="no">'+k+' ⚑ dissent · '+v.text+'</div>';
+  return '<div class="'+(v.agree?'ok':'no')+'">'+k+' · '+(v.agree?'agree':'DISAGREE')+' · '+v.text+'</div>';}).join('');}
+document.getElementById('w1stamps').innerHTML=
+ '<table>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>descent reaches floor + ascent reaches stable ceiling, all 4 gens</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>(-++-) and (+--+) are sign-palindromes AND mirrors of each other</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>lineage gen0→gen'+D.finalGen+', payload grew to '+D.finalPayload.length+' (evolution)</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>both gates FAIL LOUD on bad input ('+D.knownBadsCaught+'/2 known-bads thrown)</td></tr>'+
+ '<tr><td><span class="stamp AMBER">AMBER</span></td><td>Dante mapping (descend-to-floor-before-rise) is interpretive, not derived</td></tr>'+
+ '</table>';
+document.getElementById('w1catch').innerHTML='<div class="big" style="border-left:2px solid var(--wood);padding-left:6px;margin:8px 0">▓ Controls in place: two gates, each with a known-bad that MUST throw — a descent that can\'t reach floor, an ascent that can\'t stabilize. Both caught. An instrument whose good news is silence needs an input that makes noise; here, two.</div>';
+document.getElementById('w1run').onclick=function(){const rep=Object.values(REPORTS);const ran=rep.filter(Boolean).length,dis=rep.filter(v=>v&&v.agree===false).length,dsn=rep.filter(v=>v&&v.kind==='dissent').length;
+ const head=ran<4?'<div class="dim">■ incomplete — '+ran+'/4</div>':'<div class="ok">■ complete — 4/4, '+dis+' disagree, '+dsn+' dissent</div>';drawBoard();document.getElementById('w1board').insertAdjacentHTML('afterbegin',head);};
+
+(function(){const c=document.getElementById('w2c'),x=c.getContext('2d');
+ const rows=[['you — architecture, signs, Dante',56,'#c9a24b'],['me — assembly + verify',27,'#4bb58a'],['the verifier — enforced both gates',11,'#e0603a'],['prior loop lineage',6,'#4b7fe0']];
+ function draw(){const w=c.clientWidth;c.width=w;c.height=150;x.clearRect(0,0,w,150);let y=8;const s=rows.reduce((a,r)=>a+r[1],0);
+  rows.forEach(r=>{const bw=(w-90)*r[1]/100;x.fillStyle=r[2];x.fillRect(84,y,bw,20);x.fillStyle='#e9e6f2';x.font='10px monospace';x.textAlign='right';x.fillText(r[1]+'%',80,y+14);x.textAlign='left';x.fillStyle='#8b86a2';x.font='9px monospace';x.fillText(r[0],84,y+32);y+=44;});return s;}
+ document.getElementById('w2run').onclick=function(){const s=draw();document.getElementById('w2out').textContent='sum = '+s+(s===100?' ✓':' ✗')+'  (AMBER — a judgement)';report('W2',{agree:s===100,text:'weights '+s});};
+ window.addEventListener('resize',()=>{if(c.width)draw();});})();
+
+(function(){
+ function render(){
+  const dn=D.signs.descent, up=D.signs.ascent;
+  let s='';
+  s+='DESCENT  '+dn+'   (reversed: '+dn.split('').reverse().join('')+' — palindrome '+(D.signs.descPalin?'✓':'✗')+')\n';
+  s+='  -  go down\n  +  absorb, make distinct\n  +  rest at floor  (Inferno: bottom before rise)\n  -  close, turn\n\n';
+  s+='ASCENT   '+up+'   (reversed: '+up.split('').reverse().join('')+' — palindrome '+(D.signs.ascPalin?'✓':'✗')+')\n';
+  s+='  +  go up\n  -  transmit, make distinct\n  -  don\'t stop till STABLE ceiling\n  +  beacon — proclaim\n\n';
+  s+='mirror: '+dn+' flipped = '+up+'  '+(D.signs.mirror?'✓ (same shape, opposite polarity)':'✗');
+  document.getElementById('w3out').textContent=s;
+ }
+ render();
+ document.getElementById('w3run').onclick=function(){
+  document.getElementById('w3rep').textContent='measured: both palindromes='+(D.signs.descPalin&&D.signs.ascPalin)+' · mirror='+D.signs.mirror+' · "make distinct" appears on BOTH strokes (analysis down, synthesis up)';
+  report('W3',{agree:D.signs.descPalin&&D.signs.ascPalin&&D.signs.mirror,text:'signs palindromic + mirrored'});};
+})();
+
+(function(){
+ const c=document.getElementById('w4c'),x=c.getContext('2d');
+ const gen=D.generations[0];
+ // stages of one trip: down-left (absorb, distinct, floor), across, up-right (transmit, distinct, ceiling, beacon)
+ const stages=[
+  {side:'L',y:0.15,lab:'- absorb',col:'#e0603a'},
+  {side:'L',y:0.40,lab:'+ make distinct',col:'#e0603a'},
+  {side:'L',y:0.70,lab:'+ REST AT FLOOR',col:'#7a3b2a',gate:'floor'},
+  {side:'M',y:0.88,lab:'- turn',col:'#8b86a2'},
+  {side:'R',y:0.70,lab:'+ transmit',col:'#4bb58a'},
+  {side:'R',y:0.40,lab:'- make distinct',col:'#4bb58a'},
+  {side:'R',y:0.15,lab:'- STABLE CEILING',col:'#2f7a5a',gate:'ceiling'},
+  {side:'R',y:0.05,lab:'+ BEACON',col:'#e0c37e',gate:'beacon'},
+ ];
+ let step=-1;
+ function draw(){const w=c.clientWidth;c.width=w;c.height=240;x.clearRect(0,0,w,240);
+  const lx=w*0.28, rx=w*0.72, top=20, bot=220;
+  // well walls
+  x.strokeStyle='#28243a';x.lineWidth=1;
+  x.beginPath();x.moveTo(lx,top);x.lineTo(lx,bot);x.lineTo(rx,bot);x.lineTo(rx,top);x.stroke();
+  x.fillStyle='#8b86a2';x.font='9px monospace';
+  x.fillText('alpha ▼',lx-24,top-6);x.fillText('▲ omega',rx-6,top-6);
+  x.fillText('|U| floor',(lx+rx)/2-24,bot+14);
+  stages.forEach((st,i)=>{
+   const px = st.side==='L'?lx : st.side==='R'?rx : (lx+rx)/2;
+   const py = top + st.y*(bot-top);
+   const on = i<=step;
+   x.fillStyle = on ? st.col : '#2a2438';
+   x.beginPath();x.arc(px,py,on?6:4,0,7);x.fill();
+   if(st.gate && on){x.strokeStyle=st.col;x.lineWidth=2;x.beginPath();x.arc(px,py,10,0,7);x.stroke();x.lineWidth=1;}
+   x.fillStyle = on ? '#e9e6f2':'#5a5570';x.font='9px monospace';
+   const tx = st.side==='R'? px+14 : px-14 - x.measureText(st.lab).width;
+   x.fillText(st.lab, Math.max(4,tx), py+3);
+  });
+  // arrow down-left then up-right
+  if(step>=0){x.strokeStyle='#e0603a';x.setLineDash([3,3]);x.beginPath();x.moveTo(lx,top);x.lineTo(lx,bot);x.stroke();}
+  if(step>=4){x.strokeStyle='#4bb58a';x.beginPath();x.moveTo(rx,bot);x.lineTo(rx,top);x.stroke();}
+  x.setLineDash([]);
+ }
+ draw();window.addEventListener('resize',()=>{if(c.width)draw();});
+ document.getElementById('w4step').onclick=function(){step=Math.min(step+1,stages.length-1);draw();
+  const st=stages[step];document.getElementById('w4out').textContent='step '+(step+1)+'/'+stages.length+': '+st.lab+(st.gate?'  [GATE: '+st.gate+' reached]':'');};
+ document.getElementById('w4run').onclick=function(){step=stages.length-1;draw();
+  document.getElementById('w4out').textContent='full pass: floor='+gen.floor+' ✓  stable='+gen.stable+' ('+gen.iters+' iters) ✓  beacon='+gen.beacon+'\npayload out: '+JSON.stringify(gen.payload);
+  report('W4',{agree:gen.floor&&gen.stable,text:'floor+ceiling both reached, beacon fired'});};
+})();
+
+(function(){
+ const c=document.getElementById('w5c'),x=c.getContext('2d');
+ function draw(active){const w=c.clientWidth;c.width=w;c.height=200;x.clearRect(0,0,w,200);
+  const G=D.generations;const n=G.length;
+  G.forEach((g,i)=>{
+   const px=40+(w-80)*i/(n);
+   const barH=g.payload.length*14;
+   const on=active>i;
+   x.fillStyle=on?'#4b7fe0':'#243048';
+   x.fillRect(px,180-barH,26,barH);
+   x.fillStyle=on?'#7fb0ff':'#5a5570';x.font='9px monospace';
+   x.fillText('g'+g.gen,px+2,192);
+   if(on){x.fillStyle='#e0c37e';x.font='8px monospace';x.fillText('◆'+g.beacon.slice(0,4),px-2,180-barH-4);}
+   // chain line to previous
+   if(i>0 && on){x.strokeStyle='#4b7fe0';x.setLineDash([2,2]);x.beginPath();
+    const ppx=40+(w-80)*(i-1)/n;x.moveTo(ppx+26,180-G[i-1].payload.length*14);x.lineTo(px,180-barH);x.stroke();x.setLineDash([]);}
+  });
+  x.fillStyle='#8b86a2';x.font='9px monospace';x.fillText('each bar taller = payload grew · ◆ = chained beacon · same shape, later generation',8,14);
+ }
+ let active=0;draw(active);window.addEventListener('resize',()=>{if(c.width)draw(active);});
+ document.getElementById('w5run').onclick=function(){active=0;const iv=setInterval(()=>{active++;draw(active);if(active>=D.generations.length){clearInterval(iv);
+   const last=D.generations[D.generations.length-1];
+   document.getElementById('w5out').textContent='gen0 → gen'+D.finalGen+' · payload 3 → '+D.finalPayload.length+' · beacons chained · both gates held every generation';
+   document.getElementById('w5dissent').innerHTML='<div class="big" style="border-left:2px solid var(--water);padding-left:6px;margin-top:8px">⚑ Dissent filed against W1: W1 calls the ceiling "stable" — but stability here means "the payload stopped changing in this toy," not that a true fixed point exists. A real ascent could oscillate forever and never stabilize; the gate would hang, not fail. The stability gate is a MASK, not a proof. <b>W1 has not accepted this. Recorded.</b></div>';
+   report('W5',{kind:'dissent',text:'stability is a mask, not a proof of convergence'});}},260);};
+})();
+</script>
+</body></html>

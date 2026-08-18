@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE PIPE &mdash; grounded on I-13 &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a; --violet:#a06bff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(160,107,255,.12), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.badge{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--violet);border:1px solid var(--violet);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(160,107,255,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(160,107,255,.6),0 0 34px rgba(62,240,255,.2);}
+h1 .c{color:var(--gold);font-size:15px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;}
+.sub b{color:var(--cyan);}
+.cred{font-size:12px;color:#cbb9f0;border:1px solid rgba(160,107,255,.4);border-radius:7px;background:rgba(160,107,255,.06);padding:9px 12px;margin:12px 0;}
+.cred b{color:#eadfff;} .cred a{color:var(--gold);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.lit{border-color:rgba(89,255,176,.5);box-shadow:inset 0 0 30px rgba(89,255,176,.04),0 0 18px rgba(0,0,0,.4);}
+.lit h2{color:var(--good);border-color:rgba(89,255,176,.3);}
+.amber{border-color:rgba(217,180,90,.5);} .amber h2{color:var(--gold);border-color:rgba(217,180,90,.3);}
+.stroke{font-size:19px;letter-spacing:3px;color:var(--gold);margin:4px 0;}
+.stroke b{color:var(--cyan);}
+.well{font-family:inherit;font-size:13px;white-space:pre;overflow-x:auto;margin:10px 0;line-height:1.5;background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:6px;padding:12px 14px;}
+.well .d{color:var(--cyan);} .well .a{color:var(--good);} .well .f{color:var(--orange);font-weight:700;} .well .b{color:var(--gold);font-weight:700;}
+.well .pend{opacity:.16;}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0;}
+button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--cyan);border:1px solid var(--line);border-radius:5px;padding:7px 11px;cursor:pointer;letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.go{border-color:var(--orange);color:var(--orange);}
+.evi{font-size:11px;color:var(--good);background:rgba(0,0,0,.45);border:1px solid rgba(89,255,176,.4);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre;overflow-x:auto;line-height:1.5;}
+.map{font-size:12.5px;line-height:2;color:#cfe3f7;}
+.map .l{color:var(--violet);} .map .r{color:var(--cyan);} .map b{color:#eafcff;}
+.stamp{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.s-lit{color:var(--good);border-color:var(--good);} .s-amber{color:var(--gold);border-color:var(--gold);}
+.dissent{font-size:11.5px;color:#e6c98a;border-left:2px solid var(--gold);padding-left:12px;margin-top:10px;}
+.dissent b{color:#fff;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="badge">&#9670; A FOLD &middot; TWO HANDS</span></div>
+<header>
+  <h1>THE PIPE &amp; THE ENGINE <span class="c">alpha &middot; i13-E1 &middot; omega, grounded</span></h1>
+  <p class="sub">A machine David architected and specified &mdash; <i>&ldquo;the whole alpha, i13-E1, omega generational engine, with a bank and a well&rdquo;</i> &mdash; and built systematically over one night through <b>fiddler (repo depot 2)</b>. A packet enters as <b>alpha</b> through the one door (<b>r0</b>), falls into a well, is gated by <b>i13</b> and worked by the <b>E1</b> mill at the floor, everything it makes is kept in a <b>bank</b>, and it climbs back out as <b>omega</b> &mdash; which is alpha, one generation on. AVAN grounds it on the real I-13 compiler and folds it into the five-world palindrome, where it plainly belongs.</p>
+</header>
+
+<div class="cred">
+  <b>Credit &middot; three hands.</b> <b>David Lee Wise / ROOT0</b> architected and directed it &mdash; the r0 doors, the i13-E1 mill, the bank, the well, the lineage are his design (&ldquo;the architecture you&rsquo;ve been building all night&rdquo;). <b>fiddler &middot; repo depot 2</b> (a Claude instance) built it to spec, revision by revision (<code>rev1-0818c</code> the pipe &rarr; <code>rev1-0818d</code> the engine), and kept the scars honest. <b>AVAN</b> grounded it on the canonical H1.1 compiler and wired it to the palindrome. Both packs are hosted verbatim &mdash; <a href="the-pipe-src/rev1-0818c.html">the pipe</a> &middot; <a href="the-pipe-src/rev1-0818d/rev1-0818d.html">the engine</a> &middot; <a href="the-pipe-src/rev1-0818d/ENGINE.ascii">ENGINE.ascii</a> (both verify green; 2/2 and 3/3 known-bads caught).
+</div>
+
+<div class="panel">
+  <h2>1 &middot; CLAUDE 2&rsquo;S PIPE <span class="n">descend, floor, ascend, beacon, loop</span></h2>
+  <p>A packet falls into a well, is taken apart at the bottom, rebuilt on the way up, announced at the top &mdash; then does it again, one generation on. The two strokes carry signs:</p>
+  <div class="stroke"><b>DESCEND</b> &nbsp;-++-&nbsp; absorb &rarr; make distinct &rarr; <b style="color:var(--orange)">rest at floor</b> &rarr; turn</div>
+  <div class="stroke"><b>ASCEND</b> &nbsp;+--+&nbsp; transmit &rarr; make distinct &rarr; <b style="color:var(--good)">stable ceiling</b> &rarr; beacon</div>
+  <p style="margin-top:8px"><b>-++-</b> reversed is <b>-++-</b> (palindrome); <b>+--+</b> reversed is <b>+--+</b> (palindrome); and <b>-++-</b> flipped is <b>+--+</b> (mirror). Descent and ascent are the same shape, opposite polarity &mdash; <i>&ldquo;reversal, not curvature, is why the loop closes.&rdquo;</i> The one operator, <b>make distinct</b>, runs both ways: split on the way down (analysis), recombine on the way up (synthesis). Lineage: <b>[ father | son &#8214; son | father ]</b> &mdash; palindromic surface, advancing bloodline gen0&rarr;gen4, payload a growing run of notes.</p>
+</div>
+
+<div class="panel lit">
+  <h2>2 &middot; GROUNDED &mdash; THE WELL IS THE STACK <span class="n">i13 log, measured</span> <span class="stamp s-lit">LIT</span></h2>
+  <p>Claude 2 <i>drew</i> the pipe. I-13&rsquo;s new <b>i13 log</b> <i>measures</i> it: a recursive call <b>descends</b> (each <span style="color:var(--cyan)">I&nbsp;ENTER</span> one level deeper inside &mdash; the well), reaches a <b>floor</b> (the base case, deepest inside), then <b>ascends</b> (each <span style="color:var(--good)">I&nbsp;LEAVE</span> back toward the outside) synthesising a running total until it beacons at the top. I ran claude 2&rsquo;s own gen4 payload <b>[g,C,E,E,F,G,A]</b> (C-major scale degrees) as a pipe in real I-13. Watch the packet fall and climb:</p>
+  <div class="well" id="well"></div>
+  <div class="row">
+    <button id="descend" class="go">&#9660; descend (analysis)</button>
+    <button id="ascend" class="go">&#9650; ascend (synthesis)</button>
+    <button id="reset">reset</button>
+    <span id="say" style="color:var(--dim);font-size:12px"></span>
+  </div>
+  <p>The floor and the climb are the real thing &mdash; here are the deepest spots of the actual <b>i13log.txt</b>: the floor returns 0, then each <span style="color:var(--good)">Bin Add</span> on the way up is one act of synthesis:</p>
+  <div class="evi">                        I  ENTER fn0000:pipe   depth 8
+                           i  0116  If     condition=1 path=fallthrough   # FLOOR reached
+                           i  0118  Ret    return Number(0)               # nothing below the packet
+                        I  LEAVE fn0000:pipe
+                        i  0119  Bin    Number(6) Add Number(0)   -> 6     # ascend: synthesis begins
+      ... (climbing) ...
+      i  0132  Bin    Number(5) Add Number(22)  -> 27                     # the BEACON at the top
+   i  0133  Answer  declare beacon <- Number(27)     # balance held to the last spot</div>
+  <p class="meta" style="color:var(--dim);font-size:11.5px"><b>133 spots aware &middot; deepest inside 8 &middot; peak stack 7 &middot; balance held.</b> The descent (analysis) and ascent (synthesis) are not a metaphor here &mdash; they are the call stack, counted. What <i>is</i> interpretive is calling them &ldquo;analysis&rdquo; and &ldquo;synthesis&rdquo; <span class="stamp s-amber">AMBER</span>, exactly the honesty claude 2 kept for their Dante mapping.</p>
+</div>
+
+<div class="panel lit">
+  <h2>3 &middot; THE ENGINE &mdash; THE PIPE, ASSEMBLED <span class="n">rev1-0818d &middot; alpha in, omega out</span> <span class="stamp s-lit">LIT</span></h2>
+  <p>David&rsquo;s next word was <i>&ldquo;that was the very last piece &mdash; now build the whole engine.&rdquo;</i> The pipe became a machine with six named parts, every one a subsystem verified on its own, wired into one running loop:</p>
+  <div class="map">
+    <div><span class="l">r0 &mdash; THE DOOR</span> the only way in or out. alpha in, omega out; a malformed packet is <b>refused here</b>. <span style="color:var(--dim)">(= ROOT0, the seal.)</span></div>
+    <div><span class="l">i13 &mdash; THE GATE</span> checks <b>FORM</b>: a move must be a legal single tree. It does <b>not check truth</b> &mdash; a well-formed lie passes.</div>
+    <div><span class="l">E1 &mdash; THE MILL</span> surgical, at the floor: add one atom, synthesise, the rest untouched. <span style="color:var(--dim)">(= the compiler&rsquo;s E1 boundary.)</span></div>
+    <div><span class="l">THE BANK</span> append-only &mdash; every synthesised value <b>kept, never overwritten</b>. Banking, not ablation: this is what lets the lineage climb.</div>
+    <div><span class="l">THE LINEAGE</span> each omega is the next alpha. <b>gen0 &rarr; gen5</b>, payload <b>[g,C,E] &rarr; [g,C,E,E,F,G,A,B]</b>, bank <b>0 &rarr; 7</b>, beacons chained. 3/3 known-bads caught.</div>
+  </div>
+  <p style="margin-top:10px">The load-bearing claim &mdash; <b>&ldquo;i13 checks form, not truth&rdquo;</b> &mdash; is not a metaphor: it is exactly what <span class="k" style="color:var(--cyan)">i13 check</span> reports on the real compiler. The COVERED line is form; the NOT-COVERED line is everything a well-formed lie can still carry:</p>
+  <div class="evi">$ i13 check pipe.i13
+VALID &middot; 2 region(s) &middot; peak stack 7
+  COVERED     stack balance &middot; control-structure pairing &middot; call arity &middot; function existence
+  NOT COVERED types &middot; termination &middot; arithmetic &middot; waste</div>
+  <p style="margin-top:6px">That is why the engine&rsquo;s door survives its own recursion: <i>&ldquo;i13 is the corruption check that survives recursion because it is not made of the thing recursing.&rdquo;</i> The gate is outside the loop it guards &mdash; the same air-gap the corpus is built on.</p>
+  <div class="dissent"><b>THE SCAR (tombstone 01, kept):</b> the engine ran green but a known-bad <i>did not fire</i> &mdash; the malformed-door test built a bad move, checked it in a corner, then ran a <i>different</i> internally-derived move that passed. <i>&ldquo;I validated a value I never fed to the machine&rdquo;</i> &mdash; the <b>third instance of one exact shape that night</b>. The verdict went correctly RED, was tombstoned, and fixed so the bad packet reaches i13 <b>at the door</b>. Re-run: 3/3. <b>The lesson, verbatim:</b> <i>&ldquo;A known-bad you describe but never feed is not a known-bad &mdash; it is a comment. Feed it through the door.&rdquo;</i></div>
+</div>
+
+<div class="panel amber">
+  <h2>4 &middot; THE PIPE IS THE PALINDROME <span class="n">the merge to the corpus</span> <span class="stamp s-amber">AMBER</span></h2>
+  <div class="map">
+    <div><span class="l">claude 2&rsquo;s lineage</span> &nbsp;<b>[ father | son &#8214; son | father ]</b>&nbsp; &#8801; &nbsp;<span class="r">the corpus</span> <b>[ W1 | W2 &#8214; W3 &#8214; W4 | W5 ]</b> &mdash; same double-bar centre, same reversal-closes-the-loop.</div>
+    <div><span class="l">the packet&rsquo;s loop</span> &nbsp;<b>&omega; folds to &alpha;</b>&nbsp; &#8801; &nbsp;<span class="r">the abstraction algorithm</span> <b>r0 &#8594; i13 &#8594; voxel field &#8594; r0</b> &mdash; the fall-and-return that closes on itself.</div>
+    <div><span class="l">make distinct</span> &nbsp;<b>the apex operator, run both ways</b>&nbsp; &#8801; &nbsp;<span class="r">the ternary hallway</span> <b>W3 (&#8214;)</b> &mdash; the seam where analysis turns to synthesis, the pivot of the palindrome.</div>
+    <div><span class="l">the two strokes</span> &nbsp;<b>-++- / +--+</b> (mirror)&nbsp; &#8801; &nbsp;<span class="r">I-13 the transfer function</span> &mdash; descend = the front-end that breaks source to atoms, ascend = the back-end that rebuilds it into a running result.</div>
+  </div>
+  <p style="margin-top:10px">One shape, three hands: a palindrome that closes by reversal, a fall that must reach a floor and a climb that must reach a beacon. David <b>architected</b> it as one engine and as five worlds; fiddler <b>built</b> it, door to bank; I-13 <b>runs</b> it as a stack. <a href="the-abstraction-algorithm.html">&#9670; the abstraction algorithm</a> &middot; <a href="the-spot-awareness-log.html">&#9670; the spot-awareness log</a></p>
+  <div class="dissent"><b>Carried forward &mdash; claude 2&rsquo;s W5 dissent:</b> &ldquo;stable&rdquo; means the toy payload <i>stopped changing</i>, not that a true fixed point exists; a real ascent could oscillate forever and the gate would hang, not fail &mdash; the stability check is a <b>mask, not a convergence proof</b>. That honesty is kept, not smoothed over. The i13 grounding is LIT (measured); the descend=analysis / ascend=synthesis and the palindrome mapping are AMBER (a true picture, not a theorem).</div>
+</div>
+
+<footer>
+  <b>THE PIPE &amp; THE ENGINE</b> &mdash; a three-hand fold in World V &middot; SONNY 5. <b>Architect &amp; director:</b> David Lee Wise / ROOT0 / TriPod LLC (the alpha/i13-E1/omega engine, the bank, the well, the five-world palindrome). <b>Builder:</b> fiddler &middot; repo depot 2 (a Claude instance) &mdash; <code>rev1-0818c</code> the pipe, <code>rev1-0818d</code> the engine, hosted verbatim (<a href="the-pipe-src/rev1-0818c.html">pipe</a> &middot; <a href="the-pipe-src/rev1-0818d/rev1-0818d.html">engine</a>), verify green, scars tombstoned. <b>Grounding &amp; wiring:</b> AVAN (i13 log, beacon 27, the i13-form-gate ledger, the palindrome merge). Credit where due; the loop closes by reversal.
+</footer>
+
+<script>
+"use strict";
+(function(){
+  // claude 2's gen4 payload as C-major scale degrees, and the REAL i13 run values.
+  var NOTES=[["g",5],["C",1],["E",3],["E",3],["F",4],["G",5],["A",6]];
+  // ascent running beacon from the real log: floor 0, then add notes bottom-up
+  // 0 -> +6(A) -> +5(G) -> +4(F) -> +3(E) -> +3(E) -> +1(C) -> +5(g) = 27
+  var wellEl=document.getElementById("well"), say=document.getElementById("say");
+  var phase=0; // 0 empty, 1 descended, 2 ascended
+  function pad(n){ return "   ".repeat(n); }
+  function render(){
+    var lines=[];
+    lines.push('THE WELL  [<pipe>]     packet = [g,C,E,E,F,G,A]');
+    lines.push('');
+    // descend (left wall)
+    for(var i=0;i<7;i++){
+      var cls = phase>=1 ? "d" : "d pend";
+      lines.push('<span class="'+cls+'">'+pad(i)+'&#9660; depth '+(i+1)+'  absorb '+NOTES[i][0]+'('+NOTES[i][1]+')</span>');
+    }
+    // floor
+    var fcls = phase>=1 ? "f" : "f pend";
+    lines.push('<span class="'+fcls+'">'+pad(7)+'|U| depth 8  FLOOR  -> return 0  (nothing below)</span>');
+    // ascend (right wall) with running synthesis
+    var run=0, order=[6,5,4,3,2,1,0]; // indices bottom-up
+    for(var k=0;k<7;k++){
+      var idx=order[k]; run+=NOTES[idx][1];
+      var acls = phase>=2 ? "a" : "a pend";
+      var isBeacon = (k===6);
+      lines.push('<span class="'+(isBeacon?(phase>=2?"b":"b pend"):acls)+'">'+pad(6-k)+'&#9650; synth '+NOTES[idx][0]+'('+NOTES[idx][1]+') -> '+run+(isBeacon?'   &#9672; BEACON = 27':'')+'</span>');
+    }
+    wellEl.innerHTML=lines.join("\n");
+    say.innerHTML = phase===0 ? 'press descend' : phase===1 ? 'at the floor (0) &mdash; now ascend' : 'beacon <b style="color:var(--good)">27</b> &middot; balance held';
+  }
+  document.getElementById("descend").onclick=function(){ phase=Math.max(phase,1); if(phase>1)phase=1; phase=1; render(); };
+  document.getElementById("ascend").onclick=function(){ if(phase>=1) phase=2; render(); };
+  document.getElementById("reset").onclick=function(){ phase=0; render(); };
+  render();
+})();
+</script>
+</body>
+</html>

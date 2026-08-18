@@ -1,0 +1,29 @@
+WORKFLOW ~~> rev1-0818c ~~> the pipe [<pipe>]
+══════════════════════════════════════════════
+TRACK A ~~> THE STROKES
+  descend -++- : absorb, make distinct, rest at floor, turn
+  ascend  +--+ : transmit, make distinct, stable ceiling, beacon
+  sign-palindromes AND mirrors of each other
+  arrows -> >90% · ~> 50-90% · ~ <50%  (direction + confidence)
+
+TRACK B ~~> COMPUTE BEFORE BUILD (node verify/verify.js)
+  descent reaches floor, all 4 gens        ~~> LIT
+  ascent reaches stable ceiling, all 4     ~~> LIT
+  signs palindromic + mirrored             ~~> LIT
+  lineage gen0->gen4, payload grew         ~~> LIT
+  both gates throw on known-bad (2/2)      ~~> ▓ two known-bads, both fired
+  stability = "stopped changing", not proof ~~> AMBER (W5 dissent)
+
+TRACK C ~~> BUILD + CROSSCHECK
+  page from data/pipe.json (single source)  ~~> ok
+  node --check injected script              ~~> SYNTAX OK
+  crosscheck re-derives from page           ~~> 8/8 GREEN
+
+SCOREBOARD
+  caught by a control ...... 0  (clean run this build)
+  caught by the user ....... 0
+  DEAD stamps .............. 0
+  dissent filed ............ 1  (W5: stability is a mask, not a convergence proof)
+  NOTE: no control catch to report — the two gates passed on first run.
+        not claimed as a clean sweep; the stability gate's blind spot is
+        named in W5 and in the ASCII, not hidden.

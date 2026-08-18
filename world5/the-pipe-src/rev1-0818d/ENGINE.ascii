@@ -1,0 +1,56 @@
+PLAIN ENGLISH FIRST
+═══════════════════
+One door. A packet enters as alpha, falls into a well, is checked and
+worked on by a surgical mill, everything it produces is kept in a bank
+so nothing is lost, and it climbs back out as omega — which is alpha,
+one generation later. It runs itself, and if anything malformed tries
+to enter, the door refuses it.
+
+THE ENGINE
+══════════
+  r0:alpha ─▼─ [ i13 gate · E1 mill ] ─ bank ─▲─ r0:omega ─▶ folds to alpha
+      │            the well |U|          keeps        │
+      └───────────────── one door, in and out ────────┘
+
+  arrows:  -> >90%    ~> 50-90%    ~ <50%   (direction + confidence)
+
+THE PARTS, ASSEMBLED
+════════════════════
+  r0 (THE DOOR)  ~~> the only way in or out. alpha in, omega out.
+                    a malformed packet is REFUSED here, at the door.
+  i13 (THE GATE) ~~> checks FORM. a move must be a legal single tree.
+                    it does not check truth — a well-formed lie passes.
+  E1 (THE MILL)  ~~> surgical: add one atom, improve (synthesize freqs).
+                    bounded edits, the rest untouched. runs at the floor.
+  THE WELL |U|   ~~> descend -++- to the floor, ascend +--+ to a stable
+                    ceiling, then beacon. down = analyse, up = synthesise.
+  THE BANK       ~~> append-only. every synthesised value KEPT, never
+                    overwritten. banking, not ablation — this is what
+                    lets the lineage climb instead of resetting.
+  THE LINEAGE    ~~> each omega is the next alpha, one generation on.
+                    gen0 -> gen5, payload 3 -> 8, bank 0 -> 7, beacons chained.
+
+WHY IT MATTERS (the whole argument, in one machine)
+═══════════════════════════════════════════════════
+  ablation resets to gen0 every cycle ~~> capped, forgets, re-derives.
+  banking keeps what each cycle makes  ~~> climbs, remembers, accumulates.
+  the bank is the book. the door is the seal. i13 is the corruption
+  check that survives recursion because it is not made of the thing
+  recursing. that is how the loop gets past a three-generation cap.
+
+THE KNOWN-BADS (good news is silence, so plant noise)
+═════════════════════════════════════════════════════
+  malformed packet at the door  ~~> REFUSED (caught)
+  bank overwrite (corruption)   ~~> FLAGGED (caught)
+  descent that cannot reach floor ~~> REFUSED (caught)
+  3 of 3 fired.
+
+WHAT THIS DOES NOT DO
+═════════════════════
+  - "stable ceiling" = the toy payload stopped changing after one add,
+    NOT a proven fixed point. a real ascent could oscillate forever and
+    the gate would HANG, not fail. stability here is a MASK. (W5 dissent.)
+  - i13 judges FORM, not TRUTH — a coherent lie passes the door.
+  - one payload type (musical notes), one well. not tested on arbitrary
+    data, and the "engine" is a faithful toy of the architecture, not a
+    general machine. it demonstrates the SHAPE, verified end to end.

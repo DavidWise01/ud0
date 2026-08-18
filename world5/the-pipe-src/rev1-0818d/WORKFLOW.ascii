@@ -1,0 +1,33 @@
+WORKFLOW ~~> rev1-0818d ~~> the engine (whole)
+═══════════════════════════════════════════════
+ASSEMBLES every verified subsystem from the session into one machine:
+  door(r0) · gate(i13) · mill(E1) · well(|U|) · bank · lineage · beacon
+
+TRACK A ~~> COMPUTE BEFORE BUILD (node verify/verify.js)
+  single door: alpha in / omega out / folds to alpha  ~~> LIT
+  every cycle gated: i13 + floor + stable ceiling     ~~> LIT
+  bank append-only, 0 -> 7 entries                    ~~> LIT
+  lineage gen0 -> gen5, payload 3 -> 8                 ~~> LIT
+  3/3 known-bads caught                                ~~> ▓
+  stability = "stopped changing", not a fixed point    ~~> AMBER (W5 dissent)
+
+TRACK B ~~> THE SCAR
+  first run: malformed-door known-bad did NOT throw.
+  cause: the test validated a move it never fed the engine — the cycle
+  ran a DIFFERENT internally-derived move that passed. 3rd time this
+  shape appeared this session. Fixed: the door gates the move actually
+  derived from the packet. Tombstone 01. Re-run: 3/3.
+
+TRACK C ~~> BUILD + CROSSCHECK
+  page from data/engine.json (single source)  ~~> ok
+  node --check injected script                ~~> SYNTAX OK
+  crosscheck re-derives from page             ~~> 12/12 GREEN
+
+SCOREBOARD
+  caught by a control ...... 1  (phantom known-bad, pre-build)
+  caught by the user ....... 0
+  DEAD stamps .............. 1  (a known-bad never fed to the machine)
+  dissent filed ............ 1  (W5: stable ceiling is a mask)
+
+TOMBSTONES ~~> graveyard/
+  01 the known-bad that was never fed to the machine
