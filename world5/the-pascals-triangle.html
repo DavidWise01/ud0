@@ -106,7 +106,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 }</div>
   <div class="evi good">$ i13 run pascal.i13     # row 10 in an f64 array
 C(10,5) = 252     C(10,2) = 45     # exact</div>
-  <p>But the big rows need <b>bignum</b> entries (C(100,50) is 30 digits; f64 loses exactness at C(57,28)) &mdash; and an array cannot hold a bignum:</p>
+  <p>But the big rows need <b>bignum</b> entries (C(100,50) is 30 digits; f64 can&rsquo;t hold row 57 exactly &mdash; it is the first row past <b>2&#8309;&sup3;</b>, the last exact central term being C(56,28)) &mdash; and an array cannot hold a bignum:</p>
   <div class="evi" style="color:var(--bad);border-color:rgba(255,90,106,.4)">$ i13 run pascal_big.i13
 error[E0501] MakeArray requires a plain number here, got a bignum</div>
   <div class="rec">
@@ -134,7 +134,7 @@ error[E0501] MakeArray requires a plain number here, got a bignum</div>
   function cnk(n,k){ if(k<0||k>n)return 0n; var r=1n; for(var i=0;i<k;i++){ r=r*BigInt(n-i)/BigInt(i+1); } return r; }
   function big(){
     var v=cnk(100,50);
-    res.innerHTML='C(100,50) &mdash; the centre of row 100 &mdash; is <span class="true">'+v.toString()+'</span><br><span style="color:var(--dim)">30 digits (shown here via the browser&rsquo;s BigInt); f64 loses exactness at C(57,28). In I-13 this is exactly the row that needs an array OF bignums &mdash; the seam the panel below names.</span>';
+    res.innerHTML='C(100,50) &mdash; the centre of row 100 &mdash; is <span class="true">'+v.toString()+'</span><br><span style="color:var(--dim)">30 digits (shown here via the browser&rsquo;s BigInt); f64 can&rsquo;t hold row 57 exactly (the first row past 2&#8309;&sup3;; C(56,28) is the last central term that fits). In I-13 this is exactly the row that needs an array OF bignums &mdash; the seam the panel below names.</span>';
   }
   draw();
   document.getElementById("go").onclick=big;
