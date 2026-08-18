@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE BINARY SEARCH &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:17px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:90px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi.bad{color:var(--bad);border-color:rgba(255,90,106,.4);}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arrbar{display:flex;gap:3px;align-items:flex-end;height:120px;margin:10px 0;}
+.cell{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:10px;color:var(--dim);}
+.cell i{display:block;width:100%;background:linear-gradient(180deg,var(--cyan),var(--cyan2));border-radius:2px 2px 0 0;box-shadow:0 0 6px rgba(62,240,255,.3);}
+.cell.win i{background:linear-gradient(180deg,var(--good),#2a8);box-shadow:0 0 9px var(--good);}
+.cell.piv i{background:linear-gradient(180deg,var(--orange),#a52);box-shadow:0 0 9px var(--orange);}
+.cell.lohi i{background:linear-gradient(180deg,var(--gold),#a83);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 042 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE BINARY SEARCH <span class="c">halve, and halve again</span></h1>
+  <p class="sub">Look up a word in a sorted list by opening to the middle and throwing away half, again and again &mdash; twenty steps find one item in a million. Simple enough that <b>almost everyone gets it wrong</b>: the canonical implementation carried a hidden bug for <b>decades</b>. And it <b>runs in real I-13</b> now, on the new array &mdash; where every index is <b>bounds-checked</b>, the exact discipline the famous bug lacked.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">keep the half that could hold it</span></h2>
+  <p>Compare the target to the middle element; if smaller, search the left half, else the right. The live window (gold = lo/hi, green = mid) shrinks by half each step. <span class="tag t-demo">live demo</span></p>
+  <div class="arrbar" id="bars"></div>
+  <div class="row">
+    <label>find</label><input id="t" value="23" spellcheck="false">
+    <button id="go" class="dartbtn">&#9192; search</button>
+    <span id="say" class="res" style="margin:0"></span>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the bug that hid in plain sight</span></h2>
+  <p class="myth">&ldquo;It&rsquo;s trivial&rdquo; &mdash; and yet the first <s>correct</s> published binary search came <b>twelve years</b> after the first published one. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1946</b> &middot; <span class="who">John Mauchly</span> describes the method in the Moore School lectures; the idea is immediate, the details are not.<br>
+    <b>1960</b> &middot; <span class="who">Derrick Henry Lehmer</span> publishes a correct general version &mdash; after years of buggy ones in the literature.<br>
+    <b>1986</b> &middot; <span class="who">Jon Bentley</span> (<i>Programming Pearls</i>) reports that <b>~90% of professional programmers</b> he tested could not write a correct binary search in two hours.<br>
+    <b>2006</b> &middot; <span class="who">Joshua Bloch</span> blogs &ldquo;<i>Nearly All Binary Searches and Mergesorts are Broken</i>&rdquo;: <b>mid = (lo + hi) / 2 overflows</b> for large arrays &mdash; a bug that had lived in the <b>JDK for nine years</b>, and in Bentley&rsquo;s own book.
+  </div>
+  <p style="margin-top:10px">The simplest useful algorithm is a monument to how hard &ldquo;simple&rdquo; is. <span class="tag t-open">humbling</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a no-wall &mdash; and the bug&rsquo;s antidote</span></h2>
+  <p>Binary search over the new array is pure indexed reads and comparisons. It runs, exactly:</p>
+  <div class="code">def bs(I a, I lo, I hi, I t) {
+  if lo >= hi { -> 0 - 1 }
+  I mid <- (lo + hi - (lo + hi) % 2) / 2
+  I v <- a[mid]
+  if v == t { -> mid }
+  if v < t { -> bs(a, mid + 1, hi, t) }
+  -> bs(a, lo, mid, t)
+}</div>
+  <div class="evi good">$ i13 run bsearch.i13
+i23 = 5      # found 23 at index 5
+i7  = -1     # 7 is absent</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; and note the happy accident: the <b>Bloch overflow bug cannot happen in I-13</b>. Indices are f64 (exact to 2&#8309;&#179;, far past any bounded array), and <b>every access is bounds-checked</b> (out-of-range is a clean <span class="k">E0501</span>, never silent corruption). The language&rsquo;s refusal of undefined behaviour is exactly the discipline the world&rsquo;s most famous binary-search bug was missing.<br>
+    <b>Payoff:</b> this is the first dart to <i>run on the bounded array</i> the author just added &mdash; the aggregate wall, cleared.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var A=[2,5,8,12,16,23,38,56,72,91], barsEl=document.getElementById("bars"), say=document.getElementById("say");
+  function draw(lo,hi,mid,found){
+    barsEl.innerHTML="";
+    var mx=Math.max.apply(null,A);
+    for(var i=0;i<A.length;i++){
+      var c=document.createElement("div"); c.className="cell";
+      if(found===i) c.className+=" win"; else if(i===mid) c.className+=" win"; else if(i===lo||i===hi-1) c.className+=" lohi";
+      if(lo!==undefined && (i<lo||i>=hi) && found===undefined) c.style.opacity=.25;
+      c.innerHTML='<i style="height:'+(20+A[i]/mx*95)+'%"></i>'+A[i];
+      barsEl.appendChild(c);
+    }
+  }
+  function search(){
+    var t=parseInt(document.getElementById("t").value,10);
+    var lo=0,hi=A.length,steps=0,found=-1;
+    var seq=[];
+    while(lo<hi){ var mid=Math.floor((lo+hi)/2); seq.push([lo,hi,mid]); steps++; if(A[mid]===t){found=mid;break;} if(A[mid]<t) lo=mid+1; else hi=mid; }
+    // animate
+    var k=0;
+    function step(){
+      if(k<seq.length){ var s=seq[k++]; draw(s[0],s[1],s[2]); setTimeout(step,420); }
+      else { draw(lo,hi, found>=0?found:-1, found>=0?found:undefined);
+        say.innerHTML = found>=0 ? 'found <span class="true">'+t+'</span> at index '+found+' in '+steps+' steps'
+                                 : '<span class="err">'+t+' not present</span> ('+steps+' steps to rule it out)'; }
+    }
+    step();
+  }
+  document.getElementById("go").onclick=search;
+  document.getElementById("t").addEventListener("keydown",function(e){ if(e.key==="Enter") search(); });
+  draw(0,A.length,-1); say.innerHTML="sorted array of 10 &mdash; search halves it each step";
+})();
+
+</script>
+
+<footer>
+  <b>DART 042 &middot; THE BINARY SEARCH</b> &mdash; World V &middot; SONNY 5, the I-13 world. The idea is old (noted by <b>John Mauchly</b>, 1946); the correctness saga is <b>Jon Bentley&rsquo;s</b> and <b>Joshua Bloch&rsquo;s</b>. History via <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">Wikipedia: Binary search</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which now has a <b>bounded checked array</b>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FISHER&ndash;YATES SHUFFLE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:17px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:90px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi.bad{color:var(--bad);border-color:rgba(255,90,106,.4);}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arrbar{display:flex;gap:3px;align-items:flex-end;height:120px;margin:10px 0;}
+.cell{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:10px;color:var(--dim);}
+.cell i{display:block;width:100%;background:linear-gradient(180deg,var(--cyan),var(--cyan2));border-radius:2px 2px 0 0;box-shadow:0 0 6px rgba(62,240,255,.3);}
+.cell.win i{background:linear-gradient(180deg,var(--good),#2a8);box-shadow:0 0 9px var(--good);}
+.cell.piv i{background:linear-gradient(180deg,var(--orange),#a52);box-shadow:0 0 9px var(--orange);}
+.cell.lohi i{background:linear-gradient(180deg,var(--gold),#a83);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 043 &middot; a helldive at the net</span></div>
+<header>
+  <h1>FISHER&ndash;YATES <span class="c">a fair deck</span></h1>
+  <p class="sub">How do you shuffle a deck so <b>every one</b> of the 52! orderings is equally likely? The obvious way &mdash; swap each card with a random one &mdash; is <b>subtly biased</b> and produces some orders more often than others. Fisher&ndash;Yates does it right, in one pass. And it is the dart where <b>two things this campaign added to I-13 meet</b>: the <b>array</b> and the <b>seeded PRNG</b>.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">walk down, swap with an earlier-or-self slot</span></h2>
+  <p>From the last position down to the second: pick a random index between <b>0 and i</b> (inclusive), and swap. The &ldquo;0 to i&rdquo; is the whole secret &mdash; a naive &ldquo;0 to n&minus;1&rdquo; swap looks the same and is <b>provably biased</b>. Shuffle, and check the counts stay flat. <span class="tag t-demo">live demo</span></p>
+  <div class="arrbar" id="bars"></div>
+  <div class="row">
+    <button id="sh" class="dartbtn">&#9192; shuffle (fair)</button>
+    <button id="bias">the biased way</button>
+    <button id="reset">reset 0..11</button>
+    <span id="say" class="res" style="margin:0"></span>
+  </div>
+  <canvas id="cv" width="960" height="120"></canvas>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">from a 1938 table to every card game online</span></h2>
+  <p class="myth">People call the naive &ldquo;swap-with-anything&rdquo; loop a shuffle; it is <s>uniform</s> only if you get the range exactly right. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1938</b> &middot; <span class="who">Ronald Fisher</span> &amp; <span class="who">Frank Yates</span>, in <i>Statistical Tables</i>, give the method as a <b>pencil-and-paper</b> randomization procedure.<br>
+    <b>1964</b> &middot; <span class="who">Richard Durstenfeld</b> recasts it as the modern <b>in-place O(n)</b> algorithm &mdash; the version everyone codes.<br>
+    <b>the trap</b> &middot; picking the swap partner from <b>0..n&minus;1</b> every step gives n&#8319; equally-likely runs, which cannot divide evenly into n! orderings &mdash; so some permutations are <b>over-represented</b>. Fisher&ndash;Yates picks from <b>0..i</b>, giving exactly n! equal outcomes.<br>
+    <b>Knuth</b> &middot; presents it as <span class="who">Algorithm P</span> (shuffle) in TAOCP, which fixed the name in programmers&rsquo; minds.
+  </div>
+  <p style="margin-top:10px">A one-character difference in the random range is the line between fair and rigged. <span class="tag t-open">exact</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">two additions meet &mdash; array &times; PRNG</span></h2>
+  <p>The shuffle needs an <b>array</b> (to swap in place) and <b>randomness</b> (to choose partners). I-13 gained the first this turn and the second (the stdlib LCG) before &mdash; so it runs, and the permutation is valid (the sum of 0..7 stays 28 no matter the order):</p>
+  <div class="code">def shuffle(I a, I i, I seed) {
+  if i <= 0 { -> a }
+  I r <- lcg(seed)
+  I j <- r % (i + 1)              // 0..i  -- the fair range
+  -> shuffle(swap(a, i, j), i - 1, r)
+}</div>
+  <div class="evi good">$ i13 run fisher.i13     # array + std/rng_lcg
+sum = 28     # a real permutation of 0..7 (0+1+...+7 = 28), reordered</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; this is the campaign&rsquo;s cleanest convergence. Two independent recommendations, integrated one at a time (the seeded PRNG as a library; the array as a value kind), <b>meet in a single algorithm</b> that now runs. The seed threads as a parameter (determinism kept in the open); the array threads as the return value.<br>
+    <b>The loop, compounding:</b> darts asked for random (004/030) and for aggregates (017/028); both landed; Fisher&ndash;Yates is where they shake hands.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var A=[], barsEl=document.getElementById("bars"), say=document.getElementById("say");
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), N=12;
+  var counts=null;   // position x value tally to show uniformity
+  function reset(){ A=[]; for(var i=0;i<N;i++) A.push(i); counts=null; draw(); say.innerHTML="identity 0..11"; clearCanvas(); }
+  function draw(){
+    barsEl.innerHTML="";
+    for(var i=0;i<A.length;i++){ var c=document.createElement("div"); c.className="cell";
+      c.innerHTML='<i style="height:'+(20+A[i]/(N-1)*95)+'%"></i>'+A[i]; barsEl.appendChild(c); }
+  }
+  function fair(){ for(var i=N-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=A[i];A[i]=A[j];A[j]=t; } }
+  function biased(){ for(var i=N-1;i>0;i--){ var j=Math.floor(Math.random()*N); var t=A[i];A[i]=A[j];A[j]=t; } }
+  function clearCanvas(){ ctx.fillStyle="#03040a"; ctx.fillRect(0,0,cv.width,cv.height); }
+  function tally(shuffler,label){
+    // run many shuffles, count how often value 0 lands in each position; uniform = flat
+    counts=new Array(N).fill(0); var R=6000;
+    for(var r=0;r<R;r++){ A=[]; for(var i=0;i<N;i++) A.push(i); shuffler(); counts[A.indexOf(0)]++; }
+    clearCanvas(); var bw=cv.width/N, exp=R/N;
+    for(var p=0;p<N;p++){ var h=counts[p]/(exp*1.8)*cv.height; ctx.fillStyle=label==="fair"?"rgba(89,255,176,.6)":"rgba(255,90,106,.6)"; ctx.fillRect(p*bw+2,cv.height-h,bw-4,h); }
+    ctx.strokeStyle="rgba(217,180,90,.8)"; ctx.beginPath(); var y=cv.height-(exp/(exp*1.8)*cv.height); ctx.moveTo(0,y); ctx.lineTo(cv.width,y); ctx.stroke();
+    A=[]; for(var i=0;i<N;i++) A.push(i); shuffler(); draw();
+    var mx=Math.max.apply(null,counts), mn=Math.min.apply(null,counts);
+    say.innerHTML=(label==="fair"?'<span class="true">fair</span>':'<span class="err">biased</span>')+' &middot; where does value 0 land over 6000 shuffles &mdash; spread '+mn+'..'+mx+' (gold line = ideal '+Math.round(exp)+')';
+  }
+  document.getElementById("sh").onclick=function(){ tally(fair,"fair"); };
+  document.getElementById("bias").onclick=function(){ tally(biased,"biased"); };
+  document.getElementById("reset").onclick=reset;
+  reset();
+})();
+
+</script>
+
+<footer>
+  <b>DART 043 &middot; THE FISHER&ndash;YATES SHUFFLE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Ronald Fisher &amp; Frank Yates</b> (1938, by hand), made O(n) by <b>Richard Durstenfeld</b> (1964) and popularized by <b>Donald Knuth</b>. History via <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Wikipedia: Fisher&ndash;Yates</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which now has a <b>bounded checked array</b>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

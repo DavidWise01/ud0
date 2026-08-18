@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE QUICKSORT &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:17px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:90px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;}
+.evi.bad{color:var(--bad);border-color:rgba(255,90,106,.4);}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arrbar{display:flex;gap:3px;align-items:flex-end;height:120px;margin:10px 0;}
+.cell{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:10px;color:var(--dim);}
+.cell i{display:block;width:100%;background:linear-gradient(180deg,var(--cyan),var(--cyan2));border-radius:2px 2px 0 0;box-shadow:0 0 6px rgba(62,240,255,.3);}
+.cell.win i{background:linear-gradient(180deg,var(--good),#2a8);box-shadow:0 0 9px var(--good);}
+.cell.piv i{background:linear-gradient(180deg,var(--orange),#a52);box-shadow:0 0 9px var(--orange);}
+.cell.lohi i{background:linear-gradient(180deg,var(--gold),#a83);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 045 &middot; a helldive at the net</span></div>
+<header>
+  <h1>QUICKSORT <span class="c">partition &amp; conquer</span></h1>
+  <p class="sub">Pick a pivot, throw everything smaller to its left and larger to its right, then sort each side the same way. <b>Quicksort</b> is one of the most-used algorithms ever written &mdash; invented by a 26-year-old in <b>Moscow, translating Russian</b>. Its <b>partition</b> runs in real I-13 on the new array; its recursion reveals the <b>next</b> wall &mdash; the one the array just uncovered.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">partition around a pivot, recurse</span></h2>
+  <p>Choose a pivot (orange). Sweep through, moving every smaller element to the front; the pivot settles into its final sorted position, with all smaller left and larger right. Recurse on each side. Watch it sort. <span class="tag t-demo">live demo</span></p>
+  <div class="arrbar" id="bars"></div>
+  <div class="row">
+    <button id="go" class="dartbtn">&#9192; sort</button>
+    <button id="shuf">shuffle</button>
+    <span id="say" class="res" style="margin:0"></span>
+  </div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">a sort born in translation</span></h2>
+  <p class="myth">Imagined as a dry CS result &mdash; it was actually invented to <s>sort numbers</s> look up <b>Russian words in a dictionary</b>. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1959&ndash;60</b> &middot; <span class="who">Tony Hoare</span>, 25, a British exchange student in <b>Moscow</b> (in the milieu of <span class="who">Kolmogorov</span> &mdash; the same seminar culture that produced <b>Karatsuba</b>, dart 041), works on <b>machine translation</b>. To translate a sentence he must look each word up in a dictionary &mdash; faster if the words are sorted first.<br>
+    <b>the idea</b> &middot; he invents partition-and-recurse; but <b>could not write it down</b> &mdash; he had no way to express recursion until he learned <span class="who">ALGOL 60</span>.<br>
+    <b>1961</b> &middot; published as <span class="who">Algorithm 64</span> in <i>Communications of the ACM</i> &mdash; barely a page.<br>
+    <b>after</b> &middot; average O(n log n), in-place, cache-friendly; still the default sort in countless libraries sixty years on.
+  </div>
+  <p style="margin-top:10px">The most practical sort in the world began as a way to read Russian. <span class="tag t-open">canonical</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the array&rsquo;s success reveals the next wall</span></h2>
+  <p>One <b>Lomuto partition pass</b> runs in real I-13 &mdash; it rearranges the array around the pivot and returns it:</p>
+  <div class="evi good">$ i13 run partition.i13   # pivot = a[7] = 5
+pivot = 5
+e0 = 2      # smaller elements moved to the front, larger to the back</div>
+  <p>But full quicksort&rsquo;s recursion needs the partition to hand back <b>two</b> things at once &mdash; the <b>rearranged array</b> <i>and</i> the <b>pivot&rsquo;s final index</b> &mdash; to split <span class="k">qsort(a, lo, p)</span> from <span class="k">qsort(a, p+1, hi)</span>. An I-13 function returns exactly <b>one</b> value:</p>
+  <div class="evi bad">no way to return (array, index) as a pair &mdash; single return only.</div>
+  <div class="rec">
+    <b>Recommend:</b> a <b>way to return more than one value</b> &mdash; a small <b>tuple / pair</b>, or an out-parameter convention. This is the <b>newest wall in the whole campaign</b>, and it is telling: the <b>array</b> the author just added cleared the aggregate wall, and the very next classic algorithm reveals the edge <i>behind</i> it. The frontier moved.<br>
+    <b>Honest note:</b> a sort <i>does</i> run today &mdash; bubble and insertion sort thread a single array cleanly (verified). Quicksort specifically wants the dual return. Two open recommends now stand: <b>multiple return</b> (this dart) and <b>bignum</b> (darts 032/035/036/041).
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var A=[], barsEl=document.getElementById("bars"), say=document.getElementById("say");
+  function shuffle(){ A=[]; for(var i=0;i<14;i++) A.push(1+Math.floor(Math.random()*20)); draw(-1,-1,-1); say.innerHTML="unsorted &mdash; press sort"; }
+  function draw(lo,hi,piv){
+    barsEl.innerHTML="";
+    var mx=Math.max.apply(null,A);
+    for(var i=0;i<A.length;i++){ var c=document.createElement("div"); c.className="cell"+(i===piv?" piv":((i>=lo&&i<=hi)?" lohi":""));
+      c.innerHTML='<i style="height:'+(10+A[i]/mx*95)+'%"></i>'; barsEl.appendChild(c); }
+  }
+  function sort(){
+    var frames=[]; var a=A.slice();
+    (function qs(lo,hi){
+      if(lo>=hi){ return; }
+      var pivot=a[hi], i=lo;
+      for(var j=lo;j<hi;j++){ frames.push([a.slice(),lo,hi,hi]); if(a[j]<=pivot){ var t=a[i];a[i]=a[j];a[j]=t; i++; } }
+      var t=a[i];a[i]=a[hi];a[hi]=t; frames.push([a.slice(),lo,hi,i]);
+      qs(lo,i-1); qs(i+1,hi);
+    })(0,a.length-1);
+    frames.push([a.slice(),-1,-1,-1]);
+    var k=0;
+    function play(){ if(k>=frames.length){ A=a; say.innerHTML='<span class="true">sorted</span> &mdash; '+A.length+' elements'; return; }
+      var f=frames[k++]; A=f[0]; draw(f[1],f[2],f[3]); setTimeout(play, 90); }
+    play();
+  }
+  document.getElementById("go").onclick=sort;
+  document.getElementById("shuf").onclick=shuffle;
+  shuffle();
+})();
+
+</script>
+
+<footer>
+  <b>DART 045 &middot; THE QUICKSORT</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Tony Hoare</b>, 1959&ndash;61, devised it as a Moscow exchange student working on Russian&ndash;English machine translation. History via <a href="https://en.wikipedia.org/wiki/Quicksort">Wikipedia: Quicksort</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which now has a <b>bounded checked array</b>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
