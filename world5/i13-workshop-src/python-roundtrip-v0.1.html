@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Python → I-13 → Python</title><style>
+:root{--bg:#07090d;--p:#0d1319;--line:#293946;--ink:#dce8ee;--mut:#7d94a3;--ok:#67dfbd;--warn:#e3bd6c;--bad:#e78484}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:12px ui-monospace,Consolas,monospace}header{padding:12px 15px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}h1{font-size:14px;margin:0}.sub{font-size:10px;color:var(--mut);margin-top:4px}
+.shell{display:grid;grid-template-columns:minmax(450px,1fr) 350px;min-height:calc(100vh - 55px)}main{padding:12px;border-right:1px solid var(--line)}aside{padding:12px;background:#090d12}.editors{display:grid;grid-template-columns:1fr 1fr;gap:8px}textarea{width:100%;height:34vh;background:#05070a;color:var(--ink);border:1px solid var(--line);padding:9px;font:11px/1.5 inherit}textarea[readonly]{color:#b9c9d3}
+button{font:10px inherit;color:var(--ink);background:#070a0e;border:1px solid var(--line);padding:7px 10px;margin:8px 0;cursor:pointer}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.panel{border:1px solid var(--line);background:var(--p);padding:9px;min-height:190px;max-height:340px;overflow:auto}
+h2{font-size:10px;letter-spacing:.12em;color:var(--mut);margin:0 0 7px}pre{margin:0;white-space:pre-wrap;word-break:break-word;font:9.5px/1.45 inherit}.pipe{padding:8px;border:1px solid var(--line);text-align:center;color:var(--mut);margin-bottom:8px}.status{display:grid;grid-template-columns:1fr auto;gap:5px 10px;font-size:10px}.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+@media(max-width:900px){.shell,.editors,.grid{display:block}.panel,textarea{margin-bottom:8px}}
+</style></head><body>
+<header><div><h1>Python A → I-13 → Python B</h1><div class="sub">canonical round-trip equality · source formatting may change</div></div><div id="health" class="warn">not run</div></header>
+<div class="shell"><main><div class="editors"><div><h2>PYTHON A</h2><textarea id="a">def add(a, b):
+    return a + b
+
+x = add(2, 3)</textarea></div><div><h2>PYTHON B</h2><textarea id="b" readonly></textarea></div></div>
+<button id="go">ROUND TRIP</button>
+<div class="pipe">Python A → CPython AST → n/I-13 A → t.python → Python AST → w.python → Python B → n/I-13 B → compare</div>
+<div class="grid"><section class="panel"><h2>ROUND-TRIP RECEIPT</h2><pre id="receipt">—</pre></section><section class="panel"><h2>TRANSLATION MAP</h2><pre id="map">—</pre></section><section class="panel"><h2>I13 A</h2><pre id="ia">—</pre></section><section class="panel"><h2>I13 B</h2><pre id="ib">—</pre></section></div></main>
+<aside><h2>STATUS · STANDING RULE</h2><div class="status">
+<span>Python → I13</span><b class="ok">BUILT</b><span>n provenance</span><b class="ok">BUILT</b><span>t.python</span><b class="ok">BUILT v0.1</b><span>Python target AST</span><b class="ok">BUILT</b><span>w.python</span><b class="ok">BUILT v0.1</b><span>Python source output</span><b class="ok">BUILT</b><span>re-read Python B</span><b class="ok">BUILT</b><span>I13(A)==I13(B)</span><b class="ok">TESTED</b><span>Attr</span><b class="warn">AMBER</b><span>unknown target nodes</span><b class="bad">REJECT</b>
+</div></aside></div>
+<script>
+const $=x=>document.getElementById(x);
+$("go").onclick=async()=>{try{
+ const r=await fetch("/api/python/roundtrip",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({source:$("a").value,label:"editor.py"})});
+ const d=await r.json(); $("b").value=d.source_b||"";
+ $("health").textContent=d.status; $("health").className=d.equivalent?"ok":(d.status&&d.status.includes("PARTIAL")?"warn":"bad");
+ $("receipt").textContent=JSON.stringify({status:d.status,equivalent:d.equivalent,inbound:d.inbound_receipt,translation:d.translation_receipt,writer:d.writer,reentry:d.reentry_receipt,warnings:d.semantic_warnings},null,2);
+ $("map").textContent=JSON.stringify((d.translation_map||[]).slice(0,30),null,2);
+ $("ia").textContent=JSON.stringify(d.semantic_a||d.i13_a||{},null,2);
+ $("ib").textContent=JSON.stringify(d.semantic_b||d.i13_b||{},null,2);
+}catch(e){$("health").textContent="SIDECAR OFFLINE";$("health").className="bad";$("receipt").textContent=String(e)}};
+</script></body></html>

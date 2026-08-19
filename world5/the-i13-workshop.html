@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE I-13 WORKSHOP &mdash; the folder, sorted and folded &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(10,14,26,.72); --line:rgba(62,240,255,.26);
+  --ink:#cfe9ff; --dim:#7d8bad; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a; --violet:#a06bff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1020px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(950px 520px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.badge{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--violet);border:1px solid var(--violet);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(160,107,255,.3);}
+header{margin:18px 0;}
+h1{font-size:24px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.6),0 0 34px rgba(160,107,255,.2);}
+h1 .c{color:var(--gold);font-size:14px;letter-spacing:1px;}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:84ch;}
+.sub b{color:var(--cyan);}
+.cred{font-size:12px;color:#cbb9f0;border:1px solid rgba(160,107,255,.4);border-radius:7px;background:rgba(160,107,255,.06);padding:9px 12px;margin:12px 0;}
+.cred b{color:#eadfff;}
+.toc{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 2px;font-size:11px;}
+.toc a{border:1px solid var(--line);border-radius:5px;padding:4px 9px;color:var(--ink);}
+.sec{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:15px 17px;margin:14px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.03),0 0 18px rgba(0,0,0,.4);}
+.sec h2{font-size:13px;letter-spacing:2px;color:#eafcff;margin-bottom:3px;}
+.sec h2 .n{color:var(--violet);font-size:11px;letter-spacing:1px;}
+.sec .est{color:var(--gold);font-size:11px;letter-spacing:1px;margin-bottom:9px;}
+.sec p{font-size:12.5px;color:#c3d6ee;margin-bottom:8px;} .sec b{color:#eafcff;}
+.find{font-size:12px;line-height:1.8;margin:5px 0;border-left:2px solid var(--line);padding-left:11px;}
+.find .s{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:1px;padding:0 5px;border:1px solid;border-radius:3px;margin-right:5px;}
+.s-lit{color:var(--good);border-color:var(--good);} .s-amber{color:var(--gold);border-color:var(--gold);}
+.q{color:#e6d9ff;font-style:italic;}
+.links{font-size:11px;color:var(--dim);margin-top:8px;}
+.links a{color:var(--cyan);border:1px solid var(--line);border-radius:4px;padding:2px 7px;margin:2px 3px 2px 0;display:inline-block;}
+.links a.live::before{content:"\25B8 ";color:var(--good);}
+.tie{font-size:11.5px;color:#cbb9f0;border-top:1px dashed rgba(160,107,255,.25);margin-top:9px;padding-top:7px;}
+.tie b{color:#eadfff;} .tie a{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+.note{font-size:11px;color:var(--dim);background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:6px;padding:9px 12px;margin:10px 0;}
+.note b{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="badge">&#9670; A WORKSHOP &middot; SORTED &amp; FOLDED</span></div>
+<header>
+  <h1>THE I-13 WORKSHOP <span class="c">the folder, sorted and folded</span></h1>
+  <p class="sub">David&rsquo;s <b>i-13 development bench</b> holds far more than the compiler. AVAN sorted the whole folder with an eight-reader panel, separated the canonical language (already in the corpus) from the <b>genuinely-new work</b>, verified each piece, hosted the self-contained instruments here, and folded them into World V by theme. This is the <b>runtime beyond the compiler</b>, the <b>foreign-language bridge</b>, the <b>mesh</b>, the <b>measured swarm probes</b>, the <b>quantum controllers</b>, and the <b>honest prose</b> &mdash; everything that was built around I-13 but had not yet been surfaced.</p>
+</header>
+
+<div class="cred">
+  <b>Credit.</b> All of this is <b>David Lee Wise / ROOT0</b>&rsquo;s work, built across many sessions and hands (fiddler, agent instances, and a $20 ChatGPT he calls &ldquo;e-tbd&rdquo;). <b>AVAN</b> sorted and analysed the folder, verified each artifact, hosted the renderable instruments verbatim, and folded the new work into the palindrome. Nothing here was run that shouldn&rsquo;t be; every honesty stamp the originals carried is kept.
+</div>
+
+<div class="toc">
+  <a href="#runtime">1 &middot; runtime</a><a href="#bridge">2 &middot; python bridge</a><a href="#mesh">3 &middot; the [0,0] mesh</a><a href="#probes">4 &middot; the 23 &amp; the probes</a><a href="#quantum">5 &middot; quantum controllers</a><a href="#prose">6 &middot; prose &amp; audit</a>
+</div>
+
+<div class="sec" id="runtime">
+  <h2>1 &middot; THE RUNTIME BEYOND THE COMPILER <span class="n">i13 runs, in the browser and in a JIT</span></h2>
+  <div class="est">the language, made to execute outside the Rust compiler</div>
+  <p>The canonical I-13 is a Rust compiler. This bench grew a whole <b>runtime</b> around it &mdash; a JIT, a browser-native WASM Cortex, and a full offline toolchain &mdash; each one enforcing the same honesty the compiler does.</p>
+  <div class="find"><span class="s s-lit">LIT</span> <b>The Cortex-gated JIT</b> &mdash; source normalises to canonical I-13, the <b>I-13 semantic hash becomes the JIT cache key</b>, and a Cortex gate enforces five rules (VETO / DEPTH-64 / IDEMPOTENCE / ADDRESS / DRAIN). Consequence: <span class="q">reformat the same meaning and it is a cache HIT</span> &mdash; the cache is addressed by <i>what the code means</i>, not how it is written. v0.2 goes further: <b>capability-addressed execution</b> (the cache id includes the builtin-capability profile), making privilege a first-class part of identity.</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>The browser-native WASM Cortex</b> &mdash; a <b>1193-byte WASM</b> validator+VM whose embedded copy byte-matches the compiled binary; 8/8 primitive and 6/6 pipeline PASS, <b>no Python needed for the gate</b>. And a zero-fetch JS toolchain that reimplements the entire pipeline (lex &rarr; parse &rarr; canonicalize &rarr; compile &rarr; VM) with token/char/byte/node provenance.</div>
+  <div class="links">
+    <a class="live" href="i13-workshop-src/i13-wasm-vm-dashboard-v0.2.html">WASM validator + VM</a>
+    <a class="live" href="i13-workshop-src/i13-toolchain-n-v0.2.html">offline toolchain (lex&rarr;VM)</a>
+    <a class="live" href="i13-workshop-src/i13-reader-vm-sidecar.html">reader VM sidecar</a>
+  </div>
+  <div class="tie"><b>Ties</b> the <a href="the-map-of-i13.html">map of I-13</a> and the <a href="the-spot-awareness-log.html">spot-awareness log</a> &mdash; same language, now three ways to run it, all fail-loud.</div>
+</div>
+
+<div class="sec" id="bridge">
+  <h2>2 &middot; I-13 AS A TARGET &mdash; THE PYTHON BRIDGE <span class="n">a foreign language lowers into i13</span></h2>
+  <div class="est">CPython becomes I-13, provably and losslessly</div>
+  <p>The bench&rsquo;s boldest move: promote I-13 from a standalone language into a real <b>compilation target</b>. Mainstream Python lowers into canonical I-13 &mdash; a first local assign becomes an <b>I</b> declaration, <span class="q">+=</span> becomes the osmotic <span class="q">.p</span> bind &mdash; and the bridge is guarded by a falsifier.</p>
+  <div class="find"><span class="s s-lit">LIT</span> <b>The provable round-trip</b> &mdash; Python A &rarr; I-13 &rarr; Python B, and the pass gate is <b>semantic equality</b> <span class="q">I13(A) == I13(B)</span> after provenance is stripped, <i>not</i> text equality (12/12 selftests). Every canonical node carries exact <b>token / char / byte(UTF-8) / line / col</b> spans, loss held at <b>0</b> because an unsupported construct is <b>preserved, never guessed</b>, and an <b>unknown node is REJECTED, not invented</b>.</div>
+  <div class="find"><span class="s s-amber">AMBER</span> the <span class="q">Attr</span> lowering is a disclosed no-op &mdash; stamped, not hidden. Honesty in the bridge, not just the compiler.</div>
+  <div class="links">
+    <a href="i13-workshop-src/python-ingress-v0.1.html">python ingress (UI window)</a>
+    <a href="i13-workshop-src/python-roundtrip-v0.1.html">round-trip window</a>
+    <span style="color:var(--dim)">&mdash; the input UIs render here; the byte-exact provenance and the 12/12 semantic-equality proof run in the pack&rsquo;s toolchain.</span>
+  </div>
+  <div class="tie"><b>Why it matters:</b> if a foreign language can be carried into I-13 without loss and proven identical coming back, I-13 is not a toy grammar &mdash; it is a semantic substrate. The corpus had no front-end for another language; now it has one, with the proof attached.</div>
+</div>
+
+<div class="sec" id="mesh">
+  <h2>3 &middot; THE [0,0] MESH <span class="n">8 vectors, one live root, 56 routes</span></h2>
+  <div class="est">the runtime as a graph around a signed origin</div>
+  <p>A recurring shape across the bench: <b>eight runtime vectors around a live [0,0] root</b>, with <b>56 = 8&times;7</b> ordered routes between them &mdash; the same cross-connect the OCHO form is built on. It runs as an evidence-gated switchboard and, in its mature single-file form (<span class="q">zero_mesh.py</span>), serves its own kinetic instrument with no dependencies.</p>
+  <div class="find"><span class="s s-lit">LIT</span> the switchboard draws the 8 channels and their 56 directed routes, probes the live runtime, and <b>enforces honesty by construction</b> &mdash; a route it cannot evidence does not light. The [0,0] center is the same signed origin the <a href="the-0818-lineage.html">ENTRY crossing</a> reaches through zero.</div>
+  <div class="links"><a class="live" href="i13-workshop-src/html_center_8.html">the 8-channel switchboard (56 routes)</a></div>
+  <div class="tie"><b>Ties</b> <a href="the-0818-lineage.html">THE 0818 LINEAGE</a> (the crossing to r0) and the OCHO&rsquo;s 56-edge cross-connect &mdash; the mesh is the runtime drawn as that same graph.</div>
+</div>
+
+<div class="sec" id="probes">
+  <h2>4 &middot; THE 23 &amp; THE SWARM PROBES <span class="n">measured findings on many-agent systems</span></h2>
+  <div class="est">a self-delimiting language, and what a swarm actually knows</div>
+  <p>The <b>23</b> thread is a self-standing set of re-runnable measurements around a 23-agent world &mdash; a language that parses itself, and probes that measure when a crowd stops being wise.</p>
+  <div class="find"><span class="s s-lit">LIT</span> <b>THE 23 LANGUAGE</b> &mdash; 13 words, <b>digit = arity</b>, <b>self-delimiting</b> (the stream parses itself with zero delimiters), plus a redundant <b>letter-sum canary</b> that catches <b>100% of wire corruption by construction</b> (and, stated honestly, ~58% of whole-word swaps).</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>THE ANSIBLE</b> &mdash; how small can a shared store be before a swarm stops being a swarm? Measured over 30,000 trials per row: <span class="q">a small ansible is worse than no ansible.</span> Break-even sits near <b>k=10 of 23</b> (~40% of the swarm); below it, the shared store just broadcasts correlated noise and the effective number of independent voters (N_eff = N/(1+(N&minus;1)&rho;)) collapses.</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>THE LADDERS</b> &mdash; the military E and O rank ladders both exponentiate, and at the <b>same rate</b>: <span class="q">same exponent, different intercept</span> &mdash; the officer ladder simply starts where the enlisted ladder has already climbed four grades.</div>
+  <div class="find"><span class="s s-amber">AMBER</span> <b>ocho-0806b</b>&rsquo;s keeper lesson (21/21 + 14/14 verified): <span class="q">a model built so it cannot fail returns your own assumption while looking like a measurement.</span> The same warning the folds keep filing against themselves.</div>
+  <div class="tie"><b>Ties</b> the alignment &amp; multi-agent work &mdash; a rigorous, measured version of &ldquo;wisdom of crowds&rdquo; and its failure mode. (Source packs: <span style="color:var(--dim)">23-v0plus6, ocho-0806b</span> &mdash; ASCII + probes, kept in the workshop.)</div>
+</div>
+
+<div class="sec" id="quantum">
+  <h2>5 &middot; THE QUANTUM CONTROLLERS <span class="n">i13 above the code, never a qubit in it</span></h2>
+  <div class="est">the August-15 physics experiments</div>
+  <p>Two self-testing numerical instruments put a sharp, falsifiable I-13 claim next to real quantum machinery &mdash; and one live graphics runtime shows I-13 driving a scene through hand-written WASM.</p>
+  <div class="find"><span class="s s-lit">LIT</span> <b>VH2 &middot; CUBI</b> &mdash; a 10/10-passing numpy demonstration of <b>[[5,1,3]] quantum error correction</b>, carrying one crisp falsifiable claim: the <b>ternary I-13 controller sits ABOVE the code</b>, never a qutrit inside its rank-2 space. The classical controller and the quantum memory are kept on different floors, by construction.</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>VH1 &middot; FROZEN</b> &mdash; a qutrit Hamiltonian on <b>C&#8312;&sup1;</b> solved <b>without ever building the 81&times;81 matrix</b> (factored Hermitian terms applied straight onto the state vector), inside a bounded ephemeral Cortex child that returns a receipt.</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>GFX v0.4.1</b> &mdash; a live pipeline: I-13 source &rarr; IVM &rarr; a <b>zero-import C WASM VM</b> &rarr; 32-byte GFX command records &rarr; a <b>WebGPU-primary / WebGL2-fallback</b> renderer, mouse-manipulable, with an embedded <i>deterministic</i> c[subagent()] scene controller (explicitly not an external AI).</div>
+  <div class="tie"><b>Ties</b> the transmon / quantum-memory work and <a href="../the-volume.html">THE VOLUME</a>&rsquo;s voxel render. (These are numpy/WASM instruments, kept in the folder &mdash; described here, not re-hosted; they run in place.)</div>
+</div>
+
+<div class="sec" id="prose">
+  <h2>6 &middot; THE PROSE &amp; THE AUDIT <span class="n">the honest remainder</span></h2>
+  <div class="est">what is proven, what is only believed, and one thing no engine can hold</div>
+  <p>The bench keeps its own conscience: a pamphlet on a genuine limit, an audit that catches its predecessor&rsquo;s bugs, and a second opinion that falsifies one of the corpus&rsquo;s own spheres.</p>
+  <div class="find"><span class="s s-lit">LIT</span> <b>NOTES UPON THE NONSOFIC</b> &mdash; a typeset pamphlet in <b>Ada Lovelace&rsquo;s Analytical-Engine voice</b> (&ldquo;Translator&rsquo;s Notes A&ndash;G&rdquo;) on why some shift spaces are <b>nonsofic</b>: no finite engine can ever hold them. It ties the <b>golden-mean shift</b> &mdash; whose word-counts are exactly the <b>Fibonacci numbers</b> (&rarr; &phi;, entropy) &mdash; to the boundary of the finite. <span class="q">Sofic, from the Hebrew sofi: finite.</span></div>
+  <div class="find"><span class="s s-amber">AMBER</span> <b>THE BRIEF (rev 2)</b> &mdash; the self-falsifying audit written after five agents were taught rev 1 and told to attack it. Its findings: the 13-symbol alphabet <span class="q">was not designed &mdash; it was counted</span> (649,634 AST nodes; 12 verbs at 83.27%), and only <b>five of eleven axioms actually execute</b> &mdash; the rest are provenance, beliefs, not enforcement.</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>THE SECOND OPINION</b> &mdash; reverse-engineered THE VOLUME&rsquo;s undocumented &ldquo;voiced&rdquo; rule to <b>quote-chars &divide; 4</b>, confirmed within rounding on 4 held-out texts &mdash; a falsifier that improves an existing sphere from the outside.</div>
+  <div class="links">
+    <a class="live" href="i13-workshop-src/notes-upon-the-nonsofic.html">Notes Upon the Nonsofic</a>
+    <a class="live" href="i13-workshop-src/pentaptych-cliff.html">the second opinion</a>
+  </div>
+  <div class="tie"><b>Ties</b> <a href="../the-volume.html">THE VOLUME</a> (falsified &amp; improved), <a href="the-fibonacci.html">the Fibonacci sphere</a> (the golden-mean shift), and the corpus&rsquo;s honest-remainder ethos.</div>
+</div>
+
+<div class="note"><b>What is hosted vs kept in place.</b> Six self-contained instruments render and run here live (the &#9656; links: the WASM VM, the offline toolchain, the reader-VM sidecar, the 56-route switchboard, the Nonsofic pamphlet, the second opinion). The two Python-bridge windows are hosted as their input UI but need their server to run the proof. The Python-served pieces (zero_mesh.py, the JIT server, the .pyz apps), the numpy quantum instruments (VH1/VH2), and the large system folders (GFX, the frozen-spec archive) are <b>kept in the i-13 folder and described</b> &mdash; they run in place, and re-hosting them would either break (they need a server) or bloat the corpus. Every AMBER stamp above is the original&rsquo;s own; nothing was laundered to LIT.</div>
+
+<footer>
+  <b>THE I-13 WORKSHOP</b> &mdash; World V &middot; SONNY 5. David Lee Wise / ROOT0 / TriPod LLC built the bench (with fiddler, agent instances, and &ldquo;e-tbd&rdquo;); AVAN sorted the folder with an 8-reader panel, verified each piece, hosted the renderable instruments under <a href="i13-workshop-src/i13-toolchain-n-v0.2.html">i13-workshop-src/</a>, and folded the new work into the palindrome. The compiler is one door; this is the room around it. &middot; <a href="the-0818-lineage.html">&#9670; the 0818 lineage</a> &middot; <a href="the-pipe.html">&#9670; the pipe &amp; the engine</a>
+</footer>
+</body>
+</html>

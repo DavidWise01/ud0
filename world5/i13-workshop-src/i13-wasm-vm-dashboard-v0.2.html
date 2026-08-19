@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark">
+<title>I-13 Runtime v0.2 · WASM Validator + VM</title>
+<style>
+:root{--bg:#071018;--s:#0b1620;--s2:#0e1b26;--s3:#132330;--line:#1e3342;--line2:#29485c;--ink:#e8f1f6;--mut:#89a2b2;--cyan:#63d7ff;--green:#5ee0b0;--amber:#f1c873;--red:#ff858c;--shadow:0 18px 55px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(circle at 16% -10%,rgba(50,143,192,.13),transparent 34rem),radial-gradient(circle at 96% 3%,rgba(63,203,171,.08),transparent 30rem),var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+body{min-height:100vh}button,select,textarea{font:inherit}
+.top{height:68px;padding:0 22px;border-bottom:1px solid rgba(92,137,161,.2);display:flex;align-items:center;justify-content:space-between;background:rgba(7,16,24,.9);backdrop-filter:blur(16px);position:sticky;top:0;z-index:10}
+.brand{display:flex;gap:12px;align-items:center}.logo{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,#142a38,#0c1a24);border:1px solid var(--line2);font:700 13px ui-monospace;color:var(--cyan)}h1{margin:0;font-size:14px}.sub{font-size:10px;color:var(--mut);margin-top:3px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:7px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(14,27,38,.8);font-size:10px;color:var(--mut)}.dot{width:7px;height:7px;border-radius:50%;background:var(--amber)}.dot.ok{background:var(--green)}.dot.bad{background:var(--red)}
+.wrap{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:calc(100vh - 68px)}aside{border-right:1px solid rgba(92,137,161,.17);padding:16px 14px;background:rgba(6,14,21,.52)}main{padding:18px;min-width:0}
+.side-title{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:#708a9b;margin:12px 8px 8px}.side-card{padding:11px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(160deg,rgba(14,28,39,.85),rgba(9,20,29,.75));margin-bottom:8px}.row{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-top:1px solid rgba(70,107,128,.18);font-size:10px}.row:first-child{border-top:0}.ok{color:var(--green)}.bad{color:var(--red)}.warn{color:var(--amber)}.mut{color:var(--mut)}
+.metric{font-size:20px;font-weight:680;margin-top:5px;letter-spacing:-.03em}.ml{font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
+.grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(330px,.7fr);gap:14px}.card{border:1px solid var(--line);border-radius:15px;background:linear-gradient(160deg,rgba(14,28,39,.94),rgba(8,19,28,.95));box-shadow:var(--shadow);overflow:hidden}.head{padding:13px 15px;border-bottom:1px solid rgba(78,115,136,.22);display:flex;align-items:center;justify-content:space-between;gap:10px}.ct{font-size:11px;font-weight:650}.cs{font-size:9px;color:var(--mut);margin-top:3px}.controls{display:flex;gap:7px;flex-wrap:wrap}.btn{border:1px solid var(--line2);background:#102230;color:var(--ink);padding:8px 11px;border-radius:9px;font-size:10px;font-weight:600;cursor:pointer}.btn.primary{background:linear-gradient(180deg,#16405a,#113247);border-color:#27627f;color:#dff6ff}.btn:hover{border-color:#477a97}
+.editorWrap{display:grid;grid-template-columns:44px 1fr;height:355px;background:#061018}.gutter{padding:12px 8px 12px 0;text-align:right;color:#456273;border-right:1px solid #18303e;background:#07121a;font:10.5px/1.55 ui-monospace;user-select:none;overflow:hidden}textarea{border:0;outline:0;resize:none;background:transparent;color:#cfe2ed;padding:12px 14px;font:10.5px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto}
+.pipe{padding:13px;display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.step{min-height:78px;padding:9px;border:1px solid var(--line);border-radius:10px;background:rgba(7,18,26,.64)}.pk{font-size:8px;color:#6f8b9c;text-transform:uppercase;letter-spacing:.1em}.pv{font-size:11px;font-weight:650;margin-top:7px}.pd{font-size:8.5px;color:var(--mut);margin-top:4px;line-height:1.35}
+.decision{padding:14px}.hero{display:flex;justify-content:space-between;align-items:center;padding:14px;border:1px solid var(--line);border-radius:12px;background:#081722}.big{font-size:25px;font-weight:700;letter-spacing:-.05em}.kv{display:grid;grid-template-columns:1fr auto;gap:8px 12px;margin-top:10px;padding:11px;border:1px solid var(--line);border-radius:11px;background:#07141d;font-size:9px}.kv span:nth-child(odd){color:var(--mut)}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.lower{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:14px}.pane{height:310px;overflow:auto;padding:12px}pre{margin:0;white-space:pre-wrap;word-break:break-word;font:9.5px/1.5 ui-monospace;color:#b9cbd5}.table{width:100%;border-collapse:collapse;font-size:9px}.table th{text-align:left;color:#6e8898;font-weight:500;padding:7px;border-bottom:1px solid var(--line)}.table td{padding:7px;border-bottom:1px solid rgba(54,86,104,.18)}.badge{font-size:9px;padding:4px 7px;border-radius:999px;border:1px solid var(--line)}.footer{margin-top:14px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;color:#7f99a8;font-size:9px;line-height:1.55}
+@media(max-width:1050px){.wrap{grid-template-columns:1fr}aside{display:none}.grid,.lower{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header class="top"><div class="brand"><div class="logo">13</div><div><h1>I-13 Runtime v0.2</h1><div class="sub">Browser-native WebAssembly validator + numeric stack VM</div></div></div><div class="chip"><span id="dot" class="dot"></span><span id="status">WASM loading</span></div></header>
+<div class="wrap">
+<aside>
+ <div class="side-title">Native boundary</div>
+ <div class="side-card"><div class="ml">WASM core</div><div id="wasmBytes" class="metric">—</div><div class="mut" style="font-size:9px;margin-top:4px">validator + VM + Cortex</div></div>
+ <div class="side-card"><div class="ml">Instructions</div><div id="instMetric" class="metric">0</div><div class="mut" style="font-size:9px;margin-top:4px">lowered IVM-13 ops</div></div>
+ <div class="side-card"><div class="ml">VM steps</div><div id="stepMetric" class="metric">0</div><div class="mut" style="font-size:9px;margin-top:4px">WASM execution</div></div>
+ <div class="side-title">Planes</div>
+ <div class="side-card">
+  <div class="row"><span>i / parser</span><b id="sReader" class="mut">idle</b></div>
+  <div class="row"><span>lowerer</span><b id="sLower" class="mut">idle</b></div>
+  <div class="row"><span>validator</span><b id="sVal" class="mut">idle</b></div>
+  <div class="row"><span>VM</span><b id="sVm" class="mut">idle</b></div>
+  <div class="row"><span>Cortex</span><b id="sCx" class="mut">idle</b></div>
+ </div>
+ <div class="side-title">VM coverage v0.2</div>
+ <div class="side-card">
+  <div class="row"><span>Const / Ask / Attr</span><b class="ok">WASM</b></div>
+  <div class="row"><span>Answer / Drop</span><b class="ok">WASM</b></div>
+  <div class="row"><span>Bin / Cmp</span><b class="ok">WASM</b></div>
+  <div class="row"><span>If / Else / End</span><b class="ok">WASM</b></div>
+  <div class="row"><span>Block / Halt</span><b class="ok">WASM</b></div>
+  <div class="row"><span>Ret / Func / Call</span><b class="warn">next</b></div>
+ </div>
+</aside>
+<main>
+<section class="grid">
+ <div class="card">
+  <div class="head"><div><div class="ct">I-13 Workbench</div><div class="cs">Parse in browser · lower to fixed IVM-13 instructions · validate and execute in WASM</div></div><div class="controls"><button id="compileBtn" class="btn">Compile</button><button id="validateBtn" class="btn">Validate</button><button id="runBtn" class="btn primary">Run WASM VM</button></div></div>
+  <div class="editorWrap"><div id="gutter" class="gutter"></div><textarea id="editor" spellcheck="false"></textarea></div>
+  <div class="pipe">
+    <div class="step"><div class="pk">01 · source</div><div id="p1" class="pv">Waiting</div><div id="p1d" class="pd">I-13 text</div></div>
+    <div class="step"><div class="pk">02 · AST</div><div id="p2" class="pv">Waiting</div><div id="p2d" class="pd">browser parser</div></div>
+    <div class="step"><div class="pk">03 · ops</div><div id="p3" class="pv">Waiting</div><div id="p3d" class="pd">numeric stream</div></div>
+    <div class="step"><div class="pk">04 · validate</div><div id="p4" class="pv">Waiting</div><div id="p4d" class="pd">single-pass WASM</div></div>
+    <div class="step"><div class="pk">05 · execute</div><div id="p5" class="pv">Waiting</div><div id="p5d" class="pd">WASM stack VM</div></div>
+  </div>
+ </div>
+ <div class="card">
+  <div class="head"><div><div class="ct">Native Verdict</div><div class="cs">Validator and VM telemetry are read directly from WASM exports</div></div><span id="verdictBadge" class="badge">idle</span></div>
+  <div class="decision">
+    <div class="hero"><div><div class="ml">Execution</div><div id="verdict" class="big">IDLE</div></div><div class="mono" style="font-size:10px;color:var(--mut)">WASM</div></div>
+    <div class="kv">
+      <span>Validator peak</span><b id="vPeak">—</b>
+      <span>Validator final height</span><b id="vFinal">—</b>
+      <span>Validator error</span><b id="vError">—</b>
+      <span>VM steps</span><b id="vmSteps">—</b>
+      <span>VM peak</span><b id="vmPeak">—</b>
+      <span>VM final height</span><b id="vmFinal">—</b>
+      <span>VM error</span><b id="vmError">—</b>
+    </div>
+  </div>
+ </div>
+</section>
+
+<section class="lower">
+ <div class="card"><div class="head"><div><div class="ct">Lowered IVM-13 Instruction Stream</div><div class="cs">Fixed 24-byte records transferred into WASM linear memory</div></div><span id="opCount" class="badge">0 ops</span></div><div class="pane"><table class="table"><thead><tr><th>PC</th><th>Op</th><th>A</th><th>B</th><th>Imm</th><th>Source</th></tr></thead><tbody id="opsBody"></tbody></table></div></div>
+ <div class="card"><div class="head"><div><div class="ct">WASM Variables</div><div class="cs">Numeric variable slots after execution</div></div><span id="varCount" class="badge">0 vars</span></div><div class="pane"><pre id="vars">—</pre></div></div>
+</section>
+
+<section class="lower">
+ <div class="card"><div class="head"><div><div class="ct">Canonical AST</div><div class="cs">Browser parse result before lowering</div></div></div><div class="pane"><pre id="ast">—</pre></div></div>
+ <div class="card"><div class="head"><div><div class="ct">Boundary / Coverage</div><div class="cs">What is truly native in this version</div></div></div><div class="pane"><pre id="coverage">WASM NOW OWNS
+  • stack-effect arithmetic
+  • structured control validation
+  • underflow / balance checks
+  • numeric variable slots
+  • Const / Ask / Attr / Answer / Drop
+  • Bin / Cmp
+  • If / Else / End / Block / Halt
+  • execution step/peak/error telemetry
+  • Cortex deterministic gates
+
+JS STILL OWNS
+  • lexing / AST construction
+  • AST → numeric opcode lowering
+  • UI / orchestration
+
+NEXT NATIVE MOVE
+  • function regions
+  • Ret / Func / Call
+  • recursive call frames
+  • complete IVM-13 region isolation</pre></div></div>
+</section>
+<div class="footer">WebAssembly executes inside the browser's sandbox. This module has no imported filesystem, network, process, DOM, or Python capabilities. JavaScript copies a compact instruction buffer into WASM linear memory; WASM validates and executes that buffer deterministically.</div>
+</main></div>
+<script>
+const IReader = (() => {
+  const VERSION = "i-reader-v0.2";
+  const PROTOCOL = "i13-ingress/0.2";
+  const KEYWORDS = new Set(["def","I","if","else"]);
+  const TWO = new Set(["<-","->","<=",">=","==","!="]);
+  const ONE = new Set(["+","-","*","/","<",">","(",")","{","}",",","."]);
+
+  class ReadError extends Error {
+    constructor(message, line, col, offset) {
+      super(message);
+      this.name = "ReadError";
+      this.line = line;
+      this.col = col;
+      this.offset = offset;
+    }
+  }
+
+  class ParseError extends Error {
+    constructor(message, token) {
+      super(message + (token ? ` at ${token.line}:${token.col}` : ""));
+      this.name = "ParseError";
+      this.token = token || null;
+    }
+  }
+
+  function utf8OffsetMap(source) {
+    const map = new Array(source.length + 1);
+    let bytes = 0;
+    map[0] = 0;
+    for (let i=0;i<source.length;i++) {
+      const cp = source.codePointAt(i);
+      let n;
+      if (cp <= 0x7f) n=1;
+      else if (cp <= 0x7ff) n=2;
+      else if (cp <= 0xffff) n=3;
+      else n=4;
+      bytes += n;
+      map[i+1] = bytes;
+      if (cp > 0xffff) {
+        i++;
+        map[i+1] = bytes;
+      }
+    }
+    return map;
+  }
+
+  function lex(source) {
+    const tokens = [];
+    const byteMap = utf8OffsetMap(source);
+    let i = 0, line = 1, col = 1;
+    const n = source.length;
+
+    const adv = () => {
+      const c = source[i++];
+      if (c === "\n") { line++; col = 1; } else col++;
+      return c;
+    };
+
+    const add = (kind, lexeme, start, end, sl, sc) => {
+      const idx = tokens.length;
+      tokens.push({
+        index:idx, kind, lexeme,
+        start, end,
+        byte_start:byteMap[start],
+        byte_end:byteMap[end],
+        line:sl, col:sc,
+        end_line:sl,
+        end_col:sc + lexeme.length
+      });
+    };
+
+    while (i < n) {
+      const c = source[i];
+
+      if (c === " " || c === "\t" || c === "\r" || c === "\n") {
+        adv(); continue;
+      }
+
+      if (c === "/" && source[i+1] === "/") {
+        while (i < n && source[i] !== "\n") adv();
+        continue;
+      }
+
+      const start = i, sl = line, sc = col;
+      const two = source.slice(i, i+2);
+
+      if (TWO.has(two)) {
+        adv(); adv();
+        add(two === "<-" ? "BIND" : two === "->" ? "RETURN" : "OP",
+            two, start, i, sl, sc);
+        continue;
+      }
+
+      if (/[A-Za-z_]/.test(c)) {
+        let s = "";
+        while (i < n && /[A-Za-z0-9_]/.test(source[i])) s += adv();
+        add(KEYWORDS.has(s) ? "KW" : "IDENT", s, start, i, sl, sc);
+        continue;
+      }
+
+      if (/[0-9]/.test(c) || (c === "." && /[0-9]/.test(source[i+1] || ""))) {
+        let s = "", dots = 0;
+        while (i < n) {
+          const q = source[i];
+          if (/[0-9]/.test(q)) { s += adv(); continue; }
+          if (q === "." && dots === 0) { dots++; s += adv(); continue; }
+          break;
+        }
+        if (s === "." || Number.isNaN(Number(s)))
+          throw new ReadError("invalid numeric constant", sl, sc, start);
+        add("NUMBER", s, start, i, sl, sc);
+        continue;
+      }
+
+      if (ONE.has(c)) {
+        adv(); add("PUNCT", c, start, i, sl, sc); continue;
+      }
+
+      throw new ReadError(`illegal character ${JSON.stringify(c)}`, sl, sc, start);
+    }
+
+    tokens.push({
+      index:tokens.length, kind:"EOF", lexeme:"",
+      start:n,end:n,byte_start:byteMap[n],byte_end:byteMap[n],
+      line,col,end_line:line,end_col:col
+    });
+    return tokens;
+  }
+
+  class Parser {
+    constructor(tokens, source) {
+      this.t=tokens; this.source=source; this.i=0; this.nextNodeId=0;
+    }
+    cur(){ return this.t[this.i]; }
+    at(x){ return this.cur().lexeme===x; }
+    eof(){ return this.cur().kind==="EOF"; }
+    take(){ return this.t[this.i++]; }
+    expectLex(x){
+      if(!this.at(x)) throw new ParseError(`expected ${JSON.stringify(x)}, got ${JSON.stringify(this.cur().lexeme)}`,this.cur());
+      return this.take();
+    }
+    expectKind(k){
+      if(this.cur().kind!==k) throw new ParseError(`expected ${k}, got ${this.cur().kind}`,this.cur());
+      return this.take();
+    }
+
+    loc(startToken, endTokenExclusive, forceProgram=false) {
+      const real = this.t.filter(t=>t.kind!=="EOF");
+      if (forceProgram) {
+        const first = real[0] || this.t[0];
+        const eof = this.t[this.t.length-1];
+        return {
+          token_start: real.length ? 0 : null,
+          token_end: real.length ? real.length : null,
+          char_start:0, char_end:this.source.length,
+          byte_start:0, byte_end:eof.byte_end,
+          line_start:1, col_start:1,
+          line_end:eof.line, col_end:eof.col,
+          source:this.source
+        };
+      }
+
+      if (startToken == null || endTokenExclusive == null || endTokenExclusive <= startToken) {
+        const t=this.t[startToken ?? this.i] || this.t[this.t.length-1];
+        return {
+          token_start:startToken ?? null, token_end:endTokenExclusive ?? null,
+          char_start:t.start, char_end:t.start,
+          byte_start:t.byte_start, byte_end:t.byte_start,
+          line_start:t.line,col_start:t.col,line_end:t.line,col_end:t.col,
+          source:""
+        };
+      }
+
+      const a=this.t[startToken], b=this.t[endTokenExclusive-1];
+      return {
+        token_start:startToken,
+        token_end:endTokenExclusive,
+        char_start:a.start,
+        char_end:b.end,
+        byte_start:a.byte_start,
+        byte_end:b.byte_end,
+        line_start:a.line,
+        col_start:a.col,
+        line_end:b.end_line,
+        col_end:b.end_col,
+        source:this.source.slice(a.start,b.end)
+      };
+    }
+
+    node(type,start,end,fields={}) {
+      return Object.assign({
+        type,
+        node_id:this.nextNodeId++,
+        loc:this.loc(start,end)
+      }, fields);
+    }
+
+    parseProgram(stopOnBrace=false, programStart=0) {
+      const body=[];
+      const start=this.i;
+      while(!this.eof() && !(stopOnBrace && this.at("}"))) body.push(this.parseStmt());
+      if(stopOnBrace) return {type:"ProgramFragment",body,start,end:this.i};
+      return Object.assign({
+        type:"Program",
+        node_id:this.nextNodeId++,
+        loc:this.loc(programStart,this.i,true)
+      },{body});
+    }
+
+    parseStmt(){
+      if(this.at("def")) return this.parseDef();
+      if(this.at("I")) return this.parseDecl();
+      if(this.at("if")) return this.parseIf();
+      if(this.at("->")) return this.parseReturn();
+
+      if(this.cur().kind==="IDENT"){
+        const save=this.i;
+        const target=this.parseTarget();
+        if(this.at("<-")){
+          const start=target.loc.token_start;
+          this.take();
+          const value=this.parseExpr();
+          return this.node("Assign",start,this.i,{target,value,osmotic:target.attr==="p"});
+        }
+        this.i=save;
+      }
+
+      const start=this.i;
+      const value=this.parseExpr();
+      return this.node("Expr",start,this.i,{value});
+    }
+
+    parseBlock(){
+      const start=this.i;
+      this.expectLex("{");
+      const p=this.parseProgram(true,this.i);
+      if(!this.at("}")) throw new ParseError("unclosed block",this.cur());
+      this.take();
+      return this.node("Block",start,this.i,{body:p.body});
+    }
+
+    parseDef(){
+      const start=this.i;
+      this.expectLex("def");
+      const name=this.expectKind("IDENT").lexeme;
+      this.expectLex("(");
+      const params=[];
+      if(!this.at(")")){
+        while(true){
+          this.expectLex("I");
+          params.push(this.expectKind("IDENT").lexeme);
+          if(this.at(",")){this.take();continue;}
+          break;
+        }
+      }
+      this.expectLex(")");
+      const body=this.parseBlock();
+      return this.node("FunctionDef",start,this.i,{name,params,body});
+    }
+
+    parseDecl(){
+      const start=this.i;
+      this.expectLex("I");
+      const name=this.expectKind("IDENT").lexeme;
+      this.expectLex("<-");
+      const value=this.parseExpr();
+      return this.node("Declare",start,this.i,{name,value});
+    }
+
+    parseIf(){
+      const start=this.i;
+      this.expectLex("if");
+      const test=this.parseExpr();
+      const then=this.parseBlock();
+      let otherwise=null;
+      if(this.at("else")){this.take(); otherwise=this.parseBlock();}
+      return this.node("If",start,this.i,{test,then,otherwise});
+    }
+
+    parseReturn(){
+      const start=this.i;
+      this.expectLex("->");
+      const value=this.parseExpr();
+      return this.node("Return",start,this.i,{value});
+    }
+
+    parseTarget(){
+      const start=this.i;
+      const name=this.expectKind("IDENT").lexeme;
+      let attr=null;
+      if(this.at(".")){this.take();attr=this.expectKind("IDENT").lexeme;}
+      return this.node("Target",start,this.i,{name,attr});
+    }
+
+    parseExpr(){ return this.parseCompare(); }
+
+    parseCompare(){
+      let left=this.parseAdd();
+      while(["<",">","<=",">=","==","!="].includes(this.cur().lexeme)){
+        const start=left.loc.token_start;
+        const op=this.take().lexeme;
+        const right=this.parseAdd();
+        left=this.node("Compare",start,this.i,{op,left,right});
+      }
+      return left;
+    }
+
+    parseAdd(){
+      let left=this.parseMul();
+      while(this.at("+")||this.at("-")){
+        const start=left.loc.token_start;
+        const op=this.take().lexeme;
+        const right=this.parseMul();
+        left=this.node("BinOp",start,this.i,{op,left,right});
+      }
+      return left;
+    }
+
+    parseMul(){
+      let left=this.parseUnary();
+      while(this.at("*")||this.at("/")){
+        const start=left.loc.token_start;
+        const op=this.take().lexeme;
+        const right=this.parseUnary();
+        left=this.node("BinOp",start,this.i,{op,left,right});
+      }
+      return left;
+    }
+
+    parseUnary(){
+      if(this.at("-")){
+        const start=this.i;
+        const op=this.take().lexeme;
+        const value=this.parseUnary();
+        return this.node("Unary",start,this.i,{op,value});
+      }
+      return this.parsePrimary();
+    }
+
+    parsePrimary(){
+      let node;
+      if(this.cur().kind==="NUMBER"){
+        const start=this.i, t=this.take();
+        node=this.node("Constant",start,this.i,{value:Number(t.lexeme),raw:t.lexeme});
+      } else if(this.cur().kind==="IDENT"){
+        const start=this.i, t=this.take();
+        node=this.node("Name",start,this.i,{id:t.lexeme});
+      } else if(this.at("(")){
+        this.take();
+        node=this.parseExpr();
+        this.expectLex(")");
+      } else {
+        throw new ParseError(`expected expression, got ${JSON.stringify(this.cur().lexeme)}`,this.cur());
+      }
+
+      while(true){
+        if(this.at("(")){
+          const start=node.loc.token_start;
+          this.take();
+          const args=[];
+          if(!this.at(")")){
+            while(true){
+              args.push(this.parseExpr());
+              if(this.at(",")){this.take();continue;}
+              break;
+            }
+          }
+          this.expectLex(")");
+          node=this.node("Call",start,this.i,{callee:node,args});
+          continue;
+        }
+        if(this.at(".")){
+          const start=node.loc.token_start;
+          this.take();
+          const attr=this.expectKind("IDENT").lexeme;
+          node=this.node("Attribute",start,this.i,{object:node,attr});
+          continue;
+        }
+        break;
+      }
+      return node;
+    }
+  }
+
+  function parse(tokens,source){
+    const p=new Parser(tokens,source);
+    const ast=p.parseProgram(false,0);
+    if(!p.eof()) throw new ParseError("trailing tokens",p.cur());
+    return ast;
+  }
+
+  function walk(node,f,depth=0){
+    if(!node||typeof node!=="object") return;
+    if(node.type) f(node,depth);
+    for(const [k,v] of Object.entries(node)){
+      if(k==="type"||k==="loc") continue;
+      if(Array.isArray(v)) v.forEach(x=>walk(x,f,depth+1));
+      else if(v&&typeof v==="object") walk(v,f,depth+1);
+    }
+  }
+
+  function measure(source,tokens,ast){
+    const useful=tokens.filter(t=>t.kind!=="EOF");
+    const ids=useful.filter(t=>t.kind==="IDENT").map(t=>t.lexeme);
+    const uniq=[...new Set(ids)];
+    let astNodes=0,maxAstDepth=0,declares=0,funcs=0,calls=0,compares=0,binops=0,returns=0,assigns=0;
+    walk(ast,(n,d)=>{
+      astNodes++; if(d>maxAstDepth)maxAstDepth=d;
+      if(n.type==="Declare")declares++;
+      if(n.type==="FunctionDef")funcs++;
+      if(n.type==="Call")calls++;
+      if(n.type==="Compare")compares++;
+      if(n.type==="BinOp")binops++;
+      if(n.type==="Return")returns++;
+      if(n.type==="Assign")assigns++;
+    });
+    return {
+      lexical:{
+        tokens:useful.length,identifiers:ids.length,distinct_identifiers:uniq.length,
+        numeric_constants:useful.filter(t=>t.kind==="NUMBER").length
+      },
+      structural:{
+        ast_nodes:astNodes,max_ast_depth:maxAstDepth,functions:funcs,calls,compares,binops,
+        returns,assignments:assigns,declarations:declares
+      },
+      transport:{
+        chars:source.length,
+        bytes:new TextEncoder().encode(source).length,
+        lines:source===""?0:source.split(/\n/).length,
+        comments:(source.match(/\/\/[^\n]*/g)||[]).length
+      }
+    };
+  }
+
+  function spanIntegrity(source,tokens){
+    let last=0;
+    for(const t of tokens){
+      if(t.kind==="EOF") continue;
+      if(t.start<last||t.end<t.start) return false;
+      if(source.slice(t.start,t.end)!==t.lexeme) return false;
+      const bytes=new TextEncoder().encode(source.slice(0,t.start)).length;
+      const bytesEnd=new TextEncoder().encode(source.slice(0,t.end)).length;
+      if(bytes!==t.byte_start||bytesEnd!==t.byte_end) return false;
+      last=t.end;
+    }
+    return true;
+  }
+
+  function astSpanIntegrity(ast,source,tokens){
+    const failures=[];
+    let count=0;
+    walk(ast,n=>{
+      count++;
+      const L=n.loc;
+      if(!L){failures.push({node_id:n.node_id,type:n.type,error:"missing loc"});return;}
+      if(L.char_start<0||L.char_end<L.char_start||L.char_end>source.length){
+        failures.push({node_id:n.node_id,type:n.type,error:"char bounds"});return;
+      }
+      if(source.slice(L.char_start,L.char_end)!==L.source){
+        failures.push({node_id:n.node_id,type:n.type,error:"source slice mismatch"});return;
+      }
+      const bs=new TextEncoder().encode(source.slice(0,L.char_start)).length;
+      const be=new TextEncoder().encode(source.slice(0,L.char_end)).length;
+      if(bs!==L.byte_start||be!==L.byte_end){
+        failures.push({node_id:n.node_id,type:n.type,error:"byte bounds mismatch"});return;
+      }
+      if(n.type!=="Program"){
+        if(L.token_start==null||L.token_end==null||L.token_end<=L.token_start){
+          failures.push({node_id:n.node_id,type:n.type,error:"token range"});return;
+        }
+        const a=tokens[L.token_start],b=tokens[L.token_end-1];
+        if(!a||!b||a.kind==="EOF"){
+          failures.push({node_id:n.node_id,type:n.type,error:"token endpoint"});return;
+        }
+        if(a.start!==L.char_start||b.end!==L.char_end){
+          failures.push({node_id:n.node_id,type:n.type,error:"token/char mismatch"});return;
+        }
+      }
+    });
+    return {ok:failures.length===0,count,failures};
+  }
+
+  function tokenSignature(tokens){
+    return tokens.filter(t=>t.kind!=="EOF")
+      .map(t=>`${t.kind}:${t.lexeme}@${t.start}:${t.end}:${t.byte_start}:${t.byte_end}`).join("|");
+  }
+
+  async function sha256(source){
+    const data=new TextEncoder().encode(source);
+    if(typeof crypto!=="undefined"&&crypto.subtle){
+      const digest=await crypto.subtle.digest("SHA-256",data);
+      return [...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,"0")).join("");
+    }
+    if(typeof require!=="undefined"){
+      return require("crypto").createHash("sha256").update(Buffer.from(data)).digest("hex");
+    }
+    throw new Error("SHA-256 unavailable");
+  }
+
+  async function read(source,label="untitled.i13"){
+    const exact=String(source);
+    const tokens=lex(exact);
+    const ast=parse(tokens,exact);
+    const hash=await sha256(exact);
+    const rel=lex(exact);
+    const tokenOK=spanIntegrity(exact,tokens);
+    const astOK=astSpanIntegrity(ast,exact,tokens);
+
+    const manifest={
+      protocol:PROTOCOL,
+      reader:VERSION,
+      label,
+      source_sha256:hash,
+      source_chars:exact.length,
+      source_bytes:new TextEncoder().encode(exact).length,
+      exact_source_preserved:true,
+      token_span_integrity:tokenOK,
+      ast_span_integrity:astOK.ok,
+      ast_nodes_with_spans:astOK.count,
+      deterministic_relex:tokenSignature(tokens)===tokenSignature(rel),
+      measurements:measure(exact,tokens,ast),
+      not_covered:[
+        "target-language translation",
+        "call-arity validation",
+        "types",
+        "termination",
+        "arithmetic semantics"
+      ]
+    };
+
+    return {
+      manifest,
+      source:exact,
+      tokens:tokens.filter(t=>t.kind!=="EOF"),
+      ast,
+      ast_span_failures:astOK.failures
+    };
+  }
+
+  async function selfTest(coreSource,briefSource){
+    const tests=[];
+    async function test(name,fn){
+      try{const detail=await fn();tests.push({name,pass:true,detail:detail??"PASS"});}
+      catch(e){tests.push({name,pass:false,detail:`${e.name}: ${e.message}`});}
+    }
+
+    await test("CORE reads with complete AST spans",async()=>{
+      const h=await read(coreSource,"core.i13");
+      if(!h.manifest.ast_span_integrity) throw new Error(JSON.stringify(h.ast_span_failures.slice(0,3)));
+      return `${h.manifest.ast_nodes_with_spans} AST nodes with spans`;
+    });
+    await test("brief reads with complete AST spans",async()=>{
+      const h=await read(briefSource,"brief.i13");
+      if(!h.manifest.ast_span_integrity) throw new Error("brief span failure");
+      return `${h.manifest.ast_nodes_with_spans} AST nodes with spans`;
+    });
+    await test("exact source preserved",async()=>{
+      const h=await read(coreSource);
+      if(h.source!==coreSource) throw new Error("source mutated");
+      return "unchanged";
+    });
+    await test("token char + UTF-8 byte spans are exact",async()=>{
+      const h=await read(coreSource);
+      if(!h.manifest.token_span_integrity) throw new Error("token span failure");
+      return `${h.tokens.length} tokens`;
+    });
+    await test("AST node source slices are exact",async()=>{
+      const h=await read(coreSource);
+      const x=astSpanIntegrity(h.ast,h.source,h.tokens);
+      if(!x.ok) throw new Error(JSON.stringify(x.failures[0]));
+      return `${x.count}/${x.count}`;
+    });
+    await test("deterministic re-lex",async()=>{
+      const a=await read(coreSource),b=await read(coreSource);
+      if(tokenSignature(a.tokens)!==tokenSignature(b.tokens)) throw new Error("token signatures differ");
+      return "stable";
+    });
+    await test("malformed block rejected",async()=>{
+      let ok=false;try{await read("def f(I x) { I y <- x");}catch(e){ok=e instanceof ParseError;}
+      if(!ok)throw new Error("not rejected");return "rejected";
+    });
+    await test("illegal character rejected",async()=>{
+      let ok=false;try{await read("I x <- 1 @ 2");}catch(e){ok=e instanceof ReadError;}
+      if(!ok)throw new Error("not rejected");return "rejected";
+    });
+    await test("SHA-256 stable",async()=>{
+      const a=await sha256(coreSource),b=await sha256(coreSource);
+      if(a!==b)throw new Error("hash mismatch");return a.slice(0,16)+"…";
+    });
+
+    return {reader:VERSION,protocol:PROTOCOL,pass:tests.every(t=>t.pass),passed:tests.filter(t=>t.pass).length,total:tests.length,tests};
+  }
+
+  return {
+    VERSION,PROTOCOL,ReadError,ParseError,
+    lex,parse,read,selfTest,spanIntegrity,astSpanIntegrity,tokenSignature,walk
+  };
+})();
+
+const I13WasmVM = (() => {
+  const VERSION="i13-wasm-vm-bridge-v0.2";
+  const OP={Const:0,Ask:1,Attr:2,Ret:3,Answer:4,Drop:5,Bin:6,Cmp:7,If:8,Call:9,Block:10,Else:11,End:12,Func:13,Halt:14};
+  const OP_NAMES=Object.fromEntries(Object.entries(OP).map(([k,v])=>[v,k]));
+  const BIN={"+":0,"-":1,"*":2,"/":3};
+  const CMP={"<":0,">":1,"<=":2,">=":3,"==":4,"!=":5};
+  const VAL_ERRORS={0:"NONE",1:"UNDERFLOW",2:"ELSE_WITHOUT_IF",3:"END_WITHOUT_OPEN",4:"BLOCK_HEIGHT",5:"IF_HEIGHT",6:"UNCLOSED_CONTROL",7:"FINAL_HEIGHT",8:"CONTROL_OVERFLOW",9:"BAD_OPCODE"};
+  const VM_ERRORS={1:"OK","-1":"VALIDATION_FAILED","-2":"STACK_UNDERFLOW","-3":"STACK_OVERFLOW","-4":"UNBOUND_NAME","-5":"ASSIGN_UNDECLARED","-6":"DIV_ZERO","-7":"BAD_BIN","-8":"BAD_CMP","-9":"BAD_JUMP","-10":"UNSUPPORTED_OPCODE","-11":"STEP_LIMIT","-12":"BAD_SLOT"};
+
+  function compile(ast){
+    if(!ast||ast.type!=="Program")throw new Error("WASM compiler expects Program");
+    const code=[], slots=new Map(), names=[];
+    const slot=name=>{if(!slots.has(name)){slots.set(name,names.length);names.push(name)}return slots.get(name)};
+    const emit=(op,a=0,b=0,imm=0,meta={})=>{const row={op:OP[op],opName:op,a,b,imm,...meta};code.push(row);return code.length-1};
+
+    const expr=n=>{
+      switch(n.type){
+        case "Constant": emit("Const",0,0,Number(n.value),{source:n.loc?.source}); break;
+        case "Name": emit("Ask",slot(n.id),0,0,{name:n.id,source:n.loc?.source}); break;
+        case "Attribute": expr(n.object); emit("Attr",0,0,0,{attr:n.attr,source:n.loc?.source}); break;
+        case "Unary":
+          if(n.op!=="-")throw new Error("unsupported unary "+n.op);
+          emit("Const",0,0,0);expr(n.value);emit("Bin",BIN["-"]);break;
+        case "BinOp":
+          if(BIN[n.op]===undefined)throw new Error("unsupported BinOp "+n.op);
+          expr(n.left);expr(n.right);emit("Bin",BIN[n.op],0,0,{kind:n.op});break;
+        case "Compare":
+          if(CMP[n.op]===undefined)throw new Error("unsupported Compare "+n.op);
+          expr(n.left);expr(n.right);emit("Cmp",CMP[n.op],0,0,{kind:n.op});break;
+        case "Call":
+          throw new Error("Call execution stays outside WASM VM v0.2");
+        default: throw new Error("unsupported expr "+n.type);
+      }
+    };
+    const block=b=>{emit("Block");for(const s of b.body)stmt(s);emit("End")};
+    const stmt=n=>{
+      switch(n.type){
+        case "Declare":
+          expr(n.value);emit("Answer",slot(n.name),0,0,{name:n.name,mode:"declare"});break;
+        case "Assign":
+          if(n.target.attr&&n.target.attr!=="p")throw new Error("unsupported assignment attribute ."+n.target.attr);
+          if(n.target.attr==="p"){
+            emit("Ask",slot(n.target.name),0,0,{name:n.target.name});
+            expr(n.value);emit("Bin",BIN["+"],0,0,{kind:"+",osmotic:true});
+            emit("Answer",slot(n.target.name),1,0,{name:n.target.name,mode:"assign",osmotic:true});
+          } else {
+            expr(n.value);emit("Answer",slot(n.target.name),1,0,{name:n.target.name,mode:"assign"});
+          }
+          break;
+        case "Expr": expr(n.value);emit("Drop");break;
+        case "If":{
+          expr(n.test);const ifPc=emit("If",-1);
+          block(n.then);const elsePc=emit("Else",-1);
+          const elseStart=code.length;
+          if(n.otherwise)block(n.otherwise); else block({body:[]});
+          const endPc=emit("End");
+          code[ifPc].a=elseStart;
+          code[elsePc].a=endPc+1;
+          break;
+        }
+        case "Return": throw new Error("Ret execution stays outside WASM VM v0.2");
+        case "FunctionDef": throw new Error("Func/Call execution stays outside WASM VM v0.2");
+        default: throw new Error("unsupported stmt "+n.type);
+      }
+    };
+    emit("Block",0,0,0,{role:"region"});
+    for(const s of ast.body)stmt(s);
+    emit("End",0,0,0,{role:"region"});
+    emit("Halt");
+    return {version:VERSION,code,names,slots:Object.fromEntries(slots)};
+  }
+
+  function bytesFor(code){
+    const buf=new ArrayBuffer(code.length*24),dv=new DataView(buf);
+    code.forEach((x,i)=>{const p=i*24;dv.setInt32(p,x.op,true);dv.setInt32(p+4,x.a|0,true);dv.setInt32(p+8,x.b|0,true);dv.setInt32(p+12,0,true);dv.setFloat64(p+16,Number(x.imm||0),true)});
+    return new Uint8Array(buf);
+  }
+
+  function allocLayout(memory, instBytes, varCount, stackCap=512){
+    let p=8192;
+    const instPtr=p;p+=instBytes.length;p=(p+7)&~7;
+    const varsPtr=p;p+=varCount*8;p=(p+7)&~7;
+    const statesPtr=p;p+=varCount;p=(p+7)&~7;
+    const stackPtr=p;p+=stackCap*8;p=(p+7)&~7;
+    if(memory.buffer.byteLength<p)memory.grow(Math.ceil((p-memory.buffer.byteLength)/65536));
+    return {instPtr,varsPtr,statesPtr,stackPtr,stackCap,total:p};
+  }
+
+  function install(W, compiled){
+    const instBytes=bytesFor(compiled.code);
+    const L=allocLayout(W.memory,instBytes,compiled.names.length);
+    new Uint8Array(W.memory.buffer,L.instPtr,instBytes.length).set(instBytes);
+    new Float64Array(W.memory.buffer,L.varsPtr,compiled.names.length).fill(0);
+    new Uint8Array(W.memory.buffer,L.statesPtr,compiled.names.length).fill(0);
+    new Float64Array(W.memory.buffer,L.stackPtr,L.stackCap).fill(0);
+    return {...L,instBytes};
+  }
+
+  function validate(W,compiled){
+    const L=install(W,compiled),ok=W.i13_validate(L.instPtr,compiled.code.length)===1;
+    return {ok,peak:W.i13_val_peak(),error_pc:W.i13_val_error_pc(),error_code:W.i13_val_error_code(),error:VAL_ERRORS[W.i13_val_error_code()]||"UNKNOWN",final_height:W.i13_val_final_height(),layout:L};
+  }
+
+  function execute(W,compiled,stepLimit=100000){
+    const L=install(W,compiled);
+    const rc=W.i13_vm_exec(L.instPtr,compiled.code.length,L.varsPtr,L.statesPtr,compiled.names.length,L.stackPtr,L.stackCap,stepLimit);
+    const values=new Float64Array(W.memory.buffer,L.varsPtr,compiled.names.length),states=new Uint8Array(W.memory.buffer,L.statesPtr,compiled.names.length);
+    const vars={};compiled.names.forEach((n,i)=>{if(states[i])vars[n]=values[i]});
+    return {ok:rc===1,rc,error:VM_ERRORS[String(rc)]||"UNKNOWN",error_pc:W.i13_vm_error_pc(),steps:W.i13_vm_steps(),peak:W.i13_vm_peak(),final_height:W.i13_vm_final_height(),vars,layout:L};
+  }
+
+  return {VERSION,OP,OP_NAMES,BIN,CMP,VAL_ERRORS,VM_ERRORS,compile,validate,execute};
+})();
+
+const WASM_B64="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AWoiCyAJIAsgCUsbIQkLIA1BAWohDQwCCyARIA6jIQ4LAkAgCyAGSQ0AQQAgDTYChICEgABBfSEIQQBBfTYCnICEgAAMBgsgECAOOQMAIA8gCSAPIAlLGyEJIA1BAWohDSAPIQsLIApBAWohDCANIAFJDQELC0EAKAKcgISAACEIDAILQQBBfzYCnICEgABBAEEAKAKAgISAADYChICEgABBfw8LQQAhC0EAIA02AoSAhIAAQX4hCEEAQX42ApyAhIAAC0EAIAk2ApiAhIAAQQAgCjYClICEgABBACALNgKggISAACAIQQEgCEEBSxsLCwBBACgClICEgAALCwBBACgCmICEgAALCwBBACgChICEgAALCwBBACgCnICEgAALCwBBACgCoICEgAALCxABAEGAgAQLCP//////////AK8DBG5hbWUAExJpMTNfY29ydGV4X3ZtLndhc20B9AIVAAppMTNfaGFzaDMyAQ9pMTNfZWZmZWN0X25lZWQCDmkxM19lZmZlY3RfbmV0Aw9jb3J0ZXhfZGVwdGhfb2sEFGNvcnRleF9jYXBhYmlsaXR5X29rBRVjb3J0ZXhfaWRlbXBvdGVuY2Vfb2sGEGNvcnRleF9hZGRyZXNzMzIHDmNvcnRleF92ZXJkaWN0CBVjb3J0ZXhfYWxsX3J1bGVzX3Bhc3MJFGNvcnRleF9ydWxlX2FsbF9tYXNrCgxpMTNfdmFsaWRhdGULDGkxM192YWxfcGVhawwQaTEzX3ZhbF9lcnJvcl9wYw0SaTEzX3ZhbF9lcnJvcl9jb2RlDhRpMTNfdmFsX2ZpbmFsX2hlaWdodA8LaTEzX3ZtX2V4ZWMQDGkxM192bV9zdGVwcxELaTEzX3ZtX3BlYWsSD2kxM192bV9lcnJvcl9wYxMRaTEzX3ZtX2Vycm9yX2NvZGUUE2kxM192bV9maW5hbF9oZWlnaHQHEgEAD19fc3RhY2tfcG9pbnRlcgkIAQAFLmRhdGEAfwlwcm9kdWNlcnMBDHByb2Nlc3NlZC1ieQEFY2xhbmdfMTcuMC4wIChodHRwczovL2dpdGh1Yi5jb20vc3dpZnRsYW5nL2xsdm0tcHJvamVjdC5naXQgMTA5OTliNmQwMzRmZTMxOGYzZDU2YzgzYmRkYjY1NzI1OTNhOGJiMCkASQ90YXJnZXRfZmVhdHVyZXMEKwptdWx0aXZhbHVlKw9tdXRhYmxlLWdsb2JhbHMrD3JlZmVyZW5jZS10eXBlcysIc2lnbi1leHQ=";
+const SAMPLE="// WASM VM execution proof\nI x <- 1\nx.p <- 4\n\nif x > 4 {\n    I y <- x * 2\n}\nelse {\n    I y <- 0\n}\n\nI z <- y + 3\n";
+let W=null,last=null;
+const $=id=>document.getElementById(id);
+function state(id,kind,text){const e=$(id);e.textContent=text;e.className=kind==="ok"?"ok":kind==="bad"?"bad":kind==="warn"?"warn":"mut"}
+function lines(){$("gutter").textContent=Array.from({length:$("editor").value.split("\n").length},(_,i)=>i+1).join("\n")}
+async function load(){
+ const bytes=Uint8Array.from(atob(WASM_B64),c=>c.charCodeAt(0));const inst=(await WebAssembly.instantiate(bytes,{})).instance;W=inst.exports;
+ $("dot").className="dot ok";$("status").textContent="WASM validator + VM online";$("wasmBytes").textContent=bytes.length.toLocaleString()+" B";state("sCx","ok","online");
+}
+function renderOps(c){
+ $("instMetric").textContent=c.code.length;$("opCount").textContent=c.code.length+" ops";$("varCount").textContent=c.names.length+" vars";
+ $("opsBody").innerHTML=c.code.map((o,i)=>`<tr><td>${i}</td><td style="color:var(--cyan)">${o.opName}</td><td>${o.a}</td><td>${o.b}</td><td>${o.opName==="Const"?o.imm:""}</td><td style="color:#7893a3">${(o.source||"").replace(/</g,"&lt;")}</td></tr>`).join("");
+}
+async function compile(){
+ try{
+  const h=await IReader.read($("editor").value,"wasm-vm.i13");state("sReader","ok","pass");$("p1").textContent="Accepted";$("p1d").textContent=h.tokens.length+" tokens";$("p2").textContent=h.manifest.measurements.structural.ast_nodes+" nodes";$("p2d").textContent="canonical parser AST";
+  const c=I13WasmVM.compile(h.ast);state("sLower","ok","pass");$("p3").textContent=c.code.length+" ops";$("p3d").textContent=c.names.length+" numeric slots";renderOps(c);$("ast").textContent=JSON.stringify(h.ast,null,2);last={h,c};return last;
+ }catch(e){state("sReader","bad","error");state("sLower","bad","blocked");$("verdict").textContent="COMPILE ERROR";$("verdict").style.color="var(--red)";$("vmError").textContent=e.message;throw e}
+}
+async function validate(){
+ const x=last||await compile();const v=I13WasmVM.validate(W,x.c);x.v=v;state("sVal",v.ok?"ok":"bad",v.ok?"valid":"invalid");$("p4").textContent=v.ok?"VALID":"INVALID";$("p4d").textContent="peak "+v.peak+" · final "+v.final_height;$("vPeak").textContent=v.peak;$("vFinal").textContent=v.final_height;$("vError").textContent=v.ok?"NONE":`${v.error} @ pc ${v.error_pc}`;$("verdict").textContent=v.ok?"VALID":"INVALID";$("verdict").style.color=v.ok?"var(--green)":"var(--red)";$("verdictBadge").textContent=v.ok?"validator pass":"validator veto";return x;
+}
+async function run(){
+ const x=await validate();if(!x.v.ok){state("sVm","bad","veto");return}
+ const r=I13WasmVM.execute(W,x.c);x.r=r;state("sVm",r.ok?"ok":"bad",r.ok?"executed":"error");$("p5").textContent=r.ok?"EXECUTED":"ERROR";$("p5d").textContent=`${r.steps} steps · peak ${r.peak}`;$("stepMetric").textContent=r.steps;$("vmSteps").textContent=r.steps;$("vmPeak").textContent=r.peak;$("vmFinal").textContent=r.final_height;$("vmError").textContent=r.ok?"NONE":`${r.error} @ pc ${r.error_pc}`;$("vars").textContent=JSON.stringify(r.vars,null,2);$("verdict").textContent=r.ok?"EXECUTED":"VM ERROR";$("verdict").style.color=r.ok?"var(--green)":"var(--red)";$("verdictBadge").textContent=r.ok?"native execution pass":"native execution error";return x;
+}
+$("compileBtn").onclick=compile;$("validateBtn").onclick=validate;$("runBtn").onclick=run;$("editor").addEventListener("input",()=>{last=null;lines()});$("editor").addEventListener("scroll",()=>{$("gutter").scrollTop=$("editor").scrollTop});
+(async()=>{$("editor").value=SAMPLE;lines();await load();await run()})();
+</script></body></html>

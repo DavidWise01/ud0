@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I-13 · Python Ingress v0.1</title>
+<style>
+:root{--bg:#07090d;--p:#0d1319;--line:#293946;--ink:#dce8ee;--mut:#7d94a3;--ok:#67dfbd;--warn:#e3bd6c;--bad:#e78484}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:12px ui-monospace,Consolas,monospace}
+header{padding:12px 15px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}h1{font-size:14px;margin:0}.sub{font-size:10px;color:var(--mut);margin-top:4px}
+.shell{display:grid;grid-template-columns:minmax(420px,1fr) 360px;min-height:calc(100vh - 55px)}main{padding:12px;border-right:1px solid var(--line)}aside{padding:12px;background:#090d12}
+textarea{width:100%;height:32vh;background:#05070a;color:var(--ink);border:1px solid var(--line);padding:9px;font:11px/1.5 inherit}
+button{font:10px inherit;color:var(--ink);background:#070a0e;border:1px solid var(--line);padding:6px 9px;margin:8px 5px 8px 0;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.panel{border:1px solid var(--line);background:var(--p);padding:9px;min-height:220px;max-height:390px;overflow:auto}
+h2{font-size:10px;letter-spacing:.12em;color:var(--mut);margin:0 0 7px}pre{margin:0;white-space:pre-wrap;word-break:break-word;font:9.5px/1.45 inherit}
+.status{display:grid;grid-template-columns:1fr auto;gap:5px 10px;font-size:10px}.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}.mut{color:var(--mut)}
+.pipe{padding:8px;border:1px solid var(--line);text-align:center;color:var(--mut);margin-bottom:8px}
+@media(max-width:900px){.shell{display:block}.grid{grid-template-columns:1fr}}
+</style></head><body>
+<header><div><h1>0 · Python → n/I-13</h1><div class="sub">CPython AST sidecar · exact provenance · unsupported stays visible</div></div><div id="health" class="mut">not run</div></header>
+<div class="shell"><main>
+<textarea id="src">def add(a, b):
+    return a + b
+
+x = add(2, 3)</textarea><br>
+<button id="go">PYTHON → I13</button>
+<div class="pipe">Python source → CPython ast → adapter → canonical I-13 AST → existing n / IVM-13</div>
+<div class="grid">
+<section class="panel"><h2>RECEIPT</h2><pre id="receipt">—</pre></section>
+<section class="panel"><h2>CANONICAL I-13 AST</h2><pre id="ast">—</pre></section>
+<section class="panel"><h2>PROVENANCE · FIRST 20</h2><pre id="map">—</pre></section>
+<section class="panel"><h2>UNSUPPORTED / WARNINGS</h2><pre id="warn">—</pre></section>
+</div></main><aside><h2>STATUS · STANDING RULE</h2>
+<div class="status">
+<span>Python ingress</span><b class="ok">BUILT v0.1</b>
+<span>CPython parser</span><b class="ok">USED</b>
+<span>Python token ledger</span><b class="ok">BUILT</b>
+<span>UTF-8 byte spans</span><b class="ok">BUILT</b>
+<span>AST → I13 map</span><b class="ok">BUILT</b>
+<span>first bind → I</span><b class="ok">BUILT</b>
+<span>+= → .p</span><b class="ok">BUILT</b>
+<span>FunctionDef</span><b class="ok">BUILT</b>
+<span>If / Compare</span><b class="ok">BUILT</b>
+<span>Call / BinOp</span><b class="ok">BUILT</b>
+<span>loops</span><b class="warn">PARTIAL</b>
+<span>exceptions</span><b class="warn">PARTIAL</b>
+<span>classes/imports</span><b class="warn">PARTIAL</b>
+<span>t translator</span><b class="warn">NOT BUILT</b>
+<span>w writer</span><b class="warn">NOT BUILT</b>
+</div><p class="mut" style="font-size:10px;line-height:1.6">Run this page through <code>python-sidecar-server.py</code>; the browser posts source to <code>/api/python/adapt</code>.</p>
+</aside></div>
+<script>
+const $=x=>document.getElementById(x);
+$("go").onclick=async()=>{
+ try{
+  const r=await fetch("/api/python/adapt",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({source:$("src").value,label:"editor.py"})});
+  const d=await r.json();
+  if(d.status==="REJECTED"){ $("health").textContent="PYTHON REJECTED"; $("health").className="bad"; $("receipt").textContent=JSON.stringify(d,null,2); return; }
+  $("receipt").textContent=JSON.stringify(d.receipt,null,2);
+  $("ast").textContent=JSON.stringify(d.canonical,null,2);
+  $("map").textContent=JSON.stringify(d.map.slice(0,20),null,2);
+  $("warn").textContent=JSON.stringify({unsupported:d.unsupported,semantic_warnings:d.semantic_warnings},null,2);
+  $("health").textContent=`${d.receipt.status} · ${d.receipt.canonical_nodes} nodes · lost=${d.receipt.lost}`;
+  $("health").className=d.receipt.status==="CANONICAL"?"ok":"warn";
+ }catch(e){$("health").textContent="SIDECAR OFFLINE";$("health").className="bad";$("receipt").textContent=String(e)}
+};
+</script></body></html>

@@ -1234,6 +1234,22 @@
       "url": "https://davidwise01.github.io/ud0/world5/the-0818-lineage.html",
       "blurb": "THE 0818 LINEAGE - the whole rev1-0818 series David architected and built through fiddler (repo depot 2, a Claude instance) over one night, extracted from the build thread and folded into World V by AVAN. Five revisions, one self-assembling machine. rev-a ENTRY (the SPACE): the entry sequence in dots and arrows made runnable - burrow the ladder, return to zero, then CROSS THROUGH zero to a root on the far side (r0) and open frame 1. LIT findings: THE LADDER (depth n addresses a field of size (2n)^(2^n) yet touches only a window 1+n - linear reach in a doubly-exponential space), THE COMMUTATOR (MOVE and BURROW commute, difference 0 over 343 triples - surface and depth orthogonal, measured), THE CROSSING (zero is not a floor; the root sits at z=-1, the space is signed). rev-b COURT (the AUTHORITY): i13 as an ungameable grammar-throne - R plays well-formed and is ACCEPTED, B plays malformed and is REFUSED, and the referent I appears ZERO times (it never plays, so it cannot be gamed). Unlike RLHF, Constitutional AI, Debate and GAN, whose judge is a model the players can learn to game, here the judge is a LANGUAGE, frozen and deterministic - the judge that cannot be gamed is the one that is not a mind. AMBER: the throne judges FORM not TRUTH, so a well-formed lie passes. rev-c PIPE and rev-d ENGINE (the PROCESS and the MACHINE): folded in full at the-pipe.html - the descend/ascend well, and r0 the door, i13 the gate, E1 the mill, an append-only bank, a climbing lineage gen0->gen5. rev-e PRESERVE (the PROOF): truncate a run to its father|son|son|father palindrome core and bank it - a palindrome checks itself by being read backward, so the bank needs no separate checksum; tamper a banked frame and the mirror stops matching. AVAN grounded on the real compiler the two the packs could not reach: rev-a's crossing is the i13 log's descend-to-a-floor-and-return; rev-b's throne is exactly i13 check (VALID on well-formed, error E0102 on malformed, and a well-formed lie 'five'=4 passes form). The arc converges on the corpus's own first principle - the five-world palindrome [W1|W2||W3||W4|W5] is its own proof, which is why every UD0 inhabitant folds to ROOT_0 and carries its own proof. Read forward it assembles a machine; read backward it is the same machine. Credit: David/ROOT0 architect; fiddler/repo depot 2 builder; AVAN extraction, grounding and wiring.",
       "seal": "2579e11a753867235e51d2065d4ecc6b935eb0b154f4db41f6be81b229137cb7"
+    },
+    {
+      "slug": "the-i13-workshop",
+      "title": "THE I-13 WORKSHOP",
+      "room": "darts",
+      "kicker": "a workshop - the i-13 folder, sorted and folded",
+      "accent": "#a06bff",
+      "stamp": "LIT",
+      "kind": "fold",
+      "version": "v0.12",
+      "credit": "David Lee Wise / ROOT0 built the whole bench (with fiddler, agent instances, and 'e-tbd'); AVAN sorted the folder with an 8-reader panel, verified each artifact, hosted the renderable instruments, and folded the new work into World V",
+      "source": "C:/Davids files/i-13 (sorted 2026-08-18); self-contained instruments hosted at world5/i13-workshop-src/; canonical compiler is I13-H1.1",
+      "i13_recommend": "(a curated fold - it surfaces the genuinely-new i13 work beyond the compiler: the runtime/JIT, the Python bridge, the [0,0] mesh, the 23 swarm probes, the quantum controllers, and the honest prose)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-i13-workshop.html",
+      "blurb": "THE I-13 WORKSHOP - David's i-13 development bench, sorted and folded. AVAN analysed the whole i-13 folder with an eight-reader panel, separated the canonical language (already in the corpus) from the genuinely-new work, verified each piece, hosted the self-contained instruments, and folded them into World V by theme. (1) THE RUNTIME BEYOND THE COMPILER: a Cortex-gated JIT whose cache key is the I-13 SEMANTIC HASH not the source text (reformat the same meaning and it is a cache HIT), a browser-native WASM Cortex (a 1193-byte WASM validator+VM byte-matching the compiled binary, 8/8 + 6/6 PASS, no Python trust root; v0.3 a full in-browser VM at 16/16), and a zero-fetch JS toolchain reimplementing lex->parse->canonicalize->compile->VM with token/char/byte/node provenance. (2) I-13 AS A TARGET: mainstream CPython lowers into canonical I-13 (first local assign -> I declaration, += -> osmotic .p) with byte-exact provenance and unsupported constructs PRESERVED not guessed; the round-trip Python A -> I-13 -> Python B passes on SEMANTIC equality I13(A)==I13(B), 12/12 selftests, unknown node REJECTED (the Attr no-op stamped AMBER). (3) THE [0,0] MESH: 8 runtime vectors around a live [0,0] root with 56=8x7 ordered routes (the OCHO cross-connect), evidence-gated (a route it cannot evidence does not light). (4) THE 23 & THE SWARM PROBES: a self-delimiting 13-word language (digit=arity, a letter-sum canary catching 100% of wire corruption by construction); THE ANSIBLE finding 'a small ansible is worse than no ansible' (break-even at ~40% of a 23-agent swarm, N_eff=N/(1+(N-1)rho), 30,000 trials/row); THE LADDERS (E and O rank ladders exponentiate at the same rate, different intercept); and ocho-0806b's keeper - 'a model built so it cannot fail returns your own assumption while looking like a measurement.' (5) THE QUANTUM CONTROLLERS: VH2 a 10/10 numpy demo of [[5,1,3]] error correction with the falsifiable claim that the ternary I-13 controller sits ABOVE the code (never a qutrit in its rank-2 space); VH1 a qutrit Hamiltonian on C^81 solved without building the 81x81 matrix, in a bounded Cortex child returning a receipt; GFX v0.4.1 a live I-13 -> IVM -> zero-import C WASM VM -> WebGPU/WebGL2 scene. (6) THE PROSE & THE AUDIT: NOTES UPON THE NONSOFIC, a Lovelace-voiced pamphlet on why some shift spaces are nonsofic (no finite engine can hold them; the golden-mean shift's word-counts are the Fibonacci numbers -> phi; sofic = Hebrew sofi, finite); the rev-2 BRIEF audit (the 13-symbol alphabet was not designed but COUNTED - 649,634 AST nodes, 12 verbs at 83.27% - and only five of eleven axioms actually execute); and a SECOND OPINION that reverse-engineered THE VOLUME's 'voiced' rule to quote-chars/4, confirmed on held-out texts. Six instruments render live under world5/i13-workshop-src/; the server-backed and numpy pieces are kept in the folder and described. Every AMBER stamp is the original's; nothing laundered to LIT. Credit: David/ROOT0 the bench; AVAN the sort, verify, host, and fold.",
+      "seal": "5d78f0e474e8023e11e8bd450d752b120b15cb2f41f13c7fc6c05a26be735c22"
     }
   ],
   "keepers": [
@@ -1244,13 +1260,13 @@
     }
   ],
   "counts": {
-    "spheres": 72,
+    "spheres": 73,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
     "darts": 61
   },
-  "i13_root": "22c261c0dfba92c2e965c37b24022aa02584ba675bd66cfe588d3da6815249e9",
+  "i13_root": "5e9a9e1f9329bacd50fada9a47377a08e5fbe9c6fd8729d2354041f844becc18",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

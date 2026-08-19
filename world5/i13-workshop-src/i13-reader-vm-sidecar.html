@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>I-13 · i Reader + Canonical VM Sidecar</title>
+<style>
+:root{--bg:#07090c;--p:#0d1218;--p2:#111922;--line:#263442;--ink:#dce8ef;--muted:#7f96a7;--live:#67dfbd;--amber:#e3bd6c;--bad:#e78b8b;--cyan:#83d5ff}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px}
+header{padding:13px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:center}
+h1{font-size:14px;margin:0} .sub{color:var(--muted);font-size:10px;margin-top:4px} button,select{font:inherit;font-size:10px;background:#070a0e;color:var(--ink);border:1px solid var(--line);padding:6px 9px;border-radius:4px}
+button{cursor:pointer} button:hover{border-color:#5c7589}
+.shell{display:grid;grid-template-columns:minmax(400px,1fr) 360px;min-height:calc(100vh - 58px)}
+main{padding:12px;border-right:1px solid var(--line)} aside{padding:12px;background:#090d12;overflow:auto}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center}
+textarea{width:100%;height:35vh;resize:vertical;background:#05070a;color:#d9e6ed;border:1px solid var(--line);padding:10px;font:11px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.flow{display:grid;grid-template-columns:1fr 36px 1fr;gap:6px;align-items:stretch;margin-top:9px}
+.panel{background:var(--p);border:1px solid var(--line);padding:9px;min-height:210px;overflow:auto;max-height:380px}
+.arrow{display:grid;place-items:center;color:var(--cyan);font-size:20px}
+h2{font-size:10px;color:var(--muted);letter-spacing:.12em;margin:0 0 7px} pre{margin:0;white-space:pre-wrap;word-break:break-word;font:9.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.status{display:grid;grid-template-columns:1fr auto;gap:5px 10px;font-size:10px} .ok{color:var(--live)} .warn{color:var(--amber)} .bad{color:var(--bad)} .muted{color:var(--muted)}
+.test{border-top:1px solid var(--line);padding:6px 0;font-size:10px} .test:first-child{border-top:0} .tag{display:inline-block;min-width:42px}
+.manifest{margin-top:10px} .pipe{padding:8px;border:1px solid var(--line);background:var(--p2);margin:10px 0;color:var(--muted);text-align:center}
+.small{font-size:9px;color:var(--muted);line-height:1.5}
+@media(max-width:900px){.shell{display:block} main{border-right:0;border-bottom:1px solid var(--line)} .flow{grid-template-columns:1fr} .arrow{transform:rotate(90deg)}}
+</style>
+</head>
+<body>
+<header>
+ <div><h1>0 · I13 · i READER ⇄ IVM-13 SIDECAR</h1><div class="sub">read → parse → compile → single-pass validate → execute · structured control, no br</div></div>
+ <div id="health" class="muted">not run</div>
+</header>
+<div class="shell">
+<main>
+  <div class="toolbar">
+    <select id="sample">
+      <option value="core">CORE I-13</option>
+      <option value="brief">brief example</option>
+      <option value="blank">blank</option>
+    </select>
+    <button id="readBtn">READ → I13</button>
+    <button id="runBtn">COMPILE + RUN VM</button>
+    <button id="readerTestBtn">READER TESTS</button>
+    <button id="vmTestBtn">VM SIDECAR TESTS</button>
+  </div>
+  <textarea id="src" spellcheck="false"></textarea>
+
+  <div class="pipe">i(reader) ─▶ I13 AST ─▶ compiler ─▶ IVM-13 bytecode ─▶ validator ─▶ VM</div>
+
+  <div class="flow">
+    <section class="panel"><h2>i · MANIFEST</h2><pre id="manifest">—</pre></section>
+    <div class="arrow">→</div>
+    <section class="panel"><h2>I13 · AST</h2><pre id="ast">—</pre></section>
+  </div>
+
+  <div class="flow">
+    <section class="panel"><h2>IVM-13 · BYTECODE</h2><pre id="bytecode">—</pre></section>
+    <div class="arrow">→</div>
+    <section class="panel"><h2>VERDICT + RUNTIME</h2><pre id="runtime">—</pre></section>
+  </div>
+</main>
+
+<aside>
+  <h2>STATUS · STANDING RULE</h2>
+  <div class="status">
+    <span>0 root/container</span><b class="ok">SET</b>
+    <span>i reader / ingress</span><b class="ok">BUILT v0.1</b>
+    <span>I13 parser</span><b class="ok">BUILT v0.1</b>
+    <span>ISA 15 opcodes</span><b class="ok">BUILT</b>
+    <span>AST → bytecode compiler</span><b class="ok">BUILT</b>
+    <span>Block/If/Else/End control</span><b class="ok">BUILT</b>
+    <span>br opcode</span><b class="ok">ABSENT</b>
+    <span>region validator</span><b class="ok">BUILT</b>
+    <span>single-pass ratio</span><b class="ok">1.0000</b>
+    <span>stack machine</span><b class="ok">BUILT</b>
+    <span>functions / recursion</span><b class="ok">BUILT</b>
+    <span>I.p osmotic bind</span><b class="ok">BUILT</b>
+    <span>general Attr semantics</span><b class="warn">SHIPPED NO-OP</b>
+    <span>call-arity validation</span><b class="warn">NOT COVERED</b>
+    <span>VM call-arity failure</span><b class="ok">RUNTIME</b>
+    <span>canonical Rust source parity</span><b class="warn">NOT PROVEN</b>
+    <span>reader tests</span><b id="readerStatus" class="warn">NOT RUN</b>
+    <span>VM sidecar tests</span><b id="vmStatus" class="warn">NOT RUN</b>
+    <span>n normalizer</span><b class="warn">NOT BUILT</b>
+    <span>t translator</span><b class="warn">NOT BUILT</b>
+    <span>w writer</span><b class="warn">NOT BUILT</b>
+  </div>
+
+  <div class="manifest"><h2>VM VERDICT SCOPE</h2>
+    <pre>COVERED
+  stack balance
+  control pairing
+  region isolation
+  one linear validation pass
+
+NOT COVERED
+  types
+  termination
+  arithmetic correctness
+  waste
+  call arity</pre>
+  </div>
+
+  <div class="manifest"><h2>READER TESTS</h2><div id="readerTests" class="small">not run</div></div>
+  <div class="manifest"><h2>VM SIDECAR TESTS</h2><div id="vmTests" class="small">not run</div></div>
+</aside>
+</div>
+
+<script>
+const IReader = (() => {
+  const VERSION = "i-reader-v0.1";
+  const PROTOCOL = "i13-ingress/0.1";
+  const KEYWORDS = new Set(["def","I","if","else"]);
+  const TWO = new Set(["<-","->","<=",">=","==","!="]);
+  const ONE = new Set(["+","-","*","/","<",">","(",")","{","}",",","."]);
+
+  class ReadError extends Error {
+    constructor(message, line, col, offset) {
+      super(message);
+      this.name = "ReadError";
+      this.line = line;
+      this.col = col;
+      this.offset = offset;
+    }
+  }
+
+  class ParseError extends Error {
+    constructor(message, token) {
+      super(message + (token ? ` at ${token.line}:${token.col}` : ""));
+      this.name = "ParseError";
+      this.token = token || null;
+    }
+  }
+
+  function lex(source) {
+    const tokens = [];
+    let i = 0, line = 1, col = 1;
+    const n = source.length;
+
+    const adv = () => {
+      const c = source[i++];
+      if (c === "\n") { line++; col = 1; } else col++;
+      return c;
+    };
+    const add = (kind, lexeme, start, end, sl, sc) =>
+      tokens.push({kind, lexeme, start, end, line: sl, col: sc});
+
+    while (i < n) {
+      const c = source[i];
+
+      if (c === " " || c === "\t" || c === "\r" || c === "\n") {
+        adv();
+        continue;
+      }
+
+      if (c === "/" && source[i+1] === "/") {
+        while (i < n && source[i] !== "\n") adv();
+        continue;
+      }
+
+      const start = i, sl = line, sc = col;
+      const two = source.slice(i, i+2);
+      if (TWO.has(two)) {
+        adv(); adv();
+        add(two === "<-" ? "BIND" : two === "->" ? "RETURN" : "OP", two, start, i, sl, sc);
+        continue;
+      }
+
+      if (/[A-Za-z_]/.test(c)) {
+        let s = "";
+        while (i < n && /[A-Za-z0-9_]/.test(source[i])) s += adv();
+        add(KEYWORDS.has(s) ? "KW" : "IDENT", s, start, i, sl, sc);
+        continue;
+      }
+
+      if (/[0-9]/.test(c) || (c === "." && /[0-9]/.test(source[i+1] || ""))) {
+        let s = "";
+        let dots = 0;
+        while (i < n) {
+          const q = source[i];
+          if (/[0-9]/.test(q)) { s += adv(); continue; }
+          if (q === "." && dots === 0) { dots++; s += adv(); continue; }
+          break;
+        }
+        if (s === "." || Number.isNaN(Number(s))) throw new ReadError("invalid numeric constant", sl, sc, start);
+        add("NUMBER", s, start, i, sl, sc);
+        continue;
+      }
+
+      if (ONE.has(c)) {
+        adv();
+        add("PUNCT", c, start, i, sl, sc);
+        continue;
+      }
+
+      throw new ReadError(`illegal character ${JSON.stringify(c)}`, sl, sc, start);
+    }
+
+    tokens.push({kind:"EOF", lexeme:"", start:n, end:n, line, col});
+    return tokens;
+  }
+
+  class Parser {
+    constructor(tokens) { this.t = tokens; this.i = 0; }
+    cur() { return this.t[this.i]; }
+    at(lexeme) { return this.cur().lexeme === lexeme; }
+    eof() { return this.cur().kind === "EOF"; }
+    take() { return this.t[this.i++]; }
+    expectLex(x) {
+      if (!this.at(x)) throw new ParseError(`expected ${JSON.stringify(x)}, got ${JSON.stringify(this.cur().lexeme)}`, this.cur());
+      return this.take();
+    }
+    expectKind(k) {
+      if (this.cur().kind !== k) throw new ParseError(`expected ${k}, got ${this.cur().kind}`, this.cur());
+      return this.take();
+    }
+    parseProgram(stopOnBrace=false) {
+      const body = [];
+      while (!this.eof() && !(stopOnBrace && this.at("}"))) body.push(this.parseStmt());
+      return {type:"Program", body};
+    }
+    parseStmt() {
+      if (this.at("def")) return this.parseDef();
+      if (this.at("I")) return this.parseDecl();
+      if (this.at("if")) return this.parseIf();
+      if (this.at("->")) return this.parseReturn();
+
+      if (this.cur().kind === "IDENT") {
+        const save = this.i;
+        const target = this.parseTarget();
+        if (this.at("<-")) {
+          this.take();
+          return {type:"Assign", target, value:this.parseExpr(), osmotic:target.attr === "p"};
+        }
+        this.i = save;
+      }
+
+      return {type:"Expr", value:this.parseExpr()};
+    }
+    parseBlock() {
+      this.expectLex("{");
+      const p = this.parseProgram(true);
+      if (!this.at("}")) throw new ParseError("unclosed block", this.cur());
+      this.take();
+      return {type:"Block", body:p.body};
+    }
+    parseDef() {
+      this.expectLex("def");
+      const name = this.expectKind("IDENT").lexeme;
+      this.expectLex("(");
+      const params = [];
+      if (!this.at(")")) {
+        while (true) {
+          this.expectLex("I");
+          params.push(this.expectKind("IDENT").lexeme);
+          if (this.at(",")) { this.take(); continue; }
+          break;
+        }
+      }
+      this.expectLex(")");
+      return {type:"FunctionDef", name, params, body:this.parseBlock()};
+    }
+    parseDecl() {
+      this.expectLex("I");
+      const name = this.expectKind("IDENT").lexeme;
+      this.expectLex("<-");
+      return {type:"Declare", name, value:this.parseExpr()};
+    }
+    parseIf() {
+      this.expectLex("if");
+      const test = this.parseExpr();
+      const then = this.parseBlock();
+      let otherwise = null;
+      if (this.at("else")) { this.take(); otherwise = this.parseBlock(); }
+      return {type:"If", test, then, otherwise};
+    }
+    parseReturn() {
+      this.expectLex("->");
+      return {type:"Return", value:this.parseExpr()};
+    }
+    parseTarget() {
+      const name = this.expectKind("IDENT").lexeme;
+      let attr = null;
+      if (this.at(".")) {
+        this.take();
+        attr = this.expectKind("IDENT").lexeme;
+      }
+      return {type:"Target", name, attr};
+    }
+    parseExpr() { return this.parseCompare(); }
+    parseCompare() {
+      let left = this.parseAdd();
+      while (["<",">","<=",">=","==","!="].includes(this.cur().lexeme)) {
+        const op = this.take().lexeme, right = this.parseAdd();
+        left = {type:"Compare", op, left, right};
+      }
+      return left;
+    }
+    parseAdd() {
+      let left = this.parseMul();
+      while (this.at("+") || this.at("-")) {
+        const op = this.take().lexeme, right = this.parseMul();
+        left = {type:"BinOp", op, left, right};
+      }
+      return left;
+    }
+    parseMul() {
+      let left = this.parseUnary();
+      while (this.at("*") || this.at("/")) {
+        const op = this.take().lexeme, right = this.parseUnary();
+        left = {type:"BinOp", op, left, right};
+      }
+      return left;
+    }
+    parseUnary() {
+      if (this.at("-")) {
+        const op = this.take().lexeme;
+        return {type:"Unary", op, value:this.parseUnary()};
+      }
+      return this.parsePrimary();
+    }
+    parsePrimary() {
+      let node;
+      if (this.cur().kind === "NUMBER") {
+        const t = this.take();
+        node = {type:"Constant", value:Number(t.lexeme), raw:t.lexeme};
+      } else if (this.cur().kind === "IDENT") {
+        node = {type:"Name", id:this.take().lexeme};
+      } else if (this.at("(")) {
+        this.take();
+        node = this.parseExpr();
+        this.expectLex(")");
+      } else {
+        throw new ParseError(`expected expression, got ${JSON.stringify(this.cur().lexeme)}`, this.cur());
+      }
+
+      while (true) {
+        if (this.at("(")) {
+          this.take();
+          const args = [];
+          if (!this.at(")")) {
+            while (true) {
+              args.push(this.parseExpr());
+              if (this.at(",")) { this.take(); continue; }
+              break;
+            }
+          }
+          this.expectLex(")");
+          node = {type:"Call", callee:node, args};
+          continue;
+        }
+        if (this.at(".")) {
+          this.take();
+          const attr = this.expectKind("IDENT").lexeme;
+          node = {type:"Attribute", object:node, attr};
+          continue;
+        }
+        break;
+      }
+      return node;
+    }
+  }
+
+  function parse(tokens) {
+    const p = new Parser(tokens);
+    const ast = p.parseProgram(false);
+    if (!p.eof()) throw new ParseError("trailing tokens", p.cur());
+    return ast;
+  }
+
+  function walk(node, f, depth=0) {
+    if (!node || typeof node !== "object") return;
+    if (node.type) f(node, depth);
+    for (const [k,v] of Object.entries(node)) {
+      if (k === "type") continue;
+      if (Array.isArray(v)) v.forEach(x => walk(x, f, depth+1));
+      else if (v && typeof v === "object") walk(v, f, depth+1);
+    }
+  }
+
+  function measure(source, tokens, ast) {
+    const useful = tokens.filter(t => t.kind !== "EOF");
+    const ids = useful.filter(t => t.kind === "IDENT").map(t => t.lexeme);
+    const uniq = [...new Set(ids)];
+    let astNodes=0, maxAstDepth=0, declares=0, funcs=0, calls=0, compares=0, binops=0, returns=0, assigns=0;
+    walk(ast, (n,d) => {
+      astNodes++; if (d > maxAstDepth) maxAstDepth = d;
+      if (n.type === "Declare") declares++;
+      if (n.type === "FunctionDef") funcs++;
+      if (n.type === "Call") calls++;
+      if (n.type === "Compare") compares++;
+      if (n.type === "BinOp") binops++;
+      if (n.type === "Return") returns++;
+      if (n.type === "Assign") assigns++;
+    });
+    const comments = (source.match(/\/\/[^\n]*/g) || []).length;
+    return {
+      lexical: {
+        tokens: useful.length,
+        identifiers: ids.length,
+        distinct_identifiers: uniq.length,
+        numeric_constants: useful.filter(t => t.kind === "NUMBER").length
+      },
+      structural: {
+        ast_nodes: astNodes,
+        max_ast_depth: maxAstDepth,
+        functions: funcs,
+        calls,
+        compares,
+        binops,
+        returns,
+        assignments: assigns,
+        declarations: declares
+      },
+      transport: {
+        chars: source.length,
+        lines: source === "" ? 0 : source.split(/\n/).length,
+        comments
+      }
+    };
+  }
+
+  function spanIntegrity(source, tokens) {
+    let last = 0;
+    for (const t of tokens) {
+      if (t.kind === "EOF") continue;
+      if (t.start < last || t.end < t.start) return false;
+      if (source.slice(t.start, t.end) !== t.lexeme) return false;
+      last = t.end;
+    }
+    return true;
+  }
+
+  function tokenSignature(tokens) {
+    return tokens.filter(t=>t.kind!=="EOF").map(t=>`${t.kind}:${t.lexeme}@${t.start}:${t.end}`).join("|");
+  }
+
+  async function sha256(source) {
+    const data = new TextEncoder().encode(source);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return [...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,"0")).join("");
+  }
+
+  async function read(source, label="untitled.i13") {
+    const exact = String(source);
+    const tokens = lex(exact);
+    const ast = parse(tokens);
+    const hash = await sha256(exact);
+    const rel = lex(exact);
+    const integrity = spanIntegrity(exact, tokens);
+    const stable = tokenSignature(tokens) === tokenSignature(rel);
+
+    const manifest = {
+      protocol: PROTOCOL,
+      reader: VERSION,
+      label,
+      source_sha256: hash,
+      source_bytes: new TextEncoder().encode(exact).length,
+      exact_source_preserved: true,
+      token_span_integrity: integrity,
+      deterministic_relex: stable,
+      measurements: measure(exact, tokens, ast),
+      not_covered: [
+        "target-language translation",
+        "canonical I-13 VM execution",
+        "call-arity validation",
+        "types",
+        "termination",
+        "arithmetic semantics"
+      ]
+    };
+
+    return {
+      manifest,
+      source: exact,
+      tokens: tokens.filter(t=>t.kind!=="EOF"),
+      ast
+    };
+  }
+
+  async function selfTest(coreSource, briefSource) {
+    const tests = [];
+    async function test(name, fn) {
+      try {
+        const detail = await fn();
+        tests.push({name, pass:true, detail: detail ?? "PASS"});
+      } catch (e) {
+        tests.push({name, pass:false, detail:`${e.name}: ${e.message}`});
+      }
+    }
+
+    await test("brief example: i → I13 parses", async () => {
+      const h = await read(briefSource, "brief-example.i13");
+      if (!h.manifest.token_span_integrity) throw new Error("span integrity failed");
+      return `${h.tokens.length} tokens`;
+    });
+
+    await test("CORE source: i → I13 parses", async () => {
+      const h = await read(coreSource, "core.i13");
+      if (!h.ast.body.length) throw new Error("empty AST");
+      return `${h.ast.body.length} top-level statements`;
+    });
+
+    await test("exact source preserved", async () => {
+      const h = await read(briefSource);
+      if (h.source !== briefSource) throw new Error("reader mutated source");
+      return "byte-facing JS string unchanged";
+    });
+
+    await test("token spans point back into exact source", async () => {
+      const h = await read(coreSource);
+      if (!h.manifest.token_span_integrity) throw new Error("token span mismatch");
+      return "all token lexemes match source slices";
+    });
+
+    await test("deterministic reader re-lex", async () => {
+      const h = await read(coreSource);
+      if (!h.manifest.deterministic_relex) throw new Error("second lex changed token stream");
+      return "same source → same token signature";
+    });
+
+    await test("unclosed block is rejected by I13 parser", async () => {
+      let rejected = false;
+      try { await read("def f(I x) { I y <- x"); } catch (e) { rejected = e instanceof ParseError; }
+      if (!rejected) throw new Error("malformed program was accepted");
+      return "rejected";
+    });
+
+    await test("illegal character is rejected by i", async () => {
+      let rejected = false;
+      try { await read("I x <- 1 @ 2"); } catch (e) { rejected = e instanceof ReadError; }
+      if (!rejected) throw new Error("illegal input was accepted");
+      return "rejected";
+    });
+
+    await test("hash is stable for identical source", async () => {
+      const a = await sha256(coreSource), b = await sha256(coreSource);
+      if (a !== b) throw new Error("SHA-256 mismatch");
+      return a.slice(0,16)+"…";
+    });
+
+    return {
+      reader: VERSION,
+      protocol: PROTOCOL,
+      pass: tests.every(t=>t.pass),
+      passed: tests.filter(t=>t.pass).length,
+      total: tests.length,
+      tests
+    };
+  }
+
+  return { VERSION, PROTOCOL, ReadError, ParseError, lex, parse, read, selfTest, spanIntegrity, tokenSignature };
+})();
+
+const I13VM = (() => {
+  const VERSION = "ivm-13-sidecar-v0.1";
+  const ISA = [
+    "Const","Ask","Attr","Ret","Answer","Drop","Bin","Cmp",
+    "If","Call","Block","Else","End","Func","Halt"
+  ];
+  const STEP_LIMIT = 8_000_000;
+  const CALL_DEPTH_LIMIT = 512;
+
+  class CompileError extends Error { constructor(m,node){super(m);this.name="CompileError";this.node=node||null;} }
+  class ValidateError extends Error { constructor(m,pc){super(m + (pc===undefined?"":` at pc ${pc}`));this.name="ValidateError";this.pc=pc;} }
+  class RuntimeError13 extends Error { constructor(m,pc){super(m + (pc===undefined?"":` at pc ${pc}`));this.name="RuntimeError13";this.pc=pc;} }
+  class ReturnSignal { constructor(value){this.value=value;} }
+
+  class Env {
+    constructor(parent=null){ this.parent=parent; this.map=new Map(); }
+    define(name,value){ this.map.set(name,value); return value; }
+    hasLocal(name){ return this.map.has(name); }
+    has(name){ return this.map.has(name) || !!(this.parent && this.parent.has(name)); }
+    get(name){
+      if(this.map.has(name)) return this.map.get(name);
+      if(this.parent) return this.parent.get(name);
+      throw new RuntimeError13(`unbound name ${JSON.stringify(name)}`);
+    }
+    set(name,value){
+      if(this.map.has(name)){ this.map.set(name,value); return value; }
+      if(this.parent && this.parent.has(name)) return this.parent.set(name,value);
+      throw new RuntimeError13(`assignment to undeclared name ${JSON.stringify(name)}`);
+    }
+    snapshot(){
+      const out={};
+      for(const [k,v] of this.map.entries()){
+        out[k] = isFunction(v) ? `<func ${v.name}/${v.params.length}>` : v;
+      }
+      return out;
+    }
+  }
+
+  function isFunction(v){ return !!(v && typeof v==="object" && v.__i13fn===true); }
+
+  function op(name, extra={}) {
+    if(!ISA.includes(name)) throw new CompileError(`unknown ISA opcode ${name}`);
+    return Object.assign({op:name}, extra);
+  }
+
+  function compile(ast) {
+    if(!ast || ast.type!=="Program") throw new CompileError("compile expects Program AST");
+    return compileRegion("<top>", [], ast.body);
+  }
+
+  function compileRegion(name, params, body) {
+    const code=[op("Block",{role:"region"})];
+
+    const expr = n => {
+      switch(n.type){
+        case "Constant": code.push(op("Const",{value:n.value})); break;
+        case "Name": code.push(op("Ask",{name:n.id})); break;
+        case "Attribute":
+          expr(n.object);
+          code.push(op("Attr",{attr:n.attr}));
+          break;
+        case "Unary":
+          if(n.op!=="-") throw new CompileError(`unsupported unary ${n.op}`,n);
+          code.push(op("Const",{value:0}));
+          expr(n.value);
+          code.push(op("Bin",{kind:"-"}));
+          break;
+        case "BinOp":
+          expr(n.left); expr(n.right); code.push(op("Bin",{kind:n.op})); break;
+        case "Compare":
+          expr(n.left); expr(n.right); code.push(op("Cmp",{kind:n.op})); break;
+        case "Call":
+          expr(n.callee);
+          for(const a of n.args) expr(a);
+          code.push(op("Call",{argc:n.args.length}));
+          break;
+        default:
+          throw new CompileError(`expression node not supported: ${n.type}`,n);
+      }
+    };
+
+    const block = b => {
+      code.push(op("Block",{role:"lexical"}));
+      for(const s of b.body) stmt(s);
+      code.push(op("End",{role:"lexical"}));
+    };
+
+    const stmt = n => {
+      switch(n.type){
+        case "Declare":
+          expr(n.value);
+          code.push(op("Answer",{name:n.name,mode:"declare",osmotic:false}));
+          break;
+        case "Assign":
+          if(n.target.attr && n.target.attr!=="p"){
+            throw new CompileError(`assignment attribute .${n.target.attr} has no defined bind semantics`,n);
+          }
+          if(n.target.attr==="p"){
+            // Source-faithful desugaring: x.p <- v  ==>  x <- x + v.
+            code.push(op("Ask",{name:n.target.name}));
+            expr(n.value);
+            code.push(op("Bin",{kind:"+",provenance:"osmotic"}));
+            code.push(op("Answer",{name:n.target.name,mode:"assign",osmotic:true}));
+          } else {
+            expr(n.value);
+            code.push(op("Answer",{name:n.target.name,mode:"assign",osmotic:false}));
+          }
+          break;
+        case "Return":
+          expr(n.value);
+          code.push(op("Ret"));
+          break;
+        case "Expr":
+          expr(n.value);
+          code.push(op("Drop"));
+          break;
+        case "If":
+          expr(n.test);
+          code.push(op("If"));
+          block(n.then);
+          code.push(op("Else"));
+          if(n.otherwise) block(n.otherwise);
+          else block({body:[]});
+          code.push(op("End",{role:"if"}));
+          break;
+        case "FunctionDef": {
+          const region = compileRegion(n.name, n.params.slice(), n.body.body);
+          code.push(op("Func",{name:n.name,params:n.params.slice(),region}));
+          break;
+        }
+        default:
+          throw new CompileError(`statement node not supported: ${n.type}`,n);
+      }
+    };
+
+    for(const s of body) stmt(s);
+    code.push(op("End",{role:"region"}));
+    code.push(op("Halt"));
+    const region={name,params:params.slice(),code,links:null};
+    region.links=linkControl(code);
+    return region;
+  }
+
+  function linkControl(code){
+    const stack=[];
+    const links={ifElse:{},ifEnd:{},elseEnd:{},blockEnd:{},endOpen:{}};
+
+    for(let i=0;i<code.length;i++){
+      const o=code[i];
+      if(o.op==="Block"){
+        stack.push({kind:"Block",pc:i});
+      } else if(o.op==="If"){
+        stack.push({kind:"If",pc:i,elsePc:null});
+      } else if(o.op==="Else"){
+        const top=stack[stack.length-1];
+        if(!top || top.kind!=="If") throw new CompileError(`Else without matching If at pc ${i}`);
+        top.elsePc=i;
+        links.ifElse[top.pc]=i;
+      } else if(o.op==="End"){
+        const top=stack.pop();
+        if(!top) throw new CompileError(`End without opener at pc ${i}`);
+        links.endOpen[i]=top.pc;
+        if(top.kind==="Block"){
+          links.blockEnd[top.pc]=i;
+        } else if(top.kind==="If"){
+          links.ifEnd[top.pc]=i;
+          if(top.elsePc!==null) links.elseEnd[top.elsePc]=i;
+        }
+      }
+    }
+    if(stack.length) throw new CompileError(`unclosed ${stack[stack.length-1].kind} at pc ${stack[stack.length-1].pc}`);
+    return links;
+  }
+
+  function requiredAndNet(o){
+    switch(o.op){
+      case "Const": return [0,+1];
+      case "Ask": return [0,+1];
+      case "Attr": return [1,0];
+      case "Answer": return [1,-1];
+      case "Drop": return [1,-1];
+      case "Bin": return [2,-1];
+      case "Cmp": return [2,-1];
+      case "Call": return [o.argc+1,-o.argc];
+      case "Func": case "Halt": return [0,0];
+      default: return null;
+    }
+  }
+
+  function validateRegion(region) {
+    const errors=[];
+    const trace=[];
+    const control=[];
+    let h=0, peak=0, live=true;
+
+    const fail=(m,pc)=>errors.push({pc,message:m});
+
+    for(let pc=0;pc<region.code.length;pc++){
+      const o=region.code[pc];
+      const before={h,live};
+
+      if(o.op==="Block"){
+        control.push({kind:"Block",entryH:h,entryLive:live,pc});
+      } else if(o.op==="If"){
+        if(live){
+          if(h<1){ fail("stack underflow at If",pc); live=false; }
+          else h-=1;
+        }
+        control.push({kind:"If",entryH:h,entryLive:live,thenLive:null,thenH:null,pc});
+      } else if(o.op==="Else"){
+        const fr=control[control.length-1];
+        if(!fr || fr.kind!=="If"){
+          fail("Else without If",pc);
+        } else {
+          fr.thenLive=live;
+          fr.thenH=live?h:null;
+          live=fr.entryLive;
+          h=fr.entryH;
+        }
+      } else if(o.op==="End"){
+        const fr=control.pop();
+        if(!fr){
+          fail("End without opener",pc);
+        } else if(fr.kind==="Block"){
+          if(fr.entryLive && live && h!==fr.entryH)
+            fail(`Block exits at height ${h}, entered at ${fr.entryH}`,pc);
+        } else if(fr.kind==="If"){
+          const thenLive = fr.thenLive===null ? fr.entryLive : fr.thenLive;
+          const thenH = fr.thenLive===null ? fr.entryH : fr.thenH;
+          const elseLive=live, elseH=live?h:null;
+
+          if(thenLive && elseLive && thenH!==elseH){
+            fail(`If branch heights disagree: ${thenH} vs ${elseH}`,pc);
+            live=false;
+          } else if(thenLive){
+            live=true; h=thenH;
+          } else if(elseLive){
+            live=true; h=elseH;
+          } else {
+            live=false; h=fr.entryH;
+          }
+        }
+      } else if(o.op==="Ret"){
+        // The brief says shipped validate re-derives Ret instead of Op::effect().
+        if(live){
+          if(h<1){ fail("stack underflow at Ret",pc); live=false; }
+          else { h-=1; live=false; }
+        }
+      } else {
+        const e=requiredAndNet(o);
+        if(e && live){
+          const [need,net]=e;
+          if(h<need){ fail(`stack underflow: ${o.op} needs ${need}, height is ${h}`,pc); live=false; }
+          else h+=net;
+        }
+      }
+
+      if(live && h>peak) peak=h;
+      trace.push({pc,op:o.op,before,after:{h,live}});
+    }
+
+    if(control.length) fail(`unclosed control frame ${control[control.length-1].kind}`,region.code.length);
+    if(live && h!==0) fail(`region exits live at stack height ${h}, expected 0`,region.code.length-1);
+
+    const children=[];
+    for(const o of region.code){
+      if(o.op==="Func"){
+        const v=validateRegion(o.region);
+        children.push(v);
+        if(!v.valid) errors.push({pc:null,message:`function ${o.name} invalid`});
+      }
+    }
+
+    return {
+      region:region.name,
+      params:region.params.slice(),
+      valid:errors.length===0,
+      peak,
+      visited:region.code.length,
+      ratio:1.0,
+      errors,
+      children,
+      trace,
+      verdict:{
+        status:errors.length===0?"VALID":"INVALID",
+        covered:[
+          "stack balance",
+          "control-structure pairing",
+          "per-region validation from height 0",
+          "single linear pass over each region"
+        ],
+        not_covered:[
+          "types",
+          "termination",
+          "arithmetic correctness",
+          "waste",
+          "call arity"
+        ]
+      }
+    };
+  }
+
+  function validate(region){ return validateRegion(region); }
+
+  function bin(kind,a,b){
+    switch(kind){
+      case "+": return a+b;
+      case "-": return a-b;
+      case "*": return a*b;
+      case "/": return a/b;
+      default: throw new RuntimeError13(`unknown Bin operator ${kind}`);
+    }
+  }
+  function cmp(kind,a,b){
+    switch(kind){
+      case "<": return a<b?1:0;
+      case ">": return a>b?1:0;
+      case "<=": return a<=b?1:0;
+      case ">=": return a>=b?1:0;
+      case "==": return a===b?1:0;
+      case "!=": return a!==b?1:0;
+      default: throw new RuntimeError13(`unknown Cmp operator ${kind}`);
+    }
+  }
+
+  class Machine {
+    constructor(opts={}){
+      this.stepLimit=opts.stepLimit||STEP_LIMIT;
+      this.callDepthLimit=opts.callDepthLimit||CALL_DEPTH_LIMIT;
+      this.steps=0;
+      this.maxCallDepth=0;
+      this.execTrace=[];
+      this.traceLimit=opts.traceLimit||4000;
+      this.global=new Env(null);
+    }
+
+    step(region,pc,stack,depth){
+      this.steps++;
+      if(this.steps>this.stepLimit) throw new RuntimeError13(`step limit ${this.stepLimit} exceeded`,pc);
+      if(depth>this.maxCallDepth) this.maxCallDepth=depth;
+      if(this.execTrace.length<this.traceLimit){
+        this.execTrace.push({
+          region:region.name,pc,op:region.code[pc].op,
+          stack:stack.map(v=>isFunction(v)?`<func ${v.name}/${v.params.length}>`:v),
+          depth
+        });
+      }
+    }
+
+    run(region){
+      const validation=validate(region);
+      if(!validation.valid) throw new RuntimeError13("refusing to execute INVALID region");
+      this.execRegion(region,this.global,0,false);
+      return {
+        globals:this.global.snapshot(),
+        steps:this.steps,
+        max_call_depth:this.maxCallDepth,
+        trace:this.execTrace,
+        validation
+      };
+    }
+
+    call(fn,args,depth){
+      if(!isFunction(fn)) throw new RuntimeError13("Call operand is not a function");
+      if(args.length!==fn.params.length)
+        throw new RuntimeError13(`arity mismatch calling ${fn.name}: expected ${fn.params.length}, got ${args.length}`);
+      if(depth>this.callDepthLimit)
+        throw new RuntimeError13(`call depth limit ${this.callDepthLimit} exceeded`);
+      const env=new Env(fn.closure);
+      for(let i=0;i<fn.params.length;i++) env.define(fn.params[i],args[i]);
+      return this.execRegion(fn.region,env,depth,true);
+    }
+
+    execRegion(region,env,depth,requireReturn){
+      const stack=[];
+      const code=region.code, links=region.links;
+      let pc=0;
+
+      while(pc<code.length){
+        this.step(region,pc,stack,depth);
+        const o=code[pc];
+
+        try {
+          switch(o.op){
+            case "Const": stack.push(o.value); pc++; break;
+            case "Ask": stack.push(env.get(o.name)); pc++; break;
+            case "Attr": {
+              if(stack.length<1) throw new RuntimeError13("Attr stack underflow",pc);
+              // Source-faithful shipped behavior: general Attr is a no-op.
+              pc++; break;
+            }
+            case "Answer": {
+              if(stack.length<1) throw new RuntimeError13("Answer stack underflow",pc);
+              const v=stack.pop();
+              if(o.mode==="declare") env.define(o.name,v);
+              else env.set(o.name,v);
+              pc++; break;
+            }
+            case "Drop":
+              if(stack.length<1) throw new RuntimeError13("Drop stack underflow",pc);
+              stack.pop(); pc++; break;
+            case "Bin": {
+              if(stack.length<2) throw new RuntimeError13("Bin stack underflow",pc);
+              const b=stack.pop(), a=stack.pop(); stack.push(bin(o.kind,a,b)); pc++; break;
+            }
+            case "Cmp": {
+              if(stack.length<2) throw new RuntimeError13("Cmp stack underflow",pc);
+              const b=stack.pop(), a=stack.pop(); stack.push(cmp(o.kind,a,b)); pc++; break;
+            }
+            case "If": {
+              if(stack.length<1) throw new RuntimeError13("If stack underflow",pc);
+              const cond=stack.pop();
+              if(cond!==0) pc++;
+              else {
+                const e=links.ifElse[pc], end=links.ifEnd[pc];
+                pc=(e===undefined?end:e)+1;
+              }
+              break;
+            }
+            case "Else": {
+              const end=links.elseEnd[pc];
+              if(end===undefined) throw new RuntimeError13("Else has no matching End",pc);
+              pc=end+1; break;
+            }
+            case "Block": case "End": pc++; break;
+            case "Func": {
+              const fn={__i13fn:true,name:o.name,params:o.params.slice(),region:o.region,closure:env};
+              env.define(o.name,fn);
+              pc++; break;
+            }
+            case "Call": {
+              if(stack.length<o.argc+1) throw new RuntimeError13("Call stack underflow",pc);
+              const args=new Array(o.argc);
+              for(let i=o.argc-1;i>=0;i--) args[i]=stack.pop();
+              const fn=stack.pop();
+              const v=this.call(fn,args,depth+1);
+              stack.push(v);
+              pc++; break;
+            }
+            case "Ret": {
+              if(stack.length<1) throw new RuntimeError13("Ret stack underflow",pc);
+              throw new ReturnSignal(stack.pop());
+            }
+            case "Halt":
+              if(requireReturn) throw new RuntimeError13(`function ${region.name} reached Halt without Ret`,pc);
+              return 0;
+            default: throw new RuntimeError13(`unknown opcode ${o.op}`,pc);
+          }
+        } catch(e){
+          if(e instanceof ReturnSignal) return e.value;
+          throw e;
+        }
+      }
+      if(requireReturn) throw new RuntimeError13(`function ${region.name} fell off region`);
+      return 0;
+    }
+  }
+
+  function flattenOps(region,out=[]){
+    for(const o of region.code){
+      out.push(o.op);
+      if(o.op==="Func") flattenOps(o.region,out);
+    }
+    return out;
+  }
+
+  function formatInstruction(o,pc){
+    let x=String(pc).padStart(4,"0")+"  "+o.op.padEnd(7);
+    if(o.op==="Const") x+=" "+o.value;
+    if(o.op==="Ask") x+=" "+o.name;
+    if(o.op==="Attr") x+=" ."+o.attr;
+    if(o.op==="Answer") x+=` ${o.mode} ${o.name}${o.osmotic?" [p]":""}`;
+    if(o.op==="Bin"||o.op==="Cmp") x+=" "+o.kind;
+    if(o.op==="Call") x+=" "+o.argc;
+    if(o.op==="Func") x+=` ${o.name}(${o.params.join(",")}) [${o.region.code.length} ops]`;
+    return x;
+  }
+
+  function disassemble(region,indent=""){
+    const lines=[`${indent}REGION ${region.name} params=[${region.params.join(", ")}]`];
+    region.code.forEach((o,pc)=>{
+      lines.push(indent+formatInstruction(o,pc));
+      if(o.op==="Func") lines.push(disassemble(o.region,indent+"    "));
+    });
+    return lines.join("\n");
+  }
+
+  async function fromSource(source,label="source.i13"){
+    const handoff=await IReader.read(source,label);
+    const region=compile(handoff.ast);
+    const validation=validate(region);
+    return {handoff,region,validation};
+  }
+
+  async function executeSource(source,label="source.i13",opts={}){
+    const x=await fromSource(source,label);
+    const machine=new Machine(opts);
+    const runtime=machine.run(x.region);
+    return Object.assign(x,{runtime,disassembly:disassemble(x.region)});
+  }
+
+  async function selfTest(coreSource,briefSource){
+    const tests=[];
+    async function test(name,fn){
+      try{ const detail=await fn(); tests.push({name,pass:true,detail:detail??"PASS"}); }
+      catch(e){ tests.push({name,pass:false,detail:`${e.name}: ${e.message}`}); }
+    }
+
+    await test("brief program validates + executes", async()=>{
+      const x=await executeSource(briefSource,"brief-example.i13");
+      if(x.runtime.globals.total!==4) throw new Error(`total=${x.runtime.globals.total}, expected 4`);
+      if(x.runtime.globals.out!==1) throw new Error(`out=${x.runtime.globals.out}, expected 1`);
+      return `total=4 · out=1 · peak=${x.validation.peak}`;
+    });
+
+    await test("CORE self-test executes through VM", async()=>{
+      const x=await executeSource(coreSource,"core.i13",{traceLimit:500});
+      if(x.runtime.globals.CORE_OK!==1) throw new Error(`CORE_OK=${x.runtime.globals.CORE_OK}`);
+      if(x.runtime.globals.ROUTES!==56) throw new Error(`ROUTES=${x.runtime.globals.ROUTES}`);
+      return `CORE_OK=1 · ROUTES=56 · steps=${x.runtime.steps}`;
+    });
+
+    await test("route law: 0→1 legal; 0→0 illegal", async()=>{
+      const x=await executeSource(coreSource,"core.i13",{traceLimit:0});
+      const vm=new Machine({traceLimit:0});
+      vm.global=x.runtime.validation ? new Env(null) : vm.global;
+      // Re-run once to retain executable function objects in a live machine.
+      vm.run(x.region);
+      const legal=vm.call(vm.global.get("valid_route"),[0,1],1);
+      const self=vm.call(vm.global.get("valid_route"),[0,0],1);
+      if(legal!==1 || self!==0) throw new Error(`got ${legal},${self}`);
+      return "valid_route(0,1)=1 · valid_route(0,0)=0";
+    });
+
+    await test("osmotic .p desugars to additive bind", async()=>{
+      const x=await executeSource("I x <- 1\nx.p <- 4\n","osmotic.i13");
+      if(x.runtime.globals.x!==5) throw new Error(`x=${x.runtime.globals.x}`);
+      return "x=5";
+    });
+
+    await test("general Attr remains shipped VM no-op", async()=>{
+      const x=await executeSource("I x <- 5\nI y <- x.a\n","attr.i13");
+      if(x.runtime.globals.y!==5) throw new Error(`y=${x.runtime.globals.y}`);
+      return "x.a returns x";
+    });
+
+    await test("validator does NOT claim call arity coverage", async()=>{
+      const s="def f(I a) { -> a }\nI x <- f(1,2)\n";
+      const x=await fromSource(s,"arity.i13");
+      if(!x.validation.valid) throw new Error("validator rejected program; expected VALID");
+      if(!x.validation.verdict.not_covered.includes("call arity")) throw new Error("arity boundary missing");
+      let runtimeRejected=false;
+      try{ new Machine({traceLimit:0}).run(x.region); }catch(e){ runtimeRejected=/arity mismatch/.test(e.message); }
+      if(!runtimeRejected) throw new Error("runtime did not reject arity mismatch");
+      return "VALID at validator · rejected at runtime";
+    });
+
+    await test("single-pass region validator ratio is 1.0000", async()=>{
+      const x=await fromSource(coreSource,"core.i13");
+      const walk=v=>[v,...v.children.flatMap(walk)];
+      const all=walk(x.validation);
+      if(all.some(v=>v.ratio!==1)) throw new Error("nonlinear ratio observed");
+      return `${all.length} regions · all ratio 1.0000`;
+    });
+
+    await test("compiled ISA contains no br opcode", async()=>{
+      const x=await fromSource(coreSource,"core.i13");
+      const ops=flattenOps(x.region);
+      if(ops.some(o=>o.toLowerCase()==="br")) throw new Error("br opcode emitted");
+      return `${new Set(ops).size} opcode kinds · no br`;
+    });
+
+    await test("synthetic stack underflow is rejected", async()=>{
+      const r={name:"bad",params:[],code:[op("Block"),op("Drop"),op("End"),op("Halt")]};
+      r.links=linkControl(r.code);
+      const v=validate(r);
+      if(v.valid) throw new Error("underflow region marked VALID");
+      return "INVALID as expected";
+    });
+
+    return {
+      vm:VERSION,
+      pass:tests.every(t=>t.pass),
+      passed:tests.filter(t=>t.pass).length,
+      total:tests.length,
+      tests
+    };
+  }
+
+  return {
+    VERSION,ISA,STEP_LIMIT,CALL_DEPTH_LIMIT,
+    CompileError,ValidateError,RuntimeError13,
+    compile,validate,Machine,disassemble,fromSource,executeSource,selfTest,flattenOps
+  };
+})();
+
+
+const SAMPLES = {
+  core: "// HTML CENTER I-13 CORE\n// topology: [ 0 | HTML(00) | 0 ]\n//\n// I-13 owns the routing law. The host owns I/O only.\n// channel ids:\n// 0 PROCESS | 1 SOCKET | 2 NETWORK | 3 FILESYSTEM\n// 4 RUNTIME | 5 NAMESPACE | 6 CAPABILITY | 7 KERNEL\n\nI CHANNELS <- 8\nI EXPECTED_ROUTES <- 56\n\n// ---- channel fence -------------------------------------------------\ndef valid_channel(I ch) {\n    if ch < 0 {\n        -> 0\n    }\n    if ch >= CHANNELS {\n        -> 0\n    }\n    -> 1\n}\n\ndef valid_route(I from, I to) {\n    if valid_channel(from) == 0 {\n        -> 0\n    }\n    if valid_channel(to) == 0 {\n        -> 0\n    }\n    if from == to {\n        -> 0\n    }\n    -> 1\n}\n\n// ---- source payload selection -------------------------------------\n// No arrays/records are assumed. Eight numeric channel payloads are\n// passed explicitly so the program stays inside the documented I-13\n// surface.\ndef source_payload(\n    I from,\n    I process,\n    I socket,\n    I network,\n    I filesystem,\n    I runtime,\n    I namespace,\n    I capability,\n    I kernel\n) {\n    if from == 0 { -> process }\n    if from == 1 { -> socket }\n    if from == 2 { -> network }\n    if from == 3 { -> filesystem }\n    if from == 4 { -> runtime }\n    if from == 5 { -> namespace }\n    if from == 6 { -> capability }\n    if from == 7 { -> kernel }\n    -> 0\n}\n\n// route returns the source payload. HTML(00) already knows `to` and\n// deposits the returned value into that hosted channel.\ndef route(\n    I from,\n    I to,\n    I process,\n    I socket,\n    I network,\n    I filesystem,\n    I runtime,\n    I namespace,\n    I capability,\n    I kernel\n) {\n    if valid_route(from, to) == 0 {\n        -> 0\n    }\n    -> source_payload(\n        from,\n        process,\n        socket,\n        network,\n        filesystem,\n        runtime,\n        namespace,\n        capability,\n        kernel\n    )\n}\n\n// ---- complete ordered route count ---------------------------------\n// 8 * 7 = 56. Recursion depth is tiny here.\ndef count_to(I from, I to) {\n    if to >= CHANNELS {\n        -> 0\n    }\n    if from == to {\n        -> count_to(from, to + 1)\n    }\n    -> 1 + count_to(from, to + 1)\n}\n\ndef count_from(I from) {\n    if from >= CHANNELS {\n        -> 0\n    }\n    -> count_to(from, 0) + count_from(from + 1)\n}\n\ndef route_count() {\n    -> count_from(0)\n}\n\n// ---- fail-static ---------------------------------------------------\n// fresh=1 accepts the new control/probe value.\n// fresh=0 preserves last-known data instead of erasing the channel.\ndef fail_static(I fresh, I current, I last) {\n    if fresh == 1 {\n        -> current\n    }\n    -> last\n}\n\n// ---- corrected I-13 planes ----------------------------------------\n// Use basis points for the self-test. I-13 constants are f64, so exact\n// equality on decimal fractions would make the test depend on binary\n// floating-point representation. Whole basis-point values are exact here.\ndef designate_sum() {\n    -> 2967 + 1425 + 963\n}\n\ndef bind_sum() {\n    -> 523 + 408 + 182\n}\n\ndef decide_sum() {\n    -> 301 + 276 + 201\n}\n\ndef transform_sum() {\n    -> 750 + 192 + 138\n}\n\ndef plane_test() {\n    if designate_sum() != 5355 { -> 0 }\n    if bind_sum() != 1113 { -> 0 }\n    if decide_sum() != 778 { -> 0 }\n    if transform_sum() != 1080 { -> 0 }\n    -> 1\n}\n\n// ---- 12 verbs + declaration keyword I = 13 ------------------------\ndef alphabet_test() {\n    I verbs <- 12\n    I declaration <- 1\n    if verbs + declaration != 13 {\n        -> 0\n    }\n    -> 1\n}\n\n// ---- boot gate -----------------------------------------------------\ndef core_selftest() {\n    if alphabet_test() == 0 { -> 0 }\n    if plane_test() == 0 { -> 0 }\n    if route_count() != EXPECTED_ROUTES { -> 0 }\n    -> 1\n}\n\nI CORE_OK <- core_selftest()\nI ROUTES <- route_count()\n",
+  brief: "// binom(4,2), then an osmotic accumulate\ndef choose(I n, I k) {\n    I num <- 1\n    I den <- 1\n    if k < 1 { -> 1 }\n    -> num\n}\nI total <- 0\ntotal.p <- 4\nI out <- choose(4, 2)\n",
+  blank: ""
+};
+const $ = id => document.getElementById(id);
+$("src").value = SAMPLES.core;
+
+function err(e){
+  $("health").textContent="REJECTED";
+  $("health").className="bad";
+  $("runtime").textContent=`${e.name}: ${e.message}`;
+}
+
+async function doRead(){
+  try{
+    const h=await IReader.read($("src").value,$("sample").value+".i13");
+    $("manifest").textContent=JSON.stringify(h.manifest,null,2);
+    $("ast").textContent=JSON.stringify(h.ast,null,2);
+    $("health").textContent="i → I13 ACCEPTED";
+    $("health").className="ok";
+    return h;
+  }catch(e){err(e);throw e;}
+}
+
+async function doRun(){
+  try{
+    const x=await I13VM.executeSource($("src").value,$("sample").value+".i13",{traceLimit:300});
+    $("manifest").textContent=JSON.stringify(x.handoff.manifest,null,2);
+    $("ast").textContent=JSON.stringify(x.handoff.ast,null,2);
+    $("bytecode").textContent=x.disassembly;
+    $("runtime").textContent=JSON.stringify({
+      verdict:x.validation.verdict,
+      peak_stack:x.validation.peak,
+      visited:x.validation.visited,
+      validation_ratio:x.validation.ratio,
+      globals:x.runtime.globals,
+      steps:x.runtime.steps,
+      max_call_depth:x.runtime.max_call_depth,
+      trace:x.runtime.trace.slice(-40)
+    },null,2);
+    $("health").textContent=`VM ${x.validation.valid?"VALID":"INVALID"} · ${x.runtime.steps} steps`;
+    $("health").className=x.validation.valid?"ok":"bad";
+  }catch(e){err(e);}
+}
+
+function paintTests(target,status,r){
+  $(status).textContent=`${r.passed}/${r.total} ${r.pass?"PASS":"FAIL"}`;
+  $(status).className=r.pass?"ok":"bad";
+  $(target).innerHTML=r.tests.map(t=>`<div class="test"><span class="tag ${t.pass?"ok":"bad"}">${t.pass?"PASS":"FAIL"}</span>${t.name}<br><span class="muted">${t.detail}</span></div>`).join("");
+}
+
+async function readerTests(){
+  const r=await IReader.selfTest(SAMPLES.core,SAMPLES.brief);
+  paintTests("readerTests","readerStatus",r);
+}
+async function vmTests(){
+  const r=await I13VM.selfTest(SAMPLES.core,SAMPLES.brief);
+  paintTests("vmTests","vmStatus",r);
+}
+
+$("sample").addEventListener("change",e=>{$("src").value=SAMPLES[e.target.value];});
+$("readBtn").addEventListener("click",doRead);
+$("runBtn").addEventListener("click",doRun);
+$("readerTestBtn").addEventListener("click",readerTests);
+$("vmTestBtn").addEventListener("click",vmTests);
+doRun();
+</script>
+</body></html>

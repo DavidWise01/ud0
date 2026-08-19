@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>[ 0 | HTML(00) | 0 ] · 8 hosted channels</title>
+<style>
+:root{
+  --bg:#05070a;--panel:#0a1016;--panel2:#0d151e;--ink:#dcebf5;--muted:#7890a4;
+  --line:#223544;--html:#f0f4f7;--live:#62e4c2;--warn:#dfbd69;--zero:#52606c;--pulse:#86d8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+body{padding:12px}
+.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}
+h1{font-size:15px;margin:0}.sub{font-size:10px;color:var(--muted);margin-top:4px}
+button,select{font:inherit;font-size:10px;color:var(--ink);background:#030507;border:1px solid var(--line);border-radius:4px;padding:5px 7px}
+button{cursor:pointer}
+.controls{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+
+.stage{
+  position:relative;height:min(80vh,820px);min-height:620px;
+  border:1px solid var(--line);background:
+  radial-gradient(circle at center,rgba(134,216,255,.05),transparent 32%),#070a0e;overflow:hidden
+}
+#pipes{position:absolute;inset:0;width:100%;height:100%;z-index:1}
+.center{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:4;
+  width:250px;min-height:175px;border:1px solid #7b8f9e;border-radius:10px;background:rgba(12,18,25,.97);
+  padding:12px;text-align:center
+}
+.center .shape{font-size:17px;color:var(--html);letter-spacing:.08em}
+.center .zero{color:var(--zero)}
+.center .title{font-size:12px;margin-top:7px;color:var(--pulse)}
+.center .count{font-size:28px;margin-top:8px}
+.center .tiny{font-size:9px;color:var(--muted);margin-top:6px}
+.channel{
+  position:absolute;z-index:3;width:170px;min-height:94px;transform:translate(-50%,-50%);
+  border:1px solid var(--line);border-radius:7px;background:rgba(10,16,22,.96);padding:8px;cursor:pointer
+}
+.channel:hover{border-color:#658094}
+.channel .n{font-size:11px;font-weight:700;letter-spacing:.08em}
+.channel .v{font-size:19px;margin-top:4px}
+.channel .d{font-size:9px;color:var(--muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.drawer{
+  position:absolute;right:10px;bottom:10px;z-index:5;width:min(360px,42vw);max-height:34%;
+  border:1px solid var(--line);background:rgba(6,10,14,.95);padding:9px;overflow:auto
+}
+.drawer h2{font-size:10px;color:var(--muted);margin:0 0 7px;letter-spacing:.1em}
+pre{font:9px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;margin:0}
+.legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;color:var(--muted);font-size:9px}
+.sw{display:inline-block;width:16px;height:2px;vertical-align:middle;margin-right:4px}
+@media(max-width:900px){
+  .top{display:block}.controls{justify-content:flex-start;margin-top:8px}
+  .stage{height:900px}
+  .channel{width:145px}
+  .center{width:220px}
+  .drawer{width:calc(100% - 20px);max-height:26%}
+}
+</style>
+</head>
+<body>
+<div class="top">
+  <div>
+    <h1>[ 0 | HTML(00) | 0 ] · eight hosted channels</h1>
+    <div class="sub">HTML is the center vessel. JavaScript owns routing, state, traffic, and rendering. The Python probe is only an input source feeding the hosted channels.</div>
+  </div>
+  <div class="controls">
+    <select id="from"></select><span>→</span><select id="to"></select>
+    <button id="route">ROUTE IN HTML</button>
+    <button id="all56">56</button>
+    <button id="probe">PROBE</button>
+    <button id="auto">AUTO ON</button>
+  </div>
+</div>
+
+<div class="stage" id="stage">
+  <canvas id="pipes"></canvas>
+
+  <div class="center" id="center">
+    <div class="shape"><span class="zero">0</span> | HTML( <b>00</b> ) | <span class="zero">0</span></div>
+    <div class="title">CENTER VESSEL / JS SWITCHBOARD</div>
+    <div class="count" id="trafficCount">0</div>
+    <div class="tiny">messages routed inside HTML</div>
+    <div class="tiny" id="probeState">probe: connecting…</div>
+  </div>
+
+  <div class="drawer">
+    <h2>HTML CENTER LOG</h2>
+    <pre id="log">booting center…</pre>
+  </div>
+</div>
+
+<div class="legend">
+  <span><i class="sw" style="background:var(--live)"></i>channel tether into HTML center</span>
+  <span><i class="sw" style="background:var(--pulse)"></i>active routed message</span>
+  <span><i class="sw" style="background:var(--warn)"></i>probe-fed observation</span>
+</div>
+
+<script>
+const CH=[
+  ["process","PROCESS"],
+  ["socket","SOCKET"],
+  ["network","NETWORK"],
+  ["filesystem","FILESYSTEM"],
+  ["runtime","RUNTIME"],
+  ["namespace","NAMESPACE"],
+  ["capability","CAPABILITY"],
+  ["kernel","KERNEL"]
+];
+
+const POS={
+  process:[.50,.10], socket:[.78,.19], network:[.90,.46], filesystem:[.79,.75],
+  runtime:[.50,.87], namespace:[.21,.75], capability:[.10,.46], kernel:[.22,.19]
+};
+
+const state={
+  channels:{},
+  traffic:[],
+  probe:null,
+  auto:true,
+  pulse:null,
+  seq:0
+};
+
+const $=id=>document.getElementById(id);
+
+function centerBus(msg){
+  state.seq++;
+  const row={seq:state.seq,time:Date.now(),...msg};
+  state.traffic.push(row);
+  if(state.traffic.length>1000)state.traffic.shift();
+  $("trafficCount").textContent=state.traffic.length;
+  state.pulse={from:msg.from,to:msg.to,until:performance.now()+900};
+  writeLog();
+  draw();
+  return row;
+}
+
+function writeLog(extra){
+  const recent=state.traffic.slice(-12).reverse().map(x=>
+    `#${x.seq} ${x.from.toUpperCase()} → HTML(00) → ${x.to.toUpperCase()}`
+  ).join("\n");
+  const head=extra?extra+"\n\n":"";
+  $("log").textContent=head+"TRAFFIC\n"+(recent||"—");
+}
+
+function installChannels(){
+  const stage=$("stage");
+  for(const [id,label] of CH){
+    state.channels[id]={id,label,payload:null,count:0,stamp:0};
+    const el=document.createElement("div");
+    el.className="channel";el.id="ch-"+id;el.dataset.id=id;
+    el.innerHTML=`<div class="n">${label}</div><div class="v" id="v-${id}">—</div><div class="d" id="d-${id}">waiting for probe</div>`;
+    el.addEventListener("click",()=>inspect(id));
+    stage.appendChild(el);
+    for(const s of [$("from"),$("to")]){
+      const o=document.createElement("option");o.value=id;o.textContent=label;s.appendChild(o);
+    }
+  }
+  $("to").selectedIndex=4;
+}
+
+function layout(){
+  const r=$("stage").getBoundingClientRect();
+  for(const [id] of CH){
+    const p=POS[id],el=$("ch-"+id);
+    el.style.left=(p[0]*r.width)+"px";el.style.top=(p[1]*r.height)+"px";
+  }
+  draw();
+}
+
+function point(id){
+  const sr=$("stage").getBoundingClientRect();
+  const el=(id==="center"?$("center"):$("ch-"+id)).getBoundingClientRect();
+  return{x:el.left-sr.left+el.width/2,y:el.top-sr.top+el.height/2};
+}
+
+function line(ctx,a,b,color,width=1,dash=[]){
+  ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(dash);
+  ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();ctx.restore();
+}
+function arrow(ctx,a,b,color){
+  const ang=Math.atan2(b.y-a.y,b.x-a.x),mx=(a.x+b.x)/2,my=(a.y+b.y)/2,s=6;
+  for(const rot of [ang,ang+Math.PI]){
+    ctx.save();ctx.translate(mx,my);ctx.rotate(rot);ctx.fillStyle=color;ctx.beginPath();
+    ctx.moveTo(s,0);ctx.lineTo(-s,-4);ctx.lineTo(-s,4);ctx.closePath();ctx.fill();ctx.restore();
+  }
+}
+function draw(){
+  const c=$("pipes"),r=$("stage").getBoundingClientRect(),dpr=devicePixelRatio||1;
+  c.width=r.width*dpr;c.height=r.height*dpr;c.style.width=r.width+"px";c.style.height=r.height+"px";
+  const ctx=c.getContext("2d");ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,r.width,r.height);
+  const mid=point("center");
+
+  // Eight hosted channel tethers. All terminate in HTML(00).
+  for(const [id] of CH){
+    const p=point(id);
+    line(ctx,p,mid,"rgba(98,228,194,.35)",2,[]);
+    arrow(ctx,p,mid,"rgba(98,228,194,.55)");
+  }
+
+  // Active route is always source -> HTML(00) -> destination.
+  if(state.pulse&&state.pulse.until>performance.now()){
+    const a=point(state.pulse.from),b=point(state.pulse.to);
+    line(ctx,a,mid,"rgba(134,216,255,.98)",5,[]);
+    line(ctx,mid,b,"rgba(134,216,255,.98)",5,[]);
+    requestAnimationFrame(draw);
+  }
+}
+
+function countFor(id,p){
+  if(!p)return 0;
+  if(id==="process")return p.processes?.length||0;
+  if(id==="socket")return p.sockets?.length||0;
+  if(id==="network")return (p.interfaces?.length||0)+(p.routes?.length||0);
+  if(id==="filesystem")return p.filesystems?.filter(x=>x.exists).length||0;
+  if(id==="runtime")return Object.values(p.runtimes||{}).filter(x=>x.present).length;
+  if(id==="namespace")return Object.keys(p.namespaces||{}).length;
+  if(id==="capability")return Object.keys(p.capabilities||{}).filter(k=>p.capabilities[k]!=null).length;
+  if(id==="kernel")return 1;
+  return 0;
+}
+
+function payloadFor(id,p){
+  if(id==="process")return {processes:p.processes};
+  if(id==="socket")return {sockets:p.sockets,listeners:p.listeners};
+  if(id==="network")return {interfaces:p.interfaces,routes:p.routes};
+  if(id==="filesystem")return {filesystems:p.filesystems,mounts:p.mounts};
+  if(id==="runtime")return p.runtimes;
+  if(id==="namespace")return p.namespaces;
+  if(id==="capability")return p.capabilities;
+  if(id==="kernel")return {hostname:p.hostname,platform:p.platform,kernel:p.kernel,uid:p.uid,gid:p.gid};
+  return {};
+}
+
+function summary(id,p){
+  if(!p)return "offline";
+  if(id==="process")return [...new Set(p.processes.map(x=>x.kind).filter(x=>x!=="other"))].join(", ")||"visible process tree";
+  if(id==="socket")return (p.listeners?.length||0)+" listeners";
+  if(id==="network")return (p.routes||[]).map(r=>`${r.dst}→${r.gateway||r.dev||"?"}`).slice(0,2).join(" · ")||"network view";
+  if(id==="filesystem")return p.filesystems.filter(x=>x.exists&&x.writable).map(x=>x.path).join(", ")||"read-only selected paths";
+  if(id==="runtime")return Object.entries(p.runtimes).filter(([k,v])=>v.present).map(([k])=>k).join(", ");
+  if(id==="namespace")return Object.keys(p.namespaces).join(", ");
+  if(id==="capability")return "CapBnd "+(p.capabilities.CapBnd||"—");
+  if(id==="kernel")return p.kernel;
+}
+
+function distributeProbe(p){
+  state.probe=p;
+  for(const [id] of CH){
+    const ch=state.channels[id];
+    ch.payload=payloadFor(id,p);
+    ch.count=countFor(id,p);
+    ch.stamp=Date.now();
+    $("v-"+id).textContent=ch.count;
+    $("d-"+id).textContent=summary(id,p);
+  }
+  $("probeState").textContent=`probe: live · ${p.probe_ms} ms`;
+  writeLog("PROBE DISTRIBUTED BY HTML CENTER\n8 channel stores updated from one probe return");
+  draw();
+}
+
+async function probe(){
+  try{
+    const r=await fetch("/api/probe",{cache:"no-store"});
+    const p=await r.json();
+    if(!r.ok)throw new Error(p.error||r.status);
+    distributeProbe(p);
+  }catch(e){
+    $("probeState").textContent="probe: offline";
+    writeLog("PROBE OFFLINE\n"+e+"\n\nRun: python3 html_center_probe.py");
+  }
+}
+
+function routeSelected(){
+  const from=$("from").value,to=$("to").value;
+  if(from===to){writeLog("REFUSED: self-route");return}
+  const source=state.channels[from];
+  const carried={
+    channel:from,
+    stamp:source.stamp,
+    payload:source.payload
+  };
+  const event=centerBus({from,to,payload:carried});
+  state.channels[to].lastReceived=event;
+  inspect(to);
+}
+
+function all56(){
+  let n=0,pairs=new Set();
+  for(const [a] of CH)for(const [b] of CH){
+    if(a===b)continue;
+    centerBus({from:a,to:b,payload:{channel:a,stamp:state.channels[a].stamp,payload:state.channels[a].payload}});
+    pairs.add(a+">"+b);n++;
+  }
+  writeLog(`ALL 56 INSIDE HTML CENTER\nrouted=${n}\ndistinct=${pairs.size}\nresult=${n===56&&pairs.size===56?"PASS":"FAIL"}`);
+}
+
+function inspect(id){
+  const ch=state.channels[id];
+  const recv=ch.lastReceived?`\n\nLAST RECEIVED\n${JSON.stringify(ch.lastReceived,null,2)}`:"";
+  writeLog(`${ch.label}\n\nHOSTED PAYLOAD\n${JSON.stringify(ch.payload,null,2)}${recv}`);
+}
+
+function toggleAuto(){
+  state.auto=!state.auto;
+  $("auto").textContent="AUTO "+(state.auto?"ON":"OFF");
+  if(timer)clearInterval(timer);
+  timer=state.auto?setInterval(probe,2000):null;
+}
+
+$("route").addEventListener("click",routeSelected);
+$("all56").addEventListener("click",all56);
+$("probe").addEventListener("click",probe);
+$("auto").addEventListener("click",toggleAuto);
+window.addEventListener("resize",layout);
+
+installChannels();
+layout();
+probe();
+let timer=setInterval(probe,2000);
+</script>
+</body>
+</html>
