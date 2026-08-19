@@ -101,27 +101,32 @@ graph reduction: sq shared, once    ->  result 25,  1 addition</div>
 
 (function(){
   var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
-  var W=960,H=230, mode=0;
-  function draw(){
+  var W=960,H=230;
+  // GENUINELY reduce: a '+' node evaluated once caches; the counter counts real evaluations.
+  var adds;
+  function reduceAdd(nd){ if(nd.reduced) return nd.val; nd.val = nd.l + nd.r; nd.reduced=true; adds++; return nd.val; }
+  function compute(){
+    // TREE: sq is two SEPARATE nodes -> reduced twice
+    adds=0; var t1={l:2,r:3,reduced:false}, t2={l:2,r:3,reduced:false};
+    var treeVal = reduceAdd(t1) * reduceAdd(t2); var treeAdds = adds;
+    // GRAPH: sq is ONE shared node, both '*'-operands point at it -> reduced once
+    adds=0; var sh={l:2,r:3,reduced:false}; var g1=sh, g2=sh;
+    var graphVal = reduceAdd(g1) * reduceAdd(g2); var graphAdds = adds;
+    return {treeVal:treeVal, treeAdds:treeAdds, graphVal:graphVal, graphAdds:graphAdds, sameNode:(g1===g2)};
+  }
+  function node(x,y,txt,col){ ctx.fillStyle="rgba(62,240,255,.12)"; ctx.strokeStyle=col||"#3ef0ff"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(x,y,20,0,7); ctx.fill(); ctx.stroke(); ctx.fillStyle="#eafcff"; ctx.font="13px monospace"; ctx.textAlign="center"; ctx.fillText(txt,x,y+4); ctx.textAlign="left"; }
+  function edge(x1,y1,x2,y2,col){ ctx.strokeStyle=col||"rgba(111,139,168,.6)"; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke(); }
+  function draw(r){
     ctx.clearRect(0,0,W,H);
-    // left: tree (two separate 2+3) ; right: graph (one shared 2+3)
-    function node(x,y,txt,col){ ctx.fillStyle="rgba(62,240,255,.12)"; ctx.strokeStyle=col||"#3ef0ff"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(x,y,20,0,7); ctx.fill(); ctx.stroke(); ctx.fillStyle="#eafcff"; ctx.font="13px monospace"; ctx.textAlign="center"; ctx.fillText(txt,x,y+4); ctx.textAlign="left"; }
-    function edge(x1,y1,x2,y2,col){ ctx.strokeStyle=col||"rgba(111,139,168,.6)"; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.stroke(); }
-    // TREE
-    ctx.fillStyle="#6f8ba8"; ctx.font="12px monospace"; ctx.fillText("TREE: 2+3 twice (2 adds)",120,26);
+    // TREE (labels driven by the COMPUTED count)
+    ctx.fillStyle="#6f8ba8"; ctx.font="12px monospace"; ctx.fillText("TREE: 2+3 twice ("+r.treeAdds+" adds) = "+r.treeVal,110,26);
     edge(230,60,150,120); edge(230,60,310,120);
     node(230,60,"*"); node(150,120,"+","#ff8a3d"); node(310,120,"+","#ff8a3d");
     edge(150,120,110,190); edge(150,120,190,190); edge(310,120,270,190); edge(310,120,350,190);
     node(110,190,"2"); node(190,190,"3"); node(270,190,"2"); node(350,190,"3");
-    // GRAPH
-    ctx.fillStyle="#6f8ba8"; ctx.fillText("GRAPH: 2+3 shared (1 add)",620,26);
-    edge(700,60,660,120); edge(700,60,740,120,"#59ffb0"); // both point at same +
+    // GRAPH: one shared '+' node
+    ctx.fillStyle="#6f8ba8"; ctx.fillText("GRAPH: 2+3 shared ("+r.graphAdds+" add) = "+r.graphVal,620,26);
     node(700,60,"*");
-    node(700,130,"+","#59ffb0");  // shared node
-    // redraw both operand edges into the single shared node
-    ctx.clearRect(600,40,360,60); ctx.fillStyle="#6f8ba8"; ctx.font="12px monospace"; ctx.fillText("GRAPH: 2+3 shared (1 add)",620,26);
-    node(700,60,"*"); edge(700,80,700,110,"#59ffb0"); edge(700,80,700,110,"#59ffb0");
-    // draw two curved edges to one node to show sharing
     ctx.strokeStyle="#59ffb0"; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(686,72); ctx.quadraticCurveTo(640,100,694,116); ctx.stroke();
     ctx.beginPath(); ctx.moveTo(714,72); ctx.quadraticCurveTo(760,100,706,116); ctx.stroke();
     node(700,130,"+","#59ffb0");
@@ -129,9 +134,9 @@ graph reduction: sq shared, once    ->  result 25,  1 addition</div>
     node(660,195,"2"); node(740,195,"3");
     ctx.fillStyle="#59ffb0"; ctx.font="11px monospace"; ctx.fillText("one shared node",620,160);
   }
-  document.getElementById("go").onclick=function(){ draw();
-    say.innerHTML='both <span class="true">25</span> &middot; tree <span class="err">2 adds</span>, graph <span class="true">1 add</span> &mdash; sharing reduces once'; };
-  draw(); say.innerHTML="press to compare tree vs shared-graph reduction";
+  document.getElementById("go").onclick=function(){ var r=compute(); draw(r);
+    say.innerHTML='both <span class="true">'+r.graphVal+'</span> &middot; tree <span class="err">'+r.treeAdds+' adds</span>, graph <span class="true">'+r.graphAdds+' add</span> &mdash; computed by reducing both'; };
+  var r0=compute(); draw(r0); say.innerHTML="press to reduce (tree vs shared-graph) and count the additions";
 })();
 
 </script>

@@ -62,7 +62,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 <div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 143 &middot; a helldive at the net</span></div>
 <header>
   <h1>THE KRIVINE MACHINE <span class="c">call-by-name: the discarded argument is never run</span></h1>
-  <p class="sub">The <b>smallest</b> machine that runs the lambda calculus &mdash; a term, an environment, an argument stack, and three moves (<b>Push</b> an argument, <b>Grab</b> it into a lambda, <b>Access</b> a variable). It is <b>call-by-name</b>: a function&rsquo;s argument is only evaluated <i>if and when</i> the body demands it, so an argument that is thrown away is <b>never evaluated</b>. And it carries no closures of its own &mdash; which is exactly why it ports to a first-order language.</p>
+  <p class="sub">The <b>smallest</b> machine that runs the lambda calculus &mdash; a term, an environment, an argument stack, and three moves (<b>Push</b> an argument, <b>Grab</b> it into a lambda, <b>Access</b> a variable). It is <b>call-by-name</b>: a function&rsquo;s argument is only evaluated <i>if and when</i> the body demands it, so an argument that is thrown away is <b>never evaluated</b>. And its closures are <b>first-order data records</b> (a de Bruijn index + an environment index), not host-language function values &mdash; which is exactly why it ports to a first-order language.</p>
 </header>
 
 <div class="panel">
@@ -86,12 +86,12 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 
 <div class="panel i13">
   <h2>RECOMMEND FOR I-13 <span class="n">the closureless machine &mdash; a natural fit</span></h2>
-  <p>Krivine&rsquo;s machine carries no closures of its own; the laziness shows as work not done:</p>
+  <p>Krivine&rsquo;s closures are first-order data records, not host-language functions; the laziness shows as work not done:</p>
   <div class="evi good">$ i13 run kriv.i13   # (\x.\y. x) 42 (expensive) , expensive = sum 1..20
 call-by-name:  result 42,  expensive forced 0 steps   (y is never demanded)
 call-by-value: result 42,  expensive forced 20 steps  (evaluated, then discarded)</div>
   <div class="rec">
-    <b>Recommend:</b> <b>nothing new</b> &mdash; the term is a flat tagged f64 array, the argument stack and environment are arrays with top pointers, and the three moves (Push / Grab / Access) are index arithmetic. Verified: both strategies return <b>42</b>, but call-by-name does <b>0</b> steps on the discarded argument while call-by-value wastes <b>20</b>. The bare machine <b>ports</b> because it is closureless.<br>
+    <b>Recommend:</b> <b>nothing new</b> &mdash; the term is a flat tagged f64 array, the argument stack and environment are arrays with top pointers, and the three moves (Push / Grab / Access) are index arithmetic. Verified: both strategies return <b>42</b>, but call-by-name does <b>0</b> steps on the discarded argument while call-by-value wastes <b>20</b>. It <b>ports</b> because its closures are first-order data (a term index + an env index), not host-language functions.<br>
     <b>Note:</b> it is the call-by-name counterpart to SECD (dart 142); adding <b>sharing</b> (call-by-need) is Sestoft&rsquo;s update markers &mdash; and sharing is exactly what graph reduction (dart 145) provides. Full lambda terms want a node arena (<b>PS-015</b>).
   </div>
 </div>
