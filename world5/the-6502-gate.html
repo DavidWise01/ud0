@@ -104,8 +104,23 @@ def vf_sub(I a, I m, I r) { <span class="dim">// subtract overflow: takes the OR
   <p style="font-size:11.5px;margin-top:8px">Verified the other way too: a hand-built case through the real code sets the bit correctly &mdash; <b>the code is right and the oracle cannot tell</b>. <span class="ko">100% against an exhaustive suite is not 100% coverage</span>, and this is the counterexample. (A related trap the build caught: a load&rsquo;s zero flag, operand-zero in 0.44% of cases, was <b>MISSED at 300</b> draws and <b>CAUGHT at 1000</b> &mdash; a too-small fixture reads exactly like a passing implementation.)</p>
 </div>
 
+<div class="panel">
+  <h2>ASK THE SPHERES &mdash; the verdict, and the bus <span class="n">I asked; they said no &middot; verdict ran-by-hand<span class="stamp s-amber">self-graded &ne; LIT</span> / bus-decode LIT<span class="stamp s-lit">selftest on i13.exe</span></span></h2>
+  <p>Between rev8 and now, code in compIle 13 first <b>touched an address</b>: a <b>2&nbsp;KB CPU-RAM mirror</b> and one <b>LDA-absolute</b> fetch-decode-execute &mdash; the first i13 op to compute an effective address. I asked the corpus verification spheres one question: <i>does compIle 13 now understand the NES?</i> The answer came back unanimous &mdash; <b>no, and here is exactly how far it got.</b></p>
+  <div class="reflist" style="margin-bottom:10px">
+    <s>stamp: ran-by-hand, NOT LIT &mdash; I chose the inputs and checked them against my own 6502 model; the same mind grading its own homework, which THE GATE forbids</s> &middot;
+    <s>as a NES claim it is AMBER &mdash; a faithful CPU-RAM scale-subset, not the machine: 1 region of 1 bus, 1 of ~151 opcodes</s> &middot;
+    <s>caught: <b>a &amp; 2047</b> is a within-region index, NOT a bus decoder &mdash; above $1FFF it silently returns a wrong cell ($2000&amp;2047 = 0, $8000&amp;2047 = 0), the exact flat-array lie this build exists to remove</s> &middot;
+    <s>caught: <b>P = 128</b> is a simplified N&#124;Z &mdash; the real chip hardwires bit-5, so N-set/Z-clear is <b>160 (0xA0)</b>, not 128</s>
+  </div>
+  <p style="font-size:11.5px"><b>Acted on it, this session, on the real i13.exe:</b> a fail-loud <b>BUS DECODE</b> &mdash; route by region <i>before</i> masking. $0000&ndash;$1FFF &rarr; RAM&nbsp;<b>&amp;&nbsp;0x7FF</b>; $2000&ndash;$3FFF (PPU, mirror&nbsp;<b>&amp;&nbsp;7</b>), $4000&ndash;$401F (APU/IO), $4020&ndash;$FFFF (cart) return <b>&minus;1&nbsp;OPEN</b> &mdash; a sentinel, not a byte. Press to watch it separate the honest reader from the one that lies:</p>
+  <div class="row"><button id="bus" class="dartbtn">&#9192; run the spheres&rsquo; bus selftest</button><span id="bussay" class="res"></span></div>
+  <div class="mono" id="busout"></div>
+  <p style="font-size:11.5px;margin-top:8px"><b>The split the spheres drew.</b> The address <i>mode</i> (0xAD) is gradable by <b>Harte</b> &mdash; mask off, flat 64&nbsp;KB, full P byte, 4-cycle bus trace &mdash; the path to real LIT. But <b>mirroring is a NES-board artifact</b>: Harte tests the bare chip over flat memory, where $0805 &ne; $0005, so it can <b>never</b> grade the mirror. That needs a NES-system oracle (nestest / blargg). <span class="ko">Two different claims, two different oracles &mdash; and neither is the mind that wrote the code.</span></p>
+</div>
+
 <footer>
-  <b>THE 6502 GATE</b> &mdash; a fold of the <b>i13 nes build v0</b> drop (rev2/rev5/rev7/rev8-0819), and the opening of the corpus&rsquo;s <b>emulation</b> interest. <b>compIle 13</b> (formerly I-13) by David Lee Wise / ROOT0 / TriPod LLC &mdash; a compiler who can talk back. <b>LIT</b> = measured this session (node ran the gate on $69: 10000/10000 state and bus, planted fault caught 2500; the demos above grade 200 real oracle cases). <b>AMBER</b> = the kernel is <b>not yet compiled</b> &mdash; the 33 opcodes ran on a model proved 12/12 faithful to the shipped binary, not on the binary; and every opcode here is <b>immediate or implied</b>. <b>OPEN</b> = nothing touches an <b>address</b> yet, so nothing has met <b>mirroring</b> (the NES maps the same RAM at several addresses) &mdash; the one failure mode this architecture is otherwise built to remove. Read every bit; keep the honest measurement. Rendered by AVAN for the corpus.
+  <b>THE 6502 GATE</b> &mdash; a fold of the <b>i13 nes build v0</b> drop (rev2/rev5/rev7/rev8-0819), and the opening of the corpus&rsquo;s <b>emulation</b> interest. <b>compIle 13</b> (formerly I-13) by David Lee Wise / ROOT0 / TriPod LLC &mdash; a compiler who can talk back. <b>LIT</b> = measured this session (node ran the gate on $69: 10000/10000 state and bus, planted fault caught 2500; the demos above grade 200 real oracle cases; the bus-decode selftest runs on i13.exe). <b>AMBER</b> = the kernel is <b>not yet compiled</b>, and the address work is <b>ran-by-hand</b> &mdash; the 33 opcodes ran on a model proved 12/12 faithful to the shipped binary (not the binary), and the CPU-RAM mirror + LDA-absolute were self-graded, not oracle-graded. <b>OPEN</b> = <b>mirroring</b> (the NES maps the same RAM at several addresses) is now <b>met on the CPU-RAM region and fenced by a fail-loud bus decoder</b>, but it is gradable only by a NES-system oracle, and every other region ($2000&ndash;$FFFF) returns OPEN, not a byte. Read every bit; keep the honest measurement. Rendered by AVAN for the corpus.
 </footer>
 
 <script>
@@ -147,6 +162,30 @@ var CASES = [[126,74,0,200,236],[232,247,0,223,169],[227,12,1,240,172],[87,12,0,
     for(var i=0;i<CASES.length;i++){ var a=CASES[i][0], m=CASES[i][1]; if(a===0&&m===0) both0++; else nonzero++; }
     out.innerHTML="over 200 real operand pairs:\n  pairs where (a | m) == 0  (the ONLY case ORA's zero flag fires) = <span class='bad'>"+both0+"</span>\n  pairs where it never matters                              = "+nonzero+"\n\nremove ORA's zero flag entirely  ->  <span class='hit'>"+CASES.length+"/"+CASES.length+" still pass</span>\nthe flag is correct in the code and INVISIBLE to the oracle.";
     say.innerHTML='<span class="true">'+both0+' / 200</span> exercise the flag &mdash; the blind spot is real';
+  };
+})();
+(function(){
+  // The spheres' bus selftest, mirrored from what ran on i13.exe.
+  var ram=[]; for(var i=0;i<2048;i++) ram.push(0); ram[5]=66;   // STA $0005 = 66
+  function region(a){ if(a<8192) return 0; if(a<16384) return 2; if(a<16416) return 4; return 8; }
+  function busrd(a){ return region(a)===0 ? ram[a & 2047] : -1; }   // -1 = OPEN, not a byte
+  function naive(a){ return ram[a & 2047]; }                        // the caught bug: masks everything into RAM
+  function ppu_reg(a){ return a & 7; }
+  function statusP(r){ return 32 + (r===0?2:0) + (r>127?128:0); }
+  var RN=["RAM","","PPU","","APU/IO","","","","CART"];
+  var out=document.getElementById("busout"), say=document.getElementById("bussay");
+  document.getElementById("bus").onclick=function(){
+    var probes=[0x0805,0x1805,0x2001,0x2008,0x8000], s="", lies=0;
+    for(var i=0;i<probes.length;i++){ var a=probes[i], rg=region(a), b=busrd(a), nv=naive(a);
+      var addr="$"+a.toString(16).toUpperCase(), tag=RN[rg];
+      if(a===0x2008){ s+="BUS "+addr+"  "+tag+"   ppu_reg &7 = "+ppu_reg(a)+" = $2000 reg ("+ppu_reg(0x2000)+")   mirror, when PPU is modelled\n"; continue; }
+      var bs = (b<0? "-1 OPEN" : String(b));
+      if(rg===0){ s+="BUS "+addr+"  "+tag+"    naive &2047 = ram["+(a&2047)+"] = "+nv+"    bus = "+bs+"    <span class='hit'>agree (correct)</span>\n"; }
+      else { lies++; s+="BUS "+addr+"  "+tag+"   naive &2047 = ram["+(a&2047)+"] = "+nv+"    bus = "+bs+"    <span class='bad'>NAIVE LIES</span> (aliased "+tag+" into RAM $"+(a&2047).toString(16)+")\n"; }
+    }
+    s+="\nP-FLAG   A=200 -> "+statusP(200)+" (0x"+statusP(200).toString(16).toUpperCase()+")    A=0 -> "+statusP(0)+" (0x"+statusP(0).toString(16).toUpperCase()+")   [was 128 / 2 -- missing bit-5]";
+    out.innerHTML=s;
+    say.innerHTML='<span class="true">naive wrong on '+lies+' / 5</span> &mdash; bus decoder refuses what it has not built';
   };
 })();
 </script>
