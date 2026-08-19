@@ -86,7 +86,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
     <b>1676 / 1847</b> &middot; <span class="who">Leibniz</span> gives the chain rule; <span class="who">Cauchy</span> gives gradient descent &mdash; backprop adds <b>no new calculus</b> and is <b>not</b> the learning step (that is descent), only the gradient.<br>
     <b>1960s</b> &middot; <span class="who">Kelley &amp; Bryson</b> compute chained gradients in <b>optimal control</b> (the adjoint method) &mdash; the idea is born in aerospace, not AI. <span class="who">Rosenblatt</span> even coins &ldquo;back-propagating error&rdquo; (1962) &mdash; for a different scheme.<br>
     <b>1970</b> &middot; <span class="who">Seppo Linnainmaa</b> (MSc thesis) writes down the modern <b>reverse mode of automatic differentiation</b>, with code &mdash; but for <b>rounding error</b>, no neural nets. The engine, invented.<br>
-    <b>1974 / 1986</b> &middot; <span class="who">Paul Werbos</b> first applies it to neural nets; <span class="who">Rumelhart, Hinton &amp; Williams</b> (Nature) make it famous and show it learns hidden representations &mdash; a rediscovery, not the first.
+    <b>1974 / 1986</b> &middot; <span class="who">Paul Werbos</b> first <b>proposes</b> applying it to neural nets (the explicit NN application follows in 1982); <span class="who">Rumelhart, Hinton &amp; Williams</b> (Nature) make it famous and show it learns hidden representations &mdash; a rediscovery, not the first.
   </div>
   <p style="margin-top:10px">Every autograd today &mdash; PyTorch, TensorFlow &mdash; is Linnainmaa&rsquo;s 1970 reverse mode at scale. <span class="tag t-open">Linnainmaa 1970 / Werbos 1974</span></p>
 </div>

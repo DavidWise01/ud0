@@ -69,7 +69,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 <div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 100 &middot; a helldive at the net</span></div>
 <header>
   <h1>LAGRANGE <span class="c">the one curve through your points</span></h1>
-  <p class="sub">Given n points, there is exactly one polynomial of degree n&minus;1 through them all &mdash; and Lagrange writes it down directly, as a blend of <b>basis polynomials</b> each worth 1 at its own point and 0 at the others. It is the engine behind Shamir&rsquo;s secret sharing (dart 097), numerical integration, and every &ldquo;connect the dots&rdquo; smoothly.</p>
+  <p class="sub">Given n points, there is exactly one polynomial of degree <b>at most</b> n&minus;1 through them all &mdash; and Lagrange writes it down directly, as a blend of <b>basis polynomials</b> each worth 1 at its own point and 0 at the others. It is the engine behind Shamir&rsquo;s secret sharing (dart 097), numerical integration, and every &ldquo;connect the dots&rdquo; smoothly.</p>
 </header>
 
 <div class="panel">
@@ -115,7 +115,7 @@ L0=1  L1=-3  L2=3  ->  P(3) = 13    # = 3^2+3+1, the quadratic it sampled</div>
     ctx.strokeStyle="#3ef0ff"; ctx.lineWidth=2; ctx.beginPath();
     for(var x=40;x<=W-20;x+=3){ var y=lag(x); if(x===40)ctx.moveTo(x,y); else ctx.lineTo(x,y); } ctx.stroke();
     pts.forEach(function(p){ ctx.fillStyle="#ff8a3d"; ctx.beginPath(); ctx.arc(p[0],p[1],6,0,7); ctx.fill(); });
-    say.innerHTML=pts.length+' points &middot; the unique degree-'+(pts.length-1)+' polynomial through <span class="true">all of them</span>';
+    say.innerHTML=pts.length+' points &middot; the unique degree-&le;'+(pts.length-1)+' polynomial through <span class="true">all of them</span>';
   }
   document.getElementById("go").onclick=function(){ seed(); draw(); };
   seed(); draw();
