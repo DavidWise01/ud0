@@ -65,7 +65,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 <div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 109 &middot; a helldive at the net</span></div>
 <header>
   <h1>JACOBI SWEEP <span class="c">spin away the off-diagonals, one at a time</span></h1>
-  <p class="sub">To find the eigenvalues of a <b>symmetric</b> matrix, Jacobi&rsquo;s method repeatedly picks the <b>largest off-diagonal entry</b> and applies a plane rotation that <b>zeroes it</b>. Each rotation nudges other entries, but the off-diagonal total steadily falls; the diagonal converges to the eigenvalues. It is old (1846), embarrassingly parallel, and beautifully simple.</p>
+  <p class="sub">To find the eigenvalues of a <b>symmetric</b> matrix, Jacobi&rsquo;s method repeatedly picks the <b>largest off-diagonal entry</b> and applies a plane rotation that <b>zeroes it</b>. Each rotation nudges other entries, but the off-diagonal total steadily falls; the diagonal converges to the eigenvalues. It is old (1846), well-suited to parallel hardware (in its cyclic variant), and beautifully simple.</p>
 </header>
 
 <div class="panel">
@@ -81,7 +81,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
   <div class="chain">
     <b>1770s&ndash;80s</b> &middot; <span class="who">Lagrange &amp; Laplace</span> &mdash; the <b>&ldquo;secular equation&rdquo;</b> (characteristic equation) arises in celestial mechanics, describing the slow drift of planetary orbits (&ldquo;secular&rdquo; = over a <i>saeculum</i>, a century).<br>
     <b>1846</b> &middot; <span class="who">Carl Jacobi</span> (Crelle vol. 30) gives the <b>rotation-sweep algorithm</b> &mdash; to compute the secular perturbations of the planets, fittingly.<br>
-    <b>1950s</b> &middot; the method is <b>rediscovered for computers</b> (von Neumann-era), prized because each rotation is independent &mdash; naturally parallel.<br>
+    <b>1950s</b> &middot; the method is <b>rediscovered for computers</b> (von Neumann-era), prized for parallelism &mdash; in the <b>cyclic-ordering</b> variant, rotations on disjoint index pairs run concurrently (the classical largest-pivot sweep is sequential).<br>
     <b>vs QR</b> &middot; slower than the QR algorithm (dart 103) for general use, but simpler and more accurate for small symmetric matrices &mdash; still the method of choice there.
   </div>
   <p style="margin-top:10px">A 19th-century planetary tool that turned out to suit the most parallel hardware of the 21st. <span class="tag t-open">Jacobi 1846</span></p>

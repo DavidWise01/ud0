@@ -83,7 +83,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
     <b>1973</b> &middot; <span class="who">Peter Weiner</span> builds the first linear-time suffix structure (he called it a <b>&ldquo;bi-tree,&rdquo;</b> built right-to-left) &mdash; Knuth reportedly called it &ldquo;the algorithm of the year.&rdquo;<br>
     <b>1976</b> &middot; <span class="who">Edward McCreight</span> gives the name <b>&ldquo;suffix tree,&rdquo;</b> a simpler left-to-right build, and <b>suffix links</b> &mdash; not Ukkonen&rsquo;s invention.<br>
     <b>1995</b> &middot; <span class="who">Esko Ukkonen</span> &mdash; the <b>online</b> (prefix-at-a-time) linear-time construction with the <b>active point</b>; the version people actually teach and implement.<br>
-    <b>the payoff</b> &middot; a string of length n has O(n&sup2;) substrings but only <b>O(n) distinct</b> ones (banana: <b>15</b>) &mdash; the tree stores them in linear space.
+    <b>the payoff</b> &middot; a string can have up to <b>&Theta;(n&sup2;) distinct</b> substrings (banana: <b>15</b>), yet the suffix tree represents them all with only <b>O(n) nodes</b> &mdash; linear space, not a linear count.
   </div>
   <p style="margin-top:10px">Suffix arrays (dart-adjacent) later gave the same power in less memory; the tree is still the clearest picture. <span class="tag t-open">Weiner 1973 / Ukkonen 1995</span></p>
 </div>
