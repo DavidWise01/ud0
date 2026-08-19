@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>INLINE EXPANSION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 154 &middot; a helldive at the net</span></div>
+<header>
+  <h1>INLINE EXPANSION <span class="c">paste the body at the call; the call vanishes</span></h1>
+  <p class="sub">Replace a call with a copy of the callee&rsquo;s body, its parameters bound to the arguments. The call overhead disappears and &mdash; more importantly &mdash; the body is now <b>exposed to the caller&rsquo;s context</b>, so constants flow in and the other passes fire across the old boundary. The enabler optimisation. In I-13, with <b>no closures</b>, inlining is pure textual substitution &mdash; no environment to capture.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">bind params, splice body, re-fold</span></h2>
+  <p>Inline <span class="k">inc(inc(5))</span>: paste <span class="k">inc</span>&rsquo;s body twice, bind the argument, and the constants collapse. Watch the call count fall to zero and the constant-fold finish the job: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>argument</label><input id="arg" type="number" value="5"><button id="go" class="dartbtn">&#9192; inline inc(inc(arg))</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">procedure integration; 1970s onward</span></h2>
+  <p class="myth">&ldquo;Inlining always makes code faster.&rdquo; &mdash; no. It trades <b>code size for call overhead</b>; over-inlining bloats the instruction cache and can slow things down. Every real inliner is a <b>budget</b> decision (size, call frequency), not an unconditional paste. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1970s</b> &middot; <span class="who">Allen &amp; Cocke</span> &mdash; procedure integration listed among the classical transformations; <span class="who">Scheer/Scheifler</span> (1977) gives an early cost model for when integration pays.<br><b>1978</b> &middot; <span class="who">Steele</span> &mdash; RABBIT (a Scheme compiler) does procedure integration by <b>beta-substitution</b>; <b>1989</b> &middot; <span class="who">Kelsey</span> &mdash; compilation by program transformation (ORBIT), inlining as beta-reduction. Two separate lines (not co-authors), both on the no-closures / substitution view.<br><b>1990s+</b> &middot; profile-guided inlining (SELF, Java HotSpot) &mdash; <span class="who">Ungar, H&ouml;lzle</span> make it adaptive and speculative.</div>
+  <p style="margin-top:10px">Inlining and tail-call elimination are complementary: inlining removes a call by copying, TCE (155) removes it by reusing the frame &mdash; a body you inline may still end in a tail call you then eliminate. <span class="tag t-open">Allen &amp; Cocke; Scheifler, 1977</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">same value, zero calls</span></h2>
+  <p>That inlining preserves the result &mdash; the called form and the pasted-and-folded form agree &mdash; holds on the canonical compiler:</p>
+  <div class="evi good">$ i13 run inline.i13   # inc(inc(5))  vs  ((5+1)+1)
+called  = 7   -- inc(inc(5)), two real calls
+inlined = 7   -- ((5+1)+1), inc's body pasted twice; zero calls</div>
+  <div class="rec"><b>Recommend:</b> inline expansion is <b>LIT and clean on I-13</b> &mdash; verified <span class="k">inc(inc(5))</span> and the hand-inlined <span class="k">((5+1)+1)</span> both give 7, with the inlined form making <b>zero</b> calls. Because I-13 has <b>no first-class functions or closures</b> (see dart 159), inlining is a pure parameter-for-argument substitution &mdash; no captured environment, no name capture beyond alpha-renaming &mdash; and it hands the spliced body straight to SCCP (151) and GVN (152). Guard it with a size budget.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var calls=0;
+  function inc(x){ calls++; return x+1; }
+  function run(){
+    var arg=+document.getElementById("arg").value||0, L=[];
+    calls=0; var called = inc(inc(arg)); var callsBefore=calls;
+    L.push("called form:   inc(inc("+arg+"))");
+    L.push("  real calls executed = <span class='bad'>"+callsBefore+"</span>, result = "+called+"\n");
+    // inline: paste body (x -> x+1) twice, then constant-fold
+    L.push("inline inc(x) = x + 1  (no closure: pure substitution)");
+    L.push("  inc(inc("+arg+"))");
+    L.push("  = inc(("+arg+" + 1))        <span class='dim'>// inner body pasted</span>");
+    var inner=arg+1;
+    L.push("  = (("+arg+" + 1) + 1)       <span class='dim'>// outer body pasted</span>");
+    var folded=inner+1;
+    L.push("  = <span class='cur'>"+folded+"</span>                  <span class='hit'>// constant-folded, calls = 0</span>");
+    out.innerHTML=L.join("\n");
+    say.innerHTML = (called===folded)
+      ? "= <span class='true'>"+folded+"</span> &middot; "+callsBefore+" calls &rarr; 0"
+      : "<span class='err'>mismatch</span>";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("arg").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 154 &middot; INLINE EXPANSION</b> &mdash; World V &middot; SONNY 5, the I-13 world. Procedure integration is a <b>classical Allen &amp; Cocke</b> transformation (1970s), made adaptive by profile-guided inliners (<b>H&ouml;lzle &amp; Ungar</b>, SELF, 1990s). It is <b>not</b> unconditionally beneficial &mdash; it trades code size for call overhead. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE OPTIMIZER</b> (batch 25) &mdash; the middle-end: the passes between the front-end (batches 22&ndash;23) and the evaluators (batch 24), companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

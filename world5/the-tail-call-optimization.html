@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TAIL CALL OPTIMIZATION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 155 &middot; a helldive at the net</span></div>
+<header>
+  <h1>TAIL CALL OPTIMIZATION <span class="c">a call in tail position is a GOTO; reuse the frame</span></h1>
+  <p class="sub">When a function&rsquo;s last act is to call another and return whatever it returns, there is <b>nothing left to do in the current frame</b> &mdash; so reuse it instead of stacking a new one. Deep tail recursion then runs in <b>constant stack</b>. This is the optimisation aimed squarely at I-13&rsquo;s hard wall: recursion is capped at <b>4096 frames</b>, and a tail-recursive loop hits it &mdash; measured here.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">the operand stack is empty at the call: measured</span></h2>
+  <p>A tail-recursive <span class="k">sumto(acc, n)</span> leaves the operand stack empty at each recursive call &mdash; so a TCO pass could reuse the frame. On the canonical compiler it does <b>not</b>: frames grow with <span class="k">n</span> and overflow at 4096. Slide <span class="k">n</span> and watch the real cliff: <span class="tag t-demo">live demo, measured</span></p>
+  <div class="row"><label>n</label><input id="n" type="range" min="100" max="9000" step="100" value="4000" style="width:200px"><span id="nv" class="kg"></span><button id="go" class="dartbtn" style="margin-left:8px">&#9192; frames with / without TCO</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Steele, 1977: not an optimisation, a semantics</span></h2>
+  <p class="myth">&ldquo;Tail-call optimisation is a nice-to-have compiler optimisation.&rdquo; &mdash; Steele&rsquo;s point in 1977 is the opposite: a tail call <b>is</b> a GOTO, and treating it as an expensive stack-pushing call is the mistake. In Scheme, proper tail calls are <b>required by the standard</b>, not optional. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1977</b> &middot; <span class="who">Guy L. Steele Jr.</span> &mdash; &ldquo;Debunking the &lsquo;Expensive Procedure Call&rsquo; Myth, or, Procedure Call Implementations Considered Harmful, or, Lambda: The Ultimate GOTO&rdquo; (AI Memo 443): a tail call compiles to a jump.<br><b>1975&ndash;79</b> &middot; <span class="who">Steele &amp; Sussman</span> &mdash; the Lambda Papers; Scheme is designed so recursion in tail position <b>is</b> iteration.<br><b>1998</b> &middot; <span class="who">R5RS</span> and successors <b>mandate</b> proper tail recursion &mdash; an implementation that grows the stack on tail calls is non-conforming.</div>
+  <p style="margin-top:10px">&ldquo;Tail position&rdquo; is syntactic: the call whose result <i>is</i> the caller&rsquo;s result, with no pending operation after it. That is exactly when the frame carries nothing worth keeping. <span class="tag t-open">Steele, 1977 (AI Memo 443)</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the wall this dart is built for</span></h2>
+  <p>The canonical compiler <b>does not</b> yet eliminate tail calls &mdash; measured directly (peak operand stack stays flat while frames grow, then overflow):</p>
+  <div class="evi good">$ i13 run tco.i13    # sumto(0,4000): tail-recursive accumulator sum
+RUN OK  57423 steps  <span class='g'>peak stack 4</span>  <span class='cur'>call depth 4001</span>
+s4000 = 8002000       -- correct, but 4001 frames deep
+
+$ i13 run tco2.i13   # sumto(0,9000): past the cap
+<span class='bad'>error[E0503] runtime/resource: I13 execution exceeded 4096 frames</span></div>
+  <div class="rec"><b>Recommend:</b> tail-call elimination is <b>the highest-value OPEN pass for I-13</b>, and this dart carries the measurement to prove it: <span class="k">sumto(0,4000)</span> runs correctly with <b>peak operand stack 4</b> (nothing pending &mdash; every recursive call is genuinely in tail position) yet <b>call depth 4001</b>, and <span class="k">sumto(0,9000)</span> hits <span class="k">error E0503: exceeded 4096 frames</span>. The flat operand stack is the proof that a TCO pass could reuse the frame and lift the recursion wall for the entire class of accumulator loops. The studio&rsquo;s rev5 already carries a tail-call form; the canonical H1.1 compiler does not &mdash; a clean, motivated target. <span class="tag t-open">OPEN on canonical i13</span></div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var CAP=4096;
+  function run(){
+    var n=+document.getElementById("n").value, L=[];
+    document.getElementById("nv").textContent=n;
+    // without TCO: one frame per recursive call (measured: depth = n+1)
+    var framesNo = n+1;
+    var overflow = framesNo > CAP;
+    // with TCO: constant stack
+    var framesYes = 1;
+    L.push("sumto(0, "+n+")   (tail-recursive accumulator sum)\n");
+    L.push("WITHOUT TCO (canonical i13):");
+    L.push("  frames = n+1 = <span class='"+(overflow?"bad":"cur")+"'>"+framesNo+"</span>   operand stack = <span class='g'>4</span> (flat: nothing pending)");
+    L.push("  "+(overflow ? "<span class='bad'>OVERFLOW &mdash; error E0503: exceeded "+CAP+" frames</span>" : "runs, but "+framesNo+" frames deep (cap "+CAP+")"));
+    L.push("");
+    L.push("WITH TCO (reuse the tail frame):");
+    L.push("  frames = <span class='hit'>"+framesYes+"</span> (constant stack)   result = "+(n*(n+1)/2));
+    L.push("  <span class='hit'>runs for any n</span> &mdash; the wall is gone");
+    // the cliff marker
+    var bar="", w=40, fill=Math.min(w, Math.round(w*Math.min(n,CAP)/CAP));
+    for(var i=0;i<w;i++) bar += (i===Math.round(w*CAP/9000)? "|" : (i<fill?"#":"."));
+    L.push("\nframe budget  ["+bar+"]  cap 4096"+(overflow?"  <span class='bad'>&lt;-- exceeded</span>":""));
+    out.innerHTML=L.join("\n");
+    say.innerHTML = overflow
+      ? "n="+n+": <span class='err'>overflow without TCO</span> &middot; TCO: 1 frame"
+      : "n="+n+": <span class='true'>"+framesNo+"</span> frames &rarr; TCO: <span class='true'>1</span>";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("n").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 155 &middot; TAIL CALL OPTIMIZATION</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Guy L. Steele Jr.</b> &mdash; &ldquo;Lambda: The Ultimate GOTO&rdquo; / &ldquo;Debunking the Expensive Procedure Call Myth&rdquo; (AI Memo 443, 1977); proper tail calls are <b>mandated</b> by the Scheme standard (R5RS, 1998). It is a <b>semantics</b>, not an optional optimisation &mdash; and it is measurably absent from the canonical I-13 compiler. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE OPTIMIZER</b> (batch 25) &mdash; the middle-end: the passes between the front-end (batches 22&ndash;23) and the evaluators (batch 24), companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
