@@ -65,7 +65,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 <div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 122 &middot; a helldive at the net</span></div>
 <header>
   <h1>QUADRATIC SIEVE <span class="c">manufacture a congruence, let gcd finish</span></h1>
-  <p class="sub">Factor <span class="k">n</span> without ever guessing a factor. <b>Sieve</b> the values <span class="k">Q(a) = a&sup2; &minus; n</span> near <span class="k">&radic;n</span> for ones that are <b>smooth</b> (factor completely over a small prime base); combine two whose product is a <b>perfect square</b>, giving <span class="k">x&sup2; &equiv; y&sup2; (mod n)</span>; then <span class="k">gcd(x&minus;y, n)</span> is almost always a real factor. The fastest classical method below ~100 digits.</p>
+  <p class="sub">Factor <span class="k">n</span> without ever guessing a factor. <b>Sieve</b> the values <span class="k">Q(a) = a&sup2; &minus; n</span> near <span class="k">&radic;n</span> for ones that are <b>smooth</b> (factor completely over a small prime base); combine two whose product is a <b>perfect square</b>, giving <span class="k">x&sup2; &equiv; y&sup2; (mod n)</span>; then <span class="k">gcd(x&minus;y, n)</span> splits n at least <b>half the time</b> (spare relations cover the misses). The fastest classical method below ~100 digits.</p>
 </header>
 
 <div class="panel">
@@ -78,7 +78,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 
 <div class="panel">
   <h2>HISTORY &amp; CREDIT <span class="n">the heart is Kraitchik's</span></h2>
-  <p class="myth">&ldquo;Fastest factoring algorithm ever&rdquo; &mdash; only <s>ever</s> <b>of its era</b> (early-80s to ~1990); the number field sieve overtook it, and it is still simplest below ~100 digits. <span class="tag t-cited">cited</span></p>
+  <p class="myth">&ldquo;Fastest factoring algorithm ever&rdquo; &mdash; only <s>ever</s> <b>of its era</b> (early-80s to the <b>mid-90s</b>: RSA-129 still fell to MPQS in 1994; GNFS took the record at RSA-130 in 1996); it stays simplest below ~100 digits. <span class="tag t-cited">cited</span></p>
   <div class="chain">
     <b>c.1643</b> &middot; <span class="who">Fermat</b>&rsquo;s difference-of-squares <span class="k">n = u&sup2; &minus; v&sup2;</span> &mdash; the direct ancestor, fast only when the factors are close.<br>
     <b>1920s</b> &middot; <span class="who">Maurice Kraitchik</span> &mdash; the decisive idea under <b>all</b> modern factoring: don&rsquo;t demand <span class="k">u&sup2;&minus;v&sup2;=n</span>, just <span class="k">u&sup2; &equiv; v&sup2; (mod n)</span>. This congruence-of-squares is the actual heart of QS.<br>

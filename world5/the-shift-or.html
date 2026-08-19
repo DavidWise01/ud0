@@ -96,7 +96,7 @@ R: 7 -> 6 -> 6 -> 5 -> 3     reading a,a,b,c
 bit2 of final R = 0  ->  MATCH ending at index 3 (start 1)</div>
   <div class="rec">
     <b>Recommend:</b> <b>nothing new</b> &mdash; the masks are an f64 array indexed by code point; the state is one integer; each step is <span class="k">(R &lt;&lt; 1) | mask</span> masked to m bits (bitwise, dart 029), and the match test is <span class="k">R &amp; (1&lt;&lt;(m&minus;1)) == 0</span> (verified R walks 7&rarr;6&rarr;6&rarr;5&rarr;3, high bit clears, match at index 3). O(1) extra space survives directly on bounded arrays.<br>
-    <b>Note:</b> it joins the standing <b>string</b> family (Boyer-Moore 061, KMP 063, Two-Way 113) &mdash; but where those precompute tables of size m, Shift-Or is the one that needs <b>no auxiliary array at all</b>, only the machine word.
+    <b>Note:</b> it joins the standing <b>string</b> family (Boyer-Moore 061, KMP 063) &mdash; but where those precompute <b>size-m pattern tables</b>, Shift-Or carries the whole matcher <b>state in one machine word</b> (its only table is the small per-character mask, size of the alphabet, not the pattern).
   </div>
 </div>
 

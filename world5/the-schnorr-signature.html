@@ -65,7 +65,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 <div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 120 &middot; a helldive at the net</span></div>
 <header>
   <h1>SCHNORR SIGNATURE <span class="c">one short signature, three people's ideas</span></h1>
-  <p class="sub">A compact discrete-log signature. Commit to a random nonce (<span class="k">r = g<sup>k</sup></span>), hash the commitment <b>with the message</b> to a challenge <span class="k">e</span>, answer <span class="k">s = k &minus; x&middot;e</span>. Verify by checking <span class="k">g<sup>s</sup> y<sup>e</sup> = r</span>. Short, fast, provably unforgeable &mdash; the signature now under <b>Bitcoin&rsquo;s Taproot</b>. It composes ElGamal&rsquo;s problem, Fiat-Shamir&rsquo;s trick, and Schnorr&rsquo;s compression.</p>
+  <p class="sub">A compact discrete-log signature. Commit to a random nonce (<span class="k">r = g<sup>k</sup></span>), hash the commitment <b>with the message</b> to a challenge <span class="k">e</span>, answer <span class="k">s = k &minus; x&middot;e</span>. Verify by checking <span class="k">g<sup>s</sup> y<sup>e</sup> = r</span>. Short, fast, provably unforgeable <b>in the random-oracle model</b> &mdash; the signature now under <b>Bitcoin&rsquo;s Taproot</b>. It composes ElGamal&rsquo;s problem, Fiat-Shamir&rsquo;s trick, and Schnorr&rsquo;s compression.</p>
 </header>
 
 <div class="panel">
@@ -83,7 +83,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
     <b>1985</b> &middot; <span class="who">Taher Elgamal</span> gives the <b>first</b> discrete-log signature &mdash; Schnorr&rsquo;s direct ancestor, which his own paper cites.<br>
     <b>1986</b> &middot; <span class="who">Fiat &amp; Shamir</span> &mdash; the heuristic that turns an interactive identification protocol non-interactive by <b>hashing the commitment</b>. The Schnorr <i>signature</i> is Fiat-Shamir applied to Schnorr <i>identification</i>.<br>
     <b>1989</b> &middot; <span class="who">Claus-Peter Schnorr</span> presents it at <b>CRYPTO &rsquo;89</b> (not the 1991 Journal of Cryptology date usually cited). His genuine contribution: work in a small prime-order-<b>q</b> subgroup and hash <b>with the message</b> &mdash; the <b>compression</b>.<br>
-    <b>1996</b> &middot; <span class="who">Pointcheval &amp; Stern</b>&rsquo;s <b>Forking Lemma</b> gives the first unforgeability proof (random-oracle, discrete-log) &mdash; a <b>loose</b> reduction, a caveat often dropped. The patent (US 4,995,082) actually lapsed <b>Feb 2010</b>; Bitcoin used ECDSA in 2009 precisely because Schnorr was still covered.
+    <b>1996</b> &middot; <span class="who">Pointcheval &amp; Stern</b>&rsquo;s <b>Forking Lemma</b> gives the first unforgeability proof (random-oracle, discrete-log) &mdash; a <b>loose</b> reduction, a caveat often dropped. The patent (US 4,995,082) actually lapsed <b>Feb 2010</b>, so Bitcoin used patent-free ECDSA in 2009 while Schnorr was still covered (Satoshi never stated a reason); Schnorr reached Bitcoin only with Taproot (2021).
   </div>
   <p style="margin-top:10px">The eponym is <b>correct</b> &mdash; not a naming accident &mdash; but the scheme is a three-way composition. <span class="tag t-open">Schnorr, CRYPTO &rsquo;89</span></p>
 </div>
@@ -96,7 +96,7 @@ y = g^x = 8   r = g^k = 9   s = k-x*e mod q = 4
 verify: g^s * y^e mod p = 2^4 * 8^4 = 9  ==  r   ACCEPT</div>
   <div class="rec">
     <b>Recommend:</b> <b>nothing new</b> &mdash; <span class="k">y=g<sup>x</sup></span>, <span class="k">r=g<sup>k</sup></span>, and the verify <span class="k">g<sup>s</sup>y<sup>e</sup></span> are the bignum <b>modexp</b> the corpus already runs (darts 032/035/050); <span class="k">s = k&minus;xe mod q</span> is one modular subtract (verified <span class="k">g<sup>s</sup>y<sup>e</sup> = 9 = r</span>, accept). Only the hash <span class="k">H(r,m)</span> is stubbed &mdash; a real one is SHA (a bitwise/rotate build).<br>
-    <b>Note:</b> it ties RSA (050) and Rabin (116) on primitives, and carries a live footgun the corpus can demonstrate: <span class="k">s</span> is <b>linear in the nonce k</b>, so signing twice with the same k solves two equations for the private <span class="k">x</span> &mdash; the exact 2010 PlayStation-3 / Bitcoin-wallet break.
+    <b>Note:</b> it ties RSA (050) and Rabin (116) on primitives, and carries a live footgun the corpus can demonstrate: <span class="k">s</span> is <b>linear in the nonce k</b>, so signing twice with the same k solves two equations for the private <span class="k">x</span> &mdash; the <b>same nonce-reuse flaw</b> (shared with ECDSA) exploited in the 2010 PlayStation-3 and Bitcoin-wallet key extractions.
   </div>
 </div>
 

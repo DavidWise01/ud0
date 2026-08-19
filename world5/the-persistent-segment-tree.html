@@ -104,25 +104,41 @@ v1 still queryable = 13    both versions coexist, disagree by exactly 7</div>
 
 (function(){
   var out=document.getElementById("out"), say=document.getElementById("say");
+  // real range-sum segment-tree nodes {lo,hi,sum,L,R} - built, queried, and path-copied for real
+  function build(a,lo,hi){ if(lo===hi) return {lo:lo,hi:hi,sum:a[lo],L:null,R:null};
+    var m=(lo+hi)>>1, L=build(a,lo,m), R=build(a,m+1,hi); return {lo:lo,hi:hi,sum:L.sum+R.sum,L:L,R:R}; }
+  function query(nd,l,r){ if(!nd||nd.hi<l||nd.lo>r) return 0; if(l<=nd.lo&&nd.hi<=r) return nd.sum;
+    return query(nd.L,l,r)+query(nd.R,l,r); }
+  var allocated;
+  function update(nd,i,v){ allocated++;                 // count each NEW node on the path
+    if(nd.lo===nd.hi) return {lo:nd.lo,hi:nd.hi,sum:v,L:null,R:null};
+    var m=(nd.lo+nd.hi)>>1;
+    if(i<=m){ var nl=update(nd.L,i,v); return {lo:nd.lo,hi:nd.hi,sum:nl.sum+nd.R.sum,L:nl,R:nd.R}; } // nd.R SHARED
+    var nr=update(nd.R,i,v); return {lo:nd.lo,hi:nd.hi,sum:nd.L.sum+nr.sum,L:nd.L,R:nr}; }            // nd.L SHARED
+  function nodes(nd){ return nd? 1+nodes(nd.L)+nodes(nd.R):0; }
   function run(){
     var A=[5,2,3,8];
-    // v1 tree (perfect, 4 leaves)
-    var v1={label:"root[0,3]",sum:18,L:{label:"L[0,1]",sum:7,L:{label:"[0,0]",sum:5},R:{label:"[1,1]",sum:2}},
-                                    R:{label:"R[2,3]",sum:11,L:{label:"[2,2]",sum:3},R:{label:"[3,3]",sum:8}}};
-    var s="version 1:  A = [5, 2, 3, 8]\n";
-    s+="  root[0,3]=18\n   |-- L[0,1]=7            R[2,3]=11\n   |    |-[0,0]=5             |-[2,2]=3\n   |    |-[1,1]=2             |-[3,3]=8\n";
-    s+="  (7 nodes: 4 leaves + 3 internal)\n\n";
-    s+="query v1 range-sum[1,3] = [1,1] + [2,3] = 2 + 11 = <span class='hit'>13</span>\n\n";
-    s+="update A[2] = 10  ->  fork version 2 (path root -> R[2,3] -> [2,2]):\n";
-    s+="  <span class='cur'>new [2,2] = 10</span>                          (copy 1)\n";
-    s+="  <span class='cur'>new R'[2,3] = 10 + 8 = 18</span>   reuses OLD [3,3]=8   (copy 2)\n";
-    s+="  <span class='cur'>new root'[0,3] = 7 + 18 = 25</span>  reuses OLD L[0,1]     (copy 3)\n";
-    s+="  <span class='dim'>shared: [0,0], [1,1], L[0,1], [3,3]  (4 nodes NOT copied)</span>\n\n";
-    s+="query v2 range-sum[1,3] = [1,1] + [2,3] = 2 + 18 = <span class='hit'>20</span>\n";
-    s+="query v1 range-sum[1,3] again = <span class='hit'>13</span>   <span class='dim'>(v1 untouched by the fork)</span>\n\n";
-    s+="cost: version 2 adds only 3 NEW nodes -> total 7 + 3 = 10 nodes for TWO versions, not 7+7=14";
+    var v1=build(A,0,3);
+    var q1=query(v1,1,3);                     // computed
+    allocated=0;
+    var v2=update(v1,2,10);                   // fork: path-copy only
+    var q2=query(v2,1,3);                     // computed on the new version
+    var q1b=query(v1,1,3);                    // v1 object never mutated
+    var sharedLeft=(v2.L===v1.L);             // whole left subtree is the SAME object
+    var sharedLeaf=(v2.R.R===v1.R.R);         // [3,3] leaf reused by reference
+    var n1=nodes(v1);
+    var s="version 1:  A = [5, 2, 3, 8]  (range-sum segment tree)\n";
+    s+="  root[0,3]="+v1.sum+"\n   |-- L[0,1]="+v1.L.sum+"            R[2,3]="+v1.R.sum+"\n";
+    s+="   |    |-[0,0]="+v1.L.L.sum+"             |-[2,2]="+v1.R.L.sum+"\n   |    |-[1,1]="+v1.L.R.sum+"             |-[3,3]="+v1.R.R.sum+"\n";
+    s+="  ("+n1+" nodes)   query v1 range-sum[1,3] = <span class='hit'>"+q1+"</span>   [computed]\n\n";
+    s+="update A[2]=10  ->  fork version 2 by PATH COPYING (root -> R[2,3] -> [2,2]):\n";
+    s+="  <span class='cur'>nodes allocated on the path = "+allocated+"</span>   new root sum = "+v2.sum+"  (v1 root still "+v1.sum+")\n";
+    s+="  <span class='dim'>shared by reference (not copied):  v2.L === v1.L : "+sharedLeft+"    [3,3] leaf reused : "+sharedLeaf+"</span>\n\n";
+    s+="query v2 range-sum[1,3] = <span class='hit'>"+q2+"</span>   [computed on the fork]\n";
+    s+="query v1 range-sum[1,3] again = <span class='hit'>"+q1b+"</span>   <span class='dim'>(same v1 object, never mutated)</span>\n\n";
+    s+="cost: v1 "+n1+" nodes + v2 path "+allocated+" new = <span class='hit'>"+(n1+allocated)+"</span> total for TWO versions, not "+(2*n1)+" (=7+7)";
     out.innerHTML=s;
-    say.innerHTML='v1=<span class="true">13</span>, v2=<span class="true">20</span>, delta 7 &middot; path copied 3 nodes, shared 4';
+    say.innerHTML='v1=<span class="true">'+q1+'</span>, v2=<span class="true">'+q2+'</span>, v1-after=<span class="true">'+q1b+'</span> &middot; '+allocated+' copied, left subtree shared ('+sharedLeft+')';
   }
   document.getElementById("go").onclick=run;
   out.innerHTML="press to update index 2 and fork a new version";

@@ -64,7 +64,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 <body>
 <div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 121 &middot; a helldive at the net</span></div>
 <header>
-  <h1>BRENT'S METHOD <span class="c">never slower than bisection, usually much faster</span></h1>
+  <h1>BRENT'S METHOD <span class="c">never much slower than bisection, usually much faster</span></h1>
   <p class="sub">The default scalar root-finder in <b>SciPy&rsquo;s brentq</b> and the engine under <b>MATLAB&rsquo;s fzero</b>. Keep a bracket <span class="k">[a,b]</span> that always straddles the root; each step, <b>try</b> the fast method (inverse quadratic interpolation or secant) but <b>fall back to bisection</b> whenever the fast step would leave the bracket or stall. You get secant-like speed with bisection&rsquo;s guarantee &mdash; convergence is never lost.</p>
 </header>
 
@@ -79,7 +79,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
   <h2>HISTORY &amp; CREDIT <span class="n">the bracket-keeper is Dekker's</span></h2>
   <p class="myth">&ldquo;Brent&rsquo;s method (1973)&rdquo; &mdash; the debut is <s>1973</s> <b>1971</b> (Computer Journal 14(4), received Aug 1970); the 1973 book is a re-presentation. <span class="tag t-cited">cited</span></p>
   <div class="chain">
-    <b>antiquity</b> &middot; <b>regula falsi</b> (false position) &mdash; bracket two guesses and interpolate &mdash; is in the Rhind Papyrus (c. 1550 BCE); the <b>secant</b> and <b>IQI</b> steps long predate Brent.<br>
+    <b>antiquity</b> &middot; <b>false position</b> is ancient &mdash; the Rhind Papyrus (c. 1550 BCE) uses <b>single</b> false position (one trial value, then scale); the two-guess <b>bracketing</b> form (double false position) and the <b>secant</b> / <b>IQI</b> steps came later, all long predating Brent.<br>
     <b>1969</b> &middot; <span class="who">T. J. Dekker</span> publishes <b>zeroin</b>: the bracket-keeping <b>secant + bisection</b> hybrid with guaranteed convergence &mdash; the true origin Brent builds on and even keywords as &ldquo;Dekker&rsquo;s algorithm.&rdquo;<br>
     <b>1971</b> &middot; <span class="who">R. P. Brent</span> adds (1) <b>inverse quadratic interpolation</b> and (2) the <b>safety inequalities</b> that decide when to fall back to bisection &mdash; his genuine originality is the <b>safeguarded combination with a proven bound</b>, not any single step.<br>
     <b>the third name</b> &middot; <span class="who">van Wijngaarden</span> directed the Amsterdam Mathematisch Centrum where Dekker worked; there is <b>no separate van Wijngaarden paper</b> &mdash; it is institutional credit (and MathWorld even mis-spells &ldquo;Deker&rdquo;).
