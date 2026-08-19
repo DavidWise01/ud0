@@ -1276,14 +1276,14 @@
       "credit": "Morris devised it first (1969); Morris & Pratt's 1970 Berkeley report; Knuth derived it independently from Cook's automata theorem; the three published jointly 1977. 'KMP' is alphabetical order, not priority",
       "source": "Morris & Pratt, UC Berkeley Tech Rep 40, 1970; Knuth, Morris & Pratt, 'Fast Pattern Matching in Strings', SIAM J. Computing 6(2), June 1977 (Boyer-Moore was CACM 20(10), October 1977 - same year, not same issue)",
       "i13_recommend": "nothing new - the failure table is a bounded array of small integers (fail('ABABAC')=[0,0,1,2,3,0]), the scan is two advancing indices with single-character equality, all f64-representable. Like Boyer-Moore (061) the only awkward piece is a list of match positions as output (the array-return / multiple-return frontier). Where Boyer-Moore's sublinear speed is average-case, KMP guarantees worst-case linear O(n+m); both are clean bounded-array work.",
-      "blurb": "Boyer-Moore (dart 061) reads the pattern backwards; KMP reads forwards but never re-reads a character of the text - on a mismatch it slides the pattern by exactly how much its own prefix repeats, a number precomputed into a failure table (the longest proper prefix that is also a suffix, at each position). Linear time, guaranteed. The credit is a real priority split flattened by an alphabetical name: James Morris devised it first in 1969 (to avoid backing up a text-editor buffer), with Vaughan Pratt it became a 1970 Berkeley report, and Donald Knuth independently derived essentially the same from Cook's theorem on two-way pushdown automata - then was, in his words, 'chagrined to learn Morris had already discovered the algorithm'; the three published jointly in 1977 (the same YEAR as Boyer-Moore, not the same issue - KMP in SIAM J. Computing in June, Boyer-Moore in CACM in October). In real I-13 the failure table is a bounded array of small integers (verified fail('ABABAC')=[0,0,1,2,3,0]) and the scan is two advancing indices with character equality; the only awkward part is the list of match positions, the array-return / multiple-return frontier.",
+      "blurb": "Boyer-Moore (dart 061) reads the pattern backwards; KMP reads forwards but never re-reads a character of the text - on a mismatch it slides the pattern by exactly how much its own prefix repeats, a number precomputed into a failure table (the longest proper prefix that is also a suffix, at each position). Linear time, guaranteed. The credit is a real priority split flattened by an alphabetical name: James Morris devised it first in 1969 (to avoid backing up a text-editor buffer), with Vaughan Pratt it became a 1970 Berkeley report, and Donald Knuth independently derived essentially the same from Cook's theorem on two-way deterministic pushdown automata - then was, in his words, 'chagrined to learn Morris had already discovered the algorithm'; the three published jointly in 1977 (the same YEAR as Boyer-Moore, not the same issue - KMP in SIAM J. Computing in June, Boyer-Moore in CACM in October). In real I-13 the failure table is a bounded array of small integers (verified fail('ABABAC')=[0,0,1,2,3,0]) and the scan is two advancing indices with character equality; the only awkward part is the list of match positions, the array-return / multiple-return frontier.",
       "room": "darts",
       "accent": "#3ef0ff",
       "stamp": "DEMO",
       "kind": "dart",
       "kicker": "dart 063 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-knuth-morris-pratt.html",
-      "seal": "5e10cf96b67576518e563561ef643ac57b6f7a3610a468a9f8d8b33f6dc4b786"
+      "seal": "fe75ab9b5ad9065e2e6e65675bc536d475eba7a79b7e772335ef7d608d34cb37"
     },
     {
       "slug": "the-hungarian-algorithm",
@@ -1291,16 +1291,16 @@
       "dartno": "064",
       "version": "v0.13",
       "credit": "Harold Kuhn (1955) named it 'Hungarian' to honor Konig & Egervary (1931); Munkres (1957) gave the first polynomial proof (the O(n^3) form came via Tomizawa 1971 / Edmonds-Karp 1972); and Jacobi had it in the 1840s (found only ~2006)",
-      "source": "Kuhn 1955; Konig & Egervary 1931; Munkres 1957; Tomizawa 1971 & Edmonds-Karp 1972 (O(n^3)); Jacobi (d.1851, publ. posthumously in Latin 1890, rediscovered by Francois Ollivier ~2006)",
+      "source": "Kuhn 1955; Konig & Egervary 1931; Munkres 1957; Tomizawa 1971 & Edmonds-Karp 1972 (O(n^3)); Jacobi (d.1851, first publ. posthumously in Latin 1865 (Crelle); collected-works reprint 1890, rediscovered by Francois Ollivier ~2006)",
       "i13_recommend": "presses PS-004 (a 2-D array) - the same want Smith-Waterman (054) and knapsack (053) named. The whole method operates on an n-by-n cost matrix (row and column reductions, zero-covering, augmenting paths); I-13's array is 1-D, so an n-by-n matrix is either a flattened row-major 1-D array (index i*n+j, runs today with manual index math) or the genuine 2-D array the box lists. The reductions and coverings are indexed reads and writes; no bignum, no bitwise.",
-      "blurb": "Assign n workers to n jobs, each pair with a cost, so the total is smallest - in polynomial time, not by trying all n! matchings. Reduce each row and column by its minimum (subtracting a constant from a whole row or column leaves the optimal assignment unchanged), cover all zeros with the fewest lines, and when n lines are needed a zero-cost perfect assignment exists. The name hides a triple credit story: Harold Kuhn (1955) named it 'the Hungarian method' to HONOUR the earlier Hungarians Denes Konig and Jeno Egervary (1931) whose theorems it rests on - a rare case of an author crediting his sources in the title - while Carl Gustav Jacobi had essentially the algorithm in the 1840s (buried as a subroutine of a differential-equations bound, published posthumously in Latin in 1890 and rediscovered only around 2006; Kuhn later wrote 'How Jacobi Beat Me by 100 Years'), and James Munkres gave the first rigorous polynomial proof in 1957 (the crisp O(n^3) form is Tomizawa 1971 and Edmonds-Karp 1972). In real I-13 the cost matrix is a 2-D array (the open want PS-004, with Smith-Waterman-054 and knapsack-053): a flattened row-major 1-D array runs it today (index i*n+j), verified min-cost assignments; a real 2-D array would let the row/column operations read like the textbook.",
+      "blurb": "Assign n workers to n jobs, each pair with a cost, so the total is smallest - in polynomial time, not by trying all n! matchings. Reduce each row and column by its minimum (subtracting a constant from a whole row or column leaves the optimal assignment unchanged), cover all zeros with the fewest lines, and when n lines are needed a zero-cost perfect assignment exists. The name hides a triple credit story: Harold Kuhn (1955) named it 'the Hungarian method' to HONOUR the earlier Hungarians Denes Konig and Jeno Egervary (1931) whose theorems it rests on - a rare case of an author crediting his sources in the title - while Carl Gustav Jacobi had essentially the algorithm in the 1840s (buried as a subroutine of a differential-equations bound, first published posthumously in Latin in 1865 (Crelle Journal; reprinted in his collected works 1890) and rediscovered only around 2006; Kuhn later wrote 'How Jacobi Beat Me by 100 Years'), and James Munkres gave the first rigorous polynomial proof in 1957 (the crisp O(n^3) form is Tomizawa 1971 and Edmonds-Karp 1972). In real I-13 the cost matrix is a 2-D array (the open want PS-004, with Smith-Waterman-054 and knapsack-053): a flattened row-major 1-D array runs it today (index i*n+j), verified min-cost assignments; a real 2-D array would let the row/column operations read like the textbook.",
       "room": "darts",
       "accent": "#3ef0ff",
       "stamp": "DEMO",
       "kind": "dart",
       "kicker": "dart 064 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-hungarian-algorithm.html",
-      "seal": "6da74fd07b7f79341d9ec25f3fe1e1b412abc2679ce43572086bbf04d31c892b"
+      "seal": "fea6a30b6c2c909c1aa761e883fe0b75ce7abcb8fd8d8fbbb720bd989605d34e"
     },
     {
       "slug": "the-burrows-wheeler-transform",
@@ -1334,7 +1334,7 @@
     "keepers": 1,
     "darts": 65
   },
-  "i13_root": "88a15b5cbc6ed7440286103e81e77f7972b41b87c498dc465e4987c303b03326",
+  "i13_root": "ecf8f49ee2c654b8d26c3612480b56024849c07d4940f03ecdaa69a4cf37fb52",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
