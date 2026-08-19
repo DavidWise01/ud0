@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE COMPOUND &amp; compIle 13 &mdash; a fold &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;--violet:#a06bff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1040px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 520px at 50% -10%,rgba(160,107,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.fold{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--violet);border:1px solid var(--violet);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(160,107,255,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(160,107,255,.6),0 0 34px rgba(160,107,255,.22);}
+h1 .c{color:var(--gold);font-size:15px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:82ch;}
+.sub b{color:var(--cyan);} .sub .v{color:var(--violet);}
+.prov{font-size:11px;color:var(--dim);margin-top:8px;border-left:2px solid var(--line);padding-left:10px;} .prov b{color:var(--gold);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;letter-spacing:1px;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--cyan);border:1px solid var(--line);border-radius:5px;padding:7px 11px;cursor:pointer;letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.on{border-color:var(--bad);color:var(--bad);} button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.res{font-size:14px;margin-top:8px;} .res .true{color:var(--good);} .res .err{color:var(--bad);}
+.mono{font-family:inherit;font-size:12px;letter-spacing:.3px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;}
+.tile{border:1px solid var(--line);border-radius:6px;padding:8px;text-align:center;background:rgba(0,0,0,.3);}
+.tile .v{font-size:20px;font-weight:700;color:var(--cyan);} .tile .l{font-size:9.5px;color:var(--dim);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.tile.good .v{color:var(--good);} .tile.bad .v{color:var(--bad);} .tile.v .v{color:var(--violet);}
+.stamp{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:6px;}
+.s-lit{color:var(--good);border-color:var(--good);} .s-amber{color:var(--gold);border-color:var(--gold);} .s-open{color:var(--orange);border-color:var(--orange);}
+.reflist{font-size:11.5px;color:#bcd6ee;line-height:1.9;} .reflist s{color:var(--bad);} .reflist b{color:var(--gold);}
+table.grade{width:100%;border-collapse:collapse;font-size:11.5px;margin:8px 0;}
+table.grade th,table.grade td{border:1px solid var(--line);padding:5px 8px;text-align:left;}
+table.grade th{color:var(--cyan);letter-spacing:1px;font-size:10px;text-transform:uppercase;}
+table.grade td.num{text-align:right;color:#eafcff;}
+table.grade tr.open td{color:var(--orange);} table.grade tr.open td.num{color:var(--orange);}
+.led{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:11.5px;margin:6px 0;}
+.led .s{font-weight:700;letter-spacing:1px;white-space:nowrap;}
+.led .lit{color:var(--good);} .led .amb{color:var(--gold);} .led .opn{color:var(--orange);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+@media(max-width:640px){.tiles{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="fold">A FOLD &middot; the frozen studio</span></div>
+<header>
+  <h1>THE COMPOUND <span class="c">&middot; and compIle 13</span></h1>
+  <div class="sub">David&rsquo;s latest frozen drop &mdash; <b>I-13 Studio v0.15 P0</b>, the name he gives the whole instrument: <b>&ldquo;The Compound and compIle 13.&rdquo;</b> A working compiler that <span class="v">talks back</span> &mdash; it lexes, validates, lowers and <b>runs</b> its own language on a real WebAssembly VM in the browser &mdash; wrapped in the honesty apparatus that measures, and <span class="v">refuses to overstate</span>, what it has proven. The most trustworthy thing in the package is that its own rubric will not call it a pass.</div>
+  <div class="prov">Read every bit and audited this session: 3 deep readers + 3 adversarial &ldquo;spheres&rdquo; (overclaim hunt, a prover that <b>ran v0.14 vs v0.15</b> on identical source, an independence skeptic). Every LIT stamp below is tied to something re-run here &mdash; candidate <b>sha256 f645f9b4&hellip;</b>, corpus <b>1.6.0 5ec0e09d&hellip;</b>.</div>
+</header>
+
+<div class="panel">
+  <h2>WHAT THE COMPOUND IS <span class="n">studio + harness + corpus + contract</span></h2>
+  <p><b>&ldquo;The Compound&rdquo;</b> names the whole instrument &mdash; it is not a symbol in the code (a grep over the tree returns <b>0 hits</b>); it is David&rsquo;s word for four parts that ship frozen together:</p>
+  <div class="reflist">
+    &#9670; <b>STUDIO</b> &mdash; a self-contained browser app (<span class="k">i13-suite-v0.15.html</span>) that lexes, parses, self-verifies, lowers, validates and <b>executes</b> I-13, launched by a trivial Python static server that does <i>no</i> computation of its own. &middot;
+    &#9670; <b>HARNESS</b> &mdash; the benchmark runner, the &ldquo;external&rdquo; verifier, and a build chain where each <span class="k">build_i13_v0NN.py</span> is a surgical single-defect patch on the previous <span class="k">.pyz</span>. &middot;
+    &#9670; <b>CORPUS</b> &mdash; 96 frozen public cases plus differentials and a non-canonical diagnostic supplement. &middot;
+    &#9670; <b>CONTRACT</b> &mdash; <span class="k">I13-BC-1.0</span>, a sealed rubric (its own SHA in FREEZE_SEAL.json) that grades the candidate and, <i>by construction</i>, can never rate a self-graded run as passing.
+  </div>
+</div>
+
+<div class="panel">
+  <h2>THE LIVE PIPELINE &mdash; source becomes an 8.5&nbsp;KB WASM VM <span class="n">it really runs &middot; LIT<span class="stamp s-lit">headless Node re-run this session</span></span></h2>
+  <p>The whole compiler lives in the HTML. Source &rarr; <b>tokens</b> (byte-accurate char &amp; UTF-8 spans) &rarr; <b>AST</b> (recursive descent, scope &amp; return rules enforced at parse time) &rarr; a <b>self-verifier</b> that re-slices every span to prove offsets round-trip <i>and honestly lists what it does not cover</i> (types, termination, arithmetic semantics) &rarr; <span class="k">I13WasmVM3.compile()</span> lowers to <b>24-byte op records</b> + <b>16-byte func records</b> written into WASM linear memory at base 16384 &rarr; <span class="k">i13_validate_program</span> (an abstract stack-height / liveness proof) &rarr; <span class="k">i13_vm_exec_program</span>, a real tagged-value stack machine with <b>64-deep call frames</b> and a trace ring buffer.</p>
+  <p>The embedded module is genuine WebAssembly: magic <span class="k">\x00asm</span>, <b>8,505 bytes</b>, <b>0 imports</b>, 31 exports. A headless Node run against the <i>actual</i> module executed <span class="k">sumdown(5)</span> and read these back <b>from the WASM&rsquo;s own counters</b> (not synthesised in JS):</p>
+  <div class="tiles">
+    <div class="tile"><div class="v">8505</div><div class="l">WASM bytes &middot; 0 imports</div></div>
+    <div class="tile good"><div class="v">6</div><div class="l">native frame depth</div></div>
+    <div class="tile"><div class="v">123</div><div class="l">VM steps</div></div>
+    <div class="tile"><div class="v">9</div><div class="l">native calls</div></div>
+    <div class="tile"><div class="v">29</div><div class="l">ENTER/CALL/RET/HALT events</div></div>
+    <div class="tile v"><div class="v">4</div><div class="l">validator regions</div></div>
+  </div>
+  <p style="font-size:11.5px">The UI reads that one real run: the Execution Map&rsquo;s green &ldquo;hot&rdquo; edges are functions that actually appeared as CALL events; the frame tower is a per-depth digest of the trace, not an animation. <span class="ko">Two honest edges</span>: the shipped module self-names <span class="k">i13_cortex_vm_v03.wasm</span> and exports <b>no GFX</b> (the v04 C reference in the tree is a larger superset that is <i>not</i> the one running); and the studio&rsquo;s &ldquo;Cortex&rdquo; six-rule gate calls real WASM but over <b>4-of-6 pinned inputs</b>, so it essentially always reads PASS on ordinary code &mdash; real machinery, near-constant verdict.</p>
+</div>
+
+<div class="panel">
+  <h2>THE GRADE IS A GATE, NOT A SCORE <span class="n">why 81% + every P0 green = INCOMPLETE &middot; LIT<span class="stamp s-lit">recomputed this session</span></span></h2>
+  <p>The benchmark grades the frozen v0.15 at a weighted <b>81.167%</b> &mdash; and still stamps it <b class="ko">INCOMPLETE</b>. That is not a rounding shame; it is a <b>precedence rule</b>. The grade order is <span class="k">INVALID &rarr; INCOMPLETE &rarr; FAIL &rarr; CONDITIONAL &rarr; PASS</span>, and the instant required evidence is missing, the grader <i>refuses to even ask</i> whether the score cleared 95%. The one class at <b>0/48</b> &mdash; separated holdouts, the independent set a self-grader cannot see &mdash; is exactly the one that would catch the grader fooling itself. Press to recompute from the real class table, then try to buy your way to COMPLETE:</p>
+  <div class="row">
+    <button id="gcalc" class="dartbtn">&#9192; recompute the weighted grade</button>
+    <button id="gmax">fill every provable class to 100%</button>
+    <span id="gsay" class="res"></span>
+  </div>
+  <div class="mono" id="gout"></div>
+  <p style="font-size:11.5px;margin-top:8px">Even with every provable class maxed, the ceiling is <b>85%</b> while holdouts stay absent &mdash; and the gate stays <b class="ko">INCOMPLETE</b> regardless of score, because independence is <b>L0</b> (self-eval) and the holdout class is empty. <span class="ko">You cannot reach COMPLETE with public-test points; you reach it by producing the evidence you do not yet have.</span></p>
+</div>
+
+<div class="panel">
+  <h2>THE DIFFERENTIAL SPINE &mdash; one fix per version <span class="n">proven at its terminal link &middot; LIT<span class="stamp s-lit">ran v0.14 vs v0.15</span></span></h2>
+  <p>Each build patches the previous <span class="k">.pyz</span> for exactly one defect: P0-K is fixed at version 0.(K+3), the predecessor fails the target&rsquo;s cases, the fix passes them. That is the corpus&rsquo;s own thesis &mdash; a claim earns its keep only against the version that lacked it. The terminal link (P0-012, <b>static function arity mismatch</b>) was proven <b>live this session</b>: v0.14 has no arity check, so a wrong-arity call silently reaches the VM boundary; v0.15 rejects it with a typed <span class="k">{line,col}</span> CompileError <i>before</i> the WASM VM ever runs. Toggle the two shipped engines on the same source (outputs captured from a headless Node harness this session):</p>
+  <div class="row">
+    <button id="vtog" class="dartbtn">&#9192; run on v0.14</button>
+    <span id="vcase" class="res"></span>
+  </div>
+  <div class="mono" id="vout"></div>
+  <p style="font-size:11.5px">Verifier corroboration: <span class="k">P0-012 predecessor-to-fix</span> public <b>2/6&nbsp;&rarr;&nbsp;6/6</b> (v0.14&rsquo;s two passes are the accept-controls), typed-coordinate diagnostic <b>0/4&nbsp;&rarr;&nbsp;4/4</b>. <span class="ko">The one honest break in the spine</span>: P0-011 was already rejected before v0.14 (v0.14 only upgraded the throw to a typed error), so it carries <i>no</i> predecessor-fails differential and is scored <span class="k">PREEXISTING_PASS</span> &mdash; which is precisely why the differential class is <b>11/12</b>, not 12/12. The spine is real at this link; it is not asserted uniformly clean across all twelve.</p>
+</div>
+
+<div class="panel">
+  <h2>THE INDEPENDENCE BOUNDARY &mdash; the grader is the graded <span class="n">the honest wrinkle behind &ldquo;external&rdquo; &middot; AMBER<span class="stamp s-amber">self-eval L0</span></span></h2>
+  <p>The harness README and canonical grade are <b>exemplary</b> &mdash; they lead with <span class="k">INCOMPLETE / 81.167% / L0</span>, disclose <b>holdout 0/48</b>, and print <i>&ldquo;Do not call the suite complete until L1 holdouts satisfy the contract.&rdquo;</i> The interactive studio makes <b>no</b> benchmark claim at all (grep of its engine: <b>0</b> hits for &ldquo;12/12&rdquo;, &ldquo;official&rdquo;, &ldquo;INCOMPLETE&rdquo;). But three edges are worth naming plainly, because the corpus rewards catching them:</p>
+  <div class="reflist">
+    <s>the word <b>&ldquo;external&rdquo;</b> oversells: <span class="k">verify_i13_v015.py</span> re-executes the candidate&rsquo;s <i>own</i> compiler and <i>own</i> embedded WASM against a 96-case corpus that ships in the same directory &mdash; one author wrote both the engine and the answer key, so a shared wrong assumption passes the test while the behaviour is wrong. The runner stamps itself <b>L0_SELF_VERIFIED</b>; the grade&rsquo;s evaluator is literally <b>I13-STUDIO-SELF-EVAL</b>. A separate process is not an independent oracle.</s> &middot;
+    <s>two studio-facing surfaces (README, STATUS) print <b>&ldquo;External verifier: 15/15 PASS&rdquo;</b> with no adjacent L0 caveat, and the studio README says &ldquo;INCOMPLETE&rdquo; <i>zero</i> times &mdash; the one place a casual reader could mistake a scoped public-target pass for a passing benchmark.</s> &middot;
+    <s>the bundle is named <b>&hellip;COMPLETE&hellip;</b> though every scoring doc says INCOMPLETE &mdash; &ldquo;complete&rdquo; means the full package, but in a bare directory listing the token collides with the contract term.</s> &middot;
+    <s>the documented <b>Verify</b> command itself crashes on a stock Windows console (<span class="k">cp1252</span> vs the <b>&pi;</b> inside the studio HTML) and only reaches 15/15 with UTF-8 forced &mdash; reproduced here, disclosed nowhere in the prose. Fittingly, the drop&rsquo;s own next target is <b>P1-001: UTF-8 integrity</b>.</s>
+  </div>
+  <p style="margin-top:10px">None of these is a false claim &mdash; the numbers are all real and independently reproduced. They are the <span class="v">soft edges of an otherwise scrupulous honesty</span>, and the fold keeps them visible the same way the harness keeps its own INCOMPLETE visible.</p>
+</div>
+
+<div class="panel">
+  <h2>WHAT IT HAS EARNED vs WHAT IT HASN&rsquo;T <span class="n">the ledger, never laundered</span></h2>
+  <div class="led">
+    <div class="s lit">LIT &middot; earned</div><div>The studio genuinely runs: real compile &rarr; validate &rarr; execute on a real <b>8.5&nbsp;KB zero-import WASM VM</b> with genuine recursion. The verifier reproduces <b>15/15</b> to the exact SHAs. Public conformance <b>96/96</b>, false-positive controls <b>24/24</b>, <b>48/48</b> valid mutants killed, reproducibility <b>9/9</b>. The P0-012 differential is real to the token.</div>
+    <div class="s amb">AMBER &middot; self-graded</div><div>The <b>81.167%</b> is a real deterministic number &mdash; but a self-produced <b>L0</b> assessment, not an independent result. The Cortex gate reads PASS on constant-pinned inputs.</div>
+    <div class="s opn">OPEN &middot; not earned</div><div><b>0 of 48</b> separated holdouts authored, <b>12 of 60</b> required mutants never written, P1 evidence not started, no independence above L0, <b>0</b> Terminal-Bench tasks (and &ldquo;official&rdquo; framing is prohibited). 23 missing-evidence items &mdash; the reason the grade is forced to INCOMPLETE.</div>
+  </div>
+  <p style="margin-top:10px;font-size:11.5px"><b>The verdict, in the drop&rsquo;s own voice:</b> 81.167% with every public P0 case green is still INCOMPLETE, because the contract decides INCOMPLETE <i>before</i> it looks at the score. A high number on an unfinished evidence surface is not a near-pass &mdash; it is an incomplete measurement. <span class="v">And the refusal to say otherwise, printed by the package about itself, is the most trustworthy thing in it.</span></p>
+</div>
+
+<footer>
+  <b>THE COMPOUND &amp; compIle 13</b> &mdash; a fold of David Lee Wise&rsquo;s frozen <b>I-13 Studio v0.15 P0</b> drop (STUDIO + HARNESS v1.7 + CORPUS v1.6.0 + CONTRACT I13-BC-1.0). By David Lee Wise / ROOT0 / TriPod LLC. <b>LIT</b> = re-run this session: the 8.5&nbsp;KB WASM VM executed (sumdown depth 6, 123 steps, 9 calls, 29-event trace from WASM counters); <span class="k">verify_i13_v015.py</span> reproduced 15/15 (candidate f645f9b4&hellip;, corpus 5ec0e09d&hellip;); the P0-012 differential flipped v0.14 0/4 &rarr; v0.15 4/4 on identical source; public 96/96, mutants 48/48, repro 9/9. <b>AMBER</b> = the 81.167% is a real but <b>self-graded L0</b> score; the Cortex gate is near-constant. <b>OPEN</b> = holdouts 0/48, mutation coverage 48/60, P1 unstarted, Terminal-Bench 0 (no official claim), and the documented Verify command crashes on a stock cp1252 console (UTF-8 fix undisclosed). Read every bit; keep the honest measurement &mdash; the way the drop keeps its own. Rendered by AVAN for the corpus.
+</footer>
+
+<script>
+"use strict";
+/* THE GRADE IS A GATE. Real numbers from I13_CANONICAL_GRADE_v0.15.json; arithmetic reproduces 81.167% exactly. */
+(function(){
+  var CLASSES=[
+    {n:"Public Conformance",        p:68,t:68,w:25},
+    {n:"False-Positive Controls",   p:24,t:24,w:10},
+    {n:"Full Regression",           p:54,t:54,w:15},
+    {n:"Prior-Version Differential",p:11,t:12,w:10},
+    {n:"Separated Holdout",         p:0, t:48,w:15},
+    {n:"Mutation Kill",             p:48,t:60,w:15},
+    {n:"Reproducibility & Transport",p:9, t:9, w:10}
+  ];
+  var out=document.getElementById("gout"), say=document.getElementById("gsay"), maxed=false;
+  var HOLD="Separated Holdout";
+  function pad(s,n){ s=String(s); while(s.length<n) s+=" "; return s; }
+  function lpad(s,n){ s=String(s); while(s.length<n) s=" "+s; return s; }
+  function render(){
+    var tot=0, s="";
+    for(var i=0;i<CLASSES.length;i++){ var c=CLASSES[i], p=c.p, t=c.t;
+      if(maxed && c.n!==HOLD){ p=t; }                 // holdout can't be maxed: the evidence is ABSENT, not failing
+      var rate=p/t, pts=rate*c.w; tot+=pts;
+      var flag = (c.n===HOLD && p===0) ? "<span class='bad'>ABSENT</span>" : (rate<1 ? "<span class='g'>partial</span>" : "<span class='hit'>full</span>");
+      s+= pad(c.n,28)+" "+lpad(p+"/"+t,7)+"  w"+lpad(c.w,2)+"  = "+lpad(pts.toFixed(3),6)+" pts   "+flag+"\n";
+    }
+    s+="\nweighted score = <span class='"+(tot>=85?"hit":"g")+"'>"+tot.toFixed(3)+"%</span>    independence = <span class='bad'>L0 (self-eval)</span>";
+    s+="\ngate result    = <span class='bad'>INCOMPLETE</span>   (holdout class ABSENT + L0) &mdash; score cannot change this";
+    out.innerHTML=s;
+    say.innerHTML = maxed
+      ? "<span class='err'>"+tot.toFixed(1)+"% &mdash; still INCOMPLETE</span>"
+      : "<span class='err'>81.167% &mdash; INCOMPLETE by precedence</span>";
+  }
+  document.getElementById("gcalc").onclick=function(){ maxed=false; render(); };
+  document.getElementById("gmax").onclick=function(){ maxed=!maxed; this.className=maxed?"on":""; this.textContent=maxed?"restore the real numbers":"fill every provable class to 100%"; render(); };
+  render();
+})();
+/* THE DIFFERENTIAL SPINE. Outputs captured from the two shipped engines via a headless Node harness this session. */
+(function(){
+  var CASES=[
+    { id:"P0-012-D01", src:"def f(I x){ -> x }\nI z <- f()",
+      v14:{ok:false, observed:"reached VM execution boundary", msg:"(no diagnostic)", coord:"(none)"},
+      v15:{ok:true,  observed:"compile rejection", msg:"function arity mismatch: f expects 1, got 0", coord:"line 2, col 8"} },
+    { id:"P0-012-B01 (nested call)", src:"def f(I x){ -> x }\nI z <- g( f() )",
+      v14:{ok:false, observed:"reached VM execution boundary", msg:"(no diagnostic)", coord:"(none)"},
+      v15:{ok:true,  observed:"compile rejection", msg:"function arity mismatch: f expects 1, got 0", coord:"line 2, col 16"} }
+  ];
+  var ci=0, ver="v14";
+  var out=document.getElementById("vout"), lbl=document.getElementById("vcase"), btn=document.getElementById("vtog");
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function render(){
+    var c=CASES[ci], r=c[ver];
+    var vtag = ver==="v14" ? "<span class='bad'>v0.14 (predecessor)</span>" : "<span class='hit'>v0.15 (fix)</span>";
+    var s="";
+    s+="case "+esc(c.id)+"\n";
+    s+="source:\n  "+esc(c.src).split("\n").join("\n  ")+"\n\n";
+    s+="engine "+vtag+"\n";
+    s+="  outcome  : "+(r.ok? "<span class='hit'>REJECTED at compile (correct)</span>" : "<span class='bad'>accepted &rarr; "+esc(r.observed)+"</span>")+"\n";
+    s+="  message  : "+(r.ok? "<span class='hit'>"+esc(r.msg)+"</span>" : "<span class='dim'>"+esc(r.msg)+"</span>")+"\n";
+    s+="  location : "+(r.ok? "<span class='g'>"+esc(r.coord)+"</span>" : "<span class='dim'>"+esc(r.coord)+"</span>")+"\n";
+    if(ver==="v15") s+="\n<span class='hit'>caught before the WASM VM ever ran.</span>";
+    else s+="\n<span class='bad'>the wrong-arity call slipped through to the VM boundary.</span>";
+    out.innerHTML=s;
+    lbl.innerHTML = "case "+(ci+1)+" / "+CASES.length;
+  }
+  btn.onclick=function(){
+    if(ver==="v14"){ ver="v15"; this.textContent="◈ run on v0.15"; this.className="dartbtn on"; }
+    else { ver="v14"; ci=(ci+1)%CASES.length; this.textContent="◈ run on v0.14"; this.className="dartbtn"; }
+    render();
+  };
+  render();
+})();
+</script>
+</body>
+</html>
