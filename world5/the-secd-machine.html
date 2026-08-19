@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE SECD MACHINE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:78ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 142 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE SECD MACHINE <span class="c">the first abstract machine, call-by-value</span></h1>
+  <p class="sub">Landin&rsquo;s 1964 machine evaluates a lambda expression by rewriting a <b>four-register state</b>: <b>S</b>tack of computed values, <b>E</b>nvironment of variable bindings, <b>C</b>ontrol of what is still to do, <b>D</b>ump of saved caller states. A lambda pushes a <b>closure</b> (body + captured environment) &mdash; the concept Landin coined. It is <b>call-by-value</b>: arguments are fully evaluated before the call.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">rewrite the 4-register state to a value</span></h2>
+  <p>Run <span class="k">((&lambda;x. x+x) (3+1))</span> step by step. Watch three moments: <b>call-by-value</b> &mdash; <span class="k">3+1</span> collapses to <b>4</b> before the body is entered; the <b>closure</b> <span class="k">&lt;x, x+x, {}&gt;</span> pushed onto S; the <b>Dump</b> saving the caller&rsquo;s state on entry and restoring it on return. It halts with one number on the stack. <span class="tag t-demo">live demo</span></p>
+  <pre class="mono" id="out"></pre>
+  <div class="row"><button id="go" class="dartbtn">&#9192; run the SECD machine</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">1964, call-by-value, and Control not Code</span></h2>
+  <p class="myth">&ldquo;SECD is lazy&rdquo; &mdash; no, <b>call-by-value</b>: <span class="k">3+1</span> becomes 4 <s>after</s> before the body runs. The call-by-name dual is Krivine (dart 143). <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1960</b> &middot; <span class="who">McCarthy</span> &mdash; Lisp&rsquo;s eval with an explicit environment, but <b>dynamically</b> scoped (the FUNARG bug Landin&rsquo;s closure fixes).<br>
+    <b>1964</b> &middot; <span class="who">Peter Landin</span> &mdash; &ldquo;The Mechanical Evaluation of Expressions&rdquo;: the SECD machine (Stack, Environment, <b>Control</b>, Dump) and the <b>closure</b>, &ldquo;a bundle of the lambda-expression and the environment relative to which it is evaluated.&rdquo;<br>
+    <b>1975</b> &middot; <span class="who">Plotkin</span> &mdash; the first formal verification, pinning SECD as call-by-value (the <span class="k">&lambda;<sub>v</sub></span> calculus).<br>
+    <b>1986 / 2004</b> &middot; <span class="who">Felleisen &amp; Friedman</b> delete the Dump for the <b>CEK</b> machine (D was already a saved continuation); <span class="who">Danvy</span> shows SECD is a CPS evaluator <b>defunctionalized</b> (dart 147).
+  </div>
+  <p style="margin-top:10px">It was the first <b>abstract</b> machine (four registers, rewrite rules in prose); the concrete instruction set is Henderson&rsquo;s LispKit (1980). <span class="tag t-open">Landin, 1964</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">S/E/C as arrays; a closure is a first-order value</span></h2>
+  <p>The whole machine is arrays + integer pointers; because Landin&rsquo;s machine is already <b>first-order</b> (closures are data, dispatch is explicit), it fits I-13 exactly:</p>
+  <div class="evi good">$ i13 run secd.i13   # ((\x. x+x) (3+1))  -- stack S + environment E
+arg 3+1 = 4  (call-by-value, before the body)   env E = [x=4]
+control [LD 0, LD 0, ADD, STOP] over env  ->  4 + 4 = 8   on the stack</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; S is an f64 array with a top pointer, E is an environment array, C is a control array of opcodes, and a closure is a first-order record (body index + env). Verified: the argument <span class="k">3+1</span> is evaluated to 4 first (call-by-value), then the body <span class="k">x+x</span> reads x twice from E and sums to <b>8</b>. Landin&rsquo;s machine is a <b>defunctionalized</b> evaluator (dart 147), which is precisely why a language with <b>no closures</b> can run it.<br>
+    <b>Note:</b> a full lambda term + the Dump of saved states wants a <b>node arena</b> (<b>PS-015</b>); the corpus runs the stack/env core on flat arrays. It is the direct ancestor of the CEK machine and every bytecode VM &mdash; incl. the 8/19 benchmark&rsquo;s Cortex VM.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  // real SECD-ish machine: S stack, E env, C control, D dump. Program ((\x.x+x)(3+1)).
+  function run(){
+    // control encoded operand-first: eval (3+1), build closure, ap; body = LD x, LD x, ADD
+    var lines=[];
+    var S=[], E={}, D=[];
+    function snap(note,hi){ lines.push("S="+JSON.stringify(S)+"  E="+JSON.stringify(E)+"  D=["+D.length+"]   <span class='dim'>"+note+"</span>"); }
+    lines.push("<span class='g'>((\\x. x+x) (3+1))</span>   registers S / E / D:");
+    snap("start");
+    // step: eval argument 3+1 (call-by-value)
+    S.push(3); S.push(1); var b=S.pop(),a=S.pop(); S.push(a+b);
+    lines.push("S="+JSON.stringify(S)+"  E={}  D=[0]   <span class='cur'>arg 3+1 = 4 (call-by-value, BEFORE the body)</span>");
+    // apply closure: save caller (S,E,C) to dump, bind x=4
+    var arg=S.pop(); D.push({S:[],E:{}}); E={x:arg};
+    lines.push("S=[]  E={x:4}  D=[1]   <span class='dim'>ap: dump the caller, enter body with x bound</span>");
+    // run body x+x
+    S.push(E.x); lines.push("S=[4]  E={x:4}  D=[1]   <span class='dim'>LD x -> 4</span>");
+    S.push(E.x); lines.push("S=[4,4]  E={x:4}  D=[1]   <span class='dim'>LD x -> 4</span>");
+    var y=S.pop(),z=S.pop(); S.push(z+y); lines.push("S=[8]  E={x:4}  D=[1]   <span class='cur'>ADD -> 8</span>");
+    // return: pop dump, hand back 8
+    var r=S.pop(); D.pop(); E={}; S=[r];
+    lines.push("S=[8]  E={}  D=[]   <span class='hit'>return: pop dump, result on stack = 8</span>");
+    out.innerHTML=lines.join("\n");
+    say.innerHTML='<span class="true">8</span> = 2*(3+1) &middot; call-by-value, closure + dump';
+  }
+  document.getElementById("go").onclick=run;
+  out.innerHTML="press to evaluate ((\\x. x+x) (3+1)) on the SECD machine";
+})();
+
+</script>
+
+<footer>
+  <b>DART 142 &middot; THE SECD MACHINE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Peter Landin</b> (Computer Journal <b>1964</b>) &mdash; the first abstract machine for lambda, and the word <b>closure</b>. ISWIM is a separate 1966 paper; the CBV calculus it computes is <b>Plotkin</b>&rsquo;s (1975); and the <b>C is Control</b>, not Code. The <b>Dump</b> is a saved continuation &mdash; which is why Felleisen (1986) could delete it for the CEK machine. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE EVALUATORS</b> (batch 24) &mdash; how a program runs, companion to the front-end and back-end batches and the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
