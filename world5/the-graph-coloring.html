@@ -78,8 +78,9 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
   <div class="chain">
     <b>1879</b> &middot; <span class="who">Alfred Kempe</span> &mdash; the degree-<b>reduction lemma</b> (delete a vertex of degree &lt; k, color the rest, color it last), from his (flawed) four-color proof. Simplify is his.<br>
     <b>1962</b> &middot; <span class="who">Andrei Ershov</span> (USSR) reduces memory allocation to graph vertex-coloring; Cocke &amp; Schwartz float it at IBM/NYU c.1971 but never implement it.<br>
-    <b>1981&ndash;82</b> &middot; <span class="who">Chaitin</b> et al. &mdash; the first working allocator (PL.8 / IBM 801 RISC); the 1982 &ldquo;Yorktown allocator&rdquo; adds <b>spilling</b>, and proves register allocation NP-complete (every graph is some program&rsquo;s interference graph).<br>
-    <b>1994 / 2005</b> &middot; <span class="who">Briggs et al.</b> &mdash; <b>optimistic</b> coloring (push the spill candidate anyway; a color often frees up at select); and strict-<b>SSA</b> interference graphs are <b>chordal</b> &rarr; optimal coloring in <b>linear</b> time, so the NP-completeness is about the general formulation.
+    <b>1981</b> &middot; <span class="who">Chaitin</b> et al. (six authors) &mdash; the first working allocator (PL.8 / IBM 801 RISC), and the <b>NP-completeness</b> proof (every graph is some program&rsquo;s interference graph); the sole-author 1982 &ldquo;Yorktown allocator&rdquo; adds <b>spilling</b>.<br>
+    <b>1994</b> &middot; <span class="who">Briggs, Cooper &amp; Torczon</span> &mdash; <b>optimistic</b> coloring (push the spill candidate anyway; a color often frees up at select).<br>
+    <b>2005&ndash;07</b> &middot; <span class="who">Hack / Bouchez / Pereira-Palsberg</span> &mdash; strict-<b>SSA</b> interference graphs are <b>chordal</b> &rarr; optimal coloring in <b>linear</b> time, so the NP-completeness is about the general formulation.
   </div>
   <p style="margin-top:10px">A K4 forces a spill at k=3 that no ordering can avoid &mdash; colorability is the clique number, not average degree. <span class="tag t-open">Chaitin, 1981&ndash;82</span></p>
 </div>

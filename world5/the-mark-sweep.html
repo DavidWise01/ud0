@@ -78,7 +78,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
   <div class="chain">
     <b>1959&ndash;60</b> &middot; <span class="who">John McCarthy</span> &mdash; GC for Lisp on the IBM 704, the original mark-sweep, coins &ldquo;garbage collection.&rdquo; (Implemented 1959, published April 1960.)<br>
     <b>Dec 1960</b> &middot; <span class="who">George Collins</span> &mdash; <b>reference counting</b>: a different family (count incoming pointers, not trace reachability), and it <b>leaks cycles</b>.<br>
-    <b>1967</b> &middot; <span class="who">Schorr &amp; Waite</b> (and Deutsch ~1965) &mdash; <b>pointer reversal</b>: mark with one bit per cell and no auxiliary stack (hence &ldquo;Deutsch-Schorr-Waite&rdquo;).<br>
+    <b>1967</b> &middot; <span class="who">Schorr &amp; Waite</b> (and Deutsch ~1965) &mdash; <b>pointer reversal</b>: mark with a mark bit + a direction bit per cell and <b>no auxiliary stack</b> (hence &ldquo;Deutsch-Schorr-Waite&rdquo;).<br>
     <b>1963 / 1969 / 1978</b> &middot; a separate lineage: <span class="who">Minsky</span> (first copying, via disk), <span class="who">Fenichel-Yochelson</span> (in-core semispace, dart 140), <span class="who">Dijkstra et al.</b> (incremental tri-color, dart 141).
   </div>
   <p style="margin-top:10px">Classic mark-sweep is strictly <b>stop-the-world</b> and leaves the heap <b>fragmented</b> &mdash; it flips bits, it does not move objects. <span class="tag t-open">McCarthy, 1960</span></p>
