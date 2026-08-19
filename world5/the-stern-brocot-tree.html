@@ -88,7 +88,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
   <div class="chain">
     <b>1858</b> &middot; <span class="who">Moritz Stern</b> studies the mediant tree in number theory &mdash; every positive rational appears once, already in lowest terms.<br>
     <b>1861</b> &middot; <span class="who">Achille Brocot</span>, a Parisian <b>clockmaker</b>, rediscovers it to choose <b>gear ratios</b> &mdash; the best rational approximation with small teeth counts.<br>
-    <b>the tie to Euclid</b> &middot; the L/R run-lengths of a fraction&rsquo;s path <b>are</b> its continued fraction, and climbing back to the root is the <b>subtractive Euclidean algorithm</b> (dart 027).<br>
+    <b>the tie to Euclid</b> &middot; the L/R run-lengths of a fraction&rsquo;s path <b>give</b> its continued fraction (the last run one short of the final term), and climbing back to the root is the <b>subtractive Euclidean algorithm</b> (dart 027).<br>
     <b>the Farey cousin</b> &middot; read level by level and it orders the rationals like the <b>Farey sequence</b> &mdash; mediants between neighbours.
   </div>
   <p style="margin-top:10px">3/5 = [0;1,1,2], path <b>L R L</b> &mdash; a number&rsquo;s identity <i>is</i> its route through the tree. <span class="tag t-open">Stern 1858 / Brocot 1861</span></p>
@@ -101,7 +101,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 depth = 4            # path L R L; mediants 1/1 -> 1/2 -> 2/3 -> 3/5</div>
   <div class="rec">
     <b>Recommend:</b> <b>nothing new</b> &mdash; and pointedly so: where AVL (072), red-black (073), the trie (074) and the k-d tree (078) all hit <b>PS-015</b> (heap-linked nodes), Stern-Brocot <b>dodges it</b>. A node&rsquo;s identity <i>is</i> its L/R address, <b>computed not stored</b>; you hold four integers and take a mediant + one comparison per step (verified path to 3/5 at depth 4). It runs on plain scalars &mdash; no allocation, no pointers, no rotations.<br>
-    <b>Note:</b> it ties Euclid (027) directly &mdash; the path&rsquo;s run-lengths are the continued fraction, the parent is one subtraction. The only thing that reintroduces the wall is <b>materialising a whole level</b>; for point queries and best-rational-approximation, the corpus needs no node objects at all.
+    <b>Note:</b> it ties Euclid (027) directly &mdash; the path&rsquo;s run-lengths give the continued fraction (last run one short of the final term), the parent is one subtraction. The only thing that reintroduces the wall is <b>materialising a whole level</b>; for point queries and best-rational-approximation, the corpus needs no node objects at all.
   </div>
 </div>
 

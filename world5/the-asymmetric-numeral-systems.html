@@ -71,7 +71,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 <div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 090 &middot; a helldive at the net</span></div>
 <header>
   <h1>ANS <span class="c">the entropy coder in zstd and JPEG XL</span></h1>
-  <p class="sub">For 40 years, compression forced a choice: <b>Huffman</b> (fast, but wastes a fraction of a bit per symbol) or <b>arithmetic coding</b> (optimal, but slow and patent-encumbered). <b>ANS</b> (2009) dissolves the tradeoff &mdash; near-optimal ratio at Huffman speed &mdash; by folding the whole message into <b>one growing integer</b>. It now runs inside zstd, LZFSE, and JPEG XL.</p>
+  <p class="sub">For decades, compression forced a choice: <b>Huffman</b> (fast, but wastes a fraction of a bit per symbol) or <b>arithmetic coding</b> (optimal, but slow and patent-encumbered). <b>ANS</b> (2009) dissolves the tradeoff &mdash; near-optimal ratio at Huffman speed &mdash; by folding the whole message into <b>one growing integer</b>. It now runs inside zstd, LZFSE, and JPEG XL.</p>
 </header>
 
 <div class="panel">
@@ -88,7 +88,7 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
   <div class="chain">
     <b>1952 / 1976</b> &middot; <span class="who">Huffman</span> (whole-bit codes) and <span class="who">arithmetic coding</span> (Rissanen/Pasco) mark the old tradeoff: fast-but-lossy-in-bits vs optimal-but-slow.<br>
     <b>2009</b> &middot; <span class="who">Jarek Duda</span> formalises <b>Asymmetric Numeral Systems</b> &mdash; a single-state coder that is <b>both</b> near-optimal and Huffman-fast; the tabled form (tANS) is branch-light and cache-friendly.<br>
-    <b>kept free</b> &middot; Duda placed it in the <b>public domain</b>; a 2018 attempt by <b>Google</b> to patent an rANS variant was <b>rejected</b> after his prior-art objections.<br>
+    <b>kept free</b> &middot; Duda placed it in the <b>public domain</b>; <b>Google</b>&rsquo;s rANS-variant application (filed ~2016) was <b>rejected</b> by the USPTO in <b>2018</b> as obvious over his prior art.<br>
     <b>in the wild</b> &middot; <b>zstd</b> (Facebook), <b>LZFSE</b> (Apple), <b>JPEG XL</b>, and CRAM genomics &mdash; ANS is the default modern entropy stage.
   </div>
   <p style="margin-top:10px">The last great compression primitive, and one of the few kept deliberately unpatented. <span class="tag t-open">Duda 2009</span></p>
