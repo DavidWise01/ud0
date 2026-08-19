@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHIFT-OR / BITAP &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 119 &middot; a helldive at the net</span></div>
+<header>
+  <h1>SHIFT-OR <span class="c">a search automaton in one machine word</span></h1>
+  <p class="sub">Carry a whole string-search automaton inside a single integer. Precompute a <b>bitmask</b> per character (bit j is 0 where the pattern has that char at position j). Then per text character: <span class="k">R = (R &lt;&lt; 1) | mask[c]</span>. When the <b>high bit</b> of R drops to 0, the pattern just matched. No tables the size of the text, no backtracking &mdash; and it extends to <b>fuzzy</b> matching by carrying a few extra words.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">shift a bitmask, watch the high bit fall</span></h2>
+  <p>Each pattern character gets a mask with a <b>0</b> at the positions it occupies. State <span class="k">R</span> starts all-ones. Reading text char c, shift R left and OR in <span class="k">mask[c]</span>; a run of matched characters walks a 0 up through R, and when bit <span class="k">m&minus;1</span> reaches 0 the whole pattern has matched. Type a text and pattern; watch R evolve in binary. <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>text</label><input id="t" value="aabca" style="width:200px"><label>pattern</label><input id="p" value="abc" style="width:110px"><button id="go" class="dartbtn">&#9192; scan</button></div>
+  <pre class="mono" id="out"></pre>
+  <div class="res" id="say"></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">named 1989, published 1964</span></h2>
+  <p class="myth">&ldquo;Shift-Or is Shift-And&rdquo; &mdash; no; the original is <b>Shift-<span class="who">OR</span></b>, where <b>0 means match</b> (counter-intuitive) and it saves one op per char. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1964</b> &middot; <span class="who">Balint Domolki</span> (Hungarian Academy of Sciences) publishes the <b>bit-vector nondeterministic recognizer</b> &mdash; the shift-and-mask automaton &mdash; for syntactic analysis (parsing), ~25 years early.<br>
+    <b>1989/1992</b> &middot; <span class="who">Ricardo Baeza-Yates &amp; Gaston Gonnet</b> independently re-derive it as <b>Shift-Or</b> for text search (PhD thesis; CACM 35(10), 1992). Genuine reinvention &mdash; but not first.<br>
+    <b>1991/1992</b> &middot; <span class="who">Sun Wu &amp; Udi Manber</span> extend the bit-parallel method to <b>insertions and deletions</b> (true edit distance) and ship <b>agrep</b> &mdash; the fuzzy matching people wrongly credit to Baeza-Yates.<br>
+    <b>the nickname</b> &middot; &ldquo;<b>bitap</b>&rdquo; (bit-parallel approximate) appears in <b>neither</b> original paper &mdash; a later gloss; a confident etymology should be hedged.
+  </div>
+  <p style="margin-top:10px">Don&rsquo;t over-correct the other way: Domolki built a parser recognizer, not &ldquo;the bitap algorithm&rdquo; &mdash; string search is genuinely Baeza-Yates &amp; Gonnet&rsquo;s reading. <span class="tag t-open">Baeza-Yates &amp; Gonnet, 1989/1992</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">shift, OR, mask &mdash; pure bitwise</span></h2>
+  <p>The whole automaton is one integer and two bitwise ops per character &mdash; and the match lands where it should:</p>
+  <div class="evi good">$ i13 run shor.i13    # pattern "abc" (3 bits), masks a=110 b=101 c=011
+R: 7 -> 6 -> 6 -> 5 -> 3     reading a,a,b,c
+bit2 of final R = 0  ->  MATCH ending at index 3 (start 1)</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; the masks are an f64 array indexed by code point; the state is one integer; each step is <span class="k">(R &lt;&lt; 1) | mask</span> masked to m bits (bitwise, dart 029), and the match test is <span class="k">R &amp; (1&lt;&lt;(m&minus;1)) == 0</span> (verified R walks 7&rarr;6&rarr;6&rarr;5&rarr;3, high bit clears, match at index 3). O(1) extra space survives directly on bounded arrays.<br>
+    <b>Note:</b> it joins the standing <b>string</b> family (Boyer-Moore 061, KMP 063, Two-Way 113) &mdash; but where those precompute tables of size m, Shift-Or is the one that needs <b>no auxiliary array at all</b>, only the machine word.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  function run(){
+    var T=(document.getElementById("t").value||""), P=(document.getElementById("p").value||"");
+    var m=P.length; if(!m){ out.innerHTML="(empty pattern)"; say.innerHTML=""; return; }
+    if(m>12){ out.innerHTML="(pattern too long for the demo word)"; return; }
+    var mask={}; var full=(1<<m)-1;
+    // bit j = 0 iff P[j]==c
+    function maskFor(c){ var v=full; for(var j=0;j<m;j++) if(P[j]===c) v&=~(1<<j); return v; }
+    function bits(v){ var s=""; for(var j=m-1;j>=0;j--) s+=((v>>j)&1); return s; }
+    var R=full, hi=1<<(m-1), s="pattern masks (0 = pattern has this char here):\n";
+    var seen={}; for(var j=0;j<m;j++){ var c=P[j]; if(!seen[c]){ seen[c]=1; s+="  mask['"+c+"'] = "+bits(maskFor(c))+"\n"; } }
+    s+="\nR starts "+bits(R)+"\n";
+    var matches=[];
+    for(var i=0;i<T.length;i++){ var c=T[i]; R=((R<<1)|maskFor(c))&full;
+      var hit=((R&hi)===0); if(hit) matches.push(i-m+1);
+      s+="read '"+c+"' (i="+i+"):  R = "+bits(R)+(hit?'   <span class="hit">&lt;- MATCH (start '+(i-m+1)+")</span>":"")+"\n"; }
+    out.innerHTML=s;
+    say.innerHTML=matches.length?('match at index <span class="true">'+matches.join(", ")+'</span> &middot; whole automaton in one word'):'<span class="err">no match</span>';
+  }
+  document.getElementById("go").onclick=run;
+  ["t","p"].forEach(function(id){ document.getElementById(id).addEventListener("input",run); });
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 119 &middot; SHIFT-OR / BITAP</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Baeza-Yates &amp; Gonnet</b> (1989/1992) named <b>Shift-Or</b> &mdash; but the bit-parallel shift-and-mask automaton is <b>Balint Domolki</b> (1964), ~25 years earlier; approximate indel matching is <b>Wu &amp; Manber</b> (agrep, 1991). I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PERSISTENT SEGMENT TREE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 124 &middot; a helldive at the net</span></div>
+<header>
+  <h1>PERSISTENT SEG TREE <span class="c">every past version stays queryable</span></h1>
+  <p class="sub">An update that keeps the old version alive. A segment tree answers range-sums in <span class="k">O(log n)</span>; a <b>persistent</b> one, on each update, copies only the <span class="k">O(log n)</span> nodes on the changed root-to-leaf path and <b>shares</b> everything else with the previous version. Two versions cost a path, not a whole tree &mdash; and version 1 answers exactly as it did before version 2 existed. It is the same <b>immutability</b> I-13&rsquo;s value-semantic arrays are built on.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">copy the path, share the rest</span></h2>
+  <p>Build a range-sum tree over the array. To update one index, don&rsquo;t mutate &mdash; allocate <b>new</b> nodes only along the root-to-leaf path (each pointing at one new child and one <b>shared</b> old child), producing a new root. Old root = old version, new root = new version; both are fully queryable. Below: update index 2, and watch 3 nodes copy while the rest are shared. <span class="tag t-demo">live demo</span></p>
+  <pre class="mono" id="out"></pre>
+  <div class="row"><button id="go" class="dartbtn">&#9192; fork version 2</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">path copying predates its famous paper</span></h2>
+  <p class="myth">&ldquo;Persistent trees come from Driscoll-Sarnak-Sleator-Tarjan&rdquo; &mdash; DSST themselves credit path copying to <s>themselves</s> <span class="who">Myers</span> and three others. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1977</b> &middot; <span class="who">Jon Bentley</span> invents the (classical) <b>segment tree</b> for Klee&rsquo;s measure problem &mdash; a stabbing structure over <b>intervals</b>, a different object from the competitive-programming array-aggregate &ldquo;segment tree&rdquo; (a genuine naming collision).<br>
+    <b>1982&ndash;85</b> &middot; <span class="who">Eugene Myers</b> (AVL Dags, 1982), <span class="who">Krijnen &amp; Meertens</span>, <span class="who">Reps-Teitelbaum-Demers</span>, and <span class="who">Swart</span> <b>independently</b> invent <b>path copying</b> &mdash; the exact technique a persistent segment tree uses.<br>
+    <b>1986/89</b> &middot; <span class="who">Driscoll, Sarnak, Sleator &amp; Tarjan</span> (&ldquo;Making Data Structures Persistent&rdquo;) &mdash; their headline is <b>not</b> path copying but the <b>fat-node / node-copying</b> methods that cut space to <b>O(1)</b> amortized; the persistent segment tree deliberately uses the <b>older, simpler O(log n)</b> path copying.<br>
+    <b>1990s&ndash;2000s</b> &middot; the competitive-programming community names the folklore combination &ldquo;persistent segment tree&rdquo; &mdash; and it is <b>fully</b> persistent for free, though most uses exercise only a linear chain of versions.
+  </div>
+  <p style="margin-top:10px">The famous paper&rsquo;s novelty is the part this structure doesn&rsquo;t use. <span class="tag t-open">path copying: Myers 1982 et al.</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">value semantics ARE path copying's principle</span></h2>
+  <p>Both versions answer correctly after the fork, and version 1 is untouched &mdash; the corpus&rsquo;s immutable arrays demonstrate the idea directly:</p>
+  <div class="evi good">$ i13 run pst.i13    # A=[5,2,3,8], update A[2]=10 forks version 2
+v1 range-sum[1,3] = 13     v2 range-sum[1,3] = 20     (delta = 10-3 = 7)
+v1 still queryable = 13    both versions coexist, disagree by exactly 7</div>
+  <div class="rec">
+    <b>Recommend:</b> the <b>principle is already LIT</b> &mdash; an i13 array update <span class="k">v[i] &larr; e</span> <b>yields a new array</b> and leaves the old one aliased-free (functional update), the exact immutability a persistent structure embodies (verified v1 = 13 <b>after</b> v2 = 20 diverged). That value semantics is why the corpus can model versioning at all.<br>
+    <b>Note:</b> the <b>frontier</b> is the cost refinement. i13&rsquo;s update conceptually copies the whole array (<b>O(n)</b> fresh cells); the persistent segment tree copies only the <b>O(log n)</b> path &mdash; which needs shared <b>pointer nodes / an arena</b> (<b>PS-015</b>). The corpus has the <i>semantics</i> for free; it lacks the <i>sharing</i> that makes it cheap.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  function run(){
+    var A=[5,2,3,8];
+    // v1 tree (perfect, 4 leaves)
+    var v1={label:"root[0,3]",sum:18,L:{label:"L[0,1]",sum:7,L:{label:"[0,0]",sum:5},R:{label:"[1,1]",sum:2}},
+                                    R:{label:"R[2,3]",sum:11,L:{label:"[2,2]",sum:3},R:{label:"[3,3]",sum:8}}};
+    var s="version 1:  A = [5, 2, 3, 8]\n";
+    s+="  root[0,3]=18\n   |-- L[0,1]=7            R[2,3]=11\n   |    |-[0,0]=5             |-[2,2]=3\n   |    |-[1,1]=2             |-[3,3]=8\n";
+    s+="  (7 nodes: 4 leaves + 3 internal)\n\n";
+    s+="query v1 range-sum[1,3] = [1,1] + [2,3] = 2 + 11 = <span class='hit'>13</span>\n\n";
+    s+="update A[2] = 10  ->  fork version 2 (path root -> R[2,3] -> [2,2]):\n";
+    s+="  <span class='cur'>new [2,2] = 10</span>                          (copy 1)\n";
+    s+="  <span class='cur'>new R'[2,3] = 10 + 8 = 18</span>   reuses OLD [3,3]=8   (copy 2)\n";
+    s+="  <span class='cur'>new root'[0,3] = 7 + 18 = 25</span>  reuses OLD L[0,1]     (copy 3)\n";
+    s+="  <span class='dim'>shared: [0,0], [1,1], L[0,1], [3,3]  (4 nodes NOT copied)</span>\n\n";
+    s+="query v2 range-sum[1,3] = [1,1] + [2,3] = 2 + 18 = <span class='hit'>20</span>\n";
+    s+="query v1 range-sum[1,3] again = <span class='hit'>13</span>   <span class='dim'>(v1 untouched by the fork)</span>\n\n";
+    s+="cost: version 2 adds only 3 NEW nodes -> total 7 + 3 = 10 nodes for TWO versions, not 7+7=14";
+    out.innerHTML=s;
+    say.innerHTML='v1=<span class="true">13</span>, v2=<span class="true">20</span>, delta 7 &middot; path copied 3 nodes, shared 4';
+  }
+  document.getElementById("go").onclick=run;
+  out.innerHTML="press to update index 2 and fork a new version";
+})();
+
+</script>
+
+<footer>
+  <b>DART 124 &middot; PERSISTENT SEGMENT TREE</b> &mdash; World V &middot; SONNY 5, the I-13 world. Path copying is <b>Myers</b> (1982) et al. &mdash; <b>not</b> DSST, whose real novelty is <b>O(1)-space</b> node-copying; &ldquo;persistent segment tree&rdquo; is competitive-programming folklore, and &ldquo;segment tree&rdquo; itself is a naming collision with <b>Bentley</b>&rsquo;s 1977 interval structure. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

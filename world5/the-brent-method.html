@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BRENT'S METHOD &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 121 &middot; a helldive at the net</span></div>
+<header>
+  <h1>BRENT'S METHOD <span class="c">never slower than bisection, usually much faster</span></h1>
+  <p class="sub">The default scalar root-finder in <b>SciPy&rsquo;s brentq</b> and the engine under <b>MATLAB&rsquo;s fzero</b>. Keep a bracket <span class="k">[a,b]</span> that always straddles the root; each step, <b>try</b> the fast method (inverse quadratic interpolation or secant) but <b>fall back to bisection</b> whenever the fast step would leave the bracket or stall. You get secant-like speed with bisection&rsquo;s guarantee &mdash; convergence is never lost.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">fast step if safe, bisection if not</span></h2>
+  <p>Start with <span class="k">a, b</span> where <span class="k">f(a)</span> and <span class="k">f(b)</span> have opposite signs, so a root is trapped between them. Each iteration proposes an <b>inverse-quadratic</b> or <b>secant</b> step; if it lands inside the bracket and makes real progress, take it &mdash; otherwise <b>bisect</b>. The bracket only ever shrinks. Solve <span class="k">x&sup2; &minus; 2 = 0</span> and watch which sub-method fires each step. <span class="tag t-demo">live demo</span></p>
+  <pre class="mono" id="out"></pre>
+  <div class="row"><button id="go" class="dartbtn">&#9192; find the root</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the bracket-keeper is Dekker's</span></h2>
+  <p class="myth">&ldquo;Brent&rsquo;s method (1973)&rdquo; &mdash; the debut is <s>1973</s> <b>1971</b> (Computer Journal 14(4), received Aug 1970); the 1973 book is a re-presentation. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>antiquity</b> &middot; <b>regula falsi</b> (false position) &mdash; bracket two guesses and interpolate &mdash; is in the Rhind Papyrus (c. 1550 BCE); the <b>secant</b> and <b>IQI</b> steps long predate Brent.<br>
+    <b>1969</b> &middot; <span class="who">T. J. Dekker</span> publishes <b>zeroin</b>: the bracket-keeping <b>secant + bisection</b> hybrid with guaranteed convergence &mdash; the true origin Brent builds on and even keywords as &ldquo;Dekker&rsquo;s algorithm.&rdquo;<br>
+    <b>1971</b> &middot; <span class="who">R. P. Brent</span> adds (1) <b>inverse quadratic interpolation</b> and (2) the <b>safety inequalities</b> that decide when to fall back to bisection &mdash; his genuine originality is the <b>safeguarded combination with a proven bound</b>, not any single step.<br>
+    <b>the third name</b> &middot; <span class="who">van Wijngaarden</span> directed the Amsterdam Mathematisch Centrum where Dekker worked; there is <b>no separate van Wijngaarden paper</b> &mdash; it is institutional credit (and MathWorld even mis-spells &ldquo;Deker&rdquo;).
+  </div>
+  <p style="margin-top:10px">Guaranteed &mdash; but conditional: it needs a sign-changing bracket, so it can&rsquo;t find even-multiplicity roots (a tangent touch). <span class="tag t-open">Brent, 1971</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a handful of f64 scalars, no array</span></h2>
+  <p>The whole state is a few numbers; the secant core converges to the true root exactly:</p>
+  <div class="evi good">$ i13 run brent.i13    # f(x)=x^2-2, bracket [1,2]
+secant steps -> 1.4142135623730951    check: root^2 = 2.0000000000000004
+(nearest f64 to sqrt 2; full Brent adds IQI + bisection safeguards)</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; the entire method is a handful of f64 scalars: the secant update <span class="k">b &minus; f(b)(b&minus;a)/(f(b)&minus;f(a))</span>, the bisection midpoint <span class="k">(a+b)/2</span>, the sign test <span class="k">f(a)&middot;f(s) &lt; 0</span>, and <span class="k">|&middot;|</span> comparisons for the safeguards &mdash; no array at all (verified secant &rarr; 1.41421356237, root&sup2; = 2). The float <span class="k">/</span> (dart 001) carries it.<br>
+    <b>Note:</b> it composes the corpus&rsquo;s root-finders &mdash; bisection, secant, Newton &mdash; into one <b>safeguarded</b> solver; the honest gap is that i13 runs the secant core, while true Brent&rsquo;s bracket bookkeeping and IQI branch are a real (small) build on top.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  function f(x){ return x*x-2; }
+  function run(){
+    var a=1,b=2,fa=f(a),fb=f(b),c=a,fc=fa,d=b,s,fs,mflag=true;
+    if(Math.abs(fa)<Math.abs(fb)){ var t=a;a=b;b=t; t=fa;fa=fb;fb=t; }
+    var lines="f(x) = x^2 - 2,  bracket [1, 2],  f(1)=-1  f(2)=+2\n\n", step=0;
+    while(fb!==0 && Math.abs(b-a)>1e-15 && step<12){
+      var method;
+      if(fa!==fc && fb!==fc){
+        s=a*fb*fc/((fa-fb)*(fa-fc)) + b*fa*fc/((fb-fa)*(fb-fc)) + c*fa*fb/((fc-fa)*(fc-fb));
+        method="IQI";
+      } else { s=b-fb*(b-a)/(fb-fa); method="secant"; }
+      var lo=(3*a+b)/4;
+      var cond=!((s>Math.min(lo,b)&&s<Math.max(lo,b)))
+        || (mflag && Math.abs(s-b)>=Math.abs(b-c)/2)
+        || (!mflag && Math.abs(s-b)>=Math.abs(c-d)/2);
+      if(cond){ s=(a+b)/2; method="bisection"; mflag=true; } else { mflag=false; }
+      fs=f(s); d=c; c=b; fc=fb;
+      if(fa*fs<0){ b=s; fb=fs; } else { a=s; fa=fs; }
+      if(Math.abs(fa)<Math.abs(fb)){ var t=a;a=b;b=t; t=fa;fa=fb;fb=t; }
+      step++;
+      lines+="step "+step+"  "+method.padEnd(9)+" -> b = "+b.toFixed(15)+"   f(b) = "+(fb>=0?"+":"")+fb.toExponential(2)+"\n";
+      if(Math.abs(fb)<1e-15) break;
+    }
+    lines+="\nroot = <span class='hit'>"+b.toFixed(15)+"</span>   (sqrt 2 = 1.414213562373095)";
+    out.innerHTML=lines;
+    say.innerHTML='root <span class="true">'+b.toFixed(12)+'</span> &middot; bracket held every step, fast when safe';
+  }
+  document.getElementById("go").onclick=run;
+  out.innerHTML="press to trap sqrt(2) between 1 and 2";
+})();
+
+</script>
+
+<footer>
+  <b>DART 121 &middot; BRENT'S METHOD</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>R. P. Brent</b> (Computer Journal <b>1971</b>, not the 1973 book) &mdash; but the bracketed secant+bisection &ldquo;zeroin&rdquo; it builds on is <b>Dekker</b> (1969); the third name in &ldquo;van Wijngaarden-Dekker-Brent&rdquo; is <b>institutional</b>, not a separate publication. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
