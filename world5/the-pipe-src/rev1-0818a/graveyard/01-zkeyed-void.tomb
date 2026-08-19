@@ -1,0 +1,28 @@
+TOMBSTONE 01 ~~> THE VOID THAT COULD NOT MAKE NOISE
+════════════════════════════════════════════════════
+WHAT IT WAS
+  A planted known-bad: a "spilling" burrow meant to BREAK orthogonality,
+  so the commutator would catch it. Its x-shift was keyed off the
+  RESULTING z:  BURROW_SPILL(s,dz) = { x + (s.z+dz >= 3 ? 1 : 0), z+dz }
+
+HOW IT DIED
+  Run before the page was built. It read ZERO — it did not make noise.
+  MOVE never touches z, so both orders (MOVE-then-burrow, burrow-then-MOVE)
+  reach the SAME final z, both fire the same shift, and the commutator
+  cancelled to zero. The "bad" operator was not actually order-sensitive.
+
+WHY IT MATTERS
+  A known-bad that keys off a quantity both orders AGREE on cannot be
+  caught by a commutator. To break orthogonality the fault must depend
+  on what the two orders DISAGREE about — here, x (which MOVE changes).
+
+THE REPLACEMENT
+  BURROW_SPILL(s,dz) = { x + floor(x/10), z+dz }  ~~> keyed off x.
+  MOVE-first reads the moved x; burrow-first reads the original.
+  They disagree when x crosses a /10 boundary: 12 vs 11. Non-zero. Caught.
+
+THE LESSON
+  This is the house rule proving itself: an instrument whose good news is
+  silence needs a known-bad that MUST make noise — AND the known-bad has
+  to be checked too, because a broken known-bad is silent for the wrong
+  reason and looks identical to success.

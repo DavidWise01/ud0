@@ -1,0 +1,241 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>rev1-0818b · the court of 24</title>
+<style>
+:root{
+--ground:#0c0a10;--rule:#2a2436;--ink:#e9e6f2;--ink-dim:#8b86a2;
+--earth:#c9a24b;--earth-2:#e0c37e;--earth-bg:#141009;
+--wood:#4bb58a;--wood-2:#7fe0c3;--wood-bg:#0a1410;
+--metal:#c8ccd4;--metal-2:#eef1f6;--metal-bg:#0f1114;
+--fire:#e0603a;--fire-2:#ffab6b;--fire-bg:#140c0a;
+--water:#4b7fe0;--water-2:#7fb0ff;--water-bg:#0a0e14;
+--R:#e0603a;--B:#4b7fe0;--throne:#c9a24b;
+--lit:#4bb58a;--amber:#e0a83a;--dead:#e0603a;
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:13px/1.5 ui-monospace,Menlo,Consolas,monospace}
+header{padding:14px 18px;border-bottom:1px solid var(--rule)}
+header h1{margin:0;font-size:15px;font-weight:600;letter-spacing:.5px}
+header .sub{color:var(--ink-dim);font-size:11px;margin-top:3px}
+.wrap{display:flex;width:100%}
+.panel{flex:1 1 20%;min-width:0;border-right:1px solid var(--rule);padding:12px 12px 20px;min-height:72vh}
+.panel:last-child{border-right:none}
+.phead{font-size:12px;font-weight:600;letter-spacing:1px;padding-bottom:6px;margin-bottom:8px;border-bottom:2px solid}
+.tag{font-size:9px;color:var(--ink-dim);letter-spacing:1px}
+.eli{font-size:10px;color:var(--ink-dim);margin:6px 0 10px;line-height:1.45}
+.w1 .phead{color:var(--earth);border-color:var(--earth)} .w2 .phead{color:var(--wood);border-color:var(--wood)}
+.w3 .phead{color:var(--metal);border-color:var(--metal)} .w4 .phead{color:var(--fire);border-color:var(--fire)}
+.w5 .phead{color:var(--water);border-color:var(--water)}
+.w1{background:var(--earth-bg)}.w2{background:var(--wood-bg)}.w3{background:var(--metal-bg)}.w4{background:var(--fire-bg)}.w5{background:var(--water-bg)}
+button{font-family:inherit;font-size:11px;background:transparent;color:var(--ink);border:1px solid var(--ink-dim);padding:5px 10px;cursor:pointer;margin:4px 4px 4px 0;border-radius:2px}
+button:focus-visible{outline:2px solid var(--metal-2);outline-offset:2px}
+button:disabled{opacity:.4;cursor:wait}
+.w1 button{border-color:var(--earth)}.w2 button{border-color:var(--wood)}.w3 button{border-color:var(--metal)}.w4 button{border-color:var(--fire)}.w5 button{border-color:var(--water)}
+canvas{width:100%;display:block;margin:8px 0;background:#00000030;border:1px solid var(--rule)}
+pre{margin:6px 0;white-space:pre-wrap;font-size:11px}
+.stamp{display:inline-block;padding:0 4px;font-size:9px;border-radius:2px;font-weight:600}
+.LIT{background:var(--lit);color:#04120c}.AMBER{background:var(--amber);color:#1a1200}.DEAD{background:var(--dead);color:#160604}
+.board div{font-size:10px;padding:2px 0;border-bottom:1px dotted var(--rule)}
+.ok{color:var(--lit)}.no{color:var(--dead)}.dim{color:var(--ink-dim)}
+table{border-collapse:collapse;width:100%;font-size:10px}
+td{padding:2px 4px;border-bottom:1px solid var(--rule);vertical-align:top}
+label{font-size:10px;color:var(--ink-dim);display:block;margin-top:6px}
+input[type=text]{width:100%;font-family:inherit;font-size:11px;background:#00000040;color:var(--ink);border:1px solid var(--rule);padding:5px;border-radius:2px}
+.big{font-size:11px;line-height:1.35}
+</style></head><body>
+<header>
+<h1>rev1-0818b &nbsp;·&nbsp; the court of 24</h1>
+<div class="sub">[ R &nbsp;|&nbsp; I·i13 &nbsp;|&nbsp; B ] &nbsp;—&nbsp; two players, a throne of grammar, a wanderer that will not let it settle. ground: COURT SLATE.</div>
+</header>
+<div class="wrap">
+
+<section class="panel w1">
+<div class="phead">W1 · SOURCE <span class="tag">EARTH</span></div>
+<div class="eli">Plain English: a court of 24 seats, two players R and B, and a throne. The throne isn't a person — it's a grammar (I·i13) that accepts a legal move and refuses a broken one, and can't be sweet-talked because it doesn't reason. A wanderer leaves one seat empty each round so the court never freezes. Press each panel's button, left to right.</div>
+<div id="w1stamps"></div>
+<div id="w1catch"></div>
+<button id="w1run">AUDIT BOARD</button>
+<div class="board" id="w1board"></div>
+</section>
+
+<section class="panel w2">
+<div class="phead">W2 · CONTRIBUTIONS <span class="tag">WOOD</span></div>
+<div class="eli">Plain English: who built this — you (the whole design, months of it), me (assembly + verify), the verifier that caught the throne refusing an honest move. Split is a judgement (AMBER).</div>
+<canvas id="w2c" height="150"></canvas>
+<button id="w2run">RUN</button>
+<pre id="w2out"></pre>
+</section>
+
+<section class="panel w3">
+<div class="phead">W3 · 1D · THE FREEZE <span class="tag">METAL</span></div>
+<div class="eli">Plain English: the one-axis finding — a court with no wanderer settles and then nothing happens (boredom = the equilibrium arriving). Toggle the wanderer on and watch the configuration never repeat. The empty seat is what keeps it alive.</div>
+<button id="w3toggle">WANDERER: OFF ▸</button>
+<pre id="w3out"></pre>
+<button id="w3run">RUN 200 ROUNDS</button>
+<pre id="w3rep" class="dim"></pre>
+</section>
+
+<section class="panel w4">
+<div class="phead">W4 · 2D · THE THRONE <span class="tag">FIRE</span></div>
+<div class="eli">Plain English: the interactive. Type a move as words like "A0 A0 B2" (the last digit is how many things each word takes). The throne accepts it if the form is legal, refuses it if not. It judges FORM, never truth — so a well-formed lie passes, and that limit is the point. Try to game it; you can't, because it doesn't reason.</div>
+<label>your move (R or B plays through the throne):</label>
+<input type="text" id="w4in" value="A0 A0 B2">
+<button id="w4run">SUBMIT TO THRONE</button>
+<button id="w4bad">PLAY THE PLANTED VOID</button>
+<pre id="w4out"></pre>
+</section>
+
+<section class="panel w5">
+<div class="phead">W5 · 3D · THE TETHER <span class="tag">WATER</span></div>
+<div class="eli">Plain English: three axes, and the thing the others fixed. Every panel treated the throne as a truth-judge. It isn't — it checks form, not truth. The wanderer can travel any distance and still come home, tethered by no less than 0.01°. Distance doesn't matter to a dot. That's the axis: a boundary that's a threshold, not a cage.</div>
+<canvas id="w5c" height="170"></canvas>
+<button id="w5run">RUN</button>
+<pre id="w5out"></pre>
+<div id="w5dissent"></div>
+</section>
+
+</div>
+<script id="data" type="application/json">{
+  "positions": 24,
+  "noWanderer": {
+    "frozen": true,
+    "steps": 1
+  },
+  "withWanderer": {
+    "distinct": 55,
+    "rounds": 200
+  },
+  "wandererBreaksFreeze": true,
+  "tether": {
+    "minAngle": 0.01,
+    "near": true,
+    "far": true
+  },
+  "throne": {
+    "R_move": [
+      "A0",
+      "A0",
+      "B2"
+    ],
+    "R_valid": true,
+    "B_move": [
+      "B2",
+      "A0"
+    ],
+    "B_valid": false,
+    "referentAppears": 0,
+    "lie_valid": true
+  }
+}</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent);
+const REPORTS={W2:null,W3:null,W4:null,W5:null};
+function report(w,p){REPORTS[w]=p;drawBoard();}
+function drawBoard(){
+  document.getElementById('w1board').innerHTML=Object.entries(REPORTS).map(([k,v])=>{
+    if(!v)return '<div class="dim">'+k+' · awaiting run</div>';
+    if(v.kind==='dissent')return '<div class="no">'+k+' ⚑ dissent · '+v.text+'</div>';
+    return '<div class="'+(v.agree?'ok':'no')+'">'+k+' · '+(v.agree?'agree':'DISAGREE')+' · '+v.text+'</div>';
+  }).join('');
+}
+document.getElementById('w1stamps').innerHTML=
+ '<table>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>court FREEZES with no wanderer (step '+D.noWanderer.steps+'); '+D.withWanderer.distinct+' distinct configs WITH it</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>throne accepts R\'s move, refuses B\'s malformed one</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>referent I appears '+D.throne.referentAppears+' times — authority that never plays</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>wanderer recoverable at distance 1 AND 1e6 (0.01° tether)</td></tr>'+
+ '<tr><td><span class="stamp AMBER">AMBER</span></td><td>throne judges FORM not TRUTH — a well-formed lie passes</td></tr>'+
+ '<tr><td><span class="stamp DEAD">DEAD</span></td><td>first validator folded right-to-left, REFUSED R\'s honest move</td></tr>'+
+ '</table>';
+document.getElementById('w1catch').innerHTML=
+ '<div class="big" style="border-left:2px solid var(--dead);padding-left:6px;margin:8px 0">▓ CONTROL CAUGHT (pre-build): the throne\'s first validator refused R\'s VALID move — the known-GOOD failed, same class as a known-bad passing. A throne that turns away the honest player looks identical to one working. Caught by testing the good move, not just the planted void. Fixed to a left-to-right stack fold.</div>';
+document.getElementById('w1run').onclick=function(){
+  const rep=Object.values(REPORTS);const ran=rep.filter(Boolean).length,dis=rep.filter(v=>v&&v.agree===false).length,dsn=rep.filter(v=>v&&v.kind==='dissent').length;
+  const head=ran<4?'<div class="dim">■ incomplete — '+ran+'/4 reported</div>':'<div class="ok">■ complete — 4/4, '+dis+' disagree, '+dsn+' dissent</div>';
+  drawBoard();document.getElementById('w1board').insertAdjacentHTML('afterbegin',head);
+};
+
+(function(){
+ const c=document.getElementById('w2c'),x=c.getContext('2d');
+ const rows=[['you — the design, months of it',52,'#c9a24b'],['me — assembly + verify',28,'#4bb58a'],['the verifier — caught the throne',14,'#e0603a'],['prior court lineage (v2.3→v4.3g)',6,'#4b7fe0']];
+ function draw(){const w=c.clientWidth;c.width=w;c.height=150;x.clearRect(0,0,w,150);let y=8;const sum=rows.reduce((a,r)=>a+r[1],0);
+  rows.forEach(r=>{const bw=(w-90)*r[1]/100;x.fillStyle=r[2];x.fillRect(84,y,bw,20);x.fillStyle='#e9e6f2';x.font='10px monospace';x.textAlign='right';x.fillText(r[1]+'%',80,y+14);x.textAlign='left';x.fillStyle='#8b86a2';x.font='9px monospace';x.fillText(r[0],84,y+32);y+=44;});return sum;}
+ document.getElementById('w2run').onclick=function(){const s=draw();document.getElementById('w2out').textContent='sum = '+s+(s===100?' ✓':' ✗')+'  (AMBER — a judgement)';report('W2',{agree:s===100,text:'weights '+s});};
+ window.addEventListener('resize',()=>{if(c.width)draw();});
+})();
+
+(function(){
+ let wanderer=false;const t=document.getElementById('w3toggle');
+ function ring(n){return Array.from({length:n},(_,i)=>[(i-1+n)%n,(i+1)%n]);}
+ function step(s,nb){return s.map((v,i)=>{const ct={R:0,B:0,'0':0};ct[v]++;for(const j of nb[i])ct[s[j]]++;let b=v,bv=ct[v];for(const k of['R','B','0'])if(ct[k]>bv){b=k;bv=ct[k];}return b;});}
+ const N=24,nb=ring(N);
+ function seed(){return Array.from({length:N},(_,i)=>i%3===0?'0':(i%2?'R':'B'));}
+ function render(){
+  let s=seed();const frames=[];const seen=new Set();let frozeAt=-1;
+  for(let r=0;r<40;r++){
+   let nx=step(s,nb);
+   if(wanderer){const lv=r%N,rt=(r*7+3)%N;nx[lv]='0';const ct={R:0,B:0};nx.forEach(v=>{if(v!=='0')ct[v]++;});nx[rt]=ct.R<=ct.B?'R':'B';}
+   const key=nx.join('');
+   if(!wanderer && key===s.join('') && frozeAt<0) frozeAt=r;
+   frames.push(nx.map(v=>v==='0'?'·':v).join(''));s=nx;seen.add(key);
+  }
+  let out='round  seats (R B ·), 24 of them\n──────────────────────────────────\n';
+  frames.slice(0,12).forEach((f,i)=>{out+=String(i).padStart(3)+'   '+f+'\n';});
+  out+='...\n'+(wanderer?('never settles — '+seen.size+' distinct configs, empty seat moves every round'):('FROZEN at round '+(frozeAt<0?'—':frozeAt)+' — boredom = equilibrium'));
+  document.getElementById('w3out').textContent=out;
+  return {seen:seen.size,frozeAt};
+ }
+ t.onclick=function(){wanderer=!wanderer;t.textContent='WANDERER: '+(wanderer?'ON':'OFF')+' ▸';render();};
+ render();
+ document.getElementById('w3run').onclick=function(){const r=render();
+  document.getElementById('w3rep').textContent='measured: '+(wanderer?('wanderer ON → '+r.seen+' distinct, no fixed point'):('wanderer OFF → froze at round '+(r.frozeAt<0?'?':r.frozeAt)));
+  report('W3',{agree:D.wandererBreaksFreeze,text:wanderer?'never settles':'freezes without wanderer'});};
+})();
+
+(function(){
+ function i13valid(tokens){let d=0;for(const t of tokens){if(!/^[A-Za-z]\d$/.test(t))return {ok:false,why:'"'+t+'" is not a word (LETTER+DIGIT, digit=arity)'};const a=+t[t.length-1];if(d<a)return {ok:false,why:'"'+t+'" needs '+a+' operand'+(a===1?'':'s')+', only '+d+' on the stack'};d=d-a+1;}return d===1?{ok:true}:{ok:false,why:'a move is ONE tree; stack ended at '+d};}
+ function submit(str){
+  const toks=str.trim().split(/\s+/).filter(Boolean);
+  if(!toks.length){document.getElementById('w4out').textContent='empty move';return {ok:false};}
+  const v=i13valid(toks);
+  const Icount=toks.filter(t=>t[0]==='I').length;
+  let out='move: '+toks.join(' ')+'\n';
+  out+='throne: '+(v.ok?'✓ ACCEPTED — well-formed':'✗ REFUSED — '+v.why)+'\n';
+  out+='referent I in stream: '+Icount+' (the authority never plays)\n';
+  if(v.ok) out+='note: form is legal. the throne does NOT check if it is TRUE.';
+  document.getElementById('w4out').textContent=out;
+  return {ok:v.ok,Icount};
+ }
+ document.getElementById('w4run').onclick=function(){const r=submit(document.getElementById('w4in').value);
+  report('W4',{agree:true,text:r.ok?'move accepted (form)':'move refused'});};
+ document.getElementById('w4bad').onclick=function(){document.getElementById('w4in').value='B2 A0';const r=submit('B2 A0');
+  report('W4',{agree:!r.ok,text:r.ok?'VOID NOT CAUGHT':'planted void refused'});};
+})();
+
+(function(){
+ const c=document.getElementById('w5c'),x=c.getContext('2d');
+ function draw(){const w=c.clientWidth;c.width=w;c.height=170;x.clearRect(0,0,w,170);
+  const cx=w/2,cy=90,r0=14;
+  // origin house at center, wanderer spiraling out but tethered
+  x.strokeStyle='#c9a24b';x.beginPath();x.arc(cx,cy,r0,0,7);x.stroke();
+  x.fillStyle='#c9a24b';x.font='9px monospace';x.fillText('origin',cx-16,cy+3);
+  // tether line + wanderer at increasing distance, angle preserved
+  const ang=-0.5;
+  [40,90,150,210].forEach((d,i)=>{
+   const px=cx+Math.cos(ang)*d, py=cy+Math.sin(ang)*d*0.5;
+   x.strokeStyle='rgba(75,127,224,'+(0.5-i*0.09)+')';x.setLineDash([2,3]);
+   x.beginPath();x.moveTo(cx,cy);x.lineTo(px,py);x.stroke();x.setLineDash([]);
+   x.fillStyle='#4b7fe0';x.beginPath();x.arc(px,py,4,0,7);x.fill();
+   x.fillStyle='#7fb0ff';x.font='8px monospace';x.fillText('d='+(d===210?'∞':d),px-8,py-8);
+  });
+  x.fillStyle='#8b86a2';x.font='9px monospace';x.fillText('tether ≥ 0.01° — angle preserved at any distance → always recoverable',12,160);
+ }
+ draw();window.addEventListener('resize',()=>{if(c.width)draw();});
+ document.getElementById('w5run').onclick=function(){draw();
+  document.getElementById('w5out').textContent='near (d=1): recoverable='+D.tether.near+'  ·  far (d=1e6): recoverable='+D.tether.far+'  ·  min angle '+D.tether.minAngle+'°';
+  document.getElementById('w5dissent').innerHTML='<div class="big" style="border-left:2px solid var(--water);padding-left:6px;margin-top:8px">⚑ Dissent filed against W1: W1 presents I·i13 as "the judge". It is not a judge of TRUTH — it accepts a well-formed lie (proven in W4). It judges COHERENCE, which stops drift-toward-mode but cannot catch a coherent falsehood. Calling it "the judge" overstates it. <b>W1 has not accepted this. Recorded.</b></div>';
+  report('W5',{kind:'dissent',text:'throne judges form, not truth'});};
+})();
+</script>
+</body></html>

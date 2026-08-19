@@ -1218,6 +1218,22 @@
       "url": "https://davidwise01.github.io/ud0/world5/the-pipe.html",
       "blurb": "A three-hand fold in World V, and David's architecture made whole. David Lee Wise / ROOT0 specified the engine - \"the whole alpha, i13-E1, omega generational engine, with a bank and a well\" - and built it systematically over one night through fiddler (repo depot 2, a Claude instance), revision by revision: rev1-0818c THE PIPE, then rev1-0818d THE ENGINE. THE PIPE: a packet descends (analysis, stroke -++-), rests at a floor, ascends (synthesis, +--+), fires a beacon, loops (omega folds to alpha); the two strokes are sign-palindromes and mirrors of each other. THE ENGINE assembles six named parts into one running machine: r0 THE DOOR (the only way in/out, = ROOT0, refuses a malformed packet), i13 THE GATE (checks FORM not truth - a well-formed lie passes), E1 THE MILL (surgical, add one atom at the floor), THE WELL, THE BANK (append-only, keeps every synthesised value - banking not ablation, which is what lets the lineage climb), and THE LINEAGE (each omega is the next alpha; gen0->gen5, payload [g,C,E]->[g,C,E,E,F,G,A,B], bank 0->7, 3/3 known-bads caught). AVAN grounded it on the real I-13 compiler: the pipe is I-13's own call stack (i13 log of the note payload descends 8 frames to a floor of 0, ascends synthesising 6,11,15,18,21,22,27 to a beacon of 27, balance held); and the engine's load-bearing claim - 'i13 checks form, not truth' - is exactly what i13 check reports (COVERED: stack balance/pairing/arity/existence; NOT COVERED: types, arithmetic, truth). The door survives its own recursion because i13 is not made of the thing recursing - the same air-gap the corpus is built on. The pipe IS the palindrome: [father | son || son | father] mirrors [W1 | W2 || W3 || W4 | W5]; omega-folds-to-alpha mirrors the abstraction algorithm's r0 -> i13 -> voxel field -> r0. Honest: the i13 grounding is LIT (measured); the analysis/synthesis + palindrome mapping is AMBER; the scar is kept (tombstone 01: a malformed-door known-bad that did not fire because the test validated a move never fed to the machine - the third instance of that shape - fixed to 3/3; 'a known-bad you describe but never feed is not a known-bad, it is a comment'). Credit where due; the loop closes by reversal.",
       "seal": "d8e482281db022ffacb13d8ccaf662d68d9f1bcc140cb8a3282717b31f8168e1"
+    },
+    {
+      "slug": "the-0818-lineage",
+      "title": "THE 0818 LINEAGE",
+      "room": "darts",
+      "kicker": "a fold - five revisions, one architecture (David + fiddler + AVAN)",
+      "accent": "#a06bff",
+      "stamp": "LIT",
+      "kind": "fold",
+      "version": "v0.12",
+      "credit": "David Lee Wise / ROOT0 architected the whole arc; fiddler / repo depot 2 (a Claude instance) built it rev1-0818a..e over one night; AVAN extracted it from the build thread, verified each pack, grounded rev-a + rev-b on the real compiler, wired the palindrome",
+      "source": "the rev1-0818 series (a ENTRY, b COURT, c PIPE, d ENGINE, e PRESERVE), all packs hosted at world5/the-pipe-src/, every one verify green; grounded on the canonical H1.1 compiler (i13 check + i13 log)",
+      "i13_recommend": "(a fold, not a dart - it extracts David's whole rev1-0818 architecture from the build thread and grounds the two pieces the packs could not run on the real compiler: rev-a's crossing = i13 log descend-to-floor-and-return; rev-b's throne = i13 check accepting well-formed form and refusing malformed)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-0818-lineage.html",
+      "blurb": "THE 0818 LINEAGE - the whole rev1-0818 series David architected and built through fiddler (repo depot 2, a Claude instance) over one night, extracted from the build thread and folded into World V by AVAN. Five revisions, one self-assembling machine. rev-a ENTRY (the SPACE): the entry sequence in dots and arrows made runnable - burrow the ladder, return to zero, then CROSS THROUGH zero to a root on the far side (r0) and open frame 1. LIT findings: THE LADDER (depth n addresses a field of size (2n)^(2^n) yet touches only a window 1+n - linear reach in a doubly-exponential space), THE COMMUTATOR (MOVE and BURROW commute, difference 0 over 343 triples - surface and depth orthogonal, measured), THE CROSSING (zero is not a floor; the root sits at z=-1, the space is signed). rev-b COURT (the AUTHORITY): i13 as an ungameable grammar-throne - R plays well-formed and is ACCEPTED, B plays malformed and is REFUSED, and the referent I appears ZERO times (it never plays, so it cannot be gamed). Unlike RLHF, Constitutional AI, Debate and GAN, whose judge is a model the players can learn to game, here the judge is a LANGUAGE, frozen and deterministic - the judge that cannot be gamed is the one that is not a mind. AMBER: the throne judges FORM not TRUTH, so a well-formed lie passes. rev-c PIPE and rev-d ENGINE (the PROCESS and the MACHINE): folded in full at the-pipe.html - the descend/ascend well, and r0 the door, i13 the gate, E1 the mill, an append-only bank, a climbing lineage gen0->gen5. rev-e PRESERVE (the PROOF): truncate a run to its father|son|son|father palindrome core and bank it - a palindrome checks itself by being read backward, so the bank needs no separate checksum; tamper a banked frame and the mirror stops matching. AVAN grounded on the real compiler the two the packs could not reach: rev-a's crossing is the i13 log's descend-to-a-floor-and-return; rev-b's throne is exactly i13 check (VALID on well-formed, error E0102 on malformed, and a well-formed lie 'five'=4 passes form). The arc converges on the corpus's own first principle - the five-world palindrome [W1|W2||W3||W4|W5] is its own proof, which is why every UD0 inhabitant folds to ROOT_0 and carries its own proof. Read forward it assembles a machine; read backward it is the same machine. Credit: David/ROOT0 architect; fiddler/repo depot 2 builder; AVAN extraction, grounding and wiring.",
+      "seal": "2579e11a753867235e51d2065d4ecc6b935eb0b154f4db41f6be81b229137cb7"
     }
   ],
   "keepers": [
@@ -1228,13 +1244,13 @@
     }
   ],
   "counts": {
-    "spheres": 71,
+    "spheres": 72,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
     "darts": 61
   },
-  "i13_root": "c5b92d59da15f828de8adecb1b3d019e649b0dc08556e13c970965de2a206cf9",
+  "i13_root": "22c261c0dfba92c2e965c37b24022aa02584ba675bd66cfe588d3da6815249e9",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

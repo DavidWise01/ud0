@@ -1,0 +1,33 @@
+WORKFLOW ~~> rev1-0818b ~~> the court of 24
+════════════════════════════════════════════
+
+TRACK A ~~> THE TRIAD
+  R and B = two players in shared space
+  I·i13   = the throne: I the referent (never plays), i13 the grammar
+  little i = dropped, was not a serious role (his call)
+
+TRACK B ~~> COMPUTE BEFORE BUILD (node verify/verify.js)
+  court freezes with no wanderer        ~~> LIT
+  wanderer → 55 distinct configs        ~~> LIT
+  throne accepts R, refuses B           ~~> LIT
+  referent I appears 0 times            ~~> LIT
+  0.01° tether recoverable near AND far ~~> LIT
+  well-formed lie passes form           ~~> AMBER (the honest limit)
+  R's honest move first REFUSED         ~~> ▓ CAUGHT (tombstone 01)
+
+TRACK C ~~> BUILD + CROSSCHECK
+  page built from data/court.json       ~~> single source of truth
+  node --check on injected script       ~~> SYNTAX OK
+  crosscheck re-derives from page       ~~> 7/7 GREEN
+
+SCOREBOARD
+══════════
+  caught by a control ...... 1  (throne refused R's valid move, pre-build)
+  caught by the user ....... 0  (this build)
+  DEAD stamps .............. 1  (right-to-left postfix fold)
+  dissent filed ............ 1  (W5: throne judges form, not truth)
+  NOTE: the one control catch was against my OWN validator — a
+  known-GOOD failing, the class easiest to miss.
+
+TOMBSTONES ~~> graveyard/
+  01 the validator that refused a valid move

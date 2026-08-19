@@ -1,0 +1,157 @@
+{
+  "frame_limit": 4096,
+  "ladder": [
+    {
+      "n": 0,
+      "dots": "",
+      "field": "1",
+      "digitspan": 1,
+      "window": 1
+    },
+    {
+      "n": 1,
+      "dots": ".",
+      "field": "4",
+      "digitspan": 1,
+      "window": 2
+    },
+    {
+      "n": 2,
+      "dots": "..",
+      "field": "256",
+      "digitspan": 3,
+      "window": 3
+    },
+    {
+      "n": 3,
+      "dots": "...",
+      "field": "1679616",
+      "digitspan": 7,
+      "window": 4
+    },
+    {
+      "n": 4,
+      "dots": "....",
+      "field": "281474976710656",
+      "digitspan": 15,
+      "window": 5
+    },
+    {
+      "n": 5,
+      "dots": ".....",
+      "field": "100000000000000000000000000000000",
+      "digitspan": 33,
+      "window": 6
+    },
+    {
+      "n": 6,
+      "dots": "......",
+      "field": "1168422057627266461843148138873451659428421700563161428957815831003136",
+      "digitspan": 70,
+      "window": 7
+    }
+  ],
+  "coverageOK": true,
+  "path": [
+    {
+      "step": "~> 0",
+      "z": 0,
+      "frame": 0,
+      "note": "enter origin (surface root)"
+    },
+    {
+      "step": ".",
+      "z": 1,
+      "frame": 0,
+      "note": "burrow: point inside a voxel"
+    },
+    {
+      "step": "..",
+      "z": 2,
+      "frame": 0,
+      "note": "part of a voxel field"
+    },
+    {
+      "step": "...",
+      "z": 3,
+      "frame": 0,
+      "note": "of which there are many"
+    },
+    {
+      "step": ".....",
+      "z": 5,
+      "frame": 0,
+      "note": "deeper — confirm field beneath"
+    },
+    {
+      "step": "0",
+      "z": 0,
+      "frame": 0,
+      "note": "return to zero"
+    },
+    {
+      "step": "0 ~> -1",
+      "z": -1,
+      "frame": 0,
+      "note": "CROSS below zero — through the floor"
+    },
+    {
+      "step": "-1 ~> r0",
+      "z": -1,
+      "frame": 0,
+      "note": "reach the root FROM below"
+    },
+    {
+      "step": "r0 >[1]",
+      "z": -1,
+      "frame": 1,
+      "note": "root opens frame 1 : begin"
+    }
+  ],
+  "crossed": true,
+  "commutator": {
+    "point": {
+      "x": 5,
+      "y": 5,
+      "z": 0
+    },
+    "dx": 2,
+    "dy": 0,
+    "dz": 3,
+    "ab": {
+      "x": 7,
+      "y": 5,
+      "z": 3
+    },
+    "ba": {
+      "x": 7,
+      "y": 5,
+      "z": 3
+    },
+    "zero": true,
+    "allZero": true,
+    "samples": 343
+  },
+  "planted_void": {
+    "point": {
+      "x": 8,
+      "y": 5,
+      "z": 0
+    },
+    "dx": 3,
+    "dz": 2,
+    "ab": {
+      "x": 12,
+      "y": 5,
+      "z": 2
+    },
+    "ba": {
+      "x": 11,
+      "y": 5,
+      "z": 2
+    },
+    "caught": true,
+    "sweep_caught": 60,
+    "sweep_total": 220
+  }
+}

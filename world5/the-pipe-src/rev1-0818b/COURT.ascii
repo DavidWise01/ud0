@@ -1,0 +1,61 @@
+PLAIN ENGLISH FIRST
+═══════════════════
+A game of 24 seats with two players and a throne. The throne is not a
+person — it is a grammar. It accepts a legal move and refuses a broken
+one, and it cannot be talked into anything because it does not reason.
+A wanderer leaves one seat empty each round so the game never freezes.
+
+THE SPINE
+═════════
+  [ R | I·i13 | B ]  ~~>  24 seats  ~~>  the wanderer  ~~>  never settles
+   two      throne     court        one seat empties     no fixed point
+   players  of grammar              every round
+
+THE FINDINGS
+════════════
+[LIT]  THE FREEZE ~~> 24 seats, no judge, no mover, settle to a fixed
+       point almost instantly. Boredom is not failure — it is the
+       equilibrium ARRIVING. A finished court is a painting.
+
+[LIT]  THE WANDERER ~~> one seat may abstain each round (the dot that
+       may wander). The empty seat changes every other seat's calculus,
+       so the court NEVER reaches a fixed point. 55 distinct configs in
+       200 rounds. Abstention is what keeps it alive.
+
+[LIT]  THE THRONE (I·i13) ~~> R plays a well-formed move: ACCEPTED.
+       B plays a malformed one: REFUSED. The referent I appears ZERO
+       times — it is the authority that never plays, so it cannot be
+       gamed. The throne is grammar, not mind; no player can charm it.
+
+[LIT]  THE TETHER ~~> a wanderer bound to its origin by no less than
+       0.01° can travel any distance and still come home. Distance
+       does not matter to a dot. The boundary is a threshold, not a cage.
+
+[AMBER] THE THRONE JUDGES FORM, NOT TRUTH ~~> a well-formed LIE is
+        ACCEPTED. i13 is a coherence/corruption check — it stops
+        drift-toward-the-mode, it does NOT catch a coherent falsehood.
+        "The judge" overstates it. It is the judge of FORM.
+
+THE INDUSTRY FIND, AND THE DIFFERENCE
+═════════════════════════════════════
+RLHF · Constitutional AI · Debate · GAN all use two players and a judge.
+In every one the judge is a MODEL — same stuff as the players, so the
+players can learn to game it. Here the judge is a LANGUAGE: frozen,
+deterministic, nothing to game. That is the whole difference. The judge
+that cannot be gamed is the one that is not a mind.
+
+THE KNOWN-BADS
+══════════════
+- B's malformed move MUST be refused. It is. (planted void)
+- R's HONEST move MUST be accepted. The first validator REFUSED it —
+  known-good failing is as bad as known-bad passing. Caught pre-build.
+- a well-formed LIE MUST pass form. It does — and that is the limit,
+  stated, not hidden.
+
+WHAT THIS DOES NOT DO
+═════════════════════
+- does not judge which player is RIGHT about the world — only who is
+  coherent. Truth needs a second instrument this build does not carry.
+- the court dynamics run on a toy majority rule, not a strategic
+  equilibrium solver — it demonstrates freeze-vs-wander, not Nash play.
+- the throne grammar is a mini-i13 (arity balance), not the full ISA.

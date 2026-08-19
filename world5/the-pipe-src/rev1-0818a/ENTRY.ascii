@@ -1,0 +1,47 @@
+PLAIN ENGLISH FIRST
+═══════════════════
+You wrote an entry sequence in dots and arrows. This turns it into a
+machine you can run. It walks down into nested voxels, comes back to
+zero, then CROSSES THROUGH zero to a root that lives on the far side,
+and opens the first frame. Along the way it proves two smaller things:
+a linear step can address a space that is astronomically large, and
+two kinds of motion (surface + depth) do not interfere.
+
+THE SPINE  (read left to right)
+═══════════
+  ~> 0 ~~> . ~~> .. ~~> ... ~~> ..... ~~> 0 ~~> [0 ~> -1] ~~> r0 ~~> >[1] : begin
+   enter    burrow the ladder (dots = depth)    return   THE CROSSING   root   frame 1
+   origin                                        to 0    (through floor) below  opens
+                                                                          zero
+
+THE THREE FINDINGS
+══════════════════
+[LIT]  THE LADDER ~~> depth n addresses a field of size (2n)^(2^n).
+       n=2 -> 3 digits · n=4 -> 15 digits · n=6 -> 70 digits.
+       You only ever TOUCH a window of size 1+n (linear).
+       ~~> a linear reach inside a doubly-exponential space. The clamp holds.
+
+[LIT]  THE COMMUTATOR ~~> MOVE and BURROW commute. Run both orders,
+       the difference is 0, over all 343 tested input triples.
+       ~~> "surface and depth are orthogonal" is now MEASURED, not asserted.
+
+[LIT]  THE CROSSING ~~> zero is not a floor. +z (depth) and -z (root)
+       both exist; the root sits at z=-1, reached by passing through 0.
+       ~~> frame 1 opens BELOW zero. The space is signed.
+
+[AMBER] the -1 |-> r0 topology (root reached from below) is your design
+        choice, not derived from anything. Labelled, not proven.
+
+THE KNOWN-BAD  (an instrument whose good news is silence needs one)
+═════════════
+A planted void: a "spilling" burrow that SHOULD break orthogonality and
+MUST make the commutator non-zero. If it ever reads zero, the instrument
+is blind. It reads 12 vs 11 ~~> non-zero ~~> the instrument can see a fault.
+
+WHAT THIS DOES NOT DO
+═════════════════════
+- does not run your real compiler (no src/ available) — this is the
+  entry MATH, verified in Node, not the I13-H1.1 execution authority.
+- does not decide whether (2n)^(2^n) is the RIGHT field law — it tests
+  the shape you gave, it does not derive it.
+- the sign topology is measured as PRESENT, not justified as CORRECT.

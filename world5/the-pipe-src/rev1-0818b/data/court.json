@@ -1,0 +1,32 @@
+{
+  "positions": 24,
+  "noWanderer": {
+    "frozen": true,
+    "steps": 1
+  },
+  "withWanderer": {
+    "distinct": 55,
+    "rounds": 200
+  },
+  "wandererBreaksFreeze": true,
+  "tether": {
+    "minAngle": 0.01,
+    "near": true,
+    "far": true
+  },
+  "throne": {
+    "R_move": [
+      "A0",
+      "A0",
+      "B2"
+    ],
+    "R_valid": true,
+    "B_move": [
+      "B2",
+      "A0"
+    ],
+    "B_valid": false,
+    "referentAppears": 0,
+    "lie_valid": true
+  }
+}

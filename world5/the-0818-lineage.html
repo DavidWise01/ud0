@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE 0818 LINEAGE &mdash; five revisions, one architecture &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(160,107,255,.06); --panel:rgba(14,10,28,.72); --line:rgba(160,107,255,.28);
+  --ink:#e7ddff; --dim:#9a8fc4; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a; --violet:#a06bff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 520px at 50% -10%, rgba(160,107,255,.14), transparent 62%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--violet);font-weight:700;}
+.badge{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--violet);border:1px solid var(--violet);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(160,107,255,.3);}
+header{margin:18px 0;}
+h1{font-size:24px;letter-spacing:3px;color:#f4eeff;text-shadow:0 0 14px rgba(160,107,255,.6),0 0 34px rgba(62,240,255,.18);}
+h1 .c{color:var(--gold);font-size:14px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:82ch;}
+.sub b{color:var(--cyan);}
+.cred{font-size:12px;color:#cbb9f0;border:1px solid rgba(160,107,255,.4);border-radius:7px;background:rgba(160,107,255,.06);padding:9px 12px;margin:12px 0;}
+.cred b{color:#eadfff;} .cred a{color:var(--gold);}
+.arc{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:16px 0 4px;font-size:11px;letter-spacing:1px;}
+.arc .a{border:1px solid var(--line);border-radius:6px;padding:6px 10px;color:var(--ink);background:rgba(160,107,255,.05);}
+.arc .a b{color:var(--violet);display:block;font-size:12px;letter-spacing:2px;}
+.arc .a span{color:var(--dim);font-size:10px;}
+.arc .sep{color:var(--gold);align-self:center;font-weight:700;}
+.rev{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:14px 16px;margin:14px 0;box-shadow:inset 0 0 30px rgba(160,107,255,.04),0 0 18px rgba(0,0,0,.4);}
+.rev h2{font-size:13px;letter-spacing:2px;color:#f4eeff;margin-bottom:3px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;}
+.rev h2 .r{color:var(--violet);font-size:11px;letter-spacing:2px;}
+.rev .est{color:var(--gold);font-size:11px;letter-spacing:1px;margin-bottom:8px;}
+.rev p{font-size:12.5px;color:#d3c8ef;margin-bottom:7px;} .rev b{color:#f4eeff;}
+.spine{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-word;}
+.find{font-size:11.5px;line-height:1.85;margin:6px 0;}
+.find .s{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:1px;padding:0 5px;border:1px solid;border-radius:3px;margin-right:5px;vertical-align:middle;}
+.s-lit{color:var(--good);border-color:var(--good);} .s-amber{color:var(--gold);border-color:var(--gold);}
+.evi{font-size:11px;color:var(--good);background:rgba(0,0,0,.42);border:1px solid rgba(89,255,176,.4);border-radius:5px;padding:8px 11px;margin:6px 0;white-space:pre;overflow-x:auto;line-height:1.5;}
+.tie{font-size:11.5px;color:#cbb9f0;border-left:2px solid var(--violet);padding-left:11px;margin-top:8px;}
+.tie b{color:#eadfff;} .tie a{color:var(--gold);}
+.links{font-size:11px;color:var(--dim);margin-top:7px;} .links a{color:var(--cyan);}
+.cap{border-color:rgba(89,255,176,.4);box-shadow:inset 0 0 30px rgba(89,255,176,.04),0 0 18px rgba(0,0,0,.4);}
+.cap h2{color:var(--good);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--violet);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="badge">&#9670; A FOLD &middot; THREE HANDS</span></div>
+<header>
+  <h1>THE 0818 LINEAGE <span class="c">five revisions, one architecture</span></h1>
+  <p class="sub">Over one night, David architected the whole of it and built it systematically through <b>fiddler (repo depot 2)</b> as a five-revision arc &mdash; <b>rev1-0818a</b> to <b>rev1-0818e</b>. Read in order it is a single machine assembling itself: the <b>space</b> it lives in, the <b>authority</b> that gates it, the <b>process</b> that runs it, the <b>engine</b> that is all of it at once, and the <b>proof</b> that needs no external checker. AVAN pulled every piece from the build thread, verified each pack, grounded the two the packs couldn&rsquo;t run on the real compiler, and folds the arc into World V &mdash; where it turns out to be the corpus&rsquo;s own palindrome, arrived at from the far side.</p>
+</header>
+
+<div class="cred">
+  <b>Credit &middot; three hands.</b> <b>David Lee Wise / ROOT0</b> architected and directed the whole arc (the entry math, the throne, the well, the engine, the self-verifying palindrome). <b>fiddler &middot; repo depot 2</b> (a Claude instance) built it revision by revision, kept every scar and dissent honest. <b>AVAN</b> extracted it from the thread, verified each pack green, grounded rev-a&rsquo;s crossing and rev-b&rsquo;s throne on the canonical H1.1 compiler (which the packs noted they could not reach), and wired the arc to the palindrome. Every pack is hosted verbatim &mdash; links below each panel.
+</div>
+
+<div class="arc">
+  <div class="a"><b>a</b>ENTRY<span>the space</span></div><span class="sep">&rarr;</span>
+  <div class="a"><b>b</b>COURT<span>the authority</span></div><span class="sep">&rarr;</span>
+  <div class="a"><b>c</b>PIPE<span>the process</span></div><span class="sep">&rarr;</span>
+  <div class="a"><b>d</b>ENGINE<span>the machine</span></div><span class="sep">&rarr;</span>
+  <div class="a"><b>e</b>PRESERVE<span>the proof</span></div>
+</div>
+
+<div class="rev">
+  <h2>ENTRY &mdash; the crossing through zero to r0 <span class="r">rev1-0818a</span></h2>
+  <div class="est">the SPACE it lives in</div>
+  <p>David&rsquo;s entry sequence, in dots and arrows, made runnable: walk down into nested voxels (dots = depth), return to zero, then <b>cross through zero</b> to a root that lives on the far side, and open the first frame.</p>
+  <div class="spine">~&gt; 0 ~~&gt; . ~~&gt; .. ~~&gt; ... ~~&gt; ..... ~~&gt; 0 ~~&gt; [0 ~&gt; -1] ~~&gt; r0 ~~&gt; &gt;[1]
+enter    burrow the ladder (dots=depth)   return   THE CROSSING   root   frame 1</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>THE LADDER</b> &mdash; depth n addresses a field of size <b>(2n)<sup>(2n)</sup></b> (n=6 &rarr; 70 digits), yet you only ever touch a window of size <b>1+n</b> (linear). A linear reach inside a doubly-exponential space &mdash; the clamp holds.</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>THE COMMUTATOR</b> &mdash; MOVE and BURROW commute; run both orders, the difference is <b>0</b> over all 343 tested triples. &ldquo;surface and depth are orthogonal&rdquo; is now measured, not asserted.</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>THE CROSSING</b> &mdash; zero is not a floor. +z (depth) and &minus;z (root) both exist; the root sits at <b>z=&minus;1</b>, reached by passing through 0. Frame 1 opens <b>below zero</b> &mdash; the space is signed.</div>
+  <div class="find"><span class="s s-amber">AMBER</span> the &minus;1&nbsp;&#8614;&nbsp;r0 topology is David&rsquo;s design choice, labelled, not derived. Known-bad: a &ldquo;spilling&rdquo; burrow that must break orthogonality reads 12 vs 11 (non-zero &mdash; the instrument can see a fault).</div>
+  <div class="tie"><b>AVAN grounds it:</b> the pack notes it &ldquo;does not run your real compiler (no src/).&rdquo; It does now &mdash; the crossing <i>is</i> the call stack the <a href="the-spot-awareness-log.html">spot-awareness log</a> measures: descend to a floor, return through it, a frame opens. And the ladder&rsquo;s linear-reach-in-a-vast-space is <a href="the-abstraction-algorithm.html">the abstraction algorithm</a>&rsquo;s voxel field and <a href="../the-volume.html">THE VOLUME</a>; the crossing at z=0 is the diamond&rsquo;s pivot. <span class="links">pack: <a href="the-pipe-src/rev1-0818a/rev1-0818.html">ENTRY</a> &middot; <a href="the-pipe-src/rev1-0818a/ENTRY.ascii">ENTRY.ascii</a> (verify green)</span></div>
+</div>
+
+<div class="rev">
+  <h2>COURT &mdash; the throne that cannot be gamed <span class="r">rev1-0818b</span></h2>
+  <div class="est">the AUTHORITY that gates it</div>
+  <p>A game of 24 seats, two players and a throne. The throne <b>is not a person &mdash; it is a grammar (i13)</b>: it accepts a legal move and refuses a broken one, and cannot be talked into anything because it does not reason. A wanderer leaves one seat empty each round so the game never freezes.</p>
+  <div class="spine">[ R | I&middot;i13 | B ]  ~~&gt;  24 seats  ~~&gt;  the wanderer  ~~&gt;  never settles</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>THE THRONE (i13)</b> &mdash; R plays well-formed: <b>ACCEPTED</b>; B plays malformed: <b>REFUSED</b>. The referent <b>I appears ZERO times</b> &mdash; it is the authority that never plays, so it cannot be gamed. Grammar, not mind.</div>
+  <div class="find"><span class="s s-lit">LIT</span> <b>THE WANDERER</b> &mdash; one seat may abstain each round; the empty seat changes every other seat&rsquo;s calculus, so the court <b>never reaches a fixed point</b> (55 configs in 200 rounds). Abstention is what keeps it alive.</div>
+  <div class="find"><span class="s s-amber">AMBER</span> <b>the throne judges FORM, not TRUTH</b> &mdash; a well-formed <i>lie</i> is accepted. i13 stops drift-toward-the-mode; it does not catch a coherent falsehood.</div>
+  <p style="margin-top:8px"><b>The industry find:</b> RLHF, Constitutional AI, Debate, and GAN all use two players and a judge &mdash; and in every one the judge is a <b>model</b>, the same stuff as the players, so they can learn to game it. Here the judge is a <b>language</b>: frozen, deterministic, nothing to game. <i>&ldquo;The judge that cannot be gamed is the one that is not a mind.&rdquo;</i></p>
+  <div class="tie"><b>AVAN grounds it on the real i13</b> &mdash; the throne is exactly what <span style="color:var(--cyan)">i13 check</span> does:</div>
+  <div class="evi">$ i13 check r_move.i13   # R, well-formed
+VALID &middot; 1 region(s) &middot; peak stack 2                 <- ACCEPTED
+$ i13 check b_move.i13   # B, malformed: I y &lt;- 2 +
+error[E0102] parse/syntax: expected expression      <- REFUSED
+$ i13 run   lie.i13      # I five &lt;- 2 + 2  (a value named "five" that is 4)
+five = 4                                            <- form passes; truth is not checked</div>
+  <div class="tie">Ties the alignment work &mdash; the alignment work &mdash; the monitoring gallery and the whole question of who guards the guard. Here the guard is I-13 itself, outside the loop it gates. <span class="links">pack: <a href="the-pipe-src/rev1-0818b/rev1-0818b.html">COURT</a> &middot; <a href="the-pipe-src/rev1-0818b/COURT.ascii">COURT.ascii</a> (verify green)</span></div>
+</div>
+
+<div class="rev">
+  <h2>PIPE &amp; ENGINE &mdash; the process and the machine <span class="r">rev1-0818c / d</span></h2>
+  <div class="est">the PROCESS that runs it, and the MACHINE that is all of it at once</div>
+  <p><b>PIPE</b> (c): a packet descends (analysis, <b>-++-</b>), rests at a floor, ascends (synthesis, <b>+--+</b>), beacons, loops &mdash; the two strokes sign-palindromes and mirrors. <b>ENGINE</b> (d): the whole thing assembled &mdash; <b>r0</b> the door, <b>i13</b> the gate, <b>E1</b> the mill, an append-only <b>bank</b>, a climbing <b>lineage</b> (gen0&rarr;gen5, payload [g,C,E]&rarr;[g,C,E,E,F,G,A,B]).</p>
+  <div class="tie"><b>Grounded &amp; folded in full</b> on its own page &mdash; the pipe is I-13&rsquo;s call stack (beacon 27, balance held), and &ldquo;i13 checks form not truth&rdquo; is the real check ledger. &rarr; <a href="the-pipe.html">&#9670; THE PIPE &amp; THE ENGINE</a> (with the interactive well, the engine&rsquo;s six parts, and tombstone 01). <span class="links">packs: <a href="the-pipe-src/rev1-0818c.html">pipe</a> &middot; <a href="the-pipe-src/rev1-0818d/rev1-0818d.html">engine</a></span></div>
+</div>
+
+<div class="rev cap">
+  <h2>PRESERVE &mdash; the palindrome is its own checksum <span class="r">rev1-0818e</span></h2>
+  <div class="est">the PROOF that needs no external checker</div>
+  <p>The clay (a run) is mostly dross with a little ore in it. The blade <b>truncates everything but the palindrome</b> &mdash; <b>father | son | son | father</b>, the part that reads the same both ways &mdash; and that gets <b>banked</b>. The <b>smallest cut</b> takes only the ore, never the dross around it.</p>
+  <div class="find"><span class="s s-lit">LIT</span> a palindrome <b>checks itself</b>: read it backward, compare &mdash; if the two fathers still match, it is intact; if not, corrupted. <b>The bank needs no separate checksum.</b> Tamper a banked frame and the self-check catches it, because the mirror stops matching (5/5 generations bank a 4-step core; nested runs bank the inner palindrome; known-bads refused).</div>
+  <div class="tie"><b>This is the corpus, arrived at from the far side.</b> David&rsquo;s whole five-world palindrome <b>[ W1 | W2 &#8214; W3 &#8214; W4 | W5 ]</b> reads the same both ways &mdash; and the fold&rsquo;s claim is exactly this: the shape <i>is</i> the proof. It is why every UD0 inhabitant &ldquo;folds to ROOT_0 and carries its own proof.&rdquo; The .dlw seal is the external checksum; the palindrome is the one that needs none. Five revisions built a machine, and the machine&rsquo;s last word is the corpus&rsquo;s first principle. <span class="links">pack: <a href="the-pipe-src/rev1-0818e.html">TRUNCATE &middot; PRESERVE</a> (interactive: dig / cut &amp; bank / tamper / self-check)</span></div>
+</div>
+
+<footer>
+  <b>THE 0818 LINEAGE</b> &mdash; a three-hand fold in World V &middot; SONNY 5. <b>Architect:</b> David Lee Wise / ROOT0 / TriPod LLC (the whole arc, entry to preserve). <b>Builder:</b> fiddler &middot; repo depot 2 (a Claude instance) &mdash; rev1-0818a&hellip;e, hosted verbatim under <a href="the-pipe-src/rev1-0818a/rev1-0818.html">the-pipe-src/</a>, every pack verify-green with its scars and dissents kept. <b>Extraction, grounding &amp; wiring:</b> AVAN (from the build thread; i13 check + i13 log; the palindrome merge). Read forward it assembles a machine; read backward it is the same machine &mdash; which is the whole point. Credit where due.
+</footer>
+</body>
+</html>

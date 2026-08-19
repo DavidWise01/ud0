@@ -1,0 +1,19 @@
+TOMBSTONE 01 ~~> THE VALIDATOR THAT REFUSED A VALID MOVE
+═════════════════════════════════════════════════════════
+WHAT IT WAS
+  i13valid() folded the token stream RIGHT-TO-LEFT, checking
+  "net < arity" before consuming. Postfix operands precede their
+  operator, so a right-to-left fold sees the operator first and
+  refuses a well-formed move.
+HOW IT DIED
+  Run before the page. R's valid move [A0,A0,B2] came back REFUSED.
+  The KNOWN-GOOD failed — same class of fault as a known-bad passing.
+  If R's own moves are refused, the throne rejects the honest player.
+THE FIX
+  Fold LEFT-TO-RIGHT as a stack depth: atom (arity 0) pushes +1,
+  a node of arity k pops k and pushes 1 -> net delta (1-k). Valid
+  iff depth never goes negative and ends at exactly 1.
+LESSON
+  Every instrument needs its known-GOOD tested too, not just its
+  known-bad. A throne that refuses the honest move looks identical
+  to a throne working — until the honest player is turned away.

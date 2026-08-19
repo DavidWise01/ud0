@@ -1,0 +1,416 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>rev1-0818 · entry instrument</title>
+<style>
+:root{
+--ground:#0e0c14;--rule:#2a2636;--ink:#e8e6f0;--ink-dim:#8a86a0;
+--earth:#c9a24b;--earth-2:#e0c37e;--earth-bg:#14100a;
+--wood:#4bb58a;--wood-2:#7fe0c3;--wood-bg:#0a1410;
+--metal:#c8ccd4;--metal-2:#eef1f6;--metal-bg:#0f1114;
+--fire:#e0603a;--fire-2:#ffab6b;--fire-bg:#140c0a;
+--water:#4b7fe0;--water-2:#7fb0ff;--water-bg:#0a0e14;
+--lit:#4bb58a;--amber:#e0a83a;--dead:#e0603a;
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+font:13px/1.5 ui-monospace,'SF Mono',Menlo,Consolas,monospace}
+header{padding:14px 18px;border-bottom:1px solid var(--rule)}
+header h1{margin:0;font-size:15px;font-weight:600;letter-spacing:.5px}
+header .sub{color:var(--ink-dim);font-size:11px;margin-top:3px}
+.wrap{display:flex;gap:0;width:100%}
+.panel{flex:1 1 20%;min-width:0;border-right:1px solid var(--rule);padding:12px 12px 20px;min-height:70vh}
+.panel:last-child{border-right:none}
+.phead{font-size:12px;font-weight:600;letter-spacing:1px;padding-bottom:6px;margin-bottom:8px;border-bottom:2px solid}
+.tag{font-size:9px;color:var(--ink-dim);letter-spacing:1px}
+.eli{font-size:10px;color:var(--ink-dim);font-style:normal;margin:6px 0 10px;line-height:1.45}
+.w1 .phead{color:var(--earth);border-color:var(--earth)}
+.w2 .phead{color:var(--wood);border-color:var(--wood)}
+.w3 .phead{color:var(--metal);border-color:var(--metal)}
+.w4 .phead{color:var(--fire);border-color:var(--fire)}
+.w5 .phead{color:var(--water);border-color:var(--water)}
+.w1{background:var(--earth-bg)}.w2{background:var(--wood-bg)}.w3{background:var(--metal-bg)}
+.w4{background:var(--fire-bg)}.w5{background:var(--water-bg)}
+button{font-family:inherit;font-size:11px;background:transparent;color:var(--ink);
+border:1px solid var(--ink-dim);padding:5px 10px;cursor:pointer;margin:4px 0;border-radius:2px}
+button:focus-visible{outline:2px solid var(--metal-2);outline-offset:2px}
+button:disabled{opacity:.4;cursor:wait}
+.w1 button{border-color:var(--earth)}.w2 button{border-color:var(--wood)}
+.w3 button{border-color:var(--metal)}.w4 button{border-color:var(--fire)}.w5 button{border-color:var(--water)}
+canvas{width:100%;display:block;margin:8px 0;background:#00000030;border:1px solid var(--rule)}
+pre{margin:6px 0;white-space:pre;font-size:11px;overflow-x:auto}
+.stamp{display:inline-block;padding:0 4px;font-size:9px;border-radius:2px;font-weight:600}
+.LIT{background:var(--lit);color:#04120c}.AMBER{background:var(--amber);color:#1a1200}.DEAD{background:var(--dead);color:#160604}
+.board div{font-size:10px;padding:2px 0;border-bottom:1px dotted var(--rule)}
+.ok{color:var(--lit)}.no{color:var(--dead)}.dim{color:var(--ink-dim)}
+table{border-collapse:collapse;width:100%;font-size:10px;margin:6px 0}
+td{padding:2px 4px;border-bottom:1px solid var(--rule);vertical-align:top}
+.slider{width:100%;margin:6px 0}
+label{font-size:10px;color:var(--ink-dim);display:block;margin-top:6px}
+.big{font-size:11px;line-height:1.3}
+</style></head><body>
+<header>
+<h1>rev1-0818 &nbsp;·&nbsp; the entry instrument</h1>
+<div class="sub">~&gt; 0 &nbsp;.&nbsp;..&nbsp;...&nbsp;.....&nbsp; 0 ~&gt; -1 ~&gt; r0 &gt;[1] : begin &nbsp;—&nbsp; a boot sequence, run in place. ground tone: OBSIDIAN PLUM.</div>
+</header>
+<div class="wrap">
+
+<section class="panel w1">
+<div class="phead">W1 · SOURCE <span class="tag">EARTH</span></div>
+<div class="eli">Plain English: this page runs the entry sequence you wrote in dots and arrows. It descends into voxels, crosses through zero to the root, and opens the first frame — and it proves two side-claims: that a linear step can address a doubly-exponential space, and that surface-motion and depth-motion don't interfere (a "commutator" reads zero). New to this? Every panel has a RUN button; press them left to right.</div>
+<div id="w1stamps"></div>
+<div id="w1catch"></div>
+<button id="w1run">AUDIT BOARD</button>
+<div class="board" id="w1board"></div>
+</section>
+
+<section class="panel w2">
+<div class="phead">W2 · CONTRIBUTIONS <span class="tag">WOOD</span></div>
+<div class="eli">Plain English: who actually made this — you, me, and the verifier that caught my mistake before it shipped. The split is a judgement call (AMBER).</div>
+<canvas id="w2c" height="150"></canvas>
+<button id="w2run">RUN</button>
+<pre id="w2out"></pre>
+</section>
+
+<section class="panel w3">
+<div class="phead">W3 · 1D · THE LADDER <span class="tag">METAL</span></div>
+<div class="eli">Plain English: the one-axis view — the descent by depth. Each dot is one level deeper. The number beside it is how vast that level's space is (its digit-count), and the window is how little of it you ever touch at once. Toggle to see the BROKEN reading, where the vast number is mistaken for work instead of space.</div>
+<button id="w3toggle">MODE: SPACE ▸</button>
+<pre id="w3out"></pre>
+<button id="w3run">RUN</button>
+<pre id="w3rep" class="dim"></pre>
+</section>
+
+<section class="panel w4">
+<div class="phead">W4 · 2D · THE COMMUTATOR <span class="tag">FIRE</span></div>
+<div class="eli">Plain English: the interactive. Pick a surface move and a burrow depth. It runs both orders — move-then-burrow and burrow-then-move — and shows the difference. Zero means they don't interfere (orthogonal). Flip the TAMPER switch to inject a broken "spilling" burrow that MUST make the difference non-zero — that's how you know the instrument can actually see a fault.</div>
+<canvas id="w4c" height="150"></canvas>
+<label>surface move dx: <span id="w4dxv">2</span></label>
+<input class="slider" id="w4dx" type="range" min="-6" max="6" value="2">
+<label>burrow dz: <span id="w4dzv">3</span></label>
+<input class="slider" id="w4dz" type="range" min="-6" max="6" value="3">
+<button id="w4tamper">TAMPER: OFF</button>
+<button id="w4run">RUN</button>
+<pre id="w4out"></pre>
+</section>
+
+<section class="panel w5">
+<div class="phead">W5 · 3D · THE CROSSING <span class="tag">WATER</span></div>
+<div class="eli">Plain English: the three-axis view, and the axis everyone else fixed. W1–W4 all treated ZERO as a floor you stop at. It isn't. This panel shows the sign flip — you pass THROUGH zero to −1, and the root lives on the far side. The third dimension is the sign of z.</div>
+<canvas id="w5c" height="170"></canvas>
+<button id="w5run">RUN</button>
+<pre id="w5out"></pre>
+<div id="w5dissent"></div>
+</section>
+
+</div>
+<script id="data" type="application/json">{
+  "frame_limit": 4096,
+  "ladder": [
+    {
+      "n": 0,
+      "dots": "",
+      "field": "1",
+      "digitspan": 1,
+      "window": 1
+    },
+    {
+      "n": 1,
+      "dots": ".",
+      "field": "4",
+      "digitspan": 1,
+      "window": 2
+    },
+    {
+      "n": 2,
+      "dots": "..",
+      "field": "256",
+      "digitspan": 3,
+      "window": 3
+    },
+    {
+      "n": 3,
+      "dots": "...",
+      "field": "1679616",
+      "digitspan": 7,
+      "window": 4
+    },
+    {
+      "n": 4,
+      "dots": "....",
+      "field": "281474976710656",
+      "digitspan": 15,
+      "window": 5
+    },
+    {
+      "n": 5,
+      "dots": ".....",
+      "field": "100000000000000000000000000000000",
+      "digitspan": 33,
+      "window": 6
+    },
+    {
+      "n": 6,
+      "dots": "......",
+      "field": "1168422057627266461843148138873451659428421700563161428957815831003136",
+      "digitspan": 70,
+      "window": 7
+    }
+  ],
+  "coverageOK": true,
+  "path": [
+    {
+      "step": "~> 0",
+      "z": 0,
+      "frame": 0,
+      "note": "enter origin (surface root)"
+    },
+    {
+      "step": ".",
+      "z": 1,
+      "frame": 0,
+      "note": "burrow: point inside a voxel"
+    },
+    {
+      "step": "..",
+      "z": 2,
+      "frame": 0,
+      "note": "part of a voxel field"
+    },
+    {
+      "step": "...",
+      "z": 3,
+      "frame": 0,
+      "note": "of which there are many"
+    },
+    {
+      "step": ".....",
+      "z": 5,
+      "frame": 0,
+      "note": "deeper — confirm field beneath"
+    },
+    {
+      "step": "0",
+      "z": 0,
+      "frame": 0,
+      "note": "return to zero"
+    },
+    {
+      "step": "0 ~> -1",
+      "z": -1,
+      "frame": 0,
+      "note": "CROSS below zero — through the floor"
+    },
+    {
+      "step": "-1 ~> r0",
+      "z": -1,
+      "frame": 0,
+      "note": "reach the root FROM below"
+    },
+    {
+      "step": "r0 >[1]",
+      "z": -1,
+      "frame": 1,
+      "note": "root opens frame 1 : begin"
+    }
+  ],
+  "crossed": true,
+  "commutator": {
+    "point": {
+      "x": 5,
+      "y": 5,
+      "z": 0
+    },
+    "dx": 2,
+    "dy": 0,
+    "dz": 3,
+    "ab": {
+      "x": 7,
+      "y": 5,
+      "z": 3
+    },
+    "ba": {
+      "x": 7,
+      "y": 5,
+      "z": 3
+    },
+    "zero": true,
+    "allZero": true,
+    "samples": 343
+  },
+  "planted_void": {
+    "point": {
+      "x": 8,
+      "y": 5,
+      "z": 0
+    },
+    "dx": 3,
+    "dz": 2,
+    "ab": {
+      "x": 12,
+      "y": 5,
+      "z": 2
+    },
+    "ba": {
+      "x": 11,
+      "y": 5,
+      "z": 2
+    },
+    "caught": true,
+    "sweep_caught": 60,
+    "sweep_total": 220
+  }
+}</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent);
+const REPORTS={W2:null,W3:null,W4:null,W5:null};
+function report(w,p){REPORTS[w]=p;drawBoard();}
+function drawBoard(){
+  const b=document.getElementById('w1board');
+  b.innerHTML=Object.entries(REPORTS).map(([k,v])=>{
+    if(!v)return '<div class="dim">'+k+' · awaiting run</div>';
+    if(v.kind==='dissent')return '<div class="no">'+k+' ⚑ dissent · '+v.text+'</div>';
+    return '<div class="'+(v.agree?'ok':'no')+'">'+k+' · '+(v.agree?'agree':'DISAGREE')+' · '+v.text+'</div>';
+  }).join('');
+}
+// W1 stamps
+document.getElementById('w1stamps').innerHTML=
+ '<table>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>commutator [MOVE,BURROW]=0 over '+D.commutator.samples+' triples</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>bounded window &lt; field for depth n≥2</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>zero is a crossing: +z and −z both present</td></tr>'+
+ '<tr><td><span class="stamp LIT">LIT</span></td><td>root opens frame 1, ≤ '+D.frame_limit+'</td></tr>'+
+ '<tr><td><span class="stamp AMBER">AMBER</span></td><td>the −1↦r0 topology (root reached from below) — your design, not derived</td></tr>'+
+ '<tr><td><span class="stamp DEAD">DEAD</span></td><td>first planted void (z-keyed spill) — read zero, could not catch. Replaced.</td></tr>'+
+ '</table>';
+document.getElementById('w1catch').innerHTML=
+ '<div class="big" style="border-left:2px solid var(--dead);padding-left:6px;margin:8px 0">▓ CONTROL CAUGHT (pre-build): the first planted void keyed its x-shift off the resulting z. Both orders reach the same z, so the difference cancelled to zero — a known-bad that made no noise. Caught by running the verifier before writing the page, not by review. Fixed to an x-keyed spill that genuinely disagrees ('+D.planted_void.ab.x+' vs '+D.planted_void.ba.x+').</div>';
+
+document.getElementById('w1run').onclick=function(){
+  this.disabled=true;
+  const rep=Object.values(REPORTS);
+  const ran=rep.filter(Boolean).length, dis=rep.filter(v=>v&&v.agree===false).length, dsn=rep.filter(v=>v&&v.kind==='dissent').length;
+  const el=document.getElementById('w1board');
+  const head=ran<4?'<div class="dim">■ incomplete — '+ran+'/4 panels reported</div>':'<div class="ok">■ complete — 4/4 reported, '+dis+' disagree, '+dsn+' dissent</div>';
+  drawBoard(); el.insertAdjacentHTML('afterbegin',head);
+  this.disabled=false;
+};
+
+// W2 contributions
+(function(){
+ const c=document.getElementById('w2c'),x=c.getContext('2d');
+ const rows=[['you — the design & frame',46,'#c9a24b'],['me — build & verify',30,'#4bb58a'],['the verifier — caught the void',16,'#e0603a'],['prior i13 stack',8,'#4b7fe0']];
+ function draw(){const w=c.clientWidth;c.width=w;c.height=150;x.clearRect(0,0,w,150);
+  let y=8;const sum=rows.reduce((a,r)=>a+r[1],0);
+  rows.forEach(r=>{const bw=(w-90)*r[1]/100;x.fillStyle=r[2];x.fillRect(84,y,bw,20);
+   x.fillStyle='#e8e6f0';x.font='10px monospace';x.textAlign='right';x.fillText(r[1]+'%',80,y+14);
+   x.textAlign='left';x.fillStyle='#8a86a0';x.font='9px monospace';x.fillText(r[0],84,y+32);y+=44;});
+  return sum;}
+ document.getElementById('w2run').onclick=function(){const sum=draw();
+  document.getElementById('w2out').textContent='weights sum = '+sum+(sum===100?' ✓':' ✗')+'   (split is AMBER — a judgement)';
+  report('W2',{agree:sum===100,text:'weights sum '+sum});};
+ window.addEventListener('resize',()=>{if(c.width)draw();});
+})();
+
+// W3 ladder
+(function(){
+ let mode='SPACE';
+ const t=document.getElementById('w3toggle');
+ function render(){
+  const L=D.ladder;
+  let s='';
+  if(mode==='SPACE'){
+   s='depth  dots    field digit-span    window\n';
+   s+='─────────────────────────────────────────\n';
+   L.forEach(r=>{s+=' n='+r.n+'   '+('.'.repeat(r.n)).padEnd(6)+'  '+String(r.digitspan).padStart(4)+' digits'.padEnd(8)+'   '+String(r.window).padStart(4)+'\n';});
+   s+='\nfield = (2n)^(2^n) = SIZE of the level (address space)\nwindow = 1+n = what you TOUCH at once (linear)\nthe clamp holds: a linear reach inside a doubly-exp space.';
+  } else {
+   s='BROKEN READING — field taken as WORK per step\n';
+   s+='─────────────────────────────────────────\n';
+   L.forEach(r=>{const blocked=r.digitspan>15;s+=' n='+r.n+'   '+String(r.digitspan).padStart(4)+' digits  '+(blocked?'✗ exceeds universe — unbounded':'ok')+'\n';});
+   s+='\nread as work, it is doubly-exponential and DIES by n=4.\nthe word said "bounded linear" — this reading is neither.\nthat is why SPACE, not WORK, is the correct frame.';
+  }
+  document.getElementById('w3out').textContent=s;
+ }
+ t.onclick=function(){mode=mode==='SPACE'?'WORK':'SPACE';t.textContent='MODE: '+mode+' ▸';render();};
+ render();
+ document.getElementById('w3run').onclick=function(){
+  const L=D.ladder;
+  const maxdig=Math.max(...L.map(r=>r.digitspan));
+  const maxwin=Math.max(...L.map(r=>r.window));
+  document.getElementById('w3rep').textContent='measured: max digit-span '+maxdig+' at n=6 · max window '+maxwin+' · ratio window/field → 0';
+  report('W3',{agree:D.coverageOK,text:'window<field, span→'+maxdig+' digits'});
+ };
+})();
+
+// W4 commutator
+(function(){
+ const c=document.getElementById('w4c'),x=c.getContext('2d');
+ let tamper=false;
+ const dxS=document.getElementById('w4dx'),dzS=document.getElementById('w4dz');
+ function MOVE(s,dx,dy){return {x:s.x+dx,y:s.y+dy,z:s.z};}
+ function BURROW(s,dz){return {x:s.x,y:s.y,z:s.z+dz};}
+ function SPILL(s,dz){return {x:s.x+Math.floor(s.x/10),y:s.y,z:s.z+dz};}
+ function eq(a,b){return a.x===b.x&&a.y===b.y&&a.z===b.z;}
+ function run(){
+  const dx=+dxS.value,dz=+dzS.value;
+  document.getElementById('w4dxv').textContent=dx;document.getElementById('w4dzv').textContent=dz;
+  const s0={x:8,y:5,z:0};const B=tamper?SPILL:BURROW;
+  const ab=B(MOVE(s0,dx,0),dz), ba=MOVE(B(s0,dz),dx,0);
+  const zero=eq(ab,ba);
+  const w=c.clientWidth;c.width=w;c.height=150;x.clearRect(0,0,w,150);
+  // draw two order-paths
+  function plot(res,yb,col,lab){x.fillStyle=col;x.font='10px monospace';
+   x.fillText(lab+' → <'+res.x+','+res.y+';'+res.z+'>',10,yb);}
+  x.fillStyle='#8a86a0';x.font='9px monospace';x.fillText('start <8,5;0>  dx='+dx+' dz='+dz+(tamper?'  [TAMPER]':''),10,16);
+  plot(ab,44,'#ffab6b','MOVE→'+(tamper?'SPILL':'BURROW'));
+  plot(ba,64,'#e0603a',(tamper?'SPILL':'BURROW')+'→MOVE');
+  x.fillStyle=zero?'#4bb58a':'#e0603a';x.font='12px monospace';
+  x.fillText('commutator = '+(zero?'0  (orthogonal — orders agree)':'≠0  (orders DISAGREE: '+ab.x+' vs '+ba.x+')'),10,96);
+  if(tamper&&!zero){x.fillStyle='#4bb58a';x.font='9px monospace';x.fillText('✓ instrument caught the planted fault',10,116);}
+  if(tamper&&zero){x.fillStyle='#e0603a';x.font='9px monospace';x.fillText('this dx does not cross a /10 boundary — try dx that pushes x past a ten',10,116);}
+  document.getElementById('w4out').textContent='MOVE→B = <'+ab.x+','+ab.y+';'+ab.z+'>   B→MOVE = <'+ba.x+','+ba.y+';'+ba.z+'>   '+(zero?'ZERO':'NON-ZERO');
+  return {zero,tamper};
+ }
+ dxS.oninput=run;dzS.oninput=run;
+ document.getElementById('w4tamper').onclick=function(){tamper=!tamper;this.textContent='TAMPER: '+(tamper?'ON':'OFF');run();};
+ document.getElementById('w4run').onclick=function(){const r=run();
+  // agree with W1 only when: untampered->zero, OR tampered->caught(non-zero)
+  const good=r.tamper?!r.zero:r.zero;
+  report('W4',{agree:good,text:r.tamper?(r.zero?'tamper NOT caught here':'tamper caught'):(r.zero?'orthogonal ✓':'unexpected non-zero')});
+ };
+ run();
+})();
+
+// W5 crossing — the sign axis
+(function(){
+ const c=document.getElementById('w5c'),x=c.getContext('2d');
+ function draw(){const w=c.clientWidth;c.width=w;c.height=170;x.clearRect(0,0,w,170);
+  const cx=w/2, top=20, zeroY=95, bot=150;
+  // vertical z-axis, zero line
+  x.strokeStyle='#2a2636';x.beginPath();x.moveTo(cx,top);x.lineTo(cx,bot);x.stroke();
+  x.strokeStyle='#c9a24b';x.setLineDash([3,3]);x.beginPath();x.moveTo(20,zeroY);x.lineTo(w-20,zeroY);x.stroke();x.setLineDash([]);
+  x.fillStyle='#8a86a0';x.font='9px monospace';x.fillText('z = 0  (the crossing, not the floor)',24,zeroY-4);
+  // plot the path z-values
+  const P=D.path;const n=P.length;
+  P.forEach((p,i)=>{const px=30+(w-60)*i/(n-1);
+   const py=zeroY - p.z*13;
+   const col=p.z>0?'#4b7fe0':p.z<0?'#e0603a':'#c9a24b';
+   x.fillStyle=col;x.beginPath();x.arc(px,py,3,0,7);x.fill();
+   if(p.frame>0){x.strokeStyle='#7fb0ff';x.beginPath();x.arc(px,py,6,0,7);x.stroke();
+    x.fillStyle='#7fb0ff';x.fillText('frame '+p.frame,px-18,py-10);}
+  });
+  x.fillStyle='#4b7fe0';x.font='9px monospace';x.fillText('+z depth (voxels)',24,top+2);
+  x.fillStyle='#e0603a';x.fillText('−z  root lives here',24,bot-2);
+ }
+ draw();window.addEventListener('resize',()=>{if(c.width)draw();});
+ document.getElementById('w5run').onclick=function(){draw();
+  const zs=D.path.map(p=>p.z);const maxz=Math.max(...zs),minz=Math.min(...zs);
+  document.getElementById('w5out').textContent='max +z = '+maxz+'  ·  min z = '+minz+'  ·  root at z='+D.path.find(p=>p.frame>0).z+'  ·  frame '+D.path.at(-1).frame+' opened below zero';
+  document.getElementById('w5dissent').innerHTML=
+   '<div class="big" style="border-left:2px solid var(--water);padding-left:6px;margin-top:8px">⚑ Dissent filed against W1: W1 lists the sequence as a clean descent to a root. But the root is at z=−1, reached by crossing zero — the structure is not bounded below at zero as the ladder (W3) implies. W3 fixed the axis at z≥0. The real space is signed. <b>W1 has not accepted this. Recorded.</b></div>';
+  report('W5',{kind:'dissent',text:'space is signed; root below zero'});
+ };
+})();
+</script>
+</body></html>

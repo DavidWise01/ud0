@@ -1,0 +1,32 @@
+WORKFLOW ~~> rev1-0818 ~~> the entry instrument
+════════════════════════════════════════════════
+
+TRACK A ~~> READ THE SEQUENCE
+  the dots-and-arrows reframed as a boot path
+  . .. ... = burrow ladder (depth) ~~> 0 = return
+  0 ~> -1  = the crossing (through the floor)
+  r0 >[1]  = root opens frame 1
+
+TRACK B ~~> COMPUTE BEFORE BUILD  (node verify/verify.js)
+  ladder field sizes (BigInt, exact)     ~~> LIT
+  commutator [MOVE,BURROW] over 343      ~~> LIT (zero)
+  zero-crossing present                  ~~> LIT
+  planted void MUST be non-zero          ~~> ▓ CAUGHT (see tombstone 01)
+
+TRACK C ~~> BUILD + CROSSCHECK
+  page built from data/entry.json         ~~> single source of truth
+  node --check on injected script         ~~> SYNTAX OK
+  crosscheck re-derives from shipped page ~~> 10/10 GREEN
+
+SCOREBOARD
+══════════
+  caught by a control ...... 1  (planted void read zero — verifier, pre-build)
+  caught by the user ....... 0  (this build)
+  DEAD stamps .............. 1  (first void design)
+  dissent filed ............ 1  (W5: space is signed, root below zero)
+
+  NOTE: one control catch, and it was against my OWN planted void —
+  the exact class a control is meant to catch. No clean-sweep claimed.
+
+TOMBSTONES ~~> graveyard/
+  01 the z-keyed spill that could not make noise
