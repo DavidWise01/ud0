@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE BLOSSOM ALGORITHM &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+input[type=range]{padding:0;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arr{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0;} .ac{min-width:26px;height:26px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#9fe8ff;}
+.ac.hot{border-color:var(--orange);color:var(--orange);} .ac.g{border-color:var(--cyan);color:var(--cyan);} .ac.done{border-color:var(--good);color:var(--good);}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:8px 0;}
+.cell{border:1px solid var(--line);border-radius:5px;padding:7px 9px;font-size:11px;background:rgba(0,0,0,.25);}
+.cell b{color:var(--gold);} .cell .v{color:var(--cyan);font-size:13px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 088 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE BLOSSOM <span class="c">the paper that defined 'tractable'</span></h1>
+  <p class="sub">Maximum <b>matching</b> in a general graph &mdash; pair up as many vertices as possible, no vertex twice. Odd cycles break the simple approach, so Edmonds&rsquo; trick is to <b>shrink each odd cycle (a blossom) into a single node</b>, match in the smaller graph, then expand. Its 1965 paper is where computer science first argued that <b>&ldquo;polynomial time&rdquo; means &ldquo;tractable.&rdquo;</b></p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">find augmenting paths, shrink the blossoms</span></h2>
+  <p>Grow alternating trees from unmatched vertices, seeking an <b>augmenting path</b> (unmatched-matched-unmatched-&hellip;-unmatched) &mdash; flipping it grows the matching by one. The obstruction is an <b>odd cycle</b>; Edmonds contracts it to one node, continues, and later expands it. Below: a graph, its maximum matching, and a blossom highlighted. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="300"></canvas>
+  <div class="row"><button id="go" class="dartbtn">&#9192; maximum matching</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">where 'good algorithm' got its meaning</span></h2>
+  <p class="myth">&ldquo;Just another matching routine&rdquo; &mdash; it is <s>routine</s> the paper that <b>defined efficiency</b>: Edmonds argued a &ldquo;good&rdquo; algorithm is a <b>polynomial-time</b> one. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1957</b> &middot; <span class="who">Claude Berge</span> gives the augmenting-path characterisation: a matching is maximum iff it has <b>no augmenting path</b>.<br>
+    <b>1965</b> &middot; <span class="who">Jack Edmonds</span>, &ldquo;Paths, Trees, and Flowers&rdquo; &mdash; the <b>blossom</b> contraction makes general-graph matching polynomial, and the paper articulates that <b>polynomial-time = tractable</b> (the intuition behind the class <b>P</b>).<br>
+    <b>the shrink</b> &middot; an odd cycle with the right alternation is a <b>blossom</b>; contract it to a single vertex, find the path, then unfold &mdash; the move bipartite matching never needs.<br>
+    <b>1980</b> &middot; <span class="who">Micali &amp; Vazirani</b> reach O(&radic;V&thinsp;E) &mdash; faster, same idea.
+  </div>
+  <p style="margin-top:10px">Before this paper, &ldquo;solvable&rdquo; had no agreed cost; after it, tractability had a definition. <span class="tag t-open">Edmonds 1965</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">matching on integer arrays</span></h2>
+  <p>The matching, the trees, and the blossom bases are all integer arrays &mdash; and the maximum matching comes out on the compiler:</p>
+  <div class="evi good">$ i13 run match.i13    # the 5-cycle C5
+matched = 4  size = 2    # maximum matching of an odd 5-cycle is 2 edges</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> for the substrate &mdash; <span class="k">match[]</span>, <span class="k">parent[]</span>, <span class="k">base[]</span> are bounded integer arrays, and the whole algorithm is array reads/writes and recursion (verified: C5&rsquo;s maximum matching is <b>2</b>). The <b>blossom contraction</b> is index bookkeeping &mdash; relabel a cycle&rsquo;s vertices to a shared base &mdash; not a new value kind.<br>
+    <b>Note:</b> the honest wall is the same as the trees&rsquo; &mdash; a rich adjacency structure wants real linked nodes (PS-015) or a 2-D array (PS-004); the flattened edge-list / parallel-array form runs today, exactly as here.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var W=960,H=300;
+  // the odd 5-cycle C5 (the blossom): vertices 0..4, edges 0-1-2-3-4-0. Max matching = 2.
+  var n=5, pos=[[480,60],[700,175],[600,285],[360,285],[260,175]];
+  var E=[[0,1],[1,2],[2,3],[3,4],[4,0]];
+  var match=[-1,-1,-1,-1,-1], msize=0;
+  function maxMatch(){ // brute force over edge subsets -> always a VALID maximum matching
+    var best=[-1,-1,-1,-1,-1], bestc=0;
+    for(var mask=0;mask<(1<<E.length);mask++){ var used=[0,0,0,0,0], ok=true, m=[-1,-1,-1,-1,-1], c=0;
+      for(var k=0;k<E.length;k++) if(mask&(1<<k)){ var a=E[k][0],b=E[k][1]; if(used[a]||used[b]){ok=false;break;} used[a]=1;used[b]=1; m[a]=b;m[b]=a; c++; }
+      if(ok&&c>bestc){ bestc=c; best=m; } }
+    msize=bestc; return best;
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle="rgba(217,180,90,.22)"; ctx.lineWidth=16; ctx.beginPath();
+    [0,1,2,3,4,0].forEach(function(v,i){ i?ctx.lineTo(pos[v][0],pos[v][1]):ctx.moveTo(pos[v][0],pos[v][1]); }); ctx.stroke();
+    E.forEach(function(e){ var a=pos[e[0]],b=pos[e[1]]; var on=match[e[0]]===e[1];
+      ctx.strokeStyle=on?"#ff8a3d":"rgba(111,139,168,.5)"; ctx.lineWidth=on?4:1.5; ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.stroke(); });
+    pos.forEach(function(p,i){ var m=match[i]>=0; ctx.fillStyle=m?"#0a2018":"#0a1520"; ctx.strokeStyle=m?"#59ffb0":"#3ef0ff"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(p[0],p[1],16,0,7); ctx.fill(); ctx.stroke(); ctx.fillStyle="#eafcff"; ctx.font="13px monospace"; ctx.fillText(i+1,p[0]-4,p[1]+5); });
+    ctx.fillStyle="#d9b45a"; ctx.font="11px monospace"; ctx.fillText("blossom: the odd 5-cycle",400,H-10);
+  }
+  document.getElementById("go").onclick=function(){ match=maxMatch(); draw();
+    say.innerHTML='maximum matching = <span class="true">'+msize+'</span> edges &middot; one vertex is always left out (odd cycle) &mdash; the blossom proves 2 is the max'; };
+  draw();
+  say.innerHTML="press to match &middot; the 5-ring is the blossom";
+})();
+
+</script>
+
+<footer>
+  <b>DART 088 &middot; THE BLOSSOM ALGORITHM</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Jack Edmonds</b> (1965), &ldquo;Paths, Trees, and Flowers&rdquo; &mdash; the blossom-shrinking algorithm <b>and</b> the birth of the P = tractable thesis. History via <a href="https://en.wikipedia.org/wiki/Blossom_algorithm">Wikipedia: Blossom</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

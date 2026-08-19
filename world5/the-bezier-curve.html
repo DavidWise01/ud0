@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE BEZIER CURVE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+input[type=range]{padding:0;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arr{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0;} .ac{min-width:26px;height:26px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#9fe8ff;}
+.ac.hot{border-color:var(--orange);color:var(--orange);} .ac.g{border-color:var(--cyan);color:var(--cyan);} .ac.done{border-color:var(--good);color:var(--good);}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:8px 0;}
+.cell{border:1px solid var(--line);border-radius:5px;padding:7px 9px;font-size:11px;background:rgba(0,0,0,.25);}
+.cell b{color:var(--gold);} .cell .v{color:var(--cyan);font-size:13px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 086 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE BEZIER CURVE <span class="c">named for the man who did not invent it</span></h1>
+  <p class="sub">The smooth curve behind every font glyph, vector drawing, and animation ease. It is drawn by <b>de Casteljau&rsquo;s algorithm</b> &mdash; nothing but <b>repeated linear interpolation</b> between control points, a shrinking triangular cascade that collapses to the point on the curve. And its two names honour <b>two different men</b>: the curve to B&eacute;zier, the algorithm to de Casteljau, who had it first.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">repeated lerp, a collapsing triangle</span></h2>
+  <p>Between each adjacent pair of control points, take the point a fraction <b>t</b> of the way along (a <b>lerp</b>); that gives one fewer point. Repeat on the new points, and again, until a single point remains &mdash; that is the curve at t. Slide t to sweep the curve; the faint segments are the collapsing cascade. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="340"></canvas>
+  <div class="row"><label>t</label><input id="t" type="range" min="0" max="1" step="0.01" value="0.5" style="width:220px"><button id="go" class="dartbtn">&#9192; new curve</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">two names, two men, and a trade secret</span></h2>
+  <p class="myth">&ldquo;B&eacute;zier invented the B&eacute;zier curve&rdquo; &mdash; he <s>invented</s> published it; <span class="who">de Casteljau</span> had it <b>three years earlier</b>, but Citro&euml;n locked it away. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1912</b> &middot; <span class="who">Sergei Bernstein</span> introduces the <b>Bernstein basis polynomials</b> (proving Weierstrass&rsquo; theorem) &mdash; the real math foundation, decades before any CAD.<br>
+    <b>1959</b> &middot; <span class="who">Paul de Casteljau</span> (Citro&euml;n) devises the <b>repeated-lerp algorithm</b> on control points he calls &ldquo;poles&rdquo; &mdash; the true first invention, filed as a trade secret and <b>forbidden to publish</b>.<br>
+    <b>early 1960s</b> &middot; <span class="who">Pierre B&eacute;zier</b> (Renault) independently reaches the same curves using control <b>vectors</b>; Renault lets him patent and publish (UNISURF, 1968), so his name sticks.<br>
+    <b>1972 / 1985</b> &middot; <span class="who">Forrest</span> spots that B&eacute;zier&rsquo;s curves <b>are</b> the Bernstein basis; de Casteljau finally publishes his own account (&ldquo;Formes &agrave; p&ocirc;les&rdquo;) &mdash; 26 years late.
+  </div>
+  <p style="margin-top:10px">De Casteljau&rsquo;s algorithm is the <b>stable, drawable</b> method, not the fastest (Horner on the Bernstein form is O(n)). <span class="tag t-open">de Casteljau 1959 / B&eacute;zier 1968</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">nothing but lerp, on parallel arrays</span></h2>
+  <p>The whole algorithm is <span class="k">a + (b &minus; a)&middot;t</span> per coordinate &mdash; one subtract, one multiply, one add &mdash; and it runs on the compiler:</p>
+  <div class="evi good">$ i13 run bez.i13     # cubic P0..P3, t=0.5, cascade over parallel x[]/y[]
+bx = 2   by = 2.25    # matches the Bernstein closed form exactly</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; a strict no-wall, in the family of Bresenham (003) and Verlet (082): pure f64 lerp. The control points are (x,y) <b>pairs</b> &mdash; the PS-014 pair want &mdash; but that wall is <b>sidestepped</b>, not hit: hold them as two parallel f64 arrays <span class="k">x[]=[0,1,3,4]</span>, <span class="k">y[]=[0,3,3,0]</span>, and the cascade overwrites them in place. Because I-13 arrays hold f64 only, parallel 1-D arrays are exactly the right shape &mdash; no struct type needed.<br>
+    <b>Note:</b> the one thing that would strain the language is cosmetic &mdash; wanting a single array of (x,y) structs instead of two parallel arrays. The dart proves the pair want is <b>avoidable</b> here.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say"), tEl=document.getElementById("t");
+  var W=960,H=340, P=[[60,300],[220,60],[620,60],[900,300]];
+  function lerp(a,b,t){ return [a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t]; }
+  function curvePt(t){ var q=P.map(function(p){return p.slice();}); while(q.length>1){ var n=[]; for(var i=0;i<q.length-1;i++)n.push(lerp(q[i],q[i+1],t)); q=n; } return q[0]; }
+  function cascade(t){ var levels=[P.map(function(p){return p.slice();})]; var q=levels[0]; while(q.length>1){ var n=[]; for(var i=0;i<q.length-1;i++)n.push(lerp(q[i],q[i+1],t)); levels.push(n); q=n; } return levels; }
+  function draw(){
+    var t=parseFloat(tEl.value); ctx.clearRect(0,0,W,H);
+    // full curve
+    ctx.strokeStyle="#3ef0ff"; ctx.lineWidth=2; ctx.beginPath();
+    for(var s=0;s<=1.0001;s+=0.01){ var p=curvePt(s); if(s===0)ctx.moveTo(p[0],p[1]); else ctx.lineTo(p[0],p[1]); } ctx.stroke();
+    // control polygon
+    ctx.strokeStyle="rgba(111,139,168,.5)"; ctx.beginPath(); P.forEach(function(p,i){ i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]); }); ctx.stroke();
+    // cascade
+    var lv=cascade(t), cols=["rgba(217,180,90,.8)","rgba(255,138,61,.8)","rgba(89,255,176,.9)"];
+    for(var l=1;l<lv.length;l++){ ctx.strokeStyle=cols[(l-1)%3]; ctx.beginPath(); lv[l].forEach(function(p,i){ i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]); }); ctx.stroke();
+      lv[l].forEach(function(p){ ctx.fillStyle=cols[(l-1)%3]; ctx.beginPath(); ctx.arc(p[0],p[1],3,0,7); ctx.fill(); }); }
+    P.forEach(function(p){ ctx.fillStyle="#3ef0ff"; ctx.beginPath(); ctx.arc(p[0],p[1],5,0,7); ctx.fill(); });
+    var pt=curvePt(t); ctx.fillStyle="#fff"; ctx.beginPath(); ctx.arc(pt[0],pt[1],5,0,7); ctx.fill();
+    say.innerHTML='t = '+t.toFixed(2)+' &middot; point on curve <span class="true">('+(pt[0]/60).toFixed(2)+'&hellip;)</span> by repeated lerp';
+  }
+  tEl.addEventListener("input",draw);
+  document.getElementById("go").onclick=function(){ P=[[60,300],[80+Math.random()*300,40+Math.random()*120],[500+Math.random()*300,40+Math.random()*120],[900,300]]; draw(); };
+  draw();
+})();
+
+</script>
+
+<footer>
+  <b>DART 086 &middot; THE BEZIER CURVE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Paul de Casteljau</b> (Citro&euml;n, <b>1959</b>) invented the algorithm but Citro&euml;n kept it secret; <b>Pierre B&eacute;zier</b> (Renault) published, so the curve carries his name. The math is <b>Bernstein</b>&rsquo;s (1912). History via <a href="https://en.wikipedia.org/wiki/B%C3%A9zier_curve">Wikipedia: B&eacute;zier curve</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
