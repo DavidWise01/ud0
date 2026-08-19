@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>REJECTION SAMPLING &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 107 &middot; a helldive at the net</span></div>
+<header>
+  <h1>REJECTION SAMPLING <span class="c">throw darts, keep the ones under the curve</span></h1>
+  <p class="sub">The campaign&rsquo;s own metaphor, made literal: to sample from a shape (or measure its area), throw random points into a box around it and <b>keep only those that land inside</b>. Von Neumann&rsquo;s accept/reject is one comparison per point, needs no formula for the shape, and turns pure randomness into an estimate &mdash; the beating heart of Monte Carlo.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">accept if it lands inside</span></h2>
+  <p>To estimate &pi;: throw points uniformly in the unit square and count how many fall inside the quarter-circle (<span class="k">x&sup2; + y&sup2; &le; 1</span>) &mdash; the fraction times 4 estimates &pi;. Each point is one comparison; no trigonometry. It converges slowly (as 1/&radic;N), which is the honest catch. Throw darts and watch the estimate settle. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="340"></canvas>
+  <div class="row"><button id="go" class="dartbtn">&#9192; throw 2000 darts</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">three ideas, three people, one 1951 paper</span></h2>
+  <p class="myth">&ldquo;Rejection sampling, von Neumann 1951&rdquo; &mdash; he described it in a <s>1951 paper</s> <b>1947 letter</b> to Ulam; and Monte Carlo itself is Ulam&rsquo;s. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1946</b> &middot; <span class="who">Stanislaw Ulam</span>, ill and playing solitaire, wonders whether random trials could estimate the odds &mdash; the <b>Monte Carlo method</b> is born.<br>
+    <b>1947</b> &middot; <span class="who">John von Neumann</span>, in a letter to Ulam (11 March), lays out the <b>accept/reject</b> sampling technique &mdash; published later in the 1951 NBS notes.<br>
+    <b>the name</b> &middot; <span class="who">Nicholas Metropolis</span> coins <b>&ldquo;Monte Carlo,&rdquo;</b> for the casino where Ulam&rsquo;s uncle gambled &mdash; a codename that stuck.<br>
+    <b>the same paper</b> &middot; von Neumann&rsquo;s 1951 notes also hold the <b>&ldquo;state of sin&rdquo;</b> quote and the <b>middle-square</b> PRNG &mdash; but those are about generating digits, a different problem.
+  </div>
+  <p style="margin-top:10px">The dart thrown at the dark abstract of the internet is exactly this: keep what lands, count, estimate. <span class="tag t-open">von Neumann 1947 / Ulam 1946</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a seeded stream and one comparison</span></h2>
+  <p>Uniform draws from the stdlib LCG plus one f64 comparison &mdash; fully deterministic under a fixed seed:</p>
+  <div class="evi good">$ i13 run rej.i13     # LCG seed 107, 2000 points, x^2+y^2 <= 1
+inside = 1565   pi ~ 4*1565/2000 = 3.13    # converges as 1/sqrt(N)</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; pull uniform x, y from the stdlib seeded <b>LCG</b>, accept iff <span class="k">x&sup2; + y&sup2; &le; 1</span> (one comparison, no transcendental), tally, report <span class="k">4&middot;inside/N</span> (verified &pi; &asymp; 3.13 at N=2000, same seed &rArr; same estimate bit-for-bit). It is the honest twin of Buffon&rsquo;s needle (031) and the whole Monte Carlo family.<br>
+    <b>Note:</b> determinism is the feature &mdash; a fixed seed makes the estimate reproducible, which is exactly what a corpus that seals everything to a hash wants.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var W=960,H=340, S=Math.min(W,H)-40, ox=40, oy=H-20;
+  function draw(pts,inside,tot){
+    ctx.clearRect(0,0,W,H);
+    // box + quarter circle
+    ctx.strokeStyle="rgba(62,240,255,.5)"; ctx.strokeRect(ox,oy-S,S,S);
+    ctx.strokeStyle="rgba(217,180,90,.8)"; ctx.beginPath(); ctx.arc(ox,oy,S,-Math.PI/2,0,false); ctx.stroke();
+    pts.forEach(function(p){ ctx.fillStyle=p[2]?"rgba(89,255,176,.8)":"rgba(255,90,106,.7)"; ctx.fillRect(ox+p[0]*S-1,oy-p[1]*S-1,2,2); });
+    ctx.fillStyle="#6f8ba8"; ctx.font="12px monospace"; ctx.fillText("x^2+y^2 <= 1",ox+S-120,oy-S+20);
+    say.innerHTML=tot+' darts &middot; '+inside+' inside &middot; pi ~ <span class="true">'+(4*inside/tot).toFixed(4)+'</span> (true 3.14159)';
+  }
+  document.getElementById("go").onclick=function(){
+    var state=107, N=2000, pts=[], inside=0;
+    function u(){ state=(1664525*state+1013904223)%4294967296; return state/4294967296; }
+    var i=0; var timer=setInterval(function(){ for(var b=0;b<100&&i<N;b++,i++){ var x=u(),y=u(),in_=(x*x+y*y<=1); if(in_)inside++; pts.push([x,y,in_]); }
+      draw(pts,inside,i); if(i>=N){ clearInterval(timer); say.innerHTML='2000 darts &middot; '+inside+' inside &middot; pi ~ <span class="true">'+(4*inside/N).toFixed(4)+'</span> &mdash; converges as 1/sqrt(N)'; } },40);
+  };
+  ctx.clearRect(0,0,W,H); ctx.strokeStyle="rgba(62,240,255,.5)"; ctx.strokeRect(ox,oy-S,S,S);
+  ctx.strokeStyle="rgba(217,180,90,.8)"; ctx.beginPath(); ctx.arc(ox,oy,S,-Math.PI/2,0,false); ctx.stroke();
+  say.innerHTML="press to throw darts &mdash; green inside, red outside";
+})();
+
+</script>
+
+<footer>
+  <b>DART 107 &middot; REJECTION SAMPLING</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>John von Neumann</b> described rejection in a <b>1947 letter to Ulam</b> (published 1951); the <b>Monte Carlo method</b> was <b>Ulam</b>&rsquo;s 1946 idea, the <b>name</b> Metropolis&rsquo;. History via <a href="https://en.wikipedia.org/wiki/Rejection_sampling">Wikipedia: Rejection sampling</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
