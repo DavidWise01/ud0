@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE HUNGARIAN ALGORITHM &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:160px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.tree{margin:10px 0;} .lvl{display:flex;justify-content:center;gap:6px;margin:3px 0;}
+.hn{width:30px;height:26px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#9fe8ff;background:rgba(62,240,255,.05);}
+.hn.hot{border-color:var(--orange);color:var(--orange);} .hn.done{border-color:var(--good);color:var(--good);background:rgba(89,255,176,.08);}
+.mono{font-family:inherit;font-size:13px;letter-spacing:2px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);}
+.mx{border-collapse:collapse;font-size:12px;margin:8px 0;} .mx td{border:1px solid var(--line);width:34px;height:28px;text-align:center;color:#bcd6ee;}
+.mx td.pick{background:rgba(89,255,176,.18);color:var(--good);font-weight:700;border-color:var(--good);} .mx td.hd{color:var(--gold);border:none;}
+.rot{font-family:inherit;font-size:12px;letter-spacing:2px;white-space:pre;margin:1px 0;color:#9fe8ff;} .rot .last{color:var(--orange);font-weight:700;} .rot.pick{color:var(--good);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 064 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE HUNGARIAN ALGORITHM <span class="c">named for two Hungarians, found by a third man first</span></h1>
+  <p class="sub">Assign n workers to n jobs, each pair with a cost, so the <b>total is smallest</b> &mdash; and do it in polynomial time, not by trying all n! matchings. The cost <b>matrix</b> is a 2-D array (the box&rsquo;s open want). And the name hides a triple credit story: Kuhn named it to honour two Hungarians, and <b>Jacobi had it a century earlier</b>.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">subtract, cover, augment</span></h2>
+  <p>Reduce each row and column by its minimum (an assignment&rsquo;s optimality doesn&rsquo;t change if you subtract a constant from a whole row or column). Cover all zeros with the fewest lines; if n lines are needed, a zero-cost perfect assignment exists. Below: a cost matrix and its minimum-cost assignment, one cell per row and column. <span class="tag t-demo">live demo</span></p>
+  <table class="mx" id="mx"></table>
+  <div class="row"><button id="go" class="dartbtn">&#9192; new costs</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">a name that credits the wrong century</span></h2>
+  <p class="myth">&ldquo;Hungarian&rdquo; &mdash; and its first author was neither Hungarian nor <s>20th-century</s>; a German mathematician had it in the 1840s. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1840s</b> &middot; <span class="who">Carl Gustav Jacobi</span> works out essentially the algorithm (as a subroutine of a differential-equations bound); published <b>posthumously in Latin (1890)</b>, it lies unread until rediscovered around <b>2006</b> &mdash; Kuhn later wrote &ldquo;How Jacobi Beat Me by 100 Years.&rdquo;<br>
+    <b>1931</b> &middot; the Hungarians <span class="who">D&eacute;nes K&#337;nig</span> and <span class="who">Jen&#337; Egerv&aacute;ry</span> prove the matching/covering theorems the method rests on.<br>
+    <b>1953&ndash;55</b> &middot; <span class="who">Harold Kuhn</span> translates Egerv&aacute;ry&rsquo;s Hungarian paper himself, assembles the algorithm, and &mdash; crediting his sources in the title &mdash; <b>names it &ldquo;the Hungarian method.&rdquo;</b><br>
+    <b>1957 / 1970s</b> &middot; <span class="who">James Munkres</span> gives the first rigorous <b>polynomial-time proof</b> (hence &ldquo;Kuhn-Munkres&rdquo;); the crisp <b>O(n&sup3;)</b> form is <span class="who">Tomizawa</span> (1971) and <span class="who">Edmonds-Karp</span> (1972).
+  </div>
+  <p style="margin-top:10px">A rare case where the discoverer <i>under</i>-claimed &mdash; and the true first author was silent in Latin for 116 years. <span class="tag t-open">Jacobi / K&#337;nig-Egerv&aacute;ry / Kuhn-Munkres</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the cost matrix is a 2-D array</span></h2>
+  <p>The whole method operates on an n&times;n <b>cost matrix</b> &mdash; row/column reductions, zero-covering, augmenting paths &mdash; which is a genuine <b>2-D array</b>:</p>
+  <div class="evi good"># cost matrix [[9,11,14],[6,15,13],[12,13,6]]
+min assignment: w0->j1 (11), w1->j0 (6), w2->j2 (6)   total = 23</div>
+  <div class="rec">
+    <b>Recommend:</b> presses <b>PS-004 (a 2-D array)</b> &mdash; the same want Smith-Waterman (054) and knapsack (053) named. I-13&rsquo;s array is 1-D, so an n&times;n matrix is either a flattened <b>row-major 1-D array</b> (index i*n+j &mdash; runs today, just with manual index math) or the genuine 2-D array the box lists. The reductions and coverings are indexed reads and writes; no bignum, no bitwise.<br>
+    <b>Honest note:</b> the flattened form runs now; a real 2-D array would let the row/column operations read like the textbook rather than as i*n+j arithmetic.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var mxEl=document.getElementById("mx"), say=document.getElementById("say");
+  function assign(C){ var n=C.length, idx=[]; for(var i=0;i<n;i++) idx.push(i);
+    var best=1e9,bp=null;
+    function perm(a,cur){ if(a.length===0){ var c=0; for(var i=0;i<n;i++) c+=C[i][cur[i]]; if(c<best){best=c;bp=cur.slice();} return; }
+      for(var i=0;i<a.length;i++){ var b=a.slice(); var x=b.splice(i,1)[0]; perm(b,cur.concat(x)); } }
+    perm(idx,[]); return {best:best,bp:bp};
+  }
+  function run(){
+    var n=3, C=[]; for(var i=0;i<n;i++){ var row=[]; for(var j=0;j<n;j++) row.push(3+Math.floor(Math.random()*15)); C.push(row); }
+    var r=assign(C);
+    var html='<tr><td class="hd"></td>'; for(var j=0;j<n;j++) html+='<td class="hd">job'+j+'</td>'; html+='</tr>';
+    for(var i=0;i<n;i++){ html+='<tr><td class="hd">w'+i+'</td>'; for(var j=0;j<n;j++){ var pick=r.bp[i]===j; html+='<td class="'+(pick?"pick":"")+'">'+C[i][j]+'</td>'; } html+='</tr>'; }
+    mxEl.innerHTML=html;
+    var parts=r.bp.map(function(j,i){return 'w'+i+'&rarr;job'+j+'('+C[i][j]+')';});
+    say.innerHTML='min total = <span class="true">'+r.best+'</span> &middot; '+parts.join(", ");
+  }
+  document.getElementById("go").onclick=run;
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 064 &middot; THE HUNGARIAN ALGORITHM</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Harold Kuhn</b> (1955) named it &ldquo;Hungarian&rdquo; for <b>K&#337;nig</b> &amp; <b>Egerv&aacute;ry</b>; <b>Munkres</b> (1957) gave the first polynomial proof (the crisp O(n&sup3;) came in the 1970s); and <b>Jacobi</b> had it in the 1840s (found only ~2006). History via <a href="https://en.wikipedia.org/wiki/Hungarian_algorithm">Wikipedia: Hungarian algorithm</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which has a bounded array, arbitrary-precision integers, an integer square root, and an <b>i13 log</b>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

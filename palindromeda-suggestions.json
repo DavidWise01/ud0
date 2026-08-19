@@ -58,10 +58,10 @@
       "target": "World V / I-13 compiler",
       "world": "V",
       "kind": "performance",
-      "status": "open",
-      "raised_by": "dart 052 A*",
+      "status": "landed",
+      "raised_by": "dart 052 A*, closed by dart 062 the-binary-heap",
       "title": "A binary-heap / priority-queue type",
-      "detail": "A* pulls the lowest-f frontier cell every step. It RUNS today with a linear scan for the minimum (O(n) per step). A binary heap would make it O(log n). A heap is array-backed (so it already runs), but efficient sift-up/down is happiest with in-place swaps and paired returns -- so this is really a downstream want of PS-001 (multiple-return)."
+      "detail": "A* pulls the lowest-f frontier cell every step. It RUNS today with a linear scan for the minimum (O(n) per step). A binary heap would make it O(log n). LANDED by dart 062 (the-binary-heap): heapsort runs on the bounded array today via 2i+1/2i+2 index arithmetic + array swaps (verified [4,10,3,5,1,8,2,7] -> ascending), so A* and Dijkstra could use a real heap now; their linear scan was a choice, not a limit. The only residue is extract-min's (min, reduced-heap) pair -- a downstream want of PS-001 (multiple-return)."
     },
     {
       "id": "PS-006",

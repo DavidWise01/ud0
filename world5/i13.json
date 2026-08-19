@@ -1250,6 +1250,74 @@
       "url": "https://davidwise01.github.io/ud0/world5/the-i13-workshop.html",
       "blurb": "THE I-13 WORKSHOP - David's i-13 development bench, sorted and folded. AVAN analysed the whole i-13 folder with an eight-reader panel, separated the canonical language (already in the corpus) from the genuinely-new work, verified each piece, hosted the self-contained instruments, and folded them into World V by theme. (1) THE RUNTIME BEYOND THE COMPILER: a Cortex-gated JIT whose cache key is the I-13 SEMANTIC HASH not the source text (reformat the same meaning and it is a cache HIT), a browser-native WASM Cortex (a 1193-byte WASM validator+VM byte-matching the compiled binary, 8/8 + 6/6 PASS, no Python trust root; v0.3 a full in-browser VM at 16/16), and a zero-fetch JS toolchain reimplementing lex->parse->canonicalize->compile->VM with token/char/byte/node provenance. (2) I-13 AS A TARGET: mainstream CPython lowers into canonical I-13 (first local assign -> I declaration, += -> osmotic .p) with byte-exact provenance and unsupported constructs PRESERVED not guessed; the round-trip Python A -> I-13 -> Python B passes on SEMANTIC equality I13(A)==I13(B), 12/12 selftests, unknown node REJECTED (the Attr no-op stamped AMBER). (3) THE [0,0] MESH: 8 runtime vectors around a live [0,0] root with 56=8x7 ordered routes (the OCHO cross-connect), evidence-gated (a route it cannot evidence does not light). (4) THE 23 & THE SWARM PROBES: a self-delimiting 13-word language (digit=arity, a letter-sum canary catching 100% of wire corruption by construction); THE ANSIBLE finding 'a small ansible is worse than no ansible' (break-even at ~40% of a 23-agent swarm, N_eff=N/(1+(N-1)rho), 30,000 trials/row); THE LADDERS (E and O rank ladders exponentiate at the same rate, different intercept); and ocho-0806b's keeper - 'a model built so it cannot fail returns your own assumption while looking like a measurement.' (5) THE QUANTUM CONTROLLERS: VH2 a 10/10 numpy demo of [[5,1,3]] error correction with the falsifiable claim that the ternary I-13 controller sits ABOVE the code (never a qutrit in its rank-2 space); VH1 a qutrit Hamiltonian on C^81 solved without building the 81x81 matrix, in a bounded Cortex child returning a receipt; GFX v0.4.1 a live I-13 -> IVM -> zero-import C WASM VM -> WebGPU/WebGL2 scene. (6) THE PROSE & THE AUDIT: NOTES UPON THE NONSOFIC, a Lovelace-voiced pamphlet on why some shift spaces are nonsofic (no finite engine can hold them; the golden-mean shift's word-counts are the Fibonacci numbers -> phi; sofic = Hebrew sofi, finite); the rev-2 BRIEF audit (the 13-symbol alphabet was not designed but COUNTED - 649,634 AST nodes, 12 verbs at 83.27% - and only five of eleven axioms actually execute); and a SECOND OPINION that reverse-engineered THE VOLUME's 'voiced' rule to quote-chars/4, confirmed on held-out texts. Six instruments render live under world5/i13-workshop-src/; the server-backed and numpy pieces are kept in the folder and described. Every AMBER stamp is the original's; nothing laundered to LIT. Credit: David/ROOT0 the bench; AVAN the sort, verify, host, and fold.",
       "seal": "5d78f0e474e8023e11e8bd450d752b120b15cb2f41f13c7fc6c05a26be735c22"
+    },
+    {
+      "slug": "the-binary-heap",
+      "title": "THE BINARY HEAP",
+      "dartno": "062",
+      "version": "v0.13",
+      "credit": "J. W. J. Williams (1964, Algorithm 232) invented the heap AND heapsort; Robert Floyd's Treesort 3 (Dec 1964) added the O(n) bottom-up build; Williams built it at Elliott Brothers as an event queue, alongside Hoare",
+      "source": "Williams, 'Algorithm 232: Heapsort', CACM 7(6):347-348, June 1964; Floyd, 'Algorithm 245: Treesort 3', CACM 7(12):701, Dec 1964",
+      "i13_recommend": "CLOSES PS-005. Darts 052 (A*) and 055 (Dijkstra) named a binary heap as their open want, and it RUNS on the bounded array today with no new value kind (verified: heapsort of [4,10,3,5,1,8,2,7] -> ascending, sorted[0]=1/sorted[7]=10, via sift-down over 2i+1/2i+2 index arithmetic + array swaps). Their 'wanted a heap' was really 'used a linear scan'; the heap itself was always expressible. The one friction: a priority-queue extract-min naturally returns (min, reduced-heap) - two values - so it nudges the multiple-return frontier; done as peek-then-sift it runs. Floyd's O(n) heapify is the array's bottom-up sweep.",
+      "blurb": "A complete binary tree flattened into an array - node i's children are 2i+1 and 2i+2, no pointers, the array's contiguity IS the tree - that always keeps its smallest (or largest) at the top: the priority queue behind every event simulation and every A* frontier. To fix a node, compare it with its two children and swap with the larger (a sift-down); build a heap by sifting every internal node bottom-up, then heapsort by swapping the top to the end, shrinking, and sifting the new top down. Credit splits cleanly: J. W. J. Williams (Algorithm 232, June 1964) invented both the heap and heapsort - built at Elliott Brothers as the event queue of a simulator, alongside Quicksort's Hoare - while the famous O(n) linear build-heap that everyone quotes is Robert Floyd's (Treesort 3, Dec 1964), not Williams's, whose own version inserted one at a time in O(n log n). In real I-13 the heap CLOSES the campaign's open PS-005: darts 052 (A*) and 055 (Dijkstra) wanted a binary heap, and heapsort runs on the bounded array today (verified [4,10,3,5,1,8,2,7] -> ascending) - the heap was always just index arithmetic and swaps; only extract-min's (value, reduced-heap) pair nudges multiple-return.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 062 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-binary-heap.html",
+      "seal": "fc3724fd43ac94d6c4e41c7273e7749695074aa8c02b85fac803115d4755e159"
+    },
+    {
+      "slug": "the-knuth-morris-pratt",
+      "title": "KNUTH-MORRIS-PRATT",
+      "dartno": "063",
+      "version": "v0.13",
+      "credit": "Morris devised it first (1969); Morris & Pratt's 1970 Berkeley report; Knuth derived it independently from Cook's automata theorem; the three published jointly 1977. 'KMP' is alphabetical order, not priority",
+      "source": "Morris & Pratt, UC Berkeley Tech Rep 40, 1970; Knuth, Morris & Pratt, 'Fast Pattern Matching in Strings', SIAM J. Computing 6(2), June 1977 (Boyer-Moore was CACM 20(10), October 1977 - same year, not same issue)",
+      "i13_recommend": "nothing new - the failure table is a bounded array of small integers (fail('ABABAC')=[0,0,1,2,3,0]), the scan is two advancing indices with single-character equality, all f64-representable. Like Boyer-Moore (061) the only awkward piece is a list of match positions as output (the array-return / multiple-return frontier). Where Boyer-Moore's sublinear speed is average-case, KMP guarantees worst-case linear O(n+m); both are clean bounded-array work.",
+      "blurb": "Boyer-Moore (dart 061) reads the pattern backwards; KMP reads forwards but never re-reads a character of the text - on a mismatch it slides the pattern by exactly how much its own prefix repeats, a number precomputed into a failure table (the longest proper prefix that is also a suffix, at each position). Linear time, guaranteed. The credit is a real priority split flattened by an alphabetical name: James Morris devised it first in 1969 (to avoid backing up a text-editor buffer), with Vaughan Pratt it became a 1970 Berkeley report, and Donald Knuth independently derived essentially the same from Cook's theorem on two-way pushdown automata - then was, in his words, 'chagrined to learn Morris had already discovered the algorithm'; the three published jointly in 1977 (the same YEAR as Boyer-Moore, not the same issue - KMP in SIAM J. Computing in June, Boyer-Moore in CACM in October). In real I-13 the failure table is a bounded array of small integers (verified fail('ABABAC')=[0,0,1,2,3,0]) and the scan is two advancing indices with character equality; the only awkward part is the list of match positions, the array-return / multiple-return frontier.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 063 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-knuth-morris-pratt.html",
+      "seal": "5e10cf96b67576518e563561ef643ac57b6f7a3610a468a9f8d8b33f6dc4b786"
+    },
+    {
+      "slug": "the-hungarian-algorithm",
+      "title": "THE HUNGARIAN ALGORITHM",
+      "dartno": "064",
+      "version": "v0.13",
+      "credit": "Harold Kuhn (1955) named it 'Hungarian' to honor Konig & Egervary (1931); Munkres (1957) gave the first polynomial proof (the O(n^3) form came via Tomizawa 1971 / Edmonds-Karp 1972); and Jacobi had it in the 1840s (found only ~2006)",
+      "source": "Kuhn 1955; Konig & Egervary 1931; Munkres 1957; Tomizawa 1971 & Edmonds-Karp 1972 (O(n^3)); Jacobi (d.1851, publ. posthumously in Latin 1890, rediscovered by Francois Ollivier ~2006)",
+      "i13_recommend": "presses PS-004 (a 2-D array) - the same want Smith-Waterman (054) and knapsack (053) named. The whole method operates on an n-by-n cost matrix (row and column reductions, zero-covering, augmenting paths); I-13's array is 1-D, so an n-by-n matrix is either a flattened row-major 1-D array (index i*n+j, runs today with manual index math) or the genuine 2-D array the box lists. The reductions and coverings are indexed reads and writes; no bignum, no bitwise.",
+      "blurb": "Assign n workers to n jobs, each pair with a cost, so the total is smallest - in polynomial time, not by trying all n! matchings. Reduce each row and column by its minimum (subtracting a constant from a whole row or column leaves the optimal assignment unchanged), cover all zeros with the fewest lines, and when n lines are needed a zero-cost perfect assignment exists. The name hides a triple credit story: Harold Kuhn (1955) named it 'the Hungarian method' to HONOUR the earlier Hungarians Denes Konig and Jeno Egervary (1931) whose theorems it rests on - a rare case of an author crediting his sources in the title - while Carl Gustav Jacobi had essentially the algorithm in the 1840s (buried as a subroutine of a differential-equations bound, published posthumously in Latin in 1890 and rediscovered only around 2006; Kuhn later wrote 'How Jacobi Beat Me by 100 Years'), and James Munkres gave the first rigorous polynomial proof in 1957 (the crisp O(n^3) form is Tomizawa 1971 and Edmonds-Karp 1972). In real I-13 the cost matrix is a 2-D array (the open want PS-004, with Smith-Waterman-054 and knapsack-053): a flattened row-major 1-D array runs it today (index i*n+j), verified min-cost assignments; a real 2-D array would let the row/column operations read like the textbook.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 064 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-hungarian-algorithm.html",
+      "seal": "6da74fd07b7f79341d9ec25f3fe1e1b412abc2679ce43572086bbf04d31c892b"
+    },
+    {
+      "slug": "the-burrows-wheeler-transform",
+      "title": "THE BURROWS-WHEELER TRANSFORM",
+      "dartno": "065",
+      "version": "v0.13",
+      "credit": "David Wheeler (of EDSAC / the Wheeler jump) devised the transform ~1983, unpublished for a decade; Michael Burrows & Wheeler wrote it up as a 1994 DEC report - the core idea is Wheeler's, 'Burrows-Wheeler' is report order, not invention order",
+      "source": "Burrows & Wheeler, DEC SRC Research Report 124, 'A Block-sorting Lossless Data Compression Algorithm', 1994 (transform ~1983); bzip2 by Julian Seward 1996; FM-index by Ferragina & Manzini 2000",
+      "i13_recommend": "nothing new for the transform itself - rotation indices + a sort + a gather, all bounded-array work over character codes (no bignum, no bitwise). The one aggregate it strains is strings (the campaign's standing aggregate note): the rotations are conceptually substrings, expressed here as start-indices into one array, and the sort compares by those indices. The space-savvy version never materialises the rotations - it sorts suffixes (a suffix array), the same 1-D index-array discipline with a smarter comparator.",
+      "blurb": "Take a string, list all its cyclic rotations, sort them, and read off the LAST column - the result looks scrambled, but equal letters now cluster into runs (making it far more compressible), and, astonishingly, the scramble is perfectly reversible (the last column plus stable sorting walks the original back out via the LF-mapping). It is the heart of bzip2 and, as the FM-index, of modern genome aligners that search DNA without decompressing it. The transform itself changes nothing about the data's size - it is a reversible permutation whose whole value is making a downstream compressor dramatically more effective. Credit is a decade in a drawer: David Wheeler - co-inventor of the subroutine and the 'Wheeler jump' on the EDSAC in 1949 - devised the block-sorting transform around 1983 and never published it alone; Michael Burrows recognised its value and wrote it up with Wheeler as a 1994 DEC report, so 'Burrows-Wheeler' is report order, not invention order (the core idea is Wheeler's). In real I-13 the forward transform is rotation start-indices + a sort + a gather, all bounded-array work over character codes (verified BWT('BANANA$')='ANNB$AA', the N's and A's clustering into runs); the one aggregate it leans on is strings - the space-savvy version sorts suffixes, the same 1-D index-array discipline the campaign's sorts already run.",
+      "room": "darts",
+      "accent": "#3ef0ff",
+      "stamp": "DEMO",
+      "kind": "dart",
+      "kicker": "dart 065 - a helldive at the net",
+      "url": "https://davidwise01.github.io/ud0/world5/the-burrows-wheeler-transform.html",
+      "seal": "1f1602a42787c77978ef659c757968c9ff2bfa914fb6bf71a23f1cee40b6e212"
     }
   ],
   "keepers": [
@@ -1260,13 +1328,13 @@
     }
   ],
   "counts": {
-    "spheres": 73,
+    "spheres": 77,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
-    "darts": 61
+    "darts": 65
   },
-  "i13_root": "5e9a9e1f9329bacd50fada9a47377a08e5fbe9c6fd8729d2354041f844becc18",
+  "i13_root": "88a15b5cbc6ed7440286103e81e77f7972b41b87c498dc465e4987c303b03326",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

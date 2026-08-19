@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE BURROWS-WHEELER TRANSFORM &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --cyan2:#0bd; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:160px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.tree{margin:10px 0;} .lvl{display:flex;justify-content:center;gap:6px;margin:3px 0;}
+.hn{width:30px;height:26px;border:1px solid var(--line);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#9fe8ff;background:rgba(62,240,255,.05);}
+.hn.hot{border-color:var(--orange);color:var(--orange);} .hn.done{border-color:var(--good);color:var(--good);background:rgba(89,255,176,.08);}
+.mono{font-family:inherit;font-size:13px;letter-spacing:2px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);}
+.mx{border-collapse:collapse;font-size:12px;margin:8px 0;} .mx td{border:1px solid var(--line);width:34px;height:28px;text-align:center;color:#bcd6ee;}
+.mx td.pick{background:rgba(89,255,176,.18);color:var(--good);font-weight:700;border-color:var(--good);} .mx td.hd{color:var(--gold);border:none;}
+.rot{font-family:inherit;font-size:12px;letter-spacing:2px;white-space:pre;margin:1px 0;color:#9fe8ff;} .rot .last{color:var(--orange);font-weight:700;} .rot.pick{color:var(--good);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 065 &middot; a helldive at the net</span></div>
+<header>
+  <h1>BURROWS-WHEELER <span class="c">scramble it to order it, and back again</span></h1>
+  <p class="sub">Take a string, list all its rotations, sort them, and read off the <b>last column</b>. The result looks scrambled &mdash; but equal letters now cluster into <b>runs</b> (easy to compress), and, astonishingly, the scramble is <b>perfectly reversible</b>. It is the heart of <b>bzip2</b> and of modern genome aligners. The transform is sort-and-index work, so it <b>runs in real I-13</b>.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">all rotations, sorted, last column</span></h2>
+  <p>Append an end-marker, form every cyclic rotation, sort them lexicographically, and take the final character of each &mdash; that column is the transform. Equal characters bunch into runs because sorting groups rotations by the context that <i>follows</i> them. And it inverts: the last column plus stable sorting is enough to walk the original back out. <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>string</label><input id="s" value="BANANA"><button id="go" class="dartbtn">&#9192; transform</button></div>
+  <div id="rots"></div>
+  <div class="res" id="say"></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">a decade in a drawer</span></h2>
+  <p class="myth">&ldquo;Burrows-Wheeler, 1994&rdquo; &mdash; but the second name had it <s>then</s> a decade earlier and never published it alone. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>~1983</b> &middot; <span class="who">David Wheeler</span> &mdash; co-inventor of the subroutine (the &ldquo;Wheeler jump&rdquo;) on the <b>EDSAC</b>, 1949 &mdash; devises the block-sorting transform at Cambridge. He does not publish it; it circulates quietly.<br>
+    <b>1994</b> &middot; <span class="who">Michael Burrows</span> &amp; Wheeler write it up as a <b>DEC SRC research report</b> (&ldquo;A Block-sorting Lossless Data Compression Algorithm&rdquo;) &mdash; a decade after the idea.<br>
+    <b>1996</b> &middot; <span class="who">Julian Seward</span>&rsquo;s <b>bzip2</b> makes it a household compressor (BWT + move-to-front + Huffman).<br>
+    <b>2000s</b> &middot; the <b>FM-index</b> built on the BWT powers short-read genome aligners (Bowtie, BWA) &mdash; the transform searches DNA without decompressing it.
+  </div>
+  <p style="margin-top:10px">A transform that makes data <i>more ordered</i> without losing a bit, sat unpublished for ten years. <span class="tag t-open">Wheeler, ~1983</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">sort rotations, read a column</span></h2>
+  <p>The forward transform is: build the rotations (indices into the string), sort them, and gather one character each &mdash; all indexed array work. On the bounded array with the sorts the campaign already runs (counting-049, quick-045):</p>
+  <div class="evi good"># BWT of "BANANA$"
+transform = ANNB$AA     # the N's and A's cluster into runs -> compressible
+# reversible: last column + stable sort walks the original back</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> for the transform itself &mdash; it is rotation indices + a sort + a gather, all bounded-array work over character codes (no bignum, no bitwise). The one aggregate it strains is <b>strings</b> (the campaign&rsquo;s standing aggregate note): the rotations are conceptually substrings, expressed here as start-indices into one array, and the sort compares by those indices.<br>
+    <b>Note:</b> the space-savvy version never materialises the rotations &mdash; it sorts <b>suffixes</b> (a suffix array), which is the same 1-D index-array discipline, just with a smarter comparator.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var sEl=document.getElementById("s"), rotsEl=document.getElementById("rots"), say=document.getElementById("say");
+  function run(){
+    var s=(sEl.value||"BANANA").toUpperCase().replace(/[^A-Z]/g,"")+"$";
+    var n=s.length, rot=[];
+    for(var i=0;i<n;i++) rot.push({t:s.slice(i)+s.slice(0,i), i:i});
+    rot.sort(function(a,b){ return a.t<b.t?-1:a.t>b.t?1:0; });
+    var bwt=rot.map(function(r){return r.t[n-1];}).join("");
+    var html="";
+    for(var k=0;k<rot.length;k++){
+      var t=rot[k].t, line="";
+      for(var c=0;c<n;c++){ line += (c===n-1) ? '<span class="last">'+t[c]+'</span>' : t[c]; }
+      html+='<div class="rot">'+line+'</div>';
+    }
+    rotsEl.innerHTML=html;
+    // count runs
+    var runs=1; for(var i=1;i<bwt.length;i++) if(bwt[i]!==bwt[i-1]) runs++;
+    say.innerHTML='BWT = <span class="true">'+bwt+'</span> &middot; '+bwt.length+' chars in '+runs+' runs (fewer runs = more compressible) &middot; reversible';
+  }
+  document.getElementById("go").onclick=run;
+  sEl.addEventListener("keydown",function(e){ if(e.key==="Enter") run(); });
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 065 &middot; THE BURROWS-WHEELER TRANSFORM</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Michael Burrows &amp; David Wheeler</b> (1994, DEC report) &mdash; but <b>Wheeler</b> (of EDSAC) had the transform around <b>1983</b>, unpublished for a decade. History via <a href="https://en.wikipedia.org/wiki/Burrows%E2%80%93Wheeler_transform">Wikipedia: BWT</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which has a bounded array, arbitrary-precision integers, an integer square root, and an <b>i13 log</b>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
