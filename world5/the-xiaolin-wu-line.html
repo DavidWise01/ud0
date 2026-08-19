@@ -92,12 +92,12 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 
 <div class="panel i13">
   <h2>RECOMMEND FOR I-13 <span class="n">Bresenham plus a fraction</span></h2>
-  <p>Wu&rsquo;s line is Bresenham&rsquo;s integer walk (dart 003, which runs) but keeping the <b>fractional coverage</b> instead of rounding it &mdash; f64 arithmetic all the way:</p>
+  <p>Wu&rsquo;s line is Bresenham&rsquo;s walk (dart 003, which runs) but keeping the <b>fractional coverage</b> instead of rounding it. The popularized f64 form:</p>
   <div class="evi">// per step: intensity of pixel = 1 - frac(y),  neighbour = frac(y)
 // then advance y by the slope. plain f64 add/floor/frac.</div>
   <div class="rec">
-    <b>Recommend:</b> <b>nothing new</b> &mdash; where Bresenham (003) stayed integer-only to dodge the FPU, Wu embraces f64: the coverage is <span class="k">1 &minus; frac(y)</span> and its complement, advanced by the slope each step. Add, floor, fraction &mdash; all f64 the compiler has. The output grid (the pixels) is the array; the intensities are f64.<br>
-    <b>Note:</b> a neat pair with dart 003 &mdash; same slope, same walk; Bresenham rounds the coverage to 0/1 (integer, fast, jagged), Wu keeps it (f64, smooth). The campaign has now run both faces of the oldest graphics primitive.
+    <b>Recommend:</b> <b>nothing new</b> &mdash; the coverage is <span class="k">1 &minus; frac(y)</span> and its complement, advanced by the slope each step. Add, floor, fraction &mdash; all f64 the compiler has. The output grid (the pixels) is the array; the intensities are f64. <i>(Historically Wu&rsquo;s own 1991 method is <b>integer/fixed-point</b> &mdash; his abstract boasts even less integer arithmetic than Bresenham; the f64 coverage form here is the later popularized pseudocode, the corpus&rsquo;s reimplementation choice.)</i><br>
+    <b>Note:</b> a neat pair with dart 003 &mdash; same slope, same walk; Bresenham rounds the coverage to 0/1 (jagged), Wu keeps the fraction (smooth) &mdash; both integer at heart, the f64 rendering here the corpus&rsquo;s. The campaign has now run both faces of the oldest graphics primitive.
   </div>
 </div>
 
