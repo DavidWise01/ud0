@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GRAPH-COLORING REGISTER ALLOCATION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:78ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 137 &middot; a helldive at the net</span></div>
+<header>
+  <h1>GRAPH COLORING <span class="c">registers are colors; the rest spills</span></h1>
+  <p class="sub">Model machine registers as <b>colors</b>: build the <b>interference graph</b> (two variables that are live at the same time interfere), then <b>k-color</b> it, where k is the number of registers. Whatever cannot be colored is <b>spilled</b> to memory. The clique number is a hard floor: a <span class="k">K4</span> needs 4 colors, so with k=3 a spill is unavoidable no matter the ordering.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">simplify, then select; spill if stuck</span></h2>
+  <p><b>Simplify:</b> repeatedly remove a node of degree &lt; k and push it on a stack (Kempe&rsquo;s lemma &mdash; it can always be colored later). If every node has degree &ge; k, mark a <b>spill</b> candidate. <b>Select:</b> pop each node, give it the lowest color no neighbour uses; if none is free, it <b>spills</b> to memory. Below: an interference graph, k colors, live. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="300"></canvas>
+  <div class="row"><label>registers k</label><select id="k"><option>2</option><option selected>3</option><option>4</option></select><button id="go" class="dartbtn">&#9192; color</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the simplify step is 100 years older</span></h2>
+  <p class="myth">&ldquo;Chaitin invented graph-coloring register allocation&rdquo; &mdash; he led the first <b>implementation</b> (1981); the reduction is <s>his</s> <span class="who">Ershov</span>&rsquo;s (1962), and simplify is <span class="who">Kempe</span>&rsquo;s (1879). <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1879</b> &middot; <span class="who">Alfred Kempe</span> &mdash; the degree-<b>reduction lemma</b> (delete a vertex of degree &lt; k, color the rest, color it last), from his (flawed) four-color proof. Simplify is his.<br>
+    <b>1962</b> &middot; <span class="who">Andrei Ershov</span> (USSR) reduces memory allocation to graph vertex-coloring; Cocke &amp; Schwartz float it at IBM/NYU c.1971 but never implement it.<br>
+    <b>1981&ndash;82</b> &middot; <span class="who">Chaitin</b> et al. &mdash; the first working allocator (PL.8 / IBM 801 RISC); the 1982 &ldquo;Yorktown allocator&rdquo; adds <b>spilling</b>, and proves register allocation NP-complete (every graph is some program&rsquo;s interference graph).<br>
+    <b>1994 / 2005</b> &middot; <span class="who">Briggs et al.</b> &mdash; <b>optimistic</b> coloring (push the spill candidate anyway; a color often frees up at select); and strict-<b>SSA</b> interference graphs are <b>chordal</b> &rarr; optimal coloring in <b>linear</b> time, so the NP-completeness is about the general formulation.
+  </div>
+  <p style="margin-top:10px">A K4 forces a spill at k=3 that no ordering can avoid &mdash; colorability is the clique number, not average degree. <span class="tag t-open">Chaitin, 1981&ndash;82</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">adjacency masks; a used-color mask; spill</span></h2>
+  <p>The interference graph is adjacency bitmasks, coloring is a lowest-free-color scan, and the spill falls out:</p>
+  <div class="evi good">$ i13 run color.i13   # K4 on {0,1,2,3}, k=3 registers
+colors = [0, 1, 2, SPILL]    node 3's neighbours use all 3 colors -> spills to memory
+spills = 1                   (K4 needs 4 colors > k=3; a spill is unavoidable)
+triangle {0,1,2}, k=3  ->    colors [0,1,2], spills = 0</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; the interference graph is per-node adjacency bitmasks; coloring scans each node&rsquo;s neighbours to a <b>used-color mask</b> and takes the lowest color <span class="k">&lt; k</span>; if none, the node is marked spilled (verified K4 at k=3 &rarr; colors 0,1,2 and one spill; triangle &rarr; 0 spills). Kempe&rsquo;s simplify is a degree test, all f64 + bitwise.<br>
+    <b>Note:</b> it consumes <b>liveness</b> (dart 136) &mdash; the interference edges come from &ldquo;live at the same time.&rdquo; A dense interference graph is an adjacency <b>matrix</b> (<b>PS-004</b>); the corpus flattens it to per-node masks, exact up to 63 nodes.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var W=960,H=300;
+  // K4 on 0..3 plus e=4,f=5 (colorable), for a richer graph
+  var adj=[ (1<<1)|(1<<2)|(1<<3), (1<<0)|(1<<2)|(1<<3), (1<<0)|(1<<1)|(1<<3), (1<<0)|(1<<1)|(1<<2), (1<<5), (1<<4) ];
+  var pos=[[220,80],[420,80],[220,230],[420,230],[700,90],[700,220]];
+  var cols=["#3ef0ff","#59ffb0","#ff8a3d","#d9b45a"];
+  var color=[-1,-1,-1,-1,-1,-1];
+  function colorize(k){
+    color=[-1,-1,-1,-1,-1,-1]; var spills=0;
+    for(var v=0;v<6;v++){ var used=0; for(var i=0;i<6;i++) if((adj[v]&(1<<i))&&color[i]>=0) used|=(1<<color[i]);
+      var c=-1; for(var t=0;t<k;t++) if((used&(1<<t))===0){ c=t; break; }
+      if(c<0){ color[v]=-2; spills++; } else color[v]=c; }
+    return spills;
+  }
+  function draw(spills){
+    ctx.clearRect(0,0,W,H);
+    for(var v=0;v<6;v++) for(var i=v+1;i<6;i++) if(adj[v]&(1<<i)){ ctx.strokeStyle="rgba(111,139,168,.5)"; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(pos[v][0],pos[v][1]); ctx.lineTo(pos[i][0],pos[i][1]); ctx.stroke(); }
+    var names=["a","b","c","d","e","f"];
+    pos.forEach(function(p,v){ var c=color[v];
+      ctx.fillStyle = c===-2?"#120608": c>=0? cols[c].replace(")",",.22)").replace("#","rgba(").length? hexa(cols[c]) : "#0a1520" : "#0a1520";
+      ctx.strokeStyle = c===-2?"#ff5a6a": c>=0?cols[c]:"#6f8ba8"; ctx.lineWidth=2.5;
+      ctx.beginPath(); ctx.arc(p[0],p[1],24,0,7); ctx.fill(); ctx.stroke();
+      ctx.fillStyle="#eafcff"; ctx.font="14px monospace"; ctx.fillText(names[v],p[0]-5,p[1]-2);
+      ctx.font="10px monospace"; ctx.fillStyle=c===-2?"#ff5a6a":"#9fe8ff"; ctx.fillText(c===-2?"SPILL":("R"+c),p[0]-14,p[1]+13); });
+    ctx.fillStyle="#6f8ba8"; ctx.font="12px monospace"; ctx.fillText("interference graph  (a,b,c,d = K4)",40,285);
+  }
+  function hexa(h){ var r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16); return "rgba("+r+","+g+","+b+",.22)"; }
+  document.getElementById("go").onclick=function(){ var k=+document.getElementById("k").value; var sp=colorize(k); draw(sp);
+    say.innerHTML=(sp===0?'<span class="true">colored with '+k+' registers</span>':'<span class="err">'+sp+' spill'+(sp>1?"s":"")+'</span>')+' &middot; K4 needs 4 colors'; };
+  colorize(3); draw(1); say.innerHTML="K4 forces a spill at k=3 &mdash; press to color";
+})();
+
+</script>
+
+<footer>
+  <b>DART 137 &middot; GRAPH-COLORING REGISTER ALLOCATION</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Chaitin et al.</b> (1981&ndash;82, IBM PL.8) built the first working allocator &mdash; but the reduction is <b>Ershov</b> (1962), the <b>simplify</b> step is <b>Kempe</b> (1879, the four-color proof), and &ldquo;register allocation is NP-complete&rdquo; is only the <b>general</b> case: strict-SSA interference graphs are <b>chordal</b>, colorable in linear time. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise (as i64), array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE BACK END</b> (batch 23), companion to the front-end batch and the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
