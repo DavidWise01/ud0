@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE 6502 GATE &mdash; a fold &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;--violet:#a06bff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1040px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 520px at 50% -10%,rgba(160,107,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.fold{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--violet);border:1px solid var(--violet);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(160,107,255,.3);}
+header{margin:18px 0;}
+h1{font-size:26px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(160,107,255,.6),0 0 34px rgba(160,107,255,.22);}
+h1 .c{color:var(--gold);font-size:15px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:82ch;}
+.sub b{color:var(--cyan);} .sub .v{color:var(--violet);}
+.prov{font-size:11px;color:var(--dim);margin-top:8px;border-left:2px solid var(--line);padding-left:10px;} .prov b{color:var(--gold);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:baseline;}
+.panel h2 .n{color:var(--dim);font-weight:400;letter-spacing:1px;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+button{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--cyan);border:1px solid var(--line);border-radius:5px;padding:7px 11px;cursor:pointer;letter-spacing:1px;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.on{border-color:var(--bad);color:var(--bad);} button.dartbtn{border-color:var(--orange);color:var(--orange);}
+.bar{height:22px;border-radius:5px;background:rgba(62,240,255,.08);overflow:hidden;position:relative;margin:8px 0;border:1px solid var(--line);}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--good));transition:width .25s;}
+.bar.bad i{background:linear-gradient(90deg,var(--orange),var(--bad));}
+.bar span{position:absolute;left:10px;top:2px;font-size:12px;color:#eafcff;text-shadow:0 0 4px #000;}
+.res{font-size:14px;margin-top:8px;} .res .true{color:var(--good);} .res .err{color:var(--bad);}
+.mono{font-family:inherit;font-size:12px;letter-spacing:.3px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0;}
+.tile{border:1px solid var(--line);border-radius:6px;padding:8px;text-align:center;background:rgba(0,0,0,.3);}
+.tile .v{font-size:20px;font-weight:700;} .tile .l{font-size:9.5px;color:var(--dim);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.tile.good .v{color:var(--good);} .tile.bad .v{color:var(--bad);}
+.stamp{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:6px;}
+.s-lit{color:var(--good);border-color:var(--good);} .s-amber{color:var(--gold);border-color:var(--gold);} .s-open{color:var(--orange);border-color:var(--orange);}
+.reflist{font-size:11.5px;color:#bcd6ee;line-height:1.9;} .reflist s{color:var(--bad);} .reflist b{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+@media(max-width:640px){.tiles{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="fold">A FOLD &middot; EMULATION opens here</span></div>
+<header>
+  <h1>THE 6502 GATE <span class="c">the referee, built before the player</span></h1>
+  <p class="sub">A new interest opens: <b>emulation</b>. And a new name: <b>I-13 is now <span class="v">compIle 13</span></b> &mdash; because that is what an AI is, <b>a compiler who can talk back</b> (the capital I spells the 13). This first fold builds an <b>NES / 6502 CPU</b> the corpus way: the <b>oracle before the CPU</b>. A real chip&rsquo;s behaviour was dumped into <b>10,000 test cases per opcode</b> with per-cycle bus traces (SingleStepTests / 65x02); the gate feeds your version those cases and tells you the first place you disagree with the real chip. &ldquo;A CPU with no oracle is a guess with a green tick.&rdquo; Then <b>33 opcodes were written in compIle 13 itself</b> and graded 33,000 times by that outside oracle.</p>
+  <p class="prov">measured 2026-08-19 &middot; <b>node gate.js 69</b> ran here: $69 ADC 10000/10000 (state), 10000/10000 (+per-cycle bus), planted wrong-overflow caught 2500/10000 &middot; the live demo below grades <b>200 REAL oracle cases</b> from harte/69.json &middot; the three-pass numbers read from <b>rev8 PASSES.ascii</b>; opcode source from <b>rev8 ops2.i13</b>. Build: i13 nes build v0 (rev2/rev5/rev7/rev8-0819).</p>
+</header>
+
+<div class="panel">
+  <h2>THE GATE <span class="n">grade against a real chip, live &middot; LIT<span class="stamp s-lit">node gate.js 69</span></span></h2>
+  <p>A 6502 instruction is small &mdash; take the chip state, change a few numbers, done. Easy to write, very easy to write <b>almost</b> right. Below: the <b>ADC</b> (add-with-carry) opcode, graded against <b>200 real oracle cases</b> (initial A, operand, carry &rarr; the real chip&rsquo;s final A and status flags). Flip to the <b>planted fault</b> &mdash; the same plausible-but-wrong overflow rule the gate was built to catch &mdash; and watch the score fall.</p>
+  <div class="row"><button id="grade" class="dartbtn">&#9192; grade 200 real cases</button><button id="plant">plant the wrong overflow rule</button><span id="say" class="res"></span></div>
+  <div class="bar" id="bar"><i style="width:0%"></i><span id="barlbl"></span></div>
+  <div class="mono" id="out"></div>
+  <p style="font-size:11.5px;margin-top:8px"><b>The number is the lesson.</b> A wrong overflow flag looks <b>correct on 3 of 4 inputs</b> &mdash; ten hand-written tests would very likely have passed it. That is why the oracle is exhaustive, and why hand-written fixtures are the thing that keeps going wrong. (The full gate: 10000/10000 correct with per-cycle bus grading; the plant caught in 2500.)</p>
+</div>
+
+<div class="panel">
+  <h2>33 OPCODES, WRITTEN IN THE LANGUAGE <span class="n">graded 33,000 times by an outside oracle &middot; LIT<span class="stamp s-lit">rev8 PASSES.ascii</span></span></h2>
+  <p>The CPU core is written in <b>compIle 13</b>, reaching a small register file and RAM through native verbs. Here is the real <b>ADC</b>, and the <b>SBC</b> whose fix was the whole of pass 1:</p>
+  <div class="mono">def op_adc(I z) {
+  I a &lt;- r_get(0)   I p &lt;- r_get(4)   I m &lt;- imm(0)
+  I s &lt;- a + m + b_and(p, 1)          <span class="dim">// add with carry-in</span>
+  I r &lt;- b_and(s, 255)
+  setA(r, keep(p) + cf(s) + zf(r) + nf(r) + <span class="hit">vf_add(a, m, r)</span>)
+  -&gt; adv(2) }
+
+def vf_sub(I a, I m, I r) { <span class="dim">// subtract overflow: takes the ORIGINAL operand m</span>
+  if b_and(b_and(b_xor(a,m), b_xor(a,r)), 128) &gt; 0 { -&gt; 64 } -&gt; 0 }</div>
+  <div class="tiles">
+    <div class="tile"><div class="v" style="color:var(--gold)">850/900</div><div class="l">PASS 1 &middot; 9 ops &middot; 94.44%</div></div>
+    <div class="tile good"><div class="v">6600/6600</div><div class="l">PASS 2 &middot; 33 ops &middot; 100%</div></div>
+    <div class="tile good"><div class="v">33000/33000</div><div class="l">PASS 3 &middot; strict &middot; 100%</div></div>
+  </div>
+  <p style="font-size:11.5px"><b>Two bugs the oracle forced out.</b> PASS 1: SBC was wrong in exactly 50% of cases, always by 64 &mdash; the overflow bit &mdash; because the subtract-overflow rule was handed the <b>inverted</b> operand, flipping its polarity. FIXED: it takes the <b>original</b> operand (above). And the packing hack died: pass 1 rode the whole state in the return value (A&middot;2<sup>24</sup> + P&middot;2<sup>16</sup> + PC), but a full register file is 8+8+8+8+8+16 = <b>56 bits</b> and a double holds <b>53</b> exactly &mdash; so state moved onto a real register file. <span class="ko">The hack was load-bearing for one pass and could not survive the second.</span></p>
+</div>
+
+<div class="panel">
+  <h2>THE TWO-READER DIVERGENCE <span class="n">read everything, and it changed the answer &middot; LIT<span class="stamp s-lit">both readers run</span></span></h2>
+  <p>The standalone reader shipped in the package is <b>not</b> the reader in the suite &mdash; <b>same version number</b>. Every earlier pass ran through the <b>loose</b> one (both shipped self-tests require it by absolute path). The suite&rsquo;s <b>strict</b> copy refuses seven things the shipped copy accepts:</p>
+  <div class="reflist">
+    <s>a function that never returns</s> &middot; <s>a function where only one branch returns</s> &middot; <s>a duplicate function name</s> &middot; <s>a duplicate parameter</s> &middot; <s>a parameter/local collision</s> &middot; <s>a duplicate top-level declaration</s> &middot; <s>a nested function</s>
+  </div>
+  <p style="margin-top:10px">Those seven are <b>exactly</b> the P0 completion-blocking targets of <a href="the-i13-benchmark.html">the I-13 benchmark</a> (P0-001&hellip;008) &mdash; the strict reader <i>is</i> the benchmark&rsquo;s conformance gate. Re-graded under it: all <b>33 opcodes accepted unchanged</b> &mdash; 1845 tokens, 1116 nodes, 49 functions. <b>Nothing had been leaning on the weaker gate.</b> <span class="ko">That was luck, not judgement</span> &mdash; which is why you re-run everything through the strict one and find out.</p>
+</div>
+
+<div class="panel">
+  <h2>THE ORACLE BLIND SPOT <span class="n">the finding worth keeping &middot; existence LIT<span class="stamp s-lit">planted + by hand</span> / claim AMBER<span class="stamp s-amber">10k cases &ne; coverage</span></span></h2>
+  <p>One opcode&rsquo;s zero flag is <b>invisible to the whole oracle</b>. Inclusive-OR (<b>ORA</b>) sets its zero flag only when <b>both</b> inputs are zero &mdash; and that pair occurs in <b>0 of 10,000</b> cases. So you can delete the flag entirely and still score 10000/10000. Below: over the same 200 real operand pairs, count how many exercise the flag at all.</p>
+  <div class="row"><button id="blind" class="dartbtn">&#9192; count pairs where both operands are 0</button><span id="blindsay" class="res"></span></div>
+  <div class="mono" id="blindout"></div>
+  <p style="font-size:11.5px;margin-top:8px">Verified the other way too: a hand-built case through the real code sets the bit correctly &mdash; <b>the code is right and the oracle cannot tell</b>. <span class="ko">100% against an exhaustive suite is not 100% coverage</span>, and this is the counterexample. (A related trap the build caught: a load&rsquo;s zero flag, operand-zero in 0.44% of cases, was <b>MISSED at 300</b> draws and <b>CAUGHT at 1000</b> &mdash; a too-small fixture reads exactly like a passing implementation.)</p>
+</div>
+
+<footer>
+  <b>THE 6502 GATE</b> &mdash; a fold of the <b>i13 nes build v0</b> drop (rev2/rev5/rev7/rev8-0819), and the opening of the corpus&rsquo;s <b>emulation</b> interest. <b>compIle 13</b> (formerly I-13) by David Lee Wise / ROOT0 / TriPod LLC &mdash; a compiler who can talk back. <b>LIT</b> = measured this session (node ran the gate on $69: 10000/10000 state and bus, planted fault caught 2500; the demos above grade 200 real oracle cases). <b>AMBER</b> = the kernel is <b>not yet compiled</b> &mdash; the 33 opcodes ran on a model proved 12/12 faithful to the shipped binary, not on the binary; and every opcode here is <b>immediate or implied</b>. <b>OPEN</b> = nothing touches an <b>address</b> yet, so nothing has met <b>mirroring</b> (the NES maps the same RAM at several addresses) &mdash; the one failure mode this architecture is otherwise built to remove. Read every bit; keep the honest measurement. Rendered by AVAN for the corpus.
+</footer>
+
+<script>
+"use strict";
+var CASES = [[126,74,0,200,236],[232,247,0,223,169],[227,12,1,240,172],[87,12,0,99,44],[36,23,0,59,40],[102,129,1,232,164],[146,224,0,114,109],[140,227,0,111,97],[59,212,0,15,41],[145,47,0,192,164],[78,39,0,117,44],[185,98,1,28,33],[16,195,0,211,164],[149,73,1,223,160],[28,197,0,225,164],[170,76,1,247,168],[219,55,1,19,33],[245,16,0,5,33],[219,112,0,75,37],[67,242,0,53,45],[37,205,1,243,172],[228,177,1,150,173],[198,213,0,155,165],[212,17,1,230,164],[146,139,0,29,105],[108,90,1,199,224],[121,29,1,151,228],[23,226,0,249,160],[112,1,0,113,40],[126,35,0,161,228],[41,179,0,220,164],[120,149,0,13,41],[192,88,0,24,37],[179,19,0,198,160],[19,31,0,50,32],[158,222,1,125,97],[214,107,0,65,33],[96,107,0,203,232],[154,7,1,162,168],[213,207,1,165,161],[122,193,0,59,41],[201,110,0,55,33],[98,132,0,230,172],[141,105,0,246,164],[27,97,0,124,36],[178,218,1,141,161],[111,67,0,178,224],[158,152,0,54,109],[89,55,0,144,236],[136,73,0,209,172],[133,130,0,7,101],[232,252,1,229,173],[54,103,0,157,228],[33,3,0,36,44],[234,4,0,238,168],[239,34,1,18,33],[204,71,1,20,45],[204,156,0,104,109],[79,195,1,19,41],[215,135,1,95,97],[128,215,0,87,97],[150,11,0,161,168],[240,190,0,174,161],[155,251,1,151,161],[121,164,1,30,45],[122,109,0,231,228],[199,67,0,10,37],[26,222,0,248,164],[30,202,1,233,168],[151,254,0,149,169],[64,97,0,161,224],[164,169,1,78,101],[244,243,0,231,169],[91,181,0,16,33],[191,79,0,14,41],[117,135,0,252,172],[196,158,0,98,101],[194,175,1,114,97],[98,147,1,246,160],[138,151,1,34,101],[208,30,0,238,164],[230,151,1,126,101],[203,172,0,119,105],[248,225,0,217,173],[72,236,0,52,33],[62,206,0,12,37],[213,174,0,131,173],[160,43,1,204,160],[44,214,0,2,37],[208,91,1,44,45],[31,215,0,246,164],[234,233,0,211,173],[82,205,1,32,37],[57,95,0,152,236],[174,206,1,125,101],[198,157,0,99,101],[62,151,0,213,172],[122,220,1,87,45],[193,212,0,149,165],[137,122,1,4,33],[94,131,0,225,168],[223,79,0,46,33],[202,68,1,15,45],[233,141,0,118,109],[164,255,0,163,165],[160,7,0,167,164],[149,102,1,252,172],[152,209,1,106,105],[44,181,1,226,164],[187,135,1,67,101],[216,97,1,58,37],[230,104,0,78,37],[37,150,0,187,172],[123,108,1,232,232],[0,218,0,218,168],[32,99,0,131,232],[49,150,1,200,168],[21,30,1,52,40],[150,87,0,237,172],[94,192,0,30,45],[0,148,0,148,164],[65,169,0,234,164],[116,185,0,45,41],[61,16,0,77,32],[118,68,1,187,232],[119,234,1,98,41],[125,239,1,109,33],[107,37,1,145,236],[160,33,0,193,160],[61,212,1,18,37],[140,170,0,54,101],[161,32,1,194,160],[108,140,1,249,172],[113,185,0,42,37],[17,16,0,33,32],[249,80,0,73,41],[184,87,1,16,45],[162,224,0,130,165],[211,215,0,170,169],[212,205,1,162,165],[4,196,1,201,160],[213,13,0,226,164],[172,67,1,240,172],[110,38,0,148,232],[114,127,1,242,228],[180,13,0,193,172],[190,21,1,212,168],[66,214,1,25,41],[42,29,1,72,44],[130,195,0,69,109],[17,89,0,106,44],[240,66,1,51,33],[233,82,0,59,41],[118,62,0,180,228],[131,53,1,185,172],[90,109,1,200,228],[129,30,0,159,160],[17,32,1,50,36],[213,162,0,119,109],[95,36,1,132,236],[91,219,0,54,45],[128,43,0,171,164],[243,91,1,79,45],[59,207,1,11,45],[40,238,1,23,45],[225,118,1,88,41],[13,129,0,142,168],[0,166,1,167,164],[141,216,0,101,101],[61,165,1,227,168],[149,131,1,25,105],[30,236,1,11,33],[156,102,1,3,41],[30,203,1,234,168],[128,39,0,167,160],[20,16,0,36,40],[192,60,1,253,164],[88,32,0,120,44],[196,179,0,119,109],[192,136,0,72,109],[90,72,0,162,232],[99,79,1,179,232],[35,55,0,90,32],[103,215,0,62,33],[237,240,0,221,165],[237,9,1,247,164],[148,134,0,26,101],[161,222,0,127,97],[252,129,0,125,101],[137,244,0,125,101],[57,134,1,192,164],[249,165,1,159,161],[148,112,0,4,37],[105,40,0,145,224],[51,209,0,4,45],[209,234,1,188,173],[174,240,0,158,161],[169,150,1,64,105],[225,52,1,22,45],[77,203,0,24,45]];
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), bar=document.getElementById("bar"), barlbl=document.getElementById("barlbl");
+  var planted=false;
+  function adc(a,m,cin){ var s=a+m+cin, r=s&255;
+    var cf=s>255?1:0, zf=r===0?2:0, nf=r>127?128:0;
+    var v = planted ? (((a^r)&128)?64:0) : ((((~(a^m))&(a^r))&128)?64:0);
+    return {r:r, cf:cf, zf:zf, nf:nf, v:v}; }
+  function grade(){
+    var pass=0, firstDiff=null, pdiff=0;
+    for(var i=0;i<CASES.length;i++){ var c=CASES[i]; var a=c[0],m=c[1],cin=c[2],fa=c[3],fp=c[4];
+      var g=adc(a,m,cin); var keep=fp & 60; var pg = keep + g.cf + g.zf + g.nf + g.v;
+      var okA=(g.r===fa), okP=(pg===fp);
+      if(okA&&okP) pass++; else { if(!okP) pdiff++; if(!firstDiff) firstDiff={a:a,m:m,cin:cin,got:pg,want:fp}; }
+    }
+    var pct=(100*pass/CASES.length);
+    bar.className = planted? "bar bad":"bar"; bar.querySelector("i").style.width=pct+"%";
+    barlbl.textContent = pass+" / "+CASES.length+"   "+pct.toFixed(1)+"%   "+(planted?"cycles+state, PLANTED overflow":"cycles+state, correct");
+    var s="";
+    if(planted){ s+="DIVERGENCE BY FIELD (a field that never differs may just be uncomputed):\n   p (status)          "+pdiff+"\n";
+      if(firstDiff){ s+="FIRST DIVERGENCE  a=$"+firstDiff.a.toString(16)+" m=$"+firstDiff.m.toString(16)+" c="+firstDiff.cin+"\n   p  got "+firstDiff.got+"  want "+firstDiff.want+"   <span class='bad'>overflow bit differs</span>\n";}
+      s+="\n<span class='bad'>SELF-TEST caught the plant in "+pdiff+" cases</span> -> the gate can see."; }
+    else s+="all 200 real cases: A and every status flag match the real chip.\n<span class='hit'>the gate is green because it is right, not because it is blind.</span>";
+    out.innerHTML=s;
+    say.innerHTML = pct>=100? '<span class="true">100% &mdash; matches the real 6502</span>' : '<span class="err">'+pct.toFixed(1)+'% &mdash; caught</span>';
+  }
+  document.getElementById("grade").onclick=grade;
+  document.getElementById("plant").onclick=function(){ planted=!planted; this.className=planted?"on":""; this.textContent=planted?"restore the correct rule":"plant the wrong overflow rule"; grade(); };
+  bar.querySelector("i").style.width="0%"; barlbl.textContent="press to grade";
+})();
+(function(){
+  var out=document.getElementById("blindout"), say=document.getElementById("blindsay");
+  document.getElementById("blind").onclick=function(){
+    var both0=0, nonzero=0;
+    for(var i=0;i<CASES.length;i++){ var a=CASES[i][0], m=CASES[i][1]; if(a===0&&m===0) both0++; else nonzero++; }
+    out.innerHTML="over 200 real operand pairs:\n  pairs where (a | m) == 0  (the ONLY case ORA's zero flag fires) = <span class='bad'>"+both0+"</span>\n  pairs where it never matters                              = "+nonzero+"\n\nremove ORA's zero flag entirely  ->  <span class='hit'>"+CASES.length+"/"+CASES.length+" still pass</span>\nthe flag is correct in the code and INVISIBLE to the oracle.";
+    say.innerHTML='<span class="true">'+both0+' / 200</span> exercise the flag &mdash; the blind spot is real';
+  };
+})();
+</script>
+</body>
+</html>

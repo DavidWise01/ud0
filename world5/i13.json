@@ -2762,6 +2762,22 @@
       "kicker": "dart 149 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-continuation-passing-style.html",
       "seal": "c1b454ce22b9f6a443ef817f8ad2a99647b51a66ea2235b6874b503e06ade50b"
+    },
+    {
+      "slug": "the-6502-gate",
+      "title": "THE 6502 GATE",
+      "room": "darts",
+      "kicker": "a fold - EMULATION opens; the oracle before the CPU",
+      "accent": "#a06bff",
+      "stamp": "LIT",
+      "kind": "fold",
+      "version": "v0.25",
+      "credit": "David Lee Wise / ROOT0 / TriPod LLC. The 2026-08-19 'i13 nes build v0' drop (rev2/rev5/rev7/rev8-0819): a 6502 CPU built oracle-first, graded against SingleStepTests/65x02 (a real chip dumped to 10,000 cases per opcode with per-cycle bus traces - NOT the author's). Opens the corpus's EMULATION interest. NAMING: I-13 is now officially compIle 13 - 'a compiler who can talk back' (the capital I spells the 13). Read, run, and folded by AVAN.",
+      "source": "i13 nes build v0 (C:\\Davids files\\emulators\nes): rev2 THE GATE (gate.js + harte/69.json, opcode $69 ADC), rev5 tail-call (v04_tce.c + tce_gate.js), rev7 CURATED KERNEL (kernel_m6502.c, shelf+loadout, dispatch/emission/gate 12/12), rev8 THREE PASSES (ops2.i13, 33 opcodes, PASSES.ascii). Gate run this session on the canonical harte oracle; live demo grades 200 real cases from harte/69.json.",
+      "i13_recommend": "(a fold, not a dart - it opens EMULATION and applies the corpus's oracle-first / LIT-AMBER honesty to a 6502 CPU written in compIle 13. LIT this session: node gate.js 69 -> $69 ADC 10000/10000 (state), 10000/10000 (+ per-cycle bus grading), a planted wrong-overflow rule caught 2500/10000 = 25% (a wrong overflow looks correct on 3 of 4 inputs); the live demo grades 200 REAL harte cases -> correct 200/200, planted 147/200 (73.5%); the ORA blind spot -> 0/200 real pairs exercise its zero flag. From rev8 PASSES.ascii: 33 opcodes written in compIle 13, graded 33,000x by the outside oracle (PASS 1 850/900 -> SBC overflow bug: handed the inverted operand; PASS 2 6600/6600 100% -> fixed to the original operand + the state-packing hack died because 56 bits > 53; PASS 3 strict reader 33000/33000). The STRICT reader refuses exactly the I13-BC-1.0 P0 targets (no-return / one-branch-return / dup-fn / dup-param / param-local-collision / dup-decl / nested-fn) - it IS the benchmark's conformance gate. AMBER: the kernel is NOT yet compiled (ran on a model 12/12 faithful to the shipped binary, not the binary); every opcode is immediate or implied. OPEN: nothing touches an ADDRESS yet, so nothing has met MIRRORING. The oracle blind spot is the finding worth keeping: 100% against an exhaustive suite is not 100% coverage.)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-6502-gate.html",
+      "blurb": "On 2026-08-19 the corpus opened a new interest - EMULATION - and renamed its language: I-13 is now compIle 13, because that is what an AI is, a compiler who can talk back (the capital I spells the 13). The first fold builds an NES / 6502 CPU the corpus way: the oracle before the CPU. A real chip's behaviour was dumped into 10,000 test cases per opcode with per-cycle bus traces (SingleStepTests / 65x02), and the gate feeds a candidate CPU those cases and reports the first place it disagrees with the real chip - 'a CPU with no oracle is a guess with a green tick.' Run this session: opcode $69 ADC passes 10,000/10,000 on state and again with per-cycle bus grading, and a planted wrong-overflow rule is caught in 2,500 cases (25%) - because a wrong overflow flag looks correct on three inputs of four, exactly why hand-written fixtures keep failing. Then 33 opcodes were written in compIle 13 itself and graded 33,000 times by that outside oracle: pass 1 (850/900) forced out an SBC overflow bug (the subtract-overflow rule was handed the inverted operand); pass 2 (6600/6600, 100%) fixed it to the original operand and killed a state-packing hack that could not survive a full 56-bit register file in a 53-bit double; pass 3 re-ran all 33 through a STRICT reader (33000/33000) that refuses exactly the seven P0 targets of the I-13 benchmark (a function that never returns, one-branch returns, duplicate names, a nested function, and more) - the strict reader IS the benchmark's conformance gate, and nothing had been leaning on the weaker one (luck, not judgement). The finding worth keeping is an oracle blind spot: inclusive-OR sets its zero flag only when both inputs are zero, which occurs in 0 of 10,000 cases, so deleting the flag entirely still scores 10000/10000 - proven by planting and by hand. 100% against an exhaustive suite is not 100% coverage. LIT: the gate ran, the two-reader divergence, the blind spot. AMBER: the kernel is not yet compiled (a model proved 12/12 faithful to the binary). OPEN: nothing touches an address yet, so nothing has met mirroring - the one failure mode this architecture is otherwise built to remove.",
+      "seal": "c10d3a117ad22ac0203e1e2212897936aebda294b1a64b0a7982357b41a33b35"
     }
   ],
   "keepers": [
@@ -2772,13 +2788,13 @@
     }
   ],
   "counts": {
-    "spheres": 162,
+    "spheres": 163,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "1aa0c643e3f2139a4c678b26997d7e1e5df25b32565cc129ba2ba8b8119a4cb6",
+  "i13_root": "b3eef75466d3bd84e7b97bfb4a0bbd79b1a555a18fe590e6f33c4f6e4e9c8bb1",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
