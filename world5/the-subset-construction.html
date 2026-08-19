@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE SUBSET CONSTRUCTION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:78ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.5px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 131 &middot; a helldive at the net</span></div>
+<header>
+  <h1>SUBSET CONSTRUCTION <span class="c">a set of NFA states is one DFA state</span></h1>
+  <p class="sub">An NFA can be in many states at once. The subset (powerset) construction makes it deterministic by treating the whole <b>set</b> of possible states as a single DFA state: start from the start set, and on each symbol take the union of every current state&rsquo;s targets. It proves nondeterminism buys no extra power &mdash; at the cost of up to 2<sup>n</sup> states, though most NFAs stay small.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">union of targets, as a bitmask</span></h2>
+  <p>NFA for <span class="k">(a|b)*a</span>: <span class="k">q0</span> (start), <span class="k">q1</span> (accept), <span class="k">&delta;(q0,a)={q0,q1}</span>, <span class="k">&delta;(q0,b)={q0}</span>. Encode a state-set as a bitmask (q0=1, q1=2). On each symbol, OR the targets of every live state. A set accepts if it contains q1. The construction visits only <b>2</b> reachable subsets of the 4 possible. Type a/b; watch the subset walk. <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>input</label><input id="inp" value="abba" style="width:160px"><button id="go" class="dartbtn">&#9192; run DFA</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the award was for nondeterminism itself</span></h2>
+  <p class="myth">&ldquo;The subset construction is Kleene&rsquo;s&rdquo; &mdash; no; <span class="who">Kleene</span> (1956) equated regex and <b>deterministic</b> automata, with no notion of nondeterminism. It is <span class="who">Rabin &amp; Scott</span>, 1959. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1957/58</b> &middot; <span class="who">Myhill-Nerode</span> characterise the <b>unique minimal</b> DFA &mdash; minimization, a separate result from determinization.<br>
+    <b>1959</b> &middot; <span class="who">Rabin &amp; Scott</span> invent the <b>NFA</b> and prove NFA &equiv; DFA by the subset construction (IBM J. Res. Dev. 3(2)).<br>
+    <b>1971</b> &middot; <span class="who">Hopcroft</span> &mdash; the <b>n log n</b> minimization that usually <i>follows</i> determinization (regex &rarr; NFA &rarr; DFA &rarr; minimal DFA).<br>
+    <b>1976</b> &middot; the <b>Turing Award</b> to Rabin &amp; Scott cites the invention of <b>nondeterminism</b> and the paper&rsquo;s decision-problem results &mdash; reducing it to &ldquo;the subset construction&rdquo; undersells what was prized.
+  </div>
+  <p style="margin-top:10px"><b>2<sup>n</sup> is a worst case, not the rule</b> &mdash; most NFAs determinize small; RE2/Go/Rust build the DFA <b>lazily</b> at match time (a cached subset construction). <span class="tag t-open">Rabin &amp; Scott, 1959</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a subset is one integer; delta is a flat array</span></h2>
+  <p>A subset-state is one f64 bitmask; the transition is a flat f64 array indexed by <span class="k">state*2+symbol</span>; the DFA runs on the real compiler:</p>
+  <div class="evi good">$ i13 run subset.i13   # (a|b)*a ; delta=[3,1,0,0], accept mask = 2
+"abba" -> subset trail 1 -> 3 -> 1 -> 1 -> 3 ; final 3 & 2 = 2 -> ACCEPT
+"abb"  -> 1 -> 3 -> 1 -> 1 ; final 1 & 2 = 0 -> REJECT   (2 reachable subsets of 4)</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; a subset-state is a single f64 bitmask (up to 63 NFA states, since the VM computes bitwise <span class="k">as i64</span>); the transition relation <span class="k">&delta;</span> is a <b>flat</b> f64 array read at <span class="k">state*2+sym</span>; a DFA step is an OR of the live states&rsquo; targets; accept is one AND (verified abba ACCEPT via final mask 3, abb REJECT via mask 1). It is the on-the-fly / lazy form &mdash; exactly what RE2 does.<br>
+    <b>Note:</b> pairs with Thompson (130): 130 <b>builds</b> the NFA and simulates it, 131 <b>determinizes</b> it &mdash; the two halves of regex &rarr; NFA &rarr; DFA. A full <span class="k">&delta;</span> for many states is a <b>2-D array</b> (<b>PS-004</b>) flattened here to 1-D by hand, the corpus&rsquo;s standing move.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var delta=[3,1,0,0]; // [d(q0,a),d(q0,b),d(q1,a),d(q1,b)]
+  function step(mask,sym){ var acc=0; if(mask&1)acc|=delta[0*2+sym]; if(mask&2)acc|=delta[1*2+sym]; return acc; }
+  function setStr(m){ var r=[]; if(m&1)r.push("q0"); if(m&2)r.push("q1"); return "{"+r.join(",")+"}"; }
+  function run(){
+    var w=(document.getElementById("inp").value||"").replace(/[^ab]/g,"").split("");
+    var mask=1, s="NFA (a|b)*a  delta=[3,1,0,0]  accept={q1}=2\nstart subset {q0} = mask 1\n";
+    for(var i=0;i<w.length;i++){ var sym=w[i]==="a"?0:1; mask=step(mask,sym);
+      s+="read '"+w[i]+"' -> "+setStr(mask)+" = mask "+mask+"\n"; }
+    var acc=(mask&2)!==0;
+    out.innerHTML=s+"\nfinal mask "+mask+" & 2 = "+(mask&2)+" -> "+(acc?"<span class='hit'>q1 live</span>":"<span class='bad'>q1 dead</span>");
+    say.innerHTML=acc?'<span class="true">ACCEPT</span> &middot; ends in a':'<span class="err">REJECT</span> &middot; does not end in a';
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("inp").addEventListener("input",run);
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 131 &middot; THE SUBSET CONSTRUCTION</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Rabin &amp; Scott</b> (1959, &ldquo;Finite Automata and Their Decision Problems&rdquo;) &mdash; their <b>1976 Turing Award</b> was for inventing <b>nondeterminism</b>, not the subset trick specifically. Determinization is not minimization (that is <b>Myhill-Nerode</b> / <b>Hopcroft</b>); and NFA&rarr;DFA (Rabin-Scott) is not regex&rarr;NFA (Thompson/MNY). I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, array-return, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

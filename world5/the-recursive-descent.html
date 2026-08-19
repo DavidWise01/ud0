@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE RECURSIVE DESCENT &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:78ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.5px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 128 &middot; a helldive at the net</span></div>
+<header>
+  <h1>RECURSIVE DESCENT <span class="c">the functions ARE the grammar</span></h1>
+  <p class="sub">The most direct way to turn a grammar into a program: <b>one function per rule</b>. <span class="k">expr()</span> handles + and &minus;, <span class="k">term()</span> handles * and /, <span class="k">factor()</span> handles numbers and parenthesised sub-expressions &mdash; so the tree of calls at run time <b>is</b> the parse tree. Precedence needs no table: it is the nesting order of the functions; parentheses re-enter <span class="k">expr()</span> at the bottom.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">expr &rarr; term &rarr; factor</span></h2>
+  <p>Grammar: <span class="k">expr &rarr; term (('+'|'&minus;') term)*</span>; <span class="k">term &rarr; factor (('*'|'/') factor)*</span>; <span class="k">factor &rarr; number | '(' expr ')'</span>. Precedence falls out of the hierarchy &mdash; * binds before + because <span class="k">factor</span> is nested below <span class="k">term</span> below <span class="k">expr</span>. Type an expression (single-digit numbers, <span class="k">+ &minus; * /</span>, parens). <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>expr</label><input id="inp" value="2*(3+4)" style="width:180px"><button id="go" class="dartbtn">&#9192; parse &amp; eval</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">1961, not the Pascal era</span></h2>
+  <p class="myth">&ldquo;Wirth invented recursive descent&rdquo; &mdash; no; he <s>invented</s> popularized it (Pascal, PL/0). It is a <b>1961</b> technique. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1959&ndash;60</b> &middot; <span class="who">Backus &amp; Naur</span> &mdash; BNF, the grammar notation recursive descent mirrors one-function-per-rule.<br>
+    <b>1961</b> &middot; <span class="who">Ned Irons</span> (Jan, CACM 4(1)) &mdash; the first parser of any kind described in print; <span class="who">Peter Lucas</span> (Dec, IBM Vienna) &mdash; the top-down parser built from mutually recursive procedures, one per variable. Independent, near-simultaneous.<br>
+    <b>1968 / 1971</b> &middot; <span class="who">Lewis &amp; Stearns</span> define <b>LL(k)</b> &mdash; exactly the grammars a predictive (no-backtrack, k-token) recursive descent handles; <span class="who">Knuth</span>&rsquo;s &ldquo;Top-Down Syntax Analysis&rdquo; pins down when it works (FIRST/FOLLOW).<br>
+    <b>1970s / 2000s</b> &middot; <span class="who">Wirth</span> spreads it through Pascal &amp; PL/0; <span class="who">GCC</span> (3.4+) and <span class="who">Clang</span> replace generated LR tables with hand-written recursive descent &mdash; for the error messages and control tables can&rsquo;t give.
+  </div>
+  <p style="margin-top:10px">The <b>predictive</b> form (LL(1), one-token lookahead) never backtracks and runs in linear time &mdash; backtracking recursive descent is a slower, distinct variant. <span class="tag t-open">Irons &amp; Lucas, 1961</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the compiler's OWN parser is one of these</span></h2>
+  <p>It runs &mdash; and it is a door already open: I-13&rsquo;s own compiler is a hand-written recursive-descent parser. The expression evaluates and consumes all input:</p>
+  <div class="evi good">$ i13 run rd.i13    # expr/term/factor over code points, threading [value, pos]
+2*(3+4) -> value 14, endpos 7 (all consumed)    2*3+4 -> 10    (2+3)*4 -> 20</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; one recursive function per rule, each returning <span class="k">[value, pos]</span> (the array-return thread); parentheses re-enter <span class="k">expr</span>; precedence is the call hierarchy (verified 2*(3+4)=<b>14</b> with endpos 7, 2*3+4=<b>10</b>, (2+3)*4=<b>20</b>). The only guard I-13 forces is a bounds check before reading past the input &mdash; honest, since out-of-range indexing is rejected.<br>
+    <b>Note:</b> pairs with Pratt (126) &mdash; same answers, two paradigms: recursive descent puts precedence in the <b>grammar shape</b>, Pratt puts it on the <b>tokens</b>. Both are the reading half of the 8/19 benchmark&rsquo;s own front end.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  function run(){
+    var s=(document.getElementById("inp").value||"").replace(/\s/g,"");
+    var p=0, trace=[];
+    function peek(){ return s[p]; }
+    function factor(){ var c=s[p];
+      if(c==="("){ trace.push("factor: '(' -> expr"); p++; var v=expr(); if(s[p]===")")p++; return v; }
+      trace.push("factor: number "+c); p++; return +c;
+    }
+    function term(){ var v=factor(); while(s[p]==="*"||s[p]==="/"){ var op=s[p]; p++; var r=factor(); v = op==="*"? v*r : v/r; trace.push("term: "+op+" -> "+v); } return v; }
+    function expr(){ var v=term(); while(s[p]==="+"||s[p]==="-"){ var op=s[p]; p++; var r=term(); v = op==="+"? v+r : v-r; trace.push("expr: "+op+" -> "+v); } return v; }
+    var ok=true, val;
+    try{ val=expr(); if(p!==s.length)ok=false; }catch(e){ ok=false; }
+    out.innerHTML=trace.join("\n")+"\n\n"+(ok? "value = <span class='hit'>"+val+"</span>   endpos = "+p+" / "+s.length+" (all consumed)" : "<span class='bad'>parse error at position "+p+"</span>");
+    say.innerHTML=ok? '<span class="true">'+val+'</span> &middot; the call tree IS the parse tree' : '<span class="err">malformed</span>';
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("inp").addEventListener("input",run);
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 128 &middot; THE RECURSIVE DESCENT</b> &mdash; World V &middot; SONNY 5, the I-13 world. Described in <b>1961</b> by <b>Ned Irons</b> (Jan) and <b>Peter Lucas</b> (Dec), independently &mdash; a decade before Pascal. <b>Niklaus Wirth</b> made it famous (Pascal, PL/0, 1970s), he did not invent it. Real compilers still use it: <b>GCC</b> (since 3.4) and <b>Clang</b> are hand-written recursive descent. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, array-return, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
