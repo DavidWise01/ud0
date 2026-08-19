@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HIERHOLZER'S ALGORITHM &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+input[type=range]{padding:0;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:8px 0;}
+.cell{border:1px solid var(--line);border-radius:5px;padding:7px 9px;font-size:11px;background:rgba(0,0,0,.25);}
+.cell b{color:var(--gold);} .cell .v{color:var(--cyan);font-size:13px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 099 &middot; a helldive at the net</span></div>
+<header>
+  <h1>EULER CIRCUITS <span class="c">the bridges Euler could not cross</span></h1>
+  <p class="sub">Can you walk a graph using <b>every edge exactly once</b> and return to start? Euler answered <b>when</b> in 1736 &mdash; every vertex must have even degree &mdash; solving the Seven Bridges of Konigsberg and <b>founding graph theory</b>. But Euler gave no <b>method</b>; <b>Hierholzer</b> did, 137 years later: walk a loop, then splice in loops through the leftover edges.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">walk a loop, splice in the rest</span></h2>
+  <p>First the test: an Euler circuit exists iff the graph is connected and <b>every vertex has even degree</b>. Then Hierholzer builds one: walk unused edges until you return to start (a closed loop); if any vertex on it still has unused edges, walk a new loop from there and <b>splice</b> it in; repeat until no edge is left. Watch it trace and splice. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="300"></canvas>
+  <div class="row"><button id="go" class="dartbtn">&#9192; find the circuit</button><button id="kon">Konigsberg</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the theorem, then the method, 137 years apart</span></h2>
+  <p class="myth">&ldquo;Euler gave the algorithm&rdquo; &mdash; he gave the <s>algorithm</s> <b>condition</b> (and founded graph theory); the constructive method is Hierholzer&rsquo;s. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1736</b> &middot; <span class="who">Leonhard Euler</span> proves the Seven Bridges of <b>Konigsberg</b> has no such walk (its four landmasses have <b>odd</b> degree) &mdash; the paper that <b>founds graph theory</b> and prefigures topology. He gives the <i>criterion</i>, not a construction.<br>
+    <b>1873</b> &middot; <span class="who">Carl Hierholzer</span> gives the <b>algorithm</b> &mdash; walk-and-splice, linear time &mdash; published <b>posthumously</b> (he died in 1871, aged 30).<br>
+    <b>1883</b> &middot; <span class="who">Fleury</b> gives the more famous but <b>slower</b> rule (&ldquo;never cross a bridge you can&rsquo;t come back over&rdquo;) &mdash; O(E&sup2;) vs Hierholzer&rsquo;s O(E).<br>
+    <b>the reach</b> &middot; Euler circuits now route DNA fragment assembly, drone coverage, and mail-carrier tours.
+  </div>
+  <p style="margin-top:10px">One of mathematics&rsquo; cleanest &ldquo;iff&rdquo;s, and the birth certificate of a whole field. <span class="tag t-open">Euler 1736 / Hierholzer 1873</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a degree scan and an edge-used flag array</span></h2>
+  <p>The existence test is an integer parity scan; the construction rides an edge-used array and a stack &mdash; and the test runs on the compiler:</p>
+  <div class="evi good">$ i13 run hier.i13     # a 5-vertex graph vs the Konigsberg bridges
+graph: all degrees even  -> ok = 1     Konigsberg: 3,3,3,5 odd -> ok = 0</div>
+  <div class="rec">
+    <b>Recommend:</b> the <b>existence test</b> runs cleanly &mdash; a degree-count array, checked all-even (verified ok=1 for the graph, ok=0 for Konigsberg). The <b>construction</b> rides a boolean <span class="k">edge-used[]</span> array plus a per-vertex next-edge index and an explicit stack &mdash; all bounded arrays. One mild wall: the <b>connectivity</b> half of the test is not a pure scan &mdash; it needs a traversal (DFS over an adjacency array), since two even-degree components pass parity yet have no single circuit.<br>
+    <b>Note:</b> the splice is a stack operation &mdash; the corpus&rsquo;s home turf &mdash; not the pointer wall the search trees hit.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var W=960,H=300;
+  var G={ pos:[[200,150],[400,60],[400,240],[650,90],[650,210]], E:[[0,1],[1,2],[2,0],[0,3],[3,4],[4,0]], labels:["A","B","C","D","E"] };
+  var KON={ pos:[[300,150],[500,60],[500,240],[700,150]], E:[[0,1],[0,1],[0,2],[0,2],[0,3],[1,3],[2,3]], labels:["A","B","C","D"] };
+  var cur=G, path=[];
+  function deg(g){ var d=g.pos.map(function(){return 0;}); g.E.forEach(function(e){d[e[0]]++;d[e[1]]++;}); return d; }
+  function draw(hl){
+    ctx.clearRect(0,0,W,H); var d=deg(cur);
+    cur.E.forEach(function(e,i){ var a=cur.pos[e[0]],b=cur.pos[e[1]]; var on=hl&&hl.indexOf(i)>=0;
+      ctx.strokeStyle=on?"#ff8a3d":"rgba(111,139,168,.5)"; ctx.lineWidth=on?4:1.5;
+      // curve for parallel edges
+      ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.stroke(); });
+    cur.pos.forEach(function(p,i){ var odd=d[i]%2===1; ctx.fillStyle=odd?"#2a1015":"#0a1520"; ctx.strokeStyle=odd?"#ff5a6a":"#3ef0ff"; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(p[0],p[1],18,0,7); ctx.fill(); ctx.stroke(); ctx.fillStyle="#eafcff"; ctx.font="13px monospace"; ctx.fillText(cur.labels[i]+"("+d[i]+")",p[0]-14,p[1]+4); });
+  }
+  function hierholzer(g){
+    var used=g.E.map(function(){return false;}); var adj=g.pos.map(function(){return [];});
+    g.E.forEach(function(e,i){ adj[e[0]].push([e[1],i]); adj[e[1]].push([e[0],i]); });
+    var stack=[0], circ=[], edgeSeq=[];
+    while(stack.length){ var v=stack[stack.length-1], found=-1;
+      for(var t=0;t<adj[v].length;t++){ if(!used[adj[v][t][1]]){ found=t; break; } }
+      if(found<0){ circ.push(stack.pop()); } else { used[adj[v][found][1]]=true; edgeSeq.push(adj[v][found][1]); stack.push(adj[v][found][0]); } }
+    return {ok:used.every(Boolean),circ:circ.reverse(),edges:edgeSeq};
+  }
+  document.getElementById("go").onclick=function(){ cur=G; var d=deg(cur);
+    if(!d.every(function(x){return x%2===0;})){ draw([]); say.innerHTML='<span class="err">odd-degree vertex</span> &mdash; no Euler circuit'; return; }
+    var r=hierholzer(cur), k=0, shown=[];
+    var timer=setInterval(function(){ shown.push(r.edges[k]); draw(shown.slice()); k++;
+      if(k>=r.edges.length){ clearInterval(timer); say.innerHTML='Euler circuit: <span class="true">'+r.circ.map(function(i){return cur.labels[i];}).join(" -> ")+'</span> &mdash; every edge once'; } },500); };
+  document.getElementById("kon").onclick=function(){ cur=KON; draw([]); var d=deg(cur); say.innerHTML='Konigsberg: degrees '+d.join(",")+' &mdash; <span class="err">all odd, no walk</span> (Euler, 1736)'; };
+  draw([]); say.innerHTML="press to trace the circuit &middot; red = odd degree";
+})();
+
+</script>
+
+<footer>
+  <b>DART 099 &middot; HIERHOLZER'S ALGORITHM</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Euler</b> (1736) proved the even-degree condition (and founded graph theory); <b>Carl Hierholzer</b> (1873, posthumous) gave the <b>algorithm</b>; <b>Fleury</b> (1883) the slower famous one. History via <a href="https://en.wikipedia.org/wiki/Eulerian_path">Wikipedia: Eulerian path</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

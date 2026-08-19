@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAGRANGE INTERPOLATION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+input[type=range]{padding:0;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:8px 0;}
+.cell{border:1px solid var(--line);border-radius:5px;padding:7px 9px;font-size:11px;background:rgba(0,0,0,.25);}
+.cell b{color:var(--gold);} .cell .v{color:var(--cyan);font-size:13px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 100 &middot; a helldive at the net</span></div>
+<header>
+  <h1>LAGRANGE <span class="c">the one curve through your points</span></h1>
+  <p class="sub">Given n points, there is exactly one polynomial of degree n&minus;1 through them all &mdash; and Lagrange writes it down directly, as a blend of <b>basis polynomials</b> each worth 1 at its own point and 0 at the others. It is the engine behind Shamir&rsquo;s secret sharing (dart 097), numerical integration, and every &ldquo;connect the dots&rdquo; smoothly.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">basis polynomials that are 1 here, 0 there</span></h2>
+  <p>For each point i build <span class="k">L&#7522;(x)</span> = the product <span class="k">&prod;(x&minus;x&#11388;)/(x&#7522;&minus;x&#11388;)</span> over the other points &mdash; it is 1 at x&#7522; and 0 at every other node. The interpolant is <span class="k">&Sigma; y&#7522; L&#7522;(x)</span>: it hits each y&#7522; because only that basis is alive there. Drag the points; the curve follows. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="320"></canvas>
+  <div class="row"><button id="go" class="dartbtn">&#9192; new points</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Waring had it first</span></h2>
+  <p class="myth">&ldquo;Lagrange&rsquo;s formula, 1795&rdquo; &mdash; <span class="who">Waring</span> published it in <b>1779</b>, and <span class="who">Euler</span> in 1783; Lagrange was <s>first</s> third. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>~1675</b> &middot; <span class="who">Isaac Newton</span> &mdash; divided differences give the same interpolating polynomial in a form better for adding points incrementally.<br>
+    <b>1779</b> &middot; <span class="who">Edward Waring</span> publishes the barycentric/Lagrange formula &mdash; <b>16 years before Lagrange</b>.<br>
+    <b>1783 / 1795</b> &middot; <span class="who">Euler</span> and then <span class="who">Joseph-Louis Lagrange</span> restate it; Lagrange&rsquo;s clean presentation is what stuck to the name.<br>
+    <b>the caution</b> &middot; high-degree interpolation on evenly spaced points <b>oscillates wildly</b> at the ends (Runge&rsquo;s phenomenon) &mdash; more points is not always better.
+  </div>
+  <p style="margin-top:10px">The exact same formula, over a finite field, is how Shamir&rsquo;s shares (097) rebuild a secret. <span class="tag t-open">Waring 1779 / Lagrange 1795</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">multiply, divide, add</span></h2>
+  <p>Evaluating the interpolant at a target is pure f64 arithmetic &mdash; and it reproduces the underlying polynomial exactly:</p>
+  <div class="evi good">$ i13 run lag.i13     # points (0,1) (1,3) (2,7), evaluate at x=3
+L0=1  L1=-3  L2=3  ->  P(3) = 13    # = 3^2+3+1, the quadratic it sampled</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; <span class="k">&Sigma; y&#7522; &prod;(x&minus;x&#11388;)/(x&#7522;&minus;x&#11388;)</span> is multiply / divide / add, so it runs directly (verified P(3)=13). It is the <b>exact engine behind Shamir (097)</b>.<br>
+    <b>Note:</b> the one wall is Shamir&rsquo;s, not Lagrange&rsquo;s &mdash; &ldquo;over a field&rdquo; means exact modular integers (GF(p)), which f64 cannot hold, so the cryptographic version needs <b>bignum</b>; the real-number interpolation here is pure f64.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var W=960,H=320, pts=[];
+  function seed(){ pts=[]; var n=4; for(var i=0;i<n;i++)pts.push([120+i*220, 80+Math.random()*160]); }
+  function lag(x){ var y=0; for(var i=0;i<pts.length;i++){ var Li=1; for(var j=0;j<pts.length;j++) if(j!==i) Li*=(x-pts[j][0])/(pts[i][0]-pts[j][0]); y+=pts[i][1]*Li; } return y; }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle="#3ef0ff"; ctx.lineWidth=2; ctx.beginPath();
+    for(var x=40;x<=W-20;x+=3){ var y=lag(x); if(x===40)ctx.moveTo(x,y); else ctx.lineTo(x,y); } ctx.stroke();
+    pts.forEach(function(p){ ctx.fillStyle="#ff8a3d"; ctx.beginPath(); ctx.arc(p[0],p[1],6,0,7); ctx.fill(); });
+    say.innerHTML=pts.length+' points &middot; the unique degree-'+(pts.length-1)+' polynomial through <span class="true">all of them</span>';
+  }
+  document.getElementById("go").onclick=function(){ seed(); draw(); };
+  seed(); draw();
+})();
+
+</script>
+
+<footer>
+  <b>DART 100 &middot; LAGRANGE INTERPOLATION</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Edward Waring</b> (1779) published the formula <b>16 years before Lagrange</b> (1795); <b>Euler</b> had it too &mdash; fairly &ldquo;Waring-Lagrange.&rdquo; History via <a href="https://en.wikipedia.org/wiki/Lagrange_polynomial">Wikipedia: Lagrange polynomial</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

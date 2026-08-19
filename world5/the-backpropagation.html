@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BACKPROPAGATION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+input[type=range]{padding:0;}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:8px 0;}
+.cell{border:1px solid var(--line);border-radius:5px;padding:7px 9px;font-size:11px;background:rgba(0,0,0,.25);}
+.cell b{color:var(--gold);} .cell .v{color:var(--cyan);font-size:13px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 094 &middot; a helldive at the net</span></div>
+<header>
+  <h1>BACKPROPAGATION <span class="c">the chain rule, run backward</span></h1>
+  <p class="sub">How a neural net learns which way to nudge each weight: a <b>forward pass</b> computes the output and its error, then a <b>backward pass</b> applies the calculus <b>chain rule</b> from the loss back to every weight &mdash; reusing shared results so all the gradients cost about one forward pass. That is the whole trick. It is <b>reverse-mode automatic differentiation</b>, and it is older and less Hinton&rsquo;s than the story says.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">forward compute, backward differentiate</span></h2>
+  <p>A single sigmoid neuron: <span class="k">z = w&middot;x + b</span>, <span class="k">a = &sigma;(z)</span>, loss <span class="k">L = &frac12;(a &minus; t)&sup2;</span>. Forward gives a and L; backward gives the gradient by the chain rule <span class="k">dL/dw = (a&minus;t)&middot;a(1&minus;a)&middot;x</span>. Drag the weight; watch the loss and its gradient, then take gradient-descent steps down the curve. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="300"></canvas>
+  <div class="row"><label>w</label><input id="w" type="range" min="-4" max="4" step="0.05" value="0.5" style="width:220px"><button id="go" class="dartbtn">&#9192; descend 20 steps</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">1986 made it famous; 1970 invented it</span></h2>
+  <p class="myth">&ldquo;Hinton invented backprop in 1986&rdquo; &mdash; the 1986 paper <s>invented</s> popularised it; the algorithm is <b>16 years older</b>, and the name is older still. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1676 / 1847</b> &middot; <span class="who">Leibniz</span> gives the chain rule; <span class="who">Cauchy</span> gives gradient descent &mdash; backprop adds <b>no new calculus</b> and is <b>not</b> the learning step (that is descent), only the gradient.<br>
+    <b>1960s</b> &middot; <span class="who">Kelley &amp; Bryson</b> compute chained gradients in <b>optimal control</b> (the adjoint method) &mdash; the idea is born in aerospace, not AI. <span class="who">Rosenblatt</span> even coins &ldquo;back-propagating error&rdquo; (1962) &mdash; for a different scheme.<br>
+    <b>1970</b> &middot; <span class="who">Seppo Linnainmaa</b> (MSc thesis) writes down the modern <b>reverse mode of automatic differentiation</b>, with code &mdash; but for <b>rounding error</b>, no neural nets. The engine, invented.<br>
+    <b>1974 / 1986</b> &middot; <span class="who">Paul Werbos</b> first applies it to neural nets; <span class="who">Rumelhart, Hinton &amp; Williams</b> (Nature) make it famous and show it learns hidden representations &mdash; a rediscovery, not the first.
+  </div>
+  <p style="margin-top:10px">Every autograd today &mdash; PyTorch, TensorFlow &mdash; is Linnainmaa&rsquo;s 1970 reverse mode at scale. <span class="tag t-open">Linnainmaa 1970 / Werbos 1974</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">multiply, add, and the chain rule</span></h2>
+  <p>Forward and backward are both f64 multiply/add &mdash; and the single-neuron gradient comes out exactly on the compiler:</p>
+  <div class="evi good">$ i13 run bp.i13     # x=1, w=0.5, b=0, t=0
+a = 0.62245933   L = 0.19372781   dL/dw = 0.14628025   # sigmoid via std/exp</div>
+  <div class="rec">
+    <b>Recommend:</b> the arithmetic <b>runs</b> &mdash; weighted sums forward, a product of local derivatives backward (verified <span class="k">dL/dw = 0.14628</span>). The one transcendental is the nonlinearity: sigmoid needs <span class="k">exp</span> (the stdlib Taylor <span class="k">std/exp.i13</span> supplies it), or swap in ReLU (a <span class="k">max</span>, no exp). The weight <b>matrices</b> of a real net are 2-D &mdash; <b>PS-004</b> &mdash; flattened to 1-D f64 arrays.<br>
+    <b>Note:</b> backprop only supplies the <b>gradient</b>; the learning is gradient descent (Cauchy) stepping the weights &mdash; two pieces the story routinely fuses into one.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say"), wEl=document.getElementById("w");
+  var W=960,H=300, x=1,b=0,t=0;
+  function sig(z){ return 1/(1+Math.exp(-z)); }
+  function loss(w){ var a=sig(w*x+b); return 0.5*(a-t)*(a-t); }
+  function grad(w){ var a=sig(w*x+b); return (a-t)*a*(1-a)*x; }
+  function draw(mark){
+    ctx.clearRect(0,0,W,H); var w=parseFloat(wEl.value);
+    // loss curve over w in [-4,4]
+    ctx.strokeStyle="#3ef0ff"; ctx.lineWidth=2; ctx.beginPath();
+    for(var i=0;i<=W;i++){ var ww=-4+8*i/W, L=loss(ww); var y=H-20-L*480; if(i===0)ctx.moveTo(i,y); else ctx.lineTo(i,y); } ctx.stroke();
+    function px(ww){ return (ww+4)/8*W; }
+    var Lw=loss(w), g=grad(w), yw=H-20-Lw*480, xw=px(w);
+    // tangent (gradient)
+    ctx.strokeStyle="rgba(255,138,61,.8)"; ctx.beginPath(); ctx.moveTo(xw-60,yw+ (g*480)*(60/(W/8))); ctx.lineTo(xw+60,yw-(g*480)*(60/(W/8))); ctx.stroke();
+    ctx.fillStyle="#fff"; ctx.beginPath(); ctx.arc(xw,yw,5,0,7); ctx.fill();
+    if(mark){ mark.forEach(function(ww){ ctx.fillStyle="rgba(89,255,176,.7)"; ctx.beginPath(); ctx.arc(px(ww),H-20-loss(ww)*480,3,0,7); ctx.fill(); }); }
+    say.innerHTML='w='+w.toFixed(2)+' &middot; L='+Lw.toFixed(4)+' &middot; dL/dw=<span class="true">'+g.toFixed(4)+'</span>';
+  }
+  wEl.addEventListener("input",function(){ draw(null); });
+  document.getElementById("go").onclick=function(){ var w=parseFloat(wEl.value), lr=3, path=[w];
+    for(var i=0;i<20;i++){ w=w-lr*grad(w); path.push(w); } wEl.value=w; draw(path);
+    say.innerHTML='descended to w='+w.toFixed(3)+' &middot; L='+loss(w).toFixed(5)+' <span class="true">(gradient descent used backprop\'s gradient)</span>'; };
+  draw(null);
+})();
+
+</script>
+
+<footer>
+  <b>DART 094 &middot; BACKPROPAGATION</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Seppo Linnainmaa</b> (1970) first described reverse-mode AD; <b>Paul Werbos</b> (1974) first tied it to neural nets; <b>Rumelhart, Hinton &amp; Williams</b> (1986) <b>popularised</b> it. History via <a href="https://en.wikipedia.org/wiki/Backpropagation">Wikipedia: Backpropagation</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
