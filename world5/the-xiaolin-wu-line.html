@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XIAOLIN WU'S LINE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arr{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0;} .ac{min-width:26px;height:26px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#9fe8ff;}
+.ac.hot{border-color:var(--orange);color:var(--orange);} .ac.g{border-color:var(--cyan);color:var(--cyan);} .ac.done{border-color:var(--good);color:var(--good);}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+.beat{display:flex;gap:4px;flex-wrap:wrap;margin:10px 0;} .bt{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);} .bt.on{background:var(--orange);border-color:var(--orange);box-shadow:0 0 8px rgba(255,138,61,.6);} .bt.rest{background:rgba(62,240,255,.05);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 077 &middot; a helldive at the net</span></div>
+<header>
+  <h1>XIAOLIN WU'S LINE <span class="c">Bresenham's line, with the jaggies filed off</span></h1>
+  <p class="sub">Bresenham&rsquo;s line (dart 003) is fast but <b>jagged</b> &mdash; each pixel is fully on or off, so a shallow diagonal stair-steps. Wu&rsquo;s line keeps Bresenham&rsquo;s speed but colours <b>two pixels per step</b>, their brightness set by how much of each the ideal line covers &mdash; and the stairs melt into a smooth stroke.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">two pixels per step, weighted by coverage</span></h2>
+  <p>Step along the major axis. At each step the true line falls between two pixel rows; light <b>both</b>, giving the nearer one most of the brightness and the farther one the rest (their coverages sum to 1). The eye blends them into a clean edge. Below: the same line drawn aliased (Bresenham) and antialiased (Wu). <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="220"></canvas>
+  <div class="row"><button id="go" class="dartbtn">&#9192; new angle</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">not the first antialiased line &mdash; the fast one</span></h2>
+  <p class="myth">&ldquo;Wu invented antialiased lines&rdquo; &mdash; smooth lines existed <s>first in 1991</s> a decade earlier; Wu made them <b>cheap</b>. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1965 / 1962</b> &middot; <span class="who">Bresenham</b>&rsquo;s integer line (dart 003) draws fast but aliased &mdash; every pixel fully on or off.<br>
+    <b>1981</b> &middot; <span class="who">Gupta &amp; Sproull</b> draw <b>antialiased</b> lines by looking up straddling-pixel intensities in a precomputed filtered-distance table &mdash; smooth, but with a table.<br>
+    <b>1991</b> &middot; <span class="who">Xiaolin Wu</b> (&ldquo;An Efficient Antialiasing Technique,&rdquo; SIGGRAPH) re-derives the coverage as a <b>simple incremental computation</b> &mdash; an error accumulator like Bresenham&rsquo;s, plus a symmetry trick that draws from both ends &mdash; so antialiasing costs almost nothing extra.<br>
+    <b>the paper</b> &middot; is titled about antialiasing generally and covers <b>circles</b> too; &ldquo;Wu&rsquo;s line&rdquo; is a later community name.
+  </div>
+  <p style="margin-top:10px">The jagged and the smooth line are the same walk down the same slope &mdash; one rounds coverage to 0/1, the other keeps the fraction. <span class="tag t-open">Wu 1991, after Gupta-Sproull</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">Bresenham plus a fraction</span></h2>
+  <p>Wu&rsquo;s line is Bresenham&rsquo;s integer walk (dart 003, which runs) but keeping the <b>fractional coverage</b> instead of rounding it &mdash; f64 arithmetic all the way:</p>
+  <div class="evi">// per step: intensity of pixel = 1 - frac(y),  neighbour = frac(y)
+// then advance y by the slope. plain f64 add/floor/frac.</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; where Bresenham (003) stayed integer-only to dodge the FPU, Wu embraces f64: the coverage is <span class="k">1 &minus; frac(y)</span> and its complement, advanced by the slope each step. Add, floor, fraction &mdash; all f64 the compiler has. The output grid (the pixels) is the array; the intensities are f64.<br>
+    <b>Note:</b> a neat pair with dart 003 &mdash; same slope, same walk; Bresenham rounds the coverage to 0/1 (integer, fast, jagged), Wu keeps it (f64, smooth). The campaign has now run both faces of the oldest graphics primitive.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var x0=40,y0=110,len=380,ang=0.28;
+  function line(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    var x1=x0+len*Math.cos(ang), y1a=y0+len*Math.sin(ang);
+    // aliased (Bresenham-ish) on the left
+    ctx.fillStyle="rgba(111,139,168,.9)"; ctx.font="11px monospace"; ctx.fillText("aliased (Bresenham)",x0,26); ctx.fillText("antialiased (Wu)",x0+470,26);
+    function bres(ox){ var xa=Math.round(x0),ya=Math.round(y0),xb=Math.round(x1),yb=Math.round(y1a);
+      var dx=Math.abs(xb-xa),dy=Math.abs(yb-ya),sx=xa<xb?1:-1,sy=ya<yb?1:-1,err=dx-dy,x=xa,y=ya;
+      ctx.fillStyle="#3ef0ff"; while(true){ ctx.fillRect(x+ox,y,2,2); if(x===xb&&y===yb)break; var e2=2*err; if(e2>-dy){err-=dy;x+=sx;} if(e2<dx){err+=dx;y+=sy;} } }
+    function wu(ox){ var dx=x1-x0,dy=y1a-y0,grad=dy/dx,y=y0;
+      for(var x=x0;x<=x1;x++){ var fl=Math.floor(y),fr=y-fl;
+        ctx.fillStyle="rgba(255,138,61,"+(1-fr)+")"; ctx.fillRect(x+ox,fl,2,2);
+        ctx.fillStyle="rgba(255,138,61,"+fr+")"; ctx.fillRect(x+ox,fl+1,2,2); y+=grad; } }
+    bres(0); wu(470);
+    say.innerHTML='same slope, same walk &middot; left rounds coverage to 0/1 &middot; right keeps the fraction';
+  }
+  document.getElementById("go").onclick=function(){ ang=0.12+Math.random()*0.5; line(); };
+  line();
+})();
+
+</script>
+
+<footer>
+  <b>DART 077 &middot; XIAOLIN WU'S LINE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Xiaolin Wu</b> (1991) &mdash; for the <b>efficient</b> incremental form; antialiased lines already existed (<b>Gupta &amp; Sproull</b>, 1981). History via <a href="https://en.wikipedia.org/wiki/Xiaolin_Wu%27s_line_algorithm">Wikipedia: Wu&rsquo;s line</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

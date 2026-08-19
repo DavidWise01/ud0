@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MERGE SORT &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arr{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0;} .ac{min-width:26px;height:26px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#9fe8ff;}
+.ac.hot{border-color:var(--orange);color:var(--orange);} .ac.g{border-color:var(--cyan);color:var(--cyan);} .ac.done{border-color:var(--good);color:var(--good);}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+.beat{display:flex;gap:4px;flex-wrap:wrap;margin:10px 0;} .bt{width:24px;height:24px;border-radius:50%;border:1px solid var(--line);} .bt.on{background:var(--orange);border-color:var(--orange);box-shadow:0 0 8px rgba(255,138,61,.6);} .bt.rest{background:rgba(62,240,255,.05);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 070 &middot; a helldive at the net</span></div>
+<header>
+  <h1>MERGE SORT <span class="c">the first divide-and-conquer, 1945</span></h1>
+  <p class="sub">Split, sort the halves, <b>merge</b> them back &mdash; the oldest recursive idea in computing, written by hand by <b>von Neumann in 1945</b> as one of the very first programs. It is stable, always n&thinsp;log&thinsp;n, and the ancestor of Timsort (dart 066). Its merge step runs on I-13&rsquo;s array.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">merge adjacent runs, doubling the width</span></h2>
+  <p>The historical form is <b>bottom-up</b>: treat the array as runs of length 1; each pass merges adjacent runs of width 1, 2, 4, 8&hellip;, doubling; after log&thinsp;n passes the whole array is one sorted run. To merge two sorted runs, walk both with a pointer and emit the smaller (ties from the left &mdash; that is what makes it <b>stable</b>). Watch the widths double. <span class="tag t-demo">live demo</span></p>
+  <div class="arr" id="arr"></div>
+  <div class="row"><button id="new">new array</button><button id="go" class="dartbtn">&#9192; merge passes</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the first program was a sort</span></h2>
+  <p class="myth">Textbooks draw it <s>recursively</s> top-down &mdash; von Neumann&rsquo;s real 1945 program was bottom-up, and it was never run (no computer existed yet). <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>pre-1945</b> &middot; punched-card collators already <b>mesh</b> two sorted decks &mdash; the merge idea predates electronics.<br>
+    <b>1945</b> &middot; <span class="who">John von Neumann</span> hand-writes a <b>meshing (merge) sort</b> for the proposed EDVAC &mdash; a paper program, written partly to <b>stress-test</b> whether the new stored-program instruction set could do a non-numerical job. Sorting was IBM&rsquo;s commercial turf; proving a general computer could sort was pointed.<br>
+    <b>1948</b> &middot; <span class="who">Goldstine &amp; von Neumann</span> publish the coded, timed <b>bottom-up</b> version.<br>
+    <b>1970</b> &middot; <span class="who">Knuth</span>, in &ldquo;Von Neumann&rsquo;s First Computer Program,&rdquo; transcribes and credits it &mdash; sorting was among the very first things anyone wrote code for.
+  </div>
+  <p style="margin-top:10px">Stable and sequential-access, it became the archetypal <b>external sort</b> of the tape era &mdash; and, as natural merge, the heart of Timsort. <span class="tag t-open">von Neumann, 1945</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the merge runs on the array</span></h2>
+  <p>Merge is two read pointers and one write pointer over bounded arrays &mdash; and it runs on the real compiler (merge two sorted runs into one, stably):</p>
+  <div class="evi good">$ i13 run merge.i13     # merge [1,3,5,8] and [2,4,7,10]
+out[0] = 1   out[5] = 7     # -> [1,2,3,4,5,7,8,10], ties from the left</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; the <b>bottom-up</b> form is the natural fit: a width-doubling loop over the array plus a second f64 array as the O(n) buffer, no recursion needed. Stability is the <span class="k">&le;</span>-tie rule (emit from the left run on equality). Merge is a <b>two-run-in, one-run-out</b> pass &mdash; a clean motivating case for the paired-array / PS-004 want &mdash; and it is exactly the merge Timsort (066) builds on.<br>
+    <b>Note:</b> quicksort (045) partitions in place; merge sort trades an O(n) buffer for a guaranteed n&thinsp;log&thinsp;n and stability &mdash; the trade the whole sorting family is organised around.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var arrEl=document.getElementById("arr"), say=document.getElementById("say");
+  var arr=[];
+  function newArr(){ arr=[]; for(var i=0;i<16;i++) arr.push(1+Math.floor(Math.random()*40)); draw(-1); say.innerHTML="16 values &mdash; bottom-up merge"; }
+  function draw(w){
+    arrEl.innerHTML="";
+    for(var i=0;i<arr.length;i++){ var c=document.createElement("div"); c.className="ac"; if(w>0){ var blk=Math.floor(i/w); c.className="ac "+(blk%2?"g":"done"); } c.textContent=arr[i]; arrEl.appendChild(c); }
+  }
+  function mergeRange(a,lo,mid,hi){ var t=[],i=lo,j=mid; while(i<mid&&j<hi) t.push(a[i]<=a[j]?a[i++]:a[j++]); while(i<mid)t.push(a[i++]); while(j<hi)t.push(a[j++]); for(var k=0;k<t.length;k++)a[lo+k]=t[k]; }
+  function go(){
+    var n=arr.length, passes=[], a=arr.slice(), w=1;
+    while(w<n){ for(var lo=0;lo<n;lo+=2*w){ mergeRange(a,lo,Math.min(lo+w,n),Math.min(lo+2*w,n)); } passes.push({w:2*w,arr:a.slice()}); w*=2; }
+    var k=0;
+    var timer=setInterval(function(){
+      arr=passes[k].arr.slice(); draw(passes[k].w);
+      say.innerHTML='pass '+(k+1)+' &middot; runs of width '+passes[k].w;
+      k++; if(k>=passes.length){ clearInterval(timer); draw(0); say.innerHTML='sorted in '+passes.length+' passes: <span class="true">'+arr.join(",")+'</span>'; }
+    },600);
+  }
+  document.getElementById("new").onclick=newArr;
+  document.getElementById("go").onclick=go;
+  newArr();
+})();
+
+</script>
+
+<footer>
+  <b>DART 070 &middot; MERGE SORT</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>John von Neumann</b> wrote it in 1945 for the EDVAC instruction set (a paper program &mdash; no machine yet); <b>Knuth</b> reconstructed and credited it (1970). History via <a href="https://en.wikipedia.org/wiki/Merge_sort">Wikipedia: Merge sort</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
