@@ -48,8 +48,8 @@
       "world": "V",
       "kind": "feature",
       "status": "open",
-      "raised_by": "dart 053 knapsack",
-      "title": "A 2-D array (items x capacity)",
+      "raised_by": "darts 053 knapsack, 054 Smith-Waterman, 064 Hungarian, 068 PageRank",
+      "title": "A 2-D array (matrix)",
       "detail": "The full knapsack DP is a 2-D table; the corpus array is 1-D, so the dart uses the space-optimized single-row form (which is what practitioners use anyway). Worth considering: a genuine 2-D array, or arrays-of-array-handles, would let the textbook 2-D recurrences run verbatim. Low urgency -- the 1-D form is honest and correct."
     },
     {

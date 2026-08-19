@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE MERSENNE TWISTER &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arr{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0;} .ac{min-width:26px;height:26px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#9fe8ff;}
+.ac.r0{border-color:var(--cyan);color:var(--cyan);} .ac.r1{border-color:var(--orange);color:var(--orange);} .ac.r2{border-color:var(--gold);color:var(--gold);} .ac.r3{border-color:var(--good);color:var(--good);}
+.bars{display:flex;align-items:flex-end;gap:8px;height:120px;margin:10px 0;} .bar{flex:1;background:linear-gradient(180deg,var(--cyan),rgba(62,240,255,.2));border-radius:3px 3px 0 0;position:relative;min-height:2px;} .bar span{position:absolute;top:-16px;left:0;right:0;text-align:center;font-size:9px;color:var(--dim);} .bar b{position:absolute;bottom:-16px;left:0;right:0;text-align:center;font-size:9px;color:#9fe8ff;}
+.wgrid{display:grid;gap:2px;margin:10px 0;} .wc{aspect-ratio:1;border-radius:2px;font-size:8px;display:flex;align-items:center;justify-content:center;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 067 &middot; a helldive at the net</span></div>
+<header>
+  <h1>MERSENNE TWISTER <span class="c">a period of 2^19937 minus one</span></h1>
+  <p class="sub">The default random-number generator in Python, R, PHP, Ruby and Excel for two decades. It keeps a <b>624-word state</b>, twists it, and tempers each output with shifts and masks &mdash; giving a period of <b>2<sup>19937</sup>&minus;1</b> (a Mersenne prime) and even spread in up to 623 dimensions. Its tempering is pure <b>bitwise</b>, which I-13 has; only its seeding hits a familiar wall.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">twist the state, temper the output</span></h2>
+  <p>Hold 624 32-bit words. To refill, <b>twist</b>: each word is recombined with the next and one 397 ahead, with a shift and a conditional xor. Each value drawn is then <b>tempered</b> &mdash; <span class="k">y ^= y&gt;&gt;11; y ^= (y&lt;&lt;7)&amp;M1; y ^= (y&lt;&lt;15)&amp;M2; y ^= y&gt;&gt;18</span> &mdash; to scramble its bits. Draw some (default seed 5489): <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; draw 6</button><span id="say" class="res" style="margin:0"></span></div>
+  <div class="steps" id="out"></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">long, fast, and predictable</span></h2>
+  <p class="myth">The word &ldquo;random&rdquo; in a dozen languages points here &mdash; to a generator that is <s>unbreakable</s> trivially predictable once you have watched it. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1997</b> &middot; <span class="who">Makoto Matsumoto</span> &amp; <span class="who">Takuji Nishimura</span> publish the Mersenne Twister &mdash; a <b>twisted generalised feedback shift register</b> whose period is the Mersenne prime <b>2<sup>19937</sup>&minus;1</b>.<br>
+    <b>the strength</b> &middot; <b>623-dimensional equidistribution</b> to 32-bit accuracy: successive outputs are evenly spread in very high dimension, which is why it passed the statistical tests of its day.<br>
+    <b>the weakness</b> &middot; it is <b>not cryptographically secure</b> &mdash; observe <b>624 consecutive outputs</b> and you can invert the tempering, recover the whole state, and predict everything after. Never seed a keystream with it.<br>
+    <b>the successors</b> &middot; <span class="who">PCG</span> (O&rsquo;Neill, 2014) and <span class="who">xoshiro</span> (Blackman-Vigna) are smaller, faster, and better-distributed &mdash; the modern defaults.
+  </div>
+  <p style="margin-top:10px">A generator can be enormous and even and still be an open book. <span class="tag t-open">long &ne; unpredictable</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">tempering runs; seeding hits the 32-bit multiply</span></h2>
+  <p>The output tempering is pure bitwise &mdash; the shifts and masks I-13 integrated (darts 001/004/029) &mdash; and it runs exactly:</p>
+  <div class="evi good">$ i13 run temper.i13     # y ^ y>>11 ^ (y<<7 & M1) ^ (y<<15 & M2) ^ y>>18
+out = 729696813     # temper(305419896), bit-exact vs the reference</div>
+  <div class="rec">
+    <b>Recommend:</b> the <b>generator core runs</b> &mdash; the 624-word state is a bounded array, the twist and temper are bitwise xor/shift/and, all landed. The one wall is the <b>seeding</b>: <span class="k">mt[i] = 1812433253 * (&hellip;) + i</span> needs a <b>32-bit multiply that wraps mod 2<sup>32</sup></b>, which overflows f64&rsquo;s exact range &mdash; the <b>same wrap-around-multiply wall the de Bruijn bit-scan (dart 060) surfaced</b>. Twist + temper are no-walls; only the init multiply waits on a fixed-width modular multiply.<br>
+    <b>Note:</b> so I-13 can <i>run</i> the Twister with a pre-seeded state today; it just cannot yet <i>compute</i> the seed expansion exactly.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  function MT(seed){ var mt=new Array(624); mt[0]=seed>>>0;
+    for(var i=1;i<624;i++){ mt[i]=(Math.imul(1812433253,(mt[i-1]^(mt[i-1]>>>30)))+i)>>>0; }
+    var idx=624;
+    function gen(){ for(var i=0;i<624;i++){ var y=(mt[i]&0x80000000)|(mt[(i+1)%624]&0x7fffffff); mt[i]=(mt[(i+397)%624]^(y>>>1))>>>0; if(y&1) mt[i]=(mt[i]^0x9908b0df)>>>0; } idx=0; }
+    return function(){ if(idx>=624) gen(); var y=mt[idx++]; y^=y>>>11; y=(y^((y<<7)&0x9d2c5680))>>>0; y=(y^((y<<15)&0xefc60000))>>>0; y^=y>>>18; return y>>>0; };
+  }
+  var r=MT(5489);
+  function run(){
+    var out=document.getElementById("out"), rows="";
+    for(var i=0;i<6;i++){ rows+='<div><span class="lbl">draw '+(i+1)+'</span> <span class="val">'+r()+'</span></div>'; }
+    out.innerHTML=rows;
+    document.getElementById("say").innerHTML='seed 5489 &middot; period <span class="true">2<sup>19937</sup>&minus;1</span> &middot; first ever = 3499211612';
+  }
+  document.getElementById("go").onclick=run;
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 067 &middot; THE MERSENNE TWISTER</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Makoto Matsumoto &amp; Takuji Nishimura</b> (1997, publ. 1998). It is fast and long, but <b>not cryptographically secure</b> &mdash; 624 outputs reveal all of it. History via <a href="https://en.wikipedia.org/wiki/Mersenne_Twister">Wikipedia: Mersenne Twister</a>. I-13 by David Lee Wise / ROOT0; every compiler result above was measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main), which has a bounded array, bignum, an integer square root, bitwise operators, and an <b>i13 log</b>. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
