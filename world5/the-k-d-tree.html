@@ -81,15 +81,15 @@ footer b{color:var(--cyan);} footer a{color:var(--gold);}
 </div>
 
 <div class="panel">
-  <h2>HISTORY &amp; CREDIT <span class="n">the famous search is two years younger than the tree</span></h2>
-  <p class="myth">&ldquo;Bentley&rsquo;s 1975 k-d tree does nearest-neighbour search&rdquo; &mdash; it <s>does not</s>. The 1975 paper did only region and exact-match queries. <span class="tag t-cited">cited</span></p>
+  <h2>HISTORY &amp; CREDIT <span class="n">the search was there in 1975; the PROOF is 1977</span></h2>
+  <p class="myth">&ldquo;The famous logarithmic nearest-neighbour search is all in the 1975 paper&rdquo; &mdash; Bentley&rsquo;s 1975 <i>did</i> give an NN search, but with an <s>proven</s> merely <b>empirical</b> O(log n); the optimized tree and the actual <b>proof</b> everyone cites are <span class="who">Friedman-Bentley-Finkel 1977</span>. <span class="tag t-cited">cited</span></p>
   <div class="chain">
     <b>1974</b> &middot; <span class="who">Finkel &amp; Bentley</span> publish the <b>point quadtree</b> &mdash; the direct 2-D ancestor, splitting each region into 2<sup>k</sup> children at once.<br>
-    <b>1975</b> &middot; <span class="who">Jon Louis Bentley</span>, a Stanford undergraduate, coins the <b>k-d tree</b>: one record per node, split axis cycling by depth, a binary (2-way) split. Region, partial-match, exact-match &mdash; <b>not</b> nearest neighbour. 2nd place, ACM student paper competition.<br>
-    <b>1977</b> &middot; <span class="who">Friedman, Bentley &amp; Finkel</span> give the <b>optimized</b> tree (split on the dimension of max spread, points in leaf buckets) <b>and</b> the backtracking NN search with the bounds-overlap-ball pruning, proven O(log n) expected &mdash; the algorithm people actually cite.<br>
+    <b>1975</b> &middot; <span class="who">Jon Louis Bentley</span> coins the <b>k-d tree</b> (his Stanford undergraduate work, BS 1974; the paper itself, from UNC, won 2nd place in ACM&rsquo;s 1975 student competition): one record per node, split axis cycling by depth, a binary split &mdash; with region, partial-match, exact-match, <b>and</b> a nearest-neighbour search of <b>empirically</b> O(log n).<br>
+    <b>1977</b> &middot; <span class="who">Friedman, Bentley &amp; Finkel</span> give the <b>optimized</b> tree (split on the dimension of max spread, points in leaf buckets) and the rigorous <b>proof</b> of expected-logarithmic NN time via the bounds-overlap-ball test &mdash; the version people actually cite.<br>
     <b>the retrofit</b> &middot; &ldquo;a k-d tree is a special case of a BSP tree&rdquo; is backwards &mdash; <span class="who">BSP trees</span> came in <b>1980</b>, five years <i>after</i> the k-d tree.
   </div>
-  <p style="margin-top:10px">The &ldquo;k&rdquo; is a variable, not an acronym &mdash; Bentley wrote 2-d tree and 3-d tree for specific cases. <span class="tag t-open">FBF 1977, not Bentley 1975</span></p>
+  <p style="margin-top:10px">The &ldquo;k&rdquo; is a variable, not an acronym &mdash; Bentley wrote 2-d tree and 3-d tree for specific cases. <span class="tag t-open">1975 search, 1977 proof</span></p>
 </div>
 
 <div class="panel i13">
@@ -155,7 +155,7 @@ q_best = 2      # backtrack finds (9,6) at distance^2 = 2  (the answer)</div>
 </script>
 
 <footer>
-  <b>DART 078 &middot; THE K-D TREE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Jon Bentley</b> coined the k-d tree in 1975 (as a student), but the <b>nearest-neighbour search</b> everyone cites is <b>Friedman, Bentley &amp; Finkel 1977</b>. History via <a href="https://en.wikipedia.org/wiki/K-d_tree">Wikipedia: k-d tree</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+  <b>DART 078 &middot; THE K-D TREE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Jon Bentley</b> coined the k-d tree (his Stanford undergraduate work, BS 1974) and gave a nearest-neighbour search in the 1975 paper; the <b>optimized, provably-logarithmic</b> NN version everyone cites is <b>Friedman, Bentley &amp; Finkel 1977</b>. History via <a href="https://en.wikipedia.org/wiki/K-d_tree">Wikipedia: k-d tree</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
 </footer>
 </body>
 </html>
