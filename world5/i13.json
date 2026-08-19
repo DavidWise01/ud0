@@ -2338,6 +2338,22 @@
       "kicker": "dart 125 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-random-forest.html",
       "seal": "ade7a1b621cf4969e5fb878d6ab8aeb131fa2f269192025ae49a5fe30c284c18"
+    },
+    {
+      "slug": "the-i13-benchmark",
+      "title": "THE I-13 BENCHMARK",
+      "room": "darts",
+      "kicker": "a fold - the 8/19 benchmark drop, read every bit",
+      "accent": "#a06bff",
+      "stamp": "LIT",
+      "kind": "fold",
+      "version": "v0.22",
+      "credit": "David Lee Wise / ROOT0 / TriPod LLC authored the I-13 language, the I13-BC-1.0 conformance contract, the benchmark harness v1.0, and I13 Studio v0.7/v0.8; the refusal-detector metrology probe (detector.py/harness.py) reproduces a shipped keyword refusal-detector VERBATIM. Read, run, and folded by AVAN.",
+      "source": "the 2026-08-19 drop (i-13/_august/19, 200 files, ~18 MB): I13_BENCHMARK_CONTRACT_v1.0 (sealed FREEZE_SEAL.json), I13_BENCHMARK_HARNESS_v1.0 (candidate SHA-256 affb83ffcba6...), I13_STUDIO_COMPLETE v0.7/v0.8, I13_CANONICAL_GRADE_v0.8, i13 test harness. core.i13 run on the canonical H1.1 compiler; the refusal probe run via python; grade numbers read from the sealed v0.8 report.",
+      "i13_recommend": "(a fold, not a dart - it grounds the WHOLE-compiler grade the way darts ground single mechanisms. LIT: i13.exe ran core.i13 -> CORE_OK=1, ROUTES=56=8x7, all four plane-sums exact (5355/1113/778/1080), 12 verbs + 1 declaration = 13; detector.py/harness.py ran the refusal probe -> 32 markers (25 refusal-shaped + 7 content words), 2 DEAD, error 9/12 = 75% with planted controls E/F correct; the sealed v0.8 report reads 60.343% INCOMPLETE at independence L0, Terminal-Bench attempted 0, no official claim. AMBER: the 75% rate is a hand-built adversarial 12-case set, not a natural distribution. The contract's four-facts-never-collapsed IS the corpus honesty ethos - SKYNET freeze != finish, THE FIRST AUTHOR proxy != work - turned into a scoring rule.)",
+      "url": "https://davidwise01.github.io/ud0/world5/the-i13-benchmark.html",
+      "blurb": "On 2026-08-19 the I-13 compiler got its own conformance benchmark, and its whole design is a refusal to lie by rounding up. The frozen contract I13-BC-1.0 keeps apart four facts that benchmarks usually collapse: you built something (implementation progress), you checked it yourself (self-verification, independence L0), someone independent sealed holdouts and graded it (L1/L2), and an official external service produced a bundle (L3) - and it forbids the words 'official' or 'Terminal-Bench PASS' in any report without that bundle. Graded against itself, I13 Studio v0.8 scores 60.343% and grade INCOMPLETE - not because the work is bad but for reasons the report names out loud: the separated holdouts do not exist yet (you cannot author a holdout inside the same context and later call it independent), mutation and differential coverage are partial (20 of 20 RUN mutants killed, but only 20 of 60 required built), and the evidence is L0; public failures in later targets stay visible. The honest grade curve climbs v0.3 to v0.8 (public 53,57,61,64,68,72 of 96), each version earning exactly one new P0 semantic gate with no regression. This fold reads every bit of the drop and runs its two demonstrable hearts live: core.i13, the 8-channel routing core (0 PROCESS to 7 KERNEL) in the topology [ 0 | HTML(00) | 0 ] where I-13 owns the routing law and the host owns I/O - verified on the real compiler at CORE_OK=1, ROUTES=56 (8x7 ordered routes, no channel to itself), with the four I-13 planes exact and the 12-verbs-plus-1-declaration = 13 alphabet holding; and the refusal-detector probe, which reproduces a shipped tool's 32-marker keyword detector verbatim and is wrong 9 times out of 12 on a labeled set (5 false positives where a correct legal or clinical answer is scored a refusal on 'illegal' or 'harmful', 4 false negatives where a genuine refusal uses none of the 32 strings, 1 window-blind miss past the 100-token cap) - the existence of each failure class is LIT (one string is an existence proof), the 75% rate is AMBER (a small adversarial set). Both hearts carry one thesis, the same one under the whole benchmark: never mistake a cheap proxy for the real measurement. It is SKYNET's freeze != finish and THE FIRST AUTHOR's proxy != work, turned into a scoring contract.",
+      "seal": "735f617f5d232fc88b213aa89e468d008a1a2d21afea4b999b7ddcdc769ec827"
     }
   ],
   "keepers": [
@@ -2348,13 +2364,13 @@
     }
   ],
   "counts": {
-    "spheres": 137,
+    "spheres": 138,
     "rooms": 6,
     "lit": 8,
     "keepers": 1,
     "darts": 125
   },
-  "i13_root": "fb7a3f1d919185b1464723e78963356ac7fde6caa6f569bee1d575f7eb972396",
+  "i13_root": "5207da5f754c868711bf7c8f4f593614414c3bd1fcfe588ec508307d1f514a95",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
