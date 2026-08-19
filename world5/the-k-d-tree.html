@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE K-D TREE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arr{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0;} .ac{min-width:26px;height:26px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#9fe8ff;}
+.ac.hot{border-color:var(--orange);color:var(--orange);} .ac.g{border-color:var(--cyan);color:var(--cyan);} .ac.done{border-color:var(--good);color:var(--good);}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:8px 0;}
+.cell{border:1px solid var(--line);border-radius:5px;padding:7px 9px;font-size:11px;background:rgba(0,0,0,.25);}
+.cell b{color:var(--gold);} .cell .v{color:var(--cyan);font-size:13px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 078 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE K-D TREE <span class="c">a binary tree that carves up space</span></h1>
+  <p class="sub">Split a cloud of points with alternating axis-aligned planes &mdash; x, then y, then x &mdash; and nearest-neighbour search stops being a scan of every point and becomes a walk down a tree that <b>prunes</b> whole regions. The catch that makes it correct: the first leaf you land in is usually <b>not</b> the answer, so the backtrack is the algorithm.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">split on alternating axes, then backtrack</span></h2>
+  <p>Build: at each level pick the split axis by depth (x, y, x, ...) and split at the median, so every node&rsquo;s plane cuts its region in two. Search q: descend to the leaf whose region holds q, keep it as the current best, then <b>climb back up</b> &mdash; at each parent, only dip into the sibling if q&rsquo;s distance to the splitting plane is less than the current best radius. Click to move the query point; the true nearest turns green. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="380"></canvas>
+  <div class="res" id="say"></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the famous search is two years younger than the tree</span></h2>
+  <p class="myth">&ldquo;Bentley&rsquo;s 1975 k-d tree does nearest-neighbour search&rdquo; &mdash; it <s>does not</s>. The 1975 paper did only region and exact-match queries. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1974</b> &middot; <span class="who">Finkel &amp; Bentley</span> publish the <b>point quadtree</b> &mdash; the direct 2-D ancestor, splitting each region into 2<sup>k</sup> children at once.<br>
+    <b>1975</b> &middot; <span class="who">Jon Louis Bentley</span>, a Stanford undergraduate, coins the <b>k-d tree</b>: one record per node, split axis cycling by depth, a binary (2-way) split. Region, partial-match, exact-match &mdash; <b>not</b> nearest neighbour. 2nd place, ACM student paper competition.<br>
+    <b>1977</b> &middot; <span class="who">Friedman, Bentley &amp; Finkel</span> give the <b>optimized</b> tree (split on the dimension of max spread, points in leaf buckets) <b>and</b> the backtracking NN search with the bounds-overlap-ball pruning, proven O(log n) expected &mdash; the algorithm people actually cite.<br>
+    <b>the retrofit</b> &middot; &ldquo;a k-d tree is a special case of a BSP tree&rdquo; is backwards &mdash; <span class="who">BSP trees</span> came in <b>1980</b>, five years <i>after</i> the k-d tree.
+  </div>
+  <p style="margin-top:10px">The &ldquo;k&rdquo; is a variable, not an acronym &mdash; Bentley wrote 2-d tree and 3-d tree for specific cases. <span class="tag t-open">FBF 1977, not Bentley 1975</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the numeric spine runs; the nodes are the wall</span></h2>
+  <p>Squared distance keeps it in f64 &mdash; no sqrt needed to compare, so the search arithmetic runs on the compiler:</p>
+  <div class="evi good">$ i13 run kd.i13      # query q=(8,5) among 6 points
+q_leaf = 16     # first leaf (8,1) -- NOT the nearest
+q_best = 2      # backtrack finds (9,6) at distance^2 = 2  (the answer)</div>
+  <div class="rec">
+    <b>Recommend:</b> BUILD (recursion + median + comparisons) and SEARCH (recursive descent, backtrack, <span class="k">dx*dx+dy*dy</span>) are exactly the arithmetic-and-recursion kernels I-13 runs &mdash; the grounded run above proves the first leaf (16) is corrected to the true nearest (2). The wall is the same one three trees hit this campaign: each internal node references a <b>left</b> and <b>right</b> child &mdash; <b>PS-015</b>, shared with AVL (072), red-black (073), the trie (074). The fix is the node <b>arena</b> (left[], right[], axis[] + coordinate arrays), the move that closed heap-on-array (PS-005 / 062).<br>
+    <b>Note:</b> a second, quieter want &mdash; the points are <b>pairs</b> (x,y), and I-13 arrays hold f64 only, so the point set is parallel x[] / y[] arrays (PS-014 kin), not an array of tuples.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var W=960,H=380, PAD=40, MAXX=10, MAXY=8;
+  var P=[[2,3],[5,4],[9,6],[4,7],[8,1],[7,2]];
+  var q=[8,5];
+  function sx(x){ return PAD + x/MAXX*(W-2*PAD); }
+  function sy(y){ return H-PAD - y/MAXY*(H-2*PAD); }
+  // build kd tree (axis = depth%2), returns node {p,axis,l,r}
+  function build(pts,depth){ if(!pts.length) return null; var ax=depth%2;
+    pts=pts.slice().sort(function(a,b){return a[ax]-b[ax];}); var m=Math.floor(pts.length/2);
+    return {p:pts[m],axis:ax,l:build(pts.slice(0,m),depth+1),r:build(pts.slice(m+1),depth+1)}; }
+  var root=build(P,0);
+  function d2(a,b){ var dx=a[0]-b[0],dy=a[1]-b[1]; return dx*dx+dy*dy; }
+  var firstLeaf=null;
+  function nn(node,q,depth,best){ if(!node) return best;
+    if(best===null||d2(node.p,q)<d2(best,q)) best=node.p;
+    var ax=node.axis, diff=q[ax]-node.p[ax];
+    var near=diff<0?node.l:node.r, far=diff<0?node.r:node.l;
+    if(!near&&!far&&firstLeaf===null) firstLeaf=node.p;
+    best=nn(near,q,depth+1,best);
+    if(diff*diff < d2(best,q)) best=nn(far,q,depth+1,best);
+    return best; }
+  function drawSplits(node,x0,y0,x1,y1){ if(!node) return; var p=node.p;
+    ctx.strokeStyle="rgba(62,240,255,.18)"; ctx.beginPath();
+    if(node.axis===0){ ctx.moveTo(sx(p[0]),sy(y0)); ctx.lineTo(sx(p[0]),sy(y1)); ctx.stroke(); drawSplits(node.l,x0,y0,p[0],y1); drawSplits(node.r,p[0],y0,x1,y1); }
+    else{ ctx.moveTo(sx(x0),sy(p[1])); ctx.lineTo(sx(x1),sy(p[1])); ctx.stroke(); drawSplits(node.l,x0,y0,x1,p[1]); drawSplits(node.r,x0,p[1],x1,y1); } }
+  function render(){
+    ctx.clearRect(0,0,W,H); firstLeaf=null; var best=nn(root,q,0,null);
+    drawSplits(root,0,0,MAXX,MAXY);
+    // radius circle
+    var r=Math.sqrt(d2(best,q));
+    ctx.strokeStyle="rgba(217,180,90,.5)"; ctx.beginPath(); ctx.arc(sx(q[0]),sy(q[1]), r/MAXX*(W-2*PAD),0,7); ctx.stroke();
+    P.forEach(function(p){ var isBest=(p[0]===best[0]&&p[1]===best[1]); var isFirst=firstLeaf&&p[0]===firstLeaf[0]&&p[1]===firstLeaf[1];
+      ctx.fillStyle=isBest?"#59ffb0":(isFirst?"#ff8a3d":"#3ef0ff"); ctx.beginPath(); ctx.arc(sx(p[0]),sy(p[1]),6,0,7); ctx.fill();
+      ctx.fillStyle="#6f8ba8"; ctx.font="11px monospace"; ctx.fillText("("+p[0]+","+p[1]+")",sx(p[0])+9,sy(p[1])-6); });
+    // query
+    ctx.fillStyle="#ff5a6a"; ctx.beginPath(); ctx.arc(sx(q[0]),sy(q[1]),5,0,7); ctx.fill();
+    ctx.strokeStyle="#ff5a6a"; ctx.beginPath(); ctx.moveTo(sx(q[0]),sy(q[1])); ctx.lineTo(sx(best[0]),sy(best[1])); ctx.stroke();
+    say.innerHTML='query q=('+q[0].toFixed(1)+','+q[1].toFixed(1)+') &middot; first leaf <span class="err">'+(firstLeaf?"("+firstLeaf+")":"-")+'</span> &middot; TRUE nearest <span class="true">('+best+')</span> at distance '+Math.sqrt(d2(best,q)).toFixed(3);
+  }
+  cv.addEventListener("click",function(e){ var rc=cv.getBoundingClientRect(); var mx=(e.clientX-rc.left)/rc.width*W, my=(e.clientY-rc.top)/rc.height*H;
+    q=[ Math.max(0,Math.min(MAXX,(mx-PAD)/(W-2*PAD)*MAXX)), Math.max(0,Math.min(MAXY,(H-PAD-my)/(H-2*PAD)*MAXY)) ]; render(); });
+  render();
+})();
+
+</script>
+
+<footer>
+  <b>DART 078 &middot; THE K-D TREE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Jon Bentley</b> coined the k-d tree in 1975 (as a student), but the <b>nearest-neighbour search</b> everyone cites is <b>Friedman, Bentley &amp; Finkel 1977</b>. History via <a href="https://en.wikipedia.org/wiki/K-d_tree">Wikipedia: k-d tree</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

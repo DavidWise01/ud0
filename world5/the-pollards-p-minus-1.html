@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POLLARD'S P-1 METHOD &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arr{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0;} .ac{min-width:26px;height:26px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#9fe8ff;}
+.ac.hot{border-color:var(--orange);color:var(--orange);} .ac.g{border-color:var(--cyan);color:var(--cyan);} .ac.done{border-color:var(--good);color:var(--good);}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:8px 0;}
+.cell{border:1px solid var(--line);border-radius:5px;padding:7px 9px;font-size:11px;background:rgba(0,0,0,.25);}
+.cell b{color:var(--gold);} .cell .v{color:var(--cyan);font-size:13px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 083 &middot; a helldive at the net</span></div>
+<header>
+  <h1>POLLARD'S p-1 <span class="c">factoring a number through its neighbour's factors</span></h1>
+  <p class="sub">To split a composite <b>n</b>, Pollard&rsquo;s p&minus;1 method gambles that some prime factor <b>p</b> has a <b>p&minus;1</b> built only from small primes. Then a&nbsp;=&nbsp;2 raised to a big smooth exponent, mod n, satisfies a&nbsp;&equiv;&nbsp;1 mod p &mdash; so <b>gcd(a&minus;1, n)</b> quietly hands you p. It is Fermat&rsquo;s little theorem turned into a crowbar.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">a smooth exponent, then a gcd</span></h2>
+  <p>Pick a base a (say 2) and a smoothness bound B. Raise a to M&nbsp;=&nbsp;lcm(1..B) modulo n. If some prime p&nbsp;|&nbsp;n has p&minus;1 dividing M (i.e. p&minus;1 is B-smooth), then by Fermat a<sup>M</sup>&nbsp;&equiv;&nbsp;1 mod p, so p divides a<sup>M</sup>&minus;1 and <b>gcd(a<sup>M</sup>&minus;1, n)</b> reveals it. Raise the bound to watch a factor appear. <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>n</label><input id="n" value="1927" style="width:100px"><label>bound M</label><input id="M" value="120" style="width:80px"><button id="go" class="dartbtn">&#9192; factor</button></div>
+  <div class="steps" id="out"></div>
+  <div class="res" id="say"></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">two Pollard methods, endlessly confused</span></h2>
+  <p class="myth">&ldquo;Pollard&rsquo;s method factors by cycle-finding&rdquo; &mdash; that is <s>p&minus;1</s> rho (1975). p&minus;1 (1974) is a different idea: <b>smoothness</b>, not cycles. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>pre-1974</b> &middot; exploiting the factorization of <b>p&minus;1</b> was already standard in <b>primality testing</b> (Pocklington, Lucas) &mdash; the insight is older than Pollard; the factoring <b>algorithm</b> is his.<br>
+    <b>1974</b> &middot; <span class="who">John Pollard</span> publishes p&minus;1 &mdash; and its <b>two-stage</b> (large-prime continuation) form is already in this original paper, not a later add-on.<br>
+    <b>1975</b> &middot; <span class="who">Pollard</span> publishes <b>rho</b> (cycle-finding via Floyd, dart 040) &mdash; same author, different method, different year. The eternal mix-up.<br>
+    <b>1985</b> &middot; <span class="who">Hendrik Lenstra</span>&rsquo;s <b>ECM</b> is literally p&minus;1 generalized &mdash; swap the group (Z/pZ)* for an elliptic curve whose order you can re-roll; <b>Williams&rsquo; p+1</b> (1982) is the sibling.
+  </div>
+  <p style="margin-top:10px">Stage 2 is often mis-credited to Montgomery &mdash; he sped it up (1987), Pollard already had it. <span class="tag t-open">Pollard 1974 (not rho)</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">modexp plus gcd, both already landed</span></h2>
+  <p>The method is exactly two things the campaign already runs &mdash; modular exponentiation and Euclid&rsquo;s gcd &mdash; so it factors on the real compiler:</p>
+  <div class="evi good">$ i13 run pollard.i13    # n=1927, a=2, M=120
+a = 2^120 mod 1927 = 1395 ;  gcd(1394, 1927) = 41   ->   1927 = 41 x 47</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; self-referential: modexp (darts 032 / 035 / 050) and the Euclidean gcd (027, <span class="k">std/gcd.i13</span>) both landed already, and together they split 1927 into 41 &times; 47 above (41&minus;1&nbsp;=&nbsp;40 is 5-smooth and divides 120; 47&minus;1&nbsp;=&nbsp;46 is not, so only 41 emerges). With <b>bignum</b>, the same code scales past f64&rsquo;s ceiling.<br>
+    <b>Note:</b> a third dart whose payoff is a <b>prior addition compounding</b> &mdash; two landed features, no new primitive, a real factorization out the other end.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var outEl=document.getElementById("out"), say=document.getElementById("say");
+  function modexp(b,e,m){ var r=1; b%=m; while(e>0){ if(e&1) r=(r*b)%m; b=(b*b)%m; e=Math.floor(e/2); } return r; }
+  function gcd(a,b){ while(b){ var t=a%b; a=b; b=t; } return a; }
+  function run(){
+    var n=Math.max(4,parseInt(document.getElementById("n").value,10)||1927);
+    var M=Math.max(1,parseInt(document.getElementById("M").value,10)||120);
+    var a=modexp(2,M,n); var g=gcd((a-1+n)%n,n);
+    outEl.innerHTML='<div><span class="lbl">a = 2^M mod n</span> <span class="val">'+a+'</span></div>'+
+      '<div><span class="lbl">gcd(a-1, n)</span> <span class="val">'+g+'</span></div>';
+    if(g>1&&g<n){ say.innerHTML='factor found: <span class="true">'+g+'</span> &times; '+(n/g)+' = '+n+' &middot; some p-1 divides '+M; }
+    else if(g===n){ say.innerHTML='<span class="err">bound too large</span> &mdash; every factor popped at once (g = n); lower M'; }
+    else { say.innerHTML='<span class="err">no factor yet</span> &mdash; no p-1 divides '+M+'; raise the bound'; }
+  }
+  document.getElementById("go").onclick=run;
+  ["n","M"].forEach(function(id){ document.getElementById(id).addEventListener("input",run); });
+  run();
+})();
+
+</script>
+
+<footer>
+  <b>DART 083 &middot; POLLARD'S P-1 METHOD</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>John Pollard</b> (1974) &mdash; a year before his more famous <b>rho</b> method (1975); the two are constantly confused. History via <a href="https://en.wikipedia.org/wiki/Pollard%27s_p_%E2%88%92_1_algorithm">Wikipedia: Pollard p-1</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

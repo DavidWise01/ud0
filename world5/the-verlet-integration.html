@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VERLET INTEGRATION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.arr{display:flex;gap:3px;flex-wrap:wrap;margin:8px 0;} .ac{min-width:26px;height:26px;border:1px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#9fe8ff;}
+.ac.hot{border-color:var(--orange);color:var(--orange);} .ac.g{border-color:var(--cyan);color:var(--cyan);} .ac.done{border-color:var(--good);color:var(--good);}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin:8px 0;}
+.cell{border:1px solid var(--line);border-radius:5px;padding:7px 9px;font-size:11px;background:rgba(0,0,0,.25);}
+.cell b{color:var(--gold);} .cell .v{color:var(--cyan);font-size:13px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 082 &middot; a helldive at the net</span></div>
+<header>
+  <h1>VERLET INTEGRATION <span class="c">the stepper that conserves energy</span></h1>
+  <p class="sub">To move a simulated particle forward, the obvious Euler step (position += velocity&times;dt) slowly <b>leaks energy</b> and orbits spiral apart. Verlet integration &mdash; next = 2&middot;now &minus; previous + acceleration&middot;dt&sup2; &mdash; is <b>time-reversible</b> and <b>symplectic</b>: orbits stay closed for millions of steps. It runs cloth, ragdolls, and molecular dynamics.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">position from two previous positions</span></h2>
+  <p>Store the last two positions. The next one is <b>2&middot;current &minus; previous + a&middot;dt&sup2;</b> &mdash; velocity never appears, and the symmetry in time is what conserves energy. Watch a planet orbit: Verlet (orange) keeps its ellipse; naive Euler (grey) spirals outward as it invents energy. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="360"></canvas>
+  <div class="row"><button id="go" class="dartbtn">&#9192; restart orbit</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">176 years older than its name</span></h2>
+  <p class="myth">&ldquo;Verlet invented it in 1967&rdquo; &mdash; he <s>invented</s> popularized it for molecular dynamics; the scheme is centuries old. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>1687</b> &middot; <span class="who">Isaac Newton</span> &mdash; Principia, Book 1, Proposition 1: the coast-then-kick polygon proving Kepler&rsquo;s area law is provably a first-order <b>symplectic (leapfrog) integrator</b>.<br>
+    <b>1791 / 1907</b> &middot; <span class="who">Delambre</b> uses it in astronomy; <span class="who">Carl St&ouml;rmer</span> uses it for auroral particle paths &mdash; so numerical analysts call it <b>St&ouml;rmer&rsquo;s method</b>; astronomers call the same scheme <b>Cowell&rsquo;s method</b>.<br>
+    <b>1967</b> &middot; <span class="who">Loup Verlet</span> reintroduces it for <b>molecular dynamics</b> &mdash; the paper that attached his name (Stigler&rsquo;s law of eponymy in action).<br>
+    <b>1982</b> &middot; <span class="who">Swope, Andersen, Berens &amp; Wilson</span> add <b>Velocity Verlet</b> &mdash; identical position path, velocities carried alongside; <b>not</b> Verlet&rsquo;s.
+  </div>
+  <p style="margin-top:10px">A 300-year-old idea that quietly runs half the physics engines shipping today. <span class="tag t-open">Newton 1687 / St&ouml;rmer 1907 / Verlet 1967</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">a strict no-wall numerical dart</span></h2>
+  <p>The whole step is f64 add and multiply over the last two scalars &mdash; and it reproduces the exact analytic parabola of constant-acceleration motion:</p>
+  <div class="evi good">$ i13 run verlet.i13   # constant a: x(t) = 5*t^2, dt=0.1
+x2=0.2  x3=0.45  x4=0.8  x5=1.25    # exact -- Verlet is exact for constant acceleration</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; a strict no-wall like Newton-Raphson (026), CORDIC (009), Box-Muller (033): <span class="k">next = 2*cur - prev + a*dt*dt</span>, all f64 the compiler already has, and the grounded run lands on 0.2, 0.45, 0.8, 1.25 &mdash; the analytic 5t&sup2; to the digit. A trajectory over many steps is a bounded array of positions.<br>
+    <b>Note:</b> its virtue &mdash; energy conservation &mdash; is exactly the kind of property the corpus prizes: not faster, but <b>structurally honest</b> over long horizons, where Euler quietly drifts.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var W=960,H=360, cx=W/2, cy=H/2, GM=90000;
+  var timer=null;
+  function start(){
+    if(timer) clearInterval(timer);
+    // Verlet state
+    var vx=cx+150, vy=cy, vpx=vx, vpy=vy-4.2;   // give it a tangential kick via previous pos
+    // Euler state
+    var ex=cx+150, ey=cy, evx=0, evy=4.2;
+    var vtrail=[], etrail=[], steps=0;
+    function acc(x,y){ var dx=cx-x,dy=cy-y,r2=dx*dx+dy*dy,r=Math.sqrt(r2); return [GM*dx/(r2*r),GM*dy/(r2*r)]; }
+    ctx.clearRect(0,0,W,H);
+    timer=setInterval(function(){
+      // Verlet
+      var a=acc(vx,vy), nx=2*vx-vpx+a[0], ny=2*vy-vpy+a[1]; vpx=vx;vpy=vy;vx=nx;vy=ny;
+      // Euler (semi-implicit off; use explicit to show drift)
+      var ea=acc(ex,ey); ex+=evx; ey+=evy; evx+=ea[0]; evy+=ea[1];
+      vtrail.push([vx,vy]); etrail.push([ex,ey]); if(vtrail.length>420){vtrail.shift();etrail.shift();}
+      ctx.clearRect(0,0,W,H);
+      ctx.fillStyle="#d9b45a"; ctx.beginPath(); ctx.arc(cx,cy,7,0,7); ctx.fill();
+      ctx.strokeStyle="rgba(111,139,168,.6)"; ctx.beginPath(); etrail.forEach(function(p,i){ i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]); }); ctx.stroke();
+      ctx.strokeStyle="rgba(255,138,61,.85)"; ctx.beginPath(); vtrail.forEach(function(p,i){ i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]); }); ctx.stroke();
+      ctx.fillStyle="#ff8a3d"; ctx.beginPath(); ctx.arc(vx,vy,4,0,7); ctx.fill();
+      ctx.fillStyle="#6f8ba8"; ctx.beginPath(); ctx.arc(ex,ey,4,0,7); ctx.fill();
+      ctx.font="11px monospace"; ctx.fillStyle="#ff8a3d"; ctx.fillText("Verlet: closed orbit",20,24); ctx.fillStyle="#6f8ba8"; ctx.fillText("Euler: spirals out (invents energy)",20,42);
+      steps++; if(steps>900){ clearInterval(timer); }
+    },20);
+    say.innerHTML='same gravity, same start &middot; <span class="true">Verlet</span> conserves the orbit, Euler drifts';
+  }
+  document.getElementById("go").onclick=start;
+  start();
+})();
+
+</script>
+
+<footer>
+  <b>DART 082 &middot; VERLET INTEGRATION</b> &mdash; World V &middot; SONNY 5, the I-13 world. &ldquo;Verlet integration&rdquo; is a naming accident &mdash; <b>Loup Verlet</b> (1967) popularized it; the method is <b>Newton</b> (Principia, 1687), used by <b>St&ouml;rmer</b> (1907) and <b>Delambre</b> (1791). History via <a href="https://en.wikipedia.org/wiki/Verlet_integration">Wikipedia: Verlet</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>
