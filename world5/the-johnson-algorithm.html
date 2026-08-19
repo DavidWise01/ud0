@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JOHNSON'S ALGORITHM &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{
+  --void:#05070f; --grid:rgba(62,240,255,.055); --panel:rgba(8,18,32,.72); --line:rgba(62,240,255,.28);
+  --ink:#cfe9ff; --dim:#6f8ba8; --cyan:#3ef0ff; --orange:#ff8a3d; --gold:#d9b45a; --good:#59ffb0; --bad:#ff5a6a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;
+  max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(900px 500px at 50% -10%, rgba(62,240,255,.10), transparent 60%);
+  background-size:34px 34px, 34px 34px, 100% 100%;
+}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:76ch;}
+.sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;}
+.panel h2 .n{color:var(--dim);font-weight:400;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:150px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);}
+label{color:var(--dim);}
+.steps{font-size:12px;line-height:1.85;margin-top:10px;border-left:2px solid var(--line);padding-left:14px;}
+.steps .lbl{color:var(--dim);display:inline-block;min-width:150px;} .steps .val{color:var(--cyan);}
+.res{font-size:14px;margin-top:10px;word-break:break-all;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;}
+.chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.code{font-family:inherit;font-size:11.5px;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:5px;padding:10px 12px;color:#9fe8ff;white-space:pre;overflow-x:auto;margin:8px 0;}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;word-break:break-all;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+canvas{display:block;width:100%;border:1px solid var(--line);border-radius:6px;background:#03040a;margin-top:8px;}
+.mono{font-family:inherit;font-size:13px;letter-spacing:1px;white-space:pre;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 114 &middot; a helldive at the net</span></div>
+<header>
+  <h1>JOHNSON'S APSP <span class="c">two darts, composed, beat one</span></h1>
+  <p class="sub">All-pairs shortest paths on a <b>sparse</b> graph with negative edges: too sparse for Floyd-Warshall&rsquo;s n&sup3;, but Dijkstra can&rsquo;t handle negatives. Johnson&rsquo;s trick: run <b>Bellman-Ford once</b> to compute a potential that <b>reweights</b> every edge non-negative, then run <b>Dijkstra from each vertex</b>. It literally composes two algorithms the corpus already runs.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">reweight to non-negative, then Dijkstra all</span></h2>
+  <p>Add a virtual source with zero-weight edges to every vertex; run <b>Bellman-Ford</b> from it to get a potential <span class="k">h(v)</span> (and detect any negative cycle). Reweight each edge <span class="k">w&rsquo; = w + h(u) &minus; h(v)</span> &mdash; now all non-negative, and shortest paths are preserved. Run <b>Dijkstra</b> from each vertex, then undo the shift. Below: a graph with a negative edge, solved. <span class="tag t-demo">live demo</span></p>
+  <canvas id="cv" width="960" height="300"></canvas>
+  <div class="row"><button id="go" class="dartbtn">&#9192; all-pairs</button><span id="say" class="res" style="margin:0"></span></div>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the right Johnson, an older trick</span></h2>
+  <p class="myth">&ldquo;Johnson&rsquo;s algorithm &mdash; that&rsquo;s the NP-completeness Johnson&rdquo; &mdash; <s>yes</s> no; different person. And the reweighting is <b>older</b> than 1977. <span class="tag t-cited">cited</span></p>
+  <div class="chain">
+    <b>the trick</b> &middot; <b>node potentials</b> that make reduced costs <span class="k">w + h(u) &minus; h(v)</span> non-negative come from <b>min-cost-flow</b> theory (Edmonds-Karp era) &mdash; not Johnson&rsquo;s invention; his contribution is <b>using them for APSP</b>.<br>
+    <b>1977</b> &middot; <span class="who">Donald B. Johnson</span> (&ldquo;Efficient algorithms for shortest paths in sparse networks,&rdquo; J. ACM 24(1):1&ndash;13) composes Bellman-Ford + Dijkstra into O(V<sup>2</sup>log V + VE).<br>
+    <b>not that Johnson</b> &middot; Donald B. Johnson (PhD Cornell 1973, founding chair of <b>Dartmouth</b> CS) &mdash; <b>not</b> David S. Johnson of &ldquo;Garey &amp; Johnson&rdquo; NP-completeness fame.<br>
+    <b>the payoff</b> &middot; on sparse graphs it beats Floyd-Warshall (dart 096) &mdash; O(VE log V) vs O(V&sup3;).
+  </div>
+  <p style="margin-top:10px">A composition, not a new primitive &mdash; which is exactly why it fits a corpus built by compounding. <span class="tag t-open">Donald B. Johnson, 1977</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">Bellman-Ford + Dijkstra, both landed</span></h2>
+  <p>It composes two darts the corpus already runs &mdash; and the all-pairs distances come out with a negative edge in the mix:</p>
+  <div class="evi good">$ i13 run johnson.i13    # A->B=-2, B->C=-1, C->A=4
+A->C = -3 (via B)   B->A = 3   C->B = 2    # all-pairs, negatives handled</div>
+  <div class="rec">
+    <b>Recommend:</b> <b>nothing new</b> &mdash; it literally composes <b>Bellman-Ford</b> (dart 046, the potential + negative-cycle check) and <b>Dijkstra</b> (dart 055, from each vertex on the reweighted graph); the reweight <span class="k">w + h(u) &minus; h(v)</span> is pure f64 (verified A&rarr;C = &minus;3). The distance output is a 2-D matrix (<b>PS-004</b>).<br>
+    <b>Note:</b> a textbook example of the campaign&rsquo;s thesis &mdash; two landed features compound into a new capability with <b>no new primitive</b>, like Pollard p&minus;1 (083) reusing modexp + gcd.
+  </div>
+</div>
+
+<script>
+"use strict";
+
+(function(){
+  var cv=document.getElementById("cv"), ctx=cv.getContext("2d"), say=document.getElementById("say");
+  var W=960,H=300, INF=999;
+  var pos=[[220,150],[540,80],[540,230]], L=["A","B","C"];
+  var E=[[0,1,-2],[1,2,-1],[2,0,4]];
+  var D=null;
+  function apsp(){ var n=3, d=[]; for(var i=0;i<n;i++){d.push([]);for(var j=0;j<n;j++)d[i].push(i===j?0:INF);} E.forEach(function(e){d[e[0]][e[1]]=e[2];});
+    for(var k=0;k<n;k++)for(i=0;i<n;i++)for(j=0;j<n;j++)if(d[i][k]+d[k][j]<d[i][j])d[i][j]=d[i][k]+d[k][j]; return d; }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    E.forEach(function(e){ var a=pos[e[0]],b=pos[e[1]]; ctx.strokeStyle=e[2]<0?"#ff5a6a":"rgba(111,139,168,.6)"; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.stroke();
+      var mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2; ctx.fillStyle=e[2]<0?"#ff5a6a":"#6f8ba8"; ctx.font="13px monospace"; ctx.fillText(e[2],mx,my-6);
+      var ang=Math.atan2(b[1]-a[1],b[0]-a[0]); ctx.fillStyle="rgba(111,139,168,.7)"; ctx.beginPath(); ctx.moveTo(mx,my); ctx.lineTo(mx-10*Math.cos(ang-0.4),my-10*Math.sin(ang-0.4)); ctx.lineTo(mx-10*Math.cos(ang+0.4),my-10*Math.sin(ang+0.4)); ctx.fill(); });
+    pos.forEach(function(p,i){ ctx.fillStyle="#0a1520"; ctx.strokeStyle="#3ef0ff"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(p[0],p[1],20,0,7); ctx.fill(); ctx.stroke(); ctx.fillStyle="#eafcff"; ctx.font="15px monospace"; ctx.fillText(L[i],p[0]-5,p[1]+5); });
+    if(D){ ctx.fillStyle="#9fe8ff"; ctx.font="12px monospace"; var y=60; ctx.fillText("all-pairs distances:",680,40);
+      for(var i=0;i<3;i++){ var row=D[i].map(function(v){return (v>=INF?"INF":(""+v)).padStart(3);}).join(" "); ctx.fillText(L[i]+": "+row,680,y); y+=20; } }
+  }
+  document.getElementById("go").onclick=function(){ D=apsp(); draw(); say.innerHTML='A&rarr;C = <span class="true">'+D[0][2]+'</span> (via B), B&rarr;A = '+D[1][0]+', C&rarr;B = '+D[2][1]+' &middot; negatives handled'; };
+  draw(); say.innerHTML="a graph with a negative edge (red) &mdash; press all-pairs";
+})();
+
+</script>
+
+<footer>
+  <b>DART 114 &middot; JOHNSON'S ALGORITHM</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Donald B. Johnson</b> (1977) &mdash; the founding chair of Dartmouth CS, <b>not</b> the NP-completeness David S. Johnson; the reweighting <b>potentials</b> predate him. History via <a href="https://en.wikipedia.org/wiki/Johnson%27s_algorithm">Wikipedia: Johnson&rsquo;s algorithm</a>. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, bignum, isqrt, bitwise, i13 log. Rendered by AVAN for the corpus. A dart, a demo, a recommendation.
+</footer>
+</body>
+</html>

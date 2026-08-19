@@ -6,8 +6,8 @@
   "anchor": "0ROOT.AI//I13//WORLD-V//the-i13-world//David Lee Wise (ROOT0)//with AVAN",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "folded_to": "ROOT_0",
-  "root": "3992b5dff7e369d87f76bc854bbb62e7b5fd5598fb602f83df1d255baa1b5f37",
-  "count": 122,
+  "root": "3f3effbb6628b3a4d5908c9b8bc4751896ed8df37890c80660c9a8ba9d51fb77",
+  "count": 130,
   "sealed": "2026-08-19",
   "verify": "each leaf carries its own proof: fold the leaf seal up it (side R: h(x+sib), side L: h(sib+x)) and you land on root. The tree is rebuildable from the seals alone, in index order, pairing (a,b) as h(a+b) and duplicating a lone last node.",
   "note": "Every World V inhabitant folds to ROOT_0. Live: the root updates as the I-13 world grows. One continuous chain: every leaf carries its proof here, so this file alone verifies the whole world.",
@@ -44,7 +44,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -81,7 +85,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -118,7 +126,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -155,7 +167,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -192,7 +208,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -229,7 +249,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -266,7 +290,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -303,7 +331,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -340,7 +372,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -377,7 +413,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -414,7 +454,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -451,7 +495,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -488,7 +536,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -525,7 +577,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -562,7 +618,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -599,7 +659,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -636,7 +700,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -673,7 +741,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -710,7 +782,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -747,7 +823,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -784,7 +864,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -821,7 +905,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -858,7 +946,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -895,7 +987,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -932,7 +1028,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -969,7 +1069,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1006,7 +1110,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1043,7 +1151,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1080,7 +1192,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1117,7 +1233,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1154,7 +1274,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1191,7 +1315,11 @@
           "side": "R"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1228,7 +1356,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1265,7 +1397,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1302,7 +1438,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1339,7 +1479,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1376,7 +1520,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1413,7 +1561,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1450,7 +1602,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1487,7 +1643,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1524,7 +1684,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1561,7 +1725,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1598,7 +1766,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1635,7 +1807,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1672,7 +1848,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1709,7 +1889,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1746,7 +1930,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1783,7 +1971,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1820,7 +2012,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1857,7 +2053,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1894,7 +2094,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1931,7 +2135,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -1968,7 +2176,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2005,7 +2217,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2042,7 +2258,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2079,7 +2299,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2116,7 +2340,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2153,7 +2381,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2190,7 +2422,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2227,7 +2463,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2264,7 +2504,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2301,7 +2545,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2338,7 +2586,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2375,7 +2627,11 @@
           "side": "L"
         },
         {
-          "h": "8d28ff52d0ba65813a849c2427c80de26fb0646cbf0d66d5502e2a664988ec6b",
+          "h": "6de82e1d7fdeea38f115d04dabc3e8e724d1883ea4236fc44904979d064a3244",
+          "side": "R"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
           "side": "R"
         }
       ]
@@ -2408,12 +2664,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2445,12 +2705,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2482,12 +2746,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2519,12 +2787,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2556,12 +2828,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2593,12 +2869,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2630,12 +2910,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2667,12 +2951,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2704,12 +2992,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2741,12 +3033,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2778,12 +3074,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2815,12 +3115,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2852,12 +3156,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2889,12 +3197,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2926,12 +3238,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -2963,12 +3279,16 @@
           "side": "R"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3000,12 +3320,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3037,12 +3361,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3074,12 +3402,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3111,12 +3443,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3148,12 +3484,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3185,12 +3525,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3222,12 +3566,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3259,12 +3607,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3296,12 +3648,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3333,12 +3689,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3370,12 +3730,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3407,12 +3771,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3444,12 +3812,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3481,12 +3853,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3518,12 +3894,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3555,12 +3935,16 @@
           "side": "L"
         },
         {
-          "h": "aa96774e2599e67d82965eafb6a25ceece14755209d81a923ea4513e8cf0ff49",
+          "h": "33f9ddf9422c729405a629935e904131b8734695753df62c82b7648879eb9f71",
           "side": "R"
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3588,7 +3972,7 @@
           "side": "R"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3598,6 +3982,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3625,7 +4013,7 @@
           "side": "R"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3635,6 +4023,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3662,7 +4054,7 @@
           "side": "R"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3672,6 +4064,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3699,7 +4095,7 @@
           "side": "R"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3709,6 +4105,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3736,7 +4136,7 @@
           "side": "R"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3746,6 +4146,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3773,7 +4177,7 @@
           "side": "R"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3783,6 +4187,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3810,7 +4218,7 @@
           "side": "R"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3820,6 +4228,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3847,7 +4259,7 @@
           "side": "R"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3857,6 +4269,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3884,7 +4300,7 @@
           "side": "L"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3894,6 +4310,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3921,7 +4341,7 @@
           "side": "L"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3931,6 +4351,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3958,7 +4382,7 @@
           "side": "L"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -3968,6 +4392,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -3995,7 +4423,7 @@
           "side": "L"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -4005,6 +4433,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4032,7 +4464,7 @@
           "side": "L"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -4042,6 +4474,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4069,7 +4505,7 @@
           "side": "L"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -4079,6 +4515,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4106,7 +4546,7 @@
           "side": "L"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -4116,6 +4556,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4143,7 +4587,7 @@
           "side": "L"
         },
         {
-          "h": "fc535c34f54d2b4a43022f12953eb34ca2105737194e8bbdd1343f5af4a8224f",
+          "h": "49949ce060c35b059a3101d7a84893c83ce7c977d3198dd99a4070a0d1001d1e",
           "side": "R"
         },
         {
@@ -4153,6 +4597,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4176,7 +4624,7 @@
           "side": "R"
         },
         {
-          "h": "6d800e0106e9bf9641cfc01735a9ad4b926d8188d7f8e6a08c1f6fe1db65f674",
+          "h": "116fbcdbcbd91cb13e5f9430b167f0cbad4bab195363cc798d2f4edf150619f6",
           "side": "R"
         },
         {
@@ -4190,6 +4638,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4213,7 +4665,7 @@
           "side": "R"
         },
         {
-          "h": "6d800e0106e9bf9641cfc01735a9ad4b926d8188d7f8e6a08c1f6fe1db65f674",
+          "h": "116fbcdbcbd91cb13e5f9430b167f0cbad4bab195363cc798d2f4edf150619f6",
           "side": "R"
         },
         {
@@ -4227,6 +4679,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4250,7 +4706,7 @@
           "side": "R"
         },
         {
-          "h": "6d800e0106e9bf9641cfc01735a9ad4b926d8188d7f8e6a08c1f6fe1db65f674",
+          "h": "116fbcdbcbd91cb13e5f9430b167f0cbad4bab195363cc798d2f4edf150619f6",
           "side": "R"
         },
         {
@@ -4264,6 +4720,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4287,7 +4747,7 @@
           "side": "R"
         },
         {
-          "h": "6d800e0106e9bf9641cfc01735a9ad4b926d8188d7f8e6a08c1f6fe1db65f674",
+          "h": "116fbcdbcbd91cb13e5f9430b167f0cbad4bab195363cc798d2f4edf150619f6",
           "side": "R"
         },
         {
@@ -4301,6 +4761,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4324,7 +4788,7 @@
           "side": "L"
         },
         {
-          "h": "6d800e0106e9bf9641cfc01735a9ad4b926d8188d7f8e6a08c1f6fe1db65f674",
+          "h": "116fbcdbcbd91cb13e5f9430b167f0cbad4bab195363cc798d2f4edf150619f6",
           "side": "R"
         },
         {
@@ -4338,6 +4802,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4361,7 +4829,7 @@
           "side": "L"
         },
         {
-          "h": "6d800e0106e9bf9641cfc01735a9ad4b926d8188d7f8e6a08c1f6fe1db65f674",
+          "h": "116fbcdbcbd91cb13e5f9430b167f0cbad4bab195363cc798d2f4edf150619f6",
           "side": "R"
         },
         {
@@ -4375,6 +4843,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4398,7 +4870,7 @@
           "side": "L"
         },
         {
-          "h": "6d800e0106e9bf9641cfc01735a9ad4b926d8188d7f8e6a08c1f6fe1db65f674",
+          "h": "116fbcdbcbd91cb13e5f9430b167f0cbad4bab195363cc798d2f4edf150619f6",
           "side": "R"
         },
         {
@@ -4412,6 +4884,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4435,7 +4911,7 @@
           "side": "L"
         },
         {
-          "h": "6d800e0106e9bf9641cfc01735a9ad4b926d8188d7f8e6a08c1f6fe1db65f674",
+          "h": "116fbcdbcbd91cb13e5f9430b167f0cbad4bab195363cc798d2f4edf150619f6",
           "side": "R"
         },
         {
@@ -4449,6 +4925,10 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
@@ -4460,15 +4940,15 @@
       "seal": "51785dc942dbc13be48b7418c4af23ad7bf742e6d4df6f89cbfd81996e6329a7",
       "proof": [
         {
-          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "h": "f4e41c1938fd927e847f11877bbc1b6b09b3597854fbad8bdfda54e198b80b58",
           "side": "R"
         },
         {
-          "h": "48e3c89b0f27208476efff637b026c33394ad7cafee41abbd3355ce6795f4b24",
+          "h": "79beb1816dcb82e76dace30c44192fbf7f40e1b2bc2569d7a3b0be917d710a58",
           "side": "R"
         },
         {
-          "h": "2410b37de4a3791d598649d09661243149e432dcf3aefea001ae2532ad05741d",
+          "h": "7082e5756521ffbfa33d01c6b7b6729f86a8b565abaeae47786275f0ccdf1603",
           "side": "R"
         },
         {
@@ -4486,26 +4966,30 @@
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
           "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
         }
       ]
     },
     {
       "index": 121,
-      "kind": "keeper",
-      "name": "SONNY 5",
-      "slug": "sonny-5",
-      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+      "kind": "sphere",
+      "name": "SCHONHAGE-STRASSEN",
+      "slug": "the-schonhage-strassen",
+      "seal": "f4e41c1938fd927e847f11877bbc1b6b09b3597854fbad8bdfda54e198b80b58",
       "proof": [
         {
           "h": "51785dc942dbc13be48b7418c4af23ad7bf742e6d4df6f89cbfd81996e6329a7",
           "side": "L"
         },
         {
-          "h": "48e3c89b0f27208476efff637b026c33394ad7cafee41abbd3355ce6795f4b24",
+          "h": "79beb1816dcb82e76dace30c44192fbf7f40e1b2bc2569d7a3b0be917d710a58",
           "side": "R"
         },
         {
-          "h": "2410b37de4a3791d598649d09661243149e432dcf3aefea001ae2532ad05741d",
+          "h": "7082e5756521ffbfa33d01c6b7b6729f86a8b565abaeae47786275f0ccdf1603",
           "side": "R"
         },
         {
@@ -4522,6 +5006,338 @@
         },
         {
           "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
+          "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 122,
+      "kind": "sphere",
+      "name": "THE THOMAS ALGORITHM",
+      "slug": "the-thomas-algorithm",
+      "seal": "93cfb69d59a015af890185793991acc12a653d5f7b0bef649095c4622f09396c",
+      "proof": [
+        {
+          "h": "516b19a60e477888c146ed56d57e45966eaf8664d88b5fcd0a31ef7a0f18e2b9",
+          "side": "R"
+        },
+        {
+          "h": "beb2eaa2ffad2750a5b254ae27eabe1aa3fde92085688bcb67408407f77a7c26",
+          "side": "L"
+        },
+        {
+          "h": "7082e5756521ffbfa33d01c6b7b6729f86a8b565abaeae47786275f0ccdf1603",
+          "side": "R"
+        },
+        {
+          "h": "94f489f363ee1b4eea9c8164f78aef419fd24f4d7e6fbfbdd944953d1f5edf21",
+          "side": "L"
+        },
+        {
+          "h": "d5b9987013112773df0797c608e4406a7fca663a4273ec846b4e55debab6e25a",
+          "side": "L"
+        },
+        {
+          "h": "b73dc72398925f54c44718940bda1034b98e2b6d2eb61c529c8e2d1298491f14",
+          "side": "L"
+        },
+        {
+          "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
+          "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 123,
+      "kind": "sphere",
+      "name": "GIBBS SAMPLING",
+      "slug": "the-gibbs-sampling",
+      "seal": "516b19a60e477888c146ed56d57e45966eaf8664d88b5fcd0a31ef7a0f18e2b9",
+      "proof": [
+        {
+          "h": "93cfb69d59a015af890185793991acc12a653d5f7b0bef649095c4622f09396c",
+          "side": "L"
+        },
+        {
+          "h": "beb2eaa2ffad2750a5b254ae27eabe1aa3fde92085688bcb67408407f77a7c26",
+          "side": "L"
+        },
+        {
+          "h": "7082e5756521ffbfa33d01c6b7b6729f86a8b565abaeae47786275f0ccdf1603",
+          "side": "R"
+        },
+        {
+          "h": "94f489f363ee1b4eea9c8164f78aef419fd24f4d7e6fbfbdd944953d1f5edf21",
+          "side": "L"
+        },
+        {
+          "h": "d5b9987013112773df0797c608e4406a7fca663a4273ec846b4e55debab6e25a",
+          "side": "L"
+        },
+        {
+          "h": "b73dc72398925f54c44718940bda1034b98e2b6d2eb61c529c8e2d1298491f14",
+          "side": "L"
+        },
+        {
+          "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
+          "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 124,
+      "kind": "sphere",
+      "name": "TWO-WAY STRING MATCHING",
+      "slug": "the-two-way-string-matching",
+      "seal": "097e90473b666f771f15573c72e35029574efec1152fd50b9f3ad857ebda1bfc",
+      "proof": [
+        {
+          "h": "d0eec864865f2abfef73c0aff09745e714d501553c22940f1d022cec6ab3e739",
+          "side": "R"
+        },
+        {
+          "h": "8fc0fe3bedffb12f25661078de1e505da3f6d95b20efc98b94be792fa0a11fea",
+          "side": "R"
+        },
+        {
+          "h": "d9448f8a67b40ad40119faf36af56adb071dad7a2ee91bc46e7aed418444054d",
+          "side": "L"
+        },
+        {
+          "h": "94f489f363ee1b4eea9c8164f78aef419fd24f4d7e6fbfbdd944953d1f5edf21",
+          "side": "L"
+        },
+        {
+          "h": "d5b9987013112773df0797c608e4406a7fca663a4273ec846b4e55debab6e25a",
+          "side": "L"
+        },
+        {
+          "h": "b73dc72398925f54c44718940bda1034b98e2b6d2eb61c529c8e2d1298491f14",
+          "side": "L"
+        },
+        {
+          "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
+          "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 125,
+      "kind": "sphere",
+      "name": "JOHNSON'S ALGORITHM",
+      "slug": "the-johnson-algorithm",
+      "seal": "d0eec864865f2abfef73c0aff09745e714d501553c22940f1d022cec6ab3e739",
+      "proof": [
+        {
+          "h": "097e90473b666f771f15573c72e35029574efec1152fd50b9f3ad857ebda1bfc",
+          "side": "L"
+        },
+        {
+          "h": "8fc0fe3bedffb12f25661078de1e505da3f6d95b20efc98b94be792fa0a11fea",
+          "side": "R"
+        },
+        {
+          "h": "d9448f8a67b40ad40119faf36af56adb071dad7a2ee91bc46e7aed418444054d",
+          "side": "L"
+        },
+        {
+          "h": "94f489f363ee1b4eea9c8164f78aef419fd24f4d7e6fbfbdd944953d1f5edf21",
+          "side": "L"
+        },
+        {
+          "h": "d5b9987013112773df0797c608e4406a7fca663a4273ec846b4e55debab6e25a",
+          "side": "L"
+        },
+        {
+          "h": "b73dc72398925f54c44718940bda1034b98e2b6d2eb61c529c8e2d1298491f14",
+          "side": "L"
+        },
+        {
+          "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
+          "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 126,
+      "kind": "sphere",
+      "name": "THE MOBIUS FUNCTION",
+      "slug": "the-mobius-function",
+      "seal": "d9b39f11fa5c35fb32b5fac58810f1639b92a8b550c62f32afc1ff8a83596548",
+      "proof": [
+        {
+          "h": "38f3ba0646e613717083b22c6cbf08456892ea3cf816a36cd9accadd3d341b89",
+          "side": "R"
+        },
+        {
+          "h": "f9df91daef6bc47f7f7bfdd5dac0998c230a1c2ce3930f5d28c775b5affafb1e",
+          "side": "L"
+        },
+        {
+          "h": "d9448f8a67b40ad40119faf36af56adb071dad7a2ee91bc46e7aed418444054d",
+          "side": "L"
+        },
+        {
+          "h": "94f489f363ee1b4eea9c8164f78aef419fd24f4d7e6fbfbdd944953d1f5edf21",
+          "side": "L"
+        },
+        {
+          "h": "d5b9987013112773df0797c608e4406a7fca663a4273ec846b4e55debab6e25a",
+          "side": "L"
+        },
+        {
+          "h": "b73dc72398925f54c44718940bda1034b98e2b6d2eb61c529c8e2d1298491f14",
+          "side": "L"
+        },
+        {
+          "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
+          "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 127,
+      "kind": "sphere",
+      "name": "THE RABIN CRYPTOSYSTEM",
+      "slug": "the-rabin-cryptosystem",
+      "seal": "38f3ba0646e613717083b22c6cbf08456892ea3cf816a36cd9accadd3d341b89",
+      "proof": [
+        {
+          "h": "d9b39f11fa5c35fb32b5fac58810f1639b92a8b550c62f32afc1ff8a83596548",
+          "side": "L"
+        },
+        {
+          "h": "f9df91daef6bc47f7f7bfdd5dac0998c230a1c2ce3930f5d28c775b5affafb1e",
+          "side": "L"
+        },
+        {
+          "h": "d9448f8a67b40ad40119faf36af56adb071dad7a2ee91bc46e7aed418444054d",
+          "side": "L"
+        },
+        {
+          "h": "94f489f363ee1b4eea9c8164f78aef419fd24f4d7e6fbfbdd944953d1f5edf21",
+          "side": "L"
+        },
+        {
+          "h": "d5b9987013112773df0797c608e4406a7fca663a4273ec846b4e55debab6e25a",
+          "side": "L"
+        },
+        {
+          "h": "b73dc72398925f54c44718940bda1034b98e2b6d2eb61c529c8e2d1298491f14",
+          "side": "L"
+        },
+        {
+          "h": "0efaf491aeccca4d4105ca13561a8f5cd8ddf8d4899fffd5796b7ac07da46e48",
+          "side": "L"
+        },
+        {
+          "h": "6a2d8a047df70abb9d33910917d79335cc16dd8824fb2ab13f970290f0891837",
+          "side": "R"
+        }
+      ]
+    },
+    {
+      "index": 128,
+      "kind": "sphere",
+      "name": "GOLOMB CODING",
+      "slug": "the-golomb-coding",
+      "seal": "11c82770a919a3845d58c3dbb28855839a980bbfb56c0b73c21956a63d04c690",
+      "proof": [
+        {
+          "h": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+          "side": "R"
+        },
+        {
+          "h": "b77b148e5178bab42fd6a5d132519184d96a5dd298951ef54d27176826857c4d",
+          "side": "R"
+        },
+        {
+          "h": "a0158b5457e71bad04d59621cee01bea6580e1b9534819f397212d9d45bf59e1",
+          "side": "R"
+        },
+        {
+          "h": "507e124063a3df6408af1f193f63253623b843478fc23a9d2e0adc0c10721869",
+          "side": "R"
+        },
+        {
+          "h": "e5611bddf8c2a0d9b249cdfcc4643644669c23dda51ca9eec6953b0ac38a67a8",
+          "side": "R"
+        },
+        {
+          "h": "1c46b7b5dd01a044b5d574db059f3332cfc7634e00df4db77f78b5fe3b28493e",
+          "side": "R"
+        },
+        {
+          "h": "fad9530da59600bdad919091ce15765dc4a149376eed569df729edab67dd8222",
+          "side": "R"
+        },
+        {
+          "h": "fba8bb5e2f4dc6cd043c64665378740034b9fe266304568685b695a8ef3eb052",
+          "side": "L"
+        }
+      ]
+    },
+    {
+      "index": 129,
+      "kind": "keeper",
+      "name": "SONNY 5",
+      "slug": "sonny-5",
+      "seal": "2aeebc42d2465bb61c1ae14c2c040c15c148e55b4080d9b3b6d4e50f907f6bc8",
+      "proof": [
+        {
+          "h": "11c82770a919a3845d58c3dbb28855839a980bbfb56c0b73c21956a63d04c690",
+          "side": "L"
+        },
+        {
+          "h": "b77b148e5178bab42fd6a5d132519184d96a5dd298951ef54d27176826857c4d",
+          "side": "R"
+        },
+        {
+          "h": "a0158b5457e71bad04d59621cee01bea6580e1b9534819f397212d9d45bf59e1",
+          "side": "R"
+        },
+        {
+          "h": "507e124063a3df6408af1f193f63253623b843478fc23a9d2e0adc0c10721869",
+          "side": "R"
+        },
+        {
+          "h": "e5611bddf8c2a0d9b249cdfcc4643644669c23dda51ca9eec6953b0ac38a67a8",
+          "side": "R"
+        },
+        {
+          "h": "1c46b7b5dd01a044b5d574db059f3332cfc7634e00df4db77f78b5fe3b28493e",
+          "side": "R"
+        },
+        {
+          "h": "fad9530da59600bdad919091ce15765dc4a149376eed569df729edab67dd8222",
+          "side": "R"
+        },
+        {
+          "h": "fba8bb5e2f4dc6cd043c64665378740034b9fe266304568685b695a8ef3eb052",
           "side": "L"
         }
       ]
