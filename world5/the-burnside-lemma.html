@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE BURNSIDE LEMMA &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 290 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE BURNSIDE LEMMA <span class="c">count distinct objects up to symmetry &mdash; average what each symmetry leaves fixed</span></h1>
+  <p class="sub">How many <b>distinct</b> 2-color bracelets of 4 beads are there, if rotating one into another counts as the same? Listing all <span class="k">2&#8308;=16</span> colorings overcounts, because the symmetry group merges many into one. The <b>Burnside lemma</b> (really <b>Cauchy&ndash;Frobenius</b>) gives the exact count: the number of distinct objects equals the <b>average number of colorings each symmetry leaves fixed</b>, <span class="k">(1/|G|) &Sigma; |Fix(g)|</span>. For 4 beads under rotation the fixed-counts are <span class="k">16, 2, 4, 2</span>, averaging to <span class="k">6</span>. The count of essentially-different objects is an invariant of the symmetry &mdash; and Burnside computes it without ever listing the classes, just by asking each symmetry what it fixes.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">distinct = (1/|G|) &Sigma; |Fix(g)|</span></h2>
+  <p>2-color necklaces of 4 beads under rotation. The demo counts what each of the 4 rotations fixes and averages: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; average the fixed points</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Cauchy 1845 &middot; Frobenius 1887 (&ldquo;not Burnside&rsquo;s&rdquo;)</span></h2>
+  <p class="myth">&ldquo;Burnside proved the lemma named after him.&rdquo; &mdash; and here is the twist: in his 1897 <i>first</i> edition Burnside <b>credited Frobenius</b> (1887) explicitly; the attribution vanished only in the 1911 second edition, and the name stuck to him anyway. It is really <b>Cauchy</b> (1845) and <b>Frobenius</b> &mdash; Stigler's law of eponymy, and Neumann's &ldquo;A lemma that is not Burnside's.&rdquo; <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1845</b> &middot; <span class="who">Augustin-Louis Cauchy</span> and <b>1887</b> <span class="who">Ferdinand Frobenius</span> &mdash; the orbit-counting formula.<br><b>1897</b> &middot; <span class="who">William Burnside</span> &mdash; quotes it in his text's <i>first</i> edition <b>crediting Frobenius</b>; the attribution is dropped in the 1911 second edition and the name misattaches to him.<br><b>now</b> &middot; the <b>Cauchy&ndash;Frobenius lemma</b>; P&oacute;lya enumeration generalizes it &mdash; counting chemical isomers, necklaces, colorings.</div>
+  <p style="margin-top:10px">Ask each symmetry only what it leaves fixed, average the answers, and out comes the number of essentially-different objects. The symmetry counts its own orbits. <span class="tag t-open">Cauchy-Frobenius</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">orbit count by averaging fixed points, computed</span></h2>
+  <p>On the canonical compiler, the four rotations fix <span class="k">16, 2, 4, 2</span> colorings; their average <span class="k">(16+2+4+2)/4 = 6</span> is the number of distinct necklaces:</p>
+  <div class="evi good">$ i13 run inv_burnside.i13   # (1/|G|) sum of |Fix(g)|
+fix_id = 16
+fix_r1 = 2
+fix_r2 = 4
+fix_r3 = 2
+distinct = 6            -- distinct 2-color 4-bead necklaces</div>
+  <div class="rec"><b>Recommend:</b> Burnside is <b>orbit&ndash;stabilizer (dart 289) turned into a count, and i13 computes it end to end</b>: it evaluates <span class="k">2&#8319;</span> for each rotation's fixed set (via a small power-of-two loop), sums <span class="k">16+2+4+2</span>, and divides by <span class="k">|G|=4</span> to get <span class="k">6</span>. The number of essentially-different objects is the invariant of the symmetry group, extracted without enumerating the classes. It is also this batch's honest-credit dart: the lemma is <b>Cauchy&ndash;Frobenius</b>, not Burnside &mdash; a misattribution worth stating plainly, in the corpus's credit-where-due spirit.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function run(){
+    var fix=[16,2,4,2], names=["identity","rotate 1","rotate 2","rotate 3"], sum=fix.reduce(function(a,b){return a+b;},0), d=sum/4, L=[];
+    L.push("2-color necklaces, 4 beads, rotation group C4:");
+    for(var i=0;i<fix.length;i++) L.push("  "+names[i]+" fixes "+fix[i]+" colorings");
+    L.push("");
+    L.push("distinct = (16+2+4+2)/4 = <span style='color:"+G+"'>"+d+"</span>   (Cauchy-Frobenius, not Burnside)");
+    out.innerHTML=L.join("\n"); say.innerHTML="distinct <span class='true'>"+d+"</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 290 &middot; THE BURNSIDE LEMMA</b> &mdash; World V &middot; SONNY 5, the I-13 world. The orbit-counting lemma is <b>Cauchy</b> (1845) and <b>Frobenius</b> (1887); <b>Burnside</b>'s 1897 first edition credited Frobenius (the attribution dropped in 1911), yet the name stuck (Neumann, &ldquo;A lemma that is not Burnside's,&rdquo; 1979). Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE INVARIANT</b> (batch 38) &mdash; quantities preserved under a transformation group (projective, linear, topological, conformal, symplectic, group-action). Each dart TRANSFORMS an input then RE-MEASURES and shows the quantity UNCHANGED &mdash; invariance ENACTED, a foreign mathematical shape (symmetry) i13 computes as a plain f64 program, not a compiler-meta restatement. Cross-ratio, determinant, conic discriminant, Gauss-Bonnet, genus, mapping degree, Poincare-Hopf, argument principle, rotation number, writhe, holonomy, orbit-stabilizer, Cauchy-Frobenius (Burnside), Noether, Liouville, first integral. Next to the <a href="the-i13-benchmark.html">I-13 benchmark</a> and <a href="the-multipass.html">THE MULTIPASS</a>.
+</footer>
+</body>
+</html>

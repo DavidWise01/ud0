@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE WRITHE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 287 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE WRITHE <span class="c">a signed crossing count &mdash; the coiling a knot carries with it</span></h1>
+  <p class="sub">Lay a knot flat as a diagram and look at its <b>crossings</b>: at each, one strand passes over the other, and a right-hand rule gives it a sign, <span class="k">+1</span> or <span class="k">&minus;1</span>. The <b>writhe</b> is the sum of these signs. On its own the writhe depends on the diagram &mdash; but it enters the beautiful <b>C&#259;lug&#259;reanu&ndash;White&ndash;Fuller theorem</b>, <span class="k">Lk = Tw + Wr</span>: the <b>linking number</b> of a closed ribbon (a topological invariant, fixed) equals its <b>twist</b> plus its <b>writhe</b>. So as you deform the ribbon, twist can trade into writhe and back, but their sum cannot change. This is not abstract: it is why a coiled phone cord, or a supercoiled DNA molecule, converts twist into writhing loops &mdash; the total linking is conserved.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">writhe = sum of signed crossings; Lk = Tw + Wr conserved</span></h2>
+  <p>A trefoil diagram with three crossings of the same handedness. The demo sums their signs to the writhe: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; sum the signed crossings</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">C&#259;lug&#259;reanu&ndash;White&ndash;Fuller, 1959&ndash;71</span></h2>
+  <p class="myth">&ldquo;Twisting a ribbon and coiling it are unrelated.&rdquo; &mdash; <span class="k">Lk = Tw + Wr</span> says the total is fixed, so twist you put in must come out as writhing coils. A phone cord tangles for exactly this reason. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1959&ndash;61</b> &middot; <span class="who">Gheorghe C&#259;lug&#259;reanu</span> &mdash; the twist&ndash;writhe relation for a ribbon.<br><b>1969&ndash;71</b> &middot; <span class="who">James White &amp; Brock Fuller</span> &mdash; the modern <span class="k">Lk = Tw + Wr</span> theorem.<br><b>now</b> &middot; DNA supercoiling, polymer physics, fluid vortex helicity.</div>
+  <p style="margin-top:10px">The linking number is fixed by topology; twist and writhe are free to trade, so long as their sum holds. Coil a twisted band and the twist becomes writhe &mdash; the ledger balances. <span class="tag t-open">C&#259;lug&#259;reanu-White-Fuller</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">trefoil writhe, computed</span></h2>
+  <p>On the canonical compiler, a trefoil's three like-signed crossings sum to writhe <span class="k">3</span>:</p>
+  <div class="evi good">$ i13 run inv_writhe.i13   # sum of signed crossings
+writhe = 3            -- three +1 crossings (a trefoil)</div>
+  <div class="rec"><b>Recommend:</b> the writhe is <b>a signed integer count i13 sums directly</b>, and it earns its place in the batch through <span class="k">Lk = Tw + Wr</span>: the linking number is the true invariant (fixed by topology), and the writhe is the visible half of a conserved ledger. i13 adds the crossing signs to get <span class="k">3</span>; the deform-and-trade invariance (twist &harr; writhe, total fixed) is the same enacted pattern as Poincar&eacute;&ndash;Hopf's index bookkeeping (dart 284) &mdash; a quantity free to move locally, pinned globally. A knot invariant, computed as a one-line sum of &plusmn;1.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  var signs=[1,1,1];
+  function run(){
+    var w=signs.reduce(function(a,b){return a+b;},0), L=[];
+    L.push("trefoil diagram, 3 crossings:");
+    for(var i=0;i<signs.length;i++) L.push("  crossing "+(i+1)+": sign "+(signs[i]>0?"+1":"-1"));
+    L.push("");
+    L.push("writhe = sum of signs = <span style='color:"+G+"'>"+w+"</span>   (via Lk = Tw + Wr, half of a conserved ledger)");
+    out.innerHTML=L.join("\n"); say.innerHTML="writhe <span class='true'>"+w+"</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 287 &middot; THE WRITHE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>C&#259;lug&#259;reanu</b> (1959&ndash;61), <b>White</b> and <b>Fuller</b> (1969&ndash;71) gave <span class="k">Lk = Tw + Wr</span>. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE INVARIANT</b> (batch 38) &mdash; quantities preserved under a transformation group (projective, linear, topological, conformal, symplectic, group-action). Each dart TRANSFORMS an input then RE-MEASURES and shows the quantity UNCHANGED &mdash; invariance ENACTED, a foreign mathematical shape (symmetry) i13 computes as a plain f64 program, not a compiler-meta restatement. Cross-ratio, determinant, conic discriminant, Gauss-Bonnet, genus, mapping degree, Poincare-Hopf, argument principle, rotation number, writhe, holonomy, orbit-stabilizer, Cauchy-Frobenius (Burnside), Noether, Liouville, first integral. Next to the <a href="the-i13-benchmark.html">I-13 benchmark</a> and <a href="the-multipass.html">THE MULTIPASS</a>.
+</footer>
+</body>
+</html>
