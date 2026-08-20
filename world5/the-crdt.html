@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE CRDT &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 218 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE CRDT <span class="c">agree without ever coordinating</span></h1>
+  <p class="sub">A <b>conflict-free replicated data type</b> lets many replicas take writes independently &mdash; offline, concurrent, out of order &mdash; and still converge to the identical state, with <b>no consensus round at all</b>. The trick is algebra: define the merge so it is <b>commutative</b>, <b>associative</b>, and <b>idempotent</b> &mdash; a join on a semilattice. Then order, duplication, and delay stop mattering: any two replicas that have seen the same set of updates compute the same value, guaranteed by construction. This is exactly the mechanism DACI (Eskimo Brothers' third brother) is built on.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">merge = a semilattice join (commutative, associative, idempotent) &rarr; convergence, no consensus</span></h2>
+  <p>Take a grow-only counter across three nodes; let two replicas diverge, then merge by taking the per-node max &mdash; and confirm the merge is order-independent and repeat-proof, so both replicas land on the same total whichever way you combine them: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>replica A</label><input id="a" type="text" value="3,1,0" style="width:90px"><label>replica B</label><input id="b" type="text" value="0,1,4" style="width:90px"><button id="go" class="dartbtn">&#9192; merge both ways</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Shapiro, Preguiça, Baquero &amp; Zawirski, 2011</span></h2>
+  <p class="myth">&ldquo;Concurrent writes to replicated data force a conflict you must resolve &mdash; by a consensus round, a lock, or last-writer-wins throwing data away.&rdquo; &mdash; not if the merge is a semilattice join. Then concurrent updates <b>commute</b>, and convergence is a theorem, not a negotiation. Strong eventual consistency with zero coordination. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1984&ndash;2007</b> &middot; <span class="who">precursors</span> &mdash; Wuu &amp; Bernstein's replicated dictionary (1984); Amazon's Dynamo shopping cart (2007) merging concurrent carts by union.<br><b>2011</b> &middot; <span class="who">Shapiro, Preguiça, Baquero &amp; Zawirski</span> &mdash; &ldquo;Conflict-free Replicated Data Types&rdquo;: names and unifies them, proves that a join-semilattice merge (CvRDT) gives strong eventual consistency.<br><b>now</b> &middot; Riak, Redis, Automerge/Yjs (collaborative editors), Figma-style multiplayer &mdash; all lean on CRDTs.</div>
+  <p style="margin-top:10px">The radical part is what it removes: no leader, no quorum, no round-trip. Agreement is not <i>reached</i>, it is made <b>impossible to avoid</b> &mdash; the algebra of the merge forces every replica to the same place. Convergence by construction. <span class="tag t-open">Shapiro et al. 2011</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">merge commutative + idempotent &rarr; replicas converge, computed</span></h2>
+  <p>On the canonical compiler, a 3-node grow-only counter with replicas <span class="k">A=[3,1,0]</span> and <span class="k">B=[0,1,4]</span> merges by per-node max &mdash; and the merge is order-independent and idempotent, so both replicas reach the same total <span class="k">8</span>:</p>
+  <div class="evi good">$ i13 run crdt.i13   # G-Counter, merge = per-node max
+merge(A,B) - merge(B,A) = 0     -- COMMUTATIVE: order does not matter
+merge(m,m) - m         = 0      -- IDEMPOTENT: duplicates are harmless
+total = 8                        -- 3+1+4, both replicas converge here</div>
+  <div class="rec"><b>Recommend:</b> the CRDT is <b>LIT and a keeper-grade fit for I-13</b> &mdash; verified a G-Counter merge is <b>commutative</b> (<span class="k">merge(A,B)=merge(B,A)</span>, difference 0) and <b>idempotent</b> (<span class="k">merge(m,m)=m</span>), so both replicas converge to <span class="k">8</span> regardless of message order or duplication. Agreement with <b>no consensus round</b> &mdash; the semilattice join is the whole mechanism, and it is the substrate DACI replicates across N nodes.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  function parse(id){ var a=(document.getElementById(id).value||"").split(",").map(function(s){return Math.floor(+s||0);}); while(a.length<3)a.push(0); return a.slice(0,3); }
+  function mx(a,b){ return a>b?a:b; }
+  function merge(x,y){ return [mx(x[0],y[0]),mx(x[1],y[1]),mx(x[2],y[2])]; }
+  function tot(v){ return v[0]+v[1]+v[2]; }
+  function run(){
+    var A=parse("a"), B=parse("b"), L=[];
+    var ab=merge(A,B), ba=merge(B,A);
+    var comm=(ab[0]-ba[0])+(ab[1]-ba[1])+(ab[2]-ba[2]);
+    var idem=tot(merge(ab,ab))-tot(ab);
+    L.push("replica A = ["+A+"]     replica B = ["+B+"]   (per-node event counts)\n");
+    L.push("merge(A,B) = ["+ab+"]");
+    L.push("merge(B,A) = ["+ba+"]   commutative? diff = "+comm+"  "+(comm===0?"<span class='hit'>&#10003;</span>":"<span class='bad'>&#10007;</span>"));
+    L.push("merge(m,m) = m ?  idempotent? diff = "+idem+"  "+(idem===0?"<span class='hit'>&#10003;</span>":"<span class='bad'>&#10007;</span>")+"\n");
+    L.push("both replicas converge, total = <span class='g'>"+tot(ab)+"</span>   <span class='dim'>// no consensus round, no leader</span>");
+    out.innerHTML=L.join("\n");
+    say.innerHTML=(comm===0&&idem===0)?"<span class='true'>converged</span> to "+tot(ab)+", coordination-free":"<span class='bad'>not a semilattice</span>";
+  }
+  document.getElementById("go").onclick=run;
+  ["a","b"].forEach(function(id){document.getElementById(id).addEventListener("input",run);});
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 218 &middot; THE CRDT</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Shapiro, Preguiça, Baquero &amp; Zawirski</b> (2011) named and proved CRDTs; precursors in Wuu&ndash;Bernstein (1984) and Amazon Dynamo (2007). The mechanism under DACI (Eskimo Brothers). Rendered by AVAN. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CONSENSUS</b> (batch 33) &mdash; how independent nodes/agents agree &mdash; logical clocks, Raft, leader election, gossip, CRDTs, distributed snapshots, the Two Generals limit, and atomic broadcast; the World-V home of DACI (Eskimo Brothers, brother 3: multi-agent consensus &amp; provenance), companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

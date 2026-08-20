@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE LAMPORT CLOCK &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 214 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE LAMPORT CLOCK <span class="c">order without a clock</span></h1>
+  <p class="sub">Distributed nodes have no shared wall clock, yet they must agree on what happened before what. Lamport's answer: give each node a counter. Increment it on every local event; stamp every message you send; on receive, set your counter to <span class="k">max(local, message) + 1</span>. The result is a <b>logical clock</b> where <span class="k">a &rarr; b</span> (a <i>happened-before</i> b) always implies <span class="k">LC(a) &lt; LC(b)</span> &mdash; a consistent order of causality built from nothing but counters and messages.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">on receive: LC = max(local, msg) + 1 ; a&rarr;b &rArr; LC(a)&lt;LC(b)</span></h2>
+  <p>Run two processes exchanging a message; give the receiver some head-start local events, and watch the receive stamp always land strictly after the send &mdash; causality preserved with no synchronized time: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>P2 head-start events</label><input id="h" type="number" value="1" min="0" max="20" style="width:90px"><button id="go" class="dartbtn">&#9192; stamp the events</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Leslie Lamport, 1978</span></h2>
+  <p class="myth">&ldquo;To order events across machines you need synchronized clocks.&rdquo; &mdash; no; you need only counters and the messages you already send. Physical clocks drift and disagree; the logical clock never claims real time, only <b>causal</b> order &mdash; and that is all consensus ever needs. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1978</b> &middot; <span class="who">Leslie Lamport</span> &mdash; &ldquo;Time, Clocks, and the Ordering of Events in a Distributed System&rdquo;: the <i>happened-before</i> partial order and the logical clock. One of the most-cited papers in all of computing.<br><b>1988</b> &middot; <span class="who">Fidge &amp; Mattern</span> &mdash; vector clocks extend it to capture concurrency exactly (Lamport's scalar clock only preserves one direction of the implication).<br><b>now</b> &middot; every ordered log, every causal store, every version-vector rests on this counter.</div>
+  <p style="margin-top:10px">The deepest lesson is the arrow's direction: <span class="k">a&rarr;b</span> forces <span class="k">LC(a)&lt;LC(b)</span>, but not the reverse &mdash; a smaller stamp does not prove causality. The clock is honest about exactly what it can and cannot know. <span class="tag t-open">Lamport 1978</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">receive stamped strictly after send, computed</span></h2>
+  <p>On the canonical compiler, a message sent at logical time 2, received by a node whose local clock was at 1, is stamped <span class="k">max(1,2)+1 = 3</span> &mdash; strictly after the send:</p>
+  <div class="evi good">$ i13 run lamport.i13   # P1 sends at LC=2 ; P2 had done 1 local event
+p2_recv = 3        -- max(local 1, msg 2) + 1
+ordered = 1        -- receive (3) strictly AFTER send (2): happened-before preserved</div>
+  <div class="rec"><b>Recommend:</b> the Lamport clock is <b>LIT for I-13</b> &mdash; verified a receive event stamps to <span class="k">3 = max(1,2)+1</span>, strictly greater than the send stamp <span class="k">2</span>, so <span class="k">send &rarr; receive</span> is preserved in the logical order. Pure counters and <span class="k">max</span>, no shared clock &mdash; the foundation every other dart in this batch stands on.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  function mx(a,b){ return a>b?a:b; }
+  function run(){
+    var h=Math.max(0,Math.min(20,Math.floor(+document.getElementById("h").value||0)));
+    var L=[];
+    // P1: event(1), send(2).  P2: h local events (1..h), then receive.
+    L.push("P1:  local event  LC=1");
+    L.push("     SEND msg     LC=<span class='cur'>2</span>   (message carries timestamp 2)\n");
+    var p2=0, lines=[];
+    for(var i=1;i<=h;i++){ p2=i; lines.push("P2:  local event  LC="+p2); }
+    if(h===0) lines.push("P2:  (no local events yet, LC=0)");
+    L=L.concat(lines);
+    var recv=mx(h,2)+1;
+    L.push("P2:  RECV msg     LC=max("+h+", 2)+1 = <span class='hit'>"+recv+"</span>");
+    L.push("\nsend stamp 2  <  receive stamp "+recv+"   "+(recv>2?"<span class='hit'>&#10003; happened-before preserved</span>":"<span class='bad'>violated</span>"));
+    out.innerHTML=L.join("\n");
+    say.innerHTML="receive LC = <span class='true'>"+recv+"</span> &gt; send LC 2";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("h").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 214 &middot; THE LAMPORT CLOCK</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Leslie Lamport</b> (1978, &ldquo;Time, Clocks&hellip;&rdquo;) gave the happened-before order and the logical clock; <b>Fidge &amp; Mattern</b> (1988) extended it to vector clocks. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CONSENSUS</b> (batch 33) &mdash; how independent nodes/agents agree &mdash; logical clocks, Raft, leader election, gossip, CRDTs, distributed snapshots, the Two Generals limit, and atomic broadcast; the World-V home of DACI (Eskimo Brothers, brother 3: multi-agent consensus &amp; provenance), companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
