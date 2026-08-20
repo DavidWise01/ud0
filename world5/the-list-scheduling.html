@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LIST SCHEDULING &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 160 &middot; a helldive at the net</span></div>
+<header>
+  <h1>LIST SCHEDULING <span class="c">reorder instructions to hide latency, respect the DAG</span></h1>
+  <p class="sub">An instruction that starts a multi-cycle operation (a load, a multiply) leaves the result unavailable for several cycles; issue its consumer too soon and the pipeline <b>stalls</b>. List scheduling builds the <b>data-dependency DAG</b>, then greedily issues from a <b>ready list</b> (instructions whose inputs are all available), picking by priority &mdash; usually the <b>critical-path distance to the end</b> &mdash; so long chains start early and independent work fills the stall slots.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">ready list, priority = critical path</span></h2>
+  <p>Five instructions with latencies and dependencies: issued in program order they stall; scheduled by critical-path priority the stalls fill. The critical path is the hard lower bound &mdash; no schedule beats it. Compute both: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; schedule vs program order</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Graham 1966; compiler use 1980s</span></h2>
+  <p class="myth">&ldquo;List scheduling finds the shortest schedule.&rdquo; &mdash; no. Optimal instruction scheduling is <b>NP-hard</b>; list scheduling is a <b>greedy heuristic</b> that is fast and usually near-optimal, and Graham&rsquo;s 1966 result even bounds how bad it can get (and its anomalies). <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1966</b> &middot; <span class="who">Ronald L. Graham</span> &mdash; &ldquo;Bounds for Certain Multiprocessing Anomalies&rdquo;: <b>list scheduling</b> and its worst-case bound (and the counter-intuitive anomalies where more resources make it slower).<br><b>1986</b> &middot; <span class="who">Gibbons &amp; Muchnick</span> &mdash; bring list scheduling to <b>instruction scheduling</b> for pipelined processors.<br><b>1991</b> &middot; <span class="who">Bernstein &amp; Rodeh</span> and others &mdash; global / cross-block scheduling.</div>
+  <p style="margin-top:10px">The critical path (longest latency-weighted chain in the DAG) is the schedule&rsquo;s hard floor; list scheduling&rsquo;s whole game is filling every other cycle with independent work so the total approaches that floor. <span class="tag t-open">Graham 1966</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the critical path, computed</span></h2>
+  <p>The critical-path length &mdash; the lower bound every schedule must respect &mdash; runs on the canonical compiler:</p>
+  <div class="evi good">$ i13 run sched.i13   # longest latency-weighted path through the dependency DAG
+critical = 7   -- the hard floor: no schedule is shorter than the critical path
+serial   = 8   -- issuing in naive program order costs more (a stall)</div>
+  <div class="rec"><b>Recommend:</b> list scheduling is <b>LIT at its core</b> &mdash; the canonical compiler computes the <b>critical path = 7</b> (the schedule&rsquo;s hard lower bound) against a naive serial cost of <b>8</b>, by the longest-weighted-path recurrence over an array-encoded DAG (native I-13 recursion). For an I-13 back-end targeting any pipelined VM, this is the pass that decides <i>issue order</i>; the DAG and priorities are plain arrays, and the greedy ready-list loop is bounded. Follows instruction selection (158) and register allocation (161) &mdash; scheduling and allocation famously fight (schedule widens live ranges), so order them deliberately.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  // 5 instrs; deps: i0->i2, i1->i2 (mul needs both), i2->i3, i3->i4 ; latencies
+  var name=["load a","load b","mul","add c","store"], lat=[1,3,1,2,1];
+  var deps=[[],[],[0,1],[2],[3]];
+  function run(){
+    // critical path to end (longest weighted path), and a greedy list schedule
+    var cp=[]; function crit(n){ if(cp[n]!=null) return cp[n]; var m=0; for(var k=0;k<5;k++) if(deps[k].indexOf(n)>=0){ var c=crit(k); if(c>m)m=c; } cp[n]=lat[n]+m; return cp[n]; }
+    for(var i=0;i<5;i++) crit(i);
+    // critical path = longest latency-weighted chain = max over ALL nodes of (path from that node to the end)
+    var critical=Math.max.apply(null, cp);
+    // greedy list schedule: at each cycle, issue any ready instr (deps done) with max crit priority
+    var done={}, avail={}, cycle=0, sched=[];
+    while(Object.keys(done).length<5 && cycle<50){
+      var ready=[]; for(i=0;i<5;i++) if(!(i in done) && !(i in avail) && deps[i].every(function(d){ return (d in done) && done[d]<=cycle; })) ready.push(i);
+      ready.sort(function(a,b){ return cp[b]-cp[a]; });
+      if(ready.length){ var pick=ready[0]; avail[pick]=cycle+lat[pick]; sched.push([cycle,name[pick],lat[pick]]); }
+      // retire
+      for(i in avail){ if(avail[i]<=cycle+1){ done[i]=avail[i]; } }
+      cycle++;
+    }
+    var finish=0; for(i in done) if(done[i]>finish) finish=done[i];
+    // naive program order (serial, no overlap): sum of latencies plus a stall
+    var serial=lat.reduce(function(a,b){return a+b;},0);
+    var L=[];
+    L.push("dependency DAG (latency):  load a[1], load b[3] -> mul[1] -> add c[2] -> store[1]\n");
+    L.push("critical path (hard floor) = <span class='cur'>"+critical+"</span> cycles");
+    L.push("program order (serialised) = <span class='bad'>"+serial+"</span> cycles  (load b's latency stalls the mul)\n");
+    L.push("list schedule (issue by critical-path priority):");
+    sched.forEach(function(s){ L.push("  cycle "+s[0]+":  "+s[1]+"  <span class='dim'>(lat "+s[2]+")</span>"); });
+    L.push("\n<span class='hit'>start load b first (latency 3, longest) so the mul does not wait.</span>");
+    out.innerHTML=L.join("\n");
+    say.innerHTML="critical path <span class='true'>"+critical+"</span> vs serial "+serial;
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 160 &middot; LIST SCHEDULING</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Ronald L. Graham</b> introduced <b>list scheduling</b> and its worst-case bound (1966, multiprocessor scheduling); <b>Gibbons &amp; Muchnick</b> (1986) applied it to pipelined instruction scheduling. Optimal scheduling is <b>NP-hard</b> &mdash; list scheduling is a bounded greedy heuristic, not an optimiser. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE BACK-END</b> (batch 26) &mdash; code generation from IR to machine code &mdash; completing the compiler arc front-end (22&ndash;23) &rarr; evaluators (24) &rarr; optimizer (25) &rarr; back-end, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

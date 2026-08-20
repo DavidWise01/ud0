@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE ACTIVATION RECORD &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 165 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE ACTIVATION RECORD <span class="c">a function call is a frame; a tail call reuses it</span></h1>
+  <p class="sub">Every function call gets an <b>activation record</b> (a stack frame): a fixed block holding the return address, the caller&rsquo;s saved frame pointer, saved registers, the locals and the outgoing arguments &mdash; each at a known <b>offset</b> from the frame pointer, so a local is just <span class="k">[fp + k]</span>. A normal call <b>pushes</b> a new frame; a <b>tail</b> call, having nothing left to do, can <b>reuse</b> the current one &mdash; the exact reuse tail-call optimisation (dart 155) needs.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">offsets from fp; reuse on tail calls</span></h2>
+  <p>Locals sit at fixed offsets above the saved frame pointer and return address. A normal call pushes a fresh frame at <span class="k">fp + frame_size</span>; a tail call reuses the current <span class="k">fp</span> and never grows the stack. Toggle the call kind and compute the frame pointer: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>call kind</label><select id="kind"><option value="tail" selected>tail call (reuse frame)</option><option value="normal">normal call (push frame)</option></select><button id="go" class="dartbtn">&#9192; lay out the frame</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Dijkstra 1960: recursion + display (the stack is older)</span></h2>
+  <p class="myth">&ldquo;Local variables live at fixed memory addresses.&rdquo; &mdash; no, not for a re-entrant or recursive function: each call has its <b>own</b> frame on the stack, and a local is addressed <b>relative to the frame pointer</b>, not absolutely &mdash; which is exactly what lets a function call itself. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1960</b> &middot; <span class="who">Edsger Dijkstra</span> &mdash; &ldquo;Recursive Programming&rdquo; (Numer. Math. <b>2</b>, 312&ndash;318): applies the run-time stack to <b>activation records for recursion</b> and introduces the <b>display</b> for nested-scope access. The stack itself is <b>older</b> &mdash; Turing&rsquo;s 1945 &ldquo;bury / unbury&rdquo;, Samelson &amp; Bauer&rsquo;s <i>Kellerprinzip</i> (1955&ndash;57); Dijkstra&rsquo;s advance is recursion + the display.<br><b>1964</b> &middot; <span class="who">Randell &amp; Russell</span> &mdash; the ALGOL 60 implementation that realises the stack/display in a real compiler.<br><b>ongoing</b> &middot; the <b>calling convention / ABI</b> fixes the exact layout (who saves which register, arg order) &mdash; the frame&rsquo;s contract between caller and callee.</div>
+  <p style="margin-top:10px">The frame pointer is the pivot: locals above it, the saved fp and return address below, and the caller&rsquo;s frame one link further down &mdash; a linked list of frames that <i>is</i> the call stack. A tail call overwrites its own link instead of adding one. <span class="tag t-open">Dijkstra, 1960</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">offsets computed; the tail-call reuse</span></h2>
+  <p>The frame layout &mdash; local offsets, and a tail call reusing the frame pointer &mdash; runs on the canonical compiler:</p>
+  <div class="evi good">$ i13 run frame.i13   # local i at fp+2+i; tail call reuses fp, normal call pushes
+loc0 = 1002   loc2 = 1004      -- locals at fixed offsets above fp=1000
+normal_call_fp = 1005           -- a normal call pushes a new frame (fp + size)
+tailcall_fp    = 1000           -- a TAIL call REUSES the frame: same fp, no growth</div>
+  <div class="rec"><b>Recommend:</b> the activation record is <b>LIT and the missing piece behind dart 155</b> &mdash; the canonical compiler computes locals at fixed offsets above <span class="k">fp</span> (loc0=1002, loc2=1004) and, crucially, that a <b>tail call reuses fp=1000</b> where a normal call would push to 1005. That reuse <i>is</i> tail-call optimisation: I-13&rsquo;s measured 4096-frame wall (dart 155) is a wall of <b>activation records</b>, and eliminating a tail call means overwriting the current record instead of stacking a new one. A real I-13 back-end would lay locals at frame offsets and add exactly this reuse to make accumulator recursion run flat. Closes the back-end (batch 26) by naming the object every call and every optimisation acts on.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var fp=1000, frame=[{f:"saved fp",o:0},{f:"return addr",o:1},{f:"local0",o:2},{f:"local1",o:3},{f:"local2",o:4}], size=5;
+  function run(){
+    var kind=document.getElementById("kind").value;
+    var L=[];
+    L.push("activation record (frame pointer fp = "+fp+"):");
+    frame.forEach(function(s){ L.push("  fp+"+s.o+"  ("+ (fp+s.o) +")   "+s.f); });
+    L.push("\nlocal i address = fp + 2 + i:");
+    L.push("  local0 = <span class='g'>"+(fp+2)+"</span>   local2 = <span class='g'>"+(fp+4)+"</span>");
+    var newfp = (kind==="tail") ? fp : fp+size;
+    L.push("\ncall kind: <b>"+(kind==="tail"?"TAIL":"NORMAL")+"</b>");
+    if(kind==="tail"){
+      L.push("  nothing pending after the call -> <span class='hit'>reuse this frame</span>");
+      L.push("  new fp = <span class='cur'>"+newfp+"</span>  (unchanged: the stack does NOT grow)");
+      L.push("  <span class='hit'>this reuse IS tail-call optimisation (dart 155's 4096-frame wall).</span>");
+    } else {
+      L.push("  push a fresh frame above this one");
+      L.push("  new fp = <span class='bad'>"+newfp+"</span>  (fp + frame_size: the stack grows by "+size+")");
+    }
+    out.innerHTML=L.join("\n");
+    say.innerHTML = (kind==="tail") ? "tail: fp <span class='true'>reused ("+newfp+")</span>" : "normal: fp -> <span class='err'>"+newfp+"</span>";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("kind").addEventListener("change",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 165 &middot; THE ACTIVATION RECORD</b> &mdash; World V &middot; SONNY 5, the I-13 world. The run-time <b>stack</b> predates Dijkstra (Turing&rsquo;s 1945 &ldquo;bury/unbury&rdquo;; Samelson &amp; Bauer&rsquo;s <i>Kellerprinzip</i>, 1955&ndash;57); <b>Dijkstra</b>&rsquo;s 1960 &ldquo;Recursive Programming&rdquo; (Numer. Math. 2, 312&ndash;318) contributes applying it to <b>activation records for recursion</b> + the <b>display</b>, realised in ALGOL 60 by <b>Randell &amp; Russell</b> (1964); the exact layout is fixed by the <b>calling convention / ABI</b>. Locals are addressed <b>relative to the frame pointer</b>, not absolutely &mdash; which is what makes recursion possible. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE BACK-END</b> (batch 26) &mdash; code generation from IR to machine code &mdash; completing the compiler arc front-end (22&ndash;23) &rarr; evaluators (24) &rarr; optimizer (25) &rarr; back-end, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

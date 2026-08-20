@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAXIMAL MUNCH &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 158 &middot; a helldive at the net</span></div>
+<header>
+  <h1>MAXIMAL MUNCH <span class="c">tile the IR tree with the biggest instruction that fits</span></h1>
+  <p class="sub">The back-end&rsquo;s first job: turn an IR tree into machine instructions. Each instruction is a <b>tile</b> that covers a sub-tree; <b>maximal munch</b> walks the tree top-down and, at every node, greedily takes the <b>largest tile that matches</b>, then recurses on the tile&rsquo;s leaf operands. One CISC addressing-mode tile can swallow a load, an add and a multiply at once &mdash; three naive instructions become one.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">greedy largest tile, top-down</span></h2>
+  <p>The address computation <span class="k">load(base + idx*4)</span> is a 3-operator tree. A simple ISA emits one instruction per operator (3); a CISC <span class="k">mov r,[base+idx*4]</span> tile covers all three at once. Toggle the tile set and watch the instruction count collapse: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>ISA</label><select id="isa"><option value="1" selected>CISC (has the address tile)</option><option value="0">RISC (one op per node)</option></select><button id="go" class="dartbtn">&#9192; munch the tree</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">tree pattern matching; Cattell 1980</span></h2>
+  <p class="myth">&ldquo;Maximal munch is optimal.&rdquo; &mdash; no. Greedy largest-tile is <b>fast and usually good but not optimal</b>; the global optimum needs dynamic programming or bottom-up rewriting (twig / BURS). Maximal munch trades optimality for a single linear pass. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1970s</b> &middot; <span class="who">Glanville &amp; Graham</span> (1978) &mdash; a table-driven, parsing-style approach to instruction selection.<br><b>1980</b> &middot; <span class="who">R. G. G. Cattell</span> &mdash; PhD &ldquo;Automatic Derivation of Code Generators from Machine Descriptions&rdquo;: instruction selection as <b>tree pattern matching</b>, the maximal-munch lineage.<br><b>1988</b> &middot; <span class="who">Pelegri-Llopart &amp; Graham</span> &mdash; &ldquo;Optimal Code Generation for Expression Trees: An Application of BURS Theory&rdquo; (POPL): <b>BURS</b> (bottom-up rewrite), optimum covers.<br><b>1989</b> &middot; <span class="who">Aho, Ganapathi &amp; Tjiang</span> &mdash; &ldquo;twig&rdquo; (TOPLAS): <b>top-down</b> tree pattern matching + dynamic programming, also optimum. Two distinct optimum-tiling frameworks &mdash; not the same technique.</div>
+  <p style="margin-top:10px">Greedy munch is <b>locally</b> optimal (no two adjacent tiles merge into a cheaper one) but not the global <b>optimum</b> that DP/BURS reach. &ldquo;Maximal munch&rdquo; also names the <b>longest-match</b> rule in lexers (grab the longest valid token) &mdash; the same greedy idea in a different phase; do not conflate the two uses. <span class="tag t-open">Cattell 1980 / Glanville-Graham 1978</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the tile count, computed</span></h2>
+  <p>The instruction counts &mdash; naive one-per-node vs one addressing tile &mdash; run on the canonical compiler:</p>
+  <div class="evi good">$ i13 run munch.i13   # load(add(base, mul(idx,4))): count operators, then apply one tile
+naive = 3      -- load, add, mul as three instructions
+tile_covers = 3   tiles = 1
+munched = 1    -- one address-mode tile: naive - (covers-1)*tiles = 3 - 2 = 1</div>
+  <div class="rec"><b>Recommend:</b> instruction selection by maximal munch is <b>LIT in its counting</b> &mdash; verified on the canonical compiler that the 3-operator address tree costs <b>3</b> naive instructions and <b>1</b> under a single address-mode tile. For an I-13 back-end the tree is already there (the lowered IVM op array is close to a tile stream), and munch is the simplest selector to write: one top-down pass, largest match wins. When optimality matters, the same tree takes a BURS DP instead &mdash; the honest upgrade. Opens the back-end (batch 26); feeds register allocation (159, 161).</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  // address tree: load(5) -> add(4) -> [base(0), mul(3) -> [idx(1), four(2)]]
+  var op=["base","idx","4","mul","add","load"], lft=[-1,-1,-1,1,0,4], rgt=[-1,-1,-1,2,3,-1], isleaf=[1,1,1,0,0,0];
+  function run(){
+    var cisc=+document.getElementById("isa").value, instrs=[], covered={};
+    // maximal munch: top-down; at load, if CISC take the address tile covering load+add+mul
+    function munch(n){
+      if(isleaf[n]) return;                      // leaves are already in registers
+      if(cisc && op[n]==="load" && op[lft[n]]==="add" && op[lft[lft[n]]]!=="add"){
+        // the big tile: mov r,[base + idx*scale] covers load,add,mul
+        var addn=lft[n], base=lft[addn], mul=rgt[addn];
+        instrs.push("mov r,[ "+op[base]+" + "+op[lft[mul]]+"*"+op[rgt[mul]]+" ]   <span class='hit'>(1 tile covers load+add+mul)</span>");
+        return;                                   // operands base,idx are leaves -> done
+      }
+      // otherwise one op per node, children first
+      if(!isleaf[lft[n]]) munch(lft[n]);
+      if(rgt[n]>=0 && !isleaf[rgt[n]]) munch(rgt[n]);
+      if(op[n]==="mul") instrs.push("mul  r, "+op[lft[n]]+", "+op[rgt[n]]);
+      else if(op[n]==="add") instrs.push("add  r, "+op[lft[n]]+", r");
+      else if(op[n]==="load") instrs.push("load r, [r]");
+    }
+    munch(5);
+    var L=[];
+    L.push("IR tree:  load( base + idx*4 )   ["+ (cisc?"CISC":"RISC") +"]\n");
+    L.push("emitted instructions:");
+    instrs.forEach(function(x,i){ L.push("  "+(i+1)+"  "+x); });
+    L.push("\ninstruction count = <span class='cur'>"+instrs.length+"</span>"+(cisc?"   <span class='hit'>maximal munch: 3 ops -> 1 tile</span>":"   (one op per node)"));
+    out.innerHTML=L.join("\n");
+    say.innerHTML = cisc ? "<span class='true'>1</span> instruction (one tile)" : "<span class='err'>3</span> instructions (RISC)";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("isa").addEventListener("change",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 158 &middot; MAXIMAL MUNCH</b> &mdash; World V &middot; SONNY 5, the I-13 world. Instruction selection as <b>tree pattern matching</b> is <b>Cattell</b> (PhD, 1980) in the <b>Glanville &amp; Graham</b> (1978) table-driven lineage; optimum tree-tiling is <b>twig</b> (Aho, Ganapathi &amp; Tjiang, TOPLAS 1989) and <b>BURS</b> (Pelegri-Llopart &amp; Graham, POPL 1988) &mdash; two distinct frameworks. Maximal munch is <b>greedy, not optimal</b> &mdash; and the codegen use is distinct from the lexer&rsquo;s longest-match rule. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE BACK-END</b> (batch 26) &mdash; code generation from IR to machine code &mdash; completing the compiler arc front-end (22&ndash;23) &rarr; evaluators (24) &rarr; optimizer (25) &rarr; back-end, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
