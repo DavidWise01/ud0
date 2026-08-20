@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE CESK MACHINE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 268 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE CESK MACHINE <span class="c">add a Store &mdash; now the machine has addresses, and mutation, and abstraction</span></h1>
+  <p class="sub">The <b>CESK machine</b> is the CEK machine plus a fourth component: a <b>S</b>tore, a map from <b>addresses</b> to values. The environment now binds variables to addresses, and addresses point into the store. That one indirection buys <b>mutable state</b> (assignment updates the store, not the environment) and, more famously, <b>abstract interpretation</b>: make the store finite and the CESK machine becomes a static analyzer. Van Horn &amp; Might's &ldquo;Abstracting Abstract Machines&rdquo; turns any CESK-style interpreter into a program analysis by bounding the store &mdash; a single recipe from evaluator to analyzer.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">env binds vars to addresses; store maps addresses to values</span></h2>
+  <p>A store with addressed cells. The demo allocates two cells and reads one back &mdash; the indirection an environment alone cannot express: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; allocate &amp; read the store</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Felleisen-Friedman 1987 &middot; Van Horn-Might 2010</span></h2>
+  <p class="myth">&ldquo;State is a hack bolted onto a pure machine.&rdquo; &mdash; the store is a clean fourth component, and bounding it turns the very same machine from an evaluator into a static analyzer. Addresses are the hinge between running a program and analyzing it. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1987</b> &middot; <span class="who">Felleisen &amp; Friedman</span> &mdash; CESK: CEK + a store, for mutable state.<br><b>2010</b> &middot; <span class="who">David Van Horn &amp; Matthew Might</span> &mdash; &ldquo;Abstracting Abstract Machines&rdquo;: bound the store and the CESK machine becomes a program analysis.<br><b>now</b> &middot; the systematic route from interpreter to static analyzer.</div>
+  <p style="margin-top:10px">A store of addresses is the one part you can shrink: keep it infinite and the machine runs; make it finite and the same machine analyzes. Evaluator and analyzer, one design. <span class="tag t-open">Van Horn-Might 2010</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">store cells, computed</span></h2>
+  <p>On the canonical compiler, two addressed cells are allocated and one read back (<span class="k">cell1 = cell0 + 1 = 8</span>):</p>
+  <div class="evi good">$ i13 run m_cesk.i13   # a store of addressed cells
+RUN OK . 10 step(s) . peak stack 2 . call depth 0
+cell0 = 7
+cell1 = 8
+store_cells = 2</div>
+  <div class="rec"><b>Recommend:</b> i13 has <b>no store</b> &mdash; and that is the deep reason its arrays are value-semantic (dart 242, 252). Without a store there are no addresses, no aliasing, no mutation-through-a-pointer: a write yields a new value, never an update to a shared cell. So i13 sits on the CEK side (dart 267), never CESK. The upside is exactly Van Horn &amp; Might's insight run in reverse: a machine with no mutable store is <i>already</i> close to its own static analysis &mdash; nothing to abstract, because nothing aliases. i13 keeps the store out to keep its single-pass proof honest.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function run(){
+    var store={a0:7}; store.a1 = store.a0 + 1;
+    var L=[];
+    L.push("env   : x -> a0,  y -> a1        (variables bind to ADDRESSES)");
+    L.push("store : a0 -> "+store.a0+",  a1 -> "+store.a1+"     (addresses map to VALUES)");
+    L.push("read y : store[env[y]] = store[a1] = "+store.a1);
+    L.push("");
+    L.push("2 store cells; the indirection an environment alone can't express.   value <span style='color:"+G+"'>"+store.a1+"</span>");
+    out.innerHTML=L.join("\n"); say.innerHTML="cell1 <span class='true'>"+store.a1+"</span> (2 cells)";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 268 &middot; THE CESK MACHINE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Felleisen &amp; Friedman</b> (1987) added the store (CESK); <b>Van Horn &amp; Might</b> (2010) made it the bridge to static analysis. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE MACHINE</b> (batch 37) &mdash; abstract machines and execution models, the EXECUTION counterpart to batch 36&rsquo;s type layer. i13&rsquo;s runtime IS a stack machine (the IVM); every <span class="k">run</span> reports <span class="k">N step(s) &middot; peak stack M &middot; call depth D</span>, so i13 instruments its own abstract machine. Each dart (stack / register machine, bytecode, three-address code, ANF, CEK / CESK, CAM, ZINC, STG, closure conversion, supercombinators, the WAM, the trampoline, normalization-by-evaluation, explicit substitution) asks how i13&rsquo;s machine relates to it &mdash; is it, forgoes it, or (the trampoline) hits a real frontier. Next to the <a href="the-i13-benchmark.html">I-13 benchmark</a> and <a href="the-multipass.html">THE MULTIPASS</a>.
+</footer>
+</body>
+</html>
