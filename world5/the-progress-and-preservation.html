@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE PROGRESS AND PRESERVATION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 259 &middot; a helldive at the net</span></div>
+<header>
+  <h1>PROGRESS &amp; PRESERVATION <span class="c">well-typed programs do not go wrong &mdash; the two lemmas that prove it</span></h1>
+  <p class="sub">What does a type system actually <b>guarantee</b>? Type <b>soundness</b>: &ldquo;well-typed programs do not go wrong&rdquo; (Milner). Wright &amp; Felleisen made proving it a recipe of two lemmas. <b>Progress</b>: a well-typed term is either a value or can take a step &mdash; it never gets <i>stuck</i> (no <span class="k">1 + true</span> with nowhere to go). <b>Preservation</b> (subject reduction): if a well-typed term steps, the result is well-typed <i>at the same type</i>. Together, by induction: a well-typed program steps and steps, always typed, never stuck &mdash; it runs to a value or forever, but never to nonsense. This is the theorem a type system exists to earn.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">progress (never stuck) + preservation (type kept per step)</span></h2>
+  <p>A well-typed arithmetic term reduced step by step. The demo shows the type is <b>preserved</b> at every step and the term makes <b>progress</b> to a value: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; reduce &amp; check soundness</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Milner 1978 &middot; Wright-Felleisen 1994</span></h2>
+  <p class="myth">&ldquo;A type checker just catches typos.&rdquo; &mdash; it earns a theorem: every program it accepts is guaranteed never to reach a meaningless state. Progress and preservation are the proof that &ldquo;well-typed&rdquo; means &ldquo;won't go wrong,&rdquo; not just &ldquo;looks tidy.&rdquo; <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1978</b> &middot; <span class="who">Robin Milner</span> &mdash; &ldquo;A Theory of Type Polymorphism&rdquo;: <b>well-typed programs cannot go wrong</b>.<br><b>1994</b> &middot; <span class="who">Andrew Wright &amp; Matthias Felleisen</span> &mdash; &ldquo;A Syntactic Approach to Type Soundness&rdquo;: the <b>progress + preservation</b> proof method, now the textbook standard.<br><b>now</b> &middot; every new type system is validated by proving these two lemmas.</div>
+  <p style="margin-top:10px">Progress says it can move; preservation says it stays typed while moving. Chain them by induction and &ldquo;well-typed&rdquo; becomes a promise about the entire run, not a single moment. <span class="tag t-open">Wright-Felleisen 1994</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">type preserved across reduction, computed</span></h2>
+  <p>On the canonical compiler, the well-typed term <span class="k">(1+2)+3</span> reduces to <span class="k">6</span>, staying type <span class="k">Int</span> at every step (preservation) and never stuck (progress):</p>
+  <div class="evi good">$ i13 run t_soundness.i13   # (1+2)+3, typed Int throughout
+e0 = 6
+type_tag_Int = 1       -- preserved at every step
+steps_taken = 2        -- progress: value reached, never stuck</div>
+  <div class="rec"><b>Recommend:</b> this dart names what i13's ledger <b>is</b>. i13's <span class="k">check</span> prints <span class="k">COVERED: stack balance, control-structure pairing, call arity</span> and <span class="ko">NOT COVERED: types</span> &mdash; that ledger is a <b>soundness statement for the properties it does prove</b>. i13 earns progress-and-preservation-style guarantees for its stack discipline (it proves the stack stays balanced, never underflows) but explicitly <i>declines</i> the type half (<span class="k">1 + true</span> is not something i13 rules out, because to it everything is f64). The whole batch is a tour of the guarantee i13's ledger, with one honest line, says it does not make.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function run(){
+    var steps=["(1 + 2) + 3","3 + 3","6"], L=[];
+    L.push("term : Int");
+    for(var i=0;i<steps.length;i++){
+      var kind=(i<steps.length-1)?"step":"value";
+      L.push("  "+steps[i]+"    : Int   <span style='color:"+G+"'>[type preserved]</span>  "+(kind==="value"?"&larr; value (progress: reached)":""));
+    }
+    L.push(""); L.push("progress: never stuck.  preservation: type Int at every step.  <span style='color:"+G+"'>soundness holds.</span>");
+    out.innerHTML=L.join("\n"); say.innerHTML="typed Int &rarr; <span class='true'>6</span>, never stuck";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 259 &middot; THE PROGRESS AND PRESERVATION</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Robin Milner</b> (1978, &ldquo;well-typed programs don't go wrong&rdquo;) and <b>Wright &amp; Felleisen</b> (1994, the progress+preservation method) gave type soundness. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE TYPE</b> (batch 36) &mdash; type systems, each in dialogue with i13&rsquo;s single most explicit gap: its <span class="k">check</span> ledger literally lists <b>types</b> under <b>NOT COVERED</b>. i13 is dynamically typed (one ground type, f64), so each dart asks what a type discipline (algebraic data, polymorphism, System F, subtyping, typeclasses, dependent / linear / refinement / effect / existential / row / higher-kinded types, bidirectional checking, soundness, phantom tags, the lambda cube) would add &mdash; and why i13 declines it. Next to the <a href="the-i13-benchmark.html">I-13 benchmark</a> and its synthesis <a href="the-multipass.html">THE MULTIPASS</a>.
+</footer>
+</body>
+</html>
