@@ -1,0 +1,170 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE i13 CONSTELLATION &mdash; compIle 13, spread amongst the cosmos</title>
+<style>
+:root{--void:#070512;--ink:#e9e4ff;--dim:#9a8fc7;--gold:#ffd873;--cyan:#5fe8ff;--violet:#b78bff;--green:#7bffb0;--orange:#ff9a5a;--white:#f6f2ff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;overflow-x:hidden;}
+#sky{position:fixed;inset:0;z-index:0;display:block;}
+.wrap{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:26px 18px 90px;}
+header{text-align:center;margin:14px 0 8px;}
+h1{font-size:clamp(24px,5vw,42px);letter-spacing:4px;color:#fff;text-shadow:0 0 18px rgba(183,139,255,.8),0 0 42px rgba(95,232,255,.4);}
+h1 .i{color:var(--cyan);text-shadow:0 0 20px rgba(95,232,255,.9);}
+.tag{color:var(--dim);letter-spacing:3px;font-size:12px;margin-top:8px;text-transform:uppercase;}
+.lede{max-width:74ch;margin:16px auto 0;color:#cdc4f0;font-size:13.5px;line-height:1.75;text-align:center;}
+.lede b{color:#fff;}
+.stat{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:20px auto 6px;max-width:900px;}
+.stat div{border:1px solid rgba(183,139,255,.35);border-radius:9px;padding:8px 13px;background:rgba(20,14,42,.55);box-shadow:inset 0 0 22px rgba(95,232,255,.05);}
+.stat b{color:var(--cyan);font-size:17px;} .stat span{color:var(--dim);font-size:10.5px;letter-spacing:1.5px;display:block;text-transform:uppercase;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-top:30px;}
+.con{border:1px solid var(--edge,rgba(183,139,255,.4));border-radius:14px;padding:16px 16px 14px;background:linear-gradient(180deg,rgba(22,15,46,.72),rgba(10,7,26,.72));box-shadow:0 0 26px rgba(0,0,0,.5),inset 0 0 40px var(--glow,rgba(95,232,255,.05));backdrop-filter:blur(2px);}
+.con h2{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:var(--c,#fff);border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:9px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+.con h2 .n{font-size:10px;color:var(--dim);letter-spacing:1px;font-weight:400;}
+.con .sub{color:var(--dim);font-size:11px;margin:2px 0 11px;line-height:1.5;}
+a.star{display:flex;align-items:center;gap:10px;text-decoration:none;color:#e9e4ff;padding:7px 9px;border-radius:8px;transition:.15s;border:1px solid transparent;}
+a.star:hover{background:rgba(95,232,255,.09);border-color:var(--c,rgba(95,232,255,.4));transform:translateX(3px);}
+a.star .dot{width:9px;height:9px;border-radius:50%;background:var(--c,#5fe8ff);box-shadow:0 0 9px var(--c,#5fe8ff),0 0 18px var(--c,#5fe8ff);flex:0 0 auto;}
+a.star .t{font-size:12.5px;color:#f2eeff;letter-spacing:.5px;}
+a.star .t small{display:block;color:var(--dim);font-size:10px;letter-spacing:.3px;margin-top:1px;}
+a.star .ext{margin-left:auto;color:var(--dim);font-size:9px;letter-spacing:1px;}
+footer{margin-top:40px;text-align:center;color:var(--dim);font-size:11px;line-height:1.9;border-top:1px solid rgba(183,139,255,.2);padding-top:18px;}
+footer a{color:var(--gold);text-decoration:none;} footer b{color:var(--cyan);}
+.back{position:fixed;top:14px;left:16px;z-index:3;color:var(--cyan);text-decoration:none;font-size:11px;letter-spacing:2px;border:1px solid rgba(95,232,255,.4);border-radius:6px;padding:6px 11px;background:rgba(10,7,26,.7);}
+.back:hover{color:#fff;border-color:#fff;}
+</style>
+<canvas id="sky"></canvas>
+<a class="back" href="./">&#9668; UD0 COSMOS</a>
+<div class="wrap">
+<header>
+  <h1>THE <span class="i">i13</span> CONSTELLATION</h1>
+  <div class="tag">compIle 13 &middot; spread amongst the cosmos</div>
+  <p class="lede">One language, scattered across the whole corpus &mdash; the compiler, its folded workshop, the emulator, the proofs, the lineage, the darts, and the voxel space it flows through. <b>compIle 13</b> is &ldquo;a compiler who can talk back.&rdquo; Here every place it lives is a star, gathered into constellations and reachable from anywhere in the cosmos. By <b>David Lee Wise / ROOT0 / TriPod LLC</b>, grounded &amp; rendered with AVAN.</p>
+  <div class="stat">
+    <div><b>293</b><span>darts on i13</span></div>
+    <div><b>38</b><span>batches</span></div>
+    <div><b>6</b><span>keepers / 5 axes</span></div>
+    <div><b>7</b><span>constellations</span></div>
+    <div><b>13</b><span>symbol core</span></div>
+    <div><b>0</b><span>dependencies</span></div>
+  </div>
+</header>
+
+<div class="grid" id="grid"></div>
+
+<footer>
+  <b>THE i13 CONSTELLATION</b> &mdash; a cross-corpus map of compIle 13, linked from every world so the language is reachable across the cosmos.<br>
+  The live language: <a href="https://davidwise01.github.io/I13-H1.1/">davidwise01.github.io/I13-H1.1</a> &middot; the corpus: <a href="./">ud0</a> &middot; the voxel space: <a href="the-volume.html">THE VOLUME</a>.<br>
+  <b>compIle 13</b> by David Lee Wise / ROOT0 / TriPod LLC. A language of a 13-symbol core, f64, bounded arrays, recursion, single-pass region validation &mdash; and 0 dependencies. Rendered by AVAN for the corpus.
+</footer>
+</div>
+<script>
+"use strict";
+// ---- the i13 cosmos: 7 constellations of real, linked nodes ----
+var COS = [
+ {name:"THE CORE LANGUAGE", n:"the compiler itself", c:"#ffd873", sub:"the living language and the ways in.",
+  stars:[
+   {t:"the live compiler",           s:"davidwise01.github.io/I13-H1.1 &mdash; 7 doors, WASM runtime, the creed", h:"https://davidwise01.github.io/I13-H1.1/", ext:"LIVE"},
+   {t:"THE MAP OF I-13",             s:"the 5-layer map of the language", h:"world5/the-map-of-i13.html"},
+   {t:"THE I-13 BENCHMARK",          s:"the conformance gate (grade honestly INCOMPLETE)", h:"world5/the-i13-benchmark.html"},
+   {t:"THE COMPOUND",                s:"benchmark v0.15 on a real 8.5KB WASM VM", h:"world5/the-compound.html"},
+  ]},
+ {name:"THE WORKSHOP", n:"the i-13 folder, folded", c:"#5fe8ff", sub:"the whole i-13 folder, sorted and hosted live.",
+  stars:[
+   {t:"THE I-13 WORKSHOP",           s:"the folded folder &mdash; 6 themes, live instruments", h:"world5/the-i13-workshop.html"},
+   {t:"WASM VM DASHBOARD",           s:"browser-native VM, byte-matches the binary", h:"world5/i13-workshop-src/i13-wasm-vm-dashboard-v0.2.html"},
+   {t:"THE TOOLCHAIN-N",             s:"CPython lowered to i13, semantic round-trip", h:"world5/i13-workshop-src/i13-toolchain-n-v0.2.html"},
+   {t:"THE READER VM SIDECAR",       s:"the reader VM", h:"world5/i13-workshop-src/i13-reader-vm-sidecar.html"},
+   {t:"PYTHON ROUNDTRIP",            s:"round-trip proven by semantic equality", h:"world5/i13-workshop-src/python-roundtrip-v0.1.html"},
+   {t:"NOTES UPON THE NONSOFIC",     s:"Lovelace-voiced prose on the golden shift", h:"world5/i13-workshop-src/notes-upon-the-nonsofic.html"},
+  ]},
+ {name:"THE EMULATION", n:"a compiler who runs a chip", c:"#ff9a5a", sub:"the corpus opens its emulation interest &mdash; oracle before the CPU.",
+  stars:[
+   {t:"THE 6502 GATE",               s:"33 opcodes in i13, oracle-graded 33,000x (AMBER, honest)", h:"world5/the-6502-gate.html"},
+   {t:"THE NES BUILD",               s:"i13 nes build v0 &mdash; extended live; grade honestly", h:"world5/the-6502-gate.html", ext:"WIP"},
+  ]},
+ {name:"THE PROOFS", n:"milestones", c:"#7bffb0", sub:"what the language earned &mdash; each a LIT milestone.",
+  stars:[
+   {t:"THE STANDARD LIBRARY",        s:"sqrt / exp / trig / PRNG written IN i13", h:"world5/the-standard-library.html"},
+   {t:"THE ABSTRACTION ALGORITHM",   s:"i13 as the transfer function, 31,540 voxels", h:"world5/the-abstraction-algorithm.html"},
+   {t:"THE SPOT-AWARENESS LOG",      s:"i13 logs its own dominant/subordinate scopes", h:"world5/the-spot-awareness-log.html"},
+   {t:"THE MULTIPASS",               s:"the optimizer i13 would keep (batch 35)", h:"world5/the-multipass.html"},
+  ]},
+ {name:"THE ENGINE", n:"lineage", c:"#b78bff", sub:"the alpha / i13-E1 / omega engine and its lineage.",
+  stars:[
+   {t:"THE PIPE & THE ENGINE",       s:"David&#39;s alpha / i13-E1 / omega engine", h:"world5/the-pipe.html"},
+   {t:"THE 0818 LINEAGE",            s:"the day the folder was folded", h:"world5/the-0818-lineage.html"},
+  ]},
+ {name:"THE 293 DARTS", n:"SONNY 5", c:"#8fd0ff", sub:"the campaign: one technique-card per throw, grounded on the real compiler.",
+  stars:[
+   {t:"WORLD V &middot; SONNY 5",    s:"293 darts &middot; 38 batches &middot; 6 keepers &middot; the whole campaign", h:"world5/", ext:"WORLD"},
+   {t:"THE STERN-BROCOT (keeper)",   s:"computed, not stored &mdash; one of the 6 keepers", h:"world5/the-stern-brocot-tree.html"},
+   {t:"THE DUAL-NUMBER (keeper)",    s:"the generative dual channel &mdash; carries the derivative", h:"world5/the-dual-number.html"},
+   {t:"THE CRDT (keeper)",           s:"confluence &mdash; agreement by algebra", h:"world5/the-crdt.html"},
+  ]},
+ {name:"THE VOLUME", n:"the whole cosmos", c:"#f6f2ff", sub:"every sphere across the five worlds, as one voxel space.",
+  stars:[
+   {t:"THE VOLUME",                  s:"i13 is the transfer function of the whole corpus", h:"the-volume.html", ext:"COSMOS"},
+  ]},
+];
+
+// ---- render the constellations ----
+var grid=document.getElementById("grid");
+COS.forEach(function(g){
+  var d=document.createElement("div"); d.className="con";
+  d.style.setProperty("--c",g.c);
+  d.style.setProperty("--edge",g.c.replace(")",",.4)").replace("#","rgba(")); // fallback, overwritten below
+  d.style.borderColor=hexA(g.c,.38); d.style.setProperty("--glow",hexA(g.c,.06));
+  var h="<h2 style=\"--c:"+g.c+"\">"+g.name+"<span class=\"n\">"+g.n+"</span></h2><div class=\"sub\">"+g.sub+"</div>";
+  g.stars.forEach(function(s){
+    h+="<a class=\"star\" style=\"--c:"+g.c+"\" href=\""+s.h+"\">"+
+       "<span class=\"dot\" style=\"--c:"+g.c+"\"></span>"+
+       "<span class=\"t\">"+s.t+"<small>"+s.s+"</small></span>"+
+       (s.ext?"<span class=\"ext\">"+s.ext+"&#8599;</span>":"")+"</a>";
+  });
+  d.innerHTML=h; grid.appendChild(d);
+});
+function hexA(hex,a){var m=hex.replace("#","");var r=parseInt(m.substr(0,2),16),gg=parseInt(m.substr(2,2),16),b=parseInt(m.substr(4,2),16);return "rgba("+r+","+gg+","+b+","+a+")";}
+
+// ---- the starfield cosmos (real canvas: drifting + twinkling stars + faint constellation web) ----
+var cv=document.getElementById("sky"), cx=cv.getContext("2d"), W,H,stars=[],hubs=[];
+function size(){ var iw=innerWidth||document.documentElement.clientWidth||1280, ih=innerHeight||document.documentElement.clientHeight||720; W=cv.width=iw; H=cv.height=ih; make(); }
+function make(){
+  stars=[]; var n=Math.floor(W*H/5200);
+  for(var i=0;i<n;i++) stars.push({x:Math.random()*W,y:Math.random()*H,z:Math.random(),ph:Math.random()*6.28});
+  // 7 constellation hubs positioned around the sky
+  hubs=[]; var cols=["#ffd873","#5fe8ff","#ff9a5a","#7bffb0","#b78bff","#8fd0ff","#f6f2ff"];
+  for(var k=0;k<7;k++){ var a=k/7*6.283+0.4; hubs.push({x:W*(0.5+0.34*Math.cos(a)),y:H*(0.46+0.34*Math.sin(a)),c:cols[k],pts:[]});
+    for(var j=0;j<5;j++) hubs[k].pts.push({x:hubs[k].x+(Math.random()-0.5)*W*0.11,y:hubs[k].y+(Math.random()-0.5)*H*0.11,ph:Math.random()*6.28}); }
+}
+var t=0;
+function frame(){
+  var iw=innerWidth||document.documentElement.clientWidth, ih=innerHeight||document.documentElement.clientHeight;
+  if(iw&&ih&&(W!==iw||H!==ih)){ W=cv.width=iw; H=cv.height=ih; make(); }
+  t+=0.012; cx.clearRect(0,0,W,H);
+  // nebula wash
+  var g=cx.createRadialGradient(W*0.5,H*0.42,0,W*0.5,H*0.42,Math.max(W,H)*0.7);
+  g.addColorStop(0,"rgba(40,26,86,0.45)"); g.addColorStop(1,"rgba(7,5,18,0)");
+  cx.fillStyle=g; cx.fillRect(0,0,W,H);
+  // stars
+  for(var i=0;i<stars.length;i++){ var s=stars[i]; s.x-=(0.03+s.z*0.09); if(s.x<0)s.x=W;
+    var tw=0.4+0.6*(0.5+0.5*Math.sin(t*2+s.ph)); var r=(0.4+s.z*1.4);
+    cx.globalAlpha=tw*(0.3+s.z*0.7); cx.fillStyle=s.z>0.85?"#cfe8ff":"#fff";
+    cx.beginPath(); cx.arc(s.x,s.y,r,0,6.283); cx.fill();
+  }
+  cx.globalAlpha=1;
+  // constellation webs (faint lines within each hub + a slow pulse)
+  for(var k=0;k<hubs.length;k++){ var hb=hubs[k], pulse=0.12+0.10*(0.5+0.5*Math.sin(t+k));
+    cx.strokeStyle=hexA(hb.c,pulse); cx.lineWidth=1;
+    for(var j=0;j<hb.pts.length;j++){ var p=hb.pts[j], q=hb.pts[(j+1)%hb.pts.length];
+      cx.beginPath(); cx.moveTo(p.x,p.y); cx.lineTo(q.x,q.y); cx.stroke();
+      var rr=1.6+1.2*(0.5+0.5*Math.sin(t*2+p.ph));
+      cx.fillStyle=hexA(hb.c,0.7); cx.beginPath(); cx.arc(p.x,p.y,rr,0,6.283); cx.fill();
+    }
+    // hub core glow
+    var gg=cx.createRadialGradient(hb.x,hb.y,0,hb.x,hb.y,60); gg.addColorStop(0,hexA(hb.c,0.16)); gg.addColorStop(1,hexA(hb.c,0));
+    cx.fillStyle=gg; cx.fillRect(hb.x-60,hb.y-60,120,120);
+  }
+  requestAnimationFrame(frame);
+}
+addEventListener("resize",size); size(); frame();
+</script>
