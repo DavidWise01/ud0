@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FERMAT PRIMALITY TEST &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 182 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE FERMAT PRIMALITY TEST <span class="c">if a^(p-1) is not 1, p is not prime; if it is, maybe</span></h1>
+  <p class="sub">Fermat&rsquo;s little theorem says that for a prime <span class="k">p</span> and any base <span class="k">a</span> not divisible by it, <span class="k">a^(p-1) &equiv; 1 (mod p)</span>. So compute <span class="k">a^(n-1) mod n</span>: if it is <b>not</b> 1, <span class="k">n</span> is <b>certainly composite</b>. If it <i>is</i> 1, <span class="k">n</span> is <b>probably</b> prime &mdash; the first, fast, one-sided primality test, and the direct ancestor of Miller-Rabin.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">a^(n-1) mod n by fast exponentiation</span></h2>
+  <p>Test a number with base 2. A prime always passes. But some composites <b>lie</b>: <span class="k">341 = 11&times;31</span> gives <span class="k">2^340 &equiv; 1 (mod 341)</span> &mdash; a <b>Fermat pseudoprime</b>. Try primes and liars and watch the test pass on both: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>n</label><input id="n" type="number" value="341" style="width:110px"><button id="go" class="dartbtn">&#9192; Fermat test base 2</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Fermat 1640; proof Euler 1736</span></h2>
+  <p class="myth">&ldquo;Passing the Fermat test proves primality.&rdquo; &mdash; no. It is <b>one-sided</b>: failing proves compositeness, but passing does not prove primality &mdash; <b>pseudoprimes</b> pass, and <b>Carmichael numbers</b> (dart 184) pass for <i>every</i> base. It certifies &ldquo;composite&rdquo; with certainty and &ldquo;prime&rdquo; only with suspicion. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1640</b> &middot; <span class="who">Pierre de Fermat</span> &mdash; states the little theorem in a letter to Fr&eacute;nicle de Bessy (no proof, as was his habit).<br><b>1736</b> &middot; <span class="who">Leonhard Euler</span> &mdash; the first published proof; later generalises it to <span class="k">a^&phi;(n) &equiv; 1</span> (Euler&rsquo;s theorem).<br><b>1819</b> &middot; <span class="who">Sarrus</span> &mdash; finds the first pseudoprime, 341, showing the converse fails; the crack that Miller-Rabin (dart 032) later seals.</div>
+  <p style="margin-top:10px">The fast-exponentiation that makes it practical &mdash; square-and-multiply, <span class="k">O(log n)</span> multiplications &mdash; is the same engine under RSA (dart 050) and Diffie-Hellman (035); the primality test and the cipher share one modular-power routine. <span class="tag t-open">Fermat 1640 / Euler 1736</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the test, and its lie, computed</span></h2>
+  <p>On the canonical compiler the test passes for a prime and is <b>fooled</b> by the pseudoprime 341 &mdash; modular power by bitwise square-and-multiply:</p>
+  <div class="evi good">$ i13 run fermat.i13   # a^(n-1) mod n, exponent halved by >> (bitwise)
+2^16  mod 17  = 1   -- 17 prime: passes (true)
+2^340 mod 341 = 1   -- 341 = 11x31 COMPOSITE: passes anyway (a Fermat pseudoprime)</div>
+  <div class="rec"><b>Recommend:</b> the Fermat test is <b>LIT on I-13</b> &mdash; verified <span class="k">2^16 &equiv; 1 (mod 17)</span> (a true prime) and the pseudoprime <span class="k">2^340 &equiv; 1 (mod 341)</span> (a composite that lies), by a <span class="k">modexp</span> that halves the exponent with <b>&gt;&gt;</b> and tests the low bit with <b>&amp;</b> (the bitwise operators darts 001/029 asked for &mdash; and <b>&#9888; float division <span class="k">/</span> would silently break it</b>: <span class="k">85/2 = 42.5</span>, so the exponent must be shifted, not divided). It is the seed of the whole probabilistic-primality line already in the corpus (Rabin-Miller 032, RSA 050); its one honest weakness &mdash; Carmichael numbers &mdash; is the next dart.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  function modexp(b,e,m){ var r=1; b=b%m; while(e>0){ if(e&1) r=(r*b)%m; b=(b*b)%m; e=Math.floor(e/2);} return r; }
+  function isPrime(n){ if(n<2)return false; for(var i=2;i*i<=n;i++) if(n%i===0)return false; return true; }
+  function run(){
+    var n=Math.max(3,Math.floor(+document.getElementById("n").value||3)), L=[];
+    var r=modexp(2,n-1,n), passes=(r===1), prime=isPrime(n);
+    L.push("Fermat test, base a = 2:   a^(n-1) mod n\n");
+    L.push("  n = "+n);
+    L.push("  2^"+(n-1)+" mod "+n+" = <span class='cur'>"+r+"</span>");
+    L.push("  test says: "+(passes?"<span class='hit'>probably PRIME</span> (result is 1)":"<span class='bad'>COMPOSITE</span> (result &ne; 1)")+"\n");
+    L.push("  truth: n is "+(prime?"<span class='hit'>PRIME</span>":"<span class='bad'>COMPOSITE ("+(function(){for(var i=2;i*i<=n;i++)if(n%i===0)return i+"x"+(n/i);return"?";})()+")</span>"));
+    if(passes && !prime) L.push("\n  <span class='bad'>&#9888; a LIAR</span> &mdash; a composite that passed: a Fermat <b>pseudoprime</b> base 2.");
+    if(!passes) L.push("\n  <span class='hit'>correctly caught</span> &mdash; failing the test is a certificate of compositeness.");
+    out.innerHTML=L.join("\n");
+    say.innerHTML = passes ? (prime?"<span class='true'>prime</span> (passes)":"<span class='err'>pseudoprime</span> (lies)") : "<span class='true'>composite</span> (caught)";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("n").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 182 &middot; THE FERMAT PRIMALITY TEST</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Fermat</b> stated the little theorem (1640, letter to Fr&eacute;nicle); <b>Euler</b> gave the first proof (1736) and generalised it. The test is <b>one-sided</b> &mdash; <b>Sarrus</b> (1819) found the first pseudoprime, 341. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE INTEGER</b> (batch 29) &mdash; number theory &amp; modular arithmetic &mdash; primality, factoring, division-free reduction and Diophantine equations, computed on i13&rsquo;s bitwise + modulo, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

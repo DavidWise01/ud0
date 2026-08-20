@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MONTGOMERY MULTIPLICATION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 186 &middot; a helldive at the net</span></div>
+<header>
+  <h1>MONTGOMERY MULTIPLICATION <span class="c">modular multiply with no division, only shifts</span></h1>
+  <p class="sub">Modular multiplication&rsquo;s cost is the <b>division</b> by <span class="k">n</span> in the reduction. <b>Montgomery</b>&rsquo;s trick: move numbers into a transformed domain (multiply by <span class="k">R = 2^k</span>), where reduction mod <span class="k">n</span> becomes a <b>mask and a shift</b> by the power of two &mdash; no division by <span class="k">n</span> at all. Convert in, do all your modular multiplies cheaply, convert out. It is the reduction inside every fast RSA and ECC implementation.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">REDC: add a multiple of n, then shift</span></h2>
+  <p>The core is <span class="k">REDC(T)</span>, which computes <span class="k">T&middot;R&#8315;&sup1; mod n</span> using only <span class="k">&amp;&nbsp;(R-1)</span> and <span class="k">&gt;&gt;&nbsp;k</span> &mdash; never dividing by <span class="k">n</span>. For <span class="k">n=97, R=128</span>: watch REDC reduce a product with a mask and a shift: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>T</label><input id="t" type="number" value="3000" style="width:110px"><button id="go" class="dartbtn">&#9192; REDC (no division)</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Peter Montgomery, Math. Comp. 1985</span></h2>
+  <p class="myth">&ldquo;Montgomery makes one modular multiply faster.&rdquo; &mdash; not by itself. Converting in and out of Montgomery form costs a reduction each way, so a <b>single</b> multiply is not cheaper; it pays off across <b>many</b> multiplications in the same modulus (a modular exponentiation), where you convert once and reduce by shift every step. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1985</b> &middot; <span class="who">Peter L. Montgomery</span> &mdash; &ldquo;Modular Multiplication Without Trial Division&rdquo; (Mathematics of Computation 44): the REDC algorithm.<br><b>the trick</b> &middot; pick <span class="k">R = 2^k &gt; n</span>, precompute <span class="k">n&rsquo; = -n&#8315;&sup1; mod R</span>; then <span class="k">REDC(T) = (T + (T&middot;n&rsquo; mod R)&middot;n) / R</span> is exact and division-by-<span class="k">n</span>-free.<br><b>everywhere</b> &middot; the standard modular-reduction in OpenSSL, GMP, and every constant-time RSA/ECC core.</div>
+  <p style="margin-top:10px">The magic line adds a multiple of <span class="k">n</span> (which changes nothing mod <span class="k">n</span>) chosen so the low <span class="k">k</span> bits become zero &mdash; then the shift is exact. You trade a hard division for an easy multiplication by the precomputed <span class="k">n&rsquo;</span>. <span class="tag t-open">Montgomery 1985</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">reduction by shift, computed</span></h2>
+  <p>On the canonical compiler REDC reduces with a mask and a shift, no division by n &mdash; the bitwise operators doing real work:</p>
+  <div class="evi good">$ i13 run mont.i13   # n=97, R=128, n'=95 ; REDC(T) = (T + (T*n' & 127)*n) >> 7
+REDC(9700) = 0     -- 9700 = 0 mod 97, so T*R^-1 = 0
+REDC(50*60) = 78   -- REDC(3000): (3000*95 & 127 = 72); (3000 + 72*97) >> 7 = 78, no division by 97</div>
+  <div class="rec"><b>Recommend:</b> Montgomery multiplication is <b>LIT and the reason I-13&rsquo;s bitwise operators earn their keep</b> &mdash; verified <span class="k">REDC(T) = (T + (T&middot;n&rsquo; &amp; 127)&middot;n) &gt;&gt; 7</span> reduces mod <span class="k">97</span> with only a mask and a shift (<span class="k">REDC(3000)=78</span>, <span class="k">REDC(9700)=0</span>), <b>never dividing by</b> <span class="k">n</span>. For an I-13 crypto layer (RSA 050, Diffie-Hellman 035) this is the multiply to put under the modular exponentiation: convert once, then every squaring reduces by <span class="k">&gt;&gt;</span> instead of a costly <span class="k">%</span>. It is the practical companion to Barrett reduction (187) &mdash; two ways to kill the division in modular arithmetic.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var n=97, k=7, R=128, np=95;   // n' = -n^-1 mod R = 95
+  function redc(T){ var m=(T*np)&(R-1); var t=(T + m*n)>>k; return t>=n? t-n : t; }
+  function run(){
+    var T=Math.max(0,Math.floor(+document.getElementById("t").value||0)), L=[];
+    var m=(T*np)&(R-1), added=T+m*n, t=added>>k, fin=t>=n?t-n:t;
+    L.push("n = 97,  R = 2^7 = 128,  n' = -n^-1 mod 128 = 95\n");
+    L.push("REDC("+T+")  =  T &middot; R^-1 mod n,  no division by n:");
+    L.push("  m = (T * n') & (R-1) = ("+T+" * 95) & 127 = <span class='g'>"+m+"</span>   <span class='dim'>// a MASK, not a mod-n</span>");
+    L.push("  T + m*n = "+T+" + "+m+"*97 = "+added+"   (low 7 bits now zero)");
+    L.push("  >> 7 = <span class='cur'>"+t+"</span>"+(t>=n?"  ->  - n  =  <span class='cur'>"+fin+"</span>":""));
+    L.push("\nresult REDC("+T+") = <span class='hit'>"+fin+"</span>   &mdash; reduced with one AND and one SHIFT, <span class='hit'>zero divisions by 97</span>.");
+    out.innerHTML=L.join("\n");
+    say.innerHTML="REDC("+T+") = <span class='true'>"+fin+"</span> &middot; no division";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("t").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 186 &middot; MONTGOMERY MULTIPLICATION</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Peter L. Montgomery</b> &mdash; &ldquo;Modular Multiplication Without Trial Division&rdquo; (Math. Comp. 1985): REDC reduces mod n with a mask and a shift, no division by n. Pays off across <b>many</b> multiplies (a modexp), not one. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE INTEGER</b> (batch 29) &mdash; number theory &amp; modular arithmetic &mdash; primality, factoring, division-free reduction and Diophantine equations, computed on i13&rsquo;s bitwise + modulo, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

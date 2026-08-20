@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE CARMICHAEL FUNCTION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 184 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE CARMICHAEL FUNCTION <span class="c">the true order, and the numbers that fool Fermat every time</span></h1>
+  <p class="sub">The <b>Carmichael function</b> <span class="k">&lambda;(n)</span> is the smallest exponent with <span class="k">a^&lambda;(n) &equiv; 1</span> for every <span class="k">a</span> coprime to <span class="k">n</span> &mdash; the true group exponent, dividing Euler&rsquo;s <span class="k">&phi;(n)</span>. Its dark twin: a <b>Carmichael number</b> is a composite <span class="k">n</span> with <span class="k">&lambda;(n) &mid; n-1</span>, so <span class="k">a^(n-1) &equiv; 1</span> for <b>every</b> base &mdash; a composite that passes the Fermat test (182) no matter which witness you pick. The reason a single test is never enough.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">lambda = lcm of the prime-power orders</span></h2>
+  <p><span class="k">561 = 3&times;11&times;17</span> is the smallest Carmichael number. Its <span class="k">&lambda; = lcm(2,10,16) = 80</span>, and <span class="k">80 &mid; 560</span>, so <span class="k">a^560 &equiv; 1 (mod 561)</span> for every coprime base. Watch Fermat pass for base after base on a composite: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; Fermat every base on 561</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Korselt 1899; Carmichael 1910</span></h2>
+  <p class="myth">&ldquo;Carmichael numbers are rare curiosities that run out.&rdquo; &mdash; no. There are <b>infinitely many</b> (Alford, Granville &amp; Pomerance, 1994), so no Fermat-style test is ever safe on its own &mdash; which is exactly why Miller-Rabin (032) checks a <b>stronger</b> condition that Carmichael numbers cannot dodge. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1899</b> &middot; <span class="who">Alwin Korselt</span> &mdash; states the criterion (<span class="k">n</span> squarefree and <span class="k">p-1 &mid; n-1</span> for each prime <span class="k">p &mid; n</span>) &mdash; but finds <b>no example</b>.<br><b>1910</b> &middot; <span class="who">Robert Carmichael</span> &mdash; finds the first, <b>561</b>, and studies the function <span class="k">&lambda;(n)</span>; the numbers take his name.<br><b>1994</b> &middot; <span class="who">Alford, Granville &amp; Pomerance</span> &mdash; prove there are <b>infinitely many</b>.</div>
+  <p style="margin-top:10px"><span class="k">&lambda;(n)</span> is the <b>exponent</b> of the multiplicative group, <span class="k">&phi;(n)</span> its <b>order</b>; they differ exactly when the group is not cyclic &mdash; and Miller-Rabin exploits the gap the Fermat test cannot see. <span class="tag t-open">Korselt 1899 / Carmichael 1910</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">every base fooled, computed</span></h2>
+  <p>On the canonical compiler, <span class="k">a^560 mod 561 = 1</span> for multiple bases &mdash; the composite 561 passes Fermat every time, and <span class="k">&lambda;=80</span>:</p>
+  <div class="evi good">$ i13 run carmichael.i13   # 561 = 3x11x17
+2^560 mod 561 = 1     5^560 mod 561 = 1   -- every coprime base passes Fermat
+lambda = lcm(2,10,16) = 80   -- and 80 | 560, which is exactly why</div>
+  <div class="rec"><b>Recommend:</b> the Carmichael function is <b>LIT and the honest limit of the Fermat test</b> on I-13 &mdash; verified that <span class="k">561</span> passes base 2 and base 5 (<span class="k">a^560 &equiv; 1</span>) and that <span class="k">&lambda;(561)=lcm(2,10,16)=80</span> with <span class="k">80 &mid; 560</span> &mdash; the arithmetic reason every witness fails, computed with <span class="k">gcd</span>/<span class="k">lcm</span> and the bitwise <span class="k">modexp</span>. It is the corpus&rsquo;s own honesty ethos in number theory: a test that says &ldquo;probably prime&rdquo; has a whole infinite family it cannot catch, so you either state the uncertainty or switch to Miller-Rabin&rsquo;s stronger check (032). Names the exact gap between <span class="k">&lambda;</span> and <span class="k">&phi;</span> that the stronger test lives in.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  function modexp(b,e,m){ var r=1; b=b%m; while(e>0){ if(e&1)r=(r*b)%m; b=(b*b)%m; e=Math.floor(e/2);} return r; }
+  function gcd(a,b){ return b?gcd(b,a%b):a; }
+  function run(){
+    var n=561, L=[], allpass=true, tested=0;
+    L.push("n = 561 = 3 x 11 x 17   (COMPOSITE)   Fermat test a^560 mod 561:\n");
+    L.push("base a   gcd(a,561)   a^560 mod 561");
+    [2,4,5,7,8,10,13].forEach(function(a){
+      var g=gcd(a,561); if(g!==1){ L.push("  "+String(a).padEnd(6)+" "+g+" (shares a factor, skip)"); return; }
+      var r=modexp(a,560,561); tested++; if(r!==1) allpass=false;
+      L.push("  "+String(a).padEnd(6)+" 1            <span class='"+(r===1?"hit":"bad")+"'>"+r+"</span>"+(r===1?"  passes":"  CAUGHT"));
+    });
+    L.push("\n<span class='bad'>every coprime base PASSES</span> the Fermat test on a composite &mdash; because &lambda;(561) = lcm(2,10,16) = <span class='cur'>80</span>, and 80 | 560.");
+    L.push("561 is the smallest <b>Carmichael number</b>: it fools Fermat for all "+tested+" tested bases (and every other).");
+    out.innerHTML=L.join("\n");
+    say.innerHTML = allpass ? "<span class='err'>"+tested+"/"+tested+" bases fooled</span> &middot; &lambda;=80" : "caught";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 184 &middot; THE CARMICHAEL FUNCTION</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Korselt</b> (1899) gave the criterion but no example; <b>Carmichael</b> (1910) found 561 and studied <span class="k">&lambda;(n)</span>; <b>Alford-Granville-Pomerance</b> (1994) proved infinitely many exist. The reason one probabilistic test is never enough. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE INTEGER</b> (batch 29) &mdash; number theory &amp; modular arithmetic &mdash; primality, factoring, division-free reduction and Diophantine equations, computed on i13&rsquo;s bitwise + modulo, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
