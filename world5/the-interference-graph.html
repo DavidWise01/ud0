@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE INTERFERENCE GRAPH &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 243 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE INTERFERENCE GRAPH <span class="c">two values alive at once cannot share a register &mdash; color the graph</span></h1>
+  <p class="sub">To place variables in a limited set of registers, a compiler builds an <b>interference graph</b>: a node per variable, an edge between two that are <b>live at the same time</b> (so they cannot share a register). Assigning registers becomes <b>graph coloring</b> &mdash; give adjacent nodes different colors, using as few colors (registers) as possible. Chaitin's insight was that register allocation <i>is</i> graph coloring; when colors run out, some variable is <b>spilled</b> to memory and the graph is recolored.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">live-at-once = an edge; registers = colors; minimize colors</span></h2>
+  <p>Four variables with an interference pattern; the demo greedily colors the graph and reports the registers needed &mdash; its chromatic number: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>interference:</label><select id="g"><option value="tri">a,b,c all live together (triangle) + d</option><option value="path">a-b-c-d chain</option><option value="none">none overlap</option></select><button id="go" class="dartbtn">&#9192; color the graph</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Gregory Chaitin, 1981</span></h2>
+  <p class="myth">&ldquo;Give each variable its own register.&rdquo; &mdash; there are never enough. The question is which variables can <i>share</i>, and that is exactly which ones are never alive at the same time &mdash; a graph-coloring problem, not a bookkeeping one. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1981</b> &middot; <span class="who">Gregory Chaitin</span> et al. &mdash; &ldquo;Register Allocation via Coloring&rdquo;: model interference as a graph, allocate by coloring, spill when a node cannot be colored.<br><b>lineage</b> &middot; graph coloring itself &mdash; Kempe's 1879 heuristic (simplify low-degree nodes) is the same trick Chaitin uses.<br><b>now</b> &middot; Chaitin-Briggs coloring, and linear-scan for JITs, allocate registers in every backend.</div>
+  <p style="margin-top:10px">Coloring is NP-hard in general, but the register graphs that arise are usually easy, and Kempe's simplify-and-select heuristic colors them fast. When it cannot, that is precisely the signal to spill. <span class="tag t-open">Chaitin 1981</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">registers needed for a triangle graph, computed</span></h2>
+  <p>On the canonical compiler, greedily coloring three mutually-interfering variables plus an isolated one needs <span class="k">3</span> colors (registers):</p>
+  <div class="evi good">$ i13 run interference.i13   # greedy coloring, K3 + isolated node
+ncolors = 3          -- the triangle forces 3; the isolated var reuses color 0</div>
+  <div class="rec"><b>Recommend:</b> the interference graph is <b>N/A for I-13</b> &mdash; it compiles to a <b>stack IVM</b>, not registers. There is nothing to color: operands live on the operand stack, pushed and popped in evaluation order, and the &ldquo;allocation&rdquo; is the stack discipline itself (which i13 <i>proves</i> balanced, per region). Register allocation is the price of a register machine; a stack machine simply does not pay it. i13 traded peak speed for a model it can verify in one pass &mdash; and this whole classical pass is one of the things that trade removes.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  var GR={ tri:{n:4,e:[[0,1],[0,2],[1,2]],d:"a,b,c mutually live; d isolated"},
+           path:{n:4,e:[[0,1],[1,2],[2,3]],d:"a-b-c-d chain"},
+           none:{n:4,e:[],d:"no overlaps"} };
+  function run(){
+    var g=GR[document.getElementById("g").value];
+    var adj=[]; for(var i=0;i<g.n;i++)adj.push({}); g.e.forEach(function(p){adj[p[0]][p[1]]=1;adj[p[1]][p[0]]=1;});
+    var col=[]; for(var v=0;v<g.n;v++){ var used={}; for(var w=0;w<g.n;w++) if(adj[v][w]&&col[w]!==undefined) used[col[w]]=1; var c=0; while(used[c])c++; col[v]=c; }
+    var mx=0; col.forEach(function(c){ if(c>mx)mx=c; }); var nc=mx+1;
+    var names=["a","b","c","d"], L=[]; L.push("interference: "+g.d);
+    for(var v2=0;v2<g.n;v2++) L.push("  "+names[v2]+" -> register R"+col[v2]);
+    L.push(""); L.push("registers (colors) needed: <span style='color:"+G+"'>"+nc+"</span>");
+    out.innerHTML=L.join("\n"); say.innerHTML="registers: <span class='true'>"+nc+"</span>";
+  }
+  document.getElementById("go").onclick=run; document.getElementById("g").addEventListener("change",run); run();
+})();
+</script>
+
+<footer>
+  <b>DART 243 &middot; THE INTERFERENCE GRAPH</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Gregory Chaitin</b> (1981) cast register allocation as graph coloring, on <b>Kempe</b>'s 1879 heuristic. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE OPTIMIZER</b> (batch 35) &mdash; the passes a compiler makes over your code (basic blocks, dataflow, CSE, LICM, inlining, bounds-check &amp; escape analysis, register coloring, the sea of nodes) and what a single-pass, correctness-first verifier does with each: refuse it, keep it, or get it for free. i13&rsquo;s creed &mdash; <b>ADDRESS &ne; AUTHORITY, ARRIVAL &ne; EXECUTION, EXECUTION &ne; COMMIT</b> &mdash; is exactly a stance on invisible rewriting. Next to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

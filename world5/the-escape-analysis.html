@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE ESCAPE ANALYSIS &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 242 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE ESCAPE ANALYSIS <span class="c">if it cannot outlive its scope, it need never touch the heap</span></h1>
+  <p class="sub"><b>Escape analysis</b> asks whether an object allocated in a function can be reached after the function returns &mdash; stored in a global, returned, passed somewhere that keeps it. If it <b>cannot escape</b>, it does not need the heap at all: allocate it on the stack (or in registers), skip the garbage collector, and drop any synchronization it carried. The analysis is a reachability question over the object graph, and the payoff is large: stack allocation is nearly free where the heap is expensive.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">does the allocation outlive its frame? if not &rarr; stack it</span></h2>
+  <p>A local allocation is used in a few ways; toggle whether it is returned or stored globally. The demo decides whether it escapes &mdash; and so whether it needs the heap: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>the local array is:</label><select id="e"><option value="0">used locally, then dropped</option><option value="1">returned to the caller</option><option value="2">stored in a global</option></select><button id="go" class="dartbtn">&#9192; analyze escape</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Park-Goldberg 1992 &middot; Choi et al. 1999</span></h2>
+  <p class="myth">&ldquo;Every object lives on the heap.&rdquo; &mdash; only the ones that <i>escape</i> their scope must. Most do not, and for those the heap is pure overhead. Escape analysis is the compiler proving an object is purely local and quietly putting it on the stack. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1992</b> &middot; <span class="who">Park &amp; Goldberg</span> &mdash; escape analysis for functional languages (does a value outlive its let?).<br><b>1999</b> &middot; <span class="who">Choi, Gupta, Serrano, Sreedhar &amp; Midkiff</span> &mdash; escape analysis for Java: stack allocation and lock elision for non-escaping objects; <span class="who">Blanchet</span> independently.<br><b>now</b> &middot; the JVM's scalar replacement of non-escaping objects; Go's stack/heap decision is escape analysis.</div>
+  <p style="margin-top:10px">Escape is a reachability fact about the object graph. If no path from the outside reaches the object, the outside cannot tell where it lived &mdash; so it can live on the stack. Aliasing is the only thing that makes this hard. <span class="tag t-open">Choi et al. 1999</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">escapes over local allocations, computed</span></h2>
+  <p>On the canonical compiler, three local arrays used only within their function escape <b>zero</b> times &mdash; nothing leaks, so nothing needs a heap:</p>
+  <div class="evi good">$ i13 run escape.i13   # do local arrays escape their frame?
+total_escapes = 0          -- value semantics: a write yields a new array, no aliasing</div>
+  <div class="rec"><b>Recommend:</b> i13 gets escape analysis's payoff <b>for free</b> &mdash; and this is the deep one. Its arrays are <b>value-semantic and arena-backed</b>: a write yields a <i>new</i> array (<span class="k">v[i]&lt;-e</span> desugars to a copy), there is no aliasing, and a value cannot be captured and mutated behind your back. So <b>nothing escapes by construction</b> &mdash; the exact property escape analysis works hard to <i>prove</i>, i13 has by <i>design</i>. The whole apparatus (heap, GC, the analysis to avoid them) is absent because the language never created the problem.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0", O="#ff8a3d";
+  var CASE={0:["used locally, then dropped",0],1:["returned to the caller",1],2:["stored in a global",1]};
+  function run(){
+    var k=document.getElementById("e").value, c=CASE[k], esc=c[1], L=[];
+    L.push("allocation: local array a");
+    L.push("fate: "+c[0]);
+    L.push("");
+    if(esc){ L.push("<span style='color:"+O+"'>ESCAPES &mdash; reachable after return &rarr; must go on the heap</span>"); }
+    else { L.push("<span style='color:"+G+"'>does NOT escape &rarr; stack-allocate, no GC, no locks</span>"); }
+    L.push("<span class='dim'>in i13 a value cannot be captured-and-mutated: writes copy. escape is always no.</span>");
+    out.innerHTML=L.join("\n"); say.innerHTML=esc?"<span class='err'>escapes</span>":"<span class='true'>no escape</span>";
+  }
+  document.getElementById("go").onclick=run; document.getElementById("e").addEventListener("change",run); run();
+})();
+</script>
+
+<footer>
+  <b>DART 242 &middot; THE ESCAPE ANALYSIS</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Park &amp; Goldberg</b> (1992) and <b>Choi et al.</b> (1999) gave escape analysis for functional and Java code. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE OPTIMIZER</b> (batch 35) &mdash; the passes a compiler makes over your code (basic blocks, dataflow, CSE, LICM, inlining, bounds-check &amp; escape analysis, register coloring, the sea of nodes) and what a single-pass, correctness-first verifier does with each: refuse it, keep it, or get it for free. i13&rsquo;s creed &mdash; <b>ADDRESS &ne; AUTHORITY, ARRIVAL &ne; EXECUTION, EXECUTION &ne; COMMIT</b> &mdash; is exactly a stance on invisible rewriting. Next to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

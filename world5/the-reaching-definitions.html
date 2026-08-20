@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE REACHING DEFINITIONS &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 233 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE REACHING DEFINITIONS <span class="c">which assignment's value is still live here?</span></h1>
+  <p class="sub">A <b>reaching definition</b> is an assignment whose value can still arrive at a program point without being overwritten on the way. Computing the set at every point is the archetypal <b>dataflow analysis</b>: each statement <b>generates</b> its own def and <b>kills</b> all other defs of the same variable, and the sets flow forward &mdash; <span class="k">OUT = gen &cup; (IN &minus; kill)</span> &mdash; iterated to a fixed point. Kildall's insight was that this, and liveness, and available expressions, are all the <i>same</i> computation over a lattice: monotone functions climbing to the least fixed point.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">OUT = gen &cup; (IN &minus; kill), iterated to a fixpoint</span></h2>
+  <p>Three statements define variables; each gen-s its def and kills the others of that variable. The demo runs the forward transfer to the exit and shows which defs still reach &mdash; as a bitset: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>redefine var a at stmt 2?</label><select id="r"><option value="1">yes (kills def 0)</option><option value="0">no</option></select><button id="go" class="dartbtn">&#9192; propagate</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Gary Kildall, 1973</span></h2>
+  <p class="myth">&ldquo;A variable has a value.&rdquo; &mdash; at a given point it may have <i>several possible</i> values, one per definition that reaches it. Reaching definitions is the compiler admitting that uncertainty precisely: here is the exact set of assignments that could be the source. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1973</b> &middot; <span class="who">Gary Kildall</span> &mdash; &ldquo;A Unified Approach to Global Program Optimization&rdquo; (POPL): dataflow analysis as monotone functions over a lattice, solved by iteration to a least fixed point &mdash; reaching definitions, liveness, available expressions, one framework.<br><b>with</b> &middot; <span class="who">Allen &amp; Cocke</span> &mdash; the gen/kill formulation of the transfer functions.<br><b>now</b> &middot; the fixpoint solver at the heart of every optimizer; Kildall also wrote CP/M.</div>
+  <p style="margin-top:10px">The lattice climbs and stops: monotone transfer functions guarantee a unique least fixed point. Convergence is not hoped for &mdash; it is proved by the algebra. <span class="tag t-open">Kildall 1973</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">reaching set at exit as a bitmask, computed</span></h2>
+  <p>On the canonical compiler, over three statements (def a=0, def b=1, redef a=2), the reaching set at exit is <span class="k">{1,2}</span> = bitmask <span class="k">6</span> &mdash; b and the newest a survive, the old a is killed:</p>
+  <div class="evi good">$ i13 run reaching.i13   # gen/kill forward transfer to exit
+r = 6          -- bits {1,2}: def b and the new def of a reach; old def a killed</div>
+  <div class="rec"><b>Recommend:</b> a general reaching-definitions pass is <b>the same fixpoint i13 already runs in miniature</b> &mdash; its single-pass validator threads a <span class="k">live</span> flag to prove return-totality (fall-through-without-<span class="k">-&gt;</span> is rejected, <span class="k">E0401</span>). That is a one-bit dataflow analysis. The full lattice version is the natural generalization; i13 kept the cheapest slice that serves its honesty goal rather than the whole framework, which is the right call for a verifier.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0", O="#ff8a3d";
+  function bits(m){ var s=[]; for(var i=0;i<6;i++) if((m>>i)&1) s.push(i); return "{"+s.join(",")+"}"; }
+  function run(){
+    var redef=+document.getElementById("r").value;
+    // stmt0: def a (bit0), kill{a}=bit0 ; stmt1: def b (bit1), kill=bit1 ; stmt2: redef a (bit2) kill{old a}=bit0|bit2
+    var gen=[1,2,4], kill=[1,2, redef?5:0];
+    var IN=0, L=[]; var names=["def a (id0)","def b (id1)", redef?"redef a (id2)":"stmt2 (no def)"];
+    for(var i=0;i<3;i++){ var OUT=(gen[i]) | (IN & (~kill[i]));
+      L.push("s"+i+" "+names[i]+":  IN="+bits(IN)+"  gen="+bits(gen[i])+" kill="+bits(kill[i])+"  &rarr; OUT="+bits(OUT&63)); IN=OUT&63; }
+    L.push(""); L.push("reaching at exit: <span style='color:"+G+"'>"+bits(IN)+"</span> = bitmask <span style='color:"+O+"'>"+IN+"</span>");
+    out.innerHTML=L.join("\n"); say.innerHTML="reach = <span class='true'>"+IN+"</span>";
+  }
+  document.getElementById("go").onclick=run; document.getElementById("r").addEventListener("change",run); run();
+})();
+</script>
+
+<footer>
+  <b>DART 233 &middot; THE REACHING DEFINITIONS</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Gary Kildall</b> (1973) unified dataflow analysis as a lattice fixpoint; the gen/kill transfer is <b>Allen &amp; Cocke</b>. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE OPTIMIZER</b> (batch 35) &mdash; the passes a compiler makes over your code (basic blocks, dataflow, CSE, LICM, inlining, bounds-check &amp; escape analysis, register coloring, the sea of nodes) and what a single-pass, correctness-first verifier does with each: refuse it, keep it, or get it for free. i13&rsquo;s creed &mdash; <b>ADDRESS &ne; AUTHORITY, ARRIVAL &ne; EXECUTION, EXECUTION &ne; COMMIT</b> &mdash; is exactly a stance on invisible rewriting. Next to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

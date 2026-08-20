@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE MULTIPASS &mdash; a milestone &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;--violet:#b57bff;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1040px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(181,123,255,.12),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.badge{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--violet);border:1px solid var(--violet);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(181,123,255,.3);}
+header{margin:18px 0;}
+h1{font-size:27px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(181,123,255,.6),0 0 34px rgba(62,240,255,.2);}
+h1 .c{color:var(--gold);font-size:15px;letter-spacing:1px;}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:82ch;} .sub b{color:var(--cyan);}
+.mbanner{border:1px solid var(--violet);border-radius:8px;background:linear-gradient(90deg,rgba(181,123,255,.10),rgba(217,180,90,.06));padding:12px 16px;margin:14px 0;color:#e9dcff;font-size:12.5px;}
+.mbanner b{color:var(--gold);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;} .k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--dim);margin-bottom:8px;}
+.dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:middle;}
+.buckets{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:720px){.buckets{grid-template-columns:1fr;}}
+.bucket{border:1px solid var(--line);border-radius:7px;padding:11px 13px;background:rgba(0,0,0,.25);}
+.bucket h3{font-size:11.5px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:7px;}
+.bucket.fit{border-color:rgba(89,255,176,.5);} .bucket.fit h3{color:var(--good);}
+.bucket.free{border-color:rgba(62,240,255,.5);} .bucket.free h3{color:var(--cyan);}
+.bucket.report{border-color:rgba(217,180,90,.5);} .bucket.report h3{color:var(--gold);}
+.bucket.na{border-color:rgba(255,138,61,.45);} .bucket.na h3{color:var(--orange);}
+.item{font-size:12px;padding:5px 0;border-bottom:1px dashed rgba(62,240,255,.12);cursor:pointer;}
+.item:last-child{border-bottom:none;} .item:hover{color:#fff;}
+.item b{color:#eafcff;} .item .num{float:right;color:var(--good);font-size:11px;}
+.detail{margin-top:6px;font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;min-height:52px;}
+.detail b{color:#eafcff;}
+.pipe{font-size:12.5px;line-height:2;}
+.pipe .stage{display:inline-block;border:1px solid var(--good);color:var(--good);border-radius:5px;padding:4px 10px;margin:3px 6px 3px 0;box-shadow:0 0 10px rgba(89,255,176,.15);}
+.pipe .arrow{color:var(--dim);}
+.creed{font-size:11.5px;color:var(--gold);letter-spacing:1px;margin-top:8px;}
+.cta{border:1px solid var(--violet);border-radius:8px;background:rgba(181,123,255,.06);padding:14px 16px;margin:16px 0;text-align:center;}
+.cta a{color:var(--cyan);font-weight:700;font-size:15px;letter-spacing:1px;}
+.cta .u{color:var(--gold);font-size:13px;}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="badge">&#9670; MILESTONE</span></div>
+<header>
+  <h1>THE MULTIPASS <span class="c">the optimizer i13 would actually keep</span></h1>
+  <p class="sub">Batch 35 threw <b>16 classic compiler-optimization passes</b> at i13 &mdash; a single-pass, correctness-first validator whose creed is <b>ARRIVAL &ne; EXECUTION, EXECUTION &ne; COMMIT</b>. An optimizer's job is to rewrite your code invisibly; i13's job is to prove it never lies about what runs. So the real question is not &ldquo;how do we bolt an optimizer on&rdquo; but <b>which passes survive the creed</b>. Sorted honestly, most do not &mdash; and the few that do share one property: they only ever <i>delete what can never run</i>, or they are already true by i13's design. Click any pass for its verdict and its grounded number.</p>
+</header>
+
+<div class="mbanner">The honest multipass is <b>short on purpose</b>. A compiler whose product is a proof keeps only the passes that a proof licenses: it removes checks it has <b>discharged</b>, deletes ops that can <b>never execute</b>, and inherits the rest from a language that never created the problem. Everything that would rewrite your code behind your back is refused, by design &mdash; not missing.</div>
+
+<div class="panel">
+  <h2>THE 16, SORTED BY THE CREED</h2>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--good)"></span>FIT &mdash; adopt as a real pass</span>
+    <span><span class="dot" style="background:var(--cyan)"></span>FREE &mdash; already true by design</span>
+    <span><span class="dot" style="background:var(--gold)"></span>REPORT &mdash; show it, do not rewrite</span>
+    <span><span class="dot" style="background:var(--orange)"></span>N/A &mdash; a stance, not a gap</span>
+  </div>
+  <div class="buckets">
+    <div class="bucket fit"><h3>&#9679; FIT &mdash; adopt</h3>
+      <div class="item" data-k="bce"><b>bounds-check elimination</b><span class="num">4/5 removable</span></div>
+      <div class="item" data-k="peep"><b>peephole (dead-op)</b><span class="num">4 removed</span></div>
+    </div>
+    <div class="bucket free"><h3>&#9679; FREE &mdash; by design</h3>
+      <div class="item" data-k="defuse"><b>def-use chains</b><span class="num">near-SSA</span></div>
+      <div class="item" data-k="escape"><b>escape analysis</b><span class="num">0 escape</span></div>
+      <div class="item" data-k="scalar"><b>scalar replacement</b><span class="num">idiomatic</span></div>
+      <div class="item" data-k="bb"><b>basic block</b><span class="num">2 regions</span></div>
+      <div class="item" data-k="reach"><b>reaching definitions</b><span class="num">1-bit already</span></div>
+    </div>
+    <div class="bucket report"><h3>&#9679; REPORT &mdash; do not rewrite</h3>
+      <div class="item" data-k="cse"><b>common-subexpression elim</b><span class="num">warn only</span></div>
+      <div class="item" data-k="avail"><b>available expressions</b><span class="num">warn only</span></div>
+      <div class="item" data-k="cfg"><b>cyclomatic complexity</b><span class="num">waste metric</span></div>
+    </div>
+    <div class="bucket na"><h3>&#9679; N/A &mdash; a stance</h3>
+      <div class="item" data-k="licm"><b>loop-invariant motion</b><span class="num">no loops</span></div>
+      <div class="item" data-k="iv"><b>induction variable</b><span class="num">no loops</span></div>
+      <div class="item" data-k="reg"><b>interference graph</b><span class="num">no registers</span></div>
+      <div class="item" data-k="bp"><b>branch prediction</b><span class="num">no speculation</span></div>
+      <div class="item" data-k="inline"><b>inlining</b><span class="num">opt-in only</span></div>
+      <div class="item" data-k="sea"><b>sea of nodes</b><span class="num">opposite IR</span></div>
+    </div>
+  </div>
+  <div class="detail" id="detail">Click a pass above for i13's verdict and the number it was grounded on.</div>
+</div>
+
+<div class="panel">
+  <h2>THE PIPELINE i13 WOULD SHIP</h2>
+  <p>Two passes clear the creed &mdash; both only ever <b>delete what can never run</b>, so neither breaks <span class="k">EXECUTION &ne; COMMIT</span>:</p>
+  <div class="pipe">
+    <span class="stage">check (region validate)</span><span class="arrow">&rarr;</span>
+    <span class="stage">bounds-check elimination<br><small>drop a guard the validator PROVED redundant</small></span><span class="arrow">&rarr;</span>
+    <span class="stage">dead-op peephole<br><small>remove an op constructed nowhere (already done: Op::Attr, 18&rarr;17)</small></span><span class="arrow">&rarr;</span>
+    <span class="stage">emit</span>
+  </div>
+  <p class="creed">Everything else is refused (invisible rewrite), free (value semantics + single assignment), or absent (no loops, no registers, no speculation). The optimizer that survives a proof is a short one &mdash; and that is the point.</p>
+</div>
+
+<div class="cta">
+  <div>See the compiler this pipeline runs inside &mdash; single-pass, self-contained WASM, the COVERED / NOT&nbsp;COVERED ledger:</div>
+  <a href="https://davidwise01.github.io/I13-H1.1/">i13 &mdash; the H1.1 compiler &rarr;</a>
+  <div class="u">davidwise01.github.io/I13-H1.1</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var D={
+   bce:["FIT &mdash; THE pass in i13's grain","i13 already bounds-checks every access (E0501) and already runs a validator that PROVES. Eliding a check when the index is a literal in [0,len) keeps the guarantee and removes the cost &mdash; a rewrite that only deletes a test already discharged. Grounded: <b>4 of 5</b> checks provably removable; the runtime index stays guarded."],
+   peep:["FIT &mdash; delete what can never run","A peephole that removes provably-dead ops fits the creed &mdash; it removes non-execution. It already happened once: the panel removed the dead <b>Op::Attr</b> opcode (constructed nowhere), IVM 18&rarr;17. Grounded: <b>4</b> removable ops in a tagged stream."],
+   defuse:["FREE &mdash; near-SSA by construction","i13 globals are single-assignment (a re-assign is rejected, E0302) and I x&lt;-e names one value &mdash; so chains are exact with no analysis. Grounded: v1 defined once, read <b>3</b>x."],
+   escape:["FREE &mdash; nothing escapes, by design","Arrays are value-semantic and arena-backed: a write yields a NEW array, no aliasing, no capture-and-mutate. So nothing escapes &mdash; the exact property escape analysis works to prove. Grounded: <b>0</b> escapes."],
+   scalar:["FREE &mdash; already idiomatic","Reading v[i] into I s&lt;-v[i] and working on the scalar is what the std library already does; value semantics make it safe with no alias analysis. Grounded: <b>2</b> indexed loads saved."],
+   bb:["FREE &mdash; i13 already reports it","check reports the program as regions &mdash; i13's single-entry block unit, over which it proves control-structure pairing. Grounded: a straight-line function is <b>2</b> region(s)."],
+   reach:["FREE &mdash; the one-bit version already runs","i13's validator threads a live flag to prove return-totality (fall-through rejected, E0401) &mdash; a one-bit dataflow analysis. The full lattice fixpoint is the generalization. Grounded: reaching set = bitmask <b>6</b>."],
+   cse:["REPORT &mdash; never a silent rewrite","i13 lowers (a+b)*(a+b) to ops that compute a+b TWICE, on purpose: the ops that run are the ops you wrote. CSE would insert a temporary you never named. Offer it as a warning, not a rewrite. Grounded: 3 uses &rarr; <b>2</b> evals saved."],
+   avail:["REPORT &mdash; diagnose the redundancy","The enabler for CSE, so held back as a rewrite; useful as a 'you computed a+b twice' note in the waste ledger. Grounded: available set = bitmask <b>3</b>."],
+   cfg:["REPORT &mdash; a waste metric","Cyclomatic complexity M=E&minus;N+2 could fill the empty 'waste' slot in i13's ledger. With no loops, every CFG is a DAG and M is one-plus-the-guards. Grounded: a diamond CFG has M=<b>2</b>."],
+   licm:["N/A &mdash; no loops","Iteration is recursion; an invariant is an argument computed once and threaded through the calls (std sqrt does exactly this). Hoisting is manual and visible, a parameter not a compiler-invented pre-header. Grounded: <b>999</b> recomputes saved for n=1000."],
+   iv:["N/A &mdash; no loops","There is no counter to recognize; the 'induction variable' is an explicit recursion argument, written i+1 in the open. i13 never hides the sequence the classical pass exists to recover. Grounded: byrec 26 = closed <b>26</b>."],
+   reg:["N/A &mdash; no registers","i13 compiles to a stack IVM; operands live on the operand stack in evaluation order. There is nothing to color &mdash; the stack discipline IS the allocation, and i13 proves it balanced. Grounded: K3 needs <b>3</b> colors (moot for a stack machine)."],
+   bp:["N/A &mdash; no speculation","A hardware pipeline trick. i13's IVM resolves each branch before it acts: ARRIVAL &ne; EXECUTION is the opposite of guessing ahead. The predictor is the perfect foil for the creed. Grounded: <b>5</b> mispredicts over 1110x3."],
+   inline:["N/A &mdash; opt-in only","It would cut call depth (i13's ceiling is E0503 at 4096) but it erases a frame the spot-awareness log is designed to witness (I=frame). Offer opt-in, never default: keep the call visible. Grounded: f(6)=37, depth 1&rarr;0."],
+   sea:["N/A &mdash; the opposite IR, on purpose","The sea floats code and reorders it invisibly; i13's IVM is a linear, scheduled list you read in source order. The sea optimizes by hiding the schedule; i13 verifies by fixing it. Grounded: sea 5 nodes vs i13 IVM <b>8</b> ops (a+b twice, no CSE)."],
+  };
+  var det=document.getElementById("detail");
+  document.querySelectorAll(".item").forEach(function(el){
+    el.addEventListener("click",function(){
+      var d=D[el.getAttribute("data-k")]; if(!d)return;
+      det.innerHTML="<b>"+d[0]+"</b><br>"+d[1];
+    });
+  });
+})();
+</script>
+
+<footer>
+  <b>THE MULTIPASS</b> &mdash; a milestone of World V &middot; SONNY 5, the I-13 world. The synthesis of <a href="./">batch 35 &middot; THE OPTIMIZER</a> (darts 230&ndash;245): sixteen compiler-optimization passes judged against a single-pass, correctness-first verifier. I-13 by <b>David Lee Wise / ROOT0</b>; every verdict grounded on the canonical H1.1 compiler. Rendered by AVAN for the corpus. See the live compiler at <a href="https://davidwise01.github.io/I13-H1.1/">davidwise01.github.io/I13-H1.1</a>.
+</footer>
+</body>
+</html>
