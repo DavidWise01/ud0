@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE MUTATION TESTING &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 229 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE MUTATION TESTING <span class="c">who tests the tests? break the code on purpose and see if they notice</span></h1>
+  <p class="sub">A green test suite proves nothing if the tests are toothless. <b>Mutation testing</b> audits the tests by sabotaging the <b>program</b>: it injects small deliberate faults &mdash; a <span class="k">+</span> becomes a <span class="k">&minus;</span>, a <span class="k">&lt;</span> becomes a <span class="k">&le;</span> &mdash; producing <b>mutants</b>, and reruns the suite. A good test <b>kills</b> the mutant (fails on it). A mutant that <b>survives</b> is a bug the tests would never catch. The <b>mutation score</b> &mdash; mutants killed &divide; total &mdash; is how strong your tests really are.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">inject faults; a test that fails KILLS the mutant, a survivor exposes a weak test</span></h2>
+  <p>The same three mutants of <span class="k">add(a,b)</span> face two tests. A <b>strong</b> test kills all three; a <b>weak</b> test lets one <b>survive</b> &mdash; the mutation score exposes exactly how toothless it is: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>test: add(</label><input id="a" type="number" value="3" style="width:64px"><label>,</label><input id="bb" type="number" value="4" style="width:64px"><label>)</label><button id="go" class="dartbtn">&#9192; run the mutants</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">DeMillo, Lipton &amp; Sayward, 1978</span></h2>
+  <p class="myth">&ldquo;All tests pass, so the code is well-tested.&rdquo; &mdash; passing tests only prove the tests agree with the current code, not that they would catch a change. Mutation testing measures the thing coverage cannot: whether your tests would actually <b>notice</b> if the code were wrong. A high line-coverage suite can have a terrible mutation score. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1971&ndash;78</b> &middot; <span class="who">Richard Lipton</span> (student idea, 1971) then <span class="who">DeMillo, Lipton &amp; Sayward</span> (1978) &mdash; &ldquo;Hints on Test Data Selection&rdquo;: seed faults, measure which tests catch them.<br><b>the coupling effect</b> &middot; tests that catch simple mutants tend to catch complex faults too &mdash; the empirical bet mutation testing rests on.<br><b>now</b> &middot; PIT (Java), mutmut (Python), Stryker (JS) &mdash; mutation testing in CI, grading test suites.</div>
+  <p style="margin-top:10px">It is the falsifier turned on the falsifiers: to trust a test that finds bugs, plant a bug and confirm the test finds <b>that</b>. A suite that survives no mutants is a suite that would survive your bugs too. <span class="tag t-open">DeMillo et al. 1978</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">mutation score: killed vs survived, computed</span></h2>
+  <p>On the canonical compiler, three mutants of <span class="k">add</span> (<span class="k">&minus;</span>, <span class="k">&times;</span>, <span class="k">&amp;</span>) meet two tests: a strong one kills all three, a weak one lets a mutant survive:</p>
+  <div class="evi good">$ i13 run mutation.i13   # mutants of add: sub, mul, and
+strong = 3   -- test add(3,4)==7 kills all 3 mutants (-1, 12, 0 all != 7): adequate
+weak   = 2   -- test add(2,2)==4 kills 2, but mul (2*2=4) SURVIVES: a weak test exposed</div>
+  <div class="rec"><b>Recommend:</b> mutation testing is <b>LIT for I-13</b> &mdash; verified that the test <span class="k">add(3,4)==7</span> kills all <span class="k">3</span> mutants (score 3/3, adequate) while <span class="k">add(2,2)==4</span> kills only <span class="k">2</span> &mdash; the <span class="k">&times;</span> mutant survives because <span class="k">2&times;2==4</span>. The falsifier aimed at the tests themselves: plant a bug, and demand the suite catch it.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), R="#ff6a6a", G="#59ffb0";
+  function run(){
+    var a=Math.floor(+document.getElementById("a").value||0), b=Math.floor(+document.getElementById("bb").value||0);
+    var expected=a+b;
+    var muts=[["sub (+ &rarr; -)",a-b],["mul (+ &rarr; *)",a*b],["and (+ &rarr; &)",a&b]];
+    var killed=0, L=[];
+    L.push("test:  add("+a+","+b+") == "+expected+"     (mutants of '+')\n");
+    muts.forEach(function(m){
+      var dead = m[1]!==expected;
+      if(dead) killed++;
+      L.push("  mutant "+m[0]+":  add'="+m[1]+"  "+(dead?"<span style='color:"+G+"'>[+] KILLED</span> ("+m[1]+" &ne; "+expected+")":"<span style='color:"+R+"'>[x] SURVIVED</span> ("+m[1]+" == "+expected+")"));
+    });
+    var score=(killed/3);
+    L.push("\nmutation score = "+killed+"/3 = "+score.toFixed(2)+"   "+(killed===3?"<span style='color:"+G+"'>adequate</span>":"<span style='color:"+R+"'>weak &mdash; a mutant survived, so a real bug could too</span>"));
+    out.innerHTML=L.join("\n");
+    say.innerHTML="score <span class='true'>"+killed+"/3</span>"+(killed<3?" (weak)":"");
+  }
+  document.getElementById("go").onclick=run;
+  ["a","bb"].forEach(function(id){document.getElementById(id).addEventListener("input",run);});
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 229 &middot; THE MUTATION TESTING</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>DeMillo, Lipton &amp; Sayward</b> (1978) introduced mutation testing (Lipton's idea, 1971). PIT/mutmut/Stryker run it in CI. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE FALSIFIER</b> (batch 34) &mdash; how software is tested by trying to BREAK it &mdash; property-based testing, shrinking, metamorphic &amp; differential testing, fuzzing, model checking, symbolic execution, mutation testing; the Popperian principle in code (companion to pop-kit/popper.py), each dart computing a real counterexample, next to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

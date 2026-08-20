@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FUZZER &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 226 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE FUZZER <span class="c">throw noise at it until it screams</span></h1>
+  <p class="sub">A <b>fuzzer</b> feeds a program a torrent of malformed, random, or mutated inputs and watches for the one that makes it <b>crash</b>, hang, or trip an assertion. It is the crudest falsifier and one of the most effective: it does not understand the code, it just keeps knocking until something breaks. Modern <b>coverage-guided</b> fuzzers steer the noise toward inputs that reach new code paths, homing in on the rare input that hides a bug.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">drive inputs at a guard until one satisfies the crash condition</span></h2>
+  <p>A function is safe except where a hidden guard <span class="k">x&sup2;&minus;20x+91 = 0</span> holds (its roots, 7 and 13, are the crashing inputs). The fuzzer sweeps the domain and reports the first input that <b>trips</b> it: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>fuzz 0..</label><input id="hi" type="number" value="30" min="1" max="100000" style="width:100px"><button id="go" class="dartbtn">&#9192; fuzz until it breaks</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Barton Miller, 1990</span></h2>
+  <p class="myth">&ldquo;Random garbage inputs are a waste of time.&rdquo; &mdash; random garbage found crashes in a quarter of standard Unix utilities in Miller's first study, and fuzzers still find critical bugs in browsers, kernels, and crypto today. The machine's tirelessness beats the tester's imagination at reaching the input no one thought to try. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1990</b> &middot; <span class="who">Barton Miller</span> et al. &mdash; coins <b>fuzz</b>: random inputs crash 25&ndash;33% of tested Unix utilities.<br><b>2013</b> &middot; <span class="who">AFL</span> (Micha&#322; Zalewski) &mdash; <b>coverage-guided</b> fuzzing: keep inputs that reach new edges, evolve toward deeper paths.<br><b>now</b> &middot; libFuzzer, OSS-Fuzz &mdash; continuous fuzzing finds tens of thousands of bugs across open-source software.</div>
+  <p style="margin-top:10px">The fuzzer has no theory of your program and needs none. It embodies the falsifier's humility: do not argue that the code is correct &mdash; try, relentlessly, to break it, and let the crash speak. <span class="tag t-open">Miller 1990</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the crashing input, found by search, computed</span></h2>
+  <p>On the canonical compiler, a guard crashes only at the roots of <span class="k">x&sup2;&minus;20x+91</span>; the fuzzer sweeps <span class="k">0..30</span> and returns the first crashing input:</p>
+  <div class="evi good">$ i13 run fuzz.i13   # crashes when x^2 - 20x + 91 == 0  (roots 7, 13)
+crashing_input = 7    -- the first input that trips the hidden guard</div>
+  <div class="rec"><b>Recommend:</b> the fuzzer is <b>LIT for I-13</b> &mdash; verified it locates the crashing input <span class="k">x=7</span>, the first root of a hidden guard <span class="k">x&sup2;&minus;20x+91</span>, by blind sweep. No model of the program, just relentless knocking until something breaks &mdash; the humblest and most outward-facing falsifier there is.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), R="#ff6a6a", G="#59ffb0";
+  function crashes(x){ return x*x - 20*x + 91 === 0; }   // roots 7, 13
+  function run(){
+    var hi=Math.max(1,Math.min(100000,Math.floor(+document.getElementById("hi").value||30)));
+    var found=null, tried=0;
+    for(var x=0;x<=hi;x++){ tried++; if(crashes(x)){ found=x; break; } }
+    var L=[];
+    L.push("guard: crashes when  x&sup2; - 20x + 91 == 0   (unknown to the fuzzer)\n");
+    if(found===null){ L.push("<span style='color:"+G+"'>swept "+tried+" inputs, no crash found</span> (in range)"); say.innerHTML="no crash in 0.."+hi; }
+    else{
+      L.push("swept "+tried+" inputs &rarr; <span style='color:"+R+"'>CRASH</span>");
+      L.push("<span style='color:"+R+"'>[x] crashing input:  x = "+found+"</span>   ("+found+"&sup2; - 20&middot;"+found+" + 91 = 0)");
+      L.push("<span class='dim'>the fuzzer had no theory of the guard &mdash; it just kept knocking</span>");
+      say.innerHTML="crash at <span class='true'>x="+found+"</span>";
+    }
+    out.innerHTML=L.join("\n");
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("hi").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 226 &middot; THE FUZZER</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Barton Miller</b> (1990) coined fuzzing; <b>AFL</b> (Zalewski, 2013) made it coverage-guided. It still finds critical bugs everywhere. Rendered by AVAN. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE FALSIFIER</b> (batch 34) &mdash; how software is tested by trying to BREAK it &mdash; property-based testing, shrinking, metamorphic &amp; differential testing, fuzzing, model checking, symbolic execution, mutation testing; the Popperian principle in code (companion to pop-kit/popper.py), each dart computing a real counterexample, next to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

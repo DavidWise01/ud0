@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DIFFERENTIAL TEST &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 225 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE DIFFERENTIAL TEST <span class="c">two things that should agree, and the input where they don't</span></h1>
+  <p class="sub">When two implementations are supposed to compute the same thing &mdash; two compilers, two JSON parsers, a fast path and a slow path, a new version and the old &mdash; feed them the <b>same</b> inputs and look for the one where they <b>disagree</b>. You need no oracle: the disagreement itself is the bug (at least one of them is wrong). Differential testing turns &ldquo;is this correct?&rdquo; into &ldquo;do these agree?&rdquo; &mdash; a question you can answer by <b>search</b>.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">run two impls on the same inputs; the first divergence is a bug</span></h2>
+  <p>Two implementations of a triangular sum &mdash; a reference recursion and a closed-form with a planted bug &mdash; are fed the same inputs. The checker returns the <b>first input where they diverge</b>: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>bug at n =</label><input id="bug" type="number" value="7" min="1" max="50" style="width:90px"><label>over 1..</label><input id="hi" type="number" value="50" min="1" max="5000" style="width:80px"><button id="go" class="dartbtn">&#9192; find the divergence</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">McKeeman, 1998</span></h2>
+  <p class="myth">&ldquo;Without a spec of the correct answer, you cannot test.&rdquo; &mdash; you can, if you have two things that must agree. Their disagreement needs no oracle: it proves at least one is wrong. This is how the hardest software &mdash; compilers &mdash; is actually tested. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1998</b> &middot; <span class="who">William McKeeman</span> &mdash; &ldquo;Differential Testing for Software&rdquo;: generate inputs, run multiple implementations, flag divergence.<br><b>2011</b> &middot; <span class="who">Yang, Chen, Eide &amp; Regehr</span> &mdash; <b>Csmith</b> differentially tests C compilers, finding hundreds of GCC/Clang bugs.<br><b>now</b> &middot; parsers, crypto libraries, floating-point, and databases are all cross-checked implementation-against-implementation.</div>
+  <p style="margin-top:10px">Two witnesses who must agree, and the case where they don't. No judge of truth is needed &mdash; only the contradiction, which convicts at least one of them. <span class="tag t-open">McKeeman 1998</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">first diverging input between two impls, computed</span></h2>
+  <p>On the canonical compiler, a reference sum and a closed-form with a bug planted at <span class="k">n=7</span> are compared over <span class="k">1..50</span>; the checker returns the first divergence:</p>
+  <div class="evi good">$ i13 run differential.i13   # sumA = recursion, sumB = n(n+1)/2 with a bug at 7
+first_diff = 7        -- sumA(7)=28, sumB(7)=29: the two impls DISAGREE. one is wrong.</div>
+  <div class="rec"><b>Recommend:</b> differential testing is <b>LIT for I-13</b> &mdash; verified a reference recursion and a closed-form triangular sum agree everywhere except the planted bug, and the checker returns the first diverging input <span class="k">n=7</span>. &ldquo;Is it correct?&rdquo; becomes &ldquo;do they agree?&rdquo; &mdash; answerable by pure search, no oracle, the way real compilers are tested.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), R="#ff6a6a", G="#59ffb0";
+  function sumA(n){ var s=0; for(var i=1;i<=n;i++) s+=i; return s; }        // reference
+  function sumB(n,bug){ var t=(n*(n+1))>>1; return n===bug ? t+1 : t; }     // closed form + planted bug
+  function run(){
+    var bug=Math.max(1,Math.min(50,Math.floor(+document.getElementById("bug").value||7)));
+    var hi=Math.max(1,Math.min(5000,Math.floor(+document.getElementById("hi").value||50)));
+    var d=null;
+    for(var n=1;n<=hi;n++){ if(sumA(n)!==sumB(n,bug)){ d=n; break; } }
+    var L=[];
+    L.push("impl A: recursive sum(1..n)     impl B: n(n+1)/2  (bug planted at n="+bug+")\n");
+    if(d===null){ L.push("<span style='color:"+G+"'>[+] agree on all "+hi+" inputs</span> (no divergence in range)"); say.innerHTML="agree on 1.."+hi; }
+    else{
+      L.push("first divergence at <span style='color:"+R+"'>n = "+d+"</span>:");
+      L.push("   A("+d+") = "+sumA(d)+"     B("+d+") = "+sumB(d,bug)+"   <span style='color:"+R+"'>[x] DISAGREE</span>");
+      L.push("<span class='dim'>no oracle: the contradiction alone proves one of them is wrong</span>");
+      say.innerHTML="diverge at <span class='true'>n="+d+"</span>";
+    }
+    out.innerHTML=L.join("\n");
+  }
+  document.getElementById("go").onclick=run;
+  ["bug","hi"].forEach(function(id){document.getElementById(id).addEventListener("input",run);});
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 225 &middot; THE DIFFERENTIAL TEST</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>William McKeeman</b> (1998) named differential testing; <b>Csmith</b> (Yang et al. 2011) used it to find hundreds of compiler bugs. Rendered by AVAN. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE FALSIFIER</b> (batch 34) &mdash; how software is tested by trying to BREAK it &mdash; property-based testing, shrinking, metamorphic &amp; differential testing, fuzzing, model checking, symbolic execution, mutation testing; the Popperian principle in code (companion to pop-kit/popper.py), each dart computing a real counterexample, next to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
