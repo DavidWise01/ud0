@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE AVALANCHE EFFECT &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 194 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE AVALANCHE EFFECT <span class="c">flip one input bit; half the output must change</span></h1>
+  <p class="sub">A good cipher (or hash) has the <b>avalanche property</b>: flipping a <b>single</b> input bit flips about <b>half</b> the output bits, unpredictably. It is the measurable face of diffusion &mdash; if one bit changed only one output bit, an attacker could peel the cipher apart bit by bit. The test is brutal and simple: change one bit, count how many output bits move, and watch it climb to <span class="k">n/2</span> as the rounds stack up.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">Hamming distance of outputs on a 1-bit input change</span></h2>
+  <p>The stark contrast: a <b>linear</b> cipher (just XOR a key) changes <b>exactly one</b> output bit &mdash; catastrophic. A real cipher, round by round, spreads that one bit toward <b>half</b> the block. Measure the Hamming distance and watch it grow: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>rounds</label><input id="r" type="range" min="0" max="8" step="1" value="4"><span id="rv" class="kg"></span><button id="go" class="dartbtn" style="margin-left:8px">&#9192; measure avalanche</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Feistel 1973; SAC Webster-Tavares 1985</span></h2>
+  <p class="myth">&ldquo;More output change is always better.&rdquo; &mdash; the target is <b>exactly half</b>, not maximal. Every output bit should flip with probability 1/2, <b>independently</b> &mdash; the <b>strict avalanche criterion</b> (per-bit; mutual independence is the distinct Bit Independence Criterion). All bits always flipping is as predictable (and as broken) as none flipping; randomness at exactly 50% is the goal &mdash; and that the bit-flips be <i>mutually independent</i> is a <b>separate</b> requirement, the Bit Independence Criterion (same 1985 paper). <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1973</b> &middot; <span class="who">Horst Feistel</span> &mdash; coins the term <b>avalanche</b> for the effect in his DES-era design.<br><b>1985</b> &middot; <span class="who">Webster &amp; Tavares</span> &mdash; the <b>Strict Avalanche Criterion</b> (SAC): each output bit changes with probability exactly 1/2 when any single input bit flips.<br><b>the driver</b> &middot; diffusion &mdash; the bit-permutation of an SPN (192) or the swap of a Feistel (190) &mdash; is what carries one flipped bit across the block over successive rounds.</div>
+  <p style="margin-top:10px">It is a <b>diagnostic</b>, not a mechanism: avalanche is what good confusion + diffusion <i>produce</i>, and measuring it (one flip, count the change) is the cheapest way to tell a strong cipher from a broken one. <span class="tag t-open">Feistel 1973 / Webster-Tavares 1985</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">one bit flip, output change measured</span></h2>
+  <p>On the canonical compiler a linear cipher fails avalanche outright &mdash; one input bit moves exactly one output bit:</p>
+  <div class="evi good">$ i13 run avlin.i13   # linear cipher c = p xor k, flip one input bit
+linear avalanche = 1   -- exactly 1 of 16 output bits changes: CATASTROPHIC
+                       -- a good cipher (many rounds, S-box + permute) approaches 8 of 16</div>
+  <div class="rec"><b>Recommend:</b> the avalanche effect is <b>LIT as the cipher test for I-13</b> &mdash; verified that a linear cipher (<span class="k">c = p &oplus; k</span>) has avalanche <b>1</b> (a single flipped input bit moves exactly one output bit, so the key is trivially recoverable), computed as the <b>Hamming distance</b> (a popcount) of two ciphertexts on a one-bit-different input. It is the diagnostic that justifies rounds: stack S-boxes (191) and diffusion (192) and the number climbs toward <span class="k">n/2</span>. For any I-13 cipher, this popcount-of-the-XOR is how you <i>measure</i> that it mixes &mdash; and the strict-avalanche target is exactly half, not maximal.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var S=[14,4,13,1,2,15,11,8,3,10,6,12,5,9,0,7];
+  function sub(b){ return (S[(b>>4)&15]<<4)|S[b&15]; }
+  function rotl(x,n){ return ((x<<n)|(x>>(8-n)))&255; }
+  function feist(block,rounds){ var L=block>>8,R=block&255; for(var i=0;i<rounds;i++){ var nL=R, nR=(L^rotl(sub(R^(i+7)),3))&255; L=nL; R=nR; } return (L<<8)|R; }
+  function pop(x){ var c=0; while(x){ c+=x&1; x>>=1; } return c; }
+  function run(){
+    var rounds=+document.getElementById("r").value; document.getElementById("rv").textContent=rounds;
+    var pt=0x1234, a=feist(pt,rounds), b=feist(pt^1,rounds), d=pop(a^b);
+    var lin=pop((pt^999)^((pt^1)^999));
+    var L=[];
+    L.push("flip 1 input bit of a 16-bit block; count output bits changed (Hamming distance)\n");
+    L.push("LINEAR cipher (XOR key):  changed = <span class='bad'>"+lin+"</span> / 16   <span class='bad'>catastrophic</span>\n");
+    L.push("Feistel (S-box round function), "+rounds+" round"+(rounds===1?"":"s")+":");
+    L.push("  ciphertext(pt)      = "+a);
+    L.push("  ciphertext(pt^1bit) = "+b);
+    L.push("  changed = <span class='"+(d>=6?"hit":"g")+"'>"+d+"</span> / 16   (ideal target: <span class='hit'>8</span> = half)");
+    var bar=""; for(var i=0;i<16;i++) bar += i<d ? "#" : ".";
+    L.push("  ["+bar+"]");
+    L.push("\n<span class='dim'>more rounds -> more diffusion -> closer to half. one flipped bit spreads across the block.</span>");
+    out.innerHTML=L.join("\n");
+    say.innerHTML="linear "+lin+"/16 vs "+rounds+"-round <span class='true'>"+d+"</span>/16";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("r").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 194 &middot; THE AVALANCHE EFFECT</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Horst Feistel</b> coined <b>avalanche</b> (1973); <b>Webster &amp; Tavares</b> gave the <b>Strict Avalanche Criterion</b> (1985): each output bit flips with probability exactly 1/2. It is a diagnostic of diffusion, measured as a Hamming distance. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CIPHER</b> (batch 30) &mdash; symmetric cryptography &mdash; how block and stream ciphers are built (Feistel, S-box, SPN, LFSR, modes, the one-time pad), all XOR/bitwise, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

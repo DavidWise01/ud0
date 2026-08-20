@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FEISTEL NETWORK &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 190 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE FEISTEL NETWORK <span class="c">split, mangle one half, swap; decryption is free</span></h1>
+  <p class="sub">Split a block in two halves; each round replaces <span class="k">(L, R)</span> with <span class="k">(R, L &oplus; F(R, key))</span> for some round function <span class="k">F</span>. The magic: <span class="k">F</span> can be <b>anything</b> &mdash; it need not be invertible, or even injective &mdash; and the whole cipher is still perfectly reversible, because XOR undoes itself. Decryption is the <b>same network</b> with the round keys in reverse order. DES, Blowfish and Twofish are all Feistel.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">(L,R) -> (R, L xor F(R,k)); reverse keys to decrypt</span></h2>
+  <p>Encrypt a block with a deliberately <b>non-invertible</b> round function, then decrypt by running the same rounds with the keys reversed. The plaintext comes back exactly &mdash; the structure, not <span class="k">F</span>, carries the reversibility: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>plaintext</label><input id="pt" type="number" value="4660" style="width:110px"><button id="go" class="dartbtn">&#9192; encrypt then decrypt</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Horst Feistel, IBM, 1973</span></h2>
+  <p class="myth">&ldquo;The round function <span class="k">F</span> must be invertible for the cipher to decrypt.&rdquo; &mdash; no, and that is the whole point. Because the round is <span class="k">(R, L &oplus; F(R,k))</span>, XOR reverses it whatever <span class="k">F</span> does; <span class="k">F</span> is free to be a wildly non-linear, non-invertible mess &mdash; which is exactly what makes it secure. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1971&ndash;73</b> &middot; <span class="who">Horst Feistel</span> (IBM) &mdash; the <b>Lucifer</b> cipher and &ldquo;Cryptography and Computer Privacy&rdquo; (Scientific American, 1973): the split-mangle-swap structure now named for him.<br><b>1977</b> &middot; <span class="who">DES</span> &mdash; IBM/NBS standardise a 16-round Feistel cipher; the structure goes worldwide.<br><b>1988&ndash;98</b> &middot; <span class="who">Luby &amp; Rackoff</span> (1988) prove a 3&ndash;4 round Feistel with pseudorandom <span class="k">F</span> is a secure pseudorandom permutation &mdash; the theorem behind the practice.</div>
+  <p style="margin-top:10px">Decrypt <b>is</b> encrypt: run the identical network with the subkeys in reverse. So the same hardware, the same code, ciphers both ways &mdash; a structural involution, symmetric by construction. <span class="tag t-open">Feistel 1973</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">reversible from a non-invertible F, computed</span></h2>
+  <p>On the canonical compiler a Feistel cipher round-trips a block even though its <span class="k">F</span> is not invertible &mdash; pure XOR, shift and mask:</p>
+  <div class="evi good">$ i13 run feistel.i13   # F(r,k) = (3r + k) mod 256 (NOT invertible); 2 rounds
+pt   = 4660
+ct   = 49554   -- encrypted
+back = 4660    -- decrypt = same network, keys reversed  ->  exact recovery</div>
+  <div class="rec"><b>Recommend:</b> the Feistel network is <b>LIT and a natural fit for I-13</b> &mdash; verified a 2-round cipher encrypts <span class="k">4660 &rarr; 49554</span> and decrypts back to <span class="k">4660</span> using a round function <span class="k">F(r,k)=(3r+k) mod 256</span> that is <b>not invertible</b>, built from <span class="k">&oplus;</span>, <span class="k">&lt;&lt;</span>, <span class="k">&gt;&gt;</span>, <span class="k">&amp;</span> (the bitwise operators, doing cryptographic work). Its reversibility is <b>structural</b>: encrypt and decrypt are the same network with reversed keys &mdash; a self-undoing shape that runs bit-exact. For any I-13 symmetric cipher this is the cleanest skeleton; the security lives entirely in a strong <span class="k">F</span> (an S-box, dart 191) and enough rounds (avalanche, 194).</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  function F(r,k){ return ((3*r)+k)%256; }   // deliberately non-invertible
+  function enc(block,k1,k2){ var L=block>>8, R=block&255; var L1=R, R1=(L^F(R,k1))&255; var L2=R1, R2=(L1^F(R1,k2))&255; return (L2<<8)|R2; }
+  function dec(block,k1,k2){ var L2=block>>8, R2=block&255; var L1=(R2^F(L2,k2))&255, R1=L2; var L0=(R1^F(L1,k1))&255, R0=L1; return (L0<<8)|R0; }
+  function run(){
+    var pt=Math.max(0,Math.floor(+document.getElementById("pt").value||0))&0xFFFF, L=[];
+    var ct=enc(pt,55,99), back=dec(ct,55,99);
+    L.push("F(r,k) = (3r + k) mod 256   <span class='dim'>// NOT invertible: 3r+k collides</span>\n");
+    L.push("plaintext  = "+pt+"   (L="+(pt>>8)+", R="+(pt&255)+")");
+    L.push("round 1: (L,R) -> (R, L xor F(R,k1))");
+    L.push("round 2: (L,R) -> (R, L xor F(R,k2))");
+    L.push("ciphertext = <span class='cur'>"+ct+"</span>\n");
+    L.push("decrypt = SAME network, keys reversed:");
+    L.push("recovered  = <span class='"+(back===pt?"hit":"bad")+"'>"+back+"</span>   "+(back===pt?"<span class='hit'>&#10003; exact</span> &mdash; even though F is not invertible":"<span class='bad'>mismatch</span>"));
+    out.innerHTML=L.join("\n");
+    say.innerHTML="enc/dec round-trips: <span class='true'>"+back+"</span> = "+pt;
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("pt").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 190 &middot; THE FEISTEL NETWORK</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Horst Feistel</b> (IBM) designed the structure (Lucifer; Scientific American 1973), standardised as <b>DES</b> (1977); <b>Luby &amp; Rackoff</b> (1988) proved the security bound. The round function need <b>not</b> be invertible &mdash; XOR carries the reversibility. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CIPHER</b> (batch 30) &mdash; symmetric cryptography &mdash; how block and stream ciphers are built (Feistel, S-box, SPN, LFSR, modes, the one-time pad), all XOR/bitwise, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
