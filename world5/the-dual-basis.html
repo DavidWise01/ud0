@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DUAL BASIS &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 210 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE DUAL BASIS <span class="c">every basis has a shadow that reads off coordinates</span></h1>
+  <p class="sub">Give a vector space a basis <span style="color:#ff6a8a">e&#8321;, e&#8322;</span>; the <b>dual basis</b> <span style="color:#6ab8ff">e&sup1;, e&sup2;</span> lives in the space of linear functionals and is defined by one duality: <span class="k">&langle;e&#8305;, e&#11388;&rangle; = &delta;&#8305;&#11388;</span> &mdash; each dual vector returns <span class="k">1</span> on its partner and <span class="k">0</span> on the others. Then any vector's <span class="k">i</span>-th coordinate is just <span class="k">&langle;e&#8305;, v&rangle;</span>. The dual basis is the <b>reciprocal</b> basis of crystallography, and it is the rows of the inverse matrix.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">&langle;e&#8305;, e&#11388;&rangle; = &delta;&#8305;&#11388; ; the dual basis = rows of the inverse</span></h2>
+  <p>Choose a (non-orthogonal) basis; compute its dual as the rows of the inverse, then check the biorthogonality grid <span class="k">&langle;e&#8305;, e&#11388;&rangle;</span> is the identity &mdash; ones on the diagonal, zeros off it: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>e&#8321;</label><input id="e1" type="text" value="2,1" style="width:70px"><label>e&#8322;</label><input id="e2" type="text" value="1,3" style="width:70px"><button id="go" class="dartbtn">&#9192; build the dual</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">dual space; reciprocal lattice (Gibbs)</span></h2>
+  <p class="myth">&ldquo;To get a vector's coordinates you solve a linear system.&rdquo; &mdash; only until you have the dual basis; then the <span class="k">i</span>-th coordinate is a single inner product <span class="k">&langle;e&#8305;, v&rangle;</span>. The dual basis is the machine that reads coordinates off, and it exists for <i>every</i> basis, orthogonal or not. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1880s</b> &middot; <span class="who">J. W. Gibbs</span> &mdash; the reciprocal system of vectors; in crystallography the reciprocal lattice, dual to the direct lattice, is where diffraction lives.<br><b>1900s</b> &middot; <span class="who">dual space V*</span> &mdash; functional analysis makes the dual basis a basis of the space of linear functionals.<br><b>now</b> &middot; biorthogonal bases underlie wavelets, finite elements, and every non-orthogonal coordinate read-off.</div>
+  <p style="margin-top:10px">A basis names directions; its dual names the <b>measurements</b> that recover the amounts. Two bases, locked together by <span class="k">&delta;&#8305;&#11388;</span> &mdash; you cannot move one without the other answering. <span class="tag t-open">reciprocal basis</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">biorthogonality &langle;e&#8305;,e&#11388;&rangle;=&delta; to machine precision, computed</span></h2>
+  <p>On the canonical compiler, the dual of <span class="k">e&#8321;=[2,1], e&#8322;=[1,3]</span> (rows of the inverse) satisfies biorthogonality to f64 precision &mdash; the off-diagonal <span class="k">&asymp;10&#8315;&sup1;&#8310;</span> is the honest floating-point remainder:</p>
+  <div class="evi good">$ i13 run dualbasis.i13   # e1=[2,1], e2=[1,3]; dual = rows of inverse (det=5)
+<e^1, e1> = 1                       <e^1, e2> = -1.1e-16   (= 0)
+<e^2, e1> = 0                       <e^2, e2> = 1.0000000000000002 (= 1)
+-- Kronecker delta to machine precision; the off-diagonals are the ulp remainder</div>
+  <div class="rec"><b>Recommend:</b> the dual basis is <b>LIT for I-13</b> &mdash; verified for <span class="k">e&#8321;=[2,1], e&#8322;=[1,3]</span> that the dual (rows of the inverse) gives <span class="k">&langle;e&#8305;,e&#11388;&rangle;</span> equal to the identity: <span class="k">1</span> on the diagonal, <span class="k">&asymp;10&#8315;&sup1;&#8310;</span> off it (the same f64 remainder <a href="the-kahan-summation.html">Kahan</a> carries). Every basis carries a dual that reads coordinates off with one inner product.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var R="#ff6a8a", B="#6ab8ff";
+  function parse(id){ var a=(document.getElementById(id).value||"").split(",").map(function(s){return +s||0;}); while(a.length<2)a.push(0); return a.slice(0,2); }
+  function run(){
+    var e1=parse("e1"), e2=parse("e2"), L=[];
+    // B columns e1,e2 -> B=[[e1x,e2x],[e1y,e2y]] ; det ; inverse rows = dual
+    var det=e1[0]*e2[1]-e2[0]*e1[1];
+    if(Math.abs(det)<1e-12){ out.innerHTML="<span class='bad'>e1, e2 are dependent (det=0) - no dual basis</span>"; say.innerHTML="<span class='err'>singular</span>"; return; }
+    var f1=[e2[1]/det, -e2[0]/det];   // row 1 of inverse
+    var f2=[-e1[1]/det, e1[0]/det];   // row 2 of inverse
+    function dot(u,v){return u[0]*v[0]+u[1]*v[1];}
+    var g=[[dot(f1,e1),dot(f1,e2)],[dot(f2,e1),dot(f2,e2)]];
+    L.push("<span style='color:"+R+"'>e1</span>=["+e1+"]  <span style='color:"+R+"'>e2</span>=["+e2+"]   det="+det);
+    L.push("<span style='color:"+B+"'>e^1</span>=["+f1[0].toFixed(3)+","+f1[1].toFixed(3)+"]  <span style='color:"+B+"'>e^2</span>=["+f2[0].toFixed(3)+","+f2[1].toFixed(3)+"]   (rows of inverse)\n");
+    L.push("biorthogonality  &langle;<span style='color:"+B+"'>e^i</span>, <span style='color:"+R+"'>e_j</span>&rangle;  should be the identity:");
+    L.push("        e1        e2");
+    L.push("  e^1   <span class='hit'>"+g[0][0].toFixed(3)+"</span>     "+g[0][1].toExponential(1));
+    L.push("  e^2   "+g[1][0].toFixed(3)+"     <span class='hit'>"+g[1][1].toFixed(3)+"</span>");
+    L.push("\n<span class='dim'>1 on the diagonal, 0 off it (to f64 precision) = the delta</span>");
+    out.innerHTML=L.join("\n");
+    say.innerHTML="&langle;e^i,e_j&rangle; = <span class='true'>delta</span> (identity)";
+  }
+  document.getElementById("go").onclick=run;
+  ["e1","e2"].forEach(function(id){document.getElementById(id).addEventListener("input",run);});
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 210 &middot; THE DUAL BASIS</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>J. W. Gibbs</b> (1880s) gave the reciprocal system of vectors (the reciprocal lattice of crystallography); the <b>dual space V*</b> generalises it in functional analysis. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE DUAL</b> (batch 32) &mdash; eight faces of duality &mdash; the algebra that runs the corpus (dual numbers/AD, De Morgan, negamax, the adjoint, the dual basis, projective duality, Galois connections, two-complement), companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DUAL NUMBER &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 206 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE DUAL NUMBER <span class="c">differentiate a program for free, exactly</span></h1>
+  <p class="sub">Adjoin a new unit <span class="k">&epsilon;</span> with <span class="k">&epsilon;&sup2; = 0</span> (not <span class="k">&minus;1</span> like <span class="k">i</span>, not <span class="k">0</span>). A <b>dual number</b> is <span style="color:#ff6a8a">a</span> + <span style="color:#6ab8ff">b</span>&epsilon;: a <b>value</b> carrying a <b>shadow</b>. Do arithmetic on the pair and the shadow obeys the calculus by itself &mdash; because <span class="k">(a+b&epsilon;)(c+d&epsilon;) = ac + (ad+bc)&epsilon;</span> is exactly the product rule. Evaluate any program on <span class="k">x + 1&middot;&epsilon;</span> and the &epsilon;-part that falls out is <span class="k">f&prime;(x)</span> &mdash; exact, no step size, no symbolic blowup. This is <b>forward-mode automatic differentiation</b>, and the whole thing is one small duality.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">a + b&epsilon;, &epsilon;&sup2;=0 ; evaluate f on x+&epsilon; &rarr; f(x)+f&prime;(x)&epsilon;</span></h2>
+  <p>Pick <span class="k">x</span> and a cubic; evaluate it on the dual <span class="k">x + 1&epsilon;</span> using only <span style="color:#ff6a8a">value</span>/<span style="color:#6ab8ff">shadow</span> arithmetic. The <span style="color:#6ab8ff">shadow</span> that comes back is the exact derivative &mdash; check it against the hand-computed <span class="k">f&prime;</span>: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>x</label><input id="x" type="number" value="2" step="0.5" style="width:90px"><button id="go" class="dartbtn">&#9192; run f on x+&epsilon;</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Clifford 1873 &middot; Wengert 1964</span></h2>
+  <p class="myth">&ldquo;A computer gets derivatives one of two ways: <b>symbolically</b> (exact but the expression explodes) or <b>numerically</b> (a finite <span class="k">h</span>, so roundoff and truncation fight).&rdquo; &mdash; there is a third way with neither flaw. Carry the derivative as the <span class="k">&epsilon;</span>-component; the chain and product rules are <i>forced</i> by <span class="k">&epsilon;&sup2;=0</span>. Exact to the last bit, no <span class="k">h</span>, no symbolic tree. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1873</b> &middot; <span class="who">William Kingdon Clifford</span> &mdash; introduces &ldquo;dual quantities&rdquo; <span class="k">a+b&epsilon;</span>, <span class="k">&epsilon;&sup2;=0</span>, alongside his biquaternions.<br><b>1903</b> &middot; <span class="who">Eduard Study</span> &mdash; dual numbers and dual angles become the algebra of lines and screw motion in kinematics.<br><b>1964</b> &middot; <span class="who">R. E. Wengert</span> &mdash; &ldquo;A simple automatic derivative evaluation program&rdquo;: the forward mode of automatic differentiation, the dual number put to work.</div>
+  <p style="margin-top:10px">The value and its shadow ride together through every operation, and neither is approximated. It is the cleanest duality in the batch: a number and its rate of change, computed at once, for the cost of one. <span class="tag t-open">Clifford 1873</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">exact derivative from dual arithmetic, computed</span></h2>
+  <p>On the canonical compiler, a dual number is a two-cell array and <span class="k">f</span> runs on <span class="k">[x, 1]</span>. For <span class="k">f(x)=x&sup3;&minus;2x+1</span> at <span class="k">x=2</span> the shadow is the exact derivative <span class="k">3x&sup2;&minus;2 = 10</span>:</p>
+  <div class="evi good">$ i13 run dual.i13   # f(x)=x^3-2x+1 evaluated on the dual [2,1]
+val = 5    -- f(2) = 8 - 4 + 1
+der = 10   -- f'(2) = 3*4 - 2, the eps-component, EXACT (no step size)</div>
+  <div class="rec"><b>Recommend:</b> the dual number is <b>LIT and a keeper-grade fit for I-13</b> &mdash; verified <span class="k">f(x)=x&sup3;&minus;2x+1</span> on the dual <span class="k">[2,1]</span> returns <span class="k">[5, 10]</span>: value <b>and</b> exact derivative in one pass, via <span class="k">[a,b]&middot;[c,d]=[ac, ad+bc]</span> and nothing else. No <span class="k">h</span>, no symbolic tree &mdash; the derivative is <i>carried</i>, not approximated. The literal duality engine.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var R="#ff6a8a", B="#6ab8ff";
+  function dadd(p,q){ return [p[0]+q[0], p[1]+q[1]]; }
+  function dmul(p,q){ return [p[0]*q[0], p[0]*q[1]+p[1]*q[0]]; }
+  function dscale(p,c){ return [p[0]*c, p[1]*c]; }
+  function f(xd){ var x2=dmul(xd,xd), x3=dmul(x2,xd), lin=dscale(xd,-2); return dadd(dadd(x3,lin),[1,0]); }
+  function run(){
+    var x=+document.getElementById("x").value||0;
+    var r=f([x,1]), truef=x*x*x-2*x+1, trued=3*x*x-2, L=[];
+    L.push("dual number  <span style='color:"+R+"'>value</span> + <span style='color:"+B+"'>shadow</span>&middot;eps ,  eps&sup2; = 0\n");
+    L.push("evaluate f(x) = x&sup3; - 2x + 1  on  x = [<span style='color:"+R+"'>"+x+"</span>, <span style='color:"+B+"'>1</span>]");
+    L.push("  x&middot;x   = ["+ (x*x) +", "+(2*x)+"]");
+    L.push("  x&sup3;    = ["+ (x*x*x) +", "+(3*x*x)+"]");
+    L.push("  -2x    = ["+(-2*x)+", "+(-2)+"]");
+    L.push("  +1     = [+1, 0]");
+    L.push("  ------------------------------");
+    L.push("  f      = [<span style='color:"+R+"'>"+r[0]+"</span>, <span style='color:"+B+"'>"+r[1]+"</span>]\n");
+    L.push("<span style='color:"+R+"'>value  f(x)  = "+r[0]+"</span>   hand: "+truef+"   "+(r[0]===truef?"<span class='hit'>&#10003;</span>":"<span class='bad'>x</span>"));
+    L.push("<span style='color:"+B+"'>shadow f&prime;(x) = "+r[1]+"</span>   hand: "+trued+"   "+(r[1]===trued?"<span class='hit'>&#10003; exact derivative, no h</span>":"<span class='bad'>x</span>"));
+    out.innerHTML=L.join("\n");
+    say.innerHTML="f&prime;("+x+") = <span class='true'>"+r[1]+"</span> (exact)";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("x").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 206 &middot; THE DUAL NUMBER</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>W. K. Clifford</b> (1873) introduced dual quantities <span class="k">a+b&epsilon;</span>; <b>Eduard Study</b> (1903) built kinematics on them; <b>R. E. Wengert</b> (1964) turned them into forward-mode automatic differentiation. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE DUAL</b> (batch 32) &mdash; eight faces of duality &mdash; the algebra that runs the corpus (dual numbers/AD, De Morgan, negamax, the adjoint, the dual basis, projective duality, Galois connections, two-complement), companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
