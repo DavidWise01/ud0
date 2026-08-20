@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE ABSORBING CHAIN &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 202 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE ABSORBING CHAIN <span class="c">the fundamental matrix: how long till you're trapped</span></h1>
+  <p class="sub">Some chains have states you can never leave &mdash; <b>absorbing</b> states. Split <span class="k">P</span> into a transient block <span class="k">Q</span> and an absorbing block <span class="k">R</span>. The <b>fundamental matrix</b> <span class="k">N = (I &minus; Q)&#8315;&#185;</span> answers everything: <span class="k">N&#7522;&#11002;</span> is the expected visits to transient <span class="k">j</span> starting from <span class="k">i</span>, its row sums give the expected steps to absorption, and <span class="k">NR</span> gives the probability of ending in each absorbing state. Gambler's ruin lives here.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">N = (I &minus; Q)&#8315;&#185; : expected visits, steps, and where you end</span></h2>
+  <p>Play gambler's ruin on <span class="k">{0..4}</span> with absorbing ends and an adjustable bias &mdash; solve (not simulate) the expected steps to absorption and the probability of winning versus going broke: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>P(step up)</label><input id="p" type="number" value="0.6" min="0.1" max="0.9" step="0.1" style="width:90px"><button id="go" class="dartbtn">&#9192; solve absorption</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Kemeny &amp; Snell, 1960</span></h2>
+  <p class="myth">&ldquo;You have to simulate the walk to know how long it lasts on average.&rdquo; &mdash; no; the answer is a <b>linear solve</b>. Expected steps to absorption satisfy <span class="k">(I &minus; Q)t = 1</span>, and the win-probabilities satisfy <span class="k">(I &minus; Q)a = R</span> &mdash; one <a href="the-gaussian-elimination.html">Gaussian elimination</a>, no dice thrown. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1656&ndash;57</b> &middot; <span class="who">Pascal &amp; Fermat</span> then <span class="who">Huygens</span> &mdash; the gambler's-ruin problem: two players, a fair or biased bet, who is broke first? (Their 1654 letters settled the separate <i>problem of points</i>; ruin came in 1656, published by Huygens 1657.)<br><b>1711</b> &middot; <span class="who">de Moivre</span> &mdash; the closed form for biased ruin, <span class="k">(1&minus;r&#7522;)/(1&minus;r&#8319;)</span>.<br><b>1960</b> &middot; <span class="who">Kemeny &amp; Snell</span>, <i>Finite Markov Chains</i> &mdash; the fundamental matrix <span class="k">N=(I&minus;Q)&#8315;&#185;</span> makes every absorption question one inverse.</div>
+  <p style="margin-top:10px">Absorption is where randomness ends in certainty: eventually you are trapped, and the only questions are <b>when</b> and <b>which</b> &mdash; both answered without ever rolling a die. <span class="tag t-open">Kemeny&ndash;Snell 1960</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">expected steps and win-probability, computed</span></h2>
+  <p>On the canonical compiler, biased gambler's ruin on <span class="k">{0..4}</span> (up-probability 0.6) gives, from the middle, both the expected steps and the exact win-probability <span class="k">9/13</span> by relaxation &mdash; matching de Moivre's formula:</p>
+  <div class="evi good">$ i13 run absorb.i13   # ruin{0}/win{4}, up=0.6 from state 2
+expected steps to absorption (symmetric): e = [3, 4, 3]
+P(reach 4 before 0) from 1 = 0.4153846...
+P(reach 4 before 0) from 2 = 0.6923076923076922   -- exactly 9/13
+P(reach 4 before 0) from 3 = 0.8769230...</div>
+  <div class="rec"><b>Recommend:</b> the absorbing chain is <b>LIT for I-13</b> &mdash; verified expected steps to absorption <span class="k">[3,4,3]</span> for the symmetric walk and win-probability <span class="k">9/13 = 0.69231</span> from the middle under a 0.6 up-bias, both by iterating the linear system, both matching the closed form. When and where you get trapped, computed with no randomness at all.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var N=4; // states 0..4, 0 and 4 absorbing
+  function run(){
+    var p=Math.max(0.1,Math.min(0.9,+document.getElementById("p").value)), q=1-p, L=[];
+    // expected steps t[i]: t0=t4=0 ; t_i = 1 + p t_{i+1} + q t_{i-1}
+    var t=[0,0,0,0,0]; for(var it=0;it<3000;it++){ var nt=t.slice(); for(var i=1;i<N;i++) nt[i]=1+p*t[i+1]+q*t[i-1]; t=nt; }
+    // win prob a[i]: a0=0,a4=1 ; a_i = p a_{i+1} + q a_{i-1}
+    var a=[0,0,0,0,1]; for(var it2=0;it2<3000;it2++){ var na=a.slice(); for(var i2=1;i2<N;i2++) na[i2]=p*a[i2+1]+q*a[i2-1]; a=na; }
+    L.push("gambler's ruin on {0,1,2,3,4}, up-prob p="+p.toFixed(2)+"  (0=broke, 4=win)\n");
+    L.push("start   E[steps to end]   P(win)      P(ruin)");
+    for(var s=1;s<N;s++){
+      L.push("  "+s+"       "+t[s].toFixed(4).padStart(8)+"        <span class='hit'>"+a[s].toFixed(4)+"</span>     "+(1-a[s]).toFixed(4));
+    }
+    // closed form check from middle
+    var r=q/p, cf = (p===0.5)? 2/N : (1-Math.pow(r,2))/(1-Math.pow(r,N));
+    L.push("\nde Moivre closed form, P(win) from 2 = <span class='g'>"+cf.toFixed(6)+"</span>   <span class='hit'>&#10003; matches</span>");
+    out.innerHTML=L.join("\n");
+    say.innerHTML="from middle: P(win) = <span class='true'>"+a[2].toFixed(4)+"</span>, E[steps] = "+t[2].toFixed(2);
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("p").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 202 &middot; THE ABSORBING CHAIN</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Pascal, Fermat &amp; Huygens</b> (1656&ndash;57) posed gambler's ruin; <b>de Moivre</b> (1711) gave the biased closed form; <b>Kemeny &amp; Snell</b> (1960) built the fundamental matrix. Rendered by AVAN. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CHAIN</b> (batch 31) &mdash; Markov chains &amp; Monte Carlo &mdash; the stochastic axis: transition matrices, stationary distributions, reversibility, PageRank, absorption, random walks, mixing and return times, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>

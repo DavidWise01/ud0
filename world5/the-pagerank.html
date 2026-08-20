@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE PAGERANK &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 201 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE PAGERANK <span class="c">the web's dominant eigenvector, walked</span></h1>
+  <p class="sub">PageRank is a Markov chain on the web: a random surfer follows a link at random, and with probability <span class="k">1&minus;d</span> instead teleports to a page chosen uniformly. Rank = the <b>stationary distribution</b> of that walk &mdash; the long-run fraction of time the surfer spends on each page. The teleport term guarantees the chain is connected and aperiodic, so the power method converges to <b>one</b> answer whatever the link graph, dead ends and all.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">rank = stationary dist of ( d&middot;follow-link + (1&minus;d)&middot;teleport )</span></h2>
+  <p>Power-iterate the Google matrix on a small link graph; the ranks settle to the surfer's residence times and sum to one. The most-linked-to page from strong pages wins &mdash; not just the most links: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>damping d</label><input id="d" type="number" value="0.85" min="0" max="0.99" step="0.05" style="width:90px"><button id="go" class="dartbtn">&#9192; rank the graph</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Brin &amp; Page, 1998</span></h2>
+  <p class="myth">&ldquo;Google invented ranking pages by their eigenvector.&rdquo; &mdash; eigenvector centrality is decades older: <b>Seeley 1949</b> (sociometry), <b>Katz 1953</b>, <b>Pinski&ndash;Narin 1976</b> (journal-influence weights, the closest ancestor). What Brin&ndash;Page genuinely added was the <b>teleport/damping</b> term that turns a broken, dead-end-ridden link graph into one connected chain with a guaranteed unique answer. (That lineage is a <b>retrospective</b> tracing &mdash; Franceschet, CACM 2011 &mdash; not a citation Brin&ndash;Page made; their own papers framed PageRank as citation-counting plus Kleinberg's HITS.) <span class="tag t-cited">credit both ways</span></p>
+  <div class="chain"><b>1949&ndash;76</b> &middot; <span class="who">Seeley</span> (1949), <span class="who">Katz</span> (1953), <span class="who">Hubbell</span> (1965), <span class="who">Pinski &amp; Narin</span> (1976) &mdash; rank nodes by a recursive &ldquo;important things point to you&rdquo; eigenvector, long before the web.<br><b>1998</b> &middot; <span class="who">Sergey Brin &amp; Larry Page</span> &mdash; add the random-teleport damping factor so the walk is ergodic on the real web, and compute it at scale; their own papers frame it as citation-counting plus Kleinberg's HITS, not as eigenvector centrality.<br><b>2011</b> &middot; <span class="who">Franceschet</span> (&ldquo;Standing on the Shoulders of Giants&rdquo;, CACM) and <span class="who">Vigna</span> (&ldquo;Spectral Ranking&rdquo;) &mdash; place PageRank in the older eigenvector-centrality lineage <i>after the fact</i>; the ancestry above is their retrospective identification.</div>
+  <p style="margin-top:10px">PageRank is a stationary distribution in disguise, and it is <b>computed, not stored</b>: the rank vector is wherever the surfer's walk lands after enough steps. Teleport is the one line that makes &ldquo;enough steps&rdquo; exist. <span class="tag t-open">Brin&ndash;Page 1998</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">Google matrix power-iterates to rank, computed</span></h2>
+  <p>On the canonical compiler, a 3-page graph (0&rarr;1, 1&rarr;2, 2&rarr;{0,1}) with damping <span class="k">d=0.85</span> ranks the pages by residence time &mdash; page 1, fed by both others, wins:</p>
+  <div class="evi good">$ i13 run pagerank.i13   # 3 pages, d=0.85, power iteration
+rank[0] = 0.21481062747314866
+rank[1] = 0.39739966082532496   -- highest: linked from both 0 and 2
+rank[2] = 0.3877897117015262
+total   = 0.9999999999999999   -- a probability distribution</div>
+  <div class="rec"><b>Recommend:</b> PageRank is <b>LIT for I-13</b> &mdash; verified the Google matrix on a 3-page graph converges to <span class="k">(0.215, 0.397, 0.388)</span> summing to <span class="k">1.0</span>, ranking page 1 top because it is pointed to from strong pages, not merely often. It is <a href="the-stationary-distribution.html">the stationary distribution</a> plus one teleport term &mdash; the same power loop.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  // out-links: 0->1 ; 1->2 ; 2->0,2->1
+  var P=[[0,1,0],[0,0,1],[0.5,0.5,0]];
+  function run(){
+    var d=Math.max(0,Math.min(0.99,+document.getElementById("d").value));
+    var r=[1/3,1/3,1/3], t=(1-d)/3, L=[];
+    for(var it=0;it<120;it++){
+      var nr=[0,0,0];
+      for(var j=0;j<3;j++){ var s=0; for(var i=0;i<3;i++) s+=r[i]*P[i][j]; nr[j]=d*s+t; }
+      r=nr;
+    }
+    L.push("links:  0->1    1->2    2->0, 2->1     damping d = "+d.toFixed(2)+"\n");
+    L.push("page   rank        bar");
+    var mx=Math.max.apply(null,r);
+    for(var p=0;p<3;p++){ var w=Math.round(r[p]/mx*30);
+      L.push("  "+p+"    "+r[p].toFixed(6)+"   <span class='"+(r[p]===mx?"g":"dim")+"'>"+"#".repeat(w)+"</span>");
+    }
+    L.push("\ntotal = "+r.reduce(function(x,y){return x+y;},0).toFixed(6)+"   <span class='hit'>&#10003; a distribution</span>");
+    out.innerHTML=L.join("\n");
+    var top=r.indexOf(mx);
+    say.innerHTML="top page = <span class='true'>"+top+"</span> ("+mx.toFixed(3)+")";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("d").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 201 &middot; THE PAGERANK</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Brin &amp; Page</b> (1998) added the damping/teleport factor and scaled it to the web; the eigenvector-centrality core is older &mdash; <b>Seeley</b> (1949), <b>Katz</b> (1953), <b>Pinski&ndash;Narin</b> (1976) &mdash; a lineage traced retrospectively by <b>Franceschet</b> (CACM 2011) and Vigna, not cited in the original papers. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, f64, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CHAIN</b> (batch 31) &mdash; Markov chains &amp; Monte Carlo &mdash; the stochastic axis: transition matrices, stationary distributions, reversibility, PageRank, absorption, random walks, mixing and return times, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
