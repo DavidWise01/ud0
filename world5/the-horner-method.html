@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HORNER'S METHOD &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 167 &middot; a helldive at the net</span></div>
+<header>
+  <h1>HORNER&rsquo;S METHOD <span class="c">nest the polynomial; one multiply and add per term</span></h1>
+  <p class="sub">Evaluate <span class="k">2x&sup3; &minus; 6x&sup2; + 2x &minus; 1</span> the obvious way and you recompute powers of x over and over. <b>Horner&rsquo;s method</b> rewrites it as a <b>nest</b> &mdash; <span class="k">((2x &minus; 6)x + 2)x &minus; 1</span> &mdash; so a degree-<span class="k">n</span> polynomial costs exactly <b>n multiplies and n adds</b>, the fewest possible, and it is <b>numerically more stable</b> too. The oldest trick in numerical computing, and still the one every library uses.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">n mults, n adds; provably minimal</span></h2>
+  <p>Fold the coefficients from the highest down: start with the leading coefficient, then repeatedly <span class="k">multiply by x, add the next coefficient</span>. Watch the nest evaluate and the multiply count fall to the degree: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>x</label><input id="x" type="number" value="3" step="1"><button id="go" class="dartbtn">&#9192; evaluate by Horner</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Qin 1247; Newton before Horner 1819</span></h2>
+  <p class="myth">&ldquo;Horner invented Horner&rsquo;s method.&rdquo; &mdash; no. <b>Qin Jiushao</b> gave it in China in <b>1247</b>, and <b>Newton</b> used the same nesting around 1669, both well before <b>Horner</b>&rsquo;s 1819 paper. It is a textbook case of Stigler&rsquo;s law &mdash; the name commemorates the popular expositor, not the inventor. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1247</b> &middot; <span class="who">Qin Jiushao</span> &mdash; the nesting scheme in &ldquo;Mathematical Treatise in Nine Sections&rdquo;, five centuries before Horner.<br><b>~1669</b> &middot; <span class="who">Isaac Newton</span> &mdash; uses the same nested evaluation in his root-finding work.<br><b>1804 / 1819</b> &middot; <span class="who">Paolo Ruffini</span> (1804) and <span class="who">William George Horner</span> (1819) &mdash; rediscover and publish it; Horner&rsquo;s exposition made it famous, so his name stuck.</div>
+  <p style="margin-top:10px">That degree-<span class="k">n</span> evaluation needs at least <span class="k">n</span> <b>multiplications</b> was proved by <b>Pan</b> (1966), and at least <span class="k">n</span> <b>additions</b> by <b>Ostrowski</b> (1954) &mdash; so Horner&rsquo;s method is not just economical, it is <b>optimal</b> in both. <span class="tag t-open">Qin Jiushao, 1247</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the nest, computed</span></h2>
+  <p>The nested evaluation of <span class="k">2x&sup3;&minus;6x&sup2;+2x&minus;1</span> at x=3 runs on the canonical compiler:</p>
+  <div class="evi good">$ i13 run horner.i13   # coeffs [2,-6,2,-1]; acc = acc*x + c[i]
+p3 = 5   -- ((2*3 - 6)*3 + 2)*3 - 1 = 5, in 3 multiplies (= the degree)</div>
+  <div class="rec"><b>Recommend:</b> Horner&rsquo;s method is <b>LIT and belongs in the I-13 stdlib</b> &mdash; verified <span class="k">p(3)=5</span> for <span class="k">2x&sup3;&minus;6x&sup2;+2x&minus;1</span> by the fold <span class="k">acc = acc*x + c[i]</span> over a coefficient array (native f64 + array + recursion). It is the minimal-cost, most-stable way to evaluate any polynomial &mdash; every Taylor series in the I-13 transcendental library (dart 033, the exp/sin/cos sums) should be summed this way, not by recomputing powers. Three multiplies for a cubic, <span class="k">n</span> for degree <span class="k">n</span>, provably fewest.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  var C=[2,-6,2,-1];  // 2x^3 - 6x^2 + 2x - 1
+  function run(){
+    var x=+document.getElementById("x").value, L=[], acc=0, mults=0, steps=[];
+    for(var i=0;i<C.length;i++){ if(i>0){ acc=acc*x; mults++; } acc=acc+C[i]; steps.push(acc); }
+    // naive cost: x^k needs k-1 mults for k=1..3 plus coeff mults
+    var naiveMults=0; for(var k=C.length-1;k>=1;k--) naiveMults += k;   // powers
+    L.push("p(x) = 2x^3 - 6x^2 + 2x - 1   at x = "+x+"\n");
+    L.push("Horner nest:  ((2*x - 6)*x + 2)*x - 1");
+    var a=2; L.push("  start acc = 2");
+    L.push("  acc = 2*"+x+" - 6 = "+(2*x-6));
+    L.push("  acc = "+(2*x-6)+"*"+x+" + 2 = "+((2*x-6)*x+2));
+    L.push("  acc = "+((2*x-6)*x+2)+"*"+x+" - 1 = <span class='cur'>"+acc+"</span>");
+    L.push("\nmultiplies: Horner <span class='hit'>"+mults+"</span> (= degree)   vs naive powers ~ <span class='bad'>"+naiveMults+"</span>");
+    out.innerHTML=L.join("\n");
+    say.innerHTML="p("+x+") = <span class='true'>"+acc+"</span> in "+mults+" mults";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("x").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 167 &middot; HORNER'S METHOD</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Qin Jiushao</b> gave the nesting in 1247; <b>Newton</b> used it ~1669; <b>Ruffini</b> (1804) and <b>Horner</b> (1819) rediscovered it &mdash; the name is Stigler&rsquo;s law, not priority. Its optimality is proved twice: <b>&ge; n multiplies</b> by <b>Pan</b> (1966), <b>&ge; n adds</b> by <b>Ostrowski</b> (1954). Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE NUMERICS</b> (batch 27) &mdash; numerical methods &mdash; what an f64-native language is FOR (precision, roots, integration, linear systems), the first fresh territory after the compiler arc, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
