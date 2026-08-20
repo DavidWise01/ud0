@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE PUMPING LEMMA &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 180 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE PUMPING LEMMA <span class="c">long enough, and a regular language must repeat</span></h1>
+  <p class="sub">A finite automaton has finitely many states, so on any input longer than its state count it must <b>revisit a state</b> &mdash; and the loop between the two visits can be <b>repeated (pumped) any number of times</b> with the string still accepted. Turn it around and it is a weapon: if a language has a string that <b>cannot</b> be pumped, no finite automaton recognises it. This is how you prove a language is <b>not regular</b>.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">pump the loop; a non-regular language breaks</span></h2>
+  <p>Is <span class="k">a&#8319;b&#8319;</span> (equal a&rsquo;s then b&rsquo;s) regular? Take <span class="k">aabb</span>, split it <span class="k">xyz</span> with <span class="k">y</span> inside the a-block, and pump: <span class="k">xy&sup2;z = aaabb</span> &mdash; now 3 a&rsquo;s, 2 b&rsquo;s, no longer in the language. The pump broke it, so <span class="k">a&#8319;b&#8319;</span> is <b>not regular</b>. Watch the counts diverge: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><label>pump y this many times</label><input id="k" type="range" min="0" max="4" step="1" value="2"><span id="kv" class="kg"></span><button id="go" class="dartbtn" style="margin-left:8px">&#9192; pump</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Rabin-Scott 1959 (regular); Bar-Hillel 1961 (CF)</span></h2>
+  <p class="myth">&ldquo;The pumping lemma proves a language IS regular.&rdquo; &mdash; no, never. It is a <b>necessary</b> condition, not sufficient: passing it proves nothing (some non-regular languages pump), but <b>failing</b> it proves non-regularity. It is a one-way tool &mdash; a disqualifier, not a certificate. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1959</b> &middot; <span class="who">Rabin &amp; Scott</span> &mdash; &ldquo;Finite Automata and Their Decision Problems&rdquo; (IBM J. Res. Dev.): the <b>regular</b> pumping lemma first appears here, as Lemma 8 (a run longer than the state count repeats a state).<br><b>1961</b> &middot; <span class="who">Bar-Hillel, Perles &amp; Shamir</span> &mdash; &ldquo;On formal properties of simple phrase structure grammars&rdquo;: the <b>context-free</b> (&ldquo;Bar-Hillel&rdquo;) pumping lemma that pumps <i>two</i> substrings, plus an independent rediscovery of the regular case.<br><b>the mechanism</b> &middot; the <b>pigeonhole principle</b> on states &mdash; more input symbols than states forces a repeat, and the repeat is the pump.<br><b>the CF cousin</b> &middot; the context-free (&ldquo;Bar-Hillel&rdquo;) pumping lemma is <b>BHPS 1961</b>&rsquo;s genuine primary contribution &mdash; it pumps <b>two</b> substrings at once, the tool one level up the Chomsky hierarchy.</div>
+  <p style="margin-top:10px">Note the honesty of it: the lemma is a <b>necessary</b> condition, so it can only ever say &ldquo;NO, not regular&rdquo; &mdash; never &ldquo;yes, regular.&rdquo; A tool that only disqualifies is still decisive, because one un-pumpable string ends the question. <span class="tag t-open">Rabin-Scott 1959 (regular) / Bar-Hillel 1961 (CF)</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the pump breaks the count, computed</span></h2>
+  <p>Pumping <span class="k">aabb</span> runs on the canonical compiler &mdash; the a-count and b-count diverge, so <span class="k">a&#8319;b&#8319;</span> is not regular:</p>
+  <div class="evi good">$ i13 run pump.i13   # a^n b^n : pump y='a' inside aabb -> aaabb
+aabb  : a=2 b=2  balanced (0)   -- in the language
+aaabb : a=3 b=2  UNbalanced (1)  -- pumped once, no longer a^n b^n  ->  NOT regular</div>
+  <div class="rec"><b>Recommend:</b> the pumping lemma is <b>LIT as a proof, computed</b> &mdash; verified that pumping the loop in <span class="k">aabb</span> gives <span class="k">aaabb</span> with a-count 3 &ne; b-count 2, breaking <span class="k">a&#8319;b&#8319;</span> and proving it non-regular, all in native counting. For I-13 it is the honest boundary marker of the regular world (Glushkov/Brzozowski/Hopcroft, 176&ndash;178): balanced brackets and <span class="k">a&#8319;b&#8319;</span> need the <b>stack</b> of the pushdown automaton (175), not a DFA &mdash; the lemma is the proof of exactly where a finite machine stops and a stack machine must begin. It only ever says &ldquo;not regular,&rdquo; which is the whole point.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say");
+  // s = x y z = "a"|"a"|"abb"? use aabb, x="a", y="a", z="bb". pump y k times.
+  var x="a", y="a", z="bb";
+  function run(){
+    var k=+document.getElementById("k").value; document.getElementById("kv").textContent=k;
+    var s = x + y.repeat(k) + z;
+    var a=(s.match(/a/g)||[]).length, b=(s.match(/b/g)||[]).length;
+    var inLang = a===b;
+    var L=[];
+    L.push("language a^n b^n   (equal a's then b's)\n");
+    L.push("split aabb = x&middot;y&middot;z  =  \""+x+"\" &middot; \""+y+"\" &middot; \""+z+"\"   (y is inside the a-block)\n");
+    L.push("pump y "+k+" time"+(k===1?"":"s")+":   x&middot;y^"+k+"&middot;z  =  <span class='cur'>"+(s||"ε")+"</span>");
+    L.push("  a count = "+a+"   b count = "+b+"   "+(inLang?"<span class='hit'>a = b, in the language</span>":"<span class='bad'>a &ne; b, NOT in the language</span>"));
+    L.push("\n"+(k===1?"<span class='dim'>k=1 is the original string.</span>":"")+(!inLang?"\n<span class='bad'>one un-pumpable string is enough</span> &mdash; a^n b^n is <span class='hit'>NOT regular</span>: no DFA recognises it.":""));
+    out.innerHTML=L.join("\n");
+    say.innerHTML = inLang ? "k="+k+": a="+a+" b="+b+" <span class='true'>in language</span>" : "k="+k+": a="+a+" b="+b+" <span class='err'>broken</span>";
+  }
+  document.getElementById("go").onclick=run;
+  document.getElementById("k").addEventListener("input",run);
+  run();
+})();
+</script>
+
+<footer>
+  <b>DART 180 &middot; THE PUMPING LEMMA</b> &mdash; World V &middot; SONNY 5, the I-13 world. The <b>regular</b> pumping lemma is <b>Rabin &amp; Scott</b> (1959, Lemma 8); <b>Bar-Hillel, Perles &amp; Shamir</b> (1961) gave the <b>context-free</b> version and independently rediscovered the regular case. The mechanism is the <b>pigeonhole principle</b> on states. It is a <b>necessary, not sufficient</b> condition &mdash; it can only disprove regularity. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; bounded array, value-semantic update, bitwise, array-return, recursion to 4096. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE AUTOMATON</b> (batch 28) &mdash; formal languages &amp; automata theory &mdash; the machines and grammars beneath the compiler front-end (batches 22&ndash;23), computed on transition arrays and bitmasks, companion to the <a href="the-i13-benchmark.html">I-13 benchmark</a>.
+</footer>
+</body>
+</html>
