@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE LUCAS NUMBERS &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 344 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE LUCAS NUMBERS <span class="c">Fibonacci's companion &mdash; same rule, different seed, and L&#8325; = 11</span></h1>
+  <p class="sub">Take the Fibonacci rule &mdash; <b>each term is the sum of the two before</b> &mdash; but start <span class="k">2, 1</span> instead of <span class="k">0, 1</span>. You get the <b>Lucas numbers</b>: <span class="k">2, 1, 3, 4, 7, <b>11</b>, 18, 29, 47, 76, 123&hellip;</span>. They are Fibonacci's twin &mdash; the <b>other</b> solution the recurrence admits &mdash; and they converge to the very same &phi;. They interlock with Fibonacci through dozens of identities (<span class="k">L(n) = F(n&minus;1)+F(n+1)</span>, <span class="k">F(2n) = F(n)L(n)</span>) and give the closed forms their integer backbone. The fifth Lucas number is <span class="kg">11</span> &mdash; the first piece of the puzzle.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">L(n) = L(n&minus;1)+L(n&minus;2), seeds 2, 1; L(5) = 11</span></h2>
+  <p>The demo generates the Lucas sequence and marks <span class="kg">L(5) = 11</span> &mdash; same recurrence as Fibonacci, seeded differently: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; grow the twin</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">&Eacute;douard Lucas, 1870s</span></h2>
+  <p class="myth">&ldquo;Fibonacci is the sequence for that rule.&rdquo; &mdash; the rule &lsquo;sum the last two&rsquo; has a whole family of solutions; Lucas is the companion, and the two together are the natural basis. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1870s</b> &middot; <span class="who">&Eacute;douard Lucas</span> &mdash; studied the sequence <span class="k">2,1,3,4,7,11,&hellip;</span> and named the <i>sequence</i> after Fibonacci (c.1876; the nickname &ldquo;Fibonacci&rdquo; for Leonardo of Pisa himself is <span class="who">Guillaume Libri</span>'s, 1838); his primality tests (Lucas&ndash;Lehmer) still guard the largest known primes.<br><b>the bond</b> &middot; <span class="k">L(n)&sup2; &minus; 5F(n)&sup2; = 4(&minus;1)&#8319;</span>; <span class="k">F(2n) = F(n)L(n)</span>.<br><b>the 11</b> &middot; <span class="k">L(5) = 11</span> &mdash; one of the referents this batch pieces together.</div>
+  <p style="margin-top:10px">Same rule, second seed, same limit &mdash; and an 11 sitting fifth in line. The twin that makes Fibonacci a family. <span class="tag t-open">Lucas 1870s</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the Lucas sequence, on the compiler</span></h2>
+  <p>On the canonical compiler, <span class="k">L(5) = 11</span> and <span class="k">L(10) = 123</span> &mdash; the companion recurrence, seeded 2, 1:</p>
+  <div class="evi good">$ i13 run g_lucas.i13   # L(n) = L(n-1)+L(n-2), seeds 2,1
+RUN OK &middot; 2981 step(s) &middot; peak stack 4 &middot; call depth 10
+L5 = 11        -- the ~~11~~ referent
+L10 = 123</div>
+  <div class="rec"><b>Recommend:</b> the Lucas numbers are Fibonacci's companion &mdash; the recurrence's <i>other</i> solution, converging to the same &phi; &mdash; and i13 grows them to <span class="k">L(5) = 11</span>, the first of David's referents. Not a keeper (a second seed of the same rule is not a new mechanism), but the piece that shows &ldquo;add the last two&rdquo; is a <i>family</i>, not a single sequence, and the integer scaffold under Binet's closed form (dart 345).</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0", g="#d9b45a";
+  function run(){
+    var a=2,b=1,seq=[2,1];
+    for(var i=0;i<9;i++){ var c=a+b; seq.push(c); a=b; b=c; }
+    var L=["Lucas: same rule as Fibonacci, seeds 2,1:",""];
+    L.push("  "+seq.map(function(v,i){return i===5?"<span style='color:"+g+"'>"+v+"</span>":v;}).join(", "));
+    L.push(""); L.push("L(5) = <span style='color:"+G+"'>11</span>   (a referent). converges to the same phi as Fibonacci.");
+    out.innerHTML=L.join("\n"); say.innerHTML="L(5) = <span class='true'>11</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 344 &middot; THE LUCAS NUMBERS</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>&Eacute;douard Lucas</b> (1870s) &mdash; the companion sequence; he named the <i>Fibonacci sequence</i> (the nickname for Leonardo is Libri's, 1838); the Lucas&ndash;Lehmer primality test. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE GOLDEN THREAD</b> (batch 42) &mdash; the golden ratio, Fibonacci, Lucas, and the self-generating torus. David&rsquo;s referent-puzzle, pieced: <span class="kg">Tori &middot; 3 in 3 out &middot; 6 0 6 &middot; golden ratio &middot; ~~11~~11~~ &middot; Fibonacci</span> &mdash; the recurrence that carries forward and folds to its own seed. i13 has no square root, so &phi; is <b>generated</b> (Fibonacci ratios, continued fractions; <span class="k">/</span> is float), not stored. Keeper shot: <b>the-zeckendorf</b> &mdash; a CANONICALIZER that <i>emits</i> the unique non-consecutive Fibonacci form (repairs <span class="k">F(k)+F(k+1)=F(k+2)</span>), the generator the batch-41 recognizer-ban asked for. Next to the <a href="the-accuracy-loop.html">accuracy loop</a> and <a href="the-three-constants.html">the three constants</a>.
+</footer>
+</body>
+</html>

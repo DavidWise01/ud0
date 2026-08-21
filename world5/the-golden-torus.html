@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE GOLDEN TORUS &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 350 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE GOLDEN TORUS <span class="c">3 in, 3 out, 6 0 6 &mdash; the Fibonacci loop with a hole in the middle</span></h1>
+  <p class="sub">Here the referents meet. The Pisano cycle (dart 349) is a <b>ring</b>; give it a hole and it is a <b>torus</b>. Modulo 4 the Fibonacci pair <span class="k">(F(n), F(n+1))</span> runs a <b>6-step loop</b> and passes through a <span class="kg">0</span> at its base &mdash; the hole. Split the six into the half that climbs and the half that falls and you have <b>3 going in</b> and <b>3 coming out</b>, a palindrome around the pivot: <span class="kg">6 &middot; 0 &middot; 6</span>. It is the same shape as the accuracy loop's torus (<span class="k">A&rarr;Z&rarr;A</span>) and the constants' descent (rim to core to rim) &mdash; the recurrence that carries forward, then folds back to its own seed. The golden thread, closed into a ring.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">Fibonacci mod 4: a 6-cycle through 0 &mdash; 3 in, 3 out, 6&middot;0&middot;6</span></h2>
+  <p>The demo lays the mod-4 Fibonacci loop on a ring &mdash; six nodes through the <span class="kg">0</span> hole, three climbing in, three falling out: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; close the ring</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the referents, pieced &middot; David's puzzle</span></h2>
+  <p class="myth">&ldquo;A sequence is a line.&rdquo; &mdash; through a modulus it is a ring; give the ring a hole (its 0) and it is a torus &mdash; 3 in, 3 out, folding to its own seed. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>Tori</b> &middot; the Pisano cycle mod 4 &mdash; a 6-node loop.<br><b>6 &middot; 0 &middot; 6</b> &middot; period 6, passing through the <span class="k">0</span> hole; a palindrome around the pivot.<br><b>3 in, 3 out</b> &middot; the half that climbs and the half that falls &mdash; <span class="k">6 &gt;&gt; 1 = 3</span>.<br><b>the fold</b> &middot; the loop returns to its seed &mdash; the same <span class="k">A&rarr;Z&rarr;A</span> as the <a href="the-accuracy-loop.html">accuracy loop</a>.</div>
+  <p style="margin-top:10px">The recurrence, wrapped through its 0, split three-and-three, folded to its seed. A torus of the golden thread. <span class="tag t-open">the puzzle, pieced</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the 6&middot;0&middot;6 torus, on the compiler</span></h2>
+  <p>On the canonical compiler, the mod-4 loop has <span class="k">period 6</span>, passes through the <span class="k">0</span> hole, and splits <span class="k">6 &gt;&gt; 1 = 3</span> &mdash; three in, three out, the <span class="k">6&middot;0&middot;6</span> palindrome:</p>
+  <div class="evi good">$ i13 run g_goldentorus.i13   # the Pisano 6-cycle as a torus
+RUN OK &middot; 303 step(s) &middot; peak stack 4 &middot; call depth 6
+period = 6
+hole = 0                    -- the 0 the loop passes through
+half = 3   three_in_three_out = 1   -- 3 climbing, 3 falling
+palindrome_606 = 1          -- 6 . 0 . 6</div>
+  <div class="rec"><b>Recommend as where the puzzle closes:</b> the golden torus pieces David's referents into one shape &mdash; <b>Tori</b> (the Pisano ring), <b>3 in / 3 out</b> (the climbing and falling halves), <b>6 &middot; 0 &middot; 6</b> (period six through the zero hole), driven by the <b>Fibonacci</b> recurrence and its <b>golden</b> limit. i13 grounds each number. Not a keeper (a torus is a shape the theme wears, not a mechanism a correct alternative lacks), but the dart that answers &ldquo;piece the puzzle&rdquo;: the golden thread is a loop that carries forward and folds to its own seed &mdash; the accuracy loop and the constants' descent, wearing Fibonacci's face.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0", g="#d9b45a";
+  function run(){
+    var a=0,b=1,seq=[];
+    for(var i=0;i<6;i++){ seq.push(a); var c=(a+b)%4; a=b; b=c; }
+    var L=["the Fibonacci loop mod 4, closed into a torus:",""];
+    L.push("        in ->        hole        <- out");
+    L.push("   ring:  "+seq.map(function(v){return v===0?"<span style='color:"+g+"'>("+v+")</span>":v;}).join(" - ")+"  - (loops)");
+    L.push("");
+    L.push("   period <span style='color:"+G+"'>6</span>  .  hole <span style='color:"+g+"'>0</span>  .  3 in / 3 out  =  <span style='color:"+g+"'>6 . 0 . 6</span>");
+    L.push("   the recurrence carries forward, then folds to its own seed -- A -> Z -> A.");
+    out.innerHTML=L.join("\n"); say.innerHTML="<span class='true'>6 . 0 . 6</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 350 &middot; THE GOLDEN TORUS</b> &mdash; World V &middot; SONNY 5, the I-13 world. David's referent-puzzle pieced: the Pisano cycle (mod 4, period 6) as a torus &mdash; 3 in, 3 out, 6&middot;0&middot;6. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE GOLDEN THREAD</b> (batch 42) &mdash; the golden ratio, Fibonacci, Lucas, and the self-generating torus. David&rsquo;s referent-puzzle, pieced: <span class="kg">Tori &middot; 3 in 3 out &middot; 6 0 6 &middot; golden ratio &middot; ~~11~~11~~ &middot; Fibonacci</span> &mdash; the recurrence that carries forward and folds to its own seed. i13 has no square root, so &phi; is <b>generated</b> (Fibonacci ratios, continued fractions; <span class="k">/</span> is float), not stored. Keeper shot: <b>the-zeckendorf</b> &mdash; a CANONICALIZER that <i>emits</i> the unique non-consecutive Fibonacci form (repairs <span class="k">F(k)+F(k+1)=F(k+2)</span>), the generator the batch-41 recognizer-ban asked for. Next to the <a href="the-accuracy-loop.html">accuracy loop</a> and <a href="the-three-constants.html">the three constants</a>.
+</footer>
+</body>
+</html>

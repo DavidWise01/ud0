@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE GOLDEN SPIRAL &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 353 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE GOLDEN SPIRAL <span class="c">a spiral that grows by &phi; every quarter turn &mdash; the same shape at every scale</span></h1>
+  <p class="sub">A <b>logarithmic spiral</b> that widens by &phi; each quarter turn: after a full turn it is <span class="k">&phi;&#8308; &asymp; 6.854&times;</span> larger, and it looks <b>exactly the same at every scale</b> &mdash; self-similar, the shape scaling can never change. Draw squares whose sides are Fibonacci numbers, nest them, and a quarter-circle in each traces the approximation; the true curve is the limit. It is &phi;'s <b>self-reference made geometric</b>: <span class="k">&phi;&sup2; = &phi; + 1</span> says one turn's growth contains the last's plus a whole. Nautilus shells, spiral galaxies, and low-pressure systems approximate it &mdash; growth that keeps its proportion.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">r grows by &phi; per quarter turn; &phi;&#8308; per full turn</span></h2>
+  <p>The demo grows the radius by &phi; each quarter turn &mdash; and after four, the full-turn factor <span class="k">&phi;&#8308; &asymp; 6.854</span>: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; grow the spiral</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the logarithmic spiral &middot; Bernoulli's <i>spira mirabilis</i></span></h2>
+  <p class="myth">&ldquo;Spirals get wider in a complicated way.&rdquo; &mdash; the golden (logarithmic) spiral grows by a constant factor per turn, so it is the same shape at every magnification. Jacob Bernoulli called it the &lsquo;marvelous spiral&rsquo; and had it on his grave. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the curve</b> &middot; a logarithmic spiral with growth factor &phi; per quarter turn.<br><b>self-similar</b> &middot; <span class="who">Jacob Bernoulli</span>'s <i>spira mirabilis</i> &mdash; unchanged by scaling (<i>eadem mutata resurgo</i>).<br><b>the squares</b> &middot; nested Fibonacci squares approximate it; the limit is the true spiral.</div>
+  <p style="margin-top:10px">Growth that never changes shape, only size &mdash; &phi;'s self-reference drawn as a curve. <span class="tag t-open">spira mirabilis</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the per-turn growth &phi;&#8308;, on the compiler</span></h2>
+  <p>On the canonical compiler, growing by &phi; four times (a full turn) gives <span class="k">&phi;&#8308; = 6.854</span> &mdash; the self-similar scale factor, from the Fibonacci-ratio &phi;:</p>
+  <div class="evi good">$ i13 run g_goldenspiral.i13   # phi^4 : growth per full turn
+RUN OK &middot; 59415 step(s) &middot; peak stack 4 &middot; call depth 16
+phi = 1.618032786885246
+per_turn = 6.8540816015509645     -- phi^4, the full-turn scale factor</div>
+  <div class="rec"><b>Recommend:</b> the golden spiral is &phi; as a <b>self-similar curve</b> &mdash; growth that keeps its proportion, the same at every scale &mdash; and i13 grounds the per-turn factor <span class="k">&phi;&#8308; = 6.854</span>. Not a keeper (a shape is not a mechanism), but the dart that makes &phi;'s defining identity <span class="k">&phi;&sup2;=&phi;+1</span> visible as geometry, and closes the visual arc from angle (352) to spiral.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function run(){
+    var phi=(1+Math.sqrt(5))/2, r=1, L=["golden spiral: radius x phi each quarter turn:",""];
+    for(var q=0;q<=4;q++){ L.push("  quarter "+q+":  r = <span style='color:"+((q===4)?G:"#9fe8ff")+"'>"+(Math.round(r*1e4)/1e4)+"</span>"); r*=phi; }
+    L.push(""); L.push("full turn = phi^4 = <span style='color:"+G+"'>6.854</span> x larger, same shape at every scale.");
+    out.innerHTML=L.join("\n"); say.innerHTML="&phi;&#8308; = <span class='true'>6.854</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 353 &middot; THE GOLDEN SPIRAL</b> &mdash; World V &middot; SONNY 5, the I-13 world. The golden / logarithmic spiral; Jacob Bernoulli's <i>spira mirabilis</i>. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE GOLDEN THREAD</b> (batch 42) &mdash; the golden ratio, Fibonacci, Lucas, and the self-generating torus. David&rsquo;s referent-puzzle, pieced: <span class="kg">Tori &middot; 3 in 3 out &middot; 6 0 6 &middot; golden ratio &middot; ~~11~~11~~ &middot; Fibonacci</span> &mdash; the recurrence that carries forward and folds to its own seed. i13 has no square root, so &phi; is <b>generated</b> (Fibonacci ratios, continued fractions; <span class="k">/</span> is float), not stored. Keeper shot: <b>the-zeckendorf</b> &mdash; a CANONICALIZER that <i>emits</i> the unique non-consecutive Fibonacci form (repairs <span class="k">F(k)+F(k+1)=F(k+2)</span>), the generator the batch-41 recognizer-ban asked for. Next to the <a href="the-accuracy-loop.html">accuracy loop</a> and <a href="the-three-constants.html">the three constants</a>.
+</footer>
+</body>
+</html>
