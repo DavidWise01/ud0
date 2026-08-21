@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE BRIDGE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 340 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE BRIDGE <span class="c">span every shell to its mirror &mdash; is the whole nesting matched? (the keeper shot)</span></h1>
+  <p class="sub">To <b>bridge</b> the cells is to span each shell to its mirror across the whole tape and ask: <b>is this nesting matched?</b> Every <span class="kg">|</span> to its <span class="kg">|</span>, every <span class="kg">&lt;</span> to its <span class="kg">&gt;</span>, in to the <span class="kg">~~</span> core &mdash; if all bridges hold, the structure is <b>well-formed</b>. This is the <b>Dyck</b> condition, the language of balanced brackets a stack recognises. And it is the batch's <b>keeper shot</b>, aimed at the bar the last seven batches missed: well-formedness is a property a correct-but-different mechanism can <i>lack</i> (an emitter can be correct at its task yet produce <i>unmatched</i> output), it is <b>structural &mdash; visible in the output</b> (not a cost, not a resource), and it is <b>load-bearing</b>: break one shell and the bridge fails. Its mirror is the pierce (327): reach into one cell versus span across them all.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">match every shell to its mirror (the Dyck / balanced condition)</span></h2>
+  <p>The demo bridges the palindrome (matched &rarr; <span class="k">1</span>) and a broken tape (unmatched &rarr; <span class="k">0</span>) &mdash; a recognizer faithfully tracking its input (the panel's ruling: witnessing, not causation): <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; test the balance</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Dyck words / balanced brackets &middot; von Dyck 1882</span></h2>
+  <p class="myth">&ldquo;Well-formedness is just correctness.&rdquo; &mdash; not always: an output can be correct at its task and still be unbalanced. A mechanism that <i>guarantees</i> matched nesting supplies something a merely-correct one need not. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>1882</b> &middot; <span class="who">Walther von Dyck</span> &mdash; the <b>Dyck language</b> of balanced brackets; the canonical context-free, stack-recognised structure.<br><b>Chomsky&ndash;Sch&uuml;tzenberger</b> &middot; every context-free language is a homomorphic image of the <i>intersection</i> of a Dyck language with a <i>regular</i> language (<span class="k">L = h(D &cap; R)</span>) &mdash; the regular part is essential; balance is the skeleton of nesting.<br><b>the check</b> &middot; a stack (here, recursion) matches each opener to its closer.<br><b>mirror</b> &middot; dart 327, the pierce: into one vs across all.</div>
+  <p style="margin-top:10px">Every shell bridged to its mirror, the whole confirmed matched &mdash; or one broken and the whole condemned. To bridge is to guarantee the nesting is well-formed. <span class="tag t-open">Dyck, 1882</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">balance / well-formedness, the keeper shot, on the compiler</span></h2>
+  <p>On the canonical compiler, the palindrome bridges (matched &rarr; <span class="k">1</span>); break one shell and the bridge fails (<span class="k">0</span>) &mdash; a recognizer tracking its input (the panel: witnessed, not caused):</p>
+  <div class="evi good">$ i13 run d_bridge.i13   # is the nesting matched? (Dyck / palindrome)
+RUN OK &middot; 174 step(s) &middot; peak stack 11 &middot; call depth 6
+bridged = 1      -- | < { [ ~ ~ ] } > |  : every shell matched, WELL-FORMED
+broken = 0       -- one shell altered: balance FAILS</div>
+  <div class="rec"><b>Recommend &mdash; the batch's keeper shot, and the first in a while that is not one of the five.</b> After seven NULLs (theorems that were <i>witnessed</i>, resource properties that were <i>excluded</i>), the bridge aims at what survived both bars: <b>well-formedness / balance</b> &mdash; the guarantee that the output is a <b>matched nesting</b>. It clears the B39 supplement test (a correct-but-different emitter can produce <i>unbalanced</i> output &mdash; balance is a property such a mechanism <i>lacks</i>), and it clears the B40 resource-exclusion (balance is <b>structural</b> &mdash; a Dyck word, not a cost). <b>The panel ruled NULL, 3&ndash;0 (the eighth straight), and was right</b> &mdash; the shot has a flaw worth keeping visible: <b>the-bridge is a RECOGNIZER</b>. It reads a Dyck word and returns a validity <i>bit</i> &mdash; and recognition is the purest <b>witnessing</b>: every correct matcher (stack, counter, mirror-compare) returns the <i>same</i> bit, so the convergence tell fires by construction. The &ldquo;causation&rdquo; demo is backwards: a verdict that flips when the <i>input</i> breaks is a <i>faithful witness</i> tracking its input, not a cause &mdash; swap the mechanism and hold the task fixed and the bit is unchanged, because the balance lives in the input (built by <span class="k">explode</span>). And a verdict-bit &ldquo;this is well-formed&rdquo; is <b>self-checking</b> (the CRC / self-inverse family), not a sixth axis. <b>Well-formedness earns a keeper only as a GENERATOR's guarantee</b> &mdash; a canonicalizer / repairer that accepts messy input and <i>emits</i> a Dyck word, so a correct-but-different emitter could produce unbalanced output and thus <i>lack</i> it. The next shot ships the <b>repairer, not the recognizer</b>. Kept as an honest near-miss: the strongest case since the math pivot, refuted cleanly.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0", R="#ff6a6a";
+  function pal(a){for(var i=0,j=a.length-1;i<j;i++,j--)if(a[i]!==a[j])return 0;return 1;}
+  function run(){
+    var ok=[0,1,2,3,4,4,3,2,1,0], bad=[4,1,2,3,4,4,3,2,1,0];
+    var L=["bridge: match every shell to its mirror -- is the nesting well-formed?",""];
+    L.push("   | < { [ ~ ~ ] } > |");
+    L.push("  ["+ok.join(",")+"]   bridged = <span style='color:"+G+"'>"+pal(ok)+"</span>   WELL-FORMED");
+    L.push("  ["+bad.join(",")+"]   bridged = <span style='color:"+R+"'>"+pal(bad)+"</span>   one shell broken -> FAILS");
+    L.push(""); L.push("a recognizer tracks its input: alter a shell, the verdict flips. witnessed, not caused -> NULL 3-0.");
+    out.innerHTML=L.join("\n"); say.innerHTML="matched <span class='true'>"+pal(ok)+"</span> vs broken <span class='err'>"+pal(bad)+"</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 340 &middot; THE BRIDGE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Dyck words</b> / balanced brackets (Walther von Dyck, 1882); Chomsky-Sch&uuml;tzenberger. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CELL</b> (batch 41) &mdash; ten operations on a cell (pierce, bridge, invade, collaborate, explode, implode, hide, reveal, transform, transport &amp; their kin) in <b>nesting and palindromic pairs</b>. i13 has NO nested cells (flat value-semantic f64 tape), so the nesting <span class="kg">| &lt; { [ ~ ~ ] } &gt; |</span> is EMULATED by depth-addressing: the tape [0,1,2,3,4,4,3,2,1,0] IS the bracket-palindrome, the ~~ core its two 4s. The batch is itself a palindrome &mdash; dart <b>k</b> and dart <b>17&minus;k</b> are inverses &mdash; and because every write is non-destructive (value semantics), the original always survives, so every op meets its inverse on the mirror side. Keeper shot: <b>the-bridge</b> = BALANCE / WELL-FORMEDNESS (the output guaranteed a matched nesting), the first keeper-eligible axis since the math pivot that is not one of the five, born from David&rsquo;s <span class="kg">| &lt; { [ ~ ~ ] } &gt; |</span>. Next to the <a href="the-i13-benchmark.html">I-13 benchmark</a> and <a href="the-multipass.html">THE MULTIPASS</a>.
+</footer>
+</body>
+</html>
