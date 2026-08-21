@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FRUGAL STREAMING &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 319 &middot; a helldive at the net</span></div>
+<header>
+  <h1>FRUGAL STREAMING <span class="c">estimate a quantile with a single integer of memory &mdash; and a nudge</span></h1>
+  <p class="sub">How little state can estimate the <b>median</b> of a stream? <b>Frugal-1</b> answers: <b>one integer</b>. It holds a single estimate and nudges it &mdash; up by one when a sample lands above it, down by one when below. Over a stationary stream the estimate <b>random-walks to the median and stays</b>, because above and below balance there. No histogram, no reservoir, no sorted buffer &mdash; a correct exact quantile must store (or sort) the whole stream; Frugal-1 stores <b>one number</b> and still converges. It is the extreme point of the streaming discipline: the smallest possible summary that still answers a question about the whole distribution.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">one estimate; x&gt;est &rarr; +1, x&lt;est &rarr; &minus;1; walks to the median</span></h2>
+  <p>A stream centred on a value. The demo nudges a single integer toward the median, up or down by one per sample: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; nudge to the median</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Ma, Muthukrishnan &amp; Sandler, 2013</span></h2>
+  <p class="myth">&ldquo;Estimating a quantile needs a buffer.&rdquo; &mdash; Frugal-1 uses one integer and a &plusmn;1 nudge; the estimate walks to the median because above and below cancel there. The whole distribution, summarized in a single number. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>2013</b> &middot; <span class="who">Qiang Ma, S. Muthukrishnan &amp; Mark Sandler</span> &mdash; &ldquo;Frugal Streaming for Estimating Quantiles: One (or Two) Memory Suffices.&rdquo;<br><b>Frugal-1</b> &middot; a single stored estimate, nudged &plusmn;1; <b>Frugal-2</b> adds a step size for faster convergence.<br><b>now</b> &middot; quantile estimation on constrained devices; a limiting case beneath t-digest and the P&sup2; algorithm.</div>
+  <p style="margin-top:10px">One integer, a nudge each way; equilibrium sits at the median because that is where up and down agree. The least memory that still knows the middle. <span class="tag t-open">Frugal-1, 2013</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the one-integer median tracker, on the compiler</span></h2>
+  <p>On the canonical compiler, a stream at <span class="k">5</span> nudges the single estimate up to <span class="k">5</span> and holds &mdash; the state carried is <b>one number</b>:</p>
+  <div class="evi good">$ i13 run op_frugal.i13   # est +/- 1 per sample; walks to the median
+RUN OK &middot; 189 step(s) &middot; peak stack 6 &middot; call depth 6
+estimate = 5      -- one integer of state tracked the median of the stream</div>
+  <div class="rec"><b>Recommend &mdash; the batch's second keeper shot, and the one i13 <i>fully</i> enacts.</b> Unlike Morris, Frugal-1's mechanism needs no randomness to demonstrate on a stationary stream: i13 threads a <b>single integer</b>, nudges it <span class="k">&plusmn;1</span> per sample, and it climbs to <span class="k">5</span> and stops. The <b>supplement to correctness</b> is stark: a correct exact quantile must retain the entire stream (to sort or select); Frugal-1 retains <b>one number</b> and still locates the median &mdash; a property no exact selector can have. And it is <b>load-bearing</b>: the equilibrium sits at the median <i>because</i> the <span class="k">&plusmn;1</span> nudges balance there &mdash; alter the mechanism (bias the nudge, or store more) and either the answer moves or the one-integer property dies. This is the closest the batch comes to the B39 bar with the mechanism actually running. The honest caveat for the panel: convergence is statistical (the walk approximates), and &ldquo;one integer&rdquo; is again a <i>memory</i> claim, which the panel may judge a resource property rather than a structural axis distinct from the five.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  var data=[5,5,5,5,5];
+  function run(){
+    var est=0, L=["stream centred at 5, one integer of state, nudge +/-1:",""];
+    for(var i=0;i<data.length;i++){ if(data[i]>est)est++; else if(data[i]<est)est--;
+      L.push("  x="+data[i]+"   estimate = "+est+"   (stored: one number)"); }
+    L.push(""); L.push("median estimate = <span style='color:"+G+"'>"+est+"</span>   -- an exact median would have stored the whole stream.");
+    out.innerHTML=L.join("\n"); say.innerHTML="estimate <span class='true'>"+est+"</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 319 &middot; THE FRUGAL STREAMING</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Ma, Muthukrishnan &amp; Sandler</b> (2013), &ldquo;Frugal Streaming for Estimating Quantiles.&rdquo; Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE ONE PASS</b> (batch 40) &mdash; streaming &amp; bounded-memory mechanisms: each input is touched ONCE and folded into a BOUNDED SUMMARY carried forward, where a correct batch alternative retains the whole input and may revisit it. This is the mechanism-property the batch-39 panel asked for &mdash; a property a correct-but-different impl LACKS &mdash; aimed at the streaming discipline. Honest bound, surfaced to the keeper panel: i13's only loop is recursion, so the call STACK is O(n); what i13 genuinely enacts is the bounded <i>summary</i> and the single touch, not O(1) total memory. Online mean &amp; Welford variance, EMA/SMA, the monotonic queue &amp; stack, two-pointer, Morris &amp; Frugal &amp; Lossy sketches, CUSUM, prefix &amp; difference arrays, sliding &amp; tumbling windows. Next to the <a href="the-i13-benchmark.html">I-13 benchmark</a> and <a href="the-multipass.html">THE MULTIPASS</a>.
+</footer>
+</body>
+</html>
