@@ -6091,6 +6091,23 @@
       "kicker": "dart 341 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-tape.html",
       "seal": "803ea6d968c1d717d0cd61957d63001208db775c28ad04da30257c9acf9f4990"
+    },
+    {
+      "slug": "the-three-constants",
+      "title": "THE THREE CONSTANTS",
+      "dartno": 0,
+      "version": "v0.41",
+      "credit": "The observer triad Virgil (inner/guide), Dante (outer/pilgrim), Ulysses (object/beyond the pillars), after Dante Alighieri's Commedia (Inferno XXVI). Rendered by AVAN for the corpus.",
+      "source": "Dante Alighieri, Commedia; Inferno XXVI (Ulysses beyond the pillars of Hercules).",
+      "i13_recommend": "Three constants that fix the observer frame of the cell: virgil=inner=4 (the guide, the core), dante=outer=0 (the pilgrim, the rim), ulysses=object=5 (beyond the pillars). Sum = 9, the Dantean constant. Values LIT on i13; immutability not enforced by i13 (AMBER, constants by declaration).",
+      "blurb": "Three named constants that fix the observer frame of the cell - Virgil (inner/guide), Dante (outer/pilgrim), Ulysses (object/beyond the pillars) - after Dante's Commedia, set on the nesting | < { [ ~ ~ ] } > |. [inner.outer]+object; sum 9, the Dantean constant.",
+      "room": "darts",
+      "accent": "#b57bff",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "kicker": "milestone - the observer triad",
+      "url": "https://davidwise01.github.io/ud0/world5/the-three-constants.html",
+      "seal": "717838a663dca07e8b5d528fb1820438fb486e01946f5b1308d98811eac24478"
     }
   ],
   "keepers": [
@@ -6107,7 +6124,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "e2d04102ff32e2ea11268363674faac7d8aab7bde537db47c554ba03e1c43465",
+  "i13_root": "bf0e79ef697ce387b0ba1acfece38f08a663b5b1d9b20611fc9dee4eede762a2",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
