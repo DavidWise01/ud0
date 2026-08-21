@@ -6414,6 +6414,23 @@
       "kicker": "milestone - an open challenge",
       "url": "https://davidwise01.github.io/ud0/world5/the-golden-puzzle.html",
       "seal": "04f47342330ca47d4b6f663057bc87bc9ad71eee04a065fa0d736d80c774592c"
+    },
+    {
+      "slug": "the-thread",
+      "title": "THE THREAD",
+      "dartno": 0,
+      "version": "v0.42",
+      "credit": "The spine of the source conversation (a NES emulator hand-built in I-13, then a theorem on verification), threaded back through the corpus it generated. Rendered by AVAN for the corpus.",
+      "source": "The fiddler/David <-> Claude emulation thread (211 exchanges); grounded on the canonical H1.1 compiler.",
+      "i13_recommend": "Seven recurring principles grounded on i13 and threaded to their corpus descendants: the carry (55), the derivable test (mirror-invert-return, 1 vs cradle 0), the pair (one -1, pair 3), [1 0 1]+C (Virgil/gap/Dante, Ulysses outside), the five coordinates (only the 5th says nowhere), the servo rule (clamp external), turtles-except-quantum (nests except the 2^n wall at 266 qubits). The source thread ends open.",
+      "blurb": "THE THREAD - the one argument under the corpus, stitched from the source conversation (a NES emulator hand-built in i13 that became a theorem on how you know a thing is true). Seven recurring principles grounded on the compiler and threaded to their descendants: the carry, the derivable test, the pair, [1 0 1]+C, the five coordinates, the servo rule, turtles-except-quantum (the 2^n wall at 266 qubits). The source ends open.",
+      "room": "darts",
+      "accent": "#b57bff",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "kicker": "milestone - the source thread, threaded through",
+      "url": "https://davidwise01.github.io/ud0/world5/the-thread.html",
+      "seal": "786cdaf0e0e2e82443aad0dffd8852e3debacc60ff57925bdb254f26cdaed0a4"
     }
   ],
   "keepers": [
@@ -6430,7 +6447,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "68cca03dee362c01949866beb5858355a6262215cb28c405d61d38a389ce38d2",
+  "i13_root": "85420552d65957013bdb4f5f7fc2dcd77b002f7dac77f661f6b19eb98b1e3dae",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
