@@ -1,0 +1,16 @@
+def sm(I a,I i,I n){ if i>=n {->0} -> a[i] + sm(a,i+1,n) }
+def eq(I a,I b){ I r<-0  if a==b {r<-1} -> r }
+def palchk(I a,I i,I j){ if i>=j {->1}  I ok<-eq(a[i],a[j])  if ok==0 {->0} -> palchk(a,i+1,j-1) }
+I run <- [3,1,2,2,1,3,24,25,25,24,4]
+I input_sum <- sm(run,0,11)
+I ore <- [3,1,2,2,1,3]
+I dross <- [24,25,25,24,4]
+I ore_sum <- sm(ore,0,6)
+I dross_sum <- sm(dross,0,5)
+I reintegrated_sum <- ore_sum + dross_sum
+I ablated_sum <- ore_sum
+I conserved <- eq(reintegrated_sum,input_sum)
+I lost_by_ablation <- input_sum - ablated_sum
+I ore_is_palindrome <- palchk(ore,0,5)
+I tamper <- [3,26,2,2,1,3]
+I tamper_is_palindrome <- palchk(tamper,0,5)

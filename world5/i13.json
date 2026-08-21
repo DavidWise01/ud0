@@ -5259,6 +5259,22 @@
       "kicker": "dart 293 - a helldive at the net",
       "url": "https://davidwise01.github.io/ud0/world5/the-first-integral.html",
       "seal": "0b67090c01d218387bcb82e9869bf917461d0fcb4c34fb69d2e16bb886925202"
+    },
+    {
+      "slug": "the-third-engine",
+      "title": "THE THIRD ENGINE",
+      "room": "darts",
+      "kicker": "a fold - the E1 trunc loop closed (David architected, AVAN built+grounded)",
+      "accent": "#d8a24a",
+      "stamp": "LIT",
+      "kind": "fold",
+      "version": "v0.01",
+      "credit": "David Lee Wise / ROOT0 architected the fix (\"nest a 3rd engine to clean it up and pass it up to 2 to pass to 1\"); the engine it extends was built through fiddler (repo depot 2); AVAN built + grounded the reintegration. Rendered by AVAN.",
+      "source": "world5/the-pipe-src/reintegrate.js (JS verify green, 3/3 known-bads) + reintegrate.i13 (grounded on i13.exe: conserved=1, lost_by_ablation=102, palindrome 1/0)",
+      "i13_recommend": "(a fold) closes the E1 truncate loop the engine was missing: the thrown-away dross descends into a nested 3rd engine, is cut clean, and reintegrated up 3->2->1; conservation grounded on the real i13.exe.",
+      "url": "https://davidwise01.github.io/ud0/world5/the-third-engine.html",
+      "blurb": "The E1 mill truncates a run to its palindrome core and banks it - but the thrown-away dross was simply lost, and the bank was never read back. This rev closes the loop: the dross descends into a nested third engine, is cut clean, and is passed back up 3 to 2 to 1 and reintegrated. Nothing is ablated. The whole test is one law - what comes out holds exactly what went in - grounded on the real i13.exe: 114 in, 114 out, conserved.",
+      "seal": "7a82171ab1fc609689892f31741ed3efe0d5a16667c5795db9ed38158987481a"
     }
   ],
   "keepers": [
@@ -5275,7 +5291,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "f7e1e286ccdf896f6d3dc03ab7bb6b34d1dc0ca37eb2047336ae1c77556705ab",
+  "i13_root": "e95a1f654c723388e668f0dc7bce7ee0fee9363563af0b715bab98e748f1e280",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
