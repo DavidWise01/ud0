@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE PROGRAM BANK &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 462 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE PROGRAM BANK <span class="c">code crosses banks too &mdash; a 24-bit program counter, JML and JSL</span></h1>
+  <p class="sub">Data is not the only thing that outgrew 64KB &mdash; so did code. The 65816 adds the <b>Program Bank Register</b> (PBR, or K): the program counter is now <span class="kg">PBR : PC</span>, 24 bits, so a program can span the full 16MB. New <b>long</b> control-flow reaches across banks: <span class="k">JML</span> (jump long) and <span class="k">JSL</span> (jump-to-subroutine long). And because a long call may return to a different bank, <b>JSL pushes three bytes</b> (bank + high + low) where the 6502&rsquo;s JSR pushed two &mdash; the return address grew a bank. Code, banked.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">PC = PBR : PC (24-bit); JSL pushes 3 return bytes vs JSR&rsquo;s 2</span></h2>
+  <p>The demo forms a long jump target (bank 3, $8000 &rarr; 0x038000) and shows JSL pushes one more byte than JSR: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; jump across banks</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">65C816 PBR &middot; JML / JSL</span></h2>
+  <p class="myth">&ldquo;A jump is a jump.&rdquo; &mdash; a long jump carries a bank, and a long call must push it too, so the return address is three bytes. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the register</b> &middot; <span class="k">PBR</span> holds the code bank &mdash; <span class="k">PC</span> is 24 bits.<br><b>long control flow</b> &middot; <span class="k">JML</span>/<span class="k">JSL</span> reach any bank; <span class="k">RTL</span> returns across one.<br><b>the return</b> &middot; JSL pushes <b>3</b> bytes (bank+PCH+PCL); JSR pushed 2.</div>
+  <p style="margin-top:10px">A program counter with a bank on top &mdash; code that jumps across the whole 16MB, its return address grown a byte. <span class="tag t-open">banked code</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the long jump, on the compiler</span></h2>
+  <p>On the canonical compiler, JML to bank 3 $8000 forms 0x038000 (229376), and JSL pushes 3 bytes to JSR&rsquo;s 2:</p>
+  <div class="evi good">$ i13 run pm_programbank.i13   # (bank<<16)|pc ; JSL vs JSR
+RUN OK &middot; 26 step(s) &middot; peak stack 4 &middot; call depth 1
+target = 229376   -- 0x038000, bank 3
+jsl_pushes = 3    jsr_pushes = 2
+long_call = 1</div>
+  <div class="rec"><b>Recommend as a NULL &mdash; code addressing, same family as the data bank.</b> The program bank extends the PC the way DBR extends data addresses (resource + encoding, B40/B44); the extra pushed byte is a consequence of the wider return address, not a new invariant. NULL &mdash; the permutation banking code as well as data.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function run(){
+    var target=(3<<16)|0x8000;
+    var L=["long control flow across banks:",""];
+    L.push("  JML bank 3, $8000 -> 0x"+target.toString(16).padStart(6,"0")+" = "+target);
+    L.push("  JSL pushes 3 bytes (bank+PCH+PCL); JSR pushed 2");
+    L.push(""); L.push("<span style='color:"+G+"'>the return address grew a bank byte.</span>");
+    out.innerHTML=L.join("\n"); say.innerHTML="JSL <span class='true'>long</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 462 &middot; THE PROGRAM BANK</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>The program bank</b> &mdash; the 65C816&rsquo;s PBR makes a 24-bit program counter; JML/JSL cross banks, JSL pushes a 3-byte return. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only (exact integers below 2&#8309;&#8323;), bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE PERMUTATION</b> (batch 49) &mdash; the 6502 &rarr; 65C816 (the SNES CPU) permutation, answering &ldquo;permutate yet into snes?&rdquo;. The 65816 is a 16-bit STRICT SUPERSET of the 6502 that boots in 6502 emulation mode (E=1), so compIle&nbsp;13&rsquo;s verified NES core (ADC 0x69 = 10000/10000 vs the Harte oracle on the real binary, rev29-0820) IS the SNES CPU&rsquo;s emulation-mode substrate. Keeper shots: <b>the-16-bit-adc</b> (the hardware-verified 6502 add as the M=1 special case) and <b>the-compatibility</b> (6502 &sub; 65816). Emulation mode, XCE, M/X flags, REP/SEP, 16-bit ADC, direct page, data/program bank, block move, long &amp; stack-relative addressing, 16-bit stack, wide registers, native vectors, compatibility. Next to <a href="the-thread.html">THE THREAD</a> and <a href="the-cell.html">the cell</a> palindrome.
+</footer>
+</body>
+</html>
