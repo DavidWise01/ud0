@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE QUADRATURE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 442 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE QUADRATURE (I/Q) <span class="c">two carriers 90&deg; apart &mdash; magnitude AND phase in one complex sample</span></h1>
+  <p class="sub"><b>Quadrature</b> is the trick that lets a receiver see a signal&rsquo;s phase at all. Mix the incoming wave against two copies of the carrier a quarter-cycle apart &mdash; <b>cosine</b> (the in-phase, <b>I</b>) and <b>sine</b> (the quadrature, <b>Q</b>) &mdash; and the pair <span class="kg">(I, Q)</span> is a complex sample carrying <i>both</i> amplitude (<span class="k">&radic;(I&sup2;+Q&sup2;)</span>) and phase (<span class="k">atan2(Q, I)</span>). Every modern radio, from Wi-Fi to LTE, is an I/Q machine. Two orthogonal channels, one number: it is the structural heart of the phase channel, and the reason this batch exists.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">I=cos, Q=sin; (I,Q) holds amplitude &amp; phase; I&sup2;+Q&sup2; = |z|&sup2;</span></h2>
+  <p>The demo forms I/Q samples of a unit tone at two instants and shows I&sup2;+Q&sup2; is constant (unit magnitude) while the pair rotates &mdash; phase carried alongside: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; split into I and Q</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">quadrature / I&ndash;Q demodulation</span></h2>
+  <p class="myth">&ldquo;One channel is enough to receive a wave.&rdquo; &mdash; you need two, 90&deg; apart, or the phase is invisible; I/Q is how radios see it. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the split</b> &middot; mix against <span class="k">cos</span> (I) and <span class="k">sin</span> (Q) &mdash; two orthogonal projections.<br><b>the recovery</b> &middot; amplitude <span class="k">&radic;(I&sup2;+Q&sup2;)</span>, phase <span class="k">atan2(Q,I)</span> &mdash; both, from the pair.<br><b>everywhere</b> &middot; Wi-Fi, LTE, SDR &mdash; the universal complex-baseband representation.</div>
+  <p style="margin-top:10px">Two channels a quarter-turn apart, holding a wave&rsquo;s size and its angle at once &mdash; the phase made visible. <span class="tag t-open">two channels</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">I and Q, on the compiler</span></h2>
+  <p>On the canonical compiler, I/Q samples at two instants each satisfy I&sup2;+Q&sup2; &asymp; 10&#8310; (unit magnitude, LUT-rounded), while (I,Q) rotates:</p>
+  <div class="evi good">$ i13 run cr_quadrature.i13   # I=cos, Q=sin, |z|^2 constant
+RUN OK &middot; 114 step(s) &middot; peak stack 17 &middot; call depth 1
+I1 = 924   Q1 = 383   mag1 = 1000465
+I5 = -383  Q5 = 924   mag5 = 1000465
+both_near_1e6 = 1   -- magnitude constant, phase rotating</div>
+  <div class="rec"><b>Recommend as a keeper shot &mdash; the two-channel structure itself.</b> Quadrature is where the phase channel becomes concrete: the output is a <i>pair</i> (I, Q), and dropping Q leaves a valid magnitude signal while discarding the phase &mdash; so two mechanisms computing the same amplitude DIFFER on whether they keep Q. That is exactly the keeper shape, and it clears B47 (I and Q are deterministic). David&rsquo;s <b>PHASE TEST</b> asks the decisive question: is &ldquo;carry the quadrature channel&rdquo; a new axis, or the seated <b>generative-dual</b> principle (carry an orthogonal deterministic channel) with the Hilbert 90&deg;-shift standing in for the derivative? The panel decides &mdash; and this is the sharpest form of that decision.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  var S=[0,383,707,924,1000,924,707,383,0,-383,-707,-924,-1000,-924,-707,-383];
+  function cosv(k){return S[(k+4)%16];} function sinv(k){return S[k%16];}
+  function run(){
+    var I1=cosv(1),Q1=sinv(1),I5=cosv(5),Q5=sinv(5);
+    var m1=I1*I1+Q1*Q1, m5=I5*I5+Q5*Q5;
+    var L=["I/Q samples of a unit tone:",""];
+    L.push("  n=1: I="+I1+" Q="+Q1+"  -> |z|^2 = "+m1);
+    L.push("  n=5: I="+I5+" Q="+Q5+"  -> |z|^2 = "+m5);
+    L.push(""); L.push("<span style='color:"+G+"'>magnitude ~constant, phase rotates</span> -- two channels hold both.");
+    out.innerHTML=L.join("\n"); say.innerHTML="I,Q <span class='true'>~1e6</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 442 &middot; THE QUADRATURE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Quadrature (I/Q)</b> &mdash; in-phase and quadrature channels 90&deg; apart carry amplitude and phase together; the basis of all modern radio. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. i13 has no trig, so signals are grounded the way DSP hardware does: phase accumulators, complex phasors, precomputed sine LUTs (DDS), and modular arithmetic. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CARRIER</b> (batch 48) &mdash; signals &amp; modulation, run with ROOT0&rsquo;s new search criterion <b>THE PHASE TEST</b>: does a candidate carry an orthogonal PHASE channel alongside a fixed-magnitude output &mdash; deterministic, surviving demodulation &mdash; and is it distinct from the seated generative-dual axis (the derivative channel)? Keeper shots: <b>the-phase-modulation</b> (carries ROOT0&rsquo;s glyph [ 0.m | &lt;-~-~-~-~-( . || on the phase), <b>the-phasor</b>, <b>the-quadrature</b>, <b>the-analytic-signal</b>, <b>the-pll</b>. Phase/amplitude/frequency modulation, phasor, quadrature, analytic signal, heterodyne, CORDIC, Goertzel, DFT, Nyquist, aliasing, envelope, PLL, zero-crossing, matched filter. Next to <a href="the-thread.html">THE THREAD</a> and <a href="the-cell.html">the cell</a> palindrome.
+</footer>
+</body>
+</html>

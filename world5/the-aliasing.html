@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE ALIASING &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 449 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE ALIASING <span class="c">undersample and a frequency wears a mask &mdash; f and f+fs are twins</span></h1>
+  <p class="sub"><b>Aliasing</b> is what Nyquist warns against, seen from the other side. Sample too slowly and every frequency has infinitely many <b>aliases</b>: <span class="k">f</span>, <span class="k">f+fs</span>, <span class="k">f+2fs</span>, &hellip; all produce the <b>identical</b> sample sequence, because sampling folds the frequency axis modulo the sample rate. It is the wagon-wheel that spins backward in a film, the moir&eacute; on a screen, the false low tone in a badly-sampled recording. The phase advances by <span class="kg">(f&middot;n) mod fs</span>, so any two frequencies congruent mod fs are indistinguishable &mdash; a pure fact of modular arithmetic.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">sampled phase = (f&middot;n) mod fs; f and f+fs are identical</span></h2>
+  <p>The demo shows frequencies 3 and 11 (=3+8) sampled at fs=8 produce the identical phase sequence, while 3 and 2 differ: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; fold the frequency</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">aliasing &middot; the wagon-wheel effect</span></h2>
+  <p class="myth">&ldquo;A high frequency just looks noisy when undersampled.&rdquo; &mdash; it looks like a specific lower frequency, exactly &mdash; its alias. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the fold</b> &middot; sampling maps <span class="k">f &rarr; f mod fs</span> &mdash; the frequency axis wraps.<br><b>the twins</b> &middot; <span class="k">f</span> and <span class="k">f + k&middot;fs</span> give identical samples for all integer k.<br><b>in the world</b> &middot; the backward wagon wheel, screen moir&eacute;, the anti-alias filter that prevents it.</div>
+  <p style="margin-top:10px">Frequencies folded onto each other by too-slow a clock &mdash; a high tone wearing a low one&rsquo;s face. <span class="tag t-open">modular</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the fold, on the compiler</span></h2>
+  <p>On the canonical compiler, frequencies 3 and 11 sampled at fs=8 give the identical phase sequence; 3 and 2 differ:</p>
+  <div class="evi good">$ i13 run cr_aliasing.i13   # phase = (f*n) mod 8
+RUN OK &middot; 384 step(s) &middot; peak stack 5 &middot; call depth 9
+alias_3_11 = 1   -- freq 3 and freq 11 (=3+8): identical samples
+distinct_3_2 = 0 -- freq 3 and freq 2: different</div>
+  <div class="rec"><b>Recommend as a NULL &mdash; modular arithmetic, a theorem.</b> Aliasing is the statement that sampled phase is <span class="k">(f&middot;n) mod fs</span>, so frequencies congruent mod fs are identical &mdash; a fact of modular arithmetic every sampler obeys (B39), the mirror of dart 448. i13 grounds it (3 aliases 11 at fs=8). NULL &mdash; the failure mode the Nyquist rate is set to avoid.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0", R="#ff6a6a";
+  function ph(f){ var a=[]; for(var n=0;n<8;n++) a.push((f*n)%8); return a; }
+  function run(){
+    var p3=ph(3), p11=ph(11), p2=ph(2);
+    var eq=p3.every(function(v,i){return v===p11[i];}), df=p3.every(function(v,i){return v===p2[i];});
+    var L=["sampled phase = (f*n) mod 8:",""];
+    L.push("  f=3:  "+p3.join(" "));
+    L.push("  f=11: "+p11.join(" ")+"  -> <span style='color:"+R+"'>identical to 3 ("+(eq?1:0)+")</span>");
+    L.push("  f=2:  "+p2.join(" ")+"  -> different ("+(df?1:0)+")");
+    L.push(""); L.push("<span style='color:"+G+"'>f and f+fs are twins</span> -- the frequency axis folds mod fs.");
+    out.innerHTML=L.join("\n"); say.innerHTML="3 = <span class='err'>11</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 449 &middot; THE ALIASING</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Aliasing</b> &mdash; undersampling folds the frequency axis mod fs, so f and f+fs are indistinguishable; the wagon-wheel effect. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. i13 has no trig, so signals are grounded the way DSP hardware does: phase accumulators, complex phasors, precomputed sine LUTs (DDS), and modular arithmetic. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CARRIER</b> (batch 48) &mdash; signals &amp; modulation, run with ROOT0&rsquo;s new search criterion <b>THE PHASE TEST</b>: does a candidate carry an orthogonal PHASE channel alongside a fixed-magnitude output &mdash; deterministic, surviving demodulation &mdash; and is it distinct from the seated generative-dual axis (the derivative channel)? Keeper shots: <b>the-phase-modulation</b> (carries ROOT0&rsquo;s glyph [ 0.m | &lt;-~-~-~-~-( . || on the phase), <b>the-phasor</b>, <b>the-quadrature</b>, <b>the-analytic-signal</b>, <b>the-pll</b>. Phase/amplitude/frequency modulation, phasor, quadrature, analytic signal, heterodyne, CORDIC, Goertzel, DFT, Nyquist, aliasing, envelope, PLL, zero-crossing, matched filter. Next to <a href="the-thread.html">THE THREAD</a> and <a href="the-cell.html">the cell</a> palindrome.
+</footer>
+</body>
+</html>

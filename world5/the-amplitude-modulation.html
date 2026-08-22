@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE AMPLITUDE MODULATION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 439 &middot; a helldive at the net</span></div>
+<header>
+  <h1>AMPLITUDE MODULATION <span class="c">the message rides the envelope &mdash; the oldest way to send a voice</span></h1>
+  <p class="sub"><b>Amplitude modulation</b> is the first modulation ever broadcast: multiply a steady high-frequency <b>carrier</b> by <span class="k">(1 + m&middot;x(t))</span>, and the message <span class="k">x(t)</span> becomes the <b>envelope</b> &mdash; the slow rise and fall traced by the carrier&rsquo;s peaks. A crystal set recovers it with nothing but a diode and a capacitor: rectify, smooth, and the envelope reappears. It is simple and robust, and it is the counterpoint to phase modulation &mdash; here everything is in the magnitude, and the phase is idle. AM radio has carried voices since 1906.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">s = (C + msg)&middot;carrier; the peak amplitude carries the message</span></h2>
+  <p>The demo builds an AM sample at the carrier peak and reads the envelope back off it &mdash; the message is the peak amplitude: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; ride the envelope</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Fessenden 1906 &middot; AM broadcasting</span></h2>
+  <p class="myth">&ldquo;Radio needs complex circuitry to decode.&rdquo; &mdash; an AM envelope comes off with a diode and a capacitor; the message is just the peak height. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the modulation</b> &middot; <span class="k">s(t) = (C + m&middot;x(t))&middot;cos(&omega;t)</span> &mdash; the message scales the carrier&rsquo;s height.<br><b>the envelope</b> &middot; rectify + smooth &rarr; <span class="k">C + m&middot;x(t)</span> reappears &mdash; envelope detection.<br><b>1906</b> &middot; <span class="who">Reginald Fessenden</span> &mdash; the first AM voice broadcast.</div>
+  <p style="margin-top:10px">A voice written into the height of a wave &mdash; the phase idle, the magnitude everything. <span class="tag t-open">amplitude channel</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the envelope, on the compiler</span></h2>
+  <p>On the canonical compiler, an AM sample at the carrier peak (LUT=1000) with envelope C+msg=8 reads back exactly 8:</p>
+  <div class="evi good">$ i13 run cr_amplitudemodulation.i13   # s = (C+msg)*carrier
+RUN OK &middot; 56 step(s) &middot; peak stack 17 &middot; call depth 0
+C = 5   msg = 3
+peak_sample = 8000   -- (5+3) * SINE[peak=1000]
+envelope = 8   recovered = 1   -- the message is the peak amplitude</div>
+  <div class="rec"><b>Recommend as a NULL &mdash; and the phase channel&rsquo;s foil.</b> AM puts the message in the <b>magnitude</b>, which is the ordinary output value; recovering it is envelope detection, a plain read of the amplitude. There is no extra orthogonal channel here &mdash; the message IS the output &mdash; so nothing to seat. It earns its place as the deliberate contrast to dart 438: same carrier, opposite channel. Where PM tests the phase, AM confirms the magnitude is just the value. NULL.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function run(){
+    var C=5,msg=3,peak=(C+msg)*1000, env=peak/1000;
+    var L=["AM: s = (C + msg) * carrier, C=5, msg=3:",""];
+    L.push("  at the carrier peak (amplitude 1000):");
+    L.push("  peak sample = (5+3) * 1000 = "+peak);
+    L.push("  envelope = peak / 1000 = "+env+"   (= C + msg)");
+    L.push(""); L.push("<span style='color:"+G+"'>message recovered ("+((env===C+msg)?1:0)+")</span> from the amplitude -- the phase is idle.");
+    out.innerHTML=L.join("\n"); say.innerHTML="envelope <span class='true'>8</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 439 &middot; THE AMPLITUDE MODULATION</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Amplitude modulation</b> &mdash; the message rides the carrier&rsquo;s envelope; recovered by envelope detection; first AM voice broadcast by Reginald Fessenden (1906). Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. i13 has no trig, so signals are grounded the way DSP hardware does: phase accumulators, complex phasors, precomputed sine LUTs (DDS), and modular arithmetic. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CARRIER</b> (batch 48) &mdash; signals &amp; modulation, run with ROOT0&rsquo;s new search criterion <b>THE PHASE TEST</b>: does a candidate carry an orthogonal PHASE channel alongside a fixed-magnitude output &mdash; deterministic, surviving demodulation &mdash; and is it distinct from the seated generative-dual axis (the derivative channel)? Keeper shots: <b>the-phase-modulation</b> (carries ROOT0&rsquo;s glyph [ 0.m | &lt;-~-~-~-~-( . || on the phase), <b>the-phasor</b>, <b>the-quadrature</b>, <b>the-analytic-signal</b>, <b>the-pll</b>. Phase/amplitude/frequency modulation, phasor, quadrature, analytic signal, heterodyne, CORDIC, Goertzel, DFT, Nyquist, aliasing, envelope, PLL, zero-crossing, matched filter. Next to <a href="the-thread.html">THE THREAD</a> and <a href="the-cell.html">the cell</a> palindrome.
+</footer>
+</body>
+</html>
