@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE CARRY FLAG &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 381 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE CARRY FLAG <span class="c">the one bit the sum could not hold &mdash; saved in a status register</span></h1>
+  <p class="sub">When an <span class="k">8</span>-bit add overflows &mdash; <span class="k">200+100=300</span>, but only <span class="k">44</span> fits in a byte &mdash; the missing high bit is not lost. It is caught in the <b>carry flag</b>, a single bit in the processor's status register. That flag is how a machine adds numbers wider than its word: add the low bytes, keep the carry, feed it into the high bytes (add-with-carry). It is also the <b>unsigned overflow</b> signal &mdash; &ldquo;the result did not fit.&rdquo; The carry, having rippled off the top of the adder, is <b>saved for the next instruction</b> &mdash; the thread's carry, made an architectural fact.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">carry flag = the bit that overflowed the word; enables multi-word add</span></h2>
+  <p>The demo adds <span class="k">200+100</span> in 8 bits &mdash; the result wraps to <span class="k">44</span> and the carry flag is set: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; catch the overflow</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">the status register carry bit</span></h2>
+  <p class="myth">&ldquo;An 8-bit add that overflows loses the top.&rdquo; &mdash; it is caught in the carry flag and fed to the next byte; that flag is how a machine adds numbers wider than itself. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the flag</b> &middot; the carry-out of the top bit, latched in the status register (C).<br><b>add-with-carry</b> &middot; low bytes first, then high bytes plus the saved C &mdash; arbitrary-width addition.<br><b>unsigned overflow</b> &middot; C set means &ldquo;did not fit&rdquo; for unsigned numbers (V is the signed version, dart 382).</div>
+  <p style="margin-top:10px">The bit the byte could not hold, latched and handed to the next instruction &mdash; the carry, promoted to architecture. <span class="tag t-open">the carry flag</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the overflow bit, on the compiler</span></h2>
+  <p>On the canonical compiler, <span class="k">200+100=300</span>; the byte holds <span class="k">44</span> and the carry flag is set (<span class="k">300&ge;256</span>):</p>
+  <div class="evi good">$ i13 run c_carryflag.i13   # 8-bit add overflow
+RUN OK &middot; 18 step(s) &middot; peak stack 2 &middot; call depth 0
+sum = 300   result = 44     -- 300 mod 256
+set = 1                     -- carry flag: the high bit that did not fit</div>
+  <div class="rec"><b>Recommend:</b> the carry flag is the thread's carry become an <b>architectural fact</b> &mdash; the one bit a word cannot hold, latched for the next instruction, and the way a machine adds beyond its width &mdash; and i13 sets it on <span class="k">200+100</span>. Not a keeper (a status bit that reports overflow is a recognizer &mdash; it witnesses &ldquo;did not fit,&rdquo; per B41). The dart that makes the carry persist across instructions.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0", R="#ff6a6a";
+  function run(){
+    var s=200+100,res=s%256,c=s>=256?1:0;
+    var L=["8-bit add: 200 + 100:",""];
+    L.push("  200 + 100 = "+s+"   but a byte holds 0..255");
+    L.push("  result in byte = <span style='color:"+G+"'>"+res+"</span>   carry flag = <span style='color:"+R+"'>"+c+"</span>   (the high bit, saved)");
+    L.push("  add-with-carry feeds that "+c+" into the next byte -> add wider than the word.");
+    out.innerHTML=L.join("\n"); say.innerHTML="result "+res+", C <span class='true'>"+c+"</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 381 &middot; THE CARRY FLAG</b> &mdash; World V &middot; SONNY 5, the I-13 world. The <b>carry flag</b>: the carry-out latched in the status register; add-with-carry for multi-word arithmetic. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE CARRY</b> (batch 44) &mdash; the direct sequel to <a href="the-thread.html">THE THREAD</a>, whose first principle was the carry: &ldquo;a fold without a carry is one-way.&rdquo; The mechanism that makes arithmetic work &mdash; born in the half adder&rsquo;s AND, propagated (ripple), computed in parallel (lookahead, Kogge-Stone), deferred (carry-save), speculated (carry-select), wrapped (end-around), re-based (BCD), pinned (saturating), refused (gray code), or discarded (parity). Keeper shot: <b>the-gray-code</b> (count with no carry &mdash; a unit-Hamming ordering). &#9888; honest prior (near-complete): the speed schemes are RESOURCE (B40), the complements are SELF-INVERSE, the adders are correctness &mdash; expected NULL. Next to <a href="the-thread.html">THE THREAD</a> and the <a href="the-6502-gate.html">6502 gate</a>.
+</footer>
+</body>
+</html>
