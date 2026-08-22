@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE CYCLE DETECTION &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 527 &middot; a helldive at the net</span></div>
+<header>
+  <h1>CYCLE DETECTION <span class="c">is there a loop? &mdash; an edge that reconnects what is already connected</span></h1>
+  <p class="sub">A <b>cycle</b> is a path that returns to where it started &mdash; and detecting one is a basic safety check: a cycle in a dependency graph is a deadlock, in a family tree an impossibility, in a filesystem an infinite loop. In an <b>undirected</b> graph, union-find spots it instantly: process edges one by one, and if an edge&rsquo;s two endpoints are <b>already in the same set</b>, that edge closes a cycle. (In directed graphs, a back-edge during DFS does the same job.) A tree &mdash; connected with no cycle &mdash; has exactly <span class="k">n&minus;1</span> edges; one more edge anywhere makes a loop. Here the 5-node graph with a 4-cycle is caught; a tree is not.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">an edge joining two already-connected nodes closes a cycle (union-find)</span></h2>
+  <p>The demo detects a cycle in a graph with a loop (an edge reconnecting a set) and finds none in a tree: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; find the loop</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">cycle detection &middot; union-find / DFS back-edge</span></h2>
+  <p class="myth">&ldquo;Finding a cycle means searching all paths.&rdquo; &mdash; one edge that reconnects an already-connected pair is a cycle; union-find catches it in a pass. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the test</b> &middot; process edges; if an edge&rsquo;s endpoints share a root, it closes a cycle &mdash; union-find.<br><b>the directed case</b> &middot; a DFS back-edge (to an ancestor still on the stack) is the same signal.<br><b>the count</b> &middot; a tree has exactly <span class="k">n&minus;1</span> edges; any extra edge makes a loop.</div>
+  <p style="margin-top:10px">A loop revealed by an edge that reconnects what is already joined &mdash; cycles caught in one pass. <span class="tag t-open">recognizer</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the loop check, on the compiler</span></h2>
+  <p>On the canonical compiler, a graph with a 4-cycle is flagged (a reconnecting edge); a tree is not:</p>
+  <div class="evi good">$ i13 run nw_cycledetection.i13   # edge into an existing set = cycle
+RUN OK &middot; 679 step(s) &middot; peak stack 12 &middot; call depth 6
+cyc = 1    -- the cyclic graph
+tree = 0   -- the tree (no cycle)
+has_cycle = 1</div>
+  <div class="rec"><b>Recommend as a NULL &mdash; a recognizer.</b> Cycle detection <b>tests</b> whether a graph contains a loop (a validity predicate, B41) using union-find (B40); a keeper GENERATES an invariant rather than checking a property. Its answer is forall-pinned by the graph (B39). NULL &mdash; the deadlock detector, in one pass.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function hasCycle(edges){ var p=[0,1,2,3,4]; function find(x){while(p[x]!==x)x=p[x];return x;} var c=0; edges.forEach(function(e){var a=find(e[0]),b=find(e[1]); if(a===b)c=1; else p[a]=b;}); return c; }
+  function run(){
+    var cyc=hasCycle([[0,1],[0,2],[1,3],[2,3],[3,4]]), tree=hasCycle([[0,1],[1,2],[3,4]]);
+    var L=["cycle detection via union-find:",""];
+    L.push("  graph with a 4-cycle (0-1-3-2-0): cycle? "+(cyc?"yes":"no"));
+    L.push("  a tree (0-1,1-2,3-4): cycle? "+(tree?"yes":"no"));
+    L.push(""); L.push("<span style='color:"+G+"'>an edge into an existing set closes a loop</span> -- caught in one pass.");
+    out.innerHTML=L.join("\n"); say.innerHTML="cycle <span class='true'>yes/no</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 527 &middot; THE CYCLE DETECTION</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Cycle detection</b> &mdash; an edge reconnecting an already-connected pair closes a cycle (union-find), or a DFS back-edge in the directed case. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Graphs are flat adjacency matrices (edge(i,j) at i*n+j) and parent arrays; traversal threads visited/distance arrays through recursion. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE NETWORK</b> (batch 53) &mdash; graph algorithms. Keeper shot: <b>the-union-find</b> (path compression &mdash; a structure that flattens itself as you query it, near-constant connectivity). Union-find, DFS, BFS, Dijkstra, topological sort, Bellman-Ford, Floyd-Warshall, Kruskal, Prim, cycle detection, connected components, handshake lemma, bipartite, Euler path, adjacency matrix, A*. Next to <a href="the-thread.html">THE THREAD</a> and <a href="the-cell.html">the cell</a> palindrome.
+</footer>
+</body>
+</html>
