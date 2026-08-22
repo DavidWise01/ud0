@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE RAY CASTING &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 491 &middot; a helldive at the net</span></div>
+<header>
+  <h1>RAY CASTING <span class="c">shoot a ray, count the crossings &mdash; odd means inside</span></h1>
+  <p class="sub">Is a point inside a polygon? Shoot a <b>ray</b> from it in any direction and <b>count how many edges it crosses</b>: <b>odd</b> means inside, <b>even</b> means outside. The intuition is a wall &mdash; each crossing flips you between inside and out, so an odd count leaves you within. It handles any simple polygon, convex or not, with a handful of comparisons per edge, and the only care is the tie-handling at vertices (a half-open crossing rule). For a unit square, (2,2) crosses one edge (odd &rarr; inside) and (6,2) crosses none (even &rarr; outside).</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">count edge crossings of a ray &mdash; odd = inside, even = outside</span></h2>
+  <p>The demo casts a rightward ray from two points against a square &mdash; (2,2) crosses once (inside), (6,2) crosses zero (outside): <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; cast the ray</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">point-in-polygon &middot; Shimrat 1962</span></h2>
+  <p class="myth">&ldquo;Inside-or-out needs the whole shape at once.&rdquo; &mdash; one ray and a crossing count decides it, edge by edge. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the ray</b> &middot; a half-line from the point; count edges it crosses.<br><b>the parity</b> &middot; odd &rarr; inside, even &rarr; outside &mdash; each crossing flips in/out.<br><b>1962</b> &middot; <span class="who">Shimrat</span> &mdash; the point-in-polygon test; the even-odd rule of every fill routine.</div>
+  <p style="margin-top:10px">A ray fired through the boundary, crossings tallied &mdash; parity decides inside or out. <span class="tag t-open">recognizer</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the crossing parity, on the compiler</span></h2>
+  <p>On the canonical compiler, from (2,2) the ray crosses the square once (odd, inside); from (6,2), zero times (even, outside):</p>
+  <div class="evi good">$ i13 run cg_raycasting.i13   # edge-crossing parity
+RUN OK &middot; 672 step(s) &middot; peak stack 16 &middot; call depth 5
+inside = 1    -- (2,2): odd crossings
+outside = 0   -- (6,2): even crossings
+test = 1</div>
+  <div class="rec"><b>Recommend as a NULL &mdash; a recognizer.</b> Ray casting <b>tests</b> membership (inside/outside) &mdash; a validity predicate (B41), the exact gate that a keeper must GENERATE past rather than CHECK. Its answer is forall-pinned by the polygon (B39). NULL &mdash; the even-odd rule under every polygon fill.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function ec(px,py,xi,yi,xj,yj){ var a=yi>py, b=yj>py; if(a===b) return 0; var xint=(xj-xi)*(py-yi)/(yj-yi)+xi; return px<xint?1:0; }
+  function pip(px,py){ var xs=[0,4,4,0],ys=[0,0,4,4],c=0; for(var i=0;i<4;i++){var j=(i+1)%4; c+=ec(px,py,xs[i],ys[i],xs[j],ys[j]);} return c; }
+  function run(){
+    var a=pip(2,2), b=pip(6,2);
+    var L=["ray casting against a 4x4 square:",""];
+    L.push("  (2,2): "+a+" crossing(s) -> "+(a%2?"inside":"outside"));
+    L.push("  (6,2): "+b+" crossing(s) -> "+(b%2?"inside":"outside"));
+    L.push(""); L.push("<span style='color:"+G+"'>odd = inside, even = outside</span> -- each crossing flips in/out.");
+    out.innerHTML=L.join("\n"); say.innerHTML="in? <span class='true'>odd</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 491 &middot; THE RAY CASTING</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Ray casting</b> &mdash; point-in-polygon by counting ray/edge crossings (odd = inside); Shimrat (1962), the even-odd rule. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE COMPASS</b> (batch 51) &mdash; computational geometry, which grounds on i13 with NO trigonometry: the CROSS PRODUCT (one multiply-subtract) is the whole engine &mdash; orientation, area, convex hull, segment intersection, and point-in-triangle all reduce to its sign &mdash; plus integer line/circle (Bresenham), the lattice theorem of Pick, the winding number, and the L1/L2 metrics. Keeper shots: <b>the-cross-product</b> (the primitive the batch reduces to) and <b>the-picks-theorem</b> (area from a lattice dot-count). Cross product, orientation, shoelace, Bresenham, midpoint circle, ray casting, convex hull, dot product, segment intersection, barycentric, bounding box, winding number, 90&deg; rotation, reflection, Pick, Manhattan. Next to <a href="the-thread.html">THE THREAD</a> and <a href="the-cell.html">the cell</a> palindrome.
+</footer>
+</body>
+</html>
