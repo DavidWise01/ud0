@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE PERMUTATION INVARIANCE &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 394 &middot; a helldive at the net</span></div>
+<header>
+  <h1>PERMUTATION INVARIANCE <span class="c">a function of a set, not a list &mdash; the order of the inputs does not matter</span></h1>
+  <p class="sub">When the input is really a <b>set</b>, the output must not depend on the order it was written in: <span class="kg">f(&pi;&middot;x) = f(x)</span> for any permutation <span class="k">&pi;</span>. <b>Sum, product, max, min, count</b> are all permutation-invariant &mdash; scramble the arguments, the answer holds. The deep result (<b>Deep Sets</b>) is that <i>every</i> permutation-invariant function has the form <span class="k">&rho;(&sum; &phi;(x<sub>i</sub>))</span> &mdash; embed each element, sum (the invariant step), then decode. It is the symmetry of aggregation: how you build a function whose input has no inherent order, from a molecule's atoms to a graph's neighbours.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">f(&pi;&middot;x) = f(x) &mdash; symmetric in its arguments (a set, not a list)</span></h2>
+  <p>The demo sums two permutations of the same multiset &mdash; the totals match, so sum is permutation-invariant: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; scramble &amp; sum</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">symmetric functions &middot; Deep Sets 2017</span></h2>
+  <p class="myth">&ldquo;A function reads its inputs in order.&rdquo; &mdash; a set-function must not; sum/max/count give the same answer however you shuffle the arguments. Order-freedom is a design constraint. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the relation</b> &middot; invariance under the symmetric group <span class="k">S<sub>n</sub></span> &mdash; a function of a multiset.<br><b>examples</b> &middot; sum, product, max, min, count, mean.<br><b>2017</b> &middot; <span class="who">Zaheer et al.</span> (Deep Sets) &mdash; every such function is <span class="k">&rho;(&sum;&phi;(x<sub>i</sub>))</span>: embed, sum, decode.</div>
+  <p style="margin-top:10px">Shuffle the arguments, the answer holds &mdash; a function of a set, not a list. The symmetry of aggregation. <span class="tag t-open">Deep Sets 2017</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the order-free sum, on the compiler</span></h2>
+  <p>On the canonical compiler, <span class="k">sum([3,1,2]) = sum([1,2,3]) = 6</span> &mdash; permutation-invariant:</p>
+  <div class="evi good">$ i13 run sy_permutationinvariance.i13   # sum is order-free
+RUN OK &middot; 141 step(s) &middot; peak stack 5 &middot; call depth 4
+sum_a = 6   sum_b = 6
+perm_invariant = 1     -- same multiset, any order, same total</div>
+  <div class="rec"><b>Recommend:</b> permutation-invariance is the symmetry of <b>sets</b> &mdash; the output blind to order &mdash; and i13 confirms sum is order-free. Not a keeper (invariance under a group is the B38 case, witnessed; every correct set-function has it, coextensive with &ldquo;is a function of a set&rdquo;). The dart that shows aggregation's symmetry, and the Deep Sets form (embed&ndash;sum&ndash;decode) beneath every function whose input is a bag of things.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function run(){
+    var a=[3,1,2], b=[1,2,3];
+    var sa=a.reduce(function(x,y){return x+y;}), sb=b.reduce(function(x,y){return x+y;});
+    var L=["sum of a multiset, two orders:",""];
+    L.push("  sum([3,1,2]) = "+sa);
+    L.push("  sum([1,2,3]) = "+sb);
+    L.push("  permutation-invariant? <span style='color:"+G+"'>"+(sa===sb?1:0)+"</span>   (a function of a SET, not a list)");
+    out.innerHTML=L.join("\n"); say.innerHTML="sum <span class='true'>6</span> = 6";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 394 &middot; THE PERMUTATION INVARIANCE</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Permutation invariance</b> (symmetric functions); Deep Sets (Zaheer et al., 2017). Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE SYMMETRY</b> (batch 45) &mdash; equivariance: <span class="k">f(g&middot;x) = g&middot;f(x)</span>, the output COMMUTING with a transformation. The genuine remaining shot at a 6th axis &mdash; it tests the batch-38 line the panel left open: invariance was WITNESSED (a theorem the computation obeys), but is ENACTED equivariance &mdash; guaranteed by the mechanism&rsquo;s construction (weight-sharing), so a correct-but-different mechanism LACKS it &mdash; a distinct structural output-relation invariant? Keeper shots: <b>the-equivariance</b> and <b>the-convolution</b>. Invariance, permutation-invariance, antisymmetry, group actions, orbits, reflection/rotational symmetry, parity, gauge, scale, self-duality, homomorphism. Next to <a href="the-thread.html">THE THREAD</a> and <a href="the-cell.html">the cell</a> palindrome.
+</footer>
+</body>
+</html>
