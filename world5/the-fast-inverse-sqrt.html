@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE FAST INVERSE SQRT &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 407 &middot; a helldive at the net</span></div>
+<header>
+  <h1>THE FAST INVERSE SQRT <span class="c">0x5f3759df, then one step of Newton &mdash; 1/&radic;x almost for free</span></h1>
+  <p class="sub">The most famous magic number in code. To light a 3D world you need <span class="k">1/&radic;x</span> for every surface normal, thousands of times a frame, and division-then-square-root was ruinously slow. The <b>Quake III</b> trick reinterprets the float&rsquo;s <i>bits</i> as an integer, computes <span class="kg">i = 0x5f3759df &minus; (i &gt;&gt; 1)</span>, reads it back as a float &mdash; and that single subtraction lands astonishingly close to <span class="k">1/&radic;x</span>. One <b>Newton</b> step then polishes it. The bit-seed exploits the IEEE-754 layout to approximate a logarithm; it is a <i>reinterpret-cast</i> that a strict f64 language cannot even name &mdash; so here we ground the half that <b>does</b> run: the Newton refinement.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">y &larr; y&middot;(1.5 &minus; 0.5&middot;x&middot;y&middot;y) &mdash; Newton polish of the magic seed</span></h2>
+  <p>i13 is f64-only with <b>no bit-reinterpret</b>, so the 0x5f3759df seed is inexpressible here (disclosed). The demo grounds the <b>Newton refinement</b> that follows it, converging to 1/&radic;x: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; polish the guess</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Quake III 1999 &middot; constant&rsquo;s author debated</span></h2>
+  <p class="myth">&ldquo;It&rsquo;s a hack nobody understands.&rdquo; &mdash; it is a principled log-approximation via the IEEE-754 bit layout, plus Newton&rsquo;s method; Lomont (2003) derived a near-optimal constant. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the seed</b> &middot; <span class="k">i = 0x5f3759df &minus; (i&gt;&gt;1)</span> on the float&rsquo;s bits &mdash; a cheap approximate <span class="k">&minus;&frac12; log&#8322;</span>.<br><b>the polish</b> &middot; one Newton step on <span class="k">f(y)=1/y&sup2;&minus;x</span> &mdash; <span class="k">y(1.5&minus;0.5&middot;x&middot;y&sup2;)</span>.<br><b>1999</b> &middot; <span class="who">Quake III Arena</span> source (id Software); constant traced through Greg Walsh; analyzed by <span class="who">Chris Lomont</span> (2003).</div>
+  <p style="margin-top:10px">A logarithm stolen from the exponent bits, corrected by one Newton step &mdash; the bit-seed is a reinterpret-cast; only the polish runs in f64. <span class="tag t-open">approximation</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the Newton half, on the compiler</span></h2>
+  <p>On the canonical compiler, from a rough seed 0.4 the Newton step converges to 1/&radic;4 = 0.5 in eight iterations:</p>
+  <div class="evi good">$ i13 run tk_fastinvsqrt.i13   # y <- y*(1.5 - 0.5*x*y*y), x=4
+RUN OK &middot; 213 step(s) &middot; peak stack 6 &middot; call depth 9
+x = 4   y0 = 0.4
+inv = 0.5        -- converged to 1/sqrt(4)
+close = 1        -- within 1e-7 of 0.5
+# NOTE: the 0x5f3759df bit-seed needs float<->int reinterpret; i13 is f64-only, so it is not expressible here (disclosed).</div>
+  <div class="rec"><b>Recommend as a marker, with an honest asterisk.</b> This dart is the one place the batch <i>cannot</i> fully run: the celebrated part &mdash; the bit-reinterpret seed &mdash; is exactly the operation a strict f64 machine forbids, so we ground the Newton half and say so plainly (the disclosure is the point, not a patch). For the keeper question it is doubly out: the seed is an <b>approximation</b> (a <i>different</i> function from exact 1/&radic;x, so not a same-function property), and the speedup is pure <b>resource</b> (B40). It earns its seat as a teaching case &mdash; where the machine&rsquo;s honesty (no type-punning) meets the most famous trick in graphics.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function run(){
+    var x=4, y=0.4, L=["Newton polish of 1/sqrt(4), seed y=0.4:",""];
+    for(var k=1;k<=8;k++){ y = y*(1.5 - 0.5*x*y*y); L.push("  step "+k+": y = "+y.toFixed(9)); }
+    L.push(""); L.push("converged to <span style='color:"+G+"'>"+y.toFixed(6)+"</span> = 1/sqrt(4) = 0.5");
+    L.push("(the 0x5f3759df bit-seed needs float<->int reinterpret -- not expressible in f64-only i13.)");
+    out.innerHTML=L.join("\n"); say.innerHTML="inv <span class='true'>0.5</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 407 &middot; THE FAST INVERSE SQRT</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Fast inverse square root</b> &mdash; magic constant 0x5f3759df + Newton&rsquo;s method; Quake III Arena (id Software, 1999), analyzed by Chris Lomont (2003). Bit-seed not expressible in f64-only i13; Newton half grounded. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE TRICK</b> (batch 46) &mdash; bit-twiddling &amp; algorithmic shortcuts: computing the SAME function by a cleverer or cheaper mechanism. The batch is the archetypal test of the resource gate: nearly every trick&rsquo;s output is <b>bit-identical</b> to the naive method &mdash; the difference is only op-count, no-divide, or log-time &mdash; so a costlier twin gives the same bits, and speed is not an axis. Keeper shot: <b>the-xor-swap</b> (self-inverse &mdash; but that is already keeper axis 1, a duplicate not a new pillar). XOR swap, fast inverse sqrt, Horner, Russian peasant, fast exponentiation, Kernighan, popcount, Karatsuba, De Bruijn, Booth, Newton division, binary GCD, integer sqrt, log2, next power of two, bit reversal. Next to <a href="the-thread.html">THE THREAD</a> and <a href="the-cell.html">the cell</a> palindrome.
+</footer>
+</body>
+</html>

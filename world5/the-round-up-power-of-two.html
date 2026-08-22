@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE ROUND UP TO POWER OF TWO &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 420 &middot; a helldive at the net</span></div>
+<header>
+  <h1>NEXT POWER OF TWO <span class="c">smear every bit downward, then add one &mdash; the next 2^k in five ORs</span></h1>
+  <p class="sub">To round a number up to the next <b>power of two</b>, you flood all the bits below the highest set bit, then add one. Take <span class="k">n&minus;1</span>, then <span class="kg">n |= n&gt;&gt;1; n |= n&gt;&gt;2; n |= n&gt;&gt;4; &hellip;</span> &mdash; each OR doubles the run of 1s, so after a logarithmic number of steps every bit below the top is set: the value is <span class="k">2^k &minus; 1</span>. Add one and you land exactly on the next power of two. It is the branchless bit-smear behind every buffer that grows by doubling and every hash table that resizes to a power of two.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">n&minus;1, then OR down by 1,2,4,8,16, then +1</span></h2>
+  <p>The demo rounds 37 up to 64 by smearing the bits of 36 down to 63, then adding one: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; smear then add one</button><span id="say" class="res" style="margin:0"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Hart &amp; Lewis 1997 &middot; Anderson 2001</span></h2>
+  <p class="myth">&ldquo;Next power of two needs a log and a shift.&rdquo; &mdash; it needs a bit-smear: OR the value onto itself shifted, then +1. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the smear</b> &middot; <span class="k">n |= n&gt;&gt;k</span> for k=1,2,4,8,16 &mdash; the run of 1s below the top bit doubles each OR.<br><b>the fill</b> &middot; after log-many ORs every lower bit is set: <span class="k">2^k &minus; 1</span> &mdash; then <span class="k">+1</span> is the power.<br><b>1997 / 2001</b> &middot; the shift-or method: <span class="who">Pete Hart &amp; William Lewis</span> (1997), popularized by <span class="who">Sean Anderson</span>&rsquo;s Bit Twiddling Hacks (~2001); also Warren&rsquo;s <i>Hacker&rsquo;s Delight</i>. Do <span class="k">n&minus;1</span> first so exact powers map to themselves.</div>
+  <p style="margin-top:10px">Every low bit flooded on, then one added &mdash; the next power of two with no loop bound and no log. <span class="tag t-open">resource</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the bit-smear, on the compiler</span></h2>
+  <p>On the canonical compiler, smearing 36 fills it to 63, and +1 gives 64 &mdash; the next power of two above 37:</p>
+  <div class="evi good">$ i13 run tk_roundup.i13   # (n-1) |= (n-1)>>k for k=16..1, then +1
+RUN OK &middot; 106 step(s) &middot; peak stack 4 &middot; call depth 6
+n = 37
+m = 36       -- n-1
+s = 63       -- all lower bits smeared on (2^6 - 1)
+pw = 64      -- +1 -> next power of two
+same = 1</div>
+  <div class="rec"><b>Recommend as a NULL &mdash; resource, the branchless kind.</b> Next-power-of-two returns the same value a loop (&ldquo;double until &ge; n&rdquo;) would give &mdash; i13 prints 64 &mdash; but with no data-dependent branch, just a fixed cascade of ORs. The win is <b>branchlessness and fixed latency</b>, both <b>resource</b> (B40), not a change to the output relation. NULL. It is the batch&rsquo;s cleanest &ldquo;replace a loop with a straight-line bit cascade&rdquo; case, and it leans on the-log2 (419) conceptually.</div>
+</div>
+
+<script>
+"use strict";
+(function(){
+  var out=document.getElementById("out"), say=document.getElementById("say"), G="#59ffb0";
+  function run(){
+    var n=37,m=n-1,L=["round 37 up to the next power of two:",""];
+    L.push("  start n-1 = "+m+" = "+m.toString(2));
+    var v=m;
+    [1,2,4,8,16].forEach(function(k){ v=v|(v>>k); L.push("  |= >>"+k+" -> "+v.toString(2)); });
+    var pw=v+1;
+    L.push(""); L.push("  smeared = "+v+" (2^6-1); +1 = <span style='color:"+G+"'>"+pw+"</span> = next power of two.");
+    out.innerHTML=L.join("\n"); say.innerHTML="ceil2 <span class='true'>64</span>";
+  }
+  document.getElementById("go").onclick=run; run();
+})();
+</script>
+
+<footer>
+  <b>DART 420 &middot; THE ROUND UP TO POWER OF TWO</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Next power of two</b> &mdash; the shift-or bit-smear (OR n onto its shifts) then +1; branchless, fixed-latency; earliest known Pete Hart &amp; William Lewis (1997), popularized by Sean Anderson&rsquo;s Bit Twiddling Hacks (~2001), also Warren&rsquo;s Hacker&rsquo;s Delight (2002). Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE TRICK</b> (batch 46) &mdash; bit-twiddling &amp; algorithmic shortcuts: computing the SAME function by a cleverer or cheaper mechanism. The batch is the archetypal test of the resource gate: nearly every trick&rsquo;s output is <b>bit-identical</b> to the naive method &mdash; the difference is only op-count, no-divide, or log-time &mdash; so a costlier twin gives the same bits, and speed is not an axis. Keeper shot: <b>the-xor-swap</b> (self-inverse &mdash; but that is already keeper axis 1, a duplicate not a new pillar). XOR swap, fast inverse sqrt, Horner, Russian peasant, fast exponentiation, Kernighan, popcount, Karatsuba, De Bruijn, Booth, Newton division, binary GCD, integer sqrt, log2, next power of two, bit reversal. Next to <a href="the-thread.html">THE THREAD</a> and <a href="the-cell.html">the cell</a> palindrome.
+</footer>
+</body>
+</html>
