@@ -1,0 +1,226 @@
+<title>Four Around a U, With an X</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Instrument+Sans:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#f1eafb; --card:#fffdff;
+  --ink:#22143a; --ink2:#4a3a66; --ink3:#6f6288;
+  --violet:#6d28d9; --violet2:#8b3ff0; --violet-wash:#efe6fd;
+  --ember:#d9550a; --ember-wash:#fbe8da;
+  --teal:#0c8a78; --teal-wash:#dcf1ee;
+  --gold:#b3841f; --gold-wash:#f6ecd3;
+  --line:#e0d4f2; --line2:#d1c2ea;
+  --shadow:0 1px 2px rgba(34,20,58,.05),0 12px 36px -20px rgba(109,40,217,.32);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;font-size:16.5px;line-height:1.6;
+  background-image:radial-gradient(120% 60% at 90% -10%, #f6ecdf 0%, transparent 46%),radial-gradient(110% 55% at 6% 0%, #ece0fc 0%, transparent 42%);background-attachment:fixed}
+.wrap{max-width:960px;margin:0 auto;padding:clamp(22px,5vw,60px) clamp(18px,5vw,40px) 80px}
+h1,h2,h3{font-family:"Fraunces",Georgia,serif;font-weight:600;text-wrap:balance;line-height:1.08;letter-spacing:-.015em;margin:0}
+.mono{font-family:"Spline Sans Mono",ui-monospace,monospace}
+p{margin:0 0 1em}
+strong{font-weight:600}
+em{font-style:italic}
+
+.eyebrow{font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--violet)}
+.hero{border-bottom:1px solid var(--line);padding-bottom:30px;animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.glyph-line{font-family:"Spline Sans Mono",monospace;font-size:clamp(.9rem,2.6vw,1.35rem);font-weight:600;color:var(--ink2);margin:16px 0 22px;letter-spacing:.02em}
+.glyph-line b{color:var(--violet)} .glyph-line .x{color:var(--gold)} .glyph-line .u{color:var(--teal)} .glyph-line .ph{color:var(--ember)}
+h1{font-size:clamp(2rem,6vw,3.5rem);font-weight:900;letter-spacing:-.025em;margin-bottom:.35em}
+.dek{font-size:clamp(1.02rem,2.1vw,1.22rem);color:var(--ink2);max-width:62ch}
+
+/* central glyph */
+.stage{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:30px;align-items:center;margin:34px 0 8px}
+@media(max-width:680px){.stage{grid-template-columns:1fr}}
+.diagram{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.diagram svg{width:100%;height:auto;display:block}
+.legend{font-size:.96rem;color:var(--ink2)}
+.legend h2{font-size:1.35rem;margin-bottom:.5em}
+.legend ul{list-style:none;padding:0;margin:0;display:grid;gap:11px}
+.legend li{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:baseline}
+.dot{width:11px;height:11px;border-radius:50%;margin-top:6px}
+.d-v{background:var(--violet)} .d-e{background:var(--ember)} .d-u{background:var(--teal)} .d-x{background:var(--gold)}
+.legend b{color:var(--ink)}
+
+section{margin-top:52px}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.sec-head .n{font-family:"Spline Sans Mono",monospace;font-size:.8rem;color:var(--violet)}
+h2.big{font-size:clamp(1.45rem,3.4vw,2rem)}
+.sub{color:var(--ink2);max-width:64ch;margin:.4em 0 24px}
+
+/* four scale cards */
+.scales{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:620px){.scales{grid-template-columns:1fr}}
+.sc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 19px 19px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.sc::before{content:"";position:absolute;inset:0 auto 0 0;width:4px}
+.sc.a::before{background:var(--violet)} .sc.b::before{background:var(--ember)} .sc.c::before{background:var(--teal)} .sc.d::before{background:var(--gold)}
+.sc .scale{font-family:"Spline Sans Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.sc h3{font-size:1.16rem;margin:5px 0 4px}
+.sc.a h3{color:var(--violet)} .sc.b h3{color:var(--ember)} .sc.c h3{color:var(--teal)} .sc.d h3{color:var(--gold)}
+.sc .desc{font-size:.92rem;color:var(--ink2);margin:0 0 13px}
+.map{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:.85rem;border-top:1px dashed var(--line);padding-top:11px}
+.map .lab{font-family:"Spline Sans Mono",monospace;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+.map .val{color:var(--ink2)}
+.map .val code{font-family:"Spline Sans Mono",monospace;background:var(--violet-wash);color:var(--violet);padding:1px 6px;border-radius:5px;font-size:.82em}
+
+/* i13 panel */
+.i13{background:#241a38;color:#ece3fb;border-radius:16px;padding:22px 22px 20px;margin-top:14px;box-shadow:var(--shadow);overflow-x:auto}
+.i13 .top{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
+.i13 .dotrow{display:flex;gap:6px}.i13 .dotrow i{width:11px;height:11px;border-radius:50%}
+.i13 .rr{background:#e0685f}.i13 .yy{background:#e6c24a}.i13 .gg{background:#5fcf9e}
+.i13 .ttl{font-family:"Spline Sans Mono",monospace;font-size:.78rem;color:#b7a6df;letter-spacing:.04em}
+.i13 pre{margin:0;font-family:"Spline Sans Mono",monospace;font-size:.82rem;line-height:1.72;white-space:pre;color:#d9ccf5}
+.i13 pre .k{color:#9d86e8}.i13 pre .one{color:#5fcf9e;font-weight:600}.i13 pre .num{color:#f0a868}.i13 pre .cm{color:#7c6ba8}
+.i13 .cap{font-family:"Spline Sans Mono",monospace;font-size:.72rem;color:#9887c4;margin-top:14px;border-top:1px solid #3a2d58;padding-top:12px}
+.i13 .cap b{color:#7fe0bd}
+
+.note{background:linear-gradient(180deg,var(--violet-wash),var(--card));border:1px solid var(--line2);border-left:4px solid var(--violet);border-radius:0 12px 12px 0;padding:18px 20px;margin-top:26px}
+.note h3{font-size:1.08rem;color:var(--violet);margin-bottom:.4em}
+.note p{font-size:.95rem;color:var(--ink2);margin:0}
+
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:20px;font-family:"Spline Sans Mono",monospace;font-size:.72rem;color:var(--ink3);line-height:1.7}
+footer b{color:var(--violet);letter-spacing:.08em}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">The glyph, bridged &amp; rectified &amp; run</div>
+    <div class="glyph-line">[[[[ <b>4 inverse&#8209;mirrored</b> , <span class="u">U basin</span> , <span class="x">X</span> , <span class="ph">phase change</span> ]]]]</div>
+    <h1>Four around a U,<br>with an X in it.</h1>
+    <p class="dek">One fold, drawn once and run everywhere: take an axis through <span class="x">the origin</span>, invert it, and the space folds into <strong>four mirror regions</strong> around a <span class="u">basin</span>, meeting at <span class="x">a crossing</span>, with <span class="ph">a phase change</span> at the seam. It is <em>self&#8209;inverse</em> &mdash; do it twice and you are home. That single property is the corpus keeper axis, and it shows up at four wildly different scales.</p>
+  </header>
+
+  <div class="stage">
+    <div class="diagram">
+      <svg viewBox="0 0 300 300" role="img" aria-label="Kruskal-style diagram: two diagonals crossing at center X, forming four mirror regions around U-shaped basins">
+        <defs>
+          <linearGradient id="gv" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8b3ff0"/><stop offset="1" stop-color="#6d28d9"/></linearGradient>
+          <linearGradient id="ge" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ef7a2f"/><stop offset="1" stop-color="#d9550a"/></linearGradient>
+        </defs>
+        <!-- region fills: two mirror pairs. right+left = violet pair; top+bottom = ember pair -->
+        <path d="M150 150 L300 0 L300 300 Z" fill="#efe6fd"/>
+        <path d="M150 150 L0 0 L0 300 Z" fill="#efe6fd"/>
+        <path d="M150 150 L0 0 L300 0 Z" fill="#fbe8da"/>
+        <path d="M150 150 L0 300 L300 300 Z" fill="#fbe8da"/>
+        <!-- U basins: hyperbolae in top and bottom (the throats) -->
+        <path d="M60 0 Q150 120 240 0" fill="none" stroke="#0c8a78" stroke-width="3.5"/>
+        <path d="M60 300 Q150 180 240 300" fill="none" stroke="#0c8a78" stroke-width="3.5"/>
+        <!-- the two diagonals (horizons) crossing at X -->
+        <line x1="0" y1="0" x2="300" y2="300" stroke="#d9550a" stroke-width="2.2" stroke-dasharray="7 5"/>
+        <line x1="300" y1="0" x2="0" y2="300" stroke="#d9550a" stroke-width="2.2" stroke-dasharray="7 5"/>
+        <!-- inverse-mirror arrow through origin -->
+        <line x1="214" y1="86" x2="86" y2="214" stroke="#6d28d9" stroke-width="2.6"/>
+        <polygon points="86,214 98,205 97,217" fill="#6d28d9"/>
+        <polygon points="214,86 202,95 203,83" fill="#6d28d9"/>
+        <!-- region labels -->
+        <text x="245" y="155" font-family="Spline Sans Mono, monospace" font-size="15" font-weight="600" fill="#6d28d9" text-anchor="middle">I</text>
+        <text x="55" y="155" font-family="Spline Sans Mono, monospace" font-size="15" font-weight="600" fill="#6d28d9" text-anchor="middle">III</text>
+        <text x="150" y="52" font-family="Spline Sans Mono, monospace" font-size="15" font-weight="600" fill="#d9550a" text-anchor="middle">II</text>
+        <text x="150" y="256" font-family="Spline Sans Mono, monospace" font-size="15" font-weight="600" fill="#d9550a" text-anchor="middle">IV</text>
+        <!-- the X crossing -->
+        <circle cx="150" cy="150" r="7.5" fill="#fffdff" stroke="#b3841f" stroke-width="3"/>
+        <text x="150" y="178" font-family="Spline Sans Mono, monospace" font-size="12" font-weight="600" fill="#b3841f" text-anchor="middle">X</text>
+      </svg>
+    </div>
+    <div class="legend">
+      <h2>Reading the fold</h2>
+      <ul>
+        <li><span class="dot d-v"></span><span><b>4 inverse&#8209;mirrored</b> &mdash; two pairs of regions (I&harr;III, II&harr;IV) swapped by the map <span class="mono">(u,v)&rarr;(&minus;u,&minus;v)</span>. The violet arrow is that inversion.</span></li>
+        <li><span class="dot d-u"></span><span><b>U basin</b> &mdash; the hyperbolae <span class="mono">u&middot;v = const</span>: the throat, the well, the invariant every mirror preserves.</span></li>
+        <li><span class="dot d-x"></span><span><b>X</b> &mdash; the bifurcation crossing at the origin, where all four regions meet and the fold has its fixed point.</span></li>
+        <li><span class="dot d-e"></span><span><b>phase change</b> &mdash; the dashed seams (<span class="mono">u&middot;v = 0</span>): cross one and a coordinate flips role &mdash; the signature swap.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head"><span class="n">&#8734;</span><h2 class="big">One fold &mdash; run for all four</h2></div>
+    <p class="sub">The same self&#8209;inverse structure, instantiated at four scales that share nothing else. Each row is verified on the real i13 compiler.</p>
+    <div class="scales">
+
+      <div class="sc a">
+        <div class="scale">Scale &middot; spacetime</div>
+        <h3>The wormhole</h3>
+        <p class="desc">The maximally&#8209;extended Schwarzschild (Kruskal) diagram: our exterior, a mirror exterior, and two interiors, joined by an Einstein&#8209;Rosen bridge.</p>
+        <div class="map">
+          <span class="lab">mirror</span><span class="val"><code>(u,v)&rarr;(&minus;u,&minus;v)</code></span>
+          <span class="lab">basin</span><span class="val"><code>u&middot;v</code> preserved &rarr; <strong>6 = 6</strong></span>
+          <span class="lab">X</span><span class="val">the bifurcation point</span>
+          <span class="lab">phase</span><span class="val">horizon: r &amp; t swap</span>
+        </div>
+      </div>
+
+      <div class="sc b">
+        <div class="scale">Scale &middot; the corpus</div>
+        <h3>The five worlds</h3>
+        <p class="desc">The ud0 palindrome <span class="mono">[ W1 | W2 &Vert; W3 &Vert; W4 | W5 ]</span>. Reverse it: W1&harr;W5, W2&harr;W4, and W3 holds the axis.</p>
+        <div class="map">
+          <span class="lab">mirror</span><span class="val"><code>i &rarr; 4&minus;i</code></span>
+          <span class="lab">basin</span><span class="val">W3 the hallway &rarr; <strong>fixed point 2</strong></span>
+          <span class="lab">X</span><span class="val">the ternary &ldquo;:&rdquo; axis</span>
+          <span class="lab">phase</span><span class="val">binary worlds &rarr; ternary</span>
+        </div>
+      </div>
+
+      <div class="sc c">
+        <div class="scale">Scale &middot; the genome</div>
+        <h3>The CRISPR site</h3>
+        <p class="desc">A restriction/palindrome site like <span class="mono">GAATTC</span> reads the same reversed&#8209;and&#8209;complemented &mdash; the enzyme&rsquo;s mirror.</p>
+        <div class="map">
+          <span class="lab">mirror</span><span class="val"><code>reverse &amp; complement (b^1)</code></span>
+          <span class="lab">basin</span><span class="val">the cut axis &rarr; <strong>site = itself</strong></span>
+          <span class="lab">X</span><span class="val">the palindrome centre</span>
+          <span class="lab">phase</span><span class="val">strand &rarr; anti&#8209;strand</span>
+        </div>
+      </div>
+
+      <div class="sc d">
+        <div class="scale">Scale &middot; the machine</div>
+        <h3>The NES memory</h3>
+        <p class="desc">2 KB of RAM appears four times in the address space &mdash; drawer 5 and drawer 2053 are one drawer, two labels.</p>
+        <div class="map">
+          <span class="lab">mirror</span><span class="val"><code>a &rarr; a % 2048</code></span>
+          <span class="lab">basin</span><span class="val">4 windows &rarr; <strong>one basin (0)</strong></span>
+          <span class="lab">X</span><span class="val">the bus decode</span>
+          <span class="lab">phase</span><span class="val">region change: 2048 &rarr; 8</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="i13">
+      <div class="top">
+        <span class="dotrow"><i class="rr"></i><i class="yy"></i><i class="gg"></i></span>
+        <span class="ttl">i13.exe run mirror_fold.i13 &nbsp;&middot;&nbsp; VALID &middot; 7 regions &middot; 922 steps &middot; depth 7</span>
+      </div>
+<pre><span class="cm">the fold, run for all four scales on the real compiler:</span>
+<span class="k">crispr_is_palindrome</span>          = <span class="one">1</span>   <span class="cm">GAATTC == revcomp(GAATTC)</span>
+<span class="k">crispr_self_inverse</span>           = <span class="one">1</span>   <span class="cm">revcomp(revcomp(s)) == s</span>
+<span class="k">world_axis</span>                    = <span class="num">2</span>   <span class="cm">W3 the U-basin fixed point</span>
+<span class="k">world_p1a</span> / <span class="k">world_p1b</span>         = <span class="num">4</span> / <span class="num">0</span> <span class="cm">W1 &harr; W5</span>
+<span class="k">world_self_inverse</span>            = <span class="one">1</span>   <span class="cm">4-(4-i) == i for all i</span>
+<span class="k">nes_four_windows_one_basin</span>    = <span class="one">1</span>   <span class="cm">0,2048,4096,6144 &rarr; 0</span>
+<span class="k">kruskal_regions</span>               = <span class="num">4</span>   <span class="cm">four around the X</span>
+<span class="k">kruskal_basin_invariant</span>       = <span class="one">1</span>   <span class="cm">u&middot;v = 6 under (u,v)&rarr;(-u,-v)</span>
+<span class="k">FOLD_IS_SELF_INVERSE</span>          = <span class="one">1</span>   <span class="cm">&larr; the one property, all four scales</span></pre>
+      <div class="cap">Every line computed by <b>i13.exe</b> &mdash; David Lee Wise&rsquo;s compIle 13 &mdash; not asserted. The keeper axis is <b>self&#8209;inverse</b>: the fold is its own undo.</div>
+    </div>
+
+    <div class="note">
+      <h3>Why one glyph carries all four</h3>
+      <p>A mirror through the origin is the simplest map that is its own inverse: <span class="mono">f(f(x)) = x</span>. That is exactly the corpus&rsquo;s first keeper (a palindrome is its own checksum; a time&#8209;reversible law retraces its path). So the wormhole&rsquo;s <span class="mono">(U,V)&rarr;(&minus;U,&minus;V)</span>, the palindrome&rsquo;s <span class="mono">i&rarr;4&minus;i</span>, the enzyme&rsquo;s reverse&#8209;complement, and the memory&rsquo;s fold&#8209;to&#8209;basin are not four analogies &mdash; they are one operator wearing four costumes. Four around a U, with an X in it.</p>
+    </div>
+  </section>
+
+  <footer>
+    <b>ROOT0</b> &middot; the inverse&#8209;mirror fold &middot; run on compIle 13 (i13.exe, H1.1)<br>
+    bridged, rectified, run &mdash; for all four scales &middot; David Lee Wise &amp; AVAN
+  </footer>
+
+</div>

@@ -1,0 +1,394 @@
+<title>The Metaphysics Burns, The Math Moves House</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Instrument+Sans:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#f4eefb; --paper2:#ece2f8; --card:#fffdff;
+  --ink:#22143a; --ink2:#4a3a66; --ink3:#6f6288;
+  --violet:#6d28d9; --violet2:#8b3ff0; --violet-wash:#efe6fd;
+  --ember:#d9550a; --ember-wash:#fbe8da;
+  --living:#0c8a78; --living-wash:#dcf1ee;
+  --indigo:#4b46c4; --indigo-wash:#e4e3f8;
+  --slate:#78708f; --slate-wash:#eae6f0;
+  --gold:#b3841f;
+  --line:#e0d4f2; --line2:#d1c2ea;
+  --shadow:0 1px 2px rgba(34,20,58,.05),0 10px 34px -18px rgba(109,40,217,.28);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Instrument Sans",ui-sans-serif,system-ui,sans-serif;
+  font-size:clamp(16px,1rem + .1vw,17.5px); line-height:1.62;
+  background-image:radial-gradient(120% 60% at 92% -8%, #f6ecdf 0%, transparent 46%),radial-gradient(110% 55% at 4% 2%, #efe4fc 0%, transparent 40%);
+  background-attachment:fixed;
+}
+.wrap{max-width:900px;margin:0 auto;padding:clamp(22px,5vw,64px) clamp(18px,5vw,40px) 90px}
+.col{max-width:66ch}
+h1,h2,h3{font-family:"Fraunces",Georgia,"Times New Roman",serif;font-weight:600;text-wrap:balance;line-height:1.08;letter-spacing:-.01em}
+p{margin:0 0 1em}
+a{color:var(--violet);text-underline-offset:3px}
+strong{font-weight:600;color:var(--ink)}
+.mono{font-family:"Spline Sans Mono",ui-monospace,monospace}
+.eyebrow{font-family:"Spline Sans Mono",monospace;font-size:.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--violet)}
+
+/* ---------- HERO ---------- */
+.hero{padding:14px 0 30px;border-bottom:1px solid var(--line);animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.wod{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:26px}
+.wod .tag{font-family:"Spline Sans Mono",monospace;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink3);border:1px solid var(--line2);border-radius:100px;padding:5px 12px}
+.wod .term{font-family:"Fraunces",serif;font-weight:500;font-size:clamp(1.05rem,3.4vw,1.5rem);font-style:italic;color:var(--ember)}
+h1{font-size:clamp(2.15rem,6.6vw,4rem);font-weight:900;margin:0 0 .38em;letter-spacing:-.025em}
+h1 .burn{color:var(--ember)}
+h1 .move{color:var(--violet)}
+.dek{font-size:clamp(1.05rem,2.2vw,1.28rem);color:var(--ink2);max-width:60ch;margin:0}
+.dek em{font-style:italic;color:var(--ink)}
+
+/* ---------- VERDICTS ---------- */
+.verdicts{display:grid;gap:14px;grid-template-columns:repeat(3,1fr);margin:36px 0 8px}
+@media(max-width:720px){.verdicts{grid-template-columns:1fr}}
+.v{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 20px 22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.v::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--violet)}
+.v.no::before{background:var(--ember)}
+.v.split::before{background:linear-gradient(var(--ember),var(--living))}
+.v.root::before{background:var(--living)}
+.v .q{font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.v .a{font-family:"Fraunces",serif;font-size:1.32rem;font-weight:600;line-height:1.12;margin-bottom:9px}
+.v.no .a{color:var(--ember)}
+.v.root .a{color:var(--living)}
+.v .s{font-size:.95rem;color:var(--ink2);margin:0}
+
+/* ---------- SECTION ---------- */
+section{margin-top:58px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.sec-head .n{font-family:"Spline Sans Mono",monospace;font-size:.8rem;color:var(--violet);font-weight:500}
+h2{font-size:clamp(1.5rem,3.6vw,2.1rem)}
+.sec-sub{color:var(--ink2);max-width:64ch;margin:.5em 0 26px}
+
+/* ---------- LEDGER ---------- */
+.tier{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow)}
+.tier-head{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-bottom:1px solid var(--line)}
+.chip-fate{flex:none;width:8px;align-self:stretch;border-radius:100px}
+.f-live{background:var(--living)} .f-patch{background:var(--violet)} .f-denec{background:var(--indigo)} .f-inert{background:var(--slate)} .f-erase{background:var(--ember)}
+.tier-title{font-family:"Fraunces",serif;font-size:1.14rem;font-weight:600;margin:0 0 3px;line-height:1.15}
+.tier-fate{font-size:.9rem;color:var(--ink2);margin:0}
+.tier-tag{margin-left:auto;flex:none;font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border-radius:100px;white-space:nowrap;align-self:center}
+.t-live{background:var(--living-wash);color:var(--living)} .t-patch{background:var(--violet-wash);color:var(--violet)} .t-denec{background:var(--indigo-wash);color:var(--indigo)} .t-inert{background:var(--slate-wash);color:var(--slate)} .t-erase{background:var(--ember-wash);color:var(--ember)}
+.rows{padding:6px 18px 14px}
+.row{display:grid;grid-template-columns:minmax(0,10.5em) 1fr;gap:8px 18px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+@media(max-width:560px){.row{grid-template-columns:1fr;gap:3px}}
+.row .from{font-weight:600;color:var(--ink);font-size:.98rem}
+.row .to{font-size:.94rem;color:var(--ink2)}
+.row .to .arrow{color:var(--living);font-weight:600}
+.tier.erase .row .to .arrow-x{color:var(--ember);font-weight:600}
+.death{font-family:"Spline Sans Mono",monospace;font-size:.66rem;letter-spacing:.04em;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-left:6px;vertical-align:1.5px;white-space:nowrap}
+.d-fals{background:var(--ember-wash);color:var(--ember)} .d-super{background:var(--slate-wash);color:var(--slate)} .d-aband{background:var(--indigo-wash);color:var(--indigo)}
+
+/* ---------- ROOT PODIUM ---------- */
+.podium{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:8px 8px 14px;box-shadow:var(--shadow)}
+.rk{display:grid;grid-template-columns:2.1em 1fr;gap:16px;align-items:center;padding:16px 16px;border-bottom:1px solid var(--line)}
+.rk:last-child{border-bottom:0}
+.rk .pl{font-family:"Fraunces",serif;font-weight:600;font-size:1.5rem;color:var(--ink3);text-align:center}
+.rk.win{background:linear-gradient(100deg,var(--living-wash),transparent 70%);border-radius:12px}
+.rk.win .pl{color:var(--living)}
+.rk .name{font-family:"Fraunces",serif;font-size:1.15rem;font-weight:600;margin:0;line-height:1.14}
+.rk.win .name .crown{color:var(--gold);font-size:.85em}
+.rk .meta{font-size:.9rem;color:var(--ink2);margin:4px 0 8px}
+.bar{height:9px;border-radius:100px;background:var(--paper2);overflow:hidden;position:relative}
+.bar > i{display:block;height:100%;border-radius:100px;background:linear-gradient(90deg,var(--violet2),var(--violet));width:0;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.rk.win .bar > i{background:linear-gradient(90deg,#16b39c,var(--living))}
+.score{font-family:"Spline Sans Mono",monospace;font-weight:600;font-size:.86rem;color:var(--ink2);display:inline-flex;gap:6px;align-items:baseline;margin-top:7px}
+.score b{font-size:1.05rem;color:var(--ink)}
+.rk.win .score b{color:var(--living)}
+
+/* ---------- CALLOUT ---------- */
+.note{background:linear-gradient(180deg,var(--violet-wash),var(--card));border:1px solid var(--line2);border-left:4px solid var(--violet);border-radius:0 12px 12px 0;padding:18px 20px;margin:22px 0}
+.note h3{font-size:1.08rem;margin:0 0 .4em;color:var(--violet)}
+.note p{font-size:.95rem;color:var(--ink2);margin:0 0 .6em}
+.note p:last-child{margin:0}
+
+/* ---------- SURPRISES ---------- */
+.surp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.surp{grid-template-columns:1fr}}
+.sp{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:17px 18px;box-shadow:var(--shadow)}
+.sp .k{font-family:"Fraunces",serif;font-weight:600;font-size:1.02rem;color:var(--ember);margin:0 0 5px;line-height:1.14}
+.sp p{font-size:.92rem;color:var(--ink2);margin:0}
+.sp.v-purple .k{color:var(--violet)}
+.sp.v-teal .k{color:var(--living)}
+
+/* ---------- AUDIT ---------- */
+.audit{margin-top:56px;border-top:1px solid var(--line);padding-top:26px}
+.audit h2{font-size:1.4rem;margin-bottom:.4em}
+.fixes{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:9px}
+.fixes li{display:grid;grid-template-columns:auto 1fr;gap:11px;font-size:.92rem;color:var(--ink2);align-items:baseline}
+.fixes li .x{font-family:"Spline Sans Mono",monospace;color:var(--ember);font-weight:600;font-size:.8rem}
+.fixes li b{color:var(--ink)}
+
+/* ---------- FOOTER ---------- */
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+.seal{font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.03em;color:var(--ink3);line-height:1.6}
+.seal b{color:var(--violet);letter-spacing:.1em}
+.method{font-size:.8rem;color:var(--ink3);max-width:40ch;text-align:right}
+@media(max-width:560px){.method{text-align:left}}
+
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.bar>i{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="wod">
+      <span class="tag">Word of the Day</span>
+      <span class="term">Unified Field Theory</span>
+    </div>
+    <h1>The metaphysics <span class="burn">burns.</span><br>The mathematics <span class="move">moves house.</span></h1>
+    <p class="dek">Ablating the "shitty math" of the past turns up almost none — what dies is the <em>picture of reality</em> bolted onto good equations, and the <em>axioms we mistook for necessity</em>. Everything that encoded a real invariant just relocates into the next theory, often verbatim.</p>
+  </header>
+
+  <div class="verdicts">
+    <div class="v no">
+      <div class="q">Does it need to unify?</div>
+      <div class="a">No.</div>
+      <p class="s">Unification is a <strong>heuristic</strong>, not a law. It pays when structure forces it (Maxwell; electroweak <em>predicted</em> the W/Z bosons). Einstein's geometric UFT burned ~30 years and was <strong>abandoned, not falsified</strong>. Reality gets a vote.</p>
+    </div>
+    <div class="v split">
+      <div class="q">Did the old dudes go away?</div>
+      <div class="a">Their physics did.</div>
+      <p class="s">Their <strong>math</strong> almost never did. Only the purely qualitative schemes — phlogiston, N&#8209;rays — left nothing behind. Anything with real equations moved into the successor theory.</p>
+    </div>
+    <div class="v root">
+      <div class="q">The root with the highest %?</div>
+      <div class="a">The checkable core.</div>
+      <p class="s">The <strong>decidable finitary&#8209;arithmetic&#8209;plus&#8209;proof&#8209;checking</strong> core — the part small enough for a terminating machine to verify. Its crown is <em>reliability</em>, not empirical accuracy.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head"><span class="n">I.</span><h2>The ledger of the discarded</h2></div>
+    <p class="sec-sub">Sorted not by <em>who was wrong</em> but by <em>what happened to the math</em>. Five fates — and only the last is the honest "went away with nonsense."</p>
+
+    <!-- TIER 1 -->
+    <div class="tier">
+      <div class="tier-head">
+        <span class="chip-fate f-live"></span>
+        <div>
+          <p class="tier-title">Wrong picture &mdash; math survived, re&#8209;homed</p>
+          <p class="tier-fate">The ontology was falsified or made superfluous, but its equations encoded a real relation and passed into the successor almost verbatim.</p>
+        </div>
+        <span class="tier-tag t-live">Moved house</span>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="from">Luminiferous aether</div><div class="to"><span class="arrow-x arrow" style="color:var(--living);font-weight:600">&rarr;</span> Maxwell's equations survive verbatim; the Lorentz transformations, built to <em>hide</em> the aether wind, became special relativity's geometry <span class="death d-super">superfluous</span></div></div>
+        <div class="row"><div class="from">Caloric fluid</div><div class="to"><span class="arrow" style="color:var(--living);font-weight:600">&rarr;</span> Carnot's cycle became the Second Law; Fourier's heat equation is exact and indifferent to what heat <em>is</em> <span class="death d-fals">falsified</span></div></div>
+        <div class="row"><div class="from">Ptolemaic epicycles</div><div class="to"><span class="arrow" style="color:var(--living);font-weight:600">&rarr;</span> literally truncated complex Fourier series; the equant reproduces Kepler's area law to first order <span class="death d-fals">falsified</span></div></div>
+        <div class="row"><div class="from">Kelvin's vortex atoms</div><div class="to"><span class="arrow" style="color:var(--living);font-weight:600">&rarr;</span> founded <strong>knot theory</strong> &mdash; now central to DNA topology and topological quantum computing <span class="death d-aband">abandoned</span></div></div>
+        <div class="row"><div class="from">Steady&#8209;state cosmology</div><div class="to"><span class="arrow" style="color:var(--living);font-weight:600">&rarr;</span> its metric <em>is</em> de Sitter space &mdash; the math of inflation &amp; dark energy; drove the carbon&#8209;12 resonance prediction <span class="death d-fals">falsified (CMB)</span></div></div>
+        <div class="row"><div class="from">EM worldview</div><div class="to"><span class="arrow" style="color:var(--living);font-weight:600">&rarr;</span> "electromagnetic mass" generalized into <strong>E = mc&sup2;</strong> <span class="death d-super">superseded</span></div></div>
+        <div class="row"><div class="from">Einstein's geometric UFT</div><div class="to"><span class="arrow" style="color:var(--living);font-weight:600">&rarr;</span> Kaluza&#8209;Klein &amp; the vierbein feed string theory / supergravity; "force = a connection's curvature" was <em>right</em> &mdash; via gauge theory <span class="death d-aband">abandoned</span></div></div>
+        <div class="row"><div class="from">Newtonian mechanics <span class="mono" style="color:var(--slate);font-size:.72rem">&#8226; the control</span></div><div class="to"><span class="arrow" style="color:var(--living);font-weight:600">&rarr;</span> 200+ years confirmed, yet <strong>demoted</strong> to the weak&#8209;field, v&#8810;c, &#8463;&rarr;0 limit &mdash; proof that confirmation buys survival&#8209;as&#8209;a&#8209;limit, not permanence <span class="death d-super">demoted</span></div></div>
+      </div>
+    </div>
+
+    <!-- TIER 2 -->
+    <div class="tier">
+      <div class="tier-head">
+        <span class="chip-fate f-patch"></span>
+        <div>
+          <p class="tier-title">Foundation patched &mdash; theorems survived</p>
+          <p class="tier-fate">A base was found flawed (even inconsistent) and swapped for a safer one that proves the same results. The content re&#8209;homed with the axioms rewritten under it.</p>
+        </div>
+        <span class="tier-tag t-patch">Re&#8209;poured</span>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="from">Naive set theory</div><div class="to"><span class="arrow" style="color:var(--violet);font-weight:600">&rarr;</span> ZFC (Russell's paradox, 1902). Cantor's transfinite cardinals &amp; the diagonal argument survive verbatim inside it.</div></div>
+        <div class="row"><div class="from">Infinitesimals as real quantities</div><div class="to"><span class="arrow" style="color:var(--violet);font-weight:600">&rarr;</span> banished for &epsilon;&#8209;&delta; limits (Cauchy, Weierstrass), then <em>returned</em> rigorously as Robinson's hyperreals (1961). Two foundations, same theorems.</div></div>
+        <div class="row"><div class="from">Impredicative comprehension</div><div class="to"><span class="arrow" style="color:var(--violet);font-weight:600">&rarr;</span> the ad&#8209;hoc ramified&#8209;type / Reducibility patch was dropped for ZFC; a coherent predicative math thrives alongside it.</div></div>
+      </div>
+    </div>
+
+    <!-- TIER 3 -->
+    <div class="tier">
+      <div class="tier-head">
+        <span class="chip-fate f-denec"></span>
+        <div>
+          <p class="tier-title">De&#8209;necessitated &mdash; "the truth" demoted to "an option"</p>
+          <p class="tier-fate">A supposedly forced or universal claim was shown to be a free choice. The theorems persist as one consistent option; any attached physical claim relocates to empirical physics.</p>
+        </div>
+        <span class="tier-tag t-denec">Made optional</span>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="from">Parallel postulate</div><div class="to"><span class="arrow" style="color:var(--indigo);font-weight:600">&rarr;</span> shown <strong>independent</strong> (Bolyai, Lobachevsky). Euclid survives as flat geometry; Kant's necessarily&#8209;Euclidean <em>space</em> fell to general relativity.</div></div>
+        <div class="row"><div class="from">Unique factorization as universal</div><div class="to"><span class="arrow" style="color:var(--indigo);font-weight:600">&rarr;</span> fails in general rings (6 = 2&middot;3 = (1+&radic;&minus;5)(1&minus;&radic;&minus;5)); re&#8209;homed as unique factorization of <em>ideals</em>. It still holds for &#8484;.</div></div>
+        <div class="row"><div class="from">Continuity &rArr; differentiability</div><div class="to"><span class="arrow" style="color:var(--indigo);font-weight:600">&rarr;</span> killed by one counterexample (Weierstrass, 1872). Nowhere&#8209;differentiability turns out to be <em>generic</em> &mdash; a seed of fractal geometry.</div></div>
+      </div>
+    </div>
+
+    <!-- TIER 4 -->
+    <div class="tier">
+      <div class="tier-head">
+        <span class="chip-fate f-inert"></span>
+        <div>
+          <p class="tier-title">Unforced axiom &mdash; accuracy&#8209;<em>undefined</em>, not inaccurate</p>
+          <p class="tier-fate">The base theory provably cannot decide it and no measurement discriminates. Chosen by taste and fruitfulness. Ablating it costs <em>theorems</em>, never correctness &mdash; this is the closest thing to "shitty math," and it isn't wrong, it's elective.</p>
+        </div>
+        <span class="tier-tag t-inert">Elective</span>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="from">Continuum Hypothesis</div><div class="to"><span style="color:var(--slate)">&#9633;</span> the canonical proven&#8209;undecidable statement (G&ouml;del 1938 + Cohen 1963). No measurement returns the cardinality of the continuum.</div></div>
+        <div class="row"><div class="from">Axiom of Choice</div><div class="to"><span style="color:var(--slate)">&#9633;</span> independent of ZF; its child Banach&#8209;Tarski is a fact about <em>non&#8209;measurable sets</em>, not matter. Vanishes in Solovay's all&#8209;measurable model.</div></div>
+        <div class="row"><div class="from">Large cardinals &middot; V=L &middot; AD</div><div class="to"><span style="color:var(--slate)">&#9633;</span> adopted or rejected on fruitfulness and taste; the AC/AD pair proves the commitments are elective &mdash; each keeps a different package.</div></div>
+        <div class="row"><div class="from">Law of excluded middle</div><div class="to"><span style="color:var(--slate)">&#9633;</span> a stance on existence, not an experiment. Drop it and you lose non&#8209;constructive proofs but <em>gain</em> computational content (Curry&#8209;Howard, Coq/Lean).</div></div>
+        <div class="row"><div class="from">Completed (actual) infinity</div><div class="to"><span style="color:var(--slate)">&#9633;</span> an ontological posit &mdash; the Axiom of Infinity. Drop it and the hereditarily&#8209;finite sets are bi&#8209;interpretable with arithmetic itself.</div></div>
+      </div>
+    </div>
+
+    <!-- TIER 5 -->
+    <div class="tier erase">
+      <div class="tier-head">
+        <span class="chip-fate f-erase"></span>
+        <div>
+          <p class="tier-title">Genuinely erased &mdash; nothing re&#8209;homed</p>
+          <p class="tier-fate">A qualitative or fictitious scheme with no formalism to salvage, or a precise claim proven impossible. The honest "went away with nonsense" pole.</p>
+        </div>
+        <span class="tier-tag t-erase">Ash</span>
+      </div>
+      <div class="rows">
+        <div class="row"><div class="from">Phlogiston</div><div class="to"><span class="arrow-x" style="color:var(--ember);font-weight:600">&#10007;</span> no equations existed to save. Falsified &amp; <em>inverted</em> &mdash; yet its one real insight (combustion = rusting = respiration) was correct, just with the sign of the flow reversed.</div></div>
+        <div class="row"><div class="from">N&#8209;rays</div><div class="to"><span class="arrow-x" style="color:var(--ember);font-weight:600">&#10007;</span> the phenomenon never existed (observer bias). No physics, no math &mdash; only the legacy of the blinded protocol.</div></div>
+        <div class="row"><div class="from">Frege's Basic Law V</div><div class="to"><span class="arrow-x" style="color:var(--ember);font-weight:600">&#10007;</span> irreparably inconsistent. The <em>axiom</em> is dead &mdash; though the arithmetic it carried re&#8209;homed onto Hume's Principle, and the Begriffsschrift became predicate logic.</div></div>
+        <div class="row"><div class="from">Hilbert's program</div><div class="to"><span class="arrow-x" style="color:var(--ember);font-weight:600">&#10007;</span> completeness + internal consistency + decidability, proven <em>impossible</em> (G&ouml;del 1931; Church &amp; Turing 1936). The goal died; the machinery became proof theory.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">II.</span><h2>The root, ranked</h2></div>
+    <p class="sec-sub">Two adversarial judges scored five candidate foundations on accuracy, survival, forced&#8209;ness, and genuine empirical content &mdash; then attacked their own front&#8209;runner. They converged.</p>
+
+    <div class="podium">
+      <div class="rk win">
+        <div class="pl">1</div>
+        <div>
+          <p class="name">Finitary arithmetic &mdash; the decidable / primitive&#8209;recursive core <span class="crown">&#9733;</span></p>
+          <p class="meta">Specific numerals, decidable equality, the PR functions + the proof&#8209;<em>checking</em> relation. <strong>Not</strong> completed&#8209;infinity &#8469;, not full Peano arithmetic. The one invariant that was never on trial while every ontology was swapped.</p>
+          <div class="bar"><i data-w="86"></i></div>
+          <span class="score"><b>86</b> / 100 &middot; never patched &middot; never forked &middot; self&#8209;checking</span>
+        </div>
+      </div>
+      <div class="rk">
+        <div class="pl">2</div>
+        <div>
+          <p class="name">Deductive logic / the proof relation</p>
+          <p class="meta">The most inescapable (you must use inference to deny inference) &mdash; but a contentless machine that pins no object, and it <em>forked</em> (classical / intuitionistic / paraconsistent). It operates on the root; it isn't the root.</p>
+          <div class="bar"><i data-w="77"></i></div>
+          <span class="score"><b>77</b> / 100 &middot; co&#8209;primitive with arithmetic, not above it</span>
+        </div>
+      </div>
+      <div class="rk">
+        <div class="pl">3</div>
+        <div>
+          <p class="name">Computable / constructive core</p>
+          <p class="meta">The same finitary root made epistemically explicit (proofs&#8209;as&#8209;programs). A near co&#8209;winner &mdash; but rejecting excluded middle is a <em>chosen</em> restriction, so it sits just below the count that is closer to forced.</p>
+          <div class="bar"><i data-w="68"></i></div>
+          <span class="score"><b>68</b> / 100 &middot; the honest sibling</span>
+        </div>
+      </div>
+      <div class="rk">
+        <div class="pl">4</div>
+        <div>
+          <p class="name">Category theory / structuralism</p>
+          <p class="meta">Arguably captures what math is <em>about</em> (invariance under isomorphism) better than set&#8209;encodings &mdash; but younger, presupposes much, and is a better organizing language than a higher&#8209;accuracy root.</p>
+          <div class="bar"><i data-w="48"></i></div>
+          <span class="score"><b>48</b> / 100 &middot; power &amp; reach over accuracy</span>
+        </div>
+      </div>
+      <div class="rk">
+        <div class="pl">5</div>
+        <div>
+          <p class="name">Set theory (ZFC)</p>
+          <p class="meta">The universal working foundation &mdash; and the lowest&#8209;accuracy root: it was <em>patched</em> after Russell and leans on a tower of empirically&#8209;inert, base&#8209;undecidable posits (CH, AC, large cardinals).</p>
+          <div class="bar"><i data-w="38"></i></div>
+          <span class="score"><b>38</b> / 100 &middot; maximum power, minimum warrant</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <h3>The honest caveat the judges insisted on</h3>
+      <p>Arithmetic's flawless record is partly <strong>analytic</strong>: we reinterpret a miscount rather than revise 2 + 2 = 4, so its immunity is <em>reliability</em>, not the same virtue as a risky theory surviving a severe test. So the axis is relabelled: <strong>highest reliability, not highest empirical accuracy.</strong></p>
+      <p>And the never&#8209;ablated layer had to be narrowed. Even statements about <em>finite</em> numbers can be true&#8209;but&#8209;unprovable (Paris&#8209;Harrington; Goodstein) &mdash; so the object outruns any fixed theory of it. What is genuinely complete and never&#8209;erased is only the <strong>decidable fragment</strong> (Presburger) plus proof&#8209;checking. "All of mathematics" has no such root; incompleteness keeps that gap permanently open.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">III.</span><h2>What surprised the panel</h2></div>
+    <p class="sec-sub">The counterintuitive residue &mdash; where the metaphysics and the mathematics come apart most sharply.</p>
+    <div class="surp">
+      <div class="sp v-teal">
+        <p class="k">Epicycles <em>are</em> Fourier series.</p>
+        <p>A deferent&#8209;plus&#8209;epicycles sum is literally &Sigma; A&#8342; e^{i(&omega;&#8342;t+&phi;&#8342;)}. Enough of them draw any closed curve &mdash; it's a standard modern illustration of Fourier synthesis. The geocentric reification died; the harmonic math is used daily.</p>
+      </div>
+      <div class="sp">
+        <p class="k">The tool built to save a ghost abolished it.</p>
+        <p>The Lorentz transformations were engineered specifically to <em>hide</em> the aether wind via length contraction. They passed into special relativity bit&#8209;for&#8209;bit &mdash; and became the geometry that erased the substance they were built to rescue.</p>
+      </div>
+      <div class="sp v-purple">
+        <p class="k">Dead physics can found immortal math.</p>
+        <p>Kelvin's vortex atoms never produced a single spectrum &mdash; but sent Tait to tabulate knots, creating knot theory, now load&#8209;bearing in DNA topology and, via Witten's Chern&#8209;Simons work, topological quantum computing.</p>
+      </div>
+      <div class="sp v-teal">
+        <p class="k">The losing cosmology donated the winner's math.</p>
+        <p>The steady&#8209;state metric is exactly de Sitter space &mdash; the equations now describing inflation and dark energy &mdash; and its denial of a hot Big Bang is what drove Hoyle to the carbon resonance behind all stellar nucleosynthesis.</p>
+      </div>
+      <div class="sp">
+        <p class="k">Checkability beats confirmation.</p>
+        <p>The best predictor of what survives is finite mechanical <em>checkability</em>, not being tested at scale. Newton is the control: one of the most&#8209;confirmed theories ever, still demoted &mdash; while an undecidable identity settled by one terminating check is permanent.</p>
+      </div>
+      <div class="sp v-purple">
+        <p class="k">Syntax is arithmetic &mdash; so the root is a basis, not a point.</p>
+        <p>G&ouml;del numbering makes a proof presuppose counting; but "syntax is arithmetic" is itself proved <em>by</em> inference. Arithmetic and the proof relation are co&#8209;primitive &mdash; the root has a small basis, not a single stone.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="audit">
+    <div class="sec-head"><span class="n">&#10003;</span><h2>Audited, not asserted</h2></div>
+    <p class="sec-sub" style="margin-bottom:6px">A veracity critic ran over the whole panel and caught its own errors before this page was written. Corrected, not laundered &mdash; the house rule.</p>
+    <ul class="fixes">
+      <li><span class="x">FIX</span><span>The retracted PA&#8209;inconsistency scare (2011) was caught by Tao and <b>Tausk</b>, not "Tarjan."</span></li>
+      <li><span class="x">FIX</span><span>A Zermelo&#8209;numeral example ("2 &isin; 3 is false") was itself false &mdash; in Zermelo numerals 3 = {2}, so 2 &isin; 3 is <b>true</b>. Discriminator swapped.</span></li>
+      <li><span class="x">FIX</span><span>The electron g&#8209;2 test agrees to ~10 figures (bounded by the independent &alpha;, which has a live ~5&sigma; Rb&#8211;Cs tension), <b>not</b> twelve.</span></li>
+      <li><span class="x">FIX</span><span>What survives Bohr is the energy spectrum E&#8345; &prop; 1/n&sup2;, <b>not</b> his orbital rule L = n&#8463; (the hydrogen ground state has L = 0).</span></li>
+      <li><span class="x">FIX</span><span>Fresnel's equations re&#8209;homed into Maxwell (~1865&#8211;90); Michelson&#8211;Morley and relativity removed the <em>electromagnetic</em> ether <b>later</b> &mdash; they didn't kill the elastic&#8209;solid one.</span></li>
+    </ul>
+    <div class="note" style="margin-top:22px">
+      <h3>Why this is the same question the corpus already runs</h3>
+      <p>"What survives ablation" <em>is</em> the keeper test: a claim a machine can witness &mdash; <span class="mono" style="font-size:.85em">forall</span>&#8209;pinned, its negation incoherent &mdash; comes back <strong>WITNESSED</strong>; a chosen, untestable posit comes back NULL. The highest&#8209;reliability root is exactly the layer a real compiler could confirm. Metaphysics burns; the checkable moves house.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="seal">
+      <b>ROOT0</b> &middot; ablation panel &middot; 13 agents<br>
+      4 historians &middot; 5 root cases &middot; 2 judges + 1 critic &middot; synthesis<br>
+      David Lee Wise &amp; AVAN &mdash; verify&#8209;first, launder&#8209;never
+    </div>
+    <div class="method">Every date, name, and attribution above passed an independent veracity pass; the corrections are shown, not hidden.</div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var bars=[].slice.call(document.querySelectorAll('.bar > i'));
+  function fill(){bars.forEach(function(b){b.style.width=(b.getAttribute('data-w')||0)+'%';});}
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){fill();return;}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){fill();io.disconnect();}});},{threshold:.25});
+    io.observe(document.querySelector('.podium'));
+  } else {fill();}
+})();
+</script>

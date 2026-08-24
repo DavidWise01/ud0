@@ -1,0 +1,207 @@
+<title>The Mirror People</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=Spline+Sans+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#efe4ff; --ink2:#c3b2e6; --ink3:#9683c4;
+  --silver:#dfe2ee; --gold:#f4b24a; --obsidian:#a98be0;
+  --panel:rgba(30,18,54,.55); --line:rgba(160,120,255,.26);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#160b30;color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;overflow:hidden}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+#gl:active{cursor:grabbing}
+.mono{font-family:"Spline Sans Mono",monospace}
+.frame{position:fixed;inset:0;pointer-events:none;z-index:5;display:flex;flex-direction:column;justify-content:space-between}
+
+.head{padding:clamp(14px,3vw,28px) clamp(16px,4vw,38px) 0}
+.head .eyebrow{font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--obsidian)}
+.head h1{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(1.7rem,5.2vw,3.2rem);margin:.15em 0 0;letter-spacing:-.02em;text-shadow:0 3px 40px rgba(139,63,240,.5)}
+.glyphline{font-family:"Spline Sans Mono",monospace;font-size:clamp(.85rem,2.4vw,1.15rem);color:var(--ink2);margin-top:12px;letter-spacing:.06em}
+.glyphline b{color:var(--ink)} .glyphline .g{color:var(--gold)} .glyphline .s{color:var(--silver)} .glyphline .o{color:var(--obsidian)}
+.glyphline .fold{color:#fff;font-weight:600}
+.cascade{font-family:"Spline Sans Mono",monospace;font-size:clamp(.66rem,1.8vw,.82rem);color:var(--ink3);margin-top:10px;letter-spacing:.03em}
+.cascade b{color:var(--ink2)} .cascade .au{color:var(--gold)} .cascade .ag{color:var(--silver)} .cascade .ar{color:var(--obsidian);margin:0 2px}
+
+.people{display:flex;gap:clamp(10px,2.4vw,22px);justify-content:center;align-items:flex-end;padding:0 clamp(14px,4vw,38px) clamp(18px,4vw,34px);flex-wrap:wrap}
+.p{pointer-events:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);width:min(280px,90vw);border-top:2px solid}
+.p.silver{border-top-color:var(--silver)} .p.gold{border-top-color:var(--gold)} .p.obsidian{border-top-color:var(--obsidian)}
+.p .role{font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink3);display:flex;justify-content:space-between;align-items:center}
+.p .sym{font-size:1.1rem}
+.p h2{font-family:"Fraunces",serif;font-size:1.32rem;font-weight:600;margin:6px 0 2px}
+.p.silver h2{color:var(--silver)} .p.gold h2{color:var(--gold)} .p.obsidian h2{color:var(--obsidian)}
+.p .tag{font-family:"Fraunces",serif;font-style:italic;font-size:.92rem;color:var(--ink2);margin-bottom:11px}
+.p .fact{font-size:.85rem;color:var(--ink2);line-height:1.5;margin:0 0 9px}
+.p .fact b{color:var(--ink)}
+.p .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px;border-top:1px solid var(--line);padding-top:10px}
+.p .chip{font-family:"Spline Sans Mono",monospace;font-size:.62rem;letter-spacing:.04em;color:var(--ink3);background:rgba(20,10,44,.5);border:1px solid var(--line);border-radius:100px;padding:3px 9px}
+.p .verb{margin-left:auto;font-family:"Spline Sans Mono",monospace;font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.p.silver .verb{color:var(--silver)} .p.gold .verb{color:var(--gold)} .p.obsidian .verb{color:var(--obsidian)}
+
+.foot{position:fixed;bottom:6px;left:0;right:0;text-align:center;font-family:"Spline Sans Mono",monospace;font-size:.6rem;color:var(--ink3);letter-spacing:.05em;z-index:6}
+.foot b{color:var(--obsidian)}
+@media(max-width:820px){.people{align-items:stretch}.foot{display:none}}
+</style>
+
+<canvas id="gl"></canvas>
+
+<div class="frame">
+  <header class="head">
+    <div class="eyebrow">gold &middot; silver &middot; obsidian</div>
+    <h1>The Mirror People</h1>
+    <div class="glyphline"><span class="s">|&lt;</span> Billy &nbsp;&middot;&nbsp; <span class="g">&gt;|</span> Linus &nbsp;&middot;&nbsp; <span class="fold">|&lt;&gt;|</span> you &mdash; <b>the palindrome that folds both through the throat</b></div>
+    <div class="cascade"><b>12</b> to start <span class="ar">&#9656;</span> <b>6</b> to battle <span class="ar">&#9656;</span> <b>3</b> to claim <span class="ar">&#9656;</span> <b>1</b> to protect <span class="ar">&#9656;</span> <b class="au">1 gold</b> <span class="ar">&#9656;</span> black hole, <b class="ag">silver core</b></div>
+  </header>
+
+  <div class="people">
+    <div class="p silver">
+      <div class="role"><span>reflects all</span><span class="sym">&#9789;</span></div>
+      <h2>Silver</h2>
+      <div class="tag">The True Mirror &middot; luna</div>
+      <p class="fact"><b>Gives back everything.</b> Its gap sits up in the ultraviolet, so every visible wavelength bounces &mdash; the best optical reflector there is. And it stands <b>one row above gold</b> &mdash; group 11, the coinage metals, adjacent by construction.</p>
+      <div class="meta"><span class="chip">gold&rsquo;s neighbour &middot; group 11</span><span class="verb">reflect</span></div>
+    </div>
+
+    <div class="p gold">
+      <div class="role"><span>takes the photon</span><span class="sym">&#9737;</span></div>
+      <h2>Gold</h2>
+      <div class="tag">The One That Absorbs &middot; sol</div>
+      <p class="fact"><b>Its color is relativity.</b> The <b>6s</b> electron is contracted so hard it swallows blue light (~2.4&nbsp;eV) and hands back gold. Inert &mdash; it never tarnishes, never lets go.</p>
+      <p class="fact"><b>The residue of a power outage.</b> The merger forges it, then collapses to a black hole &mdash; the light goes out. Gold is what's left when the power fails.</p>
+      <div class="meta"><span class="chip">forge: merger &rarr; black hole</span><span class="verb">absorb</span></div>
+    </div>
+
+    <div class="p obsidian">
+      <div class="role"><span>scries the dark</span><span class="sym">&#11040;</span></div>
+      <h2>Obsidian</h2>
+      <div class="tag">The Dark Glass &middot; the smoking mirror</div>
+      <p class="fact"><b>Glass, not crystal.</b> Amorphous silica &mdash; no lattice, so <b>no piezoelectric heartbeat</b>: it can't keep time, only reflect. The Aztecs scried the future in it.</p>
+      <div class="meta"><span class="chip">born: volcano, quenched</span><span class="verb">scry</span></div>
+    </div>
+  </div>
+</div>
+<div class="foot">reflect &middot; absorb &middot; scry &mdash; the sun-metal costs a cataclysm, the moon-metal doesn't &middot; <b>ROOT0</b> &middot; David Lee Wise &amp; AVAN</div>
+
+<script>
+const cv=document.getElementById('gl');
+const gl=cv.getContext('webgl2',{antialias:true,alpha:false});
+let bad=!gl;
+const VERT=`#version 300 es
+in vec2 p; void main(){ gl_Position=vec4(p,0.,1.); }`;
+const FRAG=`#version 300 es
+precision highp float;
+out vec4 O;
+uniform vec2 uRes; uniform float uT,uYaw,uPitch,uDist;
+float sdSphere(vec3 p,vec3 c,float r){ return length(p-c)-r; }
+vec2 scene(vec3 p){
+  vec2 res=vec2(1e9,0.);
+  float s1=sdSphere(p,vec3(-2.35,0.,0.),1.0);
+  float s2=sdSphere(p,vec3(0.,0.,0.),1.0);
+  float s3=sdSphere(p,vec3(2.35,0.,0.),1.0);
+  float fl=p.y+1.0;
+  if(s1<res.x)res=vec2(s1,1.);
+  if(s2<res.x)res=vec2(s2,2.);
+  if(s3<res.x)res=vec2(s3,3.);
+  if(fl<res.x)res=vec2(fl,4.);
+  return res;
+}
+vec3 nrm(vec3 p){ vec2 e=vec2(0.0016,0.); return normalize(vec3(
+  scene(p+e.xyy).x-scene(p-e.xyy).x,
+  scene(p+e.yxy).x-scene(p-e.yxy).x,
+  scene(p+e.yyx).x-scene(p-e.yyx).x)); }
+vec3 material(float id){
+  if(id<1.5) return vec3(0.95,0.96,1.0);   // silver: neutral
+  if(id<2.5) return vec3(1.0,0.76,0.33);   // gold: absorbs blue
+  if(id<3.5) return vec3(0.05,0.05,0.07);  // obsidian: dark
+  return vec3(0.05,0.04,0.08);             // floor
+}
+vec3 env(vec3 rd){
+  float t=0.5+0.5*rd.y;
+  vec3 sky=mix(vec3(0.13,0.06,0.22),vec3(0.22,0.09,0.30),t);
+  sky+=vec3(0.42,0.16,0.06)*pow(max(0.,1.0-abs(rd.y)),5.0);         // warm horizon
+  vec3 l1=normalize(vec3(0.45,0.65,-0.42)); sky+=vec3(1.0,0.92,0.82)*pow(max(0.,dot(rd,l1)),90.)*1.7;
+  vec3 l2=normalize(vec3(-0.6,0.45,0.5));  sky+=vec3(0.8,0.55,1.0)*pow(max(0.,dot(rd,l2)),140.)*1.3;
+  return sky;
+}
+float march(vec3 ro,vec3 rd,out vec3 p,out float id){
+  float t=0.;
+  for(int i=0;i<150;i++){ p=ro+rd*t; vec2 h=scene(p); if(h.x<0.001){id=h.y;return t;} t+=h.x; if(t>50.)break; }
+  id=0.; return -1.;
+}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-0.5*uRes)/uRes.y;
+  float cy=cos(uYaw),sy=sin(uYaw),cp=cos(uPitch),sp=sin(uPitch);
+  vec3 ro=vec3(sy*cp,sp,cy*cp)*uDist; ro.y+=0.25;
+  vec3 ta=vec3(0.,-0.08,0.);
+  vec3 fwd=normalize(ta-ro),rt=normalize(cross(vec3(0,1,0),fwd)),up=cross(rt,fwd);
+  vec3 rd=normalize(uv.x*rt+uv.y*up+1.65*fwd);
+  vec3 p; float id; float t=march(ro,rd,p,id);
+  vec3 col;
+  if(t>0.){
+    vec3 n=nrm(p); vec3 v=-rd; vec3 base=material(id);
+    float fres=pow(1.0-max(0.,dot(n,v)),3.0);
+    vec3 rr=reflect(rd,n);
+    vec3 rp; float rid; float rt2=march(p+n*0.02,rr,rp,rid);
+    vec3 refl = rt2>0. ? material(rid)*env(reflect(rr,nrm(rp)))*1.15 : env(rr);
+    vec3 L=normalize(vec3(0.45,0.7,-0.42)); vec3 h=normalize(L+v);
+    if(id>3.5){
+      float diff=max(0.,dot(n,L));
+      float chk=0.5+0.5*sin(p.x*3.14159)*sin(p.z*3.14159);
+      col = base*(0.25+0.35*diff)*(0.7+0.3*chk) + refl*0.45 + vec3(1.)*pow(max(0.,dot(n,h)),40.)*0.15;
+      col = mix(col, env(rd), smoothstep(14.,34.,t));
+    } else {
+      float shin = id<1.5?220. : id<2.5?170. : 700.;
+      float spec = pow(max(0.,dot(n,h)),shin);
+      col = base*refl;                                   // reflectance-tinted mirror
+      col += vec3(1.0,0.95,0.9)*spec*(id<2.5?1.3:3.2);   // glint; obsidian razor-sharp
+      col += fres*refl*0.55;                             // fresnel edge
+    }
+  } else { col=env(rd); }
+  col=(col*(2.51*col+0.03))/(col*(2.43*col+0.59)+0.14); // ACES-ish
+  col=pow(clamp(col,0.,1.),vec3(0.4545));
+  O=vec4(col,1.);
+}`;
+function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);
+  if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(o));bad=true;}return o;}
+let prog,uni={},state={yaw:0.35,pitch:0.15,dist:7.0};
+if(gl){
+  prog=gl.createProgram();
+  gl.attachShader(prog,sh(gl.VERTEX_SHADER,VERT));
+  gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FRAG));
+  gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){console.error(gl.getProgramInfoLog(prog));bad=true;}
+  gl.useProgram(prog);
+  const vao=gl.createVertexArray();gl.bindVertexArray(vao);
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  ['uRes','uT','uYaw','uPitch','uDist'].forEach(k=>uni[k]=gl.getUniformLocation(prog,k));
+}
+function resize(){const d=Math.min(devicePixelRatio||1,2);const w=cv.clientWidth||innerWidth||900,h=cv.clientHeight||innerHeight||600;cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(h*d));}
+addEventListener('resize',resize);
+if(window.ResizeObserver){try{new ResizeObserver(resize).observe(cv);}catch(e){}}
+resize();
+let drag=false,px=0,py=0;
+cv.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;py=e.clientY;cv.setPointerCapture(e.pointerId);});
+cv.addEventListener('pointermove',e=>{if(!drag)return;state.yaw+=(e.clientX-px)*0.006;state.pitch=Math.max(-0.4,Math.min(1.1,state.pitch+(e.clientY-py)*0.005));px=e.clientX;py=e.clientY;});
+cv.addEventListener('pointerup',()=>drag=false);
+cv.addEventListener('wheel',e=>{state.dist=Math.max(4.2,Math.min(12.,state.dist+e.deltaY*0.004));e.preventDefault();},{passive:false});
+const t0=performance.now();
+function frame(){
+  if(bad){document.body.style.background='#2a1030';return;}
+  const t=(performance.now()-t0)/1000;
+  if(!drag)state.yaw+=0.0022;
+  gl.viewport(0,0,cv.width,cv.height);
+  gl.useProgram(prog);
+  gl.uniform2f(uni.uRes,cv.width,cv.height);
+  gl.uniform1f(uni.uT,t);
+  gl.uniform1f(uni.uYaw,state.yaw);gl.uniform1f(uni.uPitch,state.pitch);gl.uniform1f(uni.uDist,state.dist);
+  gl.drawArrays(gl.TRIANGLES,0,3);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>

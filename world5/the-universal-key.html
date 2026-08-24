@@ -1,0 +1,235 @@
+<title>The Universal Key</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=Spline+Sans+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#eadcff; --ink2:#b9a6e0; --ink3:#8f7bc0;
+  --violet:#b98bff; --violet2:#8b3ff0; --ember:#ff9a4d; --gold:#ffcf6b; --teal:#57e6c8;
+  --panel:rgba(38,20,70,.58); --panel2:rgba(30,16,58,.72); --line:rgba(160,120,255,.28);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#150a2e;color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;overflow:hidden}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+#gl:active{cursor:grabbing}
+.mono{font-family:"Spline Sans Mono",monospace}
+.frame{position:fixed;inset:0;pointer-events:none;z-index:5}
+
+/* header */
+.head{position:absolute;top:0;left:0;right:0;padding:clamp(14px,3vw,26px) clamp(16px,3.5vw,34px);display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.title h1{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(1.5rem,4.4vw,2.7rem);margin:0;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 30px rgba(139,63,240,.5)}
+.title .sub{font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--violet);margin-top:8px}
+.keyglyph{font-family:"Spline Sans Mono",monospace;font-size:clamp(1.1rem,3.2vw,1.7rem);font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 16px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);letter-spacing:.14em;white-space:nowrap}
+.keyglyph b{color:var(--ember)} .keyglyph .p{color:var(--gold)}
+
+/* verdict chip */
+.verdict{position:absolute;left:clamp(16px,3.5vw,34px);top:clamp(84px,15vw,110px);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);max-width:270px}
+.verdict h2{font-family:"Fraunces",serif;font-size:.98rem;margin:0 0 8px;color:var(--violet)}
+.verdict .row{display:flex;justify-content:space-between;gap:12px;font-family:"Spline Sans Mono",monospace;font-size:.74rem;padding:3px 0;color:var(--ink2)}
+.verdict .row b{color:var(--teal)}
+.verdict .src{font-family:"Spline Sans Mono",monospace;font-size:.62rem;color:var(--ink3);margin-top:9px;border-top:1px solid var(--line);padding-top:8px;letter-spacing:.03em}
+
+/* controls */
+.panel{position:absolute;right:clamp(16px,3.5vw,34px);bottom:clamp(16px,3.5vw,30px);background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:15px 17px 17px;backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px);width:min(310px,86vw);pointer-events:auto}
+.panel h3{font-family:"Fraunces",serif;font-size:1rem;margin:0 0 3px;color:var(--ink)}
+.panel .hint{font-size:.78rem;color:var(--ink2);margin:0 0 13px}
+.ctl{margin:11px 0}
+.ctl label{display:flex;justify-content:space-between;font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
+.ctl label b{color:var(--gold);text-transform:none;letter-spacing:0}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:100px;background:rgba(160,120,255,.24);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--ember));cursor:pointer;box-shadow:0 0 12px rgba(185,139,255,.7)}
+input[type=range]::-moz-range-thumb{width:17px;height:17px;border:none;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--ember));cursor:pointer}
+.coord{margin-top:13px;background:rgba(20,10,44,.6);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-family:"Spline Sans Mono",monospace;font-size:.78rem;color:var(--ink2);line-height:1.7}
+.coord .big{color:var(--gold);font-size:1.05rem;font-weight:600}
+.coord .you{color:var(--teal)}
+.addr{margin-top:12px;background:rgba(20,10,44,.6);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+.alab{font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);display:flex;justify-content:space-between;margin-bottom:9px}
+.alab span{color:var(--gold)}
+.chev{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chev .c{width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-family:"Spline Sans Mono",monospace;font-size:.86rem;font-weight:600;color:var(--violet);background:linear-gradient(160deg,rgba(139,63,240,.28),rgba(139,63,240,.08));border:1px solid var(--line);border-radius:7px;clip-path:polygon(50% 0,100% 32%,100% 100%,0 100%,0 32%)}
+.chev .sep{color:var(--ink3);font-family:"Spline Sans Mono",monospace}
+.chev .o{color:var(--teal);background:linear-gradient(160deg,rgba(87,230,200,.26),rgba(87,230,200,.06));border-color:rgba(87,230,200,.4)}
+.ahint{font-size:.66rem;color:var(--ink3);margin-top:9px}
+.ahint .home{color:var(--teal)}
+.foot{position:absolute;bottom:clamp(14px,3vw,26px);left:clamp(16px,3.5vw,34px);font-family:"Spline Sans Mono",monospace;font-size:.64rem;color:var(--ink3);letter-spacing:.04em;max-width:44ch;line-height:1.6}
+.foot b{color:var(--violet)}
+@media(max-width:640px){.verdict{display:none}.foot{display:none}}
+</style>
+
+<canvas id="gl"></canvas>
+
+<div class="frame">
+  <div class="head">
+    <div class="title">
+      <h1>The Universal Key</h1>
+      <div class="sub">any point &rarr; its own torus &middot; palindromic vortex</div>
+    </div>
+    <div class="keyglyph">{ ..<b>||</b>.<span class="p">|</span>.. }</div>
+  </div>
+
+  <div class="verdict">
+    <h2>Grounded on compIle&nbsp;13</h2>
+    <div class="row"><span>twin core (the 11)</span><b>2</b></div>
+    <div class="row"><span>fluid-chirality break</span><b>2</b></div>
+    <div class="row"><span>winding closes</span><b>1</b></div>
+    <div class="row"><span>CRT bijection</span><b>15/15</b></div>
+    <div class="row"><span>every point &rarr; 1 torus</span><b>1</b></div>
+    <div class="row"><span>stargate 6 + 1</span><b>7</b></div>
+    <div class="row"><span>gate capacity</span><b>30030</b></div>
+    <div class="src">i13.exe run universal_key.i13<br>UNIVERSAL_KEY_OK &middot; STARGATE_OK = 1</div>
+  </div>
+</div>
+
+<div class="panel">
+  <h3>Spin up a torus</h3>
+  <p class="hint">Every integer point lands on exactly one cell of the P&times;Q torus &mdash; Chinese Remainder Theorem, exact. Drag the scene to orbit.</p>
+  <div class="ctl"><label>your point <b><span id="nv">7</span></b></label><input id="n" type="range" min="0" max="14" value="7" step="1"></div>
+  <div class="ctl"><label>major circle P <b><span id="pv">5</span></b></label><input id="p" type="range" min="2" max="9" value="5" step="1"></div>
+  <div class="ctl"><label>minor circle Q <b><span id="qv">3</span></b></label><input id="q" type="range" min="2" max="7" value="3" step="1"></div>
+  <div class="ctl"><label>vortex flow <b><span id="fv">1.0</span></b></label><input id="f" type="range" min="0" max="30" value="12" step="1"></div>
+  <div class="coord">
+    point <span class="you" id="cn">7</span> &rarr; <span class="big"><span id="ct">2</span> , <span id="cp">1</span></span><br>
+    <span style="color:var(--ink3)">toroidal , poloidal &middot; ring closes at P&middot;Q = <span id="rl">15</span></span>
+  </div>
+  <div class="addr">
+    <div class="alab">stargate address <span>6 + 1 = 7</span></div>
+    <div class="chev" id="chev"></div>
+    <div class="ahint">home <span class="home">127.0.0.1</span> &mdash; the known origin, never dialed</div>
+  </div>
+</div>
+
+<div class="foot">Two circles make a torus &mdash; the <b>11</b> in the key. The flow is palindromic: circle the tube once and you return, but never quite mirrored &mdash; that break is the vortex. &copy; ROOT0 &middot; David&nbsp;Lee&nbsp;Wise &amp; AVAN</div>
+
+<script type="text/javascript">
+const cv=document.getElementById('gl');
+const gl=cv.getContext('webgl2',{antialias:true,alpha:false});
+let bad=!gl;
+const VERT=`#version 300 es
+in vec2 p; void main(){ gl_Position=vec4(p,0.,1.); }`;
+const FRAG=`#version 300 es
+precision highp float;
+out vec4 O;
+uniform vec2 uRes; uniform float uT; uniform float uYaw, uPitch, uDist;
+uniform float uP, uQ; uniform float uSeedT, uSeedP; uniform float uFlow;
+const float TAU=6.2831853;
+const float R=1.55, r=0.55;
+float sdT(vec3 p){ return length(vec2(length(p.xz)-R,p.y))-r; }
+vec3 nrm(vec3 p){ vec2 e=vec2(0.0012,0.); return normalize(vec3(
+  sdT(p+e.xyy)-sdT(p-e.xyy), sdT(p+e.yxy)-sdT(p-e.yxy), sdT(p+e.yyx)-sdT(p-e.yyx))); }
+mat3 rotY(float a){ float c=cos(a),s=sin(a); return mat3(c,0,-s, 0,1,0, s,0,c); }
+mat3 rotX(float a){ float c=cos(a),s=sin(a); return mat3(1,0,0, 0,c,-s, 0,s,c); }
+vec3 bg(vec3 rd){
+  float g=0.5+0.5*rd.y;
+  vec3 top=vec3(0.10,0.045,0.20), bot=vec3(0.16,0.06,0.12);
+  vec3 c=mix(bot,top,g);
+  c+=vec3(0.28,0.12,0.34)*pow(max(0.,1.-length(rd.xz)),2.5)*0.5;
+  return c;
+}
+void main(){
+  vec2 uv=(gl_FragCoord.xy-0.5*uRes)/uRes.y;
+  mat3 rot=rotY(uYaw)*rotX(uPitch);
+  vec3 ro=rot*vec3(0.,0.,uDist);
+  vec3 fwd=normalize(-ro), rt=normalize(cross(vec3(0,1,0),fwd)), up=cross(fwd,rt);
+  vec3 rd=normalize(uv.x*rt+uv.y*up+1.5*fwd);
+  float t=0.; float hit=-1.;
+  for(int i=0;i<120;i++){ vec3 p=ro+rd*t; float d=sdT(p); if(d<0.001){hit=t;break;} t+=d*0.85; if(t>14.)break; }
+  vec3 col;
+  if(hit>0.){
+    vec3 p=ro+rd*hit; vec3 n=nrm(p); vec3 v=-rd;
+    float th=atan(p.z,p.x);
+    float ph=atan(p.y, length(p.xz)-R);
+    float a=th/TAU+0.5, b=ph/TAU+0.5;
+    float fres=pow(1.-max(0.,dot(n,v)),3.0);
+    vec3 L1=normalize(vec3(0.7,0.9,0.6)), L2=normalize(vec3(-0.6,0.3,-0.7));
+    float d1=max(0.,dot(n,L1)), d2=max(0.,dot(n,L2));
+    vec3 h1=normalize(L1+v); float sp=pow(max(0.,dot(n,h1)),64.)*1.1;
+    vec3 base=mix(vec3(0.42,0.16,0.72), vec3(1.0,0.55,0.2), fres*0.85+0.12*sin(ph*3.+uT*0.5));
+    vec3 irid=0.5+0.5*cos(vec3(0,2.1,4.2)+ph*2.0+th*1.0+uT*0.3);
+    base=mix(base, base*0.5+irid*0.6, 0.35);
+    float flow=0.5+0.5*sin(ph*8.0 - uT*uFlow + th*float(int(uQ)));
+    flow=pow(flow,2.2);
+    vec3 lit = base*(0.20 + 0.85*d1 + 0.30*d2) + vec3(1.,0.8,0.55)*sp;
+    lit += base*flow*0.55;
+    lit += vec3(0.75,0.55,1.0)*fres*0.9;
+    float ct=floor(a*uP), cp=floor(b*uQ);
+    if(abs(ct-uSeedT)<0.5 && abs(cp-uSeedP)<0.5){
+      float pulse=0.6+0.4*sin(uT*4.0);
+      lit += vec3(1.0,0.82,0.35)*pulse*1.4;
+    }
+    float knot=abs(fract(uP*a - uQ*b + 0.5)-0.5)*2.0;
+    lit += vec3(0.4,1.0,0.85)*smoothstep(0.10,0.0,knot)*0.6;
+    float grid=smoothstep(0.02,0.0,abs(fract(a*uP)-0.5)-0.47)+smoothstep(0.02,0.0,abs(fract(b*uQ)-0.5)-0.47);
+    lit += vec3(0.5,0.35,0.8)*grid*0.25;
+    col=lit;
+    col=mix(col,bg(rd),smoothstep(9.,14.,hit));
+  } else { col=bg(rd); }
+  col=col/(col+vec3(0.72));
+  col=pow(col,vec3(0.4545));
+  O=vec4(col,1.);
+}`;
+function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);
+  if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(o));bad=true;}return o;}
+let prog,uni={},state={yaw:0.6,pitch:-0.5,dist:5.2,P:5,Q:3,seedT:2,seedP:1,flow:1.2,n:7};
+if(gl){
+  prog=gl.createProgram();
+  gl.attachShader(prog,sh(gl.VERTEX_SHADER,VERT));
+  gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FRAG));
+  gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){console.error(gl.getProgramInfoLog(prog));bad=true;}
+  gl.useProgram(prog);
+  const vao=gl.createVertexArray();gl.bindVertexArray(vao);
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);
+  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  ['uRes','uT','uYaw','uPitch','uDist','uP','uQ','uSeedT','uSeedP','uFlow'].forEach(k=>uni[k]=gl.getUniformLocation(prog,k));
+}
+function resize(){const d=Math.min(devicePixelRatio||1,2);const w=cv.clientWidth||innerWidth||800,h=cv.clientHeight||innerHeight||600;cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(h*d));}
+addEventListener('resize',resize);
+if(window.ResizeObserver){try{new ResizeObserver(resize).observe(cv);}catch(e){}}
+resize();
+// interaction: orbit
+let drag=false,px=0,py=0;
+cv.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;py=e.clientY;cv.setPointerCapture(e.pointerId);});
+cv.addEventListener('pointermove',e=>{if(!drag)return;state.yaw+=(e.clientX-px)*0.007;state.pitch=Math.max(-1.3,Math.min(1.3,state.pitch+(e.clientY-py)*0.007));px=e.clientX;py=e.clientY;});
+cv.addEventListener('pointerup',()=>drag=false);
+cv.addEventListener('wheel',e=>{state.dist=Math.max(3.2,Math.min(9.,state.dist+e.deltaY*0.003));e.preventDefault();},{passive:false});
+// controls
+const GATE=[2,3,5,7,11,13];
+function upd(){
+  state.P=+P.value;state.Q=+Q.value;state.flow=(+f.value)/10;state.n=+n.value;
+  n.max=state.P*state.Q-1; if(state.n>+n.max){n.value=n.max;state.n=+n.max;}
+  const ct=state.n%state.P, cp=state.n%state.Q;
+  state.seedT=ct;state.seedP=cp;
+  nv.textContent=state.n;pv.textContent=state.P;qv.textContent=state.Q;fv.textContent=(state.flow).toFixed(1);
+  cn.textContent=state.n;ct_.textContent=ct;cp_.textContent=cp;rl.textContent=state.P*state.Q;
+  let html='';
+  GATE.forEach(m=>{ html+='<div class="c">'+(state.n%m)+'</div>'; });
+  html+='<span class="sep">+</span><div class="c o" title="point of origin">&#8962;</div>';
+  chev.innerHTML=html;
+}
+const P=document.getElementById('p'),Q=document.getElementById('q'),f=document.getElementById('f'),n=document.getElementById('n');
+const nv=document.getElementById('nv'),pv=document.getElementById('pv'),qv=document.getElementById('qv'),fv=document.getElementById('fv');
+const cn=document.getElementById('cn'),ct_=document.getElementById('ct'),cp_=document.getElementById('cp'),rl=document.getElementById('rl'),chev=document.getElementById('chev');
+[P,Q,f,n].forEach(el=>el.addEventListener('input',upd));upd();
+// render loop
+const t0=performance.now();
+function frame(){
+  if(bad){document.body.style.background='#2a1030';return;}
+  const t=(performance.now()-t0)/1000;
+  if(!drag)state.yaw+=0.0016;
+  gl.viewport(0,0,cv.width,cv.height);
+  gl.useProgram(prog);
+  gl.uniform2f(uni.uRes,cv.width,cv.height);
+  gl.uniform1f(uni.uT,t);
+  gl.uniform1f(uni.uYaw,state.yaw);gl.uniform1f(uni.uPitch,state.pitch);gl.uniform1f(uni.uDist,state.dist);
+  gl.uniform1f(uni.uP,state.P);gl.uniform1f(uni.uQ,state.Q);
+  gl.uniform1f(uni.uSeedT,state.seedT);gl.uniform1f(uni.uSeedP,state.seedP);
+  gl.uniform1f(uni.uFlow,state.flow);
+  gl.drawArrays(gl.TRIANGLES,0,3);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
