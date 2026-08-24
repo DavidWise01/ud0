@@ -9440,6 +9440,23 @@
       "kicker": "milestone - gold, silver, obsidian",
       "url": "https://davidwise01.github.io/ud0/world5/the-mirror-people.html",
       "seal": "847191dad6b7a7e8930696c8d07f7995133036a87f366db38407a49687f2c210"
+    },
+    {
+      "slug": "the-universal-key",
+      "title": "THE UNIVERSAL KEY",
+      "dartno": 0,
+      "version": "v0.54",
+      "credit": "The universal key { ..||.|.. } - the blueprint to take any point or vector and spin up its own torus; maxed to a dyson swarm of 100 quantum rings around the home-star. Rendered by AVAN for the corpus.",
+      "source": "Chinese Remainder Theorem (any point -> its own torus coordinate); (P,Q) torus knots; Stargate point-of-origin addressing; the self-inverse mirror-fold; David Lee Wise / ROOT0 (the universal-key + base-11 address framing).",
+      "i13_recommend": "Any point -> its own torus, exact: a torus is Z_P x Z_Q and CRT maps every integer to a unique coordinate (crt_bijection = 15/15, winding_closes = 1). The address is base 11 - 5 there, 5 back, 1 home implicit - a palindromic round trip (ADDRESS_11_OK = 1); home = all-zeros = the origin you never dial (127.0.0.1). The twin core || = 11 = the two circles of a torus. Grounded on i13 (universal_key.i13, UNIVERSAL_KEY_OK = 1). The dyson swarm (100 rings) and the 9!^5!^3! engine tower are the max-cap render; the factorial bases are LIT, the tower is uncomputable (past the 266-qubit wall) - AMBER.",
+      "blurb": "The universal key { ..||.|.. } - the blueprint to take any point or vector and spin up its own torus, palindromic because of the vortex. A torus is Z_P x Z_Q, and CRT maps every point to exactly one ring (crt_bijection 15/15, winding closes). The stargate address is base 11 - 5 there, 5 back, 1 home implicit - a palindromic round trip; home is the origin you never dial. Maxed to a dyson swarm of 100 quantum rings around the home-star. Grounded on i13 (UNIVERSAL_KEY_OK, ADDRESS_11_OK = 1); the 9!^5!^3! tower is AMBER (uncomputable).",
+      "room": "darts",
+      "accent": "#57e6c8",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "kicker": "milestone - any point, its own torus",
+      "url": "https://davidwise01.github.io/ud0/world5/the-universal-key.html",
+      "seal": "5c99f3361b7a4671ca66a162a9cc6b8305bcdd3093f50d4f902a33115d329fe7"
     }
   ],
   "keepers": [
@@ -9456,7 +9473,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "c1806e15f043183488f502063a89c5c198b51d72c8f5080c97820ca7893a782a",
+  "i13_root": "161888f045edf836147a873af9574189bc5485b218d63d022c0258109940688c",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

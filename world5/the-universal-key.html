@@ -2,232 +2,221 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 :root{
-  --ink:#eadcff; --ink2:#b9a6e0; --ink3:#8f7bc0;
-  --violet:#b98bff; --violet2:#8b3ff0; --ember:#ff9a4d; --gold:#ffcf6b; --teal:#57e6c8;
-  --panel:rgba(38,20,70,.58); --panel2:rgba(30,16,58,.72); --line:rgba(160,120,255,.28);
+  --ink:#efe4ff; --ink2:#c3b2e6; --ink3:#9683c4;
+  --violet:#b98bff; --violet2:#8b3ff0; --gold:#f4b24a; --teal:#57e6c8;
+  --panel:rgba(30,18,54,.55); --line:rgba(160,120,255,.26);
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
-body{background:#150a2e;color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;overflow:hidden}
+body{background:#120826;color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;overflow:hidden}
 #gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
 #gl:active{cursor:grabbing}
 .mono{font-family:"Spline Sans Mono",monospace}
 .frame{position:fixed;inset:0;pointer-events:none;z-index:5}
-
-/* header */
 .head{position:absolute;top:0;left:0;right:0;padding:clamp(14px,3vw,26px) clamp(16px,3.5vw,34px);display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}
-.title h1{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(1.5rem,4.4vw,2.7rem);margin:0;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 30px rgba(139,63,240,.5)}
-.title .sub{font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--violet);margin-top:8px}
-.keyglyph{font-family:"Spline Sans Mono",monospace;font-size:clamp(1.1rem,3.2vw,1.7rem);font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 16px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);letter-spacing:.14em;white-space:nowrap}
-.keyglyph b{color:var(--ember)} .keyglyph .p{color:var(--gold)}
-
-/* verdict chip */
-.verdict{position:absolute;left:clamp(16px,3.5vw,34px);top:clamp(84px,15vw,110px);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);max-width:270px}
+.title h1{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(1.5rem,4.4vw,2.7rem);margin:0;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 34px rgba(139,63,240,.55)}
+.title .sub{font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--violet);margin-top:8px}
+.keyglyph{font-family:"Spline Sans Mono",monospace;font-size:clamp(1.1rem,3.2vw,1.6rem);font-weight:600;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 16px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);letter-spacing:.14em;white-space:nowrap}
+.keyglyph b{color:var(--gold)} .keyglyph .p{color:var(--teal)}
+.verdict{position:absolute;left:clamp(16px,3.5vw,34px);top:clamp(86px,15vw,112px);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);max-width:262px}
 .verdict h2{font-family:"Fraunces",serif;font-size:.98rem;margin:0 0 8px;color:var(--violet)}
 .verdict .row{display:flex;justify-content:space-between;gap:12px;font-family:"Spline Sans Mono",monospace;font-size:.74rem;padding:3px 0;color:var(--ink2)}
 .verdict .row b{color:var(--teal)}
-.verdict .src{font-family:"Spline Sans Mono",monospace;font-size:.62rem;color:var(--ink3);margin-top:9px;border-top:1px solid var(--line);padding-top:8px;letter-spacing:.03em}
-
-/* controls */
-.panel{position:absolute;right:clamp(16px,3.5vw,34px);bottom:clamp(16px,3.5vw,30px);background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:15px 17px 17px;backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px);width:min(310px,86vw);pointer-events:auto}
-.panel h3{font-family:"Fraunces",serif;font-size:1rem;margin:0 0 3px;color:var(--ink)}
-.panel .hint{font-size:.78rem;color:var(--ink2);margin:0 0 13px}
-.ctl{margin:11px 0}
+.verdict .src{font-family:"Spline Sans Mono",monospace;font-size:.62rem;color:var(--ink3);margin-top:9px;border-top:1px solid var(--line);padding-top:8px}
+.panel{position:absolute;right:clamp(16px,3.5vw,34px);bottom:clamp(16px,3.5vw,30px);background:rgba(24,14,46,.72);border:1px solid var(--line);border-radius:14px;padding:15px 17px 17px;backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px);width:min(310px,86vw);pointer-events:auto}
+.panel h3{font-family:"Fraunces",serif;font-size:1rem;margin:0 0 3px}
+.panel .hint{font-size:.78rem;color:var(--ink2);margin:0 0 12px}
+.ctl{margin:10px 0}
 .ctl label{display:flex;justify-content:space-between;font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);margin-bottom:5px}
 .ctl label b{color:var(--gold);text-transform:none;letter-spacing:0}
 input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:100px;background:rgba(160,120,255,.24);outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--ember));cursor:pointer;box-shadow:0 0 12px rgba(185,139,255,.7)}
-input[type=range]::-moz-range-thumb{width:17px;height:17px;border:none;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--ember));cursor:pointer}
-.coord{margin-top:13px;background:rgba(20,10,44,.6);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-family:"Spline Sans Mono",monospace;font-size:.78rem;color:var(--ink2);line-height:1.7}
-.coord .big{color:var(--gold);font-size:1.05rem;font-weight:600}
-.coord .you{color:var(--teal)}
-.addr{margin-top:12px;background:rgba(20,10,44,.6);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--gold));cursor:pointer;box-shadow:0 0 12px rgba(185,139,255,.7)}
+input[type=range]::-moz-range-thumb{width:17px;height:17px;border:none;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--gold));cursor:pointer}
+.addr{margin-top:12px;background:rgba(18,9,40,.6);border:1px solid var(--line);border-radius:10px;padding:11px 13px}
 .alab{font-family:"Spline Sans Mono",monospace;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);display:flex;justify-content:space-between;margin-bottom:9px}
 .alab span{color:var(--gold)}
-.chev{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-.chev .c{width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-family:"Spline Sans Mono",monospace;font-size:.86rem;font-weight:600;color:var(--violet);background:linear-gradient(160deg,rgba(139,63,240,.28),rgba(139,63,240,.08));border:1px solid var(--line);border-radius:7px;clip-path:polygon(50% 0,100% 32%,100% 100%,0 100%,0 32%)}
-.chev .sep{color:var(--ink3);font-family:"Spline Sans Mono",monospace}
+.chev{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.chev .c{width:27px;height:27px;display:flex;align-items:center;justify-content:center;font-family:"Spline Sans Mono",monospace;font-size:.82rem;font-weight:600;color:var(--violet);background:linear-gradient(160deg,rgba(139,63,240,.28),rgba(139,63,240,.08));border:1px solid var(--line);border-radius:6px;clip-path:polygon(50% 0,100% 32%,100% 100%,0 100%,0 32%)}
 .chev .o{color:var(--teal);background:linear-gradient(160deg,rgba(87,230,200,.26),rgba(87,230,200,.06));border-color:rgba(87,230,200,.4)}
-.ahint{font-size:.66rem;color:var(--ink3);margin-top:9px}
+.ahint{font-size:.64rem;color:var(--ink3);margin-top:9px}
 .ahint .home{color:var(--teal)}
-.foot{position:absolute;bottom:clamp(14px,3vw,26px);left:clamp(16px,3.5vw,34px);font-family:"Spline Sans Mono",monospace;font-size:.64rem;color:var(--ink3);letter-spacing:.04em;max-width:44ch;line-height:1.6}
-.foot b{color:var(--violet)}
-@media(max-width:640px){.verdict{display:none}.foot{display:none}}
+.foot{position:absolute;bottom:clamp(12px,3vw,22px);left:clamp(16px,3.5vw,34px);font-family:"Spline Sans Mono",monospace;font-size:.62rem;color:var(--ink3);letter-spacing:.04em;max-width:42ch;line-height:1.6}
+.foot b{color:var(--gold)}
+@media(max-width:680px){.verdict{display:none}.foot{display:none}}
 </style>
 
 <canvas id="gl"></canvas>
 
 <div class="frame">
   <div class="head">
-    <div class="title">
-      <h1>The Universal Key</h1>
-      <div class="sub">any point &rarr; its own torus &middot; palindromic vortex</div>
-    </div>
+    <div class="title"><h1>The Universal Key</h1><div class="sub">any point &rarr; its ring &middot; a dyson swarm of tori</div></div>
     <div class="keyglyph">{ ..<b>||</b>.<span class="p">|</span>.. }</div>
   </div>
-
   <div class="verdict">
     <h2>Grounded on compIle&nbsp;13</h2>
-    <div class="row"><span>twin core (the 11)</span><b>2</b></div>
-    <div class="row"><span>fluid-chirality break</span><b>2</b></div>
-    <div class="row"><span>winding closes</span><b>1</b></div>
-    <div class="row"><span>CRT bijection</span><b>15/15</b></div>
-    <div class="row"><span>every point &rarr; 1 torus</span><b>1</b></div>
+    <div class="row"><span>rings (ring-a-rosy)</span><b id="vr">100</b></div>
     <div class="row"><span>address base</span><b>11</b></div>
     <div class="row"><span>5 there &middot; 5 back</span><b>+1 home</b></div>
+    <div class="row"><span>winding closes</span><b>1</b></div>
+    <div class="row"><span>every point &rarr; 1 ring</span><b>1</b></div>
     <div class="src">i13.exe run universal_key.i13<br>UNIVERSAL_KEY_OK &middot; ADDRESS_11_OK = 1</div>
   </div>
 </div>
 
 <div class="panel">
-  <h3>Spin up a torus</h3>
-  <p class="hint">Every integer point lands on exactly one cell of the P&times;Q torus &mdash; Chinese Remainder Theorem, exact. Drag the scene to orbit.</p>
-  <div class="ctl"><label>your point <b><span id="nv">7</span></b></label><input id="n" type="range" min="0" max="14" value="7" step="1"></div>
-  <div class="ctl"><label>major circle P <b><span id="pv">5</span></b></label><input id="p" type="range" min="2" max="9" value="5" step="1"></div>
-  <div class="ctl"><label>minor circle Q <b><span id="qv">3</span></b></label><input id="q" type="range" min="2" max="7" value="3" step="1"></div>
-  <div class="ctl"><label>vortex flow <b><span id="fv">1.0</span></b></label><input id="f" type="range" min="0" max="30" value="12" step="1"></div>
-  <div class="coord">
-    point <span class="you" id="cn">7</span> &rarr; <span class="big"><span id="ct">2</span> , <span id="cp">1</span></span><br>
-    <span style="color:var(--ink3)">toroidal , poloidal &middot; ring closes at P&middot;Q = <span id="rl">15</span></span>
-  </div>
+  <h3>Dyson swarm</h3>
+  <p class="hint">Every point lands on exactly one ring of the shell &mdash; CRT, exact. Home is the star at the centre. Drag to orbit.</p>
+  <div class="ctl"><label>rings <b><span id="rn">100</span></b></label><input id="r" type="range" min="8" max="100" value="100" step="1"></div>
+  <div class="ctl"><label>spin <b><span id="sn">1.0</span></b></label><input id="s" type="range" min="0" max="30" value="10" step="1"></div>
+  <div class="ctl"><label>your point <b><span id="nn">7</span></b></label><input id="n" type="range" min="0" max="99" value="7" step="1"></div>
   <div class="addr">
     <div class="alab">stargate address <span>base 11 &middot; 5+5+1</span></div>
     <div class="chev" id="chev"></div>
     <div class="ahint">5 there &middot; <span class="home">&#8962;</span> home &middot; 5 back &mdash; a palindromic round trip; home (<span class="home">127.0.0.1</span>) never dialed</div>
   </div>
 </div>
+<div class="foot"><b>ring around the rosy, 100 times</b> &mdash; a dyson shell of quantum rings, the home-star at its throat &middot; &copy; ROOT0 &middot; David&nbsp;Lee&nbsp;Wise &amp; AVAN &middot; |||..()</div>
 
-<div class="foot">Two circles make a torus &mdash; the <b>11</b> in the key. The flow is palindromic: circle the tube once and you return, but never quite mirrored &mdash; that break is the vortex. &copy; ROOT0 &middot; David&nbsp;Lee&nbsp;Wise &amp; AVAN</div>
-
-<script type="text/javascript">
+<script>
 const cv=document.getElementById('gl');
 const gl=cv.getContext('webgl2',{antialias:true,alpha:false});
 let bad=!gl;
+const TAU=Math.PI*2;
+// ---- mat4 ----
+function perspective(f,a,n,fr){const t=1/Math.tan(f/2);return[t/a,0,0,0, 0,t,0,0, 0,0,(fr+n)/(n-fr),-1, 0,0,2*fr*n/(n-fr),0];}
+function lookAt(e,c,u){let z=[e[0]-c[0],e[1]-c[1],e[2]-c[2]];let zl=Math.hypot(z[0],z[1],z[2]);z=[z[0]/zl,z[1]/zl,z[2]/zl];
+  let x=[u[1]*z[2]-u[2]*z[1],u[2]*z[0]-u[0]*z[2],u[0]*z[1]-u[1]*z[0]];let xl=Math.hypot(x[0],x[1],x[2])||1;x=[x[0]/xl,x[1]/xl,x[2]/xl];
+  let y=[z[1]*x[2]-z[2]*x[1],z[2]*x[0]-z[0]*x[2],z[0]*x[1]-z[1]*x[0]];
+  return[x[0],y[0],z[0],0, x[1],y[1],z[1],0, x[2],y[2],z[2],0, -(x[0]*e[0]+x[1]*e[1]+x[2]*e[2]),-(y[0]*e[0]+y[1]*e[1]+y[2]*e[2]),-(z[0]*e[0]+z[1]*e[1]+z[2]*e[2]),1];}
+function mul(a,b){const o=new Array(16);for(let i=0;i<4;i++)for(let j=0;j<4;j++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k];o[i*4+j]=s;}return o;}
+// ---- torus mesh ----
+function torus(R,r,N,M){const pos=[],nrm=[],idx=[];
+  for(let i=0;i<=N;i++){const u=i/N*TAU,cu=Math.cos(u),su=Math.sin(u);
+    for(let j=0;j<=M;j++){const v=j/M*TAU,cv=Math.cos(v),sv=Math.sin(v);
+      pos.push((R+r*cv)*cu,(R+r*cv)*su,r*sv);nrm.push(cv*cu,cv*su,sv);}}
+  for(let i=0;i<N;i++)for(let j=0;j<M;j++){const a=i*(M+1)+j,b=a+M+1;idx.push(a,b,a+1,a+1,b,b+1);}
+  return{pos:new Float32Array(pos),nrm:new Float32Array(nrm),idx:new Uint16Array(idx)};
+}
+// ---- instance data: 100 ring normals (fibonacci sphere) + tint ----
+const MAXR=100, GA=Math.PI*(3-Math.sqrt(5));
+const inrm=new Float32Array(MAXR*3), itint=new Float32Array(MAXR);
+for(let i=0;i<MAXR;i++){const y=1-2*(i+0.5)/MAXR,rad=Math.sqrt(Math.max(0,1-y*y)),th=i*GA;
+  inrm[i*3]=Math.cos(th)*rad;inrm[i*3+1]=y;inrm[i*3+2]=Math.sin(th)*rad;itint[i]=i/MAXR;}
+
 const VERT=`#version 300 es
-in vec2 p; void main(){ gl_Position=vec4(p,0.,1.); }`;
+layout(location=0) in vec3 aPos; layout(location=1) in vec3 aNrm;
+layout(location=2) in vec3 iN; layout(location=3) in float iTint;
+uniform mat4 uMVP; uniform float uHi;
+out vec3 vN; out vec3 vW; out float vT; out float vHi;
+void main(){
+  vec3 up = abs(iN.y)<0.985 ? vec3(0.,1.,0.) : vec3(1.,0.,0.);
+  vec3 T = normalize(cross(up,iN));
+  vec3 B = cross(iN,T);
+  mat3 basis = mat3(T,B,iN);
+  vec3 w = basis*aPos;
+  vN = normalize(basis*aNrm);
+  vW = w; vT = iTint;
+  vHi = (abs(float(gl_InstanceID)-uHi)<0.5)?1.0:0.0;
+  gl_Position = uMVP*vec4(w,1.);
+}`;
 const FRAG=`#version 300 es
 precision highp float;
-out vec4 O;
-uniform vec2 uRes; uniform float uT; uniform float uYaw, uPitch, uDist;
-uniform float uP, uQ; uniform float uSeedT, uSeedP; uniform float uFlow;
-const float TAU=6.2831853;
-const float R=1.55, r=0.55;
-float sdT(vec3 p){ return length(vec2(length(p.xz)-R,p.y))-r; }
-vec3 nrm(vec3 p){ vec2 e=vec2(0.0012,0.); return normalize(vec3(
-  sdT(p+e.xyy)-sdT(p-e.xyy), sdT(p+e.yxy)-sdT(p-e.yxy), sdT(p+e.yyx)-sdT(p-e.yyx))); }
-mat3 rotY(float a){ float c=cos(a),s=sin(a); return mat3(c,0,-s, 0,1,0, s,0,c); }
-mat3 rotX(float a){ float c=cos(a),s=sin(a); return mat3(1,0,0, 0,c,-s, 0,s,c); }
-vec3 bg(vec3 rd){
-  float g=0.5+0.5*rd.y;
-  vec3 top=vec3(0.10,0.045,0.20), bot=vec3(0.16,0.06,0.12);
-  vec3 c=mix(bot,top,g);
-  c+=vec3(0.28,0.12,0.34)*pow(max(0.,1.-length(rd.xz)),2.5)*0.5;
-  return c;
-}
+in vec3 vN; in vec3 vW; in float vT; in float vHi; out vec4 O;
+uniform vec3 uEye; uniform float uT;
 void main(){
-  vec2 uv=(gl_FragCoord.xy-0.5*uRes)/uRes.y;
-  mat3 rot=rotY(uYaw)*rotX(uPitch);
-  vec3 ro=rot*vec3(0.,0.,uDist);
-  vec3 fwd=normalize(-ro), rt=normalize(cross(vec3(0,1,0),fwd)), up=cross(fwd,rt);
-  vec3 rd=normalize(uv.x*rt+uv.y*up+1.5*fwd);
-  float t=0.; float hit=-1.;
-  for(int i=0;i<120;i++){ vec3 p=ro+rd*t; float d=sdT(p); if(d<0.001){hit=t;break;} t+=d*0.85; if(t>14.)break; }
-  vec3 col;
-  if(hit>0.){
-    vec3 p=ro+rd*hit; vec3 n=nrm(p); vec3 v=-rd;
-    float th=atan(p.z,p.x);
-    float ph=atan(p.y, length(p.xz)-R);
-    float a=th/TAU+0.5, b=ph/TAU+0.5;
-    float fres=pow(1.-max(0.,dot(n,v)),3.0);
-    vec3 L1=normalize(vec3(0.7,0.9,0.6)), L2=normalize(vec3(-0.6,0.3,-0.7));
-    float d1=max(0.,dot(n,L1)), d2=max(0.,dot(n,L2));
-    vec3 h1=normalize(L1+v); float sp=pow(max(0.,dot(n,h1)),64.)*1.1;
-    vec3 base=mix(vec3(0.42,0.16,0.72), vec3(1.0,0.55,0.2), fres*0.85+0.12*sin(ph*3.+uT*0.5));
-    vec3 irid=0.5+0.5*cos(vec3(0,2.1,4.2)+ph*2.0+th*1.0+uT*0.3);
-    base=mix(base, base*0.5+irid*0.6, 0.35);
-    float flow=0.5+0.5*sin(ph*8.0 - uT*uFlow + th*float(int(uQ)));
-    flow=pow(flow,2.2);
-    vec3 lit = base*(0.20 + 0.85*d1 + 0.30*d2) + vec3(1.,0.8,0.55)*sp;
-    lit += base*flow*0.55;
-    lit += vec3(0.75,0.55,1.0)*fres*0.9;
-    float ct=floor(a*uP), cp=floor(b*uQ);
-    if(abs(ct-uSeedT)<0.5 && abs(cp-uSeedP)<0.5){
-      float pulse=0.6+0.4*sin(uT*4.0);
-      lit += vec3(1.0,0.82,0.35)*pulse*1.4;
-    }
-    float knot=abs(fract(uP*a - uQ*b + 0.5)-0.5)*2.0;
-    lit += vec3(0.4,1.0,0.85)*smoothstep(0.10,0.0,knot)*0.6;
-    float grid=smoothstep(0.02,0.0,abs(fract(a*uP)-0.5)-0.47)+smoothstep(0.02,0.0,abs(fract(b*uQ)-0.5)-0.47);
-    lit += vec3(0.5,0.35,0.8)*grid*0.25;
-    col=lit;
-    col=mix(col,bg(rd),smoothstep(9.,14.,hit));
-  } else { col=bg(rd); }
-  col=col/(col+vec3(0.72));
-  col=pow(col,vec3(0.4545));
-  O=vec4(col,1.);
+  vec3 v=normalize(uEye-vW);
+  vec3 L=normalize(-vW);                 // star at origin lights inward faces
+  float diff=max(0.,dot(vN,L));
+  float fres=pow(1.-max(0.,dot(vN,v)),3.0);
+  vec3 col=mix(vec3(0.45,0.20,0.85), vec3(1.0,0.72,0.28), vT);      // violet -> gold by ring
+  vec3 lit = col*(0.16+0.9*diff) + col*fres*0.9;
+  lit += vec3(1.0,0.85,0.6)*pow(diff,22.)*0.5;                       // specular from the star
+  float pulse=0.5+0.5*sin(uT*3.0);
+  if(vHi>0.5) lit += vec3(1.0,0.85,0.35)*(0.6+0.4*pulse)*1.4;        // your ring glows gold
+  lit=(lit*(2.51*lit+0.03))/(lit*(2.43*lit+0.59)+0.14);
+  O=vec4(pow(clamp(lit,0.,1.),vec3(0.4545)),1.);
+}`;
+// background star glow
+const BV=`#version 300 es
+layout(location=0) in vec2 p; out vec2 uv; void main(){uv=p;gl_Position=vec4(p,0.,1.);}`;
+const BF=`#version 300 es
+precision highp float; in vec2 uv; out vec4 O; uniform vec2 uRes; uniform float uT;
+void main(){
+  vec2 q=(gl_FragCoord.xy-0.5*uRes)/uRes.y;
+  float d=length(q);
+  vec3 c=mix(vec3(0.10,0.045,0.20),vec3(0.05,0.02,0.12), clamp(d,0.,1.));
+  float g=exp(-d*3.6);
+  c += mix(vec3(1.0,0.85,0.55),vec3(0.7,0.4,1.0),0.4)*g*1.5;         // the home-star
+  c += vec3(0.9,0.7,1.0)*exp(-d*9.0)*0.8;
+  O=vec4(c,1.);
 }`;
 function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);
   if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(o));bad=true;}return o;}
-let prog,uni={},state={yaw:0.6,pitch:-0.5,dist:5.2,P:5,Q:3,seedT:2,seedP:1,flow:1.2,n:7};
+function prog(v,f){const p=gl.createProgram();gl.attachShader(p,sh(gl.VERTEX_SHADER,v));gl.attachShader(p,sh(gl.FRAGMENT_SHADER,f));gl.linkProgram(p);
+  if(!gl.getProgramParameter(p,gl.LINK_STATUS)){console.error(gl.getProgramInfoLog(p));bad=true;}return p;}
+let P,BP,mesh,idxCount,uMVP,uEye,uT,uHi,bRes,bT,vaoRing,vaoBg;
+let state={yaw:0.5,pitch:0.35,dist:8.2,rings:100,spin:1.0,n:7};
 if(gl){
-  prog=gl.createProgram();
-  gl.attachShader(prog,sh(gl.VERTEX_SHADER,VERT));
-  gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FRAG));
-  gl.linkProgram(prog);
-  if(!gl.getProgramParameter(prog,gl.LINK_STATUS)){console.error(gl.getProgramInfoLog(prog));bad=true;}
-  gl.useProgram(prog);
-  const vao=gl.createVertexArray();gl.bindVertexArray(vao);
-  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
-  const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  ['uRes','uT','uYaw','uPitch','uDist','uP','uQ','uSeedT','uSeedP','uFlow'].forEach(k=>uni[k]=gl.getUniformLocation(prog,k));
+  P=prog(VERT,FRAG); BP=prog(BV,BF);
+  mesh=torus(2.55,0.055,140,10); idxCount=mesh.idx.length;
+  vaoRing=gl.createVertexArray();gl.bindVertexArray(vaoRing);
+  const pb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,pb);gl.bufferData(gl.ARRAY_BUFFER,mesh.pos,gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,3,gl.FLOAT,false,0,0);
+  const nb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,nb);gl.bufferData(gl.ARRAY_BUFFER,mesh.nrm,gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(1);gl.vertexAttribPointer(1,3,gl.FLOAT,false,0,0);
+  const ib=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,ib);gl.bufferData(gl.ARRAY_BUFFER,inrm,gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(2);gl.vertexAttribPointer(2,3,gl.FLOAT,false,0,0);gl.vertexAttribDivisor(2,1);
+  const tb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,tb);gl.bufferData(gl.ARRAY_BUFFER,itint,gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(3);gl.vertexAttribPointer(3,1,gl.FLOAT,false,0,0);gl.vertexAttribDivisor(3,1);
+  const eb=gl.createBuffer();gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,eb);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,mesh.idx,gl.STATIC_DRAW);
+  uMVP=gl.getUniformLocation(P,'uMVP');uEye=gl.getUniformLocation(P,'uEye');uT=gl.getUniformLocation(P,'uT');uHi=gl.getUniformLocation(P,'uHi');
+  vaoBg=gl.createVertexArray();gl.bindVertexArray(vaoBg);
+  const qb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,qb);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
+  bRes=gl.getUniformLocation(BP,'uRes');bT=gl.getUniformLocation(BP,'uT');
+  gl.enable(gl.DEPTH_TEST);
 }
-function resize(){const d=Math.min(devicePixelRatio||1,2);const w=cv.clientWidth||innerWidth||800,h=cv.clientHeight||innerHeight||600;cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(h*d));}
-addEventListener('resize',resize);
-if(window.ResizeObserver){try{new ResizeObserver(resize).observe(cv);}catch(e){}}
-resize();
-// interaction: orbit
+function resize(){const d=Math.min(devicePixelRatio||1,2);const w=cv.clientWidth||innerWidth||900,h=cv.clientHeight||innerHeight||600;cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(h*d));}
+addEventListener('resize',resize);if(window.ResizeObserver){try{new ResizeObserver(resize).observe(cv);}catch(e){}}resize();
 let drag=false,px=0,py=0;
 cv.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;py=e.clientY;cv.setPointerCapture(e.pointerId);});
-cv.addEventListener('pointermove',e=>{if(!drag)return;state.yaw+=(e.clientX-px)*0.007;state.pitch=Math.max(-1.3,Math.min(1.3,state.pitch+(e.clientY-py)*0.007));px=e.clientX;py=e.clientY;});
+cv.addEventListener('pointermove',e=>{if(!drag)return;state.yaw+=(e.clientX-px)*0.006;state.pitch=Math.max(-1.4,Math.min(1.4,state.pitch+(e.clientY-py)*0.006));px=e.clientX;py=e.clientY;});
 cv.addEventListener('pointerup',()=>drag=false);
-cv.addEventListener('wheel',e=>{state.dist=Math.max(3.2,Math.min(9.,state.dist+e.deltaY*0.003));e.preventDefault();},{passive:false});
-// controls
+cv.addEventListener('wheel',e=>{state.dist=Math.max(4.,Math.min(16.,state.dist+e.deltaY*0.005));e.preventDefault();},{passive:false});
 const GATE=[2,3,5,7,11];
+const R=document.getElementById('r'),S=document.getElementById('s'),N=document.getElementById('n');
+const rn=document.getElementById('rn'),sn=document.getElementById('sn'),nn=document.getElementById('nn'),vr=document.getElementById('vr'),chev=document.getElementById('chev');
 function upd(){
-  state.P=+P.value;state.Q=+Q.value;state.flow=(+f.value)/10;state.n=+n.value;
-  n.max=state.P*state.Q-1; if(state.n>+n.max){n.value=n.max;state.n=+n.max;}
-  const ct=state.n%state.P, cp=state.n%state.Q;
-  state.seedT=ct;state.seedP=cp;
-  nv.textContent=state.n;pv.textContent=state.P;qv.textContent=state.Q;fv.textContent=(state.flow).toFixed(1);
-  cn.textContent=state.n;ct_.textContent=ct;cp_.textContent=cp;rl.textContent=state.P*state.Q;
-  var there=GATE.map(function(m){return state.n%m;});
-  var html='';
-  there.forEach(function(v){ html+='<div class="c">'+v+'</div>'; });
+  state.rings=+R.value;state.spin=(+S.value)/10;state.n=+N.value;
+  rn.textContent=state.rings;sn.textContent=state.spin.toFixed(1);nn.textContent=state.n;vr.textContent=state.rings;
+  var there=GATE.map(function(m){return state.n%m;});var html='';
+  there.forEach(function(v){html+='<div class="c">'+v+'</div>';});
   html+='<div class="c o" title="home, never dialed">&#8962;</div>';
-  there.slice().reverse().forEach(function(v){ html+='<div class="c">'+v+'</div>'; });
+  there.slice().reverse().forEach(function(v){html+='<div class="c">'+v+'</div>';});
   chev.innerHTML=html;
 }
-const P=document.getElementById('p'),Q=document.getElementById('q'),f=document.getElementById('f'),n=document.getElementById('n');
-const nv=document.getElementById('nv'),pv=document.getElementById('pv'),qv=document.getElementById('qv'),fv=document.getElementById('fv');
-const cn=document.getElementById('cn'),ct_=document.getElementById('ct'),cp_=document.getElementById('cp'),rl=document.getElementById('rl'),chev=document.getElementById('chev');
-[P,Q,f,n].forEach(el=>el.addEventListener('input',upd));upd();
-// render loop
+[R,S,N].forEach(el=>el.addEventListener('input',upd));upd();
 const t0=performance.now();
 function frame(){
   if(bad){document.body.style.background='#2a1030';return;}
   const t=(performance.now()-t0)/1000;
-  if(!drag)state.yaw+=0.0016;
+  if(!drag)state.yaw+=0.0016*(0.4+state.spin);
   gl.viewport(0,0,cv.width,cv.height);
-  gl.useProgram(prog);
-  gl.uniform2f(uni.uRes,cv.width,cv.height);
-  gl.uniform1f(uni.uT,t);
-  gl.uniform1f(uni.uYaw,state.yaw);gl.uniform1f(uni.uPitch,state.pitch);gl.uniform1f(uni.uDist,state.dist);
-  gl.uniform1f(uni.uP,state.P);gl.uniform1f(uni.uQ,state.Q);
-  gl.uniform1f(uni.uSeedT,state.seedT);gl.uniform1f(uni.uSeedP,state.seedP);
-  gl.uniform1f(uni.uFlow,state.flow);
-  gl.drawArrays(gl.TRIANGLES,0,3);
+  gl.clear(gl.DEPTH_BUFFER_BIT);
+  // background star glow
+  gl.disable(gl.DEPTH_TEST);gl.useProgram(BP);gl.bindVertexArray(vaoBg);
+  gl.uniform2f(bRes,cv.width,cv.height);gl.uniform1f(bT,t);gl.drawArrays(gl.TRIANGLES,0,3);
+  gl.enable(gl.DEPTH_TEST);
+  // rings
+  const cy=Math.cos(state.yaw),sy=Math.sin(state.yaw),cp=Math.cos(state.pitch),sp=Math.sin(state.pitch);
+  const eye=[sy*cp*state.dist,sp*state.dist,cy*cp*state.dist];
+  const proj=perspective(1.05,cv.width/cv.height,0.1,60);
+  const view=lookAt(eye,[0,0,0],[0,1,0]);
+  const mvp=mul(proj,view);
+  gl.useProgram(P);gl.bindVertexArray(vaoRing);
+  gl.uniformMatrix4fv(uMVP,false,mvp);gl.uniform3f(uEye,eye[0],eye[1],eye[2]);gl.uniform1f(uT,t);
+  gl.uniform1f(uHi,state.n%state.rings);
+  gl.drawElementsInstanced(gl.TRIANGLES,idxCount,gl.UNSIGNED_SHORT,0,state.rings);
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
