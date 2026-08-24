@@ -1,8 +1,5 @@
 <title>The Universal Key</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=Spline+Sans+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap">
 <style>
 :root{
   --ink:#eadcff; --ink2:#b9a6e0; --ink3:#8f7bc0;
@@ -76,9 +73,9 @@ input[type=range]::-moz-range-thumb{width:17px;height:17px;border:none;border-ra
     <div class="row"><span>winding closes</span><b>1</b></div>
     <div class="row"><span>CRT bijection</span><b>15/15</b></div>
     <div class="row"><span>every point &rarr; 1 torus</span><b>1</b></div>
-    <div class="row"><span>stargate 6 + 1</span><b>7</b></div>
-    <div class="row"><span>gate capacity</span><b>30030</b></div>
-    <div class="src">i13.exe run universal_key.i13<br>UNIVERSAL_KEY_OK &middot; STARGATE_OK = 1</div>
+    <div class="row"><span>address base</span><b>11</b></div>
+    <div class="row"><span>5 there &middot; 5 back</span><b>+1 home</b></div>
+    <div class="src">i13.exe run universal_key.i13<br>UNIVERSAL_KEY_OK &middot; ADDRESS_11_OK = 1</div>
   </div>
 </div>
 
@@ -94,9 +91,9 @@ input[type=range]::-moz-range-thumb{width:17px;height:17px;border:none;border-ra
     <span style="color:var(--ink3)">toroidal , poloidal &middot; ring closes at P&middot;Q = <span id="rl">15</span></span>
   </div>
   <div class="addr">
-    <div class="alab">stargate address <span>6 + 1 = 7</span></div>
+    <div class="alab">stargate address <span>base 11 &middot; 5+5+1</span></div>
     <div class="chev" id="chev"></div>
-    <div class="ahint">home <span class="home">127.0.0.1</span> &mdash; the known origin, never dialed</div>
+    <div class="ahint">5 there &middot; <span class="home">&#8962;</span> home &middot; 5 back &mdash; a palindromic round trip; home (<span class="home">127.0.0.1</span>) never dialed</div>
   </div>
 </div>
 
@@ -197,7 +194,7 @@ cv.addEventListener('pointermove',e=>{if(!drag)return;state.yaw+=(e.clientX-px)*
 cv.addEventListener('pointerup',()=>drag=false);
 cv.addEventListener('wheel',e=>{state.dist=Math.max(3.2,Math.min(9.,state.dist+e.deltaY*0.003));e.preventDefault();},{passive:false});
 // controls
-const GATE=[2,3,5,7,11,13];
+const GATE=[2,3,5,7,11];
 function upd(){
   state.P=+P.value;state.Q=+Q.value;state.flow=(+f.value)/10;state.n=+n.value;
   n.max=state.P*state.Q-1; if(state.n>+n.max){n.value=n.max;state.n=+n.max;}
@@ -205,9 +202,11 @@ function upd(){
   state.seedT=ct;state.seedP=cp;
   nv.textContent=state.n;pv.textContent=state.P;qv.textContent=state.Q;fv.textContent=(state.flow).toFixed(1);
   cn.textContent=state.n;ct_.textContent=ct;cp_.textContent=cp;rl.textContent=state.P*state.Q;
-  let html='';
-  GATE.forEach(m=>{ html+='<div class="c">'+(state.n%m)+'</div>'; });
-  html+='<span class="sep">+</span><div class="c o" title="point of origin">&#8962;</div>';
+  var there=GATE.map(function(m){return state.n%m;});
+  var html='';
+  there.forEach(function(v){ html+='<div class="c">'+v+'</div>'; });
+  html+='<div class="c o" title="home, never dialed">&#8962;</div>';
+  there.slice().reverse().forEach(function(v){ html+='<div class="c">'+v+'</div>'; });
   chev.innerHTML=html;
 }
 const P=document.getElementById('p'),Q=document.getElementById('q'),f=document.getElementById('f'),n=document.getElementById('n');
