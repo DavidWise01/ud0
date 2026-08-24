@@ -9457,6 +9457,40 @@
       "kicker": "milestone - any point, its own torus",
       "url": "https://davidwise01.github.io/ud0/world5/the-universal-key.html",
       "seal": "5c99f3361b7a4671ca66a162a9cc6b8305bcdd3093f50d4f902a33115d329fe7"
+    },
+    {
+      "slug": "the-mirror-fold",
+      "title": "THE MIRROR FOLD",
+      "dartno": 0,
+      "version": "v0.54",
+      "credit": "The self-inverse inverse-mirror fold - David's glyph [[[[4 inverse mirrored, U basin, X, phase change]]]] - one operator in four costumes. Rendered by AVAN for the corpus.",
+      "source": "Kruskal-Szekeres / Einstein-Rosen bridge ((U,V)->(-U,-V)); the 5-world corpus palindrome; CRISPR reverse-complement; NES memory mirroring; David Lee Wise / ROOT0.",
+      "i13_recommend": "The self-inverse fold f(f(x)) = x - the corpus's FIRST keeper (a palindrome is its own checksum; CRC/Verlet). Run on i13 (mirror_fold.i13, FOLD_IS_SELF_INVERSE = 1) at four scales: the wormhole (Kruskal (u,v)->(-u,-v), basin u*v invariant), the 5-world palindrome (i->4-i, W3 the fixed-point basin), the CRISPR site (reverse-complement, GAATTC self-inverse), and NES memory (a % 2048, 4 windows -> one basin). Four around a U, with an X in it.",
+      "blurb": "The self-inverse mirror-fold - four regions around a U-basin, meeting at an X crossing, with a phase change at the seam. Do it twice and you are home: f(f(x)) = x, the corpus's first keeper (a palindrome is its own checksum). Run on i13 at four scales that share nothing else - the Kruskal wormhole, the 5-world corpus palindrome, the CRISPR reverse-complement site, and NES memory mirroring - one operator in four costumes (FOLD_IS_SELF_INVERSE = 1). Four around a U, with an X in it.",
+      "room": "darts",
+      "accent": "#b57bff",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "kicker": "milestone - one fold, four scales",
+      "url": "https://davidwise01.github.io/ud0/world5/the-mirror-fold.html",
+      "seal": "432e1589ac9c3fc3693d0d6b6bc381ce0a3889dccb024354a6e549e760b466d2"
+    },
+    {
+      "slug": "the-metaphysics-burns",
+      "title": "THE METAPHYSICS BURNS",
+      "dartno": 0,
+      "version": "v0.54",
+      "credit": "An audited ablation of discarded mathematics and physics - what survives, and the root of mathematics with the highest reliability. A 13-agent adversarial panel + veracity critic. Rendered by AVAN for the corpus.",
+      "source": "History of mathematics and physics (aether->Maxwell/Lorentz, caloric->Carnot/Fourier, epicycles=Fourier series, Frege's Law V, Hilbert's program, Godel/Cohen on CH); David Lee Wise / ROOT0 (the 'Unified Field Theory - ablate the shitty math' framing).",
+      "i13_recommend": "Not an i13 grounding - a 13-agent adversarial ablation + veracity critic (the discard history is LIT/audited; the thesis is the argued conclusion). The frontier: the metaphysics burns but the mathematics moves house - discarded physical ontologies take their predictions with them, but any equations encoding a real invariant re-home into the successor. The highest-RELIABILITY root (not accuracy) is the decidable finitary-arithmetic-plus-proof-checking core - what a terminating machine can verify, exactly the campaign's WITNESSED/keeper criterion. Unification is a heuristic, not a debt reality owes.",
+      "blurb": "An audited ablation: does Unified Field Theory need to unify, and what is the root of mathematics with the highest reliability? The metaphysics burns but the mathematics moves house - discarded ontologies (aether, caloric, epicycles) take their predictions with them, but their equations re-home into the successor (Maxwell, Fourier, harmonic analysis). Only the purely qualitative schemes (phlogiston, N-rays) left nothing. The highest-reliability root is the decidable finitary-arithmetic-plus-proof-checking core - what a terminating machine can verify - which is exactly the corpus's keeper criterion. Unification is a heuristic, not a debt reality owes.",
+      "room": "darts",
+      "accent": "#d9550a",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "kicker": "milestone - what survives ablation",
+      "url": "https://davidwise01.github.io/ud0/world5/the-metaphysics-burns.html",
+      "seal": "dcf27c4929d5308bb5d7f54f60551d39195160e5831605f53ea8626f27bf2f5a"
     }
   ],
   "keepers": [
@@ -9473,7 +9507,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "161888f045edf836147a873af9574189bc5485b218d63d022c0258109940688c",
+  "i13_root": "1b021540839c1c21974f9adc3c0547ce534ee913690702889cc78c95d0387ec6",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
