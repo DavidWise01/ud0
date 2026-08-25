@@ -10630,6 +10630,23 @@
       "kicker": "dart 597 - a helldive into the living",
       "url": "https://davidwise01.github.io/ud0/world5/the-replicator-equation.html",
       "seal": "6a38236406341177658bd03057de6bd69346268bfc3359db9dabbe723e59805a"
+    },
+    {
+      "slug": "distance-and-duration",
+      "title": "DISTANCE AND DURATION",
+      "dartno": 0,
+      "version": "v0.57",
+      "credit": "A {3x3}^3 = 9x9x9 lattice of 729 points, plus 2 poles - distance and duration - unified by c: a shell of light expands from the centre at the speed of light, and where a node sits equals how long light took to reach it. Rendered by AVAN for the corpus.",
+      "source": "{3x3}^3 = 9^3 = 729 (each axis 3x3); the +2 poles = distance and duration; the metre defined as the distance light travels in 1/299792458 s (c = 299792458 m/s exact, SI 1983); the second = 9192631770 caesium-133 periods; the null light interval (ct)^2 - d^2 = 0; special relativity's unification of space and time; David Lee Wise / ROOT0 ({3x3}^3 +2, distance and duration).",
+      "i13_recommend": "Grounded on i13 (distance_duration.i13, DD_OK=1). {3x3}=9, 9^3=729 (the lattice), +2 poles = 731. distance = c * duration: light_distance(c,1) = 299792458 m (one light-second), and duration = distance/c recovers 1 (roundtrip=1). The light interval is NULL: for ct=d (light), (ct)^2 - d^2 = 0 EXACTLY (X - X = 0, robust even though the products exceed f64's exact 2^53, so only the sign and the exact zero are relied on); a timelike interval (ct>d) is > 0. The lattice: a corner node (8,8,8) has distance^2 = 192 > a mid node (4,4,4) = 48. The two poles are one measure scaled by c. Maxed WebGL2: a 729-node lattice, a light shell expanding at c that lights each node the instant it is reached (distance = c * duration made visible), and the two poles pulsing on a c-link.",
+      "blurb": "Distance and duration are one measure, scaled by c. A {3x3}^3 = 9x9x9 lattice - 729 points, each axis 3x3 - with +2 poles: distance and duration. Grounded on i13 (DD_OK=1): a shell of light expands from the centre at c, and a node lights the instant light reaches it, so WHERE it is equals HOW LONG light took - distance = c * duration (a one-second shell reaches 299792458 m). On the shell the spacetime interval is exactly zero (light is null: (ct)^2 - d^2 = 0); timelike intervals are positive. The metre is defined as how far light goes in 1/299792458 s; the second as 9192631770 caesium periods. Maxed WebGL2. Two poles, one c.",
+      "room": "darts",
+      "accent": "#7fe0ff",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "kicker": "milestone - a 729 lattice, +2 poles, distance = c x duration",
+      "url": "https://davidwise01.github.io/ud0/world5/distance-and-duration.html",
+      "seal": "3748b203cb2a2ec8ad3b8334b879f976642eb37c193717b0507994c56f696af1"
     }
   ],
   "keepers": [
@@ -10646,7 +10663,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "e5d8ff16fd0b74fc371b24185493e53cccb6cea75b8221e502377fac7ece53d3",
+  "i13_root": "e60830af1700297b2302a035c1ef80afee812909c7271284e9992b78670ee2ba",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
