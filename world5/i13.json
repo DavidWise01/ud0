@@ -9763,6 +9763,23 @@
       "kicker": "dart 549 - a helldive at the table",
       "url": "https://davidwise01.github.io/ud0/world5/the-cuckoo-hashing.html",
       "seal": "3e0e8b41119c5606bfb3a2d11549447046c27a1bc9b7dd9a16dda7dfbd182962"
+    },
+    {
+      "slug": "the-cellular-battle",
+      "title": "THE CELLULAR BATTLE",
+      "dartno": 0,
+      "version": "v0.54",
+      "credit": "Two colonies (c1, c2) contest a field across a frozen DMZ well; grounded on i13, realized as a live cellular automaton. Rendered by AVAN for the corpus.",
+      "source": "Competitive / voter-model cellular automata; the mirror-fold U-basin (the DMZ as the well); the Planck-scale truce band; David Lee Wise / ROOT0 (the [ L0 -+ { c1 [.] c2 } +- R0 ] battle glyph, 'execute at every level').",
+      "i13_recommend": "A cellular battle on i13 (cell_battle.i13): two colonies spread by neighbor-majority into contested cells; the DMZ (the U-well) is FROZEN and neither can cross. Runs to a symmetric standoff - c1=5, c2=5, dmz_held=1, contested_left=0 (BATTLE_OK=1). The truce band [10^-34.82, 10^-34.78] STRADDLES the Planck length (10^-34.79 -> planck_in_dmz=1). Scaling by the superfactorial 9!*8!*...*1! - the bases are LIT (9!=362880, 9!*8!*7!=7.37e13) but the product OVERFLOWS f64 at *6! (uncomputable, like the qubit wall) - AMBER. Realized as a live 220x132 automaton (verified: settles ~50/50, DMZ column intact, neither crosses). The DMZ = the mirror-fold U-basin; the two colonies its wings.",
+      "blurb": "A cellular battle: two colonies, c1 and c2, spread from L0 and R0 across a field and settle into a symmetric standoff, held apart by a frozen DMZ well that neither can cross - the U-basin of the fold, the truce at the Planck throat. Grounded on i13 (BATTLE_OK=1: c1=5, c2=5, DMZ holds; the truce band straddles the Planck length 10^-34.79). Scaled by the superfactorial 9!*8!*...*1!, whose product overflows f64 at *6! (AMBER). Realized as a live cellular automaton that settles ~50/50 with the DMZ intact. Execute at every level.",
+      "room": "darts",
+      "accent": "#57e6c8",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "kicker": "milestone - two colonies, a DMZ well",
+      "url": "https://davidwise01.github.io/ud0/world5/the-cellular-battle.html",
+      "seal": "0053447f8f4b41ec3d8a988ee75fcddc269ce7c65863117bd8251942c4642599"
     }
   ],
   "keepers": [
@@ -9779,7 +9796,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "b89e9d721d3c07df3d1bcc1029929cf46f47a665dacea9c12df790642960e261",
+  "i13_root": "e064864602de8dbbcbcdf02f82c0fcf8caf551f973eb023ce99dd13ec6662a9c",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

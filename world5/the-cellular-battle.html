@@ -1,0 +1,151 @@
+<title>The Cellular Battle</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{
+  --ink:#efe4ff; --ink2:#c3b2e6; --ink3:#9683c4;
+  --c1:#b98bff; --c1d:#6d28d9; --c2:#f4b24a; --c2d:#d9550a; --dmz:#57e6c8;
+  --panel:rgba(28,16,52,.6); --line:rgba(160,120,255,.26);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#140a2c;color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;overflow:hidden}
+#cv{position:fixed;inset:0;width:100%;height:100%;display:block;image-rendering:pixelated;background:#140a2c}
+.mono{font-family:"Spline Sans Mono",monospace}
+.frame{position:fixed;inset:0;pointer-events:none;z-index:5}
+.head{position:absolute;top:0;left:0;right:0;padding:clamp(14px,3vw,26px) clamp(16px,3.5vw,34px);display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.title h1{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(1.5rem,4.4vw,2.7rem);margin:0;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 34px rgba(139,63,240,.55)}
+.title .sub{font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dmz);margin-top:8px}
+.glyph{font-family:"Spline Sans Mono",monospace;font-size:clamp(.72rem,2vw,1rem);font-weight:600;color:var(--ink2);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 15px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);letter-spacing:.06em;white-space:nowrap;max-width:92vw;overflow:hidden;text-overflow:ellipsis}
+.glyph .a{color:var(--c1)} .glyph .b{color:var(--c2)} .glyph .d{color:var(--dmz)}
+.verdict{position:absolute;left:clamp(16px,3.5vw,34px);top:clamp(90px,16vw,120px);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);max-width:270px}
+.verdict h2{font-family:"Fraunces",serif;font-size:.98rem;margin:0 0 8px;color:var(--dmz)}
+.verdict .row{display:flex;justify-content:space-between;gap:12px;font-family:"Spline Sans Mono",monospace;font-size:.74rem;padding:3px 0;color:var(--ink2)}
+.verdict .row b{color:var(--dmz)} .verdict .row .v1{color:var(--c1)} .verdict .row .v2{color:var(--c2)}
+.verdict .src{font-family:"Spline Sans Mono",monospace;font-size:.62rem;color:var(--ink3);margin-top:9px;border-top:1px solid var(--line);padding-top:8px}
+.panel{position:absolute;right:clamp(16px,3.5vw,34px);bottom:clamp(16px,3.5vw,28px);background:rgba(22,12,44,.72);border:1px solid var(--line);border-radius:14px;padding:14px 16px;backdrop-filter:blur(11px);-webkit-backdrop-filter:blur(11px);width:min(280px,86vw);pointer-events:auto}
+.panel h3{font-family:"Fraunces",serif;font-size:1rem;margin:0 0 3px}
+.panel .hint{font-size:.76rem;color:var(--ink2);margin:0 0 11px}
+.ctl{margin:9px 0}
+.ctl label{display:flex;justify-content:space-between;font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);margin-bottom:4px}
+.ctl label b{color:var(--dmz);text-transform:none}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:5px;border-radius:100px;background:rgba(160,120,255,.24);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,var(--c1),var(--c2));cursor:pointer;box-shadow:0 0 12px rgba(185,139,255,.7)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border:none;border-radius:50%;background:linear-gradient(135deg,var(--c1),var(--c2));cursor:pointer}
+.btn{margin-top:6px;pointer-events:auto;font-family:"Spline Sans Mono",monospace;font-size:.72rem;letter-spacing:.06em;color:var(--dmz);background:rgba(87,230,200,.1);border:1px solid rgba(87,230,200,.4);border-radius:8px;padding:8px 12px;cursor:pointer;width:100%}
+.tally{margin-top:11px;background:rgba(16,8,36,.6);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-family:"Spline Sans Mono",monospace;font-size:.78rem;color:var(--ink2)}
+.tally .bar{height:9px;border-radius:100px;overflow:hidden;display:flex;margin-top:7px;background:#241435}
+.tally .bar .s1{background:linear-gradient(90deg,var(--c1d),var(--c1))} .tally .bar .sd{background:var(--dmz)} .tally .bar .s2{background:linear-gradient(90deg,var(--c2),var(--c2d))}
+.foot{position:absolute;bottom:clamp(12px,3vw,22px);left:clamp(16px,3.5vw,34px);font-family:"Spline Sans Mono",monospace;font-size:.62rem;color:var(--ink3);letter-spacing:.04em;max-width:46ch;line-height:1.6}
+.foot b{color:var(--dmz)}
+@media(max-width:720px){.verdict{display:none}.foot{display:none}}
+</style>
+
+<canvas id="cv"></canvas>
+
+<div class="frame">
+  <div class="head">
+    <div class="title"><h1>The Cellular Battle</h1><div class="sub">two colonies &middot; a DMZ well at the Planck throat</div></div>
+    <div class="glyph">[ L0 -+ { (<span class="a">c1</span>) (<span class="d">[.]</span>) (<span class="b">c2</span>) } +- R0 ]</div>
+  </div>
+  <div class="verdict">
+    <h2>Grounded on compIle&nbsp;13</h2>
+    <div class="row"><span>c1 territory</span><b class="v1" id="vt1">5</b></div>
+    <div class="row"><span>c2 territory</span><b class="v2" id="vt2">5</b></div>
+    <div class="row"><span>DMZ held</span><b>1</b></div>
+    <div class="row"><span>symmetric standoff</span><b>1</b></div>
+    <div class="row"><span>Planck in DMZ</span><b>1</b></div>
+    <div class="row"><span>9!&middot;8!&middot;7!</span><b>7.37e13</b></div>
+    <div class="src">i13.exe run cell_battle.i13<br>BATTLE_OK = 1 &middot; overflows f64 at &middot;6!</div>
+  </div>
+</div>
+
+<div class="panel">
+  <h3>The colony</h3>
+  <p class="hint">Two colonies spread from L0 and R0; the teal <b style="color:var(--dmz)">DMZ well</b> is frozen and neither can cross. It settles to a standoff at the throat.</p>
+  <div class="ctl"><label>speed <b><span id="spn">6</span></b></label><input id="sp" type="range" min="1" max="20" value="6"></div>
+  <div class="ctl"><label>DMZ width <b><span id="dwn">3</span></b></label><input id="dw" type="range" min="1" max="12" value="3"></div>
+  <button class="btn" id="reset">&#9211; restart the battle</button>
+  <div class="tally">
+    territory now
+    <div class="bar"><i class="s1" id="b1" style="width:47%"></i><i class="sd" id="bd" style="width:6%"></i><i class="s2" id="b2" style="width:47%"></i></div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:.68rem"><span style="color:var(--c1)" id="p1">c1 47%</span><span style="color:var(--dmz)" id="pd">dmz</span><span style="color:var(--c2)" id="p2">c2 47%</span></div>
+  </div>
+</div>
+<div class="foot"><b>execute at every level</b> &mdash; the DMZ is the U&#8209;well, the two colonies its mirrored wings; the truce holds at 10&#8315;&sup3;&#8308; &middot; &copy; ROOT0 &middot; David&nbsp;Lee&nbsp;Wise &amp; AVAN &middot; |||..()</div>
+
+<script>
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d',{alpha:false});
+const W=220, H=132;                       // battle grid
+let grid=new Int8Array(W*H), next=new Int8Array(W*H);
+let img=ctx.createImageData(W,H);
+let dmzW=3, speed=6;
+// colors as [r,g,b]
+const COL={0:[26,14,52],1:[110,40,217],2:[217,85,10],9:[87,230,200]};
+const BRIGHT={1:[185,139,255],2:[244,178,74]};
+function idx(x,y){return y*W+x;}
+function seed(){
+  grid.fill(0);
+  const c=W>>1, hw=dmzW>>1;
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+    if(Math.abs(x-c)<=hw){grid[idx(x,y)]=9;continue;}              // DMZ well
+    if(x < 14) grid[idx(x,y)]=1;                                    // L0 base
+    else if(x > W-15) grid[idx(x,y)]=2;                             // R0 base
+    else if(x<c && Math.random()<0.02) grid[idx(x,y)]=1;           // scattered scouts
+    else if(x>c && Math.random()<0.02) grid[idx(x,y)]=2;
+  }
+}
+function step(){
+  next.set(grid);
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+    const i=idx(x,y), s=grid[i];
+    if(s===9) continue;                                            // DMZ frozen
+    let n1=0,n2=0;
+    for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){
+      if(!dx&&!dy)continue;
+      const nx=x+dx, ny=y+dy; if(nx<0||nx>=W||ny<0||ny>=H)continue;
+      const v=grid[idx(nx,ny)]; if(v===1)n1++; else if(v===2)n2++;
+    }
+    if(s===0){ if(n1>n2)next[i]=1; else if(n2>n1)next[i]=2; }      // claim empty
+    else if(s===1){ if(n2>n1+1)next[i]=2; }                         // captured
+    else if(s===2){ if(n1>n2+1)next[i]=1; }
+  }
+  const t=grid; grid=next; next=t;
+}
+function draw(){
+  const d=img.data; let c1=0,c2=0,dz=0;
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+    const i=idx(x,y), s=grid[i]; let col=COL[s];
+    if(s===1)c1++; else if(s===2)c2++; else if(s===9)dz++;
+    // frontline brighten: owned cell adjacent to enemy
+    if(s===1||s===2){
+      let enemy=false;
+      for(let k=0;k<4&&!enemy;k++){const nx=x+[1,-1,0,0][k],ny=y+[0,0,1,-1][k]; if(nx>=0&&nx<W&&ny>=0&&ny<H){const v=grid[idx(nx,ny)]; if((s===1&&v===2)||(s===2&&v===1))enemy=true;}}
+      if(enemy)col=BRIGHT[s];
+    }
+    const p=i*4; d[p]=col[0];d[p+1]=col[1];d[p+2]=col[2];d[p+3]=255;
+  }
+  ctx.putImageData(img,0,0);
+  // HUD tally
+  const tot=W*H; const q1=Math.round(c1/tot*100),q2=Math.round(c2/tot*100),qd=Math.max(0,100-q1-q2);
+  b1.style.width=q1+'%'; bd.style.width=qd+'%'; b2.style.width=q2+'%';
+  p1.textContent='c1 '+q1+'%'; p2.textContent='c2 '+q2+'%'; pd.textContent='dmz';
+}
+function resize(){ const d=Math.min(devicePixelRatio||1,2); cv.width=W; cv.height=H;
+  cv.style.width='100vw'; cv.style.height='100vh'; }   // canvas is fixed grid, CSS stretches (pixelated)
+addEventListener('resize',resize); resize();
+const sp=document.getElementById('sp'),dw=document.getElementById('dw'),spn=document.getElementById('spn'),dwn=document.getElementById('dwn');
+const b1=document.getElementById('b1'),b2=document.getElementById('b2'),bd=document.getElementById('bd'),p1=document.getElementById('p1'),p2=document.getElementById('p2'),pd=document.getElementById('pd');
+seed(); draw();
+let acc=0, last=performance.now();
+function frame(now){
+  const dt=now-last; last=now; acc+=dt*speed/60;
+  while(acc>=1){ step(); acc-=1; }
+  draw();
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+// controls
+sp.oninput=()=>{speed=+sp.value;spn.textContent=speed;};
+dw.oninput=()=>{dmzW=+dw.value;dwn.textContent=dmzW;seed();};
+document.getElementById('reset').onclick=seed;
+</script>
