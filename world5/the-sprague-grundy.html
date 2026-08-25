@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE SPRAGUE-GRUNDY &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 568 &middot; a helldive across the board</span></div>
+<header>
+  <h1>THE SPRAGUE-GRUNDY <span class="c">every impartial game is a nim-heap</span></h1>
+  <p class="sub">The astonishing theorem of combinatorial game theory: <b>every</b> impartial game under normal play is equivalent to a single <b>nim-heap</b>. Its size is the position&rsquo;s <b>Grundy number</b> &mdash; the <span class="k">mex</span> (minimum excludant) of the Grundy numbers of the positions you can move to. A sum of games is won exactly like nim: XOR the Grundy numbers, non-zero means the mover wins. One theorem collapses a universe of games onto nim.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">grundy(p) = mex of successors' grundy</span></h2>
+  <p>The demo computes the Grundy numbers of the subtraction game {1,2,3} and shows they are k mod 4: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; grundy the game</button><span id="say" class="res"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Sprague 1935 &middot; Grundy 1939</span></h2>
+  <p class="myth">&ldquo;Sprague-Grundy solves all two-player games.&rdquo; &mdash; only <b>impartial</b> games (same moves for both) under normal play; partisan games need surreal numbers, mis&egrave;re play differs. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>mex</b> &middot; the smallest non-negative integer NOT among the successors&rsquo; Grundy values.<br><b>the heap</b> &middot; a position of Grundy number g plays exactly like a nim-heap of size g.<br><b>1935/39</b> &middot; <span class="who">R.&nbsp;Sprague</span> and <span class="who">P.&nbsp;M.&nbsp;Grundy</span> found it independently.</div>
+  <p style="margin-top:10px">A whole game, weighed as one number. <span class="tag t-open">theorem</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the grundy values, on the compiler</span></h2>
+  <p>On i-13, mex(0,1,2)=3 and the subtraction-game Grundy values are periodic (k mod 4):</p>
+  <div class="evi good">$ i13 run gm_sprague-grundy.i13
+RUN OK &middot; 5784 step(s) &middot; call depth 8
+mex_012 = 3
+grundy 0..6 = 0 1 2 3 0 1 2   -- k mod 4
+periodic = 1</div>
+  <div class="rec"><b>Recommend as a NULL &mdash; a theorem (B39).</b> The Grundy number is forall-pinned by the game graph; every correct solver returns the same value (WITNESSED). The nim-equivalence is a fact, not a same-function difference. NULL &mdash; every impartial game is a nim-heap.</div>
+</div>
+
+<script>
+"use strict";
+(function(){var out=document.getElementById("out"),say=document.getElementById("say");function run(){function mex(s){var i=0;while(s.has(i))i++;return i;}var g=[];for(var k=0;k<=6;k++){if(k===0){g.push(0);continue;}var s=new Set();for(var d=1;d<=3;d++)if(k-d>=0)s.add(g[k-d]);g.push(mex(s));}out.innerHTML="  mex{0,1,2} = <span style='color:#59ffb0'>3</span>\n  subtraction game {1,2,3}:\n  grundy 0..6 = "+g.join(" ")+"\n  = k mod 4 -- P-positions (grundy 0) at 0,4,...";say.innerHTML="grundy = <span class='true'>k mod 4</span>";}document.getElementById("go").onclick=run;run();})();
+</script>
+
+<footer>
+  <b>DART 568 &middot; THE SPRAGUE-GRUNDY</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Sprague-Grundy</b> &mdash; every impartial game = a nim-heap of Grundy number = mex of successors; Sprague 1935, Grundy 1939. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Games are grounded with integer arithmetic, native recursion (backward induction / game trees), and the integrated bitwise XOR (nim); mex, ln (series) and sqrt (Newton) where needed &mdash; noted per dart. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE GAME</b> (batch 56) &mdash; game theory &amp; combinatorial game theory. Keeper shot: <b>the-gale-shapley</b> (a loose-spec DOF &mdash; proposer- vs receiver-optimal give two different valid stable matchings). Minimax, alpha-beta, Sprague-Grundy, nimbers, Gale-Shapley, Zermelo, Vickrey, Shapley value, Nash, tit-for-tat, surreal numbers, Hackenbush, Hex, secretary, MCTS, retrograde analysis. The games join [[the-nim-game]] and [[the-negamax]] already in World V.
+</footer>
+</body>
+</html>
