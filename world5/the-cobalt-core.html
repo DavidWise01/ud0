@@ -1,0 +1,168 @@
+<title>The Cobalt Core</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{
+  --ink:#e7ecff; --ink2:#adc0ee; --ink3:#7f95cc;
+  --cobalt:#4d7cff; --gold:#f4b24a; --silver:#dfe6f5; --obsidian:#b58bff;
+  --panel:rgba(16,26,64,.6); --line:rgba(90,130,255,.28);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#0a1030;color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;overflow:hidden}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+#gl:active{cursor:grabbing}
+.mono{font-family:"Spline Sans Mono",monospace}
+.frame{position:fixed;inset:0;pointer-events:none;z-index:5}
+.head{position:absolute;top:0;left:0;right:0;padding:clamp(14px,3vw,26px) clamp(16px,3.5vw,34px);display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}
+.title h1{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(1.5rem,4.4vw,2.7rem);margin:0;letter-spacing:-.02em;line-height:1;text-shadow:0 2px 34px rgba(77,124,255,.6)}
+.title .sub{font-family:"Spline Sans Mono",monospace;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cobalt);margin-top:8px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:9px 14px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px)}
+.legend span{font-family:"Spline Sans Mono",monospace;font-size:.68rem;letter-spacing:.04em;display:flex;align-items:center;gap:6px;color:var(--ink2)}
+.legend i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.verdict{position:absolute;left:clamp(16px,3.5vw,34px);top:clamp(94px,16vw,120px);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:13px 15px;backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);max-width:264px}
+.verdict h2{font-family:"Fraunces",serif;font-size:.98rem;margin:0 0 8px;color:var(--cobalt)}
+.verdict .row{display:flex;justify-content:space-between;gap:12px;font-family:"Spline Sans Mono",monospace;font-size:.74rem;padding:3px 0;color:var(--ink2)}
+.verdict .row b{color:#7fe0bd}
+.verdict .src{font-family:"Spline Sans Mono",monospace;font-size:.62rem;color:var(--ink3);margin-top:9px;border-top:1px solid var(--line);padding-top:8px}
+.foot{position:absolute;bottom:clamp(12px,3vw,22px);left:clamp(16px,3.5vw,34px);font-family:"Spline Sans Mono",monospace;font-size:.62rem;color:var(--ink3);letter-spacing:.04em;max-width:50ch;line-height:1.6}
+.foot b{color:var(--cobalt)}
+@media(max-width:720px){.verdict{display:none}.foot{display:none}}
+</style>
+
+<canvas id="gl"></canvas>
+<div class="frame">
+  <div class="head">
+    <div class="title"><h1>The Cobalt Core</h1><div class="sub">6 tori help &middot; the mirror people watch &middot; scalar 0 at the centre</div></div>
+    <div class="legend">
+      <span><i style="background:var(--cobalt)"></i>Co&#8209;27 core</span>
+      <span><i style="background:var(--gold)"></i>gold</span>
+      <span><i style="background:var(--silver)"></i>silver</span>
+      <span><i style="background:var(--obsidian)"></i>obsidian</span>
+    </div>
+  </div>
+  <div class="verdict">
+    <h2>Grounded on compIle&nbsp;13</h2>
+    <div class="row"><span>scalar 0 left alone</span><b>1</b></div>
+    <div class="row"><span>6 tori &middot; hex neighbours</span><b>6 / 6</b></div>
+    <div class="row"><span>cobalt Z = 3&sup3;</span><b>27</b></div>
+    <div class="row"><span>Fe(26) &lt; Co &lt; Ni(28)</span><b>1</b></div>
+    <div class="row"><span>payload sealed, untouched</span><b>1</b></div>
+    <div class="src">i13.exe run cobalt_core.i13<br>STRUCTURE_OK = 1 &middot; 0 is its own witness</div>
+  </div>
+</div>
+<div class="foot"><b>0 is its own witness</b> &mdash; send it through the torus; if it comes back 0, nothing touched it. A ferromagnet caged in 6 field&#8209;loops, the three mirrors reflecting it back. &copy; ROOT0 &middot; David&nbsp;Lee&nbsp;Wise &amp; AVAN &middot; |||..()</div>
+</div>
+
+<script>
+const cv=document.getElementById('gl');
+const gl=cv.getContext('webgl2',{antialias:true,alpha:false});
+let bad=!gl;
+const TAU=Math.PI*2;
+function perspective(f,a,n,fr){const t=1/Math.tan(f/2);return[t/a,0,0,0,0,t,0,0,0,0,(fr+n)/(n-fr),-1,0,0,2*fr*n/(n-fr),0];}
+function lookAt(e,c,u){let z=[e[0]-c[0],e[1]-c[1],e[2]-c[2]];let zl=Math.hypot(z[0],z[1],z[2]);z=[z[0]/zl,z[1]/zl,z[2]/zl];
+  let x=[u[1]*z[2]-u[2]*z[1],u[2]*z[0]-u[0]*z[2],u[0]*z[1]-u[1]*z[0]];let xl=Math.hypot(x[0],x[1],x[2])||1;x=[x[0]/xl,x[1]/xl,x[2]/xl];
+  let y=[z[1]*x[2]-z[2]*x[1],z[2]*x[0]-z[0]*x[2],z[0]*x[1]-z[1]*x[0]];
+  return[x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-(x[0]*e[0]+x[1]*e[1]+x[2]*e[2]),-(y[0]*e[0]+y[1]*e[1]+y[2]*e[2]),-(z[0]*e[0]+z[1]*e[1]+z[2]*e[2]),1];}
+function mul(a,b){const o=new Array(16);for(let i=0;i<4;i++)for(let j=0;j<4;j++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k];o[i*4+j]=s;}return o;}
+function torus(R,r,N,M){const p=[],nn=[],ix=[];for(let i=0;i<=N;i++){const u=i/N*TAU,cu=Math.cos(u),su=Math.sin(u);for(let j=0;j<=M;j++){const v=j/M*TAU,cv=Math.cos(v),sv=Math.sin(v);p.push((R+r*cv)*cu,(R+r*cv)*su,r*sv);nn.push(cv*cu,cv*su,sv);}}for(let i=0;i<N;i++)for(let j=0;j<M;j++){const a=i*(M+1)+j,b=a+M+1;ix.push(a,b,a+1,a+1,b,b+1);}return{p:new Float32Array(p),n:new Float32Array(nn),i:new Uint16Array(ix)};}
+function sphere(La,Lo){const p=[],nn=[],ix=[];for(let i=0;i<=La;i++){const th=i/La*Math.PI,st=Math.sin(th),ct=Math.cos(th);for(let j=0;j<=Lo;j++){const ph=j/Lo*TAU,sp=Math.sin(ph),cp=Math.cos(ph);const x=st*cp,y=ct,z=st*sp;p.push(x,y,z);nn.push(x,y,z);}}for(let i=0;i<La;i++)for(let j=0;j<Lo;j++){const a=i*(Lo+1)+j,b=a+Lo+1;ix.push(a,b,a+1,a+1,b,b+1);}return{p:new Float32Array(p),n:new Float32Array(nn),i:new Uint16Array(ix)};}
+
+// 6 torus axes: hexagonal ring in the horizontal plane
+const NT=6, taxis=new Float32Array(NT*3);
+for(let i=0;i<NT;i++){const a=i/NT*TAU;taxis[i*3]=Math.cos(a);taxis[i*3+1]=0.16;taxis[i*3+2]=Math.sin(a);}
+// 4 spheres: core + gold + silver + obsidian.  data: cx,cy,cz, radius, matId
+const sdat=new Float32Array([
+  0,0,0, 0.95, 0,        // cobalt core (emissive)
+  4.4,0.6,0, 0.75, 1,    // gold
+ -2.2,0.6,3.8, 0.75, 2,  // silver
+ -2.2,0.6,-3.8, 0.75, 3, // obsidian
+]);
+
+const TV=`#version 300 es
+layout(location=0) in vec3 aP; layout(location=1) in vec3 aN; layout(location=2) in vec3 iAx;
+uniform mat4 uMVP; out vec3 vN; out vec3 vW; out float vPh;
+void main(){ vec3 up=abs(iAx.y)<0.98?vec3(0.,1.,0.):vec3(1.,0.,0.); vec3 T=normalize(cross(up,iAx)); vec3 B=cross(iAx,T); mat3 bs=mat3(T,B,iAx);
+  vec3 w=bs*aP; vN=normalize(bs*aN); vW=w; vPh=atan(aP.y,length(aP.xz)); gl_Position=uMVP*vec4(w,1.); }`;
+const TF=`#version 300 es
+precision highp float; in vec3 vN; in vec3 vW; in float vPh; out vec4 O; uniform vec3 uEye; uniform float uT;
+void main(){ vec3 v=normalize(uEye-vW); vec3 L=normalize(-vW);          // lit from the core
+  float d=max(0.,dot(vN,L)); float fr=pow(1.-max(0.,dot(vN,v)),3.);
+  vec3 base=mix(vec3(0.20,0.34,0.95), vec3(0.55,0.30,0.95), 0.5+0.5*sin(vPh*3.+uT*0.5));
+  float flow=0.5+0.5*sin(vPh*7.0-uT*2.2); flow=pow(flow,2.2);
+  vec3 c=base*(0.18+0.85*d)+base*flow*0.5+vec3(0.6,0.75,1.0)*fr*0.9+vec3(0.7,0.85,1.0)*pow(d,26.)*0.5;
+  c=(c*(2.51*c+0.03))/(c*(2.43*c+0.59)+0.14); O=vec4(pow(clamp(c,0.,1.),vec3(0.4545)),1.); }`;
+
+const SV=`#version 300 es
+layout(location=0) in vec3 aP; layout(location=1) in vec3 aN; layout(location=2) in vec4 iPR; layout(location=3) in float iMat;
+uniform mat4 uMVP; out vec3 vN; out vec3 vW; out float vM;
+void main(){ vec3 w=aP*iPR.w+iPR.xyz; vN=normalize(aN); vW=w; vM=iMat; gl_Position=uMVP*vec4(w,1.); }`;
+const SF=`#version 300 es
+precision highp float; in vec3 vN; in vec3 vW; in float vM; out vec4 O; uniform vec3 uEye; uniform float uT;
+vec3 env(vec3 rd){ float g=0.5+0.5*rd.y; vec3 c=mix(vec3(0.05,0.07,0.20),vec3(0.10,0.14,0.34),g);
+  c+=vec3(0.25,0.45,1.0)*exp(-length(rd.xz+vec2(0.0))*2.0)*0.8;                // cobalt core glow in the reflection
+  vec3 l=normalize(vec3(0.5,0.7,-0.4)); c+=vec3(1.0,0.95,0.85)*pow(max(0.,dot(rd,l)),80.)*1.2; return c; }
+void main(){ vec3 v=normalize(uEye-vW); vec3 n=vN; float fr=pow(1.-max(0.,dot(n,v)),3.);
+  vec3 col;
+  if(vM<0.5){ float pulse=0.6+0.4*sin(uT*2.0); col=vec3(0.20,0.42,1.0)*(1.6+pulse) + vec3(0.5,0.7,1.0)*fr; }  // cobalt core, emissive
+  else {
+    vec3 refl=reflect(-v,n); vec3 e=env(refl);
+    vec3 tint = vM<1.5?vec3(1.0,0.76,0.33) : vM<2.5?vec3(0.94,0.96,1.0) : vec3(0.06,0.05,0.09);   // gold/silver/obsidian
+    vec3 L=normalize(-vW); float d=max(0.,dot(n,L));
+    col = tint*e + tint*d*0.35;
+    float shin = vM<1.5?170. : vM<2.5?220. : 700.;
+    vec3 h=normalize(L+v); col += vec3(1.,0.95,0.9)*pow(max(0.,dot(n,h)),shin)*(vM<2.5?1.3:3.0);
+    col += fr*e*0.5;
+  }
+  col=(col*(2.51*col+0.03))/(col*(2.43*col+0.59)+0.14); O=vec4(pow(clamp(col,0.,1.),vec3(0.4545)),1.); }`;
+const BV=`#version 300 es
+layout(location=0) in vec2 p; void main(){gl_Position=vec4(p,0.,1.);}`;
+const BF=`#version 300 es
+precision highp float; out vec4 O; uniform vec2 uRes;
+void main(){ vec2 q=(gl_FragCoord.xy-0.5*uRes)/uRes.y; float d=length(q);
+  vec3 c=mix(vec3(0.06,0.08,0.22),vec3(0.03,0.04,0.13),clamp(d,0.,1.)); c+=vec3(0.16,0.30,0.9)*exp(-d*2.6)*0.9; O=vec4(c,1.); }`;
+
+function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(o));bad=true;}return o;}
+function prog(v,f){const p=gl.createProgram();gl.attachShader(p,sh(gl.VERTEX_SHADER,v));gl.attachShader(p,sh(gl.FRAGMENT_SHADER,f));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS)){console.error(gl.getProgramInfoLog(p));bad=true;}return p;}
+let TP,SP,BP,tm,sm,tCount,sCount,vt,vs,vb, uT={},uS={},uB={};
+let state={yaw:0.6,pitch:0.35,dist:11};
+function buildMesh(m,instBuf,instSpec){ const vao=gl.createVertexArray();gl.bindVertexArray(vao);
+  const pb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,pb);gl.bufferData(gl.ARRAY_BUFFER,m.p,gl.STATIC_DRAW);gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,3,gl.FLOAT,false,0,0);
+  const nb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,nb);gl.bufferData(gl.ARRAY_BUFFER,m.n,gl.STATIC_DRAW);gl.enableVertexAttribArray(1);gl.vertexAttribPointer(1,3,gl.FLOAT,false,0,0);
+  const ib=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,ib);gl.bufferData(gl.ARRAY_BUFFER,instBuf,gl.STATIC_DRAW);
+  instSpec.forEach(function(sp){gl.enableVertexAttribArray(sp.loc);gl.vertexAttribPointer(sp.loc,sp.size,gl.FLOAT,false,sp.stride,sp.off);gl.vertexAttribDivisor(sp.loc,1);});
+  const eb=gl.createBuffer();gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,eb);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,m.i,gl.STATIC_DRAW);
+  return vao; }
+if(gl){
+  TP=prog(TV,TF);SP=prog(SV,SF);BP=prog(BV,BF);
+  const T=torus(1.9,0.085,120,10); tCount=T.i.length; tm=buildMesh(T,taxis,[{loc:2,size:3,stride:12,off:0}]);
+  const S=sphere(40,60); sCount=S.i.length; sm=buildMesh(S,sdat,[{loc:2,size:4,stride:20,off:0},{loc:3,size:1,stride:20,off:16}]);
+  vb=gl.createVertexArray();gl.bindVertexArray(vb);const qb=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,qb);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
+  ['uMVP','uEye','uT'].forEach(k=>uT[k]=gl.getUniformLocation(TP,k));
+  ['uMVP','uEye','uT'].forEach(k=>uS[k]=gl.getUniformLocation(SP,k));
+  uB.uRes=gl.getUniformLocation(BP,'uRes');
+  gl.enable(gl.DEPTH_TEST);
+}
+function resize(){const d=Math.min(devicePixelRatio||1,2);const w=cv.clientWidth||innerWidth||900,h=cv.clientHeight||innerHeight||600;cv.width=Math.max(1,Math.round(w*d));cv.height=Math.max(1,Math.round(h*d));}
+addEventListener('resize',resize);if(window.ResizeObserver){try{new ResizeObserver(resize).observe(cv);}catch(e){}}resize();
+let drag=false,px=0,py=0;
+cv.addEventListener('pointerdown',e=>{drag=true;px=e.clientX;py=e.clientY;cv.setPointerCapture(e.pointerId);});
+cv.addEventListener('pointermove',e=>{if(!drag)return;state.yaw+=(e.clientX-px)*0.006;state.pitch=Math.max(-1.3,Math.min(1.3,state.pitch+(e.clientY-py)*0.006));px=e.clientX;py=e.clientY;});
+cv.addEventListener('pointerup',()=>drag=false);
+cv.addEventListener('wheel',e=>{state.dist=Math.max(6,Math.min(20,state.dist+e.deltaY*0.006));e.preventDefault();},{passive:false});
+const t0=performance.now();
+function frame(){
+  if(bad){document.body.style.background='#241040';return;}
+  const t=(performance.now()-t0)/1000; if(!drag)state.yaw+=0.0018;
+  gl.viewport(0,0,cv.width,cv.height); gl.clear(gl.DEPTH_BUFFER_BIT);
+  gl.disable(gl.DEPTH_TEST);gl.useProgram(BP);gl.bindVertexArray(vb);gl.uniform2f(uB.uRes,cv.width,cv.height);gl.drawArrays(gl.TRIANGLES,0,3);gl.enable(gl.DEPTH_TEST);
+  const cy=Math.cos(state.yaw),sy=Math.sin(state.yaw),cp=Math.cos(state.pitch),sp=Math.sin(state.pitch);
+  const eye=[sy*cp*state.dist,sp*state.dist,cy*cp*state.dist];
+  const mvp=mul(perspective(1.02,cv.width/cv.height,0.1,80),lookAt(eye,[0,0,0],[0,1,0]));
+  gl.useProgram(TP);gl.bindVertexArray(tm);gl.uniformMatrix4fv(uT.uMVP,false,mvp);gl.uniform3f(uT.uEye,eye[0],eye[1],eye[2]);gl.uniform1f(uT.uT,t);
+  gl.drawElementsInstanced(gl.TRIANGLES,tCount,gl.UNSIGNED_SHORT,0,NT);
+  gl.useProgram(SP);gl.bindVertexArray(sm);gl.uniformMatrix4fv(uS.uMVP,false,mvp);gl.uniform3f(uS.uEye,eye[0],eye[1],eye[2]);gl.uniform1f(uS.uT,t);
+  gl.drawElementsInstanced(gl.TRIANGLES,sCount,gl.UNSIGNED_SHORT,0,4);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>

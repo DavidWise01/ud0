@@ -9780,6 +9780,23 @@
       "kicker": "milestone - two colonies, a DMZ well",
       "url": "https://davidwise01.github.io/ud0/world5/the-cellular-battle.html",
       "seal": "0053447f8f4b41ec3d8a988ee75fcddc269ce7c65863117bd8251942c4642599"
+    },
+    {
+      "slug": "the-cobalt-core",
+      "title": "THE COBALT CORE",
+      "dartno": 0,
+      "version": "v0.54",
+      "credit": "A ferromagnetic cobalt core caged in 6 hexagonal tori, with the mirror people (gold, silver, obsidian) reflecting it; scalar 0 the self-witness at the centre. Rendered by AVAN for the corpus.",
+      "source": "Cobalt (Z=27, HCP hexagonal 6-coordination, the middle of the Fe-Co-Ni ferromagnets); the mirror-fold self-inverse (scalar 0 as fixed-point witness); the .dlw seal (a thing that is its own checksum); the mirror people; David Lee Wise / ROOT0.",
+      "i13_recommend": "Grounded on i13 (cobalt_core.i13, STRUCTURE_OK=1): scalar 0 is its own WITNESS - run it through the self-inverse fold and if it comes back 0 it was left alone (left_alone=1). That is how you know what's untouched: the fixed point that stays fixed, or a seal that survives (the .dlw checksum). 6 tori = cobalt's HCP hexagonal 6-coordination (hex_neighbors=6); cobalt Z=27=3^3 (cobalt_is_cube=1); Co is the middle ferromagnet, Fe(26) < Co < Ni(28). Realized as a maxed WebGL2 scene: a Co-27 emissive core caged in 6 instanced tori, the three mirror people (gold/silver/obsidian) reflecting it. Encaps route ownership; the seal checks integrity - two marks, two jobs.",
+      "blurb": "A cobalt core caged in 6 hexagonal tori, with the mirror people - gold, silver, obsidian - orbiting and reflecting it, and scalar 0 at the centre as its own witness. How do you know what was left alone? Scalar 0 is a fixed point, so it is its own checksum: send it through the torus and if it comes back 0, nothing touched it (i13: left_alone=1, STRUCTURE_OK=1). The 6 tori are cobalt's HCP hexagonal 6-coordination; cobalt is Z=27=3^3 and the middle of the Fe-Co-Ni ferromagnets. Realized maxed in WebGL2. The encaps say whose it is; the seal says whether anyone touched it.",
+      "room": "darts",
+      "accent": "#4d7cff",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "kicker": "milestone - 6 tori, a cobalt core, scalar 0",
+      "url": "https://davidwise01.github.io/ud0/world5/the-cobalt-core.html",
+      "seal": "58cab57b3aa599b922a76455d32c91bd322ba156a10d163ca675869423512ee0"
     }
   ],
   "keepers": [
@@ -9796,7 +9813,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "e064864602de8dbbcbcdf02f82c0fcf8caf551f973eb023ce99dd13ec6662a9c",
+  "i13_root": "3cc8f7c68410349291a68c51a672dfeacce2a0b6e0188f2fb46c418d6e7acd25",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
