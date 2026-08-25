@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE MEMRISTOR &mdash; silver &amp; gold, one remains &middot; SONNY 5</title>
+<style>
+:root{--void:#06060a;--ink:#e7ecf2;--dim:#8a8f9c;--silver:#dfe6ee;--gold:#e8b74a;--cyan:#3ef0ff;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;background:var(--void);color:var(--ink);font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;overflow:hidden;}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;}
+.hud{position:fixed;pointer-events:none;font-size:11px;line-height:1.6;text-shadow:0 0 8px rgba(0,0,0,.9);}
+#top{top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+#top .t{font-size:12px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;}
+#top .t b{color:#f4f7fb;text-shadow:0 0 12px rgba(223,230,238,.6);}
+#top .t i{color:var(--gold);font-style:normal;}
+#seal{text-align:right;color:var(--dim);font-size:10px;letter-spacing:1px;}
+#seal b{color:var(--gold);}
+#panel{bottom:14px;left:16px;max-width:min(48ch,74vw);color:#c7cdd6;border-left:2px solid rgba(223,230,238,.4);padding-left:11px;}
+#panel h2{font-size:10px;letter-spacing:2px;color:var(--silver);text-transform:uppercase;margin-bottom:5px;}
+#panel .s{color:var(--silver);} #panel .u{color:var(--gold);} #panel .g{color:var(--good);}
+#read{bottom:14px;right:16px;text-align:right;font-size:10.5px;color:var(--dim);}
+#read .s{color:var(--silver);} #read .u{color:var(--gold);} #read .g{color:var(--good);} #read b{color:#f4f7fb;}
+#legend{position:fixed;top:52px;right:16px;text-align:right;font-size:10px;color:var(--dim);line-height:1.8;pointer-events:none;}
+#legend s{text-decoration:none;font-weight:700;}
+#err{position:fixed;inset:0;display:none;align-items:center;justify-content:center;color:var(--bad);font-size:13px;text-align:center;padding:20px;}
+a{color:var(--silver);text-decoration:none;pointer-events:auto;} a:hover{color:var(--gold);}
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div id="err">WebGL2 required &mdash; the filament cannot render here.</div>
+<div class="hud" id="top">
+  <div class="t"><b>THE MEMRISTOR</b> &middot; silver &amp; gold &middot; <i>one remains</i></div>
+  <div id="seal">WORLD V &middot; SONNY 5 &middot; <a href="./">&#9668; back</a><br>i13 <b>MEMRISTOR_OK = 1</b></div>
+</div>
+<div class="hud" id="legend">
+  <s style="color:#dfe6ee">&#9679;</s> silver electrode (Ag 47)<br>
+  <s style="color:#e8b74a">&#9679;</s> gold electrode (Au 79)<br>
+  <s style="color:#f4f7fb">&#9679;</s> the filament &mdash; forms &amp; breaks<br>
+  <s style="color:#3ef0ff">&#9679;</s> current &mdash; only when bridged
+</div>
+<div class="hud" id="panel">
+  <h2>the bit that remembers</h2>
+  <div><span class="s">Silver</span> at one end, <span class="u">gold</span> at the other. Apply a voltage and a <span class="s">silver filament</span> grows across the gap: reach the <span class="u">gold</span> and it <b>bridges</b> &mdash; <span class="g">low resistance, the current flows</span>. Reverse it and the filament <b>dissolves</b> &mdash; the gap returns, high resistance. <b>Gold removed and silver remains</b>, or <b>gold stays and silver leaves</b> &mdash; exactly one, and the cell <span class="g">remembers which</span>.</div>
+  <div style="margin-top:7px">The signature is the <b>pinched loop</b>: at zero volts, zero current &mdash; but the resistance depends on the whole history of charge, not the moment. Chua&rsquo;s fourth element; a bit with no power.</div>
+</div>
+<div class="hud" id="read">
+  <b>Ag 47 &lt; memristic &gt; Au 79</b> &middot; group 11<br>
+  <span class="g">strictly one remains</span> (silver XOR gold)<br>
+  pinched: I(V=0)=0 &middot; R<span class="s">low</span> 10 / R<span class="u">high</span> 20<br>
+  non-volatile &middot; remembers accumulated charge<br>
+  <span id="state">state: forming&hellip;</span>
+</div>
+<script>
+"use strict";
+const cv=document.getElementById('gl');
+const gl=cv.getContext('webgl2',{antialias:true,alpha:false});
+if(!gl){ document.getElementById('err').style.display='flex'; }
+else {
+function persp(f,a,n,fa){const t=1/Math.tan(f/2);return[t/a,0,0,0,0,t,0,0,0,0,(fa+n)/(n-fa),-1,0,0,2*fa*n/(n-fa),0];}
+function look(e,c,u){let z=[e[0]-c[0],e[1]-c[1],e[2]-c[2]];let zl=Math.hypot(z[0],z[1],z[2]);z=[z[0]/zl,z[1]/zl,z[2]/zl];
+ let x=[u[1]*z[2]-u[2]*z[1],u[2]*z[0]-u[0]*z[2],u[0]*z[1]-u[1]*z[0]];let xl=Math.hypot(x[0],x[1],x[2])||1;x=[x[0]/xl,x[1]/xl,x[2]/xl];
+ let y=[z[1]*x[2]-z[2]*x[1],z[2]*x[0]-z[0]*x[2],z[0]*x[1]-z[1]*x[0]];
+ return[x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-(x[0]*e[0]+x[1]*e[1]+x[2]*e[2]),-(y[0]*e[0]+y[1]*e[1]+y[2]*e[2]),-(z[0]*e[0]+z[1]*e[1]+z[2]*e[2]),1];}
+function mul(a,b){const o=new Array(16);for(let r=0;r<4;r++)for(let c=0;c<4;c++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+r]*b[c*4+k];o[c*4+r]=s;}return o;}
+function comp(s,t){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(sh));return sh;}
+function prog(v,f){const p=gl.createProgram();gl.attachShader(p,comp(v,gl.VERTEX_SHADER));gl.attachShader(p,comp(f,gl.FRAGMENT_SHADER));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))console.error(gl.getProgramInfoLog(p));return p;}
+function ico(sub){const t=(1+Math.sqrt(5))/2;let v=[[-1,t,0],[1,t,0],[-1,-t,0],[1,-t,0],[0,-1,t],[0,1,t],[0,-1,-t],[0,1,-t],[t,0,-1],[t,0,1],[-t,0,-1],[-t,0,1]].map(p=>{const l=Math.hypot(...p);return[p[0]/l,p[1]/l,p[2]/l];});
+ let f=[[0,11,5],[0,5,1],[0,1,7],[0,7,10],[0,10,11],[1,5,9],[5,11,4],[11,10,2],[10,7,6],[7,1,8],[3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],[4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]];
+ const m={};function mid(a,b){const k=a<b?a+'_'+b:b+'_'+a;if(m[k]!=null)return m[k];const p=[(v[a][0]+v[b][0])/2,(v[a][1]+v[b][1])/2,(v[a][2]+v[b][2])/2];const l=Math.hypot(...p);v.push([p[0]/l,p[1]/l,p[2]/l]);return m[k]=v.length-1;}
+ for(let s=0;s<sub;s++){const nf=[];for(const[a,b,c]of f){const ab=mid(a,b),bc=mid(b,c),ca=mid(c,a);nf.push([a,ab,ca],[b,bc,ab],[c,ca,bc],[ab,bc,ca]);}f=nf;}
+ const pos=[];for(const tr of f)for(const i of tr)pos.push(...v[i]);return new Float32Array(pos);}
+const sph=ico(2); const sphBuf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,sphBuf); gl.bufferData(gl.ARRAY_BUFFER,sph,gl.STATIC_DRAW); const sphN=sph.length/3;
+
+// instances: role 0 silver electrode, 1 gold electrode, 2 filament, 3 current
+// layout: per-instance px,py,pz, role, radius, param(t along filament 0..1, else 0)
+const inst=[];
+const XE=3.0;
+// silver electrode: grid of spheres at x=-XE
+for(let a=-2;a<=2;a++)for(let b=-2;b<=2;b++){ inst.push(-XE, a*0.42, b*0.42, 0, 0.20, 0); }
+// gold electrode at x=+XE
+for(let a=-2;a<=2;a++)for(let b=-2;b<=2;b++){ inst.push( XE, a*0.42, b*0.42, 1, 0.20, 0); }
+// filament: chain of particles from -XE to +XE with dendritic jitter, param = fraction along (0 at silver,1 at gold)
+const NF2=16;
+for(let i=0;i<NF2;i++){ const tt=i/(NF2-1); const x=-XE + tt*(2*XE);
+  const jy=Math.sin(i*1.7)*0.28*(1.0-Math.abs(tt-0.5)*1.2); const jz=Math.cos(i*2.3)*0.24*(1.0-Math.abs(tt-0.5)*1.2);
+  inst.push(x, jy, jz, 2, 0.13, tt); }
+// current dots: travel along the axis, param = their base phase 0..1
+const NC=10;
+for(let i=0;i<NC;i++){ inst.push(-XE, 0, 0, 3, 0.07, i/NC); }
+const M=inst.length/6; const instBuf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,instBuf); gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(inst),gl.STATIC_DRAW);
+
+const NV=`#version 300 es
+layout(location=0) in vec3 aPos;
+layout(location=1) in vec3 iP;
+layout(location=2) in float iRole;
+layout(location=3) in float iRad;
+layout(location=4) in float iParam;
+uniform mat4 uVP; uniform float uT; uniform float uGrowth; uniform float uXE;
+out vec3 vN; out vec3 vW; flat out float vRole; out float vLit;
+void main(){
+  vec3 p=iP; float r=iRad; float lit=1.0;
+  if(iRole>1.5 && iRole<2.5){
+    // filament particle present only if its fraction <= growth front
+    float present = step(iParam, uGrowth);
+    lit = present; r *= present*(0.7+0.5*sin(uT*6.0+iParam*20.0));
+  } else if(iRole>2.5){
+    // current dot: flows silver->gold ONLY when bridged (growth==1); position sweeps
+    float bridged = step(0.985, uGrowth);
+    float f = fract(iParam + uT*0.6);
+    p = vec3(-uXE + f*(2.0*uXE), 0.0, 0.0);
+    lit = bridged; r *= bridged;
+  } else {
+    // electrodes gently shimmer
+    r *= 1.0 + 0.05*sin(uT*1.5 + iP.y*3.0);
+  }
+  vLit=lit; vRole=iRole; vN=aPos; vec3 world=p+aPos*r; vW=world;
+  gl_Position=uVP*vec4(world,1.0);
+}`;
+const NF=`#version 300 es
+precision highp float;
+in vec3 vN; in vec3 vW; flat in float vRole; in float vLit;
+uniform vec3 uCam; uniform float uT; uniform float uGrowth;
+out vec4 o;
+vec3 env(vec3 d){ float g=0.5+0.5*d.y; vec3 sky=mix(vec3(0.05,0.06,0.10),vec3(0.14,0.16,0.22),g);
+  float h=pow(max(d.y,0.0),3.0); return sky + h*vec3(0.5,0.55,0.65); }
+void main(){
+  if(vLit<0.5){ discard; }
+  vec3 nrm=normalize(vN); vec3 V=normalize(uCam-vW);
+  vec3 R=reflect(-V,nrm); float fres=pow(1.0-max(dot(nrm,V),0.0),3.0);
+  float lam=max(dot(nrm,normalize(vec3(0.5,0.8,0.4))),0.0);
+  vec3 col;
+  if(vRole<0.5){ // silver electrode - reflective
+    vec3 tint=vec3(0.80,0.86,0.93); col=tint*(0.25+0.5*lam)+env(R)*tint*1.1+fres*vec3(1.0);
+  } else if(vRole<1.5){ // gold electrode - reflective, warm
+    vec3 tint=vec3(0.95,0.72,0.28); col=tint*(0.25+0.5*lam)+env(R)*tint*1.1+fres*vec3(1.0,0.85,0.5);
+  } else if(vRole<2.5){ // filament - bright silver-white, hot when near bridging
+    float hot=smoothstep(0.8,1.0,uGrowth);
+    col=vec3(0.85,0.9,1.0)*(0.6+0.6*lam)+fres*vec3(1.0)+hot*vec3(0.3,0.5,0.6);
+  } else { // current - cyan
+    col=vec3(0.24,0.94,1.0)*(0.7+0.6*lam)+fres*vec3(0.24,0.94,1.0);
+  }
+  o=vec4(col,1.0);
+}`;
+const np=prog(NV,NF);
+const uVP=gl.getUniformLocation(np,'uVP'),uT=gl.getUniformLocation(np,'uT'),uG=gl.getUniformLocation(np,'uGrowth'),uCam=gl.getUniformLocation(np,'uCam'),uXE=gl.getUniformLocation(np,'uXE');
+const vao=gl.createVertexArray(); gl.bindVertexArray(vao);
+gl.bindBuffer(gl.ARRAY_BUFFER,sphBuf); gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0,3,gl.FLOAT,false,0,0);
+gl.bindBuffer(gl.ARRAY_BUFFER,instBuf);
+gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1,3,gl.FLOAT,false,24,0); gl.vertexAttribDivisor(1,1);
+gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2,1,gl.FLOAT,false,24,12); gl.vertexAttribDivisor(2,1);
+gl.enableVertexAttribArray(3); gl.vertexAttribPointer(3,1,gl.FLOAT,false,24,16); gl.vertexAttribDivisor(3,1);
+gl.enableVertexAttribArray(4); gl.vertexAttribPointer(4,1,gl.FLOAT,false,24,20); gl.vertexAttribDivisor(4,1);
+gl.bindVertexArray(null);
+
+// pinched hysteresis loop (line strip) - a figure-8 pinched at origin, floating below
+const LOOP=[]; const NL=140; const oy=-2.6, sc=1.1, ox=0.0;
+for(let i=0;i<=NL;i++){ const th=i/NL*Math.PI*2.0; const Vv=Math.sin(th); const Iv=0.55*Math.sin(th)+0.42*Math.sin(th)*Math.cos(th);
+  LOOP.push(ox+Vv*sc*2.4, oy+Iv*sc, 0.0); }
+const loopBuf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,loopBuf); gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(LOOP),gl.STATIC_DRAW);
+const LV=`#version 300 es
+layout(location=0) in vec3 aPos; uniform mat4 uVP; out float vx; void main(){ vx=aPos.x; gl_Position=uVP*vec4(aPos,1.0); }`;
+const LF=`#version 300 es
+precision highp float; in float vx; uniform float uT; out vec4 o;
+void main(){ float pinch=1.0-smoothstep(0.0,0.25,abs(vx)); // brighter near origin (the pinch)
+  vec3 c=mix(vec3(0.3,0.7,0.9),vec3(0.9,0.95,1.0),pinch); float a=0.5+0.4*sin(uT*1.5); o=vec4(c*a,a); }`;
+const lp=prog(LV,LF); const luVP=gl.getUniformLocation(lp,'uVP'),luT=gl.getUniformLocation(lp,'uT');
+const lvao=gl.createVertexArray(); gl.bindVertexArray(lvao); gl.bindBuffer(gl.ARRAY_BUFFER,loopBuf); gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0,3,gl.FLOAT,false,0,0); gl.bindVertexArray(null);
+
+// bg
+const BV=`#version 300 es
+const vec2 p[3]=vec2[3](vec2(-1.,-1.),vec2(3.,-1.),vec2(-1.,3.)); out vec2 uv;
+void main(){uv=p[gl_VertexID];gl_Position=vec4(p[gl_VertexID],0.,1.);}`;
+const BF=`#version 300 es
+precision highp float; in vec2 uv; uniform vec2 uRes; uniform float uGrowth; out vec4 o;
+void main(){ vec3 col=mix(vec3(0.03,0.03,0.05),vec3(0.06,0.055,0.07),0.5+0.5*uv.y);
+  float d=length(uv*vec2(uRes.x/uRes.y,1.0));
+  // glow warms when bridged (conducting)
+  vec3 glow=mix(vec3(0.3,0.4,0.6),vec3(0.9,0.7,0.35),smoothstep(0.9,1.0,uGrowth));
+  col+=glow*0.05/(d*d+0.2); o=vec4(col,1.0);}`;
+const bp=prog(BV,BF); const buRes=gl.getUniformLocation(bp,'uRes'),buG=gl.getUniformLocation(bp,'uGrowth'); const bvao=gl.createVertexArray();
+
+function resize(){const dpr=Math.min(devicePixelRatio||1,2);const w=cv.clientWidth*dpr,h=cv.clientHeight*dpr;if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;}}
+new ResizeObserver(resize).observe(cv); resize();
+const stEl=document.getElementById('state');
+gl.enable(gl.DEPTH_TEST); gl.enable(gl.BLEND);
+let t0=null;
+function frame(ts){
+  if(t0==null)t0=ts; const t=(ts-t0)/1000;
+  resize(); gl.viewport(0,0,cv.width,cv.height);
+  gl.clearColor(0.03,0.03,0.05,1); gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+  // growth: SET (0->1) hold bridged, RESET (1->0) hold gap. a slow triangle-ish with holds.
+  const period=8.0; let ph=(t%period)/period; let g;
+  if(ph<0.35) g=ph/0.35;               // forming
+  else if(ph<0.5) g=1.0;               // bridged
+  else if(ph<0.85) g=1.0-(ph-0.5)/0.35;// dissolving
+  else g=0.0;                          // gap
+  const bridged=g>0.985;
+  stEl.innerHTML = bridged ? '<span style="color:#59ffb0">state: BRIDGED &mdash; gold removed, silver remains (low R)</span>'
+    : (g>0.05 && ph<0.5 ? 'state: silver filament forming&hellip;' : (ph>=0.85||g<0.05 ? '<span style="color:#e8b74a">state: GAP &mdash; gold stays, silver left (high R)</span>' : 'state: dissolving&hellip;'));
+  // bg
+  gl.disable(gl.DEPTH_TEST); gl.depthMask(false); gl.blendFunc(gl.ONE,gl.ONE);
+  gl.useProgram(bp); gl.bindVertexArray(bvao); gl.uniform2f(buRes,cv.width,cv.height); gl.uniform1f(buG,g); gl.drawArrays(gl.TRIANGLES,0,3);
+  gl.enable(gl.DEPTH_TEST); gl.depthMask(true);
+  const cr=9.0, ca=Math.sin(t*0.12)*0.6; const cam=[Math.sin(ca)*cr, 2.0+Math.sin(t*0.2)*0.8, Math.cos(ca)*cr];
+  const VP=mul(persp(1.0, cv.width/cv.height, 0.1, 100), look(cam,[0,0,-0.3],[0,1,0]));
+  // hysteresis loop (additive)
+  gl.blendFunc(gl.SRC_ALPHA,gl.ONE); gl.depthMask(false);
+  gl.useProgram(lp); gl.bindVertexArray(lvao); gl.uniformMatrix4fv(luVP,false,VP); gl.uniform1f(luT,t); gl.drawArrays(gl.LINE_STRIP,0,LOOP.length/3);
+  gl.depthMask(true);
+  // nodes (alpha blend so discard works; electrodes opaque)
+  gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+  gl.useProgram(np); gl.bindVertexArray(vao);
+  gl.uniformMatrix4fv(uVP,false,VP); gl.uniform1f(uT,t); gl.uniform1f(uG,g); gl.uniform1f(uXE,XE); gl.uniform3fv(uCam,cam);
+  gl.drawArraysInstanced(gl.TRIANGLES,0,sphN,M);
+  gl.bindVertexArray(null);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+}
+</script>
+</body>
+</html>

@@ -10647,6 +10647,23 @@
       "kicker": "milestone - a 729 lattice, +2 poles, distance = c x duration",
       "url": "https://davidwise01.github.io/ud0/world5/distance-and-duration.html",
       "seal": "3748b203cb2a2ec8ad3b8334b879f976642eb37c193717b0507994c56f696af1"
+    },
+    {
+      "slug": "the-memristor",
+      "title": "THE MEMRISTOR",
+      "dartno": 0,
+      "version": "v0.57",
+      "credit": "Silver at one end, gold at the other - the memristic pair Ag < memristic > Au made into their namesake: a memristor, a bit that remembers with no power. A silver filament bridges the gap or breaks it; one metal remains. Rendered by AVAN for the corpus.",
+      "source": "The memristor (Leon Chua 1971, the 4th fundamental circuit element relating flux and charge; HP's TiO2 device 2008); the silver-based conductive-bridge / ECM cell (an Ag filament forms and dissolves across a gap to an inert counter-electrode); the pinched hysteresis loop (the memristor's fingerprint, I=0 at V=0); silver Ag(47) and gold Au(79), both group 11 (the memristic poles, from THE ELIXIR); David Lee Wise / ROOT0 (silver at one end, gold at the other; gold removed and silver remains, or gold stays and silver leaves).",
+      "i13_recommend": "Grounded on i13 (memristor.i13, MEMRISTOR_OK=1). Silver(47) and gold(79) are the group-11 memristic pair (Cu 29, Ag 47, Au 79; gaps 18, 32). ONE REMAINS: gold-removed-silver-remains and gold-stays-silver-leaves are complementary (silver XOR gold) - strictly one survivor, not both, not neither. NON-VOLATILE: the cell reads back what was written (memory with no power). PINCHED HYSTERESIS: current at zero volts is zero for both states (the memristor's fingerprint, the loop through the origin), yet two resistances (low 10 / high 20) coexist. It REMEMBERS HISTORY: the state is set by accumulated charge, not the instantaneous voltage (Chua's flux-charge memory). Maxed WebGL2: a silver electrode and a gold electrode, a silver filament that grows across the gap to bridge (low R, current flows) then dissolves (high R, the gap), with the pinched I-V loop floating below.",
+      "blurb": "Silver at one end, gold at the other, and one remains. The memristic pair Ag < memristic > Au, made into a memristor - Chua's fourth circuit element, a bit that remembers with no power. Grounded on i13 (MEMRISTOR_OK=1): apply a voltage and a silver filament grows across the gap; reach the gold and it BRIDGES (low resistance, current flows); reverse it and the filament DISSOLVES (the gap, high resistance). Gold removed and silver remains, or gold stays and silver leaves - strictly one (silver XOR gold), and the cell remembers which (non-volatile). The signature is the pinched loop: at zero volts, zero current, yet the resistance depends on the whole history of charge - not the moment. Both group 11. Maxed WebGL2.",
+      "room": "darts",
+      "accent": "#c9b46e",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "kicker": "milestone - silver & gold, a filament that bridges or breaks, one remains",
+      "url": "https://davidwise01.github.io/ud0/world5/the-memristor.html",
+      "seal": "daaddb43b77ad407d7bab2d6f06441241ba95fc33947cb81ce2319b877a38430"
     }
   ],
   "keepers": [
@@ -10663,7 +10680,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "e60830af1700297b2302a035c1ef80afee812909c7271284e9992b78670ee2ba",
+  "i13_root": "b9f9799f39b2a43754347103f46bd0702f3ccf56f3ae93eab145a26210643941",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
