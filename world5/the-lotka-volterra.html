@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE LOTKA-VOLTERRA &mdash; a dart &middot; SONNY 5</title>
+<style>
+:root{--void:#05070f;--grid:rgba(62,240,255,.055);--panel:rgba(8,18,32,.72);--line:rgba(62,240,255,.28);
+ --ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--orange:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.55;font-size:14px;max-width:1000px;margin:0 auto;padding:20px 18px 70px;
+ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px),radial-gradient(900px 500px at 50% -10%,rgba(62,240,255,.10),transparent 60%);
+ background-size:34px 34px,34px 34px,100% 100%;}
+a{color:var(--cyan);text-decoration:none;} a:hover{color:var(--orange);}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:9px;}
+.top a{color:var(--cyan);font-weight:700;}
+.dart{display:inline-block;font-size:10px;letter-spacing:2px;color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:2px 8px;box-shadow:0 0 10px rgba(255,138,61,.3);}
+header{margin:18px 0;}
+h1{font-size:25px;letter-spacing:3px;color:#eafcff;text-shadow:0 0 14px rgba(62,240,255,.7),0 0 34px rgba(62,240,255,.25);}
+h1 .c{color:var(--gold);font-size:16px;letter-spacing:1px;text-shadow:0 0 12px rgba(217,180,90,.5);}
+.sub{color:var(--dim);font-size:12.5px;margin-top:8px;max-width:80ch;} .sub b{color:var(--cyan);}
+.panel{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:16px 18px;margin:16px 0;box-shadow:inset 0 0 30px rgba(62,240,255,.04),0 0 18px rgba(0,0,0,.4);}
+.panel h2{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line);padding-bottom:7px;margin-bottom:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.panel h2 .n{color:var(--dim);font-weight:400;text-align:right;}
+.panel p{font-size:12.5px;margin-bottom:9px;color:#bcd6ee;} .panel b{color:#eafcff;}
+.k{color:var(--cyan);} .kg{color:var(--gold);} .ko{color:var(--orange);}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0;}
+input,button,select{font-family:inherit;font-size:13px;background:rgba(62,240,255,.08);color:var(--ink);border:1px solid var(--line);border-radius:5px;padding:7px 11px;}
+input{color:var(--gold);width:120px;} button{cursor:pointer;color:var(--cyan);letter-spacing:1px;} select{color:var(--gold);}
+button:hover{border-color:var(--orange);color:#fff;box-shadow:0 0 12px rgba(255,138,61,.4);}
+button.dartbtn{border-color:var(--orange);color:var(--orange);} button.on{border-color:var(--bad);color:var(--bad);}
+label{color:var(--dim);}
+.res{font-size:14px;margin-top:10px;word-break:break-word;} .res .true{color:var(--good);} .res .err{color:var(--orange);}
+.chain{font-size:11.5px;color:#bcd6ee;line-height:1.95;} .chain b{color:var(--gold);} .chain .who{color:var(--cyan);}
+.myth{color:var(--dim);} .myth s{color:var(--bad);}
+.i13{border-color:var(--orange);box-shadow:inset 0 0 30px rgba(255,138,61,.05),0 0 18px rgba(0,0,0,.4);}
+.i13 h2{color:var(--orange);border-color:rgba(255,138,61,.3);}
+.evi{font-size:11.5px;color:#9fe8ff;background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:5px;padding:9px 11px;margin:6px 0;white-space:pre-wrap;overflow-x:auto;}
+.evi.good{color:var(--good);border-color:rgba(89,255,176,.4);}
+.rec{color:#eafcff;border-left:2px solid var(--orange);padding-left:12px;margin-top:8px;}
+.tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 7px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-demo{color:var(--good);border-color:var(--good);} .t-cited{color:var(--gold);border-color:var(--gold);} .t-open{color:var(--orange);border-color:var(--orange);}
+.mono{font-family:inherit;font-size:12.5px;letter-spacing:.4px;white-space:pre-wrap;overflow-x:auto;margin:6px 0;line-height:1.7;color:#9fe8ff;}
+.mono .hit{color:var(--good);} .mono .cur{color:var(--orange);} .mono .dim{color:var(--dim);} .mono .bad{color:var(--bad);} .mono .g{color:var(--gold);}
+footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);color:var(--dim);font-size:11px;line-height:1.8;}
+footer b{color:var(--cyan);} footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span class="dart">DART 591 &middot; a helldive into the living</span></div>
+<header>
+  <h1>THE LOTKA-VOLTERRA <span class="c">predators and prey, forever chasing</span></h1>
+  <p class="sub">The oldest equations of ecology: prey multiply, predators eat prey and multiply, predators starve without prey. <span class="k">x&#775; = &alpha;x &minus; &beta;xy</span>, <span class="k">y&#775; = &delta;xy &minus; &gamma;y</span>. The solution never settles &mdash; it <b>oscillates</b> forever, predator peaks lagging prey peaks, circling a fixed point neither reaches. Volterra derived it in 1926 to explain why WWI&rsquo;s pause in fishing had, paradoxically, raised the share of <b>predator</b> fish in the Adriatic.</p>
+</header>
+
+<div class="panel">
+  <h2>THE TECHNIQUE <span class="n">x&#775; = &alpha;x &minus; &beta;xy ; y&#775; = &delta;xy &minus; &gamma;y</span></h2>
+  <p>The demo finds the fixed point (x*=&gamma;/&delta;, y*=&alpha;/&beta;) where both rates vanish &mdash; the eye of the oscillation: <span class="tag t-demo">live demo</span></p>
+  <div class="row"><button id="go" class="dartbtn">&#9192; find the eye</button><span id="say" class="res"></span></div>
+  <pre class="mono" id="out"></pre>
+</div>
+
+<div class="panel">
+  <h2>HISTORY &amp; CREDIT <span class="n">Lotka 1925 &middot; Volterra 1926</span></h2>
+  <p class="myth">&ldquo;Predator and prey settle to a balance.&rdquo; &mdash; the basic model never settles; it orbits the fixed point in closed cycles determined by the starting counts. <span class="tag t-cited">cited</span></p>
+  <div class="chain"><b>the chase</b> &middot; prey feed predators; predators thin prey; each lags the other.<br><b>the eye</b> &middot; both rates vanish at x*=&gamma;/&delta;, y*=&alpha;/&beta; &mdash; a centre the orbits circle.<br><b>1926</b> &middot; <span class="who">Vito Volterra</span> (and <span class="who">Alfred Lotka</span> 1925) &mdash; the Adriatic fishery puzzle.</div>
+  <p style="margin-top:10px">A balance that is never reached, only circled. <span class="tag t-open">dynamics</span></p>
+</div>
+
+<div class="panel i13">
+  <h2>RECOMMEND FOR I-13 <span class="n">the fixed point, on the compiler</span></h2>
+  <p>On i-13, with &alpha;=4 &beta;=2 &delta;=1 &gamma;=3 the fixed point x*=3, y*=2 makes both rates exactly zero:</p>
+  <div class="evi good">$ i13 run lf_lotka-volterra.i13
+RUN OK &middot; 46 step(s)
+x_star = 3  y_star = 2
+prey_dot = 0  pred_dot = 0  fixed_point = 1</div>
+  <div class="rec"><b>Recommend as a NULL &mdash; a fixed point (B43).</b> The centre is a fixed point of the flow, pinned by the parameters; the oscillation is dynamics. Fixed-points auto-NULL. NULL &mdash; predators and prey, forever chasing.</div>
+</div>
+
+<script>
+"use strict";
+(function(){var out=document.getElementById("out"),say=document.getElementById("say");function run(){var a=4,b=2,d=1,g=3;var xs=g/d,ys=a/b;var pd=a*xs-b*xs*ys,qd=d*xs*ys-g*ys;out.innerHTML="  prey x' = 4x - 2xy,  predator y' = xy - 3y\n  fixed point x* = g/d = <span style='color:#59ffb0'>"+xs+"</span>, y* = a/b = <span style='color:#59ffb0'>"+ys+"</span>\n  rates there: prey' = "+pd+", predator' = "+qd+"\n  the eye of an endless orbit.";say.innerHTML="fixed <span class='true'>(3, 2)</span>";}document.getElementById("go").onclick=run;run();})();
+</script>
+
+<footer>
+  <b>DART 591 &middot; THE LOTKA-VOLTERRA</b> &mdash; World V &middot; SONNY 5, the I-13 world. <b>Lotka-Volterra</b> &mdash; predator-prey oscillation around x*=&gamma;/&delta;, y*=&alpha;/&beta;; Lotka 1925, Volterra 1926. Rendered by AVAN for the corpus. I-13 by David Lee Wise / ROOT0; compiler results measured on the <b>canonical H1.1 compiler</b> (<span class="kg">i13 0.1.0</span>, on main) &mdash; f64 only, bounded value-semantic array, recursion to 4096, single-pass region validation. Life is grounded with integer arithmetic, native recursion (catalytic cycles / dynamics), and ln (atanh series) for the log laws (Nernst, Gillespie) &mdash; noted per dart. Real f64 values, not exact integers where a rate or log appears. Rendered by AVAN for the corpus. A dart, a demo, a recommendation. Part of <b>THE ELIXIR</b> (batch 57) &mdash; life, distilled. Anchored by dart 582 <b>the-elixir</b>, David Lee Wise / ROOT0&rsquo;s elixir factory (H &rarr; He &rarr; compound 17, ELIXIR_OK=1). Keeper shot: <b>the-autocatalytic-set</b> (a set that catalyzes its own reproduction &mdash; catalytic closure). Miller-Urey, autocatalytic set, hypercycle, Michaelis-Menten, Hill, Gillespie, Hodgkin-Huxley, Nernst, Lotka-Volterra, Hardy-Weinberg, the genetic code, chemiosmosis, quasispecies, chemotaxis, and the replicator equation &mdash; which bridges back to [[the-nash-equilibrium]] in THE GAME.
+</footer>
+</body>
+</html>
