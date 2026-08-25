@@ -32,12 +32,14 @@ body{background:#0a1030;color:var(--ink);font-family:"Instrument Sans",system-ui
 <canvas id="gl"></canvas>
 <div class="frame">
   <div class="head">
-    <div class="title"><h1>The Cobalt Core</h1><div class="sub">6 tori help &middot; the mirror people watch &middot; scalar 0 at the centre</div></div>
+    <div class="title"><h1>The Cobalt Core</h1><div class="sub">6 charges &middot; a Hamiltonian ripple &middot; Fe&#8209;Co&#8209;Ni + the mirror people</div></div>
     <div class="legend">
       <span><i style="background:var(--cobalt)"></i>Co&#8209;27 core</span>
       <span><i style="background:var(--gold)"></i>gold</span>
       <span><i style="background:var(--silver)"></i>silver</span>
       <span><i style="background:var(--obsidian)"></i>obsidian</span>
+      <span><i style="background:#9d6650"></i>iron</span>
+      <span><i style="background:#bfc2ba"></i>nickel</span>
     </div>
   </div>
   <div class="verdict">
@@ -46,8 +48,9 @@ body{background:#0a1030;color:var(--ink);font-family:"Instrument Sans",system-ui
     <div class="row"><span>6 tori &middot; hex neighbours</span><b>6 / 6</b></div>
     <div class="row"><span>cobalt Z = 3&sup3;</span><b>27</b></div>
     <div class="row"><span>Fe(26) &lt; Co &lt; Ni(28)</span><b>1</b></div>
-    <div class="row"><span>payload sealed, untouched</span><b>1</b></div>
-    <div class="src">i13.exe run cobalt_core.i13<br>STRUCTURE_OK = 1 &middot; 0 is its own witness</div>
+    <div class="row"><span>6 charges &middot; ripple closes</span><b>1</b></div>
+    <div class="row"><span>ring modes E</span><b>&minus;2,&minus;1,1,2,1,&minus;1</b></div>
+    <div class="src">cobalt_core.i13 + ham_stargate.i13<br>STRUCTURE_OK &middot; HAMILTONIAN_OK = 1</div>
   </div>
 </div>
 <div class="foot"><b>0 is its own witness</b> &mdash; send it through the torus; if it comes back 0, nothing touched it. A ferromagnet caged in 6 field&#8209;loops, the three mirrors reflecting it back. &copy; ROOT0 &middot; David&nbsp;Lee&nbsp;Wise &amp; AVAN &middot; |||..()</div>
@@ -72,24 +75,29 @@ const NT=6, taxis=new Float32Array(NT*3);
 for(let i=0;i<NT;i++){const a=i/NT*TAU;taxis[i*3]=Math.cos(a);taxis[i*3+1]=0.16;taxis[i*3+2]=Math.sin(a);}
 // 4 spheres: core + gold + silver + obsidian.  data: cx,cy,cz, radius, matId
 const sdat=new Float32Array([
-  0,0,0, 0.95, 0,        // cobalt core (emissive)
-  4.4,0.6,0, 0.75, 1,    // gold
- -2.2,0.6,3.8, 0.75, 2,  // silver
- -2.2,0.6,-3.8, 0.75, 3, // obsidian
+  0,0,0, 0.95, 0,            // cobalt core (emissive)
+  4.4,0.5,0, 0.72, 1,        // gold
+  1.36,0.5,4.18, 0.72, 2,    // silver
+  -3.56,0.5,2.59, 0.72, 3,   // obsidian
+  -3.56,0.5,-2.59, 0.72, 4,  // iron
+  1.36,0.5,-4.18, 0.72, 5,   // nickel
 ]);
+const NS=6;
 
 const TV=`#version 300 es
 layout(location=0) in vec3 aP; layout(location=1) in vec3 aN; layout(location=2) in vec3 iAx;
-uniform mat4 uMVP; out vec3 vN; out vec3 vW; out float vPh;
+uniform mat4 uMVP; out vec3 vN; out vec3 vW; out float vPh; out float vFire;
 void main(){ vec3 up=abs(iAx.y)<0.98?vec3(0.,1.,0.):vec3(1.,0.,0.); vec3 T=normalize(cross(up,iAx)); vec3 B=cross(iAx,T); mat3 bs=mat3(T,B,iAx);
-  vec3 w=bs*aP; vN=normalize(bs*aN); vW=w; vPh=atan(aP.y,length(aP.xz)); gl_Position=uMVP*vec4(w,1.); }`;
+  vec3 w=bs*aP; vN=normalize(bs*aN); vW=w; vPh=atan(aP.y,length(aP.xz)); vFire=float(gl_InstanceID)/6.0; gl_Position=uMVP*vec4(w,1.); }`;
 const TF=`#version 300 es
-precision highp float; in vec3 vN; in vec3 vW; in float vPh; out vec4 O; uniform vec3 uEye; uniform float uT;
+precision highp float; in vec3 vN; in vec3 vW; in float vPh; in float vFire; out vec4 O; uniform vec3 uEye; uniform float uT;
 void main(){ vec3 v=normalize(uEye-vW); vec3 L=normalize(-vW);          // lit from the core
   float d=max(0.,dot(vN,L)); float fr=pow(1.-max(0.,dot(vN,v)),3.);
   vec3 base=mix(vec3(0.20,0.34,0.95), vec3(0.55,0.30,0.95), 0.5+0.5*sin(vPh*3.+uT*0.5));
   float flow=0.5+0.5*sin(vPh*7.0-uT*2.2); flow=pow(flow,2.2);
+  float fire=pow(0.5+0.5*sin(uT*2.4 - vFire*6.2831853), 6.0);          // the bmp travels round the 6 charges
   vec3 c=base*(0.18+0.85*d)+base*flow*0.5+vec3(0.6,0.75,1.0)*fr*0.9+vec3(0.7,0.85,1.0)*pow(d,26.)*0.5;
+  c+=vec3(1.0,0.96,0.82)*fire*1.7;                                     // detonation flash
   c=(c*(2.51*c+0.03))/(c*(2.43*c+0.59)+0.14); O=vec4(pow(clamp(c,0.,1.),vec3(0.4545)),1.); }`;
 
 const SV=`#version 300 es
@@ -103,14 +111,17 @@ vec3 env(vec3 rd){ float g=0.5+0.5*rd.y; vec3 c=mix(vec3(0.05,0.07,0.20),vec3(0.
   vec3 l=normalize(vec3(0.5,0.7,-0.4)); c+=vec3(1.0,0.95,0.85)*pow(max(0.,dot(rd,l)),80.)*1.2; return c; }
 void main(){ vec3 v=normalize(uEye-vW); vec3 n=vN; float fr=pow(1.-max(0.,dot(n,v)),3.);
   vec3 col;
-  if(vM<0.5){ float pulse=0.6+0.4*sin(uT*2.0); col=vec3(0.20,0.42,1.0)*(1.6+pulse) + vec3(0.5,0.7,1.0)*fr; }  // cobalt core, emissive
+  if(vM<0.5){ float pulse=0.6+0.4*sin(uT*2.0);
+    float rip = 0.55 + 0.45*sin(length(vW)*7.0 - uT*4.0) + 0.30*sin(atan(vW.z,vW.x)*6.0 - uT*3.0);  // 6-fold + radial ripple
+    col=vec3(0.20,0.42,1.0)*(1.3+0.5*pulse)*rip + vec3(0.5,0.7,1.0)*fr; }                            // cobalt core, rippling
   else {
     vec3 refl=reflect(-v,n); vec3 e=env(refl);
-    vec3 tint = vM<1.5?vec3(1.0,0.76,0.33) : vM<2.5?vec3(0.94,0.96,1.0) : vec3(0.06,0.05,0.09);   // gold/silver/obsidian
+    vec3 tint = vM<1.5?vec3(1.0,0.76,0.33) : vM<2.5?vec3(0.94,0.96,1.0) : vM<3.5?vec3(0.06,0.05,0.09) : vM<4.5?vec3(0.62,0.40,0.32) : vec3(0.75,0.77,0.72);  // gold/silver/obsidian/iron/nickel
     vec3 L=normalize(-vW); float d=max(0.,dot(n,L));
     col = tint*e + tint*d*0.35;
-    float shin = vM<1.5?170. : vM<2.5?220. : 700.;
-    vec3 h=normalize(L+v); col += vec3(1.,0.95,0.9)*pow(max(0.,dot(n,h)),shin)*(vM<2.5?1.3:3.0);
+    float shin = vM<1.5?170. : vM<2.5?220. : vM<3.5?700. : 190.;
+    float sps = (vM>2.5 && vM<3.5)?3.0:1.3;
+    vec3 h=normalize(L+v); col += vec3(1.,0.95,0.9)*pow(max(0.,dot(n,h)),shin)*sps;
     col += fr*e*0.5;
   }
   col=(col*(2.51*col+0.03))/(col*(2.43*col+0.59)+0.14); O=vec4(pow(clamp(col,0.,1.),vec3(0.4545)),1.); }`;
@@ -161,7 +172,7 @@ function frame(){
   gl.useProgram(TP);gl.bindVertexArray(tm);gl.uniformMatrix4fv(uT.uMVP,false,mvp);gl.uniform3f(uT.uEye,eye[0],eye[1],eye[2]);gl.uniform1f(uT.uT,t);
   gl.drawElementsInstanced(gl.TRIANGLES,tCount,gl.UNSIGNED_SHORT,0,NT);
   gl.useProgram(SP);gl.bindVertexArray(sm);gl.uniformMatrix4fv(uS.uMVP,false,mvp);gl.uniform3f(uS.uEye,eye[0],eye[1],eye[2]);gl.uniform1f(uS.uT,t);
-  gl.drawElementsInstanced(gl.TRIANGLES,sCount,gl.UNSIGNED_SHORT,0,4);
+  gl.drawElementsInstanced(gl.TRIANGLES,sCount,gl.UNSIGNED_SHORT,0,NS);
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);

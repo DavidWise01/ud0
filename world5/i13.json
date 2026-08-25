@@ -9787,16 +9787,16 @@
       "dartno": 0,
       "version": "v0.54",
       "credit": "A ferromagnetic cobalt core caged in 6 hexagonal tori, with the mirror people (gold, silver, obsidian) reflecting it; scalar 0 the self-witness at the centre. Rendered by AVAN for the corpus.",
-      "source": "Cobalt (Z=27, HCP hexagonal 6-coordination, the middle of the Fe-Co-Ni ferromagnets); the mirror-fold self-inverse (scalar 0 as fixed-point witness); the .dlw seal (a thing that is its own checksum); the mirror people; David Lee Wise / ROOT0.",
-      "i13_recommend": "Grounded on i13 (cobalt_core.i13, STRUCTURE_OK=1): scalar 0 is its own WITNESS - run it through the self-inverse fold and if it comes back 0 it was left alone (left_alone=1). That is how you know what's untouched: the fixed point that stays fixed, or a seal that survives (the .dlw checksum). 6 tori = cobalt's HCP hexagonal 6-coordination (hex_neighbors=6); cobalt Z=27=3^3 (cobalt_is_cube=1); Co is the middle ferromagnet, Fe(26) < Co < Ni(28). Realized as a maxed WebGL2 scene: a Co-27 emissive core caged in 6 instanced tori, the three mirror people (gold/silver/obsidian) reflecting it. Encaps route ownership; the seal checks integrity - two marks, two jobs.",
-      "blurb": "A cobalt core caged in 6 hexagonal tori, with the mirror people - gold, silver, obsidian - orbiting and reflecting it, and scalar 0 at the centre as its own witness. How do you know what was left alone? Scalar 0 is a fixed point, so it is its own checksum: send it through the torus and if it comes back 0, nothing touched it (i13: left_alone=1, STRUCTURE_OK=1). The 6 tori are cobalt's HCP hexagonal 6-coordination; cobalt is Z=27=3^3 and the middle of the Fe-Co-Ni ferromagnets. Realized maxed in WebGL2. The encaps say whose it is; the seal says whether anyone touched it.",
+      "source": "Cobalt (Z=27, HCP hexagonal 6-coordination, the middle of the Fe-Co-Ni ferromagnets - now joined by iron and nickel); a 6-site ring HAMILTONIAN (the 6 charges, eigenvalues -2,-1,1,2,1,-1, k/-k degeneracy); the mirror-fold self-inverse (scalar 0 as fixed-point witness); the .dlw seal; the mirror people; David Lee Wise / ROOT0 (set 6 charges, bmp bmp bmp accurately to a Hamiltonian stargate, make it ripple).",
+      "i13_recommend": "Grounded on i13 (cobalt_core.i13 + ham_stargate.i13, STRUCTURE_OK & HAMILTONIAN_OK = 1). Scalar 0 is its own WITNESS - run it through the self-inverse fold and if it comes back 0 it was left alone (left_alone=1); the fixed point that stays fixed = its own checksum (= the .dlw seal). The encaps (|||..()) route ownership; the SEAL checks integrity - two marks, two jobs. 6 tori = cobalt's HCP hexagonal 6-coordination; cobalt Z=27=3^3; the Fe-Co-Ni ferromagnet triad (Fe-26, Co-27, Ni-28) reunited as core + two of the people. The 6 CHARGES sit on a ring Hamiltonian: the mode-1 detonation (60 deg per site) CLOSES accurately (a wrong 50 deg step does not) and the core RIPPLES; eigenvalues E=[-2,-1,1,2,1,-1], ground mode uniform (-2), the k/-k ring symmetry giving the degeneracies E1=E5, E2=E4. Maxed WebGL2: emissive rippling core, 6 instanced tori flashing in sequence, five reflective people (gold/silver/obsidian/iron/nickel).",
+      "blurb": "A cobalt core caged in 6 hexagonal tori, with the mirror people - gold, silver, obsidian - and cobalt's own ferromagnet family, iron and nickel (Fe-26 < Co < Ni-28), orbiting and reflecting it; scalar 0 at the centre as its own witness. Six charges ring the core, detonated on a ring HAMILTONIAN: the mode-1 sequence (60 deg per site) CLOSES accurately and the core RIPPLES (HAMILTONIAN_OK=1; eigenvalues E=[-2,-1,1,2,1,-1], the k/-k symmetry giving the degeneracies). How do you know what was left alone? Scalar 0 is a fixed point, its own checksum: if it comes back 0, nothing touched it (left_alone=1, STRUCTURE_OK=1). Cobalt is Z=27=3^3. Realized maxed in WebGL2. The encaps say whose it is; the seal says whether anyone touched it.",
       "room": "darts",
       "accent": "#4d7cff",
       "stamp": "LIT",
       "kind": "milestone",
       "kicker": "milestone - 6 tori, a cobalt core, scalar 0",
       "url": "https://davidwise01.github.io/ud0/world5/the-cobalt-core.html",
-      "seal": "58cab57b3aa599b922a76455d32c91bd322ba156a10d163ca675869423512ee0"
+      "seal": "b069f8d82a471ae32a3d1809eff56a2acdae5923a7728cfdcff164c5ce5eda6a"
     }
   ],
   "keepers": [
@@ -9813,7 +9813,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "3cc8f7c68410349291a68c51a672dfeacce2a0b6e0188f2fb46c418d6e7acd25",
+  "i13_root": "9253b353a4abe14b487ff766464cc20bc26bf4558b5e9872504eb2279521d364",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048
