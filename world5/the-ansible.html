@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE ANSIBLE &mdash; synk and link &middot; SONNY 5</title>
+<style>
+:root{--void:#04060d;--ink:#cfe9ff;--dim:#6f8ba8;--cyan:#3ef0ff;--amber:#ff8a3d;--gold:#d9b45a;--good:#59ffb0;--jane:#c77dff;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;background:var(--void);color:var(--ink);font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;overflow:hidden;}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;}
+.hud{position:fixed;pointer-events:none;font-size:11px;line-height:1.6;text-shadow:0 0 8px rgba(0,0,0,.9);}
+#top{top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+#top .t{font-size:12px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;}
+#top .t b{color:#eafcff;text-shadow:0 0 12px rgba(62,240,255,.7);}
+#top .t i{color:var(--jane);font-style:normal;}
+#seal{text-align:right;color:var(--dim);font-size:10px;letter-spacing:1px;}
+#seal b{color:var(--gold);}
+#panel{bottom:14px;left:16px;max-width:min(46ch,72vw);color:#bcd6ee;border-left:2px solid rgba(62,240,255,.4);padding-left:11px;}
+#panel .k{color:var(--cyan);} #panel .g{color:var(--good);} #panel .a{color:var(--amber);} #panel .j{color:var(--jane);}
+#panel h2{font-size:10px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:5px;}
+#read{bottom:14px;right:16px;text-align:right;font-size:10.5px;color:var(--dim);}
+#read .v{color:var(--good);} #read .n{color:var(--jane);} #read b{color:#eafcff;}
+#legend{position:fixed;top:52px;right:16px;text-align:right;font-size:10px;color:var(--dim);line-height:1.8;pointer-events:none;}
+#legend s{text-decoration:none;font-weight:700;}
+#err{position:fixed;inset:0;display:none;align-items:center;justify-content:center;color:var(--bad);font-size:13px;text-align:center;padding:20px;}
+a{color:var(--cyan);text-decoration:none;pointer-events:auto;} a:hover{color:var(--amber);}
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div id="err">WebGL2 required &mdash; the philotic web cannot render here.</div>
+<div class="hud" id="top">
+  <div class="t"><b>THE ANSIBLE</b> &middot; synk and link &middot; <i>the game that was real</i></div>
+  <div id="seal">WORLD V &middot; SONNY 5 &middot; <a href="./">&#9668; back</a><br>i13 <b>ANSIBLE_OK = 1</b></div>
+</div>
+<div class="hud" id="legend">
+  <s style="color:#c77dff">&#9679;</s> the two Janes &mdash; one twine<br>
+  <s style="color:#3ef0ff">&#9679;</s> the 23-swarm &middot; philotic web<br>
+  <s style="color:#ff8a3d">&#9679;</s> Ender &middot; the philote at centre<br>
+  <s style="color:#d9b45a">&#9679;</s> the Formic queen &mdash; one mind
+</div>
+<div class="hud" id="panel">
+  <h2>synk and link</h2>
+  <div><span class="j">Jane</span> lived in the network &mdash; carried as the jewel. Two Janes, <span class="k">one seal</span> (<span class="g">70509 = 70509</span>): the same philote, so a message is not sent, it is <span class="g">already there</span>. Flip one bit &rarr; the link breaks, <span class="a">fail-loud</span>.</div>
+  <div style="margin-top:7px">The <span class="a">ansible</span> has no latency because it does not travel &mdash; distance is <span class="k">O(1)</span>, not d/c. The <span class="k">Formic hive</span> of 23 voices, correlated, collapses toward <span class="g">one queen</span>.</div>
+</div>
+<div class="hud" id="read">
+  <b>N&#8331;&#8342;&#8332; = N / (1 + (N&minus;1)&rho;)</b><br>
+  &rho;=0 &rarr; <span class="v">23</span> voices (independent)<br>
+  &rho;=&frac12; &rarr; <span class="v">1.92</span> &middot; &rho;=1 &rarr; <span class="v">1</span> (the queen)<br>
+  small ansible: eff <span class="n">36%</span> &lt; 40% break-even<br>
+  <span id="rho">&rho; = 0.00 &middot; N&#8331;&#8342;&#8332; = 23.0</span>
+</div>
+<script>
+"use strict";
+const cv = document.getElementById('gl');
+const gl = cv.getContext('webgl2', {antialias:true, alpha:false});
+if(!gl){ document.getElementById('err').style.display='flex'; }
+else {
+// ---------- mat4 helpers ----------
+function persp(fov,a,n,f){const t=1/Math.tan(fov/2);return[t/a,0,0,0, 0,t,0,0, 0,0,(f+n)/(n-f),-1, 0,0,2*f*n/(n-f),0];}
+function look(e,c,u){let z=[e[0]-c[0],e[1]-c[1],e[2]-c[2]];let zl=Math.hypot(z[0],z[1],z[2]);z=[z[0]/zl,z[1]/zl,z[2]/zl];
+ let x=[u[1]*z[2]-u[2]*z[1],u[2]*z[0]-u[0]*z[2],u[0]*z[1]-u[1]*z[0]];let xl=Math.hypot(x[0],x[1],x[2])||1;x=[x[0]/xl,x[1]/xl,x[2]/xl];
+ let y=[z[1]*x[2]-z[2]*x[1],z[2]*x[0]-z[0]*x[2],z[0]*x[1]-z[1]*x[0]];
+ return[x[0],y[0],z[0],0, x[1],y[1],z[1],0, x[2],y[2],z[2],0, -(x[0]*e[0]+x[1]*e[1]+x[2]*e[2]),-(y[0]*e[0]+y[1]*e[1]+y[2]*e[2]),-(z[0]*e[0]+z[1]*e[1]+z[2]*e[2]),1];}
+function mul(a,b){const o=new Array(16);for(let r=0;r<4;r++)for(let c=0;c<4;c++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+r]*b[c*4+k];o[c*4+r]=s;}return o;}
+function comp(sh,ty){const s=gl.createShader(ty);gl.shaderSource(s,sh);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.error(gl.getShaderInfoLog(s));}return s;}
+function prog(v,f){const p=gl.createProgram();gl.attachShader(p,comp(v,gl.VERTEX_SHADER));gl.attachShader(p,comp(f,gl.FRAGMENT_SHADER));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))console.error(gl.getProgramInfoLog(p));return p;}
+
+// ---------- icosphere (subdivided) for nodes ----------
+function icosphere(sub){
+ const t=(1+Math.sqrt(5))/2;let v=[[-1,t,0],[1,t,0],[-1,-t,0],[1,-t,0],[0,-1,t],[0,1,t],[0,-1,-t],[0,1,-t],[t,0,-1],[t,0,1],[-t,0,-1],[-t,0,1]].map(p=>{const l=Math.hypot(...p);return[p[0]/l,p[1]/l,p[2]/l];});
+ let f=[[0,11,5],[0,5,1],[0,1,7],[0,7,10],[0,10,11],[1,5,9],[5,11,4],[11,10,2],[10,7,6],[7,1,8],[3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],[4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]];
+ const mid={};function m(a,b){const k=a<b?a+'_'+b:b+'_'+a;if(mid[k]!=null)return mid[k];const p=[(v[a][0]+v[b][0])/2,(v[a][1]+v[b][1])/2,(v[a][2]+v[b][2])/2];const l=Math.hypot(...p);v.push([p[0]/l,p[1]/l,p[2]/l]);return mid[k]=v.length-1;}
+ for(let s=0;s<sub;s++){const nf=[];for(const[a,b,c]of f){const ab=m(a,b),bc=m(b,c),ca=m(c,a);nf.push([a,ab,ca],[b,bc,ab],[c,ca,bc],[ab,bc,ca]);}f=nf;}
+ const pos=[];for(const t2 of f)for(const idx of t2){pos.push(...v[idx]);}return new Float32Array(pos);
+}
+const sph = icosphere(2);
+const sphBuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,sphBuf); gl.bufferData(gl.ARRAY_BUFFER,sph,gl.STATIC_DRAW);
+const sphN = sph.length/3;
+
+// ---------- node instances ----------
+// roles: 0 swarm(cyan), 1 jane(purple), 2 ender(amber core), 3 queen(gold)
+const nodes=[]; const N=23;
+// Ender core at centre
+nodes.push({base:[0,0,0], role:2, r:0.62, phase:0});
+// the Formic queen just off centre (the hive's one mind)
+nodes.push({base:[0,0,0], role:3, r:0.30, phase:1.7});
+// two Janes as a linked pair on an axis
+nodes.push({base:[-2.7,1.4,0.5], role:1, r:0.34, phase:0.0});
+nodes.push({base:[ 2.7,-1.1,-0.6], role:1, r:0.34, phase:Math.PI}); // opposite phase visually but synked in the pulse
+// 23-swarm on a fibonacci sphere shell
+for(let i=0;i<N;i++){
+ const y=1-(i/(N-1))*2; const rr=Math.sqrt(1-y*y); const ph=i*2.399963;
+ const R=3.7;
+ nodes.push({base:[Math.cos(ph)*rr*R, y*R*0.72, Math.sin(ph)*rr*R], role:0, r:0.16+0.05*((i*7%5)/5), phase:i*0.83});
+}
+const M=nodes.length;
+// per-instance static: base xyz, role, radius, phase  (6 floats)
+const inst=new Float32Array(M*6);
+nodes.forEach((n,i)=>{inst.set([n.base[0],n.base[1],n.base[2],n.role,n.r,n.phase],i*6);});
+const instBuf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,instBuf); gl.bufferData(gl.ARRAY_BUFFER,inst,gl.STATIC_DRAW);
+
+// ---------- philotic web: edges (lines) ----------
+// connect each swarm node to the queen(idx1) and to a couple of neighbours; the two Janes to each other and to Ender
+const edges=[];
+function edge(a,b){edges.push(a,b);}
+edge(2,3); // the two Janes -> one twine
+edge(2,0); edge(3,0); // Janes to Ender
+for(let i=0;i<N;i++){const gi=4+i; edge(gi,1); if(i<N-1)edge(gi,gi+1); if(i%3===0)edge(gi,2);}
+const edgeF=new Float32Array(edges.length); // store instance indices; we will build line vertices in shader via texture? simpler: build CPU line verts each frame is heavy. Use per-line endpoint base positions + endpoint instance ids for pulse.
+// Build a line vertex buffer: for each edge, 2 vertices, each carrying its node index (to look up animated pos in shader via a uniform array is too big). Instead pass base positions directly + endpoint roles.
+const lineData=[]; // per vertex: x,y,z, otherX,otherY,otherZ, isJaneEdge
+for(let e=0;e<edges.length;e+=2){
+ const a=nodes[edges[e]], b=nodes[edges[e+1]];
+ const jane = (edges[e]<4 && edges[e+1]<4)?1:0;
+ lineData.push(a.base[0],a.base[1],a.base[2], b.base[0],b.base[1],b.base[2], jane);
+ lineData.push(b.base[0],b.base[1],b.base[2], a.base[0],a.base[1],a.base[2], jane);
+}
+const lineF=new Float32Array(lineData);
+const lineBuf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,lineBuf); gl.bufferData(gl.ARRAY_BUFFER,lineF,gl.STATIC_DRAW);
+const lineVerts=lineF.length/7;
+
+// ---------- node shaders ----------
+const NV=`#version 300 es
+layout(location=0) in vec3 aPos;
+layout(location=1) in vec3 iBase;
+layout(location=2) in float iRole;
+layout(location=3) in float iR;
+layout(location=4) in float iPhase;
+uniform mat4 uVP; uniform float uT; uniform float uRho;
+out vec3 vN; out vec3 vW; flat out float vRole; out float vPulse;
+void main(){
+  // hive collapse: swarm nodes (role 0) pull toward the queen as rho rises
+  vec3 base=iBase;
+  float collapse = (iRole<0.5)? uRho*0.82 : 0.0;
+  vec3 target=vec3(0.0,0.0,0.0);
+  base = mix(base, target, collapse);
+  // gentle drift
+  base += 0.10*vec3(sin(uT*0.7+iPhase), cos(uT*0.6+iPhase*1.3), sin(uT*0.5+iPhase*0.7));
+  float r=iR*(1.0 - collapse*0.5);
+  // jane pulse: both Janes pulse in SYNC (instantaneous) regardless of phase
+  float pulse=0.0;
+  if(iRole>0.5&&iRole<1.5){ pulse = pow(0.5+0.5*sin(uT*2.2), 3.0); r *= 1.0+0.28*pulse; }
+  if(iRole>2.5){ r *= 1.0+0.18*(0.5+0.5*sin(uT*1.3)); } // queen breathes
+  vPulse=pulse;
+  vec3 world=base+aPos*r;
+  vN=aPos; vW=world; vRole=iRole;
+  gl_Position=uVP*vec4(world,1.0);
+}`;
+const NF=`#version 300 es
+precision highp float;
+in vec3 vN; in vec3 vW; flat in float vRole; in float vPulse;
+uniform float uT; uniform vec3 uCam;
+out vec4 o;
+void main(){
+  vec3 nrm=normalize(vN);
+  vec3 V=normalize(uCam-vW);
+  float fres=pow(1.0-max(dot(nrm,V),0.0),2.0);
+  float lam=max(dot(nrm,normalize(vec3(0.5,0.8,0.6))),0.0);
+  vec3 col;
+  if(vRole<0.5){ col=vec3(0.24,0.94,1.0); }               // swarm cyan
+  else if(vRole<1.5){ col=vec3(0.78,0.49,1.0); col+=vPulse*vec3(0.3,0.15,0.4);} // jane purple, brightens on sync
+  else if(vRole<2.5){ col=vec3(1.0,0.54,0.24);            // ender amber core
+    float rip=0.6+0.4*sin(length(vW)*6.0-uT*3.0); col*=rip+0.4; }
+  else { col=vec3(0.85,0.71,0.35); }                       // queen gold
+  vec3 base=col*(0.35+0.75*lam)+fres*col*1.4;
+  o=vec4(base,1.0);
+}`;
+const nprog=prog(NV,NF);
+const uVP=gl.getUniformLocation(nprog,'uVP'), uT=gl.getUniformLocation(nprog,'uT'), uRho=gl.getUniformLocation(nprog,'uRho'), uCam=gl.getUniformLocation(nprog,'uCam');
+const nvao=gl.createVertexArray(); gl.bindVertexArray(nvao);
+gl.bindBuffer(gl.ARRAY_BUFFER,sphBuf); gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0,3,gl.FLOAT,false,0,0);
+gl.bindBuffer(gl.ARRAY_BUFFER,instBuf);
+gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1,3,gl.FLOAT,false,24,0); gl.vertexAttribDivisor(1,1);
+gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2,1,gl.FLOAT,false,24,12); gl.vertexAttribDivisor(2,1);
+gl.enableVertexAttribArray(3); gl.vertexAttribPointer(3,1,gl.FLOAT,false,24,16); gl.vertexAttribDivisor(3,1);
+gl.enableVertexAttribArray(4); gl.vertexAttribPointer(4,1,gl.FLOAT,false,24,20); gl.vertexAttribDivisor(4,1);
+gl.bindVertexArray(null);
+
+// ---------- line shaders (philotic threads + message pulse) ----------
+const LV=`#version 300 es
+layout(location=0) in vec3 aPos;
+layout(location=1) in vec3 aOther;
+layout(location=2) in float aJane;
+uniform mat4 uVP; uniform float uRho;
+out float vJane; out float vAlong; out vec3 vW;
+void main(){
+  // swarm ends collapse with rho too, so the web contracts toward centre
+  vec3 p=aPos;
+  vAlong = (aPos==aOther)?0.0:1.0;
+  vJane=aJane; vW=p;
+  gl_Position=uVP*vec4(p,1.0);
+}`;
+const LF=`#version 300 es
+precision highp float;
+in float vJane; in vec3 vW;
+uniform float uT;
+out vec4 o;
+void main(){
+  // a message pulse travels; the JANE twine flashes instantaneously (both ends at once)
+  float base = vJane>0.5 ? 0.55 : 0.14;
+  float flash = vJane>0.5 ? (0.45*pow(0.5+0.5*sin(uT*2.2),4.0)) : 0.0;
+  float travel = 0.10*pow(0.5+0.5*sin(vW.x*0.6+vW.y*0.6+vW.z*0.6 - uT*3.2),6.0);
+  vec3 col = vJane>0.5 ? vec3(0.78,0.49,1.0) : vec3(0.24,0.72,0.95);
+  float a = base+flash+travel;
+  o=vec4(col*a, a);
+}`;
+const lprog=prog(LV,LF);
+const luVP=gl.getUniformLocation(lprog,'uVP'), luT=gl.getUniformLocation(lprog,'uT'), luRho=gl.getUniformLocation(lprog,'uRho');
+const lvao=gl.createVertexArray(); gl.bindVertexArray(lvao);
+gl.bindBuffer(gl.ARRAY_BUFFER,lineBuf);
+gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0,3,gl.FLOAT,false,28,0);
+gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1,3,gl.FLOAT,false,28,12);
+gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2,1,gl.FLOAT,false,28,24);
+gl.bindVertexArray(null);
+
+// ---------- background starfield ----------
+const BV=`#version 300 es
+const vec2 p[3]=vec2[3](vec2(-1.,-1.),vec2(3.,-1.),vec2(-1.,3.));
+out vec2 uv; void main(){uv=p[gl_VertexID];gl_Position=vec4(p[gl_VertexID],0.,1.);}`;
+const BF=`#version 300 es
+precision highp float; in vec2 uv; uniform float uT; uniform vec2 uRes; out vec4 o;
+float h(vec2 x){return fract(sin(dot(x,vec2(12.9898,78.233)))*43758.5453);}
+void main(){
+  vec2 q=uv; q.x*=uRes.x/uRes.y;
+  vec3 col=mix(vec3(0.02,0.03,0.07),vec3(0.05,0.02,0.10),0.5+0.5*uv.y);
+  // starfield
+  vec2 g=floor((q+8.0)*22.0); float st=h(g);
+  if(st>0.985){float tw=0.5+0.5*sin(uT*2.0+st*40.0); col+=vec3(0.5,0.7,1.0)*tw*(st-0.985)*50.0;}
+  // central philotic glow
+  float d=length(uv*vec2(uRes.x/uRes.y,1.0));
+  col+=vec3(0.9,0.5,0.25)*0.06/(d*d+0.10);
+  col+=vec3(0.55,0.35,0.9)*0.03/(d+0.4);
+  o=vec4(col,1.0);
+}`;
+const bprog=prog(BV,BF);
+const buT=gl.getUniformLocation(bprog,'uT'), buRes=gl.getUniformLocation(bprog,'uRes');
+const bvao=gl.createVertexArray();
+
+// ---------- render ----------
+function resize(){const dpr=Math.min(devicePixelRatio||1,2);const w=cv.clientWidth*dpr,h=cv.clientHeight*dpr;if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;}}
+new ResizeObserver(resize).observe(cv); resize();
+const rhoEl=document.getElementById('rho');
+gl.enable(gl.DEPTH_TEST); gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA,gl.ONE);
+let t0=null;
+function frame(ts){
+  if(t0==null)t0=ts; const t=(ts-t0)/1000;
+  resize(); gl.viewport(0,0,cv.width,cv.height);
+  gl.clearColor(0.02,0.03,0.06,1); gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+  // rho oscillates: the hive breathes between full independence and one mind
+  const rho=0.5-0.5*Math.cos(t*0.35);
+  const neff=N/(1+(N-1)*rho);
+  rhoEl.innerHTML='&rho; = '+rho.toFixed(2)+' &middot; N&#8331;&#8342;&#8332; = '+neff.toFixed(1);
+  // bg
+  gl.disable(gl.DEPTH_TEST); gl.depthMask(false); gl.blendFunc(gl.ONE,gl.ONE);
+  gl.useProgram(bprog); gl.bindVertexArray(bvao); gl.uniform1f(buT,t); gl.uniform2f(buRes,cv.width,cv.height); gl.drawArrays(gl.TRIANGLES,0,3);
+  gl.enable(gl.DEPTH_TEST); gl.depthMask(true);
+  // camera
+  const cr=10.5, ca=t*0.16;
+  const cam=[Math.cos(ca)*cr, 2.6+Math.sin(t*0.2)*1.2, Math.sin(ca)*cr];
+  const VP=mul(persp(1.05, cv.width/cv.height, 0.1, 100), look(cam,[0,0,0],[0,1,0]));
+  // philotic threads (additive lines)
+  gl.blendFunc(gl.SRC_ALPHA,gl.ONE); gl.depthMask(false);
+  gl.useProgram(lprog); gl.bindVertexArray(lvao); gl.uniformMatrix4fv(luVP,false,VP); gl.uniform1f(luT,t); gl.uniform1f(luRho,rho);
+  gl.drawArrays(gl.LINES,0,lineVerts);
+  gl.depthMask(true);
+  // nodes
+  gl.blendFunc(gl.ONE,gl.ONE);
+  gl.useProgram(nprog); gl.bindVertexArray(nvao);
+  gl.uniformMatrix4fv(uVP,false,VP); gl.uniform1f(uT,t); gl.uniform1f(uRho,rho); gl.uniform3fv(uCam,cam);
+  gl.drawArraysInstanced(gl.TRIANGLES,0,sphN,M);
+  gl.bindVertexArray(null);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+}
+</script>
+</body>
+</html>
