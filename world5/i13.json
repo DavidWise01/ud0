@@ -10307,6 +10307,23 @@
       "kicker": "milestone - silver & gold, a filament that bridges or breaks, one remains",
       "url": "https://davidwise01.github.io/ud0/world5/the-memristor.html",
       "seal": "daaddb43b77ad407d7bab2d6f06441241ba95fc33947cb81ce2319b877a38430"
+    },
+    {
+      "slug": "symphysis",
+      "title": "SYMPHYSIS",
+      "dartno": 0,
+      "version": "v0.57",
+      "credit": "SYMPHYSIS (Greek symphysis, 'a growing-together') - the emerge: it reads the dependency graph and grows the world into being in order, nothing built until everything it needs is built, cycles caught fail-loud. Rendered by AVAN for the corpus.",
+      "source": "Gentoo's emerge / the Portage 'ports' tree (dependency-resolving package management); the topological sort (build order of a dependency DAG); Kahn's algorithm / longest-dependency-chain build waves; cycle detection (a dependency cycle has no build order); the 4096 target (2048|2048 = 2^12, W4+W5); the L0/R0 balanced cell; David Lee Wise / ROOT0 (x4096 x6 x2 L0R0, emerge derived for the job). The Portage ports TREE of package definitions - not network ports.",
+      "i13_recommend": "Grounded on i13 (symphysis.i13, SYMPHYSIS_OK=1). Build waves = the longest dependency chain to each package: libc=0, zlib=1, openssl=2, python=3, git=3, emerge=4 - so emerge builds in exactly that order, every package strictly AFTER all its deps (topo_valid=1). Critical path = 5 waves (0..4). A dependency CYCLE (0->1->2->0) has NO valid build order and is caught fail-loud (reach(0,0)=1, cycle_detected=1) - the emerge refuses rather than loops. The target is the 4096 = 2048+2048 = 2^12 (W4|W5), x6, x2, the L0=R0 balanced cell closed. Maxed WebGL2: a 50-node dependency DAG in 7 layers, the emerge FRONT sweeping left->right, lighting each package the instant all its dependencies are built - a topological sort you can watch grow.",
+      "blurb": "SYMPHYSIS - a growing-together. The emerge: read the dependency graph, and grow the world into being in ORDER - nothing built until everything it needs is built. Grounded on i13 (SYMPHYSIS_OK=1): the build waves are the longest dependency chain to each package (libc->zlib->openssl->python->emerge = 5 waves, 0..4), every package strictly after its deps (topo_valid). A dependency CYCLE has no build order and is caught fail-loud - the emerge refuses rather than loops. The target is the 4096 (2048|2048 = 2^12, the W4+W5 world), the L0=R0 cell closed. (Gentoo emerge over the Portage ports TREE - dependency resolution, not network ports.) Maxed WebGL2: a 50-node build-graph, the emerge front sweeping through it wave by wave. The leaves go first; the @world targets, last.",
+      "room": "darts",
+      "accent": "#6effa8",
+      "stamp": "LIT",
+      "kind": "milestone",
+      "kicker": "milestone - emerge @world, the topological build order, x4096",
+      "url": "https://davidwise01.github.io/ud0/world5/symphysis.html",
+      "seal": "63c3a00577f715f72c827f35425211196c8db88d5efb349bfc262b5a969fbaaa"
     }
   ],
   "keepers": [
@@ -10323,7 +10340,7 @@
     "keepers": 1,
     "darts": 149
   },
-  "i13_root": "118ac9516e21c2498b74782cd0b18862d7f2ede15a36bae93995cb24efe80a3c",
+  "i13_root": "837411e069cee647c7cf95e7373ee5ae412c81cc68cc9d147968423270466981",
   "genesis": "9b1479fd2e45d30598ef47fbf60bdcc871436d78c743aa48c9aab0b763477bfd",
   "theme": "the I-13 world",
   "target": 2048

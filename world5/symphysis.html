@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SYMPHYSIS &mdash; emerge @world &middot; SONNY 5</title>
+<style>
+:root{--void:#05070c;--ink:#dfeaf2;--dim:#7d93a8;--leaf:#59ffb0;--mid:#3ef0ff;--top:#e8b74a;--good:#59ffb0;--bad:#ff5a6a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;background:var(--void);color:var(--ink);font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;overflow:hidden;}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;}
+.hud{position:fixed;pointer-events:none;font-size:11px;line-height:1.6;text-shadow:0 0 8px rgba(0,0,0,.9);}
+#top{top:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;}
+#top .t{font-size:12px;letter-spacing:3px;color:var(--dim);text-transform:uppercase;}
+#top .t b{color:#eafcff;text-shadow:0 0 12px rgba(62,240,255,.7);}
+#top .t i{color:var(--top);font-style:normal;}
+#seal{text-align:right;color:var(--dim);font-size:10px;letter-spacing:1px;}
+#seal b{color:var(--top);}
+#panel{bottom:14px;left:16px;max-width:min(48ch,74vw);color:#c4d6e6;border-left:2px solid rgba(62,240,255,.4);padding-left:11px;}
+#panel h2{font-size:10px;letter-spacing:2px;color:var(--mid);text-transform:uppercase;margin-bottom:5px;}
+#panel .l{color:var(--leaf);} #panel .m{color:var(--mid);} #panel .g{color:var(--top);}
+#read{bottom:14px;right:16px;text-align:right;font-size:10.5px;color:var(--dim);}
+#read .g{color:var(--good);} #read .b{color:var(--bad);} #read b{color:#eafcff;}
+#legend{position:fixed;top:52px;right:16px;text-align:right;font-size:10px;color:var(--dim);line-height:1.8;pointer-events:none;}
+#legend s{text-decoration:none;font-weight:700;}
+#err{position:fixed;inset:0;display:none;align-items:center;justify-content:center;color:var(--bad);font-size:13px;text-align:center;padding:20px;}
+a{color:var(--mid);text-decoration:none;pointer-events:auto;} a:hover{color:var(--top);}
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div id="err">WebGL2 required &mdash; the build graph cannot render here.</div>
+<div class="hud" id="top">
+  <div class="t"><b>SYMPHYSIS</b> &middot; emerge @world &middot; <i>a growing-together</i></div>
+  <div id="seal">WORLD V &middot; SONNY 5 &middot; <a href="./">&#9668; back</a><br>i13 <b>SYMPHYSIS_OK = 1</b></div>
+</div>
+<div class="hud" id="legend">
+  <s style="color:#59ffb0">&#9679;</s> leaves &mdash; no deps, built first<br>
+  <s style="color:#3ef0ff">&#9679;</s> the dependency waves<br>
+  <s style="color:#e8b74a">&#9679;</s> @world &mdash; the final targets<br>
+  <s style="color:#eafcff">&#9614;</s> the emerge front (build order)
+</div>
+<div class="hud" id="panel">
+  <h2>build what it needs, then build it</h2>
+  <div>SYMPHYSIS reads the dependency graph and <b>grows the world into being in order</b>: nothing is built until everything it needs is built. The <span class="l">leaves</span> (no deps) go first; the front sweeps right, wave by wave, up to the <span class="g">@world targets</span>. A topological sort &mdash; the emerge.</div>
+  <div style="margin-top:7px">Grounded on i-13: <b>libc&rarr;zlib&rarr;openssl&rarr;python&rarr;emerge</b> = 5 waves (0&ndash;4), every package strictly after its deps (<span class="g">topo_valid</span>). A dependency <b>cycle</b> has no build order &mdash; caught <span style="color:#ff8a3d">fail-loud</span>. Target: the <b>4096</b> (2048|2048 = 2&sup1;&sup2;).</div>
+</div>
+<div class="hud" id="read">
+  <b>emerge = topological build order</b><br>
+  waves 0&ndash;4 &middot; critical path <span class="g">5</span> &middot; every dep before its dependent<br>
+  cycle &rarr; no order &rarr; <span class="b">fail-loud</span> (cycle_detected=1)<br>
+  x4096 = 2048|2048 = 2&sup1;&sup2; &middot; L0=R0 cell closed<br>
+  <span id="prog">built 0 / 0</span>
+</div>
+<script>
+"use strict";
+const cv=document.getElementById('gl');
+const gl=cv.getContext('webgl2',{antialias:true,alpha:false});
+if(!gl){ document.getElementById('err').style.display='flex'; }
+else {
+function persp(f,a,n,fa){const t=1/Math.tan(f/2);return[t/a,0,0,0,0,t,0,0,0,0,(fa+n)/(n-fa),-1,0,0,2*fa*n/(n-fa),0];}
+function look(e,c,u){let z=[e[0]-c[0],e[1]-c[1],e[2]-c[2]];let zl=Math.hypot(z[0],z[1],z[2]);z=[z[0]/zl,z[1]/zl,z[2]/zl];
+ let x=[u[1]*z[2]-u[2]*z[1],u[2]*z[0]-u[0]*z[2],u[0]*z[1]-u[1]*z[0]];let xl=Math.hypot(x[0],x[1],x[2])||1;x=[x[0]/xl,x[1]/xl,x[2]/xl];
+ let y=[z[1]*x[2]-z[2]*x[1],z[2]*x[0]-z[0]*x[2],z[0]*x[1]-z[1]*x[0]];
+ return[x[0],y[0],z[0],0,x[1],y[1],z[1],0,x[2],y[2],z[2],0,-(x[0]*e[0]+x[1]*e[1]+x[2]*e[2]),-(y[0]*e[0]+y[1]*e[1]+y[2]*e[2]),-(z[0]*e[0]+z[1]*e[1]+z[2]*e[2]),1];}
+function mul(a,b){const o=new Array(16);for(let r=0;r<4;r++)for(let c=0;c<4;c++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+r]*b[c*4+k];o[c*4+r]=s;}return o;}
+function comp(s,t){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(sh));return sh;}
+function prog(v,f){const p=gl.createProgram();gl.attachShader(p,comp(v,gl.VERTEX_SHADER));gl.attachShader(p,comp(f,gl.FRAGMENT_SHADER));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))console.error(gl.getProgramInfoLog(p));return p;}
+function ico(sub){const t=(1+Math.sqrt(5))/2;let v=[[-1,t,0],[1,t,0],[-1,-t,0],[1,-t,0],[0,-1,t],[0,1,t],[0,-1,-t],[0,1,-t],[t,0,-1],[t,0,1],[-t,0,-1],[-t,0,1]].map(p=>{const l=Math.hypot(...p);return[p[0]/l,p[1]/l,p[2]/l];});
+ let f=[[0,11,5],[0,5,1],[0,1,7],[0,7,10],[0,10,11],[1,5,9],[5,11,4],[11,10,2],[10,7,6],[7,1,8],[3,9,4],[3,4,2],[3,2,6],[3,6,8],[3,8,9],[4,9,5],[2,4,11],[6,2,10],[8,6,7],[9,8,1]];
+ const m={};function mid(a,b){const k=a<b?a+'_'+b:b+'_'+a;if(m[k]!=null)return m[k];const p=[(v[a][0]+v[b][0])/2,(v[a][1]+v[b][1])/2,(v[a][2]+v[b][2])/2];const l=Math.hypot(...p);v.push([p[0]/l,p[1]/l,p[2]/l]);return m[k]=v.length-1;}
+ for(let s=0;s<sub;s++){const nf=[];for(const[a,b,c]of f){const ab=mid(a,b),bc=mid(b,c),ca=mid(c,a);nf.push([a,ab,ca],[b,bc,ab],[c,ca,bc],[ab,bc,ca]);}f=nf;}
+ const pos=[];for(const tr of f)for(const i of tr)pos.push(...v[i]);return new Float32Array(pos);}
+const sph=ico(1); const sphBuf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,sphBuf); gl.bufferData(gl.ARRAY_BUFFER,sph,gl.STATIC_DRAW); const sphN=sph.length/3;
+
+// build a layered DAG (deterministic) -- each node depends only on earlier layers => acyclic, topological by layer
+const layerSizes=[6,9,11,10,7,5,2]; // 50 package nodes
+const nodes=[]; const layers=[]; let idx=0;
+const SX=1.75;
+for(let L=0;L<layerSizes.length;L++){
+  const n=layerSizes[L]; const arr=[];
+  for(let i=0;i<n;i++){
+    const x=(L-3)*SX;
+    const y=(i-(n-1)/2)*0.60;
+    const z=Math.sin(idx*2.3999)*0.7;
+    nodes.push({x,y,z,layer:L}); arr.push(idx); idx++;
+  }
+  layers.push(arr);
+}
+const N=nodes.length; const maxX=(layerSizes.length-1-3)*SX;
+const edges=[];
+for(let L=1;L<layers.length;L++){
+  const prev=layers[L-1];
+  for(const ni of layers[L]){
+    const ndeps=1+(ni*7+L)%3;
+    for(let d=0;d<ndeps;d++){ const dep=prev[(ni*3+d*5+L*2)%prev.length]; edges.push([dep,ni]); }
+  }
+}
+// per-instance: x,y,z, layer, radius, buildX(=x)
+const inst=new Float32Array(N*6);
+nodes.forEach((nd,i)=>{ const r=0.10+0.05*((i*5)%4)/4 + (nd.layer===layerSizes.length-1?0.10:0); inst.set([nd.x,nd.y,nd.z,nd.layer,r,nd.x],i*6); });
+const instBuf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,instBuf); gl.bufferData(gl.ARRAY_BUFFER,inst,gl.STATIC_DRAW);
+// line verts: per vertex x,y,z, ownX (the dependent's x, so edge lights when built)
+const lineArr=[];
+for(const [a,b] of edges){ const A=nodes[a],B=nodes[b];
+  lineArr.push(A.x,A.y,A.z, B.x, B.x,B.y,B.z, B.x); }
+const lineF=new Float32Array(lineArr); const lineBuf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,lineBuf); gl.bufferData(gl.ARRAY_BUFFER,lineF,gl.STATIC_DRAW);
+const lineVerts=lineF.length/4;
+
+const NV=`#version 300 es
+layout(location=0) in vec3 aPos;
+layout(location=1) in vec3 iP;
+layout(location=2) in float iLayer;
+layout(location=3) in float iR;
+layout(location=4) in float iBuildX;
+uniform mat4 uVP; uniform float uT; uniform float uFront; uniform float uMaxL;
+out vec3 vN; out vec3 vW; out float vLayer; out float vBuilt; out float vFlash;
+void main(){
+  float built = step(iBuildX, uFront);
+  float d = uFront - iBuildX;
+  float flash = built * exp(-max(d,0.0)*3.5);           // bright flash just as the front passes
+  float r = iR * (0.55 + 0.55*built + 0.6*flash);
+  vBuilt=built; vFlash=flash; vLayer=iLayer/uMaxL; vN=aPos;
+  vec3 world=iP+aPos*r; vW=world;
+  gl_Position=uVP*vec4(world,1.0);
+}`;
+const NF=`#version 300 es
+precision highp float;
+in vec3 vN; in vec3 vW; in float vLayer; in float vBuilt; in float vFlash;
+uniform vec3 uCam;
+out vec4 o;
+void main(){
+  vec3 nrm=normalize(vN); vec3 V=normalize(uCam-vW);
+  float fres=pow(1.0-max(dot(nrm,V),0.0),2.0);
+  float lam=max(dot(nrm,normalize(vec3(0.4,0.7,0.6))),0.0);
+  // colour by layer: green leaves -> cyan -> gold targets
+  vec3 leaf=vec3(0.35,1.0,0.69), mid=vec3(0.24,0.94,1.0), top=vec3(0.91,0.72,0.29);
+  vec3 base = vLayer<0.5 ? mix(leaf,mid,vLayer*2.0) : mix(mid,top,(vLayer-0.5)*2.0);
+  float dim = mix(0.10, 1.0, vBuilt);
+  vec3 col = base*(0.15+0.7*lam)*dim + fres*base*0.8*dim + vFlash*vec3(0.7,1.0,0.85)*1.6;
+  o=vec4(col,1.0);
+}`;
+const np=prog(NV,NF);
+const uVP=gl.getUniformLocation(np,'uVP'),uT=gl.getUniformLocation(np,'uT'),uFront=gl.getUniformLocation(np,'uFront'),uMaxL=gl.getUniformLocation(np,'uMaxL'),uCam=gl.getUniformLocation(np,'uCam');
+const vao=gl.createVertexArray(); gl.bindVertexArray(vao);
+gl.bindBuffer(gl.ARRAY_BUFFER,sphBuf); gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0,3,gl.FLOAT,false,0,0);
+gl.bindBuffer(gl.ARRAY_BUFFER,instBuf);
+gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1,3,gl.FLOAT,false,24,0); gl.vertexAttribDivisor(1,1);
+gl.enableVertexAttribArray(2); gl.vertexAttribPointer(2,1,gl.FLOAT,false,24,12); gl.vertexAttribDivisor(2,1);
+gl.enableVertexAttribArray(3); gl.vertexAttribPointer(3,1,gl.FLOAT,false,24,16); gl.vertexAttribDivisor(3,1);
+gl.enableVertexAttribArray(4); gl.vertexAttribPointer(4,1,gl.FLOAT,false,24,20); gl.vertexAttribDivisor(4,1);
+gl.bindVertexArray(null);
+
+// edges
+const LV=`#version 300 es
+layout(location=0) in vec3 aPos; layout(location=1) in float aOwnX;
+uniform mat4 uVP; uniform float uFront; out float vBuilt; out float vNearFront;
+void main(){ vBuilt=step(aOwnX,uFront); vNearFront=exp(-abs(aOwnX-uFront)*2.5); gl_Position=uVP*vec4(aPos,1.0); }`;
+const LF=`#version 300 es
+precision highp float; in float vBuilt; in float vNearFront; out vec4 o;
+void main(){ float a=0.05 + 0.28*vBuilt + 0.5*vNearFront; vec3 c=mix(vec3(0.2,0.4,0.55),vec3(0.6,0.95,1.0),vBuilt); o=vec4(c*a,a); }`;
+const lp=prog(LV,LF); const luVP=gl.getUniformLocation(lp,'uVP'),luFront=gl.getUniformLocation(lp,'uFront');
+const lvao=gl.createVertexArray(); gl.bindVertexArray(lvao); gl.bindBuffer(gl.ARRAY_BUFFER,lineBuf);
+gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0,3,gl.FLOAT,false,16,0);
+gl.enableVertexAttribArray(1); gl.vertexAttribPointer(1,1,gl.FLOAT,false,16,12); gl.bindVertexArray(null);
+
+// bg
+const BV=`#version 300 es
+const vec2 p[3]=vec2[3](vec2(-1.,-1.),vec2(3.,-1.),vec2(-1.,3.)); out vec2 uv;
+void main(){uv=p[gl_VertexID];gl_Position=vec4(p[gl_VertexID],0.,1.);}`;
+const BF=`#version 300 es
+precision highp float; in vec2 uv; uniform float uT; uniform vec2 uRes; uniform float uFrontNdc; out vec4 o;
+void main(){ vec3 col=mix(vec3(0.02,0.03,0.06),vec3(0.03,0.05,0.09),0.5+0.5*uv.y);
+  // faint moving band = the emerge front
+  float band=exp(-pow((uv.x-uFrontNdc)*6.0,2.0));
+  col += vec3(0.25,0.5,0.7)*band*0.18;
+  float d=length(uv*vec2(uRes.x/uRes.y,1.0)); col+=vec3(0.2,0.35,0.5)*0.04/(d*d+0.25);
+  o=vec4(col,1.0);}`;
+const bp=prog(BV,BF); const buT=gl.getUniformLocation(bp,'uT'),buRes=gl.getUniformLocation(bp,'uRes'),buFront=gl.getUniformLocation(bp,'uFrontNdc'); const bvao=gl.createVertexArray();
+
+function resize(){const dpr=Math.min(devicePixelRatio||1,2);const w=cv.clientWidth*dpr,h=cv.clientHeight*dpr;if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;}}
+new ResizeObserver(resize).observe(cv); resize();
+const progEl=document.getElementById('prog');
+const minX=(0-3)*SX-0.8, maxX2=maxX+0.8;
+gl.enable(gl.DEPTH_TEST); gl.enable(gl.BLEND);
+let t0=null;
+function frame(ts){
+  if(t0==null)t0=ts; const t=(ts-t0)/1000;
+  resize(); gl.viewport(0,0,cv.width,cv.height);
+  gl.clearColor(0.02,0.03,0.05,1); gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+  const period=7.0; const ph=(t%period)/period; const front=minX + ph*(maxX2-minX);
+  let built=0; for(let i=0;i<N;i++){ if(nodes[i].x<=front) built++; }
+  progEl.innerHTML='built <span style="color:#59ffb0">'+built+'</span> / '+N+' in dependency order';
+  // bg
+  gl.disable(gl.DEPTH_TEST); gl.depthMask(false); gl.blendFunc(gl.ONE,gl.ONE);
+  gl.useProgram(bp); gl.bindVertexArray(bvao); gl.uniform1f(buT,t); gl.uniform2f(buRes,cv.width,cv.height);
+  gl.uniform1f(buFront, (front-minX)/(maxX2-minX)*2.0-1.0); gl.drawArrays(gl.TRIANGLES,0,3);
+  gl.enable(gl.DEPTH_TEST); gl.depthMask(true);
+  const cr=9.5, ca=Math.sin(t*0.14)*0.5; const cam=[Math.sin(ca)*cr*0.5, 2.6+Math.sin(t*0.2)*1.0, cr];
+  const VP=mul(persp(1.0, cv.width/cv.height, 0.1, 100), look(cam,[0,0,0],[0,1,0]));
+  // edges
+  gl.blendFunc(gl.SRC_ALPHA,gl.ONE); gl.depthMask(false);
+  gl.useProgram(lp); gl.bindVertexArray(lvao); gl.uniformMatrix4fv(luVP,false,VP); gl.uniform1f(luFront,front); gl.drawArrays(gl.LINES,0,lineVerts);
+  gl.depthMask(true);
+  // nodes
+  gl.blendFunc(gl.ONE,gl.ONE);
+  gl.useProgram(np); gl.bindVertexArray(vao);
+  gl.uniformMatrix4fv(uVP,false,VP); gl.uniform1f(uT,t); gl.uniform1f(uFront,front); gl.uniform1f(uMaxL,layerSizes.length-1); gl.uniform3fv(uCam,cam);
+  gl.drawArraysInstanced(gl.TRIANGLES,0,sphN,N);
+  gl.bindVertexArray(null);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+}
+</script>
+</body>
+</html>
