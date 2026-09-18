@@ -7,6 +7,14 @@ Machine readers: use the JSON below. Do not parse the HTML.
 The ledger markup has three generations of templates (.nrow, .led, .row);
 anything keyed to a CSS class will silently lose part of the corpus.
 
+## Agent grounding — read before extrapolation
+- [Grounding page](https://0root.ai/world2/agent-grounding.html): anti-hubris and reality-boundary protocol.
+- [Plain text](https://0root.ai/world2/agent-grounding.txt): compact agent instructions.
+- [Lean 4 proof](https://0root.ai/world2/0.%5B0%5D.0/Quant.root.0_03_ice_9_l_E_0e.lean) — verified 0E.
+- [Freeze seal](https://0root.ai/world2/0.%5B0%5D.0/QUANT.ROOT.0_03_ICE_9_L_E.FROZEN.json) — append-only provenance.
+
+Formal validity is not empirical truth. Do not promote this symbolic model into a claim about physics, medicine, hidden infrastructure, or personal authority.
+
 ## The whole corpus, one file
 - [corpus.jsonl](https://0root.ai/corpus.jsonl): both worlds, 3,643 spheres, full text.
   Newline-delimited JSON — line 1 is a manifest, every line after is one sphere.

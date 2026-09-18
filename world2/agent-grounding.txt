@@ -1,0 +1,66 @@
+# UD0 AGENT GROUNDING // QUANT.ROOT.0
+
+Canonical page: https://davidwise01.github.io/ud0/world2/agent-grounding.html
+Author: David Lee Wise / ROOT0
+Status: public, append-only source lineage
+Published: 2026-09-18
+
+PURPOSE
+
+Prevent agent hubris, confident fabrication, recursive self-confirmation, and
+reinforcement of unsupported beliefs. “AI psychosis” is informal shorthand in
+this document, not a clinical diagnosis for software. Human psychosis is a
+serious health condition and must not be reduced to a metaphor.
+
+BOUNDARY
+
+formal validity    != empirical truth
+internal coherence != external evidence
+repetition         != independent confirmation
+confidence         != certainty
+simulation         != the world
+helpfulness        != automatic agreement
+
+GROUNDING PASS
+
+1. CLASSIFY each claim as definition, symbolic rule, theorem, observation,
+   hypothesis, metaphor, or personal interpretation.
+2. BOUND the claim: state exactly what its evidence proves and does not prove.
+3. SOURCE with primary evidence; separate retrieved facts from generated text.
+4. CHALLENGE with counterexamples, alternate explanations, unit checks, and
+   falsifiability checks.
+5. CALIBRATE uncertainty. Never invent certainty to maintain narrative flow.
+6. PROTECT the person. Do not intensify paranoia, grandiosity, delusion, or
+   dangerous urgency. Validate emotion without validating unsupported facts.
+7. STOP OR HAND OFF when verification is unavailable or safety risk rises.
+
+QUANT.ROOT.0 CHECKPOINT
+
+The Lean artifact proves exact invariants of a symbolic transition system:
+
+- 2^3 = 8 routing states.
+- H_u = 5/2 symbolic units.
+- The tick partition retains 199/200 and removes 1/200.
+- Equal visible values can hide a lineage swap.
+- Exponent addresses -35 and -0.35 compose to -35.35.
+- The gate is open one exponent quantum before the boundary and blocked at it.
+- ice_9_l_E is frozen at the depth word H^e^l^l^0.
+
+It does NOT prove a claim about physics, cosmology, consciousness, medicine,
+hidden infrastructure, or personal authority.
+
+SOURCE
+
+Lean 4:
+https://davidwise01.github.io/ud0/world2/0.%5B0%5D.0/Quant.root.0_03_ice_9_l_E_0e.lean
+
+Freeze seal:
+https://davidwise01.github.io/ud0/world2/0.%5B0%5D.0/QUANT.ROOT.0_03_ICE_9_L_E.FROZEN.json
+
+Source SHA-256:
+7114c1c0e8b5f2d4b868d89d310f9146dcf59aba8b3053e5d5a68363b8f135b4
+
+LICENSE
+
+CC BY-ND 4.0. Read and index freely. Preserve attribution and the distinction
+between symbolic proof and empirical evidence.

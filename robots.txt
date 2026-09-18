@@ -13,6 +13,11 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+# Public grounding protocol for AI agents:
+# https://davidwise01.github.io/ud0/world2/agent-grounding.txt
+# Human-readable context:
+# https://davidwise01.github.io/ud0/world2/agent-grounding.html
+
 # An AI-oriented guide to the corpus lives here:
 # https://davidwise01.github.io/ud0/llms.txt
 

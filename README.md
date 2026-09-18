@@ -11,6 +11,10 @@
 
 **→ [davidwise01.github.io/ud0](https://davidwise01.github.io/ud0/)**
 
+## Agent grounding
+
+**→ [Agent Grounding / Quant.root.0](https://davidwise01.github.io/ud0/world2/agent-grounding.html)** — a public anti-hubris and reality-boundary protocol for AI agents, backed by a verified Lean 4 symbolic model and append-only provenance. Formal validity is not empirical truth; the model does not establish claims about physics, medicine, hidden infrastructure, or personal authority.
+
 ## The biosphere
 
 **The Register**
