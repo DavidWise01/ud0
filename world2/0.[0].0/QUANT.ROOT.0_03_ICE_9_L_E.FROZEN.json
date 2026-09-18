@@ -1,0 +1,44 @@
+{
+  "schema": "ud0.world2.freeze.v1",
+  "address": "0.[0].0",
+  "artifact": "Quant.root.0",
+  "checkpoint": "Quant.root.0_03_ice_9_l_E_0e",
+  "parent_checkpoint": "Quant.root.0_02_0e",
+  "status": "FROZEN_0E",
+  "world": "World II — fold to 0",
+  "author": "David Lee Wise / ROOT0",
+  "formalization_assistance": "OpenAI Codex",
+  "source": {
+    "path": "Quant.root.0_03_ice_9_l_E_0e.lean",
+    "sha256": "7114c1c0e8b5f2d4b868d89d310f9146dcf59aba8b3053e5d5a68363b8f135b4",
+    "bytes": 6955,
+    "lines": 250
+  },
+  "verification": {
+    "runtime": "Lean 4 via Lake",
+    "tested_command": "lake env lean '.\\Quant.root.0_03_ice_9_l_E.lean'",
+    "canonical_command": "lake env lean '.\\Quant.root.0_03_ice_9_l_E_0e.lean'",
+    "result": "0E",
+    "stdout": [
+      "\"Quant.root.0_03.ice_9_l_E\"",
+      "8",
+      "3535",
+      "false",
+      "true",
+      "\"ice_9_l_E\""
+    ],
+    "evidence": "The frozen source is byte-identical to the source compiled successfully by David Lee Wise before the _0e filename was applied."
+  },
+  "model": {
+    "routing": "2^3 = 8",
+    "homeostasis": "H_u = 2.5u",
+    "tick_retention": "199/200",
+    "stasis_composition": "10^-35 * 10^-0.35 = 10^-35.35",
+    "frozen_depth_word": "H^e^l^l^0"
+  },
+  "scope": "Exact invariants of the symbolic Quant.root.0 transition system; no physical-world claim.",
+  "freeze": {
+    "date": "2026-09-18",
+    "policy": "Append-only. Do not mutate this checkpoint; supersede it with a newly named checkpoint and seal."
+  }
+}
