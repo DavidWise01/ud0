@@ -1,0 +1,33 @@
+{
+  "schema": "ud0.world2.freeze.v1",
+  "address": "0.[0].0",
+  "artifact": "Quant.root.0",
+  "checkpoint": "Quant.root.0_02_0e",
+  "status": "FROZEN_0E",
+  "world": "World II — fold to 0",
+  "author": "David Lee Wise / ROOT0",
+  "formalization_assistance": "OpenAI Codex",
+  "source": {
+    "path": "Quant.root.0_02_0e.lean",
+    "sha256": "e9c2dea2fd9de8f30b366bf373fd05577c16cbbe7ca826c2512a67e8be996764",
+    "bytes": 7481,
+    "lines": 264
+  },
+  "verification": {
+    "runtime": "Lean 4 via Lake",
+    "command": "lake env lean '.\\Quant.root.0_02_0e.lean'",
+    "result": "0E",
+    "expected_stdout": [
+      "\"Quant.root.0\"",
+      "65536",
+      "10",
+      "16"
+    ],
+    "evidence": "The identical source bytes were compiled successfully before the frozen filename was applied."
+  },
+  "scope": "Exact invariants of the symbolic Quant.root.0 transition system; no physical-world claim.",
+  "freeze": {
+    "date": "2026-09-18",
+    "policy": "Append-only. Do not mutate this checkpoint; supersede it with a newly named checkpoint and seal."
+  }
+}
