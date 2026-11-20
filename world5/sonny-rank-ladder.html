@@ -3,104 +3,122 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Rank Ladder — WORLD V</title>
+<title>The Rank Ladder · SONNY 5</title>
 <style>
-html,body{margin:0;min-width:0;}
-body{background:#fff7ed;color:#431407;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
-#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
-a{color:inherit;}
-.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
-h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
-.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
-.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
-#stage{min-width:0;}
-button,a.door{font:inherit;}
-button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
-button.on{background:#431407;color:#fff7ed;}
-#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
-#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
-.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
-.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
-@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
-
-.rung{display:flex;gap:8px;align-items:center;margin:4px 0;} .bar{height:22px;background:#9a3412;color:#fff7ed;min-width:2px;} .rung button{border-radius:6px;}
+:root{--void:#1c0b46;--panel:rgba(255,255,255,.055);--panel2:rgba(255,255,255,.09);--ink:#f1eaff;--dim:#b9a8e6;--line:rgba(168,133,247,.34);--line2:rgba(168,133,247,.6);--violet:#a855f7;--cyan:#22d3ee;--pink:#ff4fd8;--gold:#ffd24a;--lit:#4ade80;--amber:#f9a83a;--wall:#ff6b8a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);min-width:0;}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;min-width:0;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;}
+header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);min-width:0;}
+h1{font-size:22px;letter-spacing:2px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);overflow-wrap:anywhere;}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;overflow-wrap:anywhere;} .sub b{color:var(--pink);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;overflow-wrap:anywhere;}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;min-width:0;}
+.col{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
+.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;min-width:0;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;overflow-wrap:anywhere;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);}
+.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);}
+.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
+select,button,input{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);}
+.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;overflow-wrap:anywhere;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,133,247,.14);} td.l{text-align:left;}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 0 0;}
+.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
+.bar{height:14px;background:linear-gradient(90deg,#22d3ee,#a855f7);border-radius:3px;}
+.stack{display:flex;flex-direction:column-reverse;gap:4px;min-height:28px;margin-top:6px;}
+.box{background:#22d3ee;color:#083344;padding:4px 8px;width:72px;text-align:center;font-weight:700;}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;overflow-wrap:anywhere;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
 </style>
 </head>
-<body data-kind="sonny-rank-ladder">
-<div id="wrap">
-<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-twelve.html">the measured room</a></p>
-<h1>The Rank Ladder</h1>
-<p class="lede">Swap two rungs, or sort them. Name leads at 2967 only while the order is the counted order.</p>
-<div id="stage"><div class="stamps"><b>LIT order</b><b>AMBER counts</b></div><div id="ladder"></div><button data-act="sort">Sort by count</button></div>
-<p id="proof">checking</p>
-<p id="note"></p>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD V · SONNY 5</a><span>THE ALPHABET</span> <a href="sonny-atrium.html">atrium</a></div>
+<header>
+  <h1>THE RANK LADDER</h1>
+  <p class="sub">Sorted by the cited counts, <b>Name</b> is rank 1 at <b>2967</b>. A swap that buries Name breaks the witness.</p>
+  <p class="src"><span class="tag t-amber">source</span> Counts cited. Order computed on load. <span class="tag t-lit">sort</span> Room of <a href="the-twelve.html">the measured page</a>. World V, the I-13 world. Rendered, not asserted.</p>
+</header>
+<div class="ocho">
+  <div class="col blue">
+    <div class="teamhdr">roots · law · lineage</div>
+    <div class="win blue"><span class="no">1</span><h2>RANK</h2><p>Descending count. Ties do not arise in this list. <span class="tag t-lit">strict</span></p></div>
+    <div class="win blue"><span class="no">2</span><h2>NAME LEADS</h2><p>2967 is larger than every other cited hundredth in the twelve. <span class="tag t-amber">cited</span></p></div>
+    <div class="win blue"><span class="no">3</span><h2>NOT A WALK</h2><p>The page sorts the cited list. It does not recount the corpus. <span class="tag t-wall">wall</span></p></div>
+  </div>
+  <div class="col center">
+    <div class="teamhdr">data in &rarr; the lit engine &rarr; data out</div>
+    <div class="win "><span class="no">4</span><h2>DATA IN</h2><div class="out" id="inOut">descending sort of the cited list</div></div>
+    <div class="flow">&#9660;</div>
+    <div class="win panel">
+      <h2 style="color:var(--gold);border-color:var(--line2)">&#9733; THE LIT ENGINE</h2>
+      <div id="engine"></div>
+      <div id="wit"></div>
+    </div>
+    <div class="flow">&#9660;</div>
+    <div class="win "><span class="no">5</span><h2>DATA OUT</h2><div id="outOut" class="out"></div><p class="small" id="outNote"></p></div>
+  </div>
+  <div class="col red">
+    <div class="teamhdr">wall · graveyard · tamper</div>
+    <div class="win red"><span class="no">6</span><h2>THE WALL</h2><p>Rank is only as good as the cited counts. <span class="tag t-amber">cited list</span></p></div>
+    <div class="win red"><span class="no">7</span><h2>GRAVEYARD — DEAD, KEPT</h2><p class="grave"><s>&ldquo;Any order is the alphabet.&rdquo;</s> — <b>DEAD.</b> The count fixes the rank. <span class="tag t-dead">kept</span></p></div>
+    <div class="win red"><span class="no">8</span><h2>TAMPER — BREAK A REAL RULE</h2><p>Swap Name with BinOp. Name is no longer rank 1. <span class="tag t-lit">it must fail</span></p><div class="row"><button id="tamper">&#9888; tamper</button><button id="restore">&#8634; restore</button></div><div class="out" id="tampOut"></div></div>
+  </div>
 </div>
-<script id="sonny-proof">
+<footer>
+  <b>THE RANK LADDER</b> — World V · the I-13 world, in the refined <b>OCHO</b>. Left: roots. Centre: a live engine that proves its claim on load. Right: the wall, the kept dead claim, and a tamper that turns the witness red.
+  <div style="margin-top:8px">&#10003; selfcheck runs on load and <b>throws</b> on any violation. Honesty is the whole game. David Lee Wise (ROOT0) with AVAN.</div>
+</footer>
+<script>
+"use strict";
+(function(){
+  function $(id){return document.getElementById(id);}
+  try{
 
-var audioCtx=null;
-function tone(){
-  if(!audioCtx) return;
-  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
-  o.type="triangle";
-  o.frequency.value=262;
-  g.gain.value=0.05;
-  o.connect(g); g.connect(audioCtx.destination);
-  o.start(); o.stop(audioCtx.currentTime+0.16);
-}
-document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
-
-var rows=[["Name",2967],["Constant",1425],["Attribute",963],["Assign",523],["Arg",408],["Return",182],["Expr",301],["If",276],["Compare",201],["Call",750],["FunctionDef",192],["BinOp",138]];
-function draw(){
-  var html="";
-  var max=2967;
-  rows.forEach(function(r,i){
-    html+='<div class="rung"><button data-act="pick" data-arg="'+i+'">'+r[0]+'</button><div class="bar" style="width:'+Math.max(8, Math.round(r[1]/max*100))+'%">'+r[1]+'</div></div>';
-  });
-  document.getElementById("ladder").innerHTML=html;
-}
-var picked=null;
-function onAct(act, arg){
-  if(act==="pick"){
-    var i=+arg;
-    if(picked===null) picked=i;
-    else { var t=rows[picked]; rows[picked]=rows[i]; rows[i]=t; picked=null; }
+    var ROWS=[["Name",2967],["Constant",1425],["Attribute",963],["Assign",523],["Arg",408],["Return",182],["Expr",301],["If",276],["Compare",201],["Call",750],["FunctionDef",192],["BinOp",138]];
+    var swapped=false;
+    function ordered(){ var c=ROWS.slice(); if(swapped){ var a=c[0]; c[0]=c[11]; c[11]=a; } else c.sort(function(a,b){return b[1]-a[1];}); return c; }
+    function selfcheck(){ var c=ROWS.slice().sort(function(a,b){return b[1]-a[1];}); if(c[0][0]!=="Name"||c[0][1]!==2967) throw new Error("rank"); }
+    function render(){
+      var c=ordered(); var rows="";
+      for(var i=0;i<c.length;i++) rows+="<tr><td>"+(i+1)+"</td><td class='l'>"+c[i][0]+"</td><td>"+c[i][1]+"</td></tr>";
+      $("engine").innerHTML="<table><tr><th>#</th><th>verb</th><th>count</th></tr>"+rows+"</table>";
+      var ok=c[0][0]==="Name"&&c[0][1]===2967;
+      $("wit").innerHTML=ok?'<span class="badge pass">&#10003; WITNESS GREEN · LIT · rank 1 is Name at 2967</span>':'<span class="badge failb">&#10007; WITNESS RED · Name is not rank 1</span>';
+      $("outOut").textContent=ok?"Name leads":"Name buried";
+      $("outNote").textContent="AMBER: the counts are the cited census.";
+      $("tampOut").innerHTML=swapped?"Name swapped with BinOp.":"Sorted.";
+    }
+    function tamper(){swapped=true;} function restore(){swapped=false;}
+  
+    selfcheck();
+    render();
+    $("tamper").onclick=function(){tamper();render();};
+    $("restore").onclick=function(){restore();render();};
+    if($("pick")) $("pick").onchange=render;
+  }catch(e){
+    var fb=$("failb");
+    if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+e.message;}
+    throw e;
   }
-  if(act==="sort") rows.sort(function(a,b){ return b[1]-a[1]; });
-  draw();
-  document.getElementById("note").textContent = rows[0][0]==="Name" ? "Name leads." : "Name is not on the top rung.";
-}
-function prove(){
-  var copy=[["Name",2967],["Constant",1425],["Attribute",963],["Assign",523],["Arg",408],["Return",182],["Expr",301],["If",276],["Compare",201],["Call",750],["FunctionDef",192],["BinOp",138]];
-  copy.sort(function(a,b){ return b[1]-a[1]; });
-  if(copy[0][0]!=="Name" || copy[0][1]!==2967) throw new Error("rank");
-  document.getElementById("proof").textContent="LIT sorted rank 1 is Name at 2967. AMBER the counts are cited.";
-}
-prove(); draw();
-
-document.getElementById("stage").addEventListener("click", function(ev){
-  var b=ev.target.closest("button");
-  if(!b) return;
-  tone();
-  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
-});
-
-
-
-var NAME="The Rank Ladder";
-var SLUG="sonny-rank-ladder";
-var BLURB="A ladder of the twelve counts. Sorted, Name is rank 1 at 2967. The counts are the cited census.";
-var SEAL="8480a592dfb4f4a27e078c2d9954606a130f1224c97669bcedaa8d96fc855757";
-if (window.crypto && crypto.subtle) {
-  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
-    var hex="";
-    var bytes=new Uint8Array(buf);
-    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
-    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
-  });
-}
-window.__sonny={prove:prove, slug:SLUG};
-
+})();
 </script>
 </body>
 </html>

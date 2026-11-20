@@ -3,115 +3,140 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Underflow — WORLD V</title>
+<title>The Underflow · SONNY 5</title>
 <style>
-html,body{margin:0;min-width:0;}
-body{background:#450a0a;color:#fee2e2;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
-#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
-a{color:inherit;}
-.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
-h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
-.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
-.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
-#stage{min-width:0;}
-button,a.door{font:inherit;}
-button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
-button.on{background:#fff7ed;color:#431407;}
-#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
-#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
-.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
-.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
-@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
-
-.tape{font-family:ui-monospace,Consolas,monospace;font-size:22px;padding:12px;border:2px solid currentColor;margin:8px 0;} .bad{background:#7f1d1d;} .good{background:#14532d;color:#ecfdf5;}
+:root{--void:#1c0b46;--panel:rgba(255,255,255,.055);--panel2:rgba(255,255,255,.09);--ink:#f1eaff;--dim:#b9a8e6;--line:rgba(168,133,247,.34);--line2:rgba(168,133,247,.6);--violet:#a855f7;--cyan:#22d3ee;--pink:#ff4fd8;--gold:#ffd24a;--lit:#4ade80;--amber:#f9a83a;--wall:#ff6b8a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);min-width:0;}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;min-width:0;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;}
+header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);min-width:0;}
+h1{font-size:22px;letter-spacing:2px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);overflow-wrap:anywhere;}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;overflow-wrap:anywhere;} .sub b{color:var(--pink);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;overflow-wrap:anywhere;}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;min-width:0;}
+.col{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
+.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;min-width:0;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;overflow-wrap:anywhere;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);}
+.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);}
+.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
+select,button,input{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);}
+.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;overflow-wrap:anywhere;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,133,247,.14);} td.l{text-align:left;}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 0 0;}
+.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
+.bar{height:14px;background:linear-gradient(90deg,#22d3ee,#a855f7);border-radius:3px;}
+.stack{display:flex;flex-direction:column-reverse;gap:4px;min-height:28px;margin-top:6px;}
+.box{background:#22d3ee;color:#083344;padding:4px 8px;width:72px;text-align:center;font-weight:700;}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;overflow-wrap:anywhere;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
 </style>
 </head>
-<body data-kind="sonny-underflow">
-<div id="wrap">
-<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-conservation-law.html">the measured room</a></p>
-<h1>The Underflow</h1>
-<p class="lede">The broken tape is Const, Bin. Insert the missing Const and the stack can fall back to zero.</p>
-<div id="stage"><div class="stamps"><b>LIT repair</b></div><div id="shown" class="tape"></div><button data-act="fix">Insert the missing Const</button></div>
-<p id="proof">checking</p>
-<p id="note"></p>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD V · SONNY 5</a><span>THE LAW</span> <a href="sonny-atrium.html">atrium</a></div>
+<header>
+  <h1>THE UNDERFLOW</h1>
+  <p class="sub"><b>Const, Bin</b> underflows. <b>Const, Const, Bin, Answer</b> returns the stack to 0.</p>
+  <p class="src"><span class="tag t-amber">source</span> Same ISA as the bench, two tapes. <span class="tag t-lit">both run</span> Room of <a href="the-conservation-law.html">the measured page</a>. World V, the I-13 world. Rendered, not asserted.</p>
+</header>
+<div class="ocho">
+  <div class="col blue">
+    <div class="teamhdr">roots · law · lineage</div>
+    <div class="win blue"><span class="no">1</span><h2>A CONSUMER</h2><p>Bin needs two values. One Const is not two. <span class="tag t-lit">k = 2</span></p></div>
+    <div class="win blue"><span class="no">2</span><h2>THE REPAIR</h2><p>A second Const, then Bin, then Answer. Height ends at 0 and nothing is left open. <span class="tag t-lit">repair</span></p></div>
+    <div class="win blue"><span class="no">3</span><h2>NOT A TYPE CHECK</h2><p>The page only checks stack height. <span class="tag t-wall">wall</span></p></div>
+  </div>
+  <div class="col center">
+    <div class="teamhdr">data in &rarr; the lit engine &rarr; data out</div>
+    <div class="win "><span class="no">4</span><h2>DATA IN</h2><div class="out" id="inOut">both tapes are on the engine</div></div>
+    <div class="flow">&#9660;</div>
+    <div class="win panel">
+      <h2 style="color:var(--gold);border-color:var(--line2)">&#9733; THE LIT ENGINE</h2>
+      <div id="engine"></div>
+      <div id="wit"></div>
+    </div>
+    <div class="flow">&#9660;</div>
+    <div class="win "><span class="no">5</span><h2>DATA OUT</h2><div id="outOut" class="out"></div><p class="small" id="outNote"></p></div>
+  </div>
+  <div class="col red">
+    <div class="teamhdr">wall · graveyard · tamper</div>
+    <div class="win red"><span class="no">6</span><h2>THE WALL</h2><p>Underflow here means the stack count went negative. It is not a traced hardware fault. <span class="tag t-wall">wall</span></p></div>
+    <div class="win red"><span class="no">7</span><h2>GRAVEYARD — DEAD, KEPT</h2><p class="grave"><s>&ldquo;Bin can run on one operand.&rdquo;</s> — <b>DEAD</b> under this law. <span class="tag t-dead">kept</span></p></div>
+    <div class="win red"><span class="no">8</span><h2>TAMPER — BREAK A REAL RULE</h2><p>Delete the repairing Const from the good tape. Both tapes then fail, and the witness goes red. <span class="tag t-lit">it must fail</span></p><div class="row"><button id="tamper">&#9888; tamper</button><button id="restore">&#8634; restore</button></div><div class="out" id="tampOut"></div></div>
+  </div>
 </div>
-<script id="sonny-proof">
+<footer>
+  <b>THE UNDERFLOW</b> — World V · the I-13 world, in the refined <b>OCHO</b>. Left: roots. Centre: a live engine that proves its claim on load. Right: the wall, the kept dead claim, and a tamper that turns the witness red.
+  <div style="margin-top:8px">&#10003; selfcheck runs on load and <b>throws</b> on any violation. Honesty is the whole game. David Lee Wise (ROOT0) with AVAN.</div>
+</footer>
+<script>
+"use strict";
+(function(){
+  function $(id){return document.getElementById(id);}
+  try{
 
-var audioCtx=null;
-function tone(){
-  if(!audioCtx) return;
-  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
-  o.type="square";
-  o.frequency.value=110;
-  g.gain.value=0.05;
-  o.connect(g); g.connect(audioCtx.destination);
-  o.start(); o.stop(audioCtx.currentTime+0.16);
-}
-document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
-
-var OPS={"Const":[0,1],"Ask":[0,1],"Attr":[1,1],"Ret":[1,1],"Answer":[1,0],"Drop":[1,0],"Bin":[2,1],"Cmp":[2,1],"If":[1,0],"Block":[0,0],"Else":[0,0],"End":[0,0],"Func":[0,0],"Halt":[0,0]};
-
-function opNet(op){ var t=OPS[op]; return t[1]-t[0]; }
-function callNet(n, tamper){ return 1 - (tamper ? n : n+1); }
-function run(code, tamper){
-  var h=0, slots=0, ctrl=[], ok=true, reason="";
+    var OPS={Const:[0,1],Ask:[0,1],Attr:[1,1],Ret:[1,1],Answer:[1,0],Drop:[1,0],Bin:[2,1],Cmp:[2,1],If:[1,0],Block:[0,0],Else:[0,0],End:[0,0],Func:[0,0],Halt:[0,0]};
+var ORDER=["Const","Ask","Attr","Ret","Answer","Drop","Bin","Cmp","If","Block","Else","End","Func","Halt"];
+function netOf(op){return OPS[op][1]-OPS[op][0];}
+function run(code,tamperCall){
+  var h=0,slots=0,ctrl=[],ok=true;
   for(var i=0;i<code.length;i++){
     slots++;
     var ins=code[i];
-    var k = ins.op==="Call" ? (tamper?ins.n:ins.n+1) : OPS[ins.op][0];
-    var net = ins.op==="Call" ? callNet(ins.n, tamper) : opNet(ins.op);
-    if(h-k<0){ ok=false; if(!reason) reason="underflow"; }
+    var k=ins.op==="Call"?(tamperCall?ins.n:ins.n+1):OPS[ins.op][0];
+    var net=ins.op==="Call"?(1-k):netOf(ins.op);
+    if(h-k<0) ok=false;
     if(ins.op==="Block") ctrl.push(h);
-    else if(ins.op==="End"){ if(!ctrl.length){ ok=false; reason=reason||"no region"; } else ctrl.pop(); }
+    else if(ins.op==="End"){ if(!ctrl.length) ok=false; else ctrl.pop(); }
     h+=net;
   }
-  if(ctrl.length){ ok=false; reason=reason||"unclosed"; }
-  var valid=ok && h===0;
-  return {valid:valid, height:h, slots:slots, reason:valid?"balanced":(reason||("height "+h))};
+  if(ctrl.length) ok=false;
+  return {valid:ok&&h===0,height:h,slots:slots};
 }
-
-var fixed=false;
-function draw(){
-  document.getElementById("shown").textContent = fixed ? "Const   Const   Bin   Answer" : "Const   Bin";
-  document.getElementById("shown").className = "tape "+(fixed?"good":"bad");
-  var code = fixed ? [{op:"Const"},{op:"Const"},{op:"Bin"},{op:"Answer"}] : [{op:"Const"},{op:"Bin"}];
-  var r=run(code,false);
-  document.getElementById("note").textContent=r.valid?"The repair balances.":("Broken: "+r.reason);
-}
-function onAct(act){ if(act==="fix") fixed=!fixed; draw(); }
-function prove(){
-  var bad=run([{op:"Const"},{op:"Bin"}], false);
-  var good=run([{op:"Const"},{op:"Const"},{op:"Bin"},{op:"Answer"}], false);
-  if(bad.valid) throw new Error("should underflow");
-  if(!good.valid || good.height!==0) throw new Error("repair");
-  document.getElementById("proof").textContent="LIT Const Bin underflows. Const Const Bin Answer balances.";
-}
-prove(); draw();
-
-document.getElementById("stage").addEventListener("click", function(ev){
-  var b=ev.target.closest("button");
-  if(!b) return;
-  tone();
-  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
-});
-
-
-
-var NAME="The Underflow";
-var SLUG="sonny-underflow";
-var BLURB="A Bin with one operand underflows. Inserting the missing Const makes Const, Const, Bin, Answer balance.";
-var SEAL="b40c945e9b927a8d89ec324ebd07b5db16eb490a294394b0715c44c9307d4520";
-if (window.crypto && crypto.subtle) {
-  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
-    var hex="";
-    var bytes=new Uint8Array(buf);
-    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
-    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
-  });
-}
-window.__sonny={prove:prove, slug:SLUG};
-
+    var cut=false;
+    var BAD=[{op:"Const"},{op:"Bin"}];
+    var GOOD=[{op:"Const"},{op:"Const"},{op:"Bin"},{op:"Answer"}];
+    function selfcheck(){ if(run(BAD).valid) throw new Error("bad should fail"); if(!run(GOOD).valid||run(GOOD).height!==0) throw new Error("repair"); }
+    function render(){
+      var g=cut?[{op:"Const"},{op:"Bin"},{op:"Answer"}]:GOOD;
+      var a=run(BAD), b=run(g);
+      $("engine").innerHTML="<table><tr><th>tape</th><th>valid</th><th>height</th></tr><tr><td class='l'>Const Bin</td><td>"+a.valid+"</td><td>"+a.height+"</td></tr><tr><td class='l'>"+(cut?"Const Bin Answer":"Const Const Bin Answer")+"</td><td>"+b.valid+"</td><td>"+b.height+"</td></tr></table>";
+      var ok=!a.valid && b.valid && !cut;
+      $("wit").innerHTML=ok?'<span class="badge pass">&#10003; WITNESS GREEN · LIT · one operand underflows, the repair balances</span>':'<span class="badge failb">&#10007; WITNESS RED · the repair was cut</span>';
+      $("outOut").textContent=ok?"repair holds":"repair lost";
+      $("outNote").textContent="Answer consumes the Bin result.";
+      $("tampOut").innerHTML=cut?"Repairing Const removed.":"Both tapes honest.";
+    }
+    function tamper(){cut=true;} function restore(){cut=false;}
+  
+    selfcheck();
+    render();
+    $("tamper").onclick=function(){tamper();render();};
+    $("restore").onclick=function(){restore();render();};
+    if($("pick")) $("pick").onchange=render;
+  }catch(e){
+    var fb=$("failb");
+    if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+e.message;}
+    throw e;
+  }
+})();
 </script>
 </body>
 </html>

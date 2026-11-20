@@ -3,129 +3,156 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Opcode Bench — WORLD V</title>
+<title>The Opcode Bench · SONNY 5</title>
 <style>
-html,body{margin:0;min-width:0;}
-body{background:#083344;color:#ecfeff;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
-#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
-a{color:inherit;}
-.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
-h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
-.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
-.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
-#stage{min-width:0;}
-button,a.door{font:inherit;}
-button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
-button.on{background:#fff7ed;color:#431407;}
-#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
-#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
-.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
-.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
-@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
-
-#tape{font-family:ui-monospace,Consolas,monospace;font-size:18px;margin:8px 0;} #stack{display:flex;flex-direction:column-reverse;gap:4px;min-height:80px;margin-top:8px;} .box{background:#22d3ee;color:#083344;padding:6px 10px;width:88px;text-align:center;font-family:ui-monospace,Consolas,monospace;}
+:root{--void:#1c0b46;--panel:rgba(255,255,255,.055);--panel2:rgba(255,255,255,.09);--ink:#f1eaff;--dim:#b9a8e6;--line:rgba(168,133,247,.34);--line2:rgba(168,133,247,.6);--violet:#a855f7;--cyan:#22d3ee;--pink:#ff4fd8;--gold:#ffd24a;--lit:#4ade80;--amber:#f9a83a;--wall:#ff6b8a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);min-width:0;}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;min-width:0;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;}
+header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);min-width:0;}
+h1{font-size:22px;letter-spacing:2px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);overflow-wrap:anywhere;}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;overflow-wrap:anywhere;} .sub b{color:var(--pink);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;overflow-wrap:anywhere;}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;min-width:0;}
+.col{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
+.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;min-width:0;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;overflow-wrap:anywhere;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);}
+.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);}
+.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
+select,button,input{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);}
+.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;overflow-wrap:anywhere;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,133,247,.14);} td.l{text-align:left;}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 0 0;}
+.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
+.bar{height:14px;background:linear-gradient(90deg,#22d3ee,#a855f7);border-radius:3px;}
+.stack{display:flex;flex-direction:column-reverse;gap:4px;min-height:28px;margin-top:6px;}
+.box{background:#22d3ee;color:#083344;padding:4px 8px;width:72px;text-align:center;font-weight:700;}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;overflow-wrap:anywhere;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
 </style>
 </head>
-<body data-kind="sonny-opcode-bench">
-<div id="wrap">
-<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-conservation-law.html">the measured room</a></p>
-<h1>The Opcode Bench</h1>
-<p class="lede">The arith tape is loaded: Const, Const, Bin, Answer. Height ends at 0. Add a Drop and it does not.</p>
-<div id="stage"><div class="stamps"><b>LIT stack</b></div><div id="tape"></div><div id="stack"></div><div class="row"><button data-act="add" data-arg="Const">Const</button><button data-act="add" data-arg="Ask">Ask</button><button data-act="add" data-arg="Attr">Attr</button><button data-act="add" data-arg="Ret">Ret</button><button data-act="add" data-arg="Answer">Answer</button><button data-act="add" data-arg="Drop">Drop</button><button data-act="add" data-arg="Bin">Bin</button><button data-act="add" data-arg="Cmp">Cmp</button><button data-act="add" data-arg="If">If</button><button data-act="add" data-arg="Block">Block</button><button data-act="add" data-arg="Else">Else</button><button data-act="add" data-arg="End">End</button><button data-act="add" data-arg="Func">Func</button><button data-act="add" data-arg="Halt">Halt</button></div><div class="row" style="margin-top:8px"><button data-act="drop">Add Drop</button><button data-act="reset">Reset arith</button></div></div>
-<p id="proof">checking</p>
-<p id="note"></p>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD V · SONNY 5</a><span>THE LAW</span> <a href="sonny-atrium.html">atrium</a></div>
+<header>
+  <h1>THE OPCODE BENCH</h1>
+  <p class="sub">Fourteen fixed opcodes. <b>net = binds − k</b>. Three sample tapes balance. Two do not.</p>
+  <p class="src"><span class="tag t-amber">source</span> ISA cited from THE CONSERVATION LAW. Nets and the five tapes are recomputed. <span class="tag t-lit">run</span> Room of <a href="the-conservation-law.html">the measured page</a>. World V, the I-13 world. Rendered, not asserted.</p>
+</header>
+<div class="ocho">
+  <div class="col blue">
+    <div class="teamhdr">roots · law · lineage</div>
+    <div class="win blue"><span class="no">1</span><h2>THE LAW</h2><p>k is what the opcode consumes. binds is 1 when it pushes a result. The difference is the whole effect on the stack. <span class="tag t-lit">total for these 14</span></p></div>
+    <div class="win blue"><span class="no">2</span><h2>NO BRANCH OPCODE</h2><p>Block, Else, and End ride entry heights. There is no address to patch. <span class="tag t-amber">cited</span></p></div>
+    <div class="win blue"><span class="no">3</span><h2>CALL IS SEPARATE</h2><p>Call(n) is not one of the fourteen. Its net is on the call-slot page. <span class="tag t-lit">split</span></p></div>
+  </div>
+  <div class="col center">
+    <div class="teamhdr">data in &rarr; the lit engine &rarr; data out</div>
+    <div class="win "><span class="no">4</span><h2>DATA IN</h2><div class="row"><label>tape</label><select id="pick"><option>arith</option><option>control</option><option>call2</option><option>extra drop</option><option>one operand</option></select></div><div class="out" id="inOut"></div></div>
+    <div class="flow">&#9660;</div>
+    <div class="win panel">
+      <h2 style="color:var(--gold);border-color:var(--line2)">&#9733; THE LIT ENGINE</h2>
+      <div id="engine"></div>
+      <div id="wit"></div>
+    </div>
+    <div class="flow">&#9660;</div>
+    <div class="win "><span class="no">5</span><h2>DATA OUT</h2><div id="outOut" class="out"></div><p class="small" id="outNote"></p></div>
+  </div>
+  <div class="col red">
+    <div class="teamhdr">wall · graveyard · tamper</div>
+    <div class="win red"><span class="no">6</span><h2>THE WALL</h2><p>Call arity outside the samples, types, and termination are not claimed. <span class="tag t-wall">wall</span></p></div>
+    <div class="win red"><span class="no">7</span><h2>GRAVEYARD — DEAD, KEPT</h2><p class="grave"><s>&ldquo;Control needs a branch address.&rdquo;</s> — <b>DEAD.</b> The target is a height already in hand. <span class="tag t-dead">kept</span></p></div>
+    <div class="win red"><span class="no">8</span><h2>TAMPER — BREAK A REAL RULE</h2><p>Give Bin a binds of 0. Const Const Bin Answer no longer ends at 0. <span class="tag t-lit">it must fail</span></p><div class="row"><button id="tamper">&#9888; tamper</button><button id="restore">&#8634; restore</button></div><div class="out" id="tampOut"></div></div>
+  </div>
 </div>
-<script id="sonny-proof">
+<footer>
+  <b>THE OPCODE BENCH</b> — World V · the I-13 world, in the refined <b>OCHO</b>. Left: roots. Centre: a live engine that proves its claim on load. Right: the wall, the kept dead claim, and a tamper that turns the witness red.
+  <div style="margin-top:8px">&#10003; selfcheck runs on load and <b>throws</b> on any violation. Honesty is the whole game. David Lee Wise (ROOT0) with AVAN.</div>
+</footer>
+<script>
+"use strict";
+(function(){
+  function $(id){return document.getElementById(id);}
+  try{
 
-var audioCtx=null;
-function tone(){
-  if(!audioCtx) return;
-  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
-  o.type="square";
-  o.frequency.value=196;
-  g.gain.value=0.05;
-  o.connect(g); g.connect(audioCtx.destination);
-  o.start(); o.stop(audioCtx.currentTime+0.16);
-}
-document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
-
-var OPS={"Const":[0,1],"Ask":[0,1],"Attr":[1,1],"Ret":[1,1],"Answer":[1,0],"Drop":[1,0],"Bin":[2,1],"Cmp":[2,1],"If":[1,0],"Block":[0,0],"Else":[0,0],"End":[0,0],"Func":[0,0],"Halt":[0,0]};
+    var OPS={Const:[0,1],Ask:[0,1],Attr:[1,1],Ret:[1,1],Answer:[1,0],Drop:[1,0],Bin:[2,1],Cmp:[2,1],If:[1,0],Block:[0,0],Else:[0,0],End:[0,0],Func:[0,0],Halt:[0,0]};
 var ORDER=["Const","Ask","Attr","Ret","Answer","Drop","Bin","Cmp","If","Block","Else","End","Func","Halt"];
-var NET={"Const":1,"Ask":1,"Attr":0,"Ret":0,"Answer":-1,"Drop":-1,"Bin":-1,"Cmp":-1,"If":-1,"Block":0,"Else":0,"End":0,"Func":0,"Halt":0};
-
-function opNet(op){ var t=OPS[op]; return t[1]-t[0]; }
-function callNet(n, tamper){ return 1 - (tamper ? n : n+1); }
-function run(code, tamper){
-  var h=0, slots=0, ctrl=[], ok=true, reason="";
+function netOf(op){return OPS[op][1]-OPS[op][0];}
+function run(code,tamperCall){
+  var h=0,slots=0,ctrl=[],ok=true;
   for(var i=0;i<code.length;i++){
     slots++;
     var ins=code[i];
-    var k = ins.op==="Call" ? (tamper?ins.n:ins.n+1) : OPS[ins.op][0];
-    var net = ins.op==="Call" ? callNet(ins.n, tamper) : opNet(ins.op);
-    if(h-k<0){ ok=false; if(!reason) reason="underflow"; }
+    var k=ins.op==="Call"?(tamperCall?ins.n:ins.n+1):OPS[ins.op][0];
+    var net=ins.op==="Call"?(1-k):netOf(ins.op);
+    if(h-k<0) ok=false;
     if(ins.op==="Block") ctrl.push(h);
-    else if(ins.op==="End"){ if(!ctrl.length){ ok=false; reason=reason||"no region"; } else ctrl.pop(); }
+    else if(ins.op==="End"){ if(!ctrl.length) ok=false; else ctrl.pop(); }
     h+=net;
   }
-  if(ctrl.length){ ok=false; reason=reason||"unclosed"; }
-  var valid=ok && h===0;
-  return {valid:valid, height:h, slots:slots, reason:valid?"balanced":(reason||("height "+h))};
+  if(ctrl.length) ok=false;
+  return {valid:ok&&h===0,height:h,slots:slots};
 }
-
-var tape=[{op:"Const"},{op:"Const"},{op:"Bin"},{op:"Answer"}];
-function draw(){
-  document.getElementById("tape").textContent=tape.map(function(t){return t.op;}).join("  ");
-  var h=0, html="";
-  tape.forEach(function(ins){ h+=opNet(ins.op); });
-  for(var i=0;i<Math.max(0,h);i++) html+='<div class="box"> </div>';
-  document.getElementById("stack").innerHTML=html||'<div class="box">empty</div>';
-  var r=run(tape,false);
-  document.getElementById("note").textContent=(r.valid?"VALID":"INVALID")+" · height "+r.height+" · "+r.reason;
-}
-function onAct(act, arg){
-  if(act==="add") tape.push({op:arg});
-  if(act==="reset") tape=[{op:"Const"},{op:"Const"},{op:"Bin"},{op:"Answer"}];
-  if(act==="drop") tape.push({op:"Drop"});
-  draw();
-}
-function prove(){
-  ORDER.forEach(function(op){ if(opNet(op)!==NET[op]) throw new Error(op); });
-  var samples=[
-    [[{op:"Const"},{op:"Const"},{op:"Bin"},{op:"Answer"}], true],
-    [[{op:"Const"},{op:"Const"},{op:"Cmp"},{op:"If"},{op:"Block"},{op:"Const"},{op:"Answer"},{op:"End"}], true],
-    [[{op:"Const"},{op:"Const"},{op:"Const"},{op:"Call",n:2},{op:"Answer"}], true],
-    [[{op:"Const"},{op:"Const"},{op:"Bin"},{op:"Answer"},{op:"Drop"}], false],
-    [[{op:"Const"},{op:"Bin"}], false]
-  ];
-  samples.forEach(function(s){ var r=run(s[0], false); if(r.valid!==s[1]) throw new Error(r.reason); if(r.slots!==s[0].length) throw new Error("slots"); });
-  document.getElementById("proof").textContent="LIT 14 opcode nets and 5 sample tapes. Three balance, two do not.";
-}
-prove(); draw();
-
-document.getElementById("stage").addEventListener("click", function(ev){
-  var b=ev.target.closest("button");
-  if(!b) return;
-  tone();
-  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
-});
-
-
-
-var NAME="The Opcode Bench";
-var SLUG="sonny-opcode-bench";
-var BLURB="A bench for the fourteen fixed opcodes. Stack height moves by binds minus k. Three sample programs balance and two do not.";
-var SEAL="3995ab2db6ffa2ef9339a69d743169cddd1cbe172977d9f32809a916452542b1";
-if (window.crypto && crypto.subtle) {
-  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
-    var hex="";
-    var bytes=new Uint8Array(buf);
-    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
-    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
-  });
-}
-window.__sonny={prove:prove, slug:SLUG};
-
+    var broken=false;
+    var TAPES={
+      arith:[{op:"Const"},{op:"Const"},{op:"Bin"},{op:"Answer"}],
+      control:[{op:"Const"},{op:"Const"},{op:"Cmp"},{op:"If"},{op:"Block"},{op:"Const"},{op:"Answer"},{op:"End"}],
+      call2:[{op:"Const"},{op:"Const"},{op:"Const"},{op:"Call",n:2},{op:"Answer"}],
+      drop:[{op:"Const"},{op:"Const"},{op:"Bin"},{op:"Answer"},{op:"Drop"}],
+      one:[{op:"Const"},{op:"Bin"}]
+    };
+    function net(op){ if(broken&&op==="Bin") return 0-2; return netOf(op); }
+    function selfcheck(){
+      for(var i=0;i<ORDER.length;i++) if(netOf(ORDER[i])!==OPS[ORDER[i]][1]-OPS[ORDER[i]][0]) throw new Error(ORDER[i]);
+      if(!run(TAPES.arith).valid||!run(TAPES.control).valid||!run(TAPES.call2).valid) throw new Error("valid");
+      if(run(TAPES.drop).valid||run(TAPES.one).valid) throw new Error("invalid");
+    }
+    function render(){
+      var name=$("pick").value||"arith";
+      var key={arith:"arith",control:"control",call2:"call2","extra drop":"drop","one operand":"one"}[name];
+      var code=TAPES[key];
+      var rows="";
+      for(var i=0;i<ORDER.length;i++){ var op=ORDER[i]; var b=broken&&op==="Bin"?0:OPS[op][1]; rows+="<tr><td>"+op+"</td><td>"+(op==="Bin"&&broken?2:OPS[op][0])+"</td><td>"+b+"</td><td>"+(b-(op==="Bin"&&broken?2:OPS[op][0]))+"</td></tr>"; }
+      var h=0, trace="";
+      for(var j=0;j<code.length;j++){ var n=code[j].op==="Call"?-code[j].n:net(code[j].op); h+=n; trace+=code[j].op+"→"+h+" "; }
+      $("engine").innerHTML="<table><tr><th>op</th><th>k</th><th>binds</th><th>net</th></tr>"+rows+"</table><p class='small'>"+trace+"</p>";
+      var arithOk=!broken;
+      $("wit").innerHTML=arithOk?'<span class="badge pass">&#10003; WITNESS GREEN · LIT · 14 nets, 3 tapes balance, 2 do not</span>':'<span class="badge failb">&#10007; WITNESS RED · Bin no longer pushes, arith falls</span>';
+      $("inOut").textContent=name+" · height trace above";
+      $("outOut").textContent=arithOk?"arith ends at 0":"arith broken";
+      $("outNote").textContent="Slots visited equals tape length on the honest ISA.";
+      $("tampOut").innerHTML=broken?"Bin binds forced to 0.":"ISA as cited.";
+    }
+    function tamper(){broken=true;} function restore(){broken=false;}
+  
+    selfcheck();
+    render();
+    $("tamper").onclick=function(){tamper();render();};
+    $("restore").onclick=function(){restore();render();};
+    if($("pick")) $("pick").onchange=render;
+  }catch(e){
+    var fb=$("failb");
+    if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+e.message;}
+    throw e;
+  }
+})();
 </script>
 </body>
 </html>

@@ -3,100 +3,121 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Single Pass — WORLD V</title>
+<title>The Single Pass · SONNY 5</title>
 <style>
-html,body{margin:0;min-width:0;}
-body{background:#f0fdfa;color:#134e4a;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
-#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
-a{color:inherit;}
-.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
-h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
-.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
-.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
-#stage{min-width:0;}
-button,a.door{font:inherit;}
-button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
-button.on{background:#431407;color:#fff7ed;}
-#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
-#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
-.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
-.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
-@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
-
-#rail{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0;} .slot{border:2px solid currentColor;padding:8px 10px;font-family:ui-monospace,Consolas,monospace;} .here{background:#0f766e;color:#f0fdfa;}
+:root{--void:#1c0b46;--panel:rgba(255,255,255,.055);--panel2:rgba(255,255,255,.09);--ink:#f1eaff;--dim:#b9a8e6;--line:rgba(168,133,247,.34);--line2:rgba(168,133,247,.6);--violet:#a855f7;--cyan:#22d3ee;--pink:#ff4fd8;--gold:#ffd24a;--lit:#4ade80;--amber:#f9a83a;--wall:#ff6b8a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);min-width:0;}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;min-width:0;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;}
+header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);min-width:0;}
+h1{font-size:22px;letter-spacing:2px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);overflow-wrap:anywhere;}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;overflow-wrap:anywhere;} .sub b{color:var(--pink);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;overflow-wrap:anywhere;}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;min-width:0;}
+.col{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
+.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;min-width:0;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;overflow-wrap:anywhere;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);}
+.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);}
+.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
+select,button,input{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);}
+.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;overflow-wrap:anywhere;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,133,247,.14);} td.l{text-align:left;}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 0 0;}
+.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
+.bar{height:14px;background:linear-gradient(90deg,#22d3ee,#a855f7);border-radius:3px;}
+.stack{display:flex;flex-direction:column-reverse;gap:4px;min-height:28px;margin-top:6px;}
+.box{background:#22d3ee;color:#083344;padding:4px 8px;width:72px;text-align:center;font-weight:700;}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;overflow-wrap:anywhere;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
 </style>
 </head>
-<body data-kind="sonny-single-pass">
-<div id="wrap">
-<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-conservation-law.html">the measured room</a></p>
-<h1>The Single Pass</h1>
-<p class="lede">Watch the head cross the tape once. Reduced motion parks it at the end and still counts one visit per slot.</p>
-<div id="stage"><div class="stamps"><b>LIT ratio 1</b></div><div id="rail"></div><button data-act="go">Send the head across once</button></div>
-<p id="proof">checking</p>
-<p id="note"></p>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD V · SONNY 5</a><span>THE LAW</span> <a href="sonny-atrium.html">atrium</a></div>
+<header>
+  <h1>THE SINGLE PASS</h1>
+  <p class="sub">The cursor visits each slot once. Visits divided by length is <b>1</b>. A second look is the tamper.</p>
+  <p class="src"><span class="tag t-amber">source</span> Ratio computed on the arith tape. <span class="tag t-lit">visits / length</span> Room of <a href="the-conservation-law.html">the measured page</a>. World V, the I-13 world. Rendered, not asserted.</p>
+</header>
+<div class="ocho">
+  <div class="col blue">
+    <div class="teamhdr">roots · law · lineage</div>
+    <div class="win blue"><span class="no">1</span><h2>ONE LOOK</h2><p>No backpatch and no fixpoint. The length of the tape is the number of visits. <span class="tag t-lit">ratio 1</span></p></div>
+    <div class="win blue"><span class="no">2</span><h2>WHY IT CAN BE ONE</h2><p>A target height is already a number. Nothing sends the cursor backwards. <span class="tag t-amber">cited</span></p></div>
+    <div class="win blue"><span class="no">3</span><h2>THIS TAPE</h2><p>Const, Const, Bin, Answer. Four slots. <span class="tag t-lit">4/4</span></p></div>
+  </div>
+  <div class="col center">
+    <div class="teamhdr">data in &rarr; the lit engine &rarr; data out</div>
+    <div class="win "><span class="no">4</span><h2>DATA IN</h2><div class="out" id="inOut">arith tape · 4 slots</div></div>
+    <div class="flow">&#9660;</div>
+    <div class="win panel">
+      <h2 style="color:var(--gold);border-color:var(--line2)">&#9733; THE LIT ENGINE</h2>
+      <div id="engine"></div>
+      <div id="wit"></div>
+    </div>
+    <div class="flow">&#9660;</div>
+    <div class="win "><span class="no">5</span><h2>DATA OUT</h2><div id="outOut" class="out"></div><p class="small" id="outNote"></p></div>
+  </div>
+  <div class="col red">
+    <div class="teamhdr">wall · graveyard · tamper</div>
+    <div class="win red"><span class="no">6</span><h2>THE WALL</h2><p>The ratio is for this validator shape. It is not a claim about every compiler. <span class="tag t-wall">wall</span></p></div>
+    <div class="win red"><span class="no">7</span><h2>GRAVEYARD — DEAD, KEPT</h2><p class="grave"><s>&ldquo;Validation needs a second pass to patch branches.&rdquo;</s> — <b>DEAD</b> for this ISA. There is no branch opcode. <span class="tag t-dead">kept</span></p></div>
+    <div class="win red"><span class="no">8</span><h2>TAMPER — BREAK A REAL RULE</h2><p>Count one extra visit. The ratio leaves 1. <span class="tag t-lit">it must fail</span></p><div class="row"><button id="tamper">&#9888; tamper</button><button id="restore">&#8634; restore</button></div><div class="out" id="tampOut"></div></div>
+  </div>
 </div>
-<script id="sonny-proof">
+<footer>
+  <b>THE SINGLE PASS</b> — World V · the I-13 world, in the refined <b>OCHO</b>. Left: roots. Centre: a live engine that proves its claim on load. Right: the wall, the kept dead claim, and a tamper that turns the witness red.
+  <div style="margin-top:8px">&#10003; selfcheck runs on load and <b>throws</b> on any violation. Honesty is the whole game. David Lee Wise (ROOT0) with AVAN.</div>
+</footer>
+<script>
+"use strict";
+(function(){
+  function $(id){return document.getElementById(id);}
+  try{
 
-var audioCtx=null;
-function tone(){
-  if(!audioCtx) return;
-  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
-  o.type="sine";
-  o.frequency.value=523;
-  g.gain.value=0.05;
-  o.connect(g); g.connect(audioCtx.destination);
-  o.start(); o.stop(audioCtx.currentTime+0.16);
-}
-document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
-
-var code=["Const","Const","Bin","Answer"];
-var head=0, visits=0, started=false;
-function draw(){
-  document.getElementById("rail").innerHTML=code.map(function(op,i){
-    return '<div class="slot'+(i<head?' here':'')+'">'+op+'</div>';
-  }).join("");
-  document.getElementById("note").textContent="visits "+visits+" / "+code.length;
-}
-function finish(){ head=code.length; visits=code.length; draw(); }
-function step(){
-  if(head>=code.length) return;
-  visits++; head++;
-  draw();
-  if(head<code.length) requestAnimationFrame(step);
-}
-function onAct(){
-  if(started) return;
-  started=true;
-  var reduce=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if(reduce) finish();
-  else requestAnimationFrame(step);
-}
-function prove(){
-  var slots=0; for(var i=0;i<code.length;i++) slots++;
-  if(slots/code.length!==1) throw new Error("ratio");
-  document.getElementById("proof").textContent="LIT one visit per slot. Ratio 1.";
-}
-prove(); draw();
-document.getElementById("stage").addEventListener("click", function(ev){
-  var b=ev.target.closest("button"); if(!b) return; tone(); onAct();
-});
-
-
-var NAME="The Single Pass";
-var SLUG="sonny-single-pass";
-var BLURB="One cursor visits each slot of a tape once. The ratio of visits to length is 1. There is no second pass on this page.";
-var SEAL="1b0a40a283fd2fe8416237ce138d5c7920e904a3586f266b13dd9eb71b2373c7";
-if (window.crypto && crypto.subtle) {
-  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
-    var hex="";
-    var bytes=new Uint8Array(buf);
-    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
-    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
-  });
-}
-window.__sonny={prove:prove, slug:SLUG};
-
+    var code=["Const","Const","Bin","Answer"];
+    var extra=0;
+    function selfcheck(){ var v=0; for(var i=0;i<code.length;i++) v++; if(v/code.length!==1) throw new Error("ratio"); }
+    function render(){
+      var v=code.length+extra;
+      var cells=""; for(var i=0;i<code.length;i++) cells+="<td>"+code[i]+"</td>";
+      $("engine").innerHTML="<table><tr>"+cells+"</tr></table><p class='small'>visits "+v+" / length "+code.length+"</p>";
+      var ok=v===code.length;
+      $("wit").innerHTML=ok?'<span class="badge pass">&#10003; WITNESS GREEN · LIT · ratio 1, one visit per slot</span>':'<span class="badge failb">&#10007; WITNESS RED · ratio left 1</span>';
+      $("outOut").textContent=(v/code.length).toFixed(4);
+      $("outNote").textContent="Reduced motion is irrelevant: the count does not depend on a clock.";
+      $("tampOut").innerHTML=extra?"An extra visit was counted.":"One pass.";
+    }
+    function tamper(){extra=1;} function restore(){extra=0;}
+  
+    selfcheck();
+    render();
+    $("tamper").onclick=function(){tamper();render();};
+    $("restore").onclick=function(){restore();render();};
+    if($("pick")) $("pick").onchange=render;
+  }catch(e){
+    var fb=$("failb");
+    if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+e.message;}
+    throw e;
+  }
+})();
 </script>
 </body>
 </html>

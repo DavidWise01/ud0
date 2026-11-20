@@ -3,119 +3,131 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Plane Press — WORLD V</title>
+<title>The Plane Press · SONNY 5</title>
 <style>
-html,body{margin:0;min-width:0;}
-body{background:#7c2d12;color:#fff7ed;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
-#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
-a{color:inherit;}
-.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
-h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
-.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
-.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
-#stage{min-width:0;}
-button,a.door{font:inherit;}
-button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
-button.on{background:#fff7ed;color:#431407;}
-#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
-#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
-.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
-.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
-@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
-
-#planes{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:12px;} .bin{border:2px solid currentColor;padding:8px;min-height:72px;} .bin b{font-family:ui-monospace,Consolas,monospace;font-size:12px;}
+:root{--void:#1c0b46;--panel:rgba(255,255,255,.055);--panel2:rgba(255,255,255,.09);--ink:#f1eaff;--dim:#b9a8e6;--line:rgba(168,133,247,.34);--line2:rgba(168,133,247,.6);--violet:#a855f7;--cyan:#22d3ee;--pink:#ff4fd8;--gold:#ffd24a;--lit:#4ade80;--amber:#f9a83a;--wall:#ff6b8a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);min-width:0;}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;min-width:0;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;}
+header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);min-width:0;}
+h1{font-size:22px;letter-spacing:2px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);overflow-wrap:anywhere;}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;overflow-wrap:anywhere;} .sub b{color:var(--pink);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;overflow-wrap:anywhere;}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;min-width:0;}
+.col{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
+.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;min-width:0;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;overflow-wrap:anywhere;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);}
+.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);}
+.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
+select,button,input{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);}
+.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;overflow-wrap:anywhere;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,133,247,.14);} td.l{text-align:left;}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 0 0;}
+.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
+.bar{height:14px;background:linear-gradient(90deg,#22d3ee,#a855f7);border-radius:3px;}
+.stack{display:flex;flex-direction:column-reverse;gap:4px;min-height:28px;margin-top:6px;}
+.box{background:#22d3ee;color:#083344;padding:4px 8px;width:72px;text-align:center;font-weight:700;}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;overflow-wrap:anywhere;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
 </style>
 </head>
-<body data-kind="sonny-plane-press">
-<div id="wrap">
-<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-twelve.html">the measured room</a></p>
-<h1>The Plane Press</h1>
-<p class="lede">Choose a verb, then a plane. The canon filing is checked on load. You can mis-file Call and watch the sum break.</p>
-<div id="stage"><div class="stamps"><b>LIT filing</b><b>AMBER counts</b></div><div class="row"><button data-act="verb" data-arg="Name">Name</button><button data-act="verb" data-arg="Constant">Constant</button><button data-act="verb" data-arg="Attribute">Attribute</button><button data-act="verb" data-arg="Assign">Assign</button><button data-act="verb" data-arg="Arg">Arg</button><button data-act="verb" data-arg="Return">Return</button><button data-act="verb" data-arg="Expr">Expr</button><button data-act="verb" data-arg="If">If</button><button data-act="verb" data-arg="Compare">Compare</button><button data-act="verb" data-arg="Call">Call</button><button data-act="verb" data-arg="FunctionDef">FunctionDef</button><button data-act="verb" data-arg="BinOp">BinOp</button></div><div class="row" style="margin-top:8px"><button data-act="plane" data-arg="I DESIGNATE">I DESIGNATE</button><button data-act="plane" data-arg="II BIND">II BIND</button><button data-act="plane" data-arg="III DECIDE">III DECIDE</button><button data-act="plane" data-arg="IV TRANSFORM">IV TRANSFORM</button></div><div id="planes"></div><div class="row" style="margin-top:8px"><button data-act="canon">File the canon</button><button data-act="mis">Mis-file Call</button><button data-act="clear">Clear</button></div></div>
-<p id="proof">checking</p>
-<p id="note"></p>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD V · SONNY 5</a><span>THE ALPHABET</span> <a href="sonny-atrium.html">atrium</a></div>
+<header>
+  <h1>THE PLANE PRESS</h1>
+  <p class="sub">File each verb onto its plane. The canon sums are 5355, 1113, 778, 1080. Moving <b>Call</b> onto designate breaks them.</p>
+  <p class="src"><span class="tag t-amber">source</span> Filing cited from THE TWELVE. Sums recomputed by scanning the list. <span class="tag t-lit">scan</span> Room of <a href="the-twelve.html">the measured page</a>. World V, the I-13 world. Rendered, not asserted.</p>
+</header>
+<div class="ocho">
+  <div class="col blue">
+    <div class="teamhdr">roots · law · lineage</div>
+    <div class="win blue"><span class="no">1</span><h2>FOUR PLANES</h2><p>Designate names. Bind hands a value on. Decide branches. Transform makes a new value. Three verbs each. <span class="tag t-amber">cited filing</span></p></div>
+    <div class="win blue"><span class="no">2</span><h2>BLOCK IS NOT A VERB</h2><p>Block holds verbs. It is the container, not one of the twelve. <span class="tag t-lit">by construction</span></p></div>
+    <div class="win blue"><span class="no">3</span><h2>THE BUG</h2><p>The brief&rsquo;s own note says a reference filing once put Call under designate. This page can reproduce that and only that. <span class="tag t-amber">cited bug</span></p></div>
+  </div>
+  <div class="col center">
+    <div class="teamhdr">data in &rarr; the lit engine &rarr; data out</div>
+    <div class="win "><span class="no">4</span><h2>DATA IN</h2><p>The engine shows the canon filing. The tamper is the mis-file.</p><div class="out" id="inOut">canon filing loaded</div></div>
+    <div class="flow">&#9660;</div>
+    <div class="win panel">
+      <h2 style="color:var(--gold);border-color:var(--line2)">&#9733; THE LIT ENGINE</h2>
+      <div id="engine"></div>
+      <div id="wit"></div>
+    </div>
+    <div class="flow">&#9660;</div>
+    <div class="win "><span class="no">5</span><h2>DATA OUT</h2><div id="outOut" class="out"></div><p class="small" id="outNote"></p></div>
+  </div>
+  <div class="col red">
+    <div class="teamhdr">wall · graveyard · tamper</div>
+    <div class="win red"><span class="no">6</span><h2>THE WALL</h2><p>This page does not re-walk the 649,634 nodes. <span class="tag t-wall">wall</span></p></div>
+    <div class="win red"><span class="no">7</span><h2>GRAVEYARD — DEAD, KEPT</h2><p class="grave"><s>&ldquo;Any plane that contains three verbs is correct.&rdquo;</s> — <b>DEAD.</b> The sum has to match the subtotal. <span class="tag t-dead">kept</span></p></div>
+    <div class="win red"><span class="no">8</span><h2>TAMPER — BREAK A REAL RULE</h2><p>Move Call (750) from transform into designate. Designate becomes 6105. Transform becomes 330. <span class="tag t-lit">it must fail</span></p><div class="row"><button id="tamper">&#9888; tamper</button><button id="restore">&#8634; restore</button></div><div class="out" id="tampOut"></div></div>
+  </div>
 </div>
-<script id="sonny-proof">
+<footer>
+  <b>THE PLANE PRESS</b> — World V · the I-13 world, in the refined <b>OCHO</b>. Left: roots. Centre: a live engine that proves its claim on load. Right: the wall, the kept dead claim, and a tamper that turns the witness red.
+  <div style="margin-top:8px">&#10003; selfcheck runs on load and <b>throws</b> on any violation. Honesty is the whole game. David Lee Wise (ROOT0) with AVAN.</div>
+</footer>
+<script>
+"use strict";
+(function(){
+  function $(id){return document.getElementById(id);}
+  try{
 
-var audioCtx=null;
-function tone(){
-  if(!audioCtx) return;
-  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
-  o.type="square";
-  o.frequency.value=220;
-  g.gain.value=0.05;
-  o.connect(g); g.connect(audioCtx.destination);
-  o.start(); o.stop(audioCtx.currentTime+0.16);
-}
-document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
-
-var CENSUS=[["Name",2967,"I DESIGNATE"],["Constant",1425,"I DESIGNATE"],["Attribute",963,"I DESIGNATE"],["Assign",523,"II BIND"],["Arg",408,"II BIND"],["Return",182,"II BIND"],["Expr",301,"III DECIDE"],["If",276,"III DECIDE"],["Compare",201,"III DECIDE"],["Call",750,"IV TRANSFORM"],["FunctionDef",192,"IV TRANSFORM"],["BinOp",138,"IV TRANSFORM"]];
+    var CENSUS=[["Name",2967,"I DESIGNATE"],["Constant",1425,"I DESIGNATE"],["Attribute",963,"I DESIGNATE"],["Assign",523,"II BIND"],["Arg",408,"II BIND"],["Return",182,"II BIND"],["Expr",301,"III DECIDE"],["If",276,"III DECIDE"],["Compare",201,"III DECIDE"],["Call",750,"IV TRANSFORM"],["FunctionDef",192,"IV TRANSFORM"],["BinOp",138,"IV TRANSFORM"]];
 var SUBS={"I DESIGNATE":5355,"II BIND":1113,"III DECIDE":778,"IV TRANSFORM":1080};
 var PLANES=["I DESIGNATE","II BIND","III DECIDE","IV TRANSFORM"];
-var filing={}, picked=null;
-function score(f){
-  var out={ok:true, parts:{}};
-  PLANES.forEach(function(p){
-    var s=0; CENSUS.forEach(function(r){ if(f[r[0]]===p) s+=r[1]; });
-    out.parts[p]=s; if(s!==SUBS[p]) out.ok=false;
-  });
-  return out;
-}
-function draw(){
-  var html="";
-  PLANES.forEach(function(p){
-    var names=[]; CENSUS.forEach(function(r){ if(filing[r[0]]===p) names.push(r[0]); });
-    html+='<div class="bin"><b>'+p+'</b><div>'+names.join(" ")+'</div></div>';
-  });
-  document.getElementById("planes").innerHTML=html;
-  var sc=score(filing);
-  var n=Object.keys(filing).length;
-  document.getElementById("note").textContent = n<12 ? (picked||"Pick a verb") : (sc.ok ? "Witness green. Every plane matches." : "Witness red. A plane sum moved.");
-}
-function onAct(act, arg){
-  if(act==="verb") picked=arg;
-  if(act==="plane" && picked){ filing[picked]=arg; picked=null; }
-  if(act==="canon"){ filing={}; CENSUS.forEach(function(r){ filing[r[0]]=r[2]; }); }
-  if(act==="mis"){ onAct("canon"); filing.Call="I DESIGNATE"; }
-  if(act==="clear") filing={};
-  draw();
-}
-function prove(){
-  var good={}; CENSUS.forEach(function(r){ good[r[0]]=r[2]; });
-  if(!score(good).ok) throw new Error("canon");
-  var bad={}; CENSUS.forEach(function(r){ bad[r[0]]=r[2]; }); bad.Call="I DESIGNATE";
-  var b=score(bad);
-  if(b.ok) throw new Error("misfile should break");
-  if(b.parts["I DESIGNATE"]!==6105) throw new Error("designate");
-  if(b.parts["IV TRANSFORM"]!==330) throw new Error("transform");
-  document.getElementById("proof").textContent="LIT canon planes match. Mis-filing Call makes designate 6105 and transform 330.";
-}
-prove(); draw();
-
-document.getElementById("stage").addEventListener("click", function(ev){
-  var b=ev.target.closest("button");
-  if(!b) return;
-  tone();
-  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
-});
-
-
-
-var NAME="The Plane Press";
-var SLUG="sonny-plane-press";
-var BLURB="A press that files the twelve verbs onto four planes. The canon sums hold. Moving Call onto designate breaks them.";
-var SEAL="9f01789ad7d5280631da7904dc0fddc415ad61b13cc7d44356e2d2f81afd80ea";
-if (window.crypto && crypto.subtle) {
-  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
-    var hex="";
-    var bytes=new Uint8Array(buf);
-    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
-    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
-  });
-}
-window.__sonny={prove:prove, slug:SLUG};
-
+function sumAll(){var s=0;for(var i=0;i<CENSUS.length;i++)s+=CENSUS[i][1];return s;}
+function planeSum(f,p){var s=0;for(var i=0;i<CENSUS.length;i++)if(f[CENSUS[i][0]]===p)s+=CENSUS[i][1];return s;}
+    var bad=false;
+    function filing(){ var f={}; for(var i=0;i<CENSUS.length;i++) f[CENSUS[i][0]]=CENSUS[i][2]; if(bad) f.Call="I DESIGNATE"; return f; }
+    function selfcheck(){
+      var f={}; for(var i=0;i<CENSUS.length;i++) f[CENSUS[i][0]]=CENSUS[i][2];
+      if(planeSum(f,"I DESIGNATE")!==5355||planeSum(f,"IV TRANSFORM")!==1080) throw new Error("canon");
+      f.Call="I DESIGNATE";
+      if(planeSum(f,"I DESIGNATE")!==6105||planeSum(f,"IV TRANSFORM")!==330) throw new Error("misfile");
+    }
+    function render(){
+      var f=filing(); var rows="", ok=true;
+      for(var i=0;i<PLANES.length;i++){ var p=PLANES[i], s=planeSum(f,p), names=[]; for(var k=0;k<CENSUS.length;k++) if(f[CENSUS[k][0]]===p) names.push(CENSUS[k][0]); if(s!==SUBS[p]) ok=false; rows+="<tr><td class='l'>"+p+"</td><td class='l'>"+names.join(" ")+"</td><td>"+s+"</td><td>"+SUBS[p]+"</td></tr>"; }
+      $("engine").innerHTML="<table><tr><th>plane</th><th>verbs</th><th>Σ</th><th>target</th></tr>"+rows+"</table>";
+      $("wit").innerHTML=ok?'<span class="badge pass">&#10003; WITNESS GREEN · LIT · every plane matches its subtotal</span>':'<span class="badge failb">&#10007; WITNESS RED · designate 6105, transform 330</span>';
+      $("outOut").textContent=ok?"witness holds":"witness broken";
+      $("outNote").textContent="Membership is a scan of the list, not a stored subtotal.";
+      $("tampOut").innerHTML=bad?"Call sits in designate.":"Call sits in transform.";
+      $("inOut").textContent=bad?"mis-file loaded":"canon filing loaded";
+    }
+    function tamper(){bad=true;} function restore(){bad=false;}
+  
+    selfcheck();
+    render();
+    $("tamper").onclick=function(){tamper();render();};
+    $("restore").onclick=function(){restore();render();};
+    if($("pick")) $("pick").onchange=render;
+  }catch(e){
+    var fb=$("failb");
+    if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+e.message;}
+    throw e;
+  }
+})();
 </script>
 </body>
 </html>

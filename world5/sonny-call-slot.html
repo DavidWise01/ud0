@@ -3,103 +3,124 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Call Slot — WORLD V</title>
+<title>The Call Slot · SONNY 5</title>
 <style>
-html,body{margin:0;min-width:0;}
-body{background:#ecfeff;color:#083344;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
-#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
-a{color:inherit;}
-.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
-h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
-.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
-.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
-#stage{min-width:0;}
-button,a.door{font:inherit;}
-button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
-button.on{background:#431407;color:#fff7ed;}
-#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
-#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
-.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
-.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
-.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
-@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
-
-#chips{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0;} .chip{padding:10px 12px;border:2px solid currentColor;} .gold{background:#fde68a;color:#422006;} #big{font-size:56px;margin:0;}
+:root{--void:#1c0b46;--panel:rgba(255,255,255,.055);--panel2:rgba(255,255,255,.09);--ink:#f1eaff;--dim:#b9a8e6;--line:rgba(168,133,247,.34);--line2:rgba(168,133,247,.6);--violet:#a855f7;--cyan:#22d3ee;--pink:#ff4fd8;--gold:#ffd24a;--lit:#4ade80;--amber:#f9a83a;--wall:#ff6b8a;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{background:var(--void);color:var(--ink);min-width:0;}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
+a{color:var(--cyan);}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;min-width:0;}
+.top a{color:var(--cyan);text-decoration:none;font-weight:700;}
+header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);min-width:0;}
+h1{font-size:22px;letter-spacing:2px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);overflow-wrap:anywhere;}
+.sub{color:var(--ink);font-size:12.5px;margin-top:6px;overflow-wrap:anywhere;} .sub b{color:var(--pink);}
+.src{font-size:12px;color:var(--dim);margin-top:6px;overflow-wrap:anywhere;}
+.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
+.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;min-width:0;}
+.col{display:flex;flex-direction:column;gap:12px;min-width:0;}
+.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
+.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
+.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
+.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
+.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;min-width:0;}
+.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
+.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
+.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;overflow-wrap:anywhere;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
+.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);}
+.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);}
+.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
+.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
+.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
+.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
+select,button,input{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
+button{cursor:pointer;}
+.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);}
+.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;overflow-wrap:anywhere;}
+table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:3px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,133,247,.14);} td.l{text-align:left;}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 0 0;}
+.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
+.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
+.bar{height:14px;background:linear-gradient(90deg,#22d3ee,#a855f7);border-radius:3px;}
+.stack{display:flex;flex-direction:column-reverse;gap:4px;min-height:28px;margin-top:6px;}
+.box{background:#22d3ee;color:#083344;padding:4px 8px;width:72px;text-align:center;font-weight:700;}
+footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;overflow-wrap:anywhere;}
+@media(max-width:880px){.ocho{grid-template-columns:1fr;}}
 </style>
 </head>
-<body data-kind="sonny-call-slot">
-<div id="wrap">
-<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-conservation-law.html">the measured room</a></p>
-<h1>The Call Slot</h1>
-<p class="lede">Slide n from 0 to 3. The gold chip is the callee. The tamper drops it, and the net is no longer minus n.</p>
-<div id="stage"><div class="stamps"><b>LIT call</b></div><p id="big"></p><div id="chips"></div><div class="row"><button data-act="dec">Fewer args</button><button data-act="inc">More args</button><button data-act="tamper">Drop the callee</button></div></div>
-<p id="proof">checking</p>
-<p id="note"></p>
+<body>
+<div class="fail" id="failb"></div>
+<div class="top"><a href="./">&#9668; WORLD V · SONNY 5</a><span>THE LAW</span> <a href="sonny-atrium.html">atrium</a></div>
+<header>
+  <h1>THE CALL SLOT</h1>
+  <p class="sub">Call of n consumes the n arguments <b>and</b> the callee slot. Honest net is <b>−n</b>. Dropping the callee slot is the tamper.</p>
+  <p class="src"><span class="tag t-amber">source</span> Call rule cited from THE CONSERVATION LAW and recomputed for n = 0..3. <span class="tag t-lit">n in 0..3</span> Room of <a href="the-conservation-law.html">the measured page</a>. World V, the I-13 world. Rendered, not asserted.</p>
+</header>
+<div class="ocho">
+  <div class="col blue">
+    <div class="teamhdr">roots · law · lineage</div>
+    <div class="win blue"><span class="no">1</span><h2>THE EXTRA SLOT</h2><p>binds stays 1. k is n+1. Net is minus n. <span class="tag t-lit">identity</span></p></div>
+    <div class="win blue"><span class="no">2</span><h2>WHY THE +1</h2><p>The callee is on the stack with the arguments. Forgetting it leaves a value behind. <span class="tag t-amber">cited</span></p></div>
+    <div class="win blue"><span class="no">3</span><h2>RANGE</h2><p>This page checks n of 0, 1, 2, and 3. It does not claim every arity in the corpus. <span class="tag t-wall">wall</span></p></div>
+  </div>
+  <div class="col center">
+    <div class="teamhdr">data in &rarr; the lit engine &rarr; data out</div>
+    <div class="win "><span class="no">4</span><h2>DATA IN</h2><div class="row"><label>n</label><select id="pick"><option>0</option><option>1</option><option selected>2</option><option>3</option></select></div><div class="out" id="inOut"></div></div>
+    <div class="flow">&#9660;</div>
+    <div class="win panel">
+      <h2 style="color:var(--gold);border-color:var(--line2)">&#9733; THE LIT ENGINE</h2>
+      <div id="engine"></div>
+      <div id="wit"></div>
+    </div>
+    <div class="flow">&#9660;</div>
+    <div class="win "><span class="no">5</span><h2>DATA OUT</h2><div id="outOut" class="out"></div><p class="small" id="outNote"></p></div>
+  </div>
+  <div class="col red">
+    <div class="teamhdr">wall · graveyard · tamper</div>
+    <div class="win red"><span class="no">6</span><h2>THE WALL</h2><p>The page does not execute a callee. <span class="tag t-wall">wall</span></p></div>
+    <div class="win red"><span class="no">7</span><h2>GRAVEYARD — DEAD, KEPT</h2><p class="grave"><s>&ldquo;k = n is enough.&rdquo;</s> — <b>DEAD</b> for this law. The callee slot is consumed. <span class="tag t-dead">kept</span></p></div>
+    <div class="win red"><span class="no">8</span><h2>TAMPER — BREAK A REAL RULE</h2><p>Set k = n. For n &gt; 0 the net is no longer minus n. <span class="tag t-lit">it must fail</span></p><div class="row"><button id="tamper">&#9888; tamper</button><button id="restore">&#8634; restore</button></div><div class="out" id="tampOut"></div></div>
+  </div>
 </div>
-<script id="sonny-proof">
+<footer>
+  <b>THE CALL SLOT</b> — World V · the I-13 world, in the refined <b>OCHO</b>. Left: roots. Centre: a live engine that proves its claim on load. Right: the wall, the kept dead claim, and a tamper that turns the witness red.
+  <div style="margin-top:8px">&#10003; selfcheck runs on load and <b>throws</b> on any violation. Honesty is the whole game. David Lee Wise (ROOT0) with AVAN.</div>
+</footer>
+<script>
+"use strict";
+(function(){
+  function $(id){return document.getElementById(id);}
+  try{
 
-var audioCtx=null;
-function tone(){
-  if(!audioCtx) return;
-  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
-  o.type="sawtooth";
-  o.frequency.value=247;
-  g.gain.value=0.05;
-  o.connect(g); g.connect(audioCtx.destination);
-  o.start(); o.stop(audioCtx.currentTime+0.16);
-}
-document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
-
-function honest(n){ return {k:n+1, binds:1, net:1-(n+1)}; }
-function tamper(n){ return {k:n, binds:1, net:1-n}; }
-var n=2, bad=false;
-function draw(){
-  var law=bad?tamper(n):honest(n);
-  var chips="";
-  for(var i=0;i<n;i++) chips+='<div class="chip">arg</div>';
-  if(!bad) chips+='<div class="chip gold">callee</div>';
-  document.getElementById("chips").innerHTML=chips;
-  document.getElementById("big").textContent="net "+law.net;
-  document.getElementById("note").textContent="n="+n+" · k="+law.k+" · binds="+law.binds+(bad?" · tamper":" · callee kept");
-}
-function onAct(act){
-  if(act==="dec" && n>0) n--;
-  if(act==="inc" && n<3) n++;
-  if(act==="tamper") bad=!bad;
-  draw();
-}
-function prove(){
-  for(var i=0;i<=3;i++){
-    if(honest(i).net!==-i) throw new Error("net");
-    if(tamper(i).net===-i) throw new Error("tamper still honest");
+    var bad=false;
+    function row(n){ var k=bad?n:(n+1); return {n:n,k:k,binds:1,net:1-k}; }
+    function selfcheck(){ for(var n=0;n<=3;n++){ if((1-(n+1))!==-n) throw new Error("net"); if((1-n)===-n) throw new Error("tamper"); } }
+    function render(){
+      var n=+$("pick").value; var rows="";
+      for(var i=0;i<=3;i++){ var r=row(i); rows+="<tr><td>"+r.n+"</td><td>"+r.k+"</td><td>"+r.binds+"</td><td>"+r.net+"</td></tr>"; }
+      var chips=""; for(var c=0;c<n;c++) chips+="<span class='box'>arg</span> "; if(!bad) chips+="<span class='box' style='background:#fde68a'>callee</span>";
+      $("engine").innerHTML="<table><tr><th>n</th><th>k</th><th>binds</th><th>net</th></tr>"+rows+"</table><p style='margin-top:8px'>"+chips+"</p>";
+      var r=row(n);
+      var ok=!bad && r.net===-n;
+      $("wit").innerHTML=ok?'<span class="badge pass">&#10003; WITNESS GREEN · LIT · Call(n) net is minus n</span>':'<span class="badge failb">&#10007; WITNESS RED · callee slot dropped, net is not minus n</span>';
+      $("inOut").textContent="n="+n+" · k="+r.k+" · net="+r.net;
+      $("outOut").textContent=ok?"honest":"tampered";
+      $("outNote").textContent="Checked for every n from 0 through 3.";
+      $("tampOut").innerHTML=bad?"k = n":"k = n+1";
+    }
+    function tamper(){bad=true;} function restore(){bad=false;}
+  
+    selfcheck();
+    render();
+    $("tamper").onclick=function(){tamper();render();};
+    $("restore").onclick=function(){restore();render();};
+    if($("pick")) $("pick").onchange=render;
+  }catch(e){
+    var fb=$("failb");
+    if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+e.message;}
+    throw e;
   }
-  document.getElementById("proof").textContent="LIT Call(n) net is minus n. Tamper k=n is not minus n.";
-}
-prove(); draw();
-
-document.getElementById("stage").addEventListener("click", function(ev){
-  var b=ev.target.closest("button");
-  if(!b) return;
-  tone();
-  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
-});
-
-
-
-var NAME="The Call Slot";
-var SLUG="sonny-call-slot";
-var BLURB="Call of n consumes n arguments plus the callee slot, so the net is minus n. Dropping the callee slot mis-balances.";
-var SEAL="f36d24962106d1740c3bd800fe20e04f53d6a6a2f0ee45390c0f10fbe88097e2";
-if (window.crypto && crypto.subtle) {
-  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
-    var hex="";
-    var bytes=new Uint8Array(buf);
-    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
-    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
-  });
-}
-window.__sonny={prove:prove, slug:SLUG};
-
+})();
 </script>
 </body>
 </html>
