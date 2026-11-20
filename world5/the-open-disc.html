@@ -7,12 +7,11 @@
 <style>
 html,body{margin:0;height:100%;background:#0c0614;overflow:hidden;}
 img{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#0c0614;}
-a.hit{position:fixed;top:0;height:100%;width:24%;z-index:2;display:block;}
+a.hit{position:fixed;top:0;height:100%;width:22%;z-index:2;display:block;}
 #prev{left:0;}
 #next{right:0;}
-.story{position:fixed;z-index:3;left:0;right:0;bottom:0;padding:42px 8vw 22px;background:linear-gradient(to top,rgba(12,6,20,.94) 0%,rgba(12,6,20,.8) 46%,rgba(12,6,20,0) 100%);color:#f4efe4;pointer-events:none;}
-.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#ffd24a;margin:0 0 8px;}
-.story p{margin:0 auto;max-width:40rem;font:18px/1.5 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;text-shadow:0 1px 2px #000;}
+.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#f4efe4;margin:0 0 8px;}
+.story{position:fixed;z-index:3;left:0;right:0;bottom:0;padding:22px 8vw 28px;background:linear-gradient(to top,rgba(12,6,20,.72),rgba(12,6,20,0));color:#f4efe4;pointer-events:none;text-align:center;} .story p{margin:0 auto;max-width:36rem;font:20px/1.4 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;text-shadow:0 1px 2px #000;}
 a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;text-decoration:none;text-shadow:0 1px 6px #000;}
 .fail{display:none;position:fixed;z-index:5;left:12px;right:12px;top:36px;background:#ff6b8a;color:#1b0730;padding:10px 12px;font:700 14px ui-monospace,Menlo,Consolas,monospace;}
 </style>
@@ -20,12 +19,12 @@ a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-mo
 <body>
 <div class="fail" id="failb"></div>
 <a class="back" href="./">WORLD V</a>
-<img id="plate" src="art/day/disc.jpg" alt="A disc held in a brass ring">
+<img id="plate" src="art/story/disc.jpg" alt="A spinning disc, close enough to be only color">
 <a class="hit" id="prev" href="the-prices.html" aria-label="previous page"></a>
 <a class="hit" id="next" href="the-unbranded-ring.html" aria-label="next page"></a>
 <div class="story">
   <div class="kicker">3 / 27 &middot; THE OPEN DISC</div>
-  <p>Then a disc, still spinning, because a small workshop built a player that lets you see the circle. Rainbow on the face, brass around it. You keep this one. A hidden disc would only be a rumor with a price on it.</p>
+  <p>Spin it and the circle tells the truth in color. A small workshop built a player that lets you watch the disc while it turns. I put my eye where the rainbow is fastest. That is the whole story of this one.</p>
 </div>
 <script>
 "use strict";
@@ -34,12 +33,12 @@ a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-mo
   try{
     var STEP=3;
     var TOTAL=27;
-    var PLATE="art/day/disc.jpg";
+    var PLATE="art/story/disc.jpg";
     var PREV="the-prices.html";
     var NEXT="the-unbranded-ring.html";
     function selfcheck(){
       if(TOTAL!==27||STEP<1||STEP>TOTAL)throw new Error("step");
-      if(PLATE.indexOf("art/day/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
+      if(PLATE.indexOf("art/story/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
       if($("plate").getAttribute("src")!==PLATE)throw new Error("src");
       if($("prev").getAttribute("href")!==PREV)throw new Error("prev");
       if($("next").getAttribute("href")!==NEXT)throw new Error("next");

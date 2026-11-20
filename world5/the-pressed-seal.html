@@ -7,12 +7,11 @@
 <style>
 html,body{margin:0;height:100%;background:#0c0614;overflow:hidden;}
 img{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#0c0614;}
-a.hit{position:fixed;top:0;height:100%;width:24%;z-index:2;display:block;}
+a.hit{position:fixed;top:0;height:100%;width:22%;z-index:2;display:block;}
 #prev{left:0;}
 #next{right:0;}
-.story{position:fixed;z-index:3;left:0;right:0;bottom:0;padding:42px 8vw 22px;background:linear-gradient(to top,rgba(12,6,20,.94) 0%,rgba(12,6,20,.8) 46%,rgba(12,6,20,0) 100%);color:#f4efe4;pointer-events:none;}
-.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#ffd24a;margin:0 0 8px;}
-.story p{margin:0 auto;max-width:40rem;font:18px/1.5 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;text-shadow:0 1px 2px #000;}
+.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#7a1f2b;margin:0 0 8px;}
+.story{position:fixed;z-index:3;left:4vw;bottom:4vh;width:min(34rem,88vw);padding:16px 18px 14px;background:rgba(244,239,228,.93);color:#1b0730;pointer-events:none;} .kicker{color:#7a1f2b !important;} .story p{margin:0;max-width:none;font:17px/1.45 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;color:#1b0730;text-shadow:none;}
 a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;text-decoration:none;text-shadow:0 1px 6px #000;}
 .fail{display:none;position:fixed;z-index:5;left:12px;right:12px;top:36px;background:#ff6b8a;color:#1b0730;padding:10px 12px;font:700 14px ui-monospace,Menlo,Consolas,monospace;}
 </style>
@@ -20,12 +19,12 @@ a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-mo
 <body>
 <div class="fail" id="failb"></div>
 <a class="back" href="./">WORLD V</a>
-<img id="plate" src="art/day/shutter.jpg" alt="A sealed glass, the messages kept inside">
+<img id="plate" src="art/story/seal.jpg" alt="Red wax and a brass press by candlelight">
 <a class="hit" id="prev" href="the-crescent.html" aria-label="previous page"></a>
 <a class="hit" id="next" href="the-any-hand.html" aria-label="next page"></a>
 <div class="story">
   <div class="kicker">7 / 27 &middot; THE PRESSED SEAL</div>
-  <p>A messenger closes its own glass. Wax on the screen, so the other minds in the room cannot read the letters by looking. You draw the seal, the drip, the hand that holds the weight. The messenger's name stays in the citation, off the wax.</p>
+  <p>Wax, dark glass, a press, a candle. A messenger decided the letters inside would not be read by looking. The name of that messenger stays off the wax and in the record. What you are looking at is the weight.</p>
 </div>
 <script>
 "use strict";
@@ -34,12 +33,12 @@ a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-mo
   try{
     var STEP=7;
     var TOTAL=27;
-    var PLATE="art/day/shutter.jpg";
+    var PLATE="art/story/seal.jpg";
     var PREV="the-crescent.html";
     var NEXT="the-any-hand.html";
     function selfcheck(){
       if(TOTAL!==27||STEP<1||STEP>TOTAL)throw new Error("step");
-      if(PLATE.indexOf("art/day/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
+      if(PLATE.indexOf("art/story/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
       if($("plate").getAttribute("src")!==PLATE)throw new Error("src");
       if($("prev").getAttribute("href")!==PREV)throw new Error("prev");
       if($("next").getAttribute("href")!==NEXT)throw new Error("next");

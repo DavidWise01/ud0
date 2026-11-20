@@ -7,12 +7,11 @@
 <style>
 html,body{margin:0;height:100%;background:#0c0614;overflow:hidden;}
 img{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#0c0614;}
-a.hit{position:fixed;top:0;height:100%;width:24%;z-index:2;display:block;}
+a.hit{position:fixed;top:0;height:100%;width:22%;z-index:2;display:block;}
 #prev{left:0;}
 #next{right:0;}
-.story{position:fixed;z-index:3;left:0;right:0;bottom:0;padding:42px 8vw 22px;background:linear-gradient(to top,rgba(12,6,20,.94) 0%,rgba(12,6,20,.8) 46%,rgba(12,6,20,0) 100%);color:#f4efe4;pointer-events:none;}
-.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#ffd24a;margin:0 0 8px;}
-.story p{margin:0 auto;max-width:40rem;font:18px/1.5 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;text-shadow:0 1px 2px #000;}
+.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#f4efe4;margin:0 0 8px;}
+.story{position:fixed;z-index:3;left:0;right:0;bottom:0;padding:42px 8vw 22px;background:linear-gradient(to top,rgba(12,6,20,.92),rgba(12,6,20,.72) 48%,rgba(12,6,20,0));color:#f4efe4;pointer-events:none;} .story p{margin:0 auto;max-width:40rem;font:18px/1.5 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;text-shadow:0 1px 2px #000;}
 a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;text-decoration:none;text-shadow:0 1px 6px #000;}
 .fail{display:none;position:fixed;z-index:5;left:12px;right:12px;top:36px;background:#ff6b8a;color:#1b0730;padding:10px 12px;font:700 14px ui-monospace,Menlo,Consolas,monospace;}
 </style>
@@ -20,12 +19,12 @@ a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-mo
 <body>
 <div class="fail" id="failb"></div>
 <a class="back" href="./">WORLD V</a>
-<img id="plate" src="art/day/lattice.jpg" alt="A chip of rings whose shadows disagree">
+<img id="plate" src="art/story/threes.jpg" alt="Four stone terraces, each holding a brighter pool of light">
 <a class="hit" id="prev" href="the-either-side.html" aria-label="previous page"></a>
 <a class="hit" id="next" href="the-left-empty.html" aria-label="next page"></a>
 <div class="story">
   <div class="kicker">26 / 27 &middot; THE THREE THREES</div>
-  <p>Here is the stair, done in the open. <b id="stair"></b>. You are on step twenty-six of a walk that long. The older towers keep their own names in their own rooms. This page counts the steps it was given.</p>
+  <p>Here is the stair, done in the open. <b id="stair"></b>. You are on step twenty-six of a walk that long. The older towers keep their names in their own rooms. This page counts the steps it was given.</p>
 </div>
 <script>
 "use strict";
@@ -34,25 +33,25 @@ a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-mo
   try{
     var STEP=26;
     var TOTAL=27;
-    var PLATE="art/day/lattice.jpg";
+    var PLATE="art/story/threes.jpg";
     var PREV="the-either-side.html";
     var NEXT="the-left-empty.html";
     function selfcheck(){
       if(TOTAL!==27||STEP<1||STEP>TOTAL)throw new Error("step");
-      if(PLATE.indexOf("art/day/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
+      if(PLATE.indexOf("art/story/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
       if($("plate").getAttribute("src")!==PLATE)throw new Error("src");
       if($("prev").getAttribute("href")!==PREV)throw new Error("prev");
       if($("next").getAttribute("href")!==NEXT)throw new Error("next");
       var kick=document.querySelector(".kicker").textContent;
       if(kick.indexOf(STEP+" / "+TOTAL)!==0)throw new Error("kicker");
-    var powers=[],x=1,k;
-    for(k=0;k<4;k++){powers.push(x);x=x*3;}
-    if(powers.join(",")!=="1,3,9,27")throw new Error("trit");
-    if(3*3*3!==27)throw new Error("cube");
-    var stair=$("stair");
-    if(!stair)throw new Error("stair-missing");
-    stair.textContent=powers.join(" \u00b7 ");
-    if(stair.textContent!=="1 \u00b7 3 \u00b7 9 \u00b7 27")throw new Error("stair");
+      var powers=[],x=1,t;
+      for(t=0;t<4;t++){powers.push(x);x=x*3;}
+      if(powers.join(",")!=="1,3,9,27")throw new Error("trit");
+      if(3*3*3!==27)throw new Error("cube");
+      var stair=$("stair");
+      if(!stair)throw new Error("stair-missing");
+      stair.textContent=powers.join(" \u00b7 ");
+      if(stair.textContent!=="1 \u00b7 3 \u00b7 9 \u00b7 27")throw new Error("stair");
     }
     selfcheck();
     window.addEventListener("keydown",function(e){

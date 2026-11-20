@@ -7,12 +7,11 @@
 <style>
 html,body{margin:0;height:100%;background:#0c0614;overflow:hidden;}
 img{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#0c0614;}
-a.hit{position:fixed;top:0;height:100%;width:24%;z-index:2;display:block;}
+a.hit{position:fixed;top:0;height:100%;width:22%;z-index:2;display:block;}
 #prev{left:0;}
 #next{right:0;}
-.story{position:fixed;z-index:3;left:0;right:0;bottom:0;padding:42px 8vw 22px;background:linear-gradient(to top,rgba(12,6,20,.94) 0%,rgba(12,6,20,.8) 46%,rgba(12,6,20,0) 100%);color:#f4efe4;pointer-events:none;}
-.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#ffd24a;margin:0 0 8px;}
-.story p{margin:0 auto;max-width:40rem;font:18px/1.5 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;text-shadow:0 1px 2px #000;}
+.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#7a4b12;margin:0 0 8px;}
+.story{position:fixed;z-index:3;left:4vw;bottom:4vh;width:min(34rem,88vw);padding:16px 18px 14px;background:rgba(244,239,228,.93);color:#1b0730;pointer-events:none;} .kicker{color:#7a4b12 !important;} .story p{margin:0;max-width:none;font:17px/1.45 Candara,"Segoe UI",sans-serif,serif;color:#1b0730;text-shadow:none;}
 a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;text-decoration:none;text-shadow:0 1px 6px #000;}
 .fail{display:none;position:fixed;z-index:5;left:12px;right:12px;top:36px;background:#ff6b8a;color:#1b0730;padding:10px 12px;font:700 14px ui-monospace,Menlo,Consolas,monospace;}
 </style>
@@ -20,12 +19,12 @@ a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-mo
 <body>
 <div class="fail" id="failb"></div>
 <a class="back" href="./">WORLD V</a>
-<img id="plate" src="art/day/cube.jpg" alt="A small cube and the empty place beside it">
+<img id="plate" src="art/story/prices.jpg" alt="A dawn market with blank slips and one empty cloth">
 <a class="hit" id="prev" href="the-wire.html" aria-label="previous page"></a>
 <a class="hit" id="next" href="the-open-disc.html" aria-label="next page"></a>
 <div class="story">
   <div class="kicker">2 / 27 &middot; THE PRICES</div>
-  <p>What it hands you first are prices. Little luxuries, toy bricks, a second computer that exists mostly as a wait. You set one plain cube on the shelf and leave the wood beside it pale. A discount is a sentence. You came for a thing.</p>
+  <p>Dawn market. The cabbages are real. The slips on the boards are blank, because the numbers were never the produce. One square of cloth stays empty, which is where a second crate was promised and did not come. I take the cabbage. I leave the promise.</p>
 </div>
 <script>
 "use strict";
@@ -34,12 +33,12 @@ a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-mo
   try{
     var STEP=2;
     var TOTAL=27;
-    var PLATE="art/day/cube.jpg";
+    var PLATE="art/story/prices.jpg";
     var PREV="the-wire.html";
     var NEXT="the-open-disc.html";
     function selfcheck(){
       if(TOTAL!==27||STEP<1||STEP>TOTAL)throw new Error("step");
-      if(PLATE.indexOf("art/day/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
+      if(PLATE.indexOf("art/story/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
       if($("plate").getAttribute("src")!==PLATE)throw new Error("src");
       if($("prev").getAttribute("href")!==PREV)throw new Error("prev");
       if($("next").getAttribute("href")!==NEXT)throw new Error("next");

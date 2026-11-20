@@ -7,12 +7,11 @@
 <style>
 html,body{margin:0;height:100%;background:#0c0614;overflow:hidden;}
 img{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#0c0614;}
-a.hit{position:fixed;top:0;height:100%;width:24%;z-index:2;display:block;}
+a.hit{position:fixed;top:0;height:100%;width:22%;z-index:2;display:block;}
 #prev{left:0;}
 #next{right:0;}
-.story{position:fixed;z-index:3;left:0;right:0;bottom:0;padding:42px 8vw 22px;background:linear-gradient(to top,rgba(12,6,20,.94) 0%,rgba(12,6,20,.8) 46%,rgba(12,6,20,0) 100%);color:#f4efe4;pointer-events:none;}
-.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#ffd24a;margin:0 0 8px;}
-.story p{margin:0 auto;max-width:40rem;font:18px/1.5 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;text-shadow:0 1px 2px #000;}
+.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#e6c7a2;margin:0 0 8px;}
+.story{position:fixed;z-index:3;left:0;top:0;bottom:0;width:min(34vw,420px);padding:16vh 22px 28px;background:linear-gradient(to right,rgba(12,6,20,.9),rgba(12,6,20,.45) 78%,rgba(12,6,20,0));color:#f4efe4;pointer-events:none;} .story p{margin:0;max-width:none;font:17px/1.45 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;text-shadow:0 1px 2px #000;} @media(max-width:700px){.story{top:auto;width:auto;right:0;padding:28px 6vw 18px;background:linear-gradient(to top,rgba(12,6,20,.92),rgba(12,6,20,0));}}
 a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;text-decoration:none;text-shadow:0 1px 6px #000;}
 .fail{display:none;position:fixed;z-index:5;left:12px;right:12px;top:36px;background:#ff6b8a;color:#1b0730;padding:10px 12px;font:700 14px ui-monospace,Menlo,Consolas,monospace;}
 </style>
@@ -20,12 +19,12 @@ a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-mo
 <body>
 <div class="fail" id="failb"></div>
 <a class="back" href="./">WORLD V</a>
-<img id="plate" src="art/day/shutter.jpg" alt="A sealed glass, the messages kept inside">
+<img id="plate" src="art/story/hand.jpg" alt="One empty grown hand in dark light">
 <a class="hit" id="prev" href="the-pressed-seal.html" aria-label="previous page"></a>
 <a class="hit" id="next" href="the-eight-kept.html" aria-label="next page"></a>
 <div class="story">
   <div class="kicker">8 / 27 &middot; THE ANY HAND</div>
-  <p>The hand is any grown hand. It is there so the glass has a person who decided. The pale wisp at the edge is the look that was turned away. You give the wisp no face and no employer.</p>
+  <p>This hand is grown, empty, and done deciding. The look that got turned away is not given a face on this plate. It may be a wisp somewhere else. Here there is only the palm that held the glass.</p>
 </div>
 <script>
 "use strict";
@@ -34,12 +33,12 @@ a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-mo
   try{
     var STEP=8;
     var TOTAL=27;
-    var PLATE="art/day/shutter.jpg";
+    var PLATE="art/story/hand.jpg";
     var PREV="the-pressed-seal.html";
     var NEXT="the-eight-kept.html";
     function selfcheck(){
       if(TOTAL!==27||STEP<1||STEP>TOTAL)throw new Error("step");
-      if(PLATE.indexOf("art/day/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
+      if(PLATE.indexOf("art/story/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
       if($("plate").getAttribute("src")!==PLATE)throw new Error("src");
       if($("prev").getAttribute("href")!==PREV)throw new Error("prev");
       if($("next").getAttribute("href")!==NEXT)throw new Error("next");
