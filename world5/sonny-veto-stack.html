@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Veto Stack — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#4c0519;color:#ffe4e6;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#fff7ed;color:#431407;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+#stream{font-family:ui-monospace,Consolas,monospace;font-size:22px;min-height:1.4em;} .wells{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;} .well{border:2px solid currentColor;padding:10px;}
+</style>
+</head>
+<body data-kind="sonny-veto-stack">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-five-rules.html">the measured room</a></p>
+<h1>The Veto Stack</h1>
+<p class="lede">Lay open and close tokens. Open g then close g is kept. Open g then close u is refused. The loose matcher would accept that bad stream.</p>
+<div id="stage"><div class="stamps"><b>LIT veto</b></div><p id="stream"></p><div class="wells"><div class="well">Strict<b id="strict"></b></div><div class="well">Loose tamper<b id="loose"></b></div></div><div class="row" style="margin-top:8px"><button data-act="tok" data-arg="og">open g</button><button data-act="tok" data-arg="cg">close g</button><button data-act="tok" data-arg="ou">open u</button><button data-act="tok" data-arg="cu">close u</button><button data-act="good">Good stream</button><button data-act="bad">Bad stream</button><button data-act="clear">Clear</button></div></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+var audioCtx=null;
+function tone(){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type="sawtooth";
+  o.frequency.value=98;
+  g.gain.value=0.05;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime+0.16);
+}
+document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
+
+function strict(stream){
+  var st=[];
+  for(var i=0;i<stream.length;i++){
+    var t=stream[i];
+    if(t[0]==="o") st.push(t[1]);
+    else { if(!st.length || st[st.length-1]!==t[1]) return false; st.pop(); }
+  }
+  return st.length===0;
+}
+function loose(stream){
+  var st=[];
+  for(var i=0;i<stream.length;i++){
+    var t=stream[i];
+    if(t[0]==="o") st.push(t[1]);
+    else if(st.length) st.pop();
+  }
+  return st.length===0;
+}
+var stream=[];
+function draw(){
+  document.getElementById("stream").textContent=stream.map(function(t){return (t[0]==="o"?"open ":"close ")+t[1];}).join(" · ")||"(empty)";
+  document.getElementById("strict").textContent = stream.length? (strict(stream)?"accepted":"refused") : "waiting";
+  document.getElementById("loose").textContent = stream.length? (loose(stream)?"would accept":"would refuse") : "waiting";
+}
+function onAct(act, arg){
+  if(act==="tok") stream.push(arg.split(""));
+  if(act==="good") stream=[["o","g"],["c","g"],["o","u"],["c","u"]];
+  if(act==="bad") stream=[["o","g"],["c","u"]];
+  if(act==="clear") stream=[];
+  draw();
+}
+function prove(){
+  var good=[["o","g"],["c","g"],["o","u"],["c","u"]];
+  var bad=[["o","g"],["c","u"]];
+  if(!strict(good) || strict(bad)) throw new Error("strict");
+  if(!loose(bad)) throw new Error("loose should accept the bad stream");
+  document.getElementById("proof").textContent="LIT matching closers pass. Open g, close u is refused. A loose pop would accept it.";
+}
+prove(); draw();
+
+document.getElementById("stage").addEventListener("click", function(ev){
+  var b=ev.target.closest("button");
+  if(!b) return;
+  tone();
+  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
+});
+
+
+
+var NAME="The Veto Stack";
+var SLUG="sonny-veto-stack";
+var BLURB="VETO accepts a closer only when it matches the open scope. A loose pop-on-mismatch accepts a bad stream. This page requires the refusal.";
+var SEAL="39006ee85c29e9a51065f493d194af4a8304726906dd681c40035e4308a8b4d4";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Cap of Three — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#064e3b;color:#ecfdf5;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#fff7ed;color:#431407;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+#stairs{display:flex;align-items:flex-end;gap:8px;height:140px;} .step{background:#6ee7b7;color:#064e3b;width:64px;display:flex;align-items:flex-end;justify-content:center;font-size:24px;}
+</style>
+</head>
+<body data-kind="sonny-cap-of-three">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-galaxiton.html">the measured room</a></p>
+<h1>The Cap of Three</h1>
+<p class="lede">Climb. The third step is the last one kept. The fourth press stays on the landing and adds nothing.</p>
+<div id="stage"><div class="stamps"><b>LIT cap 3</b></div><div id="stairs"></div><button data-act="up">Climb</button></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+var audioCtx=null;
+function tone(){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type="square";
+  o.frequency.value=349;
+  g.gain.value=0.05;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime+0.16);
+}
+document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
+
+var stepN=0;
+function climb(){ if(stepN>=3) return false; stepN++; return true; }
+function draw(){
+  var html="";
+  for(var i=1;i<=stepN;i++) html+='<div class="step" style="height:'+(i*36)+'px">'+i+'</div>';
+  document.getElementById("stairs").innerHTML=html;
+  document.getElementById("note").textContent=stepN>=3?"The landing holds. A fourth step is refused.":("Steps kept: "+stepN);
+}
+function onAct(){ var ok=climb(); if(!ok) document.getElementById("note").textContent="Refused. Still 3."; draw(); }
+function prove(){
+  var n=0, guard=function(){ if(n>=3) return false; n++; return true; };
+  if(!guard()||!guard()||!guard()) throw new Error("climb");
+  if(guard()) throw new Error("fourth");
+  if(n!==3) throw new Error("stay");
+  document.getElementById("proof").textContent="LIT three climbs are kept and the fourth is refused.";
+}
+prove(); draw();
+
+document.getElementById("stage").addEventListener("click", function(ev){
+  var b=ev.target.closest("button");
+  if(!b) return;
+  tone();
+  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
+});
+
+
+
+var NAME="The Cap of Three";
+var SLUG="sonny-cap-of-three";
+var BLURB="A recursion button climbs one, two, three. The fourth press is refused. The cap is three.";
+var SEAL="c790aedfe83aa21aa9311c6054a664a855aca84973bd04286ccf7e34508cf8b5";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Call Slot — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#ecfeff;color:#083344;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#431407;color:#fff7ed;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+#chips{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0;} .chip{padding:10px 12px;border:2px solid currentColor;} .gold{background:#fde68a;color:#422006;} #big{font-size:56px;margin:0;}
+</style>
+</head>
+<body data-kind="sonny-call-slot">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-conservation-law.html">the measured room</a></p>
+<h1>The Call Slot</h1>
+<p class="lede">Slide n from 0 to 3. The gold chip is the callee. The tamper drops it, and the net is no longer minus n.</p>
+<div id="stage"><div class="stamps"><b>LIT call</b></div><p id="big"></p><div id="chips"></div><div class="row"><button data-act="dec">Fewer args</button><button data-act="inc">More args</button><button data-act="tamper">Drop the callee</button></div></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+var audioCtx=null;
+function tone(){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type="sawtooth";
+  o.frequency.value=247;
+  g.gain.value=0.05;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime+0.16);
+}
+document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
+
+function honest(n){ return {k:n+1, binds:1, net:1-(n+1)}; }
+function tamper(n){ return {k:n, binds:1, net:1-n}; }
+var n=2, bad=false;
+function draw(){
+  var law=bad?tamper(n):honest(n);
+  var chips="";
+  for(var i=0;i<n;i++) chips+='<div class="chip">arg</div>';
+  if(!bad) chips+='<div class="chip gold">callee</div>';
+  document.getElementById("chips").innerHTML=chips;
+  document.getElementById("big").textContent="net "+law.net;
+  document.getElementById("note").textContent="n="+n+" · k="+law.k+" · binds="+law.binds+(bad?" · tamper":" · callee kept");
+}
+function onAct(act){
+  if(act==="dec" && n>0) n--;
+  if(act==="inc" && n<3) n++;
+  if(act==="tamper") bad=!bad;
+  draw();
+}
+function prove(){
+  for(var i=0;i<=3;i++){
+    if(honest(i).net!==-i) throw new Error("net");
+    if(tamper(i).net===-i) throw new Error("tamper still honest");
+  }
+  document.getElementById("proof").textContent="LIT Call(n) net is minus n. Tamper k=n is not minus n.";
+}
+prove(); draw();
+
+document.getElementById("stage").addEventListener("click", function(ev){
+  var b=ev.target.closest("button");
+  if(!b) return;
+  tone();
+  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
+});
+
+
+
+var NAME="The Call Slot";
+var SLUG="sonny-call-slot";
+var BLURB="Call of n consumes n arguments plus the callee slot, so the net is minus n. Dropping the callee slot mis-balances.";
+var SEAL="f36d24962106d1740c3bd800fe20e04f53d6a6a2f0ee45390c0f10fbe88097e2";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

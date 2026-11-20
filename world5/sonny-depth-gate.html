@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Depth Gate — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#14532d;color:#f0fdf4;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#fff7ed;color:#431407;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+#doors{display:flex;gap:8px;flex-wrap:wrap;} .doorx{width:100px;min-height:120px;border:3px solid currentColor;display:flex;align-items:flex-end;padding:8px;} .shut{opacity:.45;border-style:dashed;}
+</style>
+</head>
+<body data-kind="sonny-depth-gate">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-five-rules.html">the measured room</a></p>
+<h1>The Depth Gate</h1>
+<p class="lede">Open galaxy, universe, then world. The fourth door, q, does not open. The nest that fits is [g[u[p[(o)]]]].</p>
+<div id="stage"><div class="stamps"><b>LIT depth</b><b>AMBER names</b></div><p id="now"></p><div id="doors"><button class="doorx" data-act="add" data-arg="g">galaxy g</button><button class="doorx" data-act="add" data-arg="u">universe u</button><button class="doorx" data-act="add" data-arg="p">world p</button><button class="doorx shut" data-act="add" data-arg="q">fourth q</button></div><button data-act="reset">Reset</button></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+var audioCtx=null;
+function tone(){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type="sine";
+  o.frequency.value=174;
+  g.gain.value=0.05;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime+0.16);
+}
+document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
+
+function letters(s){ var m=s.match(/\[([gupq])/g)||[]; var set={}; m.forEach(function(x){ set[x[1]]=1; }); return Object.keys(set).length; }
+var open=[];
+function nest(){
+  if(open.join("")!=="gup") return "";
+  return "[g[u[p[(o)]]]]";
+}
+function draw(){
+  document.getElementById("now").textContent=nest()||"(incomplete)";
+  document.getElementById("note").textContent=open.indexOf("q")>=0?"q refused":("open "+(open.join(" ")||"none"));
+}
+function onAct(act, arg){
+  if(act==="add"){
+    if(arg==="q"){ document.getElementById("note").textContent="q is a fourth namespace. Refused."; return; }
+    var expect="gup"[open.length];
+    if(arg!==expect){ document.getElementById("note").textContent="That door is out of order."; return; }
+    open.push(arg);
+  }
+  if(act==="reset") open=[];
+  draw();
+}
+function prove(){
+  var good="[g[u[p[(o)]]]]";
+  var bad="[g[u[p[q[(o)]]]]]";
+  if(letters(good)!==3) throw new Error("three");
+  if(letters(bad)!==4) throw new Error("four");
+  if(good.split("[").length-1!==4 || good.split("]").length-1!==4) throw new Error("brackets");
+  document.getElementById("proof").textContent="LIT [g[u[p[(o)]]]] holds 3 namespace letters. Adding q makes 4 and is refused.";
+}
+prove(); draw();
+
+document.getElementById("stage").addEventListener("click", function(ev){
+  var b=ev.target.closest("button");
+  if(!b) return;
+  tone();
+  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
+});
+
+
+
+var NAME="The Depth Gate";
+var SLUG="sonny-depth-gate";
+var BLURB="Three namespace letters fit in the nest g, u, p. A fourth letter q is refused. The core marker is not a fourth namespace.";
+var SEAL="f2693794a778b824a2d1f3bfedf158fb1bd07fc2eb7edfc767eb19c1cd02c9f9";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

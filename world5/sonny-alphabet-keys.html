@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Alphabet Keys — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#ffedd5;color:#431407;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#431407;color:#fff7ed;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+#keys{display:flex;flex-wrap:wrap;gap:8px;} #keys button{display:flex;flex-direction:column;align-items:flex-start;min-width:90px;} small{font-family:ui-monospace,Consolas,monospace;} #sum{font-size:42px;margin:12px 0;}
+</style>
+</head>
+<body data-kind="sonny-alphabet-keys">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-twelve.html">the measured room</a></p>
+<h1>The Alphabet Keys</h1>
+<p class="lede">Press a key. It sounds and adds its cited count. The keyword I is a key and adds none.</p>
+<div id="stage"><div class="stamps"><b>LIT sum</b><b>AMBER cited counts</b></div><div id="keys"><button data-act="key" data-arg="Name" style="border-radius:12px 40px;">Name<small>2967</small></button><button data-act="key" data-arg="Constant" style="border-radius:22px 39px;">Constant<small>1425</small></button><button data-act="key" data-arg="Attribute" style="border-radius:32px 38px;">Attribute<small>963</small></button><button data-act="key" data-arg="Assign" style="border-radius:42px 37px;">Assign<small>523</small></button><button data-act="key" data-arg="Arg" style="border-radius:52px 36px;">Arg<small>408</small></button><button data-act="key" data-arg="Return" style="border-radius:12px 35px;">Return<small>182</small></button><button data-act="key" data-arg="Expr" style="border-radius:22px 34px;">Expr<small>301</small></button><button data-act="key" data-arg="If" style="border-radius:32px 33px;">If<small>276</small></button><button data-act="key" data-arg="Compare" style="border-radius:42px 32px;">Compare<small>201</small></button><button data-act="key" data-arg="Call" style="border-radius:52px 31px;">Call<small>750</small></button><button data-act="key" data-arg="FunctionDef" style="border-radius:12px 30px;">FunctionDef<small>192</small></button><button data-act="key" data-arg="BinOp" style="border-radius:22px 29px;">BinOp<small>138</small></button><button data-act="i">I</button></div><p id="sum">0</p><div class="row"><button data-act="all">Sound the twelve</button><button data-act="clear">Clear</button></div></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+var audioCtx=null;
+function tone(){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type="triangle";
+  o.frequency.value=330;
+  g.gain.value=0.05;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime+0.16);
+}
+document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
+
+var CENSUS=[["Name",2967,"I DESIGNATE"],["Constant",1425,"I DESIGNATE"],["Attribute",963,"I DESIGNATE"],["Assign",523,"II BIND"],["Arg",408,"II BIND"],["Return",182,"II BIND"],["Expr",301,"III DECIDE"],["If",276,"III DECIDE"],["Compare",201,"III DECIDE"],["Call",750,"IV TRANSFORM"],["FunctionDef",192,"IV TRANSFORM"],["BinOp",138,"IV TRANSFORM"]];
+var on={};
+function total(){ var s=0; CENSUS.forEach(function(r){ if(on[r[0]]) s+=r[1]; }); return s; }
+function draw(){ document.getElementById("sum").textContent=String(total()); }
+function onAct(act, arg){
+  if(act==="key") on[arg]=!on[arg];
+  if(act==="all"){ CENSUS.forEach(function(r){ on[r[0]]=1; }); }
+  if(act==="clear") on={};
+  if(act==="i"){ document.getElementById("note").textContent="I adds 0. Thirteen symbols, twelve counts."; }
+  draw();
+}
+function prove(){
+  var s=0; CENSUS.forEach(function(r){ s+=r[1]; });
+  if(s!==8326) throw new Error("sum "+s);
+  if(CENSUS.length!==12) throw new Error("twelve");
+  document.getElementById("proof").textContent="LIT twelve counts sum to 8326. The keyword I adds 0.";
+}
+prove(); draw();
+
+document.getElementById("stage").addEventListener("click", function(ev){
+  var b=ev.target.closest("button");
+  if(!b) return;
+  tone();
+  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
+});
+
+
+
+var NAME="The Alphabet Keys";
+var SLUG="sonny-alphabet-keys";
+var BLURB="Thirteen keys for the counted alphabet. The twelve verb counts sum to 8326. The keyword I adds zero.";
+var SEAL="c331a5298b1a4b20d66f3633552d39afe80027d947ee12b447ba860af60ce98c";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

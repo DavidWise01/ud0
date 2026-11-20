@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Strain — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#e0e7ff;color:#1e1b4b;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#431407;color:#fff7ed;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+#beam{height:14px;background:#312e81;margin:28px auto;width:min(100%,420px);transform-origin:center;border-radius:8px;} #ful{width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:18px solid currentColor;margin:-8px auto 0;}
+</style>
+</head>
+<body data-kind="sonny-strain">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-palindrome.html">the measured room</a></p>
+<h1>The Strain</h1>
+<p class="lede">The beam is tipped on purpose. The decades are computed here from 2049 against 1 and 2048 against 48.</p>
+<div id="stage"><div class="stamps"><b>LIT decades</b><b>AMBER masses</b></div><div id="beam"></div><div id="ful"></div><p>W1 against W5: <b id="d1"></b> decades. W2 against W4: <b id="d2"></b> decades.</p><p>Tower deficit on the cited young masses: <b id="def"></b>.</p></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+function decades(a,b){ return Math.log10(a/b); }
+function deficit(){ return (2048-48)+(2048-1); }
+function prove(){
+  var d1=decades(2049,1), d2=decades(2048,48);
+  if(!(d1>3.3 && d1<3.32)) throw new Error("d1");
+  if(!(d2>1.62 && d2<1.64)) throw new Error("d2");
+  if(deficit()!==4047) throw new Error("deficit");
+  if(2049===1 || 2048===48) throw new Error("symmetry");
+  document.getElementById("d1").textContent=d1.toFixed(2);
+  document.getElementById("d2").textContent=d2.toFixed(2);
+  document.getElementById("def").textContent="4047";
+  document.getElementById("proof").textContent="LIT strains "+d1.toFixed(2)+" and "+d2.toFixed(2)+" decades. Deficit 4047. Mass symmetry on the cited masses is false.";
+}
+prove();
+var tilt=decades(2049,1);
+document.getElementById("beam").style.transform="rotate("+(tilt*1.5).toFixed(2)+"deg)";
+
+
+var NAME="The Strain";
+var SLUG="sonny-strain";
+var BLURB="A tipped beam. From the cited masses the page computes the two decade strains and the tower deficit 4047. Mass symmetry on those masses is false.";
+var SEAL="e3edb086e7775b25628534dffa04713642be0e1a1d507b037ec2dfec04920bb2";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rank Ladder — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#fff7ed;color:#431407;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#431407;color:#fff7ed;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+.rung{display:flex;gap:8px;align-items:center;margin:4px 0;} .bar{height:22px;background:#9a3412;color:#fff7ed;min-width:2px;} .rung button{border-radius:6px;}
+</style>
+</head>
+<body data-kind="sonny-rank-ladder">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-twelve.html">the measured room</a></p>
+<h1>The Rank Ladder</h1>
+<p class="lede">Swap two rungs, or sort them. Name leads at 2967 only while the order is the counted order.</p>
+<div id="stage"><div class="stamps"><b>LIT order</b><b>AMBER counts</b></div><div id="ladder"></div><button data-act="sort">Sort by count</button></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+var audioCtx=null;
+function tone(){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type="triangle";
+  o.frequency.value=262;
+  g.gain.value=0.05;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime+0.16);
+}
+document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
+
+var rows=[["Name",2967],["Constant",1425],["Attribute",963],["Assign",523],["Arg",408],["Return",182],["Expr",301],["If",276],["Compare",201],["Call",750],["FunctionDef",192],["BinOp",138]];
+function draw(){
+  var html="";
+  var max=2967;
+  rows.forEach(function(r,i){
+    html+='<div class="rung"><button data-act="pick" data-arg="'+i+'">'+r[0]+'</button><div class="bar" style="width:'+Math.max(8, Math.round(r[1]/max*100))+'%">'+r[1]+'</div></div>';
+  });
+  document.getElementById("ladder").innerHTML=html;
+}
+var picked=null;
+function onAct(act, arg){
+  if(act==="pick"){
+    var i=+arg;
+    if(picked===null) picked=i;
+    else { var t=rows[picked]; rows[picked]=rows[i]; rows[i]=t; picked=null; }
+  }
+  if(act==="sort") rows.sort(function(a,b){ return b[1]-a[1]; });
+  draw();
+  document.getElementById("note").textContent = rows[0][0]==="Name" ? "Name leads." : "Name is not on the top rung.";
+}
+function prove(){
+  var copy=[["Name",2967],["Constant",1425],["Attribute",963],["Assign",523],["Arg",408],["Return",182],["Expr",301],["If",276],["Compare",201],["Call",750],["FunctionDef",192],["BinOp",138]];
+  copy.sort(function(a,b){ return b[1]-a[1]; });
+  if(copy[0][0]!=="Name" || copy[0][1]!==2967) throw new Error("rank");
+  document.getElementById("proof").textContent="LIT sorted rank 1 is Name at 2967. AMBER the counts are cited.";
+}
+prove(); draw();
+
+document.getElementById("stage").addEventListener("click", function(ev){
+  var b=ev.target.closest("button");
+  if(!b) return;
+  tone();
+  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
+});
+
+
+
+var NAME="The Rank Ladder";
+var SLUG="sonny-rank-ladder";
+var BLURB="A ladder of the twelve counts. Sorted, Name is rank 1 at 2967. The counts are the cited census.";
+var SEAL="8480a592dfb4f4a27e078c2d9954606a130f1224c97669bcedaa8d96fc855757";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

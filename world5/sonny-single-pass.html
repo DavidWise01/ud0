@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Single Pass — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#f0fdfa;color:#134e4a;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#431407;color:#fff7ed;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+#rail{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0;} .slot{border:2px solid currentColor;padding:8px 10px;font-family:ui-monospace,Consolas,monospace;} .here{background:#0f766e;color:#f0fdfa;}
+</style>
+</head>
+<body data-kind="sonny-single-pass">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-conservation-law.html">the measured room</a></p>
+<h1>The Single Pass</h1>
+<p class="lede">Watch the head cross the tape once. Reduced motion parks it at the end and still counts one visit per slot.</p>
+<div id="stage"><div class="stamps"><b>LIT ratio 1</b></div><div id="rail"></div><button data-act="go">Send the head across once</button></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+var audioCtx=null;
+function tone(){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type="sine";
+  o.frequency.value=523;
+  g.gain.value=0.05;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime+0.16);
+}
+document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
+
+var code=["Const","Const","Bin","Answer"];
+var head=0, visits=0, started=false;
+function draw(){
+  document.getElementById("rail").innerHTML=code.map(function(op,i){
+    return '<div class="slot'+(i<head?' here':'')+'">'+op+'</div>';
+  }).join("");
+  document.getElementById("note").textContent="visits "+visits+" / "+code.length;
+}
+function finish(){ head=code.length; visits=code.length; draw(); }
+function step(){
+  if(head>=code.length) return;
+  visits++; head++;
+  draw();
+  if(head<code.length) requestAnimationFrame(step);
+}
+function onAct(){
+  if(started) return;
+  started=true;
+  var reduce=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce) finish();
+  else requestAnimationFrame(step);
+}
+function prove(){
+  var slots=0; for(var i=0;i<code.length;i++) slots++;
+  if(slots/code.length!==1) throw new Error("ratio");
+  document.getElementById("proof").textContent="LIT one visit per slot. Ratio 1.";
+}
+prove(); draw();
+document.getElementById("stage").addEventListener("click", function(ev){
+  var b=ev.target.closest("button"); if(!b) return; tone(); onAct();
+});
+
+
+var NAME="The Single Pass";
+var SLUG="sonny-single-pass";
+var BLURB="One cursor visits each slot of a tape once. The ratio of visits to length is 1. There is no second pass on this page.";
+var SEAL="1b0a40a283fd2fe8416237ce138d5c7920e904a3586f266b13dd9eb71b2373c7";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

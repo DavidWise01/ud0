@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Census Abacus — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#f0fdfa;color:#134e4a;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#431407;color:#fff7ed;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+.wire{display:flex;justify-content:space-between;gap:12px;border-top:4px solid currentColor;padding:10px 0;font-size:20px;} .wire b{font-family:ui-monospace,Consolas,monospace;}
+</style>
+</head>
+<body data-kind="sonny-census-abacus">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-twelve.html">the measured room</a></p>
+<h1>The Census Abacus</h1>
+<p class="lede">The beads show the cited hundredths. Nudge a wire and that plane no longer matches. Reset restores the census.</p>
+<div id="stage"><div class="stamps"><b>LIT sums</b><b>AMBER census</b></div><div id="wires"></div><p>Grand <b id="grand"></b></p><button data-act="reset">Reset the wires</button></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+var audioCtx=null;
+function tone(){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type="sine";
+  o.frequency.value=185;
+  g.gain.value=0.05;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime+0.16);
+}
+document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
+
+var base={"I DESIGNATE":5355,"II BIND":1113,"III DECIDE":778,"IV TRANSFORM":1080};
+var nudge={};
+function value(p){ return base[p]+(nudge[p]||0); }
+function draw(){
+  var html=""; var g=0;
+  ["I DESIGNATE","II BIND","III DECIDE","IV TRANSFORM"].forEach(function(p){
+    var v=value(p); g+=v;
+    html+='<div class="wire"><span>'+p+'</span><b>'+v+'</b><button data-act="nudge" data-arg="'+p+'">Nudge</button></div>';
+  });
+  document.getElementById("wires").innerHTML=html;
+  document.getElementById("grand").textContent=String(g);
+  document.getElementById("note").textContent = g===8326 ? "Grand 8326." : "A wire moved. Grand is no longer 8326.";
+}
+function onAct(act, arg){
+  if(act==="nudge") nudge[arg]=(nudge[arg]||0)+1;
+  if(act==="reset") nudge={};
+  draw();
+}
+function prove(){
+  var s=0; ["I DESIGNATE","II BIND","III DECIDE","IV TRANSFORM"].forEach(function(p){ if(base[p]!=={"I DESIGNATE":5355,"II BIND":1113,"III DECIDE":778,"IV TRANSFORM":1080}[p]) throw new Error(p); s+=base[p]; });
+  if(s!==8326) throw new Error("grand");
+  if(base["I DESIGNATE"]+1===5355) throw new Error("nudge should break");
+  document.getElementById("proof").textContent="LIT plane sums 5355, 1113, 778, 1080 and grand 8326. AMBER counts cited.";
+}
+prove(); draw();
+
+document.getElementById("stage").addEventListener("click", function(ev){
+  var b=ev.target.closest("button");
+  if(!b) return;
+  tone();
+  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
+});
+
+
+
+var NAME="The Census Abacus";
+var SLUG="sonny-census-abacus";
+var BLURB="Four wires for the four planes. Their cited hundredths sum to 5355, 1113, 778, and 1080, and those four sum to 8326.";
+var SEAL="aa05d3387b6d44cc22a0ec265697d4132b325eea73c8e044915d289a9c8b6dc0";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

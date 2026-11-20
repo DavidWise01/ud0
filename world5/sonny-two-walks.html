@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Two Walks — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#134e4a;color:#f0fdfa;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#fff7ed;color:#431407;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;} .fig{padding:16px;border:3px solid currentColor;} .fig b{font-size:48px;display:block;} .amber{background:#115e59;}
+</style>
+</head>
+<body data-kind="sonny-two-walks">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-twelve.html">the measured room</a></p>
+<h1>The Two Walks</h1>
+<p class="lede">The left figure is divided on this page. The right figure is the cited raw walk. This page does not walk the 649,634 nodes.</p>
+<div id="stage"><div class="stamps"><b>LIT 83.26</b><b>AMBER 57.66</b><b>WALL node walk</b></div><div class="pair"><div class="fig"><b>83.26</b>8326 divided by 100 on this page.</div><div class="fig amber"><b>57.66</b>Cited raw walk from the twelve. Not walked here.</div></div></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+function prove(){
+  var hundredths=8326/100;
+  if(hundredths.toFixed(2)!=="83.26") throw new Error("divide");
+  var RAW_IS_LIT=false;
+  if(RAW_IS_LIT) throw new Error("raw walk is not recomputed");
+  document.getElementById("proof").textContent="LIT 8326 hundredths is 83.26. AMBER raw walk 57.66 is cited and not recomputed.";
+}
+prove();
+document.getElementById("stage").addEventListener("click", function(){});
+
+
+var NAME="The Two Walks";
+var SLUG="sonny-two-walks";
+var BLURB="Two figures side by side. 8326 hundredths is 83.26 and the page divides it. The raw walk 57.66 is cited from the twelve and is not recomputed here.";
+var SEAL="a331c6dfab3a7b270af4323c904ecf433dd14c3e7692e3d1793beec627d71634";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Five Seats — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#1e1b4b;color:#eef2ff;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#fff7ed;color:#431407;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+#chairs{display:flex;flex-wrap:wrap;gap:8px;} .chair{width:100px;min-height:90px;border:2px solid currentColor;border-radius:12px 12px 0 0;background:transparent;} .chair.on{background:#c7d2fe;color:#1e1b4b;}
+</style>
+</head>
+<body data-kind="sonny-five-seats">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-palindrome.html">the measured room</a></p>
+<h1>The Five Seats</h1>
+<p class="lede">Click a seat. Its partner lights. W1 faces W5, W2 faces W4, the axis faces itself. The masses are cited, not a fresh census.</p>
+<div id="stage"><div class="stamps"><b>LIT position</b><b>AMBER masses</b></div><div id="chairs"></div></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+var audioCtx=null;
+function tone(){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type="sine";
+  o.frequency.value=164;
+  g.gain.value=0.05;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime+0.16);
+}
+document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
+
+var names=["W1","W2","W3","W4","W5"];
+var masses=[2049,2048,8,48,1];
+function partner(i){ return 4-i; }
+var lit=-1;
+function draw(){
+  var html="";
+  for(var i=0;i<5;i++){
+    var on = i===lit || i===partner(lit);
+    html+='<button class="chair'+(on?' on':'')+'" data-act="sit" data-arg="'+i+'">'+names[i]+'<br>'+masses[i]+'</button>';
+  }
+  document.getElementById("chairs").innerHTML=html;
+  document.getElementById("note").textContent = lit<0 ? "Cited build-time masses. Not a fresh census." : (names[lit]+" faces "+names[partner(lit)]);
+}
+function onAct(act, arg){ lit=+arg; draw(); }
+function prove(){
+  var rev=[];
+  for(var i=0;i<5;i++){ if(partner(i)!==4-i) throw new Error("partner"); rev.push(names[partner(i)]); }
+  if(rev.join(",")!=="W5,W4,W3,W2,W1") throw new Error("reverse");
+  if(masses[0]===masses[4]) throw new Error("ends differ");
+  if(masses[0]!==2049 || masses[4]!==1 || masses[1]!==2048 || masses[3]!==48) throw new Error("mass");
+  document.getElementById("proof").textContent="LIT partners reverse the row and the end seats differ. AMBER masses are the palindrome build-time counts.";
+}
+prove(); draw();
+
+document.getElementById("stage").addEventListener("click", function(ev){
+  var b=ev.target.closest("button");
+  if(!b) return;
+  tone();
+  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
+});
+
+
+
+var NAME="The Five Seats";
+var SLUG="sonny-five-seats";
+var BLURB="Five seats. Partner of i is 4 minus i. The end seats are different seats. The masses shown are the palindrome page build-time counts.";
+var SEAL="9e9b973d13b2b0ecfd1f793eed18402c807cab79ac357a7bf9e406c657a7716f";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

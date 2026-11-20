@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Atrium — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#5b21b6;color:#fff7ed;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#fff7ed;color:#431407;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+
+.zone{margin:0 0 22px;padding:14px;border:2px solid currentColor;}
+.z-alphabet{border-radius:40px 8px;}
+.z-law{border-radius:0;background:rgba(255,255,255,.08);}
+.z-cortex{transform:rotate(-0.4deg);}
+.z-freeze{border-style:dashed;}
+.z-nesting{border-radius:80px 0 80px 0;}
+.z-count{border-width:6px;}
+.z-seats{border-radius:0 0 48px 48px;}
+.z-voice{border-radius:48px;}
+.doors{display:flex;flex-wrap:wrap;gap:10px;}
+.door{display:block;min-width:0;max-width:100%;padding:12px 14px;text-decoration:none;border:2px solid currentColor;}
+.z-alphabet .door{border-radius:999px;background:#ffedd5;color:#7c2d12;}
+.z-law .door{background:#ecfeff;color:#083344;clip-path:polygon(0 0,100% 0,96% 100%,4% 100%);}
+.z-cortex .door{background:#ffe4e6;color:#4c0519;border-radius:4px 18px;}
+.z-freeze .door{background:#fef3c7;color:#78350f;border-radius:12px 12px 0 0;}
+.z-nesting .door{background:#dcfce7;color:#052e16;margin-left:8px;border-radius:0 24px 24px 0;}
+.z-count .door{background:#ccfbf1;color:#134e4a;}
+.z-seats .door{background:#e0e7ff;color:#1e1b4b;border-radius:18px 18px 0 0;}
+.z-voice .door{background:#fdf4ff;color:#701a75;border-radius:999px;}
+.door b{display:block;font-size:18px;}
+.door i{display:block;font-style:normal;font-family:ui-monospace,Consolas,monospace;font-size:12px;}
+h2{margin:0 0 4px;font-size:14px;letter-spacing:.16em;}
+
+</style>
+</head>
+<body data-kind="sonny-atrium">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-galaxiton.html">the measured room</a></p>
+<h1>The Atrium</h1>
+<p class="lede">Pick a district. Each door opens a different machine. The essays stay where they are.</p>
+<div id="stage"><section class="zone z-alphabet"><h2>THE ALPHABET</h2><p>Twelve counted verbs and the keyword I.</p><div class="doors"><a class="door" href="sonny-alphabet-keys.html"><b>The Alphabet Keys</b><i>Thirteen keys. The twelve sum to 8326.</i></a><a class="door" href="sonny-plane-press.html"><b>The Plane Press</b><i>File each verb. A mis-filed Call breaks the plane.</i></a><a class="door" href="sonny-keyword-i.html"><b>The Keyword I</b><i>A declaration starts with I. This is a toy.</i></a><a class="door" href="sonny-rank-ladder.html"><b>The Rank Ladder</b><i>Name stays rank 1 at 2967.</i></a></div></section><section class="zone z-law"><h2>THE LAW</h2><p>net = binds minus k, checked in one pass.</p><div class="doors"><a class="door" href="sonny-opcode-bench.html"><b>The Opcode Bench</b><i>Fourteen opcodes. The stack is the picture.</i></a><a class="door" href="sonny-call-slot.html"><b>The Call Slot</b><i>Call(n) consumes n args and the callee.</i></a><a class="door" href="sonny-underflow.html"><b>The Underflow</b><i>Bin with one operand breaks. A Const repairs it.</i></a><a class="door" href="sonny-single-pass.html"><b>The Single Pass</b><i>The cursor visits each slot once. Ratio 1.</i></a></div></section><section class="zone z-cortex"><h2>THE CORTEX</h2><p>VETO and the drain run. Two rules stay dead.</p><div class="doors"><a class="door" href="sonny-veto-stack.html"><b>The Veto Stack</b><i>A closer must match the open scope.</i></a><a class="door" href="sonny-drain.html"><b>The Drain</b><i>One pull emits the outstanding closers.</i></a><a class="door" href="sonny-dead-register.html"><b>The Dead Register</b><i>Idempotence and address do no work.</i></a><a class="door" href="sonny-depth-gate.html"><b>The Depth Gate</b><i>Three namespace letters fit. A fourth is refused.</i></a></div></section><section class="zone z-freeze"><h2>THE FREEZE</h2><p>Trit powers, and a rank that does not fit.</p><div class="doors"><a class="door" href="sonny-trit-tower.html"><b>The Trit Tower</b><i>1, 3, 9, 27, 81. Each crystal is triple the last.</i></a><a class="door" href="sonny-rejected-rank.html"><b>The Rejected Rank</b><i>Three blocks do not sit on a rank-2 shelf.</i></a></div></section><section class="zone z-nesting"><h2>THE NESTING</h2><p>Galaxy, universe, world, core. Cap of three.</p><div class="doors"><a class="door" href="sonny-bracket-zoom.html"><b>The Bracket Zoom</b><i>Four frames. Three namespace letters.</i></a><a class="door" href="sonny-fourth-name.html"><b>The Fourth Name</b><i>Typing q into the nest fails the cap.</i></a><a class="door" href="sonny-cap-of-three.html"><b>The Cap of Three</b><i>A fourth recursion step is refused.</i></a></div></section><section class="zone z-count"><h2>THE COUNT</h2><p>The census arithmetic, the cited raw walk, the kept retractions.</p><div class="doors"><a class="door" href="sonny-census-abacus.html"><b>The Census Abacus</b><i>Four wires. The beads are the cited hundredths.</i></a><a class="door" href="sonny-two-walks.html"><b>The Two Walks</b><i>8326 hundredths is arithmetic. 57.66 is cited.</i></a><a class="door" href="sonny-kept-dead.html"><b>The Kept Dead</b><i>Two retracted sentences stay on the page.</i></a></div></section><section class="zone z-seats"><h2>THE SEATS</h2><p>The palindrome by position. Mass symmetry is false on the cited numbers.</p><div class="doors"><a class="door" href="sonny-five-seats.html"><b>The Five Seats</b><i>Click a seat. Its positional partner lights.</i></a><a class="door" href="sonny-strain.html"><b>The Strain</b><i>The beam tips. 2049 against 1, 2048 against 48.</i></a></div></section><section class="zone z-voice"><h2>THE VOICE</h2><p>A toy of binds and releases. The compiler is not run.</p><div class="doors"><a class="door" href="sonny-token-tape.html"><b>The Token Tape</b><i>B binds. K releases. BBKK returns to zero.</i></a><a class="door" href="sonny-balanced-word.html"><b>The Balanced Word</b><i>Two pans. The beam levels when the counts match.</i></a></div></section></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+function prove(){
+  var need=["sonny-alphabet-keys","sonny-plane-press","sonny-keyword-i","sonny-rank-ladder","sonny-opcode-bench","sonny-call-slot","sonny-underflow","sonny-single-pass","sonny-veto-stack","sonny-drain","sonny-dead-register","sonny-depth-gate","sonny-trit-tower","sonny-rejected-rank","sonny-bracket-zoom","sonny-fourth-name","sonny-cap-of-three","sonny-census-abacus","sonny-two-walks","sonny-kept-dead","sonny-five-seats","sonny-strain","sonny-token-tape","sonny-balanced-word"];
+  if(need.length!==24) throw new Error("district count");
+  var seen={};
+  for(var i=0;i<need.length;i++){
+    if(!need[i] || seen[need[i]]) throw new Error("slug");
+    seen[need[i]]=1;
+  }
+  var zones=document.querySelectorAll(".zone");
+  if(zones.length!==8) throw new Error("zones");
+  document.getElementById("proof").textContent="LIT eight districts, 24 doors, each slug once";
+}
+prove();
+document.getElementById("stage").addEventListener("click", function(){});
+
+
+var NAME="The Atrium";
+var SLUG="sonny-atrium";
+var BLURB="The keeper floor of World V. Eight districts, each a different instrument of the I-13 language.";
+var SEAL="807f2f899d86ddbe4dbd67916e0440c4d8aeca6559c05e7a86896cbcbb1dd0dd";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>

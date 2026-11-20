@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fourth Name — WORLD V</title>
+<style>
+html,body{margin:0;min-width:0;}
+body{background:#ecfccb;color:#14532d;font-family:Georgia,"Iowan Old Style",Palatino,serif;}
+#wrap{max-width:1080px;margin:0 auto;padding:20px 16px 64px;min-width:0;}
+a{color:inherit;}
+.kicker{font-family:ui-monospace,Consolas,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(32px,6vw,64px);line-height:.95;margin:0 0 10px;font-weight:700;}
+.lede,.kicker,h1,#proof,#note,button,a,p,li{min-width:0;overflow-wrap:anywhere;}
+.lede{font-size:18px;max-width:62ch;margin:0 0 18px;}
+#stage{min-width:0;}
+button,a.door{font:inherit;}
+button{cursor:pointer;border:2px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:8px 14px;}
+button.on{background:#431407;color:#fff7ed;}
+#proof{font-family:ui-monospace,Consolas,monospace;font-size:14px;margin-top:18px;padding:10px 12px;border:2px solid currentColor;border-radius:12px;}
+#note{font-family:ui-monospace,Consolas,monospace;font-size:13px;min-height:1.2em;}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.stamps{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 14px;font-family:ui-monospace,Consolas,monospace;font-size:11px;letter-spacing:.08em;}
+.stamps b{border:1px solid currentColor;border-radius:999px;padding:2px 8px;}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+#line{font-family:ui-monospace,Consolas,monospace;font-size:clamp(18px,4vw,32px);}
+</style>
+</head>
+<body data-kind="sonny-fourth-name">
+<div id="wrap">
+<p class="kicker"><a href="./">World V</a> · <a href="sonny-atrium.html">Atrium</a> · <a href="the-galaxiton.html">the measured room</a></p>
+<h1>The Fourth Name</h1>
+<p class="lede">The line already holds [g[u[p[(o)]]]]. Press q. The letter is refused and the canon nest stays.</p>
+<div id="stage"><div class="stamps"><b>LIT cap</b></div><p id="line"></p><div class="row"><button data-act="q">Type q</button><button data-act="reset">Restore</button></div></div>
+<p id="proof">checking</p>
+<p id="note"></p>
+</div>
+<script id="sonny-proof">
+
+var audioCtx=null;
+function tone(){
+  if(!audioCtx) return;
+  var o=audioCtx.createOscillator(), g=audioCtx.createGain();
+  o.type="triangle";
+  o.frequency.value=311;
+  g.gain.value=0.05;
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime+0.16);
+}
+document.addEventListener("pointerdown", function(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); }, {once:false});
+
+var canon="[g[u[p[(o)]]]]";
+var shown=canon;
+function letters(s){ var m=s.match(/\[([gupq])/g)||[]; var set={}; m.forEach(function(x){set[x[1]]=1;}); return Object.keys(set).length; }
+function draw(){ document.getElementById("line").textContent=shown; }
+function onAct(act){
+  if(act==="q"){
+    var next="[g[u[p[q[(o)]]]]]";
+    if(letters(next)>3){ shown=canon; document.getElementById("note").textContent="q refused. The canon nest stays."; }
+  }
+  if(act==="reset"){ shown=canon; document.getElementById("note").textContent=""; }
+  draw();
+}
+function prove(){
+  if(letters(canon)!==3) throw new Error("canon");
+  if(letters("[g[u[p[q[(o)]]]]]")!==4) throw new Error("q");
+  document.getElementById("proof").textContent="LIT q would make four namespace letters, so the line keeps the canon nest.";
+}
+prove(); draw();
+
+document.getElementById("stage").addEventListener("click", function(ev){
+  var b=ev.target.closest("button");
+  if(!b) return;
+  tone();
+  onAct(b.getAttribute("data-act"), b.getAttribute("data-arg"));
+});
+
+
+
+var NAME="The Fourth Name";
+var SLUG="sonny-fourth-name";
+var BLURB="A line for one added namespace letter. Adding q to the canon nest fails the depth cap of three. g, u, and p already fill it.";
+var SEAL="f7818c4d78f48c7e252c4f55eac54426c9e2c49c62d9ac42fec227e610960772";
+if (window.crypto && crypto.subtle) {
+  crypto.subtle.digest("SHA-256", new TextEncoder().encode(NAME+"|"+SLUG+"|"+BLURB)).then(function(buf){
+    var hex="";
+    var bytes=new Uint8Array(buf);
+    for (var i=0;i<bytes.length;i++) hex+=bytes[i].toString(16).padStart(2,"0");
+    if (hex!==SEAL) { document.getElementById("proof").textContent="FAIL seal"; throw new Error("seal mismatch"); }
+  });
+}
+window.__sonny={prove:prove, slug:SLUG};
+
+</script>
+</body>
+</html>
