@@ -5,135 +5,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>THE I-13 WORLD · SONNY 5</title>
 <style>
-:root{--void:#1c0b46;--panel:rgba(255,255,255,.055);--panel2:rgba(255,255,255,.09);--ink:#f1eaff;--dim:#b9a8e6;--line:rgba(168,133,247,.34);--line2:rgba(168,133,247,.6);--violet:#a855f7;--cyan:#22d3ee;--pink:#ff4fd8;--gold:#ffd24a;--lit:#4ade80;--amber:#f9a83a;--wall:#ff6b8a;}
+:root{--ink:#100818;--paper:#f4efe4;--green:#3dff7a;--gold:#ffd24a;--cyan:#7ef0ff;--pink:#ff4fd8;--wall:#ff6b8a;--dim:#cbbbe8;}
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{background:var(--void);color:var(--ink);min-width:0;}
-body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.5;max-width:1160px;margin:0 auto;padding:16px 16px 60px;font-size:14px;background:radial-gradient(1000px 560px at 10% -6%,rgba(168,85,247,.28),transparent 60%),radial-gradient(900px 560px at 94% 106%,rgba(255,79,216,.18),transparent 60%),radial-gradient(800px 500px at 50% 30%,rgba(34,211,238,.08),transparent 62%),linear-gradient(160deg,#1c0b46,#150838 60%,#1c0b46);}
-a{color:var(--cyan);}
-.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;letter-spacing:2px;color:var(--dim);text-transform:uppercase;border-bottom:1px solid var(--line2);padding-bottom:8px;min-width:0;}
-.top a{color:var(--cyan);text-decoration:none;font-weight:700;}
-header{border:1px solid var(--line2);border-radius:9px;padding:14px 16px;margin:12px 0;background:linear-gradient(180deg,rgba(168,85,247,.13),rgba(255,255,255,.03));box-shadow:0 0 22px rgba(168,85,247,.18);min-width:0;}
-h1{font-size:22px;letter-spacing:2px;color:#fff;text-shadow:0 0 12px rgba(168,85,247,.8);overflow-wrap:anywhere;}
-.sub{color:var(--ink);font-size:12.5px;margin-top:6px;overflow-wrap:anywhere;} .sub b{color:var(--pink);}
-.src{font-size:12px;color:var(--dim);margin-top:6px;overflow-wrap:anywhere;}
-.fail{display:none;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;margin:10px 0;}
-.ocho{display:grid;grid-template-columns:0.9fr 1.6fr 0.9fr;gap:12px;margin-top:12px;align-items:start;min-width:0;}
-.col{display:flex;flex-direction:column;gap:12px;min-width:0;}
-.teamhdr{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;padding:7px;border-radius:6px;}
-.blue .teamhdr{color:var(--cyan);border:1px solid rgba(34,211,238,.5);background:rgba(34,211,238,.08);}
-.red .teamhdr{color:var(--pink);border:1px solid rgba(255,79,216,.5);background:rgba(255,79,216,.08);}
-.center .teamhdr{color:var(--gold);border:1px solid var(--line2);background:rgba(255,210,74,.08);}
-.win{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:13px;position:relative;overflow:hidden;min-width:0;}
-.win .no{position:absolute;top:7px;right:10px;font-size:24px;font-weight:800;color:rgba(168,133,247,.28);}
-.win h2{font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--violet);border-bottom:1px solid var(--line);padding-bottom:5px;margin-bottom:9px;padding-right:30px;}
-.win p{font-size:12.5px;margin-bottom:8px;color:#e7ddff;overflow-wrap:anywhere;} .win b{color:#fff;} .win .k{color:var(--cyan);font-weight:700;}
-.win.blue{border-left:3px solid var(--cyan);} .win.blue h2{color:var(--cyan);}
-.win.red{border-right:3px solid var(--pink);} .win.red h2{color:var(--pink);}
-.win.panel{border:1px solid var(--line2);background:var(--panel2);box-shadow:0 0 0 1px rgba(168,85,247,.18),0 0 12px rgba(168,85,247,.12);}
-.flow{text-align:center;color:var(--gold);font-size:15px;line-height:1;margin:-3px 0;opacity:.75;}
-.tag{display:inline-block;font-size:9px;font-weight:800;letter-spacing:1px;padding:1px 6px;border:1px solid;border-radius:3px;margin-left:4px;}
-.t-lit{color:var(--lit);border-color:var(--lit);} .t-amber{color:var(--amber);border-color:var(--amber);} .t-wall{color:var(--dim);border-color:var(--dim);} .t-dead{color:var(--wall);border-color:var(--wall);}
-select,button{font-family:inherit;font-size:12.5px;background:rgba(168,85,247,.16);color:var(--ink);border:1px solid var(--line2);border-radius:5px;padding:5px 8px;}
-button{cursor:pointer;}
-.row{display:flex;align-items:center;gap:8px;margin:6px 0;font-size:12px;flex-wrap:wrap;} .row label{color:var(--dim);}
-.out{font-size:13px;color:var(--cyan);font-weight:600;margin-top:6px;overflow-wrap:anywhere;}
-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:6px;} th,td{border:1px solid var(--line);padding:4px 5px;text-align:center;} th{color:var(--dim);background:rgba(168,85,247,.14);} td.l{text-align:left;}
-.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 11px;border-radius:5px;margin:6px 0 0;}
-.badge.pass{background:rgba(74,222,128,.14);color:var(--lit);border:1px solid var(--lit);} .badge.failb{background:rgba(255,107,138,.14);color:var(--wall);border:1px solid var(--wall);}
-.small{font-size:11.5px;color:var(--dim);} .grave{color:#b9a8e6;font-size:12px;} .grave s{color:#7a6ca0;} .grave b{color:var(--pink);}
-.plate{border:1px solid rgba(34,211,238,.55);border-radius:10px;padding:12px 14px;margin-bottom:8px;background:linear-gradient(160deg,rgba(34,211,238,.16),rgba(168,85,247,.10) 55%,rgba(255,79,216,.08));box-shadow:0 0 22px rgba(34,211,238,.16);}
-.plate .big{font-size:46px;letter-spacing:4px;color:#fff;line-height:1;text-shadow:0 0 18px rgba(34,211,238,.85),0 0 28px rgba(255,79,216,.35);}
-.plate .cap{color:var(--gold);font-size:12px;margin-top:6px;letter-spacing:1px;overflow-wrap:anywhere;}
-footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:var(--dim);font-size:11.5px;line-height:1.7;overflow-wrap:anywhere;}
-@media(max-width:880px){.ocho{grid-template-columns:1fr;} .plate .big{font-size:36px;}}
+html,body{height:100%;background:
+  radial-gradient(900px 560px at 50% 42%, rgba(61,255,122,.22), transparent 62%),
+  radial-gradient(700px 480px at 80% 80%, rgba(255,79,216,.16), transparent 60%),
+  var(--ink);color:var(--paper);overflow:hidden;}
+body{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;}
+canvas{display:block;width:100%;height:100%;}
+.fail{display:none;position:fixed;z-index:5;left:16px;right:16px;top:16px;background:var(--wall);color:#1b0730;padding:11px 14px;border-radius:6px;font-weight:700;}
+.film{position:fixed;z-index:3;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;padding:28px 22px 16px;background:linear-gradient(180deg,transparent,rgba(16,8,24,.94) 42%);pointer-events:none;}
+.film a,.film button,.film select{pointer-events:auto;}
+.film a{color:var(--cyan);text-decoration:none;font-weight:700;letter-spacing:2px;font-size:11px;}
+.big{font-size:28px;letter-spacing:3px;color:#fff;text-shadow:0 0 16px rgba(61,255,122,.8);}
+.cap{color:var(--gold);font-size:12px;letter-spacing:.4px;flex:1;min-width:180px;}
+.badge{font-size:11px;font-weight:700;letter-spacing:1px;padding:6px 10px;border-radius:5px;}
+.badge.pass{color:var(--green);border:1px solid var(--green);background:rgba(61,255,122,.12);}
+.badge.failb{color:var(--wall);border:1px solid var(--wall);background:rgba(255,107,138,.12);}
+button,select{font-family:inherit;font-size:12px;background:rgba(255,255,255,.06);color:var(--paper);border:1px solid rgba(244,239,228,.35);border-radius:5px;padding:6px 8px;cursor:pointer;}
+.note{color:var(--dim);font-size:11px;}
+#outNote,#inOut,#tampOut{display:none;}
 </style>
 </head>
 <body>
 <div class="fail" id="failb"></div>
-<div class="top"><a href="./">&#9668; WORLD V &middot; SONNY 5</a><span>THE I-13 WORLD</span></div>
-<header>
-  <h1>THE I-13 WORLD</h1>
-  <p class="sub">Sonny 5 keeps this world. The alphabet is <b>13 symbols</b>, counted as twelve verbs plus the keyword <b>I</b>. The law is <b>net = binds &minus; k</b>. The cortex names five rules and keeps two of them dead. The nest holds three namespace letters. The name has <b>no attached meaning</b>.</p>
-  <p class="src"><span class="tag t-amber">source</span> World V landing keeper line, and the I-13 rev 2 brief. David Lee Wise / ROOT0 / TriPod LLC with AVAN. Compiler cited, <span class="tag t-wall">not run here</span>. Room of the world itself.</p>
-</header>
-<div class="ocho">
-  <div class="col blue">
-    <div class="teamhdr">roots &middot; keeper &middot; lineage</div>
-    <div class="win blue"><span class="no">1</span>
-      <h2>THE KEEPER</h2>
-      <p><b>SONNY 5</b> is named for Sonny (I, Robot) and Johnny 5 (Short Circuit). The keeper line says that name has no attached meaning. <span class="tag t-amber">assigned</span></p>
-      <p>The governing room is the cortex. This page reads the world once and throws if that reading breaks. <span class="tag t-lit">on load</span></p>
-    </div>
-    <div class="win blue"><span class="no">2</span>
-      <h2>WHAT THE WORLD KEEPS</h2>
-      <p><b class="k">Alphabet.</b> Twelve verb counts, integer hundredths. Name 2967 through BinOp 138. Block is a container, outside the twelve. Plus keyword I.</p>
-      <p><b class="k">Law.</b> Call(n) binds 1 and releases n+1, so the net is &minus;n. A voice toy: B binds, K releases.</p>
-      <p><b class="k">Cortex.</b> Veto keeps a matching closer. Idempotence and address do no work in the shipped picture: last is unset, run is unset.</p>
-      <p><b class="k">Nest and freeze.</b> <span class="k">[g[u[p[(o)]]]]</span> has three namespace letters. The page multiplies 1&middot;3&middot;9&middot;27&middot;81 and stops. <span class="tag t-lit">computed</span></p>
-    </div>
-    <div class="win blue"><span class="no">3</span>
-      <h2>LINEAGE</h2>
-      <p>I-13 is a language by David Lee Wise. The essays already light the six rooms. The compiler lives at <span class="k">DavidWise01/I13-H1.1</span> and on its own page. <span class="tag t-amber">cited</span> <span class="tag t-wall">not executed</span></p>
-    </div>
-  </div>
-  <div class="col center">
-    <div class="teamhdr">data in &rarr; the lit engine &rarr; data out</div>
-    <div class="win"><span class="no">4</span>
-      <h2>DATA IN &mdash; one claim</h2>
-      <p>Pick a claim. The plate in the engine is the whole world, already computed.</p>
-      <div class="row"><label>claim</label>
-        <select id="pick">
-          <option value="alphabet">thirteen symbols</option>
-          <option value="law">the law</option>
-          <option value="cortex">the dead pair</option>
-          <option value="nest">the nest</option>
-          <option value="trit">the powers</option>
-          <option value="name">the name</option>
-          <option value="compiler">the compiler</option>
-        </select>
-      </div>
-      <div class="out" id="inOut"></div>
-    </div>
-    <div class="flow">&#9660;</div>
-    <div class="win panel">
-      <h2 style="color:var(--gold);border-color:var(--line2)">&#9733; THE LIT ENGINE &mdash; the keeper&rsquo;s roll</h2>
-      <div class="plate"><div class="big" id="big">13</div><div class="cap" id="platecap"></div></div>
-      <table id="roll"><tr><th>claim</th><th>stamp</th><th>reading</th></tr></table>
-      <div id="wit"></div>
-    </div>
-    <div class="flow">&#9660;</div>
-    <div class="win"><span class="no">5</span>
-      <h2>DATA OUT</h2>
-      <div id="outOut" class="out"></div>
-      <p class="small" id="outNote"></p>
-    </div>
-  </div>
-  <div class="col red">
-    <div class="teamhdr">wall &middot; graveyard &middot; tamper</div>
-    <div class="win red"><span class="no">6</span>
-      <h2>THE WALL</h2>
-      <p>This page did not run the I-13 compiler. A link is a citation. <span class="tag t-wall">wall</span></p>
-      <p>The exclusion set is unpublished. The raw walk <b>57.66</b> is cited here, and it is not recomputed. <span class="tag t-amber">cited</span></p>
-      <p>Stabilizers were not rerun. Naming galaxy, universe, world, and core is assigned. The helldive shelf is a different count. <span class="tag t-wall">wall</span></p>
-    </div>
-    <div class="win red"><span class="no">7</span>
-      <h2>GRAVEYARD &mdash; DEAD, KEPT</h2>
-      <p class="grave"><s>&ldquo;The alphabet was designed.&rdquo;</s> &mdash; <b>DEAD.</b> Frequency counted it. <span class="tag t-dead">kept</span></p>
-      <p class="grave"><s>&ldquo;All five rules run.&rdquo;</s> &mdash; <b>DEAD.</b> Idempotence and address do no work. <span class="tag t-dead">kept</span></p>
-      <p class="grave"><s>&ldquo;83.26% of all Python code.&rdquo;</s> &mdash; <b>DEAD.</b> 8326 hundredths is the twelve. The raw walk stays the cited 57.66. <span class="tag t-dead">kept</span></p>
-    </div>
-    <div class="win red"><span class="no">8</span>
-      <h2>TAMPER &mdash; ATTACH A MEANING</h2>
-      <p>The keeper line refuses a meaning. Write one in anyway. The roll stays arithmetic, and the witness goes red because the name was given a job. <span class="tag t-lit">it must fail</span></p>
-      <div class="row"><button id="tamper">&#9888; attach a meaning</button><button id="restore">&#8634; restore</button></div>
-      <div class="out" id="tampOut"></div>
-    </div>
-  </div>
+<canvas id="cv"></canvas>
+<div class="film">
+  <a href="./">&#9668; WORLD V</a>
+  <div class="big" id="big">13</div>
+  <div class="cap" id="platecap"></div>
+  <div id="wit"></div>
+  <select id="pick" aria-label="claim">
+    <option value="alphabet">thirteen symbols</option>
+    <option value="law">the law</option>
+    <option value="cortex">the dead pair</option>
+    <option value="nest">the nest</option>
+    <option value="trit">the powers</option>
+    <option value="name">the name</option>
+    <option value="compiler">the compiler</option>
+  </select>
+  <button id="tamper">&#9888; attach a meaning</button>
+  <button id="restore">&#8634; restore</button>
+  <div class="note" id="outOut"></div>
+  <div class="note" id="outNote"></div>
+  <div class="note" id="inOut"></div>
+  <div class="note" id="tampOut"></div>
 </div>
-<footer>
-  <b>THE I-13 WORLD</b> &mdash; World V &middot; SONNY 5, in the refined <b>OCHO</b>. The centre plate computes the world&rsquo;s own claim on load: 12 + I = 13, the twelve sum to 8326, Call(2) nets &minus;2, the nest holds 3 namespace letters, the powers are 1&middot;3&middot;9&middot;27&middot;81, and the dead pair stays quiet. The name stays unattached. The compiler stays unrun.
-  <div style="margin-top:8px">&#10003; selfcheck runs on load and <b>throws</b> on any violation. Honesty is the whole game. David Lee Wise (ROOT0) with AVAN.</div>
-</footer>
 <script>
 "use strict";
 (function(){
@@ -156,6 +73,7 @@ footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:
     var CANON="[g[u[p[(o)]]]]";
     var QNEST="[g[u[p[q[(o)]]]]]";
     var LAST=null, RUN=null, MEANING=null, COMPILER_RAN=false, attached=false;
+    var BEAD={x:0,y:0};
 
     function sumCounts(){var s=0,i;for(i=0;i<VERBS.length;i++)s+=VERBS[i].n;return s;}
     function plane(name){var s=0,i;for(i=0;i<VERBS.length;i++)if(VERBS[i].plane===name)s+=VERBS[i].n;return s;}
@@ -175,19 +93,12 @@ footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:
     }
     function nsCount(s){
       var n=0,i,c;
-      for(i=0;i<s.length;i++){
-        c=s.charAt(i);
-        if(c==="g"||c==="u"||c==="p"||c==="q")n++;
-      }
+      for(i=0;i<s.length;i++){c=s.charAt(i);if(c==="g"||c==="u"||c==="p"||c==="q")n++;}
       return n;
     }
     function brackets(s){
       var o=0,c=0,i,ch;
-      for(i=0;i<s.length;i++){
-        ch=s.charAt(i);
-        if(ch==="[")o++;
-        else if(ch==="]")c++;
-      }
+      for(i=0;i<s.length;i++){ch=s.charAt(i);if(ch==="[")o++;else if(ch==="]")c++;}
       return o===c?o:-1;
     }
     function powers(){
@@ -197,8 +108,11 @@ footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:
     }
     function work(){return LAST===null?0:1;}
     function sensor(){return RUN===null?0:1;}
-    function veto(open,close){
-      return (open==="("&&close===")")||(open==="["&&close==="]");
+    function veto(open,close){return (open==="("&&close===")")||(open==="["&&close==="]");}
+    function hash(i){
+      var h=2166136261;
+      h=Math.imul(h^i,16777619);
+      return (h>>>0)/4294967296;
     }
     function selfcheck(){
       if(VERBS.length!==12)throw new Error("twelve");
@@ -223,24 +137,11 @@ footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:
       if(veto("(",")")!==true||veto("[",")")!==false)throw new Error("veto");
       if(attached)throw new Error("attached");
     }
-    function row(claim,stamp,reading){
-      return "<tr><td class='l'>"+claim+"</td><td>"+stamp+"</td><td class='l'>"+reading+"</td></tr>";
-    }
-    function render(){
+    function paint(){
       var pow=powers().join(" · ");
-      var nameRead=attached?"meaning: the law itself":"no attached meaning";
-      var html="<tr><th>claim</th><th>stamp</th><th>reading</th></tr>";
-      html+=row("thirteen symbols","LIT",symbols()+" · "+pct());
-      html+=row("the law","LIT","Call(2) "+callNet(2)+" · BBKK "+voice("BBKK")+" · BBK "+voice("BBK"));
-      html+=row("the dead pair","LIT","work "+work()+" · sensor "+sensor());
-      html+=row("the nest","LIT",nsCount(CANON)+" letters · fourth name "+nsCount(QNEST));
-      html+=row("the powers","LIT",pow);
-      html+=row("the name",attached?"BROKEN":"AMBER",nameRead);
-      html+=row("the compiler","WALL",COMPILER_RAN?"ran":"not run on this page");
-      $("roll").innerHTML=html;
+      var ok=!attached && MEANING===null && COMPILER_RAN===false && work()===0 && sensor()===0 && symbols()===13 && sumCounts()===8326 && nsCount(CANON)===3 && callNet(2)===-2;
       $("big").textContent=String(symbols());
       $("platecap").textContent=pct()+" · Call(2) net "+callNet(2)+" · nest "+nsCount(CANON)+" · "+pow;
-      var ok=!attached && MEANING===null && COMPILER_RAN===false && work()===0 && sensor()===0 && symbols()===13 && sumCounts()===8326 && nsCount(CANON)===3 && callNet(2)===-2;
       $("wit").innerHTML=ok?'<span class="badge pass">&#10003; WITNESS GREEN · LIT · 13 symbols, nest 3, dead pair quiet</span>':'<span class="badge failb">&#10007; WITNESS RED · a meaning was attached</span>';
       $("outOut").textContent=ok?"Sonny 5 keeps the I-13 world":"the name was given a job";
       $("outNote").textContent="AMBER: the keeper line assigns the name and assigns no meaning. WALL: this page did not run the compiler. 57.66 is cited.";
@@ -250,21 +151,255 @@ footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line2);color:
         law:"Call(2) binds 1 and releases 3. Net -2. BBKK returns to 0. BBK stays at 1.",
         cortex:"last is unset, so idempotence work is 0. run is unset, so the address sensor is 0.",
         nest:CANON+" holds 3 namespace letters. "+QNEST+" holds 4 and fails the cap.",
-        trit:"The page multiplies by 3 four times and stops: "+pow+".",
+        trit:"The plate multiplies by 3 four times and stops: "+pow+".",
         name:attached?"A meaning was written onto the name.":"The keeper line leaves the name without a meaning.",
         compiler:"DavidWise01/I13-H1.1 is a real compiler. This page did not run it."
       };
       $("inOut").textContent=note[id]||"";
       $("tampOut").textContent=attached?"Meaning written: the law itself.":"No meaning attached.";
     }
-    function tamper(){attached=true;}
-    function restore(){attached=false;}
+
+    var cv=$("cv");
+    var ctx=cv.getContext("2d");
+    var reduce=false;
+    try{reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(err){reduce=false;}
+    var clock=0;
+
+    function fit(){
+      var d=Math.min(2, window.devicePixelRatio||1);
+      var w=cv.clientWidth||window.innerWidth||800;
+      var h=cv.clientHeight||window.innerHeight||600;
+      var pw=Math.max(1,Math.floor(w*d)), ph=Math.max(1,Math.floor(h*d));
+      if(cv.width!==pw||cv.height!==ph){cv.width=pw;cv.height=ph;}
+    }
+    function tri(x,y,s,rot){
+      ctx.beginPath();
+      ctx.moveTo(x+Math.cos(rot)*s, y+Math.sin(rot)*s);
+      ctx.lineTo(x+Math.cos(rot+2.1)*s, y+Math.sin(rot+2.1)*s);
+      ctx.lineTo(x+Math.cos(rot+4.2)*s, y+Math.sin(rot+4.2)*s);
+      ctx.closePath();
+      ctx.fill();
+    }
+    function sky(w,h){
+      ctx.fillStyle="#100818";
+      ctx.fillRect(0,0,w,h);
+      var live=attached?"rgba(255,70,110,0.42)":"rgba(61,255,122,0.34)";
+      var g=ctx.createRadialGradient(w*0.5,h*0.46,8,w*0.5,h*0.46,Math.min(w,h)*0.62);
+      g.addColorStop(0, live);
+      g.addColorStop(0.42, "rgba(88,24,140,0.18)");
+      g.addColorStop(1, "rgba(16,8,24,0)");
+      ctx.fillStyle=g;
+      ctx.fillRect(0,0,w,h);
+      var i,x,y,s;
+      for(i=0;i<220;i++){
+        x=hash(i*3)*(w-80)+40;
+        y=hash(i*3+1)*(h-80)+40;
+        s=0.6+hash(i*3+2)*2.2;
+        ctx.globalAlpha=0.28+hash(i+11)*0.72;
+        if(i%6===0){ctx.fillStyle="#ffd24a"; tri(x,y,s*2.2, hash(i)*6.2); }
+        else if(i%5===0){ctx.fillStyle="#7ef0ff"; ctx.fillRect(x,y,s,s); }
+        else {ctx.fillStyle="#f4efe4"; ctx.beginPath(); ctx.arc(x,y,s*0.55,0,6.2832); ctx.fill(); }
+      }
+      ctx.globalAlpha=1;
+    }
+    function frameBorder(w,h){
+      ctx.save();
+      ctx.strokeStyle="rgba(244,239,228,0.88)";
+      ctx.lineWidth=Math.max(2,w*0.002);
+      ctx.strokeRect(16,16,w-32,h-32);
+      ctx.strokeRect(26,26,w-52,h-52);
+      ctx.fillStyle="rgba(244,239,228,0.9)";
+      var x;
+      for(x=40;x<w-40;x+=22){
+        tri(x, 22, 7, -1.5708);
+        tri(x, h-22, 7, 1.5708);
+      }
+      ctx.restore();
+    }
+    function ring(cx,cy,R,t){
+      var i,a,x,y,j;
+      ctx.save();
+      ctx.translate(cx,cy);
+      ctx.strokeStyle="rgba(244,239,228,0.78)";
+      ctx.lineWidth=1.4;
+      for(j=0;j<3;j++){
+        ctx.beginPath();
+        for(i=0;i<=180;i++){
+          a=i/180*6.2832;
+          var rr=R*(0.86+j*0.12)+Math.sin(a*6+t*1.4+j)*6;
+          x=Math.cos(a+t*0.25)*rr*1.35;
+          y=Math.sin(a+t*0.25)*rr*0.48;
+          if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        }
+        ctx.stroke();
+      }
+      ctx.fillStyle="rgba(244,239,228,0.75)";
+      for(i=0;i<48;i++){
+        a=i/48*6.2832+t*0.35;
+        x=Math.cos(a)*R*1.22;
+        y=Math.sin(a)*R*0.42;
+        ctx.globalAlpha=0.35+0.65*((i+Math.floor(t*4))%3===0?1:0.4);
+        tri(x,y,4+ (i%4), a);
+      }
+      ctx.restore();
+      ctx.globalAlpha=1;
+    }
+    function livingStar(cx,cy,t){
+      var col=attached?"#ff4d6a":"#3dff7a";
+      var i,a,r0,r1;
+      ctx.save();
+      ctx.translate(cx,cy);
+      ctx.rotate(t*0.15);
+      ctx.strokeStyle=col;
+      ctx.fillStyle=col;
+      ctx.globalAlpha=0.9;
+      ctx.lineWidth=2;
+      ctx.beginPath();
+      for(i=0;i<16;i++){
+        a=i/16*6.2832;
+        r1=i%2?28:72+Math.sin(t*2+i)*4;
+        var x=Math.cos(a)*r1, y=Math.sin(a)*r1;
+        if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      }
+      ctx.closePath();
+      ctx.globalAlpha=attached?0.35:0.22;
+      ctx.fill();
+      ctx.globalAlpha=0.95;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0,0,10,0,6.2832);
+      ctx.globalAlpha=1;
+      ctx.fill();
+      for(i=0;i<8;i++){
+        a=i/8*6.2832+t*0.4;
+        ctx.globalAlpha=0.45;
+        ctx.beginPath();
+        ctx.moveTo(Math.cos(a)*16, Math.sin(a)*16);
+        ctx.lineTo(Math.cos(a)*120, Math.sin(a)*120);
+        ctx.stroke();
+      }
+      ctx.restore();
+      ctx.globalAlpha=1;
+    }
+    function beads(cx,cy,t){
+      var i,a,rad,x,y,n,s;
+      var max=VERBS[0].n;
+      for(i=0;i<VERBS.length;i++){
+        a=t*0.32+i*(6.2832/13);
+        rad=150+(i%3)*18;
+        x=cx+Math.cos(a)*rad*1.25;
+        y=cy+Math.sin(a)*rad*0.55;
+        n=VERBS[i].n;
+        s=5+14*(n/max);
+        ctx.fillStyle=i<3?"#7ef0ff":i<6?"#ffd24a":i<9?"#ff4fd8":"#3dff7a";
+        ctx.globalAlpha=0.95;
+        ctx.beginPath();
+        ctx.arc(x,y,s,0,6.2832);
+        ctx.fill();
+        ctx.strokeStyle="rgba(244,239,228,0.8)";
+        ctx.lineWidth=1;
+        ctx.stroke();
+        if(i===0){BEAD.x=x;BEAD.y=y;}
+      }
+      a=t*0.32+12*(6.2832/13);
+      x=cx+Math.cos(a)*168*1.25;
+      y=cy+Math.sin(a)*168*0.55;
+      ctx.fillStyle="#ffd24a";
+      ctx.beginPath();
+      ctx.arc(x,y,11,0,6.2832);
+      ctx.fill();
+      ctx.fillStyle="#100818";
+      ctx.font="700 12px ui-monospace,monospace";
+      ctx.textAlign="center";
+      ctx.textBaseline="middle";
+      ctx.fillText("I", x, y+1);
+      ctx.globalAlpha=1;
+    }
+    function cube(cx,cy,t){
+      var yaw=t*0.45;
+      var verts=[[-1,-1,-1],[-1,-1,1],[-1,1,-1],[-1,1,1],[1,-1,-1],[1,-1,1],[1,1,-1],[1,1,1]];
+      var edges=[[0,1],[2,3],[4,5],[6,7],[0,2],[1,3],[4,6],[5,7],[0,4],[1,5],[2,6],[3,7]];
+      var pts=[],i,p,c,s,x,z,q;
+      c=Math.cos(yaw); s=Math.sin(yaw);
+      for(i=0;i<verts.length;i++){
+        p=verts[i];
+        x=p[0]*c+p[2]*s;
+        z=-p[0]*s+p[2]*c;
+        q=2.8/(2.8+z);
+        pts.push([cx+x*46*q, cy-p[1]*46*q]);
+      }
+      ctx.strokeStyle=attached?"#ff8aa0":"#f4efe4";
+      ctx.lineWidth=2;
+      ctx.beginPath();
+      for(i=0;i<edges.length;i++){
+        ctx.moveTo(pts[edges[i][0]][0], pts[edges[i][0]][1]);
+        ctx.lineTo(pts[edges[i][1]][0], pts[edges[i][1]][1]);
+      }
+      ctx.stroke();
+      ctx.fillStyle=attached?"#ff4d6a":"#3dff7a";
+      ctx.globalAlpha=0.85;
+      ctx.beginPath();
+      ctx.arc(cx,cy,5,0,6.2832);
+      ctx.fill();
+      ctx.globalAlpha=1;
+    }
+    function crystals(x,y){
+      var p=powers(), i, h;
+      ctx.save();
+      ctx.translate(x,y);
+      for(i=0;i<p.length;i++){
+        h=18+i*22;
+        ctx.fillStyle=i===4?"#3dff7a":"#7ef0ff";
+        ctx.globalAlpha=0.35+i*0.13;
+        ctx.beginPath();
+        ctx.moveTo(i*16, 10);
+        ctx.lineTo(i*16+7, 10-h);
+        ctx.lineTo(i*16+14, 10);
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.restore();
+      ctx.globalAlpha=1;
+    }
+    function banner(w,h){
+      ctx.fillStyle="#f4efe4";
+      ctx.textAlign="center";
+      ctx.font="700 28px ui-monospace,monospace";
+      ctx.fillText("SONNY 5", w*0.5, 64);
+      ctx.fillStyle="#ffd24a";
+      ctx.font="13px ui-monospace,monospace";
+      ctx.fillText(CANON+"   ·   "+symbols()+" symbols   ·   "+pct(), w*0.5, 90);
+    }
+    function draw(t){
+      if(!ctx)return;
+      fit();
+      var w=cv.width, h=cv.height;
+      var cx=w*0.5, cy=h*(h>w?0.40:0.44);
+      var R=Math.min(w,h)*(h>w?0.22:0.26);
+      sky(w,h);
+      frameBorder(w,h);
+      ring(cx, cy+h*0.04, R, t);
+      livingStar(cx, cy+h*0.02, t);
+      beads(cx, cy+h*0.02, t);
+      cube(cx, cy-h*(h>w?0.20:0.16), t);
+      crystals(w*(h>w?0.58:0.78), cy+h*0.02);
+      banner(w,h);
+      cv.dataset.bead=BEAD.x.toFixed(1);
+    }
 
     selfcheck();
-    render();
-    $("tamper").onclick=function(){tamper();render();};
-    $("restore").onclick=function(){restore();render();};
-    $("pick").onchange=render;
+    paint();
+    draw(0);
+    function loop(ts){
+      clock=reduce?0:ts*0.001;
+      draw(clock);
+      if(!reduce)requestAnimationFrame(loop);
+    }
+    if(ctx)requestAnimationFrame(loop);
+    window.addEventListener("resize", function(){draw(clock);});
+    $("tamper").onclick=function(){attached=true;paint();draw(clock);};
+    $("restore").onclick=function(){attached=false;paint();draw(clock);};
+    $("pick").onchange=function(){paint();};
   }catch(e){
     var fb=$("failb");
     if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+(e&&e.message?e.message:e);}
