@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE DIMMING · THE DAY'S STORY</title>
+<style>
+html,body{margin:0;height:100%;background:#0c0614;overflow:hidden;}
+img{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#0c0614;}
+a.hit{position:fixed;top:0;height:100%;width:24%;z-index:2;display:block;}
+#prev{left:0;}
+#next{right:0;}
+.story{position:fixed;z-index:3;left:0;right:0;bottom:0;padding:42px 8vw 22px;background:linear-gradient(to top,rgba(12,6,20,.94) 0%,rgba(12,6,20,.8) 46%,rgba(12,6,20,0) 100%);color:#f4efe4;pointer-events:none;}
+.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#ffd24a;margin:0 0 8px;}
+.story p{margin:0 auto;max-width:40rem;font:18px/1.5 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;text-shadow:0 1px 2px #000;}
+a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f4efe4;font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;text-decoration:none;text-shadow:0 1px 6px #000;}
+.fail{display:none;position:fixed;z-index:5;left:12px;right:12px;top:36px;background:#ff6b8a;color:#1b0730;padding:10px 12px;font:700 14px ui-monospace,Menlo,Consolas,monospace;}
+</style>
+</head>
+<body>
+<div class="fail" id="failb"></div>
+<a class="back" href="./">WORLD V</a>
+<img id="plate" src="art/day/speaker.jpg" alt="A speaker whose ring of light has thinned to a crescent">
+<a class="hit" id="prev" href="the-unbranded-ring.html" aria-label="previous page"></a>
+<a class="hit" id="next" href="the-crescent.html" aria-label="next page"></a>
+<div class="story">
+  <div class="kicker">5 / 27 &middot; THE DIMMING</div>
+  <p>A voice in the house is scheduled to leave. Speakers and small screens go quiet, and the app that tended them goes too, on the far side of next summer. You draw the room while the ring is still dying, while there is something left to see.</p>
+</div>
+<script>
+"use strict";
+(function(){
+  function $(id){return document.getElementById(id);}
+  try{
+    var STEP=5;
+    var TOTAL=27;
+    var PLATE="art/day/speaker.jpg";
+    var PREV="the-unbranded-ring.html";
+    var NEXT="the-crescent.html";
+    function selfcheck(){
+      if(TOTAL!==27||STEP<1||STEP>TOTAL)throw new Error("step");
+      if(PLATE.indexOf("art/day/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
+      if($("plate").getAttribute("src")!==PLATE)throw new Error("src");
+      if($("prev").getAttribute("href")!==PREV)throw new Error("prev");
+      if($("next").getAttribute("href")!==NEXT)throw new Error("next");
+      var kick=document.querySelector(".kicker").textContent;
+      if(kick.indexOf(STEP+" / "+TOTAL)!==0)throw new Error("kicker");
+    }
+    selfcheck();
+    window.addEventListener("keydown",function(e){
+      if(e.key==="ArrowRight")location.href=NEXT;
+      else if(e.key==="ArrowLeft")location.href=PREV;
+    });
+  }catch(e){
+    var fb=$("failb");
+    if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+(e&&e.message?e.message:e);}
+    throw e;
+  }
+})();
+</script>
+</body>
+</html>
