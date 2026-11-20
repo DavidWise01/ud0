@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE SCRATCHED HEART · THE EMO HOUR</title>
+<style>
+html,body{margin:0;height:100%;background:#120810;overflow:hidden;}
+img{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#120810;}
+a.hit{position:fixed;top:0;height:100%;width:22%;z-index:2;display:block;}
+#prev{left:0;}
+#next{right:0;}
+.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#ff8fb8;margin:0 0 8px;}
+.story{position:fixed;z-index:3;left:0;right:0;bottom:0;padding:20px 8vw 30px;background:linear-gradient(to top,rgba(20,6,16,.78),rgba(20,6,16,0));color:#f8eef4;pointer-events:none;text-align:center;} .story p{margin:0 auto;max-width:34rem;font:21px/1.4 "Segoe Script","Bradley Hand","Snell Roundhand","Apple Chancery",cursive;text-shadow:0 1px 2px #000;}
+a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f8eef4;font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;text-decoration:none;text-shadow:0 1px 6px #000;}
+.fail{display:none;position:fixed;z-index:5;left:12px;right:12px;top:36px;background:#ff6b8a;color:#1b0730;padding:10px 12px;font:700 14px ui-monospace,Menlo,Consolas,monospace;}
+</style>
+</head>
+<body>
+<div class="fail" id="failb"></div>
+<a class="back" href="./">WORLD V</a>
+<img id="plate" src="art/emo/heart-disc.jpg" alt="A hand holding a disc scratched with a heart">
+<a class="hit" id="prev" href="emo-cord.html" aria-label="previous page"></a>
+<a class="hit" id="next" href="emo-bus.html" aria-label="next page"></a>
+<div class="story">
+  <div class="kicker">7 / 27 &middot; THE SCRATCHED HEART</div>
+  <p>Held up to the wet glass. A heart scratched into the mirror side, messy on purpose. The rainbow is still in the groove. Whatever the hub mutters, the scratch is the line I trust.</p>
+</div>
+<script>
+"use strict";
+(function(){
+  function $(id){return document.getElementById(id);}
+  try{
+    var STEP=7;
+    var TOTAL=27;
+    var PLATE="art/emo/heart-disc.jpg";
+    var PREV="emo-cord.html";
+    var NEXT="emo-bus.html";
+    function selfcheck(){
+      if(TOTAL!==27||STEP<1||STEP>TOTAL)throw new Error("step");
+      if(PLATE.indexOf("art/emo/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
+      if($("plate").getAttribute("src")!==PLATE)throw new Error("src");
+      if($("prev").getAttribute("href")!==PREV)throw new Error("prev");
+      if($("next").getAttribute("href")!==NEXT)throw new Error("next");
+      var kick=document.querySelector(".kicker").textContent;
+      if(kick.indexOf(STEP+" / "+TOTAL)!==0)throw new Error("kicker");
+    }
+    selfcheck();
+    window.addEventListener("keydown",function(e){
+      if(e.key==="ArrowRight")location.href=NEXT;
+      else if(e.key==="ArrowLeft")location.href=PREV;
+    });
+  }catch(e){
+    var fb=$("failb");
+    if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+(e&&e.message?e.message:e);}
+    throw e;
+  }
+})();
+</script>
+</body>
+</html>

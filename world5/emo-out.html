@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE LAMP OUT · THE EMO HOUR</title>
+<style>
+html,body{margin:0;height:100%;background:#160814;overflow:hidden;}
+img{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#160814;}
+a.hit{position:fixed;top:0;height:100%;width:22%;z-index:2;display:block;}
+#prev{left:0;}
+#next{right:0;}
+.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#c9843a;margin:0 0 8px;}
+.story{position:fixed;z-index:3;left:0;top:0;bottom:0;width:min(34vw,420px);padding:18vh 22px 28px;background:linear-gradient(to right,rgba(28,6,20,.92),rgba(28,6,20,.4) 80%,rgba(28,6,20,0));color:#f8eef4;pointer-events:none;} .story p{margin:0;max-width:none;font:17px/1.45 Georgia,"Iowan Old Style",Palatino,"Palatino Linotype",serif;text-shadow:0 1px 2px #000;} @media(max-width:700px){.story{top:auto;width:auto;right:0;padding:28px 6vw 18px;background:linear-gradient(to top,rgba(20,6,16,.94),rgba(20,6,16,0));}}
+a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f8eef4;font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;text-decoration:none;text-shadow:0 1px 6px #000;}
+.fail{display:none;position:fixed;z-index:5;left:12px;right:12px;top:36px;background:#ff6b8a;color:#1b0730;padding:10px 12px;font:700 14px ui-monospace,Menlo,Consolas,monospace;}
+</style>
+</head>
+<body>
+<div class="fail" id="failb"></div>
+<a class="back" href="./">WORLD V</a>
+<img id="plate" src="art/emo/out.jpg" alt="A dark lamp pole over a magenta wet lot">
+<a class="hit" id="prev" href="emo-crane.html" aria-label="previous page"></a>
+<a class="hit" id="next" href="emo-streaks.html" aria-label="next page"></a>
+<div class="story">
+  <div class="kicker">24 / 27 &middot; THE LAMP OUT</div>
+  <p>The pole stayed. The lamp did not. What is left of the night is a pink sky and one shy reflection, and it is not the same lot as the one that still had orange in it.</p>
+</div>
+<script>
+"use strict";
+(function(){
+  function $(id){return document.getElementById(id);}
+  try{
+    var STEP=24;
+    var TOTAL=27;
+    var PLATE="art/emo/out.jpg";
+    var PREV="emo-crane.html";
+    var NEXT="emo-streaks.html";
+    function selfcheck(){
+      if(TOTAL!==27||STEP<1||STEP>TOTAL)throw new Error("step");
+      if(PLATE.indexOf("art/emo/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
+      if($("plate").getAttribute("src")!==PLATE)throw new Error("src");
+      if($("prev").getAttribute("href")!==PREV)throw new Error("prev");
+      if($("next").getAttribute("href")!==NEXT)throw new Error("next");
+      var kick=document.querySelector(".kicker").textContent;
+      if(kick.indexOf(STEP+" / "+TOTAL)!==0)throw new Error("kicker");
+    }
+    selfcheck();
+    window.addEventListener("keydown",function(e){
+      if(e.key==="ArrowRight")location.href=NEXT;
+      else if(e.key==="ArrowLeft")location.href=PREV;
+    });
+  }catch(e){
+    var fb=$("failb");
+    if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+(e&&e.message?e.message:e);}
+    throw e;
+  }
+})();
+</script>
+</body>
+</html>

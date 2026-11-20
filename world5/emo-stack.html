@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE BLANK SPINES · THE EMO HOUR</title>
+<style>
+html,body{margin:0;height:100%;background:#140810;overflow:hidden;}
+img{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#140810;}
+a.hit{position:fixed;top:0;height:100%;width:22%;z-index:2;display:block;}
+#prev{left:0;}
+#next{right:0;}
+.kicker{font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.22em;color:#4a2458;margin:0 0 8px;}
+.story{position:fixed;z-index:3;left:4vw;bottom:5vh;width:min(32rem,86vw);padding:16px 18px 14px;background:rgba(243,228,234,.94);color:#2a1020;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.35);} .kicker{color:#4a2458 !important;} .story p{margin:0;max-width:none;font:17px/1.45 ui-monospace,Menlo,Consolas,monospace;color:#2a1020;text-shadow:none;}
+a.back{position:fixed;z-index:4;top:12px;left:14px;color:#f8eef4;font:11px ui-monospace,Menlo,Consolas,monospace;letter-spacing:.18em;text-decoration:none;text-shadow:0 1px 6px #000;}
+.fail{display:none;position:fixed;z-index:5;left:12px;right:12px;top:36px;background:#ff6b8a;color:#1b0730;padding:10px 12px;font:700 14px ui-monospace,Menlo,Consolas,monospace;}
+</style>
+</head>
+<body>
+<div class="fail" id="failb"></div>
+<a class="back" href="./">WORLD V</a>
+<img id="plate" src="art/emo/stack.jpg" alt="A stack of black discs and one cassette under a pink lamp">
+<a class="hit" id="prev" href="emo-stairwell.html" aria-label="previous page"></a>
+<a class="hit" id="next" href="emo-crane.html" aria-label="next page"></a>
+<div class="story">
+  <div class="kicker">22 / 27 &middot; THE BLANK SPINES</div>
+  <p>Black discs in a pile, one cassette beside them, a lamp the color of the hour. A dark case keeps to the corner. Nothing on the spines. The songs stay where a line can still be taken back.</p>
+</div>
+<script>
+"use strict";
+(function(){
+  function $(id){return document.getElementById(id);}
+  try{
+    var STEP=22;
+    var TOTAL=27;
+    var PLATE="art/emo/stack.jpg";
+    var PREV="emo-stairwell.html";
+    var NEXT="emo-crane.html";
+    function selfcheck(){
+      if(TOTAL!==27||STEP<1||STEP>TOTAL)throw new Error("step");
+      if(PLATE.indexOf("art/emo/")!==0||PLATE.slice(-4)!==".jpg")throw new Error("plate");
+      if($("plate").getAttribute("src")!==PLATE)throw new Error("src");
+      if($("prev").getAttribute("href")!==PREV)throw new Error("prev");
+      if($("next").getAttribute("href")!==NEXT)throw new Error("next");
+      var kick=document.querySelector(".kicker").textContent;
+      if(kick.indexOf(STEP+" / "+TOTAL)!==0)throw new Error("kicker");
+    }
+    selfcheck();
+    window.addEventListener("keydown",function(e){
+      if(e.key==="ArrowRight")location.href=NEXT;
+      else if(e.key==="ArrowLeft")location.href=PREV;
+    });
+  }catch(e){
+    var fb=$("failb");
+    if(fb){fb.style.display="block";fb.textContent="FAIL-LOUD — "+(e&&e.message?e.message:e);}
+    throw e;
+  }
+})();
+</script>
+</body>
+</html>
